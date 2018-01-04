@@ -13,7 +13,9 @@ import (
 	"golang.org/x/oauth2/linkedin"
 
 	"github.com/18F/e-QIP-prototype/api/cf"
+	"github.com/18F/e-QIP-prototype/api/logmsg"
 	"github.com/gorilla/mux"
+	"github.com/sirupsen/logrus"
 )
 
 var (
@@ -23,7 +25,10 @@ var (
 
 // AuthServiceHandler is the initial entry point for authentication.
 func AuthServiceHandler(w http.ResponseWriter, r *http.Request) {
+	log := logmsg.NewLogger()
+
 	if !cf.OAuthEnabled() {
+		log.Warn(logmsg.OAuthAttemptDenied)
 		http.Error(w, "OAuth is not implemented", http.StatusInternalServerError)
 		return
 	}
@@ -41,7 +46,10 @@ func AuthServiceHandler(w http.ResponseWriter, r *http.Request) {
 
 // AuthCallbackHandler handles responses from the authentication provider.
 func AuthCallbackHandler(w http.ResponseWriter, r *http.Request) {
+	log := logmsg.NewLogger()
+
 	if !cf.OAuthEnabled() {
+		log.Warn(logmsg.OAuthAttemptDenied)
 		http.Error(w, "OAuth is not implemented", http.StatusInternalServerError)
 		return
 	}
@@ -51,13 +59,15 @@ func AuthCallbackHandler(w http.ResponseWriter, r *http.Request) {
 
 	config, ok := configureAuthentication(service)
 	if !ok {
-		fmt.Printf("Could not determine service with '%s'\n", service)
 		http.Redirect(w, r, redirectTo, http.StatusTemporaryRedirect)
 	}
 
 	state := r.FormValue("state")
 	if state != oauthStateString {
-		fmt.Printf("Invalid OAuth state, expected '%s' but recieved '%s'\n", oauthStateString, state)
+		log.WithFields(logrus.Fields{
+			"expected": oauthStateString,
+			"actual":   state,
+		}).Warn(logmsg.OAuthStateError)
 		http.Redirect(w, r, redirectTo, http.StatusTemporaryRedirect)
 		return
 	}
@@ -65,7 +75,7 @@ func AuthCallbackHandler(w http.ResponseWriter, r *http.Request) {
 	code := r.FormValue("code")
 	token, err := config.Exchange(oauth2.NoContext, code)
 	if err != nil {
-		fmt.Printf("Code exchange failed with '%s'\n", err)
+		log.WithError(err).Warn(logmsg.OAuthCodeExchangeError)
 		http.Redirect(w, r, redirectTo, http.StatusTemporaryRedirect)
 		return
 	}
@@ -77,6 +87,7 @@ func AuthCallbackHandler(w http.ResponseWriter, r *http.Request) {
 // ConfigureAuthentication takes a service name and configures the OAuth 2.0 with
 // appropriate endpoints and scopes.
 func configureAuthentication(service string) (*oauth2.Config, bool) {
+	log := logmsg.NewLogger()
 	ok := true
 	config := &oauth2.Config{
 		RedirectURL:  fmt.Sprintf("%s/auth/%s/callback", cf.PublicURI(), strings.ToLower(service)),
@@ -86,6 +97,7 @@ func configureAuthentication(service string) (*oauth2.Config, bool) {
 
 	switch service {
 	case "facebook":
+		log.WithField("service", service).Info(logmsg.OAuthConfiguration)
 		config.Endpoint = facebook.Endpoint
 		config.Scopes = []string{
 			"public_profile",
@@ -94,17 +106,20 @@ func configureAuthentication(service string) (*oauth2.Config, bool) {
 			"user_work_history",
 		}
 	case "github":
+		log.WithField("service", service).Info(logmsg.OAuthConfiguration)
 		config.Endpoint = github.Endpoint
 		config.Scopes = []string{
 			"user",
 		}
 	case "google":
+		log.WithField("service", service).Info(logmsg.OAuthConfiguration)
 		config.Endpoint = google.Endpoint
 		config.Scopes = []string{
 			"https://www.googleapis.com/auth/userinfo.profile",
 			"https://www.googleapis.com/auth/userinfo.email",
 		}
 	case "linkedin":
+		log.WithField("service", service).Info(logmsg.OAuthConfiguration)
 		config.Endpoint = linkedin.Endpoint
 		config.Scopes = []string{
 			"r_basicprofile",
@@ -119,6 +134,7 @@ func configureAuthentication(service string) (*oauth2.Config, bool) {
 	// 		"wl.emails",
 	// 	}
 	default:
+		log.WithField("service", service).Info(logmsg.OAuthConfigurationError)
 		ok = false
 	}
 

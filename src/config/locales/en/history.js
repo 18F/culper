@@ -10,7 +10,7 @@ export const history = {
     title: 'Full section view',
     para: 'View all the sections associated with your history at once',
     button: 'Show me the full section',
-    comments: 'Would you like to add a comment about any of your responses relating to your history?'
+    comments: 'Add a comment to clarify any of your responses in the your history section'
   },
   timeline: {
     title: 'Let\'s cover your last 10 years',
@@ -95,7 +95,7 @@ export const history = {
         rented: 'Rented or leased by you',
         military: 'Military housing',
         other: 'Other',
-        explanation: 'Please provide an explanation...'
+        explanation: 'Please provide an explanation'
       }
     },
     help: {
@@ -123,7 +123,7 @@ export const history = {
   },
   employment: {
     summary: {
-      title: 'Where you have worked',
+      title: 'Employment activities',
       unit: 'Years covered'
     },
     gap: {
@@ -1531,7 +1531,7 @@ export const history = {
       exiting: 'Before you leave this section',
       degrees: 'Degrees/diplomas',
       degree: 'Did you receive a degree/diploma?',
-      degreeTail: 'Do you have another degree/diploma to add?',
+      degreeTail: 'Do you have another degree/diploma from this school to add?',
       details: 'Enter your school information',
       dates: 'Provide dates of attendance',
       name: 'Provide the name of the school',

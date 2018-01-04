@@ -46,33 +46,6 @@ describe('Cohabitant validation', function () {
         state: {
           OtherNames: {
             items: [
-              // {
-              //   Item: {
-              //     Has: { value: 'Yes' },
-              //     OtherName: {
-              //       first: 'Foo',
-              //       firstInitialOnly: false,
-              //       middle: 'J',
-              //       middleInitialOnly: true,
-              //       noMiddleName: false,
-              //       last: 'Bar',
-              //       lastInitialOnly: false,
-              //       suffix: 'Jr'
-              //     },
-              //     MaidenName: {
-              //       value: 'No'
-              //     },
-              //     DatesUsed: {
-              //       from: {
-              //         date: new Date('1/1/2010')
-              //       },
-              //       to: {
-              //         date: new Date('1/1/2016')
-              //       },
-              //       present: false
-              //     }
-              //   }
-              // },
               {
                 Item: {
                   Has: { value: 'No' }
@@ -152,33 +125,6 @@ describe('Cohabitant validation', function () {
           },
           OtherNames: {
             items: [
-              // {
-              //   Item: {
-              //     Has: { value: 'Yes' },
-              //     OtherName: {
-              //       first: 'Foo',
-              //       firstInitialOnly: false,
-              //       middle: 'J',
-              //       middleInitialOnly: true,
-              //       noMiddleName: false,
-              //       last: 'Bar',
-              //       lastInitialOnly: false,
-              //       suffix: 'Jr'
-              //     },
-              //     MaidenName: {
-              //       value: 'No'
-              //     },
-              //     DatesUsed: {
-              //       from: {
-              //         date: new Date('1/1/2010')
-              //       },
-              //       to: {
-              //         date: new Date('1/1/2016')
-              //       },
-              //       present: false
-              //     }
-              //   }
-              // },
               {
                 Item: {
                   Has: { value: 'No' }
@@ -190,8 +136,8 @@ describe('Cohabitant validation', function () {
             value: ['Germany', 'United States']
           },
           ForeignBornDocument: {
-            DocumentType: 'FS240',
-            DocumentExpirationNotApplicable: true,
+            DocumentType: { value: 'FS240' },
+            DocumentExpirationNotApplicable: { applicable: true },
             DocumentNumber: {
               value: 'A1234'
             }
@@ -279,33 +225,6 @@ describe('Cohabitant validation', function () {
                   },
                   OtherNames: {
                     items: [
-                      // {
-                      //   Item: {
-                      //     Has: { value: 'Yes' },
-                      //     OtherName: {
-                      //       first: 'Foo',
-                      //       firstInitialOnly: false,
-                      //       middle: 'J',
-                      //       middleInitialOnly: true,
-                      //       noMiddleName: false,
-                      //       last: 'Bar',
-                      //       lastInitialOnly: false,
-                      //       suffix: 'Jr'
-                      //     },
-                      //     MaidenName: {
-                      //       value: 'No'
-                      //     },
-                      //     DatesUsed: {
-                      //       from: {
-                      //         date: new Date('1/1/2010')
-                      //       },
-                      //       to: {
-                      //         date: new Date('1/1/2016')
-                      //       },
-                      //       present: false
-                      //     }
-                      //   }
-                      // },
                       {
                         Item: {
                           Has: { value: 'No' }
@@ -317,8 +236,8 @@ describe('Cohabitant validation', function () {
                     value: ['Germany', 'United States']
                   },
                   ForeignBornDocument: {
-                    DocumentType: 'FS240',
-                    DocumentExpirationNotApplicable: true,
+                    DocumentType: { value: 'FS240' },
+                    DocumentExpirationNotApplicable: { applicable: true },
                     DocumentNumber: {
                       value: 'A1234'
                     }
@@ -346,8 +265,8 @@ describe('Cohabitant validation', function () {
             layout: Location.BIRTHPLACE
           },
           ForeignBornDocument: {
-            DocumentType: 'FS240',
-            DocumentExpirationNotApplicable: true,
+            DocumentType: { value: 'FS240' },
+            DocumentExpirationNotApplicable: { applicable: true },
             DocumentNumber: {
               value: 'A1234'
             }

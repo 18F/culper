@@ -6,44 +6,37 @@ export class DiplomaItem extends ValidationElement {
   constructor (props) {
     super(props)
 
-    this.state = {
-      Diploma: this.props.Diploma,
-      DiplomaOther: this.props.DiplomaOther,
-      Date: this.props.Date
-    }
-
-    this.onUpdate = this.onUpdate.bind(this)
+    this.update = this.update.bind(this)
     this.updateDiploma = this.updateDiploma.bind(this)
     this.updateDiplomaOther = this.updateDiplomaOther.bind(this)
     this.updateDate = this.updateDate.bind(this)
   }
 
-  /**
-   * Handle any updates and bubble them up.
-   */
-  onUpdate (name, values) {
-    this.setState({ [name]: values }, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          name: this.props.name,
-          Diploma: this.state.Diploma,
-          DiplomaOther: this.state.DiplomaOther,
-          Date: this.state.Date
-        })
-      }
+  update (queue) {
+    this.props.onUpdate({
+      Diploma: this.props.Diploma,
+      DiplomaOther: this.props.DiplomaOther,
+      Date: this.props.Date,
+      ...queue
     })
   }
 
-  updateDiploma (event) {
-    this.onUpdate('Diploma', event.target.value)
+  updateDiploma (values) {
+    this.update({
+      Diploma: values
+    })
   }
 
   updateDiplomaOther (values) {
-    this.onUpdate('DiplomaOther', values)
+    this.update({
+      DiplomaOther: values
+    })
   }
 
   updateDate (values) {
-    this.onUpdate('Date', values)
+    this.update({
+      Date: values
+    })
   }
 
   render () {
@@ -57,64 +50,64 @@ export class DiplomaItem extends ValidationElement {
           <RadioGroup className="diploma option-list"
                       required={this.props.required}
                       onError={this.props.onError}
-                      selectedValue={this.state.Diploma}>
+                      selectedValue={(this.props.Diploma || {}).value}>
             <Radio name="diploma-highschool"
                    className="diploma-highschool"
                    label={i18n.m('history.education.label.diploma.highschool')}
                    value="High School Diploma"
-                   onChange={this.updateDiploma}
+                   onUpdate={this.updateDiploma}
                    onError={this.props.onError}
                    />
             <Radio name="diploma-associate"
                    className="diploma-associate"
                    label={i18n.m('history.education.label.diploma.associate')}
                    value="Associate"
-                   onChange={this.updateDiploma}
+                   onUpdate={this.updateDiploma}
                    onError={this.props.onError}
                    />
             <Radio name="diploma-bachelor"
                    className="diploma-bachelor"
                    label={i18n.m('history.education.label.diploma.bachelor')}
                    value="Bachelor"
-                   onChange={this.updateDiploma}
+                   onUpdate={this.updateDiploma}
                    onError={this.props.onError}
                    />
             <Radio name="diploma-master"
                    className="diploma-master"
                    label={i18n.m('history.education.label.diploma.master')}
                    value="Master"
-                   onChange={this.updateDiploma}
+                   onUpdate={this.updateDiploma}
                    onError={this.props.onError}
                    />
             <Radio name="diploma-doctorate"
                    className="diploma-doctorate"
                    label={i18n.m('history.education.label.diploma.doctorate')}
                    value="Doctorate"
-                   onChange={this.updateDiploma}
+                   onUpdate={this.updateDiploma}
                    onError={this.props.onError}
                    />
             <Radio name="diploma-professional"
                    className="diploma-professional"
                    label={i18n.m('history.education.label.diploma.professional')}
                    value="Professional"
-                   onChange={this.updateDiploma}
+                   onUpdate={this.updateDiploma}
                    onError={this.props.onError}
                    />
             <Radio name="diploma-other"
                    className="diploma-other"
                    label={i18n.m('history.education.label.diploma.other')}
                    value="Other"
-                   onChange={this.updateDiploma}
+                   onUpdate={this.updateDiploma}
                    onError={this.props.onError}
                    />
           </RadioGroup>
-          <Show when={this.state.Diploma === 'Other'}>
+          <Show when={(this.props.Diploma || {}).value === 'Other'}>
             <Field title={i18n.t('history.education.label.diploma.other')}
                    titleSize="label"
                    adjustFor="text"
                    scrollIntoView={this.props.scrollIntoView}>
               <Text name="DiplomaOther"
-                    {...this.state.DiplomaOther}
+                    {...this.props.DiplomaOther}
                     className="other"
                     maxlength="100"
                     onUpdate={this.updateDiplomaOther}
@@ -131,7 +124,8 @@ export class DiplomaItem extends ValidationElement {
                shrink={true}
                scrollIntoView={this.props.scrollIntoView}>
           <DateControl name="Date"
-                       {...this.state.Date}
+                       {...this.props.Date}
+                       applicantBirthdate={this.props.applicantBirthdate}
                        className="date-awarded"
                        hideDay={true}
                        onUpdate={this.updateDate}
@@ -145,8 +139,10 @@ export class DiplomaItem extends ValidationElement {
 }
 
 DiplomaItem.defaultProps = {
-  Diploma: '',
+  Diploma: {},
   DiplomaOther: {},
   Date: {},
+  applicantBirthdate: {},
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

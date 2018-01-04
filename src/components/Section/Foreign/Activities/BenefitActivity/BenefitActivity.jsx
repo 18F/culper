@@ -4,7 +4,7 @@ import schema from '../../../../../schema'
 import validate from '../../../../../validators'
 import { Summary, DateSummary } from '../../../../Summary'
 import { Accordion, Branch, Show } from '../../../../Form'
-import { ForeignBenefitActivityValidator, ForeignBenefitValidator } from '../../../../../validators'
+import { ForeignBenefitValidator } from '../../../../../validators'
 import SubsectionElement from '../../../SubsectionElement'
 import Benefit from './Benefit'
 
@@ -27,7 +27,7 @@ export default class BenefitActivity extends SubsectionElement {
 
   updateList (values) {
     this.update({
-      List: values.items
+      List: values
     })
   }
 
@@ -109,6 +109,7 @@ export default class BenefitActivity extends SubsectionElement {
             <Benefit name="Item"
                      bind={true}
                      required={this.props.required}
+                     applicantBirthdate={this.props.applicantBirthdate}
                      scrollIntoView={this.props.scrollIntoView}
                      />
           </Accordion>
@@ -127,6 +128,7 @@ BenefitActivity.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'activities/benefits',
+  applicantBirthdate: {},
   dispatch: () => {},
   validator: (state, props) => {
     return validate(schema('foreign.activities.benefits', props))

@@ -26,7 +26,6 @@ var transform = map[string]func() Entity{
 	"physicaladdress":                                 func() Entity { return &PhysicalAddress{} },
 	"radio":                                           func() Entity { return &Radio{} },
 	"reasonleft":                                      func() Entity { return &ReasonLeft{} },
-	"reference":                                       func() Entity { return &Reference{} },
 	"sentence":                                        func() Entity { return &Sentence{} },
 	"signature":                                       func() Entity { return &Signature{} },
 	"ssn":                                             func() Entity { return &SSN{} },

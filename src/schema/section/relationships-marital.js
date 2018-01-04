@@ -8,6 +8,7 @@ export const relationshipsMarital = (data = {}) => {
         Name: form.name(xitem.Name),
         Birthdate: form.datecontrol(xitem.Birthdate),
         BirthPlace: form.location(xitem.BirthPlace),
+        Citizenship: form.country(xitem.Citizenship),
         Telephone: form.telephone(xitem.Telephone),
         Recognized: form.datecontrol(xitem.Recognized),
         Address: form.location(xitem.Address),

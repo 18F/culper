@@ -42,13 +42,14 @@ export default class Contact extends SubsectionElement {
     const obj = ((item && item.Item) || {})
     const date = DateSummary(obj.Date)
     const name = NameSummary(obj.Name)
-    const govt = ((obj.Governments || {}).value || []).map(x => x.name).join(', ')
+    const govt = ((obj.Governments || {}).value || []).join(', ')
     const govtParen = name && govt ? ` (${govt})` : ''
+    const nameAndGovt = <span>{name}{govtParen}</span>
 
     return Summary({
       type: i18n.t('foreign.business.contact.collection.summary.item'),
       index: index,
-      left: `${name}${govtParen}`,
+      left: nameAndGovt,
       right: date,
       placeholder: i18n.m('foreign.business.contact.collection.summary.unknown')
     })
@@ -88,6 +89,7 @@ export default class Contact extends SubsectionElement {
                      scrollIntoView={this.props.scrollIntoView}>
             <ContactItem name="Item"
                          bind={true}
+                         applicantBirthdate={this.props.applicantBirthdate}
                          scrollIntoView={this.props.scrollIntoView}
                          required={this.props.required}
                          />
@@ -101,11 +103,12 @@ export default class Contact extends SubsectionElement {
 Contact.defaultProps = {
   name: 'Contact',
   HasForeignContact: {},
-  List: {},
+  List: Accordion.defaultList,
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'business/contact',
+  applicantBirthdate: {},
   addressBooks: {},
   dispatch: (action) => {},
   validator: (state, props) => {

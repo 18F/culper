@@ -53,7 +53,8 @@ export default class HistoryItem extends ValidationElement {
 
   updateCompletedNotApplicable (values) {
     this.update({
-      CompletedNotApplicable: values
+      CompletedNotApplicable: values,
+      Completed: null
     })
   }
 
@@ -77,7 +78,8 @@ export default class HistoryItem extends ValidationElement {
 
   updateGrantedNotApplicable (values) {
     this.update({
-      GrantedNotApplicable: values
+      GrantedNotApplicable: values,
+      Granted: null
     })
   }
 
@@ -149,6 +151,7 @@ export default class HistoryItem extends ValidationElement {
                          required={this.props.required}>
             <DateControl name="Completed"
                          {...this.props.Completed}
+                         applicantBirthdate={this.props.applicantBirthdate}
                          onUpdate={this.updateCompleted}
                          onError={this.props.onError}
                          className="legal-investigations-history-completed"
@@ -187,6 +190,7 @@ export default class HistoryItem extends ValidationElement {
                          required={this.props.required}>
             <DateControl name="Granted"
                          {...this.props.Granted}
+                         applicantBirthdate={this.props.applicantBirthdate}
                          onUpdate={this.updateGranted}
                          onError={this.props.onError}
                          className="legal-investigations-history-granted"
@@ -223,6 +227,7 @@ export default class HistoryItem extends ValidationElement {
 
 HistoryItem.defaultProps = {
   required: false,
+  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   AgencyNotApplicable: { applicable: true },

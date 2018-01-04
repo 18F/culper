@@ -65,6 +65,7 @@ export default class Procedure extends ValidationElement {
                scrollIntoView={this.props.scrollIntoView}>
           <DateControl name="Date"
                        {...this.props.Date}
+                       applicantBirthdate={this.props.applicantBirthdate}
                        className="procedure-date"
                        hideDay={true}
                        onUpdate={this.updateDate}
@@ -74,7 +75,7 @@ export default class Procedure extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('military.disciplinary.heading.offenses')}
-          scrollIntoView={this.props.scrollIntoView}>
+               scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Offenses"
                     {...this.props.Offenses}
                     className="procedure-offenses"
@@ -85,8 +86,8 @@ export default class Procedure extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('military.disciplinary.heading.name')}
-          adjustFor="p"
-          scrollIntoView={this.props.scrollIntoView}>
+               adjustFor="p"
+               scrollIntoView={this.props.scrollIntoView}>
           <Text name="Name"
                 {...this.props.Name}
                 label={i18n.m('military.disciplinary.label.name')}
@@ -99,8 +100,8 @@ export default class Procedure extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('military.disciplinary.heading.court')}
-          adjustFor="p"
-          scrollIntoView={this.props.scrollIntoView}>
+               adjustFor="p"
+               scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Court"
                     {...this.props.Court}
                     label={i18n.t('military.disciplinary.label.court')}
@@ -112,8 +113,8 @@ export default class Procedure extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('military.disciplinary.heading.outcome')}
-          adjustFor="labels"
-          scrollIntoView={this.props.scrollIntoView}>
+               adjustFor="labels"
+               scrollIntoView={this.props.scrollIntoView}>
           <Text name="Outcome"
                 {...this.props.Outcome}
                 label={i18n.t('military.disciplinary.label.outcome')}
@@ -130,6 +131,7 @@ export default class Procedure extends ValidationElement {
 }
 
 Procedure.defaultProps = {
+  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

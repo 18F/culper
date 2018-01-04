@@ -2,9 +2,10 @@ import * as form from './form'
 import * as section from './section'
 
 export const schema = (type, props, raw = true) => {
+  const transformFunc = transform[type]
   return {
     type: type,
-    props: raw ? props : transform[type](props)
+    props: raw ? props : transformFunc && transformFunc(props)
   }
 }
 
@@ -126,9 +127,6 @@ const transform = {
   },
   'reasonleft': (data) => {
     return form.reasonleft(data)
-  },
-  'reference': (data) => {
-    return form.reference(data)
   },
   'sentence': (data) => {
     return form.sentence(data)

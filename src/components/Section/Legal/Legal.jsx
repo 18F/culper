@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { i18n } from '../../../config'
+import { extractApplicantBirthdate } from '../extractors'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
 import SectionComments from '../SectionComments'
@@ -154,6 +155,7 @@ class Legal extends SectionElement {
                        nextLabel={i18n.t('legal.destination.additionalOffenses')}>
             <Offenses name="offenses"
                       {...this.props.PoliceOffenses}
+                      applicantBirthdate={this.props.applicantBirthdate}
                       addressBooks={this.props.AddressBooks}
                       dispatch={this.props.dispatch}
                       onUpdate={this.updatePoliceOffenses}
@@ -169,6 +171,7 @@ class Legal extends SectionElement {
                        nextLabel={i18n.t('legal.destination.domesticViolence')}>
             <OtherOffenses name="otheroffenses"
                            {...this.props.PoliceOtherOffenses}
+                           applicantBirthdate={this.props.applicantBirthdate}
                            addressBooks={this.props.AddressBooks}
                            dispatch={this.props.dispatch}
                            onUpdate={this.updatePoliceOtherOffenses}
@@ -184,6 +187,7 @@ class Legal extends SectionElement {
                        nextLabel={i18n.t('legal.destination.investigations.history')}>
             <DomesticViolenceList name="domesticviolence"
                                   {...this.props.PoliceDomesticViolence}
+                                  applicantBirthdate={this.props.applicantBirthdate}
                                   addressBooks={this.props.AddressBooks}
                                   dispatch={this.props.dispatch}
                                   onUpdate={this.updatePoliceDomesticViolence}
@@ -199,6 +203,7 @@ class Legal extends SectionElement {
                        nextLabel={i18n.t('legal.destination.investigations.revoked')}>
             <History name="history"
                      {...this.props.History}
+                     applicantBirthdate={this.props.applicantBirthdate}
                      dispatch={this.props.dispatch}
                      onUpdate={this.updateHistory}
                      onError={this.handleError}
@@ -213,6 +218,7 @@ class Legal extends SectionElement {
                        nextLabel={i18n.t('legal.destination.investigations.revoked')}>
             <History name="history"
                      {...this.props.History}
+                     applicantBirthdate={this.props.applicantBirthdate}
                      dispatch={this.props.dispatch}
                      onUpdate={this.updateHistory}
                      onError={this.handleError}
@@ -227,6 +233,7 @@ class Legal extends SectionElement {
                        nextLabel={i18n.t('legal.destination.investigations.debarred')}>
             <Revoked name="revoked"
                      {...this.props.Revoked}
+                     applicantBirthdate={this.props.applicantBirthdate}
                      dispatch={this.props.dispatch}
                      onUpdate={this.updateRevoked}
                      onError={this.handleError}
@@ -241,6 +248,7 @@ class Legal extends SectionElement {
                        nextLabel={i18n.t('legal.destination.court')}>
             <Debarred name="debarred"
                       {...this.props.Debarred}
+                      applicantBirthdate={this.props.applicantBirthdate}
                       dispatch={this.props.dispatch}
                       onUpdate={this.updateDebarred}
                       onError={this.handleError}
@@ -255,6 +263,7 @@ class Legal extends SectionElement {
                        nextLabel={i18n.t('legal.destination.technology.unauthorized')}>
             <NonCriminalCourtActions name="courtactions"
                                      {...this.props.NonCriminalCourtActions}
+                                     applicantBirthdate={this.props.applicantBirthdate}
                                      addressBooks={this.props.AddressBooks}
                                      dispatch={this.props.dispatch}
                                      onUpdate={this.updateNonCriminalCourtActions}
@@ -270,6 +279,7 @@ class Legal extends SectionElement {
                        nextLabel={i18n.t('legal.destination.technology.manipulating')}>
             <Unauthorized name="unauthorized"
                           {...this.props.Unauthorized}
+                          applicantBirthdate={this.props.applicantBirthdate}
                           addressBooks={this.props.AddressBooks}
                           dispatch={this.props.dispatch}
                           onUpdate={this.updateUnauthorized}
@@ -285,6 +295,7 @@ class Legal extends SectionElement {
                        nextLabel={i18n.t('legal.destination.technology.manipulating')}>
             <Unauthorized name="unauthorized"
                           {...this.props.Unauthorized}
+                          applicantBirthdate={this.props.applicantBirthdate}
                           addressBooks={this.props.AddressBooks}
                           dispatch={this.props.dispatch}
                           onUpdate={this.updateUnauthorized}
@@ -300,6 +311,7 @@ class Legal extends SectionElement {
                        nextLabel={i18n.t('legal.destination.technology.unlawful')}>
             <Manipulating name="manipulating"
                           {...this.props.Manipulating}
+                          applicantBirthdate={this.props.applicantBirthdate}
                           addressBooks={this.props.AddressBooks}
                           dispatch={this.props.dispatch}
                           onUpdate={this.updateManipulating}
@@ -315,6 +327,7 @@ class Legal extends SectionElement {
                        nextLabel={i18n.t('legal.destination.associations.terrorist')}>
             <Unlawful name="unlawful"
                       {...this.props.Unlawful}
+                      applicantBirthdate={this.props.applicantBirthdate}
                       addressBooks={this.props.AddressBooks}
                       dispatch={this.props.dispatch}
                       onUpdate={this.updateUnlawful}
@@ -330,6 +343,7 @@ class Legal extends SectionElement {
                        nextLabel={i18n.t('legal.destination.associations.engaged')}>
             <TerroristOrganization name="terroristOrganization"
                                    {...this.props.TerroristOrganization}
+                                   applicantBirthdate={this.props.applicantBirthdate}
                                    addressBooks={this.props.AddressBooks}
                                    dispatch={this.props.dispatch}
                                    onUpdate={this.updateTerroristOrganization}
@@ -345,6 +359,7 @@ class Legal extends SectionElement {
                        nextLabel={i18n.t('legal.destination.associations.engaged')}>
             <TerroristOrganization name="terroristOrganization"
                                    {...this.props.TerroristOrganization}
+                                   applicantBirthdate={this.props.applicantBirthdate}
                                    addressBooks={this.props.AddressBooks}
                                    dispatch={this.props.dispatch}
                                    onUpdate={this.updateTerroristOrganization}
@@ -360,6 +375,7 @@ class Legal extends SectionElement {
                        nextLabel={i18n.t('legal.destination.associations.advocating')}>
             <EngagedInTerrorism name="engagedInTerrorism"
                                 {...this.props.EngagedInTerrorism}
+                                applicantBirthdate={this.props.applicantBirthdate}
                                 dispatch={this.props.dispatch}
                                 onUpdate={this.updateEngagedInTerrorism}
                                 onError={this.handleError}
@@ -374,6 +390,7 @@ class Legal extends SectionElement {
                        nextLabel={i18n.t('legal.destination.associations.overthrow')}>
             <Advocating name="advocating"
                         {...this.props.Advocating}
+                        applicantBirthdate={this.props.applicantBirthdate}
                         dispatch={this.props.dispatch}
                         onUpdate={this.updateAdvocating}
                         onError={this.handleError}
@@ -388,6 +405,7 @@ class Legal extends SectionElement {
                        nextLabel={i18n.t('legal.destination.associations.violence')}>
             <MembershipOverthrow name="membershipOverthrow"
                                  {...this.props.MembershipOverthrow}
+                                 applicantBirthdate={this.props.applicantBirthdate}
                                  addressBooks={this.props.AddressBooks}
                                  dispatch={this.props.dispatch}
                                  onUpdate={this.updateMembershipOverthrow}
@@ -403,6 +421,7 @@ class Legal extends SectionElement {
                        nextLabel={i18n.t('legal.destination.associations.activities')}>
             <MembershipViolence name="membershipViolence"
                                 {...this.props.MembershipViolence}
+                                applicantBirthdate={this.props.applicantBirthdate}
                                 addressBooks={this.props.AddressBooks}
                                 dispatch={this.props.dispatch}
                                 onUpdate={this.updateMembershipViolence}
@@ -418,6 +437,7 @@ class Legal extends SectionElement {
                        nextLabel={i18n.t('legal.destination.associations.terrorism')}>
             <ActivitiesToOverthrow name="activitiesToOverthrow"
                                    {...this.props.ActivitiesToOverthrow}
+                                   applicantBirthdate={this.props.applicantBirthdate}
                                    dispatch={this.props.dispatch}
                                    onUpdate={this.updateActivitiesToOverthrow}
                                    onError={this.handleError}
@@ -432,6 +452,7 @@ class Legal extends SectionElement {
                        nextLabel={i18n.t('legal.destination.review')}>
             <TerrorismAssociation name="terrorismAssociation"
                                   {...this.props.TerrorismAssociation}
+                                  applicantBirthdate={this.props.applicantBirthdate}
                                   dispatch={this.props.dispatch}
                                   onUpdate={this.updateTerrorismAssociation}
                                   onError={this.handleError}
@@ -457,6 +478,7 @@ class Legal extends SectionElement {
 
             <Offenses name="offenses"
                       {...this.props.PoliceOffenses}
+                      applicantBirthdate={this.props.applicantBirthdate}
                       addressBooks={this.props.AddressBooks}
                       defaultState={false}
                       dispatch={this.props.dispatch}
@@ -469,6 +491,7 @@ class Legal extends SectionElement {
             <hr/>
             <OtherOffenses name="otheroffenses"
                            {...this.props.PoliceOtherOffenses}
+                           applicantBirthdate={this.props.applicantBirthdate}
                            addressBooks={this.props.AddressBooks}
                            defaultState={false}
                            dispatch={this.props.dispatch}
@@ -481,6 +504,7 @@ class Legal extends SectionElement {
             <hr/>
             <DomesticViolenceList name="domesticviolence"
                                   {...this.props.PoliceDomesticViolence}
+                                  applicantBirthdate={this.props.applicantBirthdate}
                                   addressBooks={this.props.AddressBooks}
                                   dispatch={this.props.dispatch}
                                   onUpdate={this.updatePoliceDomesticViolence}
@@ -492,6 +516,7 @@ class Legal extends SectionElement {
             <hr/>
             <History name="history"
                      {...this.props.History}
+                     applicantBirthdate={this.props.applicantBirthdate}
                      defaultState={false}
                      dispatch={this.props.dispatch}
                      onUpdate={this.updateHistory}
@@ -503,6 +528,7 @@ class Legal extends SectionElement {
             <hr/>
             <Revoked name="revoked"
                      {...this.props.Revoked}
+                     applicantBirthdate={this.props.applicantBirthdate}
                      defaultState={false}
                      dispatch={this.props.dispatch}
                      onUpdate={this.updateRevoked}
@@ -514,6 +540,7 @@ class Legal extends SectionElement {
             <hr/>
             <Debarred name="debarred"
                       {...this.props.Debarred}
+                      applicantBirthdate={this.props.applicantBirthdate}
                       defaultState={false}
                       dispatch={this.props.dispatch}
                       onUpdate={this.updateDebarred}
@@ -525,6 +552,7 @@ class Legal extends SectionElement {
             <hr />
             <NonCriminalCourtActions name="courtactions"
                                      {...this.props.NonCriminalCourtActions}
+                                     applicantBirthdate={this.props.applicantBirthdate}
                                      addressBooks={this.props.AddressBooks}
                                      defaultState={false}
                                      dispatch={this.props.dispatch}
@@ -536,6 +564,7 @@ class Legal extends SectionElement {
             <hr />
             <Unauthorized name="unauthorized"
                           {...this.props.Unauthorized}
+                          applicantBirthdate={this.props.applicantBirthdate}
                           addressBooks={this.props.AddressBooks}
                           defaultState={false}
                           dispatch={this.props.dispatch}
@@ -548,6 +577,7 @@ class Legal extends SectionElement {
             <hr />
             <Manipulating name="manipulating"
                           {...this.props.Manipulating}
+                          applicantBirthdate={this.props.applicantBirthdate}
                           addressBooks={this.props.AddressBooks}
                           defaultState={false}
                           dispatch={this.props.dispatch}
@@ -560,6 +590,7 @@ class Legal extends SectionElement {
             <hr />
             <Unlawful name="unlawful"
                       {...this.props.Unlawful}
+                      applicantBirthdate={this.props.applicantBirthdate}
                       addressBooks={this.props.AddressBooks}
                       defaultState={false}
                       dispatch={this.props.dispatch}
@@ -572,6 +603,7 @@ class Legal extends SectionElement {
             <hr />
             <TerroristOrganization name="terroristOrganization"
                                    {...this.props.TerroristOrganization}
+                                   applicantBirthdate={this.props.applicantBirthdate}
                                    addressBooks={this.props.AddressBooks}
                                    dispatch={this.props.dispatch}
                                    onUpdate={this.updateTerroristOrganization}
@@ -583,6 +615,7 @@ class Legal extends SectionElement {
             <hr />
             <EngagedInTerrorism name="engagedInTerrorism"
                                 {...this.props.EngagedInTerrorism}
+                                applicantBirthdate={this.props.applicantBirthdate}
                                 dispatch={this.props.dispatch}
                                 onUpdate={this.updateEngagedInTerrorism}
                                 onError={this.handleError}
@@ -593,6 +626,7 @@ class Legal extends SectionElement {
             <hr />
             <Advocating name="advocating"
                         {...this.props.Advocating}
+                        applicantBirthdate={this.props.applicantBirthdate}
                         dispatch={this.props.dispatch}
                         onUpdate={this.updateAdvocating}
                         onError={this.handleError}
@@ -603,6 +637,7 @@ class Legal extends SectionElement {
             <hr />
             <MembershipOverthrow name="membershipOverthrow"
                                  {...this.props.MembershipOverthrow}
+                                 applicantBirthdate={this.props.applicantBirthdate}
                                  addressBooks={this.props.AddressBooks}
                                  dispatch={this.props.dispatch}
                                  onUpdate={this.updateMembershipOverthrow}
@@ -614,6 +649,7 @@ class Legal extends SectionElement {
             <hr />
             <MembershipViolence name="membershipViolence"
                                 {...this.props.MembershipViolence}
+                                applicantBirthdate={this.props.applicantBirthdate}
                                 addressBooks={this.props.AddressBooks}
                                 dispatch={this.props.dispatch}
                                 onUpdate={this.updateMembershipViolence}
@@ -625,6 +661,7 @@ class Legal extends SectionElement {
             <hr />
             <ActivitiesToOverthrow name="activitiesToOverthrow"
                                    {...this.props.ActivitiesToOverthrow}
+                                   applicantBirthdate={this.props.applicantBirthdate}
                                    dispatch={this.props.dispatch}
                                    onUpdate={this.updateActivitiesToOverthrow}
                                    onError={this.handleError}
@@ -635,6 +672,7 @@ class Legal extends SectionElement {
             <hr />
             <TerrorismAssociation name="terrorismAssociation"
                                   {...this.props.TerrorismAssociation}
+                                  applicantBirthdate={this.props.applicantBirthdate}
                                   dispatch={this.props.dispatch}
                                   onUpdate={this.updateTerrorismAssociation}
                                   onError={this.handleError}
@@ -689,6 +727,7 @@ function mapStateToProps (state) {
     Comments: legal.Comments || {},
     Errors: errors.legal || [],
     Completed: completed.legal || [],
+    applicantBirthdate: extractApplicantBirthdate(app),
     AddressBooks: addressBooks
   }
 }

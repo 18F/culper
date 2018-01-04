@@ -1,0 +1,34 @@
+<DelinquencyInvolvingEnforcement>
+  <Answer>{{branch .props.HasDelinquent}}</Answer>
+  <Comment></Comment>
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+  <Incidents>
+    {{range $index, $item := .props.List.props.items}}
+    {{with $Item := $item.Item}}
+    <Incident ID="{{$index}}">
+      <AccountNumber>{{text $Item.AccountNumber}}</AccountNumber>
+      <Agency>
+        <Name>{{text $Item.Name}}</Name>
+      </Agency>
+      <Amount Estimated="{{checkboxTrueFalse $Item.AmountEstimated}}">{{number $Item.Amount}}</Amount>
+      <Comment></Comment>
+      <Court>
+        <Address>{{location $Item.CourtAddress}}</Address>
+        <Name>{{text $Item.CourtName}}</Name>
+      </Court>
+      <DateBegan Type="{{dateEstimated $Item.Date}}">{{monthYear $Item.Date}}</DateBegan>
+      <DateResolved Type="{{dateEstimated $Item.Resolved}}" NotResolved="{{notApplicable $Item.ResolvedNotApplicable}}">{{monthYear $Item.Resolved}}</DateResolved>
+      <Description>{{textarea $Item.Description}}</Description>
+      <IssueType>
+        <Answer>{{if checkbox $Item.Infractions}}Yes{{else}}No{{end}}</Answer>
+        <Options Alimony="{{checkboxHas $Item.Infractions "Alimony"}}" Judgment="{{checkboxHas $Item.Infractions "Judgement"}}" Lien="{{checkboxHas $Item.Infractions "Lien"}}" FederalDebt="{{checkboxHas $Item.Infractions "Federal"}}"/>
+      </IssueType>
+      <PropertyType>{{text $Item.PropertyType}}</PropertyType>
+      <Reason>{{textarea $Item.Reason}}</Reason>
+      <Status>{{text $Item.Status}}</Status>
+    </Incident>
+    {{end}}
+    {{end}}
+  </Incidents>
+  <SummaryComment></SummaryComment>
+</DelinquencyInvolvingEnforcement>

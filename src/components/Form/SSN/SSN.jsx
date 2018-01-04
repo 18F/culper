@@ -28,6 +28,7 @@ export default class SSN extends ValidationElement {
     this.handleErrorMiddle = this.handleErrorMiddle.bind(this)
     this.handleErrorLast = this.handleErrorLast.bind(this)
     this.handleErrorNotApplicable = this.handleErrorNotApplicable.bind(this)
+    this.invalid = false
   }
 
   update (queue) {
@@ -107,12 +108,13 @@ export default class SSN extends ValidationElement {
       }
     }))
 
+    this.invalid = requiredErrors.some(x => x.code === 'ssn.invalid' && x.valid === false)
     this.props.onError(value, requiredErrors)
     return arr
   }
 
   render () {
-    const klass = `ssn ${this.props.className || ''}`.trim()
+    const klass = `ssn ${this.props.className || ''} ${this.invalid ? 'usa-input-error' : ''}`.trim()
     const required = this.props.required && !this.props.notApplicable
 
     return (
@@ -216,6 +218,32 @@ SSN.errors = [
       }
       return true
     }
+  },
+  {
+    code: 'invalid',
+    func: (value, props) => {
+      // Legacy system only excluded explicit values
+      const fullSSN = `${props.first}-${props.middle}-${props.last}`
+      const legacyInvalid = ['999-99-9999', '123-45-6789']
+      if (legacyInvalid.some(x => x === fullSSN)) {
+        return false
+      }
 
+      // Randomization has been introduced since 2011
+      // https://www.ssa.gov/employer/randomization.html
+      if (props.first) {
+        const ifirst = parseInt(props.first, 10)
+        const boundaries = [
+          { lower: 0, upper: 0 },
+          { lower: 666, upper: 666 },
+          { lower: 900, upper: 999 }
+        ]
+        if (boundaries.some(x => x.lower <= ifirst && x.upper >= ifirst)) {
+          return false
+        }
+      }
+
+      return true
+    }
   }
 ]

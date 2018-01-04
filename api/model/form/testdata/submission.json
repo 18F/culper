@@ -4,12 +4,6 @@
     "AdditionalComments": {
       "type": "submission.additionalcomments",
       "props": {
-        "AdditionalComments": {
-          "type": "textarea",
-          "props": {
-            "value": "comments"
-          }
-        },
         "Signature": {
           "type": "signature",
           "props": {

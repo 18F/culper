@@ -22,7 +22,7 @@
               "Infractions": {
                 "type": "checkboxgroup",
                 "props": {
-                  "values": []
+                  "values": ["Alimony"]
                 }
               },
               "AccountNumber": {

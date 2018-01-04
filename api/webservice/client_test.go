@@ -21,7 +21,7 @@ func TestImportRequestResponse(t *testing.T) {
 	importReq := ImportRequest{}
 	importResponse, err := client.ImportRequest(&importReq)
 	if err != nil {
-		t.Fatal("Expected import request response but received %v", err)
+		t.Fatalf("Expected import request response but received %v", err)
 	}
 	if importResponse.Return == nil {
 		t.Fatal("Expected return element to be populated")

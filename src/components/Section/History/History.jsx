@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { reportCompletion } from '../../../actions/ApplicationActions'
 import { HistoryEducationValidator, EducationValidator } from '../../../validators'
 import { i18n } from '../../../config'
+import { extractApplicantBirthdate } from '../extractors'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
 import SectionComments from '../SectionComments'
@@ -12,7 +13,7 @@ import SummaryProgress from './SummaryProgress'
 import SummaryCounter from './SummaryCounter'
 import Federal from './Federal'
 import { utc, today, daysAgo, daysBetween, gaps } from './dateranges'
-import { InjectGaps } from './summaries'
+import { InjectGaps, ResidenceCaption, EmploymentCaption, EducationCaption } from './summaries'
 import Residence from './Residence'
 import Employment from './Employment'
 import Education from './Education'
@@ -311,31 +312,6 @@ class History extends SectionElement {
     return holes > 0
   }
 
-  customSummary (item, index, initial, callback, toggle, openText, remove, byline) {
-    if (item.type === 'Gap') {
-      return null
-    }
-
-    return callback()
-  }
-
-  fillGap (field, dates) {
-    let items = [...this.props.History[field]]
-    items.push({
-      uuid: super.guid(),
-      open: true,
-      Item: {
-        Dates: {
-          receiveProps: true,
-          from: dates.from,
-          to: dates.to
-        }
-      }
-    })
-
-    this.handleUpdate(field, InjectGaps(items, daysAgo(365 * this.totalYears())).sort(sort))
-  }
-
   overrideInitial (initial) {
     return this.props.subsection === 'review' ? false : initial
   }
@@ -367,7 +343,7 @@ class History extends SectionElement {
                        nextLabel={i18n.t('citizenship.destination.intro')}>
             { this.residenceSummaryProgress() }
             { this.employmentSummaryProgress() }
-            <Show when={this.props.Education.HasAttended === 'Yes' || this.props.Education.HasDegree10 === 'Yes'}>
+            <Show when={(this.props.Education.HasAttended || {}).value === 'Yes' || (this.props.Education.HasDegree10 || {}).value === 'Yes'}>
               { this.educationSummaryProgress() }
             </Show>
 
@@ -377,8 +353,10 @@ class History extends SectionElement {
                        sort={sort}
                        totalYears={this.totalYears()}
                        overrideInitial={this.overrideInitial}
+                       caption={ResidenceCaption}
                        onUpdate={this.updateResidence}
                        onError={this.handleError}
+                       applicantBirthdate={this.props.applicantBirthdate}
                        addressBooks={this.props.AddressBooks}
                        dispatch={this.props.dispatch}
                        scrollIntoView={false}
@@ -391,24 +369,28 @@ class History extends SectionElement {
                         sort={sort}
                         totalYears={this.totalYears()}
                         overrideInitial={this.overrideInitial}
+                        caption={EmploymentCaption}
                         onUpdate={this.updateEmployment}
                         onError={this.handleError}
+                        applicantBirthdate={this.props.applicantBirthdate}
                         addressBooks={this.props.AddressBooks}
                         dispatch={this.props.dispatch}
                         scrollIntoView={false}
                         required={true}
                         />
 
-            <Show when={this.props.Education.HasAttended === 'Yes' || this.props.Education.HasDegree10 === 'Yes'}>
+            <Show when={(this.props.Education.HasAttended || {}).value === 'Yes' || (this.props.Education.HasDegree10 || {}).value === 'Yes'}>
               <Education {...this.props.Education}
                          defaultState={false}
                          realtime={true}
                          sort={sort}
                          totalYears={this.totalYears()}
                          overrideInitial={this.overrideInitial}
+                         caption={EducationCaption}
                          onUpdate={this.updateEducation}
                          onError={this.handleError}
                          dispatch={this.props.dispatch}
+                         applicantBirthdate={this.props.applicantBirthdate}
                          addressBooks={this.props.AddressBooks}
                          scrollIntoView={false}
                          required={true}
@@ -419,6 +401,7 @@ class History extends SectionElement {
             <Federal name="federal"
                      {...this.props.Federal}
                      defaultState={false}
+                     applicantBirthdate={this.props.applicantBirthdate}
                      addressBooks={this.props.AddressBooks}
                      dispatch={this.props.dispatch}
                      onUpdate={this.handleUpdate.bind(this, 'Federal')}
@@ -444,14 +427,8 @@ class History extends SectionElement {
                        backLabel={i18n.t('history.destination.intro')}
                        next="history/employment"
                        nextLabel={i18n.t('history.destination.employment')}>
-            <Field title={i18n.t('history.residence.title')}
-                   titleSize="h2"
-                   optional={true}
-                   className="no-margin-bottom"
-                   />
-
             <Field title={i18n.t('history.residence.info')}
-                   titleSize="h3"
+                   titleSize="h2"
                    optional={true}
                    className="no-margin-bottom">
               {i18n.m('history.residence.info2')}
@@ -470,6 +447,7 @@ class History extends SectionElement {
                        overrideInitial={this.overrideInitial}
                        onUpdate={this.updateResidence}
                        onError={this.handleError}
+                       applicantBirthdate={this.props.applicantBirthdate}
                        addressBooks={this.props.AddressBooks}
                        dispatch={this.props.dispatch}
                        />
@@ -510,6 +488,7 @@ class History extends SectionElement {
               overrideInitial={this.overrideInitial}
               onUpdate={this.updateEmployment}
               onError={this.handleError}
+              applicantBirthdate={this.props.applicantBirthdate}
               addressBooks={this.props.AddressBooks}
               dispatch={this.props.dispatch}
               />
@@ -571,6 +550,7 @@ class History extends SectionElement {
                            onUpdate={this.updateEducation}
                            onError={this.handleError}
                            dispatch={this.props.dispatch}
+                           applicantBirthdate={this.props.applicantBirthdate}
                            addressBooks={this.props.AddressBooks}
                            />
               </div>
@@ -585,6 +565,7 @@ class History extends SectionElement {
                        >
             <Federal name="federal"
                      {...this.props.Federal}
+                     applicantBirthdate={this.props.applicantBirthdate}
                      addressBooks={this.props.AddressBooks}
                      dispatch={this.props.dispatch}
                      onUpdate={this.handleUpdate.bind(this, 'Federal')}
@@ -628,6 +609,7 @@ function mapStateToProps (state) {
     Errors: errors.history || [],
     Completed: completed.history || [],
     Birthdate: processDate(identification.ApplicantBirthDate),
+    applicantBirthdate: extractApplicantBirthdate(app),
     AddressBooks: addressBooks
   }
 }

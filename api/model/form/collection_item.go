@@ -107,7 +107,7 @@ func (ci *CollectionItem) Delete(context *db.DatabaseContext, account, collectio
 	}
 
 	if ci.ID != 0 {
-		err := context.Raw(fmt.Sprintf("DELETE FROM collection_items WHERE id = %d", ci.ID))
+		err := context.Raw("DELETE FROM collection_items WHERE id = ?", ci.ID)
 		if err != nil {
 			return ci.ID, err
 		}

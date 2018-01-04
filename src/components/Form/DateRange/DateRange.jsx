@@ -90,7 +90,7 @@ export default class DateRange extends ValidationElement {
       futureState.to = {
         date: now,
         year: `${now.getFullYear()}`,
-        month: `${now.getMonth() - 1}`,
+        month: `${now.getMonth() + 1}`,
         day: `${now.getDate()}`,
         estimated: false
       }
@@ -222,6 +222,7 @@ export default class DateRange extends ValidationElement {
                        {...this.state.from}
                        estimated={this.state.estimated}
                        onUpdate={this.updateFrom}
+                       applicantBirthdate={this.props.applicantBirthdate}
                        minDate={this.props.minDate}
                        maxDate={this.props.maxDate}
                        prefix={this.props.prefix}
@@ -245,6 +246,7 @@ export default class DateRange extends ValidationElement {
                        receiveProps={this.state.presentClicked}
                        disabled={this.state.present || this.props.disabled}
                        onUpdate={this.updateTo}
+                       applicantBirthdate={this.props.applicantBirthdate}
                        minDate={this.props.minDate}
                        maxDate={this.props.maxDate}
                        prefix={this.props.prefix}
@@ -275,6 +277,7 @@ DateRange.defaultProps = {
   to: {},
   present: false,
   prefix: '',
+  applicantBirthdate: {},
   minDate: null,
   maxDate: new Date(),
   onError: (value, arr) => { return arr },
@@ -287,7 +290,7 @@ DateRange.errors = [
     func: (value, props) => {
       if (props.required && !props.disabled) {
         const hasParts = (dateObj) => {
-          return !!dateObj && !!dateObj.day && !!dateObj.month && !!dateObj.year
+          return Boolean(dateObj.day && dateObj.month && dateObj.year)
         }
         return hasParts(value.from) && hasParts(value.to)
       }

@@ -43,8 +43,9 @@ export default class OtherNames extends SubsectionElement {
    * Assists in rendering the summary section.
    */
   summary (item, index) {
-    const dates = DateSummary(item.DatesUsed)
-    const name = NameSummary(item.Name)
+    const itemObj = item.Item || {}
+    const dates = DateSummary(itemObj.DatesUsed)
+    const name = NameSummary(itemObj.Name)
 
     return Summary({
       type: i18n.t('identification.othernames.collection.summary.name'),
@@ -86,11 +87,12 @@ export default class OtherNames extends SubsectionElement {
                      summary={this.summary}
                      description={i18n.t('identification.othernames.collection.summary.title')}
                      appendLabel={i18n.t('identification.othernames.collection.append')}>
-                     <OtherNameItem name="Item"
-                       required={this.props.required}
-                       scrollIntoView={this.props.scrollIntoView}
-                       bind={true}
-                     />
+            <OtherNameItem name="Item"
+                           required={this.props.required}
+                           scrollIntoView={this.props.scrollIntoView}
+                           applicantBirthdate={this.props.applicantBirthdate}
+                           bind={true}
+                           />
           </Accordion>
         </Show>
       </div>
@@ -107,6 +109,7 @@ OtherNames.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'identification',
   subsection: 'othernames',
+  applicantBirthdate: {},
   dispatch: () => {},
   validator: (state, props) => {
     return validate(schema('identification.othernames', props))

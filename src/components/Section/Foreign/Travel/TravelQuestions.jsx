@@ -184,6 +184,7 @@ export default class TravelQuestions extends ValidationElement {
                scrollIntoView={this.props.scrollIntoView}>
           <DateRange name="Dates"
                      {...this.props.Dates}
+                     applicantBirthdate={this.props.applicantBirthdate}
                      className="foreign-travel-dates"
                      onUpdate={this.updateDates}
                      onError={this.props.onError}
@@ -223,16 +224,16 @@ export default class TravelQuestions extends ValidationElement {
         <Branch label={i18n.t('foreign.travel.heading.questioned')}
                 labelSize="h3"
                 name="has_foreign_travel_questioned"
-                className="foreign-travel-questioned"
+                className={`foreign-travel-questioned ${(this.props.Questioned || {}).value === 'Yes' ? 'no-margin-bottom' : ''}`}
                 {...this.props.Questioned}
                 onUpdate={this.updateQuestioned}
                 required={this.props.required}
                 onError={this.props.onError}
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
-        <Show when={this.props.Questioned.value === 'Yes'}>
+        <Show when={(this.props.Questioned || {}).value === 'Yes'}>
           <Field title={i18n.t('foreign.travel.heading.explanation')}
-                 titleSize="h4"
+                 titleSize="label"
                  adjustFor="textarea"
                  scrollIntoView={this.props.scrollIntoView}>
             <Textarea name="QuestionedExplanation"
@@ -248,7 +249,7 @@ export default class TravelQuestions extends ValidationElement {
         <Branch label={i18n.t('foreign.travel.heading.encounter')}
                 labelSize="h3"
                 name="has_foreign_travel_encounter"
-                className="foreign-travel-encounter"
+                className={`foreign-travel-encounter ${this.props.Encounter.value === 'Yes' ? 'no-margin-bottom' : ''}`}
                 {...this.props.Encounter}
                 onUpdate={this.updateEncounter}
                 required={this.props.required}
@@ -257,7 +258,7 @@ export default class TravelQuestions extends ValidationElement {
         </Branch>
         <Show when={(this.props.Encounter || {}).value === 'Yes'}>
           <Field title={i18n.t('foreign.travel.heading.explanation')}
-                 titleSize="h4"
+                 titleSize="label"
                  adjustFor="textarea"
                  scrollIntoView={this.props.scrollIntoView}>
             <Textarea name="EncounterExplanation"
@@ -273,7 +274,7 @@ export default class TravelQuestions extends ValidationElement {
         <Branch label={i18n.t('foreign.travel.heading.contacted')}
                 labelSize="h3"
                 name="has_foreign_travel_contacted"
-                className="foreign-travel-contacted"
+                className={`foreign-travel-contacted ${this.props.Contacted.value === 'Yes' ? 'no-margin-bottom' : ''}`}
                 {...this.props.Contacted}
                 onUpdate={this.updateContacted}
                 required={this.props.required}
@@ -282,7 +283,7 @@ export default class TravelQuestions extends ValidationElement {
         </Branch>
         <Show when={(this.props.Contacted || {}).value === 'Yes'}>
           <Field title={i18n.t('foreign.travel.heading.explanation')}
-                 titleSize="h4"
+                 titleSize="label"
                  adjustFor="textarea"
                  scrollIntoView={this.props.scrollIntoView}>
             <Textarea name="ContactedExplanation"
@@ -298,7 +299,7 @@ export default class TravelQuestions extends ValidationElement {
         <Branch label={i18n.t('foreign.travel.heading.counter')}
                 labelSize="h3"
                 name="has_foreign_travel_counter"
-                className="foreign-travel-counter"
+                className={`foreign-travel-counter ${this.props.Counter.value === 'Yes' ? 'no-margin-bottom' : ''}`}
                 {...this.props.Counter}
                 onUpdate={this.updateCounter}
                 required={this.props.required}
@@ -306,7 +307,7 @@ export default class TravelQuestions extends ValidationElement {
         </Branch>
         <Show when={(this.props.Counter || {}).value === 'Yes'}>
           <Field title={i18n.t('foreign.travel.heading.explanation')}
-                 titleSize="h4"
+                 titleSize="label"
                  adjustFor="textarea">
             <Textarea name="CounterExplanation"
                       {...this.props.CounterExplanation}
@@ -321,7 +322,7 @@ export default class TravelQuestions extends ValidationElement {
         <Branch label={i18n.t('foreign.travel.heading.interest')}
                 labelSize="h3"
                 name="has_foreign_travel_interest"
-                className="foreign-travel-interest"
+                className={`foreign-travel-interest ${this.props.Interest.value === 'Yes' ? 'no-margin-bottom' : ''}`}
                 {...this.props.Interest}
                 onUpdate={this.updateInterest}
                 required={this.props.required}
@@ -329,7 +330,7 @@ export default class TravelQuestions extends ValidationElement {
         </Branch>
         <Show when={(this.props.Interest || {}).value === 'Yes'}>
           <Field title={i18n.t('foreign.travel.heading.explanation')}
-                 titleSize="h4"
+                 titleSize="label"
                  adjustFor="textarea">
             <Textarea name="InterestExplanation"
                       {...this.props.InterestExplanation}
@@ -344,7 +345,7 @@ export default class TravelQuestions extends ValidationElement {
         <Branch label={i18n.t('foreign.travel.heading.sensitive')}
                 labelSize="h3"
                 name="has_foreign_travel_sensitive"
-                className="foreign-travel-sensitive"
+                className={`foreign-travel-sensitive ${this.props.Sensitive.value === 'Yes' ? 'no-margin-bottom' : ''}`}
                 {...this.props.Sensitive}
                 onUpdate={this.updateSensitive}
                 required={this.props.required}
@@ -352,7 +353,7 @@ export default class TravelQuestions extends ValidationElement {
         </Branch>
         <Show when={(this.props.Sensitive || {}).value === 'Yes'}>
           <Field title={i18n.t('foreign.travel.heading.explanation')}
-                 titleSize="h4"
+                 titleSize="label"
                  adjustFor="textarea">
             <Textarea name="SensitiveExplanation"
                       {...this.props.SensitiveExplanation}
@@ -367,7 +368,7 @@ export default class TravelQuestions extends ValidationElement {
         <Branch label={i18n.t('foreign.travel.heading.threatened')}
                 labelSize="h3"
                 name="has_foreign_travel_threatened"
-                className="foreign-travel-threatened"
+                className={`foreign-travel-threatened ${this.props.Threatened.value === 'Yes' ? 'no-margin-bottom' : ''}`}
                 {...this.props.Threatened}
                 onUpdate={this.updateThreatened}
                 required={this.props.required}
@@ -375,7 +376,7 @@ export default class TravelQuestions extends ValidationElement {
         </Branch>
         <Show when={(this.props.Threatened || {}).value === 'Yes'}>
           <Field title={i18n.t('foreign.travel.heading.explanation')}
-                 titleSize="h4"
+                 titleSize="label"
                  adjustFor="textarea">
             <Textarea name="ThreatenedExplanation"
                       {...this.props.ThreatenedExplanation}
@@ -410,6 +411,7 @@ TravelQuestions.defaultProps = {
   SensitiveExplanation: {},
   Threatened: {},
   ThreatenedExplanation: {},
+  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

@@ -1,7 +1,7 @@
 # Sprint Backlogs
 View the e-QIP Prototype Sprint information including: duration, story points completed, backlog items, and burndown reports
 
-Team Velocity: **95 pts**
+Team Velocity: **87 pts**
 
 
 ## Sprint 1 
@@ -158,12 +158,48 @@ Story Points Completed: 63
 ```
 View Sprint 22 [backlog items][45] completed and [burndown chart][39]
 
-## Sprint 23 (current sprint)
+## Sprint 23
 ```
 Duration: Sept 28, 2017 to Oct 11, 2017
-Story Points Planned: 120
+Story Points Completed: 94
 ```
-View Sprint 23 [backlog items][46] in progress
+View Sprint 23 [backlog items][46] completed and [burndown chart][47]
+
+## Sprint 24
+```
+Duration: Oct 12, 2017 to Oct 25, 2017
+Story Points Completed: 27
+```
+View Sprint 24 [backlog items][52] completed and [burndown chart][48]
+
+## Sprint 25
+```
+Duration: Oct 26, 2017 to Nov 8, 2017
+Story Points Completed: 18
+```
+View Sprint 25 [backlog items][53] completed and [burndown chart][49]
+
+## Sprint 26
+```
+Duration: Nov 9, 2017 to Nov 29, 2017
+Story Points Completed: 42
+```
+View Sprint 26 [backlog items][54] completed and [burndown chart][50]
+
+## Sprint 27 
+```
+Duration: Nov 30, 2017 to Dec 6, 2017
+Story Points Completed: 13
+```
+View Sprint 27 [backlog items][55] completed and [burndown chart][51]
+
+## Sprint 28 (current sprint)
+```
+Duration: Dec 7, 2017 to Dec 20, 2017
+Story Points Planned: 92
+```
+View Sprint 28 [backlog items][56] in progress
+
 
 
 [1]: http://burndown.io/#truetandem/e-QIP-prototype/14
@@ -211,4 +247,14 @@ View Sprint 23 [backlog items][46] in progress
 [43]: https://github.com/truetandem/e-QIP-prototype/milestone/21?closed=1
 [44]: https://github.com/truetandem/e-QIP-prototype/milestone/22?closed=1
 [45]: https://github.com/truetandem/e-QIP-prototype/milestone/23?closed=1
-[46]: https://github.com/truetandem/e-QIP-prototype/milestone/24
+[46]: https://github.com/truetandem/e-QIP-prototype/milestone/24?closed=1
+[47]: https://github.com/truetandem/e-QIP-prototype/issues/2318
+[48]: https://github.com/truetandem/e-QIP-prototype/issues/2319
+[49]: https://github.com/truetandem/e-QIP-prototype/issues/2320
+[50]: https://github.com/truetandem/e-QIP-prototype/issues/2321
+[51]: https://github.com/truetandem/e-QIP-prototype/issues/2322
+[52]: https://github.com/truetandem/e-QIP-prototype/milestone/25?closed=1
+[53]: https://github.com/truetandem/e-QIP-prototype/milestone/26?closed=1
+[54]: https://github.com/truetandem/e-QIP-prototype/milestone/27?closed=1
+[55]: https://github.com/truetandem/e-QIP-prototype/milestone/28?closed=1
+[56]: https://github.com/truetandem/e-QIP-prototype/milestone/29

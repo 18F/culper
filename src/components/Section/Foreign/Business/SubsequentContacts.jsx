@@ -28,7 +28,7 @@ export default class SubsequentContacts extends ValidationElement {
                           appendLabel={i18n.t('foreign.business.contact.heading.hassubsequent2')}
                           help="foreign.business.contact.help.hassubsequent"
                           className="has-foreign-contacts"
-                          items={this.props.List}
+                          {...this.props.List}
                           onUpdate={this.updateList}
                           required={this.props.required}
                           onError={this.props.onError}
@@ -49,6 +49,7 @@ export default class SubsequentContacts extends ValidationElement {
                  adjustFor="datecontrol"
                  scrollIntoView={this.props.scrollIntoView}>
             <DateControl name="Recent"
+                         applicantBirthdate={this.props.applicantBirthdate}
                          className="foreign-business-contact-recent"
                          bind={true}
                          required={this.props.required}
@@ -73,7 +74,8 @@ export default class SubsequentContacts extends ValidationElement {
 
 SubsequentContacts.defaultProps = {
   name: 'SubsequentContacts',
-  List: [],
+  applicantBirthdate: {},
+  List: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

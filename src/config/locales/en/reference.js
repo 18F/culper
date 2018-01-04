@@ -3,10 +3,15 @@ export const reference = {
     name: 'Provide this person\'s full name',
     contact: 'Provide date of last contact',
     relationship: 'Relationship',
-    phone: 'This person\'s phone numbers',
-    email: 'This person\'s email address',
+    phone: {
+      default: 'Provide this person\'s phone number',
+      evening: 'Provide this person\'s evening phone number',
+      day: 'Provide this person\'s daytime phone number',
+      mobile: 'Provide this person\'s cell/mobile phone number'
+    },
+    email: 'Provide this person\'s email address',
     correspondence: 'Their contact information',
-    address: 'This person\'s street address'
+    address: 'Provide this person\'s street address'
   },
   para: {
     correspondence: 'Provide the following contact information for this person.',
@@ -21,7 +26,7 @@ export const reference = {
       landlord: 'Landlord',
       business: 'Business associate',
       other: 'Other',
-      explanation: 'Please provide an explanation...',
+      explanation: 'Please provide an explanation',
       comments: 'Add a comment to this question'
     },
     email: 'Provide e-mail address for this person',

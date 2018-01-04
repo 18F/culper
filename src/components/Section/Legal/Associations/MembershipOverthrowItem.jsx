@@ -118,6 +118,7 @@ export default class MembershipOverthrowItem extends ValidationElement {
                scrollIntoView={this.props.scrollIntoView}>
           <DateRange name="Dates"
                      {...this.props.Dates}
+                     applicantBirthdate={this.props.applicantBirthdate}
                      onUpdate={this.updateDates}
                      onError={this.props.onError}
                      className="legal-associations-overthrow-dates"
@@ -186,6 +187,7 @@ export default class MembershipOverthrowItem extends ValidationElement {
 MembershipOverthrowItem.defaultProps = {
   PositionsNotApplicable: { applicable: true },
   ContributionsNotApplicable: { applicable: true },
+  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

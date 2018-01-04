@@ -71,6 +71,10 @@ describe('The Email component', () => {
       {
         address: 't j@123.com',
         valid: false
+      },
+      {
+        address: 'j@stonewall.support',
+        valid: true
       }
     ]
 

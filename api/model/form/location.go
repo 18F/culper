@@ -98,8 +98,8 @@ func (entity *Location) Valid() (bool, error) {
 	}
 
 	var stack model.ErrorStack
-	domestic := entity.Country == "United States"
-	postoffice := entity.Country == "POSTOFFICE"
+	domestic := entity.IsDomestic()
+	postoffice := entity.IsPostOffice()
 	international := !domestic && !postoffice
 
 	switch entity.Layout {
@@ -132,7 +132,6 @@ func (entity *Location) Valid() (bool, error) {
 	case LayoutCityState:
 		stack = validateFields(entity, "city", "state")
 	case LayoutStreetCityCountry:
-		stack = validateFields(entity, "city", "country")
 		stack = validateFields(entity, "street", "city", "country")
 	case LayoutCityCountry:
 		stack = validateFields(entity, "city", "country")
@@ -215,7 +214,7 @@ func validateFields(entity *Location, props ...string) model.ErrorStack {
 			if country == "" {
 				stack.Append("Location", model.ErrFieldRequired{"Missing country"})
 			} else if !has(country, countries...) {
-				stack.Append("Location", model.ErrFieldInvalid{"Invalid state"})
+				stack.Append("Location", model.ErrFieldInvalid{"Invalid country"})
 			}
 		}
 	}
@@ -310,6 +309,7 @@ var (
 	}
 
 	countries = []string{
+		"POSTOFFICE",
 		"United States",
 		"Afghanistan",
 		"Akrotiri Sovereign Base Area",
@@ -525,6 +525,7 @@ var (
 		"South Africa",
 		"South Georgia and the South Sandwich Islands",
 		"South Korea",
+		"South Sudan",
 		"Spain",
 		"Spratly Islands",
 		"Sri Lanka",
@@ -576,4 +577,16 @@ func (entity *Location) GetID() int {
 // SetID sets the entity identifier.
 func (entity *Location) SetID(id int) {
 	entity.ID = id
+}
+
+func (entity *Location) IsDomestic() bool {
+	return entity.Country == "United States" || entity.Layout == LayoutUSAddress
+}
+
+func (entity *Location) IsPostOffice() bool {
+	return entity.Country == "POSTOFFICE"
+}
+
+func (entity *Location) IsInternational() bool {
+	return !entity.IsDomestic() && !entity.IsPostOffice()
 }

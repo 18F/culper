@@ -1,0 +1,4 @@
+{{template "history-residence" .History.Residence}}
+{{template "history-employment" .History.Employment}}
+{{template "history-education" .History.Education}}
+{{template "history-federal" .History.Federal}}

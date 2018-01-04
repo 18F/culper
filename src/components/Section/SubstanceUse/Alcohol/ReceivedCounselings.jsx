@@ -85,7 +85,11 @@ export default class ReceivedCounselings extends SubsectionElement {
                      appendLabel={i18n.t('substance.alcohol.receivedCounseling.collection.appendLabel')}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
-            <ReceivedCounseling name="Item" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
+            <ReceivedCounseling name="Item"
+                                bind={true}
+                                applicantBirthdate={this.props.applicantBirthdate}
+                                required={this.props.required}
+                                scrollIntoView={this.props.scrollIntoView} />
           </Accordion>
         </Show>
       </div>
@@ -99,6 +103,7 @@ ReceivedCounselings.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'substance',
   subsection: 'alcohol/additional',
+  applicantBirthdate: {},
   dispatch: () => {},
   validator: (state, props) => {
     return validate(schema('substance.alcohol.additional', props))

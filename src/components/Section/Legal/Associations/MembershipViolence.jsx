@@ -79,13 +79,14 @@ export default class MembershipViolence extends SubsectionElement {
                      appendLabel={i18n.t('legal.associations.violence.collection.appendLabel')}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
-                     <MembershipViolenceItem name="Item"
-                       bind={true}
-                       required={this.props.required}
-                       scrollIntoView={this.props.scrollIntoView}
-                       addressBooks={this.props.addressBooks}
-                       dispatch={this.props.dispatch}
-                     />
+            <MembershipViolenceItem name="Item"
+                                    bind={true}
+                                    required={this.props.required}
+                                    scrollIntoView={this.props.scrollIntoView}
+                                    applicantBirthdate={this.props.applicantBirthdate}
+                                    addressBooks={this.props.addressBooks}
+                                    dispatch={this.props.dispatch}
+                                    />
           </Accordion>
         </Show>
       </div>
@@ -102,6 +103,7 @@ MembershipViolence.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'legal',
   subsection: 'associations/membership-violence-or-force',
+  applicantBirthdate: {},
   addressBooks: {},
   dispatch: (action) => {},
   validator: (state, props) => {

@@ -80,12 +80,13 @@ export default class Federal extends SubsectionElement {
                      required={this.props.required}
                      validator={FederalServiceItemValidator}
                      scrollIntoView={this.props.scrollIntoView}>
-                     <FederalItem name="Item"
-                       bind={true}
-                       required={this.props.required}
-                       scrollIntoView={this.props.scrollIntoView}
-                       onError={this.props.onError}
-                     />
+            <FederalItem name="Item"
+                         bind={true}
+                         applicantBirthdate={this.props.applicantBirthdate}
+                         required={this.props.required}
+                         scrollIntoView={this.props.scrollIntoView}
+                         onError={this.props.onError}
+                         />
           </Accordion>
         </Show>
       </div>
@@ -100,6 +101,7 @@ Federal.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'history',
   subsection: 'federal',
+  applicantBirthdate: {},
   addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {

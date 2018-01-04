@@ -51,10 +51,16 @@ describe('The gap component', () => {
       first: false,
       dates: {
         from: {
-          date: new Date(2014, 6, 21)
+          date: new Date(2014, 5, 21),
+          year: '2014',
+          month: '6',
+          day: '21'
         },
         to: {
-          date: new Date(2015, 6, 21)
+          date: new Date(2015, 5, 21),
+          year: '2015',
+          month: '6',
+          day: '21'
         }
       }
     }

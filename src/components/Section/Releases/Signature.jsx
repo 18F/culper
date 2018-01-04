@@ -22,10 +22,14 @@ export default class Signature extends ValidationElement {
   }
 
   addSignature () {
+    const now = new Date()
     this.update({
       Name: this.props.LegalName,
       Date: {
-        value: new Date()
+        date: now,
+        month: `${now.getMonth()+1}`,
+        day: `${now.getDate()}`,
+        year: `${now.getFullYear()}`
       }
     })
   }
@@ -50,8 +54,8 @@ export default class Signature extends ValidationElement {
   }
 
   render () {
-    const name = (this.props.LegalName || {}).Name
-    const signed = this.props.Date && this.props.Date.value
+    const name = (this.props.LegalName || {}).Name || this.props.Name
+    const signed = this.props.Date && this.props.Date.date
     const button = <button className="add" onClick={this.addSignature}>{i18n.t('signature.add')}</button>
     const nameSummary = signed ? NameSummary(name) : button
     const dateSummary = signed ? DateSummary(this.props.Date, '', true) : ''
@@ -60,7 +64,6 @@ export default class Signature extends ValidationElement {
         <span className="name wet">{nameSummary}</span>
         <span className="spacer"></span>
         <span className="date wet">{dateSummary}</span>
-
         <span className="name muted">{i18n.t('signature.name')}</span>
         <span className="spacer"></span>
         <span className="date muted">{i18n.t('signature.date')}</span>

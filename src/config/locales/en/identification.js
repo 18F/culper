@@ -8,7 +8,7 @@ export const identification = {
   },
   review: {
     para: 'View all the sections associated with identification at once',
-    comments: 'Would you like to add a comment about any of your responses relating to information about you?'
+    comments: 'Add a comment to clarify any of your responses in the information about you section'
   },
   destination: {
     intro: 'Identification intro',
@@ -184,8 +184,8 @@ export const identification = {
       comments: 'Add optional comments'
     },
     para: {
-      email: '**At least one email address is required**, but providing additional email addresses may assist in the completion of your background investigation. Email addresses may be used as contact method, and identify subject in records.',
-      phoneNumber: 'Provide your phone numbers. **At least one number is required**, but providing additional numbers may assist in the completion of your background investigation.'
+      email: 'Providing email address may assist in the completion of your background investigation. Email addresses may be used as contact method, and identify subject in records.',
+      phoneNumber: 'Provide three contact numbers. **At least one number is required**. Additional numbers may assist in the completion of your background investigation.'
     },
     label: {
       email: 'Email address',

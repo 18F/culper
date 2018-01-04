@@ -106,6 +106,10 @@ export const error = {
     required: {
       title: 'There is a problem with this field',
       message: 'This field is required'
+    },
+    invalid: {
+      title: 'Invalid social security number',
+      message: 'The social security number is considered invalid.'
     }
   },
   date: {
@@ -352,6 +356,15 @@ export const error = {
       required: {
         title: 'There is a problem with this field',
         message: 'This field is required'
+      },
+      notfound: {
+        title: 'There is a problem with the State',
+        message: [
+          'State name must be one of the available options.',
+          '*and/or*',
+          'The state name is too long.'
+        ],
+        note: ''
       }
     },
     city: {
@@ -734,94 +747,4 @@ export const error = {
     title: 'There is a problem with this field',
     message: 'This field is required'
   }
-  // order: {
-  //   datecontrol: {
-  //     max: {
-  //       title: 'There is a problem with the date',
-  //       message: 'The order date can\'t be in the future.'
-  //     },
-  //     min: {
-  //       title: 'There is a problem with the date',
-  //       message: 'The order date value should be on or after your date of birth.'
-  //     }
-  //   }
-  // },
-  // hospitalization: {
-  //   to: {
-  //     datecontrol: {
-  //       max: {
-  //         title: 'There is a problem with the "to" date',
-  //         message: 'The hospitalization **to** date can\'t be in the future.'
-  //       },
-  //       min: {
-  //         title: 'There is a problem with the "to" date',
-  //         message: 'The hospitalization **to** date value should be on or after your date of birth.'
-  //       }
-  //     }
-  //   },
-  //   from: {
-  //     datecontrol: {
-  //       max: {
-  //         title: 'There is a problem with the "from" date',
-  //         message: 'The hospitalization **from** date can\'t be in the future.'
-  //       },
-  //       min: {
-  //         title: 'There is a problem with the "from" date',
-  //         message: 'The hospitalization **from** date value should be on or after your date of birth.'
-  //       }
-  //     }
-  //   }
-  // },
-  // diagnosis: {
-  //   to: {
-  //     datecontrol: {
-  //       max: {
-  //         title: 'There is a problem with the "to" date',
-  //         message: 'The diagnosis **to** date can\'t be in the future.'
-  //       },
-  //       min: {
-  //         title: 'There is a problem with the "to" date',
-  //         message: 'Diagnosis **to** date value should be on or after your date of birth.'
-  //       }
-  //     }
-  //   },
-  //   from: {
-  //     datecontrol: {
-  //       max: {
-  //         title: 'There is a problem with the "from" date',
-  //         message: 'Diagnosis **from** date can\'t be in the future.'
-  //       },
-  //       min: {
-  //         title: 'There is a problem with the "from" date',
-  //         message: 'Diagnosis **from** date value should be on or after your date of birth.'
-  //       }
-  //     }
-  //   }
-  // },
-  // bankruptcy: {
-  //   datefiled: {
-  //     datecontrol: {
-  //       max: {
-  //         title: 'There is a problem with the "date filed" date',
-  //         message: 'Bankruptcy **date filed** can\'t be in the future.'
-  //       },
-  //       min: {
-  //         title: 'There is a problem with the "date filed" date',
-  //         message: 'Bankruptcy **date filed** date value should be on or after your date of birth.'
-  //       }
-  //     }
-  //   },
-  //   datedischarged: {
-  //     datecontrol: {
-  //       max: {
-  //         title: 'There is a problem with the "date discharged" date',
-  //         message: 'Bankruptcy **date discharged** can\'t be in the future.'
-  //       },
-  //       min: {
-  //         title: 'There is a problem with the "to" date',
-  //         message: 'Bankruptcy **date discharged** date value should be on or after your date of birth.'
-  //       }
-  //     }
-  //   }
-  // }
 }

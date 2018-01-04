@@ -3,6 +3,8 @@ import { GithubOAuth } from './oauth'
 
 describe('OAuth', () => {
   'use strict'
+  const today = new Date()
+  const tomorrow = new Date(today.getFullYear(), today.getMonth(), today.getDate()+1)
 
   it('OAuth checks if user is not authentiated', () => {
     GithubOAuth.token = null
@@ -12,7 +14,7 @@ describe('OAuth', () => {
 
   it('OAuth checks if user is authentiated', () => {
     GithubOAuth.token = 'faketoken'
-    GithubOAuth.expiration = new Date('2017-12-01')
+    GithubOAuth.expiration = tomorrow
     expect(GithubOAuth.authenticated()).toEqual(true)
   })
 
@@ -24,7 +26,7 @@ describe('OAuth', () => {
 
   it('OAuth logs out an authenticated user', () => {
     GithubOAuth.token = 'faketoken'
-    GithubOAuth.expiration = new Date('2017-12-01')
+    GithubOAuth.expiration = tomorrow
     expect(GithubOAuth.authenticated()).toEqual(true)
 
     GithubOAuth.logout()

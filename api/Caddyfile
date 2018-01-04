@@ -5,14 +5,17 @@
     errors stdout
     timeouts none
 
-    browse /srv
-    index index.html
+    # browse /srv
+    # index index.html
+    root /srv
 
+    # For HTML5 History API
     rewrite {
         if {path} not_has api/
-        to {path} /index.html
+        to {path} {path}/ /index.html
     }
 
+    # For APIs
     proxy /api/ http://api:3000 {
         without /api
         transparent

@@ -80,11 +80,12 @@ export default class Revoked extends SubsectionElement {
                      appendLabel={i18n.t('legal.investigations.revoked.collection.appendLabel')}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
-                     <RevokedItem name="Item"
-                       bind={true}
-                       required={this.props.required}
-                       scrollIntoView={this.props.scrollIntoView}
-                     />
+            <RevokedItem name="Item"
+                         bind={true}
+                         applicantBirthdate={this.props.applicantBirthdate}
+                         required={this.props.required}
+                         scrollIntoView={this.props.scrollIntoView}
+                         />
           </Accordion>
         </Show>
       </div>
@@ -96,6 +97,7 @@ Revoked.defaultProps = {
   name: 'revoked',
   HasRevocations: {},
   List: Accordion.defaultList,
+  applicantBirthdate: {},
   defaultState: true,
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },

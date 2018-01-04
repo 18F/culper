@@ -3,7 +3,7 @@ import ValidationElement from '../ValidationElement'
 import Number from '../Number'
 import Checkbox from '../Checkbox'
 import Show from '../Show'
-import { daysInMonth, validDate } from '../../Section/History/dateranges'
+import { today, daysAgo, daysInMonth, validDate } from '../../Section/History/dateranges'
 import DateControlValidator from '../../../validators/datecontrol'
 
 export const datePart = (part, date) => {
@@ -108,21 +108,25 @@ export default class DateControl extends ValidationElement {
   }
 
   handleDisable (nextProps) {
+    let updates = {}
     let errors = [...this.errors] || []
     // If disabling component, set all errors to null
     if (nextProps.disabled) {
-      errors = errors.map(err => {
+      this.errors = errors.map(err => {
         return {
           code: err.code,
           valid: null,
           uid: err.uid
         }
       })
+      updates = { month: '', day: '', year: '' }
     }
-    this.props.onError('', errors)
-    this.setState({
-      disabled: nextProps.disabled
-    })
+    this.props.onError('', this.errors)
+    updates = {
+      disabled: nextProps.disabled,
+      ...updates
+    }
+    this.setState(updates)
   }
 
   update (el, year, month, day, estimated) {
@@ -413,8 +417,11 @@ DateControl.defaultProps = {
   day: '',
   year: '',
   prefix: '',
-  maxDate: new Date(),
+  applicantBirthdate: {},
+  noMaxDate: false,
+  maxDate: null,
   minDate: null,
+  relationship: '',
   toggleFocus: (w, changed, el, day, month) => {
     day.focus()
     day.blur()

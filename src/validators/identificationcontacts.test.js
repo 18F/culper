@@ -5,32 +5,9 @@ describe('Contact Information validation', function () {
     const tests = [
       {
         state: {
-          Emails: {
-            items: [
-              {
-                Item: {
-                  Email: {
-                    value: 'foobar@local.dev'
-                  }
-                }
-              },
-              {
-                Item: {
-                  Email: {
-                    value: 'foobar@local.dev'
-                  }
-                }
-              }
-            ]
-          }
-        },
-        expected: true
-      },
-      {
-        state: {
           Emails: { items: [] }
         },
-        expected: false
+        expected: true
       },
       {
         state: {

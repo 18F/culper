@@ -8,5 +8,6 @@ applications:
   buildpack: https://github.com/cloudfoundry/staticfile-buildpack.git
   env:
     FORCE_HTTPS: true
+    API_BASE_URL: https://eqip-prototype-api-dev.fr.cloud.gov
     DISABLE_2FA: 1
     BASIC_ENABLED: 1

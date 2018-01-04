@@ -79,17 +79,10 @@ describe('Schema for financial taxes', () => {
               },
               Telephone: {}
             },
-            Reference: {
-              FullName: {},
-              LastContact: {},
-              Relationship: {},
-              RelationshipOther: {},
-              Phone: {},
-              Email: {},
-              EmailNotApplicable: {},
-              Address: {
-                country: null
-              }
+            ReferenceName: {},
+            ReferencePhone: {},
+            ReferenceAddress: {
+              country: null
             }
           }
         }]
