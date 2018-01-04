@@ -27,24 +27,6 @@ export default class ValidForm extends ValidationElement {
     }
   }
 
-  componentWillUnmount () {
-    let nav = document.getElementsByClassName('form-navigation')[0]
-    nav.removeEventListener('click', this.captureClick)
-  }
-
-  componentDidMount () {
-    let nav = document.getElementsByClassName('form-navigation')[0]
-    if (nav && nav.addEventListener) {
-      nav.addEventListener('click', this.captureClick)
-    }
-  }
-
-  captureClick (e) {
-    if (!window.confirm('Are you sure you want to leave?')) {
-      e.stopPropagation()
-    }
-  }
-
   update (queue) {
     this.props.onUpdate({
       AdditionalComments: this.props.AdditionalComments,

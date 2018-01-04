@@ -28,6 +28,24 @@ class Print extends SectionElement {
     }
   }
 
+  componentWillUnmount () {
+    let nav = document.getElementsByClassName('form-navigation')[0]
+    nav.removeEventListener('click', this.captureClick)
+  }
+
+  componentDidMount () {
+    let nav = document.getElementsByClassName('form-navigation')[0]
+    if (nav && nav.addEventListener) {
+      nav.addEventListener('click', this.captureClick)
+    }
+  }
+
+  captureClick (e) {
+    if (!window.confirm('Are you sure you want to leave?')) {
+      e.stopPropagation()
+    }
+  }
+
   sections () {
     return navigation.map((section, index, arr) => {
       let sectionComponent = null
