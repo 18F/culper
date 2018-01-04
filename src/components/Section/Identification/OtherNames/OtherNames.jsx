@@ -87,11 +87,12 @@ export default class OtherNames extends SubsectionElement {
                      summary={this.summary}
                      description={i18n.t('identification.othernames.collection.summary.title')}
                      appendLabel={i18n.t('identification.othernames.collection.append')}>
-                     <OtherNameItem name="Item"
-                       required={this.props.required}
-                       scrollIntoView={this.props.scrollIntoView}
-                       bind={true}
-                     />
+            <OtherNameItem name="Item"
+                           required={this.props.required}
+                           scrollIntoView={this.props.scrollIntoView}
+                           applicantBirthdate={this.props.applicantBirthdate}
+                           bind={true}
+                           />
           </Accordion>
         </Show>
       </div>
@@ -108,6 +109,7 @@ OtherNames.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'identification',
   subsection: 'othernames',
+  applicantBirthdate: {},
   dispatch: () => {},
   validator: (state, props) => {
     return validate(schema('identification.othernames', props))

@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { i18n } from '../../../config'
+import { extractApplicantBirthdate } from '../extractors'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
 import SectionComments from '../SectionComments'
@@ -40,6 +41,7 @@ class Identification extends SectionElement {
                        backLabel={i18n.t('identification.destination.physical')}>
             <ApplicantName name="name"
                            {...this.props.ApplicantName}
+                           applicantBirthdate={this.props.applicantBirthdate}
                            dispatch={this.props.dispatch}
                            onUpdate={this.handleUpdate.bind(this, 'ApplicantName')}
                            onError={this.handleError}
@@ -50,6 +52,7 @@ class Identification extends SectionElement {
             <OtherNames name="othernames"
                         {...this.props.OtherNames}
                         defaultState={false}
+                        applicantBirthdate={this.props.applicantBirthdate}
                         dispatch={this.props.dispatch}
                         onUpdate={this.handleUpdate.bind(this, 'OtherNames')}
                         onError={this.handleError}
@@ -59,6 +62,7 @@ class Identification extends SectionElement {
             <hr />
             <ContactInformation name="contacts"
                                 {...this.props.Contacts}
+                                applicantBirthdate={this.props.applicantBirthdate}
                                 minimumPhoneNumbers={1}
                                 minimumEmails={1}
                                 shouldFilterEmptyItems={true}
@@ -72,6 +76,7 @@ class Identification extends SectionElement {
             <hr />
             <ApplicantBirthDate name="birthdate"
                                 {...this.props.ApplicantBirthDate}
+                                applicantBirthdate={this.props.applicantBirthdate}
                                 dispatch={this.props.dispatch}
                                 onUpdate={this.handleUpdate.bind(this, 'ApplicantBirthDate')}
                                 onError={this.handleError}
@@ -81,6 +86,7 @@ class Identification extends SectionElement {
             <hr />
             <ApplicantBirthPlace name="birthplace"
                                  {...this.props.ApplicantBirthPlace}
+                                 applicantBirthdate={this.props.applicantBirthdate}
                                  dispatch={this.props.dispatch}
                                  onUpdate={this.handleUpdate.bind(this, 'ApplicantBirthPlace')}
                                  onError={this.handleError}
@@ -90,6 +96,7 @@ class Identification extends SectionElement {
             <hr />
             <ApplicantSSN name="ssn"
                           {...this.props.ApplicantSSN}
+                          applicantBirthdate={this.props.applicantBirthdate}
                           dispatch={this.props.dispatch}
                           onUpdate={this.handleUpdate.bind(this, 'ApplicantSSN')}
                           onError={this.handleError}
@@ -99,6 +106,7 @@ class Identification extends SectionElement {
             <hr />
             <Physical name="physical"
                       {...this.props.Physical}
+                      applicantBirthdate={this.props.applicantBirthdate}
                       dispatch={this.props.dispatch}
                       onUpdate={this.handleUpdate.bind(this, 'Physical')}
                       onError={this.handleError}
@@ -137,6 +145,7 @@ class Identification extends SectionElement {
                        nextLabel={i18n.t('identification.destination.contacts')}>
             <OtherNames name="othernames"
                         {...this.props.OtherNames}
+                        applicantBirthdate={this.props.applicantBirthdate}
                         dispatch={this.props.dispatch}
                         onUpdate={this.handleUpdate.bind(this, 'OtherNames')}
                         onError={this.handleError}
@@ -150,6 +159,7 @@ class Identification extends SectionElement {
                        backLabel={i18n.t('identification.destination.contacts')}>
             <ApplicantBirthDate name="birthdate"
                                 {...this.props.ApplicantBirthDate}
+                                applicantBirthdate={this.props.applicantBirthdate}
                                 dispatch={this.props.dispatch}
                                 onUpdate={this.handleUpdate.bind(this, 'ApplicantBirthDate')}
                                 onError={this.handleError}
@@ -163,6 +173,7 @@ class Identification extends SectionElement {
                        backLabel={i18n.t('identification.destination.birthdate')}>
             <ApplicantBirthPlace name="birthplace"
                                  {...this.props.ApplicantBirthPlace}
+                                 applicantBirthdate={this.props.applicantBirthdate}
                                  dispatch={this.props.dispatch}
                                  onUpdate={this.handleUpdate.bind(this, 'ApplicantBirthPlace')}
                                  onError={this.handleError}
@@ -176,6 +187,7 @@ class Identification extends SectionElement {
                        nextLabel={i18n.t('identification.destination.birthdate')}>
             <ContactInformation name="contacts"
                                 {...this.props.Contacts}
+                                applicantBirthdate={this.props.applicantBirthdate}
                                 dispatch={this.props.dispatch}
                                 onUpdate={this.handleUpdate.bind(this, 'Contacts')}
                                 onError={this.handleError}
@@ -189,6 +201,7 @@ class Identification extends SectionElement {
                        nextLabel={i18n.t('identification.destination.physical')}>
             <ApplicantSSN name="ssn"
                           {...this.props.ApplicantSSN}
+                          applicantBirthdate={this.props.applicantBirthdate}
                           dispatch={this.props.dispatch}
                           onUpdate={this.handleUpdate.bind(this, 'ApplicantSSN')}
                           onError={this.handleError}
@@ -202,6 +215,7 @@ class Identification extends SectionElement {
                        nextLabel={i18n.t('identification.destination.review')}>
             <Physical name="physical"
                       {...this.props.Physical}
+                      applicantBirthdate={this.props.applicantBirthdate}
                       dispatch={this.props.dispatch}
                       onUpdate={this.handleUpdate.bind(this, 'Physical')}
                       onError={this.handleError}
@@ -229,7 +243,8 @@ function mapStateToProps (state) {
     Physical: identification.Physical || {},
     Comments: identification.Comments || {},
     Errors: errors.identification || [],
-    Completed: completed.identification || []
+    Completed: completed.identification || [],
+    applicantBirthdate: extractApplicantBirthdate(app)
   }
 }
 

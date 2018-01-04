@@ -81,7 +81,7 @@ export default class Consultation extends SubsectionElement {
                      scrollIntoView={this.props.scrollIntoView}>
             <Order name="Item"
                    prefix="consultation"
-                   ApplicantBirthDate={this.props.ApplicantBirthDate}
+                   applicantBirthdate={this.props.applicantBirthdate}
                    addressBooks={this.props.addressBooks}
                    dispatch={this.props.dispatch}
                    required={this.props.required}
@@ -102,6 +102,7 @@ Consultation.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'psychological',
   subsection: 'consultations',
+  applicantBirthdate: {},
   addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {

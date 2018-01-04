@@ -101,11 +101,12 @@ export default class Hospitalization extends ValidationElement {
                scrollIntoView={this.props.scrollIntoView}>
           <DateRange name="TreatmentDate"
                      {...this.props.TreatmentDate}
+                     applicantBirthdate={this.props.applicantBirthdate}
                      receiveProps={this.props.receiveProps}
                      onUpdate={this.updateTreatmentDate}
                      onError={this.props.onError}
                      required={this.props.required}
-                     minDate={this.props.ApplicantBirthDate}
+                     minDate={this.props.ApplicantBirthdate}
                      prefix="hospitalization"
                      />
         </Field>
@@ -144,6 +145,7 @@ export default class Hospitalization extends ValidationElement {
 
 Hospitalization.defaultProps = {
   Admission: '',
+  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

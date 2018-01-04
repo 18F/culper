@@ -1,0 +1,23 @@
+<FormerFederalServiceActivities>
+  <HadFormerFederalCivilianEmployment>
+    <Answer>{{branch .props.HasFederalService}}</Answer>
+  </HadFormerFederalCivilianEmployment>
+  <FederalServices>
+    {{range $index, $item := .props.List.props.items}}
+    {{with $Item := $item.Item}}
+    <FederalService ID="{{$index}}">
+      <Agency>
+        <Location>{{location $Item.Address}}</Location>
+        <Name>{{text $Item.Name}}</Name>
+      </Agency>
+      <DateRange>{{daterange $Item.Dates}}</DateRange>
+      <PositionTitle>{{text $Item.Position}}</PositionTitle>
+      <EntryComment></EntryComment>
+    </FederalService>
+    {{end}}
+    {{end}}
+  </FederalServices>
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+  <SummaryComment></SummaryComment>
+  <Comment></Comment>
+</FormerFederalServiceActivities>

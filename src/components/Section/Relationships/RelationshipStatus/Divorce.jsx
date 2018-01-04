@@ -132,6 +132,8 @@ export default class Divorce extends React.Component {
           <DateControl name="birthdate"
                        className="birthdate"
                        {...this.props.Birthdate}
+                       applicantBirthdate={this.props.applicantBirthdate}
+                       relationship="Other"
                        onUpdate={this.updateBirthdate}
                        onError={this.props.onError}
                        required={this.props.required}
@@ -152,7 +154,7 @@ export default class Divorce extends React.Component {
         </Field>
 
         <Field title={i18n.t('relationships.civilUnion.divorce.heading.citizenship')}
-                scrollIntoView={this.props.scrollIntoView}>
+               scrollIntoView={this.props.scrollIntoView}>
           <Country name="Citizenship"
                    multiple={true}
                    {...this.props.Citizenship}
@@ -182,6 +184,7 @@ export default class Divorce extends React.Component {
           <DateControl name="Recognized"
                        className="recognized"
                        {...this.props.Recognized}
+                       applicantBirthdate={this.props.applicantBirthdate}
                        onUpdate={this.updateRecognized}
                        onError={this.props.onError}
                        required={this.props.required}
@@ -210,6 +213,8 @@ export default class Divorce extends React.Component {
           <DateControl name="DateDivorced"
                        className="date-divorced"
                        {...this.props.DateDivorced}
+                       applicantBirthdate={this.props.applicantBirthdate}
+                       minDate={(this.props.Recognized || {}).date}
                        onUpdate={this.updateDateDivorced}
                        onError={this.props.onError}
                        required={this.props.required}
@@ -306,6 +311,7 @@ export default class Divorce extends React.Component {
 
 Divorce.defaultProps = {
   DeceasedAddressNotApplicable: { applicable: true },
+  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

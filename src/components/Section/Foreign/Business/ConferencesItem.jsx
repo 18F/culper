@@ -76,91 +76,93 @@ export default class ConferencesItem extends ValidationElement {
     return (
       <div className="conferences-item">
         <Field title={i18n.t('foreign.business.conferences.heading.description')}
-          help="foreign.business.conferences.help.description"
-          scrollIntoView={this.props.scrollIntoView}>
+               help="foreign.business.conferences.help.description"
+               scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Description"
-            {...this.props.Description}
-            onUpdate={this.updateDescription}
-            onError={this.props.onError}
-            className="conferences-description"
-            required={this.props.required}
-          />
+                    {...this.props.Description}
+                    onUpdate={this.updateDescription}
+                    onError={this.props.onError}
+                    className="conferences-description"
+                    required={this.props.required}
+                    />
         </Field>
 
         <Field title={i18n.t('foreign.business.conferences.heading.sponsor')}
-          help="foreign.business.conferences.help.sponsor"
-          scrollIntoView={this.props.scrollIntoView}>
+               help="foreign.business.conferences.help.sponsor"
+               scrollIntoView={this.props.scrollIntoView}>
           <Text name="Sponsor"
-            {...this.props.Sponsor}
-            onUpdate={this.updateSponsor}
-            onError={this.props.onError}
-            className="conferences-sponsor"
-            required={this.props.required}
-          />
+                {...this.props.Sponsor}
+                onUpdate={this.updateSponsor}
+                onError={this.props.onError}
+                className="conferences-sponsor"
+                required={this.props.required}
+                />
         </Field>
 
         <Field title={i18n.t('foreign.business.conferences.heading.city')}
-          help="foreign.business.conferences.help.city"
-          scrollIntoView={this.props.scrollIntoView}>
+               help="foreign.business.conferences.help.city"
+               scrollIntoView={this.props.scrollIntoView}>
           <Text name="City"
-            {...this.props.City}
-            onUpdate={this.updateCity}
-            onError={this.props.onError}
-            className="conferences-city"
-            required={this.props.required}
-          />
+                {...this.props.City}
+                onUpdate={this.updateCity}
+                onError={this.props.onError}
+                className="conferences-city"
+                required={this.props.required}
+                />
         </Field>
 
         <Field title={i18n.t('foreign.business.conferences.heading.country')}
-          help="foreign.business.conferences.help.country"
-          scrollIntoView={this.props.scrollIntoView}>
+               help="foreign.business.conferences.help.country"
+               scrollIntoView={this.props.scrollIntoView}>
           <Country name="Country"
-            {...this.props.Country}
-            onUpdate={this.updateCountry}
-            onError={this.props.onError}
-            className="conferences-country"
-            required={this.props.required}
-          />
+                   {...this.props.Country}
+                   onUpdate={this.updateCountry}
+                   onError={this.props.onError}
+                   className="conferences-country"
+                   required={this.props.required}
+                   />
         </Field>
 
         <Field title={i18n.t('foreign.business.conferences.heading.dates')}
-          help="foreign.business.conferences.help.dates"
-          adjustFor="daterange"
-          scrollIntoView={this.props.scrollIntoView}>
+               help="foreign.business.conferences.help.dates"
+               adjustFor="daterange"
+               scrollIntoView={this.props.scrollIntoView}>
           <DateRange name="Dates"
-            {...this.props.Dates}
-            onUpdate={this.updateDates}
-            onError={this.props.onError}
-            className="conferences-dates"
-            required={this.props.required}
-          />
+                     {...this.props.Dates}
+                     applicantBirthdate={this.props.applicantBirthdate}
+                     onUpdate={this.updateDates}
+                     onError={this.props.onError}
+                     className="conferences-dates"
+                     required={this.props.required}
+                     />
         </Field>
 
         <Field title={i18n.t('foreign.business.conferences.heading.purpose')}
-          help="foreign.business.conferences.help.purpose"
-          scrollIntoView={this.props.scrollIntoView}>
+               help="foreign.business.conferences.help.purpose"
+               scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Purpose"
-            {...this.props.Purpose}
-            onUpdate={this.updatePurpose}
-            onError={this.props.onError}
-            className="conferences-purpose"
-            required={this.props.required}
-          />
+                    {...this.props.Purpose}
+                    onUpdate={this.updatePurpose}
+                    onError={this.props.onError}
+                    className="conferences-purpose"
+                    required={this.props.required}
+                    />
         </Field>
 
         <ConferenceContacts name="Contacts"
-          {...this.props.Contacts}
-          onUpdate={this.updateContacts}
-          onError={this.props.onError}
-          required={this.props.required}
-          scrollIntoView={this.props.scrollIntoView}
-        />
+                            {...this.props.Contacts}
+                            onUpdate={this.updateContacts}
+                            onError={this.props.onError}
+                            required={this.props.required}
+                            scrollIntoView={this.props.scrollIntoView}
+                            />
       </div>
     )
   }
 }
 
 ConferencesItem.defaultProps = {
+  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

@@ -2,7 +2,6 @@ package form
 
 import (
 	"encoding/json"
-	"log"
 	"testing"
 )
 
@@ -26,6 +25,10 @@ func TestPackage(t *testing.T) {
 		{Schema: "financial-gambling.xml", Data: "testdata/financial-gambling.json"},
 		{Schema: "financial-nonpayment.xml", Data: "testdata/financial-nonpayment.json"},
 		{Schema: "financial-taxes.xml", Data: "testdata/financial-taxes.json"},
+		{Schema: "history-education.xml", Data: "testdata/history-education.json"},
+		{Schema: "history-employment.xml", Data: "testdata/history-employment.json"},
+		{Schema: "history-federal.xml", Data: "testdata/history-federal.json"},
+		{Schema: "history-residence.xml", Data: "testdata/history-residence.json"},
 	}
 
 	for _, test := range tests {
@@ -43,6 +46,6 @@ func TestPackage(t *testing.T) {
 		if tmpl == "" {
 			t.Fatalf("XML template should not be empty")
 		}
-		log.Println("XML template: ", tmpl)
+		// log.Println("XML template: ", tmpl)
 	}
 }

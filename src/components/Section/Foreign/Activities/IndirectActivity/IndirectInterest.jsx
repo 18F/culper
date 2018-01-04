@@ -234,6 +234,7 @@ export default class IndirectInterest extends ValidationElement {
           <DateControl name="Acquired"
                        className="acquired"
                        {...this.props.Acquired}
+                       applicantBirthdate={this.props.applicantBirthdate}
                        label={i18n.t(`foreign.activities.indirect.interest.label.acquired`)}
                        onUpdate={this.updateAcquired}
                        onError={this.props.onError}
@@ -313,6 +314,8 @@ export default class IndirectInterest extends ValidationElement {
             <DateControl name="Sold"
                          className="sold"
                          {...this.props.Sold}
+                         applicantBirthdate={this.props.applicantBirthdate}
+                         minDate={(this.props.Acquired || {}).date}
                          label={i18n.t(`foreign.activities.indirect.interest.label.sold`)}
                          onUpdate={this.updateSold}
                          onError={this.props.onError}
@@ -351,6 +354,7 @@ export default class IndirectInterest extends ValidationElement {
 IndirectInterest.defaultProps = {
   SoldNotApplicable: { applicable: true },
   prefix: 'activities.indirect.interest',
+  applicantBirthdate: {},
   addressBooks: {},
   dispatch: (action) => {},
   onUpdate: (queue) => {},

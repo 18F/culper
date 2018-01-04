@@ -125,6 +125,7 @@ export class DiplomaItem extends ValidationElement {
                scrollIntoView={this.props.scrollIntoView}>
           <DateControl name="Date"
                        {...this.props.Date}
+                       applicantBirthdate={this.props.applicantBirthdate}
                        className="date-awarded"
                        hideDay={true}
                        onUpdate={this.updateDate}
@@ -141,6 +142,7 @@ DiplomaItem.defaultProps = {
   Diploma: {},
   DiplomaOther: {},
   Date: {},
+  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

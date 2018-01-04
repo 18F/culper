@@ -81,6 +81,7 @@ export default class Employment extends SubsectionElement {
                      scrollIntoView={this.props.scrollIntoView}>
             <JobOffer name="Item"
                       bind={true}
+                      applicantBirthdate={this.props.applicantBirthdate}
                       required={this.props.required}
                       scrollIntoView={this.props.scrollIntoView}
                       />
@@ -99,6 +100,7 @@ Employment.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'business/employment',
+  applicantBirthdate: {},
   dispatch: () => {},
   validator: (state, props) => {
     return validate(schema('foreign.business.employment', props))

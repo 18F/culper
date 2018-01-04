@@ -215,6 +215,7 @@ export default class TaxesItem extends ValidationElement {
                          onError={this.props.onError}>
             <DateControl name="Date"
                          {...this.props.Date}
+                         applicantBirthdate={this.props.applicantBirthdate}
                          className="taxes-date"
                          hideDay={true}
                          required={this.props.required}
@@ -252,6 +253,7 @@ TaxesItem.defaultProps = {
   DateNotApplicable: { applicable: true },
   Date: {},
   Description: {},
+  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   required: false

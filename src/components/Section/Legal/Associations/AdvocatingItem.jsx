@@ -34,28 +34,29 @@ export default class AdvocatingItem extends ValidationElement {
     return (
       <div>
         <Field title={i18n.t('legal.associations.advocating.heading.reasons')}
-          adjustFor="textarea"
-          scrollIntoView={this.props.scrollIntoView}>
+               adjustFor="textarea"
+               scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Reasons"
-            {...this.props.Reasons}
-            onUpdate={this.updateReasons}
-            onError={this.props.onError}
-            className="legal-associations-advocating-reasons"
-            required={this.props.required}
-          />
+                    {...this.props.Reasons}
+                    onUpdate={this.updateReasons}
+                    onError={this.props.onError}
+                    className="legal-associations-advocating-reasons"
+                    required={this.props.required}
+                    />
         </Field>
 
         <Field title={i18n.t('legal.associations.advocating.heading.dates')}
-          help="legal.associations.advocating.help.dates"
-          adjustFor="daterange"
-          scrollIntoView={this.props.scrollIntoView}>
+               help="legal.associations.advocating.help.dates"
+               adjustFor="daterange"
+               scrollIntoView={this.props.scrollIntoView}>
           <DateRange name="Dates"
-            {...this.props.Dates}
-            onUpdate={this.updateDates}
-            onError={this.props.onError}
-            className="legal-associations-advocating-dates"
-            required={this.props.required}
-          />
+                     {...this.props.Dates}
+                     applicantBirthdate={this.props.applicantBirthdate}
+                     onUpdate={this.updateDates}
+                     onError={this.props.onError}
+                     className="legal-associations-advocating-dates"
+                     required={this.props.required}
+                     />
         </Field>
       </div>
     )
@@ -63,6 +64,7 @@ export default class AdvocatingItem extends ValidationElement {
 }
 
 AdvocatingItem.defaultProps = {
+  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }
