@@ -46,19 +46,20 @@ export default class RadioGroup extends ValidationElement {
   }
 
   render () {
-    const name = this.props.name ? `${this.state.uid}-${this.props.name}` : null
-    const children = React.Children.map(this.props.children, (child) => {
+    const self = this
+    const name = self.props.name ? `${self.state.uid}-${self.props.name}` : null
+    const children = React.Children.map(self.props.children, (child) => {
       // If type is not Radio, stop
       if (child.type !== Radio) {
         return child
       }
 
       // Check if current value matches one of the child radio options
-      let checked = (child.props.value === this.props.selectedValue)
+      let checked = (child.props.value === self.props.selectedValue)
 
       // Use function when you want custom behavior
       if (this.props.selectedValueFunc) {
-        checked = this.props.selectedValueFunc(child.props)
+        checked = self.props.selectedValueFunc(child.props)
       }
       const onUpdate = (option) => {
         if (child.props.onUpdate) {
@@ -71,15 +72,15 @@ export default class RadioGroup extends ValidationElement {
         <child.type
           {...child.props}
           name={name || child.props.name}
-          disabled={this.props.disabled}
+          disabled={self.props.disabled}
           checked={checked}
           onUpdate={onUpdate}>
         </child.type>
       )
     })
 
-    const errorClass = ((this.state.error === true && this.props.disabled === false) ? 'usa-input-error' : '')
-    const classes = ['blocks', this.props.className, errorClass].join(' ').trim()
+    const errorClass = ((self.state.error === true && self.props.disabled === false) ? 'usa-input-error' : '')
+    const classes = ['blocks', self.props.className, errorClass].join(' ').trim()
     return (
       <div className={classes}>{children}</div>
     )
