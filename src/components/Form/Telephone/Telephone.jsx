@@ -327,13 +327,12 @@ export default class Telephone extends ValidationElement {
     // Nullify unused codes
     const allowedTypes = ['Domestic', 'DSN', 'International']
     allowedTypes.filter(x => x !== this.props.type).forEach(x => {
-      console.log(this.errors.filter(err => err.code.indexOf(`telephone.${x.toLowerCase()}.`) > -1))
       this.errors.filter(err => err.code.indexOf(`telephone.${x.toLowerCase()}.`) > -1).forEach(err => {
         err.valid = null
       })
-      console.log(this.errors.filter(err => err.code.indexOf(`telephone.${x.toLowerCase()}.`) > -1))
     })
 
+    // Run the entire component through it's own error checks as a whole
     const requiredErr = this.errors.concat(this.constructor.errors.map(err => {
       return {
         code: `telephone.${err.code}`,
