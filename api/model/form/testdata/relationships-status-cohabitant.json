@@ -101,7 +101,7 @@
                 }
               },
               "OtherNames": {
-                "type": "collection",
+                "type": "branchcollection",
                 "props": {
                   "items": [
                     {

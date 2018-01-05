@@ -79,11 +79,17 @@
                 }
               },
               "Aliases": {
-                "type": "collection",
+                "type": "branchcollection",
                 "props": {
                   "items": [
                     {
                       "Item": {
+                        "Has": {
+                          "type": "branch",
+                          "props": {
+                            "value": "Yes"
+                          }
+                        },
                         "Name": {
                           "type": "name",
                           "props": {

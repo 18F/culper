@@ -1,0 +1,85 @@
+<Cohabitants>
+
+  <Answer>{{branch .props.HasCohabitant}}</Answer>
+  {{range $index, $item := .props.CohabitantList.props.items}}
+  {{with $Item := $item.Item}}
+    <Cohabitant ID="201">
+        <Birth>
+            <Date Type="{{dateEstimated $Item.Birthdate}}">
+                {{ date $Item.Birthdate }}
+            </Date>
+            <Place>
+                {{ location $Item.BirthPlace }}
+            </Place>
+        </Birth>
+
+        <Citizenship>
+            <ProofOfStatus>
+                <Comment></Comment>
+                <DocumentNumber>{{text $Item.DocumentNumber}}</DocumentNumber>
+                <Type>{{text $Item.DocumentType}}</Type>
+                <TypeOtherExplanation>{{text $Item.OtherExplanation}}</TypeOtherExplanation>
+            </ProofOfStatus>
+        </Citizenship>
+
+        <CohabitationDate>
+            <Date Type="{{dateEstimated $Item.Birthdate}}">
+                {{date $Item.Birthdate}}
+            </Date>
+        </CohabitationDate>
+
+        <ContinueComment></ContinueComment>
+
+        <CountriesOfCitizenship>
+            <Citizenship>
+                {{range $index, $country := $Item.Citizenship.value}}
+                <Country>{{$country}}</Country>
+                {{end}}
+            </Citizenship>
+        </CountriesOfCitizenship>
+
+        <EntryComment></EntryComment>
+
+        <LegalName>
+            {{name $Item.Name}}
+        </LegalName>
+
+        <OtherNamesUsed NotApplicable="True">
+        {{range $index, $othername := $Item.OtherNames.props.items}}
+        {{with $other := $othername.Item}}
+            <OtherName ID="201">
+                {{daterange $other.DatesUsed}}
+                <LegalName>
+                    {{name $other.OtherName}}
+                </LegalName>
+                <Maiden>True</Maiden>
+                <Maiden>
+                    <Answer>{{branch $other.MaidenName}}</Answer>
+                </Maiden>
+            </OtherName>
+            {{end}}
+            {{end}}
+        </OtherNamesUsed>
+
+        {{with $ssn := $Item.SSN}}
+        <SSN NotApplicable="{{ $ssn.props.notApplicable }}">
+            <FirstThree>
+                {{ $ssn.props.first }}
+            </FirstThree>
+            <NextTwo>
+                {{ $ssn.props.middle }}
+            </NextTwo>
+            <LastFour>
+                {{ $ssn.props.last }}
+            </LastFour>
+        </SSN>
+        {{end}}
+
+    </Cohabitant>
+    {{end}}
+    {{end}}
+
+    <Comment></Comment>
+    <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+    <SummaryComment></SummaryComment>
+</Cohabitants>
