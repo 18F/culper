@@ -26,7 +26,9 @@ export default class Radio extends ValidationElement {
       return
     }
 
-    this.setState({ checked: newProps.checked })
+    if (this.state.checked !== newProps.checked) {
+      this.setState({ checked: newProps.checked })
+    }
   }
 
   /**
@@ -44,7 +46,6 @@ export default class Radio extends ValidationElement {
         checked: futureChecked
       })
 
-
       // Toggling the focus of the element serves two purposes
       //  1. On a value change it removes the race condition caused
       //     when passing the updates via `onUpdate` and passing values
@@ -59,6 +60,7 @@ export default class Radio extends ValidationElement {
   }
 
   handleClick (event) {
+    event.persist()
     this.handleChange(event)
   }
 
@@ -180,12 +182,14 @@ export default class Radio extends ValidationElement {
         <div className={this.divClass()}>
           <input className={this.inputClass()}
                  id={this.state.uid}
-                 name={this.props.name}
+                 name={this.state.uid}
                  type="radio"
+                 ref="radio"
                  disabled={this.props.disabled}
                  readOnly={this.props.readonly}
                  value={this.state.value}
                  onChange={this.handleChange}
+                 onKeyDown={this.handleKeyPress}
                  onFocus={this.handleFocus}
                  onBlur={this.handleBlur}
                  checked={this.state.checked}

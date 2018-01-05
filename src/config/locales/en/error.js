@@ -584,6 +584,10 @@ export const error = {
           title: 'There is a problem with the area code',
           message: 'The area code should be 3 numbers long and between 0 and 9.',
           note: ''
+        },
+        required: {
+          title: 'There is a problem with this field',
+          message: 'This field is required'
         }
       },
       second: {
@@ -596,6 +600,10 @@ export const error = {
           title: 'There is a problem with the phone number',
           message: 'The first part of the phone number should be 3 numbers long and between 0 and 9.',
           note: ''
+        },
+        required: {
+          title: 'There is a problem with this field',
+          message: 'This field is required'
         }
       },
       third: {
@@ -608,6 +616,10 @@ export const error = {
           title: 'There is a problem with the phone number',
           message: 'The last part of the phone number should be 4 numbers long and between 0 and 9.',
           note: ''
+        },
+        required: {
+          title: 'There is a problem with this field',
+          message: 'This field is required'
         }
       },
       extension: {
@@ -634,6 +646,10 @@ export const error = {
           title: 'This field must have 3 digits',
           message: 'The first part of the DSN number must be 3 digits between 0 and 9.',
           note: ''
+        },
+        required: {
+          title: 'There is a problem with this field',
+          message: 'This field is required'
         }
       },
       second: {
@@ -646,6 +662,10 @@ export const error = {
           title: 'This field must have 4 digits',
           message: 'The last part of the DSN number must be 4 digits between 0 and 9.',
           note: ''
+        },
+        required: {
+          title: 'There is a problem with this field',
+          message: 'This field is required'
         }
       }
     },
@@ -660,6 +680,10 @@ export const error = {
           title: 'There is a problem with this country code',
           message: 'The country code of the international number should be 3 digits between 0 and 9.',
           note: ''
+        },
+        required: {
+          title: 'There is a problem with this field',
+          message: 'This field is required'
         }
       },
       second: {
@@ -672,6 +696,10 @@ export const error = {
           title: 'There is a problem with this number',
           message: 'The international number should be 10 digits between 0 and 9.',
           note: ''
+        },
+        required: {
+          title: 'There is a problem with this field',
+          message: 'This field is required'
         }
       }
     },
