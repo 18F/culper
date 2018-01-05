@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../config'
 import { ValidationElement, Show } from '../../Form'
-import { NameSummary, DateSummary } from '../../Summary'
+import { NameSummary, NameText, DateSummary } from '../../Summary'
 
 export default class Signature extends ValidationElement {
   constructor (props) {
@@ -24,7 +24,9 @@ export default class Signature extends ValidationElement {
   addSignature () {
     const now = new Date()
     this.update({
-      Name: this.props.LegalName,
+      Name: {
+        value: this.name(false)
+      },
       Date: {
         date: now,
         month: `${now.getMonth()+1}`,
@@ -53,11 +55,22 @@ export default class Signature extends ValidationElement {
     return this.props.onError(value, arr)
   }
 
+  name (formatted = true) {
+    if ((this.props.Name || {}).value) {
+      return formatted
+        ? <span class="title-case">{this.props.Name.value}</span>
+        : this.props.Name.value
+    }
+
+    const legalName = (this.props.LegalName || {}).Name
+    return formatted ? NameSummary(legalName) : NameText(legalName)
+  }
+
   render () {
-    const name = (this.props.LegalName || {}).Name || this.props.Name
+    const name = this.name()
     const signed = this.props.Date && this.props.Date.date
     const button = <button className="add" onClick={this.addSignature}>{i18n.t('signature.add')}</button>
-    const nameSummary = signed ? NameSummary(name) : button
+    const nameSummary = signed ? name : button
     const dateSummary = signed ? DateSummary(this.props.Date, '', true) : ''
     return (
       <div className="signature">

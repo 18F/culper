@@ -1,4 +1,5 @@
 import { sectionsTotal, sectionsCompleted } from '../components/Navigation/navigation-helpers'
+import SignatureValidator from './signature'
 import { hideExistingConditions } from './psychological'
 
 export const hideReleases = (store = {}) => {
@@ -26,4 +27,23 @@ export const hideHippa = (store = {}) => {
   ]
 
   return tests.every(x => x.affirmative(psych, store))
+}
+
+export const formIsSigned = (store = {}) => {
+  const releases = (store.Submission || {}).Releases || {}
+  const medical = !hideHippa(store)
+        ? new SignatureValidator(releases.Medical).isValid()
+        : true
+
+  return (
+    new SignatureValidator(releases.AdditionalComments).isValid() &&
+    new SignatureValidator(releases.General).isValid() &&
+    new SignatureValidator(releases.Credit).isValid() &&
+    medical
+  )
+}
+
+export const formIsLocked = (store = {}) => {
+  const releases = (store.Submission || {}).Releases || {}
+  return releases.Locked && formIsSigned(store)
 }

@@ -1,14 +1,18 @@
 import React from 'react'
 import { i18n } from '../../../config'
 import { ValidationElement, Show } from '../../Form'
-import { NameValidator } from '../../../validators'
-import { validDateField } from '../../../validators/helpers'
+import { NameValidator, SignatureValidator } from '../../../validators'
+import { formIsSigned } from '../../../validators/releases'
 import BasicAccordion from './BasicAccordion'
 import AdditionalComments from './AdditionalComments'
 import General from './General'
 import Medical from './Medical'
 import Credit from  './Credit'
 import Verify from  './Verify'
+
+const signaturePresent = (data) => {
+  return new SignatureValidator(data).isValid()
+}
 
 export default class ValidForm extends ValidationElement {
   constructor (props) {
@@ -33,6 +37,7 @@ export default class ValidForm extends ValidationElement {
       General: this.props.General,
       Medical: this.props.Medical,
       Credit: this.props.Credit,
+      Locked: this.props.Locked,
       ...queue
     })
   }
@@ -62,9 +67,8 @@ export default class ValidForm extends ValidationElement {
   }
 
   submit () {
-    // TODO Implement
     if (window.confirm('Are you sure you want to submit this application?')) {
-      this.props.onSubmit(true)
+      this.props.onSubmit()
     }
   }
 
@@ -88,24 +92,24 @@ export default class ValidForm extends ValidationElement {
   }
 
   accordionItems () {
-    let accordionItems = [
+    const self = this
+    return [
       {
         title: i18n.t('application.validForm.certificationItem'),
         component: () => {
           return (
             <div>
-              <AdditionalComments
-                onUpdate={this.updateComments}
-                {...this.props.AdditionalComments}
-                LegalName={this.props.LegalName}
-                />
-              <Show when={validSignature(this.props.AdditionalComments)}>
-                <button onClick={this.togglePanel(1)}>{i18n.t('application.validForm.next')}</button>
+              <AdditionalComments {...self.props.AdditionalComments}
+                                  onUpdate={self.updateComments}
+                                  LegalName={self.props.LegalName}
+                                  />
+              <Show when={signaturePresent(self.props.AdditionalComments)}>
+                <button onClick={self.togglePanel(1)}>{i18n.t('application.validForm.next')}</button>
               </Show>
             </div>
           )
         },
-        valid: () => { return validSignature(this.props.AdditionalComments) },
+        valid: () => { return signaturePresent(self.props.AdditionalComments) },
         open: true
       },
       {
@@ -113,33 +117,30 @@ export default class ValidForm extends ValidationElement {
         component: () => {
           return (
             <div>
-              <Verify
-                Identification={this.props.Identification}
-                History={this.props.History}
-                />
+              <Verify Identification={self.props.Identification}
+                      History={self.props.History}
+                      />
               <hr />
-              <General
-                {...this.props.General}
-                LegalName={this.props.LegalName}
-                onUpdate={this.updateGeneral}
-                />
-              <Show when={!this.props.hideHippa}>
+              <General {...self.props.General}
+                       LegalName={self.props.LegalName}
+                       onUpdate={self.updateGeneral}
+                       />
+              <Show when={!self.props.hideHippa}>
                 <div>
                   <hr />
-                  <Medical
-                    {...this.props.Medical}
-                    LegalName={this.props.LegalName}
-                    onUpdate={this.updateMedical}
-                    />
+                  <Medical {...self.props.Medical}
+                           LegalName={self.props.LegalName}
+                           onUpdate={self.updateMedical}
+                           />
                 </div>
               </Show>
-              <Show when={validSignature(this.props.General) && (this.props.hideHippa || (!this.hideHippa && validSignature(this.props.Medical)))}>
-                <button onClick={this.togglePanel(2)}>{i18n.t('application.validForm.next')}</button>
+              <Show when={signaturePresent(self.props.General) && (self.props.hideHippa || (!self.hideHippa && signaturePresent(self.props.Medical)))}>
+                <button onClick={self.togglePanel(2)}>{i18n.t('application.validForm.next')}</button>
               </Show>
             </div>
           )
         },
-        valid: () => { return validSignature(this.props.General) },
+        valid: () => { return signaturePresent(self.props.General) },
         open: false
       },
       {
@@ -147,30 +148,28 @@ export default class ValidForm extends ValidationElement {
         component: () => {
           return (
             <div>
-              <Credit
-                onUpdate={this.updateCredit}
-                {...this.props.Credit}
-                LegalName={this.props.LegalName}
-                />
+              <Credit {...self.props.Credit}
+                      onUpdate={self.updateCredit}
+                      LegalName={self.props.LegalName}
+                      />
             </div>
           )
         },
-        valid: () => { return validSignature(this.props.Credit) },
+        valid: () => { return signaturePresent(self.props.Credit) },
         open: false
       }
     ]
-
-    return accordionItems
   }
 
   render () {
     const accordionItems = this.state.accordionItems
+    const signed = formIsSigned({ Submission: { Releases: { ...this.props } } })
     return (
       <div className="valid-form">
         { i18n.m(`application.submissionStatus.valid2`) }
         <BasicAccordion items={accordionItems} />
         <div className="text-right">
-          <button onClick={this.submit} className="submit usa-button" disabled={!enableSubmit(this.props)}>
+          <button onClick={this.submit} className="submit usa-button" disabled={!signed}>
             { i18n.t('application.validForm.submit') }
             <i className="fa fa-arrow-circle-right" aria-hidden="true"></i>
           </button>
@@ -194,42 +193,6 @@ ValidForm.defaultProps = {
   },
   Credit: {
     Signature: {}
-  }
-}
-
-export const validSignature = (el) => {
-  if (!el) {
-    return false
-  }
-
-  const signature = el.Signature
-  if (!signature) {
-    return false
-  }
-
-  const name = (signature.Name || {}).Name
-  const nameValidator = new NameValidator(name)
-  if (!nameValidator.isValid()) {
-    return false
-  }
-  if (!validDateField(signature.Date)) {
-    return false
-  }
-  return true
-}
-
-export const enableSubmit = (props) => {
-  if (props.hideHippa) {
-    return (
-      validSignature(props.AdditionalComments) &&
-        validSignature(props.General) &&
-        validSignature(props.Credit)
-    )
-  }
-  return (
-    validSignature(props.AdditionalComments) &&
-      validSignature(props.General) &&
-      validSignature(props.Credit) &&
-      validSignature(props.Medical)
-  )
+  },
+  Locked: false
 }

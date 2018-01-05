@@ -6,6 +6,8 @@ const navigation = [
     title: 'Information about you',
     url: 'identification',
     store: 'Identification',
+    showNumber: true,
+    locked: validators.formIsLocked,
     subsections: [
       { exclude: true, name: 'Intro', url: 'intro' },
       { name: 'Full name', url: 'name', store: 'ApplicantName', validator: validators.IdentificationNameValidator },
@@ -23,6 +25,8 @@ const navigation = [
     title: 'Relationships',
     url: 'relationships',
     store: 'Relationships',
+    showNumber: true,
+    locked: validators.formIsLocked,
     subsections: [
       { exclude: true, name: 'Intro', url: 'intro' },
       {
@@ -43,6 +47,8 @@ const navigation = [
     title: 'Your history',
     url: 'history',
     store: 'History',
+    showNumber: true,
+    locked: validators.formIsLocked,
     subsections: [
       { exclude: true, name: 'Intro', url: 'intro' },
       { name: 'Where you have lived', url: 'residence', store: 'Residence', validator: validators.HistoryResidenceValidator },
@@ -57,6 +63,8 @@ const navigation = [
     title: 'Citizenship',
     url: 'citizenship',
     store: 'Citizenship',
+    showNumber: true,
+    locked: validators.formIsLocked,
     subsections: [
       { exclude: true, name: 'Intro', url: 'intro' },
       { name: 'Citizenship status', url: 'status', store: 'Status', validator: validators.CitizenshipValidator },
@@ -70,6 +78,8 @@ const navigation = [
     title: 'Military history',
     url: 'military',
     store: 'Military',
+    showNumber: true,
+    locked: validators.formIsLocked,
     subsections: [
       { exclude: true, name: 'Intro', url: 'intro' },
       { name: 'Selective service record', url: 'selective', store: 'Selective', validator: validators.SelectiveServiceValidator, hiddenFunc: validators.hideSelectiveService },
@@ -84,6 +94,8 @@ const navigation = [
     title: 'Foreign activities',
     url: 'foreign',
     store: 'Foreign',
+    showNumber: true,
+    locked: validators.formIsLocked,
     subsections: [
       { exclude: true, name: 'Intro', url: 'intro' },
       { name: 'U.S. passport information', url: 'passport', store: 'Passport', validator: validators.PassportValidator },
@@ -123,6 +135,8 @@ const navigation = [
     title: 'Financial record',
     url: 'financial',
     store: 'Financial',
+    showNumber: true,
+    locked: validators.formIsLocked,
     subsections: [
       { exclude: true, name: 'Intro', url: 'intro' },
       { name: 'Bankruptcy', url: 'bankruptcy', store: 'Bankruptcy', validator: validators.BankruptcyValidator },
@@ -140,6 +154,8 @@ const navigation = [
     title: 'Substance use',
     url: 'substance',
     store: 'Substance',
+    showNumber: true,
+    locked: validators.formIsLocked,
     subsections: [
       { exclude: true, name: 'Intro', url: 'intro' },
       {
@@ -173,6 +189,8 @@ const navigation = [
     title: 'Investigative and criminal history',
     url: 'legal',
     store: 'Legal',
+    showNumber: true,
+    locked: validators.formIsLocked,
     subsections: [
       { exclude: true, name: 'Intro', url: 'intro' },
       {
@@ -225,6 +243,8 @@ const navigation = [
     name: 'Psychological and emotional health',
     url: 'psychological',
     store: 'Psychological',
+    showNumber: true,
+    locked: validators.formIsLocked,
     subsections: [
       { exclude: true, name: 'Intro', url: 'intro' },
       { name: 'Competence', url: 'competence', store: 'Competence', validator: validators.CompetenceValidator },
@@ -236,27 +256,64 @@ const navigation = [
     ]
   },
   {
-    title: 'Questionnaire for National Security Positions',
-    name: 'Questionnaire for National Security Positions',
-    url: 'releases',
-    subsections: [
-      { name: 'Comments', url: 'comments' },
-      { name: 'Release of information/HIPPA', url: 'general' },
-      { name: 'Credit reporting disclosure', url: 'credit' }
-    ],
-    exclude: true,
-    hidden: true
-  },
-  {
     title: 'Review and submit',
     name: 'Review and submit',
     url: 'package',
     showNumber: false,
     exclude: true,
     subsections: [
-      { name: 'Review', url: 'review' },
-      { name: 'Submit', url: 'submit' },
-      { name: 'Print', url: 'print' }
+      {
+        name: 'Review',
+        url: 'review',
+        locked: validators.formIsLocked
+      },
+      {
+        name: 'Submit',
+        url: 'submit',
+        locked: (store) => {
+          const hasErrors = (store) => {
+            let errors = 0
+
+            navigationWalker((path, child) => {
+              if (path.length && path[0].store && child.store && child.validator) {
+                if (child.excluded || child.hidden || (child.hiddenFunc && child.hiddenFunc(store))) {
+                  return
+                }
+
+                const sectionName = path[0].url
+                const data = (store[path[0].store] || {})[child.store] || {}
+
+                let subsectionName = child.url
+                if (path.length > 1) {
+                  for (let i = path.length - 1; i > 0; i--) {
+                    subsectionName = `${path[i].url}/${subsectionName}`
+                  }
+                }
+
+                let valid = null
+                try {
+                  valid = new child.validator(data, data).isValid()
+                } catch (e) {
+                  valid = null
+                }
+
+                if (valid !== true) {
+                  errors++
+                }
+              }
+            })
+
+            return errors > 0
+          }
+
+          return validators.formIsLocked(store) || hasErrors(store)
+        }
+      },
+      {
+        name: 'Print',
+        url: 'print',
+        locked: (store) => { return !validators.formIsLocked(store) }
+      }
     ]
   }
 ]

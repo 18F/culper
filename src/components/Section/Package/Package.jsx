@@ -10,6 +10,8 @@ import InvalidForm from './InvalidForm'
 import SubmissionStatus from './SubmissionStatus'
 import Print from './Print'
 import { push } from '../../../middleware/history'
+import { api } from '../../../services'
+import schema from '../../../schema'
 
 class Package extends SectionElement {
   constructor (props) {
@@ -27,10 +29,27 @@ class Package extends SectionElement {
     this.handleUpdate('Releases', values)
   }
 
-  onSubmit () {
-    // TODO: Generate has code here and send to print screen when
-    // merged with persistence updates
-    this.props.dispatch(push('/form/package/print'))
+  onSubmit (success, error) {
+    const releases = (this.props.Submission || {}).Releases || {}
+    const data = { ...releases, Locked: true }
+    const payload = schema(`package.submit`, data, false)
+
+    api
+      .save(payload)
+      .then(r => {
+        this.handleUpdate('Releases', {
+          ...releases,
+          Locked: true
+        })
+        this.props.dispatch(push('/form/package/print'))
+      })
+      .catch(() => {
+        console.warn('Failed to form package')
+        this.handleUpdate('Releases', {
+          ...releases,
+          Locked: false
+        })
+      })
   }
 
   /**
@@ -101,7 +120,7 @@ class Package extends SectionElement {
 
   render () {
     const tally = this.errorCheck()
-    const releases = (this.props.Submission || {}).Releases
+    const releases = (this.props.Submission || {}).Releases || {}
     return (
       <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
         <SectionView name="review">
@@ -150,7 +169,6 @@ export const allSectionsValid = (sections) => {
 
 function mapStateToProps (state) {
   const app = state.application || {}
-  const releases = app.Releases || {}
   const identification = app.Identification || {}
   const relationships = app.Relationships || {}
   const history = app.History || {}
@@ -168,19 +186,20 @@ function mapStateToProps (state) {
   let completed = app.Completed || {}
   return {
     Application: app,
-    Releases: releases,
     Submission: app.Submission || {
-      AdditionalComments: {
-        Signature: {}
-      },
-      General: {
-        Signature: {}
-      },
-      Medical: {
-        Signature: {}
-      },
-      Credit: {
-        Signature: {}
+      Releases: {
+        AdditionalComments: {
+          Signature: {}
+        },
+        General: {
+          Signature: {}
+        },
+        Medical: {
+          Signature: {}
+        },
+        Credit: {
+          Signature: {}
+        }
       }
     },
     Identification: identification,
@@ -204,7 +223,7 @@ function mapStateToProps (state) {
 }
 
 Package.defaultProps = {
-  section: 'submission',
+  section: 'package',
   store: 'Submission'
 }
 

@@ -30,18 +30,31 @@ class Print extends SectionElement {
 
   componentWillUnmount () {
     let nav = document.getElementsByClassName('form-navigation')[0]
-    nav.removeEventListener('click', this.captureClick)
+    nav.removeEventListener('click', this.captureNavigationClick)
+    let logout = document.getElementsByClassName('eapp-logout')[0]
+    logout.removeEventListener('click', this.captureLogoutClick)
   }
 
   componentDidMount () {
     let nav = document.getElementsByClassName('form-navigation')[0]
     if (nav && nav.addEventListener) {
-      nav.addEventListener('click', this.captureClick)
+      nav.addEventListener('click', this.captureNavigationClick)
+    }
+
+    let logout = document.getElementsByClassName('eapp-logout')[0]
+    if (logout && logout.addEventListener) {
+      logout.addEventListener('click', this.captureLogoutClick)
     }
   }
 
-  captureClick (e) {
-    if (!window.confirm('Are you sure you want to leave?')) {
+  captureNavigationClick (e) {
+    if (!window.alert(i18n.t('application.alert.navigation'))) {
+      e.stopPropagation()
+    }
+  }
+
+  captureLogoutClick (e) {
+    if (!window.confirm(i18n.t('application.alert.logout'))) {
       e.stopPropagation()
     }
   }
