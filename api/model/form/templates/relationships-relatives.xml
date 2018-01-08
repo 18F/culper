@@ -1,8 +1,6 @@
 <RelativesAndAssociates>
-  <ApplicableRelativeTypes Mother01="True" Father02="True" Stepmother03="True" Stepfather04="True" FosterParent05="True" Child06="True" Stepchild07="True" Brother08="True" Sister09="True" Stepbrother10="True" Stepsister11="True" HalfBrother12="True" HalfSister13="True" FatherInLaw14="True" MotherInLaw15="True" Guardian16="True"/>
-
   <ApplicableRelativeTypesComment></ApplicableRelativeTypesComment>
-  <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
 
   <Relatives>
   {{range $index, $item := .props.List.props.items}}

@@ -266,6 +266,12 @@
     "DivorcedList": {
       "type": "collection",
       "props": {
+        "branch": {
+          "type": "branch",
+          "props": {
+            "value": "Yes"
+          }
+        },
         "items": [
           {
             "Item": {

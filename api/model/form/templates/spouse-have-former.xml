@@ -1,0 +1,3 @@
+<HaveFormerSpouse>
+    <Answer>{{branch .props.branch}}</Answer>
+</HaveFormerSpouse>
