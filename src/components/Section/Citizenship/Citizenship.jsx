@@ -50,7 +50,7 @@ class Citizenship extends SectionElement {
                     scrollIntoView={false}
                     />
 
-            <hr/>
+            <hr className="section-divider"/>
             <Multiple name="multiple"
                       {...this.props.Multiple}
                       applicantBirthdate={this.props.ApplicantBirthdate}
@@ -62,7 +62,7 @@ class Citizenship extends SectionElement {
                       scrollIntoView={false}
                       />
 
-            <hr/>
+            <hr className="section-divider"/>
             <Passports name="passports"
                        {...this.props.Passports}
                        defaultState={false}
@@ -72,7 +72,7 @@ class Citizenship extends SectionElement {
                        required={true}
                        scrollIntoView={false}
                        />
-            <hr />
+            <hr className="section-divider" />
             <SectionComments name="comments"
                              {...this.props.Comments}
                              title={i18n.t('citizenship.review.comments')}
@@ -168,7 +168,7 @@ export class CitizenshipSections extends React.Component {
                 scrollIntoView={false}
                 />
 
-        <hr/>
+        <hr className="section-divider"/>
         <Multiple name="multiple"
                   {...this.props.Multiple}
                   defaultState={false}
@@ -178,7 +178,7 @@ export class CitizenshipSections extends React.Component {
                   scrollIntoView={false}
                   />
 
-        <hr/>
+        <hr className="section-divider"/>
         <Passports name="passports"
                    {...this.props.Passports}
                    defaultState={false}
@@ -187,7 +187,7 @@ export class CitizenshipSections extends React.Component {
                    required={true}
                    scrollIntoView={false}
                    />
-        <hr />
+        <hr className="section-divider" />
         <SectionComments name="comments"
                          {...this.props.Comments}
                          title={i18n.t('citizenship.review.comments')}
