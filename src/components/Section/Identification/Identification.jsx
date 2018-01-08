@@ -48,7 +48,7 @@ class Identification extends SectionElement {
                            required={true}
                            scrollIntoView={false}
                            />
-            <hr />
+            <hr className="section-divider" />
             <OtherNames name="othernames"
                         {...this.props.OtherNames}
                         defaultState={false}
@@ -59,7 +59,7 @@ class Identification extends SectionElement {
                         required={true}
                         scrollIntoView={false}
                         />
-            <hr />
+            <hr className="section-divider" />
             <ContactInformation name="contacts"
                                 {...this.props.Contacts}
                                 applicantBirthdate={this.props.applicantBirthdate}
@@ -73,7 +73,7 @@ class Identification extends SectionElement {
                                 required={true}
                                 scrollIntoView={false}
                                 />
-            <hr />
+            <hr className="section-divider" />
             <ApplicantBirthDate name="birthdate"
                                 {...this.props.ApplicantBirthDate}
                                 applicantBirthdate={this.props.applicantBirthdate}
@@ -83,7 +83,7 @@ class Identification extends SectionElement {
                                 required={true}
                                 scrollIntoView={false}
                                 />
-            <hr />
+            <hr className="section-divider" />
             <ApplicantBirthPlace name="birthplace"
                                  {...this.props.ApplicantBirthPlace}
                                  applicantBirthdate={this.props.applicantBirthdate}
@@ -93,7 +93,7 @@ class Identification extends SectionElement {
                                  required={true}
                                  scrollIntoView={false}
                                  />
-            <hr />
+            <hr className="section-divider" />
             <ApplicantSSN name="ssn"
                           {...this.props.ApplicantSSN}
                           applicantBirthdate={this.props.applicantBirthdate}
@@ -103,7 +103,7 @@ class Identification extends SectionElement {
                           required={true}
                           scrollIntoView={false}
                           />
-            <hr />
+            <hr className="section-divider" />
             <Physical name="physical"
                       {...this.props.Physical}
                       applicantBirthdate={this.props.applicantBirthdate}
@@ -113,7 +113,7 @@ class Identification extends SectionElement {
                       required={true}
                       scrollIntoView={false}
                       />
-            <hr />
+            <hr className="section-divider" />
             <SectionComments name="comments"
                              {...this.props.Comments}
                              title={i18n.t('identification.review.comments')}
@@ -264,7 +264,7 @@ export class IdentificationSections extends React.Component {
                        required={true}
                        scrollIntoView={false}
                        />
-        <hr />
+        <hr className="section-divider" />
         <OtherNames name="othernames"
                     {...this.props.OtherNames}
                     defaultState={false}
@@ -273,7 +273,7 @@ export class IdentificationSections extends React.Component {
                     required={true}
                     scrollIntoView={false}
                     />
-        <hr />
+        <hr className="section-divider" />
         <ContactInformation name="contacts"
                             {...this.props.Contacts}
                             minimumPhoneNumbers={1}
@@ -285,7 +285,7 @@ export class IdentificationSections extends React.Component {
                             required={true}
                             scrollIntoView={false}
                             />
-        <hr />
+        <hr className="section-divider" />
         <ApplicantBirthDate name="birthdate"
                             {...this.props.ApplicantBirthDate}
                             dispatch={this.props.dispatch}
@@ -293,7 +293,7 @@ export class IdentificationSections extends React.Component {
                             required={true}
                             scrollIntoView={false}
                             />
-        <hr />
+        <hr className="section-divider" />
         <ApplicantBirthPlace name="birthplace"
                              {...this.props.ApplicantBirthPlace}
                              dispatch={this.props.dispatch}
@@ -301,7 +301,7 @@ export class IdentificationSections extends React.Component {
                              required={true}
                              scrollIntoView={false}
                              />
-        <hr />
+        <hr className="section-divider" />
         <ApplicantSSN name="ssn"
                       {...this.props.ApplicantSSN}
                       dispatch={this.props.dispatch}
@@ -309,7 +309,7 @@ export class IdentificationSections extends React.Component {
                       required={true}
                       scrollIntoView={false}
                       />
-        <hr />
+        <hr className="section-divider" />
         <Physical name="physical"
                   {...this.props.Physical}
                   dispatch={this.props.dispatch}
@@ -317,7 +317,7 @@ export class IdentificationSections extends React.Component {
                   required={true}
                   scrollIntoView={false}
                   />
-        <hr />
+        <hr className="section-divider" />
         <SectionComments name="comments"
                          {...this.props.Comments}
                          title={i18n.t('identification.review.comments')}

@@ -2,7 +2,7 @@ import { validGenericTextfield } from './helpers'
 
 export const hideSelectiveService = (store = {}) => {
   const selectiveService = new Date(1959, 11, 31)
-  const birthdate = (store.Identification || {}).ApplicantBirthDate || {}
+  const birthdate = ((store.Identification || {}).ApplicantBirthDate || {}).Date || {}
 
   // If nothing has been persisted
   if (!birthdate.date) {

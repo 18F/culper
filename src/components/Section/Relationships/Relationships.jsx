@@ -153,7 +153,7 @@ class Relationships extends SectionElement {
                      scrollIntoView={false}
                      />
 
-            <hr/>
+            <hr className="section-divider"/>
             <Cohabitants name="cohabitants"
                          {...this.props.Cohabitants}
                          applicantBirthdate={this.props.applicantBirthdate}
@@ -166,7 +166,7 @@ class Relationships extends SectionElement {
                          scrollIntoView={false}
                          />
 
-            <hr/>
+            <hr className="section-divider"/>
             <People name="people"
                     {...this.props.People}
                     applicantBirthdate={this.props.applicantBirthdate}
@@ -179,7 +179,7 @@ class Relationships extends SectionElement {
                     scrollIntoView={false}
                     />
 
-            <hr/>
+            <hr className="section-divider"/>
             <Relatives name="relatives"
                        {...this.props.Relatives}
                        applicantBirthdate={this.props.applicantBirthdate}
@@ -192,7 +192,7 @@ class Relationships extends SectionElement {
                        scrollIntoView={false}
                        />
 
-            <hr />
+            <hr className="section-divider" />
             <SectionComments name="comments"
                              {...this.props.Comments}
                              title={i18n.t('relationships.review.comments')}
@@ -261,7 +261,7 @@ export class RelationshipSections extends React.Component {
                  scrollIntoView={false}
                  />
 
-        <hr/>
+        <hr className="section-divider"/>
         <Cohabitants name="cohabitants"
                      {...this.props.Cohabitants}
                      defaultState={false}
@@ -282,7 +282,7 @@ export class RelationshipSections extends React.Component {
                 scrollIntoView={false}
                 />
 
-        <hr/>
+        <hr className="section-divider"/>
         <Relatives name="relatives"
                    {...this.props.Relatives}
                    defaultState={false}
@@ -293,7 +293,7 @@ export class RelationshipSections extends React.Component {
                    scrollIntoView={false}
                    />
 
-        <hr />
+        <hr className="section-divider" />
         <SectionComments name="comments"
                          {...this.props.Comments}
                          title={i18n.t('relationships.review.comments')}
