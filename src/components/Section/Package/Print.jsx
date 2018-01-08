@@ -28,6 +28,37 @@ class Print extends SectionElement {
     }
   }
 
+  componentWillUnmount () {
+    let nav = document.getElementsByClassName('form-navigation')[0]
+    nav.removeEventListener('click', this.captureNavigationClick)
+    let logout = document.getElementsByClassName('eapp-logout')[0]
+    logout.removeEventListener('click', this.captureLogoutClick)
+  }
+
+  componentDidMount () {
+    let nav = document.getElementsByClassName('form-navigation')[0]
+    if (nav && nav.addEventListener) {
+      nav.addEventListener('click', this.captureNavigationClick)
+    }
+
+    let logout = document.getElementsByClassName('eapp-logout')[0]
+    if (logout && logout.addEventListener) {
+      logout.addEventListener('click', this.captureLogoutClick)
+    }
+  }
+
+  captureNavigationClick (e) {
+    if (!window.alert(i18n.t('application.alert.navigation'))) {
+      e.stopPropagation()
+    }
+  }
+
+  captureLogoutClick (e) {
+    if (!window.confirm(i18n.t('application.alert.logout'))) {
+      e.stopPropagation()
+    }
+  }
+
   sections () {
     return navigation.map((section, index, arr) => {
       let sectionComponent = null
@@ -152,7 +183,7 @@ class Print extends SectionElement {
         <span className="icon">
           <Svg src="/img/checkmark.svg" />
         </span>
-        { i18n.m('submission.print.done') }
+        { i18n.m('application.print.done') }
       </div>
     )
   }
@@ -161,24 +192,16 @@ class Print extends SectionElement {
     return (
       <div className="pre-print-view">
         <div className="text-center">
-          { i18n.m('submission.print.title') }
+          { i18n.m('application.print.title') }
           <button className="print-btn" onClick={this.handlePrint}>
-            { i18n.t('submission.print.button') }
+            { i18n.t('application.print.button') }
           </button>
           <Show when={this.state.printed}>
             { this.done() }
           </Show>
         </div>
         <div className="print-view">
-          <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
-            <SectionView name="intro"
-                         back=""
-                         backLabel=""
-                         next=""
-                         nextLabel="">
-              { this.sections() }
-            </SectionView>
-          </SectionViews>
+          { this.sections() }
         </div>
       </div>
     )

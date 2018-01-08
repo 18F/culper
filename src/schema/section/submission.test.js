@@ -27,7 +27,8 @@ describe('Schema for financial taxes', () => {
           Name: {},
           Date: {}
         }
-      }
+      },
+      Locked: null
     }
 
     expect(unschema(submission(data))).toEqual(data)
