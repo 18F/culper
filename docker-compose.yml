@@ -3,6 +3,11 @@ version: '2'
 services:
   db:
     image: postgres:9.6.5
+    volumes:
+      - ./conf/postgres-configure.sh:/docker-entrypoint-initdb.d/postgres-configure.sh
+      - ./conf/postgres.conf:/srv/postgresql.conf
+      - ./api/eapp.crt:/srv/server.crt
+      - ./api/eapp.key:/srv/server.key
     expose:
       - '5432'
     networks:
