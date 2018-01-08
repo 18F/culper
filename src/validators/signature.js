@@ -1,3 +1,4 @@
+import NameValidator from './name'
 import { validGenericTextfield, validDateField } from './helpers'
 
 export default class SignatureValidator {

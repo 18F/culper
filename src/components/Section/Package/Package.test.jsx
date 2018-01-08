@@ -3,7 +3,7 @@ import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
-import Submission, { allSectionsValid } from './Submission'
+import Package, { allSectionsValid } from './Package'
 
 const applicationState = {
   Identification: {},
@@ -14,7 +14,7 @@ const applicationState = {
   }
 }
 
-describe('The Submission form component', () => {
+describe('The Package form component', () => {
   window.token = 'fake-token'
   const middlewares = [ thunk ]
   const mockStore = configureMockStore(middlewares)
@@ -25,7 +25,7 @@ describe('The Submission form component', () => {
       authentication: { authenticated: true, twofactor: true },
       application: applicationState
     })
-    const component = mount(<Provider store={store}><Submission Application={applicationState} /></Provider>)
+    const component = mount(<Provider store={store}><Package Application={applicationState} /></Provider>)
     expect(component.find('div').length).toBeGreaterThan(0)
   })
 
@@ -87,4 +87,3 @@ describe('The Submission form component', () => {
     expect(allSectionsValid(sections)).toBe(false)
   })
 })
-

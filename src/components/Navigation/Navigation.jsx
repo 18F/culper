@@ -61,6 +61,23 @@ class Navigation extends React.Component {
       const subUrl = `${url}/${subsection.url}`
       const subClass = this.getClassName(subUrl, pathname)
 
+      // If the section is locked then the navigation item is displayed but
+      // nothing else.
+      const locked = subsection.locked && subsection.locked(this.props.application)
+      if (locked) {
+        return (
+          <div key={subsection.name} className="subsection">
+            <a href="javascript:;;;" className={`${subClass} locked`}>
+              <span className="section-name">
+                {subsection.name}
+              </span>
+              <span className="mini eapp-status-icon-valid"></span>
+              <span className="mini eapp-status-icon-error"></span>
+            </a>
+          </div>
+        )
+      }
+
       // Collapsed state properties
       if (subsection.subsections) {
         return (
@@ -111,6 +128,26 @@ class Navigation extends React.Component {
 
       // Increment the section number
       sectionNum++
+
+      // If the section is locked then the navigation item is displayed but
+      // nothing else.
+      const locked = section.locked && section.locked(this.props.application)
+      if (locked) {
+        return (
+          <div key={section.name} className="section">
+            <span className="section-title">
+              <a href="javascript:;;;" className={`${sectionClass} locked`}>
+                <span className="section-number">{section.showNumber && sectionNum}</span>
+                <span className="section-name">
+                  {section.name}
+                </span>
+                <span className="eapp-status-icon-valid"></span>
+                <span className="eapp-status-icon-error"></span>
+              </a>
+            </span>
+          </div>
+        )
+      }
 
       // Collapsed state properties
       if (section.subsections) {
