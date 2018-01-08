@@ -52,7 +52,7 @@ class Financial extends SectionElement {
                           required={true}
                           scrollIntoView={false}
                           />
-            <hr />
+            <hr className="section-divider" />
             <Gambling name="gambling"
                       {...this.props.Gambling}
                       applicantBirthdate={this.props.applicantBirthdate}
@@ -64,7 +64,7 @@ class Financial extends SectionElement {
                       scrollIntoView={false}
                       />
 
-            <hr />
+            <hr className="section-divider" />
             <Taxes name="taxes"
                    {...this.props.Taxes}
                    applicantBirthdate={this.props.applicantBirthdate}
@@ -76,7 +76,7 @@ class Financial extends SectionElement {
                    scrollIntoView={false}
                    />
 
-            <hr />
+            <hr className="section-divider" />
             <Card name="card"
                   {...this.props.Card}
                   applicantBirthdate={this.props.applicantBirthdate}
@@ -89,7 +89,7 @@ class Financial extends SectionElement {
                   scrollIntoView={false}
                   />
 
-            <hr />
+            <hr className="section-divider" />
             <Credit name="credit"
                     {...this.props.Credit}
                     applicantBirthdate={this.props.applicantBirthdate}
@@ -102,7 +102,7 @@ class Financial extends SectionElement {
                     scrollIntoView={false}
                     />
 
-            <hr />
+            <hr className="section-divider" />
             <Delinquent name="delinquent"
                         {...this.props.Delinquent}
                         applicantBirthdate={this.props.applicantBirthdate}
@@ -115,7 +115,7 @@ class Financial extends SectionElement {
                         scrollIntoView={false}
                         />
 
-            <hr />
+            <hr className="section-divider" />
             <Nonpayment name="nonpayment"
                         {...this.props.Nonpayment}
                         applicantBirthdate={this.props.applicantBirthdate}
@@ -126,7 +126,7 @@ class Financial extends SectionElement {
                         required={true}
                         scrollIntoView={false}
                         />
-            <hr />
+            <hr className="section-divider" />
             <SectionComments name="comments"
                              {...this.props.Comments}
                              title={i18n.t('financial.review.comments')}
@@ -295,7 +295,7 @@ export class FinancialSections extends React.Component {
                       required={true}
                       scrollIntoView={false}
                       />
-        <hr />
+        <hr className="section-divider" />
         <Gambling name="gambling"
                   {...this.props.Gambling}
                   dispatch={this.props.dispatch}
@@ -305,7 +305,7 @@ export class FinancialSections extends React.Component {
                   scrollIntoView={false}
                   />
 
-        <hr />
+        <hr className="section-divider" />
         <Taxes name="taxes"
                {...this.props.Taxes}
                dispatch={this.props.dispatch}
@@ -315,7 +315,7 @@ export class FinancialSections extends React.Component {
                scrollIntoView={false}
                />
 
-        <hr />
+        <hr className="section-divider" />
         <Card name="card"
               {...this.props.Card}
               addressBooks={this.props.AddressBooks}
@@ -326,7 +326,7 @@ export class FinancialSections extends React.Component {
               scrollIntoView={false}
               />
 
-        <hr />
+        <hr className="section-divider" />
         <Credit name="credit"
                 {...this.props.Credit}
                 addressBooks={this.props.AddressBooks}
@@ -337,7 +337,7 @@ export class FinancialSections extends React.Component {
                 scrollIntoView={false}
                 />
 
-        <hr />
+        <hr className="section-divider" />
         <Delinquent name="delinquent"
                     {...this.props.Delinquent}
                     addressBooks={this.props.AddressBooks}
@@ -348,7 +348,7 @@ export class FinancialSections extends React.Component {
                     scrollIntoView={false}
                     />
 
-        <hr />
+        <hr className="section-divider" />
         <Nonpayment name="nonpayment"
                     {...this.props.Nonpayment}
                     dispatch={this.props.dispatch}
@@ -358,7 +358,7 @@ export class FinancialSections extends React.Component {
                     scrollIntoView={false}
                     />
 
-        <hr />
+        <hr className="section-divider" />
         <SectionComments name="comments"
                          {...this.props.Comments}
                          title={i18n.t('financial.review.comments')}

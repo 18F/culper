@@ -1,6 +1,23 @@
 @import 'eqip-colors';
 
 .history {
+  .view-review {
+    .section-heading {
+      font-weight: 600;
+      color: #5b606b;
+      padding: 1rem 0;
+      margin-bottom: 1rem;
+      display: block;
+
+      > .svg {
+        width: 4.6rem;
+        height: 4.6rem;
+        margin-right: 1rem;
+        vertical-align: middle;
+      }
+    }
+  }
+
   .add-options {
     margin-top: 5rem;
     margin-bottom: 10rem;
@@ -50,11 +67,9 @@
   }
 
   hr.section-divider {
-    border: 0;
-    height: 0;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-    border-bottom: 1px solid $eapp-grey;
-    margin: 5rem 0;
+    &:first-of-type {
+      margin-top: 2rem;
+    }
   }
 
   .not-complete {

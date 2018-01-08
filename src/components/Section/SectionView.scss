@@ -3,15 +3,15 @@
 .section-view {
   max-width: 70rem;
 
-  hr {
+  hr.section-divider {
     border-bottom: 2px solid #e2e7ef;
     height: 2px;
     color: #e2e7ef;
     background: #e2e7ef;
     font-size: 0;
     border: 0;
-    margin-top: 6rem;
-    margin-bottom: 6rem;
+    margin-top: -3rem;
+    margin-bottom: 12rem;
   }
 
   .btn-wrap {
