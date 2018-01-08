@@ -77,7 +77,7 @@ class Military extends SectionElement {
                          required={true}
                          scrollIntoView={false}
                          />
-              <hr/>
+              <hr className="section-divider"/>
             </Show>
 
             <History name="history"
@@ -92,7 +92,7 @@ class Military extends SectionElement {
                      />
 
             <Show when={showDisciplinary}>
-              <hr/>
+              <hr className="section-divider"/>
               <Disciplinary name="disciplinary"
                             {...this.props.Disciplinary}
                             applicantBirthdate={this.props.applicantBirthdate}
@@ -105,7 +105,7 @@ class Military extends SectionElement {
                             />
             </Show>
 
-            <hr/>
+            <hr className="section-divider"/>
             <Foreign name="foreign"
                      {...this.props.Foreign}
                      applicantBirthdate={this.props.applicantBirthdate}
@@ -118,7 +118,7 @@ class Military extends SectionElement {
                      scrollIntoView={false}
                      />
 
-            <hr />
+            <hr className="section-divider" />
             <SectionComments name="comments"
                              {...this.props.Comments}
                              title={i18n.t('military.review.comments')}
@@ -237,7 +237,7 @@ export class MilitarySections extends React.Component {
                      required={true}
                      scrollIntoView={false}
                      />
-          <hr/>
+          <hr className="section-divider"/>
         </Show>
 
         <History name="history"
@@ -250,7 +250,7 @@ export class MilitarySections extends React.Component {
                  />
 
         <Show when={showDisciplinary}>
-          <hr/>
+          <hr className="section-divider"/>
           <Disciplinary name="disciplinary"
                         {...this.props.Disciplinary}
                         defaultState={false}
@@ -261,7 +261,7 @@ export class MilitarySections extends React.Component {
                         />
         </Show>
 
-        <hr/>
+        <hr className="section-divider"/>
         <Foreign name="foreign"
                  {...this.props.Foreign}
                  addressBooks={this.props.AddressBooks}
@@ -272,7 +272,7 @@ export class MilitarySections extends React.Component {
                  scrollIntoView={false}
                  />
 
-        <hr />
+        <hr className="section-divider" />
         <SectionComments name="comments"
                          {...this.props.Comments}
                          title={i18n.t('military.review.comments')}

@@ -298,7 +298,7 @@ class SubstanceUse extends SectionElement {
                       scrollIntoView={false}
                       />
 
-            <hr />
+            <hr className="section-divider" />
             <DrugInvolvements name="druginvolvements"
                               {...this.props.DrugInvolvements}
                               applicantBirthdate={this.props.applicantBirthdate}
@@ -310,7 +310,7 @@ class SubstanceUse extends SectionElement {
                               scrollIntoView={false}
                               />
 
-            <hr />
+            <hr className="section-divider" />
             <DrugClearanceUses name="drugclearanceuses"
                                {...this.props.DrugClearanceUses}
                                applicantBirthdate={this.props.applicantBirthdate}
@@ -322,7 +322,7 @@ class SubstanceUse extends SectionElement {
                                scrollIntoView={false}
                                />
 
-            <hr />
+            <hr className="section-divider" />
             <DrugPublicSafetyUses name="drugpublicsafety"
                                   {...this.props.DrugPublicSafetyUses}
                                   applicantBirthdate={this.props.applicantBirthdate}
@@ -334,7 +334,7 @@ class SubstanceUse extends SectionElement {
                                   scrollIntoView={false}
                                   />
 
-            <hr />
+            <hr className="section-divider" />
             <PrescriptionUses name="prescriptionuses"
                               {...this.props.PrescriptionUses}
                               applicantBirthdate={this.props.applicantBirthdate}
@@ -346,7 +346,7 @@ class SubstanceUse extends SectionElement {
                               scrollIntoView={false}
                               />
 
-            <hr />
+            <hr className="section-divider" />
             <OrderedTreatments name="ordered"
                                {...this.props.OrderedTreatments}
                                applicantBirthdate={this.props.applicantBirthdate}
@@ -358,7 +358,7 @@ class SubstanceUse extends SectionElement {
                                scrollIntoView={false}
                                />
 
-            <hr />
+            <hr className="section-divider" />
             <VoluntaryTreatments name="voluntary"
                                  {...this.props.VoluntaryTreatments}
                                  applicantBirthdate={this.props.applicantBirthdate}
@@ -370,7 +370,7 @@ class SubstanceUse extends SectionElement {
                                  scrollIntoView={false}
                                  />
 
-            <hr />
+            <hr className="section-divider" />
             <NegativeImpacts name="negative"
                              defaultState={false}
                              {...this.props.NegativeImpacts}
@@ -382,7 +382,7 @@ class SubstanceUse extends SectionElement {
                              scrollIntoView={false}
                              />
 
-            <hr />
+            <hr className="section-divider" />
             <OrderedCounselings name="ordered"
                                 defaultState={false}
                                 {...this.props.OrderedCounselings}
@@ -394,7 +394,7 @@ class SubstanceUse extends SectionElement {
                                 scrollIntoView={false}
                                 />
 
-            <hr />
+            <hr className="section-divider" />
             <VoluntaryCounselings name="voluntary"
                                   defaultState={false}
                                   {...this.props.VoluntaryCounselings}
@@ -406,7 +406,7 @@ class SubstanceUse extends SectionElement {
                                   scrollIntoView={false}
                                   />
 
-            <hr />
+            <hr className="section-divider" />
             <ReceivedCounselings name="additional"
                                  defaultState={false}
                                  {...this.props.ReceivedCounselings}
@@ -418,7 +418,7 @@ class SubstanceUse extends SectionElement {
                                  scrollIntoView={false}
                                  />
 
-            <hr />
+            <hr className="section-divider" />
             <SectionComments name="comments"
                              {...this.props.Comments}
                              title={i18n.t('substance.review.comments')}
@@ -482,7 +482,7 @@ export class SubstanceUseSections extends React.Component {
                   scrollIntoView={false}
                   />
 
-        <hr />
+        <hr className="section-divider" />
         <DrugInvolvements name="druginvolvements"
                           {...this.props.DrugInvolvements}
                           defaultState={false}
@@ -492,7 +492,7 @@ export class SubstanceUseSections extends React.Component {
                           scrollIntoView={false}
                           />
 
-        <hr />
+        <hr className="section-divider" />
         <DrugClearanceUses name="drugclearanceuses"
                            {...this.props.DrugClearanceUses}
                            defaultState={false}
@@ -503,7 +503,7 @@ export class SubstanceUseSections extends React.Component {
                            scrollIntoView={false}
                            />
 
-        <hr />
+        <hr className="section-divider" />
         <DrugPublicSafetyUses name="drugpublicsafety"
                               {...this.props.DrugPublicSafetyUses}
                               defaultState={false}
@@ -513,7 +513,7 @@ export class SubstanceUseSections extends React.Component {
                               scrollIntoView={false}
                               />
 
-        <hr />
+        <hr className="section-divider" />
         <PrescriptionUses name="prescriptionuses"
                           {...this.props.PrescriptionUses}
                           defaultState={false}
@@ -523,7 +523,7 @@ export class SubstanceUseSections extends React.Component {
                           scrollIntoView={false}
                           />
 
-        <hr />
+        <hr className="section-divider" />
         <OrderedTreatments name="ordered"
                            {...this.props.OrderedTreatments}
                            defaultState={false}
@@ -533,7 +533,7 @@ export class SubstanceUseSections extends React.Component {
                            scrollIntoView={false}
                            />
 
-        <hr />
+        <hr className="section-divider" />
         <VoluntaryTreatments name="voluntary"
                              {...this.props.VoluntaryTreatments}
                              defaultState={false}
@@ -543,7 +543,7 @@ export class SubstanceUseSections extends React.Component {
                              scrollIntoView={false}
                              />
 
-        <hr />
+        <hr className="section-divider" />
         <NegativeImpacts name="negative"
                          defaultState={false}
                          {...this.props.NegativeImpacts}
@@ -553,7 +553,7 @@ export class SubstanceUseSections extends React.Component {
                          scrollIntoView={false}
                          />
 
-        <hr />
+        <hr className="section-divider" />
         <OrderedCounselings name="ordered"
                             defaultState={false}
                             {...this.props.OrderedCounselings}
@@ -563,7 +563,7 @@ export class SubstanceUseSections extends React.Component {
                             scrollIntoView={false}
                             />
 
-        <hr />
+        <hr className="section-divider" />
         <VoluntaryCounselings name="voluntary"
                               defaultState={false}
                               {...this.props.VoluntaryCounselings}
@@ -573,7 +573,7 @@ export class SubstanceUseSections extends React.Component {
                               scrollIntoView={false}
                               />
 
-        <hr />
+        <hr className="section-divider" />
         <ReceivedCounselings name="additional"
                              defaultState={false}
                              {...this.props.ReceivedCounselings}
@@ -583,7 +583,7 @@ export class SubstanceUseSections extends React.Component {
                              scrollIntoView={false}
                              />
 
-        <hr />
+        <hr className="section-divider" />
         <SectionComments name="comments"
                          {...this.props.Comments}
                          title={i18n.t('substance.review.comments')}
