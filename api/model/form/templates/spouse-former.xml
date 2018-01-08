@@ -3,7 +3,7 @@
     {{range $index, $item := .props.items}}
     {{with $Item := $item.Item}}
     <FormerSpouse ID="{{$index}}">
-        <Address DoNotKnow="True">
+        <Address DoNotKnow="{{notApplicable $Item.AddressNotApplicable}}">
             {{location $Item.Address}}
         </Address>
         <Birth>

@@ -77,6 +77,6 @@
     {{end}}
     {{end}}
     <Comment></Comment>
-    <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+    <HaveAdditionalEntryAnswer>{{branch .props.CohabitantList.props.items}}</HaveAdditionalEntryAnswer>
     <SummaryComment></SummaryComment>
 </Cohabitants>
