@@ -7,6 +7,7 @@ import (
 
 	"github.com/18F/e-QIP-prototype/api/cf"
 	"github.com/18F/e-QIP-prototype/api/db"
+	"github.com/18F/e-QIP-prototype/api/jwt"
 	"github.com/18F/e-QIP-prototype/api/logmsg"
 	"github.com/18F/e-QIP-prototype/api/model"
 	"github.com/18F/e-QIP-prototype/api/twofactor"
@@ -16,7 +17,7 @@ import (
 // TwofactorHandler is the initial entry and subscription for two-factor
 // authentication.
 func TwofactorHandler(w http.ResponseWriter, r *http.Request) {
-	log := logmsg.NewLogger()
+	log := logmsg.NewLoggerFromRequest(r)
 	if cf.TwofactorDisabled() {
 		log.Warn(logmsg.MFAAttemptDenied)
 		http.Error(w, "Multiple factor authentication is disabled", http.StatusInternalServerError)
@@ -30,8 +31,9 @@ func TwofactorHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Valid token and audience
-	_, err = checkToken(r, account, model.BasicAuthAudience)
+	_, err = jwt.CheckToken(r, account.ValidJwtToken, jwt.BasicAuthAudience)
 	if err != nil {
+		log.WithError(err).Warn(logmsg.InvalidJWT)
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
@@ -52,7 +54,7 @@ func TwofactorHandler(w http.ResponseWriter, r *http.Request) {
 
 // TwofactorVerifyHandler verifies a token provided by the end user.
 func TwofactorVerifyHandler(w http.ResponseWriter, r *http.Request) {
-	log := logmsg.NewLogger()
+	log := logmsg.NewLoggerFromRequest(r)
 	if cf.TwofactorDisabled() {
 		log.Warn(logmsg.MFAAttemptDenied)
 		http.Error(w, "Multiple factor authentication is disabled", http.StatusInternalServerError)
@@ -66,8 +68,9 @@ func TwofactorVerifyHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Valid token and audience
-	_, err = checkToken(r, account, model.BasicAuthAudience)
+	_, err = jwt.CheckToken(r, account.ValidJwtToken, jwt.BasicAuthAudience)
 	if err != nil {
+		log.WithError(err).Warn(logmsg.InvalidJWT)
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
@@ -98,7 +101,7 @@ func TwofactorVerifyHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Generate a new token
-	signedToken, _, err := account.NewJwtToken(model.TwoFactorAudience)
+	signedToken, _, err := account.NewJwtToken(jwt.TwoFactorAudience)
 	if err != nil {
 		log.WithError(err).Warn(logmsg.JWTError)
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -106,35 +109,12 @@ func TwofactorVerifyHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Send the new token with a more recent expiration
+	log.WithField("account", account.ID).Info(logmsg.MFAValid)
 	fmt.Fprintf(w, signedToken)
 }
 
-// TwofactorEmailHandler sends a token to the user by email.
-func TwofactorEmailHandler(w http.ResponseWriter, r *http.Request) {
-	log := logmsg.NewLogger()
-	if cf.TwofactorDisabled() {
-		log.Warn(logmsg.MFAAttemptDenied)
-		http.Error(w, "Multiple factor authentication is disabled", http.StatusInternalServerError)
-		return
-	}
-
-	account, err := getAccountFromRequest(r)
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-
-	if err = twofactor.Email(account.Email, account.Token); err != nil {
-		log.WithError(err).Warn(logmsg.MFAEmailError)
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-
-	fmt.Fprintf(w, "")
-}
-
 func TwofactorResetHandler(w http.ResponseWriter, r *http.Request) {
-	log := logmsg.NewLogger()
+	log := logmsg.NewLoggerFromRequest(r)
 	if cf.TwofactorDisabled() {
 		log.Warn(logmsg.MFAAttemptDenied)
 		http.Error(w, "Multiple factor authentication is disabled", http.StatusInternalServerError)
@@ -155,8 +135,9 @@ func TwofactorResetHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Valid token and audience
-	jwtToken, err := checkToken(r, account, model.BasicAuthAudience)
+	jwtToken, err := jwt.CheckToken(r, account.ValidJwtToken, jwt.BasicAuthAudience)
 	if err != nil {
+		log.WithError(err).Warn(logmsg.InvalidJWT)
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
@@ -175,7 +156,7 @@ func TwofactorResetHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func getAccountFromRequest(r *http.Request) (*model.Account, error) {
-	log := logmsg.NewLogger()
+	log := logmsg.NewLoggerFromRequest(r)
 	log.Info(logmsg.RetrievingAccount)
 
 	// Sanity check for username

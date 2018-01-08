@@ -25,7 +25,7 @@ var (
 
 // AuthServiceHandler is the initial entry point for authentication.
 func AuthServiceHandler(w http.ResponseWriter, r *http.Request) {
-	log := logmsg.NewLogger()
+	log := logmsg.NewLoggerFromRequest(r)
 
 	if !cf.OAuthEnabled() {
 		log.Warn(logmsg.OAuthAttemptDenied)
@@ -36,7 +36,7 @@ func AuthServiceHandler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	service := vars["service"]
 
-	config, ok := configureAuthentication(service)
+	config, ok := configureAuthentication(r, service)
 	if !ok {
 		http.Redirect(w, r, redirectTo, http.StatusTemporaryRedirect)
 	}
@@ -46,7 +46,7 @@ func AuthServiceHandler(w http.ResponseWriter, r *http.Request) {
 
 // AuthCallbackHandler handles responses from the authentication provider.
 func AuthCallbackHandler(w http.ResponseWriter, r *http.Request) {
-	log := logmsg.NewLogger()
+	log := logmsg.NewLoggerFromRequest(r)
 
 	if !cf.OAuthEnabled() {
 		log.Warn(logmsg.OAuthAttemptDenied)
@@ -57,7 +57,7 @@ func AuthCallbackHandler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	service := vars["service"]
 
-	config, ok := configureAuthentication(service)
+	config, ok := configureAuthentication(r, service)
 	if !ok {
 		http.Redirect(w, r, redirectTo, http.StatusTemporaryRedirect)
 	}
@@ -86,8 +86,8 @@ func AuthCallbackHandler(w http.ResponseWriter, r *http.Request) {
 
 // ConfigureAuthentication takes a service name and configures the OAuth 2.0 with
 // appropriate endpoints and scopes.
-func configureAuthentication(service string) (*oauth2.Config, bool) {
-	log := logmsg.NewLogger()
+func configureAuthentication(r *http.Request, service string) (*oauth2.Config, bool) {
+	log := logmsg.NewLoggerFromRequest(r)
 	ok := true
 	config := &oauth2.Config{
 		RedirectURL:  fmt.Sprintf("%s/auth/%s/callback", cf.PublicURI(), strings.ToLower(service)),

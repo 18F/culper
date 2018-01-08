@@ -104,11 +104,6 @@ func RootHandler(w http.ResponseWriter, r *http.Request) {
 				Description: "two factor verification",
 				Verbs:       []string{"POST"},
 			},
-			endpoint{
-				Path:        "/2fa/:account/email",
-				Description: "two factor email",
-				Verbs:       []string{"POST"},
-			},
 		}
 		endpoints = append(endpoints, mfa...)
 

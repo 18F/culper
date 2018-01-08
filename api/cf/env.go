@@ -7,6 +7,7 @@ import (
 	"regexp"
 	"strings"
 
+	"github.com/18F/e-QIP-prototype/api/jwt"
 	"github.com/18F/e-QIP-prototype/api/logmsg"
 	cfenv "github.com/cloudfoundry-community/go-cfenv"
 )
@@ -209,4 +210,26 @@ func AllowedOrigin(origin string) bool {
 	}
 
 	return false
+}
+
+func TargetAudiences() []string {
+	audiences := []string{}
+
+	if BasicEnabled() {
+		audiences = append(audiences, jwt.BasicAuthAudience)
+	}
+
+	if !TwofactorDisabled() {
+		audiences = append(audiences, jwt.TwoFactorAudience)
+	}
+
+	if SamlEnabled() {
+		audiences = append(audiences, jwt.SingleSignOnAudience)
+	}
+
+	if OAuthEnabled() {
+		audiences = append(audiences, jwt.SingleSignOnAudience)
+	}
+
+	return audiences
 }

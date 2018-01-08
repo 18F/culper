@@ -37,7 +37,6 @@ func main() {
 		s := r.PathPrefix("/2fa").Subrouter()
 		s.HandleFunc("/{account}", handlers.TwofactorHandler)
 		s.HandleFunc("/{account}/verify", handlers.TwofactorVerifyHandler)
-		s.HandleFunc("/{account}/email", handlers.TwofactorEmailHandler)
 
 		if cf.TwofactorResettable() {
 			s.HandleFunc("/{account}/reset", handlers.TwofactorResetHandler)
@@ -75,7 +74,7 @@ func main() {
 	log.WithFields(logrus.Fields{
 		"address": address,
 	}).Info(logmsg.StartingServer)
-	log.Fatal(http.ListenAndServe(address, handlers.CORS(r)))
+	log.Fatal(http.ListenAndServe(address, handlers.CORS(handlers.StandardLogging(r))))
 }
 
 type Handler func(w http.ResponseWriter, r *http.Request) error

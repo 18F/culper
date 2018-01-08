@@ -10,8 +10,8 @@ import (
 // CORS Wraps an http handler with logic to handle cors requests.
 // Specifies the allowed origins, methods and headers.
 func CORS(h http.Handler) http.Handler {
-	log := logmsg.NewLogger()
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		log := logmsg.NewLoggerFromRequest(r)
 		origin := r.Header.Get("Origin")
 		if cf.AllowedOrigin(origin) {
 			log.WithField("origin", origin).Debug("Setting allowed CORS parameters")

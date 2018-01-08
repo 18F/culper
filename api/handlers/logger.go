@@ -7,12 +7,14 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-func LoggerHandler(w http.ResponseWriter, r *http.Request) error {
-	log := logmsg.NewLogger()
-	log.WithFields(logrus.Fields{
-		"method": r.Method,
-		"url":    r.URL.String(),
-		"ip":     r.RemoteAddr,
-	}).Debug("Incoming HTTP(s) request")
-	return nil
+func StandardLogging(h http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		log := logmsg.NewLoggerFromRequest(r)
+		log.WithFields(logrus.Fields{
+			"method": r.Method,
+			"url":    r.URL.String(),
+			"remote": r.RemoteAddr,
+		}).Info(logmsg.WebRequest)
+		h.ServeHTTP(w, r)
+	})
 }
