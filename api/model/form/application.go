@@ -494,26 +494,8 @@ var (
 		},
 		sectionInformation{
 			name:       "Submission",
-			subsection: "AdditionalComments",
-			payload:    "submission.additionalcomments",
-			hashable:   false,
-		},
-		sectionInformation{
-			name:       "Submission",
-			subsection: "General",
-			payload:    "submission.general",
-			hashable:   false,
-		},
-		sectionInformation{
-			name:       "Submission",
-			subsection: "Medical",
-			payload:    "submission.medical",
-			hashable:   false,
-		},
-		sectionInformation{
-			name:       "Submission",
-			subsection: "Credit",
-			payload:    "submission.credit",
+			subsection: "Submit",
+			payload:    "submission.releases",
 			hashable:   false,
 		},
 	}

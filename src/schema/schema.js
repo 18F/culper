@@ -389,7 +389,7 @@ const transform = {
   'psychological.treatment': (data) => {
     return form.treatment(data)
   },
-  'submission.releases': (data) => {
+  'package.submit': (data) => {
     return section.submission(data)
   }
 }

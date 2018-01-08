@@ -1,4 +1,4 @@
-export const submission = {
+export const application = {
   destination: {
     submit: 'Submit'
   },
@@ -41,17 +41,21 @@ export const submission = {
   submissionComplete: [
     '## You are done!',
     '### Thanks for submitting your SF-86',
-    'Please print and save your submission below,they will be your only copies'
+    'Please print and save your submission below, they will be your only copies'
   ],
   print: {
     title: [
       '## Please print and save your responses',
-      '**This will be your only opportunity.** Be sure to print and save your results before leaving this screen. To save a PDF click the Save/Print button then change the printer "Destination" to "Save as PDF".'
+      '**This will be your only opportunity.** Be sure to print and save your responses before leaving this screen. To save a PDF click the Save/Print button then change the printer "Destination" to "Save as PDF".'
     ],
     button: 'Save/Print',
     done: [
       '## You are done!',
       '### Thanks for submitting for your SF-86'
     ]
+  },
+  alert: {
+    navigation: 'Your form has been submitted and is locked',
+    logout: 'Make sure you save and/or print your responses before logging out'
   }
 }

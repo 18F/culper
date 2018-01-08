@@ -13,6 +13,7 @@ export const submission = (data = {}) => {
     }),
     Credit: form.general('submission.credit', {
       Signature: form.signature((data.Credit || {}).Signature)
-    })
+    }),
+    Locked: data.Locked
   }
 }
