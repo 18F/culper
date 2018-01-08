@@ -8,9 +8,12 @@ import AuthenticatedView from '../../../views/AuthenticatedView'
 import ValidForm from './ValidForm'
 import InvalidForm from './InvalidForm'
 import SubmissionStatus from './SubmissionStatus'
+import Print from './Print'
 import { push } from '../../../middleware/history'
+import { api } from '../../../services'
+import schema from '../../../schema'
 
-class Submission extends SectionElement {
+class Package extends SectionElement {
   constructor (props) {
     super(props)
 
@@ -26,10 +29,27 @@ class Submission extends SectionElement {
     this.handleUpdate('Releases', values)
   }
 
-  onSubmit () {
-    // TODO: Generate has code here and send to print screen when
-    // merged with persistence updates
-    this.props.dispatch(push('/form/print/intro'))
+  onSubmit (success, error) {
+    const releases = (this.props.Submission || {}).Releases || {}
+    const data = { ...releases, Locked: true }
+    const payload = schema(`package.submit`, data, false)
+
+    api
+      .save(payload)
+      .then(r => {
+        this.handleUpdate('Releases', {
+          ...releases,
+          Locked: true
+        })
+        this.props.dispatch(push('/form/package/print'))
+      })
+      .catch(() => {
+        console.warn('Failed to form package')
+        this.handleUpdate('Releases', {
+          ...releases,
+          Locked: false
+        })
+      })
   }
 
   /**
@@ -41,12 +61,12 @@ class Submission extends SectionElement {
     for (const sectionName in tally) {
       const mark = tally[sectionName]
       if (mark.errors > 0) {
-        this.props.dispatch(push('/form/submission/errors'))
+        this.props.dispatch(push('/form/package/errors'))
         return
       }
     }
 
-    this.props.dispatch(push('/form/submission/releases'))
+    this.props.dispatch(push('/form/package/submit'))
     return
   }
 
@@ -54,7 +74,7 @@ class Submission extends SectionElement {
    * TODO: Remove after testing. Hook to get to releases form
    */
   goToReleases () {
-    this.props.dispatch(push('/form/submission/releases'))
+    this.props.dispatch(push('/form/package/submit'))
   }
 
   errorCheck () {
@@ -100,32 +120,34 @@ class Submission extends SectionElement {
 
   render () {
     const tally = this.errorCheck()
-    const releases = (this.props.Submission || {}).Releases
+    const releases = (this.props.Submission || {}).Releases || {}
     return (
       <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
-        <SectionView name="intro">
+        <SectionView name="review">
           <SubmissionStatus transition={true} onTransitionEnd={this.onTransitionEnd}/>
         </SectionView>
         <SectionView name="valid">
           <SubmissionStatus transition={true} onTransitionEnd={this.goToReleases}/>
         </SectionView>
-        <SectionView name="releases">
-          <SubmissionStatus valid={true} transition={false}>
-            <ValidForm
-              onUpdate={this.updateSubmission}
-              hideHippa={hideHippa(this.props.Application)}
-              {...releases}
-              LegalName={this.props.LegalName}
-              onSubmit={this.onSubmit}
-              Identification={this.props.Identification}
-              History={this.props.History}
-            />
-          </SubmissionStatus>
-        </SectionView>
         <SectionView name="errors">
           <SubmissionStatus valid={false} transition={false}>
             <InvalidForm tally={tally} />
           </SubmissionStatus>
+        </SectionView>
+        <SectionView name="submit">
+          <SubmissionStatus valid={true} transition={false}>
+            <ValidForm {...releases}
+                       onUpdate={this.updateSubmission}
+                       hideHippa={hideHippa(this.props.Application)}
+                       LegalName={this.props.LegalName}
+                       onSubmit={this.onSubmit}
+                       Identification={this.props.Identification}
+                       History={this.props.History}
+                       />
+          </SubmissionStatus>
+        </SectionView>
+        <SectionView name="print">
+          <Print />
         </SectionView>
       </SectionViews>
     )
@@ -147,7 +169,6 @@ export const allSectionsValid = (sections) => {
 
 function mapStateToProps (state) {
   const app = state.application || {}
-  const releases = app.Releases || {}
   const identification = app.Identification || {}
   const relationships = app.Relationships || {}
   const history = app.History || {}
@@ -165,19 +186,20 @@ function mapStateToProps (state) {
   let completed = app.Completed || {}
   return {
     Application: app,
-    Releases: releases,
     Submission: app.Submission || {
-      AdditionalComments: {
-        Signature: {}
-      },
-      General: {
-        Signature: {}
-      },
-      Medical: {
-        Signature: {}
-      },
-      Credit: {
-        Signature: {}
+      Releases: {
+        AdditionalComments: {
+          Signature: {}
+        },
+        General: {
+          Signature: {}
+        },
+        Medical: {
+          Signature: {}
+        },
+        Credit: {
+          Signature: {}
+        }
       }
     },
     Identification: identification,
@@ -200,9 +222,9 @@ function mapStateToProps (state) {
   }
 }
 
-Submission.defaultProps = {
-  section: 'submission',
+Package.defaultProps = {
+  section: 'package',
   store: 'Submission'
 }
 
-export default connect(mapStateToProps)(AuthenticatedView(Submission))
+export default connect(mapStateToProps)(AuthenticatedView(Package))

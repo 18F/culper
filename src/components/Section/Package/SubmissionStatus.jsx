@@ -36,19 +36,19 @@ export default class SubmissionStatus extends React.Component {
   }
 
   render () {
-    let text = i18n.m(`submission.submissionStatus.validating`)
+    let text = i18n.m(`application.submissionStatus.validating`)
     let classes = ['submission-status']
 
     if (!this.props.transition) {
       switch (this.props.valid) {
-        case true:
-          text = i18n.m(`submission.submissionStatus.valid`)
-          classes.push('valid')
-          break
-        case false:
-          text = i18n.m(`submission.submissionStatus.invalid`)
-          classes.push('invalid')
-          break
+      case true:
+        text = i18n.m(`application.submissionStatus.valid`)
+        classes.push('valid')
+        break
+      case false:
+        text = i18n.m(`application.submissionStatus.invalid`)
+        classes.push('invalid')
+        break
       }
     }
 

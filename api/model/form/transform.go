@@ -114,6 +114,7 @@ var transform = map[string]func() Entity{
 	"psychological.hospitalizations":                  func() Entity { return &PsychologicalHospitalizations{} },
 	"psychological.treatment":                         func() Entity { return &Treatment{} },
 	"submission.releases":                             func() Entity { return &Submission{} },
+	"package.submit":                                  func() Entity { return &Submission{} },
 	"submission.additionalcomments":                   func() Entity { return &SubmissionAdditionalComments{} },
 	"submission.general":                              func() Entity { return &SubmissionGeneral{} },
 	"submission.medical":                              func() Entity { return &SubmissionMedical{} },
