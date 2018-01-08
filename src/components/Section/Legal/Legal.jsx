@@ -488,7 +488,7 @@ class Legal extends SectionElement {
                       scrollIntoView={false}
                       />
 
-            <hr/>
+            <hr className="section-divider"/>
             <OtherOffenses name="otheroffenses"
                            {...this.props.PoliceOtherOffenses}
                            applicantBirthdate={this.props.applicantBirthdate}
@@ -501,7 +501,7 @@ class Legal extends SectionElement {
                            scrollIntoView={false}
                            />
 
-            <hr/>
+            <hr className="section-divider"/>
             <DomesticViolenceList name="domesticviolence"
                                   {...this.props.PoliceDomesticViolence}
                                   applicantBirthdate={this.props.applicantBirthdate}
@@ -513,7 +513,7 @@ class Legal extends SectionElement {
                                   scrollIntoView={false}
                                   />
 
-            <hr/>
+            <hr className="section-divider"/>
             <History name="history"
                      {...this.props.History}
                      applicantBirthdate={this.props.applicantBirthdate}
@@ -525,7 +525,7 @@ class Legal extends SectionElement {
                      scrollIntoView={false}
                      />
 
-            <hr/>
+            <hr className="section-divider"/>
             <Revoked name="revoked"
                      {...this.props.Revoked}
                      applicantBirthdate={this.props.applicantBirthdate}
@@ -537,7 +537,7 @@ class Legal extends SectionElement {
                      scrollIntoView={false}
                      />
 
-            <hr/>
+            <hr className="section-divider"/>
             <Debarred name="debarred"
                       {...this.props.Debarred}
                       applicantBirthdate={this.props.applicantBirthdate}
@@ -549,7 +549,7 @@ class Legal extends SectionElement {
                       scrollIntoView={false}
                       />
 
-            <hr />
+            <hr className="section-divider" />
             <NonCriminalCourtActions name="courtactions"
                                      {...this.props.NonCriminalCourtActions}
                                      applicantBirthdate={this.props.applicantBirthdate}
@@ -561,7 +561,7 @@ class Legal extends SectionElement {
                                      required={true}
                                      scrollIntoView={false}
                                      />
-            <hr />
+            <hr className="section-divider" />
             <Unauthorized name="unauthorized"
                           {...this.props.Unauthorized}
                           applicantBirthdate={this.props.applicantBirthdate}
@@ -574,7 +574,7 @@ class Legal extends SectionElement {
                           scrollIntoView={false}
                           />
 
-            <hr />
+            <hr className="section-divider" />
             <Manipulating name="manipulating"
                           {...this.props.Manipulating}
                           applicantBirthdate={this.props.applicantBirthdate}
@@ -587,7 +587,7 @@ class Legal extends SectionElement {
                           scrollIntoView={false}
                           />
 
-            <hr />
+            <hr className="section-divider" />
             <Unlawful name="unlawful"
                       {...this.props.Unlawful}
                       applicantBirthdate={this.props.applicantBirthdate}
@@ -600,7 +600,7 @@ class Legal extends SectionElement {
                       scrollIntoView={false}
                       />
 
-            <hr />
+            <hr className="section-divider" />
             <TerroristOrganization name="terroristOrganization"
                                    {...this.props.TerroristOrganization}
                                    applicantBirthdate={this.props.applicantBirthdate}
@@ -612,7 +612,7 @@ class Legal extends SectionElement {
                                    scrollIntoView={false}
                                    />
 
-            <hr />
+            <hr className="section-divider" />
             <EngagedInTerrorism name="engagedInTerrorism"
                                 {...this.props.EngagedInTerrorism}
                                 applicantBirthdate={this.props.applicantBirthdate}
@@ -623,7 +623,7 @@ class Legal extends SectionElement {
                                 scrollIntoView={false}
                                 />
 
-            <hr />
+            <hr className="section-divider" />
             <Advocating name="advocating"
                         {...this.props.Advocating}
                         applicantBirthdate={this.props.applicantBirthdate}
@@ -634,7 +634,7 @@ class Legal extends SectionElement {
                         scrollIntoView={false}
                         />
 
-            <hr />
+            <hr className="section-divider" />
             <MembershipOverthrow name="membershipOverthrow"
                                  {...this.props.MembershipOverthrow}
                                  applicantBirthdate={this.props.applicantBirthdate}
@@ -646,7 +646,7 @@ class Legal extends SectionElement {
                                  scrollIntoView={false}
                                  />
 
-            <hr />
+            <hr className="section-divider" />
             <MembershipViolence name="membershipViolence"
                                 {...this.props.MembershipViolence}
                                 applicantBirthdate={this.props.applicantBirthdate}
@@ -658,7 +658,7 @@ class Legal extends SectionElement {
                                 scrollIntoView={false}
                                 />
 
-            <hr />
+            <hr className="section-divider" />
             <ActivitiesToOverthrow name="activitiesToOverthrow"
                                    {...this.props.ActivitiesToOverthrow}
                                    applicantBirthdate={this.props.applicantBirthdate}
@@ -669,7 +669,7 @@ class Legal extends SectionElement {
                                    scrollIntoView={false}
                                    />
 
-            <hr />
+            <hr className="section-divider" />
             <TerrorismAssociation name="terrorismAssociation"
                                   {...this.props.TerrorismAssociation}
                                   applicantBirthdate={this.props.applicantBirthdate}
@@ -680,7 +680,7 @@ class Legal extends SectionElement {
                                   scrollIntoView={false}
                                   />
 
-            <hr />
+            <hr className="section-divider" />
             <SectionComments name="comments"
                              {...this.props.Comments}
                              title={i18n.t('legal.review.comments')}
@@ -761,7 +761,7 @@ export class LegalSections extends React.Component {
                   scrollIntoView={false}
                   />
 
-        <hr/>
+        <hr className="section-divider"/>
         <OtherOffenses name="otheroffenses"
                        {...this.props.PoliceOtherOffenses}
                        addressBooks={this.props.AddressBooks}
@@ -772,7 +772,7 @@ export class LegalSections extends React.Component {
                        scrollIntoView={false}
                        />
 
-        <hr/>
+        <hr className="section-divider"/>
         <DomesticViolenceList name="domesticviolence"
                               {...this.props.PoliceDomesticViolence}
                               addressBooks={this.props.AddressBooks}
@@ -782,7 +782,7 @@ export class LegalSections extends React.Component {
                               scrollIntoView={false}
                               />
 
-        <hr/>
+        <hr className="section-divider"/>
         <History name="history"
                  {...this.props.History}
                  defaultState={false}
@@ -792,7 +792,7 @@ export class LegalSections extends React.Component {
                  scrollIntoView={false}
                  />
 
-        <hr/>
+        <hr className="section-divider"/>
         <Revoked name="revoked"
                  {...this.props.Revoked}
                  defaultState={false}
@@ -802,7 +802,7 @@ export class LegalSections extends React.Component {
                  scrollIntoView={false}
                  />
 
-        <hr/>
+        <hr className="section-divider"/>
         <Debarred name="debarred"
                   {...this.props.Debarred}
                   defaultState={false}
@@ -812,7 +812,7 @@ export class LegalSections extends React.Component {
                   scrollIntoView={false}
                   />
 
-        <hr />
+        <hr className="section-divider" />
         <NonCriminalCourtActions name="courtactions"
                                  {...this.props.NonCriminalCourtActions}
                                  addressBooks={this.props.AddressBooks}
@@ -822,7 +822,7 @@ export class LegalSections extends React.Component {
                                  required={true}
                                  scrollIntoView={false}
                                  />
-        <hr />
+        <hr className="section-divider" />
         <Unauthorized name="unauthorized"
                       {...this.props.Unauthorized}
                       addressBooks={this.props.AddressBooks}
@@ -833,7 +833,7 @@ export class LegalSections extends React.Component {
                       scrollIntoView={false}
                       />
 
-        <hr />
+        <hr className="section-divider" />
         <Manipulating name="manipulating"
                       {...this.props.Manipulating}
                       addressBooks={this.props.AddressBooks}
@@ -844,7 +844,7 @@ export class LegalSections extends React.Component {
                       scrollIntoView={false}
                       />
 
-        <hr />
+        <hr className="section-divider" />
         <Unlawful name="unlawful"
                   {...this.props.Unlawful}
                   addressBooks={this.props.AddressBooks}
@@ -855,7 +855,7 @@ export class LegalSections extends React.Component {
                   scrollIntoView={false}
                   />
 
-        <hr />
+        <hr className="section-divider" />
         <TerroristOrganization name="terroristOrganization"
                                {...this.props.TerroristOrganization}
                                addressBooks={this.props.AddressBooks}
@@ -865,7 +865,7 @@ export class LegalSections extends React.Component {
                                scrollIntoView={false}
                                />
 
-        <hr />
+        <hr className="section-divider" />
         <EngagedInTerrorism name="engagedInTerrorism"
                             {...this.props.EngagedInTerrorism}
                             dispatch={this.props.dispatch}
@@ -874,7 +874,7 @@ export class LegalSections extends React.Component {
                             scrollIntoView={false}
                             />
 
-        <hr />
+        <hr className="section-divider" />
         <Advocating name="advocating"
                     {...this.props.Advocating}
                     dispatch={this.props.dispatch}
@@ -883,7 +883,7 @@ export class LegalSections extends React.Component {
                     scrollIntoView={false}
                     />
 
-        <hr />
+        <hr className="section-divider" />
         <MembershipOverthrow name="membershipOverthrow"
                              {...this.props.MembershipOverthrow}
                              addressBooks={this.props.AddressBooks}
@@ -893,7 +893,7 @@ export class LegalSections extends React.Component {
                              scrollIntoView={false}
                              />
 
-        <hr />
+        <hr className="section-divider" />
         <MembershipViolence name="membershipViolence"
                             {...this.props.MembershipViolence}
                             addressBooks={this.props.AddressBooks}
@@ -903,7 +903,7 @@ export class LegalSections extends React.Component {
                             scrollIntoView={false}
                             />
 
-        <hr />
+        <hr className="section-divider" />
         <ActivitiesToOverthrow name="activitiesToOverthrow"
                                {...this.props.ActivitiesToOverthrow}
                                dispatch={this.props.dispatch}
@@ -912,7 +912,7 @@ export class LegalSections extends React.Component {
                                scrollIntoView={false}
                                />
 
-        <hr />
+        <hr className="section-divider" />
         <TerrorismAssociation name="terrorismAssociation"
                               {...this.props.TerrorismAssociation}
                               dispatch={this.props.dispatch}
@@ -921,7 +921,7 @@ export class LegalSections extends React.Component {
                               scrollIntoView={false}
                               />
 
-        <hr />
+        <hr className="section-divider" />
         <SectionComments name="comments"
                          {...this.props.Comments}
                          title={i18n.t('legal.review.comments')}

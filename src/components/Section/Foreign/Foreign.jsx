@@ -147,7 +147,7 @@ class Foreign extends SectionElement {
                       required={true}
                       scrollIntoView={false}
                       />
-            <hr/>
+            <hr className="section-divider"/>
             <Contacts name="contacts"
                       {...this.props.Contacts}
                       defaultState={false}
@@ -159,7 +159,7 @@ class Foreign extends SectionElement {
                       required={true}
                       scrollIntoView={false}
                       />
-            <hr/>
+            <hr className="section-divider"/>
             <DirectActivity name="directActivity"
                             {...this.props.DirectActivity}
                             defaultState={false}
@@ -171,7 +171,7 @@ class Foreign extends SectionElement {
                             required={true}
                             scrollIntoView={false}
                             />
-            <hr/>
+            <hr className="section-divider"/>
             <IndirectActivity name="indirectActivity"
                               {...this.props.IndirectActivity}
                               defaultState={false}
@@ -183,7 +183,7 @@ class Foreign extends SectionElement {
                               required={true}
                               scrollIntoView={false}
                               />
-            <hr/>
+            <hr className="section-divider"/>
             <RealEstateActivity name="realEstateActivity"
                                 {...this.props.RealEstateActivity}
                                 defaultState={false}
@@ -194,7 +194,7 @@ class Foreign extends SectionElement {
                                 required={true}
                                 scrollIntoView={false}
                                 />
-            <hr/>
+            <hr className="section-divider"/>
             <BenefitActivity name="benefitActivity"
                              {...this.props.BenefitActivity}
                              defaultState={false}
@@ -205,7 +205,7 @@ class Foreign extends SectionElement {
                              required={true}
                              scrollIntoView={false}
                              />
-            <hr/>
+            <hr className="section-divider"/>
             <Support name="support"
                      {...this.props.Support}
                      defaultState={false}
@@ -217,7 +217,7 @@ class Foreign extends SectionElement {
                      required={true}
                      scrollIntoView={false}
                      />
-            <hr/>
+            <hr className="section-divider"/>
             <Advice name="advice"
                     {...this.props.Advice}
                     defaultState={false}
@@ -228,7 +228,7 @@ class Foreign extends SectionElement {
                     required={true}
                     scrollIntoView={false}
                     />
-            <hr/>
+            <hr className="section-divider"/>
             <Family name="family"
                     {...this.props.Family}
                     defaultState={false}
@@ -239,7 +239,7 @@ class Foreign extends SectionElement {
                     required={true}
                     scrollIntoView={false}
                     />
-            <hr/>
+            <hr className="section-divider"/>
             <Employment name="employment"
                         {...this.props.Employment}
                         defaultState={false}
@@ -250,7 +250,7 @@ class Foreign extends SectionElement {
                         required={true}
                         scrollIntoView={false}
                         />
-            <hr/>
+            <hr className="section-divider"/>
             <Ventures name="ventures"
                       {...this.props.Ventures}
                       defaultState={false}
@@ -262,7 +262,7 @@ class Foreign extends SectionElement {
                       required={true}
                       scrollIntoView={false}
                       />
-            <hr/>
+            <hr className="section-divider"/>
             <Conferences name="Conferences"
                          {...this.props.Conferences}
                          defaultState={false}
@@ -273,7 +273,7 @@ class Foreign extends SectionElement {
                          required={true}
                          scrollIntoView={false}
                          />
-            <hr/>
+            <hr className="section-divider"/>
             <Contact name="Contact"
                      {...this.props.Contact}
                      defaultState={false}
@@ -285,7 +285,7 @@ class Foreign extends SectionElement {
                      required={true}
                      scrollIntoView={false}
                      />
-            <hr/>
+            <hr className="section-divider"/>
             <Sponsorship name="Sponsorship"
                          {...this.props.Sponsorship}
                          defaultState={false}
@@ -297,7 +297,7 @@ class Foreign extends SectionElement {
                          required={true}
                          scrollIntoView={false}
                          />
-            <hr/>
+            <hr className="section-divider"/>
             <Political name="Political"
                        {...this.props.Political}
                        defaultState={false}
@@ -308,7 +308,7 @@ class Foreign extends SectionElement {
                        required={true}
                        scrollIntoView={false}
                        />
-            <hr/>
+            <hr className="section-divider"/>
             <Voting name="Voting"
                     {...this.props.Voting}
                     defaultState={false}
@@ -319,7 +319,7 @@ class Foreign extends SectionElement {
                     required={true}
                     scrollIntoView={false}
                     />
-            <hr/>
+            <hr className="section-divider"/>
             <Travel name="Travel"
                     {...this.props.Travel}
                     defaultState={false}
@@ -330,7 +330,7 @@ class Foreign extends SectionElement {
                     required={true}
                     scrollIntoView={false}
                     />
-            <hr />
+            <hr className="section-divider" />
             <SectionComments name="comments"
                              {...this.props.Comments}
                              title={i18n.t('foreign.review.comments')}
@@ -691,7 +691,7 @@ export class ForeignSections extends React.Component {
                   required={true}
                   scrollIntoView={false}
                   />
-        <hr/>
+        <hr className="section-divider"/>
         <Contacts name="contacts"
                   {...this.props.Contacts}
                   defaultState={false}
@@ -701,7 +701,7 @@ export class ForeignSections extends React.Component {
                   required={true}
                   scrollIntoView={false}
                   />
-        <hr/>
+        <hr className="section-divider"/>
         <DirectActivity name="directActivity"
                         {...this.props.DirectActivity}
                         defaultState={false}
@@ -711,7 +711,7 @@ export class ForeignSections extends React.Component {
                         required={true}
                         scrollIntoView={false}
                         />
-        <hr/>
+        <hr className="section-divider"/>
         <IndirectActivity name="indirectActivity"
                           {...this.props.IndirectActivity}
                           defaultState={false}
@@ -721,7 +721,7 @@ export class ForeignSections extends React.Component {
                           required={true}
                           scrollIntoView={false}
                           />
-        <hr/>
+        <hr className="section-divider"/>
         <RealEstateActivity name="realEstateActivity"
                             {...this.props.RealEstateActivity}
                             defaultState={false}
@@ -730,7 +730,7 @@ export class ForeignSections extends React.Component {
                             required={true}
                             scrollIntoView={false}
                             />
-        <hr/>
+        <hr className="section-divider"/>
         <BenefitActivity name="benefitActivity"
                          {...this.props.BenefitActivity}
                          defaultState={false}
@@ -739,7 +739,7 @@ export class ForeignSections extends React.Component {
                          required={true}
                          scrollIntoView={false}
                          />
-        <hr/>
+        <hr className="section-divider"/>
         <Support name="support"
                  {...this.props.Support}
                  defaultState={false}
@@ -749,7 +749,7 @@ export class ForeignSections extends React.Component {
                  required={true}
                  scrollIntoView={false}
                  />
-        <hr/>
+        <hr className="section-divider"/>
         <Advice name="advice"
                 {...this.props.Advice}
                 defaultState={false}
@@ -758,7 +758,7 @@ export class ForeignSections extends React.Component {
                 required={true}
                 scrollIntoView={false}
                 />
-        <hr/>
+        <hr className="section-divider"/>
         <Family name="family"
                 {...this.props.Family}
                 defaultState={false}
@@ -767,7 +767,7 @@ export class ForeignSections extends React.Component {
                 required={true}
                 scrollIntoView={false}
                 />
-        <hr/>
+        <hr className="section-divider"/>
         <Employment name="employment"
                     {...this.props.Employment}
                     defaultState={false}
@@ -776,7 +776,7 @@ export class ForeignSections extends React.Component {
                     required={true}
                     scrollIntoView={false}
                     />
-        <hr/>
+        <hr className="section-divider"/>
         <Ventures name="ventures"
                   {...this.props.Ventures}
                   defaultState={false}
@@ -786,7 +786,7 @@ export class ForeignSections extends React.Component {
                   required={true}
                   scrollIntoView={false}
                   />
-        <hr/>
+        <hr className="section-divider"/>
         <Conferences name="Conferences"
                      {...this.props.Conferences}
                      defaultState={false}
@@ -795,7 +795,7 @@ export class ForeignSections extends React.Component {
                      required={true}
                      scrollIntoView={false}
                      />
-        <hr/>
+        <hr className="section-divider"/>
         <Contact name="Contact"
                  {...this.props.Contact}
                  defaultState={false}
@@ -805,7 +805,7 @@ export class ForeignSections extends React.Component {
                  required={true}
                  scrollIntoView={false}
                  />
-        <hr/>
+        <hr className="section-divider"/>
         <Sponsorship name="Sponsorship"
                      {...this.props.Sponsorship}
                      defaultState={false}
@@ -815,7 +815,7 @@ export class ForeignSections extends React.Component {
                      required={true}
                      scrollIntoView={false}
                      />
-        <hr/>
+        <hr className="section-divider"/>
         <Political name="Political"
                    {...this.props.Political}
                    defaultState={false}
@@ -824,7 +824,7 @@ export class ForeignSections extends React.Component {
                    required={true}
                    scrollIntoView={false}
                    />
-        <hr/>
+        <hr className="section-divider"/>
         <Voting name="Voting"
                 {...this.props.Voting}
                 defaultState={false}
@@ -833,7 +833,7 @@ export class ForeignSections extends React.Component {
                 required={true}
                 scrollIntoView={false}
                 />
-        <hr/>
+        <hr className="section-divider"/>
         <Travel name="Travel"
                 {...this.props.Travel}
                 defaultState={false}
@@ -842,7 +842,7 @@ export class ForeignSections extends React.Component {
                 required={true}
                 scrollIntoView={false}
                 />
-        <hr />
+        <hr className="section-divider" />
         <SectionComments name="comments"
                          {...this.props.Comments}
                          title={i18n.t('foreign.review.comments')}

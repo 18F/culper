@@ -78,7 +78,7 @@ export class SectionViews extends React.Component {
           <div className="section-view">
             {title}
             {child.props.para}
-            <div className="view">
+            <div className={`view view-${child.props.name || 'unknown'}`}>
               {topButtons}
               {child}
               {bottomButtons}

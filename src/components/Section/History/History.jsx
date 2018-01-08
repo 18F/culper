@@ -13,7 +13,7 @@ import SummaryProgress from './SummaryProgress'
 import SummaryCounter from './SummaryCounter'
 import Federal from './Federal'
 import { utc, today, daysAgo, daysBetween, gaps } from './dateranges'
-import { InjectGaps, ResidenceCaption, EmploymentCaption, EducationCaption } from './summaries'
+import { InjectGaps } from './summaries'
 import Residence from './Residence'
 import Employment from './Employment'
 import Education from './Education'
@@ -347,13 +347,17 @@ class History extends SectionElement {
               { this.educationSummaryProgress() }
             </Show>
 
+            <hr className="section-divider" />
+            <span className="section-heading">
+              <Svg src="/img/residence-house.svg" />
+              {i18n.t('history.residence.collection.caption')}
+            </span>
             <Residence {...this.props.Residence}
                        defaultState={false}
                        realtime={true}
                        sort={sort}
                        totalYears={this.totalYears()}
                        overrideInitial={this.overrideInitial}
-                       caption={ResidenceCaption}
                        onUpdate={this.updateResidence}
                        onError={this.handleError}
                        applicantBirthdate={this.props.applicantBirthdate}
@@ -363,13 +367,17 @@ class History extends SectionElement {
                        required={true}
                        />
 
+            <hr className="section-divider" />
+            <span className="section-heading">
+              <Svg src="/img/employer-briefcase.svg" />
+              {i18n.t('history.employment.default.collection.caption')}
+            </span>
             <Employment {...this.props.Employment}
                         defaultState={false}
                         realtime={true}
                         sort={sort}
                         totalYears={this.totalYears()}
                         overrideInitial={this.overrideInitial}
-                        caption={EmploymentCaption}
                         onUpdate={this.updateEmployment}
                         onError={this.handleError}
                         applicantBirthdate={this.props.applicantBirthdate}
@@ -380,13 +388,17 @@ class History extends SectionElement {
                         />
 
             <Show when={(this.props.Education.HasAttended || {}).value === 'Yes' || (this.props.Education.HasDegree10 || {}).value === 'Yes'}>
+              <hr className="section-divider" />
+              <span className="section-heading">
+                <Svg src="/img/school-cap.svg" />
+                {i18n.t('history.education.collection.caption')}
+              </span>
               <Education {...this.props.Education}
                          defaultState={false}
                          realtime={true}
                          sort={sort}
                          totalYears={this.totalYears()}
                          overrideInitial={this.overrideInitial}
-                         caption={EducationCaption}
                          onUpdate={this.updateEducation}
                          onError={this.handleError}
                          dispatch={this.props.dispatch}
@@ -397,7 +409,7 @@ class History extends SectionElement {
                          />
             </Show>
 
-            <hr />
+            <hr className="section-divider" />
             <Federal name="federal"
                      {...this.props.Federal}
                      defaultState={false}
@@ -410,7 +422,7 @@ class History extends SectionElement {
                      required={true}
                      />
 
-            <hr />
+            <hr className="section-divider" />
             <SectionComments name="comments"
                              {...this.props.Comments}
                              title={i18n.t('history.review.comments')}
@@ -666,7 +678,7 @@ export class HistorySections extends React.Component {
                      />
         </Show>
 
-        <hr />
+        <hr className="section-divider" />
         <Federal name="federal"
                  {...this.props.Federal}
                  defaultState={false}
@@ -677,7 +689,7 @@ export class HistorySections extends React.Component {
                  required={true}
                  />
 
-        <hr />
+        <hr className="section-divider" />
         <SectionComments name="comments"
                          {...this.props.Comments}
                          title={i18n.t('history.review.comments')}
