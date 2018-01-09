@@ -26,9 +26,6 @@ var (
 )
 
 func CheckToken(r *http.Request, validTokenFunc func(string, string) (bool, error), audiences ...string) (string, error) {
-	// log := logmsg.NewLogger(r)
-	// log.Info(logmsg.ValidatingJWT)
-
 	jwtToken := ExtractToken(r)
 	if jwtToken == "" {
 		return "", errors.New("No authorization token header found")
@@ -43,7 +40,6 @@ func CheckToken(r *http.Request, validTokenFunc func(string, string) (bool, erro
 	}
 
 	if !valid {
-		// log.WithError(err).Warn(logmsg.InvalidJWT)
 		return jwtToken, err
 	}
 
@@ -51,13 +47,9 @@ func CheckToken(r *http.Request, validTokenFunc func(string, string) (bool, erro
 }
 
 func ExtractToken(r *http.Request) string {
-	// log := logmsg.NewLogger(r)
-	// log.Info(logmsg.ValidatingJWT)
-
 	authHeader := r.Header.Get("Authorization")
 	matches := AuthBearerRegexp.FindStringSubmatch(authHeader)
 	if len(matches) == 0 {
-		// log.Warn(logmsg.NoAuthorizationToken)
 		return ""
 	}
 
@@ -65,21 +57,17 @@ func ExtractToken(r *http.Request) string {
 }
 
 func CurrentAudience(r *http.Request) string {
-	// log := logmsg.NewLogger(r)
 	rawToken := ExtractToken(r)
 	token, err := ParseWithClaims(rawToken)
 	if err != nil {
-		// log.WithError(err).Debug("Failed to parse JWT with standard claims")
 		return ""
 	}
 
 	if token.Valid {
 		claims := token.Claims.(*jwt.StandardClaims)
-		// log.WithField("audience", claims.Audience).Debug("Current audience found")
 		return claims.Audience
 	}
 
-	// log.WithError(err).Debug("JWT is invalid")
 	return ""
 }
 
