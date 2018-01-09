@@ -703,6 +703,12 @@ export const error = {
         }
       }
     },
+    numberType: {
+      required: {
+        title: 'There is a problem with this field',
+        message: 'This field is required'
+      }
+    },
     required: {
       title: 'There is a problem with this field',
       message: 'This field is required'
