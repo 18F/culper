@@ -1,103 +1,99 @@
 <PresentMarriage>
-    {{with $Item := .}}
-    <CurrentSpouse>
-        {{if locationIsPostOffice $Item.Address}}
-        <APOFPO>
-            <Address>{{location $Item.Address}}</Address>
-            <AddressComment></AddressComment>
-        </APOFPO>
-        {{else}}
-        <Address UseMyCurrentAddress="{{$Item.UseCurrentAddress}}">
-            {{location $Item.Address}}
-        </Address>
-        {{end}}
-        <Birth>
-            <Date Type="{{dateEstimated $Item.Birthdate}}">
-                {{ date $Item.Birthdate }}
-            </Date>
-            <Place>
-                {{ location $Item.BirthPlace }}
-            </Place>
-        </Birth>
-        <Citizenship>
-            <ProofOfStatus>
-                <Comment></Comment>
-                <DocumentNumber>{{text $Item.ForeignBornDocument.DocumentNumber}}</DocumentNumber>
-                <Type>{{text $Item.ForeignBornDocument.DocumentType}}</Type>
-                <TypeOtherExplanation>{{text $Item.ForeignBornDocument.OtherExplanation}}</TypeOtherExplanation>
-            </ProofOfStatus>
-        </Citizenship>
-        <ContinueComment></ContinueComment>
-        <CountriesOfCitizenship>
-            {{range $index, $country := $Item.Citizenship.value}}
-            <Citizenship ID="{{$index}}">
-                <Country>{{$country}}</Country>
-            </Citizenship>
-            {{end}}
-        </CountriesOfCitizenship>
-
-        <Email>{{text $Item.Email}}</Email>
-        <EntryComment></EntryComment>
-
-        <LegalName>
-            {{name $Item.Name}}
-        </LegalName>
-        <Marriage>
-            <Date Type="{{dateEstimated $Item.EnteredCivilUnion}}">
-                {{date $Item.EnteredCivilUnion}}
-            </Date>
-            <Place>
-                {{location $Item.Location}}
-            </Place>
-        </Marriage>
-
-        <OtherNamesUsed NotApplicable="{{if len $Item.OtherNames.props.items | eq 0}}True{{else}}False{{end}}">
-        {{range $index, $othername := $Item.OtherNames.props.items}}
-        {{with $other := $othername.Item}}
-        <OtherName ID="{{$index}}">
-                {{daterange $other.DatesUsed}}
-                <LegalName>
-                    {{name $other.OtherName}}
-                </LegalName>
-                <Maiden>
-                    <Answer>{{branch $other.MaidenName}}</Answer>
-                </Maiden>
-            </OtherName>
-            {{end}}
-            {{end}}
-        </OtherNamesUsed>
-
-        {{with $ssn := $Item.SSN}}
-        <SSN NotApplicable="{{ $ssn.props.notApplicable }}">
-            <FirstThree>
-                {{ $ssn.props.first }}
-            </FirstThree>
-            <NextTwo>
-                {{ $ssn.props.middle }}
-            </NextTwo>
-            <LastFour>
-                {{ $ssn.props.last }}
-            </LastFour>
-        </SSN>
-        {{end}}
-        <Separated>
-            <Answer>{{branch $Item.Separated}}</Answer>
-            <AnswerComment></AnswerComment>
-        </Separated>
-        <Separation>
-            <Comment></Comment>
-            <Date Type="{{dateEstimated $Item.DateSeparated}}">
-                {{date $Item.DateSeparated}}
-            </Date>
-            <LocationOfRecord>
-                <Place NotApplicable="{{notApplicable $Item.AddressSeparatedNotApplicable}}">
-                    {{location $Item.AddressSeparated}}
-                </Place>
-            </LocationOfRecord>
-        </Separation>
-        <Telephone>
-            {{telephone $Item.Telephone}}
-        </Telephone>
-    </CurrentSpouse>
+  {{with $Item := .}}
+  <CurrentSpouse>
+    {{if locationIsPostOffice $Item.Address}}
+    <APOFPO>
+      <Address>{{location $Item.Address}}</Address>
+      <AddressComment></AddressComment>
+    </APOFPO>
+    {{else}}
+    <Address UseMyCurrentAddress="{{$Item.UseCurrentAddress}}">
+      {{location $Item.Address}}
+    </Address>
     {{end}}
+    <Birth>
+      <Date Type="{{dateEstimated $Item.Birthdate}}">
+        {{ date $Item.Birthdate }}
+      </Date>
+      <Place>
+        {{ location $Item.BirthPlace }}
+      </Place>
+    </Birth>
+    <Citizenship>
+      <ProofOfStatus>
+        <Comment></Comment>
+        <DocumentNumber>{{text $Item.ForeignBornDocument.DocumentNumber}}</DocumentNumber>
+        <Type>{{text $Item.ForeignBornDocument.DocumentType}}</Type>
+        <TypeOtherExplanation>{{text $Item.ForeignBornDocument.OtherExplanation}}</TypeOtherExplanation>
+      </ProofOfStatus>
+    </Citizenship>
+    <ContinueComment></ContinueComment>
+    <CountriesOfCitizenship>
+      {{range $index, $country := $Item.Citizenship.value}}
+      <Citizenship ID="{{$index}}">
+        <Country>{{$country}}</Country>
+      </Citizenship>
+      {{end}}
+    </CountriesOfCitizenship>
+    <Email>{{text $Item.Email}}</Email>
+    <EntryComment></EntryComment>
+    <LegalName>
+      {{name $Item.Name}}
+    </LegalName>
+    <Marriage>
+      <Date Type="{{dateEstimated $Item.EnteredCivilUnion}}">
+        {{date $Item.EnteredCivilUnion}}
+      </Date>
+      <Place>
+        {{location $Item.Location}}
+      </Place>
+    </Marriage>
+    <OtherNamesUsed NotApplicable="{{if len $Item.OtherNames.props.items | eq 0}}True{{else}}False{{end}}">
+      {{range $index, $othername := $Item.OtherNames.props.items}}
+      {{with $other := $othername.Item}}
+      <OtherName ID="{{$index}}">
+        {{daterange $other.DatesUsed}}
+        <LegalName>
+          {{name $other.OtherName}}
+        </LegalName>
+        <Maiden>
+          <Answer>{{branch $other.MaidenName}}</Answer>
+        </Maiden>
+      </OtherName>
+      {{end}}
+      {{end}}
+    </OtherNamesUsed>
+    {{with $ssn := $Item.SSN}}
+    <SSN NotApplicable="{{ $ssn.props.notApplicable }}">
+      <FirstThree>
+        {{ $ssn.props.first }}
+      </FirstThree>
+      <NextTwo>
+        {{ $ssn.props.middle }}
+      </NextTwo>
+      <LastFour>
+        {{ $ssn.props.last }}
+      </LastFour>
+    </SSN>
+    {{end}}
+    <Separated>
+      <Answer>{{branch $Item.Separated}}</Answer>
+      <AnswerComment></AnswerComment>
+    </Separated>
+    <Separation>
+      <Comment></Comment>
+      <Date Type="{{dateEstimated $Item.DateSeparated}}">
+        {{date $Item.DateSeparated}}
+      </Date>
+      <LocationOfRecord>
+        <Place NotApplicable="{{notApplicable $Item.AddressSeparatedNotApplicable}}">
+          {{location $Item.AddressSeparated}}
+        </Place>
+      </LocationOfRecord>
+    </Separation>
+    <Telephone>
+      {{telephone $Item.Telephone}}
+    </Telephone>
+  </CurrentSpouse>
+  {{end}}
 </PresentMarriage>

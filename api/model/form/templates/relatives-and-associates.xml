@@ -1,12 +1,10 @@
 <RelativesAndAssociates>
   <ApplicableRelativeTypesComment></ApplicableRelativeTypesComment>
   <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
-
   <Relatives>
-  {{range $index, $item := .props.List.props.items}}
-  {{with $Item := $item.Item}}
-
-  <Relative ID="{{$index}}">
+    {{range $index, $item := .props.List.props.items}}
+    {{with $Item := $item.Item}}
+    <Relative ID="{{$index}}">
       {{if locationIsPostOffice $Item.Address}}
       <APOFPO>
         <Address>{{location $Item.Address}}</Address>
@@ -15,23 +13,21 @@
       {{else}}
       <Address>{{location $Item.Address}}</Address>
       {{end}}
-
       <AddressComment></AddressComment>
       <Birth>
-          <Date Type="{{dateEstimated $Item.Birthdate}}">
-              {{ date $Item.Birthdate }}
-          </Date>
-          <Place>
-              {{ location $Item.Birthplace }}
-          </Place>
+        <Date Type="{{dateEstimated $Item.Birthdate}}">
+          {{ date $Item.Birthdate }}
+        </Date>
+        <Place>
+          {{ location $Item.Birthplace }}
+        </Place>
       </Birth>
-
       <Citizenship>
         <ProofOfStatus>
-          <Comment>string</Comment>
+          <Comment></Comment>
           <Court>
             <Address>
-                {{location $Item.CourtAddress}}
+              {{location $Item.CourtAddress}}
             </Address>
             <Name>{{text $Item.CourtName}}</Name>
           </Court>
@@ -40,7 +36,6 @@
           <TypeOtherExplanation>{{text $Item.DocumentComments}}</TypeOtherExplanation>
         </ProofOfStatus>
       </Citizenship>
-
       <CountriesOfCitizenship>
         <Citizenship>
           {{range $index, $country := $Item.Citizenship.value}}
@@ -48,45 +43,38 @@
           {{end}}
         </Citizenship>
       </CountriesOfCitizenship>
-
       <Deceased>
-          <Answer>{{branch $Item.IsDeceased}}</Answer>
+        <Answer>{{branch $Item.IsDeceased}}</Answer>
         <AnswerComment></AnswerComment>
       </Deceased>
       <EntryComment></EntryComment>
-
       <ForeignRelative>
         <AffiliatedWithForeignGovernment>
-            <Answer>{{branch $Item.HasAffiliation}}</Answer>
+          <Answer>{{branch $Item.HasAffiliation}}</Answer>
           <AnswerComment></AnswerComment>
         </AffiliatedWithForeignGovernment>
         <Comment></Comment>
-
         <Employer>
-            <Address DoNotKnow="{{notApplicable $Item.EmployerAddressNotApplicable}}">
-              {{location $Item.EmployerAddress}}
+          <Address DoNotKnow="{{notApplicable $Item.EmployerAddressNotApplicable}}">
+            {{location $Item.EmployerAddress}}
           </Address>
           <Comment></Comment>
           <Name DoNotKnow="{{notApplicable $Item.EmployerNotApplicable}}">
-              {{text $Item.Employer}}
+            {{text $Item.Employer}}
           </Name>
         </Employer>
-
         <FirstContactDate Type="{{dateEstimated $Item.FirstContact}}">
-            {{monthYear $Item.FirstContact}}
+          {{monthYear $Item.FirstContact}}
         </FirstContactDate>
-
         <ForeignAffiliation>
           <Comment></Comment>
           <Relationship></Relationship>
         </ForeignAffiliation>
-
         <FrequencyOfContact>{{text $Item.Frequency}}</FrequencyOfContact>
         <FrequencyOfContactTypeOtherExplanation>{{text $Item.FrequencyComments}}</FrequencyOfContactTypeOtherExplanation>
         <LastContactDate Type="Estimated">
-            {{monthYear $Item.LastContact}}
+          {{monthYear $Item.LastContact}}
         </LastContactDate>
-
         <MethodsOfContact
             InPerson="{{checkboxHas $Item.Methods "In person"}}"
             Telephone="{{checkboxHas $Item.Methods "Telephone"}}"
@@ -94,50 +82,41 @@
             WrittenCorrespondence="{{checkboxHas $Item.Methods "Written"}}"
             Other="{{checkboxHas $Item.Methods "Other"}}"
             />
-        <MethodsOfContactTypeOtherExplanation>{{text $Item.MethodsComments}}</MethodsOfContactTypeOtherExplanation>
-      </ForeignRelative>
-
-      <LegalName>
+          <MethodsOfContactTypeOtherExplanation>{{text $Item.MethodsComments}}</MethodsOfContactTypeOtherExplanation>
+        </ForeignRelative>
+        <LegalName>
           {{name $Item.Name}}
-      </LegalName>
-
-      <MothersMaidenName>
-        <Comment></Comment>
-        <FullName>
-          <LegalName SameAsListed="{{branchToBool $Item.MaidenSameAsListed}}">
-              {{name $Item.MaidenName}}
-          </LegalName>
-        </FullName>
-      </MothersMaidenName>
-
-      <OtherNamesUsed>
-        <AnswerComment></AnswerComment>
-        <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
-
-        {{range $index, $othername := $Item.Aliases.props.items}}
-        <OtherName ID="{{$index}}">
+        </LegalName>
+        <MothersMaidenName>
           <Comment></Comment>
-          {{ daterange $othername.Item.Dates }}
-
-          <LegalName>
+          <FullName>
+            <LegalName SameAsListed="{{branchToBool $Item.MaidenSameAsListed}}">
+              {{name $Item.MaidenName}}
+            </LegalName>
+          </FullName>
+        </MothersMaidenName>
+        <OtherNamesUsed>
+          <AnswerComment></AnswerComment>
+          <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+          {{range $index, $othername := $Item.Aliases.props.items}}
+          <OtherName ID="{{$index}}">
+            <Comment></Comment>
+            {{ daterange $othername.Item.Dates }}
+            <LegalName>
               {{ name $othername.Item.Name }}
-          </LegalName>
-
-          <Maiden>
+            </LegalName>
+            <Maiden>
               <Answer>{{branch $othername.Item.MaidenName}}</Answer>
-          </Maiden>
-
-          <ReasonForChange>{{text $othername.Item.Reason}}</ReasonForChange>
-        </OtherName>
-        {{end}}
-        <SummaryComment></SummaryComment>
-      </OtherNamesUsed>
-
-      <Type>{{text $Item.Relation}}</Type>
-    </Relative>
-  </Relatives>
-  {{end}}
-  {{end}}
-
-  <SummaryComment>string</SummaryComment>
-</RelativesAndAssociates>
+            </Maiden>
+            <ReasonForChange>{{text $othername.Item.Reason}}</ReasonForChange>
+          </OtherName>
+          {{end}}
+          <SummaryComment></SummaryComment>
+        </OtherNamesUsed>
+        <Type>{{text $Item.Relation}}</Type>
+      </Relative>
+    </Relatives>
+    {{end}}
+    {{end}}
+    <SummaryComment></SummaryComment>
+  </RelativesAndAssociates>

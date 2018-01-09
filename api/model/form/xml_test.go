@@ -29,7 +29,7 @@ func TestPackage(t *testing.T) {
 		{Schema: "history-employment.xml", Data: "testdata/history-employment.json"},
 		{Schema: "history-federal.xml", Data: "testdata/history-federal.json"},
 		{Schema: "history-residence.xml", Data: "testdata/history-residence.json"},
-		{Schema: "relationships-relatives.xml", Data: "testdata/relationships-relatives.json"},
+		{Schema: "relatives-and-associates.xml", Data: "testdata/relationships-relatives.json"},
 		{Schema: "spouse-cohabitants.xml", Data: "testdata/relationships-status-cohabitant.json"},
 		{Schema: "spouse-former.xml", Data: "testdata/spouse-former.json"},
 		{Schema: "spouse-have-former.xml", Data: "testdata/spouse-former.json"},

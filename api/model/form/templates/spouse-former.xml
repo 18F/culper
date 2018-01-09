@@ -1,58 +1,56 @@
 <FormerSpouses>
-    <Comment></Comment>
-    {{range $index, $item := .props.items}}
-    {{with $Item := $item.Item}}
-    <FormerSpouse ID="{{$index}}">
-        <Address DoNotKnow="{{notApplicable $Item.AddressNotApplicable}}">
-            {{location $Item.Address}}
-        </Address>
-        <Birth>
-            <Date Type="{{dateEstimated $Item.Birthdate}}">
-                {{ date $Item.Birthdate }}
-            </Date>
-            <Place>
-                {{ location $Item.BirthPlace }}
-            </Place>
-        </Birth>
-        <CountriesOfCitizenship>
-            {{range $index, $country := $Item.Citizenship.value}}
-            <Citizenship>
-                <Country>{{$country}}</Country>
-            </Citizenship>
-            {{end}}
-        </CountriesOfCitizenship>
-        <Deceased>
-            <Answer>{{branch $Item.Deceased}}</Answer>
-        </Deceased>
-        <DivorcedAnnulledComment></DivorcedAnnulledComment>
-        <EntryComment></EntryComment>
-
-        <LegalName>
-            {{name $Item.Name}}
-        </LegalName>
-        <Marriage>
-            <Date Type="{{dateEstimated $Item.Birthdate}}">
-                {{date $Item.Birthdate}}
-            </Date>
-            <Place>
-                {{location $Item.BirthPlace}}
-            </Place>
-        </Marriage>
-
-        <!-- Possible values: Divorced, Widowed, Anulled -->
-        <Separation Type="{{text $Item.Status}}}}">
-            <Date Type="{{dateEstimated $Item.DateDivorced}}">
-                {{ date $Item.DateDivorced }}
-            </Date>
-            <DivorceRecordLocation>
-                <Place>
-                    {{location $Item.DeceasedAddress}}
-                </Place>
-            </DivorceRecordLocation>
-        </Separation>
-    </FormerSpouse>
-    {{end}}
-    {{end}}
-    <HaveAdditionalEntryAnswer>{{branch .props.branch}}</HaveAdditionalEntryAnswer>
-    <SummaryComment></SummaryComment>
+  <Comment></Comment>
+  {{range $index, $item := .props.items}}
+  {{with $Item := $item.Item}}
+  <FormerSpouse ID="{{$index}}">
+    <Address DoNotKnow="{{notApplicable $Item.AddressNotApplicable}}">
+      {{location $Item.Address}}
+    </Address>
+    <Birth>
+      <Date Type="{{dateEstimated $Item.Birthdate}}">
+        {{ date $Item.Birthdate }}
+      </Date>
+      <Place>
+        {{ location $Item.BirthPlace }}
+      </Place>
+    </Birth>
+    <CountriesOfCitizenship>
+      {{range $index, $country := $Item.Citizenship.value}}
+      <Citizenship>
+        <Country>{{$country}}</Country>
+      </Citizenship>
+      {{end}}
+    </CountriesOfCitizenship>
+    <Deceased>
+      <Answer>{{branch $Item.Deceased}}</Answer>
+    </Deceased>
+    <DivorcedAnnulledComment></DivorcedAnnulledComment>
+    <EntryComment></EntryComment>
+    <LegalName>
+      {{name $Item.Name}}
+    </LegalName>
+    <Marriage>
+      <Date Type="{{dateEstimated $Item.Birthdate}}">
+        {{date $Item.Birthdate}}
+      </Date>
+      <Place>
+        {{location $Item.BirthPlace}}
+      </Place>
+    </Marriage>
+    <!-- Possible values: Divorced, Widowed, Anulled -->
+    <Separation Type="{{text $Item.Status}}}}">
+      <Date Type="{{dateEstimated $Item.DateDivorced}}">
+        {{ date $Item.DateDivorced }}
+      </Date>
+      <DivorceRecordLocation>
+        <Place>
+          {{location $Item.DeceasedAddress}}
+        </Place>
+      </DivorceRecordLocation>
+    </Separation>
+  </FormerSpouse>
+  {{end}}
+  {{end}}
+  <HaveAdditionalEntryAnswer>{{branch .props.branch}}</HaveAdditionalEntryAnswer>
+  <SummaryComment></SummaryComment>
 </FormerSpouses>
