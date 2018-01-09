@@ -29,6 +29,13 @@ func TestPackage(t *testing.T) {
 		{Schema: "history-employment.xml", Data: "testdata/history-employment.json"},
 		{Schema: "history-federal.xml", Data: "testdata/history-federal.json"},
 		{Schema: "history-residence.xml", Data: "testdata/history-residence.json"},
+		{Schema: "relatives-and-associates.xml", Data: "testdata/relationships-relatives.json"},
+		{Schema: "spouse-cohabitants.xml", Data: "testdata/relationships-status-cohabitant.json"},
+		{Schema: "spouse-former.xml", Data: "testdata/spouse-former.json"},
+		{Schema: "spouse-have-former.xml", Data: "testdata/spouse-former.json"},
+		{Schema: "spouse-marital-status.xml", Data: "testdata/spouse-marital-status.json"},
+		{Schema: "spouse-present-marriage.xml", Data: "testdata/spouse-present-marriage.json"},
+		{Schema: "personal-references.xml", Data: "testdata/relationships-people.json"},
 	}
 
 	for _, test := range tests {

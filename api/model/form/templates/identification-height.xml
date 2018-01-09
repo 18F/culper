@@ -1,4 +1,4 @@
 <Height>
-    <Feet>{{ .props.feet }}</Feet>
-    <Inches>{{ .props.inches }}</Inches>
+  <Feet>{{ .props.feet }}</Feet>
+  <Inches>{{ .props.inches }}</Inches>
 </Height>

@@ -1,5 +1,5 @@
 <Weight>
-    <Pounds>
-        {{ number . }}
-    </Pounds>
+  <Pounds>
+    {{ number . }}
+  </Pounds>
 </Weight>
