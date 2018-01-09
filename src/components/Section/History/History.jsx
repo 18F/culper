@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { reportCompletion } from '../../../actions/ApplicationActions'
-import { HistoryEducationValidator, EducationValidator } from '../../../validators'
+import { ResidenceValidator, EmploymentValidator, HistoryEducationValidator, EducationValidator, EducationItemValidator } from '../../../validators'
 import { i18n } from '../../../config'
 import { extractApplicantBirthdate } from '../extractors'
 import { SectionViews, SectionView } from '../SectionView'
@@ -154,7 +154,7 @@ class History extends SectionElement {
         continue
       }
 
-      if (i.Item.Dates) {
+      if (new ResidenceValidator(i.Item).isValid()) {
         dates.push(i.Item.Dates)
       }
     }
@@ -176,7 +176,7 @@ class History extends SectionElement {
         continue
       }
 
-      if (i.Item.Dates) {
+      if (new EmploymentValidator(i.Item).isValid()) {
         dates.push(i.Item.Dates)
       }
     }
@@ -195,7 +195,9 @@ class History extends SectionElement {
         continue
       }
 
-      dates.push(i.Item.Dates)
+      if (new EducationItemValidator(i.Item).isValid()) {
+        dates.push(i.Item.Dates)
+      }
     }
 
     return dates
@@ -212,13 +214,17 @@ class History extends SectionElement {
         continue
       }
 
+      if (!new EducationItemValidator(i.Item).isValid()) {
+        continue
+      }
+
       if (i.Item.Diplomas.items) {
         for (const d of i.Item.Diplomas.items) {
-          if (!d.Diploma || !d.Diploma.Date || !d.Diploma.Date.date) {
+          if (!d.Item || !d.Item.Date || !d.Item.Date.date) {
             continue
           }
 
-          dates.push(d.Diploma.Date)
+          dates.push(d.Item.Date)
         }
       }
     }
