@@ -79,7 +79,7 @@
                 }
               },
               "Aliases": {
-                "type": "branchcollection",
+                "type": "collection",
                 "props": {
                   "items": [
                     {

@@ -35,7 +35,6 @@ func TestPackage(t *testing.T) {
 		{Schema: "spouse-have-former.xml", Data: "testdata/spouse-former.json"},
 		{Schema: "spouse-marital-status.xml", Data: "testdata/spouse-marital-status.json"},
 		{Schema: "spouse-present-marriage.xml", Data: "testdata/spouse-present-marriage.json"},
-		{Schema: "spouse-present-marriage.xml", Data: "testdata/spouse-present-marriage.json"},
 		{Schema: "personal-references.xml", Data: "testdata/relationships-people.json"},
 	}
 
@@ -54,6 +53,6 @@ func TestPackage(t *testing.T) {
 		if tmpl == "" {
 			t.Fatalf("XML template should not be empty")
 		}
-		//log.Println("XML template: ", tmpl)
+		// log.Println("XML template: ", tmpl)
 	}
 }
