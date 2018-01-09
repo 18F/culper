@@ -63,7 +63,7 @@
         <Comment></Comment>
 
         <Employer>
-          <Address DoNotKnow="True">
+            <Address DoNotKnow="{{notApplicable $Item.EmployerAddressNotApplicable}}">
               {{location $Item.EmployerAddress}}
           </Address>
           <Comment></Comment>
