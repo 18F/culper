@@ -14,7 +14,7 @@ const message = (id) => {
   }
 
   return (
-    <div key={newGuid()}>
+    <div key={newGuid()} data-i18n={id}>
       <h5>{i18n.t(`${id}.title`)}</h5>
       {i18n.m(`${id}.message`)}
       {note}

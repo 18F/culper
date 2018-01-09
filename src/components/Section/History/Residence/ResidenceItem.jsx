@@ -296,18 +296,21 @@ export default class ResidenceItem extends ValidationElement {
             <Field title={i18n.t('history.residence.heading.reference')}
                    titleSize="h2"
                    optional={true}
-                   className="no-margin-bottom">
+                   className="no-margin-bottom"
+                   scrollIntoView={this.props.scrollIntoView}>
               {i18n.m('history.residence.para.reference')}
             </Field>
 
             <div className="reference">
               <Field title={i18n.t('reference.heading.name')}
                      titleSize="h3"
-                     optional={true}>
+                     optional={true}
+                     scrollIntoView={this.props.scrollIntoView}>
                 <Name name="ReferenceName"
                       prefix={'name'}
                       className="reference-name"
                       {...this.props.ReferenceName}
+                      scrollIntoView={this.props.scrollIntoView}
                       onUpdate={this.updateReferenceName}
                       onError={this.props.onError}
                       required={this.props.required}
@@ -410,7 +413,8 @@ export default class ResidenceItem extends ValidationElement {
               <Field title={i18n.t('reference.heading.correspondence')}
                      titleSize="h2"
                      optional={true}
-                     className="no-margin-bottom">
+                     className="no-margin-bottom"
+                     scrollIntoView={this.props.scrollIntoView}>
                 {i18n.m('reference.para.correspondence')}
               </Field>
 
@@ -458,7 +462,8 @@ export default class ResidenceItem extends ValidationElement {
 
               <Field title={i18n.t('reference.heading.email')}
                      help={'reference.help.email'}
-                     adjustFor="label">
+                     adjustFor="label"
+                     scrollIntoView={this.props.scrollIntoView}>
                 <NotApplicable name="ReferenceEmailNotApplicable"
                                {...this.props.ReferenceEmailNotApplicable}
                                label={i18n.t('reference.label.idk')}
@@ -477,7 +482,8 @@ export default class ResidenceItem extends ValidationElement {
               <Field title={i18n.t('reference.heading.address')}
                      optional={true}
                      help={'reference.help.address'}
-                     adjustFor="address">
+                     adjustFor="address"
+                     scrollIntoView={this.props.scrollIntoView}>
                 <p>{i18n.t('reference.para.address')}</p>
                 <Location name="ReferenceAddress"
                           className="reference-address"
