@@ -48,7 +48,7 @@ func NewDB() *DatabaseContext {
 			log.WithFields(logrus.Fields{
 				"elapsed": time.Since(event.StartTime),
 				"query":   query,
-			}).Debug("Excuted database query")
+			}).Debug("Executed database query")
 		}
 	})
 

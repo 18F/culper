@@ -2,9 +2,13 @@ package logmsg
 
 import (
 	"log/syslog"
+	"net/http"
 	"net/url"
 	"os"
 	"path"
+	"strings"
+
+	"github.com/18F/e-QIP-prototype/api/jwt"
 
 	"github.com/rifflock/lfshook"
 	"github.com/sirupsen/logrus"
@@ -27,6 +31,31 @@ func NewLogger() *logrus.Logger {
 
 	// Return the logger with dynamic hooks
 	return log
+}
+
+func NewLoggerFromRequest(r *http.Request) *logrus.Entry {
+	log := NewLogger()
+
+	id := ""
+	token, err := jwt.ParseWithClaims(jwt.ExtractToken(r))
+	if err == nil && token.Valid {
+		id = jwt.TokenClaims(token).Id
+	}
+
+	ip := r.RemoteAddr
+	proxies := r.Header.Get(http.CanonicalHeaderKey("x-forwarded-for"))
+	if proxies != "" {
+		for _, proxy := range strings.Split(proxies, ", ") {
+			ip = proxy
+		}
+	}
+
+	// Return request specific settings
+	contextLogger := log.WithFields(logrus.Fields{
+		"ip":      ip,
+		"account": id,
+	})
+	return contextLogger
 }
 
 // Support for logging to an append only log file.
@@ -108,7 +137,7 @@ const (
 	RetrievingAccount        = "Retrieving account"
 	NoUsername               = "Unable to retrieve account because no username was provided"
 	NoAccount                = "Unable to retrieve account"
-	AccountUpdateError       = "Not ablet to update account information"
+	AccountUpdateError       = "Not able to update account information"
 	NoAuthorizationToken     = "No authorization token header found"
 	InvalidJWT               = "Invalid JSON web token"
 	QRCodeError              = "Failed to generate multiple factor authentication QR code"
@@ -151,6 +180,10 @@ const (
 // Informative messages
 const (
 	StartingServer     = "Starting server"
+	WebRequest         = "Web server request received"
+	BasicAuthValid     = "Basic authentication validated"
+	MFAValid           = "Multiple factor authentication validated"
+	SamlValid          = "SAML authentication validated"
 	ValidatingJWT      = "Validating JSON web token"
 	GenerateQRCode     = "Generating multiple factor authentication QR code"
 	ResetMFA           = "Reset of multiple factor authentication"

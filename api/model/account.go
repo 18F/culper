@@ -3,25 +3,14 @@ package model
 import (
 	"errors"
 	"fmt"
-	"os"
 	"strconv"
 	"time"
 
 	"github.com/18F/e-QIP-prototype/api/db"
-	jwt "github.com/dgrijalva/jwt-go"
-)
-
-const (
-	Issuer               = "eqip"
-	BasicAuthAudience    = "Basic"
-	TwoFactorAudience    = "2FA"
-	SingleSignOnAudience = "SSO"
+	"github.com/18F/e-QIP-prototype/api/jwt"
 )
 
 var (
-	JwtSecret  = []byte(os.Getenv("JWT_SECRET"))
-	Expiration = time.Hour * 1
-
 	// ErrPasswordDoesNotMatch is an error when a user inputs an invalid password
 	ErrPasswordDoesNotMatch = errors.New("Password does not match")
 
@@ -73,34 +62,20 @@ func (a *Account) BasicAuthentication(password string) error {
 	return nil
 }
 
-// NewJwtToken generates a new Jwt signed token using a users account information
 func (a *Account) NewJwtToken(audience string) (string, time.Time, error) {
-	expiresAt := time.Now().Add(Expiration)
-	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.StandardClaims{
-		Id:        strconv.FormatInt(int64(a.ID), 10),
-		Issuer:    Issuer,
-		Audience:  audience,
-		ExpiresAt: expiresAt.Unix(),
-	})
-
-	signedToken, err := token.SignedString(JwtSecret)
-	if err != nil {
-		return "", time.Time{}, err
-	}
-
-	return signedToken, expiresAt, nil
+	return jwt.NewToken(a.ID, audience)
 }
 
 // ValidJwtToken parses a token and determines if the token is valid
 func (a *Account) ValidJwtToken(rawToken, audience string) (bool, error) {
-	token, err := jwt.ParseWithClaims(rawToken, &jwt.StandardClaims{}, keyFunc)
+	token, err := jwt.ParseWithClaims(rawToken)
 	if err != nil {
 		// Invalid token
 		return false, err
 	}
 
 	if token.Valid {
-		claims := token.Claims.(*jwt.StandardClaims)
+		claims := jwt.TokenClaims(token)
 		a.ID, err = strconv.Atoi(claims.Id)
 		if err != nil {
 			return false, err
@@ -145,11 +120,4 @@ func (a *Account) Save() error {
 	}
 
 	return err
-}
-
-func keyFunc(token *jwt.Token) (interface{}, error) {
-	if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
-		return nil, fmt.Errorf("Unexpected signing method: %v", token.Header["alg"])
-	}
-	return JwtSecret, nil
 }
