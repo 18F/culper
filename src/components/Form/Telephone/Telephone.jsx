@@ -332,11 +332,23 @@ export default class Telephone extends ValidationElement {
       })
     })
 
+    // Zero out any required fields if IDK is selected
+    if (code === 'none' && value === true) {
+      this.errors.filter(err => err.code.indexOf(`.required`) > -1).forEach(err => {
+        err.valid = true
+      })
+    }
+
     // Run the entire component through it's own error checks as a whole
     const requiredErr = this.errors.concat(this.constructor.errors.map(err => {
+      let errProps = {...this.props, ...this.state}
+      if (code === 'none') {
+        errProps.noNumber = value
+      }
+
       return {
         code: `telephone.${err.code}`,
-        valid: err.func(value, {...this.props, ...this.state}),
+        valid: err.func(value, errProps),
         uid: this.state.uid
       }
     }))
