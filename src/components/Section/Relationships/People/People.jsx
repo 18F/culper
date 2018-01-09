@@ -118,7 +118,7 @@ export default class People extends SubsectionElement {
 
   peopleSummaryList () {
     return this.excludeGaps(this.props.List.items).reduce((dates, item) => {
-      if (!item || !item.Item || !item.Item.Dates) {
+      if (!item || !new PersonValidator(item.Item).isValid()) {
         return dates
       }
 
@@ -150,8 +150,7 @@ export default class People extends SubsectionElement {
                            List={this.peopleSummaryList}
                            title={i18n.t('relationships.people.summaryProgress.title')}
                            unit={i18n.t('relationships.people.summaryProgress.unit')}
-                           total={7}
-                           >
+                           total={7}>
             <div className="summary-icon">
               <Svg src="/img/people-who-know-you.svg" />
             </div>

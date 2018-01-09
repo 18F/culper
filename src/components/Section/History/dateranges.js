@@ -96,7 +96,20 @@ export const fromJulian = (julian) => {
  * Find the percentage/position within a date range a particular value has.
  */
 export const findPercentage = (max, min, value) => {
-  const pos = ((value - min) / (max - min)) * 100
+  let largest = max
+  let smallest = min
+  if (min > largest) {
+    largest = min
+    smallest = max
+  }
+
+  const pos = ((value - smallest) / (largest - smallest)) * 100
+  if (pos < 0) {
+    return 0
+  } else if (pos > 100) {
+    return 100
+  }
+
   return decimalAdjust('round', pos, -2)
 }
 
