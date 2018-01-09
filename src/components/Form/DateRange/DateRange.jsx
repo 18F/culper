@@ -220,7 +220,6 @@ export default class DateRange extends ValidationElement {
           <DateControl name="from"
                        className="from"
                        {...this.state.from}
-                       estimated={this.state.estimated}
                        onUpdate={this.updateFrom}
                        applicantBirthdate={this.props.applicantBirthdate}
                        minDate={this.props.minDate}
@@ -242,7 +241,6 @@ export default class DateRange extends ValidationElement {
                        ref="to"
                        className={klassTo}
                        {...this.state.to}
-                       estimated={this.state.estimated}
                        receiveProps={this.state.presentClicked}
                        disabled={this.state.present || this.props.disabled}
                        onUpdate={this.updateTo}
