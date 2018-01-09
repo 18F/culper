@@ -360,16 +360,19 @@ export default class EmploymentItem extends ValidationElement {
             <Field title={i18n.t(`${prefix}.heading.reference`)}
                    titleSize="h2"
                    className="no-margin-bottom"
+                   scrollIntoView={this.props.scrollIntoView}
                    />
 
             <div className="reference">
               <Field title={i18n.t('reference.heading.name')}
                      titleSize="h3"
-                     optional={true}>
+                     optional={true}
+                     scrollIntoView={this.props.scrollIntoView}>
                 <Name name="ReferenceName"
                       prefix={'name'}
                       className="reference-name"
                       {...this.props.ReferenceName}
+                      scrollIntoView={this.props.scrollIntoView}
                       onUpdate={this.updateReferenceName}
                       onError={this.props.onError}
                       required={this.props.required}
@@ -393,7 +396,8 @@ export default class EmploymentItem extends ValidationElement {
               <Field title={i18n.t('reference.heading.address')}
                      optional={true}
                      help={'reference.help.address'}
-                     adjustFor="address">
+                     adjustFor="address"
+                     scrollIntoView={this.props.scrollIntoView}>
                 <p>{i18n.t('reference.para.address')}</p>
                 <Location name="ReferenceAddress"
                           className="reference-address"
@@ -417,7 +421,8 @@ export default class EmploymentItem extends ValidationElement {
             <Field title={i18n.t(`${prefix}.heading.additionalActivity`)}
                    titleSize="h2"
                    optional={true}
-                   className="no-margin-bottom">
+                   className="no-margin-bottom"
+                   scrollIntoView={this.props.scrollIntoView}>
               {i18n.m(`${prefix}.para.additionalActivity`)}
             </Field>
 

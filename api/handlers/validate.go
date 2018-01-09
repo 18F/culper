@@ -10,7 +10,7 @@ import (
 
 // Validate checks if an entire address is valid
 func Validate(w http.ResponseWriter, r *http.Request) {
-	log := logmsg.NewLogger()
+	log := logmsg.NewLoggerFromRequest(r)
 
 	// Read the body of the request (which should be in JSON)
 	body, err := ioutil.ReadAll(r.Body)
