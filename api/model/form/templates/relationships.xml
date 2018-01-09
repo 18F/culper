@@ -1,0 +1,3 @@
+{{template "personal-references" .Relationships.People}}
+{{template "relatives-and-associates" .Relationships.Relatives}}
+{{template "spouse" .}}

@@ -1,6 +1,6 @@
 {{ $name := .props.Name }}
 <FullName>
-    <LegalName>
-        {{ name $name }}
-    </LegalName>
+  <LegalName>
+    {{ name $name }}
+  </LegalName>
 </FullName>

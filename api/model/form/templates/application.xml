@@ -1,21 +1,22 @@
 <Responses>
-    <AgencyInstructionsForApplicant>string</AgencyInstructionsForApplicant>
-    <FormInstanceSpecific>
-        <ESigCertificationResponses Version="1" Type="Pooled" LastSummaryID="201" LastDynamicListID="201">
-            <UserFinalizedCert>
-                <Answer>Yes</Answer>
-            </UserFinalizedCert>
-            <UserOptedToESig>
-                <Answer>Yes</Answer>
-            </UserOptedToESig>
-        </ESigCertificationResponses>
-        <UserPreferences Version="1" Type="Pooled" LastSummaryID="201" LastDynamicListID="201">
-            <DisplayNavigation>string</DisplayNavigation>
-        </UserPreferences>
-    </FormInstanceSpecific>
-    <Pooled>
-        <!-- Section elements go here -->
-        {{template "identification" .}}
-        {{template "financial" .}}
-    </Pooled>
+  <AgencyInstructionsForApplicant>string</AgencyInstructionsForApplicant>
+  <FormInstanceSpecific>
+    <ESigCertificationResponses Version="1" Type="Pooled" LastSummaryID="201" LastDynamicListID="201">
+      <UserFinalizedCert>
+        <Answer>Yes</Answer>
+      </UserFinalizedCert>
+      <UserOptedToESig>
+        <Answer>Yes</Answer>
+      </UserOptedToESig>
+    </ESigCertificationResponses>
+    <UserPreferences Version="1" Type="Pooled" LastSummaryID="201" LastDynamicListID="201">
+      <DisplayNavigation>string</DisplayNavigation>
+    </UserPreferences>
+  </FormInstanceSpecific>
+  <Pooled>
+    {{template "identification" .}}
+    {{template "relationships" .}}
+    {{template "history" .}}
+    {{template "financial" .}}
+  </Pooled>
 </Responses>

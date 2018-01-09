@@ -1,0 +1,40 @@
+<PersonalReferences>
+  <Comment></Comment>
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+  <References>
+    {{range $index, $item := .props.List.props.items}}
+    {{with $Item := $item.Item}}
+    <Reference ID={{$index}}>
+      <Address>
+        {{location $Item.Address}}
+      </Address>
+      <DateRange>
+        {{daterange $Item.Dates}}
+      </DateRange>
+      <Email DoNotKnow="{{notApplicable $Item.EmailNotApplicable}}">{{text $Item.Email}}</Email>
+      <EntryComment></EntryComment>
+      <LegalName>
+        {{name $Item.Name}}
+      </LegalName>
+      <RelationshipType
+          Neighbor="{{checkboxHas $Item.Relationship "Neighbor"}}"
+          Friend="{{checkboxHas $Item.Relationship "Friend"}}"
+          WorkAssociate="{{checkboxHas $Item.Relationship "Business"}}"
+          Schoolmate="{{checkboxHas $Item.Relationship "School"}}"
+          Other="{{checkboxHas $Item.Relationship "Other"}}"
+          />
+        <RelationshipTypeOtherExplanation>{{text $Item.RelationshipOther}}</RelationshipTypeOtherExplanation>
+        <Telephone>
+          <Home DoNotKnow="{{$Item.OtherTelephone.noNumber}}">
+            {{telephoneNoNumber $Item.OtherTelephone}}
+          </Home>
+          <Mobile DoNotKnow="{{$Item.MobileTelephone.noNumber}}">
+            {{telephoneNoNumber $Item.MobileTelephone}}
+          </Mobile>
+        </Telephone>
+        <Title NotApplicable="{{notApplicable $Item.RankNotApplicable}}">{{text $Item.Rank}}</Title>
+      </Reference>
+      {{end}}
+      {{end}}
+    </References>
+  </PersonalReferences>
