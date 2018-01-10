@@ -13,7 +13,10 @@ export default class PeopleValidator {
   }
 
   validCount () {
-    return ((this.list || {}).items || []).length
+    return ((this.list || {}).items || []).reduce((acc, cur) => {
+      const valid = new PersonValidator(cur.Item).isValid()
+      return valid ? acc + 1 : acc
+    }, 0)
   }
 
   validYearRange () {

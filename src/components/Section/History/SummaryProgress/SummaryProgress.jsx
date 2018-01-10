@@ -29,11 +29,14 @@ export default class SummaryProgress extends ValidationElement {
         const from = julian(dates.from.date)
         const to = julian(dates.to.date)
 
-        if (dates.from.date >= julianMax || to >= julianMax) {
+        if (from >= julianMax || to >= julianMax) {
           // Meat of the calculations into percentages
           let right = findPercentage(julianNow, julianMax, to)
           left = findPercentage(julianNow, julianMax, from)
-          width = Math.abs(right - left)
+
+          if (right >= 0) {
+            width = right - left
+          }
 
           // Check boundaries
           if (width < 0) {
@@ -65,7 +68,9 @@ export default class SummaryProgress extends ValidationElement {
    */
   completed () {
     const sum = this.ranges().reduce((a, b) => a + b.width, 0)
-    return Math.min(decimalAdjust('floor', this.total() * (sum / 100), 0), this.total())
+    const x = decimalAdjust('round', this.total() * (sum / 100), 0)
+    const y = this.total()
+    return Math.abs(Math.min(x, y))
   }
 
   /**
@@ -79,9 +84,9 @@ export default class SummaryProgress extends ValidationElement {
     return this.ranges().map((range) => {
       const styles = {
         left: '' + range.left + '%',
-        width: '' + range.width + '%'
+        width: '' + Math.abs(range.width) + '%'
       }
-      return <div key={newGuid()} className="filled" style={styles}></div>
+      return <div key={newGuid()} className="filled" style={styles} data-from={range.dates.from.date} data-to={range.dates.to.date}></div>
     })
   }
 
