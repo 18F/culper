@@ -63,7 +63,6 @@ export default class Contact extends SubsectionElement {
         <Branch name="has_foreign_contact"
                 label={i18n.t('foreign.business.contact.heading.title')}
                 labelSize="h2"
-                help="foreign.business.contact.help.branch"
                 {...this.props.HasForeignContact}
                 warning={true}
                 onUpdate={this.updateHasForeignContact}
