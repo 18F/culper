@@ -79,13 +79,14 @@ export default class Unlawful extends SubsectionElement {
                      appendLabel={i18n.t('legal.technology.unlawful.collection.appendLabel')}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
-                     <UnlawfulItem name="Item"
-                       bind={true}
-                       addressBooks={this.props.addressBooks}
-                       dispatch={this.props.dispatch}
-                       required={this.props.required}
-                       scrollIntoView={this.props.scrollIntoView}
-                     />
+            <UnlawfulItem name="Item"
+                          bind={true}
+                          addressBooks={this.props.addressBooks}
+                          applicantBirthdate={this.props.applicantBirthdate}
+                          dispatch={this.props.dispatch}
+                          required={this.props.required}
+                          scrollIntoView={this.props.scrollIntoView}
+                          />
           </Accordion>
         </Show>
       </div>
@@ -103,6 +104,7 @@ Unlawful.defaultProps = {
   section: 'legal',
   subsection: 'technology/unlawful',
   addressBooks: {},
+  applicantBirthdate: {},
   dispatch: (action) => {},
   validator: (state, props) => {
     return validate(schema('legal.technology.unlawful', props))
