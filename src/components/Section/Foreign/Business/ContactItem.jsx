@@ -95,7 +95,6 @@ export default class ContactItem extends ValidationElement {
                 />
         </Field>
         <Field title={i18n.t('foreign.business.contact.heading.location')}
-               help="foreign.business.contact.help.location"
                scrollIntoView={this.props.scrollIntoView}>
           <Location name="Location"
                     {...this.props.Location}
@@ -143,7 +142,6 @@ export default class ContactItem extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.business.contact.heading.establishment')}
-               help="foreign.business.contact.help.establishment"
                adjustFor="textarea"
                scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Establishment"
@@ -156,7 +154,6 @@ export default class ContactItem extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.business.contact.heading.representatives')}
-               help="foreign.business.contact.help.representatives"
                adjustFor="textarea"
                scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Representatives"
@@ -169,7 +166,6 @@ export default class ContactItem extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.business.contact.heading.purpose')}
-               help="foreign.business.contact.help.purpose"
                adjustFor="textarea"
                scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Purpose"
