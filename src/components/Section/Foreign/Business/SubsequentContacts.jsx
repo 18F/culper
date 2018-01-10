@@ -34,7 +34,6 @@ export default class SubsequentContacts extends ValidationElement {
                           onError={this.props.onError}
                           scrollIntoView={this.props.scrollIntoView}>
           <Field title={i18n.t('foreign.business.contact.heading.subsequent')}
-                 help="foreign.business.contact.help.subsequent"
                  adjustFor="textarea"
                  scrollIntoView={this.props.scrollIntoView}>
             <Textarea name="Subsequent"
@@ -57,7 +56,6 @@ export default class SubsequentContacts extends ValidationElement {
           </Field>
 
           <Field title={i18n.t('foreign.business.contact.heading.future')}
-                 help="foreign.business.contact.help.future"
                  adjustFor="textarea"
                  scrollIntoView={this.props.scrollIntoView}>
             <Textarea name="Future"
