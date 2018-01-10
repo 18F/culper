@@ -180,6 +180,7 @@ const (
 // Informative messages
 const (
 	StartingServer     = "Starting server"
+	StartingServerTLS  = "Starting server with HTTPS/TLS"
 	WebRequest         = "Web server request received"
 	BasicAuthValid     = "Basic authentication validated"
 	MFAValid           = "Multiple factor authentication validated"
