@@ -121,7 +121,6 @@ export default class VenturesItem extends ValidationElement {
 
         <Field title={i18n.t('foreign.business.ventures.heading.address')}
                optional={true}
-               help="foreign.business.ventures.help.address"
                adjustFor="address"
                scrollIntoView={this.props.scrollIntoView}>
           <Location name="Address"
@@ -152,7 +151,6 @@ export default class VenturesItem extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.business.ventures.heading.description')}
-               help="foreign.business.ventures.help.description"
                scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Description"
                     {...this.props.Description}
@@ -164,7 +162,6 @@ export default class VenturesItem extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.business.ventures.heading.relationship')}
-               help="foreign.business.ventures.help.relationship"
                scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Relationship"
                     {...this.props.Relationship}
@@ -190,7 +187,6 @@ export default class VenturesItem extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.business.ventures.heading.association')}
-               help="foreign.business.ventures.help.association"
                scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Association"
                     {...this.props.Association}
@@ -202,7 +198,6 @@ export default class VenturesItem extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.business.ventures.heading.position')}
-               help="foreign.business.ventures.help.position"
                scrollIntoView={this.props.scrollIntoView}>
           <Text name="Position"
                 {...this.props.Position}
@@ -214,7 +209,6 @@ export default class VenturesItem extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.business.ventures.heading.service')}
-               help="foreign.business.ventures.help.service"
                scrollIntoView={this.props.scrollIntoView}>
           <Text name="Service"
                 {...this.props.Service}
@@ -226,7 +220,6 @@ export default class VenturesItem extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.business.ventures.heading.support')}
-               help="foreign.business.ventures.help.support"
                scrollIntoView={this.props.scrollIntoView}>
           <Text name="Support"
                 {...this.props.Support}
@@ -238,7 +231,6 @@ export default class VenturesItem extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.business.ventures.heading.compensation')}
-               help="foreign.business.ventures.help.compensation"
                scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Compensation"
                     {...this.props.Compensation}

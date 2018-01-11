@@ -40,15 +40,6 @@ export const CustomSummary = (validation, summary, more, item, index, initial, c
   )
 }
 
-export const ResidenceCaption = (props) => {
-  return (
-    <span>
-      <Svg src="/img/residence-house.svg" />
-      {i18n.t('history.residence.collection.caption')}
-    </span>
-  )
-}
-
 /**
  * Renders a formatted summary information for a residence row
  */
@@ -109,15 +100,6 @@ export const ResidenceCustomSummary = (item, index, initial, callback, toggle, o
     openText,
     remove,
     byline)
-}
-
-export const EmploymentCaption = (props) => {
-  return (
-    <span>
-      <Svg src="/img/employer-briefcase.svg" />
-      {i18n.t('history.employment.default.collection.caption')}
-    </span>
-  )
 }
 
 const employmentTitle = (activity, item, unk) => {
@@ -208,15 +190,6 @@ export const EmploymentCustomSummary = (item, index, initial, callback, toggle, 
     openText,
     remove,
     byline)
-}
-
-export const EducationCaption = (props) => {
-  return (
-    <span>
-      <Svg src="/img/school-cap.svg" />
-      {i18n.t('history.education.collection.caption')}
-    </span>
-  )
 }
 
 /**

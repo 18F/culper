@@ -143,7 +143,7 @@ class Psychological extends SectionElement {
                         scrollIntoView={false}
                         onUpdate={this.handleUpdate.bind(this, 'Competence')} />
 
-            <hr />
+            <hr className="section-divider" />
             <Consultation name="Consultations"
                           {...this.props.Consultations}
                           applicantBirthdate={this.props.applicantBirthdate}
@@ -154,7 +154,7 @@ class Psychological extends SectionElement {
                           scrollIntoView={false}
                           onUpdate={this.handleUpdate.bind(this, 'Consultations')} />
 
-            <hr />
+            <hr className="section-divider" />
             <Hospitalizations name="Hospitalizations"
                               {...this.props.Hospitalizations}
                               applicantBirthdate={this.props.applicantBirthdate}
@@ -165,7 +165,7 @@ class Psychological extends SectionElement {
                               scrollIntoView={false}
                               onUpdate={this.handleUpdate.bind(this, 'Hospitalizations')} />
 
-            <hr />
+            <hr className="section-divider" />
             <Diagnoses name="Diagnoses"
                        {...this.props.Diagnoses}
                        applicantBirthdate={this.props.applicantBirthdate}
@@ -179,7 +179,7 @@ class Psychological extends SectionElement {
 
             <Show when={this.props.ShowExistingConditions}>
               <div>
-                <hr />
+                <hr className="section-divider" />
                 <ExistingConditions name="ExistingConditions"
                                     {...this.props.ExistingConditions}
                                     applicantBirthdate={this.props.applicantBirthdate}
@@ -193,7 +193,7 @@ class Psychological extends SectionElement {
               </div>
             </Show>
 
-            <hr />
+            <hr className="section-divider" />
             <SectionComments name="comments"
                              {...this.props.Comments}
                              title={i18n.t('psychological.review.comments')}
@@ -254,7 +254,7 @@ export class PsychologicalSections extends React.Component {
                     scrollIntoView={false}
                     />
 
-        <hr />
+        <hr className="section-divider" />
         <Consultation name="Consultations"
                       {...this.props.Consultations}
                       applicantBirthdate={this.props.applicantBirthdate}
@@ -265,7 +265,7 @@ export class PsychologicalSections extends React.Component {
                       scrollIntoView={false}
                       />
 
-        <hr />
+        <hr className="section-divider" />
         <Hospitalizations name="Hospitalizations"
                           {...this.props.Hospitalizations}
                           applicantBirthdate={this.props.applicantBirthdate}
@@ -276,7 +276,7 @@ export class PsychologicalSections extends React.Component {
                           scrollIntoView={false}
                           />
 
-        <hr />
+        <hr className="section-divider" />
         <Diagnoses name="Diagnoses"
                    {...this.props.Diagnoses}
                    applicantBirthdate={this.props.applicantBirthdate}
@@ -289,7 +289,7 @@ export class PsychologicalSections extends React.Component {
 
         <Show when={showExisting}>
           <div>
-            <hr />
+            <hr className="section-divider" />
             <ExistingConditions name="ExistingConditions"
                                 {...this.props.ExistingConditions}
                                 applicantBirthdate={this.props.applicantBirthdate}
@@ -302,7 +302,7 @@ export class PsychologicalSections extends React.Component {
           </div>
         </Show>
 
-        <hr />
+        <hr className="section-divider" />
         <SectionComments name="comments"
                          {...this.props.Comments}
                          title={i18n.t('psychological.review.comments')}

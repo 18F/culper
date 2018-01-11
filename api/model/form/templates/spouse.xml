@@ -1,0 +1,6 @@
+{{template "spouse-cohabitants" .Relationships.Marital.Cohabitants}}
+{{template "spouse-former" .Relationships.Marital.DivorcedList}}
+{{template "spouse-have-former" .Relationships.DivorcedList}}
+{{template "spouse-marital-status" .Relationships.Marital.CivilUnion}}
+{{template "spouse-present-marriage" .Relationships.Marital.Status}}
+<SummaryComment></SummaryComment>

@@ -58,7 +58,6 @@ export default class Conferences extends SubsectionElement {
                 label={i18n.t('foreign.business.conferences.heading.title')}
                 labelSize="h2"
                 adjustFor="p"
-                help="foreign.business.conferences.help.branch"
                 {...this.props.HasForeignConferences}
                 warning={true}
                 onUpdate={this.updateHasForeignConferences}

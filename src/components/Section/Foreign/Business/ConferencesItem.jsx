@@ -76,7 +76,6 @@ export default class ConferencesItem extends ValidationElement {
     return (
       <div className="conferences-item">
         <Field title={i18n.t('foreign.business.conferences.heading.description')}
-               help="foreign.business.conferences.help.description"
                scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Description"
                     {...this.props.Description}
@@ -88,7 +87,6 @@ export default class ConferencesItem extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.business.conferences.heading.sponsor')}
-               help="foreign.business.conferences.help.sponsor"
                scrollIntoView={this.props.scrollIntoView}>
           <Text name="Sponsor"
                 {...this.props.Sponsor}
@@ -100,7 +98,6 @@ export default class ConferencesItem extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.business.conferences.heading.city')}
-               help="foreign.business.conferences.help.city"
                scrollIntoView={this.props.scrollIntoView}>
           <Text name="City"
                 {...this.props.City}
@@ -112,7 +109,6 @@ export default class ConferencesItem extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.business.conferences.heading.country')}
-               help="foreign.business.conferences.help.country"
                scrollIntoView={this.props.scrollIntoView}>
           <Country name="Country"
                    {...this.props.Country}
@@ -138,7 +134,6 @@ export default class ConferencesItem extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.business.conferences.heading.purpose')}
-               help="foreign.business.conferences.help.purpose"
                scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Purpose"
                     {...this.props.Purpose}

@@ -1,15 +1,16 @@
 package main
 
 import (
+	"crypto/tls"
 	"flag"
 	"net/http"
+	"os"
 
 	"github.com/18F/e-QIP-prototype/api/cf"
 	"github.com/18F/e-QIP-prototype/api/db"
 	"github.com/18F/e-QIP-prototype/api/handlers"
 	"github.com/18F/e-QIP-prototype/api/logmsg"
 	"github.com/gorilla/mux"
-	"github.com/sirupsen/logrus"
 )
 
 var (
@@ -37,7 +38,6 @@ func main() {
 		s := r.PathPrefix("/2fa").Subrouter()
 		s.HandleFunc("/{account}", handlers.TwofactorHandler)
 		s.HandleFunc("/{account}/verify", handlers.TwofactorVerifyHandler)
-		s.HandleFunc("/{account}/email", handlers.TwofactorEmailHandler)
 
 		if cf.TwofactorResettable() {
 			s.HandleFunc("/{account}/reset", handlers.TwofactorResetHandler)
@@ -72,10 +72,38 @@ func main() {
 	a.HandleFunc("/attachment/{id}/delete", inject(handlers.DeleteAttachment, handlers.JwtTokenValidatorHandler)).Methods("POST", "DELETE")
 
 	address := cf.PublicAddress()
-	log.WithFields(logrus.Fields{
-		"address": address,
-	}).Info(logmsg.StartingServer)
-	log.Fatal(http.ListenAndServe(address, handlers.CORS(r)))
+	tlsCertificate := os.Getenv("TLS_CERT")
+	tlsPrivateKey := os.Getenv("TLS_KEY")
+	if tlsCertificate != "" && tlsPrivateKey != "" {
+		cfg := &tls.Config{
+			MinVersion: tls.VersionTLS12,
+			CurvePreferences: []tls.CurveID{
+				tls.CurveP521,
+				tls.CurveP384,
+				tls.CurveP256,
+			},
+			PreferServerCipherSuites: true,
+			CipherSuites: []uint16{
+				tls.TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,
+				tls.TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA,
+				tls.TLS_RSA_WITH_AES_256_GCM_SHA384,
+				tls.TLS_RSA_WITH_AES_256_CBC_SHA,
+			},
+		}
+
+		srv := &http.Server{
+			Addr:         address,
+			Handler:      r,
+			TLSConfig:    cfg,
+			TLSNextProto: make(map[string]func(*http.Server, *tls.Conn, http.Handler), 0),
+		}
+
+		log.WithField("address", address).Info(logmsg.StartingServerTLS)
+		log.Fatal(srv.ListenAndServeTLS(tlsCertificate, tlsPrivateKey))
+	} else {
+		log.WithField("address", address).Info(logmsg.StartingServer)
+		log.Fatal(http.ListenAndServe(address, handlers.CORS(handlers.StandardLogging(r))))
+	}
 }
 
 type Handler func(w http.ResponseWriter, r *http.Request) error

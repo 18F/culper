@@ -35,6 +35,7 @@ var (
 		"checkbox":             checkbox,
 		"checkboxHas":          checkboxHas,
 		"checkboxTrueFalse":    checkboxTrueFalse,
+		"branchToBool":         branchToBool,
 	}
 
 	fattrmap = template.FuncMap{}
@@ -323,4 +324,16 @@ func location(data map[string]interface{}) template.HTML {
 		}
 		return xmlTemplate("location-street-city-country.xml", data)
 	}
+}
+
+func branchToBool(data map[string]interface{}) string {
+	val, ok := data["value"]
+	if ok {
+		if val == "Yes" {
+			return "True"
+		} else {
+			return "False"
+		}
+	}
+	return "False"
 }

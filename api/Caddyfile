@@ -16,7 +16,7 @@
     }
 
     # For APIs
-    proxy /api/ http://api:3000 {
+    proxy /api/ api:3000 {
         without /api
         transparent
     }

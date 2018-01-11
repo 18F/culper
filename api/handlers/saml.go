@@ -7,6 +7,7 @@ import (
 
 	"github.com/18F/e-QIP-prototype/api/cf"
 	"github.com/18F/e-QIP-prototype/api/db"
+	"github.com/18F/e-QIP-prototype/api/jwt"
 	"github.com/18F/e-QIP-prototype/api/logmsg"
 	"github.com/18F/e-QIP-prototype/api/model"
 	saml "github.com/RobotsAndPencils/go-saml"
@@ -15,7 +16,7 @@ import (
 
 // SamlServiceHandler is the initial entry point for authentication.
 func SamlServiceHandler(w http.ResponseWriter, r *http.Request) {
-	log := logmsg.NewLogger()
+	log := logmsg.NewLoggerFromRequest(r)
 
 	if !cf.SamlEnabled() {
 		log.Warn(logmsg.SamlAttemptDenied)
@@ -23,7 +24,7 @@ func SamlServiceHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	sp := configureSAML()
+	sp := configureSAML(r)
 
 	// Generate the AuthnRequest and then get a base64 encoded string of the XML
 	authnRequest := sp.GetAuthnRequest()
@@ -61,7 +62,7 @@ func SamlServiceHandler(w http.ResponseWriter, r *http.Request) {
 
 // SamlCallbackHandler is the returning entry point for authentication.
 func SamlCallbackHandler(w http.ResponseWriter, r *http.Request) {
-	log := logmsg.NewLogger()
+	log := logmsg.NewLoggerFromRequest(r)
 
 	if !cf.SamlEnabled() {
 		log.Warn(logmsg.SamlAttemptDenied)
@@ -85,7 +86,7 @@ func SamlCallbackHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	sp := configureSAML()
+	sp := configureSAML(r)
 	err = response.Validate(&sp)
 	if err != nil {
 		log.WithError(err).Warn(logmsg.SamlInvalid)
@@ -107,7 +108,7 @@ func SamlCallbackHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	account.WithContext(db.NewDB())
 	if err := account.Get(); err != nil {
-		log.WithError(err).Warn(logmsg.NoAccount)
+		log.WithField("username", username).WithError(err).Warn(logmsg.NoAccount)
 
 		// Attempt to create a new account if one is not
 		// found in the system but is verified to have
@@ -117,20 +118,21 @@ func SamlCallbackHandler(w http.ResponseWriter, r *http.Request) {
 		// make sure the final release does not allow the creation
 		// of a new account and returns an error in its place.
 		if err := account.Save(); err != nil {
-			log.WithError(err).Warn(logmsg.AccountUpdateError)
+			log.WithField("username", username).WithError(err).Warn(logmsg.AccountUpdateError)
 			redirectAccessDenied(w, r)
 			return
 		}
 	}
 
 	// Generate jwt token
-	signedToken, _, err := account.NewJwtToken(model.SingleSignOnAudience)
+	signedToken, _, err := account.NewJwtToken(jwt.SingleSignOnAudience)
 	if err != nil {
-		log.WithError(err).Warn(logmsg.JWTError)
+		log.WithField("account", account.ID).WithError(err).Warn(logmsg.JWTError)
 		redirectAccessDenied(w, r)
 		return
 	}
 
+	log.WithField("account", account.ID).Info(logmsg.SamlValid)
 	url := fmt.Sprintf("%s?token=%s", redirectTo, signedToken)
 	http.Redirect(w, r, url, http.StatusTemporaryRedirect)
 }
@@ -148,8 +150,8 @@ func redirectAccessDenied(w http.ResponseWriter, r *http.Request) {
 //  - IDPPublicCertPath:           "idpcert.crt",
 //  - SPSignRequest:               "true",
 //  - AssertionConsumerServiceURL: "http://localhost:8000/saml_consume",
-func configureSAML() saml.ServiceProviderSettings {
-	log := logmsg.NewLogger()
+func configureSAML(r *http.Request) saml.ServiceProviderSettings {
+	log := logmsg.NewLoggerFromRequest(r)
 	log.WithFields(logrus.Fields{
 		"PublicCertPath":              os.Getenv("SAML_PUBLIC_CERT"),
 		"PrivateKeyPath":              os.Getenv("SAML_PRIVATE_CERT"),

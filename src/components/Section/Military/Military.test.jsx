@@ -50,7 +50,7 @@ describe('The military section', () => {
       },
       {
         section: 'history',
-        action: (component) => { component.find('.history .branch .yes input').simulate('change') }
+        action: (component) => { component.find('.military-history .branch .yes input').simulate('change') }
       },
       {
         section: 'disciplinary',
@@ -71,7 +71,7 @@ describe('The military section', () => {
 
   it('hides selective service if age is before December 31st, 1959', () => {
     const modifiedState = {
-      Identification: { ApplicantBirthDate: { date: new Date(1900, 1, 1) } },
+      Identification: { ApplicantBirthDate: { Date: { date: new Date(1900, 1, 1) } } },
       Military: {}
     }
     const store = mockStore({ authentication: { authenticated: true, twofactor: true }, application: modifiedState })
@@ -81,7 +81,7 @@ describe('The military section', () => {
 
   it('displays selective service if age is after December 31st, 1959', () => {
     const modifiedState = {
-      Identification: { ApplicantBirthDate: { date: new Date(1980, 1, 1) } },
+      Identification: { ApplicantBirthDate: { Date: { date: new Date(1980, 1, 1) } } },
       Military: {}
     }
     const store = mockStore({ authentication: { authenticated: true, twofactor: true }, application: modifiedState })
