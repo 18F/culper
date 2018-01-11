@@ -15,6 +15,7 @@ var (
 	// These can be helper functions for formatting or even to process complex structure
 	// types.
 	DefaultFuncMap = template.FuncMap{
+		"tmpl":                 defaultTemplate,
 		"branch":               branch,
 		"email":                email,
 		"text":                 text,
@@ -35,11 +36,43 @@ var (
 		"checkbox":             checkbox,
 		"checkboxHas":          checkboxHas,
 		"checkboxTrueFalse":    checkboxTrueFalse,
+		"countryComments":      countryComments,
+		"country":              countryValue,
 		"branchToBool":         branchToBool,
 	}
 
 	fattrmap = template.FuncMap{}
 )
+
+func defaultTemplate(templateName string, data map[string]interface{}) template.HTML {
+	fmap := template.FuncMap{
+		"tmpl":                 defaultTemplate,
+		"branch":               branch,
+		"email":                email,
+		"text":                 text,
+		"textarea":             textarea,
+		"number":               number,
+		"location":             location,
+		"locationIsPostOffice": locationIsPostOffice,
+		"date":                 date,
+		"daterange":            daterange,
+		"monthYear":            monthYear,
+		"dateEstimated":        dateEstimated,
+		"notApplicable":        notApplicable,
+		"telephone":            telephone,
+		"telephoneNoNumber":    telephoneNoNumber,
+		"name":                 name,
+		"nameLastFirst":        nameLastFirst,
+		"radio":                radio,
+		"checkbox":             checkbox,
+		"checkboxHas":          checkboxHas,
+		"checkboxTrueFalse":    checkboxTrueFalse,
+		"countryComments":      countryComments,
+		"country":              countryValue,
+		"branchToBool":         branchToBool,
+	}
+	return xmlTemplateWithFuncs(templateName, data, fmap)
+}
 
 func xmlTemplate(name string, data map[string]interface{}) template.HTML {
 	log := logmsg.NewLogger()
@@ -231,6 +264,25 @@ func locationIsPostOffice(data map[string]interface{}) string {
 	return ""
 }
 
+func branchToBool(data map[string]interface{}) string {
+	val, ok := data["value"]
+	if ok && val == "Yes" {
+		return "True"
+	}
+	return "False"
+}
+
+func countryComments(data map[string]interface{}) string {
+	props, ok := data["props"]
+	if ok {
+		comments, ok := (props.(map[string]interface{}))["comments"]
+		if ok {
+			return comments.(string)
+		}
+	}
+	return ""
+}
+
 // Put "complex" XML structures here where they output from another template
 
 func telephone(data map[string]interface{}) template.HTML {
@@ -326,14 +378,6 @@ func location(data map[string]interface{}) template.HTML {
 	}
 }
 
-func branchToBool(data map[string]interface{}) string {
-	val, ok := data["value"]
-	if ok {
-		if val == "Yes" {
-			return "True"
-		} else {
-			return "False"
-		}
-	}
-	return "False"
+func countryValue(data map[string]interface{}) template.HTML {
+	return xmlTemplate("country.xml", data)
 }

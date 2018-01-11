@@ -1,6 +1,6 @@
-{{template "spouse-cohabitants" .Relationships.Marital.Cohabitants}}
-{{template "spouse-former" .Relationships.Marital.DivorcedList}}
-{{template "spouse-have-former" .Relationships.DivorcedList}}
-{{template "spouse-marital-status" .Relationships.Marital.CivilUnion}}
-{{template "spouse-present-marriage" .Relationships.Marital.Status}}
+{{tmpl "spouse-cohabitants.xml" .Relationships.Cohabitants}}
+{{tmpl "spouse-former.xml" .Relationships.Marital.props.DivorcedList}}
+{{tmpl "spouse-have-former.xml" .Relationships.Marital.props.DivorcedList}}
+{{tmpl "spouse-marital-status.xml" .Relationships.Marital.props.CivilUnion}}
+{{tmpl "spouse-present-marriage.xml" .Relationships.Marital.props.Status}}
 <SummaryComment></SummaryComment>
