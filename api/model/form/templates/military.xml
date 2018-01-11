@@ -1,6 +1,6 @@
 <MilitaryHistory Version="1" Type="Pooled">
-  {{tmp "military-disciplinary.xml" .Military.Disciplinary}}
-  {{tmp "military-foreign.xml" .Military.Foreign}}
-  {{tmp "military-history.xml" .Military.History}}
+  {{tmpl "military-disciplinary.xml" .Military.Disciplinary}}
+  {{tmpl "military-foreign.xml" .Military.Foreign}}
+  {{tmpl "military-history.xml" .Military.History}}
 </MilitaryHistory>
-{{tmp "military-selective.xml" .Military.Selective}}
+{{tmpl "military-selective.xml" .Military.Selective}}

@@ -1,0 +1,101 @@
+{{with $citizenship := .Citizenship.Status.props}}
+{{with $passport := .Foreign.Passport.props}}
+<Citizenship Version="1" Type="Pooled">
+  <Status>{{radio $citizenship.CitizenshipStatus}}</Status>
+  <StatusComment></StatusComment>
+  {{if radio $citizenship.CitizenshipStatus | eq "NotCitizen"}}
+  <Alien>
+    <AlienRegistration>
+      <Comment></Comment>
+      <DateEnteredUS>
+        <Date Type="{{dateEstimated $citizenship.EntryDate}}">{{date $citizenship.EntryDate}}</Date>
+      </DateEnteredUS>
+      <DocumentIssued>
+        <Date Type="{{dateEstimated $citizenship.DocumentIssued}}">{{date $citizenship.DocumentIssued}}</Date>
+        <LegalName>{{name $citizenship.DocumentName}}</LegalName>
+      </DocumentIssued>
+      <DocumentNumber>{{text $citizenship.DocumentNumber}}</DocumentNumber>
+      <DocumentType>{{radio $citizenship.DocumentType}}</DocumentType>
+      <DocumentTypeExplanation>{{textarea $citizenship.Explanation}}</DocumentTypeExplanation>
+      <Place>{{location $citizenship.EntryLocation}}</Place>
+      <RegistrationNumber>{{text $citizenship.AlienRegistrationNumber}}</RegistrationNumber>
+      <ResidenceStatus>{{text $citizenship.ResidenceStatus}}</ResidenceStatus>
+      <VisaExpiration>
+        <Date Type="{{dateEstimated $citizenship.AlienRegistrationExpiration}}">{{date $citizenship.AlienRegistrationExpiration}}</Date>
+      </VisaExpiration>
+    </AlienRegistration>
+    <Citizenships>
+      <Citizenship>{{country $citizenship.PriorCitizenship}}</Citizenship>
+    </Citizenships>
+    <HaveAlienRegistrationNumber>
+      <Answer>{{branch $citizenship.HasAlienRegistration}}</Answer>
+    </HaveAlienRegistrationNumber>
+  </Alien>
+  {{end}}
+  {{if radio $citizenship.CitizenshipStatus | ne "NotCitizen"}}
+  <USCitizen>
+    <ProofOfUSCitizenship>
+      {{if radio $citizenship.CitizenshipStatus | eq "ForeignBorn"}}
+      <BornOnBase>
+        <Answer>{{branch $citizenship.BornOnMilitaryInstallation}}</Answer>
+      </BornOnBase>
+      <CitizenshipCertificate>
+        <CertificateNumber>{{text $citizenship.CertificateNumber}}</CertificateNumber>
+        <Court>{{text $citizenship.CertificateCourtName}}</Court>
+        <DateIssued>
+          <Date Type="{{dateEstimated $citizenship.CertificateIssued}}">{{date $citizenship.CertificateIssued}}</Date>
+        </DateIssued>
+        <IssuedName>{{name $citizenship.CertificateName}}</IssuedName>
+        <Place>{{location $citizenship.CertificateCourtAddress}}</Place>
+      </CitizenshipCertificate>
+      <Comment></Comment>
+      <MilitaryBase>
+        <Comment></Comment>
+        <Name>{{text $citizenship.MilitaryBase}}</Name>
+      </MilitaryBase>
+      <StateDeptForm240>
+        <DatePrepared>
+          <Date Type="{{dateEstimated $citizenship.DocumentIssued}}">{{date $citizenship.DocumentIssued}}</Date>
+        </DatePrepared>
+        <DocumentNumber>{{text $citizenship.DocumentNumber}}</DocumentNumber>
+        <DocumentType>{{radio $citizenship.DocumentType}}</DocumentType>
+        <IssuedName>{{name $citizenship.DocumentName}}</IssuedName>
+        <OtherExplanation>{{textarea $citizenship.Explanation}}</OtherExplanation>
+        <Place>{{location $citizenship.PlaceIssued}}</Place>
+      </StateDeptForm240>
+      {{end}}
+      {{if radio $citizenship.CitizenshipStatus | eq "Naturalized"}}
+      <NaturalizationCertificate>
+        <Authority>
+          <Court>{{text $citizenship.CertificateCourtName}}</Court>
+          <Place>{{location $citizenship.CertificateCourtAddress}}</Place>
+        </Authority>
+        <Basis>{{radio $citizenship.Basis}}</Basis>
+        <BasisExplanation>{{textarea $citizenship.Explanation}}</BasisExplanation>
+        <CertificateNumber>{{text $citizenship.CertificateNumber}}</CertificateNumber>
+        <DateIssued>
+          <Date Type="{{dateEstimated $citizenship.CertificateIssued}}">{{date $citizenship.CertificateIssued}}</Date>
+        </DateIssued>
+        <IssuedLegalName>{{name $citizenship.CertificateName}}</IssuedLegalName>
+      </NaturalizationCertificate>
+      {{end}}
+      {{if branch $passport.HasPassports | eq "Yes"}}
+      <USPassport>
+        <Comment>{{textarea $passport.Comments}}</Comment>
+        <DateExpired>
+          <Date Type="{{dateEstimated $passport.Expiration}}">{{date $passport.Expiration}}</Date>
+        </DateExpired>
+        <DateIssued>
+          <Date Type="{{dateEstimated $passport.Issued}}">{{date $passport.Issued}}</Date>
+        </DateIssued>
+        <IssuedLegalName>{{name $passport.Name}}</IssuedLegalName>
+        <PassportNumber>{{text $passport.Number}}</PassportNumber>
+      </USPassport>
+      {{end}}
+    </ProofOfUSCitizenship>
+  </USCitizen>
+  <UsCitizenNaturalizationComment></UsCitizenNaturalizationComment>
+  {{end}}
+</Citizenship>
+{{end}}
+{{end}}
