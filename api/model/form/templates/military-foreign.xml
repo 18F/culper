@@ -1,5 +1,5 @@
 <ForeignService>
-  <Answer>{{branch .props.List.props.items[0].Item.Has}}</Answer>
+  <Answer>{{branchcollectionHas .props.List}}</Answer>
 </ForeignService>
 <ForeignMilitaryService>
   {{range $index, $item := .props.List.props.items}}
@@ -27,7 +27,9 @@
         <LegalName>{{name $Contact.Name}}</LegalName>
         <Title>{{text $Contact.Title}}</Title>
       </Contact>
-      <HaveAdditionalEntryAnswer>{{branch $Contact.List.props.branch}}</HaveAdditionalEntryAnswer>
+      {{end}}
+      {{end}}
+      <HaveAdditionalEntryAnswer>{{branch $Item.List.props.branch}}</HaveAdditionalEntryAnswer>
       <SummaryComment></SummaryComment>
     </Contacts>
   </Service>

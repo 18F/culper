@@ -45,6 +45,11 @@ func TestPackage(t *testing.T) {
 		{Schema: "citizenship.xml", Data: application},
 		{Schema: "citizenship-status.xml", Data: application},
 		{Schema: "citizenship-multiple.xml", Data: readSectionData("testdata/citizenship-multiple.json")},
+		{Schema: "military.xml", Data: application},
+		{Schema: "military-disciplinary.xml", Data: readSectionData("testdata/military-disciplinary.json")},
+		{Schema: "military-foreign.xml", Data: readSectionData("testdata/military-foreign.json")},
+		{Schema: "military-history.xml", Data: readSectionData("testdata/military-history.json")},
+		{Schema: "military-selective.xml", Data: readSectionData("testdata/military-selective.json")},
 	}
 
 	for _, test := range tests {
@@ -82,6 +87,12 @@ func applicationData() map[string]interface{} {
 			"Status":    readSectionData("testdata/citizenship-status.json"),
 			"Multiple":  readSectionData("testdata/citizenship-multiple.json"),
 			"Passports": readSectionData("testdata/citizenship-passports.json"),
+		},
+		"Military": map[string]interface{}{
+			"Disciplinary": readSectionData("testdata/military-disciplinary.json"),
+			"Foreign":      readSectionData("testdata/military-foreign.json"),
+			"History":      readSectionData("testdata/military-history.json"),
+			"Selective":    readSectionData("testdata/military-selective.json"),
 		},
 		"Foreign": map[string]interface{}{
 			"Passport": readSectionData("testdata/foreign-passport.json"),
