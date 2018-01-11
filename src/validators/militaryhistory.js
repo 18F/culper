@@ -33,16 +33,16 @@ export default class MilitaryHistoryValidator {
 
 export class MilitaryServiceValidator {
   constructor (data = {}) {
-    this.service = data.Service
-    this.status = data.Status
-    this.officer = data.Officer
-    this.serviceNumber = data.ServiceNumber
-    this.dates = data.Dates
+    this.service = (data.Service || {}).value
+    this.status = (data.Status || {}).value
+    this.officer = (data.Officer || {}).value
+    this.serviceNumber = data.ServiceNumber || {}
+    this.dates = data.Dates || {}
     this.hasBeenDischarged = (data.HasBeenDischarged || {}).value
-    this.dischargeType = data.DischargeType
-    this.dischargeTypeOther = data.DischargeTypeOther
-    this.dischargeReason = data.DischargeReason
-    this.dischargeDate = data.DischargeDate
+    this.dischargeType = (data.DischargeType || {}).value
+    this.dischargeTypeOther = data.DischargeTypeOther || {}
+    this.dischargeReason = data.DischargeReason || {}
+    this.dischargeDate = data.DischargeDate || {}
   }
 
   validService () {

@@ -8,25 +8,27 @@ import { Summary, DateSummary } from '../../../Summary'
 import MilitaryService from './MilitaryService'
 
 export const serviceNameDisplay = (service) => {
-  switch (service) {
+  let display = (service || {}).value
+
+  switch (display) {
     case 'AirForce':
-      service = 'Air Force'
+      display = 'Air Force'
       break
     case 'AirNationalGuard':
-      service = 'Air National Guard'
+      display = 'Air National Guard'
       break
     case 'ArmyNationalGuard':
-      service = 'Army National Guard'
+      display = 'Army National Guard'
       break
     case 'CoastGuard':
-      service = 'Coast Guard'
+      display = 'Coast Guard'
       break
     case 'MarineCorps':
-      service = 'Marine Corps'
+      display = 'Marine Corps'
       break
   }
 
-  return service
+  return display
 }
 
 export default class History extends SubsectionElement {

@@ -17,6 +17,7 @@
     {{template "identification" .}}
     {{template "relationships" .}}
     {{template "history" .}}
+    {{template "military" .}}
     {{template "financial" .}}
   </Pooled>
 </Responses>
