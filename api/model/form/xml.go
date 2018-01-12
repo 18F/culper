@@ -10,66 +10,36 @@ import (
 	"github.com/18F/e-QIP-prototype/api/logmsg"
 )
 
-var (
+func defaultTemplate(templateName string, data map[string]interface{}) template.HTML {
 	// fmap is a mapping of functions to be used within the XML template execution.
 	// These can be helper functions for formatting or even to process complex structure
 	// types.
-	DefaultFuncMap = template.FuncMap{
-		"tmpl":                 defaultTemplate,
-		"branch":               branch,
-		"email":                email,
-		"text":                 text,
-		"textarea":             textarea,
-		"number":               number,
-		"location":             location,
-		"locationIsPostOffice": locationIsPostOffice,
-		"date":                 date,
-		"daterange":            daterange,
-		"monthYear":            monthYear,
-		"dateEstimated":        dateEstimated,
-		"notApplicable":        notApplicable,
-		"telephone":            telephone,
-		"telephoneNoNumber":    telephoneNoNumber,
-		"name":                 name,
-		"nameLastFirst":        nameLastFirst,
-		"radio":                radio,
-		"checkbox":             checkbox,
-		"checkboxHas":          checkboxHas,
-		"checkboxTrueFalse":    checkboxTrueFalse,
-		"countryComments":      countryComments,
-		"country":              countryValue,
-		"branchToBool":         branchToBool,
-	}
-
-	fattrmap = template.FuncMap{}
-)
-
-func defaultTemplate(templateName string, data map[string]interface{}) template.HTML {
 	fmap := template.FuncMap{
-		"tmpl":                 defaultTemplate,
 		"branch":               branch,
-		"email":                email,
-		"text":                 text,
-		"textarea":             textarea,
-		"number":               number,
-		"location":             location,
-		"locationIsPostOffice": locationIsPostOffice,
-		"date":                 date,
-		"daterange":            daterange,
-		"monthYear":            monthYear,
-		"dateEstimated":        dateEstimated,
-		"notApplicable":        notApplicable,
-		"telephone":            telephone,
-		"telephoneNoNumber":    telephoneNoNumber,
-		"name":                 name,
-		"nameLastFirst":        nameLastFirst,
-		"radio":                radio,
+		"branchToBool":         branchToBool,
+		"branchcollectionHas":  branchcollectionHas,
 		"checkbox":             checkbox,
 		"checkboxHas":          checkboxHas,
 		"checkboxTrueFalse":    checkboxTrueFalse,
-		"countryComments":      countryComments,
 		"country":              countryValue,
-		"branchToBool":         branchToBool,
+		"countryComments":      countryComments,
+		"date":                 date,
+		"dateEstimated":        dateEstimated,
+		"daterange":            daterange,
+		"email":                email,
+		"location":             location,
+		"locationIsPostOffice": locationIsPostOffice,
+		"monthYear":            monthYear,
+		"name":                 name,
+		"nameLastFirst":        nameLastFirst,
+		"notApplicable":        notApplicable,
+		"number":               number,
+		"radio":                radio,
+		"telephone":            telephone,
+		"telephoneNoNumber":    telephoneNoNumber,
+		"text":                 text,
+		"textarea":             textarea,
+		"tmpl":                 defaultTemplate,
 	}
 	return xmlTemplateWithFuncs(templateName, data, fmap)
 }
@@ -123,6 +93,45 @@ func simpleValue(data map[string]interface{}) string {
 
 func branch(data map[string]interface{}) string {
 	return simpleValue(data)
+}
+
+func branchcollectionHas(data map[string]interface{}) string {
+	props, ok := data["props"]
+	if !ok {
+		return "No"
+	}
+
+	list, ok := (props.(map[string]interface{}))["List"]
+	if !ok {
+		return "No"
+	}
+
+	listProps, ok := (list.(map[string]interface{}))["props"]
+	if !ok {
+		return "No"
+	}
+
+	listItems, ok := (listProps.(map[string]interface{}))["items"]
+	if !ok {
+		return "No"
+	}
+
+	listItemsArray := listItems.([]map[string]interface{})
+	if len(listItemsArray) == 0 {
+		return "No"
+	}
+
+	firstItem, ok := (listItemsArray[0]["Item"])
+	if !ok {
+		return "No"
+	}
+
+	b, ok := (firstItem.(map[string]interface{}))["Has"]
+	if !ok {
+		return "No"
+	}
+
+	return simpleValue(b.(map[string]interface{}))
 }
 
 func email(data map[string]interface{}) string {

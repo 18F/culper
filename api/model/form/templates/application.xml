@@ -18,6 +18,7 @@
     {{tmpl "relationships.xml" .}}
     {{tmpl "history.xml" .}}
     {{tmpl "citizenship.xml" .}}
+    {{tmpl "military" .}}
     {{tmpl "financial.xml" .}}
   </Pooled>
 </Responses>
