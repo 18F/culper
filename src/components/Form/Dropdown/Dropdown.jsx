@@ -83,11 +83,26 @@ export default class Dropdown extends ValidationElement {
     }
   }
 
+  errors (value) {
+    return this.props.onError(value, this.constructor.errors.map(err => {
+      return {
+        code: err.code,
+        valid: err.func(value, {...this.props, options: this.state.options}),
+        uid: this.state.uid
+      }
+    })) || []
+  }
+
   componentWillReceiveProps (next) {
     if (next.receiveProps) {
-      this.setState({
-        value: next.value
-      })
+      if (next.value !== undefined && next.value !== this.state.value) {
+        const errors = this.errors(next.value)
+        this.setState({
+          value: next.value,
+          error: errors.some(x => x.valid === false),
+          valid: errors.every(x => x.valid === true)
+        })
+      }
     }
   }
 
@@ -105,20 +120,11 @@ export default class Dropdown extends ValidationElement {
    * Execute validation checks on the value.
    */
   handleValidation (event) {
-    const value = this.state.value
-    const localErrors = this.constructor.errors.map(err => {
-      return {
-        code: err.code,
-        valid: err.func(value, {
-          ...this.props,
-          options: this.state.options
-        }),
-        uid: this.state.uid
-      }
+    const errors = this.errors(this.state.value)
+    this.setState({
+      error: errors.some(x => x.valid === false),
+      valid: errors.every(x => x.valid === true)
     })
-    const errors = this.props.onError(value, localErrors) || []
-    const valid = errors.every(x => x.valid === true) && localErrors.every(x => x.valid === true)
-    this.setState({ error: errors.some(x => x.valid === false), valid: valid })
   }
 
   /**
