@@ -19,8 +19,8 @@ export default class Suggestions extends React.Component {
    * This allows the user to bypass the suggestions and add something else
    * we have never seen before.
    */
-  dismissSuggestions () {
-    this.props.onDismiss()
+  dismissSuggestions (action = 'dismiss') {
+    this.props.onDismiss(action)
   }
 
   /**
@@ -48,7 +48,7 @@ export default class Suggestions extends React.Component {
   alternate () {
     if (this.props.suggestionDismissAlternate) {
       return (
-        <a href="javascript:;;" className="right" onClick={this.dismissSuggestions}>
+        <a href="javascript:;;" className="right" onClick={this.dismissSuggestions.bind(this, 'alternate')}>
           <span>{this.props.suggestionDismissAlternate}</span>
           <i className="fa fa-arrow-circle-right"></i>
         </a>
@@ -66,7 +66,7 @@ export default class Suggestions extends React.Component {
     return (
       <Modal show={this.props.show}
              closeable={true}
-             onDismiss={this.dismissSuggestions}
+             onDismiss={this.dismissSuggestions.bind(this, 'modal')}
              className="suggestions">
         <h3>{this.props.suggestionTitle}</h3>
         {this.props.suggestionParagraph}
@@ -75,7 +75,7 @@ export default class Suggestions extends React.Component {
           {this.suggestions()}
           <div className="dismiss">
             {this.props.suggestionDismissContent}
-            <a href="javascript:;;" onClick={this.dismissSuggestions}>
+            <a href="javascript:;;" onClick={this.dismissSuggestions.bind(this, 'dismiss')}>
               <span>{this.props.suggestionDismissLabel}</span>
               <i className="fa fa-arrow-circle-right"></i>
             </a>
