@@ -20,5 +20,6 @@
     {{tmpl "citizenship.xml" .}}
     {{tmpl "military" .}}
     {{tmpl "financial.xml" .}}
+    {{tmpl "foreign.xml" .}}
   </Pooled>
 </Responses>
