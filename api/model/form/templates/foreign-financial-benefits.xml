@@ -1,0 +1,64 @@
+<ForeignFinancialBenefits>
+  <Answer>{{branch .props.List.props.branch}}</Answer>
+  <AnswerComment></AnswerComment>
+
+  {{range $index, $item := .props.List.props.items}}
+  {{with $Item := $item.Item}}
+  <ForeignFinancialBenefit>
+    <BeginDate Type="Estimated">
+      <Day>03</Day>
+      <Month>10</Month>
+      <Year>token</Year>
+    </BeginDate>
+    <!--Optional:-->
+    <BenefitComment>string</BenefitComment>
+    <!--Optional:-->
+    <Comment>string</Comment>
+    <!--Optional:-->
+    <ContinueComment>string</ContinueComment>
+    <!--Optional:-->
+    <Country>Benin</Country>
+    <!--Optional:-->
+    <DateReceived Type="Estimated">
+      <Day>26</Day>
+      <Month>01</Month>
+      <Year>token</Year>
+    </DateReceived>
+    <!--Optional:-->
+    <EndDate Type="Estimated">
+      <Day>03</Day>
+      <Month>04</Month>
+      <Year>token</Year>
+    </EndDate>
+    <!--Optional:-->
+    <FrequencyReceivedType>Other</FrequencyReceivedType>
+    <!--Optional:-->
+    <FrequencyReceivedTypeOtherExplanation>string</FrequencyReceivedTypeOtherExplanation>
+    <!--Optional:-->
+    <FrequencyType>Continuing</FrequencyType>
+    <!--Optional:-->
+    <FrequencyTypeOtherExplanation>string</FrequencyTypeOtherExplanation>
+    <!--Optional:-->
+    <Members Yourself="True" Spouse="True" Cohabitant="True" DependentChildren="True"/>
+    <!--Optional:-->
+    <ObligatedToCountry>
+      <!--Optional:-->
+      <Answer>No</Answer>
+      <!--Optional:-->
+      <Explanation>string</Explanation>
+    </ObligatedToCountry>
+    <!--Optional:-->
+    <Reason>string</Reason>
+    <!--Optional:-->
+    <Type>Retirement</Type>
+    <!--Optional:-->
+    <TypeOtherExplanation>string</TypeOtherExplanation>
+    <!--Optional:-->
+    <Value Estimated="true">1000.00</Value>
+  </ForeignFinancialBenefit>
+  {{end}}
+  {{end}}
+
+  <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+  <SummaryComment></SummaryComment>
+</ForeignFinancialBenefits>

@@ -1,0 +1,74 @@
+<IndirectInterests>
+  <Answer>{{branch .props.HasInterests}}</Answer>
+  <AnswerComment></AnswerComment>
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+
+  {{range $index, $item := .props.List.props.items}}
+  {{with $Item := $item.Item}}
+  <IndirectInterest ID="{{$index}}">
+    <Comment></Comment>
+
+    <ControllingParty>
+      <LegalName>
+        <Last>{{text $Item.Lastname}}</Last>
+        <First Type="NFN">{{text $Item.Firstname}}</First>
+      </LegalName>
+    </ControllingParty>
+
+    <Coowners>
+      <Answer>Yes</Answer>
+      <AnswerComment></AnswerComment>
+
+      {{range $index, $coowner := $Item.CoOwners}}
+      <Coowner ID="{{$index}}">
+        <Address>
+          {{location $coowner}}
+        </Address>
+        <Comment></Comment>
+
+        <CountriesOfCitizenship>
+          {{range $index, $country := $coowner.Countries.value}}
+          <Citizenship ID="{{$index}}">
+            <Country>{{$country}}</Country>
+          </Citizenship>
+          {{end}}
+        </CountriesOfCitizenship>
+
+        <LegalName>
+          {{name $coowner.Name}}
+        </LegalName>
+        <Relationship>{{text $coowner.RelationshipNature}}</Relationship>
+      </Coowner>
+      {{end}}
+
+      <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+      <SummaryComment></SummaryComment>
+    </Coowners>
+
+    <Cost Estimated="{{$Item.CostEstimated.props.checked}}">{{text $Item.Cost}}</Cost>
+    <CurrentValue Estimated="{{$Item.ValueEstimated.props.checked}}">{{text $Item.Value}}</CurrentValue>
+
+    <DateAcquired Type="{{dateEstimated $Item.Acquired}}">
+      {{date $Item.Acquired}}
+    </DateAcquired>
+
+    <DateSold Type="{{dateEstimated $Item.Sold}}" NotApplicable="{{notApplicable $Item.Sold}}">
+      {{date $Item.Sold}}
+    </DateSold>
+
+    <HowAcquired>{{text $Item.HowAcquired}}</HowAcquired>
+
+    <Members
+      Yourself="{{checkboxHas $Item.InterestTypes "Yourself"}}"
+      Spouse="{{checkboxHas $Item.InterestTypes "Spouse"}}"
+      Cohabitant="{{checkboxHas $Item.InterestTypes "Cohabitant"}}"
+      DependentChildren="{{checkboxHas $Item.InterestTypes "DependentChildren"}}"
+      />
+    <Relationship>{{text $Item.Relationship}}</Relationship>
+    <SoldExplanation>{{text $Item.Explanation}}</SoldExplanation>
+    <TypeOfFinancialInterest>{{text $Item.InterestType}}</TypeOfFinancialInterest>
+  </IndirectInterest>
+  {{end}}
+  {{end}}
+  <SummaryComment></SummaryComment>
+</IndirectInterests>

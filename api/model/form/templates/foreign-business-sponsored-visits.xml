@@ -1,0 +1,53 @@
+<!-- Foreign national sponsorship -->
+<SponsoredVisits>
+  <Answer>{{branch .props.HasForeignSponsorship}}</Answer>
+  <Comment></Comment>
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+  {{range $index, $item := .props.List.props.items}}
+  {{with $Item := $item.Item}}
+  <SponsoredVisit ID="{{$index}}">
+    <AddressWhileInUS>
+      <Address>
+        {{location $Item.Address}}
+      </Address>
+    </AddressWhileInUS>
+    <Birth>
+      <Date Type="{{dateEstimated $Item.Birthdate" DoNotKnow="{{notApplicable $Item.BirthdateNotApplicaible}}">
+        {{date $Item.Birthdate}}
+      </Date>
+      <Place>
+        {{location $Item.Birthplace}}
+      </Place>
+    </Birth>
+    <CountriesOfCitizenship>
+      {{range $index, $country := range $Item.Citizenship.props.value}}
+      <Citizenship ID="{{$index}}">
+        <Country>{{$country}}</Country>
+      </Citizenship>
+      {{end}}
+    </CountriesOfCitizenship>
+    <CurrentAddress>
+      <Address>
+        {{location $Item.Residence}}
+      </Address>
+    </CurrentAddress>
+    <DateRange>
+      {{daterange $Item.Dates}}
+    </DateRange>
+    <EntryComment></EntryComment>
+    <Name>
+      {{name $Item.Name}}
+    </Name>
+    <Organization>
+      <Address NotApplicable="{{notApplicable $Item.OrganizationAddressNotApplicable}}">
+        {{location $Item.OrganizationAddress}}
+      </Address>
+      <Name NotApplicable="{{notApplicable $Item.OrganizationNotApplicable}}">{{text $Item.Organization}}</Name>
+    </Organization>
+    <Purpose>{{text $Item.Stay}}</Purpose>
+    <SponsorshipPurpose>{{text $Item.Sponsorship}}</SponsorshipPurpose>
+  </SponsoredVisit>
+  {{end}}
+  {{end}}
+  <SummaryComment></SummaryComment>
+</SponsoredVisits>

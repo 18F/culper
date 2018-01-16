@@ -1,0 +1,23 @@
+<!-- Voting -->
+<VotedInForeignElection>
+  <Answer>{{branch .props.HasForeignVoting}}</Answer>
+  <Comment></Comment>
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+</VotedInForeignElection>
+
+<VotedInForeignElections>
+  {{range $index, $item := .props.List.props.items}}
+  {{with $Item := $item.Item}}
+  <ForeignElection ID="{{$index}}">
+    <Comment></Comment>
+    {{country $Item.Country}}
+    <CurrentVotingEligibility>{{text $Item.Eligibility}}</CurrentVotingEligibility>
+    <Date Type="{{dateEstimated $Item.Date}}">
+      {{monthYear $Item.Date}}
+    </Date>
+    <Reason>{{text $Item.Reason}}</Reason>
+  </ForeignElection>
+  {{end}}
+  {{end}}
+  <SummaryComment></SummaryComment>
+</VotedInForeignElections>

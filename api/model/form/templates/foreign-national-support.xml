@@ -1,0 +1,35 @@
+<ForeignNationalsSupported>
+  <Answer>{{branch .props.HasForeignSupport}}</Answer>
+  <AnswerComment></AnswerComment>
+
+  {{range $index, $item := .props.List.props.items}}
+  {{with $Item := $item.Item}}
+  <ForeignNationalSupported>
+    <Address>
+      {{location $Item.Address}}
+    </Address>
+
+    <Amount Estimated="{{$Item.AmountEstimated.props.checked}}">{{text $Item.Amount}}</Cost>
+    <Comment></Comment>
+
+    <CountriesOfCitizenship>
+      {{range $index, $country := $Item.Citizenship.value}}
+      <Citizenship ID="{{$index}}">
+        <Country>{{$country}}</Country>
+      </Citizenship>
+      {{end}}
+    </CountriesOfCitizenship>
+
+    <Frequency>{{text $Item.Frequency}}</Frequency>
+    <LegalName>
+      {{name $Item.Name}}
+    </LegalName>
+    <!--Optional:-->
+    <Relationship>{{text $Item.Relationship}}</Relationship>
+  </ForeignNationalSupported>
+  {{end}}
+  {{end}}
+
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+  <SummaryComment></SummaryComment>
+</ForeignNationalsSupported>

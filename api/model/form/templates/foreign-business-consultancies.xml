@@ -1,0 +1,26 @@
+<!-- Immediate family foreign support -->
+<Consultancies>
+  <Answer>{{branch .props.HasForeignFamily}}</Answer>
+  <Comment></Comment>
+
+  {{range $index, $item := .props.List.props.items}}
+  {{with $Item := $item.Item}}
+  <Consultancy ID="{{$index}}">
+    <Agency>
+      <Country>{{text $Item.Country}}</Country>
+      <Name>{{text $Item.Agency}}</Name>
+    </Agency>
+    <Circumstances>{{text $Item.Circumstances}}</Circumstances>
+    <Date Type="{{dateEstimated $Item.Date}}">
+      {{date $Item.Date}}
+    </Date>
+    <EntryComment>string</EntryComment>
+    <LegalName>
+      {{name $Item.Name}}
+    </LegalName>
+  </Consultancy>
+  {{end}}
+  {{end}}
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+  <SummaryComment></SummaryComment>
+</Consultancies>
