@@ -18,7 +18,7 @@
       {{end}}
 
       <Birth>
-        <Date Type="{{dateEstimated $Item.Birthdate" DoNotKnow="{{notApplicable $Item.BirthdateNotApplicable}}">
+        <Date Type="{{dateEstimated $Item.Birthdate}}" DoNotKnow="{{notApplicable $Item.BirthdateNotApplicable}}">
           {{ date $Item.Birthdate }}
         </Date>
         <Place DoNotKnow="{{notApplicable $Item.BirthplaceNotApplicable}}">
@@ -27,7 +27,7 @@
       </Birth>
 
       <Citizenships>
-        {{range $index, $country := $Item.Citizenship.value}}
+        {{range $index, $country := $Item.Citizenship.props.value}}
         <Citizenship ID="{{$index}}">
           <Country>{{$country}}</Country>
         </Citizenship>
@@ -95,12 +95,12 @@
             {{name $othername}}
           </Name>
         </OtherName>
+        {{end}}
       </OtherNamesUsed>
     </Contact>
     {{end}}
     {{end}}
   </Contacts>
-
   <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
   <SummaryComment></SummaryComment>
 </ForeignContacts>

@@ -2,6 +2,7 @@ package form
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"testing"
 )
@@ -50,6 +51,22 @@ func TestPackage(t *testing.T) {
 		{Schema: "military-foreign.xml", Data: readSectionData("testdata/military-foreign.json")},
 		{Schema: "military-history.xml", Data: readSectionData("testdata/military-history.json")},
 		{Schema: "military-selective.xml", Data: readSectionData("testdata/military-selective.json")},
+		{Schema: "foreign.xml", Data: application},
+		{Schema: "foreign-contacts.xml", Data: readSectionData("testdata/foreign-contacts.json")},
+		{Schema: "foreign-direct-interests.xml", Data: readSectionData("testdata/foreign-activities-direct.json")},
+		{Schema: "foreign-indirect-interests.xml", Data: readSectionData("testdata/foreign-activities-indirect.json")},
+		{Schema: "foreign-realestate-holdings.xml", Data: readSectionData("testdata/foreign-activities-realestate.json")},
+		{Schema: "foreign-financial-benefits.xml", Data: readSectionData("testdata/foreign-activities-benefits.json")},
+		{Schema: "foreign-national-support.xml", Data: readSectionData("testdata/foreign-activities-support.json")},
+		{Schema: "foreign-business-support-activities.xml", Data: readSectionData("testdata/foreign-business-advice.json")},
+		{Schema: "foreign-business-consultancies.xml", Data: readSectionData("testdata/foreign-business-family.json")},
+		{Schema: "foreign-business-job-offers.xml", Data: readSectionData("testdata/foreign-business-employment.json")},
+		{Schema: "foreign-business-other-employment.xml", Data: readSectionData("testdata/foreign-business-ventures.json")},
+		{Schema: "foreign-business-meetings.xml", Data: readSectionData("testdata/foreign-business-conferences.json")},
+		{Schema: "foreign-business-government-contacts.xml", Data: readSectionData("testdata/foreign-business-contact.json")},
+		{Schema: "foreign-business-sponsored-visits.xml", Data: readSectionData("testdata/foreign-business-sponsorship.json")},
+		{Schema: "foreign-business-political-office.xml", Data: readSectionData("testdata/foreign-business-political.json")},
+		{Schema: "foreign-business-voted.xml", Data: readSectionData("testdata/foreign-business-voting.json")},
 	}
 
 	for _, test := range tests {
@@ -57,6 +74,8 @@ func TestPackage(t *testing.T) {
 		if tmpl == "" {
 			t.Fatalf("XML template should not be empty")
 		}
+		fmt.Println(tmpl)
+
 	}
 }
 
@@ -95,7 +114,22 @@ func applicationData() map[string]interface{} {
 			"Selective":    readSectionData("testdata/military-selective.json"),
 		},
 		"Foreign": map[string]interface{}{
-			"Passport": readSectionData("testdata/foreign-passport.json"),
+			"Contacts":           readSectionData("testdata/foreign-contacts.json"),
+			"DirectActivity":     readSectionData("testdata/foreign-activities-direct.json"),
+			"IndirectActivity":   readSectionData("testdata/foreign-activities-indirect.json"),
+			"RealEstateActivity": readSectionData("testdata/foreign-activities-realestate.json"),
+			"BenefitActivity":    readSectionData("testdata/foreign-activities-benefits.json"),
+			"Support":            readSectionData("testdata/foreign-activities-support.json"),
+			"Advice":             readSectionData("testdata/foreign-business-advice.json"),
+			"Family":             readSectionData("testdata/foreign-business-family.json"),
+			"Employment":         readSectionData("testdata/foreign-business-employment.json"),
+			"Ventures":           readSectionData("testdata/foreign-business-ventures.json"),
+			"Conferences":        readSectionData("testdata/foreign-business-conferences.json"),
+			"Contact":            readSectionData("testdata/foreign-business-contact.json"),
+			"Sponsorship":        readSectionData("testdata/foreign-business-sponsorship.json"),
+			"Political":          readSectionData("testdata/foreign-business-political.json"),
+			"Voting":             readSectionData("testdata/foreign-business-voting.json"),
+			"Passport":           readSectionData("testdata/foreign-passport.json"),
 		},
 	}
 }

@@ -9,7 +9,7 @@
     <Circumstances>{{text $Item.Purpose}}</Circumstances>
 
     <CountriesInvolved>
-      {{range $index, $country := range $Item.Governments.props.value}}
+      {{range $index, $country := $Item.Governments.props.value}}
       <CountryInvolved ID="{{$index}}">
         <Country>{{$country}}</Country>
       </CountryInvolved>
@@ -33,20 +33,21 @@
     </Location>
 
     <SubsequentForeignContacts>
-      <Answer>No</Answer>
-      <AnswerComment>string</AnswerComment>
-      <Contact ID="201">
+      <Answer>{{branchcollectionHas $Item.SubsequentContacts.props.List}}</Answer>
+      <AnswerComment></AnswerComment>
+      {{range $index, $contact := $Item.SubsequentContacts.props.List.props.items}}
+          {{$contact}}
+      <Contact ID="{{$index}}">
         <Comment>string</Comment>
         <Date Type="Estimated">
-          <Day>25</Day>
-          <Month>09</Month>
-          <Year>token</Year>
+          {{date $contact.Recent}}
         </Date>
-        <FutureContactPlans>string</FutureContactPlans>
-        <Purpose>string</Purpose>
+        <FutureContactPlans>{{text $contact.Future}}</FutureContactPlans>
+        <Purpose>{{text $contact.Subsequent}}</Purpose>
       </Contact>
-      <HaveAdditionalEntryAnswer>Yes</HaveAdditionalEntryAnswer>
-      <SummaryComment>string</SummaryComment>
+      <HaveAdditionalEntryAnswer></HaveAdditionalEntryAnswer>
+      <SummaryComment></SummaryComment>
+      {{end}}
     </SubsequentForeignContacts>
   </GovernmentContact>
   {{end}}

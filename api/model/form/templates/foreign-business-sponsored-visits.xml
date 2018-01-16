@@ -12,7 +12,7 @@
       </Address>
     </AddressWhileInUS>
     <Birth>
-      <Date Type="{{dateEstimated $Item.Birthdate" DoNotKnow="{{notApplicable $Item.BirthdateNotApplicaible}}">
+      <Date Type="{{dateEstimated $Item.Birthdate}}" DoNotKnow="{{notApplicable $Item.BirthdateNotApplicaible}}">
         {{date $Item.Birthdate}}
       </Date>
       <Place>
@@ -20,7 +20,7 @@
       </Place>
     </Birth>
     <CountriesOfCitizenship>
-      {{range $index, $country := range $Item.Citizenship.props.value}}
+      {{range $index, $country := $Item.Citizenship.props.value}}
       <Citizenship ID="{{$index}}">
         <Country>{{$country}}</Country>
       </Citizenship>

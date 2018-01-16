@@ -13,7 +13,7 @@
     <Comment></Comment>
 
     <CountriesOfCitizenship>
-      {{range $index, $country := $Item.Citizenship.value}}
+      {{range $index, $country := $Item.Citizenship.props.value}}
       <Citizenship ID="{{$index}}">
         <Country>{{$country}}</Country>
       </Citizenship>
@@ -24,7 +24,6 @@
     <LegalName>
       {{name $Item.Name}}
     </LegalName>
-    <!--Optional:-->
     <Relationship>{{text $Item.Relationship}}</Relationship>
   </ForeignNationalSupported>
   {{end}}

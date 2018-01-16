@@ -9,16 +9,16 @@
       <Answer>Yes</Answer>
       <AnswerComment>string</AnswerComment>
 
-      {{range $index, $coowner := $Item.CoOwners}}
+      {{range $index, $coowner := $Item.CoOwners.props.List.items}}
       <Coowner ID="{{$index}}">
         <Address>
-          {{location $coowner}}
+          {{location $coowner.Address}}
         </Address>
         <Comment></Comment>
 
         <CountriesOfCitizenship>
-          {{range $index, $country := $coowner.Countries.value}}
-          <Citizenship ID="201">
+          {{range $index, $country := $coowner.Countries.props.value}}
+          <Citizenship ID="{{$index}}">
             <Country>{{$country}}</Country>
           </Citizenship>
           {{end}}

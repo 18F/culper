@@ -16,10 +16,10 @@
     </ControllingParty>
 
     <Coowners>
-      <Answer>Yes</Answer>
+      <Answer>{{branchcollectionHas $Item.CoOwners.props.List}}</Answer>
       <AnswerComment></AnswerComment>
 
-      {{range $index, $coowner := $Item.CoOwners}}
+      {{range $index, $coowner := $Item.CoOwners.props.List.props.items}}
       <Coowner ID="{{$index}}">
         <Address>
           {{location $coowner}}
@@ -27,7 +27,7 @@
         <Comment></Comment>
 
         <CountriesOfCitizenship>
-          {{range $index, $country := $coowner.Countries.value}}
+          {{range $index, $country := $coowner.Countries.props.value}}
           <Citizenship ID="{{$index}}">
             <Country>{{$country}}</Country>
           </Citizenship>
@@ -52,7 +52,7 @@
       {{date $Item.Acquired}}
     </DateAcquired>
 
-    <DateSold Type="{{dateEstimated $Item.Sold}}" NotApplicable="{{notApplicable $Item.Sold}}">
+    <DateSold Type="{{dateEstimated $Item.Sold}}" NotApplicable="{{notApplicable $Item.SoldNotApplicable}}">
       {{date $Item.Sold}}
     </DateSold>
 

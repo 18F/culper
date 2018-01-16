@@ -24,7 +24,7 @@
     </Discharge>
     {{if radio $Item.DischargeType | ne "Honorable"}}
     <OtherThanHonorable>
-      <Comment>string</Comment>
+      <Comment></Comment>
       <Reason>{{textarea $Item.DischargeReason}}</Reason>
     </OtherThanHonorable>
     {{end}}

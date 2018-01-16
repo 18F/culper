@@ -7,7 +7,7 @@
   {{with $Item := $item.Item}}
   <Consultancy ID="{{$index}}">
     <Agency>
-      <Country>{{text $Item.Country}}</Country>
+      {{country $Item.Country}}
       <Name>{{text $Item.Agency}}</Name>
     </Agency>
     <Circumstances>{{text $Item.Circumstances}}</Circumstances>

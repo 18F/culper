@@ -22,7 +22,7 @@
         {{location $Item.Address}}
       </Address>
       <CountriesOfCitizenship>
-        {{range $index, $country := range $Item.Citizenship.props.value}}
+        {{range $index, $country := $Item.Citizenship.props.value}}
         <Citizenship ID="{{$index}}">
           <Country>{{$country}}</Country>
         </Citizenship>
