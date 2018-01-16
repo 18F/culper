@@ -1,4 +1,4 @@
-{{template "history-residence" .History.Residence}}
-{{template "history-employment" .History.Employment}}
-{{template "history-education" .History.Education}}
-{{template "history-federal" .History.Federal}}
+{{tmpl "history-residence.xml" .History.Residence}}
+{{tmpl "history-employment.xml" .History.Employment}}
+{{tmpl "history-education.xml" .History.Education}}
+{{tmpl "history-federal.xml" .History.Federal}}
