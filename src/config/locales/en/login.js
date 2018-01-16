@@ -18,8 +18,14 @@ export const login = {
     title: 'Log in with username',
     para: 'Enter your username and password, then click the "Submit" button to continue. If you do not remember your password click "Forgot Password". If you do not remember your username contact your sponsoring agency.',
     button: 'Submit',
-    username: 'Username',
-    password: 'Password',
+    username: {
+      label: 'Username',
+      placeholder: 'Enter your username'
+    },
+    password: {
+      label: 'Password',
+      placeholder: 'Enter your password'
+    },
     show: {
       title: 'Show password',
       text: 'Show password'
