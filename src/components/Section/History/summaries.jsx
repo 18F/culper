@@ -272,9 +272,16 @@ export const InjectGaps = (list = [], start) => {
   // Let us just make sure we clear any previous gaps
   list = list.filter(item => !item.type || (item.type && item.type !== 'Gap'))
 
+  const hasDates = (item) => {
+    const dates = ((item || {}).Item || {}).Dates || {}
+    const from = dates.from || {}
+    const to = dates.to || {}
+    return from.date && to.date
+  }
+
   // Find all our "holes" for this type
   const ranges = list
-        .filter(item => { return item.Item && item.Item.Dates })
+        .filter(item => { return hasDates(item) })
         .map(item => {
           return {
             from: new Date(item.Item.Dates.from.date),

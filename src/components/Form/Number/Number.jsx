@@ -60,7 +60,7 @@ export default class Number extends ValidationElement {
   handleError (value, arr) {
     let errors = arr.concat(this.constructor.errors.map(err => {
       return {
-        code: err.code,
+        code: !this.props.prefix ? err.code : `${this.props.prefix}.${err.code}`,
         valid: err.func(value, this.props),
         uid: this.state.uid
       }
@@ -106,6 +106,7 @@ Number.defaultProps = {
   disabled: false,
   value: '',
   max: '',
+  prefix: '',
   pattern: '^(\\s*|\\d+)$',
   errorCode: null,
   onError: (value, arr) => { return arr }
