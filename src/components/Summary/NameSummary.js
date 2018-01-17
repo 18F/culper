@@ -12,9 +12,10 @@ export const NameText = (props, unknown = '') => {
     return unknown
   }
 
-  const suffix = props.suffix && props.suffix === 'Other' ? props.suffixOther : props.suffix
-  const name = `${props.first || ''} ${props.middle || ''} ${props.last || ''} ${suffix || ''}`.trim()
-  return name.length > 0 ? titleCase(name) : unknown
+  const suffix = props.suffix && props.suffix === 'Other' ? titleCase(props.suffixOther) : props.suffix
+  const name = titleCase(`${props.first || ''} ${props.middle || ''} ${props.last || ''}`.trim())
+  const nameAndSuffix = `${name} ${suffix || ''}`.trim()
+  return nameAndSuffix || unknown
 }
 
 const titleCase = (str) => {

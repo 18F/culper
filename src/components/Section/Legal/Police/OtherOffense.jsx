@@ -89,9 +89,9 @@ export default class OtherOffense extends ValidationElement {
     })
   }
 
-  updateChargeType (event) {
+  updateChargeType (values) {
     this.update({
-      ChargeType: event.target.value
+      ChargeType: values
     })
   }
 
@@ -246,26 +246,26 @@ export default class OtherOffense extends ValidationElement {
           <RadioGroup className="offense-chargetype option-list"
                       onError={this.props.onErro}
                       required={this.props.required}
-                      selectedValue={this.props.ChargeType}>
+                      selectedValue={(this.props.ChargeType || {}).value}>
             <Radio name="charge-felony"
                    className="charge-felony"
                    label={i18n.t('legal.police.label.felony')}
                    value="Felony"
-                   onChange={this.updateChargeType}
+                   onUpdate={this.updateChargeType}
                    onError={this.props.onError}
                    />
             <Radio name="charge-misdemeanor"
                    className="charge-misdemeanor"
                    label={i18n.t('legal.police.label.misdemeanor')}
                    value="Misdemeanor"
-                   onChange={this.updateChargeType}
+                   onUpdate={this.updateChargeType}
                    onError={this.props.onError}
                    />
             <Radio name="charge-other"
                    className="charge-other"
                    label={i18n.t('legal.police.label.other')}
                    value="Other"
-                   onChange={this.updateChargeType}
+                   onUpdate={this.updateChargeType}
                    onError={this.props.onError}
                    />
           </RadioGroup>

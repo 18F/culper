@@ -21,6 +21,7 @@ describe('The other names section', () => {
     const component = mount(<OtherNames {...props} />)
     expect(component.find('.details').length).toBeGreaterThan(0)
   })
+
   it('Does not render form when no is selected', () => {
     const props = {
       HasOtherNames: { value: 'No' }
@@ -37,7 +38,7 @@ describe('The other names section', () => {
       }
     }
     const component = mount(<OtherNames {...props} />)
-    component.find('.add').simulate('click')
+    component.find('.addendum .branch .yes').simulate('click')
   })
 
   it('displays fields when "yes" is selected', () => {
