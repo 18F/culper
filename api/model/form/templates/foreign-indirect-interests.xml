@@ -9,10 +9,12 @@
     <Comment></Comment>
 
     <ControllingParty>
+      {{with $first := text $Item.Firstname}}
       <LegalName>
         <Last>{{text $Item.Lastname}}</Last>
-        <First Type="NFN">{{text $Item.Firstname}}</First>
+        <First Type="{{if eq $first "" }}NFN{{end}}">{{$first}}</First>
       </LegalName>
+      {{end}}
     </ControllingParty>
 
     <Coowners>
