@@ -1,0 +1,65 @@
+<DirectInterests>
+  <Answer>{{branch .props.List.props.branch}}</Answer>
+
+  {{range $index, $item := .props.List.props.items}}
+  {{with $Item := $item.Item}}
+  <DirectInterest ID="{{$index}}">
+    <Comment></Comment>
+    <Coowners>
+      <Answer>Yes</Answer>
+      <AnswerComment>string</AnswerComment>
+
+      {{range $index, $coowner := $Item.CoOwners.props.List.items}}
+      <Coowner ID="{{$index}}">
+        <Address>
+          {{location $coowner.Address}}
+        </Address>
+        <Comment></Comment>
+
+        <CountriesOfCitizenship>
+          {{range $index, $country := $coowner.Countries.props.value}}
+          <Citizenship ID="{{$index}}">
+            <Country>{{$country}}</Country>
+          </Citizenship>
+          {{end}}
+        </CountriesOfCitizenship>
+
+        <LegalName>
+          {{name $coowner.Name}}
+        </LegalName>
+        <Relationship>{{text $coowner.RelationshipNature}}</Relationship>
+      </Coowner>
+      {{end}}
+
+      <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+      <SummaryComment></SummaryComment>
+    </Coowners>
+
+    <Cost Estimated="{{$Item.CostEstimated.props.checked}}">{{text $Item.Cost}}</Cost>
+    <CurrentValue Estimated="{{$Item.ValueEstimated.props.checked}}">{{text $Item.Value}}</CurrentValue>
+
+    <DateAcquired Type="{{dateEstimated $Item.Acquired}}">
+      {{date $Item.Acquired}}
+    </DateAcquired>
+
+    <DateRelinquished Type="{{dateEstimated $Item.Relinquished}}" NotApplicable="{{notApplicable $Item.RelinquishedNotApplicable}}">
+      {{date $Item.Relinquished}}
+    </DateRelinquished>
+
+    <Explanation>{{text $Item.Explanation}}</Explanation>
+    <HowAcquired>{{text $Item.HowAcquired}}</HowAcquired>
+
+    <Members
+      Yourself="{{checkboxHas $Item.InterestTypes "Yourself"}}"
+      Spouse="{{checkboxHas $Item.InterestTypes "Spouse"}}"
+      Cohabitant="{{checkboxHas $Item.InterestTypes "Cohabitant"}}"
+      DependentChildren="{{checkboxHas $Item.InterestTypes "DependentChildren"}}"
+      />
+    <TypeOfFinancialInterest>{{text $Item.InterestType}}</TypeOfFinancialInterest>
+  </DirectInterest>
+  {{end}}
+  {{end}}
+
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+  <SummaryComment></SummaryComment>
+</DirectInterests>

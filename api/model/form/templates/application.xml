@@ -1,5 +1,5 @@
 <Responses>
-  <AgencyInstructionsForApplicant>string</AgencyInstructionsForApplicant>
+  <AgencyInstructionsForApplicant></AgencyInstructionsForApplicant>
   <FormInstanceSpecific>
     <ESigCertificationResponses Version="1" Type="Pooled" LastSummaryID="201" LastDynamicListID="201">
       <UserFinalizedCert>
@@ -10,7 +10,7 @@
       </UserOptedToESig>
     </ESigCertificationResponses>
     <UserPreferences Version="1" Type="Pooled" LastSummaryID="201" LastDynamicListID="201">
-      <DisplayNavigation>string</DisplayNavigation>
+      <DisplayNavigation></DisplayNavigation>
     </UserPreferences>
   </FormInstanceSpecific>
   <Pooled>
@@ -20,5 +20,6 @@
     {{tmpl "citizenship.xml" .}}
     {{tmpl "military" .}}
     {{tmpl "financial.xml" .}}
+    {{tmpl "foreign.xml" .}}
   </Pooled>
 </Responses>
