@@ -1,0 +1,43 @@
+<!-- Event participation -->
+<Meetings>
+  <Answer>{{branch .props.HasForeignConferences}}</Answer>
+  <Comment></Comment>
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+
+  {{range $index, $item := .props.List.props.items}}
+  {{with $Item := $item.Item}}
+  <Meeting ID="{{$index}}">
+    <DateRange>
+      {{daterange $Item.Dates}}
+    </DateRange>
+    <EntryComment></EntryComment>
+    <Location>
+      <Place>
+        <City>{{text $Item.City}}</City>
+        {{country $Item.Country}}
+      </Place>
+    </Location>
+    <NameAndDescription>{{text $Item.Description}}</NameAndDescription>
+    <Organization>{{text $Item.Sponsor}}</Organization>
+    <Purpose>{{text $Item.Purpose}}</Purpose>
+
+    <SubsequentForeignContacts>
+      <Answer>Yes</Answer>
+      <AnswerComment>string</AnswerComment>
+      {{range $index, $contact := $Item.Contacts.props.List.props.items}}
+      {{with $Contact := $contact.Item}}
+      <Contact ID="{{$index}}">
+        <Comment></Comment>
+        <Explanation>{{text $contact.Explanation}}</Explanation>
+      </Contact>
+      {{end}}
+      {{end}}
+      <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+      <SummaryComment></SummaryComment>
+    </SubsequentForeignContacts>
+  </Meeting>
+
+  {{end}}
+  {{end}}
+  <SummaryComment></SummaryComment>
+</Meetings>
