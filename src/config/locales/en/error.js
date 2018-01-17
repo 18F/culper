@@ -172,6 +172,66 @@ export const error = {
       message: 'All parts of the date are required even if it is **estimated**.'
     }
   },
+  relative: {
+    month: {
+      notfound: {
+        title: 'There is a problem with the Month',
+        message: 'The month should be between 01 (January) and 12 (December).',
+        note: ''
+      },
+      min: {
+        title: 'There is a problem with the Month',
+        message: 'The month should be between 01 (January) and 12 (December).',
+        note: ''
+      },
+      max: {
+        title: 'There is a problem with the Month',
+        message: 'The month should be between 01 (January) and 12 (December).',
+        note: ''
+      }
+    },
+    day: {
+      length: {
+        title: 'There is a problem with the Day',
+        message: 'There is not that many days in this month.',
+        note: ''
+      },
+      min: {
+        title: 'There is a problem with the Day',
+        message: 'There are not that many days in this month.',
+        note: ''
+      },
+      max: {
+        title: 'There is a problem with the Day',
+        message: 'There are not that many days in this month.',
+        note: ''
+      }
+    },
+    year: {
+      max: {
+        title: 'There is a problem with the Year',
+        message: 'The year can\'t be in the future.',
+        note: ''
+      },
+      min: {
+        title: 'There is a problem with the Year',
+        message: 'This year is too far in the past.',
+        note: ''
+      }
+    },
+    max: {
+      title: 'There is a problem with the date',
+      message: 'The date can\'t be in the future.'
+    },
+    min: {
+      title: 'There is a problem with the date',
+      message: 'The date should be after this person\'s date of birth.'
+    },
+    required: {
+      title: 'There is a problem with this field',
+      message: 'All parts of the date are required even if it is **estimated**.'
+    }
+  },
   daterange: {
     to: {
       month: {
@@ -227,6 +287,62 @@ export const error = {
       min: {
         title: 'There is a problem with the date',
         message: 'For the **to** date, the date should be on or after your date of birth.'
+      },
+      relative: {
+        month: {
+          notfound: {
+            title: 'There is a problem with the Month',
+            message: 'For the **to** date, the month should be between 1(January) and 12(December).',
+            note: ''
+          },
+          min: {
+            title: 'There is a problem with the Month',
+            message: 'For the **to** date, the month should be between 1(January) and 12(December).',
+            note: ''
+          },
+          max: {
+            title: 'There is a problem with the Month',
+            message: 'For the **to** date, the month should be between 1(January) and 12(December).',
+            note: ''
+          }
+        },
+        day: {
+          length: {
+            title: 'There is a problem with the Day',
+            message: 'For the **to** date, there are not that many days in this month.',
+            note: ''
+          },
+          min: {
+            title: 'There is a problem with the Day',
+            message: 'For the **to** date, there are not that many days in this month.',
+            note: ''
+          },
+          max: {
+            title: 'There is a problem with the Day',
+            message: 'For the **to** date, there are not that many days in this month.',
+            note: ''
+          }
+        },
+        year: {
+          max: {
+            title: 'There is a problem with the Year',
+            message: 'For the **to** date, the year can\'t be in the future.',
+            note: ''
+          },
+          min: {
+            title: 'There is a problem with the Year',
+            message: 'For the **to** date, this year is too far in the past.',
+            note: ''
+          }
+        },
+        max: {
+          title: 'There is a problem with the date',
+          message: 'For the **to** date, the date can\'t be in the future.'
+        },
+        min: {
+          title: 'There is a problem with the date',
+          message: 'For the **to** date, the date should be after this person\'s date of birth.'
+        }
       }
     },
     from: {
@@ -283,6 +399,62 @@ export const error = {
       min: {
         title: 'There is a problem with the date',
         message: 'For the **from** date, the date should be on or after your date of birth.'
+      },
+      relative: {
+        month: {
+          notfound: {
+            title: 'There is a problem with the Month',
+            message: 'For the **from** date, the month should be between 1(January) and 12(December).',
+            note: ''
+          },
+          min: {
+            title: 'There is a problem with the Month',
+            message: 'For the **from** date, the month should be between 1(January) and 12(December).',
+            note: ''
+          },
+          max: {
+            title: 'There is a problem with the Month',
+            message: 'For the **from** date, the month should be between 1(January) and 12(December).',
+            note: ''
+          }
+        },
+        day: {
+          length: {
+            title: 'There is a problem with the Day',
+            message: 'For the **from** date, there are not that many days in this month.',
+            note: ''
+          },
+          min: {
+            title: 'There is a problem with the Day',
+            message: 'For the **from** date, there are not that many days in this month.',
+            note: ''
+          },
+          max: {
+            title: 'There is a problem with the Day',
+            message: 'For the **from** date, there are not that many days in this month.',
+            note: ''
+          }
+        },
+        year: {
+          max: {
+            title: 'There is a problem with the Year',
+            message: 'For the **from** date, the year can\'t be in the future.',
+            note: ''
+          },
+          min: {
+            title: 'There is a problem with the Year',
+            message: 'For the **from** date, this year is too far in the past.',
+            note: ''
+          }
+        },
+        max: {
+          title: 'There is a problem with the date',
+          message: 'For the **from** date, the date can\'t be in the future.'
+        },
+        min: {
+          title: 'There is a problem with the date',
+          message: 'For the **from** date, the date should be after this person\'s date of birth.'
+        }
       }
     },
     order: {
