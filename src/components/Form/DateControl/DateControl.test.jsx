@@ -43,10 +43,6 @@ describe('The date component', () => {
     }
     const component = mount(<DateControl {...expected} />)
 
-    // For validation
-    component.find('.day input').simulate('focus')
-    component.find('.day input').simulate('blur')
-
     expect(component.find('label').length).toEqual(children)
     expect(component.find('.day input').length).toEqual(1)
     expect(component.find('.day input').nodes[0].value).toEqual('28')
