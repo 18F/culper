@@ -5,7 +5,7 @@ import { i18n, env } from '../../config'
 import { api } from '../../services'
 import { login, handleLoginSuccess } from '../../actions/AuthActions'
 import { push } from '../../middleware/history'
-import { Consent, Text, Show } from '../../components/Form'
+import { Consent, Show } from '../../components/Form'
 
 class Login extends React.Component {
   constructor (props) {
@@ -170,21 +170,25 @@ class Login extends React.Component {
         <p>{i18n.t('login.basic.para')}</p>
         <form onSubmit={this.login}>
           <div>
-            <Text name="user"
-                  placeholder="Enter your username"
-                  label="Username"
-                  autoFocus
-                  value={this.state.username}
-                  onChange={this.onUsernameChange} />
+            <label htmlFor="user">
+              {i18n.t('login.basic.username.label')}
+            </label>
+            <input id="user"
+                   name="user"
+                   type="text"
+                   placeholder={i18n.t('login.basic.username.placeholder')}
+                   autoFocus
+                   value={this.state.username}
+                   onChange={this.onUsernameChange} />
           </div>
           <div className={pwClass}>
             <label htmlFor="password">
-              {i18n.t('login.basic.password')}
+              {i18n.t('login.basic.password.label')}
             </label>
             <input id="password"
                    name="password"
                    type={this.state.showPassword ? 'text' : 'password'}
-                   placeholder={i18n.t('login.basic.password')}
+                   placeholder={i18n.t('login.basic.password.placeholder')}
                    value={this.state.password}
                    onChange={this.onPasswordChange} />
             <div className="peek">
@@ -299,7 +303,7 @@ Login.defaultProps = {
   twofactor: false,
   username: '',
   password: '',
-  showPassword: false,
+  showPassword: false
   // location: () => { return window.location }
 }
 
