@@ -34,7 +34,7 @@
               "BenefitFrequency": {
                 "type": "radio",
                 "props": {
-                  "value": "Other"
+                  "value": "OneTime"
                 }
               },
               "OneTimeBenefit": {
