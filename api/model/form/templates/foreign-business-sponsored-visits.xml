@@ -12,7 +12,7 @@
       </Address>
     </AddressWhileInUS>
     <Birth>
-      <Date Type="{{dateEstimated $Item.Birthdate}}" DoNotKnow="{{notApplicable $Item.BirthdateNotApplicaible}}">
+      <Date Type="{{dateEstimated $Item.Birthdate}}" DoNotKnow="{{notApplicable $Item.BirthdateNotApplicable}}">
         {{date $Item.Birthdate}}
       </Date>
       <Place>

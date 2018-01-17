@@ -52,14 +52,13 @@
 
     <FrequencyReceivedType>{{checkbox $Benefit.BenefitFrequency}}</FrequencyReceivedType>
     <FrequencyType>{{checkbox $Benefit.Frequency}}</FrequencyType>
-    <FrequencyTypeOtherExplanation>string</FrequencyTypeOtherExplanation>
+    <FrequencyTypeOtherExplanation>{{text $Benefit.OtherFrequency}}</FrequencyTypeOtherExplanation>
     <ObligatedToCountry>
       <Answer>{{branch $Benefit.Obligated}}</Answer>
       <Explanation>{{text $Benefit.ObligatedExplanation}}</Explanation>
     </ObligatedToCountry>
     <Reason>{{text $Benefit.Reason}}</Reason>
     <Type>{{checkbox $Benefit.BenefitType}}</Type>
-    <TypeOtherExplanation></TypeOtherExplanation>
     <Value Estimated="{{$Benefit.Value.props.checked}}">{{text $Benefit.Value}}</Value>
     {{end}}
     {{end}}

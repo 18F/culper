@@ -15,23 +15,25 @@
       <AnswerComment></AnswerComment>
 
       {{range $index, $coowner := $Item.CoOwners.props.List.props.items}}
+      {{with $Coowner := $coowner.Item}}
       <Coowner ID="{{$index}}">
         <Address>
-          {{location $coowner.Address}}
+          {{location $Coowner.Address}}
         </Address>
         <Comment></Comment>
         <CountriesOfCitizenship>
-          {{range $index, $country := $coowner.Countries.props.value}}
+          {{range $index, $country := $Coowner.Countries.props.value}}
           <Citizenship ID="{{$index}}">
             <Country>{{$country}}</Country>
           </Citizenship>
           {{end}}
         </CountriesOfCitizenship>
         <LegalName>
-          {{name $coowner.Name}}
+          {{name $Coowner.Name}}
         </LegalName>
-        <Relationship>{{text $coowner.RelationshipNature}}</Relationship>
+        <Relationship>{{text $Coowner.RelationshipNature}}</Relationship>
       </Coowner>
+      {{end}}
       {{end}}
 
       <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>

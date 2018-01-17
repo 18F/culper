@@ -36,23 +36,23 @@
       <Answer>{{branchcollectionHas $Item.SubsequentContacts.props.List}}</Answer>
       <AnswerComment></AnswerComment>
       {{range $index, $contact := $Item.SubsequentContacts.props.List.props.items}}
-          {{$contact}}
+      {{with $Contact := $contact.Item}}
       <Contact ID="{{$index}}">
-        <Comment>string</Comment>
-        <Date Type="Estimated">
-          {{date $contact.Recent}}
+        <Comment></Comment>
+        <Date Type="{{dateEstimated $Contact.Recent}}">
+          {{date $Contact.Recent}}
         </Date>
-        <FutureContactPlans>{{text $contact.Future}}</FutureContactPlans>
-        <Purpose>{{text $contact.Subsequent}}</Purpose>
+        <FutureContactPlans>{{text $Contact.Future}}</FutureContactPlans>
+        <Purpose>{{text $Contact.Subsequent}}</Purpose>
       </Contact>
       <HaveAdditionalEntryAnswer></HaveAdditionalEntryAnswer>
       <SummaryComment></SummaryComment>
+      {{end}}
       {{end}}
     </SubsequentForeignContacts>
   </GovernmentContact>
   {{end}}
   {{end}}
-  <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
   <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
-  <SummaryComment>string</SummaryComment>
+  <SummaryComment></SummaryComment>
 </GovernmentContacts>

@@ -1,5 +1,5 @@
 <PresentMarriage>
-  {{with $Item := .}}
+  {{with $Item := .CivilUnion}}
   <CurrentSpouse>
     {{if locationIsPostOffice $Item.Address}}
     <APOFPO>
@@ -7,7 +7,8 @@
       <AddressComment></AddressComment>
     </APOFPO>
     {{else}}
-    <Address UseMyCurrentAddress="{{$Item.UseCurrentAddress}}">
+    {{$Item.UseCurrentAddress}}
+    <Address UseMyCurrentAddress="{{checkboxTrueFalse $Item.UseCurrentAddress}}">
       {{location $Item.Address}}
     </Address>
     {{end}}

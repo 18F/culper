@@ -19,7 +19,7 @@
 
       <Birth>
         <Date Type="{{dateEstimated $Item.Birthdate}}" DoNotKnow="{{notApplicable $Item.BirthdateNotApplicable}}">
-          {{ date $Item.Birthdate }}
+          {{date $Item.Birthdate}}
         </Date>
         <Place DoNotKnow="{{notApplicable $Item.BirthplaceNotApplicable}}">
           {{location $Item.Birthplace}}
@@ -36,16 +36,16 @@
 
       <Contact>
         <Frequency>{{text $Item.Frequency}}</Frequency>
-        <FrequencyTypeOtherExplanation>{{$Item.FrequencyExplanation}}</FrequencyTypeOtherExplanation>
+        <FrequencyTypeOtherExplanation>{{text $Item.FrequencyExplanation}}</FrequencyTypeOtherExplanation>
 
         <Nature
-          Business="True"
-          Personal="True"
-          Obligation="True"
-          Other="True"
+          Business="{{checkboxHas $Item.Relationship "Professional"}}"
+          Personal="{{checkboxHas $Item.Relationship "Personal"}}"
+          Obligation="{{checkboxHas $Item.Relationship "Obligation"}}"
+          Other="{{checkboxHas $Item.Relationship "Other"}}"
           />
 
-        <NatureOtherExplanation></NatureOtherExplanation>
+        <NatureOtherExplanation>{{text $Item.RelationshipExplanation}}</NatureOtherExplanation>
 
         <Type
           InPerson="{{checkboxHas $Item.Methods "In person"}}"
@@ -61,7 +61,12 @@
       <DNKLegalNameExplanation>{{text $Item.NameExplanation}}</DNKLegalNameExplanation>
 
       <DateRange>
-        {{daterange $Item.FirstContact}}
+        <From>
+          {{date $Item.FirstContact}}
+        </From>
+        <To>
+          {{date $Item.LastContact}}
+        </To>
       </DateRange>
 
       <Employer>

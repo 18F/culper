@@ -9,7 +9,7 @@
 {{tmpl "foreign-business-job-offers.xml" .Foreign.Employment}}
 {{tmpl "foreign-business-other-employment.xml" .Foreign.Ventures}}
 {{tmpl "foreign-business-meetings.xml" .Foreign.Conferences}}
-{{tmpl "foreign-business-government-contacts.xml" .Foreign.Contacts}}
+{{tmpl "foreign-business-government-contacts.xml" .Foreign.Contact}}
 {{tmpl "foreign-business-sponsored-visits.xml" .Foreign.Sponsorship}}
 {{tmpl "foreign-business-political-office.xml" .Foreign.Political}}
 {{tmpl "foreign-business-voted.xml" .Foreign.Voting}}

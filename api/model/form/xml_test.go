@@ -2,7 +2,6 @@ package form
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"testing"
 )
@@ -74,7 +73,7 @@ func TestPackage(t *testing.T) {
 		if tmpl == "" {
 			t.Fatalf("XML template should not be empty")
 		}
-		fmt.Println(tmpl)
+		//fmt.Println(tmpl)
 
 	}
 }
