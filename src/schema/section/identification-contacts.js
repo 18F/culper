@@ -13,7 +13,7 @@ export const identificationContacts = (data = {}) => {
     const xitem = x.Item || {}
     return {
       Item: {
-        PhoneNumber: form.telephone(xitem.PhoneNumber)
+        Telephone: form.telephone(xitem.Telephone)
       }
     }
   })
