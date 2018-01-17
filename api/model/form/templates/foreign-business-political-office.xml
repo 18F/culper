@@ -1,0 +1,24 @@
+<!-- Held political office -->
+<ForeignPoliticalOffice>
+  <Answer>{{branch .props.HasForeignPolitical}}</Answer>
+  <Comment></Comment>
+</ForeignPoliticalOffice>
+
+<ForeignPoliticalOffices>
+  {{range $index, $item := .props.List.props.items}}
+  {{with $Item := $item.Item}}
+  <ForeignPoliticalOffice ID="{{$index}}">
+    <Comment></Comment>
+    {{country $Item.Country}}
+    <CurrentEligibility>{{text $Item.Eligibility}}</CurrentEligibility>
+    <DateRange>
+      {{daterange $Item.Dates}}
+    </DateRange>
+    <Position>{{text $Item.Position}}</Position>
+    <Reason>{{text $Item.Reason}}</Reason>
+  </ForeignPoliticalOffice>
+  {{end}}
+  {{end}}
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+  <SummaryComment></SummaryComment>
+</ForeignPoliticalOffices>

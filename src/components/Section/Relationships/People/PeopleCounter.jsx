@@ -8,7 +8,8 @@ export default class PeopleCounter extends React.Component {
   }
 
   render () {
-    const count = this.validPeople()
+    const valid = this.validPeople()
+    const count = valid > this.props.minimum ? this.props.minimum : valid
     const countClass = 'count ' + (count >= this.props.minimum ? 'covered' : '')
     return (
       <div className="people-counter">
