@@ -33,7 +33,7 @@ export default class OtherNamesValidator {
 
     return validAccordion(this.list, (item) => {
       return new OtherNameValidator(item).isValid()
-    }, true)
+    })
   }
 
   /**
