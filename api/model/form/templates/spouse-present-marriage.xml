@@ -7,7 +7,6 @@
       <AddressComment></AddressComment>
     </APOFPO>
     {{else}}
-    {{$Item.UseCurrentAddress}}
     <Address UseMyCurrentAddress="{{checkboxTrueFalse $Item.UseCurrentAddress}}">
       {{location $Item.Address}}
     </Address>
