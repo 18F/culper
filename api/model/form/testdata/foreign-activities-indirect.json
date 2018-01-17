@@ -16,7 +16,7 @@
               "InterestTypes": {
                 "type": "checkboxgroup",
                 "props": {
-                  "value": ["Spouse"]
+                  "values": ["Spouse"]
                 }
               },
               "InterestType": {

@@ -1,6 +1,5 @@
 {{ $birthDate := .ApplicantBirthDate.props.Date }}
 {{ $birthPlace := .ApplicantBirthPlace.props.Location }}
-
 <Birth>
   <Date Type="{{dateEstimated $birthDate}}">
     {{ date $birthDate }}

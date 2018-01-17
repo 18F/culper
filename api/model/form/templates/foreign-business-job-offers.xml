@@ -1,0 +1,35 @@
+<!-- Employment -->
+<ForeignJobOffer>
+  <Answer>{{branch .props.HasForeignEmployment}}</Answer>
+  <Comment></Comment>
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+</ForeignJobOffer>
+
+<ForeignJobOffers>
+  {{range $index, $item := .props.List.props.items}}
+  {{with $Item := $item.Item}}
+  <ForeignJobOffer ID="{{$index}}">
+    <AcceptOffer>
+      <Answer>{{text $Item.Accepted}}</Answer>
+      <Explanation>{{text $Item.Explanation}}</Explanation>
+    </AcceptOffer>
+    <Comment></Comment>
+    <Location>
+      <Place>
+        {{location $Item.Address}}
+      </Place>
+    </Location>
+
+    <OfferDate Type="{{dateEstimated $Item.Date}}">
+      {{monthYear $Item.Date}}
+    </OfferDate>
+
+    <OfferorLegalName>
+      {{name $Item.Name}}
+    </OfferorLegalName>
+    <PositionDescription>{{text $Item.Description}}</PositionDescription>
+  </ForeignJobOffer>
+  {{end}}
+  {{end}}
+  <SummaryComment></SummaryComment>
+</ForeignJobOffers>
