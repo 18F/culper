@@ -152,7 +152,7 @@ class Navigation extends React.Component {
           <div key={section.name} className="section">
             <span className="section-title">
               <a href="javascript:;;;" className={`${sectionClass} locked`}>
-                <span className="section-number">{section.showNumber && sectionNum}</span>
+                <span className="section-number">{section.showNumber ? sectionNum : ''}</span>
                 <span className="section-name">
                   {section.name}
                 </span>
@@ -172,7 +172,7 @@ class Navigation extends React.Component {
         return (
           <ToggleItem title={section.name}
                       section={true}
-                      number={sectionNum}
+                      number={section.showNumber ? sectionNum : null}
                       className={sectionClass}
                       visible={visible}
                       onToggle={this.onToggle}>
@@ -185,7 +185,7 @@ class Navigation extends React.Component {
         <div key={section.name} className="section">
           <span className="section-title">
             <Link to={url} className={sectionClass}>
-              <span className="section-number">{section.showNumber && sectionNum}</span>
+              <span className="section-number">{section.showNumber ? sectionNum : ''}</span>
               <span className="section-name">
                 {section.name}
               </span>

@@ -300,7 +300,7 @@ export const history = {
       physicalAddress: {
         help: {
           title: 'Need help with the physical address?',
-          message: 'Is/was your physical work address different than your employer\'s address?',
+          message: 'Are/were you physically working from an different location than your employer\'s address?',
           note: ''
         },
         address: {
@@ -384,7 +384,7 @@ export const history = {
           label: 'This address is',
           help: {
             title: 'Need help with the address?',
-            message: 'Provide the address of this supervisors work location',
+            message: 'Provide the address of this supervisor\'s work location',
             note: ''
           }
         },
@@ -635,7 +635,7 @@ export const history = {
           label: 'This address is',
           help: {
             title: 'Need help with the address?',
-            message: 'Provide the address of this supervisors work location',
+            message: 'Provide the address of this supervisor\'s work location',
             note: ''
           }
         },
@@ -772,7 +772,7 @@ export const history = {
           label: 'This address is',
           help: {
             title: 'Need help with the address?',
-            message: 'Provide the address of this supervisors work location',
+            message: 'Provide the address of this supervisor\'s work location',
             note: ''
           }
         },
@@ -893,7 +893,7 @@ export const history = {
       physicalAddress: {
         help: {
           title: 'Need help with the physical work address?',
-          message: 'Is/was your physical work address different than your employer\'s address?',
+          message: 'Are/were you physically working from an different location than your employer\'s address?',
           note: ''
         },
         address: {
@@ -1000,7 +1000,7 @@ export const history = {
       physicalAddress: {
         help: {
           title: 'Need help with the physical work address?',
-          message: 'Is/was your physical work address different than your employer\'s address?',
+          message: 'Are/were you physically working from an different location than your employer\'s address?',
           note: ''
         },
         address: {
@@ -1107,7 +1107,7 @@ export const history = {
       physicalAddress: {
         help: {
           title: 'Need help withe the physical work address?',
-          message: 'Is/was your physical work address different than your employer\'s address?',
+          message: 'Are/were you physically working from an different location than your employer\'s address?',
           note: ''
         },
         address: {
@@ -1214,7 +1214,7 @@ export const history = {
       physicalAddress: {
         help: {
           title: 'Need help with the physical work address?',
-          message: 'Is/was your physical work address different than your employer\'s address?',
+          message: 'Are/were you physically working from an different location than your employer\'s address?',
           note: ''
         },
         address: {
@@ -1318,7 +1318,7 @@ export const history = {
       physicalAddress: {
         help: {
           title: 'Need help with the physical work address?',
-          message: 'Is/was your physical work address different than your employer\'s address?',
+          message: 'Are/were you physically working from an different location than your employer\'s address?',
           note: ''
         },
         address: {
@@ -1441,7 +1441,7 @@ export const history = {
       physicalAddress: {
         help: {
           title: 'Need help with the physical address?',
-          message: 'Is/was your physical work address different than your employer\'s address?',
+          message: 'Are/were you physically working from an different location than your employer\'s address?',
           note: ''
         },
         address: {
