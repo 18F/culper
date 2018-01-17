@@ -70,6 +70,6 @@
   {{end}}
   {{end}}
   <Comment></Comment>
-  <HaveAdditionalEntryAnswer>{{branch .props.CohabitantList.props.items}}</HaveAdditionalEntryAnswer>
+  <HaveAdditionalEntryAnswer>{{branch .props.CohabitantList.props.branch}}</HaveAdditionalEntryAnswer>
   <SummaryComment></SummaryComment>
 </Cohabitants>

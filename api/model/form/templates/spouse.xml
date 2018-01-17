@@ -2,5 +2,5 @@
 {{tmpl "spouse-former.xml" .Relationships.Marital.props.DivorcedList}}
 {{tmpl "spouse-have-former.xml" .Relationships.Marital.props.DivorcedList}}
 {{tmpl "spouse-marital-status.xml" .Relationships.Marital.props.CivilUnion}}
-{{tmpl "spouse-present-marriage.xml" .Relationships.Marital.props.Status}}
+{{tmpl "spouse-present-marriage.xml" .Relationships.Marital}}
 <SummaryComment></SummaryComment>

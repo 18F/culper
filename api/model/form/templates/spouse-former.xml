@@ -3,7 +3,7 @@
   {{range $index, $item := .props.items}}
   {{with $Item := $item.Item}}
   <FormerSpouse ID="{{$index}}">
-    <Address DoNotKnow="{{notApplicable $Item.AddressNotApplicable}}">
+    <Address DoNotKnow="{{notApplicable $Item.DeceasedAddressNotApplicable}}">
       {{location $Item.Address}}
     </Address>
     <Birth>
@@ -38,7 +38,7 @@
       </Place>
     </Marriage>
     <!-- Possible values: Divorced, Widowed, Anulled -->
-    <Separation Type="{{text $Item.Status}}}}">
+    <Separation Type="{{text $Item.Status}}">
       <Date Type="{{dateEstimated $Item.DateDivorced}}">
         {{ date $Item.DateDivorced }}
       </Date>

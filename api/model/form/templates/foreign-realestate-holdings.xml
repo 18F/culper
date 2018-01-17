@@ -1,0 +1,66 @@
+<RealEstateHoldings>
+  <Answer>{{branch .props.HasInterests}}</Answer>
+  <AnswerComment></AnswerComment>
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+
+  {{range $index, $item := .props.List.props.items}}
+  {{with $Item := $item.Item}}
+  <RealEstateHolding ID="{{$index}}">
+    <Coowner>
+      <SummaryComment></SummaryComment>
+    </Coowner>
+
+    <Coowners>
+      <Answer>{{branchcollectionHas $Item.CoOwners.props.List}}</Answer>
+      <AnswerComment></AnswerComment>
+
+      {{range $index, $coowner := $Item.CoOwners.props.List.props.items}}
+      {{with $Coowner := $coowner.Item}}
+      <Coowner ID="{{$index}}">
+        <Address>
+          {{location $Coowner.Address}}
+        </Address>
+        <Comment></Comment>
+        <CountriesOfCitizenship>
+          {{range $index, $country := $Coowner.Countries.props.value}}
+          <Citizenship ID="{{$index}}">
+            <Country>{{$country}}</Country>
+          </Citizenship>
+          {{end}}
+        </CountriesOfCitizenship>
+        <LegalName>
+          {{name $Coowner.Name}}
+        </LegalName>
+        <Relationship>{{text $Coowner.RelationshipNature}}</Relationship>
+      </Coowner>
+      {{end}}
+      {{end}}
+
+      <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+    </Coowners>
+
+    <Cost Estimated="{{$Item.CostEstimated.props.checked}}">{{text $Item.Cost}}</Cost>
+    <DateAcquired Type="{{dateEstimated $Item.Acquired}}">
+      {{date $Item.Acquired}}
+    </DateAcquired>
+    <EntryComment></EntryComment>
+    <HowAcquired>{{text $Item.HowAcquired}}</HowAcquired>
+
+    <Location>
+      <Address>
+        {{location $Item.Address}}
+      </Address>
+    </Location>
+    <Members
+      Yourself="{{checkboxHas $Item.InterestTypes "Yourself"}}"
+      Spouse="{{checkboxHas $Item.InterestTypes "Spouse"}}"
+      Cohabitant="{{checkboxHas $Item.InterestTypes "Cohabitant"}}"
+      DependentChildren="{{checkboxHas $Item.InterestTypes "DependentChildren"}}"
+      />
+    <Type>{{text $Item.RealEstateType}}</Type>
+  </RealEstateHolding>
+  {{end}}
+  {{end}}
+
+  <SummaryComment></SummaryComment>
+</RealEstateHoldings>
