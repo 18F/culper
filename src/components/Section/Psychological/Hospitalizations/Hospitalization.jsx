@@ -60,8 +60,8 @@ export default class Hospitalization extends ValidationElement {
     return (
       <div className="hospitalization">
         <Field title={i18n.t(`psychological.hospitalization.heading.admission`)}
-          adjustFor="big-buttons"
-          scrollIntoView={this.props.scrollIntoView}>
+               adjustFor="big-buttons"
+               scrollIntoView={this.props.scrollIntoView}>
           <RadioGroup className="admission" name="admission" selectedValue={this.props.Admission} required={this.props.required} onError={this.props.onError}>
             <Radio
               className="voluntary-option"
@@ -85,7 +85,7 @@ export default class Hospitalization extends ValidationElement {
         </Field>
 
         <Field title={i18n.t(`psychological.hospitalization.heading.explanation`)}
-          scrollIntoView={this.props.scrollIntoView}>
+               scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Explanation"
                     className="explanation"
                     {...this.props.Explanation}
@@ -107,13 +107,12 @@ export default class Hospitalization extends ValidationElement {
                      onError={this.props.onError}
                      required={this.props.required}
                      minDate={this.props.ApplicantBirthdate}
-                     prefix="hospitalization"
                      />
         </Field>
 
         <Field title={i18n.t(`psychological.hospitalization.heading.facility`)}
-          help="psychological.hospitalization.help.facility"
-          scrollIntoView={this.props.scrollIntoView}>
+               help="psychological.hospitalization.help.facility"
+               scrollIntoView={this.props.scrollIntoView}>
           <Text name="Facility"
                 className="facility"
                 {...this.props.Facility}
