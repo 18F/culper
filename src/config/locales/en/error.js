@@ -165,7 +165,7 @@ export const error = {
     },
     min: {
       title: 'There is a problem with the date',
-      message: 'The date should be on or after your date of birth.'
+      message: 'The date should be after your date of birth.'
     },
     required: {
       title: 'There is a problem with this field',
@@ -286,7 +286,7 @@ export const error = {
       },
       min: {
         title: 'There is a problem with the date',
-        message: 'For the **to** date, the date should be on or after your date of birth.'
+        message: 'For the **to** date, the date should be after your date of birth.'
       },
       relative: {
         month: {
@@ -398,7 +398,7 @@ export const error = {
       },
       min: {
         title: 'There is a problem with the date',
-        message: 'For the **from** date, the date should be on or after your date of birth.'
+        message: 'For the **from** date, the date should be after your date of birth.'
       },
       relative: {
         month: {
@@ -935,7 +935,7 @@ export const error = {
       },
       min: {
         title: 'There is a problem with the date',
-        message: 'The date should be on or after your date of birth.'
+        message: 'The date should be after your date of birth.'
       }
     },
     end: {

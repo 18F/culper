@@ -77,7 +77,8 @@ export const identification = {
         nodates: 'NA',
         unknown: '*Provide your full name below*'
       },
-      append: 'Add another name'
+      append: 'Add another name',
+      appendTitle: 'Do you have additional names to enter?'
     },
     heading: {
       name: 'Provide other name used',
