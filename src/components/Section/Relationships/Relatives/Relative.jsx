@@ -1003,7 +1003,7 @@ export default class Relative extends ValidationElement {
                              onUpdate={this.updateEmployerAddressNotApplicable}>
                 <Location name="EmployerAddress"
                           {...this.props.EmployerAddress}
-                          layout={Location.STREET_CITY}
+                          layout={Location.ADDRESS}
                           className="relative-employer-address"
                           onError={this.props.onError}
                           onUpdate={this.updateEmployerAddress}
