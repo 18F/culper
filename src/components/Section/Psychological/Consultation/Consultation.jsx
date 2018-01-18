@@ -63,7 +63,7 @@ export default class Consultation extends SubsectionElement {
                 required={this.props.required}
                 onUpdate={this.updateConsulted}
                 scrollIntoView={this.props.scrollIntoView}>
-        { i18n.m('psychological.heading.consultation2') }
+          { i18n.m('psychological.heading.consultation2') }
         </Branch>
 
         <Show when={this.props.Consulted.value === 'Yes'}>

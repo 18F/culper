@@ -131,7 +131,7 @@ class Psychological extends SectionElement {
                        back={this.props.ShowExistingConditions ? 'psychological/conditions' : 'psychological/diagnoses'}
                        backLabel={i18n.t(this.props.ShowExistingConditions ? 'psychological.destination.existingConditions' : 'psychological.destination.diagnoses')}
                        next="submit"
-                       nextLabel={ i18n.t('submission.destination.submit') }>
+                       nextLabel={ i18n.t('application.destination.submit') }>
 
             <Competence name="Competence"
                         {...this.props.Competence}
