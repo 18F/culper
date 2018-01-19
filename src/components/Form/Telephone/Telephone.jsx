@@ -670,15 +670,14 @@ export default class Telephone extends ValidationElement {
             <label>Select phone number type</label>
             <RadioGroup selectedValue={this.props.numberType}
                         required={this.required()}
-                        disabled={this.props.noNumber}
-                        onError={this.handleErrorNumberType}>
+                        disabled={this.props.noNumber}>
               <Radio name="numbertype-cell"
                      className="phonetype-option cell"
                      label={i18n.t('telephone.numberType.cell')}
                      value="Cell"
                      disabled={this.props.noNumber}
                      onUpdate={this.updateNumberType}
-                     onError={this.handleErrorType}
+                     onError={this.handleErrorNumberType}
                      />
               <Radio name="numbertype-home"
                      className="phonetype-option home"
@@ -686,7 +685,7 @@ export default class Telephone extends ValidationElement {
                      value="Home"
                      disabled={this.props.noNumber}
                      onUpdate={this.updateNumberType}
-                     onError={this.handleErrorType}
+                     onError={this.handleErrorNumberType}
                      />
               <Radio name="numbertype-work"
                      className="phonetype-option work"
@@ -694,7 +693,7 @@ export default class Telephone extends ValidationElement {
                      value="Work"
                      disabled={this.props.noNumber}
                      onUpdate={this.updateNumberType}
-                     onError={this.handleErrorType}
+                     onError={this.handleErrorNumberType}
                      />
               <Radio name="numbertype-other"
                      className="phonetype-option other"
@@ -702,7 +701,7 @@ export default class Telephone extends ValidationElement {
                      value="Other"
                      disabled={this.props.noNumber}
                      onUpdate={this.updateNumberType}
-                     onError={this.handleErrorType}
+                     onError={this.handleErrorNumberType}
                      />
             </RadioGroup>
           </div>
