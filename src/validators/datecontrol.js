@@ -6,12 +6,19 @@ export default class DateControlValidator {
     this.day = state.day || props.day
     this.year = state.year || props.year
     this.hideDay = props.hideDay
+    this.maxDate = props.maxDate
+    this.minDate = props.minDate
     this.noMaxDate = props.noMaxDate
     this.relationship = props.relationship || ''
 
     this.limits = dateLimits(this.relationship, props.applicantBirthdate)
-    this.maxDate = props.maxDate || this.limits.maxDate
-    this.minDate = props.minDate || this.limits.minDate
+    if (!this.maxDate || (this.maxDate && this.maxDate > this.limits.maxDate)) {
+      this.maxDate = this.limits.maxDate
+    }
+
+    if (!this.minDate || (this.minDate && this.minDate < this.limits.minDate)) {
+      this.minDate = this.limits.minDate
+    }
 
     // For month/year fields, we compare from the start of the month
     if (this.hideDay) {

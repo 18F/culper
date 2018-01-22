@@ -576,7 +576,7 @@ export default class Status extends SubsectionElement {
               <RadioGroup className="citizenship-basis"
                           required={this.props.required}
                           onError={this.handleError}
-                          selectedValue={this.props.Basis}>
+                          selectedValue={(this.props.Basis || {}).value}>
                 <Radio name="citizenship-basis-individual"
                        label={i18n.m('citizenship.status.label.basis.naturalized')}
                        value="Individual"

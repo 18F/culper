@@ -23,7 +23,7 @@ describe('The military service component', () => {
   it('selecting a national guard service provides the status', () => {
     const expected = {
       name: 'military-service',
-      Service: 'AirNationalGuard'
+      Service: { value: 'AirNationalGuard' }
     }
     const component = mount(<MilitaryService {...expected} />)
     expect(component.find('.status').length).toEqual(1)
@@ -57,7 +57,7 @@ describe('The military service component', () => {
     const expected = {
       name: 'military-service',
       HasBeenDischarged: { value: 'Yes' },
-      DischargeType: 'Other'
+      DischargeType: { value: 'Other' }
     }
     const component = mount(<MilitaryService {...expected} />)
     expect(component.find('.discharge-type').length).toEqual(1)
@@ -69,7 +69,7 @@ describe('The military service component', () => {
     const expected = {
       name: 'military-service',
       HasBeenDischarged: { value: 'Yes' },
-      DischargeType: 'General'
+      DischargeType: { value: 'General' }
     }
     const component = mount(<MilitaryService {...expected} />)
     expect(component.find('.discharge-type').length).toEqual(1)
@@ -81,7 +81,7 @@ describe('The military service component', () => {
     const expected = {
       name: 'military-service',
       HasBeenDischarged: { value: 'Yes' },
-      DischargeType: 'Honorable'
+      DischargeType: { value: 'Honorable' }
     }
     const component = mount(<MilitaryService {...expected} />)
     expect(component.find('.discharge-type').length).toEqual(1)
@@ -93,9 +93,9 @@ describe('The military service component', () => {
     let updates = 0
     const expected = {
       name: 'military-service',
-      Service: 'AirNationalGuard',
+      Service: { value: 'AirNationalGuard' },
       HasBeenDischarged: { value: 'Yes' },
-      DischargeType: 'Other',
+      DischargeType: { value: 'Other' },
       onUpdate: () => { updates++ }
     }
     const component = mount(<MilitaryService {...expected} />)

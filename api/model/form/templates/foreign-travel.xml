@@ -1,0 +1,69 @@
+<ForeignTravels>
+  <Comment></Comment>
+  <CountriesVisited>
+    <Answer>{{branch .props.HasForeignTravelOutside}}</Answer>
+  </CountriesVisited>
+
+  <HaveAdditionalEntryAnswer>Yes</HaveAdditionalEntryAnswer>
+  <SolelyForUSGovernment>
+    <Answer>{{branch .props.HasForeignTravelOfficial}}</Answer>
+    <Comment></Comment>
+  </SolelyForUSGovernment>
+
+  <SummaryComment></SummaryComment>
+
+  {{range $index, $item := .props.List.props.items}}
+  {{with $Item := $item.Item}}
+  <Travels>
+    <Travel ID="{{$index}}">
+      <ContactedByForeignMilitaryOrganization>
+        <Answer>{{branch $Item.Contacted}}</Answer>
+        <Explanation>{{text $Item.ContactedExplanation}}</Explanation>
+      </ContactedByForeignMilitaryOrganization>
+      <ContactedByPersonAttemptingToObtainInformation>
+        <Answer>{{branch $Item.Sensitive}}</Answer>
+        <Explanation>{{text $Item.SensitiveExplanation}}</Explanation>
+      </ContactedByPersonAttemptingToObtainInformation>
+      <ContactedByPersonWithInterestInYourJob>
+        <Answer>{{branch $Item.Interest}}</Answer>
+        <Explanation>{{text $Item.InterestExplanation}}</Explanation>
+      </ContactedByPersonWithInterestInYourJob>
+      {{country $Item.Country}}
+
+      <DateRange>
+        {{daterange $Item.Dates}}
+      </DateRange>
+      <Detained>
+        <Answer>{{branch $Item.Questioned}}</Answer>
+        <Explanation>{{text $Item.QuestionExplanation}}</Explanation>
+      </Detained>
+      <Duration>
+        <NumberOfDaysRange>{{checkbox $Item.Days}}</NumberOfDaysRange>
+      </Duration>
+      <EntryComment></EntryComment>
+      <InvolvedInCounterintelligence>
+        <Answer>{{branch $Item.Counter}}</Answer>
+        <Explanation>{{text $Item.CounterExplanation}}</Explanation>
+      </InvolvedInCounterintelligence>
+      <PoliceEncounter>
+        <Answer>{{branch $Item.Encounter}}</Answer>
+        <Explanation>{{text $Item.EncounterExplanation}}</Explanation>
+      </PoliceEncounter>
+      <PurposeOfVisit
+        Business="{{checkboxHas $Item.Purpose "Business"}}"
+        VolunteerActivities="{{checkboxHas $Item.Purpose "Volunteer"}}"
+        Education="{{checkboxHas $Item.Purpose "Education"}}"
+        Tourism="{{checkboxHas $Item.Purpose "Tourism"}}"
+        TradeShow="{{checkboxHas $Item.Purpose "Conference"}}"
+        VisitFamilyOrFriends="{{checkboxHas $Item.Purpose "Family"}}"
+        Other="{{checkboxHas $Item.Purpose "Other"}}"
+        />
+      <Threatened>
+        <Answer>{{branch $Item.Threatened}}</Answer>
+        <Explanation>{{text $Item.ThreatenedExplanation}}</Explanation>
+      </Threatened>
+    </Travel>
+    {{end}}
+    {{end}}
+  </Travels>
+</ForeignTravels>

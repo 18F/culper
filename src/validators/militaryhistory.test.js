@@ -44,9 +44,9 @@ describe('Military history validation', function () {
             items: [
               {
                 Item: {
-                  Service: 'AirNationalGuard',
-                  Status: 'ActiveDuty',
-                  Officer: 'Enlisted',
+                  Service: { value: 'AirNationalGuard' },
+                  Status: { value: 'ActiveDuty' },
+                  Officer: { value: 'Enlisted' },
                   ServiceNumber: {
                     value: '0123456789'
                   },
@@ -75,9 +75,9 @@ describe('Military history validation', function () {
             items: [
               {
                 Item: {
-                  Service: 'AirNationalGuard',
-                  Status: 'ActiveDuty',
-                  Officer: 'Enlisted',
+                  Service: { value: 'AirNationalGuard' },
+                  Status: { value: 'ActiveDuty' },
+                  Officer: { value: 'Enlisted' },
                   ServiceNumber: {
                     value: '0123456789'
                   },
@@ -91,7 +91,7 @@ describe('Military history validation', function () {
                     present: false
                   },
                   HasBeenDischarged: { value: 'Yes' },
-                  DischargeType: 'Other',
+                  DischargeType: { value: 'Other' },
                   DischargeTypeOther: {
                     value: 'Something'
                   },
@@ -119,9 +119,9 @@ describe('Military history validation', function () {
             items: [
               {
                 Item: {
-                  Service: 'AirNationalGuard',
-                  Status: 'ActiveDuty',
-                  Officer: 'Enlisted',
+                  Service: { value: 'AirNationalGuard' },
+                  Status: { value: 'ActiveDuty' },
+                  Officer: { value: 'Enlisted' },
                   ServiceNumber: {
                     value: '0123456789'
                   },
@@ -135,7 +135,7 @@ describe('Military history validation', function () {
                     present: false
                   },
                   HasBeenDischarged: { value: 'Yes' },
-                  DischargeType: 'Honorable',
+                  DischargeType: { value: 'Honorable' },
                   DischargeDate: {
                     day: '1',
                     month: '1',
@@ -157,9 +157,9 @@ describe('Military history validation', function () {
             items: [
               {
                 Item: {
-                  Service: 'AirNationalGuard',
-                  Status: 'ActiveDuty',
-                  Officer: 'Enlisted',
+                  Service: { value: 'AirNationalGuard' },
+                  Status:  { value: 'ActiveDuty' },
+                  Officer: { value: 'Enlisted' },
                   ServiceNumber: {
                     value: '0123456789'
                   },
@@ -173,7 +173,7 @@ describe('Military history validation', function () {
                     present: false
                   },
                   HasBeenDischarged: { value: 'Yes' },
-                  DischargeType: 'General',
+                  DischargeType: { value: 'General' },
                   DischargeReason: {
                     value: 'My reason'
                   },
@@ -198,9 +198,9 @@ describe('Military history validation', function () {
             items: [
               {
                 Item: {
-                  Service: 'AirNationalGuard',
-                  Status: 'ActiveDuty',
-                  Officer: 'Enlisted',
+                  Service: { value: 'AirNationalGuard' },
+                  Status:  { value: 'ActiveDuty' },
+                  Officer: { value: 'Enlisted' },
                   ServiceNumber: {
                     value: '0123456789'
                   },
@@ -229,8 +229,8 @@ describe('Military history validation', function () {
             items: [
               {
                 Item: {
-                  Service: 'Army',
-                  Officer: 'Enlisted',
+                  Service: { value: 'Army' },
+                  Officer: { value: 'Enlisted' },
                   ServiceNumber: {
                     value: '0123456789'
                   },

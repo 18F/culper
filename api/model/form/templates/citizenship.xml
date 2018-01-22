@@ -1,0 +1,2 @@
+{{tmpl "citizenship-status.xml" .}}
+{{tmpl "citizenship-multiple.xml" .Citizenship.Multiple}}

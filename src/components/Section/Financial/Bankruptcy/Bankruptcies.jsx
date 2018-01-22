@@ -97,7 +97,7 @@ export default class Bankruptcies extends SubsectionElement {
 }
 
 Bankruptcies.defaultProps = {
-  List: { items: [] },
+  List: Accordion.defaultList,
   HasBankruptcy: {},
   applicantBirthdate: {},
   addressBooks: {},

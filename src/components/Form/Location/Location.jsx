@@ -89,10 +89,17 @@ export default class Location extends ValidationElement {
     this.props.onUpdate(values)
 
     // If there is an associated address book then push the updates there
-    if (this.props.addressBook) {
+    if (this.props.addressBook && values.validated) {
       const updatedBook = this.appendToAddressBook(this.props.addressBooks, this.props.addressBook, values)
       this.props.dispatch(updateApplication('AddressBooks', this.props.addressBook, updatedBook))
+    } else {
+      const updatedBook = this.removeFromAddressBook(this.props.addressBooks, this.props.addressBook, values)
+      this.props.dispatch(updateApplication('AddressBooks', this.props.addressBook, updatedBook))
     }
+  }
+
+  removeFromAddressBook (books, name, address) {
+    return (books[name] || []).filter(a => a.uid !== address.uid)
   }
 
   appendToAddressBook (books, name, address) {
@@ -255,9 +262,7 @@ export default class Location extends ValidationElement {
             return
           }
 
-          this.setState({ geocodeResult: r }, () => {
-            this.update({ validated: true })
-          })
+          this.setState({ geocodeResult: r })
         })
         .then(() => {
           // Trigger the spinner to complete final animations
@@ -615,7 +620,7 @@ export default class Location extends ValidationElement {
       return (
         <span>
           <p>{i18n.t(`${e}.para`)}</p>
-          <button className="suggestion-btn" onClick={this.onSuggestionDismiss.bind(this)}>
+          <button className="suggestion-btn" onClick={this.onSuggestionDismiss.bind(this, 'alternate')}>
             <span>{i18n.t('suggestions.address.more')}</span>
             <i className="fa fa-arrow-circle-right"></i>
           </button>
@@ -638,10 +643,10 @@ export default class Location extends ValidationElement {
     return null
   }
 
-  onSuggestionDismiss () {
+  onSuggestionDismiss (action) {
     this.setState({ spinner: false, suggestions: false, geocodeResult: {} }, () => {
       this.update({
-        validated: true
+        validated: action === 'dismiss'
       })
     })
   }

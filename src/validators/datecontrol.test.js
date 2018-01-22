@@ -353,4 +353,61 @@ describe('date control validator', function () {
       expect(validator.validMinDate()).toBe(test.min)
     })
   })
+
+  it('can handle min/max explicitly set along with applicant birthdate', () => {
+    function age (i) {
+      const date = daysAgo(today, 365 * i)
+      return {
+        month: `${date.getMonth()+1}`,
+        day: `${date.getDate()}`,
+        year: `${date.getFullYear()}`
+      }
+    }
+
+    const birthdate = age(25)
+    const tests = [
+      {
+        props: {
+          applicantBirthdate: birthdate,
+          minDate: daysAgo(today, 365 * 23),
+          ...age(24)
+        },
+        min: false,
+        max: true
+      },
+      {
+        props: {
+          applicantBirthdate: birthdate,
+          minDate: daysAgo(today, 365 * 23),
+          ...age(26)
+        },
+        min: false,
+        max: true
+      },
+      {
+        props: {
+          applicantBirthdate: birthdate,
+          maxDate: daysAgo(today, 365 * 20),
+          ...age(19)
+        },
+        min: true,
+        max: false
+      },
+      {
+        props: {
+          applicantBirthdate: birthdate,
+          maxDate: daysAgo(today, 365 * 30),
+          ...age(0)
+        },
+        min: true,
+        max: false
+      },
+    ]
+
+    tests.forEach(test => {
+      const validator = new DateControlValidator(test.state, test.props)
+      expect(validator.validMaxDate()).toBe(test.max)
+      expect(validator.validMinDate()).toBe(test.min)
+    })
+  })
 })
