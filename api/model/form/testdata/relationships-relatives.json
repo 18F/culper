@@ -299,7 +299,7 @@
               "EmployerAddress": {
                 "type": "location",
                 "props": {
-                  "layout": "Street, City",
+                  "layout": "Address",
                   "street": "123 Some Rd",
                   "street2": "",
                   "city": "Arlington",
