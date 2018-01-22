@@ -1453,10 +1453,12 @@ describe('Relatives validation', function () {
             layout: Location.ADDRESS
           },
           EmployerAddress: {
-            street: '1234 Some Rd',
-            city: 'Munich',
             country: { value: 'United States' },
-            layout: Location.STREET_CITY
+            street: '1234 Some Rd',
+            city: 'Arlington',
+            state: 'Virginia',
+            zipcode: '22202',
+            layout: Location.ADDRESS
           }
         },
         expected: true
