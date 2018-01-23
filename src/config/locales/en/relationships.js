@@ -687,8 +687,8 @@ export const relationships = {
           title: 'Check all that apply.',
           neighbor: 'Neighbor',
           friend: 'Friend',
-          landlord: 'Landlord',
-          business: 'Business',
+          workAssociate: 'Work Associate',
+          schoolmate: 'Schoolmate',
           other: 'Other',
           explanation: 'Provide explanation'
         }
