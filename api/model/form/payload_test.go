@@ -99,6 +99,7 @@ func TestPayloadValidate(t *testing.T) {
 		{Data: "testdata/branch.json"},
 		{Data: "testdata/branchcollection.json"},
 		{Data: "testdata/checkbox.json"},
+		{Data: "testdata/civilunion.json"},
 		{Data: "testdata/clearancelevel.json"},
 		{Data: "testdata/country.json"},
 		{Data: "testdata/datecontrol.json"},

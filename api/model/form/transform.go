@@ -8,6 +8,7 @@ var transform = map[string]func() Entity{
 	"branch":                                          func() Entity { return &Branch{} },
 	"checkbox":                                        func() Entity { return &Checkbox{} },
 	"checkboxgroup":                                   func() Entity { return &CheckboxGroup{} },
+	"civilunion":                                      func() Entity { return &CivilUnion{} },
 	"clearancelevel":                                  func() Entity { return &ClearanceLevel{} },
 	"collection":                                      func() Entity { return &Collection{} },
 	"contacts":                                        func() Entity { return &Contacts{} },
