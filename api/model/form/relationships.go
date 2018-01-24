@@ -8,9 +8,9 @@ import (
 )
 
 type RelationshipsMarital struct {
-	PayloadStatus       Payload           `json:"Status" sql:"-"`
-	PayloadCivilUnion   PayloadProperties `json:"CivilUnion" sql:"-"`
-	PayloadDivorcedList Payload           `json:"DivorcedList" sql:"-"`
+	PayloadStatus       Payload `json:"Status" sql:"-"`
+	PayloadCivilUnion   Payload `json:"CivilUnion" sql:"-"`
+	PayloadDivorcedList Payload `json:"DivorcedList" sql:"-"`
 
 	// Validator specific fields
 	Status       *Radio      `json:"-"`
@@ -37,7 +37,11 @@ func (entity *RelationshipsMarital) Unmarshal(raw []byte) error {
 	}
 	entity.Status = status.(*Radio)
 
-	entity.CivilUnion = &CivilUnion{Items: entity.PayloadCivilUnion}
+	civilUnion, err := entity.PayloadCivilUnion.Entity()
+	if err != nil {
+		return err
+	}
+	entity.CivilUnion = civilUnion.(*CivilUnion)
 
 	divorcedList, err := entity.PayloadDivorcedList.Entity()
 	if err != nil {
@@ -54,7 +58,7 @@ func (entity *RelationshipsMarital) Marshal() Payload {
 		entity.PayloadStatus = entity.Status.Marshal()
 	}
 	if entity.CivilUnion != nil {
-		entity.PayloadCivilUnion = entity.CivilUnion.Items
+		entity.PayloadCivilUnion = entity.CivilUnion.Marshal()
 	}
 	if entity.DivorcedList != nil {
 		entity.PayloadDivorcedList = entity.DivorcedList.Marshal()
@@ -70,30 +74,11 @@ func (entity *RelationshipsMarital) Valid() (bool, error) {
 	switch {
 	case sv == "InCivilUnion" || sv == "Separated":
 		// Check if the civil union information is valid
-		for k, v := range entity.CivilUnion.Items {
-			if k == "Divorced" {
-				// Check if there was a divorce mentioned in the civil union
-				divorced, err := v.Entity()
-				if err != nil {
-					return false, err
-				}
-
-				if ok, err := divorced.Valid(); !ok {
-					stack.Append("CitizenshipMarital", err)
-				}
-
-				// If there was a divorce then validate the divorce
-				// collection as well
-				if divorced.(*Branch).Value == "Yes" {
-					if ok, err := entity.DivorcedList.Valid(); !ok {
-						stack.Append("CitizenshipMarital", err)
-					}
-				}
-
-				continue
-			}
-
-			if ok, err := v.Valid(); !ok {
+		if ok, err := entity.CivilUnion.Valid(); !ok {
+			stack.Append("CitizenshipMarital", err)
+		}
+		if entity.CivilUnion.Divorced.Value == "Yes" {
+			if ok, err := entity.DivorcedList.Valid(); !ok {
 				stack.Append("CitizenshipMarital", err)
 			}
 		}
@@ -146,12 +131,11 @@ func (entity *RelationshipsMarital) Save(context *db.DatabaseContext, account in
 	}
 	entity.DivorcedListID = divorcedListID
 
-	entity.CivilUnion.ID = account
-	_, err = entity.CivilUnion.Save(context, account)
+	civilUnionID, err := entity.CivilUnion.Save(context, account)
 	if err != nil {
-		return entity.ID, err
+		return civilUnionID, err
 	}
-	entity.CivilUnionID = account
+	entity.CivilUnionID = civilUnionID
 
 	if err := context.Save(entity); err != nil {
 		return entity.ID, err
@@ -178,8 +162,8 @@ func (entity *RelationshipsMarital) Delete(context *db.DatabaseContext, account 
 		if entity.CivilUnion == nil {
 			entity.CivilUnion = &CivilUnion{}
 		}
-		entity.CivilUnion.ID = entity.ID // previous.CivilUnionID
-		entity.CivilUnionID = entity.ID  // previous.CivilUnionID
+		entity.CivilUnion.ID = previous.CivilUnionID
+		entity.CivilUnionID = previous.CivilUnionID
 		if entity.DivorcedList == nil {
 			entity.DivorcedList = &Collection{}
 		}
@@ -232,8 +216,8 @@ func (entity *RelationshipsMarital) Get(context *db.DatabaseContext, account int
 		if entity.CivilUnion == nil {
 			entity.CivilUnion = &CivilUnion{}
 		}
-		entity.CivilUnion.ID = account
-		entity.CivilUnionID = account
+		entity.CivilUnion.ID = previous.CivilUnionID
+		entity.CivilUnionID = previous.CivilUnionID
 		if entity.DivorcedList == nil {
 			entity.DivorcedList = &Collection{}
 		}

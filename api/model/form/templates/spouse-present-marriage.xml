@@ -1,5 +1,5 @@
 <PresentMarriage>
-  {{with $Item := .CivilUnion}}
+  {{with $Item := .CivilUnion.props}}
   <CurrentSpouse>
     {{if locationIsPostOffice $Item.Address}}
     <APOFPO>
@@ -19,14 +19,16 @@
         {{ location $Item.BirthPlace }}
       </Place>
     </Birth>
+    {{with $foreignBornDocument := $Item.ForeignBornDocument.props}}
     <Citizenship>
       <ProofOfStatus>
         <Comment></Comment>
-        <DocumentNumber>{{text $Item.ForeignBornDocument.DocumentNumber}}</DocumentNumber>
-        <Type>{{text $Item.ForeignBornDocument.DocumentType}}</Type>
-        <TypeOtherExplanation>{{text $Item.ForeignBornDocument.OtherExplanation}}</TypeOtherExplanation>
+        <DocumentNumber>{{text $foreignBornDocument.DocumentNumber}}</DocumentNumber>
+        <Type>{{text $foreignBornDocument.DocumentType}}</Type>
+        <TypeOtherExplanation>{{text $foreignBornDocument.OtherExplanation}}</TypeOtherExplanation>
       </ProofOfStatus>
     </Citizenship>
+    {{end}}
     <ContinueComment></ContinueComment>
     <CountriesOfCitizenship>
       {{range $index, $country := $Item.Citizenship.value}}
