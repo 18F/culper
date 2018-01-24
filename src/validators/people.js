@@ -108,7 +108,7 @@ export class PersonValidator {
       return false
     }
     for (let r of this.relationship) {
-      if (!['Neighbor', 'Friend', 'Landlord', 'Business', 'Other'].includes(r)) {
+      if (!['Neighbor', 'Friend', 'WorkAssociate', 'Schoolmate', 'Other'].includes(r)) {
         return false
       }
     }
