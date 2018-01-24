@@ -1267,13 +1267,13 @@ export const history = {
     },
     selfemployment: {
       heading: {
-        employer: 'Provide the name of your employer',
+        employer: 'Provide the name of your employment',
         title: 'Provide the most recent position title',
         status: 'Select the employment status for this position',
         address: 'Provide the address of employment',
         telephone: 'Provide your employment telephone number',
         reference: 'Provide the name of someone that can verify your self-employment',
-        physicalAddress: 'Is/was your physical work address different than your employer\'s address?',
+        physicalAddress: 'Is your physical work address different than your employment address?',
         additionalActivity: 'Additional periods of activity with this employer'
       },
       employer: {
