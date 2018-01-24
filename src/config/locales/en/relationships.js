@@ -467,7 +467,7 @@ export const relationships = {
     othernames: {
       heading: {
         name: 'Provide full name',
-        maiden: 'Is this your cohabitant\'s maiden name?',
+        maiden: 'Is this their maiden name?',
         used: 'Provide dates name was used'
       }
     },
@@ -687,8 +687,8 @@ export const relationships = {
           title: 'Check all that apply.',
           neighbor: 'Neighbor',
           friend: 'Friend',
-          landlord: 'Landlord',
-          business: 'Business',
+          workAssociate: 'Work Associate',
+          schoolmate: 'Schoolmate',
           other: 'Other',
           explanation: 'Provide explanation'
         }
