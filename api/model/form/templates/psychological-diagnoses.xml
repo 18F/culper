@@ -1,0 +1,26 @@
+<Diagnosed>
+  <Answer>{{branch .props.Diagnosed}}</Answer>
+  <DidNotConsult>{{branch .props.DidNotConsult}}</DidNotConsult>
+  {{range $index, $item := .props.DiagnosisList.props.items}}
+  {{with $Item := $item.Item}}
+  <Diagnosis ID="{{$index}}">
+    <Condition>{{radio $Item.Condition}}</Condition>
+    <Diagnosed>{{daterange $Item.Diagnosed}}</Diagnosed>
+    <Treatment>{{treatment $Item.Treatment}}</Treatment>
+    <Facility>{{treatment $Item.Facility}}</Facility>
+    <Effective>{{branch $Item.Effective}}</Effective>
+    <Explanation>{{textarea $Item.Explanation}}</Explanation>
+    <HaveAdditionalEntryAnswer>{{branch .props.DiagnosisList.props.branch}}</HaveAdditionalEntryAnswer>
+  </Diagnosis>
+  {{end}}
+  {{end}}
+  <InTreatment>{{branch .props.InTreatment}}</InTreatment>
+  {{range $index, $item := .props.TreatmentList.props.items}}
+  {{with $Item := $item.Item}}
+  <Treatment ID="{{$index}}">
+    {{treatment $Item}}
+    <HaveAdditionalEntryAnswer>{{branch .props.TreatmentList.props.branch}}</HaveAdditionalEntryAnswer>
+  </Treatment>
+  {{end}}
+  {{end}}
+</Diagnosed>

@@ -66,6 +66,12 @@ func TestPackage(t *testing.T) {
 		{Schema: "foreign-business-sponsored-visits.xml", Data: readSectionData("testdata/foreign-business-sponsorship.json")},
 		{Schema: "foreign-business-political-office.xml", Data: readSectionData("testdata/foreign-business-political.json")},
 		{Schema: "foreign-business-voted.xml", Data: readSectionData("testdata/foreign-business-voting.json")},
+		{Schema: "psychological.xml", Data: application},
+		{Schema: "psychological-competence.xml", Data: readSectionData("testdata/psychological-competence.json")},
+		{Schema: "psychological-conditions.xml", Data: readSectionData("testdata/psychological-conditions.json")},
+		{Schema: "psychological-consultations.xml", Data: readSectionData("testdata/psychological-consultations.json")},
+		{Schema: "psychological-diagnoses.xml", Data: readSectionData("testdata/psychological-diagnoses.json")},
+		{Schema: "psychological-hospitalizations.xml", Data: readSectionData("testdata/psychological-hospitalizations.json")},
 	}
 
 	for _, test := range tests {
@@ -129,6 +135,13 @@ func applicationData() map[string]interface{} {
 			"Political":          readSectionData("testdata/foreign-business-political.json"),
 			"Voting":             readSectionData("testdata/foreign-business-voting.json"),
 			"Passport":           readSectionData("testdata/foreign-passport.json"),
+		},
+		"Psychological": map[string]interface{}{
+			"Competence":         readSectionData("testdata/psychological-competence.json"),
+			"ExistingConditions": readSectionData("testdata/psychological-conditions.json"),
+			"Consultations":      readSectionData("testdata/psychological-consultations.json"),
+			"Diagnoses":          readSectionData("testdata/psychological-diagnoses.json"),
+			"Hospitalizations":   readSectionData("testdata/psychological-hospitalizations.json"),
 		},
 	}
 }

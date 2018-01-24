@@ -1,0 +1,3 @@
+<Name>{{text .Name}}</Name>
+<Phone>{{telephone .Telephone}}</Phone>
+<Address>{{location .Address}}</Address>

@@ -1,0 +1,19 @@
+<Hospitalized>
+  <Answer>{{branch .props.Hospitalized}}</Answer>
+  {{range $index, $item := .props.List.props.items}}
+  {{with $Item := $item.Item}}
+  <Hospitalization ID="{{$index}}">
+    <TreatmentDate>{{daterange $Item.TreatmentDate}}</TreatmentDate>
+    <Admission>{{radio $Item.Admission}}</Admission>
+    <Facility>
+      <Name>{{text $Item.Facility}}</Name>
+      <Address>{{location $Item.FacilityAddress}}</Address>
+    </Facility>
+    <Explanation>{{textarea $Item.Explanation}}</Explanation>
+  </Hospitalization>
+  {{end}}
+  {{end}}
+  <Comment></Comment>
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+  <SummaryComment></SummaryComment>
+</Hospitalized>

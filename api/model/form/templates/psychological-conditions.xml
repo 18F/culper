@@ -1,0 +1,22 @@
+<AdverselyAffected>
+  <Answer>{{branch .props.HasCondition}}</Answer>
+  <ReceivedTreatment>{{radio .props.ReceivedTreatment}}</ReceivedTreatment>
+  <Explanation>{{textarea .props.Explanation}}</Explanation>
+  <Treatments>
+    {{range $index, $item := .props.TreatmentList.props.items}}
+    {{with $Item := $item.Item}}
+    <Treatment ID="{{$index}}">
+      <Condition>{{radio $Item.Condition}}</Condition>
+      <Diagnosed>{{daterange $Item.Diagnosed}}</Diagnosed>
+      <Treatment>{{treatment $Item.Treatment}}</Treatment>
+      <Facility>{{treatment $Item.Facility}}</Facility>
+      <Effective>{{branch $Item.Effective}}</Effective>
+      <Explanation>{{textarea $Item.Explanation}}</Explanation>
+      <HaveAdditionalEntryAnswer>{{branch .props.TreatmentList.props.branch}}</HaveAdditionalEntryAnswer>
+    </Treatment>
+    {{end}}
+    {{end}}
+  </Treatments>
+  <DidNotFollow>{{branch .props.DidNotFollow}}</DidNotFollow>
+  <DidNotFollowExplanation>{{textarea .props.DidNotFollowExplanation}}</DidNotFollowExplanation>
+</AdverselyAffected>
