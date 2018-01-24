@@ -258,7 +258,7 @@ export default class CivilUnion extends ValidationElement {
               <Field title={i18n.t('relationships.civilUnion.othernames.heading.name')}
                      optional={true}
                      scrollIntoView={this.props.scrollIntoView}>
-                <Name name="Othername"
+                <Name name="Name"
                       bind={true}
                       onError={this.props.onError}
                       required={this.props.required}
