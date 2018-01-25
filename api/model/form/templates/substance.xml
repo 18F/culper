@@ -1,15 +1,15 @@
 <UseOfAlcohol Version="1" Type="Pooled">
   {{tmpl "substance-alcohol-additional.xml" .Substance.ReceivedCounselings}}
-  {{tmpl "substance-alcohol-negative.xml" .SubstanceUse.NegativeImpacts}}
-  {{tmpl "substance-alcohol-ordered.xml" .SubstanceUse.OrderedCounselings}}
-  {{tmpl "substance-alcohol-voluntary.xml" .SubstanceUse.VoluntaryCounselings}}
+  {{tmpl "substance-alcohol-negative.xml" .Substance.NegativeImpacts}}
+  {{tmpl "substance-alcohol-ordered.xml" .Substance.OrderedCounselings}}
+  {{tmpl "substance-alcohol-voluntary.xml" .Substance.VoluntaryCounselings}}
 </UseOfAlcohol>
 <IllegalDrugUse Version="1" Type="Pooled">
-  {{tmpl "substance-drug-clearance.xml" .SubstanceUse.DrugClearanceUse}}
-  {{tmpl "substance-drug-misuse.xml" .SubstanceUse.PrescriptionUses}}
-  {{tmpl "substance-drug-ordered.xml" .SubstanceUse.OrderedTreatments}}
-  {{tmpl "substance-drug-publicsafety.xml" .SubstanceUse.DrugPublicSafetyUses}}
-  {{tmpl "substance-drug-purchase.xml" .SubstanceUse.DrugInvolvements}}
-  {{tmpl "substance-drug-usage.xml" .SubstanceUse.DrugUses}}
-  {{tmpl "substance-drug-voluntary.xml" .SubstanceUse.VoluntaryTreatments}}
+  {{tmpl "substance-drug-clearance.xml" .Substance.DrugClearanceUse}}
+  {{tmpl "substance-drug-misuse.xml" .Substance.PrescriptionUses}}
+  {{tmpl "substance-drug-ordered.xml" .Substance.OrderedTreatments}}
+  {{tmpl "substance-drug-publicsafety.xml" .Substance.DrugPublicSafetyUses}}
+  {{tmpl "substance-drug-purchase.xml" .Substance.DrugInvolvements}}
+  {{tmpl "substance-drug-usage.xml" .Substance.DrugUses}}
+  {{tmpl "substance-drug-voluntary.xml" .Substance.VoluntaryTreatments}}
 </IllegalDrugUse>
