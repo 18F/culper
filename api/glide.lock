@@ -1,5 +1,5 @@
 hash: 385e526a462b58a8d3ab168cab4361e1246691ecd6614ca4c08644abce0ea50e
-updated: 2018-01-25T11:27:27.024739623Z
+updated: 2018-01-25T17:08:16.073816438Z
 imports:
 - name: bitbucket.org/liamstask/goose
   version: 8488cc47d90c8a502b1c41a462a6d9cc8ee0a895
@@ -88,7 +88,7 @@ imports:
   - html
   - html/atom
 - name: golang.org/x/sys
-  version: ef802241c90f84d84d644a2d8d0de8ee96038c9c
+  version: 03467258950d845cd1877eab69461b98e8c09219
   subpackages:
   - unix
   - windows

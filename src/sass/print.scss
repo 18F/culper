@@ -1,6 +1,8 @@
 @media only screen {
-  .print-view {
+  .print-view,
+  .print-only {
     display: none;
+    visibility: hidden;
   }
 
   .print-btn {
@@ -12,13 +14,61 @@
 }
 
 @media only print {
+  .print-only {
+    display: unset;
+    visibility: visible;
+  }
+
   body,
   html {
     /* Force all text to be black */
     color: #000 !important;
   }
+
+  @page {
+    margin: 10mm;
+  }
+
+  header {
+    margin-top: 10mm;
+  }
+
+  .marking-container {
+    position: fixed;
+    text-align: right;
+    z-index: 9000;
+    font-weight: 600;
+
+    &.top {
+      top: 0;
+      left: 0;
+      right: 0;
+    }
+
+    &.bottom {
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+
+    .marking {
+      display: inline-block;
+      padding: 2mm;
+      background-color: #fff;
+    }
+  }
+
+  .section-view hr.section-divider {
+    page-break-after: always;
+    margin-top: 0 !important;
+  }
+
   .section-print-container {
     page-break-after: always;
+  }
+
+  .sticky .contents {
+    position: static;
   }
 
   h1,
@@ -34,22 +84,13 @@
   }
 
   .field {
-    $pfield: &;
     page-break-inside: avoid;
-
-    .field {
-      page-break-inside: avoid;
-
-      // If we are in a nested field then make its parent avoid breaking.
-      @at-root #{$pfield} {
-        page-break-inside: auto;
-      }
-    }
   }
 
   .print-view {
     display: unset;
     page-break-after: auto;
+
     h3.section-print-header {
       border-bottom: 2px solid black;
       padding-bottom: 1.2rem;
@@ -217,7 +258,7 @@
   input[type='number'].usa-input-success,
   input[type='email'].usa-input-success,
   textarea.usa-input-success,
-  select.usa-input-success
+  select.usa-input-success,
   input.usa-input-success,
   textarea.usa-input-success,
   select.usa-input-success,
