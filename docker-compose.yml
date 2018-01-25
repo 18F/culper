@@ -44,7 +44,7 @@ services:
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
-    command: ./build-frontend.sh
+    command: ./bin/build-frontend.sh
     networks:
       - private
 
@@ -55,7 +55,7 @@ services:
     env_file:
       - .env
     working_dir: /go/src/github.com/18F/e-QIP-prototype/api
-    command: ./run.sh
+    command: ./bin/run.sh
     volumes:
       - .:/go/src/github.com/18F/e-QIP-prototype
     expose:
