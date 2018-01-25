@@ -1,0 +1,26 @@
+<SoughtCounseling>
+  <Answer>{{branch .props.SoughtTreatment}}</Answer>
+  <Comment></Comment>
+  <Consultations>
+    {{range $index, $item := .props.List.props.items}}
+    {{with $Item := $item.Item}}
+    <Consultation ID="{{$index}}">
+      {{daterange $Item.CounselingDates}}
+      <Doctor>
+        <Name>{{text $Item.TreatmentProviderName}}</Name>
+        <Address>{{location $Item.TreatmentProviderAddress}}</Address>
+        <Telephone>{{telephone $Item.TreatmentProviderTelephone}}</Telephone>
+      </Doctor>
+      <CompletedTreatmentProgram>
+        <Answer>{{branch $Item.CompletedTreatment}}</Answer>
+        <Comment></Comment>
+        <Explanation>{{textarea $Item.NoCompletedTreatmentExplanation}}</Explanation>
+      </CompletedTreatmentProgram>
+      <Comment></Comment>
+    </Consultation>
+    {{end}}
+    {{end}}
+  </Consultations>
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+  <SummaryComment></SummaryComment>
+</SoughtCounseling>

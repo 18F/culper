@@ -1,0 +1,34 @@
+<IllegalDrugActivity>
+  <Answer>{{branch .props.Involved}}</Answer>
+  <Comment></Comment>
+  <Activities>
+    {{range $index, $item := .props.List.props.items}}
+    {{with $Item := $item.Item}}
+    <Activity ID="{{$index}}">
+      <Drug>
+        <Explanation></Explanation>
+        <Type>{{radio $Item.DrugType}}</Type>
+      </Drug>
+      <FirstInvolvementDate Type="{{dateEstimated $Item.FirstInvolvement}}">{{monthYear $Item.FirstInvolvement}}</FirstInvolvementDate>
+      <MostRecentInvolvementDate Type="{{dateEstimated $Item.RecentInvolvement}}">{{monthYear $Item.RecentInvolvement}}</MostRecentInvolvementDate>
+      <Nature>{{textarea $Item.NatureOfInvolvement}}</Nature>
+      <InvolvedWhileEmployedAsLawEnforcementOfficerProsecutorOrCourtOfficial>
+        <Answer>{{branch $Item.InvolvementWhileEmployed}}</Answer>
+      </InvolvedWhileEmployedAsLawEnforcementOfficerProsecutorOrCourtOfficial>
+      <InvolvedWhilePossessingASecurityClearance>
+        <Answer>{{branch $Item.InvolvementWithClearance}}</Answer>
+      </InvolvedWhilePossessingASecurityClearance>
+      <IntendToEngageInFutureActivities>
+        <Answer>{{branch $Item.InvolvementInFuture}}</Answer>
+        <Comment></Comment>
+        <Explanation>{{textarea $Item.Explanation}}</Explanation>
+      </IntendToEngageInFutureActivities>
+      <Reason>{{textarea $Item.Reasons}}</Reason>
+      <Comment></Comment>
+    </Activity>
+    {{end}}
+    {{end}}
+  </Activities>
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+  <SummaryComment></SummaryComment>
+</IllegalDrugActivity>
