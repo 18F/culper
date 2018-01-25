@@ -1,85 +1,35 @@
 <VoluntaryTreatment>
-  <!--Optional:-->
-  <Answer>Yes</Answer>
-  <!--Optional:-->
-  <Comment>string</Comment>
-  <!--Optional:-->
+  <Answer>{{branch .props.Involved}}</Answer>
+  <Comment></Comment>
   <Consultations>
-    <!--You have a CHOICE of the next 1 items at this level-->
-    <!--Zero or more repetitions:-->
-    <Consultation ID="201">
-      <!--Optional:-->
-      <Comment>string</Comment>
-      <!--Optional:-->
-      <DateRange>
-        <From>
-          <Date Type="Estimated">
-            <Month>04</Month>
-            <Year>token</Year>
-          </Date>
-        </From>
-        <To>
-          <Date Type="Estimated">
-            <Month>01</Month>
-            <Year>token</Year>
-          </Date>
-        </To>
-      </DateRange>
-      <!--Optional:-->
-      <Doctor>
-        <!--Optional:-->
-        <Address>
-          <!--Optional:-->
-          <Street>string</Street>
-          <!--Optional:-->
-          <City>string</City>
-          <!--Optional:-->
-          <ZipCode>string</ZipCode>
-          <!--Optional:-->
-          <State>NY</State>
-          <!--Optional:-->
-          <Country>Kyrgyzstan</Country>
-        </Address>
-        <!--Optional:-->
-        <Name>
-          <Last>string</Last>
-          <First Type="IO">string</First>
-        </Name>
-        <!--Optional:-->
-        <Telephone>
-          <!--Optional:-->
-          <International>International</International>
-          <!--Optional:-->
-          <Number>string</Number>
-          <!--Optional:-->
-          <Extension>string</Extension>
-          <!--Optional:-->
-          <Time>Night</Time>
-        </Telephone>
-      </Doctor>
-      <!--Optional:-->
+    {{range $index, $item := .props.List.props.items}}
+    {{with $Item := $item.Item}}
+    <Consultation ID="{{$index}}">
       <Drug>
-        <!--Optional:-->
-        <Explanation>string</Explanation>
-        <!--Optional:-->
-        <Type>Hallucinogenic</Type>
+        <Type>{{radio $Item.DrugType}}</Type>
+        <Explanation></Explanation>
       </Drug>
-      <!--Optional:-->
+      <Doctor>
+        <Name>
+          <Last>{{text $Item.TreatmentProvider}}</Last>
+          <First Type="NFN"><!-- eApp only captures a sigle text entry --></First>
+        </Name>
+        <Address>{{location $Item.TreatmentProviderAddress}}</Address>
+        <Telephone>{{telephone $Item.TreatmentProviderTelephone}}</Telephone>
+      </Doctor>
+      {{daterange $Item.TreatmentDates}}
       <SuccessfullyCompletedTreatmentProgram>
-        <!--Optional:-->
-        <Answer>No</Answer>
+        <Answer>{{branch $Item.TreatmentCompleted}}</Answer>
       </SuccessfullyCompletedTreatmentProgram>
-      <!--Optional:-->
       <UnsuccessfulTreatment>
-        <!--Optional:-->
-        <Comment>string</Comment>
-        <!--Optional:-->
-        <Explanation>string</Explanation>
+        <Explanation>{{textarea $Item.NoTreatmentExplanation}}</Explanation>
+        <Comment></Comment>
       </UnsuccessfulTreatment>
+      <Comment></Comment>
     </Consultation>
+    {{end}}
+    {{end}}
   </Consultations>
-  <!--Optional:-->
-  <HaveAdditionalEntryAnswer>Yes</HaveAdditionalEntryAnswer>
-  <!--Optional:-->
-  <SummaryComment>string</SummaryComment>
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+  <SummaryComment></SummaryComment>
 </VoluntaryTreatment>

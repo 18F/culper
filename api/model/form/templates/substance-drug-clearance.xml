@@ -1,38 +1,18 @@
 <InvolvementWhilePossessingASecurityClearance>
-  <!--Optional:-->
-  <Answer>Yes</Answer>
-  <!--Optional:-->
-  <Comment>string</Comment>
-  <!--Optional:-->
-  <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
-  <!--Optional:-->
+  <Answer>{{branch .props.UsedDrugs}}</Answer>
+  <Comment></Comment>
   <Involvements>
-    <!--You have a CHOICE of the next 1 items at this level-->
-    <!--Zero or more repetitions:-->
-    <Involvement ID="201">
-      <!--Optional:-->
-      <Comment>string</Comment>
-      <!--Optional:-->
-      <DateRange>
-        <From>
-          <Date Type="Estimated">
-            <Month>11</Month>
-            <Year>token</Year>
-          </Date>
-        </From>
-        <To>
-          <Date Type="Present">
-            <Month>11</Month>
-            <Year>token</Year>
-          </Date>
-        </To>
-      </DateRange>
-      <!--Optional:-->
-      <Description>string</Description>
-      <!--Optional:-->
-      <NumberOfTimesUsed>string</NumberOfTimesUsed>
+    {{range $index, $item := .props.List.props.items}}
+    {{with $Item := $item.Item}}
+    <Involvement ID="{{$index}}">
+      <Description>{{textarea $Item.Description}}</Description>
+      {{daterange $Item.InvolvementDates}}
+      <NumberOfTimesUsed>{{text $Item.EstimatedUse}}</NumberOfTimesUsed>
+      <Comment></Comment>
     </Involvement>
+    {{end}}
+    {{end}}
   </Involvements>
-  <!--Optional:-->
-  <SummaryComment>string</SummaryComment>
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+  <SummaryComment></SummaryComment>
 </InvolvementWhilePossessingASecurityClearance>

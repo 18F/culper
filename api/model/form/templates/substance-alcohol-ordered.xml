@@ -1,90 +1,41 @@
 <OrderedAdvisedOrAskedToSeekCounseling>
-  <!--Optional:-->
-  <Answer>Yes</Answer>
-  <!--Optional:-->
-  <Comment>string</Comment>
-  <!--Optional:-->
+  <Answer>{{branch .props.HasBeenOrdered}}</Answer>
+  <Comment></Comment>
   <Consultations>
-    <!--You have a CHOICE of the next 1 items at this level-->
-    <!--Zero or more repetitions:-->
-    <Consultation ID="201">
-      <!--Optional:-->
+    {{range $index, $item := .props.List.props.items}}
+    {{with $Item := $item.Item}}
+    <Consultation ID="{{$index}}">
       <ActionToSeekCounselingTaken>
-        <!--Optional:-->
-        <Answer>Yes</Answer>
+        <Answer>{{branch $Item.ActionTaken}}</Answer>
       </ActionToSeekCounselingTaken>
-      <!--Optional:-->
-      <Comment>string</Comment>
-      <!--Optional:-->
+      <Explanation>{{textarea $Item.NoActionTakenExplanation}}</Explanation>
+      <ExplanationComment></ExplanationComment>
       <CompletedTreatmentProgram>
-        <!--Optional:-->
-        <Answer>Yes</Answer>
-        <!--Optional:-->
-        <Comment>string</Comment>
-        <!--Optional:-->
-        <Explanation>string</Explanation>
+        <Answer>{{branch $Item.CompletedTreatment}}</Answer>
+        <Comment></Comment>
+        <Explanation>{{textarea $Item.NoCompletedTreatmentExplanation}}</Explanation>
       </CompletedTreatmentProgram>
-      <!--Optional:-->
       <CounselingOrderedBy>
-        <!--Optional:-->
-        <Answer Employer="True" MedicalProfessional="True" MentalHealthProfessional="True" Court="True" None="True" Other="True"/>
-        <!--Optional:-->
-        <Comment>string</Comment>
-        <!--Optional:-->
-        <Explanation>string</Explanation>
+        <Answer Employer="{{checkboxHas $Item.Seekers "Employer"}}"
+                MedicalProfessional="{{checkboxHas $Item.Seekers "MedicalProfessional"}}"
+                MentalHealthProfessional="{{checkboxHas $Item.Seekers "MentalHealthProfessional"}}"
+                Court="{{checkboxHas $Item.Seekers "CourtOfficial"}}"
+                None="{{checkboxHas $Item.Seekers "NotOrdered"}}"
+                Other="{{checkboxHas $Item.Seekers "Other"}}"/>
+        <Comment></Comment>
+        <Explanation>{{text $Item.OtherSeeker}}</Explanation>
       </CounselingOrderedBy>
-      <!--Optional:-->
-      <DateRange>
-        <From>
-          <Date Type="Estimated">
-            <Month>01</Month>
-            <Year>token</Year>
-          </Date>
-        </From>
-        <To>
-          <Date Type="Estimated">
-            <Month>12</Month>
-            <Year>token</Year>
-          </Date>
-        </To>
-      </DateRange>
-      <!--Optional:-->
+      {{daterange $Item.CounselingDates}}
       <Doctor>
-        <!--Optional:-->
-        <Address>
-          <!--Optional:-->
-          <Street>string</Street>
-          <!--Optional:-->
-          <City>string</City>
-          <!--Optional:-->
-          <ZipCode>string</ZipCode>
-          <!--Optional:-->
-          <State>IL</State>
-          <!--Optional:-->
-          <Country>Netherlands</Country>
-        </Address>
-        <!--Optional:-->
-        <Name>string</Name>
-        <!--Optional:-->
-        <Telephone>
-          <!--Optional:-->
-          <International>International</International>
-          <!--Optional:-->
-          <Number>string</Number>
-          <!--Optional:-->
-          <Extension>string</Extension>
-          <!--Optional:-->
-          <Time>Day</Time>
-        </Telephone>
+        <Name>{{text $Item.TreatmentProviderName}}</Name>
+        <Address>{{location $Item.TreatmentProviderAddress}}</Address>
+        <Telephone>{{telephone $Item.TreatmentProviderTelephone}}</Telephone>
       </Doctor>
-      <!--Optional:-->
-      <Explanation>string</Explanation>
-      <!--Optional:-->
-      <ExplanationComment>string</ExplanationComment>
+      <Comment></Comment>
     </Consultation>
+    {{end}}
+    {{end}}
   </Consultations>
-  <!--Optional:-->
-  <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
-  <!--Optional:-->
-  <SummaryComment>string</SummaryComment>
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+  <SummaryComment></SummaryComment>
 </OrderedAdvisedOrAskedToSeekCounseling>

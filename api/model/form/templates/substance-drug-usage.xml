@@ -1,55 +1,32 @@
 <IllegalUse>
-  <!--Optional:-->
-  <Answer>No</Answer>
-  <!--Optional:-->
-  <Comment>string</Comment>
-  <!--Optional:-->
-  <HaveAdditionalEntryAnswer>Yes</HaveAdditionalEntryAnswer>
-  <!--Optional:-->
+  <Answer>{{branch .props.UsedDrugs}}</Answer>
+  <Comment></Comment>
   <Instances>
-    <!--You have a CHOICE of the next 1 items at this level-->
-    <!--Zero or more repetitions:-->
-    <Instance ID="201">
-      <!--Optional:-->
-      <Comment>string</Comment>
-      <!--Optional:-->
+    {{range $index, $item := .props.List.props.items}}
+    {{with $Item := $item.Item}}
+    <Instance ID="{{$index}}">
       <DrugUsed>
-        <!--Optional:-->
-        <Explanation>string</Explanation>
-        <!--Optional:-->
-        <Type>Ketamine</Type>
+        <Explanation></Explanation>
+        <Type>{{radio $Item.DrugType}}</Type>
       </DrugUsed>
-      <!--Optional:-->
-      <FirstUseDate Type="Estimated">
-        <Month>09</Month>
-        <Year>token</Year>
-      </FirstUseDate>
-      <!--Optional:-->
-      <IntendToUseInFuture>
-        <!--Optional:-->
-        <Answer>No</Answer>
-        <!--Optional:-->
-        <Explanation>string</Explanation>
-      </IntendToUseInFuture>
-      <!--Optional:-->
-      <MostRecentUseDate Type="Estimated">
-        <Month>06</Month>
-        <Year>token</Year>
-      </MostRecentUseDate>
-      <!--Optional:-->
-      <Nature>string</Nature>
-      <!--Optional:-->
+      <FirstUseDate Type="{{dateEstimated $Item.FirstUse}}">{{monthYear $Item.FirstUse}}</FirstUseDate>
+      <MostRecentUseDate Type="{{dateEstimated $Item.RecentUse}}">{{monthYear $Item.RecentUse}}</MostRecentUseDate>
+      <Nature>{{textarea $Item.NatureOfUse}}</Nature>
       <UseWhileEmployedAsLawEnforcementOfficerProsecutorOrCourtOfficial>
-        <!--Optional:-->
-        <Answer>Yes</Answer>
+        <Answer>{{branch $Item.UseWhileEmployed}}</Answer>
       </UseWhileEmployedAsLawEnforcementOfficerProsecutorOrCourtOfficial>
-      <!--Optional:-->
       <UseWhilePossessingASecurityClearance>
-        <!--Optional:-->
-        <Answer>No</Answer>
+        <Answer>{{branch $Item.UseWithClearance}}</Answer>
       </UseWhilePossessingASecurityClearance>
+      <IntendToUseInFuture>
+        <Answer>{{branch $Item.UseInFuture}}</Answer>
+        <Explanation>{{textarea $Item.Explanation}}</Explanation>
+      </IntendToUseInFuture>
+      <Comment></Comment>
     </Instance>
+    {{end}}
+    {{end}}
   </Instances>
-  <!--Optional:-->
-  <SummaryComment>string</SummaryComment>
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+  <SummaryComment></SummaryComment>
 </IllegalUse>

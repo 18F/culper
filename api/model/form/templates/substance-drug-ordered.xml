@@ -1,106 +1,51 @@
 <OrderedAdvisedOrAskedToSeekCounseling>
-  <!--Optional:-->
-  <Answer>No</Answer>
-  <!--Optional:-->
-  <Comment>string</Comment>
-  <!--Optional:-->
+  <Answer>{{branch .props.Involved}}</Answer>
+  <Comment></Comment>
   <Consultations>
-    <!--You have a CHOICE of the next 1 items at this level-->
-    <!--Zero or more repetitions:-->
-    <Consultation ID="201">
-      <!--Optional:-->
+    {{range $index, $item := .props.List.props.items}}
+    {{with $Item := $item.Item}}
+    <Consultation ID="{{$index}}">
       <ActionToSeekCounselingTaken>
-        <!--Optional:-->
-        <Answer>Yes</Answer>
+        <Answer>{{branch $Item.ActionTaken}}</Answer>
       </ActionToSeekCounselingTaken>
-      <!--Optional:-->
-      <Comment>string</Comment>
-      <!--Optional:-->
-      <CounselingOrderedBy>
-        <!--Optional:-->
-        <Answer Employer="True" MedicalProfessional="True" MentalHealthProfessional="True" Court="True" None="True"/>
-        <!--Optional:-->
-        <Comment>string</Comment>
-        <!--Optional:-->
-        <Explanation>string</Explanation>
-      </CounselingOrderedBy>
-      <!--Optional:-->
-      <DateRange>
-        <From>
-          <Date Type="Estimated">
-            <Month>05</Month>
-            <Year>token</Year>
-          </Date>
-        </From>
-        <To>
-          <Date Type="Estimated">
-            <Month>09</Month>
-            <Year>token</Year>
-          </Date>
-        </To>
-      </DateRange>
-      <!--Optional:-->
       <DidNotReceiveTreatment>
-        <!--Optional:-->
-        <Comment>string</Comment>
-        <!--Optional:-->
-        <Explanation>string</Explanation>
+        <Comment></Comment>
+        <Explanation>{{textarea $Item.NoActionTakenExplanation}}</Explanation>
       </DidNotReceiveTreatment>
-      <!--Optional:-->
-      <Doctor>
-        <!--Optional:-->
-        <Address>
-          <!--Optional:-->
-          <Street>string</Street>
-          <!--Optional:-->
-          <City>string</City>
-          <!--Optional:-->
-          <ZipCode>string</ZipCode>
-          <!--Optional:-->
-          <State>AA</State>
-          <!--Optional:-->
-          <Country>Qatar</Country>
-        </Address>
-        <!--Optional:-->
-        <Name>
-          <Last>string</Last>
-          <First Type="NFN">string</First>
-        </Name>
-        <!--Optional:-->
-        <Telephone>
-          <!--Optional:-->
-          <International>International</International>
-          <!--Optional:-->
-          <Number>string</Number>
-          <!--Optional:-->
-          <Extension>string</Extension>
-          <!--Optional:-->
-          <Time>Night</Time>
-        </Telephone>
-      </Doctor>
-      <!--Optional:-->
+      <CounselingOrderedBy>
+        <Answer Employer="{{checkboxHas $Item.OrderedBy "Employer"}}"
+                MedicalProfessional="{{checkboxHas $Item.OrderedBy "MedicalProfessional"}}"
+                MentalHealthProfessional="{{checkboxHas $Item.OrderedBy "MentalHealthProfessional"}}"
+                Court="{{checkboxHas $Item.OrderedBy "Jugde"}}"
+                None="{{checkboxHas $Item.OrderedBy "None"}}"/>
+        <Comment></Comment>
+        <Explanation>{{textarea $Item.Explanation}}</Explanation>
+      </CounselingOrderedBy>
       <Drug>
-        <!--Optional:-->
-        <Explanation>string</Explanation>
-        <!--Optional:-->
-        <Type>Stimulants</Type>
+        <Explanation></Explanation>
+        <Type>{{radio $Item.DrugType}}</Type>
       </Drug>
-      <!--Optional:-->
+      <Doctor>
+        <Name>
+          <Last>{{text $Item.TreatmentProvider}}</Last>
+          <First Type="NFN"><!-- eApp only captures a sigle text entry --></First>
+        </Name>
+        <Address>{{location $Item.TreatmentAddress}}</Address>
+        <Telephone>{{telephone $Item.TreatmentProviderTelephone}}</Telephone>
+      </Doctor>
+      {{daterange $Item.TreatmentDates}}
       <SuccessfullyCompletedTreatmentProgram>
-        <!--Optional:-->
-        <Answer>Yes</Answer>
+        <Answer>{{branch $Item.TreatmentCompleted}}</Answer>
       </SuccessfullyCompletedTreatmentProgram>
-      <!--Optional:-->
       <UnsuccessfulTreatment>
-        <!--Optional:-->
-        <Comment>string</Comment>
-        <!--Optional:-->
-        <Explanation>string</Explanation>
+        <Comment></Comment>
+        <Explanation>{{textarea $Item.NoTreatmentExplanation}}</Explanation>
       </UnsuccessfulTreatment>
+      <Comment></Comment>
     </Consultation>
+    {{end}}
+    {{end}}
   </Consultations>
-  <!--Optional:-->
-  <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
-  <!--Optional:-->
-  <SummaryComment>string</SummaryComment>
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+  <SummaryComment></SummaryComment>
 </OrderedAdvisedOrAskedToSeekCounseling>

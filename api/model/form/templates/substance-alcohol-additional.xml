@@ -1,72 +1,29 @@
 <EverReceivedCounseling>
-  <!--Optional:-->
-  <Answer>Yes</Answer>
-  <!--Optional:-->
-  <Comment>string</Comment>
-  <!--Optional:-->
+  <Answer>{{branch .props.ReceivedTreatment}}</Answer>
+  <Comment></Comment>
   <Consultations>
-    <!--You have a CHOICE of the next 1 items at this level-->
-    <!--Zero or more repetitions:-->
-    <Consultation ID="201">
-      <!--Optional:-->
+    {{range $index, $item := .props.List.props.items}}
+    {{with $Item := $item.Item}}
+    <Consultation ID="{{$index}}">
       <Agency>
-        <!--Optional:-->
-        <Address SameAsAbove="True">
-          <!--Optional:-->
-          <Street>string</Street>
-          <!--Optional:-->
-          <City>string</City>
-          <!--Optional:-->
-          <ZipCode>string</ZipCode>
-          <!--Optional:-->
-          <State>FL</State>
-          <!--Optional:-->
-          <Country>Tanzania</Country>
-        </Address>
-        <!--Optional:-->
-        <Name>string</Name>
+        <Address SameAsAbove="{{if branch $Item.UseSameAddress | eq "Yes"}}True{{else}}False{{end}}">{{location $Item.AgencyAddress}}</Address>
+        <Name>{{text $Item.AgencyName}}</Name>
       </Agency>
-      <!--Optional:-->
-      <BeginDate Type="Estimated">
-        <Month>11</Month>
-        <Year>token</Year>
-      </BeginDate>
-      <!--Optional:-->
-      <Comment>string</Comment>
-      <!--Optional:-->
+      <BeginDate Type="{{dateEstimated $Item.TreatmentBeginDate}}">{{monthYear $Item.TreatmentBeginDate}}</BeginDate>
+      <Comment></Comment>
       <CompletedTreatmentProgram>
-        <!--Optional:-->
-        <Answer>No</Answer>
+        <Answer>{{branch $Item.CompletedTreatment}}</Answer>
       </CompletedTreatmentProgram>
-      <!--Optional:-->
       <Doctor>
-        <!--Optional:-->
-        <Address>
-          <!--Optional:-->
-          <Street>string</Street>
-          <!--Optional:-->
-          <City>string</City>
-          <!--Optional:-->
-          <ZipCode>string</ZipCode>
-          <!--Optional:-->
-          <State>AS</State>
-          <!--Optional:-->
-          <Country>Saint Vincent and the Grenadines</Country>
-        </Address>
-        <!--Optional:-->
-        <Name>string</Name>
+        <Address>{{location $Item.TreatmentProviderAddress}}</Address>
+        <Name>{{text $Item.TreatmentProviderName}}</Name>
       </Doctor>
-      <!--Optional:-->
-      <EndDate Type="Estimated">
-        <Month>02</Month>
-        <Year>token</Year>
-      </EndDate>
-      <!--Optional:-->
-      <Explanation>string</Explanation>
+      <EndDate Type="{{dateEstimated $Item.TreatmentEndDate}}">{{monthYear $Item.TreatmentEndDate}}</EndDate>
+      <Explanation>{{textarea $Item.NoCompletedTreatmentExplanation}}</Explanation>
     </Consultation>
+    {{end}}
+    {{end}}
   </Consultations>
-  <!--Optional:-->
-  <HaveAdditionalEntryAnswer>Yes</HaveAdditionalEntryAnswer>
-  <!--Optional:-->
-  <SummaryComment>string</SummaryComment>
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+  <SummaryComment></SummaryComment>
 </EverReceivedCounseling>

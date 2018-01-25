@@ -1,59 +1,34 @@
 <IllegalDrugActivity>
-  <!--Optional:-->
+  <Answer>{{branch .props.Involved}}</Answer>
+  <Comment></Comment>
   <Activities>
-    <!--You have a CHOICE of the next 1 items at this level-->
-    <!--Zero or more repetitions:-->
-    <Activity ID="201">
-      <!--Optional:-->
-      <Comment>string</Comment>
-      <!--Optional:-->
+    {{range $index, $item := .props.List.props.items}}
+    {{with $Item := $item.Item}}
+    <Activity ID="{{$index}}">
       <Drug>
-        <!--Optional:-->
-        <Explanation>string</Explanation>
-        <!--Optional:-->
-        <Type>Steroids</Type>
+        <Explanation></Explanation>
+        <Type>{{radio $Item.DrugType}}</Type>
       </Drug>
-      <!--Optional:-->
-      <FirstInvolvementDate Type="Estimated">
-        <Month>03</Month>
-        <Year>token</Year>
-      </FirstInvolvementDate>
-      <!--Optional:-->
-      <IntendToEngageInFutureActivities>
-        <!--Optional:-->
-        <Answer>Yes</Answer>
-        <!--Optional:-->
-        <Comment>string</Comment>
-        <!--Optional:-->
-        <Explanation>string</Explanation>
-      </IntendToEngageInFutureActivities>
-      <!--Optional:-->
+      <FirstInvolvementDate Type="{{dateEstimated $Item.FirstInvolvement}}">{{monthYear $Item.FirstInvolvement}}</FirstInvolvementDate>
+      <MostRecentInvolvementDate Type="{{dateEstimated $Item.RecentInvolvement}}">{{monthYear $Item.RecentInvolvement}}</MostRecentInvolvementDate>
+      <Nature>{{textarea $Item.NatureOfInvolvement}}</Nature>
       <InvolvedWhileEmployedAsLawEnforcementOfficerProsecutorOrCourtOfficial>
-        <!--Optional:-->
-        <Answer>Yes</Answer>
+        <Answer>{{branch $Item.InvolvementWhileEmployed}}</Answer>
       </InvolvedWhileEmployedAsLawEnforcementOfficerProsecutorOrCourtOfficial>
-      <!--Optional:-->
       <InvolvedWhilePossessingASecurityClearance>
-        <!--Optional:-->
-        <Answer>No</Answer>
+        <Answer>{{branch $Item.InvolvementWithClearance}}</Answer>
       </InvolvedWhilePossessingASecurityClearance>
-      <!--Optional:-->
-      <MostRecentInvolvementDate Type="Estimated">
-        <Month>05</Month>
-        <Year>token</Year>
-      </MostRecentInvolvementDate>
-      <!--Optional:-->
-      <Nature>string</Nature>
-      <!--Optional:-->
-      <Reason>string</Reason>
+      <IntendToEngageInFutureActivities>
+        <Answer>{{branch $Item.InvolvementInFuture}}</Answer>
+        <Comment></Comment>
+        <Explanation>{{textarea $Item.Explanation}}</Explanation>
+      </IntendToEngageInFutureActivities>
+      <Reason>{{textarea $Item.Reasons}}</Reason>
+      <Comment></Comment>
     </Activity>
+    {{end}}
+    {{end}}
   </Activities>
-  <!--Optional:-->
-  <Answer>Yes</Answer>
-  <!--Optional:-->
-  <Comment>string</Comment>
-  <!--Optional:-->
-  <HaveAdditionalEntryAnswer>Yes</HaveAdditionalEntryAnswer>
-  <!--Optional:-->
-  <SummaryComment>string</SummaryComment>
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+  <SummaryComment></SummaryComment>
 </IllegalDrugActivity>
