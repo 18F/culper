@@ -1,0 +1,55 @@
+<IllegalUse>
+  <!--Optional:-->
+  <Answer>No</Answer>
+  <!--Optional:-->
+  <Comment>string</Comment>
+  <!--Optional:-->
+  <HaveAdditionalEntryAnswer>Yes</HaveAdditionalEntryAnswer>
+  <!--Optional:-->
+  <Instances>
+    <!--You have a CHOICE of the next 1 items at this level-->
+    <!--Zero or more repetitions:-->
+    <Instance ID="201">
+      <!--Optional:-->
+      <Comment>string</Comment>
+      <!--Optional:-->
+      <DrugUsed>
+        <!--Optional:-->
+        <Explanation>string</Explanation>
+        <!--Optional:-->
+        <Type>Ketamine</Type>
+      </DrugUsed>
+      <!--Optional:-->
+      <FirstUseDate Type="Estimated">
+        <Month>09</Month>
+        <Year>token</Year>
+      </FirstUseDate>
+      <!--Optional:-->
+      <IntendToUseInFuture>
+        <!--Optional:-->
+        <Answer>No</Answer>
+        <!--Optional:-->
+        <Explanation>string</Explanation>
+      </IntendToUseInFuture>
+      <!--Optional:-->
+      <MostRecentUseDate Type="Estimated">
+        <Month>06</Month>
+        <Year>token</Year>
+      </MostRecentUseDate>
+      <!--Optional:-->
+      <Nature>string</Nature>
+      <!--Optional:-->
+      <UseWhileEmployedAsLawEnforcementOfficerProsecutorOrCourtOfficial>
+        <!--Optional:-->
+        <Answer>Yes</Answer>
+      </UseWhileEmployedAsLawEnforcementOfficerProsecutorOrCourtOfficial>
+      <!--Optional:-->
+      <UseWhilePossessingASecurityClearance>
+        <!--Optional:-->
+        <Answer>No</Answer>
+      </UseWhilePossessingASecurityClearance>
+    </Instance>
+  </Instances>
+  <!--Optional:-->
+  <SummaryComment>string</SummaryComment>
+</IllegalUse>

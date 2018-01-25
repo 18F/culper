@@ -1,0 +1,15 @@
+<UseOfAlcohol Version="1" Type="Pooled">
+  {{tmpl "substance-alcohol-additional.xml" .SubstanceUse.Alcohol}}
+  {{tmpl "substance-alcohol-negative.xml" .SubstanceUse.Alcohol}}
+  {{tmpl "substance-alcohol-ordered.xml" .SubstanceUse.Alcohol}}
+  {{tmpl "substance-alcohol-voluntary.xml" .SubstanceUse.Alcohol}}
+</UseOfAlcohol>
+<IllegalDrugUse Version="1" Type="Pooled">
+  {{tmpl "substance-drug-clearance.xml" .SubstanceUse.Drug}}
+  {{tmpl "substance-drug-misuse.xml" .SubstanceUse.Drug}}
+  {{tmpl "substance-drug-ordered.xml" .SubstanceUse.Drug}}
+  {{tmpl "substance-drug-publicsafety.xml" .SubstanceUse.Drug}}
+  {{tmpl "substance-drug-purchase.xml" .SubstanceUse.Drug}}
+  {{tmpl "substance-drug-usage.xml" .SubstanceUse.Drug}}
+  {{tmpl "substance-drug-voluntary.xml" .SubstanceUse.Drug}}
+</IllegalDrugUse>

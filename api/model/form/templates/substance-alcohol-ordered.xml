@@ -1,0 +1,90 @@
+<OrderedAdvisedOrAskedToSeekCounseling>
+  <!--Optional:-->
+  <Answer>Yes</Answer>
+  <!--Optional:-->
+  <Comment>string</Comment>
+  <!--Optional:-->
+  <Consultations>
+    <!--You have a CHOICE of the next 1 items at this level-->
+    <!--Zero or more repetitions:-->
+    <Consultation ID="201">
+      <!--Optional:-->
+      <ActionToSeekCounselingTaken>
+        <!--Optional:-->
+        <Answer>Yes</Answer>
+      </ActionToSeekCounselingTaken>
+      <!--Optional:-->
+      <Comment>string</Comment>
+      <!--Optional:-->
+      <CompletedTreatmentProgram>
+        <!--Optional:-->
+        <Answer>Yes</Answer>
+        <!--Optional:-->
+        <Comment>string</Comment>
+        <!--Optional:-->
+        <Explanation>string</Explanation>
+      </CompletedTreatmentProgram>
+      <!--Optional:-->
+      <CounselingOrderedBy>
+        <!--Optional:-->
+        <Answer Employer="True" MedicalProfessional="True" MentalHealthProfessional="True" Court="True" None="True" Other="True"/>
+        <!--Optional:-->
+        <Comment>string</Comment>
+        <!--Optional:-->
+        <Explanation>string</Explanation>
+      </CounselingOrderedBy>
+      <!--Optional:-->
+      <DateRange>
+        <From>
+          <Date Type="Estimated">
+            <Month>01</Month>
+            <Year>token</Year>
+          </Date>
+        </From>
+        <To>
+          <Date Type="Estimated">
+            <Month>12</Month>
+            <Year>token</Year>
+          </Date>
+        </To>
+      </DateRange>
+      <!--Optional:-->
+      <Doctor>
+        <!--Optional:-->
+        <Address>
+          <!--Optional:-->
+          <Street>string</Street>
+          <!--Optional:-->
+          <City>string</City>
+          <!--Optional:-->
+          <ZipCode>string</ZipCode>
+          <!--Optional:-->
+          <State>IL</State>
+          <!--Optional:-->
+          <Country>Netherlands</Country>
+        </Address>
+        <!--Optional:-->
+        <Name>string</Name>
+        <!--Optional:-->
+        <Telephone>
+          <!--Optional:-->
+          <International>International</International>
+          <!--Optional:-->
+          <Number>string</Number>
+          <!--Optional:-->
+          <Extension>string</Extension>
+          <!--Optional:-->
+          <Time>Day</Time>
+        </Telephone>
+      </Doctor>
+      <!--Optional:-->
+      <Explanation>string</Explanation>
+      <!--Optional:-->
+      <ExplanationComment>string</ExplanationComment>
+    </Consultation>
+  </Consultations>
+  <!--Optional:-->
+  <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+  <!--Optional:-->
+  <SummaryComment>string</SummaryComment>
+</OrderedAdvisedOrAskedToSeekCounseling>

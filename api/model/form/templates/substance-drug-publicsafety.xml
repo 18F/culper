@@ -1,0 +1,38 @@
+<InvolvementWhileEmployedAsLawEnforcement>
+  <!--Optional:-->
+  <Answer>Yes</Answer>
+  <!--Optional:-->
+  <Comment>string</Comment>
+  <!--Optional:-->
+  <HaveAdditionalEntryAnswer>Yes</HaveAdditionalEntryAnswer>
+  <!--Optional:-->
+  <Involvements>
+    <!--You have a CHOICE of the next 1 items at this level-->
+    <!--Zero or more repetitions:-->
+    <Involvement ID="201">
+      <!--Optional:-->
+      <Comment>string</Comment>
+      <!--Optional:-->
+      <DateRange>
+        <From>
+          <Date Type="Estimated">
+            <Month>12</Month>
+            <Year>token</Year>
+          </Date>
+        </From>
+        <To>
+          <Date Type="Present">
+            <Month>06</Month>
+            <Year>token</Year>
+          </Date>
+        </To>
+      </DateRange>
+      <!--Optional:-->
+      <Description>string</Description>
+      <!--Optional:-->
+      <NumberOfTimes>string</NumberOfTimes>
+    </Involvement>
+  </Involvements>
+  <!--Optional:-->
+  <SummaryComment>string</SummaryComment>
+</InvolvementWhileEmployedAsLawEnforcement>

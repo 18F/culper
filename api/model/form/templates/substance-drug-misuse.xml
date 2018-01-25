@@ -1,0 +1,48 @@
+<MisuseOfPrescriptionDrugs>
+  <!--Optional:-->
+  <Answer>Yes</Answer>
+  <!--Optional:-->
+  <Comment>string</Comment>
+  <!--Optional:-->
+  <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+  <!--Optional:-->
+  <Instances>
+    <!--You have a CHOICE of the next 1 items at this level-->
+    <!--Zero or more repetitions:-->
+    <Instance ID="201">
+      <!--Optional:-->
+      <Circumstances>string</Circumstances>
+      <!--Optional:-->
+      <Comment>string</Comment>
+      <!--Optional:-->
+      <DateRange>
+        <From>
+          <Date Type="Estimated">
+            <Month>01</Month>
+            <Year>token</Year>
+          </Date>
+        </From>
+        <To>
+          <Date Type="Estimated">
+            <Month>03</Month>
+            <Year>token</Year>
+          </Date>
+        </To>
+      </DateRange>
+      <!--Optional:-->
+      <DrugsUsed>string</DrugsUsed>
+      <!--Optional:-->
+      <InvolvementWhileEmployedAsLawEnforcement>
+        <!--Optional:-->
+        <Answer>No</Answer>
+      </InvolvementWhileEmployedAsLawEnforcement>
+      <!--Optional:-->
+      <InvolvementWhilePossessingASecurityClearance>
+        <!--Optional:-->
+        <Answer>Yes</Answer>
+      </InvolvementWhilePossessingASecurityClearance>
+    </Instance>
+  </Instances>
+  <!--Optional:-->
+  <SummaryComment>string</SummaryComment>
+</MisuseOfPrescriptionDrugs>
