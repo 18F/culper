@@ -174,15 +174,6 @@ func BasicEnabled() bool {
 	return true
 }
 
-// OAuthEnabled returns a boolean indicating whether the system allows
-// OAuth authentication.
-func OAuthEnabled() bool {
-	if os.Getenv("OAUTH_ENABLED") == "" {
-		return false
-	}
-	return true
-}
-
 // SamlEnabled returns a boolean indicating whether the system allows
 // SAML authentication.
 func SamlEnabled() bool {
@@ -224,10 +215,6 @@ func TargetAudiences() []string {
 	}
 
 	if SamlEnabled() {
-		audiences = append(audiences, jwt.SingleSignOnAudience)
-	}
-
-	if OAuthEnabled() {
 		audiences = append(audiences, jwt.SingleSignOnAudience)
 	}
 
