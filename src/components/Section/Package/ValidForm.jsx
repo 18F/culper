@@ -167,6 +167,7 @@ export default class ValidForm extends ValidationElement {
     return (
       <div className="valid-form">
         { i18n.m(`application.submissionStatus.valid2`) }
+        { i18n.m('releases.additionalComments.contents') }
         <BasicAccordion items={accordionItems} />
         <div className="text-right">
           <button onClick={this.submit} className="submit usa-button" disabled={!signed}>
