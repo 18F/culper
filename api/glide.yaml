@@ -16,12 +16,6 @@ import:
 - package: golang.org/x/crypto
   subpackages:
   - bcrypt
-- package: golang.org/x/oauth2
-  subpackages:
-  - facebook
-  - github
-  - google
-  - linkedin
 - package: github.com/cloudfoundry-community/go-cfenv
   version: ^1.14.0
 - package: bitbucket.org/liamstask/goose
@@ -37,3 +31,6 @@ import:
   version: ^1.0.4
 - package: github.com/rifflock/lfshook
   version: ^2.0.0
+- package: golang.org/x/sys
+  subpackages:
+  - unix
