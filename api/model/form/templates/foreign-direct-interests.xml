@@ -7,7 +7,7 @@
     <Comment></Comment>
     <Coowners>
       <Answer>Yes</Answer>
-      <AnswerComment>string</AnswerComment>
+      <AnswerComment></AnswerComment>
 
       {{range $index, $coowner := $Item.CoOwners.props.List.items}}
       <Coowner ID="{{$index}}">

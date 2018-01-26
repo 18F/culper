@@ -2,7 +2,6 @@
   <Answer>{{branch .props.HasDebarment}}</Answer>
   <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
 </GovernmentDebarment>
-
 <GovernmentDebarments>
   <Comment></Comment>
   {{range $index, $item := .props.List.props.items}}

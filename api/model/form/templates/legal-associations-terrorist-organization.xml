@@ -13,7 +13,6 @@
       <Contributions NoContributionsMade="{{notApplicable $Item.ContributionsNotApplicable}}">
         {{text $Item.Contributions}}
       </Contributions>
-
       {{daterange $Item.Dates}}
       <Description>{{text $Item.Reasons}}</Description>
       <Name>{{text $Item.Organization}}</Name>

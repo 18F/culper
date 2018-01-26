@@ -16,7 +16,6 @@
   <Comment></Comment>
   <SummaryComment></SummaryComment>
 </ClearanceDenials>
-
 <ClearanceDenied>
   <Answer>{{branch .props.HasRevocations}}</Answer>
   <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>

@@ -1,9 +1,8 @@
 <Ever>
   <Offenses>
     <Answer>{{branch .props.HasOtherOffenses}}</Answer>
-    <Comment>string</Comment>
+    <Comment></Comment>
     <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
-
     {{range $index, $item := .props.List.props.items}}
     {{with $Item := $item.Item}}
     <Offense ID="{{$index}}">
@@ -31,25 +30,20 @@
         </Location>
         <Name>{{text $Item.CourtName}}</Name>
       </Court>
-
       <Date Type="{{dateEstimated $Item.Date}}">
         {{monthYear $Item.Date}}
       </Date>
-
       <InvolveFollowingOffenses>
         <Answer>No</Answer>
       </InvolveFollowingOffenses>
-
       <OffenseDescription>{{text $Item.Description}}</OffenseDescription>
       <OffenseType
-        Domestic="{{branchToBool $Item.InvolvedViolence}}"
-        Firearms="{{branchToBool $Item.InvolvedFirearms}}"
-        Alcohol="{{branchToBool $Item.InvoledSubstances}}"
-        />
-
+          Domestic="{{branchToBool $Item.InvolvedViolence}}"
+          Firearms="{{branchToBool $Item.InvolvedFirearms}}"
+          Alcohol="{{branchToBool $Item.InvoledSubstances}}"
+          />
       <Sentenced>
         <Answer>{{branch $Item.WasSentenced}}</Answer>
-
         {{ with $sentence := $Item.Sentence.props }}
         <Description>{{text $sentence.Description}}</Description>
         <DetailsComment></DetailsComment>
@@ -69,17 +63,14 @@
             </DateRange>
           </YearOrMore>
         </Imprisonment>
-
         <Incarcerated>
           <YearOrMore>
             <Answer>{{branch $sentence.Incarcerated}}</Answer>
           </YearOrMore>
         </Incarcerated>
-
         <MoreThanYear>
           <Answer>{{branch $sentence.ExceedsYear}}</Answer>
         </MoreThanYear>
-
         <Probation>
           <DateRange NotApplicable="{{notApplicable $sentence.ProbationDatesNA}}">
             <From>
@@ -91,15 +82,14 @@
               <Date Type="{{dateEstimated $sentence.ProbationDates.props.to}}">
                 {{monthYear $sentence.ProbationDates.props.to}}
               </Date>
-            </Date>
-          </To>
-        </DateRange>
-      </Probation>
-      {{end}}
-    </Sentenced>
-  </Offense>
-  <SummaryComment></SummaryComment>
-</Offenses>
-{{end}}
-{{end}}
-  </Ever>
+            </To>
+          </DateRange>
+        </Probation>
+        {{end}}
+      </Sentenced>
+    </Offense>
+    <SummaryComment></SummaryComment>
+  </Offenses>
+  {{end}}
+  {{end}}
+</Ever>

@@ -2,7 +2,6 @@
   <Answer>{{branch .props.HasOffenses}}</Answer>
   <Comment></Comment>
   <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
-
   <Offenses>
     {{range $index, $item := .props.List.props.items}}
     {{with $Item := $item.Item}}
@@ -29,7 +28,6 @@
           </Location>
           <Name>{{text $Item.CourtName}}</Name>
         </Court>
-
         <Sentenced>
           <Answer>{{branch $Item.WasSentenced}}</Answer>
           <Comment></Comment>
@@ -70,62 +68,54 @@
                 <Date Type="{{dateEstimated $sentence.ProbationDates.props.to}}">
                   {{monthYear $sentence.ProbationDatesNA.props.to}}
                 </Date>
-              </Date>
-            </To>
-          </DateRange>
-        </Probation>
-        {{end}}
-      </Sentenced>
-    </AppearedInCourt>
-
-    <Arrested>
-      <Answer>{{branch $Item.WasCited}}</Answer>
-    </Arrested>
-    <ArrestingAgency>
-      <Comment></Comment>
+              </To>
+            </DateRange>
+          </Probation>
+          {{end}}
+        </Sentenced>
+      </AppearedInCourt>
+      <Arrested>
+        <Answer>{{branch $Item.WasCited}}</Answer>
+      </Arrested>
+      <ArrestingAgency>
+        <Comment></Comment>
+        <Location>
+          <Place>
+            {{location $Item.AgencyAddress}}
+          </Place>
+        </Location>
+        <Name>{{text $Item.CitedBy}}</Name>
+      </ArrestingAgency>
+      <AwaitingTrial>
+        <Answer>{{branch $Item.AwaitingTrial}}</Answer>
+        <AnswerComment></AnswerComment>
+        <Explanation>{{text $Item.AwaitingTrialExplanation}}</Explanation>
+      </AwaitingTrial>
+      <Date Type="{{dateEstimated $Item.Date}}">
+        {{monthYear $Item.Date}}
+      </Date>
+      <InvolveFollowingOffenses>
+        <Answer>{{branchAny $Item.InvolvedViolence $Item.InvolvedFirearms $Item.InvoledSubstances}}</Answer>
+      </InvolveFollowingOffenses>
       <Location>
         <Place>
-          {{location $Item.AgencyAddress}}
+          {{location $Item.Address}}
         </Place>
       </Location>
-      <Name>{{text $Item.CitedBy}}</Name>
-    </ArrestingAgency>
-
-    <AwaitingTrial>
-      <Answer>{{branch $Item.AwaitingTrial}}</Answer>
-      <AnswerComment></AnswerComment>
-      <Explanation>{{text $Item.AwaitingTrialExplanation}}</Explanation>
-    </AwaitingTrial>
-
-    <Date Type="{{dateEstimated $Item.Date}}">
-      {{monthYear $Item.Date}}
-    </Date>
-
-    <InvolveFollowingOffenses>
-      <Answer>{{branchAny $Item.InvolvedViolence $Item.InvolvedFirearms $Item.InvoledSubstances}}</Answer>
-    </InvolveFollowingOffenses>
-
-    <Location>
-      <Place>
-        {{location $Item.Address}}
-      </Place>
-    </Location>
-
-    <NotConvicted>
-      <Comment></Comment>
-      <Explanation>{{text $Item.Explanation}}</Explanation>
-    </NotConvicted>
-    <OffenseComment></OffenseComment>
-    <OffenseDescription>{{text $Item.Description}}</OffenseDescription>
-    <OffenseType
-      Domestic="{{branchToBool $Item.InvolvedViolence}}"
-      Firearms="{{branchToBool $Item.InvolvedFirearms}}"
-      Alcohol="{{branchToBool $Item.InvoledSubstances}}"
-      />
-  </Offense>
-  {{end}}
-  {{end}}
-</Offenses>
-<SummaryComment></SummaryComment>
-  </Past7Years>
-
+      <NotConvicted>
+        <Comment></Comment>
+        <Explanation>{{text $Item.Explanation}}</Explanation>
+      </NotConvicted>
+      <OffenseComment></OffenseComment>
+      <OffenseDescription>{{text $Item.Description}}</OffenseDescription>
+      <OffenseType
+          Domestic="{{branchToBool $Item.InvolvedViolence}}"
+          Firearms="{{branchToBool $Item.InvolvedFirearms}}"
+          Alcohol="{{branchToBool $Item.InvoledSubstances}}"
+          />
+    </Offense>
+    {{end}}
+    {{end}}
+  </Offenses>
+  <SummaryComment></SummaryComment>
+</Past7Years>

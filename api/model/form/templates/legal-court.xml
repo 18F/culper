@@ -2,7 +2,6 @@
   <CivilCourtAction>
     <Answer>{{branch .props.HasCourtActions}}</Answer>
   </CivilCourtAction>
-
   <Comment></Comment>
   <CourtActions>
     {{range $index, $item := .props.List.props.items}}
