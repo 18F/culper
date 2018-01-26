@@ -1,0 +1,51 @@
+<OrderedAdvisedOrAskedToSeekCounseling>
+  <Answer>{{branch .props.Involved}}</Answer>
+  <Comment></Comment>
+  <Consultations>
+    {{range $index, $item := .props.List.props.items}}
+    {{with $Item := $item.Item}}
+    <Consultation ID="{{$index}}">
+      <ActionToSeekCounselingTaken>
+        <Answer>{{branch $Item.ActionTaken}}</Answer>
+      </ActionToSeekCounselingTaken>
+      <DidNotReceiveTreatment>
+        <Comment></Comment>
+        <Explanation>{{textarea $Item.NoActionTakenExplanation}}</Explanation>
+      </DidNotReceiveTreatment>
+      <CounselingOrderedBy>
+        <Answer Employer="{{checkboxHas $Item.OrderedBy "Employer"}}"
+                MedicalProfessional="{{checkboxHas $Item.OrderedBy "MedicalProfessional"}}"
+                MentalHealthProfessional="{{checkboxHas $Item.OrderedBy "MentalHealthProfessional"}}"
+                Court="{{checkboxHas $Item.OrderedBy "Jugde"}}"
+                None="{{checkboxHas $Item.OrderedBy "None"}}"/>
+        <Comment></Comment>
+        <Explanation>{{textarea $Item.Explanation}}</Explanation>
+      </CounselingOrderedBy>
+      <Drug>
+        <Explanation></Explanation>
+        <Type>{{radio $Item.DrugType}}</Type>
+      </Drug>
+      <Doctor>
+        <Name>
+          <Last>{{text $Item.TreatmentProvider}}</Last>
+          <First Type="NFN"><!-- eApp only captures a sigle text entry --></First>
+        </Name>
+        <Address>{{location $Item.TreatmentAddress}}</Address>
+        <Telephone>{{telephone $Item.TreatmentProviderTelephone}}</Telephone>
+      </Doctor>
+      {{daterange $Item.TreatmentDates}}
+      <SuccessfullyCompletedTreatmentProgram>
+        <Answer>{{branch $Item.TreatmentCompleted}}</Answer>
+      </SuccessfullyCompletedTreatmentProgram>
+      <UnsuccessfulTreatment>
+        <Comment></Comment>
+        <Explanation>{{textarea $Item.NoTreatmentExplanation}}</Explanation>
+      </UnsuccessfulTreatment>
+      <Comment></Comment>
+    </Consultation>
+    {{end}}
+    {{end}}
+  </Consultations>
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+  <SummaryComment></SummaryComment>
+</OrderedAdvisedOrAskedToSeekCounseling>
