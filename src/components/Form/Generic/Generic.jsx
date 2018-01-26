@@ -53,12 +53,29 @@ export default class Generic extends ValidationElement {
     if (nextProps.value !== this.state.value) {
       updates = { ...updates, value: nextProps.value }
     }
+
     // If disabled, we clear the value and clear state
     if (nextProps.disabled) {
       updates = { value: '', valid: null, error: null }
     }
 
+    if (updates.value !== undefined && updates.value !== this.state.value) {
+      const errors = this.errors(updates.value)
+      updates.error = errors.some(x => x.valid === false)
+      updates.valid = errors.every(x => x.valid === true)
+    }
+
     this.setState(updates)
+  }
+
+  errors (value) {
+    return this.props.onError(value, this.constructor.errors.map(err => {
+      return {
+        code: err.code,
+        valid: err.func(value, this.props),
+        uid: this.state.uid
+      }
+    })) || []
   }
 
   /**
@@ -96,16 +113,11 @@ export default class Generic extends ValidationElement {
    * Execute validation checks on the value.
    */
   handleValidation (event) {
-    const value = `${this.state.value}`.trim()
-    const errors = this.props.onError(value, this.constructor.errors.map(err => {
-      return {
-        code: err.code,
-        valid: err.func(value, this.props),
-        uid: this.state.uid
-      }
-    })) || []
-
-    this.setState({ error: errors.some(x => x.valid === false), valid: errors.every(x => x.valid === true) })
+    const errors = this.errors(`${this.state.value}`.trim())
+    this.setState({
+      error: errors.some(x => x.valid === false),
+      valid: errors.every(x => x.valid === true)
+    })
   }
 
   /**

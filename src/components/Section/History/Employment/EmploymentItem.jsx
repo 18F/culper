@@ -56,8 +56,13 @@ export default class EmploymentItem extends ValidationElement {
   }
 
   updateEmploymentActivity (values) {
+    const activity = (this.props.EmploymentActivity || {}).value
+    const zeroReference = activity && !['SelfEmployment', 'Unemployment'].includes(activity)
     this.update({
-      EmploymentActivity: values
+      EmploymentActivity: values,
+      ReferenceName: zeroReference ? {} : this.props.ReferenceName,
+      ReferencePhone: zeroReference ? {} : this.props.ReferencePhone,
+      ReferenceAddress: zeroReference ? {} : this.props.ReferenceAddress
     })
   }
 
@@ -281,6 +286,7 @@ export default class EmploymentItem extends ValidationElement {
                scrollIntoView={this.props.scrollIntoView}>
           <DateRange name="Dates"
                      {...this.props.Dates}
+                     applicantBirthdate={this.props.applicantBirthdate}
                      receiveProps={this.props.receiveProps}
                      onUpdate={this.updateDates}
                      onError={this.props.onError}
@@ -354,27 +360,23 @@ export default class EmploymentItem extends ValidationElement {
             <Field title={i18n.t(`${prefix}.heading.reference`)}
                    titleSize="h2"
                    className="no-margin-bottom"
+                   scrollIntoView={this.props.scrollIntoView}
                    />
 
             <div className="reference">
               <Field title={i18n.t('reference.heading.name')}
                      titleSize="h3"
-                     optional={true}>
+                     optional={true}
+                     scrollIntoView={this.props.scrollIntoView}>
                 <Name name="ReferenceName"
                       prefix={'name'}
                       className="reference-name"
                       {...this.props.ReferenceName}
+                      scrollIntoView={this.props.scrollIntoView}
                       onUpdate={this.updateReferenceName}
                       onError={this.props.onError}
                       required={this.props.required}
                       />
-              </Field>
-
-              <Field title={i18n.t('reference.heading.correspondence')}
-                     titleSize="h2"
-                     optional={true}
-                     className="no-margin-bottom">
-                {i18n.m('reference.para.correspondence')}
               </Field>
 
               <Field title={i18n.t('reference.heading.phone.default')}
@@ -394,7 +396,8 @@ export default class EmploymentItem extends ValidationElement {
               <Field title={i18n.t('reference.heading.address')}
                      optional={true}
                      help={'reference.help.address'}
-                     adjustFor="address">
+                     adjustFor="address"
+                     scrollIntoView={this.props.scrollIntoView}>
                 <p>{i18n.t('reference.para.address')}</p>
                 <Location name="ReferenceAddress"
                           className="reference-address"
@@ -418,12 +421,14 @@ export default class EmploymentItem extends ValidationElement {
             <Field title={i18n.t(`${prefix}.heading.additionalActivity`)}
                    titleSize="h2"
                    optional={true}
-                   className="no-margin-bottom">
+                   className="no-margin-bottom"
+                   scrollIntoView={this.props.scrollIntoView}>
               {i18n.m(`${prefix}.para.additionalActivity`)}
             </Field>
 
             <AdditionalActivity name="Additional"
                                 {...this.props.Additional}
+                                applicantBirthdate={this.props.applicantBirthdate}
                                 onUpdate={this.updateAdditional}
                                 onError={this.props.onError}
                                 required={this.props.required}
@@ -436,6 +441,7 @@ export default class EmploymentItem extends ValidationElement {
           <div>
             <ReasonLeft name="ReasonLeft"
                         {...this.props.ReasonLeft}
+                        applicantBirthdate={this.props.applicantBirthdate}
                         onUpdate={this.updateReasonLeft}
                         onError={this.props.onError}
                         required={this.props.required}
@@ -473,6 +479,7 @@ EmploymentItem.defaultProps = {
   Additional: {},
   ReasonLeft: {},
   Reprimand: {},
+  applicantBirthdate: {},
   addressBooks: {},
   dispatch: (action) => {},
   onUpdate: (queue) => {},

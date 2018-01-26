@@ -130,7 +130,7 @@ export default class Accordion extends ValidationElement {
     this.setState({ initial: false, scrollToId: '' }, () => {
       // Find the item by UUID instead of index because we can't true the index
       // will always be the same
-      const item = this.props.items.filter(x => x.uuid === id)[0]
+      const item = this.props.items.filter(x => x.uuid === id)[0] || { uuid: id }
 
       // Calculate a magic number to phase the timeout value. This always
       // for any CSS keyframe animations or transitions to take place prior
@@ -452,7 +452,7 @@ export default class Accordion extends ValidationElement {
    */
   caption () {
     return this.props.caption
-      ? <div className="caption">{this.props.caption()}</div>
+      ? <div className="caption">{this.props.caption(this.props)}</div>
       : null
   }
 

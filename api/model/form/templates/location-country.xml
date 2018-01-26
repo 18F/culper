@@ -1,0 +1,1 @@
+<Country>{{.props.country}}</Country>

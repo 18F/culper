@@ -1,0 +1,75 @@
+<Cohabitants>
+  <Answer>{{branch .props.HasCohabitant}}</Answer>
+  {{range $index, $item := .props.CohabitantList.props.items}}
+  {{with $Item := $item.Item}}
+  <Cohabitant ID="{{$index}}">
+    <Birth>
+      <Date Type="{{dateEstimated $Item.Birthdate}}">
+        {{ date $Item.Birthdate }}
+      </Date>
+      <Place>
+        {{ location $Item.BirthPlace }}
+      </Place>
+    </Birth>
+    {{with $doc := $Item.ForeignBornDocument.props}}
+    <Citizenship>
+      <ProofOfStatus>
+        <Comment></Comment>
+        <DocumentNumber>{{text $doc.DocumentNumber}}</DocumentNumber>
+        <Type>{{text $doc.DocumentType}}</Type>
+        <TypeOtherExplanation>{{text $doc.OtherExplanation}}</TypeOtherExplanation>
+      </ProofOfStatus>
+    </Citizenship>
+    {{end}}
+    <CohabitationDate>
+      <Date Type="{{dateEstimated $Item.Birthdate}}">
+        {{date $Item.Birthdate}}
+      </Date>
+    </CohabitationDate>
+    <ContinueComment></ContinueComment>
+    <CountriesOfCitizenship>
+      <Citizenship>
+        {{range $index, $country := $Item.Citizenship.value}}
+        <Country>{{$country}}</Country>
+        {{end}}
+      </Citizenship>
+    </CountriesOfCitizenship>
+    <EntryComment></EntryComment>
+    <LegalName>
+      {{name $Item.Name}}
+    </LegalName>
+    <OtherNamesUsed NotApplicable="{{if len $Item.OtherNames.props.items | eq 0}}True{{else}}False{{end}}">
+      {{range $index, $othername := $Item.OtherNames.props.items}}
+      {{with $other := $othername.Item}}
+      <OtherName ID="{{$index}}">
+        {{daterange $other.DatesUsed}}
+        <LegalName>
+          {{name $other.OtherName}}
+        </LegalName>
+        <Maiden>
+          <Answer>{{branch $other.MaidenName}}</Answer>
+        </Maiden>
+      </OtherName>
+      {{end}}
+      {{end}}
+    </OtherNamesUsed>
+    {{with $ssn := $Item.SSN}}
+    <SSN NotApplicable="{{ $ssn.props.notApplicable }}">
+      <FirstThree>
+        {{ $ssn.props.first }}
+      </FirstThree>
+      <NextTwo>
+        {{ $ssn.props.middle }}
+      </NextTwo>
+      <LastFour>
+        {{ $ssn.props.last }}
+      </LastFour>
+    </SSN>
+    {{end}}
+  </Cohabitant>
+  {{end}}
+  {{end}}
+  <Comment></Comment>
+  <HaveAdditionalEntryAnswer>{{branch .props.CohabitantList.props.branch}}</HaveAdditionalEntryAnswer>
+  <SummaryComment></SummaryComment>
+</Cohabitants>

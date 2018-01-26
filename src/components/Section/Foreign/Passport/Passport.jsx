@@ -234,6 +234,7 @@ export default class Passport extends SubsectionElement {
               <DateControl name="issued"
                            className="passport-issued"
                            {...this.props.Issued}
+                           applicantBirthdate={this.props.applicantBirthdate}
                            onUpdate={this.updateIssued}
                            onError={this.handleError}
                            required={this.props.required}
@@ -248,7 +249,8 @@ export default class Passport extends SubsectionElement {
               <DateControl name="expiration"
                            className="passport-expiration"
                            {...this.props.Expiration}
-                           maxDate={null}
+                           applicantBirthdate={this.props.applicantBirthdate}
+                           noMaxDate={true}
                            onUpdate={this.updateExpiration}
                            onError={this.handleError}
                            required={this.props.required}
@@ -280,6 +282,7 @@ Passport.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'passport',
+  applicantBirthdate: {},
   dispatch: () => {},
   validator: (state, props) => {
     return validate(schema('foreign.passport', props))

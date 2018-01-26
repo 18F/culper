@@ -1,0 +1,50 @@
+<Education>
+  <AttendedAnySchools>
+    <Answer>{{branch .props.HasAttended}}</Answer>
+    <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+  </AttendedAnySchools>
+  <AttendedAnySchoolsComment></AttendedAnySchoolsComment>
+  <ReceivedDegreeOrDiploma>
+    <Answer>{{branch .props.HasDegree10}}</Answer>
+    <Comment></Comment>
+  </ReceivedDegreeOrDiploma>
+  <SchoolsAttended>
+    {{range $index, $item := .props.List.props.items}}
+    {{with $Item := $item.Item}}
+    <SchoolAttended ID="{{$index}}">
+      <DateRange>{{daterange $Item.Dates}}</DateRange>
+      <Type>{{radio $Item.Type}}</Type>
+      <Name>{{text $Item.Name}}</Name>
+      <Address>{{location $Item.Address}}</Address>
+      <DegreeReceived>
+        <Answer>{{if len $Item.Diplomas.props.items}}Yes{{else}}No{{end}}</Answer>
+        <AnswerComment></AnswerComment>
+      </DegreeReceived>
+      <DegreesAwarded>
+        {{range $dindex, $diploma := $Item.Diplomas.props.items}}
+        {{with $Diploma := $diploma.Item}}
+        <DegreeAwarded ID="{{$dindex}}">
+          <DateAwarded>
+            <Date Type="{{dateEstimated $Diploma.Date}}">{{monthYear $Diploma.Date}}</Date>
+          </DateAwarded>
+          <Degree>{{radio $Diploma.Diploma}}</Degree>
+          <OtherDegree>{{text $Diploma.DiplomaOther}}</OtherDegree>
+        </DegreeAwarded>
+        {{end}}
+        {{end}}
+      </DegreesAwarded>
+      <DegreesAwardedComment></DegreesAwardedComment>
+      <Verifier>
+        <Address>{{location $Item.ReferenceAddress}}</Address>
+        <Comment></Comment>
+        <Email DoNotKnow="{{notApplicable $Item.ReferenceEmailNotApplicable}}">{{email $Item.ReferenceEmail}}</Email>
+        <LegalName DoNotKnow="{{notApplicable $Item.ReferenceNameNotApplicable}}">{{nameLastFirst $Item.ReferenceName}}</LegalName>
+        <Telephone>{{telephone $Item.ReferencePhone}}</Telephone>
+      </Verifier>
+      <Comments>{{textarea $Item.Comments}}</Comments>
+    </SchoolAttended>
+    {{end}}
+    {{end}}
+  </SchoolsAttended>
+  <Comment></Comment>
+</Education>

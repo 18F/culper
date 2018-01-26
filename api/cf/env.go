@@ -2,10 +2,13 @@ package cf
 
 import (
 	"fmt"
-	"log"
 	"net/url"
 	"os"
+	"regexp"
+	"strings"
 
+	"github.com/18F/e-QIP-prototype/api/jwt"
+	"github.com/18F/e-QIP-prototype/api/logmsg"
 	cfenv "github.com/cloudfoundry-community/go-cfenv"
 )
 
@@ -27,10 +30,11 @@ func PublicURI() string {
 
 // DatabaseURI is the URI used to establish the database connection
 func DatabaseURI(label string) string {
-	current, _ := cfenv.Current()
-	// if err != nil {
-	// 	log.Println("Cloud Foundry environment not found")
-	// }
+	log := logmsg.NewLogger()
+	current, err := cfenv.Current()
+	if err != nil {
+		log.WithError(err).Debug("Cloud Foundry environment not found")
+	}
 	return getDatabase(current, label)
 }
 
@@ -63,6 +67,8 @@ func getURI(current *cfenv.App) string {
 }
 
 func getDatabase(current *cfenv.App, label string) string {
+	log := logmsg.NewLogger()
+
 	// Attempt to pull from CloudFoundry settings first
 	if current != nil {
 		// First, try finding it by name
@@ -75,13 +81,12 @@ func getDatabase(current *cfenv.App, label string) string {
 		services, err := current.Services.WithLabel(label)
 		if err == nil {
 			for _, s := range services {
-				// log.Println(s.Credentials["uri"].(string))
 				return s.Credentials["uri"].(string)
 			}
 		}
 
 		// Anything else log the error and continue
-		log.Printf("Could not parse VCAP_SERVICES for %s. Error: %s", label, err)
+		log.WithError(err).WithField("label", label).Debug("Could not parse VCAP_SERVICES")
 	}
 
 	// If the URI is set then use this as it is preferred
@@ -169,15 +174,6 @@ func BasicEnabled() bool {
 	return true
 }
 
-// OAuthEnabled returns a boolean indicating whether the system allows
-// OAuth authentication.
-func OAuthEnabled() bool {
-	if os.Getenv("OAUTH_ENABLED") == "" {
-		return false
-	}
-	return true
-}
-
 // SamlEnabled returns a boolean indicating whether the system allows
 // SAML authentication.
 func SamlEnabled() bool {
@@ -185,4 +181,42 @@ func SamlEnabled() bool {
 		return false
 	}
 	return true
+}
+
+// AllowedOrigin checks the given origin is whitelisted as an acceptable address.
+func AllowedOrigin(origin string) bool {
+	addresses := strings.TrimSpace(os.Getenv("CORS_ALLOWED"))
+	for _, addr := range strings.Split(addresses, ";") {
+		if addr == "" {
+			continue
+		}
+
+		if addr == "*" {
+			return true
+		}
+		re := regexp.MustCompile(strings.TrimSpace(addr))
+		if re.MatchString(origin) {
+			return true
+		}
+	}
+
+	return false
+}
+
+func TargetAudiences() []string {
+	audiences := []string{}
+
+	if BasicEnabled() {
+		audiences = append(audiences, jwt.BasicAuthAudience)
+	}
+
+	if !TwofactorDisabled() {
+		audiences = append(audiences, jwt.TwoFactorAudience)
+	}
+
+	if SamlEnabled() {
+		audiences = append(audiences, jwt.SingleSignOnAudience)
+	}
+
+	return audiences
 }

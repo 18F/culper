@@ -84,6 +84,7 @@ export default class Bankruptcies extends SubsectionElement {
                      appendLabel={i18n.t('financial.bankruptcy.collection.append')}>
             <Bankruptcy name="Item"
                         dispatch={this.props.dispatch}
+                        applicantBirthdate={this.props.applicantBirthdate}
                         addressBooks={this.props.addressBooks}
                         required={this.props.required}
                         scrollIntoView={this.props.scrollIntoView}
@@ -96,8 +97,9 @@ export default class Bankruptcies extends SubsectionElement {
 }
 
 Bankruptcies.defaultProps = {
-  List: { items: [] },
+  List: Accordion.defaultList,
   HasBankruptcy: {},
+  applicantBirthdate: {},
   addressBooks: {},
   onError: (value, arr) => { return arr },
   section: 'financial',

@@ -41,36 +41,6 @@ func RootHandler(w http.ResponseWriter, r *http.Request) {
 			Verbs:       []string{"POST"},
 		},
 		endpoint{
-			Path:        "/auth",
-			Description: "authentication",
-			Verbs:       []string{"GET"},
-		},
-		endpoint{
-			Path:        "/auth/basic",
-			Description: "basic authentication",
-			Verbs:       []string{"POST"},
-		},
-		endpoint{
-			Path:        "/auth/:service",
-			Description: "oauth entrypoint",
-			Verbs:       []string{"GET"},
-		},
-		endpoint{
-			Path:        "/auth/:service/callback",
-			Description: "oauth callback",
-			Verbs:       []string{"GET"},
-		},
-		endpoint{
-			Path:        "/auth/saml",
-			Description: "SAML entrypoint",
-			Verbs:       []string{"GET"},
-		},
-		endpoint{
-			Path:        "/auth/saml/callback",
-			Description: "SAML callback",
-			Verbs:       []string{"GET", "POST"},
-		},
-		endpoint{
 			Path:        "/me",
 			Description: "me",
 			Verbs:       []string{"GET"},
@@ -134,11 +104,6 @@ func RootHandler(w http.ResponseWriter, r *http.Request) {
 				Description: "two factor verification",
 				Verbs:       []string{"POST"},
 			},
-			endpoint{
-				Path:        "/2fa/:account/email",
-				Description: "two factor email",
-				Verbs:       []string{"POST"},
-			},
 		}
 		endpoints = append(endpoints, mfa...)
 
@@ -149,6 +114,33 @@ func RootHandler(w http.ResponseWriter, r *http.Request) {
 				Verbs:       []string{"GET"},
 			})
 		}
+	}
+
+	if cf.BasicEnabled() {
+		basic := []endpoint{
+			endpoint{
+				Path:        "/auth/basic",
+				Description: "basic authentication",
+				Verbs:       []string{"POST"},
+			},
+		}
+		endpoints = append(endpoints, basic...)
+	}
+
+	if cf.SamlEnabled() {
+		saml := []endpoint{
+			endpoint{
+				Path:        "/auth/saml",
+				Description: "SAML entrypoint",
+				Verbs:       []string{"GET"},
+			},
+			endpoint{
+				Path:        "/auth/saml/callback",
+				Description: "SAML callback",
+				Verbs:       []string{"GET", "POST"},
+			},
+		}
+		endpoints = append(endpoints, saml...)
 	}
 
 	json.NewEncoder(w).Encode(struct {

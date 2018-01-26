@@ -82,9 +82,9 @@ export default class Contacts extends SubsectionElement {
                      scrollIntoView={this.props.scrollIntoView}>
             <ForeignNational name="Item"
                              bind={true}
+                             applicantBirthdate={this.props.applicantBirthdate}
                              addressBooks={this.props.addressBooks}
                              dispatch={this.props.dispatch}
-                             bind={true}
                              required={this.props.required}
                              scrollIntoView={this.props.scrollIntoView} />
           </Accordion>
@@ -101,6 +101,7 @@ Contacts.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'contacts',
+  applicantBirthdate: {},
   addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {

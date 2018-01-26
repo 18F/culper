@@ -106,6 +106,10 @@ export const error = {
     required: {
       title: 'There is a problem with this field',
       message: 'This field is required'
+    },
+    invalid: {
+      title: 'Invalid social security number',
+      message: 'The social security number is considered invalid.'
     }
   },
   date: {
@@ -161,7 +165,67 @@ export const error = {
     },
     min: {
       title: 'There is a problem with the date',
-      message: 'The date should be on or after your date of birth.'
+      message: 'The date should be after your date of birth.'
+    },
+    required: {
+      title: 'There is a problem with this field',
+      message: 'All parts of the date are required even if it is **estimated**.'
+    }
+  },
+  relative: {
+    month: {
+      notfound: {
+        title: 'There is a problem with the Month',
+        message: 'The month should be between 01 (January) and 12 (December).',
+        note: ''
+      },
+      min: {
+        title: 'There is a problem with the Month',
+        message: 'The month should be between 01 (January) and 12 (December).',
+        note: ''
+      },
+      max: {
+        title: 'There is a problem with the Month',
+        message: 'The month should be between 01 (January) and 12 (December).',
+        note: ''
+      }
+    },
+    day: {
+      length: {
+        title: 'There is a problem with the Day',
+        message: 'There is not that many days in this month.',
+        note: ''
+      },
+      min: {
+        title: 'There is a problem with the Day',
+        message: 'There are not that many days in this month.',
+        note: ''
+      },
+      max: {
+        title: 'There is a problem with the Day',
+        message: 'There are not that many days in this month.',
+        note: ''
+      }
+    },
+    year: {
+      max: {
+        title: 'There is a problem with the Year',
+        message: 'The year can\'t be in the future.',
+        note: ''
+      },
+      min: {
+        title: 'There is a problem with the Year',
+        message: 'This year is too far in the past.',
+        note: ''
+      }
+    },
+    max: {
+      title: 'There is a problem with the date',
+      message: 'The date can\'t be in the future.'
+    },
+    min: {
+      title: 'There is a problem with the date',
+      message: 'The date should be after this person\'s date of birth.'
     },
     required: {
       title: 'There is a problem with this field',
@@ -222,7 +286,63 @@ export const error = {
       },
       min: {
         title: 'There is a problem with the date',
-        message: 'For the **to** date, the date should be on or after your date of birth.'
+        message: 'For the **to** date, the date should be after your date of birth.'
+      },
+      relative: {
+        month: {
+          notfound: {
+            title: 'There is a problem with the Month',
+            message: 'For the **to** date, the month should be between 1(January) and 12(December).',
+            note: ''
+          },
+          min: {
+            title: 'There is a problem with the Month',
+            message: 'For the **to** date, the month should be between 1(January) and 12(December).',
+            note: ''
+          },
+          max: {
+            title: 'There is a problem with the Month',
+            message: 'For the **to** date, the month should be between 1(January) and 12(December).',
+            note: ''
+          }
+        },
+        day: {
+          length: {
+            title: 'There is a problem with the Day',
+            message: 'For the **to** date, there are not that many days in this month.',
+            note: ''
+          },
+          min: {
+            title: 'There is a problem with the Day',
+            message: 'For the **to** date, there are not that many days in this month.',
+            note: ''
+          },
+          max: {
+            title: 'There is a problem with the Day',
+            message: 'For the **to** date, there are not that many days in this month.',
+            note: ''
+          }
+        },
+        year: {
+          max: {
+            title: 'There is a problem with the Year',
+            message: 'For the **to** date, the year can\'t be in the future.',
+            note: ''
+          },
+          min: {
+            title: 'There is a problem with the Year',
+            message: 'For the **to** date, this year is too far in the past.',
+            note: ''
+          }
+        },
+        max: {
+          title: 'There is a problem with the date',
+          message: 'For the **to** date, the date can\'t be in the future.'
+        },
+        min: {
+          title: 'There is a problem with the date',
+          message: 'For the **to** date, the date should be after this person\'s date of birth.'
+        }
       }
     },
     from: {
@@ -278,7 +398,63 @@ export const error = {
       },
       min: {
         title: 'There is a problem with the date',
-        message: 'For the **from** date, the date should be on or after your date of birth.'
+        message: 'For the **from** date, the date should be after your date of birth.'
+      },
+      relative: {
+        month: {
+          notfound: {
+            title: 'There is a problem with the Month',
+            message: 'For the **from** date, the month should be between 1(January) and 12(December).',
+            note: ''
+          },
+          min: {
+            title: 'There is a problem with the Month',
+            message: 'For the **from** date, the month should be between 1(January) and 12(December).',
+            note: ''
+          },
+          max: {
+            title: 'There is a problem with the Month',
+            message: 'For the **from** date, the month should be between 1(January) and 12(December).',
+            note: ''
+          }
+        },
+        day: {
+          length: {
+            title: 'There is a problem with the Day',
+            message: 'For the **from** date, there are not that many days in this month.',
+            note: ''
+          },
+          min: {
+            title: 'There is a problem with the Day',
+            message: 'For the **from** date, there are not that many days in this month.',
+            note: ''
+          },
+          max: {
+            title: 'There is a problem with the Day',
+            message: 'For the **from** date, there are not that many days in this month.',
+            note: ''
+          }
+        },
+        year: {
+          max: {
+            title: 'There is a problem with the Year',
+            message: 'For the **from** date, the year can\'t be in the future.',
+            note: ''
+          },
+          min: {
+            title: 'There is a problem with the Year',
+            message: 'For the **from** date, this year is too far in the past.',
+            note: ''
+          }
+        },
+        max: {
+          title: 'There is a problem with the date',
+          message: 'For the **from** date, the date can\'t be in the future.'
+        },
+        min: {
+          title: 'There is a problem with the date',
+          message: 'For the **from** date, the date should be after this person\'s date of birth.'
+        }
       }
     },
     order: {
@@ -580,6 +756,10 @@ export const error = {
           title: 'There is a problem with the area code',
           message: 'The area code should be 3 numbers long and between 0 and 9.',
           note: ''
+        },
+        required: {
+          title: 'There is a problem with this field',
+          message: 'This field is required'
         }
       },
       second: {
@@ -592,6 +772,10 @@ export const error = {
           title: 'There is a problem with the phone number',
           message: 'The first part of the phone number should be 3 numbers long and between 0 and 9.',
           note: ''
+        },
+        required: {
+          title: 'There is a problem with this field',
+          message: 'This field is required'
         }
       },
       third: {
@@ -604,6 +788,10 @@ export const error = {
           title: 'There is a problem with the phone number',
           message: 'The last part of the phone number should be 4 numbers long and between 0 and 9.',
           note: ''
+        },
+        required: {
+          title: 'There is a problem with this field',
+          message: 'This field is required'
         }
       },
       extension: {
@@ -630,6 +818,10 @@ export const error = {
           title: 'This field must have 3 digits',
           message: 'The first part of the DSN number must be 3 digits between 0 and 9.',
           note: ''
+        },
+        required: {
+          title: 'There is a problem with this field',
+          message: 'This field is required'
         }
       },
       second: {
@@ -642,6 +834,10 @@ export const error = {
           title: 'This field must have 4 digits',
           message: 'The last part of the DSN number must be 4 digits between 0 and 9.',
           note: ''
+        },
+        required: {
+          title: 'There is a problem with this field',
+          message: 'This field is required'
         }
       }
     },
@@ -656,6 +852,10 @@ export const error = {
           title: 'There is a problem with this country code',
           message: 'The country code of the international number should be 3 digits between 0 and 9.',
           note: ''
+        },
+        required: {
+          title: 'There is a problem with this field',
+          message: 'This field is required'
         }
       },
       second: {
@@ -668,7 +868,17 @@ export const error = {
           title: 'There is a problem with this number',
           message: 'The international number should be 10 digits between 0 and 9.',
           note: ''
+        },
+        required: {
+          title: 'There is a problem with this field',
+          message: 'This field is required'
         }
+      }
+    },
+    numberType: {
+      required: {
+        title: 'There is a problem with this field',
+        message: 'This field is required'
       }
     },
     required: {
@@ -725,7 +935,7 @@ export const error = {
       },
       min: {
         title: 'There is a problem with the date',
-        message: 'The date should be on or after your date of birth.'
+        message: 'The date should be after your date of birth.'
       }
     },
     end: {
@@ -743,94 +953,4 @@ export const error = {
     title: 'There is a problem with this field',
     message: 'This field is required'
   }
-  // order: {
-  //   datecontrol: {
-  //     max: {
-  //       title: 'There is a problem with the date',
-  //       message: 'The order date can\'t be in the future.'
-  //     },
-  //     min: {
-  //       title: 'There is a problem with the date',
-  //       message: 'The order date value should be on or after your date of birth.'
-  //     }
-  //   }
-  // },
-  // hospitalization: {
-  //   to: {
-  //     datecontrol: {
-  //       max: {
-  //         title: 'There is a problem with the "to" date',
-  //         message: 'The hospitalization **to** date can\'t be in the future.'
-  //       },
-  //       min: {
-  //         title: 'There is a problem with the "to" date',
-  //         message: 'The hospitalization **to** date value should be on or after your date of birth.'
-  //       }
-  //     }
-  //   },
-  //   from: {
-  //     datecontrol: {
-  //       max: {
-  //         title: 'There is a problem with the "from" date',
-  //         message: 'The hospitalization **from** date can\'t be in the future.'
-  //       },
-  //       min: {
-  //         title: 'There is a problem with the "from" date',
-  //         message: 'The hospitalization **from** date value should be on or after your date of birth.'
-  //       }
-  //     }
-  //   }
-  // },
-  // diagnosis: {
-  //   to: {
-  //     datecontrol: {
-  //       max: {
-  //         title: 'There is a problem with the "to" date',
-  //         message: 'The diagnosis **to** date can\'t be in the future.'
-  //       },
-  //       min: {
-  //         title: 'There is a problem with the "to" date',
-  //         message: 'Diagnosis **to** date value should be on or after your date of birth.'
-  //       }
-  //     }
-  //   },
-  //   from: {
-  //     datecontrol: {
-  //       max: {
-  //         title: 'There is a problem with the "from" date',
-  //         message: 'Diagnosis **from** date can\'t be in the future.'
-  //       },
-  //       min: {
-  //         title: 'There is a problem with the "from" date',
-  //         message: 'Diagnosis **from** date value should be on or after your date of birth.'
-  //       }
-  //     }
-  //   }
-  // },
-  // bankruptcy: {
-  //   datefiled: {
-  //     datecontrol: {
-  //       max: {
-  //         title: 'There is a problem with the "date filed" date',
-  //         message: 'Bankruptcy **date filed** can\'t be in the future.'
-  //       },
-  //       min: {
-  //         title: 'There is a problem with the "date filed" date',
-  //         message: 'Bankruptcy **date filed** date value should be on or after your date of birth.'
-  //       }
-  //     }
-  //   },
-  //   datedischarged: {
-  //     datecontrol: {
-  //       max: {
-  //         title: 'There is a problem with the "date discharged" date',
-  //         message: 'Bankruptcy **date discharged** can\'t be in the future.'
-  //       },
-  //       min: {
-  //         title: 'There is a problem with the "to" date',
-  //         message: 'Bankruptcy **date discharged** date value should be on or after your date of birth.'
-  //       }
-  //     }
-  //   }
-  // }
 }

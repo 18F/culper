@@ -6,7 +6,7 @@ const documentTypes = ['FS240', 'DS1350', 'AlienRegistration', 'PermanentResiden
 
 export default class ForeignBornDocumentValidator {
   constructor (state = {}, props = {}) {
-    this.documentType = state.DocumentType
+    this.documentType = (state.DocumentType || {}).value
     this.documentExpiration = state.DocumentExpiration
     this.documentExpirationNotApplicable = state.DocumentExpirationNotApplicable
     this.otherExplanation = state.OtherExplanation

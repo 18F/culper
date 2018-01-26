@@ -1,7 +1,8 @@
+// +build !windows
+
 package db
 
 import (
-	"fmt"
 	"os"
 
 	"bitbucket.org/liamstask/goose/lib/goose"
@@ -40,6 +41,6 @@ func CurrentVersion(directory, environment, schema string) (int64, error) {
 
 func setDatabaseURI() {
 	if addr := cf.DatabaseURI("aws-rds"); addr != "" {
-		os.Setenv("DATABASE_URI", fmt.Sprintf("%s?sslmode=disable", addr))
+		os.Setenv("DATABASE_URI", addr)
 	}
 }

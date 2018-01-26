@@ -8,7 +8,7 @@ export const relationships = {
   },
   review: {
     para: 'View all the sections associated with relationships at once',
-    comments: 'Would you like to add a comment about any of your responses relating to your relationships?'
+    comments: 'Add a comment to clarify any of your responses in the relationships section'
   },
   destination: {
     intro: 'Relationships intro',
@@ -370,6 +370,10 @@ export const relationships = {
       or: 'or',
       label: 'Not applicable'
     },
+    deceasedAddressNotApplicable: {
+      or: 'or',
+      label: 'I don\'t know'
+    },
     para: {
       never: 'Complete the following about the person with whom you are in a civil marriage, legally recognized civil union, or legally recognized domestic partnership, or the person from whom you are currently separated.',
       othernames: 'Such as maiden name, names by other marriages, civil marriages, legally recognized civil unions, or legally recognized domestic partnerships, nicknames, etc., and provide dates used for each name.'
@@ -384,6 +388,7 @@ export const relationships = {
         name: 'Provide this person\'s full name',
         address: 'Provide the location',
         birthdate: 'Provide this person\'s date of birth',
+        citizenship: 'Provide the country(ies) of citizenship',
         telephone: 'Provide this person\'s telephone number',
         birthplace: 'Provide this person\'s place of birth',
         dateDivorced: 'Provide the date divorced/dissolved, annulled or widowed',
@@ -462,7 +467,7 @@ export const relationships = {
     othernames: {
       heading: {
         name: 'Provide full name',
-        maiden: 'Is this your cohabitant\'s maiden name?',
+        maiden: 'Is this their maiden name?',
         used: 'Provide dates name was used'
       }
     },
@@ -682,8 +687,8 @@ export const relationships = {
           title: 'Check all that apply.',
           neighbor: 'Neighbor',
           friend: 'Friend',
-          landlord: 'Landlord',
-          business: 'Business',
+          workAssociate: 'Work Associate',
+          schoolmate: 'Schoolmate',
           other: 'Other',
           explanation: 'Provide explanation'
         }

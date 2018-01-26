@@ -1,0 +1,9 @@
+<Financial>
+  {{tmpl "financial-bankruptcy.xml" .Financial.Bankruptcy}}
+  {{tmpl "financial-card.xml" .Financial.Card}}
+  {{tmpl "financial-credit.xml" .Financial.Credit}}
+  {{tmpl "financial-delinquent.xml" .Financial.Delinquent}}
+  {{tmpl "financial-gambling.xml" .Financial.Gambling}}
+  {{tmpl "financial-nonpayment.xml" .Financial.Nonpayment}}
+  {{tmpl "financial-taxes.xml" .Financial.Taxes}}
+</Financial>

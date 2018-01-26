@@ -34,28 +34,29 @@ export default class EngagedInTerrorismItem extends ValidationElement {
     return (
       <div>
         <Field title={i18n.t('legal.associations.engaged.heading.reasons')}
-          adjustFor="textarea"
-          scrollIntoView={this.props.scrollIntoView}>
+               adjustFor="textarea"
+               scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Reasons"
-            {...this.props.Reasons}
-            onUpdate={this.updateReasons}
-            onError={this.props.onError}
-            className="legal-associations-engaged-reasons"
-            required={this.props.required}
-          />
+                    {...this.props.Reasons}
+                    onUpdate={this.updateReasons}
+                    onError={this.props.onError}
+                    className="legal-associations-engaged-reasons"
+                    required={this.props.required}
+                    />
         </Field>
 
         <Field title={i18n.t('legal.associations.engaged.heading.dates')}
-          help="legal.associations.engaged.help.dates"
-          adjustFor="daterange"
-          scrollIntoView={this.props.scrollIntoView}>
+               help="legal.associations.engaged.help.dates"
+               adjustFor="daterange"
+               scrollIntoView={this.props.scrollIntoView}>
           <DateRange name="Dates"
-            {...this.props.Dates}
-            onUpdate={this.updateDates}
-            onError={this.props.onError}
-            className="legal-associations-engaged-dates"
-            required={this.props.required}
-          />
+                     {...this.props.Dates}
+                     applicantBirthdate={this.props.applicantBirthdate}
+                     onUpdate={this.updateDates}
+                     onError={this.props.onError}
+                     className="legal-associations-engaged-dates"
+                     required={this.props.required}
+                     />
         </Field>
       </div>
     )
@@ -63,6 +64,7 @@ export default class EngagedInTerrorismItem extends ValidationElement {
 }
 
 EngagedInTerrorismItem.defaultProps = {
+  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

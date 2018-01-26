@@ -34,7 +34,7 @@ export const psychological = {
   },
   review: {
     para: 'View all the sections associated with psychological and emotional health at once',
-    comments: 'Would you like to add a comment about any of your responses relating to your psychological and emotional health?'
+    comments: 'Add a comment to clarify any of your responses in the psychological and emotional health section'
   },
   competence: {
     heading: {

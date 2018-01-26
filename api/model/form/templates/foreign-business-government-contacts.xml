@@ -1,0 +1,58 @@
+<!-- Immediate family contact -->
+<GovernmentContacts>
+  <Answer>{{branch .props.HasForeignContact}}</Answer>
+  <Comment></Comment>
+
+  {{range $index, $item := .props.List.props.items}}
+  {{with $Item := $item.Item}}
+  <GovernmentContact ID="{{$index}}">
+    <Circumstances>{{text $Item.Purpose}}</Circumstances>
+
+    <CountriesInvolved>
+      {{range $index, $country := $Item.Governments.props.value}}
+      <CountryInvolved ID="{{$index}}">
+        <Country>{{$country}}</Country>
+      </CountryInvolved>
+      {{end}}
+    </CountriesInvolved>
+
+    <Date Type="{{dateEstimated $Item.Date}}">
+      {{monthYear $Item.Date}}
+    </Date>
+
+    <EntryComment></EntryComment>
+    <EstablishmentType>{{text $Item.Establishment}}</EstablishmentType>
+    <ForeignRepresentativesInvolved>{{text $Item.Representatives}}</ForeignRepresentativesInvolved>
+    <LegalName>
+      {{name $Item.Name}}
+    </LegalName>
+    <Location>
+      <Place>
+        {{location $Item.Location}}
+      </Place>
+    </Location>
+
+    <SubsequentForeignContacts>
+      <Answer>{{branchcollectionHas $Item.SubsequentContacts.props.List}}</Answer>
+      <AnswerComment></AnswerComment>
+      {{range $index, $contact := $Item.SubsequentContacts.props.List.props.items}}
+      {{with $Contact := $contact.Item}}
+      <Contact ID="{{$index}}">
+        <Comment></Comment>
+        <Date Type="{{dateEstimated $Contact.Recent}}">
+          {{date $Contact.Recent}}
+        </Date>
+        <FutureContactPlans>{{text $Contact.Future}}</FutureContactPlans>
+        <Purpose>{{text $Contact.Subsequent}}</Purpose>
+      </Contact>
+      <HaveAdditionalEntryAnswer></HaveAdditionalEntryAnswer>
+      <SummaryComment></SummaryComment>
+      {{end}}
+      {{end}}
+    </SubsequentForeignContacts>
+  </GovernmentContact>
+  {{end}}
+  {{end}}
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+  <SummaryComment></SummaryComment>
+</GovernmentContacts>

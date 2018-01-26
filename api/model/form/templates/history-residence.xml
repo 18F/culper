@@ -1,0 +1,48 @@
+<ResidenceHistory>
+  <Residencies>
+    {{range $index, $item := .props.List.props.items}}
+    {{with $Item := $item.Item}}
+    <Residency ID="{{$index}}">
+      {{if locationIsPostOffice $Item.Address}}
+      <APOFPO>
+        <Address>{{location $Item.Address}}</Address>
+        <AddressComment></AddressComment>
+      </APOFPO>
+      {{else}}
+      <Address>{{location $Item.Address}}</Address>
+      {{end}}
+      <DateRange>{{daterange $Item.Dates}}</DateRange>
+      <DetailComment></DetailComment>
+      <ResidenceType>{{radio $Item.Role}}</ResidenceType>
+      <StatusOtherExplanation>{{text $Item.RoleOther}}</StatusOtherExplanation>
+      <Verifier>
+        {{if locationIsPostOffice $Item.ReferenceAddress}}
+        <APOFPO>
+          <Address>{{location $Item.ReferenceAddress}}</Address>
+          <AddressComment></AddressComment>
+        </APOFPO>
+        {{else}}
+        <Address>{{location $Item.ReferenceAddress}}</Address>
+        {{end}}
+        <Email DoNotKnow="{{notApplicable $Item.ReferenceEmailNotApplicable}}">{{email $Item.ReferenceEmail}}</Email>
+        <LastContact>
+          <Date Type="{{dateEstimated $Item.ReferenceLastContact}}">{{monthYear $Item.ReferenceLastContact}}</Date>
+        </LastContact>
+        <LegalName>{{name $Item.ReferenceFullName}}</LegalName>
+        <RelationshipTypes Neighbor="{{checkboxHas $Item.ReferenceRelationship "Neighbor"}}" Friend="{{checkboxHas $Item.ReferenceRelationship "Friend"}}" Schoolmate="{{checkboxHas $Item.ReferenceRelationship "Schoolmate"}}" WorkAssociate="{{checkboxHas $Item.ReferenceRelationship "WorkAssociate"}}" Other="{{checkboxHas $Item.ReferenceRelationship "Other"}}" />
+        <RelationshipOtherExplanation>{{text $Item.ReferenceRelationshipOther}}</RelationshipOtherExplanation>
+        <Comments>{{textarea $Item.ReferenceComments}}</Comments>
+        <Telephone>
+          <Day DoNotKnow="{{telephoneNoNumber $Item.ReferencePhoneDay}}">{{telephone $Item.ReferencePhoneDay}}</Day>
+          <Evening DoNotKnow="{{telephoneNoNumber $Item.ReferencePhoneEvening}}">{{telephone $Item.ReferencePhoneEvening}}</Evening>
+          <Mobile DoNotKnow="{{telephoneNoNumber $Item.ReferencePhoneMobile}}">{{telephone $Item.ReferencePhoneMobile}}</Mobile>
+        </Telephone>
+      </Verifier>
+      <Comments>{{textarea $Item.Comments}}</Comments>
+    </Residency>
+    {{end}}
+    {{end}}
+  </Residencies>
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+  <Comment></Comment>
+</ResidenceHistory>

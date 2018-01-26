@@ -71,6 +71,7 @@ export default class Relatives extends SubsectionElement {
                    appendTitle={i18n.t('relationships.relatives.collection.appendTitle')}
                    appendLabel={i18n.t('relationships.relatives.collection.append')}>
           <Relative name="Item"
+                    applicantBirthdate={this.props.applicantBirthdate}
                     addressBooks={this.props.addressBooks}
                     dispatch={this.props.dispatch}
                     bind={true}
@@ -89,6 +90,7 @@ Relatives.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'relationships',
   subsection: 'relatives',
+  applicantBirthdate: {},
   addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {

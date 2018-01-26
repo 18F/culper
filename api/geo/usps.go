@@ -5,10 +5,11 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"net/url"
 	"strings"
+
+	"github.com/18F/e-QIP-prototype/api/logmsg"
 )
 
 var (
@@ -44,6 +45,7 @@ func (g USPSGeocoder) Validate(geoValues Values) (Results, error) {
 
 // query creates and executes http requests and populates a Results object
 func (g USPSGeocoder) query(geoValues Values) (results Results, err error) {
+	log := logmsg.NewLogger()
 
 	// Prepare uri used to query
 	uri := g.prepareQueryURI(geoValues)
@@ -51,13 +53,14 @@ func (g USPSGeocoder) query(geoValues Values) (results Results, err error) {
 	// Query away!
 	resp, err := http.Get(uri)
 	if err != nil {
-		log.Printf("Error executing USPS Geocoding Request [%v]", err)
+		log.WithError(err).Warn(logmsg.USPSRequestError)
 		return nil, fmt.Errorf("Unable to execute USPS Geocoding request")
 	}
 
 	// Decode the response to populate struct
 	var addressResp USPSAddressValidateResponse
 	if err := decode(resp.Body, &addressResp); err != nil {
+		log.WithError(err).Warn(logmsg.USPSDecodeError)
 		return results, err
 	}
 
@@ -67,14 +70,17 @@ func (g USPSGeocoder) query(geoValues Values) (results Results, err error) {
 	// Check if we've encountered an error
 	if foundAddress.Error != nil {
 		if errCode, ok := USPSErrorCodes[foundAddress.Error.Number]; ok {
+			log.WithField("code", errCode).Warn(logmsg.USPSKnownErrorCode)
 			return results, fmt.Errorf("%v", errCode)
 		}
+		log.WithField("code", "geocode.generic").Warn(logmsg.USPSUnknownErrorCode)
 		return results, fmt.Errorf("%v", "geocode.generic")
 
 	}
 
 	if strings.ContainsAny(foundAddress.ReturnText, "Default Address") {
 		errCode := USPSErrorCodes["Default Address"]
+		log.WithField("code", errCode).Warn(logmsg.USPSKnownErrorCode)
 		return results, fmt.Errorf("%v", errCode)
 	}
 
@@ -85,6 +91,7 @@ func (g USPSGeocoder) query(geoValues Values) (results Results, err error) {
 	// returned by the validation response. If there is a mismatch, mark as partial
 	if results.HasPartial() {
 		errCode := USPSErrorCodes["Partial"]
+		log.WithField("code", errCode).Warn(logmsg.USPSKnownErrorCode)
 		return results, fmt.Errorf(errCode)
 	}
 
@@ -117,6 +124,7 @@ func (g USPSGeocoder) query(geoValues Values) (results Results, err error) {
 //		  <Source>USPSCOM::DoAuth</Source>
 //	  </Error>
 func decode(r io.Reader, addressResp *USPSAddressValidateResponse) error {
+	log := logmsg.NewLogger()
 	body, _ := ioutil.ReadAll(r)
 
 	// First attempt to unmarshal to typical AddressValidateResponse element
@@ -124,13 +132,13 @@ func decode(r io.Reader, addressResp *USPSAddressValidateResponse) error {
 	if err == nil {
 		return nil
 	}
-	log.Printf("Error attempting to decode USPS Address Validation Response. Checking if returned xml is system error")
+	log.Debug("Error attempting to decode USPS Address Validation Response. Checking if returned xml is system error")
 
 	// Check if we've encountered a system error where only <Error> is returned as the root element
 	var errorResp USPSErrorResponse
 	err = xml.Unmarshal(body, &errorResp)
 	if err != nil {
-		log.Printf("Error attempting to decode USPS Address validation as <Error> [%vs]", err)
+		log.WithError(err).Debug("Error attempting to decode USPS Address validation")
 		return err
 	}
 
@@ -139,7 +147,7 @@ func decode(r io.Reader, addressResp *USPSAddressValidateResponse) error {
 		return ErrUSPSSystem{Message: errCode}
 	}
 
-	fmt.Println("Unable to resolve error code. Default to generic error message")
+	log.Debug("Unable to resolve error code. Default to generic error message")
 	sysErr := ErrUSPSSystem{Message: USPSErrorCodes["System"]}
 	return sysErr
 }
@@ -164,7 +172,6 @@ func (g USPSGeocoder) prepareQueryURI(geoValues Values) string {
 	v.Set("XML", addressRequest.ToXMLString())
 
 	uri := fmt.Sprintf("%v?%v", g.baseURI, v.Encode())
-	log.Printf("Geocoding Request: [%v]\n", uri)
 	return uri
 }
 

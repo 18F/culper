@@ -82,6 +82,7 @@ export default class OneTimeBenefit extends ValidationElement {
           <DateControl name="Received"
                        className="received"
                        {...this.props.Received}
+                       applicantBirthdate={this.props.applicantBirthdate}
                        label={i18n.t('foreign.activities.benefit.oneTime.label.received')}
                        onUpdate={this.updateReceived}
                        onError={this.props.onError}
@@ -163,6 +164,7 @@ export default class OneTimeBenefit extends ValidationElement {
 
 OneTimeBenefit.defaultProps = {
   Obligated: {},
+  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

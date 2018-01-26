@@ -89,9 +89,9 @@ export default class OtherOffense extends ValidationElement {
     })
   }
 
-  updateChargeType (event) {
+  updateChargeType (values) {
     this.update({
-      ChargeType: event.target.value
+      ChargeType: values
     })
   }
 
@@ -147,6 +147,7 @@ export default class OtherOffense extends ValidationElement {
                scrollIntoView={this.props.scrollIntoView}>
           <DateControl name="Date"
                        {...this.props.Date}
+                       applicantBirthdate={this.props.applicantBirthdate}
                        className="offense-date"
                        onUpdate={this.updateDate}
                        onError={this.props.onError}
@@ -245,26 +246,26 @@ export default class OtherOffense extends ValidationElement {
           <RadioGroup className="offense-chargetype option-list"
                       onError={this.props.onErro}
                       required={this.props.required}
-                      selectedValue={this.props.ChargeType}>
+                      selectedValue={(this.props.ChargeType || {}).value}>
             <Radio name="charge-felony"
                    className="charge-felony"
                    label={i18n.t('legal.police.label.felony')}
                    value="Felony"
-                   onChange={this.updateChargeType}
+                   onUpdate={this.updateChargeType}
                    onError={this.props.onError}
                    />
             <Radio name="charge-misdemeanor"
                    className="charge-misdemeanor"
                    label={i18n.t('legal.police.label.misdemeanor')}
                    value="Misdemeanor"
-                   onChange={this.updateChargeType}
+                   onUpdate={this.updateChargeType}
                    onError={this.props.onError}
                    />
             <Radio name="charge-other"
                    className="charge-other"
                    label={i18n.t('legal.police.label.other')}
                    value="Other"
-                   onChange={this.updateChargeType}
+                   onUpdate={this.updateChargeType}
                    onError={this.props.onError}
                    />
           </RadioGroup>
@@ -295,6 +296,7 @@ export default class OtherOffense extends ValidationElement {
                scrollIntoView={this.props.scrollIntoView}>
           <DateControl name="CourtDate"
                        {...this.props.CourtDate}
+                       applicantBirthdate={this.props.applicantBirthdate}
                        hideDay={true}
                        className="offense-courtdate"
                        onUpdate={this.updateCourtDate}
@@ -324,6 +326,7 @@ export default class OtherOffense extends ValidationElement {
             </Field>
             <Sentence name="Sentence"
                       {...this.props.Sentence}
+                      applicantBirthdate={this.props.applicantBirthdate}
                       onError={this.props.onError}
                       required={this.props.required}
                       onUpdate={this.updateSentence}
@@ -365,6 +368,7 @@ OtherOffense.defaultProps = {
   InvolvedFirearms: {},
   InvolvedSubstances: {},
   WasSentenced: {},
+  applicantBirthdate: {},
   addressBooks: {},
   dispatch: (action) => {},
   onUpdate: (queue) => {},

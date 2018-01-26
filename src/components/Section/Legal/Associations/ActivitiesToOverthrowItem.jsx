@@ -34,27 +34,28 @@ export default class ActivitiesToOverthrowItem extends ValidationElement {
     return (
       <div>
         <Field title={i18n.t('legal.associations.activities.heading.reasons')}
-          adjustFor="textarea"
-          scrollIntoView={this.props.scrollIntoView}>
+               adjustFor="textarea"
+               scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Reasons"
-            {...this.props.Reasons}
-            onUpdate={this.updateReasons}
-            onError={this.props.onError}
-            className="legal-associations-activities-reasons"
-            required={this.props.required}
-          />
+                    {...this.props.Reasons}
+                    onUpdate={this.updateReasons}
+                    onError={this.props.onError}
+                    className="legal-associations-activities-reasons"
+                    required={this.props.required}
+                    />
         </Field>
 
         <Field title={i18n.t('legal.associations.activities.heading.dates')}
-          adjustFor="daterange"
-          scrollIntoView={this.props.scrollIntoView}>
+               adjustFor="daterange"
+               scrollIntoView={this.props.scrollIntoView}>
           <DateRange name="Dates"
-            {...this.props.Dates}
-            onUpdate={this.updateDates}
-            onError={this.props.onError}
-            className="legal-associations-activities-dates"
-            required={this.props.required}
-          />
+                     {...this.props.Dates}
+                     applicantBirthdate={this.props.applicantBirthdate}
+                     onUpdate={this.updateDates}
+                     onError={this.props.onError}
+                     className="legal-associations-activities-dates"
+                     required={this.props.required}
+                     />
         </Field>
       </div>
     )
@@ -62,6 +63,7 @@ export default class ActivitiesToOverthrowItem extends ValidationElement {
 }
 
 ActivitiesToOverthrowItem.defaultProps = {
+  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

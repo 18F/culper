@@ -57,8 +57,18 @@ export default class EducationItem extends ValidationElement {
   }
 
   updateDates (values) {
+    const dates = this.props.Dates || {}
+    const from = dates.from
+    const to = dates.to
+    const zeroReference = !withinThreeYears(from, to)
     this.update({
-      Dates: values
+      Dates: values,
+      ReferenceName: zeroReference ? {} : this.props.ReferenceName,
+      ReferenceNameNotApplicable: zeroReference ? {} : this.props.ReferenceNameNotApplicable,
+      ReferencePhone: zeroReference ? {} : this.props.ReferencePhone,
+      ReferenceEmail: zeroReference ? {} : this.props.ReferenceEmail,
+      ReferenceEmailNotApplicable: zeroReference ? {} : this.props.ReferenceEmailNotApplicable,
+      ReferenceAddress: zeroReference ? {} : this.props.ReferenceAddress
     })
   }
 
@@ -180,6 +190,7 @@ export default class EducationItem extends ValidationElement {
             <label className="info-label">{i18n.t('history.education.label.dates')}</label>
             <DateRange name="Dates"
                        {...this.props.Dates}
+                       applicantBirthdate={this.props.applicantBirthdate}
                        label={i18n.t('history.education.label.dates')}
                        onUpdate={this.updateDates}
                        onError={this.props.onError}
@@ -255,13 +266,15 @@ export default class EducationItem extends ValidationElement {
             <div className="reference">
               <Field title={i18n.t('history.education.heading.reference')}
                      titleSize="h2"
-                     className="no-margin-bottom">
+                     className="no-margin-bottom"
+                     scrollIntoView={this.props.scrollIntoView}>
                 {i18n.m('history.education.para.reference')}
               </Field>
 
               <Field title={i18n.t('reference.heading.name')}
                      titleSize="h3"
-                     optional={true}>
+                     optional={true}
+                     scrollIntoView={this.props.scrollIntoView}>
                 <NotApplicable name="ReferenceNameNotApplicable"
                                {...this.props.ReferenceNameNotApplicable}
                                label={i18n.t('reference.label.idk')}
@@ -271,6 +284,7 @@ export default class EducationItem extends ValidationElement {
                         prefix={'name'}
                         className="reference-name"
                         {...this.props.ReferenceName}
+                        scrollIntoView={this.props.scrollIntoView}
                         onUpdate={this.updateReferenceName}
                         onError={this.props.onError}
                         required={this.props.required}
@@ -282,7 +296,8 @@ export default class EducationItem extends ValidationElement {
                 <Field title={i18n.t('reference.heading.correspondence')}
                        titleSize="h2"
                        optional={true}
-                       className="no-margin-bottom">
+                       className="no-margin-bottom"
+                       scrollIntoView={this.props.scrollIntoView}>
                   {i18n.m('reference.para.correspondence')}
                 </Field>
 
@@ -302,7 +317,8 @@ export default class EducationItem extends ValidationElement {
 
                 <Field title={i18n.t('reference.heading.email')}
                        help={'reference.help.email'}
-                       adjustFor="label">
+                       adjustFor="label"
+                       scrollIntoView={this.props.scrollIntoView}>
                   <NotApplicable name="ReferenceEmailNotApplicable"
                                  {...this.props.ReferenceEmailNotApplicable}
                                  label={i18n.t('reference.label.idk')}
@@ -321,7 +337,8 @@ export default class EducationItem extends ValidationElement {
                 <Field title={i18n.t('reference.heading.address')}
                        optional={true}
                        help={'reference.help.address'}
-                       adjustFor="address">
+                       adjustFor="address"
+                       scrollIntoView={this.props.scrollIntoView}>
                   <p>{i18n.t('reference.para.address')}</p>
                   <Location name="ReferenceAddress"
                             className="reference-address"
@@ -348,7 +365,11 @@ export default class EducationItem extends ValidationElement {
                             onError={this.props.onError}
                             required={this.props.required}
                             scrollIntoView={this.props.scrollIntoView}>
-            <DiplomaItem name="Item" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
+            <DiplomaItem name="Item"
+                         bind={true}
+                         applicantBirthdate={this.props.applicantBirthdate}
+                         required={this.props.required}
+                         scrollIntoView={this.props.scrollIntoView} />
           </BranchCollection>
         </div>
       </div>
@@ -369,6 +390,7 @@ EducationItem.defaultProps = {
   ReferenceEmailNotApplicable: {},
   ReferenceAddress: {},
   Diplomas: { items: [] },
+  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

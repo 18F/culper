@@ -1,11 +1,11 @@
 import React from 'react'
-import { LoginOAuth, TwoFactor } from '../../components'
+import { TwoFactor } from '../../components'
 import { connect } from 'react-redux'
 import { i18n, env } from '../../config'
 import { api } from '../../services'
-import { login } from '../../actions/AuthActions'
+import { login, handleLoginSuccess } from '../../actions/AuthActions'
 import { push } from '../../middleware/history'
-import { Consent, Text, Show } from '../../components/Form'
+import { Consent, Show } from '../../components/Form'
 
 class Login extends React.Component {
   constructor (props) {
@@ -64,6 +64,15 @@ class Login extends React.Component {
     // If user is authenticated, redirect to home page
     if (this.props.authenticated && this.props.twofactor) {
       this.props.dispatch(push('/form/identification/intro'))
+      return
+    }
+
+    const token = this.getQueryValue('token')
+    if (token) {
+      api.setToken(token)
+      this.props.dispatch(handleLoginSuccess())
+      this.props.dispatch(push('/form/identification/intro'))
+      return
     }
 
     const err = this.getQueryValue('error')
@@ -71,6 +80,7 @@ class Login extends React.Component {
       switch (err) {
       case 'access_denied':
         this.props.dispatch(push('/accessdenied'))
+        return
       }
     }
   }
@@ -160,21 +170,25 @@ class Login extends React.Component {
         <p>{i18n.t('login.basic.para')}</p>
         <form onSubmit={this.login}>
           <div>
-            <Text name="user"
-                  placeholder="Enter your username"
-                  label="Username"
-                  autoFocus
-                  value={this.state.username}
-                  onChange={this.onUsernameChange} />
+            <label htmlFor="user">
+              {i18n.t('login.basic.username.label')}
+            </label>
+            <input id="user"
+                   name="user"
+                   type="text"
+                   placeholder={i18n.t('login.basic.username.placeholder')}
+                   autoFocus
+                   value={this.state.username}
+                   onChange={this.onUsernameChange} />
           </div>
           <div className={pwClass}>
             <label htmlFor="password">
-              {i18n.t('login.basic.password')}
+              {i18n.t('login.basic.password.label')}
             </label>
             <input id="password"
                    name="password"
                    type={this.state.showPassword ? 'text' : 'password'}
-                   placeholder={i18n.t('login.basic.password')}
+                   placeholder={i18n.t('login.basic.password.placeholder')}
                    value={this.state.password}
                    onChange={this.onPasswordChange} />
             <div className="peek">
@@ -196,21 +210,6 @@ class Login extends React.Component {
             </a>
           </div>
         </form>
-      </div>
-    )
-  }
-
-  authOAuth () {
-    if (!env.OAuthEnabled()) {
-      return null
-    }
-
-    return (
-      <div id="oauth" className="auth ouath">
-        <span>Sign in with </span>
-        <LoginOAuth authenticated={this.state.authenticated}>
-          <i className="fa fa-github" aria-hidden="true"></i>
-        </LoginOAuth>
       </div>
     )
   }
@@ -238,13 +237,11 @@ class Login extends React.Component {
   loginForm () {
     const saml = this.authSAML()
     const basic = this.authBasic()
-    const oauth = this.authOAuth()
 
     return (
-      <div className={this.loginFormClass([saml, basic, oauth])}>
+      <div className={this.loginFormClass([saml, basic])}>
         {saml}
         {basic}
-        {oauth}
       </div>
     )
   }
@@ -289,7 +286,7 @@ Login.defaultProps = {
   twofactor: false,
   username: '',
   password: '',
-  showPassword: false,
+  showPassword: false
   // location: () => { return window.location }
 }
 

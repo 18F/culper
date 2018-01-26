@@ -1,0 +1,26 @@
+<UnpaidTaxes>
+  <Answer>{{branch .props.HasTaxes}}</Answer>
+  <Comment></Comment>
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+  <Incidents>
+    {{range $index, $item := .props.List.props.items}}
+    {{with $Item := $item.Item}}
+    <Incident ID="{{$index}}">
+      <!--Optional:-->
+      <Actions>{{textarea $Item.Description}}</Actions>
+      <Agency>{{text $Item.Agency}}</Agency>
+      <Amount Estimated="{{checkboxTrueFalse $Item.AmountEstimated}}">{{number $Item.Amount}}</Amount>
+      <Comment></Comment>
+      <DateFailedToPay Type={{if checkboxTrueFalse $Item.YearEstimated | eq "true" }}"Estimated"{{else}}""{{end}}>
+        <Year>{{number $Item.Year}}</Year>
+      </DateFailedToPay>
+      <DateSatisfied Type="{{dateEstimated $Item.Date}}" NotApplicable="{{notApplicable $Item.DateNotApplicable}}">{{monthYear $Item.Date}}</DateSatisfied>
+      <Reason>{{textarea $Item.Reason}}</Reason>
+      <TaxType>{{text $Item.TaxType}}</TaxType>
+      <Type>{{radio $Item.Failure}}</Type>
+    </Incident>
+    {{end}}
+    {{end}}
+  </Incidents>
+  <SummaryComment></SummaryComment>
+</UnpaidTaxes>

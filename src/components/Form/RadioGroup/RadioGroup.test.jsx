@@ -6,7 +6,6 @@ import Radio from '../Radio'
 describe('The RadioGroup component', () => {
 
   it('renders radio button children', () => {
-
     const component = mount(
       <RadioGroup name={"rgroup"}>
         <Radio value="Option1" />

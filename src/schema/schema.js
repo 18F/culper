@@ -2,9 +2,10 @@ import * as form from './form'
 import * as section from './section'
 
 export const schema = (type, props, raw = true) => {
+  const transformFunc = transform[type]
   return {
     type: type,
-    props: raw ? props : transform[type](props)
+    props: raw ? props : transformFunc && transformFunc(props)
   }
 }
 
@@ -388,7 +389,7 @@ const transform = {
   'psychological.treatment': (data) => {
     return form.treatment(data)
   },
-  'submission.releases': (data) => {
+  'package.submit': (data) => {
     return section.submission(data)
   }
 }

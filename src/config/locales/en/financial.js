@@ -8,7 +8,7 @@ export const financial = {
   },
   review: {
     para: 'View all the sections associated with identification at once',
-    comments: 'Would you like to add a comment about any of your responses relating to your financial record?'
+    comments: 'Add a comment to clarify any of your responses in the financial record section'
   },
   destination: {
     intro: 'Financial intro',
@@ -22,7 +22,7 @@ export const financial = {
     review: 'Review Financial record'
   },
   gambling: {
-    title: 'Have your ever experienced financial problems due to gambling?',
+    title: 'Have you ever experienced financial problems due to gambling?',
     branch: {
       help: {
         title: 'Need more information on gambling?',

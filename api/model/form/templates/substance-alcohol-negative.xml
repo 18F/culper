@@ -1,0 +1,19 @@
+<NegativeImpact>
+  <Answer>{{branch .props.HasImpacts}}</Answer>
+  <Comment></Comment>
+  <Incidents>
+    {{range $index, $item := .props.List.props.items}}
+    {{with $Item := $item.Item}}
+    <Incident ID="{{$index}}">
+      <Date Type="{{dateEstimated $Item.Occurred}}">{{monthYear $Item.Occurred}}</Date>
+      <Circumstances>{{textarea $Item.Circumstances}}</Circumstances>
+      <Impact>{{textarea $Item.NegativeImpact}}</Impact>
+      {{daterange $Item.Used}}
+      <Comment></Comment>
+    </Incident>
+    {{end}}
+    {{end}}
+  </Incidents>
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+  <SummaryComment></SummaryComment>
+</NegativeImpact>

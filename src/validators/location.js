@@ -33,13 +33,14 @@ export default class LocationValidator {
 
   canGeocode () {
     switch (this.layout) {
-      case Layouts.ADDRESS:
-      case Layouts.US_ADDRESS:
-        return !this.isInternational() &&
-        this.validZipcode() &&
-        this.validFields(['street', 'city', 'state'])
-      default:
+    case Layouts.ADDRESS:
+    case Layouts.US_ADDRESS:
+      if (this.isInternational()) {
         return false
+      }
+      return !this.isInternational() && this.validLocation()
+    default:
+      return false
     }
   }
 
@@ -62,10 +63,16 @@ export default class LocationValidator {
   }
 
   validCity () {
+    if (this.isPostOffice()) {
+      return ['APO', 'FPO', 'DPO'].includes(this.city || '')
+    }
     return !!this.city
   }
 
   validState () {
+    if (this.isPostOffice()) {
+      return ['AA', 'AE', 'AP'].includes(this.state || '')
+    }
     return !!this.state
   }
 
@@ -100,44 +107,44 @@ export default class LocationValidator {
 
   validLocation () {
     switch (this.layout) {
-      case Layouts.BIRTHPLACE:
-        if (this.isDomestic()) {
-          return this.validFields(['city', 'state', 'county'])
-        }
-        return this.validFields(['city', 'country'])
-      case Layouts.US_CITY_STATE_INTERNATIONAL_CITY_COUNTRY:
-      case Layouts.BIRTHPLACE_WITHOUT_COUNTY:
-        if (this.isDomestic()) {
-          return this.validFields(['city', 'state'])
-        }
-        return this.validFields(['city', 'country'])
-      case Layouts.US_CITY_STATE_ZIP_INTERNATIONAL_CITY:
-        if (this.isDomestic()) {
-          return this.validFields(['city', 'state', 'zipcode'])
-        }
-        return this.validFields(['city', 'country'])
-      case Layouts.CITY_STATE:
+    case Layouts.BIRTHPLACE:
+      if (this.isDomestic()) {
+        return this.validFields(['city', 'state', 'county'])
+      }
+      return this.validFields(['city', 'country'])
+    case Layouts.US_CITY_STATE_INTERNATIONAL_CITY_COUNTRY:
+    case Layouts.BIRTHPLACE_WITHOUT_COUNTY:
+      if (this.isDomestic()) {
         return this.validFields(['city', 'state'])
-      case Layouts.STREET_CITY_COUNTRY:
-        return this.validFields(['street', 'city', 'country'])
-      case Layouts.CITY_COUNTRY:
-        return this.validFields(['city', 'country'])
-      case Layouts.CITY_STATE_COUNTRY:
-        if (this.isDomestic()) {
-          return this.validFields(['city', 'state'])
-        }
-        return this.validFields(['city', 'country'])
-      case Layouts.US_ADDRESS:
+      }
+      return this.validFields(['city', 'country'])
+    case Layouts.US_CITY_STATE_ZIP_INTERNATIONAL_CITY:
+      if (this.isDomestic()) {
+        return this.validFields(['city', 'state', 'zipcode'])
+      }
+      return this.validFields(['city', 'country'])
+    case Layouts.CITY_STATE:
+      return this.validFields(['city', 'state'])
+    case Layouts.STREET_CITY_COUNTRY:
+      return this.validFields(['street', 'city', 'country'])
+    case Layouts.CITY_COUNTRY:
+      return this.validFields(['city', 'country'])
+    case Layouts.CITY_STATE_COUNTRY:
+      if (this.isDomestic()) {
+        return this.validFields(['city', 'state'])
+      }
+      return this.validFields(['city', 'country'])
+    case Layouts.US_ADDRESS:
+      return this.validFields(['street', 'city', 'state', 'zipcode'])
+    case Layouts.STREET_CITY:
+      return this.validFields(['street', 'city'])
+    case Layouts.ADDRESS:
+      if (this.isDomestic() || this.isPostOffice()) {
         return this.validFields(['street', 'city', 'state', 'zipcode'])
-      case Layouts.STREET_CITY:
-        return this.validFields(['street', 'city'])
-      case Layouts.ADDRESS:
-        if (this.isDomestic() || this.isPostOffice()) {
-          return this.validFields(['street', 'city', 'state', 'zipcode'])
-        }
-        return this.validFields(['street', 'city', 'country'])
-      default:
-        return false
+      }
+      return this.validFields(['street', 'city', 'country'])
+    default:
+      return false
     }
   }
 
@@ -148,24 +155,24 @@ export default class LocationValidator {
     let valid = true
     for (let field of fields) {
       switch (field) {
-        case 'street':
-          valid = valid && this.validStreet()
-          break
-        case 'city':
-          valid = valid && this.validCity()
-          break
-        case 'state':
-          valid = valid && this.validState()
-          break
-        case 'zipcode':
-          valid = valid && this.validZipcode()
-          break
-        case 'county':
-          valid = valid && this.validCounty()
-          break
-        case 'country':
-          valid = valid && this.validCountry()
-          break
+      case 'street':
+        valid = valid && this.validStreet()
+        break
+      case 'city':
+        valid = valid && this.validCity()
+        break
+      case 'state':
+        valid = valid && this.validState()
+        break
+      case 'zipcode':
+        valid = valid && this.validZipcode()
+        break
+      case 'county':
+        valid = valid && this.validCounty()
+        break
+      case 'country':
+        valid = valid && this.validCountry()
+        break
       }
     }
     return valid

@@ -8,7 +8,7 @@ export const foreign = {
   },
   review: {
     para: 'View all the sections associated with foreign activities at once',
-    comments: 'Would you like to add a comment about any of your responses relating to your foreign activities?'
+    comments: 'Add a comment to clarify any of your responses in the foreign activities section'
   },
   destination: {
     intro: 'Foreign intro',
@@ -1074,8 +1074,8 @@ export const foreign = {
           note: ''
         },
         citizenship: {
-          title: 'Need help with the foreign national\'s citizenship?',
-          message: 'Provide the country(ies) the foreign national has citizenship',
+          title: 'Need help with this foreign national\'s citizenship(s)?',
+          message: 'Tell us all of the citizenships this person has.',
           note: 'Note: You can provide multiple citizenships in this question.'
         },
         description: {
@@ -1090,8 +1090,8 @@ export const foreign = {
         },
         dates: {
           title: 'Need help with the dates involved?',
-          message: 'Provide the approximate date range you were involved with the business venture',
-          note: ''
+          message: 'Tell us how long you were involved with the business venture.',
+          note: 'Note: If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.'
         },
         association: {
           title: 'Need help with the association to the venture?',
@@ -1178,8 +1178,8 @@ export const foreign = {
         },
         dates: {
           title: 'Need help with the dates of the conference?',
-          message: 'Provide the approximate date range of the conference.',
-          note: ''
+          message: 'Try looking up the event, this could help you find the dates.',
+          note: 'Note: If you can\'t find the exact date give us your best guess and check the "Estimated" checkbox.'
         },
         purpose: {
           title: 'Need help with the purpose of the conference?',
@@ -1187,13 +1187,13 @@ export const foreign = {
           note: ''
         },
         contact: {
-          title: 'Need help concerning contact with a foreign national?',
-          message: 'If you had contact with foreign nationals directly due to the conference select "yes".',
+          title: 'Need help with this question?',
+          message: 'Did you have contact with any foreign nationals after this event? If so answer "Yes".',
           note: ''
         },
         explanation: {
-          title: 'Need help with the explanation?',
-          message: 'Describe the circumstances and/or outcome of the contact.',
+          title: 'Need help with this explanation?',
+          message: 'Tell us all the circumstances and/or outcome of the contact.',
           note: ''
         }
       },
@@ -1252,14 +1252,14 @@ export const foreign = {
           note: ''
         },
         date: {
-          title: 'Need help with the date of contact?',
-          message: 'Provide the approximate date of contact.',
-          note: ''
+          title: 'Need help with this date?',
+          message: 'Let us know when this contact happened.',
+          note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
         },
         governments: {
           title: 'Need help with the governments associated?',
-          message: 'Provide the governments associated with this contact.',
-          note: 'Note: You can provide multiple government in this question.'
+          message: 'Tell us all of the governments that were involved in this contact.',
+          note: 'Note: You can provide multiple governments in this question.'
         },
         establishment: {
           title: 'Need help with the establishment?',
@@ -1278,7 +1278,7 @@ export const foreign = {
         },
         hassubsequent: {
           title: 'Need help with any subsequent contacts?',
-          message: 'If there were any subsequent contact initiated by you or your immediate family select "Yes".',
+          message: 'If there were any other contacts with the foreign organization select "Yes".',
           note: ''
         },
         subsequent: {
@@ -1288,8 +1288,8 @@ export const foreign = {
         },
         recent: {
           title: 'Need help with the recent date of contact?',
-          message: 'Provide the approximate date of the most recent contact.',
-          note: ''
+          message: 'Tell us when the most recent contact happened.',
+          note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
         },
         future: {
           title: 'Need help explaining future plans of contact?',
@@ -1359,7 +1359,7 @@ export const foreign = {
           note: ''
         },
         citizenship: {
-          title: 'Need help with the foreign nationals citizenship(s)?',
+          title: 'Need help with this foreign national\'s citizenship(s)?',
           message: 'Tell us all of the citizenships this foreign national has.',
           note: 'Note: You can provide multiple citizenships in this question.'
         },

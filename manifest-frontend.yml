@@ -9,3 +9,4 @@ applications:
   env:
     FORCE_HTTPS: true
     SAML_ENABLED: 1
+    API_BASE_URL: https://eqip-prototype-api.fr.cloud.gov

@@ -83,7 +83,11 @@ export default class DrugInvolvements extends SubsectionElement {
                      appendLabel={i18n.t('substance.drugs.involvement.collection.appendLabel')}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
-            <DrugInvolvement name="Item" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
+            <DrugInvolvement name="Item"
+                             bind={true}
+                             applicantBirthdate={this.props.applicantBirthdate}
+                             required={this.props.required}
+                             scrollIntoView={this.props.scrollIntoView} />
           </Accordion>
         </Show>
       </div>
@@ -97,6 +101,7 @@ DrugInvolvements.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'substance',
   subsection: 'drugs/purchase',
+  applicantBirthdate: {},
   dispatch: () => {},
   validator: (state, props) => {
     return validate(schema('substance.drug.purchase', props))

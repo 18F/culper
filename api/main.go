@@ -1,16 +1,16 @@
 package main
 
 import (
+	"crypto/tls"
 	"flag"
-	"fmt"
-	"log"
 	"net/http"
+	"os"
 
 	"github.com/18F/e-QIP-prototype/api/cf"
 	"github.com/18F/e-QIP-prototype/api/db"
 	"github.com/18F/e-QIP-prototype/api/handlers"
+	"github.com/18F/e-QIP-prototype/api/logmsg"
 	"github.com/gorilla/mux"
-	// middleware "github.com/18F/e-QIP-prototype/api/middleware"
 )
 
 var (
@@ -18,10 +18,12 @@ var (
 )
 
 func main() {
+	log := logmsg.NewLogger()
+
 	flag.Parse()
 	if !*flagSkipMigration {
 		if err := db.MigrateUp("db", "environment", ""); err != nil {
-			log.Println("Failed to migrate database:", err)
+			log.WithError(err).Warn(logmsg.WarnFailedMigration)
 		}
 	}
 
@@ -32,11 +34,15 @@ func main() {
 	r.HandleFunc("/refresh", handlers.JwtTokenRefresh).Methods("POST")
 
 	// Two-factor authentication
-	s := r.PathPrefix("/2fa").Subrouter()
-	s.HandleFunc("/{account}", handlers.TwofactorHandler)
-	s.HandleFunc("/{account}/verify", handlers.TwofactorVerifyHandler)
-	s.HandleFunc("/{account}/email", handlers.TwofactorEmailHandler)
-	s.HandleFunc("/{account}/reset", handlers.TwofactorResetHandler)
+	if !cf.TwofactorDisabled() {
+		s := r.PathPrefix("/2fa").Subrouter()
+		s.HandleFunc("/{account}", handlers.TwofactorHandler)
+		s.HandleFunc("/{account}/verify", handlers.TwofactorVerifyHandler)
+
+		if cf.TwofactorResettable() {
+			s.HandleFunc("/{account}/reset", handlers.TwofactorResetHandler)
+		}
+	}
 
 	// Authentication schemes
 	o := r.PathPrefix("/auth").Subrouter()
@@ -47,11 +53,6 @@ func main() {
 	if cf.SamlEnabled() {
 		o.HandleFunc("/saml", handlers.SamlServiceHandler)
 		o.HandleFunc("/saml/callback", handlers.SamlCallbackHandler)
-	}
-
-	if cf.OAuthEnabled() {
-		o.HandleFunc("/{service}", handlers.AuthServiceHandler)
-		o.HandleFunc("/{service}/callback", handlers.AuthCallbackHandler)
 	}
 
 	// Account specific actions
@@ -65,17 +66,49 @@ func main() {
 	a.HandleFunc("/attachment/{id}", inject(handlers.GetAttachment, handlers.JwtTokenValidatorHandler))
 	a.HandleFunc("/attachment/{id}/delete", inject(handlers.DeleteAttachment, handlers.JwtTokenValidatorHandler)).Methods("POST", "DELETE")
 
-	log.Println("Starting API server")
-	fmt.Println(http.ListenAndServe(cf.PublicAddress(), handlers.CORS(r)))
+	address := cf.PublicAddress()
+	tlsCertificate := os.Getenv("TLS_CERT")
+	tlsPrivateKey := os.Getenv("TLS_KEY")
+	if tlsCertificate != "" && tlsPrivateKey != "" {
+		cfg := &tls.Config{
+			MinVersion: tls.VersionTLS12,
+			CurvePreferences: []tls.CurveID{
+				tls.CurveP521,
+				tls.CurveP384,
+				tls.CurveP256,
+			},
+			PreferServerCipherSuites: true,
+			CipherSuites: []uint16{
+				tls.TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,
+				tls.TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA,
+				tls.TLS_RSA_WITH_AES_256_GCM_SHA384,
+				tls.TLS_RSA_WITH_AES_256_CBC_SHA,
+			},
+		}
+
+		srv := &http.Server{
+			Addr:         address,
+			Handler:      r,
+			TLSConfig:    cfg,
+			TLSNextProto: make(map[string]func(*http.Server, *tls.Conn, http.Handler), 0),
+		}
+
+		log.WithField("address", address).Info(logmsg.StartingServerTLS)
+		log.Fatal(srv.ListenAndServeTLS(tlsCertificate, tlsPrivateKey))
+	} else {
+		log.WithField("address", address).Info(logmsg.StartingServer)
+		log.Fatal(http.ListenAndServe(address, handlers.CORS(handlers.StandardLogging(r))))
+	}
 }
 
 type Handler func(w http.ResponseWriter, r *http.Request) error
 
 func inject(handler http.HandlerFunc, middleware ...Handler) http.HandlerFunc {
+	log := logmsg.NewLogger()
 	return func(w http.ResponseWriter, r *http.Request) {
 		for _, shim := range middleware {
 			if err := shim(w, r); err != nil {
-				log.Println(err)
+				log.WithError(err).Warn(logmsg.MiddlewareError)
 				return
 			}
 		}

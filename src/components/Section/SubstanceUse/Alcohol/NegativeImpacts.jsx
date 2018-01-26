@@ -80,7 +80,11 @@ export default class NegativeImpacts extends SubsectionElement {
                      appendLabel={i18n.t('substance.alcohol.negativeImpact.collection.appendLabel')}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
-            <NegativeImpact name="Item" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
+            <NegativeImpact name="Item"
+                            bind={true}
+                            applicantBirthdate={this.props.applicantBirthdate}
+                            required={this.props.required}
+                            scrollIntoView={this.props.scrollIntoView} />
           </Accordion>
         </Show>
       </div>
@@ -94,6 +98,7 @@ NegativeImpacts.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'substance',
   subsection: 'alcohol/negative',
+  applicantBirthdate: {},
   dispatch: () => {},
   validator: (state, props) => {
     return validate(schema('substance.alcohol.negative', props))

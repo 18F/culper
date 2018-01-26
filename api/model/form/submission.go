@@ -12,6 +12,7 @@ type Submission struct {
 	PayloadGeneral            Payload `json:"General" sql:"-"`
 	PayloadMedical            Payload `json:"Medical" sql:"-"`
 	PayloadCredit             Payload `json:"Credit" sql:"-"`
+	Locked                    bool    `json:"Locked"`
 
 	// Validator specific fields
 	AdditionalComments *SubmissionAdditionalComments `json:"-" sql:"-"`
@@ -274,17 +275,14 @@ func (entity *Submission) SetID(id int) {
 }
 
 type SubmissionAdditionalComments struct {
-	PayloadAdditionalComments Payload `json:"AdditionalComments" sql:"-"`
-	PayloadSignature          Payload `json:"Signature" sql:"-"`
+	PayloadSignature Payload `json:"Signature" sql:"-"`
 
 	// Validator specific fields
-	AdditionalComments *Textarea  `json:"-" sql:"-"`
-	Signature          *Signature `json:"-" sql:"-"`
+	Signature *Signature `json:"-" sql:"-"`
 
 	// Persister specific fields
-	ID                   int `json:"-"`
-	AdditionalCommentsID int `json:"-"`
-	SignatureID          int `json:"-"`
+	ID          int `json:"-"`
+	SignatureID int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -300,12 +298,6 @@ func (entity *SubmissionAdditionalComments) Unmarshal(raw []byte) error {
 	}
 	entity.Signature = signature.(*Signature)
 
-	additionalComments, err := entity.PayloadAdditionalComments.Entity()
-	if err != nil {
-		return err
-	}
-	entity.AdditionalComments = additionalComments.(*Textarea)
-
 	return err
 }
 
@@ -313,9 +305,6 @@ func (entity *SubmissionAdditionalComments) Unmarshal(raw []byte) error {
 func (entity *SubmissionAdditionalComments) Marshal() Payload {
 	if entity.Signature != nil {
 		entity.PayloadSignature = entity.Signature.Marshal()
-	}
-	if entity.AdditionalComments != nil {
-		entity.PayloadAdditionalComments = entity.AdditionalComments.Marshal()
 	}
 	return MarshalPayloadEntity("submission.additionalcomments", entity)
 }
@@ -326,9 +315,6 @@ func (entity *SubmissionAdditionalComments) Valid() (bool, error) {
 
 	if ok, err := entity.Signature.Valid(); !ok {
 		stack.Append("Signature", err)
-	}
-	if ok, err := entity.AdditionalComments.Valid(); !ok {
-		stack.Append("AdditionalComments", err)
 	}
 
 	return !stack.HasErrors(), stack
@@ -349,18 +335,7 @@ func (entity *SubmissionAdditionalComments) Save(context *db.DatabaseContext, ac
 		}
 		entity.SignatureID = previous.SignatureID
 		entity.Signature.ID = previous.SignatureID
-		if entity.AdditionalComments == nil {
-			entity.AdditionalComments = &Textarea{}
-		}
-		entity.AdditionalCommentsID = previous.AdditionalCommentsID
-		entity.AdditionalComments.ID = previous.AdditionalCommentsID
 	})
-
-	additionalCommentsID, err := entity.AdditionalComments.Save(context, account)
-	if err != nil {
-		return additionalCommentsID, err
-	}
-	entity.AdditionalCommentsID = additionalCommentsID
 
 	signatureID, err := entity.Signature.Save(context, account)
 	if err != nil {
@@ -385,11 +360,6 @@ func (entity *SubmissionAdditionalComments) Delete(context *db.DatabaseContext, 
 
 	context.Find(&SubmissionAdditionalComments{ID: account}, func(result interface{}) {
 		previous := result.(*SubmissionAdditionalComments)
-		if entity.AdditionalComments == nil {
-			entity.AdditionalComments = &Textarea{}
-		}
-		entity.AdditionalCommentsID = previous.AdditionalCommentsID
-		entity.AdditionalComments.ID = previous.AdditionalCommentsID
 		if entity.Signature == nil {
 			entity.Signature = &Signature{}
 		}
@@ -401,10 +371,6 @@ func (entity *SubmissionAdditionalComments) Delete(context *db.DatabaseContext, 
 		if err := context.Delete(entity); err != nil {
 			return entity.ID, err
 		}
-	}
-
-	if _, err := entity.AdditionalComments.Delete(context, account); err != nil {
-		return entity.ID, err
 	}
 
 	if _, err := entity.Signature.Delete(context, account); err != nil {
@@ -424,13 +390,6 @@ func (entity *SubmissionAdditionalComments) Get(context *db.DatabaseContext, acc
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
-			return entity.ID, err
-		}
-	}
-
-	if entity.AdditionalCommentsID != 0 {
-		entity.AdditionalComments = &Textarea{ID: entity.AdditionalCommentsID}
-		if _, err := entity.AdditionalComments.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}

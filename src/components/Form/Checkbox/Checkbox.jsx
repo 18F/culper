@@ -82,7 +82,7 @@ export default class Checkbox extends ValidationElement {
    * Execute validation checks on the value.
    */
   handleValidation (event) {
-    this.handleError(this.state.value)
+    this.handleError(this.state.checked)
   }
 
   /**

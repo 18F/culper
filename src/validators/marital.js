@@ -3,18 +3,19 @@ import DivorceValidator from './divorce'
 import { validAccordion } from './helpers'
 
 export default class MaritalValidator {
-  constructor (state = {}, props = {}) {
-    this.civilUnion = state.CivilUnion
-    this.status = (state.Status || {}).value
-    this.divorcedList = (state.DivorcedList || [])
+  constructor (data = {}) {
+    this.civilUnion = data.CivilUnion || {}
+    this.status = data.Status || {}
+    this.divorcedList = data.DivorcedList || {}
   }
 
   validStatus () {
-    return ['Never', 'Married', 'InCivilUnion', 'Separated', 'Annulled', 'Divorced', 'Widowed'].includes(this.status)
+    const statusValue = this.status.value || ''
+    return ['Never', 'Married', 'InCivilUnion', 'Separated', 'Annulled', 'Divorced', 'Widowed'].includes(statusValue)
   }
 
   validDivorce () {
-    if (!this.divorcedList || !this.divorcedList.items.length) {
+    if (!this.divorcedList.items || !this.divorcedList.items.length) {
       return false
     }
 
@@ -28,13 +29,15 @@ export default class MaritalValidator {
       return false
     }
 
+    const statusValue = this.status.value || ''
     let valid = true
-    if (['Married', 'InCivilUnion', 'Separated'].includes(this.status)) {
+    if (['Married', 'InCivilUnion', 'Separated'].includes(statusValue)) {
       valid = new CivilUnionValidator(this.civilUnion).isValid()
-      if (valid && (this.civilUnion || {}).Divorced === 'Yes') {
+      const divorcedValue = (this.civilUnion.Divorced || {}).value
+      if (valid && divorcedValue === 'Yes') {
         valid = this.validDivorce()
       }
-    } else if (['Annulled', 'Divorced', 'Widowed'].includes(this.status)) {
+    } else if (['Annulled', 'Divorced', 'Widowed'].includes(statusValue)) {
       valid = this.validDivorce()
     }
 

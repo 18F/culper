@@ -1,0 +1,41 @@
+<Bankruptcy>
+  <Activities>
+    {{range $index, $item := .props.List.props.items}}
+    {{with $Item := $item.Item}}
+    <Activity ID="{{$index}}">
+      <AccountNumber>{{text $Item.CourtNumber}}</AccountNumber>
+      <Amount Estimated="{{checkboxTrueFalse $Item.TotalAmountEstimated}}">{{number $Item.TotalAmount}}</Amount>
+      <Authority>
+        <Address>{{location $Item.CourtAddress}}</Address>
+        <Court>{{text $Item.CourtInvolved}}</Court>
+      </Authority>
+      {{if radio $Item.PetitionType | eq "Chapter13"}}
+      <Chapter13>
+        <Trustee>
+          <Address>{{location $Item.TrusteeAddress}}</Address>
+          <Comment></Comment>
+          <Name>{{text $Item.Trustee}}</Name>
+        </Trustee>
+      </Chapter13>
+      {{end}}
+      <Comment></Comment>
+      <DischargeDate Type="{{dateEstimated $Item.DateDischarged}}" NotApplicable="{{notApplicable $Item.DateDischargedNotApplicable}}">{{monthYear $Item.DateDischarged}}</DischargeDate>
+      <DischargedOfAllDebts>
+        <Answer>{{branch $Item.HasDischargedExplanation}}</Answer>
+        <AnswerComment></AnswerComment>
+      </DischargedOfAllDebts>
+      <Explanation>{{textarea $Item.DischargeExplanation}}</Explanation>
+      <FiledDate Type="{{dateEstimated $Item.DateFiled}}">{{monthYear $Item.DateFiled}}</FiledDate>
+      <Record>
+        <Name>{{name $Item.NameDebt}}</Name>
+      </Record>
+      <Type>{{radio $Item.PetitionType}}</Type>
+    </Activity>
+    {{end}}
+    {{end}}
+  </Activities>
+  <Answer>{{branch .props.HasBankruptcy}}</Answer>
+  <Comment></Comment>
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+  <SummaryComment></SummaryComment>
+</Bankruptcy>

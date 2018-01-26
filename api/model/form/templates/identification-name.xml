@@ -1,0 +1,6 @@
+{{ $name := .props.Name }}
+<FullName>
+  <LegalName>
+    {{ name $name }}
+  </LegalName>
+</FullName>

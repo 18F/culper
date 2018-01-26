@@ -52,6 +52,7 @@ export default class TravelItem extends ValidationElement {
           <DateRange name="Dates"
                      className="travel-item-dates"
                      {...this.props.Dates}
+                     applicantBirthdate={this.props.applicantBirthdate}
                      onUpdate={this.updateDates}
                      onError={this.props.onError}
                      required={this.props.required}
@@ -65,6 +66,7 @@ export default class TravelItem extends ValidationElement {
 TravelItem.defaultProps = {
   Country: {},
   Dates: {},
+  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }
