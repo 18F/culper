@@ -1,0 +1,27 @@
+<BeenInOrganizationAdvocatingViolence>
+  <Answer>{{branch .props.HasViolence}}</Answer>
+  <Comment></Comment>
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+  <Organizations>
+    {{range $index, $item := .props.List.props.items}}
+    {{with $Item := $item.Item}}
+    <Organization ID="{{$index}}">
+      <Address>
+        {{location $Item.Address}}
+      </Address>
+      <Comment></Comment>
+      <Contributions NoContributionsMade="{{notApplicable $Item.ContributionsNotApplicable}}">
+        {{text $Item.Contributions}}
+      </Contributions>
+      {{daterange $Item.Dates}}
+      <Description>{{text $Item.Reasons}}</Description>
+      <Name>{{text $Item.Organization}}</Name>
+      <PositionsHeld NoPositionsHeld="{{notApplicable $Item.PositionsNotApplicable}}">
+        {{text $Item.Positions}}
+      </PositionsHeld>
+    </Organization>
+    {{end}}
+    {{end}}
+  </Organizations>
+  <SummaryComment></SummaryComment>
+</BeenInOrganizationAdvocatingViolence>

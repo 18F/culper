@@ -18,6 +18,7 @@ func defaultTemplate(templateName string, data map[string]interface{}) template.
 		"branch":               branch,
 		"branchToBool":         branchToBool,
 		"branchcollectionHas":  branchcollectionHas,
+		"branchAny":            branchAny,
 		"checkbox":             checkbox,
 		"checkboxHas":          checkboxHas,
 		"checkboxTrueFalse":    checkboxTrueFalse,
@@ -94,6 +95,15 @@ func simpleValue(data map[string]interface{}) string {
 
 func branch(data map[string]interface{}) string {
 	return simpleValue(data)
+}
+
+func branchAny(branches ...map[string]interface{}) string {
+	for _, branch := range branches {
+		if simpleValue(branch) == "Yes" {
+			return "Yes"
+		}
+	}
+	return "No"
 }
 
 func branchcollectionHas(data map[string]interface{}) string {
