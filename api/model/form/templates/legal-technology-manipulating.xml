@@ -1,0 +1,19 @@
+<IllegallyAlteredInformation>
+  <Answer>{{branch .props.HasManipulating}}</Answer>
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+  <Comment></Comment>
+  <Incidents>
+    <Incident ID="{{$index}}">
+      <Action>{[text $Item.Action}}</Action>
+      <Address>
+        {{location $Item.Location}}
+      </Address>
+      <Comment></Comment>
+      <Date Type="{{dateEstimated $Item.Date}}">
+        {{monthYear $Item.Date}}
+      </Date>
+      <Nature>{{text $Item.Incident}}</Nature>
+    </Incident>
+  </Incidents>
+  <SummaryComment></SummaryComment>
+</IllegallyAlteredInformation>

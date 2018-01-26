@@ -1,0 +1,17 @@
+<ActivitiesToOverthrowTheUSGovernment>
+  <Activities>
+    {{range $index, $item := .props.List.props.items}}
+    {{with $Item := $item.Item}}
+    <Activity ID="{{$index}}">
+      <Comment></Comment>
+      {{daterange $Item.Dates}}
+      <Reason>{{text $Item.Reasons}}</Reason>
+    </Activity>
+    {{end}}
+    {{end}}
+  </Activities>
+  <Answer>{{branch .props.HasActivities}}</Answer>
+  <Comment></Comment>
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+  <SummaryComment></SummaryComment>
+</ActivitiesToOverthrowTheUSGovernment>

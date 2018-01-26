@@ -1,0 +1,17 @@
+<EngagedInTerrorism>
+  <Answer>{{branch .props.HasEngaged}}</Answer>
+  <Comment></Comment>
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+  <SummaryComment></SummaryComment>
+  <TerroristActs>
+    {{range $index, $item := .props.List.props.items}}
+    {{with $Item := $item.Item}}
+    <Act ID="{{$index}}">
+      <Comment></Comment>
+      {{daterange $Item.Dates}}
+      <Reason>{{text $Item.Reasons}}</Reason>
+    </Act>
+    {{end}}
+    {{end}}
+  </TerroristActs>
+</EngagedInTerrorism>
