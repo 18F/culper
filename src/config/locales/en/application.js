@@ -31,7 +31,7 @@ export const application = {
       'Not a guarantee of acceptance, but all required fields are complete.'
     ],
     valid2: [
-      '### Please sign the releases below and submit your form.'
+      '### Please sign the releases below and submit your form'
     ],
     invalid: [
       '## Some required fields are incomplete',
