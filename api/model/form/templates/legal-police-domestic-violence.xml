@@ -1,7 +1,7 @@
 <RestrainingOrders>
-  <Answer>Yes</Answer>
+  <Answer>{{branch .props.HasDomesticViolence}}</Answer>
   <Comment></Comment>
-  <HaveAdditionalEntryAnswer>Yes</HaveAdditionalEntryAnswer>
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
 
   {{range $index, $item := .props.List.props.items}}
   {{with $Item := $item.Item}}

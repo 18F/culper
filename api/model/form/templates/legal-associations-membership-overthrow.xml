@@ -1,7 +1,7 @@
 <TerroristOrganizationMember>
-  <Answer>{{branch .MembershipOverthrow.props.HasAdvocated}}</Answer>
+  <Answer>{{branch .props.HasOverthrow}}</Answer>
   <Comment></Comment>
-  <HaveAdditionalEntryAnswer>{{branch .MembershipOverthrow.props.List.props.branch}}</HaveAdditionalEntryAnswer>
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
   <Organizations>
     {{range $index, $item := .props.List.props.items}}
     {{with $Item := $item.Item}}
