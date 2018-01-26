@@ -27,7 +27,6 @@ export default class AdditionalComments extends SubsectionElement {
   render () {
     return (
       <div className="additional-comments">
-        { i18n.m('releases.additionalComments.contents') }
         { i18n.m('releases.additionalComments.certificationContents') }
         <Signature {...this.props.Signature}
                    LegalName={this.props.LegalName}
