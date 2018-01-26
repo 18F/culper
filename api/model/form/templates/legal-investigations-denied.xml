@@ -2,8 +2,8 @@
   {{range $index, $item := .props.List.props.items}}
   {{with $Item := $item.Item}}
   <ClearanceDenial ID="{{$index}}">
-    <Agency>{{$Item.Agency}}</Agency>
-    <Circumstances>{{$Item.Explanation}}</Circumstances>
+    <Agency>{{text $Item.Agency}}</Agency>
+    <Circumstances>{{text $Item.Explanation}}</Circumstances>
     <ClearanceDate>
       <Date Type="{{dateEstimated $Item.Date}}">
         {{monthYear $Item.Date}}

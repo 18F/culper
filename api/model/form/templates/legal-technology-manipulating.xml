@@ -3,8 +3,10 @@
   <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
   <Comment></Comment>
   <Incidents>
+    {{range $index, $item := .props.List.props.items}}
+    {{with $Item := $item.Item}}
     <Incident ID="{{$index}}">
-      <Action>{[text $Item.Action}}</Action>
+      <Action>{{text $Item.Action}}</Action>
       <Address>
         {{location $Item.Location}}
       </Address>
@@ -14,6 +16,8 @@
       </Date>
       <Nature>{{text $Item.Incident}}</Nature>
     </Incident>
+    {{end}}
+    {{end}}
   </Incidents>
   <SummaryComment></SummaryComment>
 </IllegallyAlteredInformation>
