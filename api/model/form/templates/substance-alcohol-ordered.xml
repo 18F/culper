@@ -1,0 +1,41 @@
+<OrderedAdvisedOrAskedToSeekCounseling>
+  <Answer>{{branch .props.HasBeenOrdered}}</Answer>
+  <Comment></Comment>
+  <Consultations>
+    {{range $index, $item := .props.List.props.items}}
+    {{with $Item := $item.Item}}
+    <Consultation ID="{{$index}}">
+      <ActionToSeekCounselingTaken>
+        <Answer>{{branch $Item.ActionTaken}}</Answer>
+      </ActionToSeekCounselingTaken>
+      <Explanation>{{textarea $Item.NoActionTakenExplanation}}</Explanation>
+      <ExplanationComment></ExplanationComment>
+      <CompletedTreatmentProgram>
+        <Answer>{{branch $Item.CompletedTreatment}}</Answer>
+        <Comment></Comment>
+        <Explanation>{{textarea $Item.NoCompletedTreatmentExplanation}}</Explanation>
+      </CompletedTreatmentProgram>
+      <CounselingOrderedBy>
+        <Answer Employer="{{checkboxHas $Item.Seekers "Employer"}}"
+                MedicalProfessional="{{checkboxHas $Item.Seekers "MedicalProfessional"}}"
+                MentalHealthProfessional="{{checkboxHas $Item.Seekers "MentalHealthProfessional"}}"
+                Court="{{checkboxHas $Item.Seekers "CourtOfficial"}}"
+                None="{{checkboxHas $Item.Seekers "NotOrdered"}}"
+                Other="{{checkboxHas $Item.Seekers "Other"}}"/>
+        <Comment></Comment>
+        <Explanation>{{text $Item.OtherSeeker}}</Explanation>
+      </CounselingOrderedBy>
+      {{daterange $Item.CounselingDates}}
+      <Doctor>
+        <Name>{{text $Item.TreatmentProviderName}}</Name>
+        <Address>{{location $Item.TreatmentProviderAddress}}</Address>
+        <Telephone>{{telephone $Item.TreatmentProviderTelephone}}</Telephone>
+      </Doctor>
+      <Comment></Comment>
+    </Consultation>
+    {{end}}
+    {{end}}
+  </Consultations>
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+  <SummaryComment></SummaryComment>
+</OrderedAdvisedOrAskedToSeekCounseling>
