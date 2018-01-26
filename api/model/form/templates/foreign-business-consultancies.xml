@@ -14,7 +14,7 @@
     <Date Type="{{dateEstimated $Item.Date}}">
       {{date $Item.Date}}
     </Date>
-    <EntryComment>string</EntryComment>
+    <EntryComment></EntryComment>
     <LegalName>
       {{name $Item.Name}}
     </LegalName>

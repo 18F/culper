@@ -1,0 +1,32 @@
+<Investigations>
+  <Comment></Comment>
+  {{range $index, $item := .props.List.props.items}}
+  {{with $Item := $item.Item}}
+  <Investigation ID="{{$index}}">
+    <Agency>{{text $Item.Agency}}</Agency>
+    <ClearanceLevel>{{text $Item.Clearance}}</ClearanceLevel>
+    <EntryComment></EntryComment>
+    <GrantedDate>
+      <Date Type="{{dateEstimated $Item.Granted}}" DoNotKnow="{{notApplicable $Item.GrantedNotApplicable}}">
+        {{monthYear $Item.Granted}}
+      </Date>
+    </GrantedDate>
+    <InvestigationDate>
+      <Date Type="{{dateEstimated $Item.Completed}}" DoNotKnow="{{notApplicable $Item.CompletedNotApplicable}}">
+        {{monthYear $Item.Completed}}
+      </Date>
+    </InvestigationDate>
+    <IssuingAgency>
+      <Name>{{text $Item.Issued}}</Name>
+    </IssuingAgency>
+    <OtherAgency></OtherAgency>
+    <OtherClearanceLevel></OtherClearanceLevel>
+  </Investigation>
+  {{end}}
+  {{end}}
+  <SummaryComment></SummaryComment>
+</Investigations>
+<PriorInvestigation>
+  <Answer>{{branch .props.HasHistory}}</Answer>
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+</PriorInvestigation>

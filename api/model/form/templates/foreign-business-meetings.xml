@@ -23,7 +23,7 @@
 
     <SubsequentForeignContacts>
       <Answer>Yes</Answer>
-      <AnswerComment>string</AnswerComment>
+      <AnswerComment></AnswerComment>
       {{range $index, $contact := $Item.Contacts.props.List.props.items}}
       {{with $Contact := $contact.Item}}
       <Contact ID="{{$index}}">

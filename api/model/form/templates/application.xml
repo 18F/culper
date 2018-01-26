@@ -22,5 +22,6 @@
     {{tmpl "financial.xml" .}}
     {{tmpl "foreign.xml" .}}
     {{tmpl "substance.xml" .}}
+    {{tmpl "legal.xml" .}}
   </Pooled>
 </Responses>

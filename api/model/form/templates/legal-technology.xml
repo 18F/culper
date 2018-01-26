@@ -1,0 +1,5 @@
+<InformationSystemUse Version="1" Type="Pooled">
+  {{tmpl "legal-technology-unauthorized.xml" .Legal.Unauthorized}}
+  {{tmpl "legal-technology-unlawful.xml" .Legal.Unlawful}}
+  {{tmpl "legal-technology-manipulating.xml" .Legal.Manipulating}}
+</InformationSystemUse>

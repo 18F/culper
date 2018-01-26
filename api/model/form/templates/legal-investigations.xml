@@ -1,0 +1,5 @@
+<InvestigationRecord Version="1" Type="Pooled">
+  {{tmpl "legal-investigations-denied.xml" .Legal.Revoked}}
+  {{tmpl "legal-investigations-debarment.xml" .Legal.Debarred}}
+  {{tmpl "legal-investigations-investigated.xml" .Legal.History}}
+</InvestigationRecord>

@@ -1,0 +1,20 @@
+<GovernmentDebarment>
+  <Answer>{{branch .props.HasDebarment}}</Answer>
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+</GovernmentDebarment>
+<GovernmentDebarments>
+  <Comment></Comment>
+  {{range $index, $item := .props.List.props.items}}
+  {{with $Item := $item.Item}}
+  <GovernmentDebarment ID="{{$index}}">
+    <Agency>{{text $Item.Agency}}</Agency>
+    <Comment></Comment>
+    <Date Type="{{dateEstimated $Item.Date}}">
+      {{monthYear $Item.Date}}
+    </Date>
+    <Explanation>{{text $Item.Explanation}}</Explanation>
+  </GovernmentDebarment>
+  {{end}}
+  {{end}}
+  <SummaryComment></SummaryComment>
+</GovernmentDebarments>
