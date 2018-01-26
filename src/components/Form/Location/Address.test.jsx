@@ -81,4 +81,12 @@ describe('The Address component', () => {
     component.find('.address-options .domestic input').simulate('change')
     expect(city).toBe('')
   })
+
+  it('can hide APO/FPO option', () => {
+    const props = {
+      showPostOffice: false
+    }
+    const component = mount(<Address {...props} />)
+    expect(component.find('.address-options .postoffice').length).toBe(1)
+  })
 })

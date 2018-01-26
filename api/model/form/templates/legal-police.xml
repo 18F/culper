@@ -1,0 +1,5 @@
+<PoliceRecord Version="1" Type="Pooled">
+  {{tmpl "legal-police-offenses.xml" .Legal.PoliceOffenses}}
+  {{tmpl "legal-police-additional-offenses.xml" .Legal.PoliceOtherOffenses}}
+  {{tmpl "legal-police-domestic-violence.xml" .Legal.PoliceDomesticViolence}}
+</PoliceRecord>

@@ -20,7 +20,7 @@ export default class Branch extends React.Component {
       // When a `warning` should be displayed AND they do no approve the change then
       // set the old value back to "Yes".
       if (this.props.warning && window.confirm(this.props.confirmation) === false) {
-        values.value = this.props.yesValue
+        return
       }
     }
 
@@ -45,11 +45,11 @@ export default class Branch extends React.Component {
         <div className="content">
           {this.props.children}
         </div>
-        <RadioGroup
-          className="option-list branch"
-          required={this.props.required}
-          onError={this.props.onError}
-          selectedValue={this.props.value}>
+        <RadioGroup className="option-list branch"
+                    disabled={this.props.disabled}
+                    required={this.props.required}
+                    onError={this.props.onError}
+                    selectedValue={this.props.value}>
           <Radio name={this.props.name}
                  label={this.props.yesLabel}
                  value={this.props.yesValue}

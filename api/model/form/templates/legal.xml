@@ -1,0 +1,4 @@
+{{tmpl "legal-police.xml" .}}
+{{tmpl "legal-court.xml" .}}
+{{tmpl "legal-technology.xml" .}}
+{{tmpl "legal-associations.xml" .}}

@@ -1,0 +1,23 @@
+<TerroristOrganizationMember>
+  <Answer>{{branch .props.HasOverthrow}}</Answer>
+  <Comment></Comment>
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+  <Organizations>
+    {{range $index, $item := .props.List.props.items}}
+    {{with $Item := $item.Item}}
+    <Organization ID="{{$index}}">
+      <Address>
+        {{location $Item.Address}}
+      </Address>
+      <Comment></Comment>
+      <Contributions NoContributionsMade="{{notApplicable $Item.ContributionsNotApplicable}}">{{text $Item.Contributions}}</Contributions>
+      {{daterange $Item.Dates}}
+      <Description>{{text $Item.Reason}}</Description>
+      <Name>{{text $Item.Organization}}</Name>
+      <PositionsHeld NoPositionHeld="{{notApplicable $Item.PositionsNotApplicable}}">{{text $Item.Position}}</PositionsHeld>
+    </Organization>
+    {{end}}
+    {{end}}
+  </Organizations>
+  <SummaryComment></SummaryComment>
+</TerroristOrganizationMember>
