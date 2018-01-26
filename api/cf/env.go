@@ -4,7 +4,10 @@ import (
 	"fmt"
 	"net/url"
 	"os"
+	"regexp"
+	"strings"
 
+	"github.com/18F/e-QIP-prototype/api/jwt"
 	"github.com/18F/e-QIP-prototype/api/logmsg"
 	cfenv "github.com/cloudfoundry-community/go-cfenv"
 )
@@ -171,15 +174,6 @@ func BasicEnabled() bool {
 	return true
 }
 
-// OAuthEnabled returns a boolean indicating whether the system allows
-// OAuth authentication.
-func OAuthEnabled() bool {
-	if os.Getenv("OAUTH_ENABLED") == "" {
-		return false
-	}
-	return true
-}
-
 // SamlEnabled returns a boolean indicating whether the system allows
 // SAML authentication.
 func SamlEnabled() bool {
@@ -187,4 +181,42 @@ func SamlEnabled() bool {
 		return false
 	}
 	return true
+}
+
+// AllowedOrigin checks the given origin is whitelisted as an acceptable address.
+func AllowedOrigin(origin string) bool {
+	addresses := strings.TrimSpace(os.Getenv("CORS_ALLOWED"))
+	for _, addr := range strings.Split(addresses, ";") {
+		if addr == "" {
+			continue
+		}
+
+		if addr == "*" {
+			return true
+		}
+		re := regexp.MustCompile(strings.TrimSpace(addr))
+		if re.MatchString(origin) {
+			return true
+		}
+	}
+
+	return false
+}
+
+func TargetAudiences() []string {
+	audiences := []string{}
+
+	if BasicEnabled() {
+		audiences = append(audiences, jwt.BasicAuthAudience)
+	}
+
+	if !TwofactorDisabled() {
+		audiences = append(audiences, jwt.TwoFactorAudience)
+	}
+
+	if SamlEnabled() {
+		audiences = append(audiences, jwt.SingleSignOnAudience)
+	}
+
+	return audiences
 }

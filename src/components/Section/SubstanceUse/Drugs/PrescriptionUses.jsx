@@ -81,7 +81,11 @@ export default class PrescriptionUses extends SubsectionElement {
                      appendLabel={i18n.t('substance.drugs.prescription.collection.appendLabel')}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
-            <PrescriptionUse name="Item" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
+            <PrescriptionUse name="Item"
+                             bind={true}
+                             applicantBirthdate={this.props.applicantBirthdate}
+                             required={this.props.required}
+                             scrollIntoView={this.props.scrollIntoView} />
           </Accordion>
         </Show>
       </div>
@@ -95,6 +99,7 @@ PrescriptionUses.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'substance',
   subsection: 'drugs/misuse',
+  applicantBirthdate: {},
   dispatch: () => {},
   validator: (state, props) => {
     return validate(schema('substance.drug.misuse', props))

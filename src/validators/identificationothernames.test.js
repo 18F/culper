@@ -40,7 +40,7 @@ describe('OtherNames validation', function () {
         state: {
           HasOtherNames: { value: 'Yes' },
           List: {
-            branch: null,
+            branch: { value: 'No' },
             items: [
               {
                 Item: {
@@ -79,7 +79,7 @@ describe('OtherNames validation', function () {
         state: {
           HasOtherNames: { value: 'Yes' },
           List: {
-            branch: null,
+            branch: { value: 'No' },
             items: [
               {
                 Item: {
@@ -119,7 +119,7 @@ describe('OtherNames validation', function () {
         state: {
           HasOtherNames: { value: 'Foo' },
           List: {
-            branch: null,
+            branch: { value: 'No' },
             items: []
           }
         },

@@ -1,0 +1,26 @@
+<Responses>
+  <AgencyInstructionsForApplicant></AgencyInstructionsForApplicant>
+  <FormInstanceSpecific>
+    <ESigCertificationResponses Version="1" Type="Pooled" LastSummaryID="201" LastDynamicListID="201">
+      <UserFinalizedCert>
+        <Answer>Yes</Answer>
+      </UserFinalizedCert>
+      <UserOptedToESig>
+        <Answer>Yes</Answer>
+      </UserOptedToESig>
+    </ESigCertificationResponses>
+    <UserPreferences Version="1" Type="Pooled" LastSummaryID="201" LastDynamicListID="201">
+      <DisplayNavigation></DisplayNavigation>
+    </UserPreferences>
+  </FormInstanceSpecific>
+  <Pooled>
+    {{tmpl "identification.xml" .}}
+    {{tmpl "relationships.xml" .}}
+    {{tmpl "history.xml" .}}
+    {{tmpl "citizenship.xml" .}}
+    {{tmpl "military" .}}
+    {{tmpl "financial.xml" .}}
+    {{tmpl "foreign.xml" .}}
+    {{tmpl "substance.xml" .}}
+  </Pooled>
+</Responses>

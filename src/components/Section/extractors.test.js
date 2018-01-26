@@ -1,4 +1,4 @@
-import { extractApplicantBirthDate } from './extractors'
+import { extractApplicantBirthdate } from './extractors'
 
 describe('Extractors', function () {
   it('should return a date', function () {
@@ -21,9 +21,11 @@ describe('Extractors', function () {
         state: {
           Identification: {
             ApplicantBirthDate: {
-              day: '1',
-              month: '1',
-              year: '2010'
+              Date: {
+                day: '1',
+                month: '1',
+                year: '2010'
+              }
             }
           }
         },
@@ -33,9 +35,11 @@ describe('Extractors', function () {
         state: {
           Identification: {
             ApplicantBirthDate: {
-              day: null,
-              month: '1',
-              year: '2010'
+              Date: {
+                day: null,
+                month: '1',
+                year: '2010'
+              }
             }
           }
         },
@@ -44,7 +48,7 @@ describe('Extractors', function () {
     ]
 
     tests.forEach(test => {
-      expect(extractApplicantBirthDate(test.state)).toEqual(test.expected)
+      expect(extractApplicantBirthdate(test.state)).toEqual(test.expected)
     })
   })
 })

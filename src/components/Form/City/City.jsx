@@ -30,6 +30,7 @@ export default class City extends ValidationElement {
             minlength="2"
             maxlength="100"
             required={this.props.required}
+            disabled={this.props.disabled}
             className={klass}
             value={this.props.value}
             onUpdate={this.props.onUpdate}

@@ -128,6 +128,7 @@ export default class Person extends React.Component {
           <DateRange name="Dates"
                      className="known-dates"
                      {...this.props.Dates}
+                     applicantBirthdate={this.props.applicantBirthdate}
                      onUpdate={this.updateDates}
                      onError={this.props.onError}
                      required={this.props.required}
@@ -194,21 +195,21 @@ export default class Person extends React.Component {
               </div>
             </Checkbox>
             <Checkbox name="relationship-landlord"
-                      label={i18n.t(`relationships.people.person.label.relationship.landlord`)}
-                      value="Landlord"
+                      label={i18n.t(`relationships.people.person.label.relationship.workAssociate`)}
+                      value="WorkAssociate"
                       onError={this.props.onError}
                       onChange={this.updateRelationship}>
               <div className="relationship-icon landlord">
-                <Svg src="/img/landlord-icon.svg" />
+                <Svg src="/img/business-associate-icon.svg" />
               </div>
             </Checkbox>
             <Checkbox name="relationship-business"
-                      label={i18n.t(`relationships.people.person.label.relationship.business`)}
-                      value="Business"
+                      label={i18n.t(`relationships.people.person.label.relationship.schoolmate`)}
+                      value="Schoolmate"
                       onError={this.props.onError}
                       onChange={this.updateRelationship}>
               <div className="relationship-icon business">
-                <Svg src="/img/business-associate-icon.svg" />
+                <Svg src="/img/schoolmate.svg" />
               </div>
             </Checkbox>
             <Checkbox name="relationship-other"
@@ -310,6 +311,7 @@ Person.defaultProps = {
   Relationship: { values: [] },
   RankNotApplicable: { applicable: true },
   EmailNotApplicable: { applicable: true },
+  applicantBirthdate: {},
   addressBooks: {},
   addressBook: 'Reference',
   dispatch: (action) => {},

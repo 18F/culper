@@ -1,0 +1,2 @@
+<City>{{.props.city}}</City>
+<Country>{{.props.country}}</Country>

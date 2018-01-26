@@ -1,0 +1,3 @@
+<Month>{{.props.month}}</Month>
+<Day>{{.props.day}}</Day>
+<Year>{{.props.year}}</Year>

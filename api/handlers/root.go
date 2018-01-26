@@ -104,11 +104,6 @@ func RootHandler(w http.ResponseWriter, r *http.Request) {
 				Description: "two factor verification",
 				Verbs:       []string{"POST"},
 			},
-			endpoint{
-				Path:        "/2fa/:account/email",
-				Description: "two factor email",
-				Verbs:       []string{"POST"},
-			},
 		}
 		endpoints = append(endpoints, mfa...)
 
@@ -146,22 +141,6 @@ func RootHandler(w http.ResponseWriter, r *http.Request) {
 			},
 		}
 		endpoints = append(endpoints, saml...)
-	}
-
-	if cf.OAuthEnabled() {
-		oauth := []endpoint{
-			endpoint{
-				Path:        "/auth/:service",
-				Description: "oauth entrypoint",
-				Verbs:       []string{"GET"},
-			},
-			endpoint{
-				Path:        "/auth/:service/callback",
-				Description: "oauth callback",
-				Verbs:       []string{"GET"},
-			},
-		}
-		endpoints = append(endpoints, oauth...)
 	}
 
 	json.NewEncoder(w).Encode(struct {

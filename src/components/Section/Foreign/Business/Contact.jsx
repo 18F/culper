@@ -63,7 +63,6 @@ export default class Contact extends SubsectionElement {
         <Branch name="has_foreign_contact"
                 label={i18n.t('foreign.business.contact.heading.title')}
                 labelSize="h2"
-                help="foreign.business.contact.help.branch"
                 {...this.props.HasForeignContact}
                 warning={true}
                 onUpdate={this.updateHasForeignContact}
@@ -89,6 +88,7 @@ export default class Contact extends SubsectionElement {
                      scrollIntoView={this.props.scrollIntoView}>
             <ContactItem name="Item"
                          bind={true}
+                         applicantBirthdate={this.props.applicantBirthdate}
                          scrollIntoView={this.props.scrollIntoView}
                          required={this.props.required}
                          />
@@ -107,6 +107,7 @@ Contact.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'business/contact',
+  applicantBirthdate: {},
   addressBooks: {},
   dispatch: (action) => {},
   validator: (state, props) => {

@@ -88,6 +88,7 @@ export default class DrugUse extends ValidationElement {
           <DateControl name="FirstUse"
                        className="first-use"
                        {...this.props.FirstUse}
+                       applicantBirthdate={this.props.applicantBirthdate}
                        hideDay={true}
                        showEstimated={false}
                        onUpdate={this.updateFirstUse}
@@ -97,11 +98,12 @@ export default class DrugUse extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('substance.drugs.use.heading.recentUse')}
-          adjustFor="datecontrol"
-          scrollIntoView={this.props.scrollIntoView}>
+               adjustFor="datecontrol"
+               scrollIntoView={this.props.scrollIntoView}>
           <DateControl name="RecentUse"
                        className="recent-use"
                        {...this.props.RecentUse}
+                       applicantBirthdate={this.props.applicantBirthdate}
                        hideDay={true}
                        showEstimated={false}
                        onUpdate={this.updateRecentUse}
@@ -111,7 +113,7 @@ export default class DrugUse extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('substance.drugs.use.heading.natureOfUse')}
-          scrollIntoView={this.props.scrollIntoView}>
+               scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="NatureOfUse"
                     className="nature-of-use"
                     {...this.props.NatureOfUse}
@@ -155,7 +157,7 @@ export default class DrugUse extends ValidationElement {
         </Branch>
 
         <Field title={i18n.t('substance.drugs.use.heading.explanation')}
-          scrollIntoView={this.props.scrollIntoView}>
+               scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Explanation"
                     className="explanation"
                     {...this.props.Explanation}
@@ -173,5 +175,6 @@ DrugUse.defaultProps = {
   UseWhileEmployed: {},
   UseWhileClearance: {},
   UseWhileFuture: {},
+  applicantBirthdate: {},
   onError: (value, arr) => { return arr }
 }

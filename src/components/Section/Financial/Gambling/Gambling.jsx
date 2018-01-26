@@ -102,6 +102,7 @@ export default class Gambling extends SubsectionElement {
                           required={this.props.required}
                           scrollIntoView={this.props.scrollIntoView}
                           bind={true}
+                          applicantBirthdate={this.props.applicantBirthdate}
                           />
           </Accordion>
         </Show>
@@ -117,6 +118,7 @@ Gambling.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'financial',
   subsection: 'gambling',
+  applicantBirthdate: {},
   dispatch: () => {},
   validator: (state, props) => {
     return validate(schema('financial.gambling', props))

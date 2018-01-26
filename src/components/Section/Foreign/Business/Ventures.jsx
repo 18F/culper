@@ -58,7 +58,6 @@ export default class Ventures extends SubsectionElement {
                 label={i18n.t('foreign.business.ventures.heading.title')}
                 labelSize="h2"
                 adjustFor="p"
-                help="foreign.business.ventures.help.branch"
                 {...this.props.HasForeignVentures}
                 warning={true}
                 onUpdate={this.updateHasForeignVentures}
@@ -84,6 +83,7 @@ export default class Ventures extends SubsectionElement {
                      scrollIntoView={this.props.scrollIntoView}>
             <VenturesItem name="Item"
                           bind={true}
+                          applicantBirthdate={this.props.applicantBirthdate}
                           required={this.props.required}
                           scrollIntoView={this.props.scrollIntoView}
                           />
@@ -102,6 +102,7 @@ Ventures.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'business/ventures',
+  applicantBirthdate: {},
   addressBooks: {},
   dispatch: (action) => {},
   validator: (state, props) => {

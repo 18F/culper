@@ -77,7 +77,8 @@ export const identification = {
         nodates: 'NA',
         unknown: '*Provide your full name below*'
       },
-      append: 'Add another name'
+      append: 'Add another name',
+      appendTitle: 'Do you have additional names to enter?'
     },
     heading: {
       name: 'Provide other name used',
@@ -184,8 +185,8 @@ export const identification = {
       comments: 'Add optional comments'
     },
     para: {
-      email: '**At least one email address is required**, but providing additional email addresses may assist in the completion of your background investigation. Email addresses may be used as contact method, and identify subject in records.',
-      phoneNumber: 'Provide your phone numbers. **At least one number is required**, but providing additional numbers may assist in the completion of your background investigation.'
+      email: 'Providing email address may assist in the completion of your background investigation. Email addresses may be used as contact method, and identify subject in records.',
+      phoneNumber: 'Provide three contact numbers. **At least one number is required**. Additional numbers may assist in the completion of your background investigation.'
     },
     label: {
       email: 'Email address',

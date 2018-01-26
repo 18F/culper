@@ -1,12 +1,15 @@
-export const extractApplicantBirthDate = (app) => {
-  if (!app.Identification || !app.Identification.ApplicantBirthDate) {
+export const extractApplicantBirthdate = (app) => {
+  const section = (app.Identification || {}).ApplicantBirthDate || {}
+  if (!section.Date) {
     return null
   }
-  const bd = app.Identification.ApplicantBirthDate
-  if (!bd.day || !bd.month || !bd.year) {
+
+  const date = section.Date
+  if (!date.day || !date.month || !date.year) {
     return null
   }
-  return new Date(`${bd.month}/${bd.day}/${bd.year}`)
+
+  return new Date(`${date.month}/${date.day}/${date.year}`)
 }
 
 export const extractOtherNames = (app) => {

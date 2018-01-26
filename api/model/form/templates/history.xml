@@ -1,0 +1,4 @@
+{{tmpl "history-residence.xml" .History.Residence}}
+{{tmpl "history-employment.xml" .History.Employment}}
+{{tmpl "history-education.xml" .History.Education}}
+{{tmpl "history-federal.xml" .History.Federal}}

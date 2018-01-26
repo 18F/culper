@@ -6,6 +6,7 @@ import (
 
 	"github.com/18F/e-QIP-prototype/api/cf"
 	"github.com/18F/e-QIP-prototype/api/db"
+	"github.com/18F/e-QIP-prototype/api/jwt"
 	"github.com/18F/e-QIP-prototype/api/logmsg"
 	"github.com/18F/e-QIP-prototype/api/model"
 	"github.com/18F/e-QIP-prototype/api/model/form"
@@ -13,7 +14,7 @@ import (
 
 // BasicAuth processes a users request to login with a Username and Password
 func BasicAuth(w http.ResponseWriter, r *http.Request) {
-	log := logmsg.NewLogger()
+	log := logmsg.NewLoggerFromRequest(r)
 
 	if !cf.BasicEnabled() {
 		log.Warn(logmsg.BasicAuthAttemptDenied)
@@ -52,31 +53,32 @@ func BasicAuth(w http.ResponseWriter, r *http.Request) {
 	context := db.NewDB()
 	account.WithContext(context)
 	if err := account.Get(); err != nil {
-		log.WithError(err).Warn(logmsg.AccountUpdateError)
+		log.WithField("username", respBody.Username).WithError(err).Warn(logmsg.AccountUpdateError)
 		Error(w, r, err)
 		return
 	}
 
 	// Validate the user name and password combination
 	if err := account.BasicAuthentication(respBody.Password); err != nil {
-		log.WithError(err).Warn(logmsg.BasicAuthInvalid)
+		log.WithField("account", account.ID).WithError(err).Warn(logmsg.BasicAuthInvalid)
 		Error(w, r, err)
 		return
 	}
 
 	// Generate jwt token
-	signedToken, _, err := account.NewJwtToken(model.BasicAuthAudience)
+	signedToken, _, err := account.NewJwtToken(jwt.BasicAuthAudience)
 	if err != nil {
-		log.WithError(err).Warn(logmsg.JWTError)
+		log.WithField("account", account.ID).WithError(err).Warn(logmsg.JWTError)
 		Error(w, r, err)
 		return
 	}
 
 	// If we need to flush the storage first then do so now.
 	if cf.FlushStorage() {
-		log.Info(logmsg.PurgeAccountData)
+		log.WithField("account", account.ID).Info(logmsg.PurgeAccountData)
 		form.PurgeAccountStorage(context, account.ID)
 	}
 
+	log.WithField("account", account.ID).Info(logmsg.BasicAuthValid)
 	EncodeJSON(w, signedToken)
 }

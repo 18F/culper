@@ -127,6 +127,7 @@ export default class VoluntaryTreatment extends ValidationElement {
           <DateRange name="TreatmentDates"
                      className="treatment-dates"
                      {...this.props.TreatmentDates}
+                     applicantBirthdate={this.props.applicantBirthdate}
                      onUpdate={this.updateTreatmentDates}
                      onError={this.props.onError}
                      required={this.props.required}
@@ -165,6 +166,7 @@ export default class VoluntaryTreatment extends ValidationElement {
 VoluntaryTreatment.defaultProps = {
   TreatmentCompleted: {},
   addressBooks: {},
+  applicantBirthdate: {},
   dispatch: (action) => {},
   onError: (value, arr) => { return arr }
 }

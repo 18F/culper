@@ -1,0 +1,20 @@
+<Charges>
+  <Answer>{{branch .props.HasDisciplinary}}</Answer>
+  {{range $index, $item := .props.List.props.items}}
+  {{with $Item := $item.Item}}
+  <Charge ID="{{$index}}">
+    <Authority>{{textarea $Item.Court}}</Authority>
+    <DateCharged>
+      <Date Type="{{dateEstimated $Item.Date}}">{{date $Item.Date}}</Date>
+    </DateCharged>
+    <Description>{{textarea $Item.Offenses}}</Description>
+    <EntryComment></EntryComment>
+    <Name>{{text $Item.Name}}</Name>
+    <Outcome>{{textarea $Item.Outcome}}</Outcome>
+  </Charge>
+  {{end}}
+  {{end}}
+  <Comment></Comment>
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+  <SummaryComment></SummaryComment>
+</Charges>

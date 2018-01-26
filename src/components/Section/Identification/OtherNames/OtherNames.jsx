@@ -27,15 +27,13 @@ export default class OtherNames extends SubsectionElement {
   updateBranch (values) {
     this.update({
       HasOtherNames: values,
-      List: values.value === 'Yes' ? this.props.List : { items: [] }
+      List: values.value === 'Yes' ? this.props.List : { items: [], branch: {} }
     })
   }
 
   updateList (values) {
     this.update({
-      List: {
-        items: values.items
-      }
+      List: values
     })
   }
 
@@ -83,15 +81,18 @@ export default class OtherNames extends SubsectionElement {
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}
                      validator={OtherNameValidator}
                      summary={this.summary}
                      description={i18n.t('identification.othernames.collection.summary.title')}
+                     appendTitle={i18n.t('identification.othernames.collection.appendTitle')}
                      appendLabel={i18n.t('identification.othernames.collection.append')}>
-                     <OtherNameItem name="Item"
-                       required={this.props.required}
-                       scrollIntoView={this.props.scrollIntoView}
-                       bind={true}
-                     />
+            <OtherNameItem name="Item"
+                           required={this.props.required}
+                           scrollIntoView={this.props.scrollIntoView}
+                           applicantBirthdate={this.props.applicantBirthdate}
+                           bind={true}
+                           />
           </Accordion>
         </Show>
       </div>
@@ -100,14 +101,13 @@ export default class OtherNames extends SubsectionElement {
 }
 
 OtherNames.defaultProps = {
-  List: {
-    items: []
-  },
+  List: Accordion.defaulList,
   HasOtherNames: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'identification',
   subsection: 'othernames',
+  applicantBirthdate: {},
   dispatch: () => {},
   validator: (state, props) => {
     return validate(schema('identification.othernames', props))

@@ -3,6 +3,7 @@ package form
 import (
 	"crypto/sha256"
 	"encoding/json"
+	"html/template"
 
 	"github.com/18F/e-QIP-prototype/api/db"
 )
@@ -493,26 +494,8 @@ var (
 		},
 		sectionInformation{
 			name:       "Submission",
-			subsection: "AdditionalComments",
-			payload:    "submission.additionalcomments",
-			hashable:   false,
-		},
-		sectionInformation{
-			name:       "Submission",
-			subsection: "General",
-			payload:    "submission.general",
-			hashable:   false,
-		},
-		sectionInformation{
-			name:       "Submission",
-			subsection: "Medical",
-			payload:    "submission.medical",
-			hashable:   false,
-		},
-		sectionInformation{
-			name:       "Submission",
-			subsection: "Credit",
-			payload:    "submission.credit",
+			subsection: "Submit",
+			payload:    "submission.releases",
 			hashable:   false,
 		},
 	}
@@ -551,6 +534,17 @@ func Application(context *db.DatabaseContext, account int, hashable bool) []byte
 
 	js, _ := json.MarshalIndent(application, "", "  ")
 	return js
+}
+
+// Package an application for transmitting to cold storage
+func Package(context *db.DatabaseContext, account int, hashable bool) template.HTML {
+	jsonBytes := Application(context, account, hashable)
+	var js map[string]interface{}
+	if err := json.Unmarshal(jsonBytes, &js); err != nil {
+		// NOTE: Maybe do something else here.
+		return template.HTML("")
+	}
+	return defaultTemplate("application.xml", js)
 }
 
 // PurgeAccountStorage removes all data associated with an account

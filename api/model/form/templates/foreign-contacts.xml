@@ -1,0 +1,111 @@
+<ForeignContacts>
+  <Comment></Comment>
+  <ContactWithForeignNationalBoundByAffectionInfluenceObligation>
+    <Answer>{{branch .props.List.props.branch}}</Answer>
+  </ContactWithForeignNationalBoundByAffectionInfluenceObligation>
+
+  <Contacts>
+    {{range $index, $item := .props.List.props.items}}
+    {{with $Item := $item.Item}}
+    <Contact ID="{{$index}}">
+      {{if locationIsPostOffice $Item.Address}}
+      <APOFPO>
+        <Address>{{location $Item.Address}}</Address>
+        <AddressComment></AddressComment>
+      </APOFPO>
+      {{else}}
+      <Address>{{location $Item.Address}}</Address>
+      {{end}}
+
+      <Birth>
+        <Date Type="{{dateEstimated $Item.Birthdate}}" DoNotKnow="{{notApplicable $Item.BirthdateNotApplicable}}">
+          {{date $Item.Birthdate}}
+        </Date>
+        <Place DoNotKnow="{{notApplicable $Item.BirthplaceNotApplicable}}">
+          {{location $Item.Birthplace}}
+        </Place>
+      </Birth>
+
+      <Citizenships>
+        {{range $index, $country := $Item.Citizenship.props.value}}
+        <Citizenship ID="{{$index}}">
+          <Country>{{$country}}</Country>
+        </Citizenship>
+        {{end}}
+      </Citizenships>
+
+      <Contact>
+        <Frequency>{{text $Item.Frequency}}</Frequency>
+        <FrequencyTypeOtherExplanation>{{text $Item.FrequencyExplanation}}</FrequencyTypeOtherExplanation>
+
+        <Nature
+          Business="{{checkboxHas $Item.Relationship "Professional"}}"
+          Personal="{{checkboxHas $Item.Relationship "Personal"}}"
+          Obligation="{{checkboxHas $Item.Relationship "Obligation"}}"
+          Other="{{checkboxHas $Item.Relationship "Other"}}"
+          />
+
+        <NatureOtherExplanation>{{text $Item.RelationshipExplanation}}</NatureOtherExplanation>
+
+        <Type
+          InPerson="{{checkboxHas $Item.Methods "In person"}}"
+          Telephone="{{checkboxHas $Item.Methods "Telephone"}}"
+          ElectronicCorrespondence="{{checkboxHas $Item.Methods "Electronic"}}"
+          WrittenCorrespondence="{{checkboxHas $Item.Methods "Written"}}"
+          Other="{{checkboxHas $Item.Methods "Other"}}"
+          />
+
+        <TypeOtherExplanation>{{text $Item.MethodsExplanation}}</TypeOtherExplanation>
+      </Contact>
+
+      <DNKLegalNameExplanation>{{text $Item.NameExplanation}}</DNKLegalNameExplanation>
+
+      <DateRange>
+        <From>
+          {{date $Item.FirstContact}}
+        </From>
+        <To>
+          {{date $Item.LastContact}}
+        </To>
+      </DateRange>
+
+      <Employer>
+        <Address DoNotKnow="{{notApplicable $Item.EmployerAddressNotApplicable}}">
+          {{location $Item.EmployerAddress}}
+        </Address>
+
+        <Comment></Comment>
+        <Name DoNotKnow="{{notApplicable $Item.EmployerNotApplicable}}">{{text $Item.Employer}}</Name>
+      </Employer>
+
+      <EntryComment></EntryComment>
+
+      <ForeignAffiliation>
+        <Answer>{{branch $Item.HasAffiliation}}</Answer>
+        <AnswerComment></AnswerComment>
+        <Comment></Comment>
+        <Relationship>{{text $Item.Affiliations}}</Relationship>
+      </ForeignAffiliation>
+
+      <FullName>
+        <LegalName DoNotKnow="{{notApplicable $Item.NameNotApplicable}}">
+          {{name $Item.Name}}
+        </LegalName>
+      </FullName>
+
+      <OtherNamesUsed>
+        {{range $index, $othername := $Item.Aliases.props.items}}
+        <OtherName ID="{{$index}}">
+          <Name>
+            {{name $othername}}
+          </Name>
+        </OtherName>
+        {{end}}
+      </OtherNamesUsed>
+    </Contact>
+    {{end}}
+    {{end}}
+  </Contacts>
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+  <SummaryComment></SummaryComment>
+</ForeignContacts>

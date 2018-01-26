@@ -2,7 +2,7 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import { Branch, Field, DateControl, ValidationElement, Show, NotApplicable,
          Email, Telephone, Name, ForeignBornDocuments, SSN, MaidenName, DateRange,
-         Checkbox, Country, Location, BranchCollection } from '../../../Form'
+         Checkbox, Country, Location, BranchCollection, AccordionItem } from '../../../Form'
 
 export default class CivilUnion extends ValidationElement {
   constructor (props) {
@@ -202,6 +202,8 @@ export default class CivilUnion extends ValidationElement {
             <DateControl name="birthdate"
                          className="birthdate"
                          {...this.props.Birthdate}
+                         applicantBirthdate={this.props.applicantBirthdate}
+                         relationship="Other"
                          onUpdate={this.updateBirthdate}
                          onError={this.props.onError}
                          required={this.props.required}
@@ -224,6 +226,7 @@ export default class CivilUnion extends ValidationElement {
           <Show when={showForeignBornDocumentation}>
             <ForeignBornDocuments name="foreignBornDocument"
                                   {...this.props.ForeignBornDocument}
+                                  applicantBirthdate={this.props.applicantBirthdate}
                                   onUpdate={this.updateForeignBornDocument}
                                   onError={this.props.onError}
                                   required={this.props.required}
@@ -250,42 +253,45 @@ export default class CivilUnion extends ValidationElement {
                             onUpdate={this.updateOtherNames}
                             required={this.props.required}
                             scrollIntoView={this.props.scrollIntoView}>
+            <AccordionItem scrollIntoView={this.props.scrollIntoView}
+                           required={this.props.required}>
+              <Field title={i18n.t('relationships.civilUnion.othernames.heading.name')}
+                     optional={true}
+                     scrollIntoView={this.props.scrollIntoView}>
+                <Name name="Name"
+                      bind={true}
+                      onError={this.props.onError}
+                      required={this.props.required}
+                      scrollIntoView={this.props.scrollIntoView}
+                      />
+              </Field>
 
-            <Field title={i18n.t('relationships.civilUnion.othernames.heading.name')}
-                   optional={true}
-                   scrollIntoView={this.props.scrollIntoView}>
-              <Name name="Othername"
-                    bind={true}
-                    onError={this.props.onError}
-                    required={this.props.required}
-                    scrollIntoView={this.props.scrollIntoView}
-                    />
-            </Field>
+              <Field title={i18n.t('relationships.civilUnion.othernames.heading.maiden')}
+                     help="alias.maiden.help"
+                     adjustFor="buttons"
+                     shrink={true}
+                     scrollIntoView={this.props.scrollIntoView}>
+                <MaidenName name="MaidenName"
+                            bind={true}
+                            onError={this.props.onError}
+                            required={this.props.required}
+                            scrollIntoView={this.props.scrollIntoView}
+                            />
+              </Field>
 
-            <Field title={i18n.t('relationships.civilUnion.othernames.heading.maiden')}
-                   help="alias.maiden.help"
-                   adjustFor="buttons"
-                   shrink={true}
-                   scrollIntoView={this.props.scrollIntoView}>
-              <MaidenName name="MaidenName"
-                          bind={true}
-                          onError={this.props.onError}
-                          required={this.props.required}
-                          scrollIntoView={this.props.scrollIntoView}
-                          />
-            </Field>
-
-            <Field title={i18n.t('relationships.civilUnion.othernames.heading.used')}
-                   adjustFor="daterange"
-                   shrink={true}
-                   scrollIntoView={this.props.scrollIntoView}>
-              <DateRange name="DatesUsed"
-                         bind={true}
-                         className="datesused"
-                         onError={this.props.onError}
-                         required={this.props.required}
-                         />
-            </Field>
+              <Field title={i18n.t('relationships.civilUnion.othernames.heading.used')}
+                     adjustFor="daterange"
+                     shrink={true}
+                     scrollIntoView={this.props.scrollIntoView}>
+                <DateRange name="DatesUsed"
+                           applicantBirthdate={this.props.applicantBirthdate}
+                           bind={true}
+                           className="datesused"
+                           onError={this.props.onError}
+                           required={this.props.required}
+                           />
+              </Field>
+            </AccordionItem>
           </BranchCollection>
 
           <Field title={i18n.t('relationships.civilUnion.heading.citizenship')}
@@ -308,6 +314,7 @@ export default class CivilUnion extends ValidationElement {
             <DateControl name="enteredCivilUnion"
                          className="entered"
                          {...this.props.EnteredCivilUnion}
+                         applicantBirthdate={this.props.applicantBirthdate}
                          onUpdate={this.updateEnteredCivilUnion}
                          onError={this.props.onError}
                          required={this.props.required}
@@ -396,6 +403,8 @@ export default class CivilUnion extends ValidationElement {
                 <DateControl name="DateSeparated"
                              className="dateseparated"
                              {...this.props.DateSeparated}
+                             applicantBirthdate={this.props.applicantBirthdate}
+                             minDate={(this.props.EnteredCivilUnion || {}).date}
                              onUpdate={this.updateDateSeparated}
                              onError={this.props.onError}
                              required={this.props.required}
@@ -460,6 +469,7 @@ CivilUnion.defaultProps = {
   },
   Divorced: {},
   UseCurrentAddress: false,
+  applicantBirthdate: {},
   addressBooks: {},
   dispatch: (action) => {},
   onUpdate: (queue) => {},

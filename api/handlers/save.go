@@ -6,20 +6,23 @@ import (
 	"io/ioutil"
 	"net/http"
 
+	"github.com/18F/e-QIP-prototype/api/cf"
 	"github.com/18F/e-QIP-prototype/api/db"
+	"github.com/18F/e-QIP-prototype/api/jwt"
 	"github.com/18F/e-QIP-prototype/api/logmsg"
 	"github.com/18F/e-QIP-prototype/api/model"
 	"github.com/18F/e-QIP-prototype/api/model/form"
 )
 
 func AllSections(w http.ResponseWriter, r *http.Request) {
-	log := logmsg.NewLogger()
+	log := logmsg.NewLoggerFromRequest(r)
 	account := &model.Account{}
 	account.WithContext(db.NewDB())
 
 	// Valid token and audience while populating the audience ID
-	_, err := checkToken(r, account, targetAudience())
+	_, err := jwt.CheckToken(r, account.ValidJwtToken, cf.TargetAudiences()...)
 	if err != nil {
+		log.WithError(err).Warn(logmsg.InvalidJWT)
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
@@ -38,13 +41,14 @@ func AllSections(w http.ResponseWriter, r *http.Request) {
 }
 
 func Hash(w http.ResponseWriter, r *http.Request) {
-	log := logmsg.NewLogger()
+	log := logmsg.NewLoggerFromRequest(r)
 	account := &model.Account{}
 	account.WithContext(db.NewDB())
 
 	// Valid token and audience while populating the audience ID
-	_, err := checkToken(r, account, targetAudience())
+	_, err := jwt.CheckToken(r, account.ValidJwtToken, cf.TargetAudiences()...)
 	if err != nil {
+		log.WithError(err).Warn(logmsg.InvalidJWT)
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
@@ -64,13 +68,14 @@ func Hash(w http.ResponseWriter, r *http.Request) {
 }
 
 func Section(w http.ResponseWriter, r *http.Request) {
-	log := logmsg.NewLogger()
+	log := logmsg.NewLoggerFromRequest(r)
 	account := &model.Account{}
 	account.WithContext(db.NewDB())
 
 	// Valid token and audience while populating the audience ID
-	_, err := checkToken(r, account, targetAudience())
+	_, err := jwt.CheckToken(r, account.ValidJwtToken, cf.TargetAudiences()...)
 	if err != nil {
+		log.WithError(err).Warn(logmsg.InvalidJWT)
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
@@ -111,13 +116,14 @@ func Section(w http.ResponseWriter, r *http.Request) {
 }
 
 func Save(w http.ResponseWriter, r *http.Request) {
-	log := logmsg.NewLogger()
+	log := logmsg.NewLoggerFromRequest(r)
 	account := &model.Account{}
 	account.WithContext(db.NewDB())
 
 	// Valid token and audience while populating the audience ID
-	_, err := checkToken(r, account, targetAudience())
+	_, err := jwt.CheckToken(r, account.ValidJwtToken, cf.TargetAudiences()...)
 	if err != nil {
+		log.WithError(err).Warn(logmsg.InvalidJWT)
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
@@ -166,16 +172,16 @@ func Save(w http.ResponseWriter, r *http.Request) {
 }
 
 func SaveAttachment(w http.ResponseWriter, r *http.Request) {
-	log := logmsg.NewLogger()
+	log := logmsg.NewLoggerFromRequest(r)
 	log.Debug("Not implemented: /me/attachment")
 }
 
 func GetAttachment(w http.ResponseWriter, r *http.Request) {
-	log := logmsg.NewLogger()
+	log := logmsg.NewLoggerFromRequest(r)
 	log.Debug("Not implemented: /me/attachment/{id}")
 }
 
 func DeleteAttachment(w http.ResponseWriter, r *http.Request) {
-	log := logmsg.NewLogger()
+	log := logmsg.NewLoggerFromRequest(r)
 	log.Debug("Not implemented: /me/attachment/{id}/delete")
 }

@@ -1,0 +1,190 @@
+<EmploymentActivities>
+  <Employments>
+    {{range $index, $item := .props.List.props.items}}
+    {{with $Item := $item.Item}}
+    <Employment ID="{{$index}}">
+      <DateRange>{{daterange $Item.Dates}}</DateRange>
+      <Type>{{radio $Item.EmploymentActivity}}</Type>
+      <EmploymentTypeOtherExplanation>{{$Item.EmploymentActivity.props.otherExplanation}}</EmploymentTypeOtherExplanation>
+      <EmploymentCodeComment></EmploymentCodeComment>
+      <WorkHours>{{radio $Item.Status}}</WorkHours>
+
+      {{if locationIsPostOffice $Item.Address}}
+      <APOFPO>
+        <Address>{{location $Item.Address}}</Address>
+        <AddressComment></AddressComment>
+      </APOFPO>
+      {{end}}
+
+      {{if radio $Item.EmploymentActivity | ne "OtherFederal"}}
+      {{if radio $Item.EmploymentActivity | ne "StateGovernment"}}
+      {{if radio $Item.EmploymentActivity | ne "FederalContractor"}}
+      {{if radio $Item.EmploymentActivity | ne "NonGovernment"}}
+      {{if radio $Item.EmploymentActivity | ne "SelfEmployment"}}
+      {{if radio $Item.EmploymentActivity | ne "Unemployment"}}
+      {{if radio $Item.EmploymentActivity | ne "Other"}}
+      <MilitaryEmploymentComment></MilitaryEmploymentComment>
+      <MilitaryService>
+        <DutyStation>
+          <DutyLocation>{{text $Item.DutyStation}}</DutyLocation>
+          <Address>{{location $Item.Address}}</Address>
+          <Telephone>{{telephone $Item.Telephone}}</Telephone>
+        </DutyStation>
+        <Rank>{{text $Item.Title}}</Rank>
+      </MilitaryService>
+      {{end}}
+      {{end}}
+      {{end}}
+      {{end}}
+      {{end}}
+      {{end}}
+      {{end}}
+
+      {{if radio $Item.EmploymentActivity | ne "ActiveMilitaryDuty"}}
+      {{if radio $Item.EmploymentActivity | ne "NationalGuard"}}
+      {{if radio $Item.EmploymentActivity | ne "USPHS"}}
+      {{if radio $Item.EmploymentActivity | ne "SelfEmployment"}}
+      {{if radio $Item.EmploymentActivity | ne "Unemployment"}}
+      <CivilEmployment>
+        <Employer>{{text $Item.Employment}}</Employer>
+        <PositionTitle>{{text $Item.Title}}</PositionTitle>
+        <EmployersLocation>
+          <Address>{{location $Item.Address}}</Address>
+          <Telephone>{{telephone $Item.Telephone}}</Telephone>
+        </EmployersLocation>
+        <PreviousEmployments NotApplicable="{{if len $Item.Additional.props.items | eq 0}}True{{else}}False{{end}}">
+          {{range $eindex, $additional := $Item.Additional.props.items}}
+          {{with $Previous := $additional.Item}}
+          <PreviousEmployment ID="{{$eindex}}">
+            <DateRange>{{daterange $Previous.DatesEmployed}}</DateRange>
+            <PositionTitle>{{text $Previous.Position}}</PositionTitle>
+            <Supervisor>{{text $Previous.Supervisor}}</Supervisor>
+          </PreviousEmployment>
+          {{end}}
+          {{end}}
+        </PreviousEmployments>
+      </CivilEmployment>
+      {{end}}
+      {{end}}
+      {{end}}
+      {{end}}
+      {{end}}
+
+      {{if radio $Item.EmploymentActivity | eq "SelfEmployed"}}
+      <SelfEmployment>
+        <Occupation>{{text $Item.Title}}</Occupation>
+        <Business>
+          <Name>{{text $Item.Employment}}</Name>
+          <Address>{{location $Item.Address}}</Address>
+          <Telephone>{{telephone $Item.Telephone}}</Telephone>
+        </Business>
+      </SelfEmployment>
+      {{end}}
+
+      {{if radio $Item.EmploymentActivity | ne "ActiveMilitaryDuty"}}
+      {{if radio $Item.EmploymentActivity | ne "NationalGuard"}}
+      {{if radio $Item.EmploymentActivity | ne "USPHS"}}
+      <NonMilitaryEmploymentComment></NonMilitaryEmploymentComment>
+      {{end}}
+      {{end}}
+      {{end}}
+
+      <Dismissals>
+        <Answer>{{if len $Item.ReasonLeft.props.Reasons.props.items}}Yes{{else}}No{{end}}</Answer>
+        <AnswerComment></AnswerComment>
+        <Comment></Comment>
+        {{range $lindex, $left := $Item.ReasonLeft.props.Reasons.props.items}}
+        {{with $Dismissal := $left.Item}}
+        <Dismissal ID="{{$lindex}}">
+          <Date Type="{{dateEstimated $Dismissal.Date}}">{{monthYear $Dismissal.Date}}</Date>
+          <Reason></Reason>
+          <SeveranceType>{{radio $Dismissal.Reason}}</SeveranceType>
+          <SeveranceTypeComment>{{textarea $Dismissal.Text}}</SeveranceTypeComment>
+          <Comment></Comment>
+        </Dismissal>
+        {{end}}
+        {{end}}
+        <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+      </Dismissals>
+
+      <Incidents>
+        <Answer>{{if len $Item.Reprimand.props.items}}Yes{{else}}No{{end}}</Answer>
+        <AnswerComment></AnswerComment>
+        <Comment></Comment>
+        <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+        {{range $rindex, $reprimand := $Item.Reprimand.props.items}}
+        {{with $Reprimand := $reprimand.Item}}
+        <Incident ID="{{$rindex}}">
+          <Date Type="{{dateEstimated $Reprimand.Date}}">{{monthYear $Reprimand.Date}}</Date>
+          <Reason>{{textarea $Reprimand.Text}}</Reason>
+          <Comment></Comment>
+        </Incident>
+        {{end}}
+        {{end}}
+      </Incidents>
+
+      <JobLocation>
+        <Answer>{{branch $Item.PhysicalAddress.props.HasDifferentAddress}}</Answer>
+        <AnswerComment></AnswerComment>
+        {{if branch $Item.PhysicalAddress.props.HasDifferentAddress | eq "Yes"}}
+        <Address>{{location $Item.PhysicalAddress.props.Address}}</Address>
+        <Telephone>{{telephone $Item.PhysicalAddress.props.Telephone}}</Telephone>
+        {{else}}
+        <Address>{{location $Item.Address}}</Address>
+        <Telephone>{{telephone $Item.Telephone}}</Telephone>
+        {{end}}
+        <Comment></Comment>
+      </JobLocation>
+
+      <LeftJob>
+        <Comment>{{textarea $Item.ReasonLeft.props.Comments}}</Comment>
+        <Reason>{{textarea $Item.ReasonLeft.props.ReasonDescription}}</Reason>
+      </LeftJob>
+
+      {{with $supervisor := $Item.props.Supervisor.props}}
+      <Supervisor>
+        <Name>{{text $supervisor.SupervisorName}}</Name>
+        <Title>{{text $supervisor.Title}}</Title>
+        {{if locationIsPostOffice $supervisor.Address}}
+        <APOFPO>
+          <Address>{{location $supervisor.Address}}</Address>
+          <AddressComment></AddressComment>
+        </APOFPO>
+        {{else}}
+        <Address>{{location $supervisor.Address}}</Address>
+        {{end}}
+        <Comment></Comment>
+        <Email DoNotKnow="{{notApplicable $supervisor.EmailNotApplicable}}">{{email $supervisor.Email}}</Email>
+        <Telephone>{{telephone $supervisor.Telephone}}</Telephone>
+      </Supervisor>
+      {{end}}
+
+      <Verifier>
+        <LegalName>{{nameLastFirst $Item.ReferenceName}}</LegalName>
+        {{if locationIsPostOffice $Item.ReferenceAddress}}
+        <APOFPO>
+          <Address>{{location $Item.ReferenceAddress}}</Address>
+          <AddressComment></AddressComment>
+        </APOFPO>
+        {{else}}
+        <Address>{{location $Item.ReferenceAddress}}</Address>
+        {{end}}
+        <Telephone>{{telephone $Item.ReferencePhone}}</Telephone>
+        <Comment></Comment>
+        {{if radio $Item.EmploymentActivity | eq "Unemployment"}}
+        <UnemploymentComment></UnemploymentComment>
+        {{end}}
+      </Verifier>
+    </Employment>
+    {{end}}
+    {{end}}
+  </Employments>
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+  <SummaryComment></SummaryComment>
+</EmploymentActivities>
+<EmploymentRecord Version="1" Type="Pooled">
+  <DefaultComment></DefaultComment>
+  <Fired>
+    <Answer>{{branch .props.EmploymentRecord}}</Answer>
+  </Fired>
+</EmploymentRecord>

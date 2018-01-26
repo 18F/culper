@@ -181,8 +181,9 @@ export default class RealEstateInterest extends ValidationElement {
           <DateControl name="Acquired"
                        className="acquired"
                        {...this.props.Acquired}
+                       applicantBirthdate={this.props.applicantBirthdate}
                        label={i18n.t('foreign.activities.realestate.interest.label.acquired')}
-                       maxDate={null}
+                       noMaxDate={true}
                        onUpdate={this.updateAcquired}
                        onError={this.props.onError}
                        required={this.props.required}
@@ -216,6 +217,7 @@ export default class RealEstateInterest extends ValidationElement {
             <DateControl name="Sold"
                          className="sold"
                          {...this.props.Sold}
+                         applicantBirthdate={this.props.applicantBirthdate}
                          label={i18n.t('foreign.activities.realestate.interest.label.sold')}
                          onUpdate={this.updateSold}
                          onError={this.props.onError}
@@ -261,6 +263,7 @@ export default class RealEstateInterest extends ValidationElement {
 
 RealEstateInterest.defaultProps = {
   SoldNotApplicable: { applicable: true },
+  applicantBirthdate: {},
   prefix: 'activities.realestate.interest',
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }

@@ -58,7 +58,6 @@ export default class Conferences extends SubsectionElement {
                 label={i18n.t('foreign.business.conferences.heading.title')}
                 labelSize="h2"
                 adjustFor="p"
-                help="foreign.business.conferences.help.branch"
                 {...this.props.HasForeignConferences}
                 warning={true}
                 onUpdate={this.updateHasForeignConferences}
@@ -84,6 +83,7 @@ export default class Conferences extends SubsectionElement {
                      scrollIntoView={this.props.scrollIntoView}>
             <ConferencesItem name="Item"
                              bind={true}
+                             applicantBirthdate={this.props.applicantBirthdate}
                              required={this.props.required}
                              scrollIntoView={this.props.scrollIntoView}
                              />
@@ -102,6 +102,7 @@ Conferences.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'business/conferences',
+  applicantBirthdate: {},
   dispatch: () => {},
   validator: (state, props) => {
     return validate(schema('foreign.business.conferences', props))

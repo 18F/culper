@@ -60,8 +60,8 @@ export default class Hospitalization extends ValidationElement {
     return (
       <div className="hospitalization">
         <Field title={i18n.t(`psychological.hospitalization.heading.admission`)}
-          adjustFor="big-buttons"
-          scrollIntoView={this.props.scrollIntoView}>
+               adjustFor="big-buttons"
+               scrollIntoView={this.props.scrollIntoView}>
           <RadioGroup className="admission" name="admission" selectedValue={this.props.Admission} required={this.props.required} onError={this.props.onError}>
             <Radio
               className="voluntary-option"
@@ -85,7 +85,7 @@ export default class Hospitalization extends ValidationElement {
         </Field>
 
         <Field title={i18n.t(`psychological.hospitalization.heading.explanation`)}
-          scrollIntoView={this.props.scrollIntoView}>
+               scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Explanation"
                     className="explanation"
                     {...this.props.Explanation}
@@ -101,18 +101,18 @@ export default class Hospitalization extends ValidationElement {
                scrollIntoView={this.props.scrollIntoView}>
           <DateRange name="TreatmentDate"
                      {...this.props.TreatmentDate}
+                     applicantBirthdate={this.props.applicantBirthdate}
                      receiveProps={this.props.receiveProps}
                      onUpdate={this.updateTreatmentDate}
                      onError={this.props.onError}
                      required={this.props.required}
-                     minDate={this.props.ApplicantBirthDate}
-                     prefix="hospitalization"
+                     minDate={this.props.ApplicantBirthdate}
                      />
         </Field>
 
         <Field title={i18n.t(`psychological.hospitalization.heading.facility`)}
-          help="psychological.hospitalization.help.facility"
-          scrollIntoView={this.props.scrollIntoView}>
+               help="psychological.hospitalization.help.facility"
+               scrollIntoView={this.props.scrollIntoView}>
           <Text name="Facility"
                 className="facility"
                 {...this.props.Facility}
@@ -144,6 +144,7 @@ export default class Hospitalization extends ValidationElement {
 
 Hospitalization.defaultProps = {
   Admission: '',
+  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

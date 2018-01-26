@@ -40,15 +40,6 @@ export const CustomSummary = (validation, summary, more, item, index, initial, c
   )
 }
 
-export const ResidenceCaption = (props) => {
-  return (
-    <span>
-      <Svg src="/img/residence-house.svg" />
-      {i18n.t('history.residence.collection.caption')}
-    </span>
-  )
-}
-
 /**
  * Renders a formatted summary information for a residence row
  */
@@ -109,15 +100,6 @@ export const ResidenceCustomSummary = (item, index, initial, callback, toggle, o
     openText,
     remove,
     byline)
-}
-
-export const EmploymentCaption = (props) => {
-  return (
-    <span>
-      <Svg src="/img/employer-briefcase.svg" />
-      {i18n.t('history.employment.default.collection.caption')}
-    </span>
-  )
 }
 
 const employmentTitle = (activity, item, unk) => {
@@ -210,15 +192,6 @@ export const EmploymentCustomSummary = (item, index, initial, callback, toggle, 
     byline)
 }
 
-export const EducationCaption = (props) => {
-  return (
-    <span>
-      <Svg src="/img/school-cap.svg" />
-      {i18n.t('history.education.collection.caption')}
-    </span>
-  )
-}
-
 /**
  * Renders a formatted summary information for an education row
  */
@@ -299,9 +272,16 @@ export const InjectGaps = (list = [], start) => {
   // Let us just make sure we clear any previous gaps
   list = list.filter(item => !item.type || (item.type && item.type !== 'Gap'))
 
+  const hasDates = (item) => {
+    const dates = ((item || {}).Item || {}).Dates || {}
+    const from = dates.from || {}
+    const to = dates.to || {}
+    return from.date && to.date
+  }
+
   // Find all our "holes" for this type
   const ranges = list
-        .filter(item => { return item.Item && item.Item.Dates })
+        .filter(item => { return hasDates(item) })
         .map(item => {
           return {
             from: new Date(item.Item.Dates.from.date),

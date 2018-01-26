@@ -1,0 +1,6 @@
+{{tmpl "spouse-cohabitants.xml" .Relationships.Cohabitants}}
+{{tmpl "spouse-former.xml" .Relationships.Marital.props.DivorcedList}}
+{{tmpl "spouse-have-former.xml" .Relationships.Marital.props.DivorcedList}}
+{{tmpl "spouse-marital-status.xml" .Relationships.Marital.props.Status.props}}
+{{tmpl "spouse-present-marriage.xml" .Relationships.Marital}}
+<SummaryComment></SummaryComment>

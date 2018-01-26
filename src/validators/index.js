@@ -98,6 +98,7 @@ import LocationValidator from './location'
 import SignatureValidator from './signature'
 import { nameIsEmpty, validSSN } from './helpers'
 import OrderValidator, { CompetenceOrderValidator, ConsultationOrderValidator } from './order'
+import { hideReleases, hideHippa, formIsSigned, formIsLocked } from './releases'
 
 export default validate
 export {
@@ -266,5 +267,9 @@ export {
   ConsultationOrderValidator,
   hideDisciplinaryProcedures,
   hideExistingConditions,
-  hideSelectiveService
+  hideSelectiveService,
+  hideReleases,
+  hideHippa,
+  formIsSigned,
+  formIsLocked
 }

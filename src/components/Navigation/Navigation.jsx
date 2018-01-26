@@ -9,14 +9,29 @@ import { ToggleItem } from './ToggleItem'
 class Navigation extends React.Component {
   constructor (props) {
     super(props)
+
     this.state = {
       selected: navigation[0].name
     }
 
     this.onToggle = this.onToggle.bind(this)
+    this.location = null
+    this.uselocation = true
+  }
+
+  componentDidMount() {
+    this.unlisten = this.props.history().listen((location, action) => {
+      this.uselocation = true
+      this.location = location.pathname
+    })
+  }
+
+  componentDidUnmount () {
+    this.unlisten()
   }
 
   onToggle (item) {
+    this.uselocation = false
     this.setState({ selected: item.visible ? item.title : '' })
   }
 
@@ -60,6 +75,23 @@ class Navigation extends React.Component {
 
       const subUrl = `${url}/${subsection.url}`
       const subClass = this.getClassName(subUrl, pathname)
+
+      // If the section is locked then the navigation item is displayed but
+      // nothing else.
+      const locked = subsection.locked && subsection.locked(this.props.application)
+      if (locked) {
+        return (
+          <div key={subsection.name} className="subsection">
+            <a href="javascript:;;;" className={`${subClass} locked`}>
+              <span className="section-name">
+                {subsection.name}
+              </span>
+              <span className="mini eapp-status-icon-valid"></span>
+              <span className="mini eapp-status-icon-error"></span>
+            </a>
+          </div>
+        )
+      }
 
       // Collapsed state properties
       if (subsection.subsections) {
@@ -112,13 +144,35 @@ class Navigation extends React.Component {
       // Increment the section number
       sectionNum++
 
+      // If the section is locked then the navigation item is displayed but
+      // nothing else.
+      const locked = section.locked && section.locked(this.props.application)
+      if (locked) {
+        return (
+          <div key={section.name} className="section">
+            <span className="section-title">
+              <a href="javascript:;;;" className={`${sectionClass} locked`}>
+                <span className="section-number">{section.showNumber ? sectionNum : ''}</span>
+                <span className="section-name">
+                  {section.name}
+                </span>
+                <span className="eapp-status-icon-valid"></span>
+                <span className="eapp-status-icon-error"></span>
+              </a>
+            </span>
+          </div>
+        )
+      }
+
       // Collapsed state properties
       if (section.subsections) {
-        const visible = this.state.selected === section.name
+        const visible = this.uselocation
+              ? isActive(url, this.location || '')
+              : this.state.selected === section.name
         return (
           <ToggleItem title={section.name}
                       section={true}
-                      number={sectionNum}
+                      number={section.showNumber ? sectionNum : null}
                       className={sectionClass}
                       visible={visible}
                       onToggle={this.onToggle}>
@@ -131,7 +185,7 @@ class Navigation extends React.Component {
         <div key={section.name} className="section">
           <span className="section-title">
             <Link to={url} className={sectionClass}>
-              <span className="section-number">{section.showNumber && sectionNum}</span>
+              <span className="section-number">{section.showNumber ? sectionNum : ''}</span>
               <span className="section-name">
                 {section.name}
               </span>
@@ -152,6 +206,9 @@ class Navigation extends React.Component {
 }
 
 Navigation.defaultProps = {
+  history: () => {
+    return env.History()
+  },
   location: () => {
     return env.History().location
   }

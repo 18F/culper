@@ -61,6 +61,7 @@ bin
 /fonts/
 /img/
 /doc/
+/conf/ssl/
 TAGS
 *.cer
 *.crt

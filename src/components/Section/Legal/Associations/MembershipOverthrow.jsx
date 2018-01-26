@@ -79,13 +79,14 @@ export default class MembershipOverthrow extends SubsectionElement {
                      appendLabel={i18n.t('legal.associations.overthrow.collection.appendLabel')}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
-                     <MembershipOverthrowItem name="Item"
-                       bind={true}
-                       required={this.props.required}
-                       scrollIntoView={this.props.scrollIntoView}
-                       addressBooks={this.props.addressBooks}
-                       dispatch={this.props.dispatch}
-                     />
+            <MembershipOverthrowItem name="Item"
+                                     bind={true}
+                                     applicantBirthdate={this.props.applicantBirthdate}
+                                     required={this.props.required}
+                                     scrollIntoView={this.props.scrollIntoView}
+                                     addressBooks={this.props.addressBooks}
+                                     dispatch={this.props.dispatch}
+                                     />
           </Accordion>
         </Show>
       </div>
@@ -102,6 +103,7 @@ MembershipOverthrow.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'legal',
   subsection: 'associations/membership-overthrow',
+  applicantBirthdate: {},
   addressBooks: {},
   dispatch: (action) => {},
   validator: (state, props) => {

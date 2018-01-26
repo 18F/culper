@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { i18n } from '../../../config'
+import { extractApplicantBirthdate } from '../extractors'
 import SectionElement from '../SectionElement'
 import SectionComments from '../SectionComments'
 import { SectionViews, SectionView } from '../SectionView'
@@ -41,6 +42,7 @@ class Citizenship extends SectionElement {
             <Status name="status"
                     {...this.props.Status}
                     defaultState={false}
+                    applicantBirthdate={this.props.ApplicantBirthdate}
                     dispatch={this.props.dispatch}
                     onUpdate={this.handleUpdate.bind(this, 'Status')}
                     onError={this.handleError}
@@ -48,9 +50,10 @@ class Citizenship extends SectionElement {
                     scrollIntoView={false}
                     />
 
-            <hr/>
+            <hr className="section-divider"/>
             <Multiple name="multiple"
                       {...this.props.Multiple}
+                      applicantBirthdate={this.props.ApplicantBirthdate}
                       defaultState={false}
                       dispatch={this.props.dispatch}
                       onUpdate={this.handleUpdate.bind(this, 'Multiple')}
@@ -59,7 +62,7 @@ class Citizenship extends SectionElement {
                       scrollIntoView={false}
                       />
 
-            <hr/>
+            <hr className="section-divider"/>
             <Passports name="passports"
                        {...this.props.Passports}
                        defaultState={false}
@@ -69,7 +72,7 @@ class Citizenship extends SectionElement {
                        required={true}
                        scrollIntoView={false}
                        />
-            <hr />
+            <hr className="section-divider" />
             <SectionComments name="comments"
                              {...this.props.Comments}
                              title={i18n.t('citizenship.review.comments')}
@@ -88,6 +91,7 @@ class Citizenship extends SectionElement {
                        nextLabel={i18n.t('citizenship.destination.multiple')}>
             <Status name="status"
                     {...this.props.Status}
+                    applicantBirthdate={this.props.applicantBirthdate}
                     dispatch={this.props.dispatch}
                     onUpdate={this.handleUpdate.bind(this, 'Status')}
                     onError={this.handleError}
@@ -101,6 +105,7 @@ class Citizenship extends SectionElement {
                        nextLabel={i18n.t('citizenship.destination.passports')}>
             <Multiple name="multiple"
                       {...this.props.Multiple}
+                      applicantBirthdate={this.props.applicantBirthdate}
                       dispatch={this.props.dispatch}
                       onUpdate={this.handleUpdate.bind(this, 'Multiple')}
                       onError={this.handleError}
@@ -139,7 +144,8 @@ function mapStateToProps (state) {
     Passports: citizenship.Passports || {},
     Comments: citizenship.Comments || {},
     Errors: errors.citizenship || [],
-    Completed: completed.citizenship || []
+    Completed: completed.citizenship || [],
+    applicantBirthdate: extractApplicantBirthdate(app)
   }
 }
 
@@ -162,7 +168,7 @@ export class CitizenshipSections extends React.Component {
                 scrollIntoView={false}
                 />
 
-        <hr/>
+        <hr className="section-divider"/>
         <Multiple name="multiple"
                   {...this.props.Multiple}
                   defaultState={false}
@@ -172,7 +178,7 @@ export class CitizenshipSections extends React.Component {
                   scrollIntoView={false}
                   />
 
-        <hr/>
+        <hr className="section-divider"/>
         <Passports name="passports"
                    {...this.props.Passports}
                    defaultState={false}
@@ -181,7 +187,7 @@ export class CitizenshipSections extends React.Component {
                    required={true}
                    scrollIntoView={false}
                    />
-        <hr />
+        <hr className="section-divider" />
         <SectionComments name="comments"
                          {...this.props.Comments}
                          title={i18n.t('citizenship.review.comments')}

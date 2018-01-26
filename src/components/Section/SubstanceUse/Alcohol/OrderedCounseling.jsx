@@ -96,8 +96,8 @@ export default class OrderedCounseling extends ValidationElement {
     return (
       <div className="ordered-counseling">
         <Field title={i18n.t('substance.alcohol.orderedCounseling.heading.seekers')}
-          adjustFor="p"
-          scrollIntoView={this.props.scrollIntoView}>
+               adjustFor="p"
+               scrollIntoView={this.props.scrollIntoView}>
           {i18n.m('substance.alcohol.orderedCounseling.label.seekers')}
           <CheckboxGroup className="seekers"
                          onError={this.props.onError}
@@ -187,13 +187,14 @@ export default class OrderedCounseling extends ValidationElement {
               <DateRange name="CounselingDates"
                          className="counseling-dates"
                          {...this.props.CounselingDates}
+                         applicantBirthdate={this.props.applicantBirthdate}
                          onUpdate={this.updateCounselingDates}
                          onError={this.props.onError}
                          required={this.props.required}
                          />
             </Field>
             <Field title={i18n.t('substance.alcohol.orderedCounseling.heading.treatmentProviderName')}
-              scrollIntoView={this.props.scrollIntoView}>
+                   scrollIntoView={this.props.scrollIntoView}>
               <Text name="TreatmentProviderName"
                     className="treatment-provider-name"
                     {...this.props.TreatmentProviderName}
@@ -281,6 +282,7 @@ export default class OrderedCounseling extends ValidationElement {
 OrderedCounseling.defaultProps = {
   ActionTaken: {},
   CompletedTreatment: {},
+  applicantBirthdate: {},
   addressBooks: {},
   dispatch: (action) => {},
   onError: (value, arr) => { return arr }

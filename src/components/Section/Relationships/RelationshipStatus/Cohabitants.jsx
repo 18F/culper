@@ -6,6 +6,7 @@ import { CohabitantsValidator } from '../../../../validators'
 import { CohabitantValidator } from '../../../../validators/cohabitant'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion, Branch, Show } from '../../../Form'
+import { Summary, NameSummary, DateSummary } from '../../../Summary'
 import Cohabitant from './Cohabitant'
 
 export default class Cohabitants extends SubsectionElement {
@@ -39,18 +40,17 @@ export default class Cohabitants extends SubsectionElement {
   }
 
   summary (item, index) {
-    const itemType = i18n.t('relationships.cohabitant.collection.itemType')
     const o = (item || {}).Item || {}
-    const date = (o.CohabitationBegan || {}).date ? `${o.CohabitationBegan.month}/${o.CohabitationBegan.year}` : ''
-    const name = o.Name
-          ? `${o.Name.first || ''} ${o.Name.middle || ''} ${o.Name.last || ''}`.trim()
-          : date === '' ? i18n.m('relationships.relatives.collection.summary.unknown') : ''
-    return (
-      <span>
-        <span className="index">{itemType}:</span>
-        <span className="info"><strong>{name} {date}</strong></span>
-      </span>
-    )
+    const name = NameSummary(o.Name)
+    const dates = DateSummary(o.CohabitationBegan)
+
+    return Summary({
+      type: i18n.t('relationships.cohabitant.collection.itemType'),
+      index: index,
+      left: name,
+      right: dates,
+      placeholder: i18n.m('identification.othernames.collection.summary.unknown')
+    })
   }
 
   render () {
@@ -83,6 +83,7 @@ export default class Cohabitants extends SubsectionElement {
                      appendLabel={i18n.t('relationships.cohabitant.collection.appendLabel')}
                      scrollIntoView={this.props.scrollIntoView}>
             <Cohabitant name="Item"
+                        applicantBirthdate={this.props.applicantBirthdate}
                         spouse={this.props.spouse}
                         required={this.props.required}
                         scrollIntoView={this.props.scrollIntoView}
@@ -101,6 +102,7 @@ Cohabitants.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'relationships',
   subsection: 'status/cohabitant',
+  applicantBirthdate: {},
   dispatch: () => {},
   validator: (state, props) => {
     return validate(schema('relationships.status.cohabitant', props))

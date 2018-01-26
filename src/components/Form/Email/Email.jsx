@@ -69,7 +69,6 @@ export default class Email extends ValidationElement {
 }
 
 Email.defaultProps = {
-  // pattern: `^([A-z0-9_\.-]+)@([A-z0-9\.-]+)\.+([A-z\.]{2,6})$`,
   pattern: /^([A-z0-9_\.-]+)@([A-z0-9\.-]+)\.+([A-z\.]{2,63})$/,
   value: '',
   spellcheck: false,

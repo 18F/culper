@@ -95,7 +95,6 @@ export default class ContactItem extends ValidationElement {
                 />
         </Field>
         <Field title={i18n.t('foreign.business.contact.heading.location')}
-               help="foreign.business.contact.help.location"
                scrollIntoView={this.props.scrollIntoView}>
           <Location name="Location"
                     {...this.props.Location}
@@ -120,6 +119,7 @@ export default class ContactItem extends ValidationElement {
                scrollIntoView={this.props.scrollIntoView}>
           <DateControl name="Date"
                        {...this.props.Date}
+                       applicantBirthdate={this.props.applicantBirthdate}
                        onUpdate={this.updateDate}
                        onError={this.props.onError}
                        className="foreign-business-contact-date"
@@ -142,7 +142,6 @@ export default class ContactItem extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.business.contact.heading.establishment')}
-               help="foreign.business.contact.help.establishment"
                adjustFor="textarea"
                scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Establishment"
@@ -155,7 +154,6 @@ export default class ContactItem extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.business.contact.heading.representatives')}
-               help="foreign.business.contact.help.representatives"
                adjustFor="textarea"
                scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Representatives"
@@ -168,7 +166,6 @@ export default class ContactItem extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.business.contact.heading.purpose')}
-               help="foreign.business.contact.help.purpose"
                adjustFor="textarea"
                scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Purpose"
@@ -180,14 +177,14 @@ export default class ContactItem extends ValidationElement {
                     />
         </Field>
 
-        <SubsequentContacts
-          {...this.props.SubsequentContacts}
-          onUpdate={this.updateSubsequentContacts}
-          onError={this.props.onError}
-          name="SubsequentContacts"
-          required={this.props.required}
-          scrollIntoView={this.props.scrollIntoView}
-          />
+        <SubsequentContacts {...this.props.SubsequentContacts}
+                            applicantBirthdate={this.props.applicantBirthdate}
+                            onUpdate={this.updateSubsequentContacts}
+                            onError={this.props.onError}
+                            name="SubsequentContacts"
+                            required={this.props.required}
+                            scrollIntoView={this.props.scrollIntoView}
+                            />
       </div>
     )
   }
@@ -202,6 +199,7 @@ ContactItem.defaultProps = {
   Representatives: {},
   Purpose: {},
   SubsequentContacts: {},
+  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

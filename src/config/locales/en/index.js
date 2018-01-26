@@ -21,6 +21,7 @@ import { legal } from './legal'
 import { login } from './login'
 import { military } from './military'
 import { name } from './name'
+import { application } from './application'
 import { psychological } from './psychological'
 import { reference } from './reference'
 import { relationships } from './relationships'
@@ -31,7 +32,6 @@ import { scorecard } from './scorecard'
 import { section } from './section'
 import { signature } from './signature'
 import { spinner } from './spinner'
-import { submission } from './submission'
 import { substance } from './substance'
 import { suggestions } from './suggestions'
 import { telephone } from './telephone'
@@ -80,7 +80,7 @@ const en = {
   legal,
   substance,
   psychological,
-  submission,
+  application,
 
   // Misc
   countries,

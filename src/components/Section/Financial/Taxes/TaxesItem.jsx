@@ -2,6 +2,7 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import { ValidationElement, DateControl, Number, Field,
          Checkbox, Text, Textarea, NotApplicable, Currency } from '../../../Form'
+import { dateLimits } from '../../../../validators/datecontrol'
 import FailureType from './FailureType'
 
 export default class TaxesItem extends ValidationElement {
@@ -105,6 +106,7 @@ export default class TaxesItem extends ValidationElement {
   }
 
   render () {
+    const minYearFiled = dateLimits(null, this.props.applicantBirthdate)
     return (
       <div className="taxes-item">
         <Field title={i18n.t('financial.taxes.heading.failure')}
@@ -126,7 +128,8 @@ export default class TaxesItem extends ValidationElement {
                   {...this.props.Year}
                   className="taxes-year"
                   placeholder={i18n.t('financial.taxes.placeholder.year')}
-                  min="1000"
+                  prefix="date"
+                  min={minYearFiled.minDate.getFullYear()}
                   required={this.props.required}
                   onUpdate={this.updateYear}
                   onError={this.props.onError}
@@ -215,6 +218,7 @@ export default class TaxesItem extends ValidationElement {
                          onError={this.props.onError}>
             <DateControl name="Date"
                          {...this.props.Date}
+                         applicantBirthdate={this.props.applicantBirthdate}
                          className="taxes-date"
                          hideDay={true}
                          required={this.props.required}
@@ -252,6 +256,7 @@ TaxesItem.defaultProps = {
   DateNotApplicable: { applicable: true },
   Date: {},
   Description: {},
+  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   required: false

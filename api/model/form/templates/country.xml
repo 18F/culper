@@ -1,0 +1,3 @@
+{{range $index, $country := .props.value}}
+<Country>{{$country}}</Country>
+{{end}}

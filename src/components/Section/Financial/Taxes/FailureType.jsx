@@ -8,11 +8,11 @@ export default class FailureType extends ValidationElement {
     this.update = this.update.bind(this)
   }
 
-  update (event) {
+  update (values) {
     if (this.props.onUpdate) {
       this.props.onUpdate({
         name: this.props.name,
-        value: event.target.value
+        value: values.value
       })
     }
   }
@@ -26,19 +26,19 @@ export default class FailureType extends ValidationElement {
         <Radio label={i18n.t('financial.taxes.label.file')}
                value="File"
                className="failure-file"
-               onChange={this.update}
+               onUpdate={this.update}
                onError={this.props.onError}
                />
         <Radio label={i18n.t('financial.taxes.label.pay')}
                value="Pay"
                className="failure-pay"
-               onChange={this.update}
+               onUpdate={this.update}
                onError={this.props.onError}
                />
         <Radio label={i18n.t('financial.taxes.label.both')}
                value="Both"
                className="failure-both"
-               onChange={this.update}
+               onUpdate={this.update}
                onError={this.props.onError}
                />
       </RadioGroup>

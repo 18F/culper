@@ -1,0 +1,3 @@
+{{tmpl "personal-references.xml" .Relationships.People}}
+{{tmpl "relatives-and-associates.xml" .Relationships.Relatives}}
+{{tmpl "spouse.xml" .}}

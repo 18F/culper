@@ -1,0 +1,11 @@
+<IdentifyingInformation>
+  {{tmpl "identification-birth.xml" .Identification }}
+  {{tmpl "identification-eyecolor.xml" .Identification.Physical.props.EyeColor }}
+  {{tmpl "identification-name.xml" .Identification.ApplicantName }}
+  {{tmpl "identification-haircolor.xml" .Identification.Physical.props.HairColor }}
+  {{tmpl "identification-height.xml" .Identification.Physical.props.Height }}
+  {{tmpl "identification-othernames.xml" .Identification.OtherNames}}
+  {{tmpl "identification-ssn.xml" .Identification.ApplicantSSN}}
+  {{tmpl "identification-sex.xml" .Identification.Physical.props.Sex }}
+  {{tmpl "identification-weight.xml" .Identification.Physical.props.Weight}}
+</IdentifyingInformation>

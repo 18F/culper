@@ -11,7 +11,9 @@ describe('Selective service validation', function () {
         store: {
           Identification: {
             ApplicantBirthDate: {
-              date: null
+              Date: {
+                date: null
+              }
             }
           }
         },
@@ -21,7 +23,9 @@ describe('Selective service validation', function () {
         store: {
           Identification: {
             ApplicantBirthDate: {
-              date: new Date('Invalid date')
+              Date: {
+                date: new Date('Invalid date')
+              }
             }
           }
         },
@@ -31,7 +35,9 @@ describe('Selective service validation', function () {
         store: {
           Identification: {
             ApplicantBirthDate: {
-              date: new Date()
+              Date: {
+                date: new Date()
+              }
             }
           }
         },
@@ -41,7 +47,9 @@ describe('Selective service validation', function () {
         store: {
           Identification: {
             ApplicantBirthDate: {
-              date: new Date(1940, 1, 1)
+              Date: {
+                date: new Date(1940, 1, 1)
+              }
             }
           }
         },
@@ -51,7 +59,9 @@ describe('Selective service validation', function () {
         store: {
           Identification: {
             ApplicantBirthDate: {
-              date: new Date(1959, 11, 31)
+              Date: {
+                date: new Date(1959, 11, 31)
+              }
             }
           }
         },

@@ -58,64 +58,65 @@ export default class PoliticalItem extends ValidationElement {
     return (
       <div className="foreign-business-political-item">
         <Field title={i18n.t('foreign.business.political.heading.position')}
-          adjustFor="text"
-          scrollIntoView={this.props.scrollIntoView}>
+               adjustFor="text"
+               scrollIntoView={this.props.scrollIntoView}>
           <Text name="Position"
-            {...this.props.Position}
-            onUpdate={this.updatePosition}
-            onError={this.props.onError}
-            className="foreign-business-political-position"
-            required={this.props.required}
-          />
+                {...this.props.Position}
+                onUpdate={this.updatePosition}
+                onError={this.props.onError}
+                className="foreign-business-political-position"
+                required={this.props.required}
+                />
         </Field>
 
         <Field title={i18n.t('foreign.business.political.heading.dates')}
-          help="foreign.business.political.help.dates"
-          adjustFor="daterange"
-          scrollIntoView={this.props.scrollIntoView}>
+               help="foreign.business.political.help.dates"
+               adjustFor="daterange"
+               scrollIntoView={this.props.scrollIntoView}>
           <DateRange name="Dates"
-            {...this.props.Dates}
-            onUpdate={this.updateDates}
-            onError={this.props.onError}
-            className="foreign-business-political-dates"
-            required={this.props.required}
-          />
+                     {...this.props.Dates}
+                     applicantBirthdate={this.props.applicantBirthdate}
+                     onUpdate={this.updateDates}
+                     onError={this.props.onError}
+                     className="foreign-business-political-dates"
+                     required={this.props.required}
+                     />
         </Field>
 
         <Field title={i18n.t('foreign.business.political.heading.country')}
-          adjustFor="country"
-          scrollIntoView={this.props.scrollIntoView}>
+               adjustFor="country"
+               scrollIntoView={this.props.scrollIntoView}>
           <Country name="Country"
-            {...this.props.Country}
-            onUpdate={this.updateCountry}
-            onError={this.props.onError}
-            className="foreign-business-political-country"
-            required={this.props.required}
-          />
+                   {...this.props.Country}
+                   onUpdate={this.updateCountry}
+                   onError={this.props.onError}
+                   className="foreign-business-political-country"
+                   required={this.props.required}
+                   />
         </Field>
 
         <Field title={i18n.t('foreign.business.political.heading.reason')}
-          adjustFor="textarea"
-          scrollIntoView={this.props.scrollIntoView}>
+               adjustFor="textarea"
+               scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Reason"
-            {...this.props.Reason}
-            onUpdate={this.updateReason}
-            onError={this.props.onError}
-            className="foreign-business-political-reason"
-            required={this.props.required}
-          />
+                    {...this.props.Reason}
+                    onUpdate={this.updateReason}
+                    onError={this.props.onError}
+                    className="foreign-business-political-reason"
+                    required={this.props.required}
+                    />
         </Field>
 
         <Field title={i18n.t('foreign.business.political.heading.eligibility')}
-          adjustFor="text"
-          scrollIntoView={this.props.scrollIntoView}>
+               adjustFor="text"
+               scrollIntoView={this.props.scrollIntoView}>
           <Text name="Eligibility"
-            {...this.props.Eligibility}
-            onUpdate={this.updateEligibility}
-            onError={this.props.onError}
-            className="foreign-business-political-eligibility"
-            required={this.props.required}
-          />
+                {...this.props.Eligibility}
+                onUpdate={this.updateEligibility}
+                onError={this.props.onError}
+                className="foreign-business-political-eligibility"
+                required={this.props.required}
+                />
         </Field>
 
       </div>
@@ -124,6 +125,7 @@ export default class PoliticalItem extends ValidationElement {
 }
 
 PoliticalItem.defaultProps = {
+  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

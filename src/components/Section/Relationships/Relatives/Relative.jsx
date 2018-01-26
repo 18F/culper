@@ -7,6 +7,7 @@ import { ValidationElement, Branch, Show, Svg, BranchCollection,
        } from '../../../Form'
 import { RelativeValidator } from '../../../../validators'
 import { countryString } from '../../../../validators/location'
+import { today, daysAgo } from '../../History/dateranges'
 import Alias from './Alias'
 
 export default class Relative extends ValidationElement {
@@ -290,6 +291,7 @@ export default class Relative extends ValidationElement {
     })
   }
 
+
   render () {
     const validator = new RelativeValidator(this.props, null)
     const mother = (this.props.Relation || {}).value === 'Mother'
@@ -440,6 +442,8 @@ export default class Relative extends ValidationElement {
           <DateControl name="Birthdate"
                        className="relative-birthdate"
                        {...this.props.Birthdate}
+                       applicantBirthdate={this.props.applicantBirthdate}
+                       relationship={(this.props.Relation || {}).value}
                        onError={this.props.onError}
                        onUpdate={this.updateBirthdate}
                        required={this.props.required}
@@ -526,6 +530,7 @@ export default class Relative extends ValidationElement {
                 <Svg src="/img/date-down-arrow.svg" className="more arrow" />
               </Field>
               <Alias name="Item"
+                     applicantBirthdate={this.props.Birthdate}
                      onError={this.props.onError}
                      hideMaiden={mother}
                      required={this.props.required}
@@ -808,9 +813,11 @@ export default class Relative extends ValidationElement {
                   <DateControl name="Expiration"
                                className="relative-expiration"
                                {...this.props.Expiration}
+                               prefix="relative"
+                               applicantBirthdate={this.props.Birthdate}
                                onError={this.props.onError}
                                onUpdate={this.updateExpiration}
-                               maxDate={null}
+                               noMaxDate={true}
                                required={this.props.required}
                                />
                 </Field>
@@ -827,6 +834,8 @@ export default class Relative extends ValidationElement {
                   <DateControl name="FirstContact"
                                className="relative-first-contact"
                                {...this.props.FirstContact}
+                               prefix="relative"
+                               applicantBirthdate={this.props.Birthdate}
                                onError={this.props.onError}
                                onUpdate={this.updateFirstContact}
                                required={this.props.required}
@@ -841,6 +850,8 @@ export default class Relative extends ValidationElement {
                   <DateControl name="LastContact"
                                className="relative-last-contact"
                                {...this.props.LastContact}
+                               prefix="relative"
+                               applicantBirthdate={this.props.Birthdate}
                                onError={this.props.onError}
                                onUpdate={this.updateLastContact}
                                required={this.props.required}
@@ -992,7 +1003,8 @@ export default class Relative extends ValidationElement {
                              onUpdate={this.updateEmployerAddressNotApplicable}>
                 <Location name="EmployerAddress"
                           {...this.props.EmployerAddress}
-                          layout={Location.STREET_CITY}
+                          showPostOffice={false}
+                          layout={Location.ADDRESS}
                           className="relative-employer-address"
                           onError={this.props.onError}
                           onUpdate={this.updateEmployerAddress}
@@ -1068,6 +1080,7 @@ Relative.defaultProps = {
   EmployerAddress: {},
   HasAffiliation: '',
   EmployerRelationship: {},
+  applicantBirthdate: {},
   addressBooks: {},
   addressBook: 'Relative',
   dispatch: (action) => {},
