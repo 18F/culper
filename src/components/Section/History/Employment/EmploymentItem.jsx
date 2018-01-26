@@ -56,8 +56,13 @@ export default class EmploymentItem extends ValidationElement {
   }
 
   updateEmploymentActivity (values) {
+    const activity = (this.props.EmploymentActivity || {}).value
+    const zeroReference = activity && !['SelfEmployment', 'Unemployment'].includes(activity)
     this.update({
-      EmploymentActivity: values
+      EmploymentActivity: values,
+      ReferenceName: zeroReference ? {} : this.props.ReferenceName,
+      ReferencePhone: zeroReference ? {} : this.props.ReferencePhone,
+      ReferenceAddress: zeroReference ? {} : this.props.ReferenceAddress
     })
   }
 
@@ -368,13 +373,6 @@ export default class EmploymentItem extends ValidationElement {
                       onError={this.props.onError}
                       required={this.props.required}
                       />
-              </Field>
-
-              <Field title={i18n.t('reference.heading.correspondence')}
-                     titleSize="h2"
-                     optional={true}
-                     className="no-margin-bottom">
-                {i18n.m('reference.para.correspondence')}
               </Field>
 
               <Field title={i18n.t('reference.heading.phone.default')}

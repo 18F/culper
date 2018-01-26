@@ -99,12 +99,6 @@ export default class CivilUnion extends ValidationElement {
     })
   }
 
-  updateOtherNameNotApplicable (value) {
-    this.update({
-      OtherNameNotApplicable: value.applicable
-    })
-  }
-
   updateEnteredCivilUnion (values) {
     this.update({
       EnteredCivilUnion: values

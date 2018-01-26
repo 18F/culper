@@ -1,9 +1,9 @@
 package middleware
 
 import (
-	"log"
 	"net/http"
 
+	"github.com/18F/e-QIP-prototype/api/logmsg"
 	"github.com/gorilla/mux"
 )
 
@@ -71,10 +71,11 @@ func (m *Middleware) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 }
 
 func wrapper(f http.HandlerFunc, mf ...Handler) http.HandlerFunc {
+	log := logmsg.NewLogger()
 	return func(w http.ResponseWriter, r *http.Request) {
 		for _, h := range mf {
 			if err := h(w, r); err != nil {
-				log.Println(err)
+				log.WithError(err).Warn(logmsg.MiddlewareError)
 				return
 			}
 		}

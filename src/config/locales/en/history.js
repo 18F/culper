@@ -10,7 +10,7 @@ export const history = {
     title: 'Full section view',
     para: 'View all the sections associated with your history at once',
     button: 'Show me the full section',
-    comments: 'Would you like to add a comment about any of your responses relating to your history?'
+    comments: 'Add a comment to clarify any of your responses in the your history section'
   },
   timeline: {
     title: 'Let\'s cover your last 10 years',
@@ -123,7 +123,7 @@ export const history = {
   },
   employment: {
     summary: {
-      title: 'Where you have worked',
+      title: 'Employment activities',
       unit: 'Years covered'
     },
     gap: {

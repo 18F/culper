@@ -121,7 +121,7 @@ export default class DateControl extends ValidationElement {
       })
       updates = { month: '', day: '', year: '' }
     }
-    this.props.onError('', errors)
+    this.props.onError('', this.errors)
     updates = {
       disabled: nextProps.disabled,
       ...updates

@@ -215,7 +215,7 @@ func validateFields(entity *Location, props ...string) model.ErrorStack {
 			if country == "" {
 				stack.Append("Location", model.ErrFieldRequired{"Missing country"})
 			} else if !has(country, countries...) {
-				stack.Append("Location", model.ErrFieldInvalid{"Invalid state"})
+				stack.Append("Location", model.ErrFieldInvalid{"Invalid country"})
 			}
 		}
 	}
@@ -310,6 +310,7 @@ var (
 	}
 
 	countries = []string{
+		"POSTOFFICE",
 		"United States",
 		"Afghanistan",
 		"Akrotiri Sovereign Base Area",
@@ -525,6 +526,7 @@ var (
 		"South Africa",
 		"South Georgia and the South Sandwich Islands",
 		"South Korea",
+		"South Sudan",
 		"Spain",
 		"Spratly Islands",
 		"Sri Lanka",

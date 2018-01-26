@@ -214,6 +214,7 @@ export const countries = {
   southAfrica: 'South Africa',
   southGeorgiaAndTheSouthSandwichIslands: 'South Georgia and the South Sandwich Islands',
   southKorea: 'South Korea',
+  southSudan: 'South Sudan',
   spain: 'Spain',
   spratlyIslands: 'Spratly Islands',
   sriLanka: 'Sri Lanka',

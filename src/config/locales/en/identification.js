@@ -8,7 +8,7 @@ export const identification = {
   },
   review: {
     para: 'View all the sections associated with identification at once',
-    comments: 'Would you like to add a comment about any of your responses relating to information about you?'
+    comments: 'Add a comment to clarify any of your responses in the information about you section'
   },
   destination: {
     intro: 'Identification intro',

@@ -28,7 +28,7 @@ describe('Marital validation', function () {
             branch: { value: 'No' },
             items: [{
               Item: {
-                Status: 'Widowed',
+                Status: { value: 'Widowed' },
                 Name: {
                   first: 'Foo',
                   firstInitialOnly: false,
@@ -57,6 +57,9 @@ describe('Marital validation', function () {
                   county: 'Arlington',
                   state: 'VA',
                   layout: Location.BIRTHPLACE
+                },
+                Citizenship: {
+                  value: ['Germany']
                 },
                 Telephone: {
                   noNumber: '',
@@ -156,7 +159,7 @@ describe('Marital validation', function () {
       },
       {
         state: {
-          Status: 'InCivilUnion',
+          Status: { value: 'InCivilUnion' },
           DivorcedList: {
             branch: { value: '' },
             items: [{Item: {}}]
@@ -209,7 +212,7 @@ describe('Marital validation', function () {
             },
             Divorced: { value: 'Yes' },
             Separated: { value: 'No' },
-            OtherNameNotApplicable: false,
+            OtherNameNotApplicable: { applicable: false },
             OtherName: {
               first: 'Foo',
               firstInitialOnly: false,

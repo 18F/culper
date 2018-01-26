@@ -2,7 +2,6 @@ package form
 
 import (
 	"encoding/json"
-	"log"
 	"strings"
 
 	"github.com/18F/e-QIP-prototype/api/db"
@@ -83,6 +82,5 @@ func (entity *Text) GetID() int {
 
 // SetID sets the entity identifier.
 func (entity *Text) SetID(id int) {
-	log.Println("Setting text ID to", id)
 	entity.ID = id
 }
