@@ -66,12 +66,24 @@ func TestPackage(t *testing.T) {
 		{Schema: "foreign-business-sponsored-visits.xml", Data: readSectionData("testdata/foreign-business-sponsorship.json")},
 		{Schema: "foreign-business-political-office.xml", Data: readSectionData("testdata/foreign-business-political.json")},
 		{Schema: "foreign-business-voted.xml", Data: readSectionData("testdata/foreign-business-voting.json")},
+		{Schema: "substance.xml", Data: application},
+		{Schema: "substance-alcohol-additional.xml", Data: readSectionData("testdata/substance-alcohol-additional.json")},
+		{Schema: "substance-alcohol-negative.xml", Data: readSectionData("testdata/substance-alcohol-negative.json")},
+		{Schema: "substance-alcohol-ordered.xml", Data: readSectionData("testdata/substance-alcohol-ordered.json")},
+		{Schema: "substance-alcohol-voluntary.xml", Data: readSectionData("testdata/substance-alcohol-voluntary.json")},
+		{Schema: "substance-drug-clearance.xml", Data: readSectionData("testdata/substance-drug-clearance.json")},
+		{Schema: "substance-drug-misuse.xml", Data: readSectionData("testdata/substance-drug-misuse.json")},
+		{Schema: "substance-drug-ordered.xml", Data: readSectionData("testdata/substance-drug-ordered.json")},
+		{Schema: "substance-drug-publicsafety.xml", Data: readSectionData("testdata/substance-drug-publicsafety.json")},
+		{Schema: "substance-drug-purchase.xml", Data: readSectionData("testdata/substance-drug-purchase.json")},
+		{Schema: "substance-drug-usage.xml", Data: readSectionData("testdata/substance-drug-usage.json")},
+		{Schema: "substance-drug-voluntary.xml", Data: readSectionData("testdata/substance-drug-voluntary.json")},
 	}
 
 	for _, test := range tests {
 		tmpl := defaultTemplate(test.Schema, test.Data)
 		if tmpl == "" {
-			t.Fatalf("XML template should not be empty")
+			t.Fatalf("XML template (%s) should not be empty", test.Schema)
 		}
 		//fmt.Println(tmpl)
 
@@ -129,6 +141,19 @@ func applicationData() map[string]interface{} {
 			"Political":          readSectionData("testdata/foreign-business-political.json"),
 			"Voting":             readSectionData("testdata/foreign-business-voting.json"),
 			"Passport":           readSectionData("testdata/foreign-passport.json"),
+		},
+		"Substance": map[string]interface{}{
+			"ReceivedCounselings":  readSectionData("testdata/substance-alcohol-additional.json"),
+			"NegativeImpacts":      readSectionData("testdata/substance-alcohol-negative.json"),
+			"OrderedCounselings":   readSectionData("testdata/substance-alcohol-ordered.json"),
+			"VoluntaryCounselings": readSectionData("testdata/substance-alcohol-voluntary.json"),
+			"DrugClearanceUse":     readSectionData("testdata/substance-drug-clearance.json"),
+			"PrescriptionUses":     readSectionData("testdata/substance-drug-misuse.json"),
+			"OrderedTreatments":    readSectionData("testdata/substance-drug-ordered.json"),
+			"DrugPublicSafetyUses": readSectionData("testdata/substance-drug-publicsafety.json"),
+			"DrugInvolvements":     readSectionData("testdata/substance-drug-purchase.json"),
+			"DrugUses":             readSectionData("testdata/substance-drug-usage.json"),
+			"VoluntaryTreatments":  readSectionData("testdata/substance-drug-voluntary.json"),
 		},
 	}
 }
