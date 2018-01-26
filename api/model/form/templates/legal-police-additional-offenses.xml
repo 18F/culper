@@ -15,8 +15,8 @@
       <Charges>
         <Charge>
           <Charge>{{text $Item.CourtCharge}}</Charge>
-          <Date Type="{{dateEstimated $Item.ChargeDate}}">
-            {{monthYear $Item.ChargeDate}}
+          <Date Type="{{dateEstimated $Item.Date}}">
+            {{monthYear $Item.Date}}
           </Date>
           <Outcome>{{text $Item.CourtOutcome}}</Outcome>
           <Type>{{text $Item.ChargeType}}</Type>
@@ -55,7 +55,7 @@
         <DetailsComment></DetailsComment>
         <Imprisonment>
           <YearOrMore>
-            <DateRange NotApplicable="{{notApplicable $sentence.IncarcerationDateNA}}">
+            <DateRange NotApplicable="{{notApplicable $sentence.IncarcerationDatesNA}}">
               <From>
                 <Date Type="{{dateEstimated $sentence.IncarcerationDates.props.from}}">
                   {{monthYear $sentence.IncarcerationDates.props.from}}
@@ -83,13 +83,13 @@
         <Probation>
           <DateRange NotApplicable="{{notApplicable $sentence.ProbationDatesNA}}">
             <From>
-              <Date Type="{{dateEstimated $sentence.ProbationDatesNA.props.from}}">
-                {{monthYear $sentence.ProbationDatesNA.props.from}}
+              <Date Type="{{dateEstimated $sentence.ProbationDates.props.from}}">
+                {{monthYear $sentence.ProbationDates.props.from}}
               </Date>
             </From>
             <To>
-              <Date Type="{{dateEstimated $sentence.ProbationDatesNA.props.to}}">
-                {{monthYear $sentence.ProbationDatesNA.props.to}}
+              <Date Type="{{dateEstimated $sentence.ProbationDates.props.to}}">
+                {{monthYear $sentence.ProbationDates.props.to}}
               </Date>
             </Date>
           </To>

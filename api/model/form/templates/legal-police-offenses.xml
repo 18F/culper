@@ -3,11 +3,10 @@
   <Comment></Comment>
   <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
 
-  {{range $index, $item := .props.List.props.items}}
-  {{with $Item := $item.Item}}
   <Offenses>
+    {{range $index, $item := .props.List.props.items}}
+    {{with $Item := $item.Item}}
     <Offense ID="{{$index}}">
-
       <AppearedInCourt>
         <Answer>{{branch $Item.WasCharged}}</Answer>
         <AnswerComment></AnswerComment>
@@ -38,7 +37,7 @@
           <Description>{{text $sentence.Description}}</Description>
           <Imprisonment>
             <YearOrMore>
-              <DateRange NotApplicable="{{notApplicable $sentence.IncarcerationDateNA}}">
+              <DateRange NotApplicable="{{notApplicable $sentence.IncarcerationDatesNA}}">
                 <From>
                   <Date Type="{{dateEstimated $sentence.IncarcerationDates.props.from}}">
                     {{monthYear $sentence.IncarcerationDates.props.from}}
@@ -63,12 +62,12 @@
           <Probation>
             <DateRange NotApplicable="{{notApplicable $sentence.ProbationDatesNA}}">
               <From>
-                <Date Type="{{dateEstimated $sentence.ProbationDatesNA.props.from}}">
+                <Date Type="{{dateEstimated $sentence.ProbationDates.props.from}}">
                   {{monthYear $sentence.ProbationDatesNA.props.from}}
                 </Date>
               </From>
               <To>
-                <Date Type="{{dateEstimated $sentence.ProbationDatesNA.props.to}}">
+                <Date Type="{{dateEstimated $sentence.ProbationDates.props.to}}">
                   {{monthYear $sentence.ProbationDatesNA.props.to}}
                 </Date>
               </Date>
@@ -103,8 +102,9 @@
     </Date>
 
     <InvolveFollowingOffenses>
-      <Answer>No</Answer>
+      <Answer>{{branchAny $Item.InvolvedViolence $Item.InvolvedFirearms $Item.InvoledSubstances}}</Answer>
     </InvolveFollowingOffenses>
+
     <Location>
       <Place>
         {{location $Item.Address}}
@@ -123,9 +123,9 @@
       Alcohol="{{branchToBool $Item.InvoledSubstances}}"
       />
   </Offense>
+  {{end}}
+  {{end}}
 </Offenses>
-{{end}}
-{{end}}
 <SummaryComment></SummaryComment>
   </Past7Years>
 
