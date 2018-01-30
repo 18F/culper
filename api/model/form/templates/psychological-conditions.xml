@@ -1,22 +1,33 @@
 <AdverselyAffected>
   <Answer>{{branch .props.HasCondition}}</Answer>
-  <ReceivedTreatment>{{radio .props.ReceivedTreatment}}</ReceivedTreatment>
-  <Explanation>{{textarea .props.Explanation}}</Explanation>
-  <Treatments>
+  <AnswerComment></AnswerComment>
+  <Treatment>
+    <Answer>{{radio .props.ReceivedTreatment}}</Answer>
+    <AnswerComment></AnswerComment>
+    {{if radio .props.ReceivedTreatment | eq "No"}}
+    <DidNotReceiveTreatment>
+      <Comment></Comment>
+      <Explanation>{{textarea .props.Explanation}}</Explanation>
+    </DidNotReceiveTreatment>
+    {{end}}
     {{range $index, $item := .props.TreatmentList.props.items}}
     {{with $Item := $item.Item}}
-    <Treatment ID="{{$index}}">
+    <TreatmentOccurrence ID="{{$index}}">
       <Condition>{{radio $Item.Condition}}</Condition>
-      <Diagnosed>{{daterange $Item.Diagnosed}}</Diagnosed>
-      <Treatment>{{treatment $Item.Treatment}}</Treatment>
-      <Facility>{{treatment $Item.Facility}}</Facility>
-      <Effective>{{branch $Item.Effective}}</Effective>
-      <Explanation>{{textarea $Item.Explanation}}</Explanation>
-      <HaveAdditionalEntryAnswer>{{branch .props.TreatmentList.props.branch}}</HaveAdditionalEntryAnswer>
-    </Treatment>
+      <DateRange>{{daterange $Item.Diagnosed}}</DateRange>
+      <HealthCareProfessional>{{treatment $Item.Treatment}}</HealthCareProfessional>
+      <TreatmentFacility>{{treatment $Item.Facility}}</TreatmentFacility>
+      <Comment></Comment>
+    </TreatmentOccurrence>
+    <HaveAdditionalEntryAnswer>{{branch .props.TreatmentList.props.branch}}</HaveAdditionalEntryAnswer>
+    <SummaryComment></SummaryComment>
     {{end}}
     {{end}}
-  </Treatments>
-  <DidNotFollow>{{branch .props.DidNotFollow}}</DidNotFollow>
-  <DidNotFollowExplanation>{{textarea .props.DidNotFollowExplanation}}</DidNotFollowExplanation>
+  </Treatment>
+  <NotFollowedTreatment>
+    <Answer>{{branch .props.DidNotFollow}}</Answer>
+    <AnswerComment></AnswerComment>
+    <Explanation>{{textarea .props.DidNotFollowExplanation}}</Explanation>
+    <ExplanationComment></ExplanationComment>
+  </NotFollowedTreatment>
 </AdverselyAffected>
