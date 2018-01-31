@@ -98,6 +98,12 @@ func TestPackage(t *testing.T) {
 		{Schema: "legal-associations-engaged-in-terrorism.xml", Data: readSectionData("testdata/legal-associations-engaged-in-terrorism.json")},
 		{Schema: "legal-associations-terrorism-association.xml", Data: readSectionData("testdata/legal-associations-terrorism-association.json")},
 		{Schema: "legal-associations-membership-overthrow.xml", Data: readSectionData("testdata/legal-associations-membership-overthrow.json")},
+		{Schema: "psychological.xml", Data: application},
+		{Schema: "psychological-competence.xml", Data: readSectionData("testdata/psychological-competence.json")},
+		{Schema: "psychological-conditions.xml", Data: readSectionData("testdata/psychological-conditions.json")},
+		{Schema: "psychological-consultations.xml", Data: readSectionData("testdata/psychological-consultations.json")},
+		{Schema: "psychological-diagnoses.xml", Data: readSectionData("testdata/psychological-diagnoses.json")},
+		{Schema: "psychological-hospitalizations.xml", Data: readSectionData("testdata/psychological-hospitalizations.json")},
 	}
 
 	for _, test := range tests {
@@ -192,6 +198,13 @@ func applicationData() map[string]interface{} {
 			"EngagedInTerrorism":      readSectionData("testdata/legal-associations-engaged-in-terrorism.json"),
 			"TerrorismAssociation":    readSectionData("testdata/legal-associations-terrorism-association.json"),
 			"MembershipOverthrow":     readSectionData("testdata/legal-associations-membership-overthrow.json"),
+		},
+		"Psychological": map[string]interface{}{
+			"Competence":         readSectionData("testdata/psychological-competence.json"),
+			"ExistingConditions": readSectionData("testdata/psychological-conditions.json"),
+			"Consultations":      readSectionData("testdata/psychological-consultations.json"),
+			"Diagnoses":          readSectionData("testdata/psychological-diagnoses.json"),
+			"Hospitalizations":   readSectionData("testdata/psychological-hospitalizations.json"),
 		},
 	}
 }

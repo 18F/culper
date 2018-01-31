@@ -40,6 +40,7 @@ func defaultTemplate(templateName string, data map[string]interface{}) template.
 		"telephoneNoNumber":    telephoneNoNumber,
 		"text":                 text,
 		"textarea":             textarea,
+		"treatment":            treatment,
 		"tmpl":                 defaultTemplate,
 	}
 	return xmlTemplateWithFuncs(templateName, data, fmap)
@@ -391,4 +392,13 @@ func location(data map[string]interface{}) template.HTML {
 
 func countryValue(data map[string]interface{}) template.HTML {
 	return xmlTemplate("country.xml", data)
+}
+
+func treatment(data map[string]interface{}) template.HTML {
+	fmap := template.FuncMap{
+		"text":      text,
+		"telephone": telephone,
+		"location":  location,
+	}
+	return xmlTemplateWithFuncs("treatment.xml", data, fmap)
 }
