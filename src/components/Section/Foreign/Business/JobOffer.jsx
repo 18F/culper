@@ -121,7 +121,7 @@ export default class JobOffer extends ValidationElement {
         <Branch name="Accepted"
                 label={i18n.t('foreign.business.employment.heading.accepted')}
                 labelSize="h3"
-                className="employment-accepted"
+                className="employment-accepted no-margin-bottom"
                 {...this.props.Accepted}
                 onUpdate={this.updateAccepted}
                 onError={this.props.onError}

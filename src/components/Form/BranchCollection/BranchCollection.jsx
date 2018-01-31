@@ -123,6 +123,7 @@ export default class BranchCollection extends React.Component {
       <Branch name={props.name}
               label={props.label}
               labelSize={props.labelSize}
+              className={this.props.branchClassName}
               help={props.help}
               {...(props.value || {})}
               warning={props.warning}
@@ -291,7 +292,8 @@ BranchCollection.defaultProps = {
   onUpdate: () => {
     console.warn('onUpdate function not provided in BranchCollection. Please add one or your updates will not work')
   },
-  scrollToBottom: ''
+  scrollToBottom: '',
+  branchClassName: ''
 }
 
 BranchCollection.errors = []
