@@ -5,7 +5,7 @@
   {{with $Item := $item.Item}}
   <DiagnosedOccurrence ID="{{$index}}">
     <Diagnosis>{{radio $Item.Condition}}</Diagnosis>
-    <DateRange>{{daterange $Item.Diagnosed}}</DateRange>
+    {{daterange $Item.Diagnosed}}
     <HealthCareProfessional>{{treatment $Item.Treatment}}</HealthCareProfessional>
     <TreatmentFacility>{{treatment $Item.Facility}}</TreatmentFacility>
     <TreatmentEffective>
