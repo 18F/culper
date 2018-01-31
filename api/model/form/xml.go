@@ -111,37 +111,29 @@ func branchcollectionHas(data map[string]interface{}) string {
 		return "No"
 	}
 
-	list, ok := (props.(map[string]interface{}))["List"]
+	items, ok := (props.(map[string]interface{}))["items"].([]interface{})
 	if !ok {
 		return "No"
 	}
 
-	listProps, ok := (list.(map[string]interface{}))["props"]
-	if !ok {
+	if len(items) == 0 {
 		return "No"
 	}
 
-	listItems, ok := (listProps.(map[string]interface{}))["items"]
-	if !ok {
-		return "No"
+	for _, item := range items {
+		bi := item.(map[string]interface{})["Item"]
+		b, ok := (bi.(map[string]interface{}))["Has"]
+		if !ok {
+			return "No"
+		}
+
+		val := simpleValue(b.(map[string]interface{}))
+		if val == "Yes" {
+			return val
+		}
 	}
 
-	listItemsArray := listItems.([]map[string]interface{})
-	if len(listItemsArray) == 0 {
-		return "No"
-	}
-
-	firstItem, ok := (listItemsArray[0]["Item"])
-	if !ok {
-		return "No"
-	}
-
-	b, ok := (firstItem.(map[string]interface{}))["Has"]
-	if !ok {
-		return "No"
-	}
-
-	return simpleValue(b.(map[string]interface{}))
+	return "No"
 }
 
 func email(data map[string]interface{}) string {

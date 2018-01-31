@@ -3,7 +3,6 @@
   <ContactWithForeignNationalBoundByAffectionInfluenceObligation>
     <Answer>{{branch .props.List.props.branch}}</Answer>
   </ContactWithForeignNationalBoundByAffectionInfluenceObligation>
-
   <Contacts>
     {{range $index, $item := .props.List.props.items}}
     {{with $Item := $item.Item}}
@@ -16,7 +15,6 @@
       {{else}}
       <Address>{{location $Item.Address}}</Address>
       {{end}}
-
       <Birth>
         <Date Type="{{dateEstimated $Item.Birthdate}}" DoNotKnow="{{notApplicable $Item.BirthdateNotApplicable}}">
           {{date $Item.Birthdate}}
@@ -25,7 +23,6 @@
           {{location $Item.Birthplace}}
         </Place>
       </Birth>
-
       <Citizenships>
         {{range $index, $country := $Item.Citizenship.props.value}}
         <Citizenship ID="{{$index}}">
@@ -33,20 +30,16 @@
         </Citizenship>
         {{end}}
       </Citizenships>
-
       <Contact>
         <Frequency>{{text $Item.Frequency}}</Frequency>
         <FrequencyTypeOtherExplanation>{{text $Item.FrequencyExplanation}}</FrequencyTypeOtherExplanation>
-
         <Nature
           Business="{{checkboxHas $Item.Relationship "Professional"}}"
           Personal="{{checkboxHas $Item.Relationship "Personal"}}"
           Obligation="{{checkboxHas $Item.Relationship "Obligation"}}"
           Other="{{checkboxHas $Item.Relationship "Other"}}"
           />
-
         <NatureOtherExplanation>{{text $Item.RelationshipExplanation}}</NatureOtherExplanation>
-
         <Type
           InPerson="{{checkboxHas $Item.Methods "In person"}}"
           Telephone="{{checkboxHas $Item.Methods "Telephone"}}"
@@ -54,52 +47,49 @@
           WrittenCorrespondence="{{checkboxHas $Item.Methods "Written"}}"
           Other="{{checkboxHas $Item.Methods "Other"}}"
           />
-
         <TypeOtherExplanation>{{text $Item.MethodsExplanation}}</TypeOtherExplanation>
       </Contact>
-
       <DNKLegalNameExplanation>{{text $Item.NameExplanation}}</DNKLegalNameExplanation>
-
       <DateRange>
         <From>
-          {{date $Item.FirstContact}}
+          <Date Type="{{dateEstimated $Item.FirstContact}}">
+            {{monthYear $Item.FirstContact}}
+          </Date>
         </From>
         <To>
-          {{date $Item.LastContact}}
+          <Date Type="{{dateEstimated $Item.FirstContact}}">
+            {{monthYear $Item.LastContact}}
+          </Date>
         </To>
       </DateRange>
-
       <Employer>
         <Address DoNotKnow="{{notApplicable $Item.EmployerAddressNotApplicable}}">
           {{location $Item.EmployerAddress}}
         </Address>
-
         <Comment></Comment>
         <Name DoNotKnow="{{notApplicable $Item.EmployerNotApplicable}}">{{text $Item.Employer}}</Name>
       </Employer>
-
       <EntryComment></EntryComment>
-
       <ForeignAffiliation>
         <Answer>{{branch $Item.HasAffiliation}}</Answer>
         <AnswerComment></AnswerComment>
         <Comment></Comment>
         <Relationship>{{text $Item.Affiliations}}</Relationship>
       </ForeignAffiliation>
-
       <FullName>
         <LegalName DoNotKnow="{{notApplicable $Item.NameNotApplicable}}">
           {{name $Item.Name}}
         </LegalName>
       </FullName>
-
       <OtherNamesUsed>
-        {{range $index, $othername := $Item.Aliases.props.items}}
-        <OtherName ID="{{$index}}">
+        {{range $oindex, $othername := $Item.Aliases.props.items}}
+        {{with $Alias := $othername.Item}}
+        <OtherName ID="{{$oindex}}">
           <Name>
-            {{name $othername}}
+            {{name $Alias.Alias}}
           </Name>
         </OtherName>
+        {{end}}
         {{end}}
       </OtherNamesUsed>
     </Contact>

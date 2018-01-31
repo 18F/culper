@@ -3,7 +3,6 @@
   <Answer>{{branch .props.HasForeignPolitical}}</Answer>
   <Comment></Comment>
 </ForeignPoliticalOffice>
-
 <ForeignPoliticalOffices>
   {{range $index, $item := .props.List.props.items}}
   {{with $Item := $item.Item}}
@@ -11,9 +10,7 @@
     <Comment></Comment>
     {{country $Item.Country}}
     <CurrentEligibility>{{text $Item.Eligibility}}</CurrentEligibility>
-    <DateRange>
-      {{daterange $Item.Dates}}
-    </DateRange>
+    {{daterange $Item.Dates}}
     <Position>{{text $Item.Position}}</Position>
     <Reason>{{text $Item.Reason}}</Reason>
   </ForeignPoliticalOffice>

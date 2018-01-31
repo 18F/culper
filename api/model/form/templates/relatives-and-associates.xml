@@ -1,4 +1,21 @@
 <RelativesAndAssociates>
+  <!-- TODO -->
+  <!-- <ApplicableRelativeTypes Mother01="True" -->
+  <!--                          Father02="True" -->
+  <!--                          Stepmother03="True" -->
+  <!--                          Stepfather04="True" -->
+  <!--                          FosterParent05="True" -->
+  <!--                          Child06="True" -->
+  <!--                          Stepchild07="True" -->
+  <!--                          Brother08="True" -->
+  <!--                          Sister09="True" -->
+  <!--                          Stepbrother10="True" -->
+  <!--                          Stepsister11="True" -->
+  <!--                          HalfBrother12="True" -->
+  <!--                          HalfSister13="True" -->
+  <!--                          FatherInLaw14="True" -->
+  <!--                          MotherInLaw15="True" -->
+  <!--                          Guardian16="True" /> -->
   <ApplicableRelativeTypesComment></ApplicableRelativeTypesComment>
   <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
   <Relatives>
@@ -9,6 +26,8 @@
       <APOFPO>
         <Address>{{location $Item.Address}}</Address>
         <AddressComment></AddressComment>
+        <Answer></Answer>
+        <AnswerComment></AnswerComment>
       </APOFPO>
       {{else}}
       <Address>{{location $Item.Address}}</Address>
@@ -25,13 +44,14 @@
       <Citizenship>
         <ProofOfStatus>
           <Comment></Comment>
-          <Court>
-            <Address>
-              {{location $Item.CourtAddress}}
-            </Address>
-            <Name>{{text $Item.CourtName}}</Name>
-          </Court>
+          <DocumentExpiration Type="{{dateEstimated $Item.Expiration}}">{{date $Item.Explanation}}</DocumentExpiration>
           <DocumentNumber>{{text $Item.DocumentNumber}}</DocumentNumber>
+          <NaturalizedCertificate>
+            <Court>
+              <Address>{{location $Item.CourtAddress}}</Address>
+              <Name>{{text $Item.CourtName}}</Name>
+            </Court>
+          </NaturalizedCertificate>
           <Type>{{text $Item.Document}}</Type>
           <TypeOtherExplanation>{{text $Item.DocumentComments}}</TypeOtherExplanation>
         </ProofOfStatus>
@@ -39,7 +59,7 @@
       <CountriesOfCitizenship>
         <Citizenship>
           {{range $index, $country := $Item.Citizenship.value}}
-          <Country>{{ $country }}</Country>
+          <Country ID="{{$index}}">{{ $country }}</Country>
           {{end}}
         </Citizenship>
       </CountriesOfCitizenship>
@@ -66,10 +86,12 @@
         <FirstContactDate Type="{{dateEstimated $Item.FirstContact}}">
           {{monthYear $Item.FirstContact}}
         </FirstContactDate>
+        {{if branch $Item.HasAffiliation | eq "Yes"}}
         <ForeignAffiliation>
           <Comment></Comment>
-          <Relationship></Relationship>
+          <Relationship>{{textarea $Item.EmployerRelationship}}</Relationship>
         </ForeignAffiliation>
+        {{end}}
         <FrequencyOfContact>{{text $Item.Frequency}}</FrequencyOfContact>
         <FrequencyOfContactTypeOtherExplanation>{{text $Item.FrequencyComments}}</FrequencyOfContactTypeOtherExplanation>
         <LastContactDate Type="Estimated">
@@ -96,21 +118,24 @@
           </FullName>
         </MothersMaidenName>
         <OtherNamesUsed>
+          <Answer>{{branchcollectionHas $Item.Aliases}}</Answer>
           <AnswerComment></AnswerComment>
-          <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
-          {{range $index, $othername := $Item.Aliases.props.items}}
-          <OtherName ID="{{$index}}">
+          {{range $oindex, $othername := $Item.Aliases.props.items}}
+          {{with $Alias := $othername.Item}}
+          <OtherName ID="{{$oindex}}">
             <Comment></Comment>
-            {{ daterange $othername.Item.Dates }}
+            {{ daterange $Alias.Dates }}
             <LegalName>
-              {{ name $othername.Item.Name }}
+              {{ name $Alias.Name }}
             </LegalName>
             <Maiden>
-              <Answer>{{branch $othername.Item.MaidenName}}</Answer>
+              <Answer>{{branch $Alias.MaidenName}}</Answer>
             </Maiden>
-            <ReasonForChange>{{text $othername.Item.Reason}}</ReasonForChange>
+            <ReasonForChange>{{text $Alias.Reason}}</ReasonForChange>
           </OtherName>
           {{end}}
+          {{end}}
+          <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
           <SummaryComment></SummaryComment>
         </OtherNamesUsed>
         <Type>{{text $Item.Relation}}</Type>

@@ -13,15 +13,15 @@
     </AddressWhileInUS>
     <Birth>
       <Date Type="{{dateEstimated $Item.Birthdate}}" DoNotKnow="{{notApplicable $Item.BirthdateNotApplicable}}">
-        {{date $Item.Birthdate}}
+        {{monthYear $Item.Birthdate}}
       </Date>
       <Place>
         {{location $Item.Birthplace}}
       </Place>
     </Birth>
     <CountriesOfCitizenship>
-      {{range $index, $country := $Item.Citizenship.props.value}}
-      <Citizenship ID="{{$index}}">
+      {{range $cindex, $country := $Item.Citizenship.props.value}}
+      <Citizenship ID="{{$cindex}}">
         <Country>{{$country}}</Country>
       </Citizenship>
       {{end}}
@@ -31,9 +31,7 @@
         {{location $Item.Residence}}
       </Address>
     </CurrentAddress>
-    <DateRange>
-      {{daterange $Item.Dates}}
-    </DateRange>
+    {{daterange $Item.Dates}}
     <EntryComment></EntryComment>
     <Name>
       {{name $Item.Name}}
