@@ -39,10 +39,6 @@ export const push = (path, scrollTo = 'scrollTo') => {
 export const historyMiddleware = store => next => action => {
   // If we get a PUSH_STATE type, modify hisory
   if (action.type === PUSH_STATE) {
-    if (action.scrollTo) {
-      window.scroll(0, findPosition(document.getElementById(action.scrollTo)))
-      unstickAll()
-    }
     env.History().push(action.to)
   }
 
@@ -59,6 +55,9 @@ export const sectionMiddleware = store => next => action => {
 // Save the previous section's answers
 export const saveMiddleware = store => next => action => {
   if (action.type === SectionConstants.SECTION_UPDATE || action.type === SectionConstants.SUBSECTION_UPDATE) {
+    window.scroll(0, findPosition(document.getElementById(action.scrollTo || 'scrollTo')))
+    unstickAll()
+
     if (action.previous && action.previous.section && action.previous.application) {
       const section = action.previous.section
       const application = action.previous.application
