@@ -123,6 +123,7 @@ export default class BranchCollection extends React.Component {
       <Branch name={props.name}
               label={props.label}
               labelSize={props.labelSize}
+              className={props.className}
               help={props.help}
               {...(props.value || {})}
               warning={props.warning}
@@ -190,11 +191,13 @@ export default class BranchCollection extends React.Component {
 
     // When more than 1 item is in
     const top = (index, item, arr) => {
+      const className = ((item.Item || {})[this.props.valueKey] || {}).value === 'Yes' ? this.props.branchClassName : null
       if (index === 0) {
         return this.branch({
           name: this.props.branchName,
           label: this.props.label,
           labelSize: this.props.labelSize,
+          className: className,
           value: (item.Item || {})[this.props.valueKey],
           warning: true,
           help: this.props.help,
@@ -208,6 +211,7 @@ export default class BranchCollection extends React.Component {
         name: this.props.branchName,
         label: this.props.appendLabel,
         labelSize: this.props.appendSize,
+        className: className,
         help: this.props.help,
         value: (item.Item || {})[this.props.valueKey],
         warning: true,
@@ -291,7 +295,8 @@ BranchCollection.defaultProps = {
   onUpdate: () => {
     console.warn('onUpdate function not provided in BranchCollection. Please add one or your updates will not work')
   },
-  scrollToBottom: ''
+  scrollToBottom: '',
+  branchClassName: ''
 }
 
 BranchCollection.errors = []
