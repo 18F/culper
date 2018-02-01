@@ -15,6 +15,7 @@ export function handleSectionUpdate (section, subsection, previous = {}, scrollT
     type: SectionConstants.SECTION_UPDATE,
     section: section,
     subsection: subsection,
-    previous: previous
+    previous: previous,
+    scrollTo: scrollTo
   }
 }
