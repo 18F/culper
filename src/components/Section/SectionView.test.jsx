@@ -44,11 +44,15 @@ describe('The  SectionView component', () => {
     expect(component.find('.view').length).toBe(0)
   })
 
-  it('handles next button click', () => {
+  it('handles navigation to section', () => {
+    let props = {}
+    const update = (p) => {
+      props = p
+    }
     const store = mockStore({ authentication: { authenticated: true, twofactor: true } })
     const component = mount(
       <Provider store={store}>
-        <SectionViews current="foo" dispatch={store.dispatch}>
+        <SectionViews current="foo" dispatch={store.dispatch} update={update}>
           <SectionView name="foo" next="foo">
             <div>Foo</div>
           </SectionView>
@@ -56,6 +60,47 @@ describe('The  SectionView component', () => {
       </Provider>
     )
     component.find('button.next').simulate('click')
-    expect(store.getActions()[0].to).toEqual('/form/foo')
+    expect(props.section).toEqual('foo')
+    expect(props.subsection).toEqual('intro')
+  })
+
+  it('handles navigation to subsection', () => {
+    let props = {}
+    const update = (p) => {
+      props = p
+    }
+    const store = mockStore({ authentication: { authenticated: true, twofactor: true } })
+    const component = mount(
+      <Provider store={store}>
+        <SectionViews current="foo" dispatch={store.dispatch} update={update}>
+          <SectionView name="foo" next="foo/bar">
+            <div>Foo</div>
+          </SectionView>
+        </SectionViews>
+      </Provider>
+    )
+    component.find('button.next').simulate('click')
+    expect(props.section).toEqual('foo')
+    expect(props.subsection).toEqual('bar')
+  })
+
+  it('handles navigation to sub-subsection', () => {
+    let props = {}
+    const update = (p) => {
+      props = p
+    }
+    const store = mockStore({ authentication: { authenticated: true, twofactor: true } })
+    const component = mount(
+      <Provider store={store}>
+        <SectionViews current="foo" dispatch={store.dispatch} update={update}>
+          <SectionView name="foo" next="foo/bar/meh">
+            <div>Foo</div>
+          </SectionView>
+        </SectionViews>
+      </Provider>
+    )
+    component.find('button.next').simulate('click')
+    expect(props.section).toEqual('foo')
+    expect(props.subsection).toEqual('bar/meh')
   })
 })

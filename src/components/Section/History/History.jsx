@@ -325,7 +325,7 @@ class History extends SectionElement {
   render () {
     return (
       <div className="history">
-        <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
+        <SectionViews current={this.props.subsection} dispatch={this.props.dispatch} update={this.props.update}>
           <SectionView name="intro"
                        back="relationships/review"
                        backLabel={i18n.t('relationships.destination.review')}
