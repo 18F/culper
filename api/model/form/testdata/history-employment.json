@@ -1,6 +1,12 @@
 {
   "type": "history.employment",
   "props": {
+    "EmploymentRecord": {
+      "type": "branch",
+      "props": {
+        "value": "Yes"
+      }
+    },
     "List": {
       "type": "collection",
       "props": {
