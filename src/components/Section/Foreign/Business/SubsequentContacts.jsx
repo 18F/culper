@@ -8,17 +8,7 @@ export default class SubsequentContacts extends ValidationElement {
     this.updateList = this.updateList.bind(this)
   }
 
-  update (queue) {
-    this.props.onUpdate({
-      List: this.props.List,
-      ...queue
-    })
-  }
-
   updateList (values) {
-    //this.update({
-      //List: values
-    //})
     this.props.onUpdate({
       ...values
     })
