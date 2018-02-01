@@ -2,28 +2,25 @@
   <Answer>{{branch .props.HasInterests}}</Answer>
   <AnswerComment></AnswerComment>
   <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
-
   {{range $index, $item := .props.List.props.items}}
   {{with $Item := $item.Item}}
   <RealEstateHolding ID="{{$index}}">
     <Coowner>
       <SummaryComment></SummaryComment>
     </Coowner>
-
     <Coowners>
       <Answer>{{branchcollectionHas $Item.CoOwners.props.List}}</Answer>
       <AnswerComment></AnswerComment>
-
-      {{range $index, $coowner := $Item.CoOwners.props.List.props.items}}
+      {{range $cindex, $coowner := $Item.CoOwners.props.List.props.items}}
       {{with $Coowner := $coowner.Item}}
-      <Coowner ID="{{$index}}">
+      <Coowner ID="{{$cindex}}">
         <Address>
           {{location $Coowner.Address}}
         </Address>
         <Comment></Comment>
         <CountriesOfCitizenship>
-          {{range $index, $country := $Coowner.Countries.props.value}}
-          <Citizenship ID="{{$index}}">
+          {{range $ccindex, $country := $Coowner.Countries.props.value}}
+          <Citizenship ID="{{$ccindex}}">
             <Country>{{$country}}</Country>
           </Citizenship>
           {{end}}
@@ -35,17 +32,14 @@
       </Coowner>
       {{end}}
       {{end}}
-
       <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
     </Coowners>
-
     <Cost Estimated="{{$Item.CostEstimated.props.checked}}">{{text $Item.Cost}}</Cost>
     <DateAcquired Type="{{dateEstimated $Item.Acquired}}">
       {{date $Item.Acquired}}
     </DateAcquired>
     <EntryComment></EntryComment>
     <HowAcquired>{{text $Item.HowAcquired}}</HowAcquired>
-
     <Location>
       <Address>
         {{location $Item.Address}}
@@ -61,6 +55,5 @@
   </RealEstateHolding>
   {{end}}
   {{end}}
-
   <SummaryComment></SummaryComment>
 </RealEstateHoldings>

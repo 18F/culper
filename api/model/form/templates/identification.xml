@@ -8,4 +8,5 @@
   {{tmpl "identification-ssn.xml" .Identification.ApplicantSSN}}
   {{tmpl "identification-sex.xml" .Identification.Physical.props.Sex }}
   {{tmpl "identification-weight.xml" .Identification.Physical.props.Weight}}
+  <YourInfoComment></YourInfoComment>
 </IdentifyingInformation>

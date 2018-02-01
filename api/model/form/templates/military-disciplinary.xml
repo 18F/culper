@@ -5,7 +5,7 @@
   <Charge ID="{{$index}}">
     <Authority>{{textarea $Item.Court}}</Authority>
     <DateCharged>
-      <Date Type="{{dateEstimated $Item.Date}}">{{date $Item.Date}}</Date>
+      <Date Type="{{dateEstimated $Item.Date}}">{{monthYear $Item.Date}}</Date>
     </DateCharged>
     <Description>{{textarea $Item.Offenses}}</Description>
     <EntryComment></EntryComment>
