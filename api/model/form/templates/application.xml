@@ -23,5 +23,6 @@
     {{tmpl "foreign.xml" .}}
     {{tmpl "substance.xml" .}}
     {{tmpl "legal.xml" .}}
+    {{tmpl "psychological.xml" .}}
   </Pooled>
 </Responses>

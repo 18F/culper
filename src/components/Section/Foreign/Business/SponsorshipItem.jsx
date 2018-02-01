@@ -199,6 +199,7 @@ export default class SponsorshipItem extends ValidationElement {
                     onError={this.props.onError}
                     className="foreign-business-sponsorship-address"
                     layout={Location.ADDRESS}
+                    geocode={true}
                     addressBooks={this.props.addressBooks}
                     addressBook="ForeignNational"
                     dispatch={this.props.dispatch}
