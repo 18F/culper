@@ -57,7 +57,7 @@ export default class EducationItem extends ValidationElement {
   }
 
   updateDates (values) {
-    const dates = this.props.Dates || {}
+    const dates = values || {}
     const from = dates.from
     const to = dates.to
     const zeroReference = !withinThreeYears(from, to)
