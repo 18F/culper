@@ -101,7 +101,7 @@ export const relationships = {
         halfbrother: 'Half-brother',
         halfsister: 'Half-sister',
         fatherinlaw: 'Father-in-law',
-        montherinlaw: 'Mother-in-law',
+        motherinlaw: 'Mother-in-law',
         guardian: 'Guardian'
       },
       abroad: {

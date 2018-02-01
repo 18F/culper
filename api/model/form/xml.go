@@ -28,6 +28,7 @@ func defaultTemplate(templateName string, data map[string]interface{}) template.
 		"dateEstimated":        dateEstimated,
 		"daterange":            daterange,
 		"email":                email,
+		"hasRelativeType":      hasRelativeType,
 		"location":             location,
 		"locationIsPostOffice": locationIsPostOffice,
 		"monthYear":            monthYear,
@@ -180,6 +181,37 @@ func checkboxHas(data map[string]interface{}, target string) string {
 			}
 		}
 	}
+	return "False"
+}
+
+func hasRelativeType(data map[string]interface{}, target string) string {
+	props, ok := data["props"]
+	if !ok {
+		return "False"
+	}
+
+	items, ok := (props.(map[string]interface{}))["items"].([]interface{})
+	if !ok {
+		return "False"
+	}
+
+	if len(items) == 0 {
+		return "False"
+	}
+
+	for _, item := range items {
+		ci := item.(map[string]interface{})["Item"]
+		relation, ok := (ci.(map[string]interface{}))["Relation"]
+		if !ok {
+			return "False"
+		}
+
+		val := simpleValue(relation.(map[string]interface{}))
+		if val == target {
+			return "True"
+		}
+	}
+
 	return "False"
 }
 

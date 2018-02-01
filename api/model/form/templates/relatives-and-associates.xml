@@ -1,21 +1,20 @@
 <RelativesAndAssociates>
-  <!-- TODO -->
-  <!-- <ApplicableRelativeTypes Mother01="True" -->
-  <!--                          Father02="True" -->
-  <!--                          Stepmother03="True" -->
-  <!--                          Stepfather04="True" -->
-  <!--                          FosterParent05="True" -->
-  <!--                          Child06="True" -->
-  <!--                          Stepchild07="True" -->
-  <!--                          Brother08="True" -->
-  <!--                          Sister09="True" -->
-  <!--                          Stepbrother10="True" -->
-  <!--                          Stepsister11="True" -->
-  <!--                          HalfBrother12="True" -->
-  <!--                          HalfSister13="True" -->
-  <!--                          FatherInLaw14="True" -->
-  <!--                          MotherInLaw15="True" -->
-  <!--                          Guardian16="True" /> -->
+  <ApplicableRelativeTypes Mother01="{{hasRelativeType .props.List "Mother"}}"
+                           Father02="{{hasRelativeType .props.List "Father"}}"
+                           Stepmother03="{{hasRelativeType .props.List "Stepmother"}}"
+                           Stepfather04="{{hasRelativeType .props.List "Stepfather"}}"
+                           FosterParent05="{{hasRelativeType .props.List "Fosterparent"}}"
+                           Child06="{{hasRelativeType .props.List "Child"}}"
+                           Stepchild07="{{hasRelativeType .props.List "Stepchild"}}"
+                           Brother08="{{hasRelativeType .props.List "Brother"}}"
+                           Sister09="{{hasRelativeType .props.List "Sister"}}"
+                           Stepbrother10="{{hasRelativeType .props.List "Stepbrother"}}"
+                           Stepsister11="{{hasRelativeType .props.List "Stepsister"}}"
+                           HalfBrother12="{{hasRelativeType .props.List "Half-brother"}}"
+                           HalfSister13="{{hasRelativeType .props.List "Half-sister"}}"
+                           FatherInLaw14="{{hasRelativeType .props.List "Father-in-law"}}"
+                           MotherInLaw15="{{hasRelativeType .props.List "Mother-in-law"}}"
+                           Guardian16="{{hasRelativeType .props.List "Guardian"}}" />
   <ApplicableRelativeTypesComment></ApplicableRelativeTypesComment>
   <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
   <Relatives>
