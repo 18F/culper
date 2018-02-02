@@ -35,7 +35,7 @@
   </Service>
   {{end}}
   {{end}}
-  <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+  <HaveAdditionalEntryAnswer>{{branch .props.Items.props.branch}}</HaveAdditionalEntryAnswer>
   <Comment></Comment>
   <SummaryComment></SummaryComment>
 </ForeignMilitaryService>

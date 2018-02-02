@@ -1,5 +1,6 @@
 <IllegalUse>
   <Answer>{{branch .props.HasUnlawful}}</Answer>
+  <Comment></Comment>
   <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
   <Incidents>
     {{range $index, $item := .props.List.props.items}}

@@ -6,12 +6,12 @@
       {{if locationIsPostOffice $Item.Address}}
       <APOFPO>
         <Address>{{location $Item.Address}}</Address>
-        <AddressComment></AddressComment>
+        <AddressComment>{{textarea $Item.Comments}}</AddressComment>
       </APOFPO>
       {{else}}
       <Address>{{location $Item.Address}}</Address>
       {{end}}
-      <DateRange>{{daterange $Item.Dates}}</DateRange>
+      {{daterange $Item.Dates}}
       <DetailComment></DetailComment>
       <ResidenceType>{{radio $Item.Role}}</ResidenceType>
       <StatusOtherExplanation>{{text $Item.RoleOther}}</StatusOtherExplanation>
@@ -19,26 +19,25 @@
         {{if locationIsPostOffice $Item.ReferenceAddress}}
         <APOFPO>
           <Address>{{location $Item.ReferenceAddress}}</Address>
-          <AddressComment></AddressComment>
+          <AddressComment>{{textarea $Item.Comments}}</AddressComment>
         </APOFPO>
         {{else}}
         <Address>{{location $Item.ReferenceAddress}}</Address>
         {{end}}
+        <Comment>{{textarea $Item.ReferenceComments}}</Comment>
         <Email DoNotKnow="{{notApplicable $Item.ReferenceEmailNotApplicable}}">{{email $Item.ReferenceEmail}}</Email>
         <LastContact>
           <Date Type="{{dateEstimated $Item.ReferenceLastContact}}">{{monthYear $Item.ReferenceLastContact}}</Date>
         </LastContact>
         <LegalName>{{name $Item.ReferenceFullName}}</LegalName>
-        <RelationshipTypes Neighbor="{{checkboxHas $Item.ReferenceRelationship "Neighbor"}}" Friend="{{checkboxHas $Item.ReferenceRelationship "Friend"}}" Schoolmate="{{checkboxHas $Item.ReferenceRelationship "Schoolmate"}}" WorkAssociate="{{checkboxHas $Item.ReferenceRelationship "WorkAssociate"}}" Other="{{checkboxHas $Item.ReferenceRelationship "Other"}}" />
         <RelationshipOtherExplanation>{{text $Item.ReferenceRelationshipOther}}</RelationshipOtherExplanation>
-        <Comments>{{textarea $Item.ReferenceComments}}</Comments>
+        <RelationshipTypes Neighbor="{{checkboxHas $Item.ReferenceRelationship "Neighbor"}}" Friend="{{checkboxHas $Item.ReferenceRelationship "Friend"}}" Schoolmate="{{checkboxHas $Item.ReferenceRelationship "Schoolmate"}}" WorkAssociate="{{checkboxHas $Item.ReferenceRelationship "WorkAssociate"}}" Other="{{checkboxHas $Item.ReferenceRelationship "Other"}}" />
         <Telephone>
           <Day DoNotKnow="{{telephoneNoNumber $Item.ReferencePhoneDay}}">{{telephone $Item.ReferencePhoneDay}}</Day>
           <Evening DoNotKnow="{{telephoneNoNumber $Item.ReferencePhoneEvening}}">{{telephone $Item.ReferencePhoneEvening}}</Evening>
           <Mobile DoNotKnow="{{telephoneNoNumber $Item.ReferencePhoneMobile}}">{{telephone $Item.ReferencePhoneMobile}}</Mobile>
         </Telephone>
       </Verifier>
-      <Comments>{{textarea $Item.Comments}}</Comments>
     </Residency>
     {{end}}
     {{end}}

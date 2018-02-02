@@ -4,6 +4,7 @@ import { historyEmployment } from './history-employment'
 describe('Schema for financial taxes', () => {
   it('can wrap in schema', () => {
     const data = {
+      EmploymentRecord: {},
       List: {
         branch: { value: 'No' },
         items: [{

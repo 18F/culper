@@ -4,16 +4,13 @@
   <Comment></Comment>
   <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
 </OtherForeignEmployment>
-
 <OtherForeignEmployments>
   {{range $index, $item := .props.List.props.items}}
   {{with $Item := $item.Item}}
   <OtherForeignEmployment ID="{{$index}}">
     <Comment></Comment>
     <CompensationDescription>{{text $Item.Compensation}}</CompensationDescription>
-    <DateRange>
-      {{daterange $Item.Dates}}
-    </DateRange>
+    {{daterange $Item.Dates}}
     <Description>{{text $Item.Description}}</Description>
     <FinancialSupport>{{text $Item.Support}}</FinancialSupport>
     <NatureOfAssociation>{{text $Item.Association}}</NatureOfAssociation>
@@ -22,13 +19,12 @@
         {{location $Item.Address}}
       </Address>
       <CountriesOfCitizenship>
-        {{range $index, $country := $Item.Citizenship.props.value}}
-        <Citizenship ID="{{$index}}">
+        {{range $cindex, $country := $Item.Citizenship.props.value}}
+        <Citizenship ID="{{$cindex}}">
           <Country>{{$country}}</Country>
         </Citizenship>
         {{end}}
       </CountriesOfCitizenship>
-
       <LegalName>
         {{name $Item.Name}}
       </LegalName>
@@ -39,6 +35,5 @@
   </OtherForeignEmployment>
   {{end}}
   {{end}}
-
   <SummaryComment></SummaryComment>
 </OtherForeignEmployments>
