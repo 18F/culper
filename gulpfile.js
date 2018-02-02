@@ -18,7 +18,8 @@ var paths = {
     },
     vars: './src/sass',
     local: [
-      './src/**/*.s+(a|c)ss'
+      './src/**/*.s+(a|c)ss',
+      './src/sass/print.scss'
     ],
     global: [
       './node_modules/font-awesome/**/*.s+(a|c)ss',
