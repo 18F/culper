@@ -26,13 +26,31 @@
     <link rel="stylesheet" type="text/css" href="/css/eqip.print.css" media="print" />
   </head>
   <body>
-    <div class="marking-container top print-only">
-      <span class="marking">FOR OFFICIAL USE ONLY</span>
-    </div>
-    <div id="app"></div>
-    <div class="marking-container bottom print-only">
-      <span class="marking">FOR OFFICIAL USE ONLY</span>
-    </div>
+    <table class="print-table">
+      <thead class="print-only">
+        <tr>
+          <th>
+            &nbsp;
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div id="app"></div>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot class="print-only">
+        <tr>
+          <th>
+            &nbsp;
+          </th>
+        </tr>
+      </tfoot>
+    </table>
+    <div class="print-header print-only">FOR OFFICIAL USE ONLY</div>
+    <div class="print-footer print-only">FOR OFFICIAL USE ONLY</div>
 
     <noscript>
       <div class="usa-alert usa-alert-warning">

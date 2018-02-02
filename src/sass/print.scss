@@ -1,3 +1,19 @@
+// Override the default styling of TABLE applied from
+// USWDS.
+.print-table {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+
+  th, td {
+    margin: 0;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    font-weight: 400;
+  }
+}
+
 @media only screen {
   .print-view,
   .print-only {
@@ -29,37 +45,49 @@
     margin: 10mm;
   }
 
-  header {
-    margin-top: 10mm;
+  // Set our table for printing. This is done because at the time it is the
+  // only way to get header + footer on each page without overlapping content
+  // on subsequent pages.
+  .print-table {
+    thead {
+      display: table-header-group;
+    }
+
+    tfoot {
+      display: table-footer-group;
+    }
+
+    thead, tfoot {
+      th {
+        color: transparent;
+        padding: 2mm;
+      }
+    }
   }
 
-  .marking-container {
+  // The very last page needs the footer at the very bottom just like every
+  // other page. However, with TFOOT it does this for every page **except** the
+  // last one.
+  .print-header,
+  .print-footer {
+    display: block;
     position: fixed;
-    text-align: right;
-    z-index: 9000;
-    font-weight: 600;
+    width: 100%;
+    text-align: center;
+    font-weight: 400;
+    font-size: 1.7rem;
+    padding: 2mm;
+  }
 
-    &.top {
-      top: 0;
-      left: 0;
-      right: 0;
-    }
+  .print-footer {
+    bottom: 0;
+  }
 
-    &.bottom {
-      bottom: 0;
-      left: 0;
-      right: 0;
-    }
-
-    .marking {
-      display: inline-block;
-      padding: 2mm;
-      background-color: #fff;
-    }
+  .print-header {
+    top: 0;
   }
 
   .section-view hr.section-divider {
-    page-break-after: always;
     margin-top: 0 !important;
   }
 
@@ -68,7 +96,7 @@
   }
 
   .sticky .contents {
-    position: static;
+    position: static !important;
   }
 
   h1,
