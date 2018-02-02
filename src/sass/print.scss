@@ -1,6 +1,24 @@
+// Override the default styling of TABLE applied from
+// USWDS.
+.print-table {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+
+  th, td {
+    margin: 0;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    font-weight: 400;
+  }
+}
+
 @media only screen {
-  .print-view {
+  .print-view,
+  .print-only {
     display: none;
+    visibility: hidden;
   }
 
   .print-btn {
@@ -12,13 +30,73 @@
 }
 
 @media only print {
+  .print-only {
+    display: unset;
+    visibility: visible;
+  }
+
   body,
   html {
     /* Force all text to be black */
     color: #000 !important;
   }
+
+  @page {
+    margin: 10mm;
+  }
+
+  // Set our table for printing. This is done because at the time it is the
+  // only way to get header + footer on each page without overlapping content
+  // on subsequent pages.
+  .print-table {
+    thead {
+      display: table-header-group;
+    }
+
+    tfoot {
+      display: table-footer-group;
+    }
+
+    thead, tfoot {
+      th {
+        color: transparent;
+        padding: 2mm;
+      }
+    }
+  }
+
+  // The very last page needs the footer at the very bottom just like every
+  // other page. However, with TFOOT it does this for every page **except** the
+  // last one.
+  .print-header,
+  .print-footer {
+    display: block;
+    position: fixed;
+    width: 100%;
+    text-align: center;
+    font-weight: 400;
+    font-size: 1.7rem;
+    padding: 2mm;
+  }
+
+  .print-footer {
+    bottom: 0;
+  }
+
+  .print-header {
+    top: 0;
+  }
+
+  .section-view hr.section-divider {
+    margin-top: 0 !important;
+  }
+
   .section-print-container {
     page-break-after: always;
+  }
+
+  .sticky .contents {
+    position: static !important;
   }
 
   h1,
@@ -34,22 +112,13 @@
   }
 
   .field {
-    $pfield: &;
     page-break-inside: avoid;
-
-    .field {
-      page-break-inside: avoid;
-
-      // If we are in a nested field then make its parent avoid breaking.
-      @at-root #{$pfield} {
-        page-break-inside: auto;
-      }
-    }
   }
 
   .print-view {
     display: unset;
     page-break-after: auto;
+
     h3.section-print-header {
       border-bottom: 2px solid black;
       padding-bottom: 1.2rem;
@@ -217,7 +286,7 @@
   input[type='number'].usa-input-success,
   input[type='email'].usa-input-success,
   textarea.usa-input-success,
-  select.usa-input-success
+  select.usa-input-success,
   input.usa-input-success,
   textarea.usa-input-success,
   select.usa-input-success,
