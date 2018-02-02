@@ -1,0 +1,38 @@
+<Diagnosed>
+  <Answer>{{branch .props.Diagnosed}}</Answer>
+  <AnswerComment></AnswerComment>
+  {{range $index, $item := .props.DiagnosisList.props.items}}
+  {{with $Item := $item.Item}}
+  <DiagnosedOccurrence ID="{{$index}}">
+    <Diagnosis>{{radio $Item.Condition}}</Diagnosis>
+    {{daterange $Item.Diagnosed}}
+    <HealthCareProfessional>{{treatment $Item.Treatment}}</HealthCareProfessional>
+    <TreatmentFacility>{{treatment $Item.Facility}}</TreatmentFacility>
+    <TreatmentEffective>
+      <Effective>{{branch $Item.Effective}}</Effective>
+      <Explanation>{{textarea $Item.Explanation}}</Explanation>
+    </TreatmentEffective>
+    <Comment></Comment>
+  </DiagnosedOccurrence>
+  <HaveAdditionalEntryAnswer>{{branch .props.DiagnosisList.props.branch}}</HaveAdditionalEntryAnswer>
+  <SummaryComment></SummaryComment>
+  {{end}}
+  {{end}}
+</Diagnosed>
+<AlteredTreatment>
+  <Answer>{{branch .props.DidNotConsult}}</Answer>
+  <AnswerComment></AnswerComment>
+</AlteredTreatment>
+<CurrentlyInTreatment>
+  <Answer>{{branch .props.InTreatment}}</Answer>
+  <AnswerComment></AnswerComment>
+  {{range $index, $item := .props.TreatmentList.props.items}}
+  {{with $Item := $item.Item}}
+  <TreatmentOccurrence ID="{{$index}}">
+    <HealthCareProfessional>{{treatment $Item}}</HealthCareProfessional>
+  </TreatmentOccurrence>
+  {{end}}
+  {{end}}
+  <HaveAdditionalEntryAnswer>{{branch .props.TreatmentList.props.branch}}</HaveAdditionalEntryAnswer>
+  <SummaryComment></SummaryComment>
+</CurrentlyInTreatment>

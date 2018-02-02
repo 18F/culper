@@ -7,7 +7,7 @@ export const historyEducation = (data = {}) => {
       Item: {
         Dates: form.daterange(xitem.Dates),
         Type: form.radio(xitem.Type),
-        Name: form.name(xitem.Name),
+        Name: form.text(xitem.Name),
         Address: form.location(xitem.Address),
         Comments: form.textarea(xitem.Comments),
         ReferenceName: form.name(xitem.ReferenceName),

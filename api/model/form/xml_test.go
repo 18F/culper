@@ -51,9 +51,11 @@ func TestPackage(t *testing.T) {
 		{Schema: "military-history.xml", Data: readSectionData("testdata/military-history.json")},
 		{Schema: "military-selective.xml", Data: readSectionData("testdata/military-selective.json")},
 		{Schema: "foreign.xml", Data: application},
+		{Schema: "foreign-travel.xml", Data: readSectionData("testdata/foreign-travel.json")},
 		{Schema: "foreign-contacts.xml", Data: readSectionData("testdata/foreign-contacts.json")},
 		{Schema: "foreign-direct-interests.xml", Data: readSectionData("testdata/foreign-activities-direct.json")},
 		{Schema: "foreign-indirect-interests.xml", Data: readSectionData("testdata/foreign-activities-indirect.json")},
+		{Schema: "foreign-passports.xml", Data: readSectionData("testdata/citizenship-passports.json")},
 		{Schema: "foreign-realestate-holdings.xml", Data: readSectionData("testdata/foreign-activities-realestate.json")},
 		{Schema: "foreign-financial-benefits.xml", Data: readSectionData("testdata/foreign-activities-benefits.json")},
 		{Schema: "foreign-national-support.xml", Data: readSectionData("testdata/foreign-activities-support.json")},
@@ -96,6 +98,12 @@ func TestPackage(t *testing.T) {
 		{Schema: "legal-associations-engaged-in-terrorism.xml", Data: readSectionData("testdata/legal-associations-engaged-in-terrorism.json")},
 		{Schema: "legal-associations-terrorism-association.xml", Data: readSectionData("testdata/legal-associations-terrorism-association.json")},
 		{Schema: "legal-associations-membership-overthrow.xml", Data: readSectionData("testdata/legal-associations-membership-overthrow.json")},
+		{Schema: "psychological.xml", Data: application},
+		{Schema: "psychological-competence.xml", Data: readSectionData("testdata/psychological-competence.json")},
+		{Schema: "psychological-conditions.xml", Data: readSectionData("testdata/psychological-conditions.json")},
+		{Schema: "psychological-consultations.xml", Data: readSectionData("testdata/psychological-consultations.json")},
+		{Schema: "psychological-diagnoses.xml", Data: readSectionData("testdata/psychological-diagnoses.json")},
+		{Schema: "psychological-hospitalizations.xml", Data: readSectionData("testdata/psychological-hospitalizations.json")},
 	}
 
 	for _, test := range tests {
@@ -157,6 +165,7 @@ func applicationData() map[string]interface{} {
 			"Political":          readSectionData("testdata/foreign-business-political.json"),
 			"Voting":             readSectionData("testdata/foreign-business-voting.json"),
 			"Passport":           readSectionData("testdata/foreign-passport.json"),
+			"Travel":             readSectionData("testdata/foreign-travel.json"),
 		},
 		"Substance": map[string]interface{}{
 			"ReceivedCounselings":  readSectionData("testdata/substance-alcohol-additional.json"),
@@ -189,6 +198,13 @@ func applicationData() map[string]interface{} {
 			"EngagedInTerrorism":      readSectionData("testdata/legal-associations-engaged-in-terrorism.json"),
 			"TerrorismAssociation":    readSectionData("testdata/legal-associations-terrorism-association.json"),
 			"MembershipOverthrow":     readSectionData("testdata/legal-associations-membership-overthrow.json"),
+		},
+		"Psychological": map[string]interface{}{
+			"Competence":         readSectionData("testdata/psychological-competence.json"),
+			"ExistingConditions": readSectionData("testdata/psychological-conditions.json"),
+			"Consultations":      readSectionData("testdata/psychological-consultations.json"),
+			"Diagnoses":          readSectionData("testdata/psychological-diagnoses.json"),
+			"Hospitalizations":   readSectionData("testdata/psychological-hospitalizations.json"),
 		},
 	}
 }

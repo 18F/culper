@@ -3,15 +3,11 @@
   <Answer>{{branch .props.HasForeignAdvice}}</Answer>
   <Comment></Comment>
   <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
-
   {{range $index, $item := .props.List.props.items}}
   {{with $Item := $item.Item}}
   <SupportActivity ID="{{$index}}">
     {{country $Item.Country}}
-
-    <DateRange>
-      {{daterange $Item.Dates}}
-    </DateRange>
+    {{daterange $Item.Dates}}
     <DescribeCompensation>{{text $Item.Compensation}}</DescribeCompensation>
     <EntryComment></EntryComment>
     <Explanation></Explanation>
@@ -23,3 +19,6 @@
   {{end}}
   {{end}}
 </SupportActivities>
+<SupportActivity>
+  <SummaryComment></SummaryComment>
+</SupportActivity>

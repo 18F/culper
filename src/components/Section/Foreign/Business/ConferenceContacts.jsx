@@ -30,12 +30,14 @@ export default class ConferenceContacts extends ValidationElement {
                           appendLabel={i18n.t('foreign.business.conferences.heading.contact2')}
                           help="foreign.business.conferences.help.contact"
                           className="has-foreign-contacts"
+                          branchClassName="no-margin-bottom"
                           {...this.props.List}
                           onUpdate={this.updateList}
                           required={this.props.required}
                           onError={this.props.onError}
                           scrollIntoView={this.props.scrollIntoView}>
           <Field title={i18n.t('foreign.business.conferences.heading.explanation')}
+                 titleSize="label"
                  help="foreign.business.conferences.help.explanation"
                  scrollIntoView={this.props.scrollIntoView}>
             <Textarea name="Explanation"

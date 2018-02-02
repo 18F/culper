@@ -12,7 +12,7 @@
     {{range $index, $item := .props.List.props.items}}
     {{with $Item := $item.Item}}
     <SchoolAttended ID="{{$index}}">
-      <DateRange>{{daterange $Item.Dates}}</DateRange>
+      {{daterange $Item.Dates}}
       <Type>{{radio $Item.Type}}</Type>
       <Name>{{text $Item.Name}}</Name>
       <Address>{{location $Item.Address}}</Address>
@@ -34,6 +34,7 @@
         {{end}}
       </DegreesAwarded>
       <DegreesAwardedComment></DegreesAwardedComment>
+      <EntryComment></EntryComment>
       <Verifier>
         <Address>{{location $Item.ReferenceAddress}}</Address>
         <Comment></Comment>

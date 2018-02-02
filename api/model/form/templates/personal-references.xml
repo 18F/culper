@@ -8,9 +8,7 @@
       <Address>
         {{location $Item.Address}}
       </Address>
-      <DateRange>
-        {{daterange $Item.Dates}}
-      </DateRange>
+      {{daterange $Item.Dates}}
       <Email DoNotKnow="{{notApplicable $Item.EmailNotApplicable}}">{{text $Item.Email}}</Email>
       <EntryComment></EntryComment>
       <LegalName>
