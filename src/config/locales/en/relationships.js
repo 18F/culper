@@ -637,7 +637,7 @@ export const relationships = {
         note: ''
       },
       cohabitationBegan: {
-        title: 'When did you star living with this person?',
+        title: 'When did you start living with this person?',
         message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
         note: ''
       },
