@@ -214,11 +214,11 @@ func (entity *HistoryEmployment) Save(context *db.DatabaseContext, account int) 
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 
-		entity.EmploymentRecord.ID = previous.EmploymentRecordID
-		entity.EmploymentRecordID = previous.EmploymentRecordID
 		if entity.EmploymentRecord == nil {
 			entity.EmploymentRecord = &Branch{}
 		}
+		entity.EmploymentRecord.ID = previous.EmploymentRecordID
+		entity.EmploymentRecordID = previous.EmploymentRecordID
 	})
 
 	listID, err := entity.List.Save(context, account)
@@ -256,11 +256,11 @@ func (entity *HistoryEmployment) Delete(context *db.DatabaseContext, account int
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 
-		entity.EmploymentRecord.ID = previous.EmploymentRecordID
-		entity.EmploymentRecordID = previous.EmploymentRecordID
 		if entity.EmploymentRecord == nil {
 			entity.EmploymentRecord = &Branch{}
 		}
+		entity.EmploymentRecord.ID = previous.EmploymentRecordID
+		entity.EmploymentRecordID = previous.EmploymentRecordID
 	})
 
 	if entity.ID != 0 {
