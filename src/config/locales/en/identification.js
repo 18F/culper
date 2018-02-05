@@ -49,7 +49,7 @@ export const identification = {
     },
     suffix: {
       help: {
-        title: 'Use "Other" is your suffix isn\'t listed?',
+        title: 'Use "Other" if your suffix isn\'t listed?',
         message: 'If the suffix does not appear in this list, select "Other" and enter the suffix in the provided field',
         note: ''
       }
@@ -93,7 +93,7 @@ export const identification = {
   birthdate: {
     title: 'Provide your date of birth',
     help: {
-      title: 'Check "Estimated if date of birth is unknown?',
+      title: 'Check "Estimated" if date of birth is unknown?',
       message: 'If you are not sure of your exact date of birth estimate it as best you can and check the "Estimated" checkbox. ',
       note: ''
     }
