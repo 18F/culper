@@ -80,6 +80,7 @@ export default class Address extends ValidationElement {
   updateCountry (values) {
     this.update({
       country: values,
+      countryComments: values.comments,
       validated: this.props.validated && countryString(values) === countryString(this.props.country)
     })
   }
