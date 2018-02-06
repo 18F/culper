@@ -51,8 +51,8 @@ describe('The foreign travel component', () => {
             Item: {
               Dates: {},
               Country: {},
-              Days: [],
-              Purpose: [],
+              Days: { values: [] },
+              Purpose: { values: [] },
               Questioned: { value: 'Yes' },
               QuestionedExplanation: {},
               Encounter: { value: 'Yes' },
