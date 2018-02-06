@@ -13,6 +13,7 @@ import Show from '../Show'
 import Suggestions from '../Suggestions'
 import { AddressSuggestion } from './AddressSuggestion'
 import { countryString } from '../../../validators/location'
+import { countryValueResolver } from './Location'
 
 export default class Address extends ValidationElement {
   constructor (props) {
@@ -79,6 +80,7 @@ export default class Address extends ValidationElement {
   updateCountry (values) {
     this.update({
       country: values,
+      countryComments: values.comments,
       validated: this.props.validated && countryString(values) === countryString(this.props.country)
     })
   }
@@ -380,7 +382,7 @@ export default class Address extends ValidationElement {
                 <Country name="country"
                          className="required"
                          label={this.props.countryLabel}
-                         {...this.props.country}
+                         {...countryValueResolver(this.props)}
                          excludeUnitedStates="true"
                          onUpdate={this.updateCountry}
                          onError={this.handleError}

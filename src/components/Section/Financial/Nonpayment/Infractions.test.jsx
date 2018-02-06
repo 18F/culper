@@ -7,9 +7,9 @@ describe('The infractions component', () => {
     let values = ['Repossession']
     const expected = {
       name: 'infractions',
-      value: values,
+      values: values,
       onUpdate: (obj) => {
-        values = obj.value
+        values = obj.values
       }
     }
     const component = mount(<Infractions {...expected} />)
@@ -22,9 +22,9 @@ describe('The infractions component', () => {
     let values = ['Repossession']
     const expected = {
       name: 'infractions',
-      value: values,
+      values: values,
       onUpdate: (obj) => {
-        values = obj.value
+        values = obj.values
       }
     }
     const component = mount(<Infractions {...expected} />)

@@ -1,6 +1,6 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import Location, { timeout } from './Location'
+import Location, { timeout, countryValueResolver } from './Location'
 
 describe('The Address component', () => {
   it('Renders without errors', () => {
@@ -200,5 +200,45 @@ describe('The Address component', () => {
     const w = null
     timeout(null, 0, w)
     expect(called).toBe(false)
+  })
+
+  it('can handle various country inputs', () => {
+    const tests = [
+      {
+        props: {
+          country: {
+            value: ['Germany'],
+            comments: 'My comment'
+          }
+        },
+        expect: {
+          value: ['Germany'],
+          comments: 'My comment'
+        }
+      },
+      {
+        props: {
+          country: 'Germany',
+          countryComments: 'My comment'
+        },
+        expect: {
+          value: ['Germany'],
+          comments: 'My comment'
+        }
+      },
+      {
+        props: {
+          country: ''
+        },
+        expect: {
+          value: [],
+          comments: ''
+        }
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(countryValueResolver(test.props)).toEqual(test.expect)
+    })
   })
 })

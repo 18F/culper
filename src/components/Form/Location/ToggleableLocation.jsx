@@ -1,6 +1,5 @@
 import React from 'react'
 import { env } from '../../../config'
-import { newGuid } from '../ValidationElement'
 import ValidationElement from '../ValidationElement'
 import Street from '../Street'
 import MilitaryState from '../MilitaryState'
@@ -11,7 +10,7 @@ import ZipCode from '../ZipCode'
 import Show from '../Show'
 import Radio from '../Radio'
 import RadioGroup from '../RadioGroup'
-import { country } from './Location'
+import { country, countryValueResolver } from './Location'
 import { countryString } from '../../../validators/location'
 
 const mappingWarning = (property) => {
@@ -48,6 +47,7 @@ export default class ToggleableLocation extends ValidationElement {
         zipcode: this.props.zipcode,
         state: this.props.state,
         country: this.props.country,
+        countryComments: this.props.countryComments,
         county: this.props.county,
         domestic: this.props.domestic,
         domesticFields: this.props.domesticFields,
@@ -58,11 +58,11 @@ export default class ToggleableLocation extends ValidationElement {
   }
 
   updateStreet (values) {
-    this.update({ street: values.value})
+    this.update({street: values.value})
   }
 
   updateCity (values) {
-    this.update({ city: values.value})
+    this.update({city: values.value})
   }
 
   updateState (values) {
@@ -70,7 +70,10 @@ export default class ToggleableLocation extends ValidationElement {
   }
 
   updateCountry (values) {
-    this.update({country: values})
+    this.update({
+      country: values,
+      countryComments: values.comments
+    })
   }
 
   updateCounty (values) {
@@ -220,7 +223,7 @@ export default class ToggleableLocation extends ValidationElement {
           <Country name="country"
                    key={key}
                    label={this.props.countryLabel}
-                   {...this.props.country}
+                   {...countryValueResolver(this.props)}
                    className="country"
                    placeholder={this.props.countryPlaceholder}
                    excludeUnitedStates="true"
