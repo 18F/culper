@@ -8,8 +8,8 @@ export default class Infractions extends ValidationElement {
     this.update = this.update.bind(this)
   }
 
-  update (event) {
-    let selected = event.target.value
+  update (values) {
+    let selected = values.value
     let list = [...(this.props.values || [])]
 
     if (list.includes(selected)) {
@@ -36,28 +36,28 @@ export default class Infractions extends ValidationElement {
                     value="Alimony"
                     className="delinquent-alimony"
                     toggle="false"
-                    onChange={this.update}
+                    onUpdate={this.update}
                     onError={this.props.onError}
                     />
           <Checkbox label={i18n.m('financial.delinquent.para.judgement')}
                     value="Judgement"
                     className="delinquent-judgement"
                     toggle="false"
-                    onChange={this.update}
+                    onUpdate={this.update}
                     onError={this.props.onError}
                     />
           <Checkbox label={i18n.m('financial.delinquent.para.lien')}
                     value="Lien"
                     className="delinquent-lien"
                     toggle="false"
-                    onChange={this.update}
+                    onUpdate={this.update}
                     onError={this.props.onError}
                     />
           <Checkbox label={i18n.m('financial.delinquent.para.federal')}
                     value="Federal"
                     className="delinquent-federal"
                     toggle="false"
-                    onChange={this.update}
+                    onUpdate={this.update}
                     onError={this.props.onError}
                     />
         </CheckboxGroup>
