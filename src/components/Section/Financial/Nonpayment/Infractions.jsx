@@ -10,7 +10,7 @@ export default class Infractions extends ValidationElement {
 
   update (event) {
     let selected = event.target.value
-    let list = [...(this.props.value || [])]
+    let list = [...(this.props.values || [])]
 
     if (list.includes(selected)) {
       list.splice(list.indexOf(selected), 1)
@@ -21,7 +21,7 @@ export default class Infractions extends ValidationElement {
     if (this.props.onUpdate) {
       this.props.onUpdate({
         name: this.props.name,
-        value: list
+        values: list
       })
     }
   }
@@ -31,7 +31,7 @@ export default class Infractions extends ValidationElement {
       <div>
         {i18n.m('financial.nonpayment.para.checkAll')}
         <CheckboxGroup className={`option-list ${this.props.className || ''}`.trim()}
-                      selectedValues={this.props.value}>
+                      selectedValues={this.props.values}>
           <Checkbox label={i18n.m('financial.nonpayment.para.repo')}
                     value="Repossession"
                     className="nonpayment-repossession"
@@ -95,6 +95,6 @@ export default class Infractions extends ValidationElement {
 }
 
 Infractions.defaultProps = {
-  value: [],
+  values: [],
   onError: (value, arr) => { return arr }
 }
