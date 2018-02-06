@@ -89,6 +89,9 @@ class App extends React.Component {
 
     return (
       <div className={klassApp}>
+        <Introduction forceOpen={this.state.instructions}
+                      onDismiss={this.dismissInstructions}
+                      dispatch={this.props.dispatch} />
         <div id="scrollTo"></div>
         <a className="usa-skipnav" href="#main-content">{i18n.t('app.skip')}</a>
         <StickyHeader stickyClass="sticky-header">
@@ -150,7 +153,7 @@ class App extends React.Component {
             </div>
           </div>
         </StickyHeader>
-        <main id="main-content" className="eapp-structure-wrap">
+        <main className="eapp-structure-wrap">
           <div className="eapp-structure-row">
             <div className={klassNavigation}>
               <Sticky options={{tolerance: 400, ignoreWindowComparison: true}}>
@@ -159,10 +162,7 @@ class App extends React.Component {
               </Sticky>
               &nbsp;
             </div>
-            <div className={klassCore}>
-              <Introduction forceOpen={this.state.instructions}
-                            onDismiss={this.dismissInstructions}
-                            dispatch={this.props.dispatch} />
+            <div id="main-content" className={klassCore}>
               <Sticky container=".eapp-navigation .sticky > .contents"
                       content=".eapp-core .sticky > .contents"
                       options={{tolerance: 400, ignoreWindowComparison: true}}>

@@ -207,9 +207,9 @@ class Navigation extends React.Component {
     })
 
     return (
-      <div className="form-navigation">
+      <nav className="form-navigation" role="navigation">
         {nav.filter(x => !!x)}
-      </div>
+      </nav>
     )
   }
 }
