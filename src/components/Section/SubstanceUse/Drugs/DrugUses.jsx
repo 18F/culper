@@ -41,10 +41,7 @@ export default class DrugUses extends SubsectionElement {
 
   summary (item, index) {
     const o = (item || {}).Item || {}
-    let drug = (o.DrugType || {}).DrugType
-    if (drug === 'Other') {
-      drug = ((o.DrugType || {}).DrugTypeOther || {}).value
-    }
+    const drug = (o.DrugType || {}).value
 
     return Summary({
       type: i18n.t('substance.drugs.use.collection.itemType'),

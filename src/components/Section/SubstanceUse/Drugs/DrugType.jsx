@@ -14,28 +14,38 @@ export default class DrugType extends ValidationElement {
   update (updateValues) {
     if (this.props.onUpdate) {
       this.props.onUpdate({
-        DrugType: this.props.DrugType,
-        DrugTypeOther: this.props.DrugTypeOther,
+        value: this.props.value,
         ...updateValues
       })
     }
   }
 
-  updateDrugType (radio) {
-    this.update({ DrugType: radio.value })
+  updateDrugType (values) {
+    this.update({ value: values.value })
   }
 
   updateDrugTypeOther (values) {
-    this.update({ DrugTypeOther: values })
+    this.update({ value: values.value })
+  }
+
+  isOther (drug) {
+    if (!drug) {
+      return false
+    }
+
+    return !['Cocaine', 'Stimulants', 'THC', 'Depressants', 'Ketamine', 'Narcotics', 'Hallucinogenic', 'Steriods', 'Inhalants'].includes(drug)
   }
 
   render () {
+    const other = this.isOther(this.props.value)
+    const selected = other ? 'Other' : this.props.value
+    const explanation = other ? this.props.value : ''
     return (
       <div className="drug-type">
         <RadioGroup name="born"
           onError={this.props.onError}
           required={this.props.required}
-          selectedValue={this.props.DrugType}>
+          selectedValue={selected}>
           <Radio className="cocaine"
             label={i18n.m('substance.drugs.drugType.label.cocaine')}
             value="Cocaine"
@@ -117,14 +127,14 @@ export default class DrugType extends ValidationElement {
             onFocus={this.props.onFocus}
           />
         </RadioGroup>
-        <Show when={this.props.DrugType === 'Other'}>
+        <Show when={other}>
           <Field title={i18n.t('substance.drugs.drugType.label.drugTypeOther')}
                  titleSize="label"
                  adjustFor="textarea"
                  scrollIntoView={this.props.scrollIntoView}>
             <Textarea name="DrugTypeOther"
                       className="drug-type-other"
-                      {...this.props.DrugTypeOther}
+                      value={explanation}
                       onUpdate={this.updateDrugTypeOther}
                       onError={this.props.onError}
                       required={this.props.required}
@@ -137,5 +147,6 @@ export default class DrugType extends ValidationElement {
 }
 
 DrugType.defaultProps = {
+  value: '',
   onError: (value, arr) => { return arr }
 }

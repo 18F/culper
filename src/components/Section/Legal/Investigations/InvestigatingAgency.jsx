@@ -21,7 +21,7 @@ export default class InvestigatingAgency extends ValidationElement {
 
   updateAgency (values) {
     this.update({
-      Agency: values.value
+      Agency: values
     })
   }
 
@@ -34,7 +34,11 @@ export default class InvestigatingAgency extends ValidationElement {
   render () {
     return (
       <div className={this.props.className}>
-        <RadioGroup className="investigative-agencies" selectedValue={this.props.Agency} onError={this.props.onError} required={this.props.required} disabled={this.props.disabled}>
+        <RadioGroup className="investigative-agencies"
+                    selectedValue={(this.props.Agency || {}).value}
+                    onError={this.props.onError}
+                    required={this.props.required}
+                    disabled={this.props.disabled}>
           <Radio label={i18n.m('legal.investigations.history.label.agency.dod')}
                  value="U.S. Department of Defense"
                  className="investigative-agency-dod"
@@ -85,16 +89,16 @@ export default class InvestigatingAgency extends ValidationElement {
                  />
         </RadioGroup>
 
-        <Show when={['U.S. Department of Treasury', 'Foreign government', 'Other'].includes(this.props.Agency)}>
+        <Show when={['U.S. Department of Treasury', 'Foreign government', 'Other'].includes((this.props.Agency || {}).value)}>
           {i18n.t('legal.investigations.history.heading.agencyExplanation')}
           <Textarea name="Explanation"
-            {...this.props.Explanation}
-            className="legal-investigations-history-agency-explanation"
-            onUpdate={this.updateExplanation}
-            onError={this.props.onError}
-            required={this.props.required}
-            disabled={this.props.disabled}
-          />
+                    {...this.props.Explanation}
+                    className="legal-investigations-history-agency-explanation"
+                    onUpdate={this.updateExplanation}
+                    onError={this.props.onError}
+                    required={this.props.required}
+                    disabled={this.props.disabled}
+                    />
         </Show>
       </div>
     )
@@ -103,7 +107,7 @@ export default class InvestigatingAgency extends ValidationElement {
 
 InvestigatingAgency.defaultProps = {
   className: 'investigative-agency',
-  Agency: '',
+  Agency: {},
   Explanation: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }

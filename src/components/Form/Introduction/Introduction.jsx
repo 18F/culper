@@ -14,6 +14,16 @@ export class Introduction extends React.Component {
     this.updateBranch = this.updateBranch.bind(this)
   }
 
+  componentDidMount () {
+    // Focus on the "Yes" value after initial mounting
+    if (window && window.document) {
+      const el = window.document.querySelector('.introduction-modal .branch .yes input')
+      if (el) {
+          el.focus()
+      }
+    }
+  }
+
   updateBranch (values) {
     if (values.value === 'No') {
       this.props.dispatch(updateApplication('Settings', 'acceptedTerms', { value: '' }))

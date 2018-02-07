@@ -6,13 +6,15 @@ describe('Legal investigations history component validation', function () {
     const tests = [
       {
         state: {
-          Agency: {}
+          Agency: {},
+          AgencyExplanation: {}
         },
         expected: false
       },
       {
         state: {
           Agency: {},
+          AgencyExplanation: {},
           AgencyNotApplicable: {
             applicable: false
           }
@@ -22,7 +24,19 @@ describe('Legal investigations history component validation', function () {
       {
         state: {
           Agency: {
-            Agency: 'U.S. Department of Defense'
+            value: 'U.S. Department of Defense'
+          },
+          AgencyExplanation: {}
+        },
+        expected: true
+      },
+      {
+        state: {
+          Agency: {
+            value: 'Other'
+          },
+          AgencyExplanation: {
+            value: 'this is the explanation'
           }
         },
         expected: true
@@ -30,10 +44,10 @@ describe('Legal investigations history component validation', function () {
       {
         state: {
           Agency: {
-            Agency: 'Other',
-            Explanation: {
-              value: 'this is the explanation'
-            }
+            value: 'Foreign government'
+          },
+          AgencyExplanation: {
+            value: 'this is the explanation'
           }
         },
         expected: true
@@ -41,21 +55,10 @@ describe('Legal investigations history component validation', function () {
       {
         state: {
           Agency: {
-            Agency: 'Foreign government',
-            Explanation: {
-              value: 'this is the explanation'
-            }
-          }
-        },
-        expected: true
-      },
-      {
-        state: {
-          Agency: {
-            Agency: 'U.S. Department of Treasury',
-            Explanation: {
-              value: 'this is the explanation'
-            }
+            value: 'U.S. Department of Treasury'
+          },
+          AgencyExplanation: {
+            value: 'this is the explanation'
           }
         },
         expected: true
@@ -98,28 +101,6 @@ describe('Legal investigations history component validation', function () {
     battery(tests, HistoryValidator, 'validCompleted')
   })
 
-  // This is optional
-  // it('validate issued by', () => {
-  //   const tests = [
-  //     {
-  //       state: {
-  //         Issued: {}
-  //       },
-  //       expected: false
-  //     },
-  //     {
-  //       state: {
-  //         Issued: {
-  //           value: 'Some other agency'
-  //         }
-  //       },
-  //       expected: true
-  //     }
-  //   ]
-
-  //   battery(tests, HistoryValidator, 'validIssued')
-  // })
-
   it('validate date granted', () => {
     const tests = [
       {
@@ -157,14 +138,14 @@ describe('Legal investigations history component validation', function () {
     const tests = [
       {
         state: {
-          Clearance: {}
+          ClearanceLevel: {}
         },
         expected: false
       },
       {
         state: {
-          Clearance: {},
-          ClearanceNotApplicable: {
+          ClearanceLevel: {},
+          ClearanceLevelNotApplicable: {
             applicable: false
           }
         },
@@ -172,19 +153,17 @@ describe('Legal investigations history component validation', function () {
       },
       {
         state: {
-          Clearance: {
-            Level: 'Top Secret'
+          ClearanceLevel: {
+            Level: { value: 'Top Secret' }
           }
         },
         expected: true
       },
       {
         state: {
-          Clearance: {
-            Level: 'Other',
-            Explanation: {
-              value: 'this is the explanation'
-            }
+          ClearanceLevel: {
+            Level: { value: 'Other' },
+            Explanation: { value: 'this is the explanation' }
           }
         },
         expected: true
@@ -235,6 +214,7 @@ describe('Legal investigations history component validation', function () {
               {
                 Item: {
                   Agency: {},
+                  AgencyExplanation: {},
                   AgencyNotApplicable: {
                     applicable: false
                   },
@@ -249,8 +229,8 @@ describe('Legal investigations history component validation', function () {
                   GrantedNotApplicable: {
                     applicable: false
                   },
-                  Clearance: {},
-                  ClearanceNotApplicable: {
+                  ClearanceLevel: {},
+                  ClearanceLevelNotApplicable: {
                     applicable: false
                   }
                 }
