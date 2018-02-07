@@ -43,7 +43,7 @@ export default class IndirectActivity extends SubsectionElement {
     const firstname = (o.Firstname || {}).value ? o.Firstname.value : ''
     const lastname = (o.Lastname || {}).value ? o.Lastname.value : ''
     const name = `${firstname} ${lastname}`.trim()
-    const interestType = (o.InterestType || {}).value ? o.InterestType.value : ''
+    const interestType = (o.InterestType || {}).value ? o.InterestType.value : []
     const cost = (o.Cost || {}).value ? '$' + o.Cost.value : ''
     const summary = [interestType, name].reduce((prev, next) => {
       if (prev && next) {
