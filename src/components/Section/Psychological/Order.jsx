@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../config'
-import { Location, ValidationElement, Field, Text, DateControl, BranchCollection, Svg, Show } from '../../Form'
+import { Location, ValidationElement, Field, Text, DateControl, BranchCollection, Svg, Show, AccordionItem } from '../../Form'
 
 export default class Order extends ValidationElement {
   constructor (props) {
@@ -129,49 +129,50 @@ export default class Order extends ValidationElement {
                           onUpdate={this.updateAppeals}
                           scrollIntoView={this.props.scrollIntoView}
                           >
+          <AccordionItem scrollIntoView={this.props.scrollIntoView}>
+            <Field title={i18n.t(`psychological.${prefix}.heading.needMore`)}
+                   optional={true}
+                   className="more title"
+                   scrollIntoView={this.props.scrollIntoView}>
+              <Svg src="/img/date-down-arrow.svg" className="more arrow" />
+            </Field>
 
-          <Field title={i18n.t(`psychological.${prefix}.heading.needMore`)}
-                 optional={true}
-                 className="more title"
-                 scrollIntoView={this.props.scrollIntoView}>
-            <Svg src="/img/date-down-arrow.svg" className="more arrow" />
-          </Field>
+            <Field title={i18n.t(`psychological.${prefix}.heading.appealCourtName`)}
+                   scrollIntoView={this.props.scrollIntoView}>
+              <Text name="CourtName"
+                    className="appealcourtname"
+                    bind={true}
+                    onError={this.props.onError}
+                    required={this.props.required}
+                    />
+            </Field>
 
-          <Field title={i18n.t(`psychological.${prefix}.heading.appealCourtName`)}
-                 scrollIntoView={this.props.scrollIntoView}>
-            <Text name="CourtName"
-                  className="appealcourtname"
-                  bind={true}
-                  onError={this.props.onError}
-                  required={this.props.required}
-                  />
-          </Field>
+            <Field title={i18n.t(`psychological.${prefix}.heading.appealCourtName`)}
+                   optional={true}
+                   adjustFor="address"
+                   scrollIntoView={this.props.scrollIntoView}>
+              <Location name="CourtAddress"
+                        className="appealcourtaddress"
+                        bind={true}
+                        label={i18n.t(`psychological.${prefix}.label.courtAddress`)}
+                        layout={Location.ADDRESS}
+                        geocode={true}
+                        onError={this.props.onError}
+                        required={this.props.required}
+                        />
+            </Field>
 
-          <Field title={i18n.t(`psychological.${prefix}.heading.appealCourtName`)}
-                 optional={true}
-                 adjustFor="address"
-                 scrollIntoView={this.props.scrollIntoView}>
-            <Location name="CourtAddress"
-                      className="appealcourtaddress"
-                      bind={true}
-                      label={i18n.t(`psychological.${prefix}.label.courtAddress`)}
-                      layout={Location.ADDRESS}
-                      geocode={true}
-                      onError={this.props.onError}
-                      required={this.props.required}
-                      />
-          </Field>
-
-          <Field title={i18n.t(`psychological.${prefix}.heading.disposition`)}
-                 help={`psychological.${prefix}.help.disposition`}
-                 scrollIntoView={this.props.scrollIntoView}>
-            <Text name="Disposition"
-                  className="disposition"
-                  bind={true}
-                  onError={this.props.onError}
-                  required={this.props.required}
-                  />
-          </Field>
+            <Field title={i18n.t(`psychological.${prefix}.heading.disposition`)}
+                   help={`psychological.${prefix}.help.disposition`}
+                   scrollIntoView={this.props.scrollIntoView}>
+              <Text name="Disposition"
+                    className="disposition"
+                    bind={true}
+                    onError={this.props.onError}
+                    required={this.props.required}
+                    />
+            </Field>
+          </AccordionItem>
         </BranchCollection>
       </div>
     )

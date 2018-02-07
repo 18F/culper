@@ -23,7 +23,8 @@ describe('Schema for financial taxes', () => {
                   CourtAddress: {
                     country: null
                   },
-                  Disposition: {}
+                  Disposition: {},
+                  Has: {}
                 }
               }]
             }
