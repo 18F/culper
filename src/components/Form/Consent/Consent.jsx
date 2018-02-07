@@ -10,6 +10,16 @@ export class Consent extends React.Component {
     this.click = this.click.bind(this)
   }
 
+  componentDidMount () {
+    // Focus on the button after mounting
+    if (window && window.document) {
+      const el = window.document.querySelector('.consent-modal button')
+      if (el) {
+          el.focus()
+      }
+    }
+  }
+
   click (event) {
     this.props.dispatch(updateApplication('Settings', 'consented', 'Yes'))
   }
