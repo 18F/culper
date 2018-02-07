@@ -100,13 +100,13 @@ export const history = {
     },
     help: {
       dates: {
-        title: 'Need help with the date range?',
-        message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
+        title: 'Estimate the date if unsure',
+          message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
         note: ''
       },
       address: {
-        title: 'Need help with the address?',
-        message: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
+        title: 'Acronyms:',
+        message: 'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
         note: ''
       },
       role: {
@@ -170,8 +170,8 @@ export const history = {
       activity: {
         title: 'Government employment',
         help: {
-          title: 'Need help with your employment activity?',
-          message: 'State Government (Non-Federal employment). Non-government employment excludes self-employment, if you were self employed choose "Self-employment". ',
+          title: 'Specifics:',
+          message: 'State Government = Non-Federal employment. Non-government employment excludes self-employment, if you were self employed choose "Self-employment". ',
           note: ''
         },
         other: {
@@ -251,7 +251,7 @@ export const history = {
       },
       datesEmployed: {
         help: {
-          title: 'Need help with the dates you were employed?',
+          title: 'Estimate the date if unsure',
           message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
           note: ''
         }
@@ -259,8 +259,8 @@ export const history = {
       address: {
         label: 'This address is',
         help: {
-          title: 'Need help with this address?',
-          message: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
+          title: 'Acronyms:',
+          message: 'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
           note: ''
         }
       },
@@ -306,8 +306,8 @@ export const history = {
         address: {
           label: 'This address is',
           help: {
-            title: 'Need help with this address?',
-            message: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
+            title: 'Acronyms:',
+            message: 'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
             note: ''
           }
         },
@@ -383,8 +383,8 @@ export const history = {
         address: {
           label: 'This address is',
           help: {
-            title: 'Need help with the address?',
-            message: 'Provide the address of this supervisor\'s work location',
+            title: 'Tell us where your supervisor works/worked',
+            message: 'Provide the physical address of this supervisor\'s work location.',
             note: ''
           }
         },
@@ -489,16 +489,16 @@ export const history = {
         email: {
           label: 'Supervisor email',
           help: {
-            title: 'Need help with the email address?',
-            message: 'Provide the email of this supervisor',
+            title: 'Provide the email of this supervisor',
+            message: '',
             note: ''
           }
         },
         address: {
           label: 'This address is',
           help: {
-            title: 'Need help with the address?',
-            message: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
+            title: 'Acronyms:',
+            message: 'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
             note: ''
           }
         },
@@ -593,8 +593,8 @@ export const history = {
       address: {
         label: 'This address is',
         help: {
-          title: 'Need help with the address?',
-          message: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
+          title: 'Acronyms:',
+          message: 'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
           note: ''
         }
       },
@@ -634,8 +634,8 @@ export const history = {
         address: {
           label: 'This address is',
           help: {
-            title: 'Need help with the address?',
-            message: 'Provide the address of this supervisor\'s work location',
+            title: 'Tell us where your supervisor works/worked',
+            message: 'Provide the physical address of this supervisor\'s work location.',
             note: ''
           }
         },
@@ -730,8 +730,8 @@ export const history = {
       address: {
         label: 'This address is',
         help: {
-          title: 'Need help with the address?',
-          message: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
+          title: 'Acronyms:',
+          message: 'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
           note: ''
         }
       },
@@ -771,8 +771,8 @@ export const history = {
         address: {
           label: 'This address is',
           help: {
-            title: 'Need help with the address?',
-            message: 'Provide the address of this supervisor\'s work location',
+            title: 'Tell us where your supervisor works/worked',
+            message: 'Provide the physical address of this supervisor\'s work location.',
             note: ''
           }
         },
@@ -877,7 +877,7 @@ export const history = {
       address: {
         label: 'This address is',
         help: {
-          title: 'Need help with the address?',
+          title: 'Acronyms:',
           message: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
           note: ''
         }
@@ -892,8 +892,8 @@ export const history = {
       },
       physicalAddress: {
         help: {
-          title: 'Need help with the physical work address?',
-          message: 'Are/were you physically working from an different location than your employer\'s address?',
+          title: 'Are/were you working from another location?',
+          message: 'Are/were you physically working from an different location than your employer\'s address? If so answer "Yes".',
           note: ''
         },
         address: {
@@ -999,8 +999,8 @@ export const history = {
       },
       physicalAddress: {
         help: {
-          title: 'Need help with the physical work address?',
-          message: 'Are/were you physically working from an different location than your employer\'s address?',
+          title: 'Are/were you working from another location?',
+          message: 'Are/were you physically working from an different location than your employer\'s address? If so answer "Yes".',
           note: ''
         },
         address: {
@@ -1106,8 +1106,8 @@ export const history = {
       },
       physicalAddress: {
         help: {
-          title: 'Need help withe the physical work address?',
-          message: 'Are/were you physically working from an different location than your employer\'s address?',
+          title: 'Are/were you working from another location?',
+          message: 'Are/were you physically working from an different location than your employer\'s address? If so answer "Yes".',
           note: ''
         },
         address: {
@@ -1213,8 +1213,8 @@ export const history = {
       },
       physicalAddress: {
         help: {
-          title: 'Need help with the physical work address?',
-          message: 'Are/were you physically working from an different location than your employer\'s address?',
+          title: 'Are/were you working from another location?',
+          message: 'Are/were you physically working from an different location than your employer\'s address? If so answer "Yes".',
           note: ''
         },
         address: {
@@ -1317,8 +1317,8 @@ export const history = {
       },
       physicalAddress: {
         help: {
-          title: 'Need help with the physical work address?',
-          message: 'Are/were you physically working from an different location than your employer\'s address?',
+          title: 'Are/were you working from another location?',
+          message: 'Are/were you physically working from an different location than your employer\'s address? If so answer "Yes".',
           note: ''
         },
         address: {
@@ -1440,8 +1440,8 @@ export const history = {
       },
       physicalAddress: {
         help: {
-          title: 'Need help with the physical address?',
-          message: 'Are/were you physically working from an different location than your employer\'s address?',
+          title: 'Are/were you working from another location?',
+          message: 'Are/were you physically working from an different location than your employer\'s address? If so answer "Yes".',
           note: ''
         },
         address: {
@@ -1573,24 +1573,24 @@ export const history = {
     },
     help: {
       attendance: {
-        title: 'Need help the attendance of school?',
-        message: 'If you have attended within the last 10 years a high school, college, vocational, or correspondence course',
+        title: 'Including all schools you attended',
+        message: 'If within the last 10 years you have attended a high school, college, vocational, or correspondence course answer "Yes".',
         note: ''
       },
       degree10: {
-        title: 'Need help with a degree or diploma?',
-        message: 'If you have received a degree or diploma within the last 10 years',
+        title: 'Any degree/diploma you have received in your life',
+        message: 'If you a degree or diploma from any point in your life answer "Yes".',
         note: ''
       },
       dates: {
-        title: 'Need help with the dates of attendance?',
-        message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
+        title: 'Estimate the date if unsure',
+          message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
         note: ''
       },
       address: {
-        title: 'Need help with the school address?',
-        message: 'For correspondence/distance/extension/online schools, provide the address where the records are maintained.',
-        note: 'For assistance determining the school address, refer to [https://ope.ed.gov/accreditation/search.aspx](https://ope.ed.gov/accreditation/search.aspx). <br> Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
+        title: 'For correspondence/distance/extension/online schools, provide the address where the records are maintained.',
+        message: 'For assistance determining the school address, refer to [https://ope.ed.gov/accreditation/search.aspx](https://ope.ed.gov/accreditation/search.aspx).',
+        note: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
       },
       type: {
         title: 'Need help with the school code?',
@@ -1608,13 +1608,13 @@ export const history = {
         note: ''
       },
       diploma: {
-        title: 'Need help selecting a degree or diploma?',
-        message: 'Select the most appropriate degree or diploma received',
+        title: 'Select the most appropriate degree or diploma received',
+        message: 'If your option isn\'t listed select "Other" then provide it.',
         note: ''
       },
       date: {
-        title: 'Need help with the date of achievement?',
-        message: 'The date the degree or diploma was awarded',
+        title: 'Estimate the date if unsure',
+          message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
         note: ''
       }
     }
@@ -1629,13 +1629,13 @@ export const history = {
     },
     help: {
       branch: {
-        title: 'Need more information about former federal service?',
-        message: 'Please list all federal service even if older than 10 years.',
+        title: 'List all federal service even if older than 10 years',
+        message: '',
         note: ''
       },
       dates: {
-        title: 'Need help with the dates of employment?',
-        message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+        title: 'Estimate the date if unsure',
+          message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
         note: ''
       },
       name: {
@@ -1649,9 +1649,9 @@ export const history = {
         note: ''
       },
       address: {
-        title: 'Need help with the address?',
-        message: 'Try looking up the agency name, this could help you find the address.',
-        note: 'Note: Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
+        title: 'Try looking up the agency name, this could help you find the address',
+        message: '',
+        note: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
       }
     },
     collection: {
