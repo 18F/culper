@@ -177,7 +177,6 @@ class Login extends React.Component {
                    name="user"
                    type="text"
                    placeholder={i18n.t('login.basic.username.placeholder')}
-                   autoFocus
                    value={this.state.username}
                    onChange={this.onUsernameChange} />
           </div>

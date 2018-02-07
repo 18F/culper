@@ -59,6 +59,12 @@ export class ReceivedCounselingValidator {
       new LocationValidator(this.agencyAddress).isValid()
   }
 
+  daterange () {
+    const start = new Date(`${this.treatmentBeganDate.month || '1'}/${this.treatmentBeganDate.day || '1'}/${this.treatmentBeganDate.year || '1900'}`)
+    const stop = new Date(`${this.treatmentEndDate.month || '1'}/${this.treatmentEndDate.day || '1'}/${this.treatmentEndDate.year || '1900'}`)
+    return start <= stop
+  }
+
   isValid () {
     return validGenericTextfield(this.treatmentProviderName) &&
       validBranch(this.useSameAddress) &&
@@ -67,6 +73,6 @@ export class ReceivedCounselingValidator {
       this.validCompletedTreatment() &&
       validDateField(this.treatmentBeganDate) &&
       validDateField(this.treatmentEndDate) &&
-      this.treatmentBeganDate.date < this.treatmentEndDate.date
+      this.daterange()
   }
 }

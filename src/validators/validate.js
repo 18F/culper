@@ -140,18 +140,12 @@ const validators = {
   },
   'history.employment': (data) => {
     return new logic.HistoryEmploymentValidator(data).isValid()
-    //TODO: return ((data.List || {}).items || []).every(x => {
-      //return (data.List || {}).branch === 'No' && new logic.EmploymentValidator(x.Item).isValid()
-    //})
   },
   'history.federal': (data) => {
     return new logic.FederalServiceValidator(data).isValid()
   },
   'history.residence': (data) => {
     return new logic.HistoryResidenceValidator(data).isValid()
-    //TODO: return ((data.List || {}).items || []).every(x => {
-      //return new logic.ResidenceValidator(x.Item, null).isValid()
-    //})
   },
   'relationships.status.cohabitant': (data) => {
     return new logic.CohabitantsValidator(data).isValid()
