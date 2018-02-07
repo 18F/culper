@@ -34,7 +34,7 @@ export default class Hospitalization extends ValidationElement {
 
   updateAdmission (values) {
     this.update({
-      Admission: values.value
+      Admission: values
     })
   }
 
@@ -62,7 +62,7 @@ export default class Hospitalization extends ValidationElement {
         <Field title={i18n.t(`psychological.hospitalization.heading.admission`)}
                adjustFor="big-buttons"
                scrollIntoView={this.props.scrollIntoView}>
-          <RadioGroup className="admission" name="admission" selectedValue={this.props.Admission} required={this.props.required} onError={this.props.onError}>
+          <RadioGroup className="admission" name="admission" selectedValue={(this.props.Admission || {}).value} required={this.props.required} onError={this.props.onError}>
             <Radio
               className="voluntary-option"
               value="Voluntary"
