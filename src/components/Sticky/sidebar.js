@@ -331,6 +331,9 @@ export const hasClass = (element, className) => {
 }
 
 export const unstick = (element) => {
+  if (!element) {
+    return
+  }
   element.style.position = ''
   element.style.top = ''
   removeClass(element, 'sidebar-scrolling-down')

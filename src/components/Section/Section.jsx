@@ -26,6 +26,21 @@ class Section extends React.Component {
     this.update(this.props)
   }
 
+  componentDidUpdate () {
+    // Once a section updates then attempt to focus on the first form element
+    const selectors = [
+      '.eapp-core input',
+      '.eapp-core textarea',
+      '.eapp-core select'
+    ]
+    const el = window.document.querySelector(selectors.join(', '))
+    if (el) {
+      window.setTimeout(() => {
+        el.focus()
+      }, 100)
+    }
+  }
+
   update (props) {
     this.props.dispatch(updateSection(props.section, props.subsection))
     this.props.dispatch(push(`/form/${props.section}/${props.subsection || 'intro'}`))
