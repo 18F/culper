@@ -9,7 +9,7 @@ export const substanceDrugOrdered = (data = {}) => {
         Explanation: form.textarea(xitem.Explanation),
         ActionTaken: form.branch(xitem.ActionTaken),
         NoActionTakenExplanation: form.textarea(xitem.NoActionTakenExplanation),
-        DrugType: form.checkbox(xitem.DrugType),
+        DrugType: form.radio(xitem.DrugType),
         TreatmentProvider: form.text(xitem.TreatmentProvider),
         TreatmentProviderAddress: form.location(xitem.TreatmentProviderAddress),
         TreatmentProviderTelephone: form.telephone(xitem.TreatmentProviderTelephone),
