@@ -1,6 +1,0 @@
-development:
-  driver: postgres
-  open: user=postgres dbname=postgres
-environment:
-  driver: postgres
-  open: $DATABASE_URI

@@ -1,0 +1,4 @@
+#! /bin/sh
+yarn install
+yarn test
+./bin/permissions
