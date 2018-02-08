@@ -109,6 +109,27 @@ jobs:
             cp .env.production .env
             ./bin/deploy.sh production
 
+  deploy_aws:
+    machine: true
+    steps:
+      - checkout
+      - run:
+          name: Setup
+          command: |
+            set -x
+            make setup
+      - run:
+          name: Test
+          command: |
+            set -x
+            make test
+      - run:
+          name: Package
+          command: |
+            set -x
+            cp .env.production .env
+            make package
+
 workflows:
   version: 2
   build_and_deploy:
@@ -125,6 +146,11 @@ workflows:
               only:
                 - develop
       - deploy_production:
+          filters:
+            branches:
+              only:
+                - master
+      - deploy_aws:
           filters:
             branches:
               only:
