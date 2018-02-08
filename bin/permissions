@@ -1,0 +1,2 @@
+#!/bin/bash
+chown -f -R 1000:1000 ./{dist,coverage,jest,node_modules}
