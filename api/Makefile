@@ -7,7 +7,7 @@ test:
 	GOLANG_ENV=test go test -cover $(shell go list ./... | grep -v /vendor/)
 
 build:
-	go build -o api
+	./bin/build.sh
 
 clean:
 	rm -f ./api
