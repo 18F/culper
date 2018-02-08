@@ -136,7 +136,7 @@ export const citizenship = {
       },
       certificateissued: {
         title: 'Estimate the date if unsure',
-          message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+        message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
         note: ''
       },
       certificatename: {
@@ -156,7 +156,7 @@ export const citizenship = {
       },
       entrydate: {
         title: 'Estimate the date if unsure',
-          message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+        message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
         note: ''
       },
       entrylocation: {
