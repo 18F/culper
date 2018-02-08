@@ -193,8 +193,7 @@ export default class Field extends ValidationElement {
 
     return (
       <a href="javascript:;"
-         tabIndex="-1"
-         title="Show help"
+         title={`Show help ${this.props.title ? 'for' : ''} ${this.props.title || ''}`.trim()}
          className={klass}
          onClick={this.toggleHelp}>
         <Svg src="/img/info.svg" />
