@@ -135,8 +135,8 @@ export const citizenship = {
         note: ''
       },
       certificateissued: {
-        title: 'Need help with the date the certificate was issued?',
-        message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+        title: 'Estimate the date if unsure',
+          message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
         note: ''
       },
       certificatename: {
@@ -155,8 +155,8 @@ export const citizenship = {
         note: ''
       },
       entrydate: {
-        title: 'Need help with your entry date to the U.S.?',
-        message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+        title: 'Estimate the date if unsure',
+          message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
         note: ''
       },
       entrylocation: {
@@ -165,9 +165,9 @@ export const citizenship = {
         note: ''
       },
       priorcitizenship: {
-        title: 'Need help with this question?',
-        message: 'Tell us all of your prior citizenship(s).',
-        note: 'Note: You can provide multiple citizenships in this question.'
+        title: 'List all your prior citizenship(s)',
+        message: 'You can provide multiple citizenships in this question.',
+        note: ''
       },
       hasalienregistration: {
         title: 'Need help if you have an alien registration number?',
@@ -190,9 +190,9 @@ export const citizenship = {
         note: ''
       },
       certificatecourtaddress: {
-        title: 'Not sure of the court address?',
-        message: 'Try looking up the court name, this could help you find the address.',
-        note: 'Note: If you can only find a phone number try calling and asking for the address. Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
+        title: 'Try looking up the court name, this could help you find the address.',
+        message: 'If you can only find a phone number try calling and asking for the address.',
+        note: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
       },
       basis: {
         naturalized: {
@@ -299,9 +299,9 @@ export const citizenship = {
           note: ''
         },
         dates: {
-          title: 'Need help with the dates?',
-          message: 'Tell us the full date range you held this citizenship.',
-          note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
+          title: 'Tell us the full date range you held this citizenship',
+          message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
+          note: ''
         },
         how: {
           title: 'Need help with the how you acquired this citizenship?',
