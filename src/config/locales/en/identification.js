@@ -50,7 +50,7 @@ export const identification = {
     suffix: {
       help: {
         title: 'Use "Other" if your suffix isn\'t listed?',
-        message: 'If the suffix does not appear in this list, select "Other" and enter the suffix in the provided field',
+        message: 'If the suffix does not appear in this list, select "Other" and enter the suffix in the provided field.',
         note: ''
       }
     }
@@ -60,7 +60,7 @@ export const identification = {
     info: 'For example: your maiden name, name(s) by a former marriage, former name(s), alias(es), or nickname(s).',
     branch: {
       help: {
-        title: 'List all other names you have used no matter how long ago.',
+        title: 'List all other names you have used no matter how long ago',
         message: [
           'Input names one at a time, you will have the ability to add multiple other names.'
         ],
@@ -93,7 +93,7 @@ export const identification = {
   birthdate: {
     title: 'Provide your date of birth',
     help: {
-      title: 'Check "Estimated" if date of birth is unknown?',
+      title: 'Check "Estimated" if date of birth is unknown',
       message: 'If you are not sure of your exact date of birth estimate it as best you can and check the "Estimated" checkbox. ',
       note: ''
     }
@@ -205,7 +205,7 @@ export const identification = {
     },
     help: {
       title: 'Check "Not Applicable" if you don\'t have a SSN',
-      message: 'If you do not have a U.S. Social Security Number check the "Not Applicable" checkbox',
+      message: 'If you do not have a U.S. Social Security Number check the "Not Applicable" checkbox.',
       note: ''
     },
     label: {
@@ -262,8 +262,8 @@ export const identification = {
         note: ''
       },
       hair: {
-        title: 'Select your current hair color',
-        message: 'Choose the hair color that most closely represents your hair.',
+        title: 'Select your current hair color or style',
+        message: 'Choose the hair color that most closely represents your hair today.',
         note: ''
       },
       sex: {
