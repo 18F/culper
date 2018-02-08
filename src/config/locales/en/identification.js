@@ -204,8 +204,8 @@ export const identification = {
       verified: 'Thank you for confirming your social security number!'
     },
     help: {
-      title: 'Check "Not Applicable" if you don\'t have a SSN',
-      message: 'If you do not have a U.S. Social Security Number check the "Not Applicable" checkbox.',
+      title: 'Check "Not applicable" if no SSN',
+      message: 'If a U.S. Social Security Number isn\'t present check the "Not applicable" checkbox.',
       note: ''
     },
     label: {
