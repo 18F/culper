@@ -64,7 +64,7 @@ export const reference = {
   },
   help: {
     contact: {
-      title: 'Need help with the date of last contact?',
+      title: 'Estimate the date if unsure',
       message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
       note: ''
     },
@@ -74,19 +74,19 @@ export const reference = {
       note: ''
     },
     email: {
-      title: 'Need help with the email address?',
-      message: 'Please use an active email address.',
+      title: 'Please use an active email address',
+      message: '',
       note: ''
     },
     phone: {
-      title: 'Need help with a telephone number?',
-      message: 'Please use an active phone number.',
+      title: 'Please use an active phone number',
+      message: '',
       note: ''
     },
     address: {
       title: 'Need help with the address?',
-      message: 'Please use an active address.',
-      note: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
+      message: 'Acronyms:',
+      note: 'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
     }
   }
 }
