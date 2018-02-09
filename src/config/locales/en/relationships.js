@@ -403,6 +403,9 @@ export const relationships = {
         annulled: 'Annulled',
         birthplace: 'Was this person born in the United States of America?'
       },
+      para: {
+        intro: 'Provide information about any person from whom you are divorced/dissolved, annulled, or widowed.'
+      },
       deceased: {
         label: {
           yes: 'Yes',
