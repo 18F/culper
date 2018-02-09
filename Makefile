@@ -4,15 +4,15 @@ all: clean test build
 
 test: test-front test-back
 test-front:
-	docker-compose run frontend npm --no-color test
+	docker-compose run --rm frontend npm --no-color test
 test-back:
-	docker-compose run api make test
+	docker-compose run --rm api make test
 
 build: build-front build-back
 build-front:
-	docker-compose run frontend npm --no-color run build
+	docker-compose run --rm frontend npm --no-color run build
 build-back:
-	docker-compose run api make build
+	docker-compose run --rm api make build
 
 clean: stop clean-front clean-back
 clean-front:

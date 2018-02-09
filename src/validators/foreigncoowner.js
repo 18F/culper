@@ -3,8 +3,8 @@ import NameValidator from './name'
 import { validGenericTextfield, BranchCollection } from './helpers'
 
 export default class ForeignCoOwnersValidator {
-  constructor (state = {}, props = {}) {
-    this.list = props.List || []
+  constructor (data = {}) {
+    this.list = data.List || []
   }
 
   isValid () {
@@ -18,17 +18,17 @@ export default class ForeignCoOwnersValidator {
     }
 
     return validator.each((item) => {
-      return new ForeignCoOwnerValidator(null, item.CoOwner).isValid()
+      return new ForeignCoOwnerValidator(item.CoOwner).isValid()
     })
   }
 }
 
 export class ForeignCoOwnerValidator {
-  constructor (state, props = {}) {
-    this.name = props.Name || {}
-    this.address = props.Address || {}
-    this.countries = props.Countries || {}
-    this.relationshipNature = props.RelationshipNature || {}
+  constructor (data = {}) {
+    this.name = data.Name || {}
+    this.address = data.Address || {}
+    this.countries = data.Countries || {}
+    this.relationshipNature = data.RelationshipNature || {}
   }
 
   validCountries () {

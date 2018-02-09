@@ -2,9 +2,9 @@ import { CompetenceOrderValidator } from './order'
 import { validAccordion } from './helpers'
 
 export default class CompetenceValidator {
-  constructor (state = {}, props) {
-    this.list = state.List || {}
-    this.isIncompetent = (state.IsIncompetent || {}).value
+  constructor (data = {}) {
+    this.list = data.List || {}
+    this.isIncompetent = (data.IsIncompetent || {}).value
   }
 
   validIsIncompetent () {
@@ -32,5 +32,4 @@ export default class CompetenceValidator {
 
     return this.validList()
   }
-
 }

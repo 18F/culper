@@ -13,9 +13,6 @@ middleware = [thunk, ...middleware, historyMiddleware, sectionMiddleware, saveMi
 
 // Creates a redux store that defines the state tree for the application.
 // See rootReducer for all sub-states.
-const store = createStore(
-  rootReducer,
-  applyMiddleware(...middleware)
-)
+const store = createStore(rootReducer, applyMiddleware(...middleware))
 
 export default store

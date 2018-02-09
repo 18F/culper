@@ -47,7 +47,7 @@ export default class ForeignRealEstateInterestValidator {
   }
 
   validCoOwners () {
-    return new ForeignCoOwnersValidator(null, this.coOwners).isValid()
+    return new ForeignCoOwnersValidator(this.coOwners).isValid()
   }
 
   isValid () {

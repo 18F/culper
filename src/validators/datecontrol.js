@@ -1,17 +1,17 @@
 import { today, daysAgo } from '../components/Section/History/dateranges'
 
 export default class DateControlValidator {
-  constructor (state = {}, props = {}) {
-    this.month = state.month || props.month
-    this.day = state.day || props.day
-    this.year = state.year || props.year
-    this.hideDay = props.hideDay
-    this.maxDate = props.maxDate
-    this.minDate = props.minDate
-    this.noMaxDate = props.noMaxDate
-    this.relationship = props.relationship || ''
+  constructor (data = {}) {
+    this.month = data.month
+    this.day = data.day
+    this.year = data.year
+    this.hideDay = data.hideDay
+    this.maxDate = data.maxDate
+    this.minDate = data.minDate
+    this.noMaxDate = data.noMaxDate
+    this.relationship = data.relationship || ''
 
-    this.limits = dateLimits(this.relationship, props.applicantBirthdate)
+    this.limits = dateLimits(this.relationship, data.applicantBirthdate)
     if (!this.maxDate || (this.maxDate && this.maxDate > this.limits.maxDate)) {
       this.maxDate = this.limits.maxDate
     }

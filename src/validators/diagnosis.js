@@ -3,14 +3,14 @@ import TreatmentValidator from './treatment'
 import { validGenericTextfield } from './helpers'
 
 export default class DiagnosisValidator {
-  constructor (state = {}, props = {}) {
-    this.condition = state.Condition || ''
-    this.diagnosed = state.Diagnosed || {}
-    this.treatment = state.Treatment || {}
-    this.effective = (state.Effective || {}).value
-    this.treatmentFacility = state.TreatmentFacility || {}
-    this.explanation = state.Explanation || {}
-    this.prefix = (props || {}).prefix
+  constructor (data = {}) {
+    this.condition = data.Condition || ''
+    this.diagnosed = data.Diagnosed || {}
+    this.treatment = data.Treatment || {}
+    this.effective = (data.Effective || {}).value
+    this.treatmentFacility = data.TreatmentFacility || {}
+    this.explanation = data.Explanation || {}
+    this.prefix = (data || {}).prefix
   }
 
   validEffective () {

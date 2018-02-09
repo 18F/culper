@@ -61,7 +61,7 @@ export default class ForeignIndirectInterestValidator {
   }
 
   validCoOwners () {
-    return new ForeignCoOwnersValidator(null, this.coOwners).isValid()
+    return new ForeignCoOwnersValidator(this.coOwners).isValid()
   }
 
   validExplanation () {

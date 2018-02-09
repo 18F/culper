@@ -4,7 +4,7 @@ describe('Birthplace component validation', function () {
   it('should validate domestic information', function () {
     const tests = [
       {
-        state: {
+        data: {
           country: { value: 'United States' },
           city: 'Arlington',
           county: 'Arlington',
@@ -13,7 +13,7 @@ describe('Birthplace component validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           country: { value: 'United States' },
           city: '',
           county: 'Arlington',
@@ -22,7 +22,7 @@ describe('Birthplace component validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           country: { value: 'United States' },
           city: 'Arlington',
           county: '',
@@ -31,7 +31,7 @@ describe('Birthplace component validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           country: { value: 'United States' },
           city: 'Arlington',
           county: 'Arlington',
@@ -40,7 +40,7 @@ describe('Birthplace component validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           country: { value: 'Germany' },
           city: 'Arlington',
           county: 'Arlington',
@@ -51,27 +51,27 @@ describe('Birthplace component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new BirthPlaceValidator(test.state, null).validDomestic()).toBe(test.expected)
+      expect(new BirthPlaceValidator(test.data).validDomestic()).toBe(test.expected)
     })
   })
 
   it('should validate international information', function () {
     const tests = [
       {
-        state: {
+        data: {
           country: { value: 'Germany' },
           city: 'Munich'
         },
         expected: true
       },
       {
-        state: {
+        data: {
           country: { value: 'United States' }
         },
         expected: false
       },
       {
-        state: {
+        data: {
           country: { value: 'Germany' },
           city: ''
         },
@@ -80,14 +80,14 @@ describe('Birthplace component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new BirthPlaceValidator(test.state, null).validInternational()).toBe(test.expected)
+      expect(new BirthPlaceValidator(test.data).validInternational()).toBe(test.expected)
     })
   })
 
   it('should validate birth place information', function () {
     const tests = [
       {
-        state: {
+        data: {
           domestic: false,
           country: { value: 'Germany' },
           city: 'Munich'
@@ -95,7 +95,7 @@ describe('Birthplace component validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           domestic: 'Yes',
           country: { value: 'United States' },
           city: 'Arlington',
@@ -107,7 +107,7 @@ describe('Birthplace component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new BirthPlaceValidator(test.state, null).isValid()).toBe(test.expected)
+      expect(new BirthPlaceValidator(test.data).isValid()).toBe(test.expected)
     })
   })
 })
