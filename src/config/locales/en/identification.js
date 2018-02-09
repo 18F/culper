@@ -49,7 +49,7 @@ export const identification = {
     },
     suffix: {
       help: {
-        title: 'Use "Other" if your suffix isn\'t listed?',
+        title: 'Use "Other" if your suffix isn\'t listed',
         message: 'If the suffix does not appear in this list, select "Other" and enter the suffix in the provided field.',
         note: ''
       }
