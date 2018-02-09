@@ -138,6 +138,7 @@ export default class Marital extends SubsectionElement {
                       />
         </Show>
         <Show when={this.showDivorce()}>
+          <p>{i18n.t('relationships.civilUnion.divorce.para.intro')}</p>
           <Accordion scrollTo="scrollToDivorce"
                      defaultState={this.props.defaultState}
                      scrollToBottom={this.props.scrollToBottom}

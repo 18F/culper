@@ -233,6 +233,7 @@ export default class Bankruptcy extends ValidationElement {
 
         <Field title={i18n.t('financial.bankruptcy.heading.nameDebt')}
                titleSize="h3"
+               scrollIntoView={this.props.scrollIntoView}
                optional={true}>
           <Name name="NameDebt"
                 className="namedebt"

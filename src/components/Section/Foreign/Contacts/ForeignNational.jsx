@@ -76,6 +76,7 @@ export default class ForeignNational extends ValidationElement {
 
   updateNameNotApplicable (value) {
     this.update({
+      Name: null,
       NameNotApplicable: value
     })
   }
