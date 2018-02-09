@@ -347,7 +347,7 @@ export default class Accordion extends ValidationElement {
             </span>
           </a>
         </div>
-        <Show when={closedAndIncomplete && !initial}>
+        <Show when={closedAndIncomplete}>
           {this.props.byline(item, index, initial, this.props.incomplete, this.props.required)}
         </Show>
       </div>
@@ -462,7 +462,7 @@ export default class Accordion extends ValidationElement {
    * */
   isValid (item) {
     if (this.props.required) {
-      return new this.props.validator(item, this.context).isValid()
+      return new this.props.validator(item).isValid()
     }
     return true
   }

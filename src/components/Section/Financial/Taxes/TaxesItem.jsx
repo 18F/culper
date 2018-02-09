@@ -2,7 +2,7 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import { ValidationElement, DateControl, Number, Field,
          Checkbox, Text, Textarea, NotApplicable, Currency } from '../../../Form'
-import { dateLimits } from '../../../../validators/datecontrol'
+import { getContext, dateLimits } from '../../../../validators/datecontrol'
 import FailureType from './FailureType'
 
 export default class TaxesItem extends ValidationElement {
@@ -106,7 +106,7 @@ export default class TaxesItem extends ValidationElement {
   }
 
   render () {
-    const minYearFiled = dateLimits(null, (this.context || {}).applicantBirthdate)
+    const minYearFiled = dateLimits(null, getContext().applicantBirthdate)
     return (
       <div className="taxes-item">
         <Field title={i18n.t('financial.taxes.heading.failure')}

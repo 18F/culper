@@ -257,7 +257,7 @@ export default class DateControl extends ValidationElement {
         props = {
           ...this.props,
           ...this.state,
-          validator: new DateControlValidator({ ...this.props, ...this.state }, this.context)
+          validator: new DateControlValidator({ ...this.props, ...this.state })
         }
       }
 

@@ -28,7 +28,6 @@ setup-docker:
 test: test-front test-back
 test-front:
 	docker-compose run --rm frontend ./bin/test
-	docker-compose run frontend ./bin/test
 test-back:
 	docker-compose run --rm api make test
 

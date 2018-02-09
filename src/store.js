@@ -6,13 +6,15 @@ import { historyMiddleware, sectionMiddleware, saveMiddleware, settingsMiddlewar
 import { env } from './config'
 
 let middleware = []
-if (!env.IsProduction()) {
+if (process.env.NODE_ENV !== 'production') {
   middleware.push(logger)
 }
 middleware = [thunk, ...middleware, historyMiddleware, sectionMiddleware, saveMiddleware, settingsMiddleware, clearErrorsMiddleware]
 
 // Creates a redux store that defines the state tree for the application.
 // See rootReducer for all sub-states.
-const store = createStore(rootReducer, applyMiddleware(...middleware))
+const store = process.env.NODE_ENV === 'test'
+      ? createStore(rootReducer)
+      : createStore(rootReducer, applyMiddleware(...middleware))
 
 export default store

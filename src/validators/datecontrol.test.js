@@ -169,26 +169,32 @@ describe('date control validator', function () {
       {
         data: {
           relationship: 'Self',
-          applicantBirthdate: null,
           ...age(15)
         },
+        context: {
+          applicantBirthdate: null
+        },
         min: true,
         max: false
       },
       {
         data: {
           relationship: 'Self',
-          applicantBirthdate: null,
           ...age(131)
         },
+        context: {
+          applicantBirthdate: null
+        },
         min: false,
         max: true
       },
       {
         data: {
           relationship: 'Self',
-          applicantBirthdate: null,
           ...age(20)
+        },
+        context: {
+          applicantBirthdate: birthdate
         },
         min: true,
         max: true
@@ -196,35 +202,43 @@ describe('date control validator', function () {
       {
         data: {
           relationship: 'Mother',
-          applicantBirthdate: birthdate,
           ...age(1)
         },
+        context: {
+          applicantBirthdate: birthdate
+        },
         min: true,
         max: false
       },
       {
         data: {
           relationship: 'Mother',
-          applicantBirthdate: birthdate,
           ...age(202)
         },
+        context: {
+          applicantBirthdate: birthdate
+        },
         min: false,
         max: true
       },
       {
         data: {
           relationship: 'Mother',
-          applicantBirthdate: birthdate,
           ...age(40)
         },
+        context: {
+          applicantBirthdate: birthdate
+        },
         min: true,
         max: true
       },
       {
         data: {
           relationship: 'Child',
-          applicantBirthdate: birthdate,
           ...age(-1)
+        },
+        context: {
+          applicantBirthdate: birthdate
         },
         min: true,
         max: false
@@ -232,8 +246,10 @@ describe('date control validator', function () {
       {
         data: {
           relationship: 'Child',
-          applicantBirthdate: birthdate,
           ...age(26)
+        },
+        context: {
+          applicantBirthdate: birthdate
         },
         min: false,
         max: true
@@ -241,17 +257,21 @@ describe('date control validator', function () {
       {
         data: {
           relationship: 'Child',
-          applicantBirthdate: birthdate,
           ...age(18)
         },
+        context: {
+          applicantBirthdate: birthdate
+        },
         min: true,
         max: true
       },
       {
         data: {
           relationship: 'Other',
-          applicantBirthdate: birthdate,
           ...age(-1)
+        },
+        context: {
+          applicantBirthdate: birthdate
         },
         min: true,
         max: false
@@ -259,8 +279,10 @@ describe('date control validator', function () {
       {
         data: {
           relationship: 'Other',
-          applicantBirthdate: birthdate,
           ...age(201)
+        },
+        context: {
+          applicantBirthdate: birthdate
         },
         min: false,
         max: true
@@ -268,17 +290,21 @@ describe('date control validator', function () {
       {
         data: {
           relationship: 'Other',
-          applicantBirthdate: birthdate,
           ...age(50)
         },
+        context: {
+          applicantBirthdate: birthdate
+        },
         min: true,
         max: true
       },
       {
         data: {
           relationship: '',
-          applicantBirthdate: birthdate,
           ...age(-1)
+        },
+        context: {
+          applicantBirthdate: birthdate
         },
         min: true,
         max: false
@@ -286,8 +312,10 @@ describe('date control validator', function () {
       {
         data: {
           relationship: '',
-          applicantBirthdate: birthdate,
           ...age(26)
+        },
+        context: {
+          applicantBirthdate: birthdate
         },
         min: false,
         max: true
@@ -295,17 +323,10 @@ describe('date control validator', function () {
       {
         data: {
           relationship: '',
-          applicantBirthdate: birthdate,
           ...age(20)
         },
-        min: true,
-        max: true
-      },
-      {
-        data: {
-          relationship: '',
-          applicantBirthdate: null,
-          ...age(26)
+        context: {
+          applicantBirthdate: birthdate
         },
         min: true,
         max: true
@@ -313,8 +334,21 @@ describe('date control validator', function () {
       {
         data: {
           relationship: '',
-          applicantBirthdate: null,
+          ...age(26)
+        },
+        context: {
+          applicantBirthdate: null
+        },
+        min: true,
+        max: true
+      },
+      {
+        data: {
+          relationship: '',
           ...age(201)
+        },
+        context: {
+          applicantBirthdate: null
         },
         min: false,
         max: true
@@ -322,7 +356,7 @@ describe('date control validator', function () {
     ]
 
     tests.forEach(test => {
-      const validator = new DateControlValidator(test.data)
+      const validator = new DateControlValidator(test.data, test.context)
       expect(validator.validMaxDate()).toBe(test.max)
       expect(validator.validMinDate()).toBe(test.min)
     })
@@ -342,36 +376,44 @@ describe('date control validator', function () {
     const tests = [
       {
         data: {
-          applicantBirthdate: birthdate,
           minDate: daysAgo(today, 365 * 23),
           ...age(24)
         },
-        min: false,
-        max: true
-      },
-      {
-        data: {
-          applicantBirthdate: birthdate,
-          minDate: daysAgo(today, 365 * 23),
-          ...age(26)
+        context: {
+          applicantBirthdate: birthdate
         },
         min: false,
         max: true
       },
       {
         data: {
-          applicantBirthdate: birthdate,
+          minDate: daysAgo(today, 365 * 23),
+          ...age(26)
+        },
+        context: {
+          applicantBirthdate: birthdate
+        },
+        min: false,
+        max: true
+      },
+      {
+        data: {
           maxDate: daysAgo(today, 365 * 20),
           ...age(19)
+        },
+        context: {
+          applicantBirthdate: birthdate
         },
         min: true,
         max: false
       },
       {
         data: {
-          applicantBirthdate: birthdate,
           maxDate: daysAgo(today, 365 * 30),
           ...age(0)
+        },
+        context: {
+          applicantBirthdate: birthdate
         },
         min: true,
         max: false
@@ -379,7 +421,7 @@ describe('date control validator', function () {
     ]
 
     tests.forEach(test => {
-      const validator = new DateControlValidator(test.data)
+      const validator = new DateControlValidator(test.data, test.context)
       expect(validator.validMaxDate()).toBe(test.max)
       expect(validator.validMinDate()).toBe(test.min)
     })
