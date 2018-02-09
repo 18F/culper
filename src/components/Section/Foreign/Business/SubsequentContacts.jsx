@@ -18,46 +18,45 @@ export default class SubsequentContacts extends ValidationElement {
     return (
       <div className="foreign-business-contact-subsequentcontacts">
         <BranchCollection label={i18n.t('foreign.business.contact.heading.hassubsequent')}
-          appendLabel={i18n.t('foreign.business.contact.heading.hassubsequent2')}
-          help="foreign.business.contact.help.hassubsequent"
-          className="has-foreign-contacts"
-          {...this.props}
-          onUpdate={this.updateList}
-          required={this.props.required}
-          onError={this.props.onError}
-          scrollIntoView={this.props.scrollIntoView}>
+                          appendLabel={i18n.t('foreign.business.contact.heading.hassubsequent2')}
+                          help="foreign.business.contact.help.hassubsequent"
+                          className="has-foreign-contacts"
+                          {...this.props}
+                          onUpdate={this.updateList}
+                          required={this.props.required}
+                          onError={this.props.onError}
+                          scrollIntoView={this.props.scrollIntoView}>
           <AccordionItem scrollIntoView={this.props.scrollIntoView}
-            required={false}>
+                         required={false}>
             <Field title={i18n.t('foreign.business.contact.heading.subsequent')}
-              adjustFor="textarea"
-              scrollIntoView={this.props.scrollIntoView}>
+                   adjustFor="textarea"
+                   scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="Subsequent"
-                className="foreign-business-contact-subsequent"
-                bind={true}
-                required={this.props.required}
-              />
+                        className="foreign-business-contact-subsequent"
+                        bind={true}
+                        required={this.props.required}
+                        />
             </Field>
 
             <Field title={i18n.t('foreign.business.contact.heading.recent')}
-              help="foreign.business.contact.help.recent"
-              adjustFor="datecontrol"
-              scrollIntoView={this.props.scrollIntoView}>
+                   help="foreign.business.contact.help.recent"
+                   adjustFor="datecontrol"
+                   scrollIntoView={this.props.scrollIntoView}>
               <DateControl name="Recent"
-                applicantBirthdate={this.props.applicantBirthdate}
-                className="foreign-business-contact-recent"
-                bind={true}
-                required={this.props.required}
-              />
+                           className="foreign-business-contact-recent"
+                           bind={true}
+                           required={this.props.required}
+                           />
             </Field>
 
             <Field title={i18n.t('foreign.business.contact.heading.future')}
-              adjustFor="textarea"
-              scrollIntoView={this.props.scrollIntoView}>
+                   adjustFor="textarea"
+                   scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="Future"
-                className="foreign-business-contact-future"
-                bind={true}
-                required={this.props.required}
-              />
+                        className="foreign-business-contact-future"
+                        bind={true}
+                        required={this.props.required}
+                        />
             </Field>
           </AccordionItem>
         </BranchCollection>
@@ -68,7 +67,6 @@ export default class SubsequentContacts extends ValidationElement {
 
 SubsequentContacts.defaultProps = {
   name: 'SubsequentContacts',
-  applicantBirthdate: {},
   List: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }

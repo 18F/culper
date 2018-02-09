@@ -84,7 +84,6 @@ export default class DrugClearanceUses extends SubsectionElement {
             <DrugClearanceUse name="Item"
                               bind={true}
                               required={this.props.required}
-                              applicantBirthdate={this.props.applicantBirthdate}
                               scrollIntoView={this.props.scrollIntoView} />
           </Accordion>
         </Show>
@@ -99,7 +98,6 @@ DrugClearanceUses.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'substance',
   subsection: 'drugs/clearance',
-  applicantBirthdate: {},
   dispatch: () => {},
   validator: (state, props) => {
     return validate(schema('substance.drug.clearance', props))

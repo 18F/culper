@@ -88,7 +88,6 @@ export default class Contact extends SubsectionElement {
                      scrollIntoView={this.props.scrollIntoView}>
             <ContactItem name="Item"
                          bind={true}
-                         applicantBirthdate={this.props.applicantBirthdate}
                          scrollIntoView={this.props.scrollIntoView}
                          required={this.props.required}
                          />
@@ -107,7 +106,6 @@ Contact.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'business/contact',
-  applicantBirthdate: {},
   addressBooks: {},
   dispatch: (action) => {},
   validator: (state, props) => {

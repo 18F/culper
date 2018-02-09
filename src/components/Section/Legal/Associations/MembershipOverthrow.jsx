@@ -81,7 +81,6 @@ export default class MembershipOverthrow extends SubsectionElement {
                      scrollIntoView={this.props.scrollIntoView}>
             <MembershipOverthrowItem name="Item"
                                      bind={true}
-                                     applicantBirthdate={this.props.applicantBirthdate}
                                      required={this.props.required}
                                      scrollIntoView={this.props.scrollIntoView}
                                      addressBooks={this.props.addressBooks}
@@ -103,7 +102,6 @@ MembershipOverthrow.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'legal',
   subsection: 'associations/membership-overthrow',
-  applicantBirthdate: {},
   addressBooks: {},
   dispatch: (action) => {},
   validator: (state, props) => {

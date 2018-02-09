@@ -81,7 +81,6 @@ export default class Sponsorship extends SubsectionElement {
                      scrollIntoView={this.props.scrollIntoView}>
             <SponsorshipItem name="Item"
                              bind={true}
-                             applicantBirthdate={this.props.applicantBirthdate}
                              required={this.props.required}
                              scrollIntoView={this.props.scrollIntoView}
                              />
@@ -100,7 +99,6 @@ Sponsorship.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'business/sponsorship',
-  applicantBirthdate: {},
   addressBooks: {},
   dispatch: (action) => {},
   validator: (state, props) => {

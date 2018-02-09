@@ -81,7 +81,6 @@ export default class Advocating extends SubsectionElement {
                      scrollIntoView={this.props.scrollIntoView}>
             <AdvocatingItem name="Item"
                             bind={true}
-                            applicantBirthdate={this.props.applicantBirthdate}
                             required={this.props.required}
                             scrollIntoView={this.props.scrollIntoView}
                             />
@@ -101,7 +100,6 @@ Advocating.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'legal',
   subsection: 'associations/advocating',
-  applicantBirthdate: {},
   dispatch: () => {},
   validator: (state, props) => {
     return validate(schema('legal.associations.advocating', props))

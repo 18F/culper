@@ -83,7 +83,6 @@ export default class VoluntaryCounselings extends SubsectionElement {
                      scrollIntoView={this.props.scrollIntoView}>
         <VoluntaryCounseling name="Item"
                              bind={true}
-                             applicantBirthdate={this.props.applicantBirthdate}
                              addressBooks={this.props.addressBooks}
                              dispatch={this.props.dispatch}
                              required={this.props.required}
@@ -101,7 +100,6 @@ VoluntaryCounselings.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'substance',
   subsection: 'alcohol/voluntary',
-  applicantBirthdate: {},
   addressBooks: {},
   dispatch: (action) => {},
   validator: (state, props) => {

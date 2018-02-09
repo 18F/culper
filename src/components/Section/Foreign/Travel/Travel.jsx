@@ -102,7 +102,6 @@ export default class Travel extends SubsectionElement {
                      scrollIntoView={this.props.scrollIntoView}>
             <TravelQuestions name="Item"
                              bind={true}
-                             applicantBirthdate={this.props.applicantBirthdate}
                              required={this.props.required}
                              scrollIntoView={this.props.scrollIntoView} />
           </Accordion>
@@ -121,7 +120,6 @@ Travel.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'travel',
-  applicantBirthdate: {},
   dispatch: () => {},
   validator: (state, props) => {
     return validate(schema('foreign.travel', props))

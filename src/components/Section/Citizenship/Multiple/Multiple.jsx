@@ -87,7 +87,6 @@ export default class Multiple extends SubsectionElement {
                      scrollIntoView={this.props.scrollIntoView}>
             <CitizenshipItem name="Item"
                              bind={true}
-                             applicantBirthdate={this.props.applicantBirthdate}
                              required={this.props.required}
                              scrollIntoView={this.props.scrollIntoView} />
           </Accordion>
@@ -104,7 +103,6 @@ Multiple.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'citizenship',
   subsection: 'multiple',
-  applicantBirthdate: {},
   dispatch: () => {},
   validator: (state, props) => {
     return validate(schema('citizenship.multiple', props))

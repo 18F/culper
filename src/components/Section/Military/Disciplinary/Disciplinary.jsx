@@ -86,7 +86,6 @@ export default class Disciplinary extends SubsectionElement {
             <Procedure name="Item"
                        bind={true}
                        required={this.props.required}
-                       applicantBirthdate={this.props.applicantBirthdate}
                        scrollIntoView={this.props.scrollIntoView}
                        />
           </Accordion>
@@ -99,7 +98,6 @@ export default class Disciplinary extends SubsectionElement {
 Disciplinary.defaultProps = {
   HasDisciplinary: {},
   List: { items: [] },
-  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'military',

@@ -81,7 +81,6 @@ export default class ActivitiesToOverthrow extends SubsectionElement {
                      scrollIntoView={this.props.scrollIntoView}>
             <ActivitiesToOverthrowItem name="Item"
                                        bind={true}
-                                       applicantBirthdate={this.props.applicantBirthdate}
                                        required={this.props.required}
                                        scrollIntoView={this.props.scrollIntoView}
                                        />
@@ -102,7 +101,6 @@ ActivitiesToOverthrow.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'legal',
   subsection: 'associations/activities-to-overthrow',
-  applicantBirthdate: {},
   dispatch: () => {},
   validator: (state, props) => {
     return validate(schema('legal.associations.activities-to-overthrow', props))

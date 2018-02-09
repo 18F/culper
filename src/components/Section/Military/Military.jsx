@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { i18n } from '../../../config'
-import { extractApplicantBirthdate } from '../extractors'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
 import SectionComments from '../SectionComments'
@@ -70,7 +69,6 @@ class Military extends SectionElement {
             <Show when={showSelectiveService}>
               <Selective name="selective"
                          {...this.props.Selective}
-                         applicantBirthdate={this.props.applicantBirthdate}
                          dispatch={this.props.dispatch}
                          onUpdate={this.updateSelective}
                          onError={this.handleError}
@@ -82,7 +80,6 @@ class Military extends SectionElement {
 
             <History name="history"
                      {...this.props.History}
-                     applicantBirthdate={this.props.applicantBirthdate}
                      defaultState={false}
                      dispatch={this.props.dispatch}
                      onUpdate={this.updateHistory}
@@ -95,7 +92,6 @@ class Military extends SectionElement {
               <hr className="section-divider"/>
               <Disciplinary name="disciplinary"
                             {...this.props.Disciplinary}
-                            applicantBirthdate={this.props.applicantBirthdate}
                             defaultState={false}
                             dispatch={this.props.dispatch}
                             onUpdate={this.updateDisciplinary}
@@ -108,7 +104,6 @@ class Military extends SectionElement {
             <hr className="section-divider"/>
             <Foreign name="foreign"
                      {...this.props.Foreign}
-                     applicantBirthdate={this.props.applicantBirthdate}
                      addressBooks={this.props.AddressBooks}
                      defaultState={false}
                      dispatch={this.props.dispatch}
@@ -137,7 +132,6 @@ class Military extends SectionElement {
                        nextLabel={i18n.t('military.destination.history')}>
             <Selective name="selective"
                        {...this.props.Selective}
-                       applicantBirthdate={this.props.applicantBirthdate}
                        dispatch={this.props.dispatch}
                        onUpdate={this.updateSelective}
                        onError={this.handleError}
@@ -151,7 +145,6 @@ class Military extends SectionElement {
                        nextLabel={showDisciplinary ? i18n.t('military.destination.disciplinary') : i18n.t('military.destination.foreign')}>
             <History name="history"
                      {...this.props.History}
-                     applicantBirthdate={this.props.applicantBirthdate}
                      dispatch={this.props.dispatch}
                      onUpdate={this.updateHistory}
                      onError={this.handleError}
@@ -166,7 +159,6 @@ class Military extends SectionElement {
                        nextLabel={i18n.t('military.destination.foreign')}>
             <Disciplinary name="disciplinary"
                           {...this.props.Disciplinary}
-                          applicantBirthdate={this.props.applicantBirthdate}
                           dispatch={this.props.dispatch}
                           onUpdate={this.updateDisciplinary}
                           onError={this.handleError}
@@ -181,7 +173,6 @@ class Military extends SectionElement {
                        nextLabel={i18n.t('military.destination.review')}>
             <Foreign name="foreign"
                      {...this.props.Foreign}
-                     applicantBirthdate={this.props.applicantBirthdate}
                      addressBooks={this.props.AddressBooks}
                      dispatch={this.props.dispatch}
                      onUpdate={this.updateForeign}
@@ -212,7 +203,6 @@ function mapStateToProps (state) {
     Comments: military.Comments || {},
     Errors: errors.military || [],
     Completed: completed.military || [],
-    applicantBirthdate: extractApplicantBirthdate(app),
     AddressBooks: addressBooks
   }
 }

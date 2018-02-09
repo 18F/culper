@@ -106,7 +106,6 @@ export default class ContinuingBenefit extends ValidationElement {
           <DateControl name="Began"
                        className="began"
                        {...this.props.Began}
-                       applicantBirthdate={this.props.applicantBirthdate}
                        label={i18n.t('foreign.activities.benefit.continuing.label.began')}
                        onUpdate={this.updateBegan}
                        onError={this.props.onError}
@@ -122,7 +121,6 @@ export default class ContinuingBenefit extends ValidationElement {
           <DateControl name="End"
                        className="end"
                        {...this.props.End}
-                       applicantBirthdate={this.props.applicantBirthdate}
                        label={i18n.t('foreign.activities.benefit.continuing.label.end')}
                        onUpdate={this.updateEnd}
                        noMaxDate={true}
@@ -255,7 +253,6 @@ export default class ContinuingBenefit extends ValidationElement {
 
 ContinuingBenefit.defaultProps = {
   Obligated: {},
-  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

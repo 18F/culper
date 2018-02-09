@@ -179,7 +179,6 @@ export default class People extends SubsectionElement {
                    appendLabel={i18n.t('relationships.people.person.collection.appendLabel')}>
           <Person name="Item"
                   bind={true}
-                  applicantBirthdate={this.props.applicantBirthdate}
                   addressBooks={this.props.addressBooks}
                   dispatch={this.props.dispatch}
                   required={this.props.required}
@@ -196,7 +195,6 @@ People.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'relationships',
   subsection: 'people',
-  applicantBirthdate: {},
   addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {

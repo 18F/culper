@@ -266,7 +266,6 @@ export default class ForeignNational extends ValidationElement {
           <DateControl name="FirstContact"
                        className="first-contact"
                        {...this.props.FirstContact}
-                       applicantBirthdate={this.props.applicantBirthdate}
                        onUpdate={this.updateFirstContact}
                        onError={this.props.onError}
                        required={this.props.required}
@@ -280,7 +279,6 @@ export default class ForeignNational extends ValidationElement {
           <DateControl name="LastContact"
                        className="last-contact"
                        {...this.props.LastContact}
-                       applicantBirthdate={this.props.applicantBirthdate}
                        minDate={(this.props.FirstContact || {}).date}
                        onUpdate={this.updateLastContact}
                        onError={this.props.onError}
@@ -517,7 +515,6 @@ export default class ForeignNational extends ValidationElement {
                          onError={this.props.onError}>
             <DateControl name="Birthdate"
                          {...this.props.Birthdate}
-                         applicantBirthdate={this.props.applicantBirthdate}
                          relationship="Other"
                          onUpdate={this.updateBirthdate}
                          onError={this.props.onError}
@@ -705,7 +702,6 @@ ForeignNational.defaultProps = {
   OrganizationAddressNotApplicable: { applicable: true },
   HasAffiliations: {},
   Affiliations: {},
-  applicantBirthdate: {},
   addressBooks: {},
   dispatch: (action) => {},
   onUpdate: (queue) => {},

@@ -90,7 +90,6 @@ export default class IndirectActivity extends SubsectionElement {
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
             <IndirectInterest name="Item"
-                              applicantBirthdate={this.props.applicantBirthdate}
                               addressBooks={this.props.addressBooks}
                               dispatch={this.props.dispatch}
                               bind={true}
@@ -113,7 +112,6 @@ IndirectActivity.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'activities/indirect',
-  applicantBirthdate: {},
   addressBooks: {},
   dispatch: (action) => {},
   validator: (state, props) => {

@@ -82,7 +82,6 @@ export default class Revoked extends SubsectionElement {
                      scrollIntoView={this.props.scrollIntoView}>
             <RevokedItem name="Item"
                          bind={true}
-                         applicantBirthdate={this.props.applicantBirthdate}
                          required={this.props.required}
                          scrollIntoView={this.props.scrollIntoView}
                          />
@@ -97,7 +96,6 @@ Revoked.defaultProps = {
   name: 'revoked',
   HasRevocations: {},
   List: Accordion.defaultList,
-  applicantBirthdate: {},
   defaultState: true,
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },

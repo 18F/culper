@@ -442,7 +442,6 @@ export default class Relative extends ValidationElement {
           <DateControl name="Birthdate"
                        className="relative-birthdate"
                        {...this.props.Birthdate}
-                       applicantBirthdate={this.props.applicantBirthdate}
                        relationship={(this.props.Relation || {}).value}
                        onError={this.props.onError}
                        onUpdate={this.updateBirthdate}
@@ -1080,7 +1079,6 @@ Relative.defaultProps = {
   EmployerAddress: {},
   HasAffiliation: '',
   EmployerRelationship: {},
-  applicantBirthdate: {},
   addressBooks: {},
   addressBook: 'Relative',
   dispatch: (action) => {},

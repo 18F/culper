@@ -244,7 +244,6 @@ export default class ForeignBornDocuments extends ValidationElement {
                          onUpdate={this.updateDocumentExpirationNotApplicable}>
             <DateControl name="documentExpiration"
                          {...this.props.DocumentExpiration}
-                         applicantBirthdate={this.props.applicantBirthdate}
                          onUpdate={this.updateDocumentExpiration}
                          onError={this.props.onError}
                          required={this.props.required}
@@ -262,7 +261,6 @@ ForeignBornDocuments.defaultProps = {
   DocumentNumber: {},
   DocumentExpiration: {},
   DocumentExpirationNotApplicable: { applicable: true },
-  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

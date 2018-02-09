@@ -83,7 +83,6 @@ export default class Conferences extends SubsectionElement {
                      scrollIntoView={this.props.scrollIntoView}>
             <ConferencesItem name="Item"
                              bind={true}
-                             applicantBirthdate={this.props.applicantBirthdate}
                              required={this.props.required}
                              scrollIntoView={this.props.scrollIntoView}
                              />
@@ -102,7 +101,6 @@ Conferences.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'business/conferences',
-  applicantBirthdate: {},
   dispatch: () => {},
   validator: (state, props) => {
     return validate(schema('foreign.business.conferences', props))

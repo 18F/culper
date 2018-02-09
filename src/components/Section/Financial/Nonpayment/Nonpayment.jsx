@@ -121,7 +121,6 @@ export default class Nonpayment extends SubsectionElement {
                      appendLabel={i18n.t('financial.nonpayment.collection.append')}>
             <NonpaymentItem name="Item"
                             bind={true}
-                            applicantBirthdate={this.props.applicantBirthdate}
                             required={this.props.required}
                             scrollIntoView={this.props.scrollIntoView}
                             />
@@ -139,7 +138,6 @@ Nonpayment.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'financial',
   subsection: 'nonpayment',
-  applicantBirthdate: {},
   dispatch: () => {},
   validator: (state, props) => {
     return validate(schema('financial.nonpayment', props))

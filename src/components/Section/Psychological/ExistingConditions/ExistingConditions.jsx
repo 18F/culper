@@ -167,7 +167,6 @@ export default class ExistingConditions extends SubsectionElement {
                          required={this.props.required}
                          scrollIntoView={this.props.scrollIntoView}>
                 <Diagnosis name="Item"
-                           applicantBirthdate={this.props.applicantBirthdate}
                            prefix="existingConditions.diagnosis"
                            required={this.props.required}
                            scrollIntoView={this.props.scrollIntoView}

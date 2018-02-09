@@ -1,6 +1,9 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 import { push } from '../../middleware/history'
 import { updateSection } from '../../actions/SectionActions'
+import { extractApplicantBirthdate } from './extractors'
 import AuthenticatedView from '../../views/AuthenticatedView'
 import Identification from './Identification'
 import Financial from './Financial'
@@ -19,6 +22,10 @@ class Section extends React.Component {
   constructor (props) {
     super(props)
     this.update = this.update.bind(this)
+  }
+
+  getChildContext () {
+    return { applicantBirthdate: this.props.applicantBirthdate }
   }
 
   // TODO: See if this is necessary. Removing this makes the first section not expand in navigation ATM.
@@ -87,4 +94,15 @@ class Section extends React.Component {
   }
 }
 
-export default AuthenticatedView(Section)
+function mapStateToProps (state) {
+  const app = state.application || {}
+  return {
+    applicantBirthdate: extractApplicantBirthdate(app)
+  }
+}
+
+Section.childContextTypes = {
+  applicantBirthdate: PropTypes.object
+}
+
+export default connect(mapStateToProps)(AuthenticatedView(Section))

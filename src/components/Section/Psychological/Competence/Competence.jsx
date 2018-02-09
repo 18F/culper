@@ -80,7 +80,6 @@ export default class Competence extends SubsectionElement {
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
             <Order name="Item"
-                   applicantBirthdate={this.props.applicantBirthdate}
                    prefix="competence"
                    addressBooks={this.props.addressBooks}
                    dispatch={this.props.dispatch}
@@ -102,7 +101,6 @@ Competence.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'psychological',
   subsection: 'competence',
-  applicantBirthdate: {},
   addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {

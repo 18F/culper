@@ -129,7 +129,6 @@ export default class Marital extends SubsectionElement {
                       onUpdate={this.updateCivilUnion}
                       onError={this.handleError}
                       onSpouseUpdate={this.props.onSpouseUpdate}
-                      applicantBirthdate={this.props.applicantBirthdate}
                       addressBooks={this.props.addressBooks}
                       currentAddress={this.props.currentAddress}
                       dispatch={this.props.dispatch}
@@ -154,7 +153,6 @@ export default class Marital extends SubsectionElement {
                      appendLabel={i18n.t('relationships.civilUnion.divorce.collection.appendLabel')}>
             <Divorce name="Item"
                      bind={true}
-                     applicantBirthdate={this.props.applicantBirthdate}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}
                      />
@@ -173,7 +171,6 @@ Marital.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'relationships',
   subsection: 'status/marital',
-  applicantBirthdate: {},
   addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {

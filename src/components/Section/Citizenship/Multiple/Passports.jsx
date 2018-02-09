@@ -50,7 +50,6 @@ export default class Passports extends SubsectionElement {
                         bind={true}
                         defaultState={this.props.defaultState}
                         required={this.props.required}
-                        applicantBirthdate={this.props.applicantBirthdate}
                         scrollIntoView={this.props.scrollIntoView} />
         </BranchCollection>
       </div>
@@ -60,7 +59,6 @@ export default class Passports extends SubsectionElement {
 
 Passports.defaultProps = {
   Passports: { items: [] },
-  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'citizenship',

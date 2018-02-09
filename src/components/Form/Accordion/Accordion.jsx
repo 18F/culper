@@ -462,7 +462,7 @@ export default class Accordion extends ValidationElement {
    * */
   isValid (item) {
     if (this.props.required) {
-      return new this.props.validator(item).isValid()
+      return new this.props.validator(item, this.context).isValid()
     }
     return true
   }

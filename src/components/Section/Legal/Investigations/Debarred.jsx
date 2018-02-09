@@ -82,7 +82,6 @@ export default class Debarred extends SubsectionElement {
             <DebarredItem name="Item"
                           bind={true}
                           required={this.props.required}
-                          applicantBirthdate={this.props.applicantBirthdate}
                           scrollIntoView={this.props.scrollIntoView}
                           />
           </Accordion>
@@ -101,7 +100,6 @@ Debarred.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'legal',
   subsection: 'investigations/debarred',
-  applicantBirthdate: {},
   dispatch: () => {},
   validator: (state, props) => {
     return validate(schema('legal.investigations.debarred', props))

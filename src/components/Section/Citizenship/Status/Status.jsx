@@ -344,7 +344,6 @@ export default class Status extends SubsectionElement {
               <DateControl name="DocumentIssued"
                            className="document-issued"
                            {...this.props.DocumentIssued}
-                           applicantBirthdate={this.props.applicantBirthdate}
                            onUpdate={this.updateDocumentIssued}
                            onError={this.handleError}
                            required={this.props.required}
@@ -395,7 +394,6 @@ export default class Status extends SubsectionElement {
               <DateControl name="CertificateIssued"
                            className="certificate-issued"
                            {...this.props.CertificateIssued}
-                           applicantBirthdate={this.props.applicantBirthdate}
                            onUpdate={this.updateCertificateIssued}
                            onError={this.handleError}
                            required={this.props.required}
@@ -448,7 +446,6 @@ export default class Status extends SubsectionElement {
               <DateControl name="EntryDate"
                            className="entry-date"
                            {...this.props.EntryDate}
-                           applicantBirthdate={this.props.applicantBirthdate}
                            onUpdate={this.updateEntryDate}
                            onError={this.handleError}
                            required={this.props.required}
@@ -550,7 +547,6 @@ export default class Status extends SubsectionElement {
               <DateControl name="CertificateIssued"
                            className="certificate-issued"
                            {...this.props.CertificateIssued}
-                           applicantBirthdate={this.props.applicantBirthdate}
                            onUpdate={this.updateCertificateIssued}
                            onError={this.handleError}
                            required={this.props.required}
@@ -665,7 +661,6 @@ export default class Status extends SubsectionElement {
               <DateControl name="CertificateIssued"
                            className="certificate-issued"
                            {...this.props.CertificateIssued}
-                           applicantBirthdate={this.props.applicantBirthdate}
                            onUpdate={this.updateCertificateIssued}
                            onError={this.handleError}
                            required={this.props.required}
@@ -733,7 +728,6 @@ export default class Status extends SubsectionElement {
               <DateControl name="EntryDate"
                            className="entry-date"
                            {...this.props.EntryDate}
-                           applicantBirthdate={this.props.applicantBirthdate}
                            onUpdate={this.updateEntryDate}
                            onError={this.handleError}
                            required={this.props.required}
@@ -783,7 +777,6 @@ export default class Status extends SubsectionElement {
               <DateControl name="AlienRegistrationExpiration"
                            className="alien-registration-expiration"
                            {...this.props.AlienRegistrationExpiration}
-                           applicantBirthdate={this.props.applicantBirthdate}
                            onUpdate={this.updateAlienRegistrationExpiration}
                            onError={this.handleError}
                            required={this.props.required}
@@ -879,7 +872,6 @@ export default class Status extends SubsectionElement {
               <DateControl name="DocumentIssued"
                            className="document-issued"
                            {...this.props.DocumentIssued}
-                           applicantBirthdate={this.props.applicantBirthdate}
                            onUpdate={this.updateDocumentIssued}
                            onError={this.handleError}
                            required={this.props.required}
@@ -892,7 +884,6 @@ export default class Status extends SubsectionElement {
               <DateControl name="DocumentExpiration"
                            className="document-expiration"
                            {...this.props.DocumentExpiration}
-                           applicantBirthdate={this.props.applicantBirthdate}
                            onUpdate={this.updateDocumentExpiration}
                            onError={this.handleError}
                            required={this.props.required}
@@ -931,7 +922,6 @@ Status.defaultProps = {
   ResidenceStatus: {},
   DocumentType: {},
   DocumentExpiration: {},
-  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'citizenship',

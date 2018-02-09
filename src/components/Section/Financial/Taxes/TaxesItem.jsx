@@ -106,7 +106,7 @@ export default class TaxesItem extends ValidationElement {
   }
 
   render () {
-    const minYearFiled = dateLimits(null, this.props.applicantBirthdate)
+    const minYearFiled = dateLimits(null, (this.context || {}).applicantBirthdate)
     return (
       <div className="taxes-item">
         <Field title={i18n.t('financial.taxes.heading.failure')}
@@ -218,7 +218,6 @@ export default class TaxesItem extends ValidationElement {
                          onError={this.props.onError}>
             <DateControl name="Date"
                          {...this.props.Date}
-                         applicantBirthdate={this.props.applicantBirthdate}
                          className="taxes-date"
                          hideDay={true}
                          required={this.props.required}
@@ -256,7 +255,6 @@ TaxesItem.defaultProps = {
   DateNotApplicable: { applicable: true },
   Date: {},
   Description: {},
-  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   required: false

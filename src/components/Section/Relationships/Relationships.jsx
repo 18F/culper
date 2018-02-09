@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { updateApplication } from '../../../actions/ApplicationActions'
 import { i18n } from '../../../config'
-import { extractApplicantBirthdate } from '../extractors'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
 import SectionComments from '../SectionComments'
@@ -72,7 +71,6 @@ class Relationships extends SectionElement {
                        nextLabel={i18n.t('relationships.destination.cohabitant')}>
             <Marital name="marital"
                      {...this.props.Marital}
-                     applicantBirthdate={this.props.applicantBirthdate}
                      addressBooks={this.props.AddressBooks}
                      dispatch={this.props.dispatch}
                      onUpdate={this.updateMarital}
@@ -90,7 +88,6 @@ class Relationships extends SectionElement {
                        nextLabel={i18n.t('relationships.destination.people')}>
             <Cohabitants name="cohabitants"
                          {...this.props.Cohabitants}
-                         applicantBirthdate={this.props.applicantBirthdate}
                          spouse={this.props.Spouse}
                          dispatch={this.props.dispatch}
                          onUpdate={this.updateCohabitants}
@@ -106,7 +103,6 @@ class Relationships extends SectionElement {
                        nextLabel={i18n.t('relationships.destination.relatives')}>
             <People name="people"
                     {...this.props.People}
-                    applicantBirthdate={this.props.applicantBirthdate}
                     addressBooks={this.props.AddressBooks}
                     dispatch={this.props.dispatch}
                     onUpdate={this.updatePeople}
@@ -122,7 +118,6 @@ class Relationships extends SectionElement {
                        nextLabel={i18n.t('relationships.destination.review')}>
             <Relatives name="relatives"
                        {...this.props.Relatives}
-                       applicantBirthdate={this.props.applicantBirthdate}
                        addressBooks={this.props.AddressBooks}
                        dispatch={this.props.dispatch}
                        onUpdate={this.updateRelatives}
@@ -141,7 +136,6 @@ class Relationships extends SectionElement {
                        nextLabel={i18n.t('history.destination.intro')}>
             <Marital name="marital"
                      {...this.props.Marital}
-                     applicantBirthdate={this.props.applicantBirthdate}
                      defaultState={false}
                      addressBooks={this.props.AddressBooks}
                      dispatch={this.props.dispatch}
@@ -156,7 +150,6 @@ class Relationships extends SectionElement {
             <hr className="section-divider"/>
             <Cohabitants name="cohabitants"
                          {...this.props.Cohabitants}
-                         applicantBirthdate={this.props.applicantBirthdate}
                          defaultState={false}
                          spouse={this.props.Spouse}
                          dispatch={this.props.dispatch}
@@ -169,7 +162,6 @@ class Relationships extends SectionElement {
             <hr className="section-divider"/>
             <People name="people"
                     {...this.props.People}
-                    applicantBirthdate={this.props.applicantBirthdate}
                     defaultState={false}
                     addressBooks={this.props.AddressBooks}
                     dispatch={this.props.dispatch}
@@ -182,7 +174,6 @@ class Relationships extends SectionElement {
             <hr className="section-divider"/>
             <Relatives name="relatives"
                        {...this.props.Relatives}
-                       applicantBirthdate={this.props.applicantBirthdate}
                        defaultState={false}
                        addressBooks={this.props.AddressBooks}
                        dispatch={this.props.dispatch}
@@ -228,7 +219,6 @@ function mapStateToProps (state) {
     Comments: relationships.Comments || {},
     Errors: errors.relationships || [],
     Completed: completed.relationships || [],
-    applicantBirthdate: extractApplicantBirthdate(app),
     AddressBooks: addressBooks
   }
 }

@@ -11,7 +11,11 @@ export default class SubsectionElement extends React.Component {
   }
 
   handleCompletion () {
-    this.props.dispatch(reportCompletion(this.props.section, this.props.subsection, this.props.validator(this.state, this.props)))
+    const data = {
+      ...this.props,
+      ...this.state
+    }
+    this.props.dispatch(reportCompletion(this.props.section, this.props.subsection, this.props.validator(data, this.context)))
   }
 
   handleError (value, arr) {

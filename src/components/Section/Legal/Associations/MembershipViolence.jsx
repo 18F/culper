@@ -83,7 +83,6 @@ export default class MembershipViolence extends SubsectionElement {
                                     bind={true}
                                     required={this.props.required}
                                     scrollIntoView={this.props.scrollIntoView}
-                                    applicantBirthdate={this.props.applicantBirthdate}
                                     addressBooks={this.props.addressBooks}
                                     dispatch={this.props.dispatch}
                                     />
@@ -103,7 +102,6 @@ MembershipViolence.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'legal',
   subsection: 'associations/membership-violence-or-force',
-  applicantBirthdate: {},
   addressBooks: {},
   dispatch: (action) => {},
   validator: (state, props) => {

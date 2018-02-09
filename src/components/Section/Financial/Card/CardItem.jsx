@@ -109,7 +109,6 @@ export default class CardItem extends ValidationElement {
                shrink={true}>
           <DateControl name="Date"
                        {...this.props.Date}
-                       applicantBirthdate={this.props.applicantBirthdate}
                        className="card-date"
                        hideDay={true}
                        required={this.props.required}
@@ -172,7 +171,6 @@ export default class CardItem extends ValidationElement {
 }
 
 CardItem.defaultProps = {
-  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   required: false

@@ -98,7 +98,6 @@ export default class FutureBenefit extends ValidationElement {
           <DateControl name="Begin"
                        className="begin"
                        {...this.props.Begin}
-                       applicantBirthdate={this.props.applicantBirthdate}
                        label={i18n.t('foreign.activities.benefit.future.label.begin')}
                        onUpdate={this.updateBegin}
                        onError={this.props.onError}
@@ -230,7 +229,6 @@ export default class FutureBenefit extends ValidationElement {
 
 FutureBenefit.defaultProps = {
   Obligated: {},
-  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

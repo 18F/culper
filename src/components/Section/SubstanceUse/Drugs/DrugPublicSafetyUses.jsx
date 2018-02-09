@@ -83,7 +83,6 @@ export default class DrugPublicSafetyUses extends SubsectionElement {
                      scrollIntoView={this.props.scrollIntoView}>
             <DrugPublicSafetyUse name="Item"
                                  bind={true}
-                                 applicantBirthdate={this.props.applicantBirthdate}
                                  required={this.props.required}
                                  scrollIntoView={this.props.scrollIntoView} />
           </Accordion>
@@ -99,7 +98,6 @@ DrugPublicSafetyUses.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'substance',
   subsection: 'drugs/publicsafety',
-  applicantBirthdate: {},
   dispatch: () => {},
   validator: (state, props) => {
     return validate(schema('substance.drug.publicsafety', props))

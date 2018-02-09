@@ -81,7 +81,6 @@ export default class History extends SubsectionElement {
                      scrollIntoView={this.props.scrollIntoView}>
             <HistoryItem name="Item"
                          bind={true}
-                         applicantBirthdate={this.props.applicantBirthdate}
                          required={this.props.required}
                          scrollIntoView={this.props.scrollIntoView}
                          />
@@ -101,7 +100,6 @@ History.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'legal',
   subsection: 'investigations/history',
-  applicantBirthdate: {},
   dispatch: () => {},
   validator: (state, props) => {
     return validate(schema('legal.investigations.history', props))

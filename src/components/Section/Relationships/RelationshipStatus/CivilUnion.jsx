@@ -202,7 +202,6 @@ export default class CivilUnion extends ValidationElement {
             <DateControl name="birthdate"
                          className="birthdate"
                          {...this.props.Birthdate}
-                         applicantBirthdate={this.props.applicantBirthdate}
                          relationship="Other"
                          onUpdate={this.updateBirthdate}
                          onError={this.props.onError}
@@ -226,7 +225,6 @@ export default class CivilUnion extends ValidationElement {
           <Show when={showForeignBornDocumentation}>
             <ForeignBornDocuments name="foreignBornDocument"
                                   {...this.props.ForeignBornDocument}
-                                  applicantBirthdate={this.props.applicantBirthdate}
                                   onUpdate={this.updateForeignBornDocument}
                                   onError={this.props.onError}
                                   required={this.props.required}
@@ -284,7 +282,6 @@ export default class CivilUnion extends ValidationElement {
                      shrink={true}
                      scrollIntoView={this.props.scrollIntoView}>
                 <DateRange name="DatesUsed"
-                           applicantBirthdate={this.props.applicantBirthdate}
                            bind={true}
                            className="datesused"
                            onError={this.props.onError}
@@ -314,7 +311,6 @@ export default class CivilUnion extends ValidationElement {
             <DateControl name="enteredCivilUnion"
                          className="entered"
                          {...this.props.EnteredCivilUnion}
-                         applicantBirthdate={this.props.applicantBirthdate}
                          onUpdate={this.updateEnteredCivilUnion}
                          onError={this.props.onError}
                          required={this.props.required}
@@ -403,7 +399,6 @@ export default class CivilUnion extends ValidationElement {
                 <DateControl name="DateSeparated"
                              className="dateseparated"
                              {...this.props.DateSeparated}
-                             applicantBirthdate={this.props.applicantBirthdate}
                              minDate={(this.props.EnteredCivilUnion || {}).date}
                              onUpdate={this.updateDateSeparated}
                              onError={this.props.onError}
@@ -469,7 +464,6 @@ CivilUnion.defaultProps = {
   },
   Divorced: {},
   UseCurrentAddress: false,
-  applicantBirthdate: {},
   addressBooks: {},
   dispatch: (action) => {},
   onUpdate: (queue) => {},
