@@ -38,13 +38,35 @@ class Section extends React.Component {
     const selectors = [
       '.eapp-core input',
       '.eapp-core textarea',
-      '.eapp-core select'
+      '.eapp-core select',
+      '.eapp-core a'
     ]
-    const el = window.document.querySelector(selectors.join(', '))
+
+    let el = null
+    for (const selector of selectors) {
+      el = window.document.querySelector(selectors.join(', '))
+      if (el) {
+        // Make sure it is currently visible
+        const bottom = el.getBoundingClientRect().bottom
+        const height = window.innerHeight
+        if (height >= bottom) {
+          // Break out of this loop if an visible element was found
+          break
+        }
+      }
+
+      el = null
+    }
+
+    // Fallback to a specific known point of reference
+    if (!el) {
+      el = window.document.querySelector('.eapp-section-focus')
+    }
+
     if (el) {
       window.setTimeout(() => {
         el.focus()
-      }, 100)
+      }, 200)
     }
   }
 

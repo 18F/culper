@@ -48,7 +48,7 @@ export default class IndirectInterest extends ValidationElement {
 
   updateInterestTypes (values) {
     let interestType = values.value
-    let selected = [...(this.props.InterestTypes || [])]
+    let selected = [...((this.props.InterestTypes || {}).values || [])]
     if (selected.includes(interestType)) {
       selected.splice(selected.indexOf(interestType), 1)
     } else {
@@ -56,7 +56,7 @@ export default class IndirectInterest extends ValidationElement {
     }
 
     this.update({
-      InterestTypes: selected
+      InterestTypes: { values: selected }
     })
   }
 
@@ -156,7 +156,7 @@ export default class IndirectInterest extends ValidationElement {
           <CheckboxGroup className="interest-types option-list"
                          onError={this.props.onError}
                          required={this.props.required}
-                         selectedValues={(this.props.InterestTypes || {}).value}>
+                         selectedValues={(this.props.InterestTypes || {}).values}>
             <Checkbox name="interest-type"
                       label={i18n.m(`foreign.activities.indirect.interest.label.interestTypes.yourself`)}
                       value="Yourself"

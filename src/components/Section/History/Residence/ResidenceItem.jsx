@@ -276,7 +276,6 @@ export default class ResidenceItem extends ValidationElement {
         <Show when={(this.props.Role || {}).value && !['Owned', 'Rented', 'Military'].includes((this.props.Role || {}).value)}>
           <Field title={i18n.t('history.residence.label.role.explanation')}
                  titleSize="label"
-                 help="section.subsection.help.field-name"
                  adjustFor="text"
                  scrollIntoView={this.props.scrollIntoView}>
             <Text name="RoleOther"
