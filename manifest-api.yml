@@ -13,7 +13,7 @@ applications:
     - usps-api
   env:
     PATH: /bin:/usr/bin:$HOME/bin
-    GOVERSION: go1.8.5
+    GOVERSION: go1.9.4
     CORS_ALLOWED: https://eqip-prototype.fr.cloud.gov
     API_REDIRECT: https://eqip-prototype.fr.cloud.gov
     API_BASE_URL: https://eqip-prototype-api.fr.cloud.gov

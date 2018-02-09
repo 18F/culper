@@ -1,4 +1,4 @@
-FROM golang:1.9.3
+FROM golang:1.9.4
 RUN apt update; apt -y install postgresql xmlsec1;
 RUN go get github.com/derekparker/delve/cmd/dlv;
 RUN go get -u github.com/Masterminds/glide; \

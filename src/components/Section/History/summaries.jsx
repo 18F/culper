@@ -19,7 +19,7 @@ export const CustomSummary = (validation, summary, more, item, index, initial, c
     <div className="summary-container">
       <div className="summary">
         <span className={`left ${openState(item, initial)}`}>
-          <a onClick={toggle()}>
+          <a href="javascript:;;;" onClick={toggle()}>
             <span className="button-with-icon">
               <i className={chevron(item)} aria-hidden="true"></i>
               <span className="toggle">{openText()}</span>
@@ -28,7 +28,7 @@ export const CustomSummary = (validation, summary, more, item, index, initial, c
           </a>
           {more(target, errors)}
         </span>
-        <a className="right remove" onClick={remove()}>
+        <a href="javascript:;;;" className="right remove" onClick={remove()}>
           <span className="button-with-icon">
             <i className="fa fa-trash" aria-hidden="true"></i>
             <span>{i18n.t('collection.remove')}</span>
@@ -90,7 +90,7 @@ export const ResidenceCustomSummary = (item, index, initial, callback, toggle, o
         return null
       }
 
-      return (<a onClick={toggle()}>{ps}</a>)
+      return (<a href="javascript:;;;" onClick={toggle()}>{ps}</a>)
     },
     item,
     index,
@@ -179,7 +179,7 @@ export const EmploymentCustomSummary = (item, index, initial, callback, toggle, 
       return ActivitySummary(x, e)
         .filter(activity => activity !== null)
         .map(activity => {
-          return (<a key={newGuid()} onClick={toggle()}>{activity}</a>)
+          return (<a href="javascript:;;;" key={newGuid()} onClick={toggle()}>{activity}</a>)
         })
     },
     item,
@@ -249,7 +249,7 @@ export const EducationCustomSummary = (item, index, initial, callback, toggle, o
         .filter(diploma => diploma !== null)
         .map(diploma => {
           return (
-            <a key={newGuid()} onClick={toggle()}>
+            <a href="javascript:;;;" key={newGuid()} onClick={toggle()}>
               {diploma}
             </a>
           )

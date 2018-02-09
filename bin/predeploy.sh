@@ -34,5 +34,4 @@ cp -f $ENV_FILE .env
 # variables.
 #
 # docker-compose build
-docker-compose run frontend npm install --silent
-docker-compose run frontend npm run build --silent
+docker-compose run frontend ./bin/build

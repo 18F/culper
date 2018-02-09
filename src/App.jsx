@@ -162,6 +162,7 @@ class App extends React.Component {
               </Sticky>
               &nbsp;
             </div>
+            <a href="javascript:;;;" className="eapp-section-focus" title="Main content. Please press TAB to go to the next question"></a>
             <div id="main-content" className={klassCore}>
               <Sticky container=".eapp-navigation .sticky > .contents"
                       content=".eapp-core .sticky > .contents"
