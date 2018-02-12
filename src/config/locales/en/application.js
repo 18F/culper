@@ -54,6 +54,9 @@ export const application = {
       '### Thanks for submitting for your SF-86'
     ]
   },
+  hashCode: {
+    title: 'Data hash code'
+  },
   alert: {
     navigation: 'Your form has been submitted and is locked',
     logout: 'Make sure you save and/or print your responses before logging out'

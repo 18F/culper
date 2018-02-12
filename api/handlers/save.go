@@ -97,14 +97,8 @@ func Status(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// If the account is locked then we cannot proceed
-	if account.Locked {
-		log.Warn(logmsg.AccountLocked)
-		EncodeErrJSON(w, err)
-		return
-	}
-
-	EncodeJSON(w, form.Metadata(context, account.ID, account.Locked))
+	w.Header().Set("Content-Type", "application/json")
+	fmt.Fprint(w, string(form.Metadata(context, account.ID, account.Locked)))
 }
 
 // Submit the application package to the external web service for further processing.

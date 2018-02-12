@@ -10,6 +10,8 @@ import InvalidForm from './InvalidForm'
 import SubmissionStatus from './SubmissionStatus'
 import Print from './Print'
 import { push } from '../../../middleware/history'
+import { updateApplication } from '../../../actions/ApplicationActions'
+import axios from 'axios'
 import { api } from '../../../services'
 import schema from '../../../schema'
 
@@ -31,25 +33,25 @@ class Package extends SectionElement {
 
   onSubmit (success, error) {
     const releases = (this.props.Submission || {}).Releases || {}
-    const data = { ...releases, Locked: true }
+    let data = { ...releases }
     const payload = schema(`package.submit`, data, false)
 
-    api
-      .save(payload)
-      .submit()
-      .then(r => {
-        this.handleUpdate('Releases', {
-          ...releases,
-          Locked: true
-        })
+    axios
+      .all([api.save(payload), api.submit(), api.status()])
+      .then(axios.spread((save, submit,  status) => {
+        const statusData = ((status || {}).data || {})
+        this.props.dispatch(updateApplication('Settings', 'locked', statusData.Locked || false))
+        this.props.dispatch(updateApplication('Settings', 'hash', statusData.Hash || false))
+        this.handleUpdate('Releases', releases)
         this.props.dispatch(push('/form/package/print'))
-      })
+      }))
       .catch(() => {
         console.warn('Failed to form package')
-        this.handleUpdate('Releases', {
-          ...releases,
+        data = {
+          ...data,
           Locked: false
-        })
+        }
+        this.handleUpdate('Releases', data)
       })
   }
 
@@ -148,7 +150,7 @@ class Package extends SectionElement {
           </SubmissionStatus>
         </SectionView>
         <SectionView name="print">
-          <Print />
+          <Print {...releases} />
         </SectionView>
       </SectionViews>
     )

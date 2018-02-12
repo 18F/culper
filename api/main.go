@@ -61,7 +61,7 @@ func main() {
 	a.HandleFunc("/status", inject(handlers.Status, handlers.JwtTokenValidatorHandler)).Methods("GET")
 	a.HandleFunc("/form", inject(handlers.AllSections, handlers.JwtTokenValidatorHandler)).Methods("GET")
 	a.HandleFunc("/form/hash", inject(handlers.Hash, handlers.JwtTokenValidatorHandler)).Methods("GET")
-	a.HandleFunc("/form/submit", inject(handlers.Submit, handlers.JwtTokenValidatorHandler)).Methods("GET")
+	a.HandleFunc("/form/submit", inject(handlers.Submit, handlers.JwtTokenValidatorHandler)).Methods("POST")
 	a.HandleFunc("/section", inject(handlers.Section, handlers.JwtTokenValidatorHandler)).Methods("GET")
 	a.HandleFunc("/attachment", inject(handlers.SaveAttachment, handlers.JwtTokenValidatorHandler)).Methods("POST", "PUT")
 	a.HandleFunc("/attachment/{id}", inject(handlers.GetAttachment, handlers.JwtTokenValidatorHandler))

@@ -12,7 +12,6 @@ type Submission struct {
 	PayloadGeneral            Payload `json:"General" sql:"-"`
 	PayloadMedical            Payload `json:"Medical" sql:"-"`
 	PayloadCredit             Payload `json:"Credit" sql:"-"`
-	Locked                    bool    `json:"Locked"`
 
 	// Validator specific fields
 	AdditionalComments *SubmissionAdditionalComments `json:"-" sql:"-"`

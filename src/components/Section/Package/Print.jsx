@@ -199,6 +199,8 @@ class Print extends SectionElement {
           <Show when={this.state.printed}>
             { this.done() }
           </Show>
+          <h4 className="hash">{i18n.t('application.hashCode.title')}</h4>
+          <p className="hash">{this.props.Settings.hash}</p>
         </div>
         <div className="print-view">
           { this.sections() }
@@ -224,6 +226,7 @@ function mapStateToProps (state) {
   const legal = app.Legal || {}
   const psychological = app.Psychological || {}
   const applicantBirthdate = extractApplicantBirthdate(app)
+  const settings = app.Settings || { locked: false, hash: '' }
 
   let errors = app.Errors || {}
   let completed = app.Completed || {}
@@ -244,6 +247,7 @@ function mapStateToProps (state) {
     SubstanceUse: substanceUse,
     Legal: legal,
     Psychological: psychological,
+    Settings: settings,
     applicantBirthdate: applicantBirthdate,
     Errors: errors.releases || [],
     Completed: completed.releases || []

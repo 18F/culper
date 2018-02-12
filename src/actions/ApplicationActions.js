@@ -2,19 +2,41 @@ import { navigationWalker } from '../config'
 import { api } from '../services'
 import schema, { unschema } from '../schema'
 import validate from '../validators'
+import { push } from '../middleware/history'
 
 export function getApplicationState () {
   return function (dispatch, getState) {
+    let locked = false
     let formData = {}
-    api.form().then(r => {
-      formData = r.data
-      for (const section in formData) {
-        for (const subsection in formData[section]) {
-          dispatch(updateApplication(section, subsection, unschema(formData[section][subsection])))
-        }
+    api.status().then(r => {
+      const statusData = (r || {}).data || {}
+      dispatch(updateApplication('Settings', 'locked', statusData.Locked))
+      dispatch(updateApplication('Settings', 'hash', statusData.Hash))
+
+      if (statusData.Locked) {
+        locked = true
+        dispatch(push('/accessdenied'))
       }
     })
     .then(() => {
+      if (locked) {
+        return
+      }
+
+      api.form().then(r => {
+        formData = r.data
+        for (const section in formData) {
+          for (const subsection in formData[section]) {
+            dispatch(updateApplication(section, subsection, unschema(formData[section][subsection])))
+          }
+        }
+      })
+    })
+    .then(() => {
+      if (locked) {
+        return
+      }
+
       validateApplication(dispatch, formData)
     })
     .catch(() => {
