@@ -82,7 +82,7 @@ ApplicantBirthDate.defaultProps = {
   subsection: 'birthdate',
   onUpdate: (queue) => {},
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('identification.birthdate', props))
+  validator: (data) => {
+    return validate(schema('identification.birthdate', data))
   }
 }

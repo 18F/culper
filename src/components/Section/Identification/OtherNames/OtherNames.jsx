@@ -107,8 +107,8 @@ OtherNames.defaultProps = {
   section: 'identification',
   subsection: 'othernames',
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('identification.othernames', props))
+  validator: (data) => {
+    return validate(schema('identification.othernames', data))
   },
   defaultState: true,
   required: false
