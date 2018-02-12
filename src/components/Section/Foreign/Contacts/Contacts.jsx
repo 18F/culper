@@ -102,8 +102,8 @@ Contacts.defaultProps = {
   subsection: 'contacts',
   addressBooks: {},
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('foreign.contacts', props))
+  validator: (data) => {
+    return validate(schema('foreign.contacts', data))
   },
   defaultState: true,
   scrollToBottom: ''

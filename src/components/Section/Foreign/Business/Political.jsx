@@ -101,8 +101,8 @@ Political.defaultProps = {
   section: 'foreign',
   subsection: 'business/political',
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('foreign.business.political', props))
+  validator: (data) => {
+    return validate(schema('foreign.business.political', data))
   },
   defaultState: true,
   scrollToBottom: ''

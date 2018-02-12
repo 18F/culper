@@ -101,8 +101,8 @@ Sponsorship.defaultProps = {
   subsection: 'business/sponsorship',
   addressBooks: {},
   dispatch: (action) => {},
-  validator: (state, props) => {
-    return validate(schema('foreign.business.sponsorship', props))
+  validator: (data) => {
+    return validate(schema('foreign.business.sponsorship', data))
   },
   defaultState: true,
   scrollToBottom: ''

@@ -102,8 +102,8 @@ Conferences.defaultProps = {
   section: 'foreign',
   subsection: 'business/conferences',
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('foreign.business.conferences', props))
+  validator: (data) => {
+    return validate(schema('foreign.business.conferences', data))
   },
   defaultState: true,
   scrollToBottom: ''

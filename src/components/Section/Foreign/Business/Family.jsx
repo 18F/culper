@@ -102,8 +102,8 @@ Family.defaultProps = {
   section: 'foreign',
   subsection: 'business/family',
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('foreign.business.family', props))
+  validator: (data) => {
+    return validate(schema('foreign.business.family', data))
   },
   defaultState: true,
   scrollToBottom: ''

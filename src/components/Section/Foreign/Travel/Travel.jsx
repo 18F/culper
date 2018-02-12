@@ -121,8 +121,8 @@ Travel.defaultProps = {
   section: 'foreign',
   subsection: 'travel',
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('foreign.travel', props))
+  validator: (data) => {
+    return validate(schema('foreign.travel', data))
   },
   defaultState: true,
   scrollToBottom: ''

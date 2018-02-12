@@ -113,7 +113,7 @@ DirectActivity.defaultProps = {
   subsection: 'activities/direct',
   addressBooks: {},
   dispatch: (action) => {},
-  validator: (state, props) => {
-    return validate(schema('foreign.activities.direct', props))
+  validator: (data) => {
+    return validate(schema('foreign.activities.direct', data))
   }
 }

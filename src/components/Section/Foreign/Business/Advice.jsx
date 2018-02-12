@@ -102,8 +102,8 @@ Advice.defaultProps = {
   section: 'foreign',
   subsection: 'business/advice',
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('foreign.business.advice', props))
+  validator: (data) => {
+    return validate(schema('foreign.business.advice', data))
   },
   defaultState: true,
   scrollToBottom: ''

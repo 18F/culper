@@ -108,8 +108,8 @@ Contact.defaultProps = {
   subsection: 'business/contact',
   addressBooks: {},
   dispatch: (action) => {},
-  validator: (state, props) => {
-    return validate(schema('foreign.business.contact', props))
+  validator: (data) => {
+    return validate(schema('foreign.business.contact', data))
   },
   defaultState: true,
   scrollToBottom: ''

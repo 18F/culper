@@ -100,8 +100,8 @@ Employment.defaultProps = {
   section: 'foreign',
   subsection: 'business/employment',
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('foreign.business.employment', props))
+  validator: (data) => {
+    return validate(schema('foreign.business.employment', data))
   },
   defaultState: true,
   scrollToBottom: ''

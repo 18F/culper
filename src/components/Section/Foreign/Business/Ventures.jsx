@@ -103,8 +103,8 @@ Ventures.defaultProps = {
   subsection: 'business/ventures',
   addressBooks: {},
   dispatch: (action) => {},
-  validator: (state, props) => {
-    return validate(schema('foreign.business.ventures', props))
+  validator: (data) => {
+    return validate(schema('foreign.business.ventures', data))
   },
   defaultState: true,
   scrollToBottom: ''

@@ -114,8 +114,8 @@ IndirectActivity.defaultProps = {
   subsection: 'activities/indirect',
   addressBooks: {},
   dispatch: (action) => {},
-  validator: (state, props) => {
-    return validate(schema('foreign.activities.indirect', props))
+  validator: (data) => {
+    return validate(schema('foreign.activities.indirect', data))
   },
   scrollToBottom: ''
 }

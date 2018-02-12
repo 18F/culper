@@ -281,7 +281,7 @@ Passport.defaultProps = {
   section: 'foreign',
   subsection: 'passport',
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('foreign.passport', props))
+  validator: (data) => {
+    return validate(schema('foreign.passport', data))
   }
 }
