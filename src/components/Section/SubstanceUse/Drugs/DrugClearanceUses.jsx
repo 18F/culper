@@ -99,8 +99,8 @@ DrugClearanceUses.defaultProps = {
   section: 'substance',
   subsection: 'drugs/clearance',
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('substance.drug.clearance', props))
+  validator: (data) => {
+    return validate(schema('substance.drug.clearance', data))
   },
   scrollToBottom: ''
 }

@@ -102,8 +102,8 @@ VoluntaryTreatments.defaultProps = {
   subsection: 'drugs/voluntary',
   addressBooks: {},
   dispatch: (action) => {},
-  validator: (state, props) => {
-    return validate(schema('substance.drug.voluntary', props))
+  validator: (data) => {
+    return validate(schema('substance.drug.voluntary', data))
   },
   scrollToBottom: ''
 }

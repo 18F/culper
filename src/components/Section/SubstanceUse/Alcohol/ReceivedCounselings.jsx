@@ -103,8 +103,8 @@ ReceivedCounselings.defaultProps = {
   section: 'substance',
   subsection: 'alcohol/additional',
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('substance.alcohol.additional', props))
+  validator: (data) => {
+    return validate(schema('substance.alcohol.additional', data))
   },
   scrollToBottom: ''
 }

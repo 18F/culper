@@ -125,8 +125,8 @@ OrderedCounselings.defaultProps = {
   subsection: 'alcohol/ordered',
   addressBooks: {},
   dispatch: (action) => {},
-  validator: (state, props) => {
-    return validate(schema('substance.alcohol.ordered', props))
+  validator: (data) => {
+    return validate(schema('substance.alcohol.ordered', data))
   },
   scrollToBottom: ''
 }

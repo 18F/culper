@@ -102,8 +102,8 @@ VoluntaryCounselings.defaultProps = {
   subsection: 'alcohol/voluntary',
   addressBooks: {},
   dispatch: (action) => {},
-  validator: (state, props) => {
-    return validate(schema('substance.alcohol.voluntary', props))
+  validator: (data) => {
+    return validate(schema('substance.alcohol.voluntary', data))
   },
   scrollToBottom: ''
 }

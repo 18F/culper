@@ -101,8 +101,8 @@ DrugInvolvements.defaultProps = {
   section: 'substance',
   subsection: 'drugs/purchase',
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('substance.drug.purchase', props))
+  validator: (data) => {
+    return validate(schema('substance.drug.purchase', data))
   },
   scrollToBottom: ''
 }

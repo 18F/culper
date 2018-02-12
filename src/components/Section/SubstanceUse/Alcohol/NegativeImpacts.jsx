@@ -98,8 +98,8 @@ NegativeImpacts.defaultProps = {
   section: 'substance',
   subsection: 'alcohol/negative',
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('substance.alcohol.negative', props))
+  validator: (data) => {
+    return validate(schema('substance.alcohol.negative', data))
   },
   scrollToBottom: ''
 }

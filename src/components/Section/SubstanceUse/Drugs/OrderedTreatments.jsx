@@ -102,8 +102,8 @@ OrderedTreatments.defaultProps = {
   subsection: 'drugs/ordered',
   addressBooks: {},
   dispatch: (action) => {},
-  validator: (state, props) => {
-    return validate(schema('substance.drug.ordered', props))
+  validator: (data) => {
+    return validate(schema('substance.drug.ordered', data))
   },
   scrollToBottom: ''
 }

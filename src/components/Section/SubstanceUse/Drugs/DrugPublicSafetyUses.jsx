@@ -99,8 +99,8 @@ DrugPublicSafetyUses.defaultProps = {
   section: 'substance',
   subsection: 'drugs/publicsafety',
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('substance.drug.publicsafety', props))
+  validator: (data) => {
+    return validate(schema('substance.drug.publicsafety', data))
   },
   scrollToBottom: ''
 }
