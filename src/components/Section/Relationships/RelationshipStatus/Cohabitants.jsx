@@ -102,8 +102,8 @@ Cohabitants.defaultProps = {
   section: 'relationships',
   subsection: 'status/cohabitant',
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('relationships.status.cohabitant', props))
+  validator: (data) => {
+    return validate(schema('relationships.status.cohabitant', data))
   },
   defaultState: true,
   scrollToBottom: ''

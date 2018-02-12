@@ -91,8 +91,8 @@ Relatives.defaultProps = {
   subsection: 'relatives',
   addressBooks: {},
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('relationships.relatives', props))
+  validator: (data) => {
+    return validate(schema('relationships.relatives', data))
   },
   defaultState: true,
   scrollToBottom: ''

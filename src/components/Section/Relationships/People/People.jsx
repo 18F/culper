@@ -197,8 +197,8 @@ People.defaultProps = {
   subsection: 'people',
   addressBooks: {},
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('relationships.people', props))
+  validator: (data) => {
+    return validate(schema('relationships.people', data))
   },
   defaultState: true,
   totalYears: 7,
