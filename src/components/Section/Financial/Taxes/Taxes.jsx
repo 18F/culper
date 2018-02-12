@@ -110,8 +110,8 @@ Taxes.defaultProps = {
   section: 'financial',
   subsection: 'taxes',
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('financial.taxes', props))
+  validator: (data) => {
+    return validate(schema('financial.taxes', data))
   },
   defaultState: true
 }

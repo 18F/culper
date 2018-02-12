@@ -103,8 +103,8 @@ Bankruptcies.defaultProps = {
   section: 'financial',
   subsection: 'bankruptcy',
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('financial.bankruptcy', props))
+  validator: (data) => {
+    return validate(schema('financial.bankruptcy', data))
   },
   defaultState: true
 }

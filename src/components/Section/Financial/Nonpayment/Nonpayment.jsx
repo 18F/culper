@@ -139,7 +139,7 @@ Nonpayment.defaultProps = {
   section: 'financial',
   subsection: 'nonpayment',
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('financial.nonpayment', props))
+  validator: (data) => {
+    return validate(schema('financial.nonpayment', data))
   }
 }

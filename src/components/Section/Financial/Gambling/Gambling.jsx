@@ -118,8 +118,8 @@ Gambling.defaultProps = {
   section: 'financial',
   subsection: 'gambling',
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('financial.gambling', props))
+  validator: (data) => {
+    return validate(schema('financial.gambling', data))
   },
   defaultState: true
 }

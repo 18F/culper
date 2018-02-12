@@ -136,8 +136,8 @@ Delinquent.defaultProps = {
   section: 'financial',
   subsection: 'delinquent',
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('financial.delinquent', props))
+  validator: (data) => {
+    return validate(schema('financial.delinquent', data))
   },
   defaultState: true
 }

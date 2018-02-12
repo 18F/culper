@@ -112,8 +112,8 @@ Card.defaultProps = {
   section: 'financial',
   subsection: 'card',
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('financial.card', props))
+  validator: (data) => {
+    return validate(schema('financial.card', data))
   },
   defaultState: true
 }
