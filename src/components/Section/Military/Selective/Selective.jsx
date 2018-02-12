@@ -157,7 +157,7 @@ Selective.defaultProps = {
   section: 'military',
   subsection: 'selective',
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('military.selective', props))
+  validator: (data) => {
+    return validate(schema('military.selective', data))
   }
 }

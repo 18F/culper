@@ -129,8 +129,8 @@ History.defaultProps = {
   subsection: 'history',
   addressBooks: {},
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('military.history', props))
+  validator: (data) => {
+    return validate(schema('military.history', data))
   },
   defaultState: true,
   required: false

@@ -103,8 +103,8 @@ Disciplinary.defaultProps = {
   section: 'military',
   subsection: 'disciplinary',
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('military.disciplinary', props))
+  validator: (data) => {
+    return validate(schema('military.disciplinary', data))
   },
   defaultState: true
 }

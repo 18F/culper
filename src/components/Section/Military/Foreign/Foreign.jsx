@@ -53,8 +53,8 @@ Foreign.defaultProps = {
   subsection: 'foreign',
   addressBooks: {},
   dispatch: (action) => {},
-  validator: (state, props) => {
-    return validate(schema('military.foreign', props))
+  validator: (data) => {
+    return validate(schema('military.foreign', data))
   },
   defaultState: true
 }
