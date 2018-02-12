@@ -202,8 +202,8 @@ Diagnoses.defaultProps = {
   subsection: 'diagnoses',
   addressBooks: {},
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('psychological.diagnoses', props))
+  validator: (data) => {
+    return validate(schema('psychological.diagnoses', data))
   },
   scrollToBottom: ''
 }

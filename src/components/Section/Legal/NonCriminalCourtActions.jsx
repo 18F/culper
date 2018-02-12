@@ -100,8 +100,8 @@ NonCriminalCourtActions.defaultProps = {
   subsection: 'court',
   addressBooks: {},
   dispatch: (action) => {},
-  validator: (state, props) => {
-    return validate(schema('legal.court', props))
+  validator: (data) => {
+    return validate(schema('legal.court', data))
   },
   scrollToBottom: ''
 }

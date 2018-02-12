@@ -107,8 +107,8 @@ Unauthorized.defaultProps = {
   subsection: 'technology/unauthorized',
   addressBooks: {},
   dispatch: (action) => {},
-  validator: (state, props) => {
-    return validate(schema('legal.technology.unauthorized', props))
+  validator: (data) => {
+    return validate(schema('legal.technology.unauthorized', data))
   },
   scrollToBottom: ''
 }

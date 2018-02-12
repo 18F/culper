@@ -101,8 +101,8 @@ Advocating.defaultProps = {
   section: 'legal',
   subsection: 'associations/advocating',
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('legal.associations.advocating', props))
+  validator: (data) => {
+    return validate(schema('legal.associations.advocating', data))
   },
   scrollToBottom: ''
 }

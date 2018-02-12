@@ -62,8 +62,8 @@ DomesticViolenceList.defaultProps = {
   subsection: 'police/domesticviolence',
   addressBooks: {},
   dispatch: (action) => {},
-  validator: (state, props) => {
-    return validate(schema('legal.police.domesticviolence', props))
+  validator: (data) => {
+    return validate(schema('legal.police.domesticviolence', data))
   },
   scrollToBottom: ''
 }

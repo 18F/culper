@@ -103,8 +103,8 @@ Competence.defaultProps = {
   subsection: 'competence',
   addressBooks: {},
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('psychological.competence', props))
+  validator: (data) => {
+    return validate(schema('psychological.competence', data))
   },
   scrollToBottom: ''
 }

@@ -104,8 +104,8 @@ MembershipViolence.defaultProps = {
   subsection: 'associations/membership-violence-or-force',
   addressBooks: {},
   dispatch: (action) => {},
-  validator: (state, props) => {
-    return validate(schema('legal.associations.membership-violence-or-force', props))
+  validator: (data) => {
+    return validate(schema('legal.associations.membership-violence-or-force', data))
   },
   scrollToBottom: ''
 }

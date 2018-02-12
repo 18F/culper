@@ -104,8 +104,8 @@ Unlawful.defaultProps = {
   subsection: 'technology/unlawful',
   addressBooks: {},
   dispatch: (action) => {},
-  validator: (state, props) => {
-    return validate(schema('legal.technology.unlawful', props))
+  validator: (data) => {
+    return validate(schema('legal.technology.unlawful', data))
   },
   scrollToBottom: ''
 }

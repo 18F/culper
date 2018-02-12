@@ -101,8 +101,8 @@ Hospitalizations.defaultProps = {
   section: 'psychological',
   subsection: 'hospitalizations',
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('psychological.hospitalizations', props))
+  validator: (data) => {
+    return validate(schema('psychological.hospitalizations', data))
   },
   scrollToBottom: ''
 }

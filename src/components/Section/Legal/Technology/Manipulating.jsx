@@ -104,8 +104,8 @@ Manipulating.defaultProps = {
   subsection: 'technology/manipulating',
   addressBooks: {},
   dispatch: (action) => {},
-  validator: (state, props) => {
-    return validate(schema('legal.technology.manipulating', props))
+  validator: (data) => {
+    return validate(schema('legal.technology.manipulating', data))
   },
   scrollToBottom: ''
 }

@@ -127,8 +127,8 @@ OtherOffenses.defaultProps = {
   subsection: 'police/additionaloffenses',
   addressBooks: {},
   dispatch: (action) => {},
-  validator: (state, props) => {
-    return validate(schema('legal.police.additionaloffenses', props))
+  validator: (data) => {
+    return validate(schema('legal.police.additionaloffenses', data))
   },
   defaultState: true,
   scrollToBottom: ''

@@ -101,8 +101,8 @@ EngagedInTerrorism.defaultProps = {
   section: 'legal',
   subsection: 'associations/engaged-in-terrorism',
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('legal.associations.engaged-in-terrorism', props))
+  validator: (data) => {
+    return validate(schema('legal.associations.engaged-in-terrorism', data))
   },
   scrollToBottom: ''
 }

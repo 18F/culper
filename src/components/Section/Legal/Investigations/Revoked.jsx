@@ -102,8 +102,8 @@ Revoked.defaultProps = {
   section: 'legal',
   subsection: 'investigations/revoked',
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('legal.investigations.revoked', props))
+  validator: (data) => {
+    return validate(schema('legal.investigations.revoked', data))
   },
   scrollToBottom: ''
 }

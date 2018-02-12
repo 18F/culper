@@ -102,8 +102,8 @@ ActivitiesToOverthrow.defaultProps = {
   section: 'legal',
   subsection: 'associations/activities-to-overthrow',
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('legal.associations.activities-to-overthrow', props))
+  validator: (data) => {
+    return validate(schema('legal.associations.activities-to-overthrow', data))
   },
   scrollToBottom: ''
 }

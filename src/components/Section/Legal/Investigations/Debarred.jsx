@@ -101,8 +101,8 @@ Debarred.defaultProps = {
   section: 'legal',
   subsection: 'investigations/debarred',
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('legal.investigations.debarred', props))
+  validator: (data) => {
+    return validate(schema('legal.investigations.debarred', data))
   },
   scrollToBottom: ''
 }

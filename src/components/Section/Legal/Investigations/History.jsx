@@ -101,8 +101,8 @@ History.defaultProps = {
   section: 'legal',
   subsection: 'investigations/history',
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('legal.investigations.history', props))
+  validator: (data) => {
+    return validate(schema('legal.investigations.history', data))
   },
   scrollToBottom: ''
 }

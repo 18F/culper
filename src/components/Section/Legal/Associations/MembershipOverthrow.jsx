@@ -104,8 +104,8 @@ MembershipOverthrow.defaultProps = {
   subsection: 'associations/membership-overthrow',
   addressBooks: {},
   dispatch: (action) => {},
-  validator: (state, props) => {
-    return validate(schema('legal.associations.membership-overthrow', props))
+  validator: (data) => {
+    return validate(schema('legal.associations.membership-overthrow', data))
   },
   scrollToBottom: ''
 }

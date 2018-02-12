@@ -103,8 +103,8 @@ Consultation.defaultProps = {
   subsection: 'consultations',
   addressBooks: {},
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('psychological.consultations', props))
+  validator: (data) => {
+    return validate(schema('psychological.consultations', data))
   },
   scrollToBottom: ''
 }

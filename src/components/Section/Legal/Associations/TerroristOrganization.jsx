@@ -106,8 +106,8 @@ TerroristOrganization.defaultProps = {
   subsection: 'associations/terrorist-organization',
   addressBooks: {},
   dispatch: (action) => {},
-  validator: (state, props) => {
-    return validate(schema('legal.associations.terrorist-organization', props))
+  validator: (data) => {
+    return validate(schema('legal.associations.terrorist-organization', data))
   },
   scrollToBottom: ''
 }
