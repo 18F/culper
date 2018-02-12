@@ -337,10 +337,12 @@ func (address *USPSAddress) ToResult(geoValues Values) (result Result) {
 	return result
 }
 
+// ErrUSPSSystem is the expected structure of the USPS system.
 type ErrUSPSSystem struct {
 	Message string
 }
 
+// Error returns the USPS error message.
 func (e ErrUSPSSystem) Error() string {
 	return e.Message
 }

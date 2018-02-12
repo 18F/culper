@@ -11,6 +11,7 @@ import (
 	"github.com/18F/e-QIP-prototype/api/model"
 )
 
+// JwtTokenValidatorHandler will validate a token or return an error.
 func JwtTokenValidatorHandler(w http.ResponseWriter, r *http.Request) error {
 	log := logmsg.NewLoggerFromRequest(r)
 	account := &model.Account{}
@@ -27,6 +28,7 @@ func JwtTokenValidatorHandler(w http.ResponseWriter, r *http.Request) error {
 	return nil
 }
 
+// JwtTokenReferesh refreshes a given token.
 func JwtTokenRefresh(w http.ResponseWriter, r *http.Request) {
 	log := logmsg.NewLoggerFromRequest(r)
 	account := &model.Account{}

@@ -28,7 +28,6 @@ func main() {
 	}
 
 	// Declare a new router with any middleware injected
-	// r := middleware.NewRouter().Inject(handlers.LoggerHandler)
 	r := mux.NewRouter()
 	r.HandleFunc("/", handlers.RootHandler)
 	r.HandleFunc("/refresh", handlers.JwtTokenRefresh).Methods("POST")
@@ -56,11 +55,13 @@ func main() {
 	}
 
 	// Account specific actions
-	a := r.PathPrefix("/me").Subrouter() //.Inject(handlers.JwtTokenValidatorHandler)
+	a := r.PathPrefix("/me").Subrouter()
 	a.HandleFunc("/validate", inject(handlers.Validate, handlers.JwtTokenValidatorHandler)).Methods("POST")
 	a.HandleFunc("/save", inject(handlers.Save, handlers.JwtTokenValidatorHandler)).Methods("POST", "PUT")
+	a.HandleFunc("/status", inject(handlers.Status, handlers.JwtTokenValidatorHandler)).Methods("GET")
 	a.HandleFunc("/form", inject(handlers.AllSections, handlers.JwtTokenValidatorHandler)).Methods("GET")
 	a.HandleFunc("/form/hash", inject(handlers.Hash, handlers.JwtTokenValidatorHandler)).Methods("GET")
+	a.HandleFunc("/form/submit", inject(handlers.Submit, handlers.JwtTokenValidatorHandler)).Methods("GET")
 	a.HandleFunc("/section", inject(handlers.Section, handlers.JwtTokenValidatorHandler)).Methods("GET")
 	a.HandleFunc("/attachment", inject(handlers.SaveAttachment, handlers.JwtTokenValidatorHandler)).Methods("POST", "PUT")
 	a.HandleFunc("/attachment/{id}", inject(handlers.GetAttachment, handlers.JwtTokenValidatorHandler))
@@ -101,8 +102,10 @@ func main() {
 	}
 }
 
+// Handler is a simple handler function.
 type Handler func(w http.ResponseWriter, r *http.Request) error
 
+// inject applies middleware to a handler.
 func inject(handler http.HandlerFunc, middleware ...Handler) http.HandlerFunc {
 	log := logmsg.NewLogger()
 	return func(w http.ResponseWriter, r *http.Request) {

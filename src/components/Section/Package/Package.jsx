@@ -36,6 +36,7 @@ class Package extends SectionElement {
 
     api
       .save(payload)
+      .submit()
       .then(r => {
         this.handleUpdate('Releases', {
           ...releases,

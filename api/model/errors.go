@@ -116,6 +116,7 @@ type ErrInvalidLocation struct {
 	Suggestions []geo.Result
 }
 
+// Error returns the error message.
 func (e ErrInvalidLocation) Error() string {
 	return e.Message
 }

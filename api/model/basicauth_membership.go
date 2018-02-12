@@ -7,6 +7,7 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
+// BasicAuthMembership stores basic authentication information for the account.
 type BasicAuthMembership struct {
 	ID           int
 	AccountID    int
