@@ -104,8 +104,8 @@ Multiple.defaultProps = {
   section: 'citizenship',
   subsection: 'multiple',
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('citizenship.multiple', props))
+  validator: (data) => {
+    return validate(schema('citizenship.multiple', data))
   },
   defaultState: true
 }

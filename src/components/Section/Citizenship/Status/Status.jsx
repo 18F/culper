@@ -927,7 +927,7 @@ Status.defaultProps = {
   section: 'citizenship',
   subsection: 'status',
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('citizenship.status', props))
+  validator: (data) => {
+    return validate(schema('citizenship.status', data))
   }
 }
