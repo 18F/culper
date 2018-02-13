@@ -147,27 +147,39 @@ export class EmploymentValidator {
 
   validReprimand () {
     if (this.withinSevenYears()) {
-      if (!this.reprimand.Reasons) {
+      const branchValidator = new BranchCollection(this.reprimand)
+      if (!branchValidator.validKeyValues()) {
         return false
       }
 
-      for (let r of (this.reprimand.Reasons.items || [])) {
-        const item = r.Item || {}
-        const has = item.Has || {}
-        if (has.value === 'No') {
-          continue
-        }
-        if (!item) {
-          return false
-        }
-        if (!validGenericTextfield(item.Text)) {
-          return false
-        }
-
-        if (!validGenericMonthYear(item.Date)) {
-          return false
-        }
+      if (branchValidator.hasNo()) {
+        return true
       }
+
+      return branchValidator.each(item => {
+        return validGenericTextfield(item.Text) && validGenericMonthYear(item.Date)
+      })
+      //if (!this.reprimand || !this.reprimand.items) {
+        //return false
+      //}
+
+      //for (let r of (this.reprimand.items || [])) {
+        //const item = r.Item || {}
+        //const has = item.Has || {}
+        //if (has.value === 'No') {
+          //continue
+        //}
+        //if (!item) {
+          //return false
+        //}
+        //if (!validGenericTextfield(item.Text)) {
+          //return false
+        //}
+
+        //if (!validGenericMonthYear(item.Date)) {
+          //return false
+        //}
+      //}
     }
 
     return true
