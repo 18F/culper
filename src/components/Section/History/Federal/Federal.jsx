@@ -102,8 +102,8 @@ Federal.defaultProps = {
   subsection: 'federal',
   addressBooks: {},
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('history.federal', props))
+  validator: (data) => {
+    return validate(schema('history.federal', data))
   },
   defaultState: true
 }
