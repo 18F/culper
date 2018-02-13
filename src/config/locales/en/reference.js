@@ -30,7 +30,7 @@ export const reference = {
       comments: 'Add a comment to this question'
     },
     email: 'Provide e-mail address for this person',
-    idk: 'I don\'t know',
+    idk: 'Not applicable',
     address: 'The address of your contact during this time period'
   },
   name: {
