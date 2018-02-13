@@ -82,7 +82,6 @@ export default class Political extends SubsectionElement {
                      scrollIntoView={this.props.scrollIntoView}>
             <PoliticalItem name="Item"
                            bind={true}
-                           applicantBirthdate={this.props.applicantBirthdate}
                            required={this.props.required}
                            scrollIntoView={this.props.scrollIntoView}
                            />
@@ -101,10 +100,9 @@ Political.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'business/political',
-  applicantBirthdate: {},
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('foreign.business.political', props))
+  validator: (data) => {
+    return validate(schema('foreign.business.political', data))
   },
   defaultState: true,
   scrollToBottom: ''

@@ -4,19 +4,19 @@ describe('Drug Prescription Validation', function () {
   it('should validate drug prescription misuse', function () {
     const tests = [
       {
-        state: {
+        data: {
           MisusedDrugs: { value: 'Nope' }
         },
         expected: false
       },
       {
-        state: {
+        data: {
           MisusedDrugs: { value: 'No' }
         },
         expected: true
       },
       {
-        state: {
+        data: {
           MisusedDrugs: { value: 'Yes' },
           List: {
             branch: { value: '' },
@@ -26,7 +26,7 @@ describe('Drug Prescription Validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           MisusedDrugs: { value: 'Yes' },
           List: {
             branch: { value: 'Nope' },
@@ -36,7 +36,7 @@ describe('Drug Prescription Validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           MisusedDrugs: { value: 'Yes' },
           List: {
             branch: { value: 'No' },
@@ -46,7 +46,7 @@ describe('Drug Prescription Validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           MisusedDrugs: { value: 'Yes' },
           List: {
             branch: { value: 'No' },
@@ -55,11 +55,18 @@ describe('Drug Prescription Validation', function () {
                 Item: {
                   InvolvementDates: {
                     from: {
+                      month: '1',
+                      day: '1',
+                      year: '2010',
                       date: new Date('1/1/2010')
                     },
                     to: {
+                      month: '1',
+                      day: '1',
+                      year: '2012',
                       date: new Date('1/1/2012')
-                    }
+                    },
+                    present: false
                   },
                   PrescriptionName: {
                     value: 'Foo'
@@ -78,7 +85,7 @@ describe('Drug Prescription Validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new DrugPrescriptionUsesValidator(test.state).isValid()).toBe(test.expected)
+      expect(new DrugPrescriptionUsesValidator(test.data).isValid()).toBe(test.expected)
     })
   })
 })

@@ -2,14 +2,14 @@ import DateRangeValidator from './daterange'
 import { validGenericTextfield, validNotApplicable } from './helpers'
 
 export default class SentenceValidator {
-  constructor (state = {}, props = {}) {
-    this.description = state.Description
-    this.exceedsYear = (state.ExceedsYear || {}).value
-    this.incarcerated = (state.Incarcerated || {}).value
-    this.incarcerationDates = state.IncarcerationDates
-    this.incarcerationDatesNA = state.IncarcerationDatesNA
-    this.probationDates = state.ProbationDates
-    this.probationDatesNA = state.ProbationDatesNA
+  constructor (data = {}) {
+    this.description = data.Description
+    this.exceedsYear = (data.ExceedsYear || {}).value
+    this.incarcerated = (data.Incarcerated || {}).value
+    this.incarcerationDates = data.IncarcerationDates
+    this.incarcerationDatesNA = data.IncarcerationDatesNA
+    this.probationDates = data.ProbationDates
+    this.probationDatesNA = data.ProbationDatesNA
   }
 
   validChecks () {

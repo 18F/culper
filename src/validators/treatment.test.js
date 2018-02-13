@@ -5,7 +5,7 @@ describe('Treatment validation', function () {
   it('validates treatment', () => {
     const tests = [
       {
-        state: {
+        data: {
           Name: {
             value: 'Circuit Court'
           },
@@ -30,7 +30,7 @@ describe('Treatment validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new TreatmentValidator(test.state, null).isValid()).toBe(test.expected)
+      expect(new TreatmentValidator(test.data).isValid()).toBe(test.expected)
     })
   })
 })

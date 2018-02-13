@@ -5,13 +5,13 @@ describe('Cohabitant validation', function () {
   it('validates citizenship', () => {
     const tests = [
       {
-        state: {
+        data: {
           Citizenship: {}
         },
         expected: false
       },
       {
-        state: {
+        data: {
           Citizenship: {
             value: []
           }
@@ -19,7 +19,7 @@ describe('Cohabitant validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           Citizenship: {
             value: ['Germany', 'United States']
           }
@@ -28,14 +28,14 @@ describe('Cohabitant validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new CohabitantValidator(test.state, null).validCitizenship()).toBe(test.expected)
+      expect(new CohabitantValidator(test.data).validCitizenship()).toBe(test.expected)
     })
   })
 
   it('validates other name', () => {
     const tests = [
       {
-        state: {
+        data: {
           OtherNames: {
             items: []
           }
@@ -43,7 +43,7 @@ describe('Cohabitant validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           OtherNames: {
             items: [
               {
@@ -57,7 +57,7 @@ describe('Cohabitant validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           OtherNames: {
             items: [
               {
@@ -71,7 +71,7 @@ describe('Cohabitant validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           OtherNames: {
             items: [
               {
@@ -86,14 +86,14 @@ describe('Cohabitant validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new CohabitantValidator(test.state, null).validOtherNames()).toBe(test.expected)
+      expect(new CohabitantValidator(test.data).validOtherNames()).toBe(test.expected)
     })
   })
 
   it('validates cohabitant', () => {
     const tests = [
       {
-        state: {
+        data: {
           Name: {
             first: 'Foo',
             firstInitialOnly: false,
@@ -147,26 +147,26 @@ describe('Cohabitant validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new CohabitantValidator(test.state, null).isValid()).toBe(test.expected)
+      expect(new CohabitantValidator(test.data).isValid()).toBe(test.expected)
     })
   })
 
   it('validates cohabitants', () => {
     const tests = [
       {
-        state: {
+        data: {
           HasCohabitant: { value: 'Nope' }
         },
         expected: false
       },
       {
-        state: {
+        data: {
           HasCohabitant: { value: 'No' }
         },
         expected: true
       },
       {
-        state: {
+        data: {
           HasCohabitant: { value: 'Yes' },
           CohabitantList: {
             branch: { value: 'No' },
@@ -176,7 +176,7 @@ describe('Cohabitant validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           HasCohabitant: { value: 'Yes' },
           CohabitantList: {
             branch: { value: 'No' },
@@ -185,9 +185,8 @@ describe('Cohabitant validation', function () {
         },
         expected: false
       },
-
       {
-        state: {
+        data: {
           HasCohabitant: { value: 'Yes' },
           CohabitantList: {
             branch: { value: 'No' },
@@ -251,7 +250,7 @@ describe('Cohabitant validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new CohabitantsValidator(test.state, null).isValid()).toBe(test.expected)
+      expect(new CohabitantsValidator(test.data).isValid()).toBe(test.expected)
     })
   })
 
@@ -259,7 +258,7 @@ describe('Cohabitant validation', function () {
     const tests = [
       {
         state: {
-          BirthPlace: {
+          data: {
             country: { value: 'Germany' },
             city: 'Munich',
             layout: Location.BIRTHPLACE
@@ -275,27 +274,27 @@ describe('Cohabitant validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           BirthPlace: {}
         },
         expected: true
       }
     ]
     tests.forEach(test => {
-      expect(new CohabitantValidator(test.state, null).validForeignBornDocument()).toBe(test.expected)
+      expect(new CohabitantValidator(test.data).validForeignBornDocument()).toBe(test.expected)
     })
   })
 
   it('validates similar spouse', () => {
     const tests = [
       {
-        state: {
+        data: {
           name: null
         },
         expected: false
       },
       {
-        state: {
+        data: {
           Name: {
             first: 'John',
             middle: 'S',
@@ -310,7 +309,7 @@ describe('Cohabitant validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           Name: {
             first: 'John',
             middle: 'S',
@@ -326,7 +325,7 @@ describe('Cohabitant validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new CohabitantValidator(test.state, null).similarSpouse(test.spouse)).toBe(test.expected)
+      expect(new CohabitantValidator(test.data).similarSpouse(test.spouse)).toBe(test.expected)
     })
   })
 })

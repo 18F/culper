@@ -27,18 +27,18 @@ setup-docker:
 #
 test: test-front test-back
 test-front:
-	docker-compose run frontend ./bin/test
+	docker-compose run --rm frontend ./bin/test
 test-back:
-	docker-compose run api make test
+	docker-compose run --rm api make test
 
 #
 # Building
 #
 build: build-front build-back
 build-front:
-	docker-compose run frontend ./bin/build
+	docker-compose run --rm frontend ./bin/build
 build-back:
-	docker-compose run api make build
+	docker-compose run --rm api make build
 
 #
 # Packaging

@@ -54,7 +54,6 @@ export default class GamblingItem extends ValidationElement {
                adjustFor="daterange">
           <DateRange name="Dates"
                      {...this.props.Dates}
-                     applicantBirthdate={this.props.applicantBirthdate}
                      className="dates"
                      label={i18n.t('financial.gambling.label.dates')}
                      onUpdate={this.updateDates}
@@ -105,7 +104,6 @@ export default class GamblingItem extends ValidationElement {
 }
 
 GamblingItem.defaultProps = {
-  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   required: false

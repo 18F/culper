@@ -36,7 +36,6 @@ export default class Reprimand extends ValidationElement {
                         scrollIntoView={this.props.scrollIntoView}>
         <ReprimandItem name="Item"
                        bind={true}
-                       applicantBirthdate={this.props.applicantBirthdate}
                        required={this.props.required}
                        scrollIntoView={this.props.scrollIntoView}
                        />
@@ -47,7 +46,6 @@ export default class Reprimand extends ValidationElement {
 
 Reprimand.defaultProps = {
   Reasons: { items: [] },
-  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

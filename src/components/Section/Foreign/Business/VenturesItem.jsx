@@ -178,7 +178,6 @@ export default class VenturesItem extends ValidationElement {
                scrollIntoView={this.props.scrollIntoView}>
           <DateRange name="Dates"
                      {...this.props.Dates}
-                     applicantBirthdate={this.props.applicantBirthdate}
                      onUpdate={this.updateDates}
                      onError={this.props.onError}
                      className="ventures-dates"
@@ -246,7 +245,6 @@ export default class VenturesItem extends ValidationElement {
 }
 
 VenturesItem.defaultProps = {
-  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

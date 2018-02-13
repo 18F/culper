@@ -145,7 +145,7 @@ export default class OffenseValidator {
     }
 
     if (this.wasSentenced === 'Yes') {
-      return new SentenceValidator(this.sentence, null).isValid()
+      return new SentenceValidator(this.sentence).isValid()
     }
 
     return false

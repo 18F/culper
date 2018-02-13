@@ -5,9 +5,9 @@ import ForeignBornDocument from './foreignborndocument'
 import { validAccordion, validSSN, validDateField, validBranch, BranchCollection } from './helpers'
 
 export default class CohabitantsValidator {
-  constructor (state = {}) {
-    this.hasCohabitant = (state.HasCohabitant || {}).value
-    this.list = state.CohabitantList || {}
+  constructor (data = {}) {
+    this.hasCohabitant = (data.HasCohabitant || {}).value
+    this.list = data.CohabitantList || {}
   }
 
   isValid () {
@@ -26,14 +26,14 @@ export default class CohabitantsValidator {
 }
 
 export class CohabitantValidator {
-  constructor (state = {}, props = {}) {
-    this.name = state.Name
-    this.birthdate = state.Birthdate
-    this.birthPlace = state.BirthPlace
-    this.foreignBornDocument = state.ForeignBornDocument
-    this.ssn = state.SSN
-    this.otherNames = state.OtherNames
-    this.citizenship = state.Citizenship
+  constructor (data = {}) {
+    this.name = data.Name
+    this.birthdate = data.Birthdate
+    this.birthPlace = data.BirthPlace || {}
+    this.foreignBornDocument = data.ForeignBornDocument
+    this.ssn = data.SSN
+    this.otherNames = data.OtherNames
+    this.citizenship = data.Citizenship
   }
 
   similarSpouse (spouse) {

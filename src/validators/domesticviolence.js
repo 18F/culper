@@ -2,8 +2,8 @@ import LocationValidator from './location'
 import { validGenericTextfield, validGenericMonthYear, BranchCollection } from './helpers'
 
 export default class DomesticViolence {
-  constructor (state = {}, props = {}) {
-    this.list = state.List || []
+  constructor (data = {}) {
+    this.list = data.List || []
   }
 
   isValid () {
@@ -27,11 +27,11 @@ export default class DomesticViolence {
 }
 
 export class DomesticViolenceItem {
-  constructor (state = {}) {
-    this.courtAddress = state.CourtAddress
-    this.courtName = state.CourtName
-    this.explanation = state.Explanation
-    this.issued = state.Issued
+  constructor (data = {}) {
+    this.courtAddress = data.CourtAddress
+    this.courtName = data.CourtName
+    this.explanation = data.Explanation
+    this.issued = data.Issued
   }
 
   isValid () {

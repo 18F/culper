@@ -13,7 +13,7 @@ import Legal from './Legal'
 import Psychological from './Psychological'
 import SubstanceUse from './SubstanceUse'
 import Package from './Package'
-import { SectionView, SectionViews } from './SectionView'
+import { SectionViews, SectionView } from './SectionView'
 
 class Section extends React.Component {
   constructor (props) {

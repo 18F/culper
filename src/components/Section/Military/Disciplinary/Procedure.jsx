@@ -65,7 +65,6 @@ export default class Procedure extends ValidationElement {
                scrollIntoView={this.props.scrollIntoView}>
           <DateControl name="Date"
                        {...this.props.Date}
-                       applicantBirthdate={this.props.applicantBirthdate}
                        className="procedure-date"
                        hideDay={true}
                        onUpdate={this.updateDate}
@@ -131,7 +130,6 @@ export default class Procedure extends ValidationElement {
 }
 
 Procedure.defaultProps = {
-  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

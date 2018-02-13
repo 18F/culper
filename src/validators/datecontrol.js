@@ -1,17 +1,28 @@
+import store from '../store'
+import { extractApplicantBirthdate } from '../components/Section/extractors'
 import { today, daysAgo } from '../components/Section/History/dateranges'
 
-export default class DateControlValidator {
-  constructor (state = {}, props = {}) {
-    this.month = state.month || props.month
-    this.day = state.day || props.day
-    this.year = state.year || props.year
-    this.hideDay = props.hideDay
-    this.maxDate = props.maxDate
-    this.minDate = props.minDate
-    this.noMaxDate = props.noMaxDate
-    this.relationship = props.relationship || ''
+export const getContext = () => {
+  const state = store.getState()
+  const app = state.application || {}
+  return {
+    applicantBirthdate: extractApplicantBirthdate(app)
+  }
+}
 
-    this.limits = dateLimits(this.relationship, props.applicantBirthdate)
+export default class DateControlValidator {
+  constructor (data = {}, context = null) {
+    this.month = data.month
+    this.day = data.day
+    this.year = data.year
+    this.hideDay = data.hideDay
+    this.maxDate = data.maxDate
+    this.minDate = data.minDate
+    this.noMaxDate = data.noMaxDate
+    this.relationship = data.relationship || ''
+    context = context || getContext()
+
+    this.limits = dateLimits(this.relationship, context.applicantBirthdate)
     if (!this.maxDate || (this.maxDate && this.maxDate > this.limits.maxDate)) {
       this.maxDate = this.limits.maxDate
     }

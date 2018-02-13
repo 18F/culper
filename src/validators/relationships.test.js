@@ -4,7 +4,7 @@ describe('Psychologicalvalidation', function () {
   it('Should validate completion status', function () {
     const tests = [
       {
-        props: {
+        data: {
           Completed: {
             relatives: {
               status: true
@@ -19,7 +19,7 @@ describe('Psychologicalvalidation', function () {
         expected: 'neutral'
       },
       {
-        props: {
+        data: {
           Completed: {
             relatives: {
               status: true
@@ -34,7 +34,7 @@ describe('Psychologicalvalidation', function () {
         expected: 'incomplete'
       },
       {
-        props: {
+        data: {
           Relationships: {
             relatives: {
               IsIncompetent: { value: 'No' }
@@ -63,7 +63,7 @@ describe('Psychologicalvalidation', function () {
         expected: 'incomplete'
       },
       {
-        props: {
+        data: {
           Completed: {
             relatives: {
               status: true
@@ -100,7 +100,7 @@ describe('Psychologicalvalidation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new RelationshipsValidator(null, test.props).completionStatus(test.Status)).toBe(test.expected)
+      expect(new RelationshipsValidator(test.data).completionStatus(test.Status)).toBe(test.expected)
     })
   })
 })

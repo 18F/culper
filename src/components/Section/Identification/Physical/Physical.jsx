@@ -129,8 +129,8 @@ Physical.defaultProps = {
   section: 'identification',
   subsection: 'physical',
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('identification.physical', props))
+  validator: (data) => {
+    return validate(schema('identification.physical', data))
   },
   required: false
 }

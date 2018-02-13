@@ -4,28 +4,28 @@ describe('Name component validation', function () {
   it('should validate first', function () {
     const tests = [
       {
-        state: {
+        data: {
           first: 'Foo',
           firstInitialOnly: false
         },
         expected: true
       },
       {
-        state: {
+        data: {
           first: 'Foo',
           firstInitialOnly: true
         },
         expected: false
       },
       {
-        state: {
+        data: {
           first: '',
           firstInitialOnly: false
         },
         expected: false
       },
       {
-        state: {
+        data: {
           first: 'J',
           firstInitialOnly: true
         },
@@ -34,35 +34,35 @@ describe('Name component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new NameValidator(test.state, null).validFirst()).toBe(test.expected)
+      expect(new NameValidator(test.data).validFirst()).toBe(test.expected)
     })
   })
 
   it('should validate last', function () {
     const tests = [
       {
-        state: {
+        data: {
           last: 'Foo',
           lastInitialOnly: false
         },
         expected: true
       },
       {
-        state: {
+        data: {
           last: 'Foo',
           lastInitialOnly: true
         },
         expected: false
       },
       {
-        state: {
+        data: {
           last: '',
           lastInitialOnly: false
         },
         expected: false
       },
       {
-        state: {
+        data: {
           last: 'J',
           lastInitialOnly: true
         },
@@ -71,14 +71,14 @@ describe('Name component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new NameValidator(test.state, null).validLast()).toBe(test.expected)
+      expect(new NameValidator(test.data).validLast()).toBe(test.expected)
     })
   })
 
   it('should validate middle', function () {
     const tests = [
       {
-        state: {
+        data: {
           middle: 'Foo',
           middleInitialOnly: false,
           noMiddleName: false
@@ -86,7 +86,7 @@ describe('Name component validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           middle: 'Foo',
           middleInitialOnly: true,
           noMiddleName: false
@@ -94,7 +94,7 @@ describe('Name component validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           middle: '',
           middleInitialOnly: false,
           noMiddleName: false
@@ -102,7 +102,7 @@ describe('Name component validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           middle: 'J',
           middleInitialOnly: true,
           noMiddleName: false
@@ -110,7 +110,7 @@ describe('Name component validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           middle: '',
           middleInitialOnly: false,
           noMiddleName: true
@@ -118,7 +118,7 @@ describe('Name component validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           middle: 'J',
           middleInitialOnly: true,
           noMiddleName: true
@@ -126,7 +126,7 @@ describe('Name component validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           noMiddleName: undefined
         },
         expected: false
@@ -134,48 +134,48 @@ describe('Name component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new NameValidator(test.state, null).validMiddle()).toBe(test.expected)
+      expect(new NameValidator(test.data).validMiddle()).toBe(test.expected)
     })
   })
 
   it('should validate suffix', function () {
     const tests = [
       {
-        state: {
+        data: {
           suffix: 'Other',
           suffixOther: 'Some other suffix'
         },
         expected: true
       },
       {
-        state: {
+        data: {
           suffix: 'Other',
           suffixOther: ''
         },
         expected: false
       },
       {
-        state: {
+        data: {
           suffix: 'Jr',
           suffixOther: ''
         },
         expected: true
       },
       {
-        state: {
+        data: {
           suffix: 'Foo'
         },
         expected: false
       },
       {
-        state: {
+        data: {
           suffix: '',
           suffixOther: ''
         },
         expected: true
       },
       {
-        state: {
+        data: {
           suffix: null,
           suffixOther: ''
         },
@@ -183,14 +183,14 @@ describe('Name component validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new NameValidator(test.state, null).validSuffix()).toBe(test.expected)
+      expect(new NameValidator(test.data).validSuffix()).toBe(test.expected)
     })
   })
 
   it('should validate entire name', function () {
     const tests = [
       {
-        state: {
+        data: {
           first: 'Foo',
           firstInitialOnly: false,
           middle: 'J',
@@ -203,7 +203,7 @@ describe('Name component validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           first: '',
           firstInitialOnly: false,
           middle: 'J',
@@ -217,8 +217,7 @@ describe('Name component validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new NameValidator(test.state, null).isValid()).toBe(test.expected)
+      expect(new NameValidator(test.data).isValid()).toBe(test.expected)
     })
   })
 })
-

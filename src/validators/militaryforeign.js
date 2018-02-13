@@ -23,7 +23,7 @@ export default class MilitaryForeignValidator {
     }
 
     return branchValidator.each(item => {
-      return new ForeignServiceValidator(item.Item, null).isValid()
+      return new ForeignServiceValidator(item.Item).isValid()
     })
   }
 
@@ -55,7 +55,7 @@ export class ForeignServiceValidator {
   }
 
   validDates () {
-    return new DateRangeValidator(this.dates, null).isValid()
+    return new DateRangeValidator(this.dates).isValid()
   }
 
   validCountry () {
@@ -116,7 +116,7 @@ export class ForeignContactValidator {
   }
 
   validName () {
-    return new NameValidator(this.name, null).isValid()
+    return new NameValidator(this.name).isValid()
   }
 
   validAddress () {
@@ -128,7 +128,7 @@ export class ForeignContactValidator {
   }
 
   validDates () {
-    return new DateRangeValidator(this.dates, null).isValid()
+    return new DateRangeValidator(this.dates).isValid()
   }
 
   validFrequency () {

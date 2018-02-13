@@ -5,7 +5,7 @@ describe('Relatives validation', function () {
   it('validate relative relationship', () => {
     const tests = [
       {
-        state: {
+        data: {
           Relation: {
             value: ''
           }
@@ -13,7 +13,7 @@ describe('Relatives validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           Relation: {
             value: 'Mother'
           }
@@ -23,25 +23,25 @@ describe('Relatives validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new RelativeValidator(test.state, null).validRelation()).toBe(test.expected)
+      expect(new RelativeValidator(test.data).validRelation()).toBe(test.expected)
     })
   })
 
   it('validate relative name', () => {
     const tests = [
       {
-        state: {
+        data: {
         },
         expected: false
       },
       {
-        state: {
+        data: {
           Name: {}
         },
         expected: false
       },
       {
-        state: {
+        data: {
           Name: {
             first: 'Foo',
             firstInitialOnly: false,
@@ -58,14 +58,14 @@ describe('Relatives validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new RelativeValidator(test.state, null).validName()).toBe(test.expected)
+      expect(new RelativeValidator(test.data).validName()).toBe(test.expected)
     })
   })
 
   it('validate relative documentation', () => {
     const tests = [
       {
-        state: {
+        data: {
           IsDeceased: { value: 'No' },
           Document: {
             value: 'Permanent'
@@ -74,7 +74,7 @@ describe('Relatives validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           IsDeceased: { value: 'No' },
           Document: {
             value: 'Other'
@@ -88,25 +88,25 @@ describe('Relatives validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new RelativeValidator(test.state, null).validDocument()).toBe(test.expected)
+      expect(new RelativeValidator(test.data).validDocument()).toBe(test.expected)
     })
   })
 
   it('validate relative birth date', () => {
     const tests = [
       {
-        state: {
+        data: {
         },
         expected: false
       },
       {
-        state: {
+        data: {
           Birthdate: {}
         },
         expected: false
       },
       {
-        state: {
+        data: {
           Birthdate: {
             day: '1',
             month: '1',
@@ -119,25 +119,25 @@ describe('Relatives validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new RelativeValidator(test.state, null).validBirthdate()).toBe(test.expected)
+      expect(new RelativeValidator(test.data).validBirthdate()).toBe(test.expected)
     })
   })
 
   it('validate relative birth place', () => {
     const tests = [
       {
-        state: {
+        data: {
         },
         expected: false
       },
       {
-        state: {
+        data: {
           Birthplace: {}
         },
         expected: false
       },
       {
-        state: {
+        data: {
           Birthplace: {
             country: { value: 'United States' },
             city: 'Arlington',
@@ -150,25 +150,25 @@ describe('Relatives validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new RelativeValidator(test.state, null).validBirthplace()).toBe(test.expected)
+      expect(new RelativeValidator(test.data).validBirthplace()).toBe(test.expected)
     })
   })
 
   it('validate relative citizenship', () => {
     const tests = [
       {
-        state: {
+        data: {
         },
         expected: false
       },
       {
-        state: {
+        data: {
           Citizenship: {}
         },
         expected: false
       },
       {
-        state: {
+        data: {
           Citizenship: {
             value: ['United States']
           }
@@ -176,7 +176,7 @@ describe('Relatives validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           Citizenship: {
             value: ['United States', 'Germany']
           }
@@ -186,14 +186,14 @@ describe('Relatives validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new RelativeValidator(test.state, null).validCitizenship()).toBe(test.expected)
+      expect(new RelativeValidator(test.data).validCitizenship()).toBe(test.expected)
     })
   })
 
   it('validate relative maiden name', () => {
     const tests = [
       {
-        state: {
+        data: {
           Relation: {
             value: 'Mother'
           }
@@ -201,7 +201,7 @@ describe('Relatives validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           Relation: {
             value: 'Mother'
           },
@@ -210,14 +210,14 @@ describe('Relatives validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           MaidenSameAsListed: { value: 'Yes' },
           MaidenName: {}
         },
         expected: true
       },
       {
-        state: {
+        data: {
           Relation: {
             value: 'Mother'
           },
@@ -237,33 +237,30 @@ describe('Relatives validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new RelativeValidator(test.state, null).validMaidenName()).toBe(test.expected)
+      expect(new RelativeValidator(test.data).validMaidenName()).toBe(test.expected)
     })
   })
 
   it('validate aliases', () => {
     const tests = [
       {
-        state: {
-        },
-        props: {
+        data: {
           hideMaiden: false
         },
         expected: false
       },
       {
-        state: {
+        data: {
+          hideMaiden: false,
           Aliases: {
             items: []
           }
         },
-        props: {
-          hideMaiden: false
-        },
         expected: false
       },
       {
-        state: {
+        data: {
+          hideMaiden: false,
           Aliases: {
             items: [
               {
@@ -276,13 +273,11 @@ describe('Relatives validation', function () {
             ]
           }
         },
-        props: {
-          hideMaiden: false
-        },
         expected: true
       },
       {
-        state: {
+        data: {
+          hideMaiden: false,
           Aliases: {
             items: [
               {
@@ -295,13 +290,11 @@ describe('Relatives validation', function () {
             ]
           }
         },
-        props: {
-          hideMaiden: false
-        },
         expected: false
       },
       {
-        state: {
+        data: {
+          hideMaiden: false,
           Aliases: {
             items: [
               {
@@ -322,9 +315,15 @@ describe('Relatives validation', function () {
                   MaidenName: { value: 'No' },
                   Dates: {
                     from: {
+                      month: '1',
+                      day: '1',
+                      year: '2010',
                       date: new Date('1/1/2010')
                     },
                     to: {
+                      month: '1',
+                      day: '1',
+                      year: '2012',
                       date: new Date('1/1/2012')
                     },
                     present: false
@@ -337,39 +336,36 @@ describe('Relatives validation', function () {
             ]
           }
         },
-        props: {
-          hideMaiden: false
-        },
         expected: true
       }
     ]
 
     tests.forEach(test => {
-      expect(new RelativeValidator(test.state, test.props).validAliases()).toBe(test.expected)
+      expect(new RelativeValidator(test.data).validAliases()).toBe(test.expected)
     })
   })
 
   it('validate relative is deceased', () => {
     const tests = [
       {
-        state: {
+        data: {
         },
         expected: false
       },
       {
-        state: {
+        data: {
           IsDeceased: { value: '' }
         },
         expected: false
       },
       {
-        state: {
+        data: {
           IsDeceased: { value: 'No' }
         },
         expected: true
       },
       {
-        state: {
+        data: {
           IsDeceased: { value: 'Yes' }
         },
         expected: true
@@ -377,32 +373,32 @@ describe('Relatives validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new RelativeValidator(test.state, null).validIsDeceased()).toBe(test.expected)
+      expect(new RelativeValidator(test.data).validIsDeceased()).toBe(test.expected)
     })
   })
 
   it('validate relative is not deceased and has address', () => {
     const tests = [
       {
-        state: {
+        data: {
         },
         expected: false
       },
       {
-        state: {
+        data: {
           IsDeceased: { value: 'Yes' }
         },
         expected: true
       },
       {
-        state: {
+        data: {
           IsDeceased: { value: 'No' },
           Address: {}
         },
         expected: false
       },
       {
-        state: {
+        data: {
           IsDeceased: { value: 'No' },
           Address: {
             country: { value: 'United States' },
@@ -418,14 +414,14 @@ describe('Relatives validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new RelativeValidator(test.state, null).validAddress()).toBe(test.expected)
+      expect(new RelativeValidator(test.data).validAddress()).toBe(test.expected)
     })
   })
 
   it('validate relative requires citizenship documentation abroad', () => {
     const tests = [
       {
-        state: {
+        data: {
           Relation: {
             value: 'Father'
           },
@@ -442,7 +438,7 @@ describe('Relatives validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           Citizenship: {
             value: ['United States']
           },
@@ -463,7 +459,7 @@ describe('Relatives validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           Citizenship: {
             value: ['United States']
           },
@@ -484,7 +480,7 @@ describe('Relatives validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           Citizenship: {
             value: ['United States']
           },
@@ -497,7 +493,7 @@ describe('Relatives validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           Citizenship: {
             value: ['United States']
           }
@@ -507,14 +503,14 @@ describe('Relatives validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new RelativeValidator(test.state, null).requiresCitizenshipDocumentation()).toBe(test.expected)
+      expect(new RelativeValidator(test.data).requiresCitizenshipDocumentation()).toBe(test.expected)
     })
   })
 
   it('validate relative requires citizenship documentation', () => {
     const tests = [
       {
-        state: {
+        data: {
           Relation: {
             value: 'Father'
           },
@@ -523,7 +519,7 @@ describe('Relatives validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           Relation: {
             value: 'Father'
           },
@@ -532,7 +528,7 @@ describe('Relatives validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           Relation: {
             value: 'Father'
           },
@@ -561,7 +557,7 @@ describe('Relatives validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           Relation: {
             value: 'Father'
           },
@@ -587,7 +583,7 @@ describe('Relatives validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           CitizenshipDocumentation: {
             value: 'Other'
           },
@@ -619,7 +615,7 @@ describe('Relatives validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           CitizenshipDocumentation: {
             value: 'FS'
           },
@@ -653,14 +649,14 @@ describe('Relatives validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new RelativeValidator(test.state, null).validCitizenshipDocumentation()).toBe(test.expected)
+      expect(new RelativeValidator(test.data).validCitizenshipDocumentation()).toBe(test.expected)
     })
   })
 
   it('validate relative requires citizenship documentation document number', () => {
     const tests = [
       {
-        state: {
+        data: {
           Relation: {
             value: 'Father'
           },
@@ -669,7 +665,7 @@ describe('Relatives validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           Relation: {
             value: 'Father'
           },
@@ -678,7 +674,7 @@ describe('Relatives validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           Relation: {
             value: 'Father'
           },
@@ -704,7 +700,7 @@ describe('Relatives validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           Relation: {
             value: 'Father'
           },
@@ -728,7 +724,7 @@ describe('Relatives validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           Relation: {
             value: 'Father'
           },
@@ -756,14 +752,14 @@ describe('Relatives validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new RelativeValidator(test.state, null).validDocumentNumber()).toBe(test.expected)
+      expect(new RelativeValidator(test.data).validDocumentNumber()).toBe(test.expected)
     })
   })
 
   it('validate relative requires citizenship documentation court name', () => {
     const tests = [
       {
-        state: {
+        data: {
           Relation: {
             value: 'Father'
           },
@@ -772,7 +768,7 @@ describe('Relatives validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           Relation: {
             value: 'Father'
           },
@@ -781,7 +777,7 @@ describe('Relatives validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           Relation: {
             value: 'Father'
           },
@@ -807,7 +803,7 @@ describe('Relatives validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           Relation: {
             value: 'Father'
           },
@@ -831,7 +827,7 @@ describe('Relatives validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           Relation: {
             value: 'Father'
           },
@@ -859,14 +855,14 @@ describe('Relatives validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new RelativeValidator(test.state, null).validCourtName()).toBe(test.expected)
+      expect(new RelativeValidator(test.data).validCourtName()).toBe(test.expected)
     })
   })
 
   it('validate relative requires citizenship documentation court address', () => {
     const tests = [
       {
-        state: {
+        data: {
           Relation: {
             value: 'Father'
           },
@@ -875,7 +871,7 @@ describe('Relatives validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           Relation: {
             value: 'Father'
           },
@@ -884,7 +880,7 @@ describe('Relatives validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           Relation: {
             value: 'Father'
           },
@@ -910,7 +906,7 @@ describe('Relatives validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           Relation: {
             value: 'Father'
           },
@@ -934,7 +930,7 @@ describe('Relatives validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           Relation: {
             value: 'Father'
           },
@@ -968,14 +964,14 @@ describe('Relatives validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new RelativeValidator(test.state, null).validCourtAddress()).toBe(test.expected)
+      expect(new RelativeValidator(test.data).validCourtAddress()).toBe(test.expected)
     })
   })
 
   it('validate relative not a citizen and has document', () => {
     const tests = [
       {
-        state: {
+        data: {
           Relation: {
             value: 'Father'
           },
@@ -984,7 +980,7 @@ describe('Relatives validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           Relation: {
             value: 'Father'
           },
@@ -996,7 +992,7 @@ describe('Relatives validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           Relation: {
             value: 'Father'
           },
@@ -1011,7 +1007,7 @@ describe('Relatives validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           Relation: {
             value: 'Father'
           },
@@ -1028,14 +1024,14 @@ describe('Relatives validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new RelativeValidator(test.state, null).validDocument()).toBe(test.expected)
+      expect(new RelativeValidator(test.data).validDocument()).toBe(test.expected)
     })
   })
 
   it('validate relative not a citizen and has residence document number', () => {
     const tests = [
       {
-        state: {
+        data: {
           Relation: {
             value: 'Father'
           },
@@ -1044,7 +1040,7 @@ describe('Relatives validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           Relation: {
             value: 'Father'
           },
@@ -1056,7 +1052,7 @@ describe('Relatives validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           Relation: {
             value: 'Father'
           },
@@ -1069,7 +1065,7 @@ describe('Relatives validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           Relation: {
             value: 'Father'
           },
@@ -1086,14 +1082,14 @@ describe('Relatives validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new RelativeValidator(test.state, null).validResidenceDocumentNumber()).toBe(test.expected)
+      expect(new RelativeValidator(test.data).validResidenceDocumentNumber()).toBe(test.expected)
     })
   })
 
   it('validate relative not a citizen and has expiration', () => {
     const tests = [
       {
-        state: {
+        data: {
           Relation: {
             value: 'Father'
           },
@@ -1102,7 +1098,7 @@ describe('Relatives validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           Relation: {
             value: 'Father'
           },
@@ -1114,7 +1110,7 @@ describe('Relatives validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           Relation: {
             value: 'Father'
           },
@@ -1127,7 +1123,7 @@ describe('Relatives validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           Relation: {
             value: 'Father'
           },
@@ -1147,14 +1143,14 @@ describe('Relatives validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new RelativeValidator(test.state, null).validExpiration()).toBe(test.expected)
+      expect(new RelativeValidator(test.data).validExpiration()).toBe(test.expected)
     })
   })
 
   it('validate relative does not live within the U.S. first contact', () => {
     const tests = [
       {
-        state: {
+        data: {
           IsDeceased: { value: 'No' },
           Address: {
             country: { value: 'United States' },
@@ -1168,7 +1164,7 @@ describe('Relatives validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           IsDeceased: { value: 'No' },
           Address: {
             street: '1234 Some Rd',
@@ -1181,7 +1177,7 @@ describe('Relatives validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           IsDeceased: { value: 'No' },
           Address: {
             street: '1234 Some Rd',
@@ -1201,14 +1197,14 @@ describe('Relatives validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new RelativeValidator(test.state, null).validFirstContact()).toBe(test.expected)
+      expect(new RelativeValidator(test.data).validFirstContact()).toBe(test.expected)
     })
   })
 
   it('validate relative does not live within the U.S. last contact', () => {
     const tests = [
       {
-        state: {
+        data: {
           IsDeceased: { value: 'No' },
           Address: {
             country: { value: 'United States' },
@@ -1222,7 +1218,7 @@ describe('Relatives validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           IsDeceased: { value: 'No' },
           Address: {
             street: '1234 Some Rd',
@@ -1235,7 +1231,7 @@ describe('Relatives validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           IsDeceased: { value: 'No' },
           Address: {
             street: '1234 Some Rd',
@@ -1255,14 +1251,14 @@ describe('Relatives validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new RelativeValidator(test.state, null).validLastContact()).toBe(test.expected)
+      expect(new RelativeValidator(test.data).validLastContact()).toBe(test.expected)
     })
   })
 
   it('validate relative does not live within the U.S. correspondence methods', () => {
     const tests = [
       {
-        state: {
+        data: {
           IsDeceased: { value: 'No' },
           Address: {
             country: { value: 'United States' },
@@ -1276,7 +1272,7 @@ describe('Relatives validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           IsDeceased: { value: 'No' },
           Address: {
             street: '1234 Some Rd',
@@ -1291,7 +1287,7 @@ describe('Relatives validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           IsDeceased: { value: 'No' },
           Address: {
             street: '1234 Some Rd',
@@ -1308,14 +1304,14 @@ describe('Relatives validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new RelativeValidator(test.state, null).validMethods()).toBe(test.expected)
+      expect(new RelativeValidator(test.data).validMethods()).toBe(test.expected)
     })
   })
 
   it('validate relative does not live within the U.S. correspondence frequency', () => {
     const tests = [
       {
-        state: {
+        data: {
           IsDeceased: { value: 'No' },
           Address: {
             country: { value: 'United States' },
@@ -1329,7 +1325,7 @@ describe('Relatives validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           IsDeceased: { value: 'No' },
           Address: {
             street: '1234 Some Rd',
@@ -1342,7 +1338,7 @@ describe('Relatives validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           IsDeceased: { value: 'No' },
           Address: {
             street: '1234 Some Rd',
@@ -1359,14 +1355,14 @@ describe('Relatives validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new RelativeValidator(test.state, null).validFrequency()).toBe(test.expected)
+      expect(new RelativeValidator(test.data).validFrequency()).toBe(test.expected)
     })
   })
 
   it('validate relative does not live within the U.S. employer name', () => {
     const tests = [
       {
-        state: {
+        data: {
           IsDeceased: { value: 'No' },
           Address: {
             country: { value: 'United States' },
@@ -1380,7 +1376,7 @@ describe('Relatives validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           IsDeceased: { value: 'No' },
           Address: {
             street: '1234 Some Rd',
@@ -1393,7 +1389,7 @@ describe('Relatives validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           IsDeceased: { value: 'No' },
           Address: {
             street: '1234 Some Rd',
@@ -1410,14 +1406,14 @@ describe('Relatives validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new RelativeValidator(test.state, null).validEmployer()).toBe(test.expected)
+      expect(new RelativeValidator(test.data).validEmployer()).toBe(test.expected)
     })
   })
 
   it('validate relative does not live within the U.S. employer address', () => {
     const tests = [
       {
-        state: {
+        data: {
           IsDeceased: { value: 'No' },
           Address: {
             country: { value: 'United States' },
@@ -1431,7 +1427,7 @@ describe('Relatives validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           IsDeceased: { value: 'No' },
           Address: {
             street: '1234 Some Rd',
@@ -1444,7 +1440,7 @@ describe('Relatives validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           IsDeceased: { value: 'No' },
           Address: {
             street: '1234 Some Rd',
@@ -1466,14 +1462,14 @@ describe('Relatives validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new RelativeValidator(test.state, null).validEmployerAddress()).toBe(test.expected)
+      expect(new RelativeValidator(test.data).validEmployerAddress()).toBe(test.expected)
     })
   })
 
   it('validate relative does not live within the U.S. employer relationship', () => {
     const tests = [
       {
-        state: {
+        data: {
           Citizenship: {
             value: [ 'Germany' ]
           },
@@ -1490,7 +1486,7 @@ describe('Relatives validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           Citizenship: {
             value: [ 'Germany' ]
           },
@@ -1506,7 +1502,7 @@ describe('Relatives validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           Citizenship: {
             value: [ 'Germany' ]
           },
@@ -1522,7 +1518,7 @@ describe('Relatives validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           Citizenship: {
             value: [ 'Germany' ]
           },
@@ -1539,7 +1535,7 @@ describe('Relatives validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           Citizenship: {
             value: [ 'Germany' ]
           },
@@ -1560,14 +1556,14 @@ describe('Relatives validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new RelativeValidator(test.state, null).validEmployerRelationship()).toBe(test.expected)
+      expect(new RelativeValidator(test.data).validEmployerRelationship()).toBe(test.expected)
     })
   })
 
   it('in its entirety', () => {
     const tests = [
       {
-        state: {
+        data: {
           List: {
             branch: { value: 'No' },
             items: [
@@ -1584,7 +1580,7 @@ describe('Relatives validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           List: {
             branch: { value: 'Nope' },
             items: [
@@ -1601,7 +1597,7 @@ describe('Relatives validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           List: {
             branch: { value: 'No' },
             items: [
@@ -1665,9 +1661,15 @@ describe('Relatives validation', function () {
                           MaidenName: { value: 'No' },
                           Dates: {
                             from: {
+                              month: '1',
+                              day: '1',
+                              year: '2010',
                               date: new Date('1/1/2010')
                             },
                             to: {
+                              month: '1',
+                              day: '1',
+                              year: '2012',
                               date: new Date('1/1/2012')
                             },
                             present: false
@@ -1698,7 +1700,7 @@ describe('Relatives validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new RelativesValidator(test.state, null).isValid()).toBe(test.expected)
+      expect(new RelativesValidator(test.data).isValid()).toBe(test.expected)
     })
   })
 })

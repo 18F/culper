@@ -184,7 +184,6 @@ export default class TravelQuestions extends ValidationElement {
                scrollIntoView={this.props.scrollIntoView}>
           <DateRange name="Dates"
                      {...this.props.Dates}
-                     applicantBirthdate={this.props.applicantBirthdate}
                      className="foreign-travel-dates"
                      onUpdate={this.updateDates}
                      onError={this.props.onError}
@@ -411,7 +410,6 @@ TravelQuestions.defaultProps = {
   SensitiveExplanation: {},
   Threatened: {},
   ThreatenedExplanation: {},
-  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

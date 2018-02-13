@@ -96,18 +96,30 @@ describe('Police record validation', function () {
                     Incarcerated: { value: 'Yes' },
                     IncarcerationDates: {
                       from: {
+                        month: '1',
+                        day: '1',
+                        year: '2000',
                         date: new Date('1/1/2000')
                       },
                       to: {
+                        month: '1',
+                        day: '1',
+                        year: '2004',
                         date: new Date('1/1/2004')
                       },
                       present: false
                     },
                     ProbationDates: {
                       from: {
+                        month: '1',
+                        day: '1',
+                        year: '2000',
                         date: new Date('1/1/2000')
                       },
                       to: {
+                        month: '1',
+                        day: '1',
+                        year: '2004',
                         date: new Date('1/1/2004')
                       },
                       present: false

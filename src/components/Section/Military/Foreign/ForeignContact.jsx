@@ -111,7 +111,6 @@ export default class ForeignContact extends React.Component {
           <DateRange name="Dates"
                      className="foreign-contact-dates"
                      {...this.props.Dates}
-                     applicantBirthdate={this.props.applicantBirthdate}
                      onUpdate={this.updateDates}
                      onError={this.props.onError}
                      required={this.props.required}
@@ -141,7 +140,6 @@ ForeignContact.defaultProps = {
   Title: {},
   Dates: {},
   Frequency: {},
-  applicantBirthdate: {},
   addressBooks: {},
   dispatch: (action) => {},
   onUpdate: (queue) => {},

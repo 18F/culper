@@ -220,7 +220,6 @@ export default class NonpaymentItem extends ValidationElement {
                          onError={this.props.onError}>
             <DateControl name="Resolved"
                          {...this.props.Resolved}
-                         applicantBirthdate={this.props.applicantBirthdate}
                          onUpdate={this.updateResolved}
                          onError={this.props.onError}
                          className="nonpayment-resolved"
@@ -236,7 +235,6 @@ export default class NonpaymentItem extends ValidationElement {
                shrink={true}>
           <DateControl name="Date"
                        {...this.props.Date}
-                       applicantBirthdate={this.props.applicantBirthdate}
                        onUpdate={this.updateDate}
                        onError={this.props.onError}
                        className="nonpayment-date"
@@ -263,7 +261,6 @@ export default class NonpaymentItem extends ValidationElement {
 
 NonpaymentItem.defaultProps = {
   ResolvedNotApplicable: { applicable: true },
-  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   required: false
