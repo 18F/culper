@@ -159,27 +159,6 @@ export class EmploymentValidator {
       return branchValidator.each(item => {
         return validGenericTextfield(item.Text) && validGenericMonthYear(item.Date)
       })
-      //if (!this.reprimand || !this.reprimand.items) {
-        //return false
-      //}
-
-      //for (let r of (this.reprimand.items || [])) {
-        //const item = r.Item || {}
-        //const has = item.Has || {}
-        //if (has.value === 'No') {
-          //continue
-        //}
-        //if (!item) {
-          //return false
-        //}
-        //if (!validGenericTextfield(item.Text)) {
-          //return false
-        //}
-
-        //if (!validGenericMonthYear(item.Date)) {
-          //return false
-        //}
-      //}
     }
 
     return true
