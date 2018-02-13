@@ -282,6 +282,7 @@ export default class ForeignNational extends ValidationElement {
                        className="last-contact"
                        {...this.props.LastContact}
                        applicantBirthdate={this.props.applicantBirthdate}
+                       prefix="contact.last"
                        minDate={(this.props.FirstContact || {}).date}
                        onUpdate={this.updateLastContact}
                        onError={this.props.onError}
