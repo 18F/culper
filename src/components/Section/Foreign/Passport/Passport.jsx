@@ -131,7 +131,6 @@ export default class Passport extends SubsectionElement {
         <Field title={i18n.t('foreign.passport.title')}
                titleSize="h2"
                optional={true}
-               help="foreign.passport.branch.help"
                className="no-margin-bottom"
                />
 
