@@ -84,7 +84,6 @@ export default class Unauthorized extends SubsectionElement {
                      scrollIntoView={this.props.scrollIntoView}>
             <UnauthorizedItem name="Item"
                               bind={true}
-                              applicantBirthdate={this.props.applicantBirthdate}
                               required={this.props.required}
                               scrollIntoView={this.props.scrollIntoView}
                               addressBooks={this.props.addressBooks}
@@ -106,11 +105,10 @@ Unauthorized.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'legal',
   subsection: 'technology/unauthorized',
-  applicantBirthdate: {},
   addressBooks: {},
   dispatch: (action) => {},
-  validator: (state, props) => {
-    return validate(schema('legal.technology.unauthorized', props))
+  validator: (data) => {
+    return validate(schema('legal.technology.unauthorized', data))
   },
   scrollToBottom: ''
 }

@@ -106,7 +106,6 @@ export default class Residence extends SubsectionElement {
                    scrollIntoView={this.props.scrollIntoView}>
         <ResidenceItem name="Item"
                        bind={true}
-                       applicantBirthdate={this.props.applicantBirthdate}
                        addressBooks={this.props.addressBooks}
                        dispatch={this.props.dispatch}
                        required={this.props.required}
@@ -130,7 +129,6 @@ Residence.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'history',
   subsection: 'residence',
-  applicantBirthdate: {},
   addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {

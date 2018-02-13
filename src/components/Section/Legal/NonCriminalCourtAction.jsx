@@ -60,7 +60,6 @@ export default class NonCriminalCourtAction extends ValidationElement {
           <DateControl name="CivilActionDate"
                        className="civil-action-date"
                        {...this.props.CivilActionDate}
-                       applicantBirthdate={this.props.applicantBirthdate}
                        onUpdate={this.updateCivilActionDate}
                        onError={this.props.onError}
                        required={this.props.required}
@@ -135,7 +134,6 @@ export default class NonCriminalCourtAction extends ValidationElement {
 }
 
 NonCriminalCourtAction.defaultProps = {
-  applicantBirthdate: {},
   addressBooks: {},
   dispatch: (action) => {},
   onUpdate: (queue) => {},

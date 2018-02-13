@@ -79,7 +79,6 @@ export default class OtherNameItem extends React.Component {
                shrink={true}>
           <DateRange name="DatesUsed"
                      {...this.props.DatesUsed}
-                     applicantBirthdate={this.props.applicantBirthdate}
                      onUpdate={this.updateDatesUsed}
                      required={this.props.required}
                      />
@@ -101,7 +100,6 @@ export default class OtherNameItem extends React.Component {
 }
 
 OtherNameItem.defaultProps = {
-  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   required: false

@@ -51,7 +51,6 @@ export default class NegativeImpact extends ValidationElement {
           <DateControl name="Occurred"
                        className="occurred"
                        {...this.props.Occurred}
-                       applicantBirthdate={this.props.applicantBirthdate}
                        label={i18n.t('substance.alcohol.negativeImpact.label.occurred')}
                        hideDay={true}
                        onUpdate={this.updateOccurred}
@@ -95,7 +94,6 @@ export default class NegativeImpact extends ValidationElement {
           <DateRange name="Used"
                      className="used"
                      {...this.props.Used}
-                     applicantBirthdate={this.props.applicantBirthdate}
                      onUpdate={this.updateUsed}
                      onError={this.props.onError}
                      required={this.props.required}
@@ -107,6 +105,5 @@ export default class NegativeImpact extends ValidationElement {
 }
 
 NegativeImpact.defaultProps = {
-  applicantBirthdate: {},
   onError: (value, arr) => { return arr }
 }

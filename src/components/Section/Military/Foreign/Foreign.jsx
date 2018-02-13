@@ -33,7 +33,6 @@ export default class Foreign extends SubsectionElement {
                           scrollIntoView={this.props.scrollIntoView}>
           <ForeignService name="Item"
                           bind={true}
-                          applicantBirthdate={this.props.applicantBirthdate}
                           addressBooks={this.props.addressBooks}
                           dispatch={this.props.dispatch}
                           defaultState={this.props.defaultState}
@@ -52,11 +51,10 @@ Foreign.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'military',
   subsection: 'foreign',
-  applicantBirthdate: {},
   addressBooks: {},
   dispatch: (action) => {},
-  validator: (state, props) => {
-    return validate(schema('military.foreign', props))
+  validator: (data) => {
+    return validate(schema('military.foreign', data))
   },
   defaultState: true
 }

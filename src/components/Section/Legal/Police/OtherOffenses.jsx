@@ -105,7 +105,6 @@ export default class OtherOffenses extends SubsectionElement {
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
             <OtherOffense name="Item"
-                          applicantBirthdate={this.props.applicantBirthdate}
                           addressBooks={this.props.addressBooks}
                           dispatch={this.props.dispatch}
                           bind={true}
@@ -126,11 +125,10 @@ OtherOffenses.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'legal',
   subsection: 'police/additionaloffenses',
-  applicantBirthdate: {},
   addressBooks: {},
   dispatch: (action) => {},
-  validator: (state, props) => {
-    return validate(schema('legal.police.additionaloffenses', props))
+  validator: (data) => {
+    return validate(schema('legal.police.additionaloffenses', data))
   },
   defaultState: true,
   scrollToBottom: ''

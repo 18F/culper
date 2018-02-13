@@ -75,7 +75,6 @@ export default class PoliticalItem extends ValidationElement {
                scrollIntoView={this.props.scrollIntoView}>
           <DateRange name="Dates"
                      {...this.props.Dates}
-                     applicantBirthdate={this.props.applicantBirthdate}
                      onUpdate={this.updateDates}
                      onError={this.props.onError}
                      className="foreign-business-political-dates"
@@ -125,7 +124,6 @@ export default class PoliticalItem extends ValidationElement {
 }
 
 PoliticalItem.defaultProps = {
-  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

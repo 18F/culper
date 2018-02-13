@@ -92,7 +92,7 @@ export class RelativeValidator {
   }
 
   validName () {
-    return !!this.name && new NameValidator(this.name, null).isValid()
+    return !!this.name && new NameValidator(this.name).isValid()
   }
 
   validBirthdate () {
@@ -116,7 +116,7 @@ export class RelativeValidator {
       return true
     }
 
-    return !!this.maidenName && new NameValidator(this.maidenName, null).isValid()
+    return !!this.maidenName && new NameValidator(this.maidenName).isValid()
   }
 
   validAliases () {
@@ -132,8 +132,8 @@ export class RelativeValidator {
         continue
       }
 
-      const props = { hideMaiden: this.relation === 'Mother' }
-      if (has && new AliasValidator(item, props).isValid() === false) {
+      const data = { hideMaiden: this.relation === 'Mother', ...item }
+      if (has && new AliasValidator(data).isValid() === false) {
         return false
       }
     }
@@ -200,7 +200,7 @@ export class RelativeValidator {
       return true
     }
 
-    return new LocationValidator(this.courtAddress, null).isValid()
+    return new LocationValidator(this.courtAddress).isValid()
   }
 
   validDocument () {
@@ -363,16 +363,16 @@ export class RelativeValidator {
 }
 
 export class AliasValidator {
-  constructor (state = {}, props = {}) {
-    this.name = state.Name
-    this.maidenName = (state.MaidenName || {}).value
-    this.dates = state.Dates
-    this.reason = state.Reason
-    this.hideMaiden = props.hideMaiden
+  constructor (data = {}) {
+    this.name = data.Name
+    this.maidenName = (data.MaidenName || {}).value
+    this.dates = data.Dates
+    this.reason = data.Reason
+    this.hideMaiden = data.hideMaiden
   }
 
   validName () {
-    return !!this.name && new NameValidator(this.name, null).isValid()
+    return !!this.name && new NameValidator(this.name).isValid()
   }
 
   validMaidenName () {
@@ -384,7 +384,7 @@ export class AliasValidator {
   }
 
   validDates () {
-    return !!this.dates && new DateRangeValidator(this.dates, null).isValid()
+    return !!this.dates && new DateRangeValidator(this.dates).isValid()
   }
 
   validReason () {

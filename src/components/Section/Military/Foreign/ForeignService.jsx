@@ -200,7 +200,6 @@ export default class ForeignService extends ValidationElement {
           <DateRange name="Dates"
                      className="foreign-service-dates"
                      {...this.props.Dates}
-                     applicantBirthdate={this.props.applicantBirthdate}
                      onUpdate={this.updateDates}
                      onError={this.props.onError}
                      required={this.props.required}
@@ -303,7 +302,6 @@ export default class ForeignService extends ValidationElement {
                        scrollIntoView={this.props.scrollIntoView}>
               <ForeignContact name="Item"
                               bind={true}
-                              applicantBirthdate={this.props.applicantBirthdate}
                               addressBooks={this.props.addressBooks}
                               dispatch={this.props.dispatch}
                               required={this.props.required}
@@ -319,7 +317,6 @@ export default class ForeignService extends ValidationElement {
 
 ForeignService.defaultProps = {
   MaintainsContact: {},
-  applicantBirthdate: {},
   addressBooks: {},
   dispatch: (action) => {},
   onUpdate: (queue) => {},

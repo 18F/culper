@@ -5,12 +5,12 @@ const documentTypes = ['FS240', 'DS1350', 'AlienRegistration', 'PermanentResiden
   'I-551', 'I-766', 'I-94', 'Visa', 'NonImmigrantStudent', 'ExchangeVisitor', 'Other']
 
 export default class ForeignBornDocumentValidator {
-  constructor (state = {}, props = {}) {
-    this.documentType = (state.DocumentType || {}).value
-    this.documentExpiration = state.DocumentExpiration
-    this.documentExpirationNotApplicable = state.DocumentExpirationNotApplicable
-    this.otherExplanation = state.OtherExplanation
-    this.documentNumber = state.DocumentNumber
+  constructor (data = {}) {
+    this.documentType = (data.DocumentType || {}).value
+    this.documentExpiration = data.DocumentExpiration
+    this.documentExpirationNotApplicable = data.DocumentExpirationNotApplicable
+    this.otherExplanation = data.OtherExplanation
+    this.documentNumber = data.DocumentNumber
   }
 
   validDocumentType () {

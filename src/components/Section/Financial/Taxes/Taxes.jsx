@@ -91,7 +91,6 @@ export default class Taxes extends SubsectionElement {
                      appendLabel={i18n.t('financial.taxes.collection.append')}>
             <TaxesItem name="Item"
                        bind={true}
-                       applicantBirthdate={this.props.applicantBirthdate}
                        required={this.props.required}
                        scrollIntoView={this.props.scrollIntoView}
                        required={this.props.required}
@@ -106,14 +105,13 @@ export default class Taxes extends SubsectionElement {
 Taxes.defaultProps = {
   HasTaxes: {},
   List: {},
-  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'financial',
   subsection: 'taxes',
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('financial.taxes', props))
+  validator: (data) => {
+    return validate(schema('financial.taxes', data))
   },
   defaultState: true
 }

@@ -286,7 +286,6 @@ export default class EmploymentItem extends ValidationElement {
                scrollIntoView={this.props.scrollIntoView}>
           <DateRange name="Dates"
                      {...this.props.Dates}
-                     applicantBirthdate={this.props.applicantBirthdate}
                      receiveProps={this.props.receiveProps}
                      onUpdate={this.updateDates}
                      onError={this.props.onError}
@@ -428,7 +427,6 @@ export default class EmploymentItem extends ValidationElement {
 
             <AdditionalActivity name="Additional"
                                 {...this.props.Additional}
-                                applicantBirthdate={this.props.applicantBirthdate}
                                 onUpdate={this.updateAdditional}
                                 onError={this.props.onError}
                                 required={this.props.required}
@@ -441,7 +439,6 @@ export default class EmploymentItem extends ValidationElement {
           <div>
             <ReasonLeft name="ReasonLeft"
                         {...this.props.ReasonLeft}
-                        applicantBirthdate={this.props.applicantBirthdate}
                         onUpdate={this.updateReasonLeft}
                         onError={this.props.onError}
                         required={this.props.required}
@@ -479,7 +476,6 @@ EmploymentItem.defaultProps = {
   Additional: {},
   ReasonLeft: {},
   Reprimand: {},
-  applicantBirthdate: {},
   addressBooks: {},
   dispatch: (action) => {},
   onUpdate: (queue) => {},

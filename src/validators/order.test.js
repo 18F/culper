@@ -5,7 +5,7 @@ describe('Order validation', function () {
   it('validates court', () => {
     const tests = [
       {
-        state: {
+        data: {
           CourtName: {
             value: 'Circuit Court'
           },
@@ -21,7 +21,7 @@ describe('Order validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           CourtName: null,
           CourtAddress: null
         },
@@ -29,47 +29,43 @@ describe('Order validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new OrderValidator(test.state, null).validCourt()).toBe(test.expected)
+      expect(new OrderValidator(test.data).validCourt()).toBe(test.expected)
     })
   })
 
   it('validates disposition (conditional)', () => {
     const tests = [
       {
-        state: {
+        data: {
           Disposition: {
             value: 'Stuff'
           }
         },
-        props: null,
         expected: true
       },
       {
-        state: {
+        data: {
           Disposition: {}
         },
-        props: null,
         expected: false
       },
       {
-        state: {
+        data: {
+          prefix: 'competence',
           Disposition: {}
-        },
-        props: {
-          prefix: 'competence'
         },
         expected: true
       }
     ]
     tests.forEach(test => {
-      expect(new OrderValidator(test.state, test.props).validDisposition()).toBe(test.expected)
+      expect(new OrderValidator(test.data).validDisposition()).toBe(test.expected)
     })
   })
 
   it('validates appeals', () => {
     const tests = [
       {
-        state: {
+        data: {
           Appeals: {
             items: [
               {
@@ -97,7 +93,7 @@ describe('Order validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           Appeals: {
             items: []
           }
@@ -105,7 +101,7 @@ describe('Order validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           Appeals: {
             items: [{ Item: { Has: { value: 'No' } } }]
           }
@@ -114,14 +110,14 @@ describe('Order validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new OrderValidator(test.state, null).validAppeals()).toBe(test.expected)
+      expect(new OrderValidator(test.data).validAppeals()).toBe(test.expected)
     })
   })
 
   it('validates competence item', () => {
     const tests = [
       {
-        state: {
+        data: {
           CourtName: {
             value: 'Circuit Court'
           },
@@ -149,7 +145,7 @@ describe('Order validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           CourtName: null,
           CourtAddress: null
         },
@@ -157,7 +153,7 @@ describe('Order validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new OrderValidator(test.state, null).isValid()).toBe(test.expected)
+      expect(new OrderValidator(test.data).isValid()).toBe(test.expected)
     })
   })
 })

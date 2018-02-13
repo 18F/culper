@@ -38,7 +38,7 @@ export class AdviceValidator {
   }
 
   validName () {
-    return !!this.name && new NameValidator(this.name, null).isValid()
+    return !!this.name && new NameValidator(this.name).isValid()
   }
 
   validOrganization () {
@@ -50,7 +50,7 @@ export class AdviceValidator {
   }
 
   validDates () {
-    return !!this.dates && new DateRangeValidator(this.dates, null).isValid()
+    return !!this.dates && new DateRangeValidator(this.dates).isValid()
   }
 
   isValid () {

@@ -61,9 +61,15 @@ describe('gambling debt component validation', function () {
                   },
                   Dates: {
                     from: {
+                      month: '1',
+                      day: '1',
+                      year: '2015',
                       date: new Date('1/1/2015')
                     },
                     to: {
+                      month: '1',
+                      day: '1',
+                      year: '2016',
                       date: new Date('1/1/2016')
                     },
                     present: false
@@ -94,7 +100,11 @@ describe('gambling debt component validation', function () {
                   },
                   Dates: {
                     from: null,
-                    to: new Date('1/1/2016'),
+                    to: {
+                      month: '1',
+                      day: '1',
+                      year: '2016'
+                    },
                     present: false
                   }
                 }
@@ -123,9 +133,15 @@ describe('gambling debt component validation', function () {
                   },
                   Dates: {
                     from: {
+                      month: '1',
+                      day: '1',
+                      year: '2015',
                       date: new Date('1/1/2015')
                     },
                     to: {
+                      month: '1',
+                      day: '1',
+                      year: '2016',
                       date: new Date('1/1/2016')
                     },
                     present: false
@@ -156,9 +172,15 @@ describe('gambling debt component validation', function () {
                   },
                   Dates: {
                     from: {
+                      month: '1',
+                      day: '1',
+                      year: '2015',
                       date: new Date('1/1/2015')
                     },
                     to: {
+                      month: '1',
+                      day: '1',
+                      year: '2016',
                       date: new Date('1/1/2016')
                     },
                     present: false
@@ -189,9 +211,15 @@ describe('gambling debt component validation', function () {
                   },
                   Dates: {
                     from: {
+                      month: '1',
+                      day: '1',
+                      year: '2015',
                       date: new Date('1/1/2015')
                     },
                     to: {
+                      month: '1',
+                      day: '1',
+                      year: '2016',
                       date: new Date('1/1/2016')
                     },
                     present: false
@@ -261,9 +289,15 @@ describe('gambling debt component validation', function () {
                   },
                   Dates: {
                     from: {
+                      month: '1',
+                      day: '1',
+                      year: '2015',
                       date: new Date('1/1/2015')
                     },
                     to: {
+                      month: '1',
+                      day: '1',
+                      year: '2016',
                       date: new Date('1/1/2016')
                     },
                     present: false

@@ -57,7 +57,6 @@ export default class Education extends SubsectionElement {
                          bind={true}
                          required={this.props.required}
                          scrollIntoView={this.props.scrollIntoView}
-                         applicantBirthdate={this.props.applicantBirthdate}
                          addressBooks={this.props.addressBooks}
                          dispatch={this.props.dispatch}
                          />
@@ -80,7 +79,6 @@ Education.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'history',
   subsection: 'education',
-  applicantBirthdate: {},
   dispatch: () => {},
   validator: (state, props) => {
     return validate(schema('history.education', props))

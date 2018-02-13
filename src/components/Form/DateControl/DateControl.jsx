@@ -257,7 +257,7 @@ export default class DateControl extends ValidationElement {
         props = {
           ...this.props,
           ...this.state,
-          validator: new DateControlValidator(this.state, this.props)
+          validator: new DateControlValidator({ ...this.props, ...this.state })
         }
       }
 
@@ -411,7 +411,6 @@ DateControl.defaultProps = {
   day: '',
   year: '',
   prefix: '',
-  applicantBirthdate: {},
   noMaxDate: false,
   maxDate: null,
   minDate: null,

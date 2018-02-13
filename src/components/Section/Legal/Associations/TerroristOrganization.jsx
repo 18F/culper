@@ -83,7 +83,6 @@ export default class TerroristOrganization extends SubsectionElement {
                      scrollIntoView={this.props.scrollIntoView}>
             <TerroristOrganizationItem name="Item"
                                        bind={true}
-                                       applicantBirthdate={this.props.applicantBirthdate}
                                        addressBooks={this.props.addressBooks}
                                        dispatch={this.props.dispatch}
                                        required={this.props.required}
@@ -105,11 +104,10 @@ TerroristOrganization.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'legal',
   subsection: 'associations/terrorist-organization',
-  applicantBirthdate: {},
   addressBooks: {},
   dispatch: (action) => {},
-  validator: (state, props) => {
-    return validate(schema('legal.associations.terrorist-organization', props))
+  validator: (data) => {
+    return validate(schema('legal.associations.terrorist-organization', data))
   },
   scrollToBottom: ''
 }
