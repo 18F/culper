@@ -301,9 +301,9 @@ export const foreign = {
             note: ''
           },
           sold: {
-            title: 'Need help with date relinquished?',
-            message: 'Tell us when you got rid of of this foreign financial interest.',
-            note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
+            title: 'When you got rid of of this foreign financial interest',
+            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            note: ''
           },
           explanation: {
             title: 'Need help with this explanation?',
