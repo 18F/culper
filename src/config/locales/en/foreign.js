@@ -68,18 +68,18 @@ export const foreign = {
     },
     help: {
       number: {
-        title: 'Need help with the passport number?',
-        message: 'Enter your passport number. If you possess a card, select the Passport card option',
+        title: 'Passport or Passport Card',
+        message: 'Passports will start with the letter A. Passport Cards will start with the letter C. For Passport Cards select the Passport card option first.',
         note: ''
       },
       issued: {
-        title: 'Need help with the date issued?',
-        message: 'Enter the date your passport was issued',
+        title: 'Use the exact date',
+        message: 'Enter the date on your passport or passport card.',
         note: ''
       },
       expiration: {
-        title: 'Need help with the date expired?',
-        message: 'Enter the date your passport expired',
+        title: 'Use the exact date',
+        message: 'Enter the date on your passport or passport card.',
         note: ''
       }
     },
@@ -110,7 +110,7 @@ export const foreign = {
       },
       help: {
         directControl: {
-          title: 'Need help with the term "Direct control"?',
+          title: '"Direct control" defined:?',
           message: 'Direct control means there are *no* intermediary or intervening factors between the foreign financial interest and the owner/controller.',
           note: 'Example: You own a bakery in a foreign country and you directly control all aspects of the business such as pricing, baking, etc.'
         }
@@ -154,7 +154,7 @@ export const foreign = {
             note: ''
           },
           acquired: {
-            title: 'Need help with when the interest was acquired?',
+            title: 'Estimate the date if unsure',
             message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
             note: ''
           },
@@ -165,18 +165,18 @@ export const foreign = {
           },
           cost: {
             title: 'Need help with the cost?',
-            message: 'If you are not sure of the exact amount give us your best guess and check the "Estimated" checkbox.',
+            message: 'If you are not sure of the exact amount give us your best guess.',
             note: ''
           },
           value: {
             title: 'Need help with the value?',
-            message: 'If you are not sure of the exact amount give us your best guess and check the "Estimated" checkbox.',
+            message: 'If you are not sure of the exact amount give us your best guess.',
             note: ''
           },
           relinquished: {
-            title: 'Need help with date relinquished?',
-            message: 'Tell us when you were no longer in control or an owner of this foreign financial interest.',
-            note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
+            title: 'When you were no longer in control or an owner of this foreign financial interest',
+            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            note: ''
           },
           explanation: {
             title: 'Need help with this explanation?',
@@ -797,19 +797,19 @@ export const foreign = {
         note: 'Note: A foreign national is defined as any person who is not a citizen or national of the U.S.'
       },
       firstcontact: {
-        title: 'Need help with the date of your first contact?',
-        message: 'Let us know when you first met this person.',
-        note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
+        title: 'Let us know when you first met this person',
+        message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+        note: ''
       },
       lastcontact: {
-        title: 'Need help with the date of your last contact?',
-        message: 'Tell us when you last had contact with this person.',
-        note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
+        title: 'Tell us when you last had contact with this person',
+        message: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox',
+        note: ''
       },
       methods: {
-        title: 'Need help with the methods of your communication?',
-        message: 'Let us know all of the ways you communicated with this person.',
-        note: 'Note: Electronic includes social media.'
+        title: 'All of the ways you communicated with this person',
+        message: 'Electronic includes social media.',
+        note: ''
       },
       frequency: {
         title: 'Need help with the frequency of your communication?',
@@ -822,14 +822,14 @@ export const foreign = {
         note: ''
       },
       aliases: {
-        title: 'Has this person used any other names or nicknames?',
-        message: 'If this person has a nickname, has a different maiden name, or has used any other names answer "Yes".',
-        note: 'Note: If this person has multiple names you will list each one separately.'
+        title: 'If this person has a nickname, a different maiden name, or used any other names answer "Yes"',
+        message: 'If this person used multiple other names you will list each one separately.',
+        note: ''
       },
       citizenship: {
-        title: 'Need help with their citizenship(s)?',
-        message: 'Tell us all of the citizenships this person has.',
-        note: 'Note: You can provide multiple citizenships in this question.'
+        title: 'List all citizenships this person has',
+        message: 'You can provide multiple citizenships in this question.',
+        note: ''
       },
       birthdate: {
         title: 'Need help with their date of birth?',
@@ -852,9 +852,9 @@ export const foreign = {
         note: 'Note: If you do not know then you may select "I don\'t know"'
       },
       employeraddress: {
-        title: 'Need help with the employer address?',
-        message: 'Provide the address of their most recent employer',
-        note: 'Note: If you do not know then you may select "I don\'t know"'
+        title: 'Provide the address of their most recent employer',
+        message: 'Note: If you do not know then you may select "I don\'t know".',
+        note: ''
       },
       hasaffiliations: {
         title: 'Does this person have any affiliations?',
