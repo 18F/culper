@@ -203,7 +203,6 @@ export default class DirectInterest extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.activities.direct.interest.heading.cost')}
-               help={'foreign.activities.direct.interest.help.cost'}
                scrollIntoView={this.props.scrollIntoView}>
           <Currency name="Cost"
                     className="cost"
@@ -226,7 +225,6 @@ export default class DirectInterest extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.activities.direct.interest.heading.value')}
-               help={'foreign.activities.direct.interest.help.value'}
                scrollIntoView={this.props.scrollIntoView}>
           <Currency name="Value"
                     className="value"
