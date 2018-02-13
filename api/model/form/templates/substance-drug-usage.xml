@@ -1,0 +1,32 @@
+<IllegalUse>
+  <Answer>{{branch .props.UsedDrugs}}</Answer>
+  <Comment></Comment>
+  <Instances>
+    {{range $index, $item := .props.List.props.items}}
+    {{with $Item := $item.Item}}
+    <Instance ID="{{$index}}">
+      <DrugUsed>
+        <Explanation></Explanation>
+        <Type>{{radio $Item.DrugType}}</Type>
+      </DrugUsed>
+      <FirstUseDate Type="{{dateEstimated $Item.FirstUse}}">{{monthYear $Item.FirstUse}}</FirstUseDate>
+      <MostRecentUseDate Type="{{dateEstimated $Item.RecentUse}}">{{monthYear $Item.RecentUse}}</MostRecentUseDate>
+      <Nature>{{textarea $Item.NatureOfUse}}</Nature>
+      <UseWhileEmployedAsLawEnforcementOfficerProsecutorOrCourtOfficial>
+        <Answer>{{branch $Item.UseWhileEmployed}}</Answer>
+      </UseWhileEmployedAsLawEnforcementOfficerProsecutorOrCourtOfficial>
+      <UseWhilePossessingASecurityClearance>
+        <Answer>{{branch $Item.UseWithClearance}}</Answer>
+      </UseWhilePossessingASecurityClearance>
+      <IntendToUseInFuture>
+        <Answer>{{branch $Item.UseInFuture}}</Answer>
+        <Explanation>{{textarea $Item.Explanation}}</Explanation>
+      </IntendToUseInFuture>
+      <Comment></Comment>
+    </Instance>
+    {{end}}
+    {{end}}
+  </Instances>
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+  <SummaryComment></SummaryComment>
+</IllegalUse>

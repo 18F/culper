@@ -19,15 +19,15 @@ describe('Schema for financial taxes', () => {
             Representatives: {},
             Purpose: {},
             SubsequentContacts: {
-              List: {
-                branch: null,
-                items: [{
-                  Item: {
-                    Has: {},
-                    Explanation: {}
-                  }
-                }]
-              }
+              branch: null,
+              items: [{
+                Item: {
+                  Has: {},
+                  Subsequent: {},
+                  Recent: {},
+                  Future: {}
+                }
+              }]
             }
           }
         }]

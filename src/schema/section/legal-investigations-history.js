@@ -5,7 +5,8 @@ export const legalInvestigationsHistory = (data = {}) => {
     const xitem = x.Item || {}
     return {
       Item: {
-        Agency: form.text(xitem.Agency),
+        Agency: form.radio(xitem.Agency),
+        AgencyExplanation: form.textarea(xitem.AgencyExplanation),
         AgencyNotApplicable: form.notapplicable(xitem.AgencyNotApplicable),
         Completed: form.datecontrol(xitem.Completed),
         CompletedNotApplicable: form.notapplicable(xitem.CompletedNotApplicable),

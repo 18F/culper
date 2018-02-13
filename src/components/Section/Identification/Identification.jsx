@@ -19,7 +19,7 @@ class Identification extends SectionElement {
   render () {
     return (
       <div>
-        <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
+        <SectionViews current={this.props.subsection} dispatch={this.props.dispatch} update={this.props.update}>
           <SectionView name="intro"
                        next="identification/name"
                        nextLabel={i18n.t('identification.destination.name')}>

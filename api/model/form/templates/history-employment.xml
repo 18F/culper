@@ -3,7 +3,7 @@
     {{range $index, $item := .props.List.props.items}}
     {{with $Item := $item.Item}}
     <Employment ID="{{$index}}">
-      <DateRange>{{daterange $Item.Dates}}</DateRange>
+      {{daterange $Item.Dates}}
       <Type>{{radio $Item.EmploymentActivity}}</Type>
       <EmploymentTypeOtherExplanation>{{$Item.EmploymentActivity.props.otherExplanation}}</EmploymentTypeOtherExplanation>
       <EmploymentCodeComment></EmploymentCodeComment>
@@ -56,7 +56,7 @@
           {{range $eindex, $additional := $Item.Additional.props.items}}
           {{with $Previous := $additional.Item}}
           <PreviousEmployment ID="{{$eindex}}">
-            <DateRange>{{daterange $Previous.DatesEmployed}}</DateRange>
+            {{daterange $Previous.DatesEmployed}}
             <PositionTitle>{{text $Previous.Position}}</PositionTitle>
             <Supervisor>{{text $Previous.Supervisor}}</Supervisor>
           </PreviousEmployment>
@@ -97,7 +97,7 @@
         {{with $Dismissal := $left.Item}}
         <Dismissal ID="{{$lindex}}">
           <Date Type="{{dateEstimated $Dismissal.Date}}">{{monthYear $Dismissal.Date}}</Date>
-          <Reason></Reason>
+          <Reason>{{textarea $Item.ReasonLeft.props.ReasonDescription}}</Reason>
           <SeveranceType>{{radio $Dismissal.Reason}}</SeveranceType>
           <SeveranceTypeComment>{{textarea $Dismissal.Text}}</SeveranceTypeComment>
           <Comment></Comment>

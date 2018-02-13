@@ -38,11 +38,21 @@
   .city,
   .country {
     margin-right: 1.5rem;
+    width: 53.5rem;
   }
 
-  .domestic.block label > span > div,
-  .international.block label > span > div {
-    top: 25%;
+  .address-options.blocks {
+    > .domestic.block label > span > div,
+    > .international.block label > span > div {
+      top: 25%;
+    }
+
+    &.no-postoffice {
+      > .block.domestic > label:last-child,
+      > .block.international > label:last-child {
+        width: 26rem;
+      }
+    }
   }
 
   .fields {

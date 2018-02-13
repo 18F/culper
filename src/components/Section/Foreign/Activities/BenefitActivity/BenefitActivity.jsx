@@ -41,7 +41,7 @@ export default class BenefitActivity extends SubsectionElement {
   summary (item, index) {
     const o = (item || {}).Item || {}
     const benefit = {}
-    const who = (o.InterestTypes || []).join(', ')
+    const who = ((o.InterestTypes || {}).values || []).join(', ')
 
     let b = null
     switch (o.BenefitFrequency) {

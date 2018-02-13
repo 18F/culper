@@ -7,6 +7,12 @@
         "items": [
           {
             "Item": {
+              "Has": {
+                "type": "branch",
+                "props": {
+                  "value": "Yes"
+                }
+              },
               "Country": {
                 "type": "country",
                 "props": {
@@ -114,6 +120,16 @@
                       }
                     }
                   ]
+                }
+              }
+            }
+          },
+          {
+            "Item": {
+              "Has": {
+                "type": "branch",
+                "props": {
+                  "value": "No"
                 }
               }
             }

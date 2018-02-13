@@ -5,7 +5,7 @@ export const substanceDrugVoluntary = (data = {}) => {
     const xitem = x.Item || {}
     return {
       Item: {
-        DrugType: form.checkbox(xitem.DrugType),
+        DrugType: form.radio(xitem.DrugType),
         TreatmentProvider: form.text(xitem.TreatmentProvider),
         TreatmentProviderAddress: form.location(xitem.TreatmentProviderAddress),
         TreatmentProviderTelephone: form.telephone(xitem.TreatmentProviderTelephone),

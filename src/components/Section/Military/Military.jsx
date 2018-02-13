@@ -45,7 +45,7 @@ class Military extends SectionElement {
     const showSelectiveService = !hideSelectiveService(this.props.Application)
     return (
       <div>
-        <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
+        <SectionViews current={this.props.subsection} dispatch={this.props.dispatch} update={this.props.update}>
           <SectionView name="intro"
                        back="citizenship/review"
                        backLabel={i18n.t('citizenship.destination.review')}

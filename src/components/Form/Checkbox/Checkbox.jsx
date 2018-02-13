@@ -14,6 +14,8 @@ export default class Checkbox extends ValidationElement {
     }
 
     this.handleError = this.handleError.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+    this.handleKeyPress = this.handleKeyPress.bind(this)
   }
 
   componentWillReceiveProps (newProps) {
@@ -23,15 +25,11 @@ export default class Checkbox extends ValidationElement {
   }
 
   /**
-   * Handle the change event.
+   * Update the value of the checkbox
    */
-  handleChange (event) {
-    event.persist()
-    this.handleValidation(event)
-
-    const value = event.target.value
-    const checked = event.target.checked
-
+  update () {
+    const checked = !this.state.checked
+    const value =  this.props.value
     this.setState({ checked: checked }, () => {
       if (this.props.onUpdate) {
         this.props.onUpdate({
@@ -40,10 +38,26 @@ export default class Checkbox extends ValidationElement {
           checked: checked
         })
       }
-
-      super.handleChange(event)
-      this.handleError(checked)
     })
+  }
+
+  /**
+   * Handle the change event.
+   */
+  handleChange (event) {
+    this.update()
+  }
+
+  /**
+   * Handle the key press event.
+   */
+  handleKeyPress (event) {
+    const allowedKeys = [' ', 'Enter']
+    if (allowedKeys.includes(event.key)) {
+      event.preventDefault()
+      event.stopPropagation()
+      this.update()
+    }
   }
 
   /**
@@ -153,6 +167,7 @@ export default class Checkbox extends ValidationElement {
                  readOnly={this.props.readonly}
                  value={this.props.value}
                  onChange={this.handleChange}
+                 onKeyDown={this.handleKeyPress}
                  onFocus={this.handleFocus}
                  onBlur={this.handleBlur}
                  checked={this.state.checked}
@@ -179,6 +194,7 @@ export default class Checkbox extends ValidationElement {
                  readOnly={this.props.readonly}
                  value={this.props.value}
                  onChange={this.handleChange}
+                 onKeyDown={this.handleKeyPress}
                  onFocus={this.handleFocus}
                  onBlur={this.handleBlur}
                  checked={this.state.checked}

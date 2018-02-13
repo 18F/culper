@@ -1,5 +1,6 @@
 import React from 'react'
 import ValidationElement from '../ValidationElement'
+import { ariaLabel } from '../Generic'
 
 export default class Textarea extends ValidationElement {
   constructor (props) {
@@ -127,6 +128,7 @@ export default class Textarea extends ValidationElement {
                   id={this.state.uid}
                   name={this.props.name}
                   aria-describedby={this.errorName()}
+                  aria-label={this.props.label || ariaLabel(this.refs.textarea)}
                   disabled={this.props.disabled}
                   maxLength={this.props.maxlength}
                   pattern={this.props.pattern}

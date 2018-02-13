@@ -1,5 +1,7 @@
+import { general } from './general'
 import { branch } from './branch'
 import { collection } from './collection'
+import { country } from './country'
 import { location } from './location'
 import { notapplicable } from './notapplicable'
 import { datecontrol } from './datecontrol'
@@ -11,15 +13,15 @@ import { ssn } from './ssn'
 import { telephone } from './telephone'
 
 export const civilunion = (data = {}) => {
-  return {
+  return general('civilunion', {
     Address: location(data.Address),
     AddressSeparated: location(data.AddressSeparated),
     AddressSeparatedNotApplicable: notapplicable(data.AddressSeparatedNotApplicable),
     BirthPlace: location(data.BirthPlace),
     Birthdate: datecontrol(data.Birthdate),
-    Citizenship: datecontrol(data.Citizenship),
+    Citizenship: country(data.Citizenship),
     DateSeparated: datecontrol(data.DateSeparated),
-    Divorced: datecontrol(data.Divorced),
+    Divorced: branch(data.Divorced),
     Email: email(data.Email),
     EnteredCivilUnion: datecontrol(data.EnteredCivilUnion),
     ForeignBornDocument: foreignborndocument(data.ForeignBornDocument),
@@ -38,5 +40,5 @@ export const civilunion = (data = {}) => {
     SSN: ssn(data.SSN),
     Separated: branch(data.Separated),
     Telephone: telephone(data.Telephone)
-  }
+  })
 }

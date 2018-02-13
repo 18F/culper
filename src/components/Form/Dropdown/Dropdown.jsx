@@ -2,7 +2,7 @@ import React from 'react'
 import ValidationElement from '../ValidationElement'
 import ReactMarkdown from 'react-markdown'
 import Autosuggest from 'react-autosuggest'
-import { autotab } from '../Generic'
+import { autotab, ariaLabel } from '../Generic'
 
 const getSuggestionValue = suggestion => suggestion.text
 
@@ -327,6 +327,7 @@ export default class Dropdown extends ValidationElement {
       onCopy: this.props.clipboard ? this.props.onCopy : this.disallowClipboard,
       onCut: this.props.clipboard ? this.props.onCut : this.disallowClipboard,
       onPaste: this.props.clipboard ? this.props.onPaste : this.disallowClipboard,
+      'aria-label': this.props.label || ariaLabel(this.refs.autosuggest),
       'aria-describedby': this.errorName()
     }
 

@@ -105,7 +105,7 @@ export const dateLimits = (relationship, birthdate) => {
   case 'Half-brother':
   case 'Half-sister':
   case 'Father-in-law':
-  case 'Monther-in-law':
+  case 'Mother-in-law':
   case 'Guardian':
   case 'Other':
     min = daysAgo(today, 365 * 200)

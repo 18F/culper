@@ -14,6 +14,10 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
+var (
+	redirectTo = os.Getenv("API_REDIRECT")
+)
+
 // SamlServiceHandler is the initial entry point for authentication.
 func SamlServiceHandler(w http.ResponseWriter, r *http.Request) {
 	log := logmsg.NewLoggerFromRequest(r)

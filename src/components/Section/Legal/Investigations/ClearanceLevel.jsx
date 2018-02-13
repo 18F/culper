@@ -21,7 +21,7 @@ export default class ClearanceLevel extends ValidationElement {
 
   updateLevel (values) {
     this.update({
-      Level: values.value
+      Level: values
     })
   }
 
@@ -34,7 +34,11 @@ export default class ClearanceLevel extends ValidationElement {
   render () {
     return (
       <div className={this.props.className}>
-        <RadioGroup className="clearance-levels" selectedValue={this.props.Level} onError={this.props.onError} required={this.props.required} disabled={this.props.disabled}>
+        <RadioGroup className="clearance-levels"
+                    selectedValue={(this.props.Level || {}).value}
+                    onError={this.props.onError}
+                    required={this.props.required}
+                    disabled={this.props.disabled}>
           <Radio label={i18n.m('legal.investigations.history.label.level.none')}
                  value="None"
                  className="clearance-level-none"
@@ -91,16 +95,16 @@ export default class ClearanceLevel extends ValidationElement {
                  />
         </RadioGroup>
 
-        <Show when={this.props.Level === 'Other'}>
+        <Show when={(this.props.Level || {}).value === 'Other'}>
           <p>{i18n.t('legal.investigations.history.heading.clearanceExplanation')}</p>
           <Textarea name="Explanation"
-            {...this.props.Explanation}
-            disabled={this.props.disabled}
-            className="legal-investigations-history-clearance-explanation"
-            onUpdate={this.updateExplanation}
-            onError={this.props.onError}
-            required={this.props.required}
-          />
+                    {...this.props.Explanation}
+                    disabled={this.props.disabled}
+                    className="legal-investigations-history-clearance-explanation"
+                    onUpdate={this.updateExplanation}
+                    onError={this.props.onError}
+                    required={this.props.required}
+                    />
         </Show>
       </div>
     )
@@ -109,7 +113,7 @@ export default class ClearanceLevel extends ValidationElement {
 
 ClearanceLevel.defaultProps = {
   className: 'investigative-clearance-levels',
-  Level: '',
+  Level: {},
   Explanation: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }

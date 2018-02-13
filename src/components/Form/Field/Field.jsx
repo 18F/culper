@@ -113,7 +113,26 @@ export default class Field extends ValidationElement {
       const optional = !required && this.props.optionalText
             ? <span className="optional">{this.props.optionalText}</span>
             : null
-      return <span className={klassTitle}>{this.props.title}{optional}</span>
+
+      // Apply the semantic element for accessibility
+      switch (this.props.titleSize) {
+      case 'h1':
+        return <h1 className={klassTitle}>{this.props.title}{optional}</h1>
+      case 'h2':
+        return <h2 className={klassTitle}>{this.props.title}{optional}</h2>
+      case 'h3':
+        return <h3 className={klassTitle}>{this.props.title}{optional}</h3>
+      case 'h4':
+        return <h4 className={klassTitle}>{this.props.title}{optional}</h4>
+      case 'h5':
+        return <h5 className={klassTitle}>{this.props.title}{optional}</h5>
+      case 'h6':
+        return <h6 className={klassTitle}>{this.props.title}{optional}</h6>
+      case 'label':
+        return <label className={klassTitle}>{this.props.title}{optional}</label>
+      default:
+        return <span className={klassTitle}>{this.props.title}{optional}</span>
+      }
     }
 
     return null
@@ -174,8 +193,7 @@ export default class Field extends ValidationElement {
 
     return (
       <a href="javascript:;"
-         tabIndex="-1"
-         title="Show help"
+         title={`Show help ${this.props.title ? 'for' : ''} ${this.props.title || ''}`.trim()}
          className={klass}
          onClick={this.toggleHelp}>
         <Svg src="/img/info.svg" />
@@ -300,7 +318,7 @@ export default class Field extends ValidationElement {
     const klassComponent = `component ${this.props.shrink ? 'shrink' : ''}`.trim()
 
     return (
-      <div className={klass} ref="field">
+      <div className={klass} ref="field" aria-label={this.props.title}>
         {this.title(required)}
         <span className="icon">
           {this.icon()}

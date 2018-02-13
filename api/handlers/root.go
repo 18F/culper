@@ -143,22 +143,6 @@ func RootHandler(w http.ResponseWriter, r *http.Request) {
 		endpoints = append(endpoints, saml...)
 	}
 
-	if cf.OAuthEnabled() {
-		oauth := []endpoint{
-			endpoint{
-				Path:        "/auth/:service",
-				Description: "oauth entrypoint",
-				Verbs:       []string{"GET"},
-			},
-			endpoint{
-				Path:        "/auth/:service/callback",
-				Description: "oauth callback",
-				Verbs:       []string{"GET"},
-			},
-		}
-		endpoints = append(endpoints, oauth...)
-	}
-
 	json.NewEncoder(w).Encode(struct {
 		Endpoints []endpoint `json:"endpoints"`
 	}{

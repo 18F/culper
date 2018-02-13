@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import AuthenticatedView from '../../views/AuthenticatedView'
+import { updateSection } from '../../actions/SectionActions'
 import { navigation, env } from '../../config'
 import { isActive, isValid, hasErrors } from './navigation-helpers'
 import { ToggleItem } from './ToggleItem'
@@ -14,6 +15,7 @@ class Navigation extends React.Component {
       selected: navigation[0].name
     }
 
+    this.clicked = this.clicked.bind(this)
     this.onToggle = this.onToggle.bind(this)
     this.location = null
     this.uselocation = true
@@ -33,6 +35,13 @@ class Navigation extends React.Component {
   onToggle (item) {
     this.uselocation = false
     this.setState({ selected: item.visible ? item.title : '' })
+  }
+
+  clicked (url, event) {
+    const parts = (url || '').replace('/form/', '').split('/')
+    const section = parts.shift()
+    const subsection = parts.join('/') || 'intro'
+    this.props.dispatch(updateSection(section, subsection))
   }
 
   /**
@@ -107,7 +116,7 @@ class Navigation extends React.Component {
 
       return (
         <div key={subsection.name} className="subsection">
-          <Link to={subUrl} className={subClass}>
+          <Link to={subUrl} className={subClass} onClick={this.clicked.bind(this, subUrl)}>
             <span className="section-name">
               {subsection.name}
             </span>
@@ -184,7 +193,7 @@ class Navigation extends React.Component {
       return (
         <div key={section.name} className="section">
           <span className="section-title">
-            <Link to={url} className={sectionClass}>
+            <Link to={url} className={sectionClass} onClick={this.clicked.bind(this, url)}>
               <span className="section-number">{section.showNumber ? sectionNum : ''}</span>
               <span className="section-name">
                 {section.name}
@@ -198,9 +207,9 @@ class Navigation extends React.Component {
     })
 
     return (
-      <div className="form-navigation">
+      <nav className="form-navigation" role="navigation">
         {nav.filter(x => !!x)}
-      </div>
+      </nav>
     )
   }
 }

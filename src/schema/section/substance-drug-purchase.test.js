@@ -9,7 +9,7 @@ describe('Schema for financial taxes', () => {
         branch: { value: 'No' },
         items: [{
           Item: {
-            DrugType: {},
+            DrugType: { value: null },
             FirstInvolvement: {},
             RecentInvolvement: {},
             NatureOfInvolvement: {},

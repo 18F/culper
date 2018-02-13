@@ -22,7 +22,7 @@ const (
 var (
 	JwtSecret        = []byte(os.Getenv("JWT_SECRET"))
 	AuthBearerRegexp = regexp.MustCompile("Bearer\\s(.*)")
-	Expiration       = time.Hour * 1
+	Expiration       = Timeout()
 )
 
 func CheckToken(r *http.Request, validTokenFunc func(string, string) (bool, error), audiences ...string) (string, error) {
@@ -102,4 +102,14 @@ func KeyFunc(token *jwt.Token) (interface{}, error) {
 		return nil, fmt.Errorf("Unexpected signing method: %v", token.Header["alg"])
 	}
 	return JwtSecret, nil
+}
+
+// Timeout returns the duration in time for how long a session is considered valid.
+// Per policy this defaults to 15 minutes.
+func Timeout() time.Duration {
+	var timeout int
+	if i, err := strconv.Atoi(os.Getenv("SESSION_TIMEOUT")); err != nil || i < 1 {
+		timeout = 15
+	}
+	return time.Duration(timeout) * time.Minute
 }

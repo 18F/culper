@@ -1,0 +1,35 @@
+<VoluntaryTreatment>
+  <Answer>{{branch .props.Involved}}</Answer>
+  <Comment></Comment>
+  <Consultations>
+    {{range $index, $item := .props.List.props.items}}
+    {{with $Item := $item.Item}}
+    <Consultation ID="{{$index}}">
+      <Drug>
+        <Type>{{radio $Item.DrugType}}</Type>
+        <Explanation></Explanation>
+      </Drug>
+      <Doctor>
+        <Name>
+          <Last>{{text $Item.TreatmentProvider}}</Last>
+          <First Type="NFN"><!-- eApp only captures a sigle text entry --></First>
+        </Name>
+        <Address>{{location $Item.TreatmentProviderAddress}}</Address>
+        <Telephone>{{telephone $Item.TreatmentProviderTelephone}}</Telephone>
+      </Doctor>
+      {{daterange $Item.TreatmentDates}}
+      <SuccessfullyCompletedTreatmentProgram>
+        <Answer>{{branch $Item.TreatmentCompleted}}</Answer>
+      </SuccessfullyCompletedTreatmentProgram>
+      <UnsuccessfulTreatment>
+        <Explanation>{{textarea $Item.NoTreatmentExplanation}}</Explanation>
+        <Comment></Comment>
+      </UnsuccessfulTreatment>
+      <Comment></Comment>
+    </Consultation>
+    {{end}}
+    {{end}}
+  </Consultations>
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+  <SummaryComment></SummaryComment>
+</VoluntaryTreatment>

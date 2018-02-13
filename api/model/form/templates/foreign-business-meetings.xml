@@ -3,13 +3,10 @@
   <Answer>{{branch .props.HasForeignConferences}}</Answer>
   <Comment></Comment>
   <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
-
   {{range $index, $item := .props.List.props.items}}
   {{with $Item := $item.Item}}
   <Meeting ID="{{$index}}">
-    <DateRange>
-      {{daterange $Item.Dates}}
-    </DateRange>
+    {{daterange $Item.Dates}}
     <EntryComment></EntryComment>
     <Location>
       <Place>
@@ -20,15 +17,14 @@
     <NameAndDescription>{{text $Item.Description}}</NameAndDescription>
     <Organization>{{text $Item.Sponsor}}</Organization>
     <Purpose>{{text $Item.Purpose}}</Purpose>
-
     <SubsequentForeignContacts>
-      <Answer>Yes</Answer>
-      <AnswerComment>string</AnswerComment>
-      {{range $index, $contact := $Item.Contacts.props.List.props.items}}
+      <Answer>{{branchcollectionHas $Item.Contacts.props.List}}</Answer>
+      <AnswerComment></AnswerComment>
+      {{range $cindex, $contact := $Item.Contacts.props.List.props.items}}
       {{with $Contact := $contact.Item}}
-      <Contact ID="{{$index}}">
+      <Contact ID="{{$cindex}}">
         <Comment></Comment>
-        <Explanation>{{text $contact.Explanation}}</Explanation>
+        <Explanation>{{text $Contact.Explanation}}</Explanation>
       </Contact>
       {{end}}
       {{end}}
@@ -36,7 +32,6 @@
       <SummaryComment></SummaryComment>
     </SubsequentForeignContacts>
   </Meeting>
-
   {{end}}
   {{end}}
   <SummaryComment></SummaryComment>

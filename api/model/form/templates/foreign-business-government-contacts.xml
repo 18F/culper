@@ -2,24 +2,20 @@
 <GovernmentContacts>
   <Answer>{{branch .props.HasForeignContact}}</Answer>
   <Comment></Comment>
-
   {{range $index, $item := .props.List.props.items}}
   {{with $Item := $item.Item}}
   <GovernmentContact ID="{{$index}}">
     <Circumstances>{{text $Item.Purpose}}</Circumstances>
-
     <CountriesInvolved>
-      {{range $index, $country := $Item.Governments.props.value}}
-      <CountryInvolved ID="{{$index}}">
+      {{range $cindex, $country := $Item.Governments.props.value}}
+      <CountryInvolved ID="{{$cindex}}">
         <Country>{{$country}}</Country>
       </CountryInvolved>
       {{end}}
     </CountriesInvolved>
-
     <Date Type="{{dateEstimated $Item.Date}}">
       {{monthYear $Item.Date}}
     </Date>
-
     <EntryComment></EntryComment>
     <EstablishmentType>{{text $Item.Establishment}}</EstablishmentType>
     <ForeignRepresentativesInvolved>{{text $Item.Representatives}}</ForeignRepresentativesInvolved>
@@ -31,13 +27,12 @@
         {{location $Item.Location}}
       </Place>
     </Location>
-
     <SubsequentForeignContacts>
       <Answer>{{branchcollectionHas $Item.SubsequentContacts.props.List}}</Answer>
       <AnswerComment></AnswerComment>
-      {{range $index, $contact := $Item.SubsequentContacts.props.List.props.items}}
+      {{range $sindex, $contact := $Item.SubsequentContacts.props.List.props.items}}
       {{with $Contact := $contact.Item}}
-      <Contact ID="{{$index}}">
+      <Contact ID="{{$sindex}}">
         <Comment></Comment>
         <Date Type="{{dateEstimated $Contact.Recent}}">
           {{date $Contact.Recent}}
@@ -45,7 +40,7 @@
         <FutureContactPlans>{{text $Contact.Future}}</FutureContactPlans>
         <Purpose>{{text $Contact.Subsequent}}</Purpose>
       </Contact>
-      <HaveAdditionalEntryAnswer></HaveAdditionalEntryAnswer>
+      <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
       <SummaryComment></SummaryComment>
       {{end}}
       {{end}}

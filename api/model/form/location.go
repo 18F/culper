@@ -29,16 +29,17 @@ const (
 
 // Location is a basic input.
 type Location struct {
-	ID        int    `json:"-"`
-	Layout    string `json:"layout"`
-	Street1   string `json:"street,omitempty"`
-	Street2   string `json:"street2,omitempty"`
-	City      string `json:"city,omitempty"`
-	State     string `json:"state,omitempty"`
-	Zipcode   string `json:"zipcode,omitempty"`
-	County    string `json:"county,omitempty"`
-	Country   string `json:"country,omitempty"`
-	Validated bool   `json:"validated,omitempty"`
+	ID              int    `json:"-"`
+	Layout          string `json:"layout"`
+	Street1         string `json:"street,omitempty"`
+	Street2         string `json:"street2,omitempty"`
+	City            string `json:"city,omitempty"`
+	State           string `json:"state,omitempty"`
+	Zipcode         string `json:"zipcode,omitempty"`
+	County          string `json:"county,omitempty"`
+	Country         string `json:"country,omitempty"`
+	CountryComments string `json:"countryComments,omitempty"`
+	Validated       bool   `json:"validated,omitempty"`
 }
 
 // Unmarshal bytes in to the entity properties.

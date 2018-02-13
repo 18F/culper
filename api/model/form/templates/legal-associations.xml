@@ -1,0 +1,9 @@
+<AssociationRecord Version="1" Type="Pooled">
+  {{tmpl "legal-associations-activities-to-overthrow.xml" .Legal.ActivitiesToOverthrow}}
+  {{tmpl "legal-associations-advocating.xml" .Legal.Advocating}}
+  {{tmpl "legal-associations-membership-violence-or-force.xml" .Legal.MembershipViolence}}
+  {{tmpl "legal-associations-terrorist-organization.xml" .Legal.TerroristOrganization}}
+  {{tmpl "legal-associations-engaged-in-terrorism.xml" .Legal.EngagedInTerrorism}}
+  {{tmpl "legal-associations-terrorism-association.xml" .Legal.TerrorismAssociation}}
+  {{tmpl "legal-associations-membership-overthrow.xml" .Legal.MembershipOverthrow}}
+</AssociationRecord>

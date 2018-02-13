@@ -27,7 +27,7 @@ export const militaryForeign = (data = {}) => {
               Frequency: form.text(yitem.Frequency)
             }
           }
-        }))
+        }), (xitem.List || {}).branch)
       }
     }
   })

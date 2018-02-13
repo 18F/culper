@@ -1,0 +1,25 @@
+<RestrainingOrders>
+  <Answer>{{branch .props.HasDomesticViolence}}</Answer>
+  <Comment></Comment>
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+  {{range $index, $item := .props.List.props.items}}
+  {{with $Item := $item.Item}}
+  <RestrainingOrder ID="{{$index}}">
+    <Comment></Comment>
+    <Court>
+      <Location>
+        <Place>
+          {{location $Item.CourtAddress}}
+        </Place>
+      </Location>
+      <Name>{{text $Item.CourtName}}</Name>
+    </Court>
+    <DateIssued Type="{{dateEstimated $Item.Issued}}">
+      {{monthYear $Item.Issued}}
+    </DateIssued>
+    <Explanation>{{text $Item.Explanation}}</Explanation>
+  </RestrainingOrder>
+  {{end}}
+  {{end}}
+  <SummaryComment></SummaryComment>
+</RestrainingOrders>

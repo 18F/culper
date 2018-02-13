@@ -1,0 +1,7 @@
+<MedicalRecord2 Version="1" Type="Pooled">
+  {{tmpl "psychological-competence.xml" .Psychological.Competence}}
+  {{tmpl "psychological-consultations.xml" .Psychological.Consultations}}
+  {{tmpl "psychological-hospitalizations.xml" .Psychological.Hospitalizations}}
+  {{tmpl "psychological-diagnoses.xml" .Psychological.Diagnoses}}
+  {{tmpl "psychological-conditions.xml" .Psychological.ExistingConditions}}
+</MedicalRecord2>

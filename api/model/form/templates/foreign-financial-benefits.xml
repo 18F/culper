@@ -1,10 +1,9 @@
 <ForeignFinancialBenefits>
   <Answer>{{branch .props.List.props.branch}}</Answer>
   <AnswerComment></AnswerComment>
-
   {{range $index, $item := .props.List.props.items}}
   {{with $Item := $item.Item}}
-  <ForeignFinancialBenefit>
+  <ForeignFinancialBenefit ID="{{$index}}">
     <!-- Applies to all -->
     <Members
       Yourself="{{checkboxHas $Item.InterestTypes "Yourself"}}"
@@ -19,26 +18,21 @@
     <Comment></Comment>
     <ContinueComment></ContinueComment>
     {{country $Benefit.Country}}
-
     <DateReceived Type="{{dateEstimated $Benefit.Received}}">
       {{date $Benefit.Received}}
     </DateReceived>
-
     <FrequencyReceivedType>{{checkbox $Benefit.BenefitFrequency}}</FrequencyReceivedType>
     <FrequencyType>{{checkbox $Benefit.Frequency}}</FrequencyType>
     <FrequencyTypeOtherExplanation>{{text $Benefit.OtherFrequency}}</FrequencyTypeOtherExplanation>
-
     <ObligatedToCountry>
       <Answer>{{branch $Benefit.Obligated}}</Answer>
       <Explanation>{{text $Benefit.ObligatedExplanation}}</Explanation>
     </ObligatedToCountry>
-
     <Reason>{{text $Benefit.Reason}}</Reason>
     <Type>{{checkbox $Benefit.BenefitType}}</Type>
     <Value Estimated="{{$Benefit.Value.props.checked}}">{{text $Benefit.Value}}</Value>
     {{end}}
     {{end}}
-
 
     {{if radio $Item.BenefitFrequency | eq "Future"}}
     {{with $Benefit := $Item.FutureBenefit.props}}
@@ -49,7 +43,6 @@
     <Comment></Comment>
     <ContinueComment></ContinueComment>
     {{country $Benefit.Country}}
-
     <FrequencyReceivedType>{{checkbox $Benefit.BenefitFrequency}}</FrequencyReceivedType>
     <FrequencyType>{{checkbox $Benefit.Frequency}}</FrequencyType>
     <FrequencyTypeOtherExplanation>{{text $Benefit.OtherFrequency}}</FrequencyTypeOtherExplanation>
@@ -72,14 +65,12 @@
     <Comment></Comment>
     <ContinueComment></ContinueComment>
     {{country $Benefit.Country}}
-
     <EndDate Type="{{dateEstimated $Benefit.End}}">
       {{date $Benefit.End}}
     </EndDate>
     <FrequencyReceivedType>{{checkbox $Benefit.BenefitFrequency}}</FrequencyReceivedType>
     <FrequencyType>{{checkbox $Benefit.Frequency}}</FrequencyType>
     <FrequencyTypeOtherExplanation>{{text $Benefit.OtherFrequency}}</FrequencyTypeOtherExplanation>
-
     <ObligatedToCountry>
       <Answer>{{branch $Benefit.Obligated}}</Answer>
       <Explanation>{{text $Benefit.ObligatedExplanation}}</Explanation>
@@ -95,12 +86,9 @@
     <TypeOtherExplanation>{{text $Benefit.OtherBenefit}}</TypeOtherExplanation>
     {{end}}
     {{end}}
-
   </ForeignFinancialBenefit>
-
   {{end}}
   {{end}}
-
-  <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
   <SummaryComment></SummaryComment>
 </ForeignFinancialBenefits>

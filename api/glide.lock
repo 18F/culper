@@ -1,34 +1,24 @@
-hash: dec4ed27ce74b26083a41489b395d3b21cc0df3998f0ad6d0176cc31064dcec6
-updated: 2017-12-11T17:08:17.682945279Z
+hash: 385e526a462b58a8d3ab168cab4361e1246691ecd6614ca4c08644abce0ea50e
+updated: 2018-02-08T15:18:14.638026664Z
 imports:
 - name: bitbucket.org/liamstask/goose
   version: 8488cc47d90c8a502b1c41a462a6d9cc8ee0a895
   subpackages:
   - lib/goose
-- name: cloud.google.com/go
-  version: 8dff92c85f4225d90bdd100ea741d9903acc259e
-  subpackages:
-  - compute/metadata
 - name: github.com/cloudfoundry-community/go-cfenv
   version: f920e9562d5f951cbf11785728f67258c38a10d0
 - name: github.com/dgrijalva/jwt-go
   version: d2709f9f1f31ebcda9651b03077758c1f3a0018c
 - name: github.com/dgryski/dgoogauth
-  version: 96977cbd42e27be71f9f731db6634123de7e861a
+  version: fd153d5969d30bd701e10f3530228f001213047c
 - name: github.com/go-pg/pg
-  version: 3c1185357351683b9445c12cca38c63acccb1a28
+  version: e39310ace1d1204bdebf5f8e394d926dbb6571c7
   subpackages:
   - internal
   - internal/parser
   - internal/pool
   - orm
   - types
-- name: github.com/go-sql-driver/mysql
-  version: fade21009797158e7b79e04c340118a9220c6f9e
-- name: github.com/golang/protobuf
-  version: 1643683e1b54a9e88ad26d98f81400c8c9d9f4f9
-  subpackages:
-  - proto
 - name: github.com/gorilla/context
   version: 08b5f424b9271eedf6f9f0ce86cb9396ed337a42
 - name: github.com/gorilla/handlers
@@ -46,19 +36,17 @@ imports:
   subpackages:
   - yaml
 - name: github.com/lib/pq
-  version: b609790bd85edf8e9ab7e0f8912750a786177bcf
+  version: 88edab0803230a3898347e77b474f8c1820a1f20
   subpackages:
   - oid
-- name: github.com/mattn/go-sqlite3
-  version: 615c193e01d8d462eef7ee390171506f531a1c9a
 - name: github.com/microcosm-cc/bluemonday
-  version: 68fecaef60268522d2ac3f0123cec9d3bcab7b6e
+  version: 542fd4642604d0d0c26112396ce5b1a9d01eee0b
 - name: github.com/mitchellh/mapstructure
-  version: 06020f85339e21b2478f756a78e295255ffa4d6a
+  version: a4e142e9c047c904fa2f1e144d9a84e6133024bc
 - name: github.com/nu7hatch/gouuid
   version: 179d4d0c4d8d407a32af483c2354df1d2c91e6c3
 - name: github.com/rifflock/lfshook
-  version: 765177c893cc46c565c1c4c774d3a25967bbb547
+  version: 1fdc019a35147ddbb3d25aedf713ad6d1430c144
 - name: github.com/RobotsAndPencils/go-saml
   version: fb13cb52a46b55a9f20e6d497658dd494c7c1ef1
   subpackages:
@@ -74,54 +62,28 @@ imports:
   subpackages:
   - hooks/syslog
 - name: github.com/skip2/go-qrcode
-  version: 695fc75a09738f9be56aaa3aecfd7dac28e66b63
+  version: cf5f9fa2f0d847edb8e038db7ed975e239095e1a
   subpackages:
   - bitset
   - reedsolomon
-- name: github.com/ziutek/mymysql
-  version: 1d19cbf98d83564cc561192ae7d7183d795f7ac7
+- name: github.com/truetandem/plucked
+  version: c7bfb06603c47f75ea8719d4f41ca372691050a2
   subpackages:
-  - godrv
-  - mysql
-  - native
+  - migration
 - name: golang.org/x/crypto
-  version: 6a293f2d4b14b8e6d3f0539e383f6d0d30fce3fd
+  version: 9334d73e5f05d728ee11a17c031f7eb9aed2c144
   subpackages:
   - bcrypt
   - blowfish
   - ssh/terminal
 - name: golang.org/x/net
-  version: a337091b0525af65de94df2eb7e98bd9962dcbe2
+  version: f5dfe339be1d06f81b22525fe34671ee7d2c8904
   subpackages:
-  - context
-  - context/ctxhttp
   - html
   - html/atom
-- name: golang.org/x/oauth2
-  version: 9ff8ebcc8e241d46f52ecc5bff0e5a2f2dbef402
-  subpackages:
-  - facebook
-  - github
-  - google
-  - internal
-  - jws
-  - jwt
-  - linkedin
 - name: golang.org/x/sys
-  version: b8f5ef32195cae6470b728e8ca677f0dbed1a004
+  version: 37707fdb30a5b38865cfb95e5aab41707daec7fd
   subpackages:
   - unix
   - windows
-- name: google.golang.org/appengine
-  version: 9d8544a6b2c7df9cff240fcf92d7b2f59bc13416
-  subpackages:
-  - internal
-  - internal/app_identity
-  - internal/base
-  - internal/datastore
-  - internal/log
-  - internal/modules
-  - internal/remote_api
-  - internal/urlfetch
-  - urlfetch
 testImports: []

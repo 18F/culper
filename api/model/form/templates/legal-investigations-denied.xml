@@ -1,0 +1,22 @@
+<ClearanceDenials>
+  {{range $index, $item := .props.List.props.items}}
+  {{with $Item := $item.Item}}
+  <ClearanceDenial ID="{{$index}}">
+    <Agency>{{text $Item.Agency}}</Agency>
+    <Circumstances>{{text $Item.Explanation}}</Circumstances>
+    <ClearanceDate>
+      <Date Type="{{dateEstimated $Item.Date}}">
+        {{monthYear $Item.Date}}
+      </Date>
+    </ClearanceDate>
+    <EntryComment></EntryComment>
+  </ClearanceDenial>
+  {{end}}
+  {{end}}
+  <Comment></Comment>
+  <SummaryComment></SummaryComment>
+</ClearanceDenials>
+<ClearanceDenied>
+  <Answer>{{branch .props.HasRevocations}}</Answer>
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+</ClearanceDenied>

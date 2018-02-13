@@ -1,0 +1,24 @@
+<MisuseOfPrescriptionDrugs>
+  <Answer>{{branch .props.UsedDrugs}}</Answer>
+  <Comment></Comment>
+  <Instances>
+    {{range $index, $item := .props.List.props.items}}
+    {{with $Item := $item.Item}}
+    <Instance ID="{{$index}}">
+      <DrugsUsed>{{text $Item.PrescriptionName}}</DrugsUsed>
+      {{daterange $Item.InvolvementDates}}
+      <Circumstances>{{textarea $Item.Reason}}</Circumstances>
+      <InvolvementWhileEmployedAsLawEnforcement>
+        <Answer>{{branch $Item.UseWithEmployed}}</Answer>
+      </InvolvementWhileEmployedAsLawEnforcement>
+      <InvolvementWhilePossessingASecurityClearance>
+        <Answer>{{branch $Item.UseWithClearance}}</Answer>
+      </InvolvementWhilePossessingASecurityClearance>
+      <Comment></Comment>
+    </Instance>
+    {{end}}
+    {{end}}
+  </Instances>
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+  <SummaryComment></SummaryComment>
+</MisuseOfPrescriptionDrugs>

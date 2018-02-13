@@ -115,7 +115,7 @@ class Foreign extends SectionElement {
   render () {
     return (
       <div>
-        <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
+        <SectionViews current={this.props.subsection} dispatch={this.props.dispatch} update={this.props.update}>
           <SectionView name="intro"
                        back="military/review"
                        backLabel={i18n.t('military.destination.review')}

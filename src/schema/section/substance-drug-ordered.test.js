@@ -13,7 +13,7 @@ describe('Schema for financial taxes', () => {
             Explanation: {},
             ActionTaken: {},
             NoActionTakenExplanation: {},
-            DrugType: {},
+            DrugType: { value: null },
             TreatmentProvider: {},
             TreatmentProviderAddress: {
               country: null

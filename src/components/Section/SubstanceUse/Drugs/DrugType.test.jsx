@@ -20,7 +20,7 @@ describe('The DrugType component', () => {
   it('Performs update of other drug type', () => {
     let updates = 0
     const onUpdate = () => { updates++ }
-    const component = mount(<DrugType onUpdate={onUpdate} DrugType={'Other'} />)
+    const component = mount(<DrugType onUpdate={onUpdate} value="Other" />)
     expect(component.find('.drug-type').length).toBe(1)
     expect(component.find('.drug-type-other').length).toBe(1)
     component.find('.drug-type-other textarea[name="DrugTypeOther"]').simulate('change')

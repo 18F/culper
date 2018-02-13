@@ -1,4 +1,3 @@
-import { LoginOAuth } from './LoginOAuth'
 import { TwoFactor } from './TwoFactor'
 import { ScoreCard } from './ScoreCard'
 import { Navigation, NavigationToggle } from './Navigation'
@@ -9,7 +8,6 @@ import { ProgressBar } from './ProgressBar'
 import Sticky from './Sticky'
 
 export {
-  LoginOAuth,
   TwoFactor,
   ScoreCard,
   Navigation,

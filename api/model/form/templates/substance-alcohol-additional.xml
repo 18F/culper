@@ -1,0 +1,29 @@
+<EverReceivedCounseling>
+  <Answer>{{branch .props.ReceivedTreatment}}</Answer>
+  <Comment></Comment>
+  <Consultations>
+    {{range $index, $item := .props.List.props.items}}
+    {{with $Item := $item.Item}}
+    <Consultation ID="{{$index}}">
+      <Agency>
+        <Address SameAsAbove="{{if branch $Item.UseSameAddress | eq "Yes"}}True{{else}}False{{end}}">{{location $Item.AgencyAddress}}</Address>
+        <Name>{{text $Item.AgencyName}}</Name>
+      </Agency>
+      <BeginDate Type="{{dateEstimated $Item.TreatmentBeginDate}}">{{monthYear $Item.TreatmentBeginDate}}</BeginDate>
+      <Comment></Comment>
+      <CompletedTreatmentProgram>
+        <Answer>{{branch $Item.CompletedTreatment}}</Answer>
+      </CompletedTreatmentProgram>
+      <Doctor>
+        <Address>{{location $Item.TreatmentProviderAddress}}</Address>
+        <Name>{{text $Item.TreatmentProviderName}}</Name>
+      </Doctor>
+      <EndDate Type="{{dateEstimated $Item.TreatmentEndDate}}">{{monthYear $Item.TreatmentEndDate}}</EndDate>
+      <Explanation>{{textarea $Item.NoCompletedTreatmentExplanation}}</Explanation>
+    </Consultation>
+    {{end}}
+    {{end}}
+  </Consultations>
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+  <SummaryComment></SummaryComment>
+</EverReceivedCounseling>

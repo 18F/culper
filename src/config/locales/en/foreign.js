@@ -999,7 +999,7 @@ export const foreign = {
         accepted: 'Did you accept the offer?'
       },
       label: {
-        explanation: 'Explanation',
+        explanation: 'Provide explanation',
         address: 'Did this occur in the United States?'
       },
       help: {

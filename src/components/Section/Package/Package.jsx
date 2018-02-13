@@ -122,7 +122,7 @@ class Package extends SectionElement {
     const tally = this.errorCheck()
     const releases = (this.props.Submission || {}).Releases || {}
     return (
-      <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
+      <SectionViews current={this.props.subsection} dispatch={this.props.dispatch} update={this.props.update}>
         <SectionView name="review">
           <SubmissionStatus transition={true} onTransitionEnd={this.onTransitionEnd}/>
         </SectionView>

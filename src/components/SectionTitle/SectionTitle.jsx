@@ -25,11 +25,7 @@ class SectionTitle extends React.Component {
       }
     })
 
-    return (
-      <div className="title">
-        {title}
-      </div>
-    )
+    return <h1 className="title">{title}</h1>
   }
 }
 

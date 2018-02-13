@@ -62,13 +62,7 @@ export class sidebar {
         this.ticking = false
       }
     } else {
-      this.content.style.position = ''
-      this.content.style.top = ''
-      removeClass(this.content, 'sidebar-scrolling-down')
-      removeClass(this.content, 'sidebar-bottom-fixed')
-      removeClass(this.content, 'sidebar-scrolling-up')
-      removeClass(this.content, 'sidebar-top-fixed')
-      removeClass(this.content, 'sidebar-scrolling-up')
+      unstick(this.content)
     }
 
     if (this.options.callback) {
@@ -334,4 +328,24 @@ export const hasClass = (element, className) => {
     return element.classList.contains(className)
   }
   return new RegExp('(^| )' + className + '( |$)', 'gi').test(element.className)
+}
+
+export const unstick = (element) => {
+  if (!element) {
+    return
+  }
+  element.style.position = ''
+  element.style.top = ''
+  removeClass(element, 'sidebar-scrolling-down')
+  removeClass(element, 'sidebar-bottom-fixed')
+  removeClass(element, 'sidebar-scrolling-up')
+  removeClass(element, 'sidebar-top-fixed')
+  removeClass(element, 'sidebar-scrolling-up')
+}
+
+export const unstickAll = () => {
+  const elements = document.querySelectorAll('.sticky > .contents')
+  for (const el of elements) {
+    unstick(el)
+  }
 }

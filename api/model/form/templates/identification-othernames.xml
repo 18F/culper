@@ -1,18 +1,19 @@
 <OtherNamesUsed>
-  <Answer>{{ branch .props.HasOtherNames }}</Answer>
+  <Answer>{{branch .props.HasOtherNames}}</Answer>
   <Comment></Comment>
-  <HaveAdditionalEntryAnswer></HaveAdditionalEntryAnswer>
-  {{ range $key, $item := .props.List.props.items }}
-  <OtherName>
-    <LegalName>
-      {{ name $item.Item.Name }}
-    </LegalName>
-  </OtherName>
-  <Maiden>
-    {{ text $item.Item.MaidenName }}
-  </Maiden>
-  <Reason>
-    {{ textarea $item.Item.Reason }}
-  </Reason>
-  {{ end }}
+  <OtherNames>
+    {{range $index, $item := .props.List.props.items}}
+    {{with $Item := $item.Item}}
+    <OtherName ID="{{$index}}">
+      <LegalName>{{name $Item.Name}}</LegalName>
+      {{daterange $Item.DatesUsed}}
+      <Maiden>{{branch $Item.MaidenName}}</Maiden>
+      <Reason>{{textarea $Item.Reason}}</Reason>
+      <Comment></Comment>
+    </OtherName>
+  {{end}}
+  {{end}}
+  </OtherNames>
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+  <SummaryComment></SummaryComment>
 </OtherNamesUsed>

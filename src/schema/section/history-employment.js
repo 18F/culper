@@ -44,6 +44,7 @@ export const historyEmployment = (data = {}) => {
     }
   })
   return {
+    EmploymentRecord: form.branch(data.EmploymentRecord),
     List: form.collection(items, (data.List || {}).branch)
   }
 }

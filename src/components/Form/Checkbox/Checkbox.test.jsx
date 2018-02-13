@@ -69,11 +69,11 @@ describe('The checkbox component', () => {
       error: true,
       focus: false,
       valid: false,
-      handleChange: function (event) {
+      onUpdate: function (values) {
         changes++
       }
     }
-    const component = mount(<Checkbox name={expected.name} onChange={expected.handleChange} />)
+    const component = mount(<Checkbox {...expected} />)
     component.find('input').simulate('change')
     expect(changes).toEqual(1)
   })

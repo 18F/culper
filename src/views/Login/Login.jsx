@@ -1,5 +1,5 @@
 import React from 'react'
-import { LoginOAuth, TwoFactor } from '../../components'
+import { TwoFactor } from '../../components'
 import { connect } from 'react-redux'
 import { i18n, env } from '../../config'
 import { api } from '../../services'
@@ -177,7 +177,6 @@ class Login extends React.Component {
                    name="user"
                    type="text"
                    placeholder={i18n.t('login.basic.username.placeholder')}
-                   autoFocus
                    value={this.state.username}
                    onChange={this.onUsernameChange} />
           </div>
@@ -214,21 +213,6 @@ class Login extends React.Component {
     )
   }
 
-  authOAuth () {
-    if (!env.OAuthEnabled()) {
-      return null
-    }
-
-    return (
-      <div id="oauth" className="auth ouath">
-        <span>Sign in with </span>
-        <LoginOAuth authenticated={this.state.authenticated}>
-          <i className="fa fa-github" aria-hidden="true"></i>
-        </LoginOAuth>
-      </div>
-    )
-  }
-
   loginFormClass (auths) {
     let count = 0
     for (const auth of auths) {
@@ -252,13 +236,11 @@ class Login extends React.Component {
   loginForm () {
     const saml = this.authSAML()
     const basic = this.authBasic()
-    const oauth = this.authOAuth()
 
     return (
-      <div className={this.loginFormClass([saml, basic, oauth])}>
+      <div className={this.loginFormClass([saml, basic])}>
         {saml}
         {basic}
-        {oauth}
       </div>
     )
   }

@@ -62,8 +62,8 @@ export default class Person extends React.Component {
     })
   }
 
-  updateRelationship (event) {
-    let relations = event.target.value
+  updateRelationship (values) {
+    let relations = values.value
     let currentRelationships = (this.props.Relationship || {}).values || []
     let selected = [...currentRelationships]
 
@@ -180,7 +180,7 @@ export default class Person extends React.Component {
                       label={i18n.t(`relationships.people.person.label.relationship.neighbor`)}
                       value="Neighbor"
                       onError={this.props.onError}
-                      onChange={this.updateRelationship}>
+                      onUpdate={this.updateRelationship}>
               <div className="relationship-icon neighbor">
                 <Svg src="/img/neighbor-icon.svg" />
               </div>
@@ -189,34 +189,34 @@ export default class Person extends React.Component {
                       label={i18n.t(`relationships.people.person.label.relationship.friend`)}
                       value="Friend"
                       onError={this.props.onError}
-                      onChange={this.updateRelationship}>
+                      onUpdate={this.updateRelationship}>
               <div className="relationship-icon friend">
                 <Svg src="/img/friend-icon.svg" />
               </div>
             </Checkbox>
             <Checkbox name="relationship-landlord"
-                      label={i18n.t(`relationships.people.person.label.relationship.landlord`)}
-                      value="Landlord"
+                      label={i18n.t(`relationships.people.person.label.relationship.workAssociate`)}
+                      value="WorkAssociate"
                       onError={this.props.onError}
-                      onChange={this.updateRelationship}>
+                      onUpdate={this.updateRelationship}>
               <div className="relationship-icon landlord">
-                <Svg src="/img/landlord-icon.svg" />
+                <Svg src="/img/business-associate-icon.svg" />
               </div>
             </Checkbox>
             <Checkbox name="relationship-business"
-                      label={i18n.t(`relationships.people.person.label.relationship.business`)}
-                      value="Business"
+                      label={i18n.t(`relationships.people.person.label.relationship.schoolmate`)}
+                      value="Schoolmate"
                       onError={this.props.onError}
-                      onChange={this.updateRelationship}>
+                      onUpdate={this.updateRelationship}>
               <div className="relationship-icon business">
-                <Svg src="/img/business-associate-icon.svg" />
+                <Svg src="/img/schoolmate.svg" />
               </div>
             </Checkbox>
             <Checkbox name="relationship-other"
                       label={i18n.t(`relationships.people.person.label.relationship.other`)}
                       value="Other"
                       onError={this.props.onError}
-                      onChange={this.updateRelationship}>
+                      onUpdate={this.updateRelationship}>
               <div className="relationship-icon other">
                 <Svg src="/img/other-icon.svg" />
               </div>

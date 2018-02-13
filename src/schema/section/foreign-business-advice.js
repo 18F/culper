@@ -5,6 +5,7 @@ export const foreignBusinessAdvice = (data = {}) => {
     const xitem = x.Item || {}
     return {
       Item: {
+        Description: form.text(xitem.Description),
         Name: form.name(xitem.Name),
         Organization: form.text(xitem.Organization),
         Country: form.country(xitem.Country),

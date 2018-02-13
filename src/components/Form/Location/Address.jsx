@@ -13,6 +13,7 @@ import Show from '../Show'
 import Suggestions from '../Suggestions'
 import { AddressSuggestion } from './AddressSuggestion'
 import { countryString } from '../../../validators/location'
+import { countryValueResolver } from './Location'
 
 export default class Address extends ValidationElement {
   constructor (props) {
@@ -79,6 +80,7 @@ export default class Address extends ValidationElement {
   updateCountry (values) {
     this.update({
       country: values,
+      countryComments: values.comments,
       validated: this.props.validated && countryString(values) === countryString(this.props.country)
     })
   }
@@ -212,7 +214,9 @@ export default class Address extends ValidationElement {
         <Show when={!this.props.disableToggle}>
           <div>
             <label>{this.props.label}</label>
-            <RadioGroup className="address-options" selectedValueFunc={this.addressTypeFunc}>
+            <RadioGroup className={`address-options option-list ${this.props.showPostOffice ? '' : 'no-postoffice'}`.trim()}
+                        disabled={this.props.disabled}
+                        selectedValueFunc={this.addressTypeFunc}>
               <Radio name="addressType"
                      label={i18n.m('address.options.us.label')}
                      value="United States"
@@ -223,16 +227,21 @@ export default class Address extends ValidationElement {
                      onBlur={this.props.onBlur}
                      onFocus={this.props.onFocus}
                      />
-              <Radio name="addressType"
-                     label={i18n.m('address.options.apoFpo.label')}
-                     value="POSTOFFICE"
-                     className="apofpo postoffice"
-                     ignoreDeselect="true"
-                     disabled={this.props.disabled}
-                     onUpdate={this.updateAddressType}
-                     onBlur={this.props.onBlur}
-                     onFocus={this.props.onFocus}
-                     />
+              <Show when={this.props.showPostOffice}>
+                <Radio name="addressType"
+                       label={i18n.m('address.options.apoFpo.label')}
+                       value="POSTOFFICE"
+                       className="apofpo postoffice"
+                       ignoreDeselect="true"
+                       disabled={this.props.disabled}
+                       onUpdate={this.updateAddressType}
+                       onBlur={this.props.onBlur}
+                       onFocus={this.props.onFocus}
+                       />
+              </Show>
+              <Show when={!this.props.showPostOffice}>
+                <div className="apofpo postoffice block"></div>
+              </Show>
               <Radio name="addressType"
                      label={i18n.m('address.options.international.label')}
                      value="International"
@@ -281,12 +290,14 @@ export default class Address extends ValidationElement {
                         onFocus={this.props.onFocus}
                         onBlur={this.props.onBlur}
                         required={this.props.required}
+                        disabled={this.props.disabled}
                         />
                 <Street name="street2"
                         className="street2"
                         label={this.props.street2Label}
                         optional={true}
                         value={this.props.street2}
+                        disabled={this.props.disabled}
                         onUpdate={this.updateStreet2}
                         onError={this.handleError}
                         onFocus={this.props.onFocus}
@@ -301,6 +312,7 @@ export default class Address extends ValidationElement {
                       onFocus={this.props.onFocus}
                       onBlur={this.props.onBlur}
                       required={this.props.required}
+                      disabled={this.props.disabled}
                       />
                 <div className="state-zip-wrap">
                   <MilitaryState name="state"
@@ -313,6 +325,7 @@ export default class Address extends ValidationElement {
                                  onFocus={this.props.onFocus}
                                  onBlur={this.props.onBlur}
                                  required={this.props.required}
+                                 disabled={this.props.disabled}
                                  />
                   <ZipCode name="zipcode"
                            ref="us_zipcode"
@@ -325,6 +338,7 @@ export default class Address extends ValidationElement {
                            onFocus={this.props.onFocus}
                            onBlur={this.props.onBlur}
                            required={this.props.required}
+                           disabled={this.props.disabled}
                            />
                 </div>
               </div>
@@ -341,6 +355,7 @@ export default class Address extends ValidationElement {
                         onFocus={this.props.onFocus}
                         onBlur={this.props.onBlur}
                         required={this.props.required}
+                        disabled={this.props.disabled}
                         />
                 <Street name="street2"
                         className="street2"
@@ -351,6 +366,7 @@ export default class Address extends ValidationElement {
                         onError={this.handleError}
                         onFocus={this.props.onFocus}
                         onBlur={this.props.onBlur}
+                        disabled={this.props.disabled}
                         />
                 <City name="city"
                       className="city required"
@@ -361,17 +377,19 @@ export default class Address extends ValidationElement {
                       onFocus={this.props.onFocus}
                       onBlur={this.props.onBlur}
                       required={this.props.required}
+                      disabled={this.props.disabled}
                       />
                 <Country name="country"
                          className="required"
                          label={this.props.countryLabel}
-                         {...this.props.country}
+                         {...countryValueResolver(this.props)}
                          excludeUnitedStates="true"
                          onUpdate={this.updateCountry}
                          onError={this.handleError}
                          onFocus={this.props.onFocus}
                          onBlur={this.props.onBlur}
                          required={this.props.required}
+                         disabled={this.props.disabled}
                          />
               </div>
             </Show>
@@ -387,9 +405,10 @@ export default class Address extends ValidationElement {
                         onFocus={this.props.onFocus}
                         onBlur={this.props.onBlur}
                         required={this.props.required}
+                        disabled={this.props.disabled}
                         />
                 <label>{i18n.t('address.apoFpo.select.label')}</label>
-                <RadioGroup className="apofpo" selectedValue={this.props.city} required={this.props.required} onError={this.handleError}>
+                <RadioGroup className="apofpo" selectedValue={this.props.city} disabled={this.props.disabled} required={this.props.required} onError={this.handleError}>
                   <Radio name="apoFpoType"
                          className="apo"
                          label={i18n.m('address.apoFpo.apoFpoType.apo.label')}
@@ -428,6 +447,7 @@ export default class Address extends ValidationElement {
                           onFocus={this.props.onFocus}
                           onBlur={this.props.onBlur}
                           required={this.props.required}
+                          disabled={this.props.disabled}
                           tabNext={() => { this.props.tab(this.refs.apo_zipcode.refs.zipcode.refs.text.refs.input) }}
                     />
                     <ZipCode name="zipcode"
@@ -441,6 +461,7 @@ export default class Address extends ValidationElement {
                              onFocus={this.props.onFocus}
                              onBlur={this.props.onBlur}
                              required={this.props.required}
+                             disabled={this.props.disabled}
                              />
                 </div>
               </div>
@@ -458,6 +479,7 @@ Address.defaultProps = {
   country: { value: 'United States' },
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
+  showPostOffice: true,
   streetLabel: i18n.t('address.us.street.label'),
   postOfficeStreetPlaceholder: i18n.t('address.apoFpo.street.placeholder'),
   postOfficeStateLabel: i18n.t('address.apoFpo.apoFpo.label'),

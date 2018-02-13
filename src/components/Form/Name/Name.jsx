@@ -172,13 +172,16 @@ export default class Name extends ValidationElement {
 
   render () {
     const prefix = this.props.prefix
-    const klass = `name ${this.props.className || ''}`.trim()
+    const klass = [
+      `name ${this.props.className || ''}`.trim(),
+      this.props.disabled ? 'disabled' : ''
+    ]
     const maxFirst = this.props.firstInitialOnly ? '1' : '100'
     const maxMiddle = this.props.middleInitialOnly ? '1' : '100'
     const maxLast = this.props.lastInitialOnly ? '1' : '100'
 
     return (
-      <div className={klass}>
+      <div className={klass.join(' ')}>
         {this.props.title && <h2>{this.props.title}</h2>}
         <Field title={i18n.t(`${prefix}.label.first`)}
                titleSize="label"
@@ -199,6 +202,7 @@ export default class Name extends ValidationElement {
                 onFocus={this.props.onFocus}
                 onBlur={this.props.onBlur}
                 required={this.props.required}
+                disabled={this.props.disabled}
                 />
           <div className="flags">
             <Checkbox name="firstInitialOnly"
@@ -210,6 +214,7 @@ export default class Name extends ValidationElement {
                       checked={this.props.firstInitialOnly}
                       onUpdate={this.updateFirstInitial}
                       onError={this.handleErrorFirst}
+                      disabled={this.props.disabled}
                       />
           </div>
         </Field>
@@ -227,7 +232,7 @@ export default class Name extends ValidationElement {
                 maxlength={maxMiddle}
                 className="middle"
                 value={this.props.middle}
-                disabled={this.props.noMiddleName}
+                disabled={this.props.noMiddleName || this.props.disabled}
                 onUpdate={this.updateMiddle}
                 onError={this.handleErrorMiddle}
                 onFocus={this.props.onFocus}
@@ -244,6 +249,7 @@ export default class Name extends ValidationElement {
                       checked={this.props.noMiddleName}
                       onUpdate={this.updateMiddleNone}
                       onError={this.handleErrorMiddle}
+                      disabled={this.props.disabled}
                       />
             <Checkbox name="middleInitialOnly"
                       ref="middleInitialOnly"
@@ -254,6 +260,7 @@ export default class Name extends ValidationElement {
                       checked={this.props.middleInitialOnly}
                       onUpdate={this.updateMiddleInitial}
                       onError={this.handleErrorMiddle}
+                      disabled={this.props.disabled}
                       />
           </div>
         </Field>
@@ -276,6 +283,7 @@ export default class Name extends ValidationElement {
                 onFocus={this.props.onFocus}
                 onBlur={this.props.onBlur}
                 required={this.props.required}
+                disabled={this.props.disabled}
                 />
           <div className="flags">
             <Checkbox name="lastInitialOnly"
@@ -287,6 +295,7 @@ export default class Name extends ValidationElement {
                       checked={this.props.lastInitialOnly}
                       onUpdate={this.updateLastInitial}
                       onError={this.handleErrorLast}
+                      disabled={this.props.disabled}
                       />
           </div>
         </Field>
@@ -297,7 +306,7 @@ export default class Name extends ValidationElement {
                scrollIntoView={this.props.scrollIntoView}
                optional={true}
                optionalText={i18n.t(`${prefix}.label.optional`)}>
-          <RadioGroup className="option-list suffix" selectedValue={this.props.suffix}>
+          <RadioGroup className="option-list suffix" selectedValue={this.props.suffix} disabled={this.props.disabled}>
             <Radio name="suffix"
                    label={i18n.t(`${prefix}.label.jr`)}
                    className="suffix-jr"
@@ -427,6 +436,7 @@ export default class Name extends ValidationElement {
                   onFocus={this.props.onFocus}
                   onBlur={this.props.onBlur}
                   required={this.props.required}
+                  disabled={this.props.disabled}
                   />
           </Show>
         </Field>

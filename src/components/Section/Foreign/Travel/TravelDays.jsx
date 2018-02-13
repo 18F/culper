@@ -14,7 +14,7 @@ export default class TravelDays extends ValidationElement {
     }
 
     let selected = response.value
-    let list = [...this.props.value]
+    let list = [...(this.props.values || [])]
 
     if (list.includes(selected)) {
       list.splice(list.indexOf(selected), 1)
@@ -22,7 +22,7 @@ export default class TravelDays extends ValidationElement {
       list.push(selected)
     }
 
-    this.props.onUpdate(list)
+    this.props.onUpdate({ values: list })
   }
 
   render () {
@@ -30,7 +30,7 @@ export default class TravelDays extends ValidationElement {
       <CheckboxGroup className={`travel-days ${this.props.className || ''}`.trim()}
                      onError={this.props.onError}
                      required={this.props.required}
-                     selectedValues={this.props.value}>
+                     selectedValues={this.props.values || []}>
         <Checkbox name="days-1-5"
                   label={i18n.m('foreign.travel.label.one')}
                   value="1-5"
@@ -79,7 +79,7 @@ export default class TravelDays extends ValidationElement {
 }
 
 TravelDays.defaultProps = {
-  value: [],
+  values: [],
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

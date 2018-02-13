@@ -2,7 +2,8 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import { ValidationElement, Field, Name, Textarea, DateControl,
          CheckboxGroup, Checkbox, RadioGroup, Radio, Country,
-         Text, NotApplicable, Show, BranchCollection, Location } from '../../../Form'
+         Text, NotApplicable, Show, BranchCollection, Location, AccordionItem } from '../../../Form'
+
 
 export default class ForeignNational extends ValidationElement {
   constructor (props) {
@@ -75,6 +76,7 @@ export default class ForeignNational extends ValidationElement {
 
   updateNameNotApplicable (value) {
     this.update({
+      Name: null,
       NameNotApplicable: value
     })
   }
@@ -124,14 +126,6 @@ export default class ForeignNational extends ValidationElement {
   }
 
   updateRelationship (values) {
-    //let selected = values.value
-    //let list = [...(this.props.Relationship || [])]
-
-    //if (list.includes(selected)) {
-      //list.splice(list.indexOf(selected), 1)
-    //} else {
-      //list.push(selected)
-    //}
     const list = Checkbox.select(values, this.props.Relationship)
     this.update({
       Relationship: { values: list }
@@ -489,11 +483,13 @@ export default class ForeignNational extends ValidationElement {
                           required={this.props.required}
                           onError={this.props.onError}
                           scrollIntoView={this.props.scrollIntoView}>
-          <Field title={i18n.t('foreign.contacts.heading.aliasname')}
-                 optional={true}
-                 scrollIntoView={this.props.scrollIntoView}>
-            <Name name="Alias" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
-          </Field>
+          <AccordionItem scrollIntoView={this.props.scrollIntoView}>
+              <Field title={i18n.t('foreign.contacts.heading.aliasname')}
+                     optional={true}
+                     scrollIntoView={this.props.scrollIntoView}>
+                <Name name="Alias" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
+            </Field>
+          </AccordionItem>
         </BranchCollection>
 
         <Field title={i18n.t('foreign.contacts.heading.citizenship')}

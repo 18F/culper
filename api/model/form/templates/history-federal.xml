@@ -10,7 +10,7 @@
         <Location>{{location $Item.Address}}</Location>
         <Name>{{text $Item.Name}}</Name>
       </Agency>
-      <DateRange>{{daterange $Item.Dates}}</DateRange>
+      {{daterange $Item.Dates}}
       <PositionTitle>{{text $Item.Position}}</PositionTitle>
       <EntryComment></EntryComment>
     </FederalService>

@@ -1,0 +1,18 @@
+<InvolvementWhilePossessingASecurityClearance>
+  <Answer>{{branch .props.UsedDrugs}}</Answer>
+  <Comment></Comment>
+  <Involvements>
+    {{range $index, $item := .props.List.props.items}}
+    {{with $Item := $item.Item}}
+    <Involvement ID="{{$index}}">
+      <Description>{{textarea $Item.Description}}</Description>
+      {{daterange $Item.InvolvementDates}}
+      <NumberOfTimesUsed>{{text $Item.EstimatedUse}}</NumberOfTimesUsed>
+      <Comment></Comment>
+    </Involvement>
+    {{end}}
+    {{end}}
+  </Involvements>
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+  <SummaryComment></SummaryComment>
+</InvolvementWhilePossessingASecurityClearance>

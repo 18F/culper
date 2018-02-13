@@ -20,11 +20,6 @@ describe('The enviroment config', () => {
     expect(env.EndpointTwoFactorReset(expected)).toBe(`/2fa/${expected}/reset`)
   })
 
-  it('Returns OAuth Endpoint', () => {
-    const expected = 'github'
-    expect(env.EndpointOAuth(expected)).toBe(`/auth/${expected}`)
-  })
-
   it('returns save endpoint', () => {
     expect(env.EndpointSave({})).toBe(`/me/save`)
   })

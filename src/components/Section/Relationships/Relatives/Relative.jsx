@@ -404,10 +404,10 @@ export default class Relative extends ValidationElement {
                    onError={this.props.onError}
                    onUpdate={this.updateRelation}
                    />
-            <Radio name="relation-montherinlaw"
-                   label={i18n.m('relationships.relatives.label.relation.montherinlaw')}
-                   value="Monther-in-law"
-                   className="relation-montherinlaw"
+            <Radio name="relation-motherinlaw"
+                   label={i18n.m('relationships.relatives.label.relation.motherinlaw')}
+                   value="Mother-in-law"
+                   className="relation-motherinlaw"
                    onError={this.props.onError}
                    onUpdate={this.updateRelation}
                    />
@@ -1003,6 +1003,7 @@ export default class Relative extends ValidationElement {
                              onUpdate={this.updateEmployerAddressNotApplicable}>
                 <Location name="EmployerAddress"
                           {...this.props.EmployerAddress}
+                          showPostOffice={false}
                           layout={Location.ADDRESS}
                           className="relative-employer-address"
                           onError={this.props.onError}

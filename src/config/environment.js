@@ -49,10 +49,6 @@ class Env {
     return (process.env.BASIC_ENABLED || '').length
   }
 
-  OAuthEnabled () {
-    return (process.env.OAUTH_ENABLED || '').length
-  }
-
   SamlEnabled () {
     return (process.env.SAML_ENABLED || '').length
   }
@@ -63,7 +59,6 @@ class Env {
   EndpointTwoFactor (account) { return `/2fa/${account}` }
   EndpointTwoFactorVerify (account) { return `/2fa/${account}/verify` }
   EndpointTwoFactorReset (account) { return `/2fa/${account}/reset` }
-  EndpointOAuth (service) { return `/auth/${service}` }
   EndpointSave (payload) { return '/me/save' }
   EndpointSection (type) { return `/me/section?type=${type || ''}` }
   EndpointForm () { return '/me/form' }

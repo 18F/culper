@@ -69,7 +69,7 @@ func (entity *DateRange) Valid() (bool, error) {
 		stack.Append("To", err)
 	}
 
-	if !stack.HasErrors() && entity.From.Date.After(entity.To.Date) {
+	if !stack.HasErrors() && entity.From.Date().After(entity.To.Date()) {
 		stack.Append("Range", model.ErrFieldRequired{"Date range is out of order"})
 	}
 
@@ -83,6 +83,20 @@ func (entity *DateRange) Save(context *db.DatabaseContext, account int) (int, er
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
+
+	context.Find(&DateRange{ID: entity.ID}, func(result interface{}) {
+		previous := result.(*DateRange)
+		if entity.From == nil {
+			entity.From = &DateControl{}
+		}
+		entity.FromID = previous.FromID
+		entity.From.ID = previous.FromID
+		if entity.To == nil {
+			entity.To = &DateControl{}
+		}
+		entity.ToID = previous.ToID
+		entity.To.ID = previous.ToID
+	})
 
 	fromID, err := entity.From.Save(context, account)
 	if err != nil {
@@ -110,6 +124,20 @@ func (entity *DateRange) Delete(context *db.DatabaseContext, account int) (int, 
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
+
+	context.Find(&DateRange{ID: entity.ID}, func(result interface{}) {
+		previous := result.(*DateRange)
+		if entity.From == nil {
+			entity.From = &DateControl{}
+		}
+		entity.FromID = previous.FromID
+		entity.From.ID = previous.FromID
+		if entity.To == nil {
+			entity.To = &DateControl{}
+		}
+		entity.ToID = previous.ToID
+		entity.To.ID = previous.ToID
+	})
 
 	if _, err := entity.From.Delete(context, account); err != nil {
 		return entity.ID, err

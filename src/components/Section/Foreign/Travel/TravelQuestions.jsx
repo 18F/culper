@@ -199,7 +199,7 @@ export default class TravelQuestions extends ValidationElement {
           {i18n.m('foreign.travel.para.checkall')}
           <TravelDays name="Days"
                       className="foreign-travel-days"
-                      value={this.props.Days}
+                      {...this.props.Days}
                       onUpdate={this.updateDays}
                       onError={this.props.onError}
                       required={this.props.required}
@@ -213,7 +213,7 @@ export default class TravelQuestions extends ValidationElement {
           {i18n.m('foreign.travel.para.checkall')}
           <TravelPurpose name="Purpose"
                          className="foreign-travel-purpose"
-                         value={this.props.Purpose}
+                         {...this.props.Purpose}
                          onUpdate={this.updatePurpose}
                          onError={this.props.onError}
                          required={this.props.required}
