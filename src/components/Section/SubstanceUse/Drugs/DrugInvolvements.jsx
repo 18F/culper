@@ -102,7 +102,7 @@ DrugInvolvements.defaultProps = {
   subsection: 'drugs/purchase',
   dispatch: () => {},
   validator: (data) => {
-    return validate(schema('substance.drug.purchase', data))
+    return validate(schema('substance.drugs.purchase', data))
   },
   scrollToBottom: ''
 }

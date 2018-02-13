@@ -103,7 +103,7 @@ OrderedTreatments.defaultProps = {
   addressBooks: {},
   dispatch: (action) => {},
   validator: (data) => {
-    return validate(schema('substance.drug.ordered', data))
+    return validate(schema('substance.drugs.ordered', data))
   },
   scrollToBottom: ''
 }

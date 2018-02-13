@@ -100,7 +100,7 @@ PrescriptionUses.defaultProps = {
   subsection: 'drugs/misuse',
   dispatch: () => {},
   validator: (data) => {
-    return validate(schema('substance.drug.misuse', data))
+    return validate(schema('substance.drugs.misuse', data))
   },
   scrollToBottom: ''
 }

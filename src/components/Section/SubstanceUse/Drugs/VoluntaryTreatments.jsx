@@ -103,7 +103,7 @@ VoluntaryTreatments.defaultProps = {
   addressBooks: {},
   dispatch: (action) => {},
   validator: (data) => {
-    return validate(schema('substance.drug.voluntary', data))
+    return validate(schema('substance.drugs.voluntary', data))
   },
   scrollToBottom: ''
 }

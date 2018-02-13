@@ -100,7 +100,7 @@ DrugPublicSafetyUses.defaultProps = {
   subsection: 'drugs/publicsafety',
   dispatch: () => {},
   validator: (data) => {
-    return validate(schema('substance.drug.publicsafety', data))
+    return validate(schema('substance.drugs.publicsafety', data))
   },
   scrollToBottom: ''
 }
