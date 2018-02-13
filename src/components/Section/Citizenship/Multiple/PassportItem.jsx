@@ -170,6 +170,7 @@ export default class PassportItem extends ValidationElement {
           <DateControl name="Expiration"
                        {...this.props.Expiration}
                        applicantBirthdate={this.props.applicantBirthdate}
+                       prefix="passport.expiration"
                        className="passport-expiration"
                        onUpdate={this.updateExpiration}
                        onError={this.props.onError}
