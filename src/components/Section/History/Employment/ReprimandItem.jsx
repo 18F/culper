@@ -55,7 +55,6 @@ export default class ReprimandItem extends ValidationElement {
                scrollIntoView={this.props.scrollIntoView}>
           <DateControl name="Date"
                        {...this.props.Date}
-                       applicantBirthdate={this.props.applicantBirthdate}
                        onUpdate={this.updateDate}
                        onError={this.props.onError}
                        hideDay={true}
@@ -69,7 +68,6 @@ export default class ReprimandItem extends ValidationElement {
 }
 
 ReprimandItem.defaultProps = {
-  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

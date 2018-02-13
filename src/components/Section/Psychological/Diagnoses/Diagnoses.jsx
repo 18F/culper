@@ -128,7 +128,6 @@ export default class Diagnoses extends SubsectionElement {
                        required={this.props.required}
                        scrollIntoView={this.props.scrollIntoView}>
               <Diagnosis name="Item"
-                         applicantBirthdate={this.props.applicantBirthdate}
                          required={this.props.required}
                          scrollIntoView={this.props.scrollIntoView}
                          addressBooks={this.props.addressBooks}
@@ -201,11 +200,10 @@ Diagnoses.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'psychological',
   subsection: 'diagnoses',
-  applicantBirthdate: {},
   addressBooks: {},
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('psychological.diagnoses', props))
+  validator: (data) => {
+    return validate(schema('psychological.diagnoses', data))
   },
   scrollToBottom: ''
 }

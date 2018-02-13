@@ -84,7 +84,6 @@ export default class Alias extends ValidationElement {
                      className="alias-dates"
                      {...this.props.Dates}
                      prefix="relative"
-                     applicantBirthdate={this.props.applicantBirthdate}
                      onUpdate={this.updateDates}
                      onError={this.props.onError}
                      required={this.props.required}
@@ -113,7 +112,6 @@ Alias.defaultProps = {
   Dates: {},
   Reason: {},
   hideMaiden: false,
-  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

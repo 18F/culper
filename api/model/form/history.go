@@ -327,14 +327,14 @@ type HistoryEducation struct {
 	PayloadList        Payload `json:"List" sql:"-"`
 
 	// Validator specific fields
-	HasAttended *Branch     `json:"-"`
-	HasDegree10 *Branch     `json:"-"`
-	List        *Collection `json:"-"`
+	HasAttended *Branch     `json:"-" sql:"-"`
+	HasDegree10 *Branch     `json:"-" sql:"-"`
+	List        *Collection `json:"-" sql:"-"`
 
 	// Persister specific fields
 	ID            int `json:"-"`
 	HasAttendedID int `json:"-" pg:", fk:HasAttended"`
-	HasDegree10ID int `json:"-" pg:", fk:HasDegree10"`
+	HasDegree10ID int `json:"-" pg:", fk:HasDegree10" sql:"has_degree10_id"`
 	ListID        int `json:"-" pg:", fk:List"`
 }
 

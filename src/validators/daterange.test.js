@@ -4,11 +4,17 @@ describe('Date range validator', function () {
   it('should validate date ranges', function () {
     const tests = [
       {
-        state: {
+        data: {
           from: {
+            month: '1',
+            day: '1',
+            year: '2010',
             date: new Date('1/1/2010')
           },
           to: {
+            month: '1',
+            day: '1',
+            year: '2012',
             date: new Date('1/1/2012')
           },
           present: false
@@ -16,35 +22,43 @@ describe('Date range validator', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           from: {
+            month: '1',
+            day: '1',
+            year: '2010',
             date: new Date('1/1/2010')
           },
+          to: {},
+          present: false
+        },
+        expected: false
+      },
+      {
+        data: {
+          from: {},
           to: {
-            date: null
+            month: '1',
+            day: '1',
+            year: '2010',
+            date: new Date('1/1/2010')
           },
           present: false
         },
         expected: false
       },
       {
-        state: {
+        data: {
           from: {
-            date: null
-          },
-          to: {
-            date: new Date('1/1/2010')
-          },
-          present: false
-        },
-        expected: false
-      },
-      {
-        state: {
-          from: {
+            month: '1',
+            day: '1',
+            year: '2012',
             date: new Date('1/1/2012')
           },
           to: {
+            month: '1',
+            day: '1',
+            year: '2010',
             date: new Date('1/1/2010')
           },
           present: false
@@ -54,7 +68,7 @@ describe('Date range validator', function () {
     ]
 
     tests.forEach(test => {
-      expect(new DateRangeValidator(test.state, null).isValid()).toBe(test.expected)
+      expect(new DateRangeValidator(test.data).isValid()).toBe(test.expected)
     })
   })
 })

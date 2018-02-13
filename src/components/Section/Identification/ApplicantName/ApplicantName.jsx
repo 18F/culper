@@ -56,8 +56,8 @@ ApplicantName.defaultProps = {
   subsection: 'name',
   dispatch: () => {},
   required: false,
-  validator: (state, props = {}) => {
-    return validate(schema('identification.name', props))
+  validator: (data) => {
+    return validate(schema('identification.name', data))
   }
 }
 

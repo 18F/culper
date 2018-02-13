@@ -324,9 +324,15 @@ describe('Helpers for validators', function () {
       {
         Dates: {
           from: {
+            month: '1',
+            day: '1',
+            year: '2010',
             date: new Date('1/1/2010')
           },
           to: {
+            month: '1',
+            day: '1',
+            year: '2016',
             date: new Date('1/1/2016')
           },
           present: false
@@ -336,9 +342,15 @@ describe('Helpers for validators', function () {
       {
         Dates: {
           from: {
+            month: '1',
+            day: '1',
+            year: '2000',
             date: new Date('1/1/2000')
           },
           to: {
+            month: '1',
+            day: '1',
+            year: '2001',
             date: new Date('1/1/2001')
           },
           present: false

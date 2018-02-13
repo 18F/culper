@@ -6,13 +6,13 @@ describe('Foreign activities support component validation', function () {
   it('validate foreign activities support name', () => {
     const tests = [
       {
-        state: {
+        data: {
           Name: {}
         },
         expected: false
       },
       {
-        state: {
+        data: {
           Name: {
             first: 'Foo',
             firstInitialOnly: false,
@@ -34,13 +34,13 @@ describe('Foreign activities support component validation', function () {
   it('validate foreign activities support address', () => {
     const tests = [
       {
-        state: {
+        data: {
           Address: {}
         },
         expected: false
       },
       {
-        state: {
+        data: {
           Address: {
             street: '1234 Some Rd',
             city: 'Munich',
@@ -58,13 +58,13 @@ describe('Foreign activities support component validation', function () {
   it('validate foreign activities support relationship', () => {
     const tests = [
       {
-        state: {
+        data: {
           Relationship: {}
         },
         expected: false
       },
       {
-        state: {
+        data: {
           Relationship: {
             value: 'this is the relationship'
           }
@@ -79,13 +79,13 @@ describe('Foreign activities support component validation', function () {
   it('validate foreign activities support amount', () => {
     const tests = [
       {
-        state: {
+        data: {
           Amount: {}
         },
         expected: false
       },
       {
-        state: {
+        data: {
           Amount: {
             value: '1000'
           }
@@ -100,13 +100,13 @@ describe('Foreign activities support component validation', function () {
   it('validate foreign activities support frequency', () => {
     const tests = [
       {
-        state: {
+        data: {
           Frequency: {}
         },
         expected: false
       },
       {
-        state: {
+        data: {
           Frequency: {
             value: 'Daily'
           }
@@ -121,17 +121,17 @@ describe('Foreign activities support component validation', function () {
   it('validate foreign activities support citizenship', () => {
     const tests = [
       {
-        state: {},
+        data: {},
         expected: false
       },
       {
-        state: {
+        data: {
           Citizenship: {}
         },
         expected: false
       },
       {
-        state: {
+        data: {
           Citizenship: {
             value: ['United States']
           }
@@ -139,7 +139,7 @@ describe('Foreign activities support component validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           Citizenship: {
             value: ['United States', 'Germany']
           }
@@ -154,17 +154,17 @@ describe('Foreign activities support component validation', function () {
   it('validate foreign activities support', () => {
     const tests = [
       {
-        state: {},
+        data: {},
         expected: false
       },
       {
-        state: {
+        data: {
           HasForeignSupport: { value: 'No' }
         },
         expected: true
       },
       {
-        state: {
+        data: {
           HasForeignSupport: { value: 'Yes' },
           List: {
             branch: { value: '' },
@@ -174,7 +174,7 @@ describe('Foreign activities support component validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           HasForeignSupport: { value: 'Yes' },
           List: {
             branch: { value: 'No' },

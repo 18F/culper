@@ -29,12 +29,12 @@ const hairColors = [
 ]
 
 export default class PhysicalValidator {
-  constructor (state = {}) {
-    this.height = state.Height
-    this.weight = (state.Weight || {}).value
-    this.hairColor = (state.HairColor || {}).value
-    this.eyeColor = (state.EyeColor || {}).value
-    this.sex = (state.Sex || {}).value
+  constructor (data = {}) {
+    this.height = data.Height
+    this.weight = (data.Weight || {}).value
+    this.hairColor = (data.HairColor || {}).value
+    this.eyeColor = (data.EyeColor || {}).value
+    this.sex = (data.Sex || {}).value
   }
 
   /**

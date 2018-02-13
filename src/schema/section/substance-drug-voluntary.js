@@ -16,7 +16,7 @@ export const substanceDrugVoluntary = (data = {}) => {
     }
   })
   return {
-    Involved: form.branch(data.Involved),
+    TreatmentVoluntary: form.branch(data.TreatmentVoluntary),
     List: form.collection(items, (data.List || {}).branch)
   }
 }

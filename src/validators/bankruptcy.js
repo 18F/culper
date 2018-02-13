@@ -108,7 +108,7 @@ export class BankruptcyItemValidator {
   }
 
   validName () {
-    return new NameValidator(this.nameDebt, null).isValid()
+    return new NameValidator(this.nameDebt).isValid()
   }
 
   validDischargeExplanation () {

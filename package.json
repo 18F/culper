@@ -67,15 +67,16 @@
     "jest": "^19.1.0-alpha.eed82034",
     "jsdoc": "^3.5.5",
     "json-loader": "^0.5.7",
+    "prop-types": "^15.6.0",
     "react-addons-test-utils": "^15.6.0",
     "react-autosuggest": "^9.3.2",
     "react-markdown": "^2.4.4",
     "react-test-renderer": "^15.6.1",
     "react-tokeninput": "^2.4.0",
     "smoothscroll-polyfill": "^0.3.6",
+    "uswds": "^1.4.0",
     "webpack": "^3.6.0",
-    "webpack-stream": "^4.0.0",
-    "uswds": "^1.4.0"
+    "webpack-stream": "^4.0.0"
   },
   "jest": {
     "coverageDirectory": "./coverage/",

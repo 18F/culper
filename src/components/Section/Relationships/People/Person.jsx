@@ -128,7 +128,6 @@ export default class Person extends React.Component {
           <DateRange name="Dates"
                      className="known-dates"
                      {...this.props.Dates}
-                     applicantBirthdate={this.props.applicantBirthdate}
                      onUpdate={this.updateDates}
                      onError={this.props.onError}
                      required={this.props.required}
@@ -311,7 +310,6 @@ Person.defaultProps = {
   Relationship: { values: [] },
   RankNotApplicable: { applicable: true },
   EmailNotApplicable: { applicable: true },
-  applicantBirthdate: {},
   addressBooks: {},
   addressBook: 'Reference',
   dispatch: (action) => {},

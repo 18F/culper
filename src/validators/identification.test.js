@@ -4,7 +4,7 @@ describe('Identification validations', function () {
   it('should set completion status', function () {
     const tests = [
       {
-        props: {
+        data: {
           Completed: {
             name: {
               status: true
@@ -37,7 +37,7 @@ describe('Identification validations', function () {
         expected: 'complete'
       },
       {
-        props: {
+        data: {
           Completed: {
             name: {
               status: false
@@ -52,7 +52,7 @@ describe('Identification validations', function () {
         expected: 'incomplete'
       },
       {
-        props: {
+        data: {
           Completed: {}
         },
         status: {
@@ -63,7 +63,7 @@ describe('Identification validations', function () {
     ]
 
     tests.forEach(test => {
-      expect(new IdentificationValidator(null, test.props).completionStatus(test.status)).toBe(test.expected)
+      expect(new IdentificationValidator(test.data).completionStatus(test.status)).toBe(test.expected)
     })
   })
 })

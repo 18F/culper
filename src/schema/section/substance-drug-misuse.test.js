@@ -4,7 +4,7 @@ import { substanceDrugMisuse } from './substance-drug-misuse'
 describe('Schema for financial taxes', () => {
   it('can wrap in schema', () => {
     const data = {
-      UsedDrugs: { value: 'Yes' },
+      MisusedDrugs: { value: 'Yes' },
       List: {
         branch: { value: 'No' },
         items: [{

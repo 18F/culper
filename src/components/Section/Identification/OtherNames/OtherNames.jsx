@@ -90,7 +90,6 @@ export default class OtherNames extends SubsectionElement {
             <OtherNameItem name="Item"
                            required={this.props.required}
                            scrollIntoView={this.props.scrollIntoView}
-                           applicantBirthdate={this.props.applicantBirthdate}
                            bind={true}
                            />
           </Accordion>
@@ -107,10 +106,9 @@ OtherNames.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'identification',
   subsection: 'othernames',
-  applicantBirthdate: {},
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('identification.othernames', props))
+  validator: (data) => {
+    return validate(schema('identification.othernames', data))
   },
   defaultState: true,
   required: false

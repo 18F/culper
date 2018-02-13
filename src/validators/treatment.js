@@ -2,10 +2,10 @@ import LocationValidator from './location'
 import { validGenericTextfield, validPhoneNumber } from './helpers'
 
 export default class TreatmentValidator {
-  constructor (state = {}, props = {}) {
-    this.name = state.Name
-    this.phone = state.Phone
-    this.address = state.Address
+  constructor (data = {}) {
+    this.name = data.Name
+    this.phone = data.Phone
+    this.address = data.Address
   }
 
   isValid () {
