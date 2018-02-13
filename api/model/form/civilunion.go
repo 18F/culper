@@ -39,7 +39,7 @@ type CivilUnion struct {
 	ForeignBornDocument           *ForeignBornDocument `json:"-"`
 	Name                          *Name                `json:"-"`
 	OtherNames                    *Collection          `json:"-"`
-	SSN                           *SSN                 `json:"-"`
+	SSN                           *SSN                 `json:"-" sql:"-"`
 	Separated                     *Branch              `json:"-"`
 	Telephone                     *Telephone           `json:"-"`
 
