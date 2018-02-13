@@ -190,7 +190,7 @@ export const citizenship = {
         note: ''
       },
       certificatecourtaddress: {
-        title: 'Try looking up the court name, this could help you find the address.',
+        title: 'Try looking up the court name, this could help you find the address',
         message: 'If you can only find a phone number try calling and asking for the address.',
         note: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
       },
