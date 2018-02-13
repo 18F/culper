@@ -100,7 +100,7 @@ export const military = {
     },
     help: {
       served: {
-        title: 'Need help with this question?',
+        title: 'Any U.S. Military branch',
         message: 'If you have ever served in the Air Force, Air National Guard, Army, Army National Guard, Coast Guard, Marine Corps, or Navy answer "Yes".',
         note: ''
       },
@@ -120,13 +120,13 @@ export const military = {
         note: ''
       },
       number: {
-        title: 'Need help with your service number?',
+        title: 'Service number or SSN',
         message: 'Depending on the time of your service you may have been assigned a service number. If not then use your social security number.',
         note: ''
       },
       dates: {
-        title: 'Need help with your dates of service?',
-        message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+        title: 'Estimate the date if unsure',
+          message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
         note: ''
       },
       discharged: {
@@ -146,7 +146,7 @@ export const military = {
           note: ''
         },
         date: {
-          title: 'Need help with the date of discharge?',
+          title: 'Estimate the date if unsure',
           message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
           note: ''
         }
@@ -186,8 +186,8 @@ export const military = {
         note: ''
       },
       date: {
-        title: 'Need help with this date?',
-        message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+        title: 'Estimate the date if unsure',
+          message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
         note: ''
       },
       offenses: {
@@ -278,8 +278,8 @@ export const military = {
         note: ''
       },
       dates: {
-        title: 'Need help with the period of service?',
-        message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
+        title: 'Estimate the date if unsure',
+          message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
         note: ''
       },
       country: {
@@ -308,23 +308,23 @@ export const military = {
         note: ''
       },
       maintainscontact: {
-        title: 'Need help with contacts with current or former associates?',
+        title: 'Still in contact?',
         message: 'If you are still in contact with any current or former foreign associates answer "Yes" and provide their contact information below.',
         note: ''
       },
       contact: {
         dates: {
-          title: 'Need help with this date range?',
-          message: 'Tell us the full time range you were in contact with this person.',
-          note: 'Note: If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.'
+          title: 'Tell us the full time range you were in contact with this person',
+          message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
+          note: ''
         },
         address: {
-          title: 'Need help with this addresse?',
-          message: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
+          title: 'Acronyms:',
+          message: 'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
           note: ''
         },
         frequency: {
-          title: 'Need help with this question?',
+          title: 'How often?',
           message: 'Tell us how often you were in contact with this person.',
           note: ''
         }

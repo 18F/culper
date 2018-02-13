@@ -74,19 +74,19 @@ export const reference = {
       note: ''
     },
     email: {
-      title: 'Please use an active email address',
-      message: '',
+      title: 'Please use an active email',
+      message: 'Make sure this person can be reached at this email address.',
       note: ''
     },
     phone: {
       title: 'Please use an active phone number',
-      message: '',
+      message: 'Make sure this person can be reached at this number.',
       note: ''
     },
     address: {
-      title: 'Need help with the address?',
-      message: 'Acronyms:',
-      note: 'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
+      title: 'Acronyms:',
+      message: 'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
+      note: ''
     }
   }
 }
