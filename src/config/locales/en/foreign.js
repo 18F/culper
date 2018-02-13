@@ -228,7 +228,7 @@ export const foreign = {
       },
       help: {
         indirectControl: {
-          title: 'Need help with the term "Indirect control"?',
+          title: '"Indirect control" defined:',
           message: 'Indirect control means there *are* intermediary or intervening factors between the foreign financial interest and the owner/controller.',
           note: 'Example: You own a bakery in a foreign country and have an employee directly control aspects of the business such as pricing, baking, etc.'
         }
@@ -311,7 +311,7 @@ export const foreign = {
             note: ''
           },
           relationship: {
-            title: 'Need help with this relationship question?',
+            title: 'How do you know this person',
             message: 'Let us know how you know this person and give us details of your relationship with them.',
             note: ''
           }
