@@ -16,7 +16,7 @@ describe('The foreign national component', () => {
   it('display explanation if we have methods of "other"', () => {
     const expected = {
       name: 'foreign-national',
-      Methods: { value: ['Other'] }
+      Methods: { values: ['Other'] }
     }
     const component = mount(<ForeignNational {...expected} />)
     expect(component.find('.methods-explanation').length).toBe(1)
@@ -34,7 +34,7 @@ describe('The foreign national component', () => {
   it('display explanation if we have relation of "other"', () => {
     const expected = {
       name: 'foreign-national',
-      Relationship: { value: ['Other'] }
+      Relationship: { values: ['Other'] }
     }
     const component = mount(<ForeignNational {...expected} />)
     expect(component.find('.relationship-explanation').length).toBe(1)
@@ -45,7 +45,7 @@ describe('The foreign national component', () => {
   it('display explanation if we have relation of "obligation"', () => {
     const expected = {
       name: 'foreign-national',
-      Relationship: { value: ['Obligation'] }
+      Relationship: { values: ['Obligation'] }
     }
     const component = mount(<ForeignNational {...expected} />)
     expect(component.find('.relationship-explanation').length).toBe(1)
@@ -65,9 +65,9 @@ describe('The foreign national component', () => {
     const expected = {
       name: 'foreign-national',
       NameNotApplicable: { applicable: false },
-      Methods: { value: ['Other'] },
+      Methods: { values: ['Other'] },
       Frequency: { value: 'Other' },
-      Relationship: { value: ['Other'] },
+      Relationship: { values: ['Other'] },
       Aliases: {
         items: [{ Item: { Has: { value: 'No' } } }]
       },
