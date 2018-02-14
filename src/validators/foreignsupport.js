@@ -3,9 +3,9 @@ import LocationValidator from './location'
 import { validAccordion, validGenericTextfield } from './helpers'
 
 export default class ForeignActivitiesSupportValidator {
-  constructor (state = {}, props = {}) {
-    this.hasForeignSupport = (state.HasForeignSupport || {}).value
-    this.list = state.List || {}
+  constructor (data = {}) {
+    this.hasForeignSupport = (data.HasForeignSupport || {}).value
+    this.list = data.List || {}
   }
 
   validList () {
@@ -24,17 +24,17 @@ export default class ForeignActivitiesSupportValidator {
 }
 
 export class SupportValidator {
-  constructor (state = {}, props = {}) {
-    this.name = state.Name
-    this.address = state.Address
-    this.relationship = state.Relationship
-    this.amount = state.Amount
-    this.frequency = state.Frequency
-    this.citizenship = state.Citizenship
+  constructor (data = {}) {
+    this.name = data.Name
+    this.address = data.Address
+    this.relationship = data.Relationship
+    this.amount = data.Amount
+    this.frequency = data.Frequency
+    this.citizenship = data.Citizenship
   }
 
   validName () {
-    return !!this.name && new NameValidator(this.name, null).isValid()
+    return !!this.name && new NameValidator(this.name).isValid()
   }
 
   validAddress () {

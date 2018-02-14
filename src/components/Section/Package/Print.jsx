@@ -16,7 +16,6 @@ import { SubstanceUseSections } from '../SubstanceUse'
 import { LegalSections } from '../Legal'
 import { PsychologicalSections } from '../Psychological'
 import AuthenticatedView from '../../../views/AuthenticatedView'
-import { extractApplicantBirthdate } from '../extractors'
 
 class Print extends SectionElement {
   constructor (props) {
@@ -225,7 +224,6 @@ function mapStateToProps (state) {
   const substanceUse = app.SubstanceUse || {}
   const legal = app.Legal || {}
   const psychological = app.Psychological || {}
-  const applicantBirthdate = extractApplicantBirthdate(app)
   const settings = app.Settings || { locked: false, hash: '' }
 
   let errors = app.Errors || {}
@@ -248,7 +246,6 @@ function mapStateToProps (state) {
     Legal: legal,
     Psychological: psychological,
     Settings: settings,
-    applicantBirthdate: applicantBirthdate,
     Errors: errors.releases || [],
     Completed: completed.releases || []
   }

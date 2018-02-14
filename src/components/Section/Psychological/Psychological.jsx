@@ -12,7 +12,6 @@ import Hospitalizations from './Hospitalizations/Hospitalizations'
 import Diagnoses from './Diagnoses/Diagnoses'
 import ExistingConditions from './ExistingConditions/ExistingConditions'
 import { showQuestion21E } from '../../../validators/psychological'
-import { extractApplicantBirthdate } from '../extractors'
 
 class Psychological extends SectionElement {
   diagnosesNextLabel () {
@@ -57,7 +56,6 @@ class Psychological extends SectionElement {
                        nextLabel={ i18n.t('psychological.destination.consultation') }>
             <Competence name="Competence"
                         {...this.props.Competence}
-                        applicantBirthdate={this.props.applicantBirthdate}
                         addressBooks={this.props.AddressBooks}
                         dispatch={this.props.dispatch}
                         onError={this.handleError}
@@ -73,7 +71,6 @@ class Psychological extends SectionElement {
                        nextLabel={ i18n.t('psychological.destination.hospitalization') }>
             <Consultation name="Consultations"
                           {...this.props.Consultations}
-                          applicantBirthdate={this.props.applicantBirthdate}
                           addressBooks={this.props.AddressBooks}
                           dispatch={this.props.dispatch}
                           onError={this.handleError}
@@ -88,7 +85,6 @@ class Psychological extends SectionElement {
                        nextLabel={ i18n.t('psychological.destination.diagnoses') }>
             <Hospitalizations name="Hospitalizations"
                               {...this.props.Hospitalizations}
-                              applicantBirthdate={this.props.applicantBirthdate}
                               dispatch={this.props.dispatch}
                               onError={this.handleError}
                               onUpdate={this.handleUpdate.bind(this, 'Hospitalizations')}
@@ -102,7 +98,6 @@ class Psychological extends SectionElement {
                        nextLabel={this.diagnosesNextLabel()}>
             <Diagnoses name="Diagnoses"
                        {...this.props.Diagnoses}
-                       applicantBirthdate={this.props.applicantBirthdate}
                        addressBooks={this.props.AddressBooks}
                        dispatch={this.props.dispatch}
                        onError={this.handleError}
@@ -117,7 +112,6 @@ class Psychological extends SectionElement {
                        nextLabel={ i18n.t('psychological.destination.review') }>
             <ExistingConditions name="ExistingConditions"
                                 {...this.props.ExistingConditions}
-                                applicantBirthdate={this.props.applicantBirthdate}
                                 dispatch={this.props.dispatch}
                                 onError={this.handleError}
                                 onUpdate={this.handleUpdate.bind(this, 'ExistingConditions')}
@@ -135,7 +129,6 @@ class Psychological extends SectionElement {
 
             <Competence name="Competence"
                         {...this.props.Competence}
-                        applicantBirthdate={this.props.applicantBirthdate}
                         defaultState={false}
                         dispatch={this.props.dispatch}
                         onError={this.handleError}
@@ -146,7 +139,6 @@ class Psychological extends SectionElement {
             <hr className="section-divider" />
             <Consultation name="Consultations"
                           {...this.props.Consultations}
-                          applicantBirthdate={this.props.applicantBirthdate}
                           defaultState={false}
                           dispatch={this.props.dispatch}
                           onError={this.handleError}
@@ -157,7 +149,6 @@ class Psychological extends SectionElement {
             <hr className="section-divider" />
             <Hospitalizations name="Hospitalizations"
                               {...this.props.Hospitalizations}
-                              applicantBirthdate={this.props.applicantBirthdate}
                               defaultState={false}
                               dispatch={this.props.dispatch}
                               onError={this.handleError}
@@ -168,7 +159,6 @@ class Psychological extends SectionElement {
             <hr className="section-divider" />
             <Diagnoses name="Diagnoses"
                        {...this.props.Diagnoses}
-                       applicantBirthdate={this.props.applicantBirthdate}
                        defaultState={false}
                        dispatch={this.props.dispatch}
                        onError={this.handleError}
@@ -182,7 +172,6 @@ class Psychological extends SectionElement {
                 <hr className="section-divider" />
                 <ExistingConditions name="ExistingConditions"
                                     {...this.props.ExistingConditions}
-                                    applicantBirthdate={this.props.applicantBirthdate}
                                     defaultState={false}
                                     dispatch={this.props.dispatch}
                                     onError={this.handleError}
@@ -228,7 +217,6 @@ function mapStateToProps (state) {
     Errors: errors.financial || [],
     Completed: completed.psychological || [],
     ShowExistingConditions: showQuestion21E(psychological),
-    applicantBirthdate: extractApplicantBirthdate(app),
     AddressBooks: addressBooks
   }
 }
@@ -246,7 +234,6 @@ export class PsychologicalSections extends React.Component {
       <div>
         <Competence name="Competence"
                     {...this.props.Competence}
-                    applicantBirthdate={this.props.applicantBirthdate}
                     defaultState={false}
                     dispatch={this.props.dispatch}
                     onError={this.props.onError}
@@ -257,7 +244,6 @@ export class PsychologicalSections extends React.Component {
         <hr className="section-divider" />
         <Consultation name="Consultations"
                       {...this.props.Consultations}
-                      applicantBirthdate={this.props.applicantBirthdate}
                       defaultState={false}
                       dispatch={this.props.dispatch}
                       onError={this.props.onError}
@@ -268,7 +254,6 @@ export class PsychologicalSections extends React.Component {
         <hr className="section-divider" />
         <Hospitalizations name="Hospitalizations"
                           {...this.props.Hospitalizations}
-                          applicantBirthdate={this.props.applicantBirthdate}
                           defaultState={false}
                           dispatch={this.props.dispatch}
                           onError={this.props.onError}
@@ -279,7 +264,6 @@ export class PsychologicalSections extends React.Component {
         <hr className="section-divider" />
         <Diagnoses name="Diagnoses"
                    {...this.props.Diagnoses}
-                   applicantBirthdate={this.props.applicantBirthdate}
                    defaultState={false}
                    dispatch={this.props.dispatch}
                    onError={this.props.onError}
@@ -292,7 +276,6 @@ export class PsychologicalSections extends React.Component {
             <hr className="section-divider" />
             <ExistingConditions name="ExistingConditions"
                                 {...this.props.ExistingConditions}
-                                applicantBirthdate={this.props.applicantBirthdate}
                                 defaultState={false}
                                 dispatch={this.props.dispatch}
                                 onError={this.props.onError}

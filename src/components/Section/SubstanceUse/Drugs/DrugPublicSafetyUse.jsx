@@ -56,7 +56,6 @@ export default class DrugPublicSafetyUse extends ValidationElement {
           <DateRange name="InvolvementDates"
                      className="involvement-dates"
                      {...this.props.InvolvementDates}
-                     applicantBirthdate={this.props.applicantBirthdate}
                      onUpdate={this.updateInvolvementDates}
                      onError={this.props.onError}
                      required={this.props.required}
@@ -79,6 +78,5 @@ export default class DrugPublicSafetyUse extends ValidationElement {
 }
 
 DrugPublicSafetyUse.defaultProps = {
-  applicantBirthdate: {},
   onError: (value, arr) => { return arr }
 }

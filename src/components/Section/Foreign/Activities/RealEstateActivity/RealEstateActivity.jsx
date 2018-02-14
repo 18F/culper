@@ -88,7 +88,6 @@ export default class RealEstateActivity extends SubsectionElement {
                      scrollIntoView={this.props.scrollIntoView}>
             <RealEstateInterest name="Item"
                                 bind={true}
-                                applicantBirthdate={this.props.applicantBirthdate}
                                 required={this.props.required}
                                 scrollIntoView={this.props.scrollIntoView}
                                 />
@@ -108,10 +107,9 @@ RealEstateActivity.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'activities/realestate',
-  applicantBirthdate: {},
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('foreign.activities.realestate', props))
+  validator: (data) => {
+    return validate(schema('foreign.activities.realestate', data))
   },
   scrollToBottom: ''
 }

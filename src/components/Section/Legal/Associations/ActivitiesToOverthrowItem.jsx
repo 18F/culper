@@ -50,7 +50,6 @@ export default class ActivitiesToOverthrowItem extends ValidationElement {
                scrollIntoView={this.props.scrollIntoView}>
           <DateRange name="Dates"
                      {...this.props.Dates}
-                     applicantBirthdate={this.props.applicantBirthdate}
                      onUpdate={this.updateDates}
                      onError={this.props.onError}
                      className="legal-associations-activities-dates"
@@ -63,7 +62,6 @@ export default class ActivitiesToOverthrowItem extends ValidationElement {
 }
 
 ActivitiesToOverthrowItem.defaultProps = {
-  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

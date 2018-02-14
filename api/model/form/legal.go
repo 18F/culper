@@ -2856,7 +2856,7 @@ func (entity *LegalAssociationsTerroristOrganization) Marshal() Payload {
 	if entity.List != nil {
 		entity.PayloadList = entity.List.Marshal()
 	}
-	return MarshalPayloadEntity("legal.associations.terrorism-organization", entity)
+	return MarshalPayloadEntity("legal.associations.terrorist-organization", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.

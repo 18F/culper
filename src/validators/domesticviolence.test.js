@@ -5,7 +5,7 @@ describe('Domestic Violence validation', function () {
   it('can validate DomesticViolenceItem', () => {
     const tests = [
       {
-        state: {
+        data: {
           CourtName: {
             value: '4th Circuit Court'
           },
@@ -30,14 +30,14 @@ describe('Domestic Violence validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new DomesticViolenceItem(test.state, null).isValid()).toBe(test.expected)
+      expect(new DomesticViolenceItem(test.data).isValid()).toBe(test.expected)
     })
   })
 
   it('can validate DomesticViolence', () => {
     const tests = [
       {
-        state: {
+        data: {
           List: {
             items: [
               {
@@ -71,11 +71,11 @@ describe('Domestic Violence validation', function () {
         expected: true
       },
       {
-        state: {},
+        data: {},
         expected: false
       },
       {
-        state: {
+        data: {
           List: {
             items: []
           }
@@ -83,7 +83,7 @@ describe('Domestic Violence validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           List: {
             items: [{ Item: { Has: { value: 'No' } } }]
           }
@@ -91,7 +91,7 @@ describe('Domestic Violence validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           List: {
             items: [{ Item: { Has: { value: 'Yes' } } }]
           }
@@ -101,7 +101,7 @@ describe('Domestic Violence validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new DomesticViolence(test.state, null).isValid()).toBe(test.expected)
+      expect(new DomesticViolence(test.data).isValid()).toBe(test.expected)
     })
   })
 })

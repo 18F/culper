@@ -5,19 +5,19 @@ describe('CivilUnion validation', function () {
   it('validates separated', () => {
     const tests = [
       {
-        state: {
+        data: {
           Separated: { value: 'No' }
         },
         expected: true
       },
       {
-        state: {
+        data: {
           Separated: { value: 'Nope' }
         },
         expected: false
       },
       {
-        state: {
+        data: {
           Separated: { value: 'Yes' },
           AddressSeparatedNotApplicable: true,
           DateSeparated: {
@@ -30,7 +30,7 @@ describe('CivilUnion validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           Separated: { value: 'Yes' },
           AddressSeparatedNotApplicable: false,
           AddressSeparated: {
@@ -51,14 +51,14 @@ describe('CivilUnion validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new CivilUnionValidator(test.state, null).validSeparated()).toBe(test.expected)
+      expect(new CivilUnionValidator(test.data).validSeparated()).toBe(test.expected)
     })
   })
 
   it('validates other name', () => {
     const tests = [
       {
-        state: {
+        data: {
           OtherNames: {
             items: []
           }
@@ -66,7 +66,7 @@ describe('CivilUnion validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           OtherNames: {
             items: [
               {
@@ -87,9 +87,15 @@ describe('CivilUnion validation', function () {
                   },
                   DatesUsed: {
                     from: {
+                      month: '1',
+                      day: '1',
+                      year: '2010',
                       date: new Date('1/1/2010')
                     },
                     to: {
+                      month: '1',
+                      day: '1',
+                      year: '2016',
                       date: new Date('1/1/2016')
                     },
                     present: false
@@ -107,7 +113,7 @@ describe('CivilUnion validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           OtherNames: {
             items: [
               {
@@ -121,7 +127,7 @@ describe('CivilUnion validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           OtherNames: {
             items: [
               {
@@ -136,20 +142,20 @@ describe('CivilUnion validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new CivilUnionValidator(test.state, null).validOtherName()).toBe(test.expected)
+      expect(new CivilUnionValidator(test.data).validOtherName()).toBe(test.expected)
     })
   })
 
   it('validates citizenship', () => {
     const tests = [
       {
-        state: {
+        data: {
           Citizenship: {}
         },
         expected: false
       },
       {
-        state: {
+        data: {
           Citizenship: {
             value: []
           }
@@ -157,7 +163,7 @@ describe('CivilUnion validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           Citizenship: {
             value: ['Germany', 'United States']
           }
@@ -166,14 +172,14 @@ describe('CivilUnion validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new CivilUnionValidator(test.state, null).validCitizenship()).toBe(test.expected)
+      expect(new CivilUnionValidator(test.data).validCitizenship()).toBe(test.expected)
     })
   })
 
   it('validates address', () => {
     const tests = [
       {
-        state: {
+        data: {
           Address: {
             country: { value: 'United States' },
             street: '1234 Some Rd',
@@ -186,7 +192,7 @@ describe('CivilUnion validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           Address: {
             country: { value: 'United States' },
             street: '',
@@ -199,21 +205,21 @@ describe('CivilUnion validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           Address: {}
         },
         expected: true
       }
     ]
     tests.forEach(test => {
-      expect(new CivilUnionValidator(test.state, null).validAddress()).toBe(test.expected)
+      expect(new CivilUnionValidator(test.data).validAddress()).toBe(test.expected)
     })
   })
 
   it('validates civil union', () => {
     const tests = [
       {
-        state: {
+        data: {
           Name: {
             first: 'Foo',
             firstInitialOnly: false,
@@ -282,9 +288,15 @@ describe('CivilUnion validation', function () {
           },
           DatesUsed: {
             from: {
+              month: '1',
+              day: '1',
+              year: '2010',
               date: new Date('1/1/2010')
             },
             to: {
+              month: '1',
+              day: '1',
+              year: '2016',
               date: new Date('1/1/2016')
             },
             present: false
@@ -304,14 +316,14 @@ describe('CivilUnion validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new CivilUnionValidator(test.state, null).isValid()).toBe(test.expected)
+      expect(new CivilUnionValidator(test.data).isValid()).toBe(test.expected)
     })
   })
 
   it('validates foreign born documents', () => {
     const tests = [
       {
-        state: {
+        data: {
           BirthPlace: {
             domestic: 'No',
             country: { value: 'Germany' },
@@ -329,14 +341,14 @@ describe('CivilUnion validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           BirthPlace: {}
         },
         expected: true
       }
     ]
     tests.forEach(test => {
-      expect(new CivilUnionValidator(test.state, null).validForeignBornDocument()).toBe(test.expected)
+      expect(new CivilUnionValidator(test.data).validForeignBornDocument()).toBe(test.expected)
     })
   })
 })

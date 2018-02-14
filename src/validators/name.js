@@ -1,16 +1,16 @@
 const suffixOptions = ['', 'Jr', 'Sr', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'Other']
 
 export default class NameValidator {
-  constructor (state = {}, props = {}) {
-    this.first = state.first
-    this.firstInitialOnly = state.firstInitialOnly
-    this.last = state.last
-    this.lastInitialOnly = state.lastInitialOnly
-    this.middleInitialOnly = state.middleInitialOnly
-    this.noMiddleName = state.noMiddleName
-    this.middle = state.middle
-    this.suffix = state.suffix
-    this.suffixOther = state.suffixOther
+  constructor (data = {}) {
+    this.first = data.first
+    this.firstInitialOnly = data.firstInitialOnly
+    this.last = data.last
+    this.lastInitialOnly = data.lastInitialOnly
+    this.middleInitialOnly = data.middleInitialOnly
+    this.noMiddleName = data.noMiddleName
+    this.middle = data.middle
+    this.suffix = data.suffix
+    this.suffixOther = data.suffixOther
   }
 
   /**

@@ -68,7 +68,6 @@ export default class PrescriptionUse extends ValidationElement {
           <DateRange name="InvolvementDates"
                      className="involvement-dates"
                      {...this.props.InvolvementDates}
-                     applicantBirthdate={this.props.applicantBirthdate}
                      onUpdate={this.updateInvolvementDates}
                      onError={this.props.onError}
                      required={this.props.required}
@@ -115,6 +114,5 @@ export default class PrescriptionUse extends ValidationElement {
 PrescriptionUse.defaultProps = {
   UseWhileEmployed: {},
   UseWhileClearance: {},
-  applicantBirthdate: {},
   onError: (value, arr) => { return arr }
 }

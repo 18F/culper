@@ -101,8 +101,8 @@ Support.defaultProps = {
   subsection: 'activities/support',
   addressBooks: {},
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('foreign.activities.support', props))
+  validator: (data) => {
+    return validate(schema('foreign.activities.support', data))
   },
   defaultState: true
 }

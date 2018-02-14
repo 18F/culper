@@ -84,7 +84,6 @@ export default class VoluntaryTreatments extends SubsectionElement {
             <VoluntaryTreatment name="Item"
                                 bind={true}
                                 addressBooks={this.props.addressBooks}
-                                applicantBirthdate={this.props.applicantBirthdate}
                                 dispatch={this.props.dispatch}
                                 required={this.props.required}
                                 scrollIntoView={this.props.scrollIntoView} />
@@ -102,10 +101,9 @@ VoluntaryTreatments.defaultProps = {
   section: 'substance',
   subsection: 'drugs/voluntary',
   addressBooks: {},
-  applicantBirthdate: {},
   dispatch: (action) => {},
-  validator: (state, props) => {
-    return validate(schema('substance.drug.voluntary', props))
+  validator: (data) => {
+    return validate(schema('substance.drugs.voluntary', data))
   },
   scrollToBottom: ''
 }

@@ -53,7 +53,7 @@ export class PassportItemValidator {
   }
 
   validName () {
-    return !!this.name && new NameValidator(this.name, null).isValid()
+    return !!this.name && new NameValidator(this.name).isValid()
   }
 
   validNumber () {

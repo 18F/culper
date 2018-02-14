@@ -78,7 +78,7 @@ TerrorismAssociation.defaultProps = {
   section: 'legal',
   subsection: 'associations/terrorism-association',
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('legal.associations.terrorism-association', props))
+  validator: (data) => {
+    return validate(schema('legal.associations.terrorism-association', data))
   }
 }

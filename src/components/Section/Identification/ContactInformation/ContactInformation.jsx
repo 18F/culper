@@ -215,8 +215,8 @@ ContactInformation.defaultProps = {
   section: 'identification',
   subsection: 'contacts',
   dispatch: () => {},
-  validator: (state, props) => {
-    return new IdentificationContactInformationValidator(props).isValid()
+  validator: (data) => {
+    return new IdentificationContactInformationValidator(data).isValid()
   },
   defaultState: true
 }

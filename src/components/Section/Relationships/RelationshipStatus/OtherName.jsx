@@ -72,7 +72,6 @@ export default class OtherName extends ValidationElement {
                scrollIntoView={this.props.scrollIntoView}>
           <DateRange name="DatesUsed"
                      {...this.props.DatesUsed}
-                     applicantBirthdate={this.props.applicantBirthdate}
                      onUpdate={this.updateDatesUsed}
                      onError={this.props.onError}
                      className="datesused"
@@ -88,7 +87,6 @@ OtherName.defaultProps = {
   OtherName: {},
   MaidenName: {},
   DatesUsed: {},
-  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }
