@@ -278,7 +278,8 @@ export default class EducationItem extends ValidationElement {
                                {...this.props.ReferenceNameNotApplicable}
                                label={i18n.t('reference.label.idk')}
                                or={i18n.m('reference.para.or')}
-                               onUpdate={this.updateReferenceNameNotApplicable}>
+                               onUpdate={this.updateReferenceNameNotApplicable}
+                               onError={this.props.onError}>
                   <Name name="ReferenceName"
                         prefix={'name'}
                         className="reference-name"
@@ -322,7 +323,8 @@ export default class EducationItem extends ValidationElement {
                                  {...this.props.ReferenceEmailNotApplicable}
                                  label={i18n.t('reference.label.idk')}
                                  or={i18n.m('reference.para.or')}
-                                 onUpdate={this.updateReferenceEmailNotApplicable}>
+                                 onUpdate={this.updateReferenceEmailNotApplicable}
+                                 onError={this.props.onError}>
                     <Email name="ReferenceEmail"
                            {...this.props.ReferenceEmail}
                            className="reference-email"
