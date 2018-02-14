@@ -224,7 +224,6 @@ export default class EmploymentItem extends ValidationElement {
 
         <Show when={this.showEmployer()}>
           <Field title={i18n.t(`${prefix}.heading.employer`)}
-                 help={`${prefix}.employer.help`}
                  adjustFor="labels"
                  scrollIntoView={this.props.scrollIntoView}>
             <Text name="Employment"
