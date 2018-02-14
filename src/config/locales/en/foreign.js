@@ -429,9 +429,9 @@ export const foreign = {
           },
           help: {
             countries: {
-              title: 'Need help with co-owner\'s country(ies) of citizenship?',
-              message: 'Tell us all of the citizenships this person has.',
-              note: 'Note: You can provide multiple citizenships in this question.'
+              title: 'List all citizenships this person has',
+              message: 'You can provide multiple citizenships in this question.',
+              note: ''
             },
             relationshipNature: {
               title: 'Need help with the nature of this relationship?',
