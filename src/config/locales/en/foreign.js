@@ -281,7 +281,7 @@ export const foreign = {
             note: ''
           },
           acquired: {
-            title: 'Need help with this date?',
+            title: 'Estimate the date if unsure',
             message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
             note: ''
           },
@@ -397,8 +397,8 @@ export const foreign = {
             note: ''
           },
           acquired: {
-            title: 'Need help with this date?',
-            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            title: 'Estimate the date if unsure',
+          message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
             note: ''
           },
           howAcquired: {
@@ -407,14 +407,14 @@ export const foreign = {
             note: ''
           },
           cost: {
-            title: 'Need help with the cost?',
+            title: 'Estimate the cost if unsure',
             message: 'If you are not sure of the exact amount give us your best guess and check the "Estimated" checkbox.',
             note: ''
           },
           sold: {
-            title: 'Need help with this date?',
-            message: 'If the real estate in question was sold tell us when.',
-            note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
+            title: 'If the real estate in question was sold tell us when',
+            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            note: ''
           }
         },
         coOwner: {
@@ -584,8 +584,8 @@ export const foreign = {
         },
         help: {
           received: {
-            title: 'Need help with this date?',
-            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            title: 'Estimate the date if unsure',
+          message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
             note: ''
           },
           country: {
@@ -636,8 +636,8 @@ export const foreign = {
         },
         help: {
           begin: {
-            title: 'Need help with this date?',
-            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            title: 'Estimate the date if unsure',
+          message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
             note: ''
           },
           frequency: {
@@ -694,13 +694,13 @@ export const foreign = {
         },
         help: {
           began: {
-            title: 'Need help with this date?',
-            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            title: 'Estimate the date if unsure',
+          message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
             note: ''
           },
           end: {
-            title: 'Need help with this date?',
-            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            title: 'Estimate the date if unsure',
+          message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
             note: ''
           },
           frequency: {
@@ -1252,9 +1252,9 @@ export const foreign = {
           note: ''
         },
         date: {
-          title: 'Need help with this date?',
-          message: 'Let us know when this contact happened.',
-          note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
+          title: 'Let us know when this contact happened',
+          message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+          note: ''
         },
         governments: {
           title: 'Need help with the governments associated?',
@@ -1483,7 +1483,7 @@ export const foreign = {
           note: ''
         },
         date: {
-          title: 'Need help with this date?',
+          title: 'Estimate the date if unsure',
           message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
