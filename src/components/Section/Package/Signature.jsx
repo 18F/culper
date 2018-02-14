@@ -58,7 +58,7 @@ export default class Signature extends ValidationElement {
   name (formatted = true) {
     if ((this.props.Name || {}).value) {
       return formatted
-        ? <span class="title-case">{this.props.Name.value}</span>
+        ? <span className="title-case">{this.props.Name.value}</span>
         : this.props.Name.value
     }
 

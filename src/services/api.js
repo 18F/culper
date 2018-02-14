@@ -144,6 +144,14 @@ class Api {
     return this.get(env.EndpointSection(type))
   }
 
+  status () {
+    return this.get(env.EndpointStatus())
+  }
+
+  submit () {
+    return this.post(env.EndpointSubmit())
+  }
+
   form () {
     return this.get(env.EndpointForm())
   }

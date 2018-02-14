@@ -15,6 +15,7 @@ import (
 	logrus_syslog "github.com/sirupsen/logrus/hooks/syslog"
 )
 
+// NewLogger creates a custome logger with environment hooks.
 func NewLogger() *logrus.Logger {
 	log := logrus.New()
 
@@ -33,6 +34,7 @@ func NewLogger() *logrus.Logger {
 	return log
 }
 
+// NewLoggerFromRequest creates a custom logger based on properties found in an HTTP request.
 func NewLoggerFromRequest(r *http.Request) *logrus.Entry {
 	log := NewLogger()
 
@@ -131,6 +133,7 @@ func hookSyslog(log *logrus.Logger) {
 
 // Warning messages
 const (
+	AccountLocked            = "The account is currently locked"
 	AccountUpdateError       = "Not able to update account information"
 	BasicAuthAttemptDenied   = "An attempt for basic authentication was denied"
 	BasicAuthError           = "Failed to decode JSON for basic authentication"
@@ -171,18 +174,26 @@ const (
 	USPSRequestError         = "Error executing USPS geocoding request"
 	USPSUnknownErrorCode     = "USPS known error received"
 	WarnFailedMigration      = "Failed to migrate database"
+	WebserviceMissingURL     = "Missing endpoint URL for web service"
+	WebserviceMissingKey     = "Missing private key for web service"
+	TransmissionError        = "Error transmitting package"
+	TransmissionStorageError = "Failed to store transmission record"
 )
 
 // Informative messages
 const (
-	BasicAuthValid    = "Basic authentication validated"
-	GenerateQRCode    = "Generating multiple factor authentication QR code"
-	MFAValid          = "Multiple factor authentication validated"
-	PurgeAccountData  = "Purging account data"
-	ResetMFA          = "Reset of multiple factor authentication"
-	SamlValid         = "SAML authentication validated"
-	StartingServer    = "Starting server"
-	StartingServerTLS = "Starting server with HTTPS/TLS"
-	ValidatingJWT     = "Validating JSON web token"
-	WebRequest        = "Web server request received"
+	BasicAuthValid       = "Basic authentication validated"
+	GenerateQRCode       = "Generating multiple factor authentication QR code"
+	MFAValid             = "Multiple factor authentication validated"
+	PurgeAccountData     = "Purging account data"
+	ResetMFA             = "Reset of multiple factor authentication"
+	SamlValid            = "SAML authentication validated"
+	StartingServer       = "Starting server"
+	StartingServerTLS    = "Starting server with HTTPS/TLS"
+	ValidatingJWT        = "Validating JSON web token"
+	WebRequest           = "Web server request received"
+	GeneratingPackage    = "Generating package for transmission"
+	TransmissionStarted  = "Transmission began"
+	TransmissionStopped  = "Transmission ended"
+	TransmissionRecorded = "Transmission recorded"
 )

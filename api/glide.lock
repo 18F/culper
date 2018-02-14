@@ -1,5 +1,5 @@
 hash: 385e526a462b58a8d3ab168cab4361e1246691ecd6614ca4c08644abce0ea50e
-updated: 2018-02-09T16:54:51.308096861Z
+updated: 2018-02-14T13:23:43.21369009Z
 imports:
 - name: bitbucket.org/liamstask/goose
   version: 8488cc47d90c8a502b1c41a462a6d9cc8ee0a895
@@ -12,7 +12,7 @@ imports:
 - name: github.com/dgryski/dgoogauth
   version: fd153d5969d30bd701e10f3530228f001213047c
 - name: github.com/go-pg/pg
-  version: e5e42855e818b6662efa83642751e147dd1e1fdb
+  version: eff1632b1caea7c554b174d5551ff2791021810c
   subpackages:
   - internal
   - internal/parser
@@ -71,7 +71,7 @@ imports:
   subpackages:
   - migration
 - name: golang.org/x/crypto
-  version: 5119cf507ed5294cc409c092980c7497ee5d6fd2
+  version: 650f4a345ab4e5b245a3034b110ebc7299e68186
   subpackages:
   - bcrypt
   - blowfish
