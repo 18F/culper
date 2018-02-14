@@ -80,7 +80,7 @@ Education.defaultProps = {
   section: 'history',
   subsection: 'education',
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('history.education', props))
+  validator: (data) => {
+    return validate(schema('history.education', data))
   }
 }

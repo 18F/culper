@@ -47,7 +47,7 @@ SectionComments.defaultProps = {
   section: 'identification',
   subsection: 'comments',
   dispatch: () => {},
-  validator: (state, props) => {
+  validator: (data) => {
     return true
   },
   defaultState: true

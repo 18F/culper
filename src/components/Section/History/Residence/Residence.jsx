@@ -131,7 +131,7 @@ Residence.defaultProps = {
   subsection: 'residence',
   addressBooks: {},
   dispatch: () => {},
-  validator: (state, props) => {
-    return new HistoryResidenceValidator(props).isValid()
+  validator: (data) => {
+    return new HistoryResidenceValidator(data).isValid()
   }
 }
