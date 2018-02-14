@@ -15,7 +15,7 @@ export function getApplicationState () {
 
       if (statusData.Locked) {
         locked = true
-        dispatch(push('/accessdenied'))
+        dispatch(push('/locked'))
       }
     })
     .then(() => {
