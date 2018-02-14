@@ -336,7 +336,7 @@ export default class ForeignNational extends ValidationElement {
           </CheckboxGroup>
         </Field>
 
-        <Show when={((this.props.Methods || {}).value || []).some(x => x === 'Other')}>
+        <Show when={((this.props.Methods || {}).values || []).some(x => x === 'Other')}>
           <Field title={i18n.t('foreign.contacts.heading.explanation')}
                  titleSize="label"
                  scrollIntoView={this.props.scrollIntoView}>
@@ -351,7 +351,7 @@ export default class ForeignNational extends ValidationElement {
         </Show>
 
         <Field title={i18n.t('foreign.contacts.heading.frequency')}
-               className={this.props.Frequency === 'Other' ? 'no-margin-bottom' : ''}
+               className={(this.props.Frequency || {}).value === 'Other' ? 'no-margin-bottom' : ''}
                adjustFor="big-buttons"
                scrollIntoView={this.props.scrollIntoView}>
           <RadioGroup className="frequency"
@@ -419,7 +419,7 @@ export default class ForeignNational extends ValidationElement {
         </Show>
 
         <Field title={i18n.t('foreign.contacts.heading.relationship')}
-               className={((this.props.Relationship || {}).values || []).some(x => x === 'Other') ? 'no-margin-bottom' : ''}
+               className={((this.props.Relationship || {}).values || []).some(x => x === 'Other' || x === 'Obligation') ? 'no-margin-bottom' : ''}
                adjustFor="p"
                scrollIntoView={this.props.scrollIntoView}>
           {i18n.m('foreign.contacts.para.checkall')}
@@ -458,7 +458,7 @@ export default class ForeignNational extends ValidationElement {
           </CheckboxGroup>
         </Field>
 
-        <Show when={((this.props.Relationship || {}).value || []).some(x => x === 'Other' || x === 'Obligation')}>
+        <Show when={((this.props.Relationship || {}).values || []).some(x => x === 'Other' || x === 'Obligation')}>
           <Field title={i18n.t('foreign.contacts.heading.explanation')}
                  titleSize="label"
                  adjustFor="textarea"
