@@ -257,6 +257,7 @@ export default class DateRange extends ValidationElement {
                       className="present"
                       label="Present"
                       value="present"
+                      disabled={this.props.disabled}
                       checked={this.state.present}
                       onUpdate={this.updatePresent}
                       onError={this.handleErrorPresent}
