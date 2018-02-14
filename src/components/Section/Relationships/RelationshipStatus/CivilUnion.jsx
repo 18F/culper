@@ -245,7 +245,7 @@ export default class CivilUnion extends ValidationElement {
 
           <BranchCollection label={i18n.t('relationships.civilUnion.heading.othernames')}
                             className="othername"
-                            appendLabel={i18n.m('relationships.civilUnion.heading.appendOthernames')}
+                            appendLabel={i18n.t('relationships.civilUnion.heading.appendOthernames')}
                             {...this.props.OtherNames}
                             onError={this.props.onError}
                             onUpdate={this.updateOtherNames}
@@ -283,6 +283,8 @@ export default class CivilUnion extends ValidationElement {
                      scrollIntoView={this.props.scrollIntoView}>
                 <DateRange name="DatesUsed"
                            bind={true}
+                           prefix="relative"
+                           minDate={(this.props.Birthdate || {}).date}
                            className="datesused"
                            onError={this.props.onError}
                            required={this.props.required}
