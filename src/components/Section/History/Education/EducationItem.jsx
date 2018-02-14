@@ -9,8 +9,8 @@ import { today, daysAgo } from '../dateranges'
 
 // We need to determine how far back 3 years ago was
 const threeYearsAgo = daysAgo(today, 365 * 3)
-const withinThreeYears = (from, to) => {
-  return (from && from >= threeYearsAgo) || (to && to >= threeYearsAgo)
+const withinThreeYears = (from, to, present) => {
+  return present || (from && from >= threeYearsAgo) || (to && to >= threeYearsAgo)
 }
 
 /**
@@ -60,7 +60,7 @@ export default class EducationItem extends ValidationElement {
     const dates = values || {}
     const from = dates.from
     const to = dates.to
-    const zeroReference = !withinThreeYears(from, to)
+    const zeroReference = !withinThreeYears(from, to, dates.present)
     this.update({
       Dates: values,
       ReferenceName: zeroReference ? {} : this.props.ReferenceName,
@@ -261,7 +261,7 @@ export default class EducationItem extends ValidationElement {
             </RadioGroup>
           </Field>
 
-          <Show when={withinThreeYears(from, to)}>
+          <Show when={withinThreeYears(from, to, dates.present)}>
             <div className="reference">
               <Field title={i18n.t('history.education.heading.reference')}
                      titleSize="h2"
