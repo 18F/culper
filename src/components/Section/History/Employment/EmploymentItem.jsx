@@ -202,7 +202,7 @@ export default class EmploymentItem extends ValidationElement {
     const sevenYearsAgo = daysAgo(today, 365 * 7)
     const from = buildDate((this.props.Dates || {}).from)
     const to = buildDate((this.props.Dates || {}).to)
-    return (from >= sevenYearsAgo) || (to >= sevenYearsAgo) &&
+    return (from && from >= sevenYearsAgo) || (to && to >= sevenYearsAgo) &&
       ['ActiveMilitary', 'NationalGuard', 'USPHS', 'OtherFederal', 'StateGovernment', 'FederalContractor', 'NonGovernment', 'SelfEmployment', 'Unemployment', 'Other'].includes(activity)
   }
 

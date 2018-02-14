@@ -115,8 +115,8 @@ export class EmploymentValidator {
         return false
       }
 
-      if (branchValidator.hasNo()) {
-        return true
+      if (!branchValidator.hasNo()) {
+        return false
       }
 
       return branchValidator.each(item => {
@@ -152,8 +152,8 @@ export class EmploymentValidator {
         return false
       }
 
-      if (branchValidator.hasNo()) {
-        return true
+      if (!branchValidator.hasNo()) {
+        return false
       }
 
       return branchValidator.each(item => {

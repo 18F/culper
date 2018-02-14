@@ -274,6 +274,9 @@ export const nameIsEmpty = (name) => {
   }
 }
 export const buildDate = (date) => {
+  if (!date) {
+    return null
+  }
   let year = date.year
   let month = date.month
   let day = date.day
