@@ -478,7 +478,7 @@ export const foreign = {
           note: ''
         },
         amount: {
-          title: 'Need help with this amount?',
+          title: 'Estimate the ammount if unsure',
           message: 'If you are not sure of the exact amount give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
@@ -488,9 +488,9 @@ export const foreign = {
           note: 'Note: Monthly, yearly, once, etc.'
         },
         citizenship: {
-          title: 'Need help with the citizenship(s) of this foreign national?',
-          message: 'Tell us all of the citizenships this person has.',
-          note: 'Note: You can provide multiple citizenships in this question.'
+          title: 'List all citizenships this person has',
+        message: 'You can provide multiple citizenships in this question.',
+          note: ''
         }
       },
       collection: {
@@ -585,7 +585,7 @@ export const foreign = {
         help: {
           received: {
             title: 'Estimate the date if unsure',
-          message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
             note: ''
           },
           country: {
@@ -637,7 +637,7 @@ export const foreign = {
         help: {
           begin: {
             title: 'Estimate the date if unsure',
-          message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
             note: ''
           },
           frequency: {
@@ -695,12 +695,12 @@ export const foreign = {
         help: {
           began: {
             title: 'Estimate the date if unsure',
-          message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
             note: ''
           },
           end: {
             title: 'Estimate the date if unsure',
-          message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
             note: ''
           },
           frequency: {
