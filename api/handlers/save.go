@@ -97,6 +97,14 @@ func Status(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// Get the account information from the data store
+	account.WithContext(context)
+	if err := account.Get(); err != nil {
+		log.WithError(err).Warn(logmsg.NoAccount)
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
 	w.Header().Set("Content-Type", "application/json")
 	fmt.Fprint(w, string(form.Metadata(context, account.ID, account.Locked)))
 }
@@ -112,6 +120,14 @@ func Submit(w http.ResponseWriter, r *http.Request) {
 	_, err := jwt.CheckToken(r, account.ValidJwtToken, cf.TargetAudiences()...)
 	if err != nil {
 		log.WithError(err).Warn(logmsg.InvalidJWT)
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	// Get the account information from the data store
+	account.WithContext(context)
+	if err := account.Get(); err != nil {
+		log.WithError(err).Warn(logmsg.NoAccount)
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
