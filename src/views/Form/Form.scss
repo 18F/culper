@@ -254,6 +254,7 @@ select {
       text-align: center;
       background: transparent;
       border: none;
+      z-index: unset;
 
       > span {
         display: inline;
