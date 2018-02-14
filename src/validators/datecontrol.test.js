@@ -63,7 +63,7 @@ describe('date control validator', function () {
           year: '2005',
           maxDate: new Date('1/1/2005')
         },
-        expected: true
+        expected: false
       },
       {
         data: {
@@ -142,10 +142,10 @@ describe('date control validator', function () {
           month: '1',
           day: '1',
           year: '2004',
-          minDate: new Date('1/8/2004'),
+          minDate: new Date('1/1/2004'),
           hideDay: true
         },
-        expected: true
+        expected: false
       }
     ]
 
