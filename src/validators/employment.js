@@ -120,10 +120,9 @@ export class EmploymentValidator {
       }
 
       return branchValidator.each(item => {
-        return !!item.Item &&
-          item.Item.Reason &&
-          validDateField(item.Item.Date) &&
-          validGenericTextfield(item.Item.Text)
+        return validGenericTextfield(item.Reason) &&
+          validDateField(item.Date) &&
+          validGenericTextfield(item.Text)
       })
     }
 
