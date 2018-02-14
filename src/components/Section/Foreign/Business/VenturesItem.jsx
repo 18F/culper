@@ -108,6 +108,7 @@ export default class VenturesItem extends ValidationElement {
       <div className="ventures-item">
         <Field title={i18n.t('foreign.business.ventures.heading.name')}
                optional={true}
+               filterErrors={Name.requiredErrorsOnly}
                scrollIntoView={this.props.scrollIntoView}>
           <Name name="Name"
                 {...this.props.Name}

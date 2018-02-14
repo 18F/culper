@@ -423,6 +423,7 @@ export default class Relative extends ValidationElement {
 
         <Field title={i18n.t('relationships.relatives.heading.name')}
                optional={true}
+               filterErrors={Name.requiredErrorsOnly}
                scrollIntoView={this.props.scrollIntoView}>
           <Name name="Name"
                 className="relative-name"
@@ -497,6 +498,7 @@ export default class Relative extends ValidationElement {
             </Branch>
             <Show when={this.props.MaidenSameAsListed.value === 'No'}>
               <Field optional={true}
+                     filterErrors={Name.requiredErrorsOnly}
                      scrollIntoView={this.props.scrollIntoView}>
                 <Name name="MaidenName"
                       className="relative-maidenname eapp-field-wrap"

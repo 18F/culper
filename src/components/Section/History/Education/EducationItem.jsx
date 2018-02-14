@@ -273,6 +273,7 @@ export default class EducationItem extends ValidationElement {
               <Field title={i18n.t('reference.heading.name')}
                      titleSize="h3"
                      optional={true}
+                     filterErrors={Name.requiredErrorsOnly}
                      scrollIntoView={this.props.scrollIntoView}>
                 <NotApplicable name="ReferenceNameNotApplicable"
                                {...this.props.ReferenceNameNotApplicable}

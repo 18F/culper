@@ -51,6 +51,7 @@ export default class OtherNameItem extends React.Component {
       <div className="other-name">
         <Field title={i18n.t('identification.othernames.heading.name')}
                optional={true}
+               filterErrors={Name.requiredErrorsOnly}
                scrollIntoView={this.props.scrollIntoView}>
           <Name name="Name"
                 {...this.props.Name}

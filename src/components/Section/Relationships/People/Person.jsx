@@ -136,6 +136,7 @@ export default class Person extends React.Component {
 
         <Field title={i18n.t('relationships.people.person.heading.name')}
                optional={true}
+               filterErrors={Name.requiredErrorsOnly}
                scrollIntoView={this.props.scrollIntoView}>
           <Name name="Name"
                 className="name"

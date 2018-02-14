@@ -366,6 +366,7 @@ export default class Status extends SubsectionElement {
 
             <Field title={i18n.t('citizenship.status.heading.documentname')}
                    optional={true}
+                   filterErrors={Name.requiredErrorsOnly}
                    scrollIntoView={this.props.scrollIntoView}>
               <Name name="DocumentName"
                     className="document-name"
@@ -402,6 +403,7 @@ export default class Status extends SubsectionElement {
 
             <Field title={i18n.t('citizenship.status.heading.certificatename.foreignborn')}
                    optional={true}
+                   filterErrors={Name.requiredErrorsOnly}
                    scrollIntoView={this.props.scrollIntoView}>
               <Name name="CertificateName"
                     className="certificate-name"
@@ -555,6 +557,7 @@ export default class Status extends SubsectionElement {
 
             <Field title={i18n.t('citizenship.status.heading.certificatename.naturalized')}
                    optional={true}
+                   filterErrors={Name.requiredErrorsOnly}
                    scrollIntoView={this.props.scrollIntoView}>
               <Name name="CertificateName"
                     className="certificate-name"
@@ -644,6 +647,7 @@ export default class Status extends SubsectionElement {
 
             <Field title={i18n.t('citizenship.status.heading.certificatename.derived')}
                    optional={true}
+                   filterErrors={Name.requiredErrorsOnly}
                    scrollIntoView={this.props.scrollIntoView}>
               <Name name="CertificateName"
                     className="certificate-name"
@@ -855,6 +859,7 @@ export default class Status extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('citizenship.status.heading.documentname')}
+                   filterErrors={Name.requiredErrorsOnly}
                    optional={true}>
               <Name name="DocumentName"
                     className="document-name"

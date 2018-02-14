@@ -367,6 +367,7 @@ export default class EmploymentItem extends ValidationElement {
               <Field title={i18n.t('reference.heading.name')}
                      titleSize="h3"
                      optional={true}
+                     filterErrors={Name.requiredErrorsOnly}
                      scrollIntoView={this.props.scrollIntoView}>
                 <Name name="ReferenceName"
                       prefix={'name'}
