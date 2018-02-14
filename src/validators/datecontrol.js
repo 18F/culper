@@ -50,7 +50,7 @@ export default class DateControlValidator {
     }
 
     const date = new Date(`${this.month}/${this.day}/${this.year}`)
-    return date <= this.maxDate
+    return date < this.maxDate
   }
 
   validMinDate () {
@@ -65,7 +65,7 @@ export default class DateControlValidator {
     }
 
     const date = new Date(`${this.month}/${this.day}/${this.year}`)
-    return date >= this.minDate
+    return date > this.minDate
   }
 
   isValid () {
@@ -96,12 +96,12 @@ export const dateLimits = (relationship, birthdate) => {
   switch (relationship) {
   case 'Self':
     max = daysAgo(today, 365 * 16)
-    min = daysAgo(today, 365 * 130)
+    min = daysAgo(today, (365 * 130) + 1)
     break
   case 'Mother':
   case 'Father':
     max = min
-    min = daysAgo(today, 365 * 200)
+    min = daysAgo(today, (365 * 200) + 1)
     break
   case 'Child':
     break
@@ -119,12 +119,12 @@ export const dateLimits = (relationship, birthdate) => {
   case 'Mother-in-law':
   case 'Guardian':
   case 'Other':
-    min = daysAgo(today, 365 * 200)
+    min = daysAgo(today, (365 * 200) + 1)
     break
   default:
     // Everything else just uses the defaults
     if (!min) {
-      min = daysAgo(today, 365 * 200)
+      min = daysAgo(today, (365 * 200) + 1)
     }
   }
 

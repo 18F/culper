@@ -969,6 +969,18 @@ export const error = {
       }
     }
   },
+  parent: {
+    dob: {
+      max: {
+        title: 'There is a problem with the date',
+        message: 'The date can\'t be in the future and must be before your date of birth.'
+      },
+      min: {
+        title: 'There is a problem with the date',
+        message: 'The age may not exceed 200 years.'
+      }
+    }
+  },
   required: {
     title: 'There is a problem with this field',
     message: 'This field is required'
