@@ -961,6 +961,14 @@ export const error = {
       }
     }
   },
+  passport: {
+    expiration: {
+      min: {
+        title: 'There is a problem with the date',
+        message: 'The date should be after the passport was issued.'
+      }
+    }
+  },
   required: {
     title: 'There is a problem with this field',
     message: 'This field is required'

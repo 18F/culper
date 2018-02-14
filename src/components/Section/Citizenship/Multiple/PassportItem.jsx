@@ -168,6 +168,7 @@ export default class PassportItem extends ValidationElement {
                scrollIntoView={this.props.scrollIntoView}>
           <DateControl name="Expiration"
                        {...this.props.Expiration}
+                       prefix="passport.expiration"
                        className="passport-expiration"
                        onUpdate={this.updateExpiration}
                        onError={this.props.onError}
