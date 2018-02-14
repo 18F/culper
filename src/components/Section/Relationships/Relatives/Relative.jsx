@@ -295,6 +295,7 @@ export default class Relative extends ValidationElement {
   render () {
     const validator = new RelativeValidator(this.props, null)
     const mother = (this.props.Relation || {}).value === 'Mother'
+    const father = (this.props.Relation || {}).value === 'Father'
     const immediateFamily = ['Father', 'Mother', 'Child', 'Stepchild', 'Brother', 'Sister', 'Half-brother', 'Half-sister', 'Stepbrother', 'Stepsister', 'Stepmother', 'Stepfather'].includes((this.props.Relation || {}).value)
 
     return (
@@ -443,6 +444,7 @@ export default class Relative extends ValidationElement {
           <DateControl name="Birthdate"
                        className="relative-birthdate"
                        {...this.props.Birthdate}
+                       prefix={(mother || father) ? 'parent.dob' : ''}
                        relationship={(this.props.Relation || {}).value}
                        onError={this.props.onError}
                        onUpdate={this.updateBirthdate}
