@@ -25,6 +25,7 @@ var (
 	Expiration       = Timeout()
 )
 
+// CheckToken tests if the token is valid and is of the correct audience.
 func CheckToken(r *http.Request, validTokenFunc func(string, string) (bool, error), audiences ...string) (string, error) {
 	jwtToken := ExtractToken(r)
 	if jwtToken == "" {
@@ -46,6 +47,7 @@ func CheckToken(r *http.Request, validTokenFunc func(string, string) (bool, erro
 	return jwtToken, nil
 }
 
+// ExtractToken returns the token from an HTTP request header.
 func ExtractToken(r *http.Request) string {
 	authHeader := r.Header.Get("Authorization")
 	matches := AuthBearerRegexp.FindStringSubmatch(authHeader)
@@ -56,6 +58,7 @@ func ExtractToken(r *http.Request) string {
 	return matches[1]
 }
 
+// CurrentAudience is the currently valid audience from the token.
 func CurrentAudience(r *http.Request) string {
 	rawToken := ExtractToken(r)
 	token, err := ParseWithClaims(rawToken)
@@ -71,7 +74,7 @@ func CurrentAudience(r *http.Request) string {
 	return ""
 }
 
-// NewJwtToken generates a new Jwt signed token using a users account information
+// NewToken generates a new Jwt signed token using a users account information
 func NewToken(id int, audience string) (string, time.Time, error) {
 	expiresAt := time.Now().Add(Expiration)
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.StandardClaims{
@@ -89,14 +92,17 @@ func NewToken(id int, audience string) (string, time.Time, error) {
 	return signedToken, expiresAt, nil
 }
 
+// TokenClaims return all standard token claims.
 func TokenClaims(token *jwt.Token) *jwt.StandardClaims {
 	return token.Claims.(*jwt.StandardClaims)
 }
 
+// ParseWithClaims parses the token with standard claims..
 func ParseWithClaims(tokenString string) (*jwt.Token, error) {
 	return jwt.ParseWithClaims(tokenString, &jwt.StandardClaims{}, KeyFunc)
 }
 
+// KeyFunc ensures the signing method of the token.
 func KeyFunc(token *jwt.Token) (interface{}, error) {
 	if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
 		return nil, fmt.Errorf("Unexpected signing method: %v", token.Header["alg"])

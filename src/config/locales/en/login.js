@@ -46,5 +46,12 @@ export const login = {
       'If this message was received in error contact [email@gov.gov](mailto:email@gov.gov) or try loggin in again below.'
     ],
     button: 'Log in with CAC'
+  },
+  locked: {
+    title: 'Your form has been submitted and is locked',
+    para: [
+      'If you need assistance contact the office who initiated your form.'
+    ],
+    button: 'Back to login'
   }
 }
