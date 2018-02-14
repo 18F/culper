@@ -2,6 +2,7 @@ package webservice
 
 import (
 	"bytes"
+	"encoding/gob"
 	"encoding/xml"
 	"io"
 )
@@ -157,6 +158,32 @@ type ImportRequest struct {
 //	</xs:complexType>
 type ImportRequestResponse struct {
 	Return *Request `xml:"return"`
+}
+
+// Bytes converts the response to a byte array.
+func (response *ImportRequestResponse) Bytes() []byte {
+	var buffer bytes.Buffer
+	enc := gob.NewEncoder(&buffer)
+	if err := enc.Encode(response); err != nil {
+		return []byte{}
+	}
+	return buffer.Bytes()
+}
+
+// Keys returns the agency and request keys from the response.
+func (response *ImportRequestResponse) Keys() (int, string) {
+	if response == nil || response.Return == nil {
+		return 0, ""
+	}
+
+	ret := response.Return
+	akey := ret.InitiatingAgency
+	rkey := ret.RequestKey
+	if akey == nil || rkey == nil {
+		return 0, ""
+	}
+
+	return akey.AgencyID, rkey.RequestID
 }
 
 // Request contains information for an ImportRequestResponse
