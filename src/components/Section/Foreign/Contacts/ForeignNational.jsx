@@ -280,6 +280,7 @@ export default class ForeignNational extends ValidationElement {
           <DateControl name="LastContact"
                        className="last-contact"
                        {...this.props.LastContact}
+                       prefix="contact.last"
                        minDate={(this.props.FirstContact || {}).date}
                        onUpdate={this.updateLastContact}
                        onError={this.props.onError}
