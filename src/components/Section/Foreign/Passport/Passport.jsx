@@ -174,6 +174,7 @@ export default class Passport extends SubsectionElement {
                          onDismiss={this.onDismiss}
                          />
             <Field optional={true}
+                   filterErrors={Name.requiredErrorsOnly}
                    scrollIntoView={this.props.scrollIntoView}>
               <Name name="name"
                     {...this.props.Name}

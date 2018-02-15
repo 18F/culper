@@ -158,6 +158,7 @@ export default class Cohabitant extends ValidationElement {
                      />
         <Field title={i18n.t('relationships.cohabitant.heading.name')}
                optional={true}
+               filterErrors={Name.requiredErrorsOnly}
                scrollIntoView={this.props.scrollIntoView}>
           <Name name="Name"
                 className="cohabitant-name"

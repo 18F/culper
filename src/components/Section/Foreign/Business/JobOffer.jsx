@@ -69,6 +69,7 @@ export default class JobOffer extends ValidationElement {
       <div className="job-offer">
         <Field title={i18n.t('foreign.business.employment.heading.name')}
                optional={true}
+               filterErrors={Name.requiredErrorsOnly}
                scrollIntoView={this.props.scrollIntoView}>
           <Name name="Name"
                 className="employment-name"

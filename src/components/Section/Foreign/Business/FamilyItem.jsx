@@ -60,6 +60,7 @@ export default class FamilyItem extends ValidationElement {
       <div className="family-item">
         <Field title={i18n.t('foreign.business.family.heading.name')}
                optional={true}
+               filterErrors={Name.requiredErrorsOnly}
                scrollIntoView={this.props.scrollIntoView}>
           <Name name="Name"
                 {...this.props.Name}

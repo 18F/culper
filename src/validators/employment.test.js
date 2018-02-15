@@ -96,24 +96,22 @@ describe('Employment component validation', function () {
             }
           },
           Reprimand: {
-            Reasons: {
-              items: [
-                {
-                  Item: {
-                    Has: { value: 'No' },
-                    Date: {
-                      date: new Date('1/1/2015'),
-                      month: '1',
-                      day: '1',
-                      year: '2015'
-                    },
-                    Text: {
-                      value: 'Foo'
-                    }
+            items: [
+              {
+                Item: {
+                  Has: { value: 'No' },
+                  Date: {
+                    date: new Date('1/1/2015'),
+                    month: '1',
+                    day: '1',
+                    year: '2015'
+                  },
+                  Text: {
+                    value: 'Foo'
                   }
                 }
-              ]
-            }
+              }
+            ]
           }
         },
         expected: true
@@ -210,24 +208,22 @@ describe('Employment component validation', function () {
             }
           },
           Reprimand: {
-            Reasons: {
-              items: [
-                {
-                  Item: {
-                    Has: { value: 'No' },
-                    Date: {
-                      date: new Date('1/1/2015'),
-                      month: '1',
-                      day: '1',
-                      year: '2015'
-                    },
-                    Text: {
-                      value: 'Foo'
-                    }
+            items: [
+              {
+                Item: {
+                  Has: { value: 'No' },
+                  Date: {
+                    date: new Date('1/1/2015'),
+                    month: '1',
+                    day: '1',
+                    year: '2015'
+                  },
+                  Text: {
+                    value: 'Foo'
                   }
                 }
-              ]
-            }
+              }
+            ]
           }
         },
         expected: true
@@ -349,24 +345,22 @@ describe('Employment component validation', function () {
             }
           },
           Reprimand: {
-            Reasons: {
-              items: [
-                {
-                  Item: {
-                    Has: { value: 'No' },
-                    Date: {
-                      date: new Date('1/1/2015'),
-                      month: '1',
-                      day: '1',
-                      year: '2015'
-                    },
-                    Text: {
-                      value: 'Foo'
-                    }
+            items: [
+              {
+                Item: {
+                  Has: { value: 'No' },
+                  Date: {
+                    date: new Date('1/1/2015'),
+                    month: '1',
+                    day: '1',
+                    year: '2015'
+                  },
+                  Text: {
+                    value: 'Foo'
                   }
                 }
-              ]
-            }
+              }
+            ]
           }
         },
         expected: true
@@ -474,24 +468,22 @@ describe('Employment component validation', function () {
             }
           },
           Reprimand: {
-            Reasons: {
-              items: [
-                {
-                  Item: {
-                    Has: { value: 'No' },
-                    Date: {
-                      date: new Date('1/1/2015'),
-                      month: '1',
-                      day: '1',
-                      year: '2015'
-                    },
-                    Text: {
-                      value: 'Foo'
-                    }
+            items: [
+              {
+                Item: {
+                  Has: { value: 'No' },
+                  Date: {
+                    date: new Date('1/1/2015'),
+                    month: '1',
+                    day: '1',
+                    year: '2015'
+                  },
+                  Text: {
+                    value: 'Foo'
                   }
                 }
-              ]
-            }
+              }
+            ]
           },
           Additional: {
             List: {
@@ -640,24 +632,22 @@ describe('Employment component validation', function () {
             layout: Location.ADDRESS
           },
           Reprimand: {
-            Reasons: {
-              items: [
-                {
-                  Item: {
-                    Has: { value: 'No' },
-                    Date: {
-                      date: new Date('1/1/2015'),
-                      month: '1',
-                      day: '1',
-                      year: '2015'
-                    },
-                    Text: {
-                      value: 'Foo'
-                    }
+            items: [
+              {
+                Item: {
+                  Has: { value: 'No' },
+                  Date: {
+                    date: new Date('1/1/2015'),
+                    month: '1',
+                    day: '1',
+                    year: '2015'
+                  },
+                  Text: {
+                    value: 'Foo'
                   }
                 }
-              ]
-            }
+              }
+            ]
           }
         },
         expected: true
@@ -1358,23 +1348,26 @@ describe('Employment component validation', function () {
             value: 'ActiveMilitary'
           },
           Reprimand: {
-            Reasons: {
-              items: [
-                {
-                  Item: {
-                    Has: { value: 'Yes' },
-                    Date: {
-                      date: new Date('1/1/2015'),
-                      month: '1',
-                      year: '2015'
-                    },
-                    Text: {
-                      value: 'Foo'
-                    }
+            items: [
+              {
+                Item: {
+                  Has: { value: 'Yes' },
+                  Date: {
+                    date: new Date('1/1/2015'),
+                    month: '1',
+                    year: '2015'
+                  },
+                  Text: {
+                    value: 'Foo'
                   }
                 }
-              ]
-            }
+              },
+              {
+                Item: {
+                  Has: { value: 'No' }
+                }
+              }
+            ]
           }
         },
         expected: true
@@ -1425,23 +1418,21 @@ describe('Employment component validation', function () {
             value: 'ActiveMilitary'
           },
           Reprimand: {
-            Reasons: {
-              items: [
-                {
-                  Item: {
-                    Has: { value: 'Yes' },
-                    Date: {
-                      date: new Date('1/1/2015'),
-                      month: '1',
-                      year: '2015'
-                    },
-                    Text: {
-                      value: null
-                    }
+            items: [
+              {
+                Item: {
+                  Has: { value: 'Yes' },
+                  Date: {
+                    date: new Date('1/1/2015'),
+                    month: '1',
+                    year: '2015'
+                  },
+                  Text: {
+                    value: null
                   }
                 }
-              ]
-            }
+              }
+            ]
           }
         },
         expected: false
@@ -1467,23 +1458,21 @@ describe('Employment component validation', function () {
             value: 'ActiveMilitary'
           },
           Reprimand: {
-            Reasons: {
-              items: [
-                {
-                  Item: {
-                    Has: { value: 'Yes' },
-                    Date: {
-                      date: new Date('1/1/2015'),
-                      month: '1',
-                      year: null
-                    },
-                    Text: {
-                      value: 'Hello'
-                    }
+            items: [
+              {
+                Item: {
+                  Has: { value: 'Yes' },
+                  Date: {
+                    date: new Date('1/1/2015'),
+                    month: '1',
+                    year: null
+                  },
+                  Text: {
+                    value: 'Hello'
                   }
                 }
-              ]
-            }
+              }
+            ]
           }
         },
         expected: false
@@ -1509,15 +1498,13 @@ describe('Employment component validation', function () {
             value: 'ActiveMilitary'
           },
           Reprimand: {
-            Reasons: {
-              items: [
-                {
-                  Item: {
-                    Has: { value: 'No' }
-                  }
+            items: [
+              {
+                Item: {
+                  Has: { value: 'No' }
                 }
-              ]
-            }
+              }
+            ]
           }
         },
         expected: true
@@ -1624,23 +1611,21 @@ describe('Employment component validation', function () {
               }
             },
             Reprimand: {
-              Reasons: {
-                items: [
-                  {
-                    Item: {
-                      Has: { value: 'No' },
-                      Date: {
-                        date: new Date('1/1/2015'),
-                        month: '1',
-                        year: '2015'
-                      },
-                      Text: {
-                        value: 'Foo'
-                      }
+              items: [
+                {
+                  Item: {
+                    Has: { value: 'No' },
+                    Date: {
+                      date: new Date('1/1/2015'),
+                      month: '1',
+                      year: '2015'
+                    },
+                    Text: {
+                      value: 'Foo'
                     }
                   }
-                ]
-              }
+                }
+              ]
             }
           }
         }

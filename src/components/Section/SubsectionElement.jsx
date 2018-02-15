@@ -32,6 +32,6 @@ SubsectionElement.defaultProps = {
   section: '',
   subsection: '',
   dispatch: () => {},
-  validator: (state, props) => { return false },
+  validator: (data) => { return false },
   onError: (value, arr) => { return arr }
 }

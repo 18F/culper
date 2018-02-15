@@ -22,8 +22,7 @@ export function getApplicationState () {
       if (locked) {
         return
       }
-
-      api.form().then(r => {
+      return api.form().then(r => {
         formData = r.data
         for (const section in formData) {
           for (const subsection in formData[section]) {

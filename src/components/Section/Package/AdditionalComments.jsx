@@ -44,8 +44,8 @@ AdditionalComments.defaultProps = {
   section: 'releases',
   subsection: 'comments',
   dispatch: () => {},
-  validator: (state, props) => {
-    return new SignatureValidator(props).isValid()
+  validator: (data) => {
+    return new SignatureValidator(data).isValid()
   },
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }

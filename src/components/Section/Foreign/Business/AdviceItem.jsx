@@ -79,6 +79,7 @@ export default class AdviceItem extends ValidationElement {
 
         <Field title={i18n.t('foreign.business.advice.heading.name')}
                optional={true}
+               filterErrors={Name.requiredErrorsOnly}
                scrollIntoView={this.props.scrollIntoView}>
           <Name name="Name"
                 {...this.props.Name}

@@ -115,6 +115,7 @@ export default class Divorce extends React.Component {
       <div className="divorce">
         <Field title={i18n.t('relationships.civilUnion.heading.name')}
                optional={true}
+               filterErrors={Name.requiredErrorsOnly}
                scrollIntoView={this.props.scrollIntoView}
                adjustFor="labels">
           <Name name="Name"

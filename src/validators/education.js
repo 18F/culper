@@ -1,6 +1,6 @@
 import DateRangeValidator from './daterange'
 import { daysAgo, today } from '../components/Section/History/dateranges'
-import { validDateField, validAccordion, validNotApplicable, validPhoneNumber, validGenericTextfield } from './helpers'
+import { BranchCollection, validDateField, validAccordion, validNotApplicable, validPhoneNumber, validGenericTextfield } from './helpers'
 import LocationValidator from './location'
 import NameValidator from './name'
 
@@ -86,43 +86,23 @@ export class EducationItemValidator {
     return true
   }
 
-  hasDegree () {
-    return ((this.diplomas || {}).items || []).filter(diploma => {
-      return ((diploma.Item || {}).Has || {}).value === 'Yes'
-    }).length
-  }
-
   validDiplomas () {
-    const items = (this.diplomas || {}).items || []
-
-    // Check if we have valid yes/no values
-    if (!items.length) {
+    const branchValidator = new BranchCollection(this.diplomas)
+    if (!branchValidator.validKeyValues()) {
       return false
     }
 
-    if (this.hasDegree()) {
-      for (const diploma of items) {
-        const item = diploma.Item || {}
-        if ((item.Has || {}).value === 'No') {
-          continue
-        }
-
-        const diplomaType = (item.Diploma || {}).value
-        if (!diplomaType) {
-          return false
-        }
-
-        if (diplomaType === 'Other' && !validGenericTextfield(item.DiplomaOther)) {
-          return false
-        }
-
-        if (!validDateField(item.Date)) {
-          return false
-        }
-      }
+    if (!branchValidator.hasNo()) {
+      return false
     }
 
-    return true
+    return branchValidator.each(item => {
+      // If the diploma type is "Other" then they must give it a name
+      if  ((item.Diploma || {}).value === 'Other' && !validGenericTextfield(item.DiplomaOther)) {
+        return false
+      }
+      return validGenericTextfield(item.Diploma) && validDateField(item.Date)
+    })
   }
 
   isValid () {

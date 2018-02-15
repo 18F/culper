@@ -68,13 +68,13 @@ ReleaseOfGeneralAndMedical.defaultProps = {
   section: 'releases',
   subsection: 'general',
   dispatch: () => {},
-  validator: (state, props) => {
-    const general = new SignatureValidator(props.General || {}).isValid()
-    if (hideHippa(props.Application)) {
+  validator: (data) => {
+    const general = new SignatureValidator(data.General || {}).isValid()
+    if (hideHippa(data.Application)) {
       return general
     }
 
-    const medical = new SignatureValidator(props.Medical || {}).isValid()
+    const medical = new SignatureValidator(data.Medical || {}).isValid()
     return general && medical
   },
   onUpdate: (queue) => {},

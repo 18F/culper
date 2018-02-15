@@ -10,6 +10,7 @@ import Supervisor from './Supervisor'
 import ReasonLeft from './ReasonLeft'
 import Reprimand from './Reprimand'
 import { today, daysAgo } from '../dateranges'
+import { buildDate } from '../../../../validators/helpers'
 
 export default class EmploymentItem extends ValidationElement {
   constructor (props) {
@@ -199,9 +200,9 @@ export default class EmploymentItem extends ValidationElement {
   showLeaving () {
     const activity = (this.props.EmploymentActivity || {}).value
     const sevenYearsAgo = daysAgo(today, 365 * 7)
-    const from = (this.props.Dates || {}).from
-    const to = (this.props.Dates || {}).to
-    return (from && from.date >= sevenYearsAgo) || (to && to.date >= sevenYearsAgo) &&
+    const from = buildDate((this.props.Dates || {}).from)
+    const to = buildDate((this.props.Dates || {}).to)
+    return (from && from >= sevenYearsAgo) || (to && to >= sevenYearsAgo) &&
       ['ActiveMilitary', 'NationalGuard', 'USPHS', 'OtherFederal', 'StateGovernment', 'FederalContractor', 'NonGovernment', 'SelfEmployment', 'Unemployment', 'Other'].includes(activity)
   }
 
@@ -366,6 +367,7 @@ export default class EmploymentItem extends ValidationElement {
               <Field title={i18n.t('reference.heading.name')}
                      titleSize="h3"
                      optional={true}
+                     filterErrors={Name.requiredErrorsOnly}
                      scrollIntoView={this.props.scrollIntoView}>
                 <Name name="ReferenceName"
                       prefix={'name'}

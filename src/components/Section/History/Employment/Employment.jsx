@@ -177,7 +177,7 @@ Employment.defaultProps = {
   subsection: 'employment',
   addressBooks: {},
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('history.employment', props))
+  validator: (data) => {
+    return validate(schema('history.employment', data))
   }
 }

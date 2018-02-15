@@ -367,6 +367,11 @@ describe('Education component validation', function () {
                     value: 'GED'
                   }
                 }
+              },
+              {
+                Item: {
+                  Has: { value: 'No' }
+                }
               }
             ]
           }

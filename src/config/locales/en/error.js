@@ -3,7 +3,7 @@ export const error = {
     last: {
       required: {
         title: 'The last name is required',
-        message: '',
+        message: 'The last name must be provided.',
         note: ''
       },
       length: {
@@ -22,6 +22,11 @@ export const error = {
       }
     },
     first: {
+      required: {
+        title: 'The first name is required',
+        message: 'The first name must be provided.',
+        note: ''
+      },
       length: {
         title: 'There is a problem with the first name',
         message: [

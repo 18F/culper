@@ -117,23 +117,26 @@ describe('Employment component validation', function () {
                     }
                   },
                   Reprimand: {
-                    Reasons: {
-                      items: [
-                        {
-                          Item: {
-                            Has: { value: 'Yes' },
-                            Date: {
-                              date: new Date('1/1/2015'),
-                              month: '1',
-                              year: '2015'
-                            },
-                            Text: {
-                              value: 'Foo'
-                            }
+                    items: [
+                      {
+                        Item: {
+                          Has: { value: 'Yes' },
+                          Date: {
+                            date: new Date('1/1/2015'),
+                            month: '1',
+                            year: '2015'
+                          },
+                          Text: {
+                            value: 'Foo'
                           }
                         }
-                      ]
-                    }
+                      },
+                      {
+                        Item: {
+                          Has: { value: 'No' }
+                        }
+                      }
+                    ]
                   }
                 }
               }
