@@ -911,9 +911,9 @@ export const foreign = {
           note: ''
         },
         dates: {
-          title: 'Need help with the dates the advice or support was provided?',
-          message: 'Tell us the date or date range when this happened.',
-          note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
+          title: 'Estimate the date if unsure',
+          message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
+          note: ''
         },
         compensation: {
           title: 'Need help with compensation?',
@@ -966,8 +966,8 @@ export const foreign = {
           note: ''
         },
         date: {
-          title: 'Need help with the date of the request?',
-          message: 'Tell us when someone or an agency asked you to provide advice or serve as a consultant.',
+          title: 'Estimate the date if unsure',
+          message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
           note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
         },
         circumstances: {
@@ -1014,9 +1014,9 @@ export const foreign = {
           note: ''
         },
         date: {
-          title: 'Need help with the date of the offer?',
-          message: 'Tell us when the offer was extended to you.',
-          note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
+          title: 'Estimate the date if unsure',
+          message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+          note: ''
         },
         address: {
           title: 'Need help with the location?',
@@ -1074,9 +1074,9 @@ export const foreign = {
           note: ''
         },
         citizenship: {
-          title: 'Need help with this foreign national\'s citizenship(s)?',
-          message: 'Tell us all of the citizenships this person has.',
-          note: 'Note: You can provide multiple citizenships in this question.'
+          title: 'List all citizenships this person has',
+        message: 'You can provide multiple citizenships in this question.',
+          note: ''
         },
         description: {
           title: 'Need help describing the business venture?',
@@ -1089,9 +1089,9 @@ export const foreign = {
           note: ''
         },
         dates: {
-          title: 'Need help with the dates involved?',
-          message: 'Tell us how long you were involved with the business venture.',
-          note: 'Note: If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.'
+          title: 'Estimate the date if unsure',
+          message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+          note: ''
         },
         association: {
           title: 'Need help with the association to the venture?',
@@ -1177,9 +1177,9 @@ export const foreign = {
           note: ''
         },
         dates: {
-          title: 'Need help with the dates of the conference?',
-          message: 'Try looking up the event, this could help you find the dates.',
-          note: 'Note: If you can\'t find the exact date give us your best guess and check the "Estimated" checkbox.'
+          title: 'Try looking up the event, this could help you find the dates.',
+          message: 'If you can\'t find the exact date give us your best guess and check the "Estimated" checkbox.',
+          note: ''
         },
         purpose: {
           title: 'Need help with the purpose of the conference?',
@@ -1187,7 +1187,7 @@ export const foreign = {
           note: ''
         },
         contact: {
-          title: 'Need help with this question?',
+          title: 'Contact after the event',
           message: 'Did you have contact with any foreign nationals after this event? If so answer "Yes".',
           note: ''
         },
@@ -1252,14 +1252,14 @@ export const foreign = {
           note: ''
         },
         date: {
-          title: 'Let us know when this contact happened',
+          title: 'Estimate the date if unsure',
           message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
         governments: {
-          title: 'Need help with the governments associated?',
-          message: 'Tell us all of the governments that were involved in this contact.',
-          note: 'Note: You can provide multiple governments in this question.'
+          title: 'All governments involved in this contact',
+          message: 'You can provide multiple governments in this question.',
+          note: ''
         },
         establishment: {
           title: 'Need help with the establishment?',
@@ -1277,7 +1277,7 @@ export const foreign = {
           note: ''
         },
         hassubsequent: {
-          title: 'Need help with any subsequent contacts?',
+          title: 'Any other contacts?',
           message: 'If there were any other contacts with the foreign organization select "Yes".',
           note: ''
         },
@@ -1287,9 +1287,9 @@ export const foreign = {
           note: ''
         },
         recent: {
-          title: 'Need help with the recent date of contact?',
-          message: 'Tell us when the most recent contact happened.',
-          note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
+          title: 'Estimate the date if unsure',
+          message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+          note: ''
         },
         future: {
           title: 'Need help explaining future plans of contact?',
@@ -1339,12 +1339,12 @@ export const foreign = {
       },
       help: {
         branch: {
-          title: 'What is a foreign national?',
+          title: 'Foreign national defined?',
           message: 'A foreign national is defined as any person who is not a citizen or national of the U.S.',
           note: ''
         },
         birthdate: {
-          title: 'Need help with the foreign national\'s date of birth?',
+          title: 'Estimate the date if unsure',
           message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
@@ -1354,14 +1354,14 @@ export const foreign = {
           note: ''
         },
         address: {
-          title: 'Need help with the current street address?',
-          message: 'Provide the current street address of the foreign national.',
+          title: 'Acronyms:',
+          message: 'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
           note: ''
         },
         citizenship: {
-          title: 'Need help with this foreign national\'s citizenship(s)?',
-          message: 'Tell us all of the citizenships this foreign national has.',
-          note: 'Note: You can provide multiple citizenships in this question.'
+          title: 'List all citizenships this person has',
+        message: 'You can provide multiple citizenships in this question.',
+          note: ''
         },
         organization: {
           title: 'Need help with the organization?',
@@ -1369,14 +1369,14 @@ export const foreign = {
           note: ''
         },
         organizationaddress: {
-          title: 'Not sure of the organization\'s address?',
-          message: 'Try looking up the organization\'s name, this could help you find the address.',
-          note: 'Note: If you can only find a phone number try calling and asking for the address. Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
+          title: 'Try looking up the organization\'s name, this could help you find the address',
+          message: 'If you can only find a phone number try calling and asking for the address.',
+          note: 'Note: Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
         },
         dates: {
-          title: 'Need help with the dates of stay?',
-          message: 'Tell us the full date range the sponsored foreign national was in the U.S.',
-          note: 'Note: If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.'
+          title: 'Full date range the sponsored foreign national was in the U.S.',
+          message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
+          note: ''
         },
         residence: {
           title: 'Need help with the residence?',
@@ -1437,9 +1437,9 @@ export const foreign = {
           note: ''
         },
         dates: {
-          title: 'Need help with this date range?',
-          message: 'Tell us the full date range you held this political office.',
-          note: 'Note: If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.'
+          title: 'Full date range you held this political office.',
+          message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
+          note: ''
         },
         country: {
           title: 'Need help with the country involved?',
@@ -1563,9 +1563,9 @@ export const foreign = {
         note: ''
       },
       official: {
-        title: 'Need help with this question?',
-        message: 'You will need to enter an item for each trip. <br />Respond for the time frame of the last seven (7) years, beginning with the most recent and working backwards. <br />Do not list trips that ONLY involved travel on official U.S. Government business on official government orders, but you must include any personal trips made in conjunction with the official U.S. Government travel.',
-        note: ''
+        title: 'You will need to enter an item for each trip',
+        message: 'Respond for the time frame of the last seven (7) years, beginning with the most recent and working backwards.',
+        note: 'Do not list trips that ONLY involved travel on official U.S. Government business on official government orders, but you must include any personal trips made in conjunction with the official U.S. Government travel.'
       },
       country: {
         title: 'Need help with the country?',
@@ -1573,14 +1573,14 @@ export const foreign = {
         note: ''
       },
       dates: {
-        title: 'Need help with this date range?',
-        message: 'Tell us the full date range you visited this country including many short trips.',
-        note: 'Note: This date range can cover many trips to the same country.'
+        title: 'Estimate the date if unsure',
+        message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+        note: ''
       },
       days: {
-        title: 'Need help with how many days?',
-        message: 'Let us know how long your travel was.',
-        note: 'Note: Many short trips means a gap between trips that is less than 6 months. For a travel gap longer than 6 months add another travel item.'
+        title: 'How long your travel was',
+        message: 'Many short trips means a gap between trips that is less than 6 months. For a travel gap longer than 6 months add another travel item.',
+        note: ''
       },
       purpose: {
         title: 'Need help with the purpose?',
