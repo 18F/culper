@@ -109,7 +109,7 @@ export default class Telephone extends ValidationElement {
     this.props.onUpdate({
       name: this.props.name,
       timeOfDay: this.props.timeOfDay,
-      type: this.props.type,
+      type: this.props.type || 'Domestic',
       numberType: this.props.showNumberType ? this.props.numberType : 'NA',
       number: this.getFormattedNumber(),
       extension: this.props.extension,
@@ -326,7 +326,7 @@ export default class Telephone extends ValidationElement {
 
     // Nullify unused codes
     const allowedTypes = ['Domestic', 'DSN', 'International']
-    allowedTypes.filter(x => x !== this.props.type).forEach(x => {
+    allowedTypes.filter(x => x !== (this.props.type || 'Domestic')).forEach(x => {
       this.errors.filter(err => err.code.indexOf(`telephone.${x.toLowerCase()}.`) > -1).forEach(err => {
         err.valid = null
       })
@@ -579,7 +579,7 @@ export default class Telephone extends ValidationElement {
   }
 
   required (type) {
-    if (type && type !== this.props.type) {
+    if (type && type !== (this.props.type || 'Domestic')) {
       return false
     }
 
@@ -592,6 +592,7 @@ export default class Telephone extends ValidationElement {
 
   render () {
     const klass = `telephone ${this.props.className || ''}`.trim()
+    const phoneType = this.props.type || 'Domestic'
     return (
       <div className={klass}>
         <Show when={this.props.label}>
@@ -599,21 +600,21 @@ export default class Telephone extends ValidationElement {
         </Show>
         <div className="type">
           Switch to:
-          <Show when={this.props.type !== 'Domestic'}>
+          <Show when={phoneType !== 'Domestic'}>
             <span className="type">
               <a className="domestic-number" href="javascript:;" onClick={this.updateToggleDomestic}>
                 {i18n.t('telephone.type.domestic')}
               </a>
             </span>
           </Show>
-          <Show when={this.props.type !== 'DSN'}>
+          <Show when={phoneType !== 'DSN'}>
             <span className="type">
               <a className="dsn-number" href="javascript:;" onClick={this.updateToggleDsn}>
                 {i18n.t('telephone.type.dsn')}
               </a>
             </span>
           </Show>
-          <Show when={this.props.type !== 'International'}>
+          <Show when={phoneType !== 'International'}>
             <span className="type">
               <a className="international-number" href="javascript:;" onClick={this.updateToggleInternational}>
                 {i18n.t('telephone.type.international')}
@@ -622,15 +623,15 @@ export default class Telephone extends ValidationElement {
           </Show>
         </div>
 
-        <Show when={this.props.type === 'Domestic'}>
+        <Show when={phoneType === 'Domestic'}>
           { this.domestic() }
         </Show>
 
-        <Show when={this.props.type === 'DSN'}>
+        <Show when={phoneType === 'DSN'}>
           { this.dsn() }
         </Show>
 
-        <Show when={this.props.type === 'International'}>
+        <Show when={phoneType === 'International'}>
           { this.international() }
         </Show>
 
