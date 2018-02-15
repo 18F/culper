@@ -56,6 +56,7 @@ export default class OtherNameItem extends React.Component {
           <Name name="Name"
                 {...this.props.Name}
                 onUpdate={this.updateName}
+                onError={this.props.onError}
                 required={this.props.required}
                 scrollIntoView={this.props.scrollIntoView}
                 />
@@ -70,6 +71,7 @@ export default class OtherNameItem extends React.Component {
                       required={this.props.required}
                       {...this.props.MaidenName}
                       onUpdate={this.updateMaidenName}
+                      onError={this.props.onError}
                       />
         </Field>
 
@@ -81,6 +83,7 @@ export default class OtherNameItem extends React.Component {
           <DateRange name="DatesUsed"
                      {...this.props.DatesUsed}
                      onUpdate={this.updateDatesUsed}
+                     onError={this.props.onError}
                      required={this.props.required}
                      />
         </Field>
@@ -91,6 +94,7 @@ export default class OtherNameItem extends React.Component {
           <Textarea name="Reason"
                     {...this.props.Reason}
                     onUpdate={this.updateReason}
+                    onError={this.props.onError}
                     className="reason"
                     required={this.props.required}
                     />
