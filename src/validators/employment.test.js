@@ -285,11 +285,7 @@ describe('Employment component validation', function () {
               layout: Location.ADDRESS
             }
           },
-          Additional: {
-            List: {
-              items: [{ Item: { Has: { value: 'No' } } }]
-            }
-          },
+          Additional: { items: [{ Item: { Has: { value: 'No' } } }] },
           Telephone: {
             noNumber: '',
             number: '2028675309',
@@ -486,36 +482,34 @@ describe('Employment component validation', function () {
             ]
           },
           Additional: {
-            List: {
-              items: [
-                {
-                  Item: {
-                    Has: { value: 'No' },
-                    Position: {
-                      value: 'Dev1'
+            items: [
+              {
+                Item: {
+                  Has: { value: 'No' },
+                  Position: {
+                    value: 'Dev1'
+                  },
+                  Supervisor: {
+                    value: 'Homer'
+                  },
+                  DatesEmployed: {
+                    from: {
+                      month: '1',
+                      day: '1',
+                      year: '2011',
+                      date: new Date('1/1/2011')
                     },
-                    Supervisor: {
-                      value: 'Homer'
+                    to: {
+                      month: '3',
+                      day: '1',
+                      year: '2011',
+                      date: new Date('3/1/2011')
                     },
-                    DatesEmployed: {
-                      from: {
-                        month: '1',
-                        day: '1',
-                        year: '2011',
-                        date: new Date('1/1/2011')
-                      },
-                      to: {
-                        month: '3',
-                        day: '1',
-                        year: '2011',
-                        date: new Date('3/1/2011')
-                      },
-                      present: false
-                    }
+                    present: false
                   }
                 }
-              ]
-            }
+              }
+            ]
           }
         },
         expected: true
@@ -745,11 +739,7 @@ describe('Employment component validation', function () {
           EmploymentActivity: {
             value: 'SelfEmployed'
           },
-          Additional: {
-            List: {
-              items: [{ Item: { Has: { value: 'Yes' } } }]
-            }
-          }
+          Additional: { items: [{ Item: { Has: { value: 'Yes' } } }] }
         },
         expected: false
       },
@@ -759,36 +749,34 @@ describe('Employment component validation', function () {
             value: 'SelfEmployed'
           },
           Additional: {
-            List: {
-              items: [
-                {
-                  Item: {
-                    Has: { value: 'Yes' },
-                    Position: {
-                      value: 'Dev1'
+            items: [
+              {
+                Item: {
+                  Has: { value: 'Yes' },
+                  Position: {
+                    value: 'Dev1'
+                  },
+                  Supervisor: {
+                    value: 'Homer'
+                  },
+                  DatesEmployed: {
+                    from: {
+                      month: '1',
+                      day: '1',
+                      year: '2011',
+                      date: new Date('1/1/2011')
                     },
-                    Supervisor: {
-                      value: 'Homer'
+                    to: {
+                      month: '3',
+                      day: '1',
+                      year: '2011',
+                      date: new Date('3/1/2011')
                     },
-                    DatesEmployed: {
-                      from: {
-                        month: '1',
-                        day: '1',
-                        year: '2011',
-                        date: new Date('1/1/2011')
-                      },
-                      to: {
-                        month: '3',
-                        day: '1',
-                        year: '2011',
-                        date: new Date('3/1/2011')
-                      },
-                      present: false
-                    }
+                    present: false
                   }
                 }
-              ]
-            }
+              }
+            ]
           }
         },
         expected: true
@@ -799,50 +787,10 @@ describe('Employment component validation', function () {
             value: 'SelfEmployed'
           },
           Additional: {
-            List: {
-              items: [
-                {
-                  Item: {
-                    Has: { value: 'Yes' },
-                    Position: {
-                      value: ''
-                    },
-                    Supervisor: {
-                      value: 'Homer'
-                    },
-                    DatesEmployed: {
-                      from: {
-                        month: '1',
-                        day: '1',
-                        year: '2011',
-                        date: new Date('1/1/2011')
-                      },
-                      to: {
-                        month: '3',
-                        day: '1',
-                        year: '2011',
-                        date: new Date('3/1/2011')
-                      },
-                      present: false
-                    }
-                  }
-                }
-              ]
-            }
-          }
-        },
-        expected: false
-      },
-      {
-        data: {
-          EmploymentActivity: {
-            value: 'SelfEmployed'
-          },
-          Additional: {
-            List: {
-              items: [
-                {
-                  Has: { value: 'Foo' },
+            items: [
+              {
+                Item: {
+                  Has: { value: 'Yes' },
                   Position: {
                     value: ''
                   },
@@ -865,8 +813,44 @@ describe('Employment component validation', function () {
                     present: false
                   }
                 }
-              ]
-            }
+              }
+            ]
+          }
+        },
+        expected: false
+      },
+      {
+        data: {
+          EmploymentActivity: {
+            value: 'SelfEmployed'
+          },
+          Additional: {
+            items: [
+              {
+                Has: { value: 'Foo' },
+                Position: {
+                  value: ''
+                },
+                Supervisor: {
+                  value: 'Homer'
+                },
+                DatesEmployed: {
+                  from: {
+                    month: '1',
+                    day: '1',
+                    year: '2011',
+                    date: new Date('1/1/2011')
+                  },
+                  to: {
+                    month: '3',
+                    day: '1',
+                    year: '2011',
+                    date: new Date('3/1/2011')
+                  },
+                  present: false
+                }
+              }
+            ]
           }
         },
         expected: false
