@@ -2,6 +2,7 @@ package form
 
 import (
 	"encoding/json"
+	"log"
 
 	"github.com/18F/e-QIP-prototype/api/db"
 )
@@ -17,13 +18,13 @@ type Sentence struct {
 	PayloadProbationDatesNA     Payload `json:"ProbationDatesNA" sql:"-"`
 
 	// Validator specific fields
-	Description          *Textarea      `json:"-"`
-	ExceedsYear          *Branch        `json:"-"`
-	Incarcerated         *Branch        `json:"-"`
-	IncarcerationDates   *DateRange     `json:"-"`
-	IncarcerationDatesNA *NotApplicable `json:"-"`
-	ProbationDates       *DateRange     `json:"-"`
-	ProbationDatesNA     *NotApplicable `json:"-"`
+	Description          *Textarea      `json:"-" sql:"-"`
+	ExceedsYear          *Branch        `json:"-" sql:"-"`
+	Incarcerated         *Branch        `json:"-" sql:"-"`
+	IncarcerationDates   *DateRange     `json:"-" sql:"-"`
+	IncarcerationDatesNA *NotApplicable `json:"-" sql:"-"`
+	ProbationDates       *DateRange     `json:"-" sql:"-"`
+	ProbationDatesNA     *NotApplicable `json:"-" sql:"-"`
 
 	// Persister specific fields
 	ID                     int `json:"-"`
@@ -150,6 +151,7 @@ func (entity *Sentence) Valid() (bool, error) {
 
 // Save the Sentence entity.
 func (entity *Sentence) Save(context *db.DatabaseContext, account int) (int, error) {
+	log.Printf("\n\n\nSentence: %v", entity)
 	entity.AccountID = account
 
 	if err := context.CheckTable(entity); err != nil {
@@ -194,52 +196,61 @@ func (entity *Sentence) Save(context *db.DatabaseContext, account int) (int, err
 		entity.ProbationDatesNA.ID = previous.ProbationDatesNAID
 		entity.ProbationDatesNAID = previous.ProbationDatesNAID
 	})
+	log.Printf("\n\n\nSentence 2: %v", entity)
 
 	descriptionID, err := entity.Description.Save(context, account)
 	if err != nil {
 		return descriptionID, err
 	}
 	entity.DescriptionID = descriptionID
+	log.Println("Saved description")
 
 	exceedsYearID, err := entity.ExceedsYear.Save(context, account)
 	if err != nil {
 		return exceedsYearID, err
 	}
 	entity.ExceedsYearID = exceedsYearID
+	log.Println("Saved exceeds year")
 
 	incarceratedID, err := entity.Incarcerated.Save(context, account)
 	if err != nil {
 		return incarceratedID, err
 	}
 	entity.IncarceratedID = incarceratedID
+	log.Println("Saved incarcerated")
 
 	incarcerationDatesID, err := entity.IncarcerationDates.Save(context, account)
 	if err != nil {
 		return incarcerationDatesID, err
 	}
 	entity.IncarcerationDatesID = incarcerationDatesID
+	log.Println("Saved incarceration dates")
 
 	incarcerationDatesNAID, err := entity.IncarcerationDatesNA.Save(context, account)
 	if err != nil {
 		return incarcerationDatesNAID, err
 	}
 	entity.IncarcerationDatesNAID = incarcerationDatesNAID
+	log.Println("Saved incarceration dates NA")
 
 	probationDatesID, err := entity.ProbationDates.Save(context, account)
 	if err != nil {
 		return probationDatesID, err
 	}
 	entity.ProbationDatesID = probationDatesID
+	log.Println("Saved probation dates")
 
 	probationDatesNAID, err := entity.ProbationDatesNA.Save(context, account)
 	if err != nil {
 		return probationDatesNAID, err
 	}
 	entity.ProbationDatesNAID = probationDatesNAID
+	log.Println("Saved probation dates NA")
 
 	if err := context.Save(entity); err != nil {
 		return entity.ID, err
 	}
+	log.Println("Saved entity!!!!!!!")
 
 	return entity.ID, nil
 }
