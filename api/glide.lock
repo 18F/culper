@@ -1,5 +1,5 @@
 hash: 385e526a462b58a8d3ab168cab4361e1246691ecd6614ca4c08644abce0ea50e
-updated: 2018-02-14T13:23:43.21369009Z
+updated: 2018-02-16T19:58:05.888013583Z
 imports:
 - name: bitbucket.org/liamstask/goose
   version: 8488cc47d90c8a502b1c41a462a6d9cc8ee0a895
@@ -77,7 +77,7 @@ imports:
   - blowfish
   - ssh/terminal
 - name: golang.org/x/net
-  version: f5dfe339be1d06f81b22525fe34671ee7d2c8904
+  version: 136a25c244d3019482a795d728110278d6ba09a4
   subpackages:
   - html
   - html/atom
