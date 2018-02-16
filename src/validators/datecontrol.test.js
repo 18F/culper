@@ -5,30 +5,26 @@ describe('date control validator', function () {
   it('validate basic date properties', () => {
     const tests = [
       {
-        state: {
+        data: {
           month: '1',
           day: '1',
           year: '2005'
         },
-        props: {},
         expected: true
       },
       {
-        state: {
+        data: {
           month: '1',
           day: '',
           year: '2005'
         },
-        props: {},
         expected: false
       },
       {
-        state: {
+        data: {
           month: '1',
           day: '',
-          year: '2005'
-        },
-        props: {
+          year: '2005',
           hideDay: true
         },
         expected: true
@@ -36,85 +32,71 @@ describe('date control validator', function () {
     ]
 
     tests.forEach(test => {
-      expect(new DateControlValidator(test.state, test.props).isValid()).toBe(test.expected)
+      expect(new DateControlValidator(test.data).isValid()).toBe(test.expected)
     })
   })
 
   it('validate max date', () => {
     const tests = [
       {
-        state: {
+        data: {
           month: '1',
           day: '1',
-          year: '2005'
-        },
-        props: {
+          year: '2005',
           maxDate: new Date('1/1/2004')
         },
         expected: false
       },
       {
-        state: {
+        data: {
           month: '1',
           day: '1',
-          year: '2004'
-        },
-        props: {
+          year: '2004',
           maxDate: new Date('1/1/2005')
         },
         expected: true
       },
       {
-        state: {
+        data: {
           month: '1',
           day: '1',
-          year: '2005'
-        },
-        props: {
+          year: '2005',
           maxDate: new Date('1/1/2005')
         },
-        expected: true
+        expected: false
       },
       {
-        state: {
+        data: {
           month: '1',
           day: '1',
-          year: '2005'
-        },
-        props: {
+          year: '2005',
           maxDate: null
         },
         expected: true
       },
       {
-        state: {
+        data: {
           month: null,
           day: '1',
-          year: '2005'
-        },
-        props: {
+          year: '2005',
           maxDate: new Date('1/1/2004')
         },
         expected: false
       },
       {
-        state: {
+        data: {
           month: '1',
           day: null,
-          year: '2005'
-        },
-        props: {
+          year: '2005',
           maxDate: new Date('1/1/2004')
         },
         expected: false
       },
       {
-        state: {
+        data: {
           month: '1',
           day: '1',
-          year: null
-        },
-        props: {
+          year: null,
           maxDate: new Date('1/1/2004')
         },
         expected: false
@@ -122,61 +104,53 @@ describe('date control validator', function () {
     ]
 
     tests.forEach(test => {
-      expect(new DateControlValidator(test.state, test.props).validMaxDate()).toBe(test.expected)
+      expect(new DateControlValidator(test.data).validMaxDate()).toBe(test.expected)
     })
   })
 
   it('validate min date', () => {
     const tests = [
       {
-        state: {
+        data: {
           month: '1',
           day: '1',
-          year: '2003'
-        },
-        props: {
+          year: '2003',
           minDate: new Date('1/1/2005')
         },
         expected: false
       },
       {
-        state: {
+        data: {
           month: '1',
           day: '1',
-          year: '2005'
-        },
-        props: {
+          year: '2005',
           minDate: new Date('1/1/2004')
         },
         expected: true
       },
       {
-        state: {
+        data: {
           month: null,
           day: '1',
-          year: '2005'
-        },
-        props: {
+          year: '2005',
           minDate: new Date('1/1/2004')
         },
         expected: false
       },
       {
-        state: {
+        data: {
           month: '1',
           day: '1',
-          year: '2004'
-        },
-        props: {
-          minDate: new Date('1/8/2004'),
+          year: '2004',
+          minDate: new Date('1/1/2004'),
           hideDay: true
         },
-        expected: true
+        expected: false
       }
     ]
 
     tests.forEach(test => {
-      expect(new DateControlValidator(test.state, test.props).validMinDate()).toBe(test.expected)
+      expect(new DateControlValidator(test.data).validMinDate()).toBe(test.expected)
     })
   })
 
@@ -193,154 +167,188 @@ describe('date control validator', function () {
     const birthdate = age(25)
     const tests = [
       {
-        props: {
+        data: {
           relationship: 'Self',
-          applicantBirthdate: null,
           ...age(15)
         },
+        context: {
+          applicantBirthdate: null
+        },
         min: true,
         max: false
       },
       {
-        props: {
+        data: {
           relationship: 'Self',
-          applicantBirthdate: null,
           ...age(131)
         },
+        context: {
+          applicantBirthdate: null
+        },
         min: false,
         max: true
       },
       {
-        props: {
+        data: {
           relationship: 'Self',
-          applicantBirthdate: null,
           ...age(20)
+        },
+        context: {
+          applicantBirthdate: birthdate
         },
         min: true,
         max: true
       },
       {
-        props: {
+        data: {
           relationship: 'Mother',
-          applicantBirthdate: birthdate,
           ...age(1)
         },
+        context: {
+          applicantBirthdate: birthdate
+        },
         min: true,
         max: false
       },
       {
-        props: {
+        data: {
           relationship: 'Mother',
-          applicantBirthdate: birthdate,
           ...age(202)
         },
+        context: {
+          applicantBirthdate: birthdate
+        },
         min: false,
         max: true
       },
       {
-        props: {
+        data: {
           relationship: 'Mother',
-          applicantBirthdate: birthdate,
           ...age(40)
         },
+        context: {
+          applicantBirthdate: birthdate
+        },
         min: true,
         max: true
       },
       {
-        props: {
+        data: {
           relationship: 'Child',
-          applicantBirthdate: birthdate,
           ...age(-1)
+        },
+        context: {
+          applicantBirthdate: birthdate
         },
         min: true,
         max: false
       },
       {
-        props: {
+        data: {
           relationship: 'Child',
-          applicantBirthdate: birthdate,
           ...age(26)
+        },
+        context: {
+          applicantBirthdate: birthdate
         },
         min: false,
         max: true
       },
       {
-        props: {
+        data: {
           relationship: 'Child',
-          applicantBirthdate: birthdate,
           ...age(18)
         },
+        context: {
+          applicantBirthdate: birthdate
+        },
         min: true,
         max: true
       },
       {
-        props: {
+        data: {
           relationship: 'Other',
-          applicantBirthdate: birthdate,
           ...age(-1)
+        },
+        context: {
+          applicantBirthdate: birthdate
         },
         min: true,
         max: false
       },
       {
-        props: {
+        data: {
           relationship: 'Other',
-          applicantBirthdate: birthdate,
           ...age(201)
+        },
+        context: {
+          applicantBirthdate: birthdate
         },
         min: false,
         max: true
       },
       {
-        props: {
+        data: {
           relationship: 'Other',
-          applicantBirthdate: birthdate,
           ...age(50)
         },
+        context: {
+          applicantBirthdate: birthdate
+        },
         min: true,
         max: true
       },
       {
-        props: {
+        data: {
           relationship: '',
-          applicantBirthdate: birthdate,
           ...age(-1)
+        },
+        context: {
+          applicantBirthdate: birthdate
         },
         min: true,
         max: false
       },
       {
-        props: {
+        data: {
           relationship: '',
-          applicantBirthdate: birthdate,
           ...age(26)
+        },
+        context: {
+          applicantBirthdate: birthdate
         },
         min: false,
         max: true
       },
       {
-        props: {
+        data: {
           relationship: '',
-          applicantBirthdate: birthdate,
           ...age(20)
         },
-        min: true,
-        max: true
-      },
-      {
-        props: {
-          relationship: '',
-          applicantBirthdate: null,
-          ...age(26)
+        context: {
+          applicantBirthdate: birthdate
         },
         min: true,
         max: true
       },
       {
-        props: {
+        data: {
           relationship: '',
-          applicantBirthdate: null,
+          ...age(26)
+        },
+        context: {
+          applicantBirthdate: null
+        },
+        min: true,
+        max: true
+      },
+      {
+        data: {
+          relationship: '',
           ...age(201)
+        },
+        context: {
+          applicantBirthdate: null
         },
         min: false,
         max: true
@@ -348,7 +356,7 @@ describe('date control validator', function () {
     ]
 
     tests.forEach(test => {
-      const validator = new DateControlValidator(test.state, test.props)
+      const validator = new DateControlValidator(test.data, test.context)
       expect(validator.validMaxDate()).toBe(test.max)
       expect(validator.validMinDate()).toBe(test.min)
     })
@@ -367,37 +375,45 @@ describe('date control validator', function () {
     const birthdate = age(25)
     const tests = [
       {
-        props: {
-          applicantBirthdate: birthdate,
+        data: {
           minDate: daysAgo(today, 365 * 23),
           ...age(24)
         },
-        min: false,
-        max: true
-      },
-      {
-        props: {
-          applicantBirthdate: birthdate,
-          minDate: daysAgo(today, 365 * 23),
-          ...age(26)
+        context: {
+          applicantBirthdate: birthdate
         },
         min: false,
         max: true
       },
       {
-        props: {
-          applicantBirthdate: birthdate,
+        data: {
+          minDate: daysAgo(today, 365 * 23),
+          ...age(26)
+        },
+        context: {
+          applicantBirthdate: birthdate
+        },
+        min: false,
+        max: true
+      },
+      {
+        data: {
           maxDate: daysAgo(today, 365 * 20),
           ...age(19)
+        },
+        context: {
+          applicantBirthdate: birthdate
         },
         min: true,
         max: false
       },
       {
-        props: {
-          applicantBirthdate: birthdate,
+        data: {
           maxDate: daysAgo(today, 365 * 30),
           ...age(0)
+        },
+        context: {
+          applicantBirthdate: birthdate
         },
         min: true,
         max: false
@@ -405,7 +421,7 @@ describe('date control validator', function () {
     ]
 
     tests.forEach(test => {
-      const validator = new DateControlValidator(test.state, test.props)
+      const validator = new DateControlValidator(test.data, test.context)
       expect(validator.validMaxDate()).toBe(test.max)
       expect(validator.validMinDate()).toBe(test.min)
     })

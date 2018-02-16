@@ -20,7 +20,7 @@ export const substanceDrugOrdered = (data = {}) => {
     }
   })
   return {
-    Involved: form.branch(data.Involved),
+    TreatmentOrdered: form.branch(data.TreatmentOrdered),
     List: form.collection(items, (data.List || {}).branch)
   }
 }

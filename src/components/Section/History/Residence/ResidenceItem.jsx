@@ -7,8 +7,8 @@ import { today, daysAgo } from '../dateranges'
 
 // We need to determine how far back 3 years ago was
 const threeYearsAgo = daysAgo(today, 365 * 3)
-const withinThreeYears = (from, to) => {
-  return (from && from.date >= threeYearsAgo) || (to && to.date >= threeYearsAgo)
+const withinThreeYears = (from, to, present) => {
+  return present || (from && from.date >= threeYearsAgo) || (to && to.date >= threeYearsAgo)
 }
 
 /**
@@ -163,7 +163,7 @@ export default class ResidenceItem extends ValidationElement {
     const dates = this.props.Dates || {}
     const from = dates.from
     const to = dates.to
-    const zeroReference = !withinThreeYears(from, to)
+    const zeroReference = !withinThreeYears(from, to, dates.present)
     this.update({
       Dates: values,
       ReferenceName: zeroReference ? {} : this.props.ReferenceName,
@@ -233,7 +233,6 @@ export default class ResidenceItem extends ValidationElement {
           <label className="info-label">{i18n.t('history.residence.label.dates')}</label>
           <DateRange name="Dates"
                      {...this.props.Dates}
-                     applicantBirthdate={this.props.applicantBirthdate}
                      label={i18n.t('history.residence.label.dates')}
                      onUpdate={this.updateDates}
                      onError={this.props.onError}
@@ -290,7 +289,7 @@ export default class ResidenceItem extends ValidationElement {
           </Field>
         </Show>
 
-        <Show when={withinThreeYears(from, to)}>
+        <Show when={withinThreeYears(from, to, dates.present)}>
           <div>
             <Field title={i18n.t('history.residence.heading.reference')}
                    titleSize="h2"
@@ -304,6 +303,7 @@ export default class ResidenceItem extends ValidationElement {
               <Field title={i18n.t('reference.heading.name')}
                      titleSize="h3"
                      optional={true}
+                     filterErrors={Name.requiredErrorsOnly}
                      scrollIntoView={this.props.scrollIntoView}>
                 <Name name="ReferenceName"
                       prefix={'name'}
@@ -324,7 +324,6 @@ export default class ResidenceItem extends ValidationElement {
                 <DateControl name="ReferenceLastContact"
                              className="reference-last-contact"
                              {...this.props.ReferenceLastContact}
-                             applicantBirthdate={this.props.applicantBirthdate}
                              onUpdate={this.updateReferenceLastContact}
                              onError={this.props.onError}
                              required={this.props.required}
@@ -467,7 +466,8 @@ export default class ResidenceItem extends ValidationElement {
                                {...this.props.ReferenceEmailNotApplicable}
                                label={i18n.t('reference.label.idk')}
                                or={i18n.m('reference.para.or')}
-                               onUpdate={this.updateReferenceEmailNotApplicable}>
+                               onUpdate={this.updateReferenceEmailNotApplicable}
+                               onError={this.props.onError}>
                   <Email name="ReferenceEmail"
                          {...this.props.ReferenceEmail}
                          className="reference-email"
@@ -522,7 +522,6 @@ ResidenceItem.defaultProps = {
   ReferenceEmailNotApplicable: {},
   ReferenceEmail: {},
   ReferenceAddress: {},
-  applicantBirthdate: {},
   addressBooks: {},
   dispatch: (action) => {},
   onUpdate: (queue) => {},

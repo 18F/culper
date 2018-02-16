@@ -133,6 +133,7 @@ export default class SponsorshipItem extends ValidationElement {
       <div className="sponsorship-item">
         <Field title={i18n.t('foreign.business.sponsorship.heading.name')}
                optional={true}
+               filterErrors={Name.requiredErrorsOnly}
                scrollIntoView={this.props.scrollIntoView}>
           <Name name="Name"
                 {...this.props.Name}
@@ -158,7 +159,6 @@ export default class SponsorshipItem extends ValidationElement {
                          required={this.props.required}>
             <DateControl name="Birthdate"
                          {...this.props.Birthdate}
-                         applicantBirthdate={this.props.applicantBirthdate}
                          relationship="Other"
                          onUpdate={this.updateBirthdate}
                          onError={this.props.onError}
@@ -272,7 +272,6 @@ export default class SponsorshipItem extends ValidationElement {
                scrollIntoView={this.props.scrollIntoView}>
           <DateRange name="Dates"
                      {...this.props.Dates}
-                     applicantBirthdate={this.props.applicantBirthdate}
                      onUpdate={this.updateDates}
                      onError={this.props.onError}
                      className="foreign-business-sponsorship-dates"
@@ -332,7 +331,6 @@ SponsorshipItem.defaultProps = {
   BirthdateNotApplicable: { applicable: true },
   OrganizationNotApplicable: { applicable: true },
   OrganizationAddressNotApplicable: { applicable: true },
-  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

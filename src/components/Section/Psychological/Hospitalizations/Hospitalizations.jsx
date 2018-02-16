@@ -80,7 +80,6 @@ export default class Hospitalizations extends SubsectionElement {
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
             <Hospitalization name="Item"
-                             applicantBirthdate={this.props.applicantBirthdate}
                              bind={true}
                              required={this.props.required}
                              scrollIntoView={this.props.scrollIntoView}
@@ -101,10 +100,9 @@ Hospitalizations.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'psychological',
   subsection: 'hospitalizations',
-  applicantBirthdate: {},
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('psychological.hospitalizations', props))
+  validator: (data) => {
+    return validate(schema('psychological.hospitalizations', data))
   },
   scrollToBottom: ''
 }

@@ -4,21 +4,21 @@ describe('Sentence record validation', function () {
   it('can validate basic branch checks', () => {
     const tests = [
       {
-        state: {
+        data: {
           ExceedsYear: { value: 'Yes' },
           Incarcerated: { value: 'Yes' }
         },
         expected: true
       },
       {
-        state: {
+        data: {
           ExceedsYear: { value: 'Nope' },
           Incarcerated: { value: 'Yes' }
         },
         expected: false
       },
       {
-        state: {
+        data: {
           ExceedsYear: { value: 'Yes' },
           Incarcerated: { value: 'Nope' }
         },
@@ -27,19 +27,25 @@ describe('Sentence record validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new SentenceValidator(test.state, null).validChecks()).toBe(test.expected)
+      expect(new SentenceValidator(test.data).validChecks()).toBe(test.expected)
     })
   })
 
   it('can validate incarceration dates', () => {
     const tests = [
       {
-        state: {
+        data: {
           IncarcerationDates: {
             from: {
+              month: '1',
+              day: '1',
+              year: '2000',
               date: new Date('1/1/2000')
             },
             to: {
+              month: '1',
+              day: '1',
+              year: '2004',
               date: new Date('1/1/2004')
             },
             present: false
@@ -48,7 +54,7 @@ describe('Sentence record validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           IncarcerationDatesNA: {
             applicable: false
           }
@@ -58,19 +64,25 @@ describe('Sentence record validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new SentenceValidator(test.state, null).validIncarcerationDates()).toBe(test.expected)
+      expect(new SentenceValidator(test.data).validIncarcerationDates()).toBe(test.expected)
     })
   })
 
   it('can validate probation dates', () => {
     const tests = [
       {
-        state: {
+        data: {
           ProbationDates: {
             from: {
+              month: '1',
+              day: '1',
+              year: '2000',
               date: new Date('1/1/2000')
             },
             to: {
+              month: '1',
+              day: '1',
+              year: '2004',
               date: new Date('1/1/2004')
             },
             present: false
@@ -79,7 +91,7 @@ describe('Sentence record validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           ProbationDatesNA: {
             applicable: false
           }
@@ -89,30 +101,42 @@ describe('Sentence record validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new SentenceValidator(test.state, null).validProbationDates()).toBe(test.expected)
+      expect(new SentenceValidator(test.data).validProbationDates()).toBe(test.expected)
     })
   })
 
   it('can validate sentence', () => {
     const tests = [
       {
-        state: {
+        data: {
           ExceedsYear: { value: 'Yes' },
           Incarcerated: { value: 'Yes' },
           IncarcerationDates: {
             from: {
+              month: '1',
+              day: '1',
+              year: '2000',
               date: new Date('1/1/2000')
             },
             to: {
+              month: '1',
+              day: '1',
+              year: '2004',
               date: new Date('1/1/2004')
             },
             present: false
           },
           ProbationDates: {
             from: {
+              month: '1',
+              day: '1',
+              year: '2000',
               date: new Date('1/1/2000')
             },
             to: {
+              month: '1',
+              day: '1',
+              year: '2004',
               date: new Date('1/1/2004')
             },
             present: false
@@ -126,7 +150,7 @@ describe('Sentence record validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new SentenceValidator(test.state, null).isValid()).toBe(test.expected)
+      expect(new SentenceValidator(test.data).isValid()).toBe(test.expected)
     })
   })
 })

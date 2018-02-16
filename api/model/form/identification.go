@@ -418,7 +418,7 @@ type IdentificationSSN struct {
 
 	// Validator specific fields
 	Verified bool `json:"verified"`
-	SSN      *SSN `json:"-"`
+	SSN      *SSN `json:"-" sql:"-"`
 
 	// Persister specific fields
 	ID    int `json:"-"`

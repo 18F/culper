@@ -110,8 +110,8 @@ Credit.defaultProps = {
   section: 'financial',
   subsection: 'credit',
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('financial.credit', props))
+  validator: (data) => {
+    return validate(schema('financial.credit', data))
   },
   defaultState: true
 }

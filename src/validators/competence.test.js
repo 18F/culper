@@ -5,7 +5,7 @@ describe('Competence validation', function () {
   it('validates competence', () => {
     const tests = [
       {
-        state: {
+        data: {
           IsIncompetent: { value: 'Yes' },
           List: {
             branch: { value: 'No' },
@@ -43,7 +43,7 @@ describe('Competence validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           List: {
             branch: { value: 'No' },
             items: []
@@ -53,7 +53,7 @@ describe('Competence validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           List: {
             branch: { value: 'No' },
             items: []
@@ -63,7 +63,7 @@ describe('Competence validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           List: {
             branch: { value: 'No' },
             items: []
@@ -73,7 +73,7 @@ describe('Competence validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           IsIncompetent: { value: 'Yes' },
           List: {
             branch: { value: 'No' },
@@ -110,7 +110,7 @@ describe('Competence validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new CompetenceValidator(test.state, null).isValid()).toBe(test.expected)
+      expect(new CompetenceValidator(test.data).isValid()).toBe(test.expected)
     })
   })
 })

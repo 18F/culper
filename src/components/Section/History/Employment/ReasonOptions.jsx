@@ -123,7 +123,6 @@ export default class ReasonOptions extends React.Component {
                 <label>{date}</label>
                 <DateControl name="Date"
                              {...this.state.Date}
-                             applicantBirthdate={this.props.applicantBirthdate}
                              onUpdate={this.updateDate}
                              onError={this.props.onError}
                              required={this.props.required}
@@ -138,6 +137,5 @@ export default class ReasonOptions extends React.Component {
 }
 
 ReasonOptions.defaultProps = {
-  applicantBirthdate: {},
   onError: (value, arr) => { return arr }
 }

@@ -295,6 +295,7 @@ export default class Relative extends ValidationElement {
   render () {
     const validator = new RelativeValidator(this.props, null)
     const mother = (this.props.Relation || {}).value === 'Mother'
+    const father = (this.props.Relation || {}).value === 'Father'
     const immediateFamily = ['Father', 'Mother', 'Child', 'Stepchild', 'Brother', 'Sister', 'Half-brother', 'Half-sister', 'Stepbrother', 'Stepsister', 'Stepmother', 'Stepfather'].includes((this.props.Relation || {}).value)
 
     return (
@@ -423,6 +424,7 @@ export default class Relative extends ValidationElement {
 
         <Field title={i18n.t('relationships.relatives.heading.name')}
                optional={true}
+               filterErrors={Name.requiredErrorsOnly}
                scrollIntoView={this.props.scrollIntoView}>
           <Name name="Name"
                 className="relative-name"
@@ -442,7 +444,7 @@ export default class Relative extends ValidationElement {
           <DateControl name="Birthdate"
                        className="relative-birthdate"
                        {...this.props.Birthdate}
-                       applicantBirthdate={this.props.applicantBirthdate}
+                       prefix={(mother || father) ? 'parent.dob' : ''}
                        relationship={(this.props.Relation || {}).value}
                        onError={this.props.onError}
                        onUpdate={this.updateBirthdate}
@@ -498,6 +500,7 @@ export default class Relative extends ValidationElement {
             </Branch>
             <Show when={this.props.MaidenSameAsListed.value === 'No'}>
               <Field optional={true}
+                     filterErrors={Name.requiredErrorsOnly}
                      scrollIntoView={this.props.scrollIntoView}>
                 <Name name="MaidenName"
                       className="relative-maidenname eapp-field-wrap"
@@ -1080,7 +1083,6 @@ Relative.defaultProps = {
   EmployerAddress: {},
   HasAffiliation: '',
   EmployerRelationship: {},
-  applicantBirthdate: {},
   addressBooks: {},
   addressBook: 'Relative',
   dispatch: (action) => {},

@@ -3,32 +3,32 @@ import LocationValidator from './location'
 import { validGenericTextfield, validDateField } from './helpers'
 
 export default class CitizenshipValidator {
-  constructor (state = {}, props = {}) {
-    this.citizenshipStatus = (state.CitizenshipStatus || {}).value
-    this.abroadDocumentation = (state.AbroadDocumentation || {}).value
-    this.explanation = (state.Explanation || {})
-    this.documentNumber = (state.DocumentNumber || {}).value
-    this.documentIssued = state.DocumentIssued
-    this.documentName = state.DocumentName
-    this.documentExpiration = state.DocumentExpiration
-    this.documentType = (state.DocumentType || {}).value
-    this.placeIssued = state.PlaceIssued
-    this.certificateNumber = (state.CertificateNumber || {})
-    this.certificateIssued = state.CertificateIssued
-    this.certificateName = state.CertificateName
-    this.certificateCourtName = (state.CertificateCourtName || {})
-    this.certificateCourtAddress = state.CertificateCourtAddress
-    this.bornOnMilitaryInstallation = (state.BornOnMilitaryInstallation || {}).value
-    this.militaryBase = (state.MilitaryBase || {})
-    this.entryDate = state.EntryDate
-    this.entryLocation = state.EntryLocation
-    this.priorCitizenship = (state.PriorCitizenship || {}).value
-    this.hasAlienRegistration = (state.HasAlienRegistration || {}).value
-    this.alienRegistrationNumber = (state.AlienRegistrationNumber || {})
-    this.alienRegistrationExpiration = state.AlienRegistrationExpiration
-    this.basis = (state.Basis || {}).value
-    this.permanentResidentCardNumber = (state.PermanentResidentCardNumber || {})
-    this.residenceStatus = (state.ResidenceStatus || {}).value
+  constructor (data = {}) {
+    this.citizenshipStatus = (data.CitizenshipStatus || {}).value
+    this.abroadDocumentation = (data.AbroadDocumentation || {}).value
+    this.explanation = (data.Explanation || {})
+    this.documentNumber = (data.DocumentNumber || {}).value
+    this.documentIssued = data.DocumentIssued
+    this.documentName = data.DocumentName
+    this.documentExpiration = data.DocumentExpiration
+    this.documentType = (data.DocumentType || {}).value
+    this.placeIssued = data.PlaceIssued
+    this.certificateNumber = (data.CertificateNumber || {})
+    this.certificateIssued = data.CertificateIssued
+    this.certificateName = data.CertificateName
+    this.certificateCourtName = (data.CertificateCourtName || {})
+    this.certificateCourtAddress = data.CertificateCourtAddress
+    this.bornOnMilitaryInstallation = (data.BornOnMilitaryInstallation || {}).value
+    this.militaryBase = (data.MilitaryBase || {})
+    this.entryDate = data.EntryDate
+    this.entryLocation = data.EntryLocation
+    this.priorCitizenship = (data.PriorCitizenship || {}).value
+    this.hasAlienRegistration = (data.HasAlienRegistration || {}).value
+    this.alienRegistrationNumber = (data.AlienRegistrationNumber || {})
+    this.alienRegistrationExpiration = data.AlienRegistrationExpiration
+    this.basis = (data.Basis || {}).value
+    this.permanentResidentCardNumber = (data.PermanentResidentCardNumber || {})
+    this.residenceStatus = (data.ResidenceStatus || {}).value
   }
 
   validCitizenshipStatus () {
@@ -44,10 +44,10 @@ export default class CitizenshipValidator {
       validGenericTextfield(this.documentNumber) &&
       validDateField(this.documentIssued) &&
       new LocationValidator(this.placeIssued).isValid() &&
-      new NameValidator(this.documentName, null).isValid() &&
+      new NameValidator(this.documentName).isValid() &&
       validGenericTextfield(this.certificateNumber) &&
       validDateField(this.certificateIssued) &&
-      new NameValidator(this.certificateName, null).isValid() &&
+      new NameValidator(this.certificateName).isValid() &&
       this.validBornOnMilitaryInstallation()
   }
 
@@ -62,9 +62,9 @@ export default class CitizenshipValidator {
       this.validAlienRegistration() &&
       validGenericTextfield(this.certificateNumber) &&
       validGenericTextfield(this.certificateCourtName) &&
-      new LocationValidator(this.certificateCourtAddress, null).isValid() &&
+      new LocationValidator(this.certificateCourtAddress).isValid() &&
       validDateField(this.certificateIssued) &&
-      new NameValidator(this.certificateName, null).isValid() &&
+      new NameValidator(this.certificateName).isValid() &&
       this.validBasis()
   }
 
@@ -76,7 +76,7 @@ export default class CitizenshipValidator {
     return validGenericTextfield(this.alienRegistrationNumber) &&
       validGenericTextfield(this.permanentResidentCardNumber) &&
       validGenericTextfield(this.certificateNumber) &&
-      new NameValidator(this.certificateName, null).isValid() &&
+      new NameValidator(this.certificateName).isValid() &&
       validDateField(this.certificateIssued) &&
       this.validBasis()
   }
@@ -88,13 +88,13 @@ export default class CitizenshipValidator {
 
     return validGenericTextfield(this.residenceStatus) &&
       validDateField(this.entryDate) &&
-      new LocationValidator(this.entryLocation, null).isValid() &&
+      new LocationValidator(this.entryLocation).isValid() &&
       this.validCitizenships(this.priorCitizenship) &&
       validGenericTextfield(this.alienRegistrationNumber) &&
       validDateField(this.alienRegistrationExpiration) &&
       this.validDocumentType() &&
       validGenericTextfield(this.documentNumber) &&
-      new NameValidator(this.documentName, null).isValid() &&
+      new NameValidator(this.documentName).isValid() &&
       validDateField(this.documentIssued) &&
       validDateField(this.documentExpiration)
   }

@@ -1,8 +1,8 @@
 import { allHaveStatus, anyHasStatus } from './helpers'
 
 export default class IdentificationValidator {
-  constructor (state = {}, props = {}) {
-    this.completed = props.Completed
+  constructor (data = {}) {
+    this.completed = data.Completed
   }
 
   completionStatus (status) {

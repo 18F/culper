@@ -31,7 +31,9 @@ input[type='checkbox'], input[type='radio'] {
     position: relative;
     top: auto;
     left: auto;
-    z-index: -1;
+
+    // This was hiding the time of day for telephone numbers.
+    // z-index: -1;
   }
 }
 
@@ -254,6 +256,7 @@ select {
       text-align: center;
       background: transparent;
       border: none;
+      z-index: unset;
 
       > span {
         display: inline;

@@ -4,7 +4,7 @@ import { substanceDrugOrdered } from './substance-drug-ordered'
 describe('Schema for financial taxes', () => {
   it('can wrap in schema', () => {
     const data = {
-      Involved: { value: 'Yes' },
+      TreatmentOrdered: { value: 'Yes' },
       List: {
         branch: { value: 'No' },
         items: [{

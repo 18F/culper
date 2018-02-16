@@ -30,6 +30,7 @@ type Account struct {
 	Token     string
 	TokenUsed bool
 	Email     string
+	Locked    bool
 	db        *db.DatabaseContext
 }
 
@@ -62,6 +63,7 @@ func (a *Account) BasicAuthentication(password string) error {
 	return nil
 }
 
+// NewJwtToken generates a new token with the explicit audience.
 func (a *Account) NewJwtToken(audience string) (string, time.Time, error) {
 	return jwt.NewToken(a.ID, audience)
 }
@@ -120,4 +122,16 @@ func (a *Account) Save() error {
 	}
 
 	return err
+}
+
+// Lock will mark the account in a `locked` status.
+func (a *Account) Lock() error {
+	a.Locked = true
+	return a.Save()
+}
+
+// Unlock will mark the account in an `unlocked` status.
+func (a *Account) Unlock() error {
+	a.Locked = false
+	return a.Save()
 }

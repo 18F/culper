@@ -4,7 +4,7 @@ import { substanceDrugVoluntary } from './substance-drug-voluntary'
 describe('Schema for financial taxes', () => {
   it('can wrap in schema', () => {
     const data = {
-      Involved: { value: 'Yes' },
+      TreatmentVoluntary: { value: 'Yes' },
       List: {
         branch: { value: 'No' },
         items: [{
