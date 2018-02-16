@@ -5,13 +5,13 @@ describe('Direct Interest validation', function () {
     const tests = [
       {
         props: {
-          InterestTypes: []
+          InterestTypes: { values: [] }
         },
         expected: false
       },
       {
         props: {
-          InterestTypes: ['Yourself']
+          InterestTypes: { values: ['Yourself'] }
         },
         expected: true
       }
@@ -25,7 +25,7 @@ describe('Direct Interest validation', function () {
     const tests = [
       {
         props: {
-          InterestTypes: ['Yourself'],
+          InterestTypes: { values: ['Yourself'] },
           InterestType: {
             value: 'Some type'
           },
