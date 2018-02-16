@@ -43,7 +43,7 @@ export class CitizenshipItemValidator {
   }
 
   validDates () {
-    return !!this.dates && new DateRangeValidator(this.dates, null).isValid()
+    return !!this.dates && new DateRangeValidator(this.dates).isValid()
   }
 
   validHow () {

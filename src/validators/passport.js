@@ -1,19 +1,20 @@
 import NameValidator from './name'
 import DateRangeValidator from './daterange'
+import DateControlValidator from './datecontrol'
 
 const reBook = '^[a-zA-Z]{1}[0-9]{6,9}$'
 const reCard = '^[cC]{1}[0-9]{8}$'
 
 export default class PassportValidator {
-  constructor (state = {}, props = {}) {
-    this.name = state.Name
-    this.number = state.Number
-    this.card = state.Card
-    this.issued = state.Issued
-    this.expiration = state.Expiration
-    this.comments = state.Comments
-    this.hasPassports = (state.HasPassports || {}).value
-    this.card = state.Card
+  constructor (data = {}) {
+    this.name = data.Name
+    this.number = data.Number
+    this.card = data.Card
+    this.issued = data.Issued
+    this.expiration = data.Expiration
+    this.comments = data.Comments
+    this.hasPassports = (data.HasPassports || {}).value
+    this.card = data.Card
   }
 
   validHasPassports () {
@@ -33,7 +34,7 @@ export default class PassportValidator {
       return true
     }
 
-    return new NameValidator(this.name, null).isValid()
+    return new NameValidator(this.name).isValid()
   }
 
   validPassportNumber () {
@@ -58,29 +59,12 @@ export default class PassportValidator {
       return true
     }
 
-    if (!this.isValidEstimatedDate(this.issued)) {
-      return false
-    }
-
-    if (!this.isValidEstimatedDate(this.expiration)) {
-      return false
-    }
-
     const range = {
-      from: {
-        date: this.issued.date
-      },
-      to: {
-        date: this.expiration.date
-      },
+      from: this.issued,
+      to: this.expiration,
       present: false
     }
-
-    if (!new DateRangeValidator(range).isValid()) {
-      return false
-    }
-
-    return true
+    return new DateRangeValidator(range).isValid()
   }
 
   isValid () {
@@ -88,32 +72,5 @@ export default class PassportValidator {
       this.validName() &&
       this.validPassportNumber() &&
       this.validDates()
-  }
-
-  /**
-   * Determines if date information is a valid estimated date
-   */
-  isValidEstimatedDate (obj) {
-    if (!obj) {
-      return false
-    }
-
-    let month = parseInt(obj.month || '1')
-    let day = parseInt(obj.day || '1')
-    let year = parseInt(obj.year)
-
-    if (month < 1 || month > 12) {
-      return false
-    }
-
-    if (day < 1 || day > 31) {
-      return false
-    }
-
-    if (year < 1) {
-      return false
-    }
-
-    return true
   }
 }

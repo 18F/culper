@@ -347,7 +347,7 @@ export default class Accordion extends ValidationElement {
             </span>
           </a>
         </div>
-        <Show when={closedAndIncomplete && !initial}>
+        <Show when={closedAndIncomplete}>
           {this.props.byline(item, index, initial, this.props.incomplete, this.props.required)}
         </Show>
       </div>

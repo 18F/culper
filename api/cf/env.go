@@ -38,6 +38,7 @@ func DatabaseURI(label string) string {
 	return getDatabase(current, label)
 }
 
+// getProtocol returns HTTP or HTTPS.
 func getProtocol(current *cfenv.App) string {
 	if current != nil && len(current.ApplicationURIs) > 0 {
 		return "https"
@@ -45,6 +46,7 @@ func getProtocol(current *cfenv.App) string {
 	return "http"
 }
 
+// getPort returns the publicly accessible port.
 func getPort(current *cfenv.App) string {
 	if current != nil && current.Port != 0 {
 		return fmt.Sprintf("%d", current.Port)
@@ -58,6 +60,7 @@ func getPort(current *cfenv.App) string {
 	return port
 }
 
+// getURI is the application URI.
 func getURI(current *cfenv.App) string {
 	if current != nil && len(current.ApplicationURIs) > 0 {
 		return current.ApplicationURIs[0]
@@ -66,6 +69,7 @@ func getURI(current *cfenv.App) string {
 	return "localhost"
 }
 
+// getDatabase returns the database connection string.
 func getDatabase(current *cfenv.App, label string) string {
 	log := logmsg.NewLogger()
 
@@ -203,6 +207,7 @@ func AllowedOrigin(origin string) bool {
 	return false
 }
 
+// TargetAudiences which are accepted based on the configured environment.
 func TargetAudiences() []string {
 	audiences := []string{}
 

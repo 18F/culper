@@ -7,7 +7,7 @@ import { login, handleLoginSuccess } from '../../actions/AuthActions'
 import { push } from '../../middleware/history'
 import { Consent, Show } from '../../components/Form'
 
-class Login extends React.Component {
+export class Login extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -286,7 +286,6 @@ Login.defaultProps = {
   username: '',
   password: '',
   showPassword: false
-  // location: () => { return window.location }
 }
 
 /**

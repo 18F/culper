@@ -9,18 +9,10 @@ export default class Reprimand extends ValidationElement {
     this.updateReasons = this.updateReasons.bind(this)
   }
 
-  /**
-   * Handle any updates and bubble them up.
-   */
-  update (queue) {
-    this.props.onUpdate({
-      Reasons: this.props.Reasons,
-      ...queue
-    })
-  }
-
   updateReasons (values) {
-    this.update({ Reasons: values })
+    this.props.onUpdate({
+      ...values
+    })
   }
 
   render () {
@@ -28,7 +20,7 @@ export default class Reprimand extends ValidationElement {
       <BranchCollection label={i18n.t('history.employment.default.reprimand.label')}
                         appendLabel={i18n.t('history.employment.default.reprimand.append')}
                         help="history.employment.default.reprimand.help"
-                        {...this.props.Reasons}
+                        {...this.props}
                         className="reprimand-branch"
                         onUpdate={this.updateReasons}
                         onError={this.props.onError}
@@ -36,7 +28,6 @@ export default class Reprimand extends ValidationElement {
                         scrollIntoView={this.props.scrollIntoView}>
         <ReprimandItem name="Item"
                        bind={true}
-                       applicantBirthdate={this.props.applicantBirthdate}
                        required={this.props.required}
                        scrollIntoView={this.props.scrollIntoView}
                        />
@@ -47,7 +38,6 @@ export default class Reprimand extends ValidationElement {
 
 Reprimand.defaultProps = {
   Reasons: { items: [] },
-  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

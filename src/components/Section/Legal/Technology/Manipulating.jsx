@@ -81,7 +81,6 @@ export default class Manipulating extends SubsectionElement {
                      scrollIntoView={this.props.scrollIntoView}>
             <ManipulatingItem name="Item"
                               bind={true}
-                              applicantBirthdate={this.props.applicantBirthdate}
                               addressBooks={this.props.addressBooks}
                               dispatch={this.props.dispatch}
                               required={this.props.required}
@@ -103,11 +102,10 @@ Manipulating.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'legal',
   subsection: 'technology/manipulating',
-  applicantBirthdate: {},
   addressBooks: {},
   dispatch: (action) => {},
-  validator: (state, props) => {
-    return validate(schema('legal.technology.manipulating', props))
+  validator: (data) => {
+    return validate(schema('legal.technology.manipulating', data))
   },
   scrollToBottom: ''
 }

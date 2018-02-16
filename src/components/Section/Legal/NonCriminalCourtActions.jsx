@@ -80,7 +80,6 @@ export default class NonCriminalCourtActions extends SubsectionElement {
                      scrollIntoView={this.props.scrollIntoView}>
         <NonCriminalCourtAction name="Item"
                                 bind={true}
-                                applicantBirthdate={this.props.applicantBirthdate}
                                 addressBooks={this.props.addressBooks}
                                 dispatch={this.props.dispatch}
                                 required={this.props.required}
@@ -99,11 +98,10 @@ NonCriminalCourtActions.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'legal',
   subsection: 'court',
-  applicantBirthdate: {},
   addressBooks: {},
   dispatch: (action) => {},
-  validator: (state, props) => {
-    return validate(schema('legal.court', props))
+  validator: (data) => {
+    return validate(schema('legal.court', data))
   },
   scrollToBottom: ''
 }

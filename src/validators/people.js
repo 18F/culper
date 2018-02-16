@@ -8,8 +8,8 @@ const minimumYears = 7
 const minimumPeople = 3
 
 export default class PeopleValidator {
-  constructor (state = {}) {
-    this.list = state.List || {}
+  constructor (data = {}) {
+    this.list = data.List || {}
   }
 
   validCount () {

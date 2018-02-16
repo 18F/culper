@@ -82,7 +82,6 @@ export default class Contacts extends SubsectionElement {
                      scrollIntoView={this.props.scrollIntoView}>
             <ForeignNational name="Item"
                              bind={true}
-                             applicantBirthdate={this.props.applicantBirthdate}
                              addressBooks={this.props.addressBooks}
                              dispatch={this.props.dispatch}
                              required={this.props.required}
@@ -101,11 +100,10 @@ Contacts.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'contacts',
-  applicantBirthdate: {},
   addressBooks: {},
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('foreign.contacts', props))
+  validator: (data) => {
+    return validate(schema('foreign.contacts', data))
   },
   defaultState: true,
   scrollToBottom: ''

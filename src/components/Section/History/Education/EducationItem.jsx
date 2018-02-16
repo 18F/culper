@@ -9,8 +9,8 @@ import { today, daysAgo } from '../dateranges'
 
 // We need to determine how far back 3 years ago was
 const threeYearsAgo = daysAgo(today, 365 * 3)
-const withinThreeYears = (from, to) => {
-  return (from && from >= threeYearsAgo) || (to && to >= threeYearsAgo)
+const withinThreeYears = (from, to, present) => {
+  return present || (from && from >= threeYearsAgo) || (to && to >= threeYearsAgo)
 }
 
 /**
@@ -60,7 +60,7 @@ export default class EducationItem extends ValidationElement {
     const dates = values || {}
     const from = dates.from
     const to = dates.to
-    const zeroReference = !withinThreeYears(from, to)
+    const zeroReference = !withinThreeYears(from, to, dates.present)
     this.update({
       Dates: values,
       ReferenceName: zeroReference ? {} : this.props.ReferenceName,
@@ -190,7 +190,6 @@ export default class EducationItem extends ValidationElement {
             <label className="info-label">{i18n.t('history.education.label.dates')}</label>
             <DateRange name="Dates"
                        {...this.props.Dates}
-                       applicantBirthdate={this.props.applicantBirthdate}
                        label={i18n.t('history.education.label.dates')}
                        onUpdate={this.updateDates}
                        onError={this.props.onError}
@@ -262,7 +261,7 @@ export default class EducationItem extends ValidationElement {
             </RadioGroup>
           </Field>
 
-          <Show when={withinThreeYears(from, to)}>
+          <Show when={withinThreeYears(from, to, dates.present)}>
             <div className="reference">
               <Field title={i18n.t('history.education.heading.reference')}
                      titleSize="h2"
@@ -274,12 +273,14 @@ export default class EducationItem extends ValidationElement {
               <Field title={i18n.t('reference.heading.name')}
                      titleSize="h3"
                      optional={true}
+                     filterErrors={Name.requiredErrorsOnly}
                      scrollIntoView={this.props.scrollIntoView}>
                 <NotApplicable name="ReferenceNameNotApplicable"
                                {...this.props.ReferenceNameNotApplicable}
                                label={i18n.t('reference.label.idk')}
                                or={i18n.m('reference.para.or')}
-                               onUpdate={this.updateReferenceNameNotApplicable}>
+                               onUpdate={this.updateReferenceNameNotApplicable}
+                               onError={this.props.onError}>
                   <Name name="ReferenceName"
                         prefix={'name'}
                         className="reference-name"
@@ -323,7 +324,8 @@ export default class EducationItem extends ValidationElement {
                                  {...this.props.ReferenceEmailNotApplicable}
                                  label={i18n.t('reference.label.idk')}
                                  or={i18n.m('reference.para.or')}
-                                 onUpdate={this.updateReferenceEmailNotApplicable}>
+                                 onUpdate={this.updateReferenceEmailNotApplicable}
+                                 onError={this.props.onError}>
                     <Email name="ReferenceEmail"
                            {...this.props.ReferenceEmail}
                            className="reference-email"
@@ -367,7 +369,6 @@ export default class EducationItem extends ValidationElement {
                             scrollIntoView={this.props.scrollIntoView}>
             <DiplomaItem name="Item"
                          bind={true}
-                         applicantBirthdate={this.props.applicantBirthdate}
                          required={this.props.required}
                          scrollIntoView={this.props.scrollIntoView} />
           </BranchCollection>
@@ -390,7 +391,6 @@ EducationItem.defaultProps = {
   ReferenceEmailNotApplicable: {},
   ReferenceAddress: {},
   Diplomas: { items: [] },
-  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

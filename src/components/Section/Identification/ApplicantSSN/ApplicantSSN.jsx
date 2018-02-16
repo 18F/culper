@@ -135,8 +135,8 @@ ApplicantSSN.defaultProps = {
   subsection: 'ssn',
   dispatch: () => {},
   required: false,
-  validator: (state, props) => {
-    return validate(schema('identification.ssn', props))
+  validator: (data) => {
+    return validate(schema('identification.ssn', data))
   }
 }
 

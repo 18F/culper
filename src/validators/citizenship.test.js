@@ -5,43 +5,43 @@ describe('citizenship component validation', function () {
   it('can validate status', () => {
     const tests = [
       {
-        state: {
+        data: {
           CitizenshipStatus: { value: '' }
         },
         expected: false
       },
       {
-        state: {
+        data: {
           CitizenshipStatus: { value: 'Yuppers' }
         },
         expected: false
       },
       {
-        state: {
+        data: {
           CitizenshipStatus: { value: 'Citizen' }
         },
         expected: true
       },
       {
-        state: {
+        data: {
           CitizenshipStatus: { value: 'ForeignBorn' }
         },
         expected: true
       },
       {
-        state: {
+        data: {
           CitizenshipStatus: { value: 'Naturalized' }
         },
         expected: true
       },
       {
-        state: {
+        data: {
           CitizenshipStatus: { value: 'Derived' }
         },
         expected: true
       },
       {
-        state: {
+        data: {
           CitizenshipStatus: { value: 'NotCitizen' }
         },
         expected: true
@@ -49,39 +49,39 @@ describe('citizenship component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new CitizenshipValidator(test.state, null).validCitizenshipStatus()).toBe(test.expected)
+      expect(new CitizenshipValidator(test.data).validCitizenshipStatus()).toBe(test.expected)
     })
   })
 
   it('can validate abroad documentation', () => {
     const tests = [
       {
-        state: {
+        data: {
           AbroadDocumentation: { value: '' }
         },
         expected: false
       },
       {
-        state: {
+        data: {
           AbroadDocumentation: { value: 'Yuppers' }
         },
         expected: false
       },
       {
-        state: {
+        data: {
           AbroadDocumentation: { value: 'FS-240' }
         },
         expected: true
       },
       {
-        state: {
+        data: {
           AbroadDocumentation: { value: 'Other' },
           Explanation: null
         },
         expected: false
       },
       {
-        state: {
+        data: {
           AbroadDocumentation: { value: 'Other' },
           Explanation: {
             value: 'Explanation'
@@ -92,39 +92,39 @@ describe('citizenship component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new CitizenshipValidator(test.state, null).validAbroadDocumentation()).toBe(test.expected)
+      expect(new CitizenshipValidator(test.data).validAbroadDocumentation()).toBe(test.expected)
     })
   })
 
   it('can validate born on military installation', () => {
     const tests = [
       {
-        state: {
+        data: {
           BornOnMilitaryInstallation: { value: '' }
         },
         expected: false
       },
       {
-        state: {
+        data: {
           BornOnMilitaryInstallation: { value: 'Yuppers' }
         },
         expected: false
       },
       {
-        state: {
+        data: {
           BornOnMilitaryInstallation: { value: 'No' }
         },
         expected: true
       },
       {
-        state: {
+        data: {
           BornOnMilitaryInstallation: { value: 'Yes' },
           MilitaryBase: null
         },
         expected: false
       },
       {
-        state: {
+        data: {
           BornOnMilitaryInstallation: { value: 'Yes' },
           MilitaryBase: {
             value: 'Camp Pendleton'
@@ -135,39 +135,39 @@ describe('citizenship component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new CitizenshipValidator(test.state, null).validBornOnMilitaryInstallation()).toBe(test.expected)
+      expect(new CitizenshipValidator(test.data).validBornOnMilitaryInstallation()).toBe(test.expected)
     })
   })
 
   it('can validate alien registration', () => {
     const tests = [
       {
-        state: {
+        data: {
           HasAlienRegistration: { value: '' }
         },
         expected: false
       },
       {
-        state: {
+        data: {
           HasAlienRegistration: { value: 'Yuppers' }
         },
         expected: false
       },
       {
-        state: {
+        data: {
           HasAlienRegistration: { value: 'No' }
         },
         expected: true
       },
       {
-        state: {
+        data: {
           HasAlienRegistration: { value: 'Yes' },
           AlienRegistrationNumber: null
         },
         expected: false
       },
       {
-        state: {
+        data: {
           HasAlienRegistration: { value: 'Yes' },
           AlienRegistrationNumber: {
             value: 'number'
@@ -178,33 +178,33 @@ describe('citizenship component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new CitizenshipValidator(test.state, null).validAlienRegistration()).toBe(test.expected)
+      expect(new CitizenshipValidator(test.data).validAlienRegistration()).toBe(test.expected)
     })
   })
 
   it('can validate basis', () => {
     const tests = [
       {
-        state: {
+        data: {
           Basis: { value: '' }
         },
         expected: false
       },
       {
-        state: {
+        data: {
           Basis: { value: 'Some othe option' }
         },
         expected: true
       },
       {
-        state: {
+        data: {
           Basis: { value: 'Other' },
           Explanation: null
         },
         expected: false
       },
       {
-        state: {
+        data: {
           Basis: { value: 'Other' },
           Explanation: {
             value: 'Explanation'
@@ -215,39 +215,39 @@ describe('citizenship component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new CitizenshipValidator(test.state, null).validBasis()).toBe(test.expected)
+      expect(new CitizenshipValidator(test.data).validBasis()).toBe(test.expected)
     })
   })
 
   it('can validate document types', () => {
     const tests = [
       {
-        state: {
+        data: {
           DocumentType: { value: '' }
         },
         expected: false
       },
       {
-        state: {
+        data: {
           DocumentType: { value: 'Yuppers' }
         },
         expected: false
       },
       {
-        state: {
+        data: {
           DocumentType: { value: 'I-94' }
         },
         expected: true
       },
       {
-        state: {
+        data: {
           DocumentType: { value: 'Other' },
           Explanation: null
         },
         expected: false
       },
       {
-        state: {
+        data: {
           DocumentType: { value: 'Other' },
           Explanation: {
             value: 'Explanation'
@@ -258,20 +258,20 @@ describe('citizenship component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new CitizenshipValidator(test.state, null).validDocumentType()).toBe(test.expected)
+      expect(new CitizenshipValidator(test.data).validDocumentType()).toBe(test.expected)
     })
   })
 
   it('can validate', () => {
     const tests = [
       //{
-        //state: {
+        //data: {
           //CitizenshipStatus: { value: 'Citizen' }
         //},
         //expected: true
       //},
       //{
-        //state: {
+        //data: {
           //CitizenshipStatus: { value: 'ForeignBorn' },
           //AbroadDocumentation: { value: 'Other' },
           //Explanation: {
@@ -329,7 +329,7 @@ describe('citizenship component validation', function () {
         //expected: true
       //},
       //{
-        //state: {
+        //data: {
           //CitizenshipStatus: { value: 'Naturalized' },
           //EntryDate: {
             //day: '1',
@@ -388,7 +388,7 @@ describe('citizenship component validation', function () {
         //expected: true
       //},
       //{
-        //state: {
+        //data: {
           //CitizenshipStatus: { value: 'Derived' },
           //AlienRegistrationNumber: {
             //value: 'number'
@@ -423,7 +423,7 @@ describe('citizenship component validation', function () {
         //expected: true
       //},
       //{
-        //state: {
+        //data: {
           //CitizenshipStatus: { value: 'NotCitizen' },
           //ResidenceStatus: {
             //value: 'status'
@@ -487,7 +487,7 @@ describe('citizenship component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new CitizenshipValidator(test.state, null).isValid()).toBe(test.expected)
+      expect(new CitizenshipValidator(test.data).isValid()).toBe(test.expected)
     })
   })
 })

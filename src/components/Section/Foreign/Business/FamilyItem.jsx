@@ -60,6 +60,7 @@ export default class FamilyItem extends ValidationElement {
       <div className="family-item">
         <Field title={i18n.t('foreign.business.family.heading.name')}
                optional={true}
+               filterErrors={Name.requiredErrorsOnly}
                scrollIntoView={this.props.scrollIntoView}>
           <Name name="Name"
                 {...this.props.Name}
@@ -99,7 +100,6 @@ export default class FamilyItem extends ValidationElement {
                scrollIntoView={this.props.scrollIntoView}>
           <DateControl name="Date"
                        {...this.props.Date}
-                       applicantBirthdate={this.props.applicantBirthdate}
                        onUpdate={this.updateDate}
                        onError={this.props.onError}
                        className="family-date"
@@ -123,7 +123,6 @@ export default class FamilyItem extends ValidationElement {
 }
 
 FamilyItem.defaultProps = {
-  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

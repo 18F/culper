@@ -1,14 +1,14 @@
 export default class BirthPlaceValidator {
-  constructor (state = {}, props = {}) {
-    if (state.location) {
-      state = state.location
+  constructor (data = {}) {
+    if (data.location) {
+      data = data.location
     }
     this.domestic = this.domestic
-    this.country = state.country && state.country.value ? state.country.value : state.country
-    this.city = state.city
-    this.state = state.state
-    this.county = state.county
-    this.hideCounty = (props || {}).hideCounty || false
+    this.country = data.country && data.country.value ? data.country.value : data.country
+    this.city = data.city
+    this.state = data.state
+    this.county = data.county
+    this.hideCounty = (data || {}).hideCounty || false
   }
 
   isDomestic (domestic) {

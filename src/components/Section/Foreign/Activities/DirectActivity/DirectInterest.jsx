@@ -181,7 +181,6 @@ export default class DirectInterest extends ValidationElement {
           <DateControl name="Acquired"
                        className="acquired"
                        {...this.props.Acquired}
-                       applicantBirthdate={this.props.applicantBirthdate}
                        label={i18n.t('foreign.activities.direct.interest.label.acquired')}
                        onUpdate={this.updateAcquired}
                        onError={this.props.onError}
@@ -203,7 +202,6 @@ export default class DirectInterest extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.activities.direct.interest.heading.cost')}
-               help={'foreign.activities.direct.interest.help.cost'}
                scrollIntoView={this.props.scrollIntoView}>
           <Currency name="Cost"
                     className="cost"
@@ -226,7 +224,6 @@ export default class DirectInterest extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.activities.direct.interest.heading.value')}
-               help={'foreign.activities.direct.interest.help.value'}
                scrollIntoView={this.props.scrollIntoView}>
           <Currency name="Value"
                     className="value"
@@ -262,7 +259,6 @@ export default class DirectInterest extends ValidationElement {
             <DateControl name="Relinquished"
                          className="relinquished"
                          {...this.props.Relinquished}
-                         applicantBirthdate={this.props.applicantBirthdate}
                          label={i18n.t('foreign.activities.direct.interest.label.relinquished')}
                          onUpdate={this.updateRelinquished}
                          onError={this.props.onError}
@@ -299,7 +295,6 @@ export default class DirectInterest extends ValidationElement {
 
 DirectInterest.defaultProps = {
   prefix: 'activities.direct.interest',
-  applicantBirthdate: {},
   addressBooks: {},
   RelinquishedNotApplicable: { applicable: true },
   dispatch: (action) => {},

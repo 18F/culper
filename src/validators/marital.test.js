@@ -225,9 +225,15 @@ describe('Marital validation', function () {
             },
             DatesUsed: {
               from: {
+                month: '1',
+                day: '1',
+                year: '2010',
                 date: new Date('1/1/2010')
               },
               to: {
+                month: '1',
+                day: '1',
+                year: '2016',
                 date: new Date('1/1/2016')
               },
               present: false

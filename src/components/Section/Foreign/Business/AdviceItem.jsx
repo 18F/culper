@@ -79,6 +79,7 @@ export default class AdviceItem extends ValidationElement {
 
         <Field title={i18n.t('foreign.business.advice.heading.name')}
                optional={true}
+               filterErrors={Name.requiredErrorsOnly}
                scrollIntoView={this.props.scrollIntoView}>
           <Name name="Name"
                 {...this.props.Name}
@@ -116,7 +117,6 @@ export default class AdviceItem extends ValidationElement {
                scrollIntoView={this.props.scrollIntoView}>
           <DateRange name="Dates"
                      {...this.props.Dates}
-                     applicantBirthdate={this.props.applicantBirthdate}
                      onUpdate={this.updateDates}
                      onError={this.props.onError}
                      className="advice-dates"
@@ -140,7 +140,6 @@ export default class AdviceItem extends ValidationElement {
 }
 
 AdviceItem.defaultProps = {
-  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

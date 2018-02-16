@@ -5,23 +5,23 @@ import ForeignBornDocument from './foreignborndocument'
 import { validBranch, validSSN, validDateField, validPhoneNumber, BranchCollection } from './helpers'
 
 export default class CivilUnionValidator {
-  constructor (state = {}, props = {}) {
-    this.name = state.Name
-    this.birthdate = state.Birthdate
-    this.birthPlace = state.BirthPlace
-    this.foreignBornDocument = state.ForeignBornDocument
-    this.ssn = state.SSN
-    this.otherNames = state.OtherNames
-    this.datesUsed = state.DatesUsed
-    this.citizenship = state.Citizenship
-    this.location = state.Location
-    this.address = state.Address
-    this.telephone = state.Telephone
-    this.separated = (state.Separated || {}).value
-    this.dateSeparated = state.DateSeparated
-    this.addressSeparated = state.AddressSeparated
-    this.addressSeparatedNotApplicable = state.AddressSeparatedNotApplicable
-    this.divorced = (state.Divorced || {}).value
+  constructor (data = {}) {
+    this.name = data.Name
+    this.birthdate = data.Birthdate
+    this.birthPlace = data.BirthPlace
+    this.foreignBornDocument = data.ForeignBornDocument
+    this.ssn = data.SSN
+    this.otherNames = data.OtherNames
+    this.datesUsed = data.DatesUsed
+    this.citizenship = data.Citizenship
+    this.location = data.Location
+    this.address = data.Address
+    this.telephone = data.Telephone
+    this.separated = (data.Separated || {}).value
+    this.dateSeparated = data.DateSeparated
+    this.addressSeparated = data.AddressSeparated
+    this.addressSeparatedNotApplicable = data.AddressSeparatedNotApplicable
+    this.divorced = (data.Divorced || {}).value
   }
 
   validCitizenship () {

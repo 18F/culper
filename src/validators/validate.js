@@ -243,25 +243,25 @@ const validators = {
   'substance.alcohol.voluntary': (data) => {
     return new logic.AlcoholVoluntaryCounselingsValidator(data).isValid()
   },
-  'substance.drug.clearance': (data) => {
+  'substance.drugs.clearance': (data) => {
     return new logic.DrugClearanceUsesValidator(data).isValid()
   },
-  'substance.drug.misuse': (data) => {
+  'substance.drugs.misuse': (data) => {
     return new logic.DrugPrescriptionUsesValidator(data).isValid()
   },
-  'substance.drug.ordered': (data) => {
+  'substance.drugs.ordered': (data) => {
     return new logic.DrugOrderedTreatmentsValidator(data).isValid()
   },
-  'substance.drug.publicsafety': (data) => {
+  'substance.drugs.publicsafety': (data) => {
     return new logic.DrugPublicSafetyUsesValidator(data).isValid()
   },
-  'substance.drug.purchase': (data) => {
+  'substance.drugs.purchase': (data) => {
     return new logic.DrugInvolvementsValidator(data).isValid()
   },
-  'substance.drug.usage': (data) => {
+  'substance.drugs.usage': (data) => {
     return new logic.DrugUsesValidator(data).isValid()
   },
-  'substance.drug.voluntary': (data) => {
+  'substance.drugs.voluntary': (data) => {
     return new logic.DrugVoluntaryTreatmentsValidator(data).isValid()
   },
   'legal.associations.activities-to-overthrow': (data) => {

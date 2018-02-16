@@ -76,6 +76,7 @@ export default class SupportItem extends ValidationElement {
       <div className="support-item">
         <Field title={i18n.t('foreign.activities.support.heading.name')}
                optional={true}
+               filterErrors={Name.requiredErrorsOnly}
                scrollIntoView={this.props.scrollIntoView}>
           <Name name="Name"
                 {...this.props.Name}

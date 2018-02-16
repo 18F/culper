@@ -54,6 +54,7 @@ export default class CoOwner extends ValidationElement {
 
         <Field title={i18n.t(`foreign.${prefix}.heading.name`)}
                optional={true}
+               filterErrors={Name.requiredErrorsOnly}
                scrollIntoView={this.props.scrollIntoView}>
           <Name name="Name"
                 {...this.props.Name}

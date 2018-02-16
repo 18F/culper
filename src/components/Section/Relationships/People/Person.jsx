@@ -128,7 +128,6 @@ export default class Person extends React.Component {
           <DateRange name="Dates"
                      className="known-dates"
                      {...this.props.Dates}
-                     applicantBirthdate={this.props.applicantBirthdate}
                      onUpdate={this.updateDates}
                      onError={this.props.onError}
                      required={this.props.required}
@@ -137,6 +136,7 @@ export default class Person extends React.Component {
 
         <Field title={i18n.t('relationships.people.person.heading.name')}
                optional={true}
+               filterErrors={Name.requiredErrorsOnly}
                scrollIntoView={this.props.scrollIntoView}>
           <Name name="Name"
                 className="name"
@@ -311,7 +311,6 @@ Person.defaultProps = {
   Relationship: { values: [] },
   RankNotApplicable: { applicable: true },
   EmailNotApplicable: { applicable: true },
-  applicantBirthdate: {},
   addressBooks: {},
   addressBook: 'Reference',
   dispatch: (action) => {},

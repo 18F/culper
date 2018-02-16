@@ -94,7 +94,6 @@ export default class DrugInvolvement extends ValidationElement {
           <DateControl name="FirstInvolvement"
                        className="first-involvement"
                        {...this.props.FirstInvolvement}
-                       applicantBirthdate={this.props.applicantBirthdate}
                        hideDay={true}
                        showEstimated={false}
                        onUpdate={this.updateFirstInvolvement}
@@ -109,7 +108,6 @@ export default class DrugInvolvement extends ValidationElement {
           <DateControl name="RecentInvolvement"
                        className="recent-involvement"
                        {...this.props.RecentInvolvement}
-                       applicantBirthdate={this.props.applicantBirthdate}
                        hideDay={true}
                        showEstimated={false}
                        onUpdate={this.updateRecentInvolvement}
@@ -195,6 +193,5 @@ DrugInvolvement.defaultProps = {
   InvolvementWhileEmployed: {},
   InvolvementWithClearance: {},
   InvolvementInFuture: {},
-  applicantBirthdate: {},
   onError: (value, arr) => { return arr }
 }

@@ -145,6 +145,8 @@
           position: initial;
           line-height: 1.6;
 
+          // If `no-toggle` is applied to the component then the `z-index` is reset.
+          // see Form.scss.
           > input[type='radio'],
           > input[type='checkbox'] {
             max-width: 0;

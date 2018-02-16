@@ -167,7 +167,6 @@ export default class ExistingConditions extends SubsectionElement {
                          required={this.props.required}
                          scrollIntoView={this.props.scrollIntoView}>
                 <Diagnosis name="Item"
-                           applicantBirthdate={this.props.applicantBirthdate}
                            prefix="existingConditions.diagnosis"
                            required={this.props.required}
                            scrollIntoView={this.props.scrollIntoView}
@@ -217,8 +216,8 @@ ExistingConditions.defaultProps = {
   section: 'psychological',
   subsection: 'conditions',
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('psychological.conditions', props))
+  validator: (data) => {
+    return validate(schema('psychological.conditions', data))
   },
   prefix: 'existingConditions.diagnosis'
 }

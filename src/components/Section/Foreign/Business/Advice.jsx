@@ -80,13 +80,11 @@ export default class Advice extends SubsectionElement {
                      appendLabel={i18n.t('foreign.business.advice.collection.append')}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
-            <AdviceItem
-              name="Item"
-              bind={true}
-              applicantBirthdate={this.props.applicantBirthdate}
-              required={this.props.required}
-              scrollIntoView={this.props.scrollIntoView}
-              />
+            <AdviceItem name="Item"
+                        bind={true}
+                        required={this.props.required}
+                        scrollIntoView={this.props.scrollIntoView}
+                        />
 
           </Accordion>
         </Show>
@@ -103,10 +101,9 @@ Advice.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'business/advice',
-  applicantBirthdate: {},
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('foreign.business.advice', props))
+  validator: (data) => {
+    return validate(schema('foreign.business.advice', data))
   },
   defaultState: true,
   scrollToBottom: ''

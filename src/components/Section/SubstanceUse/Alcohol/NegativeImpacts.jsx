@@ -82,7 +82,6 @@ export default class NegativeImpacts extends SubsectionElement {
                      scrollIntoView={this.props.scrollIntoView}>
             <NegativeImpact name="Item"
                             bind={true}
-                            applicantBirthdate={this.props.applicantBirthdate}
                             required={this.props.required}
                             scrollIntoView={this.props.scrollIntoView} />
           </Accordion>
@@ -98,10 +97,9 @@ NegativeImpacts.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'substance',
   subsection: 'alcohol/negative',
-  applicantBirthdate: {},
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('substance.alcohol.negative', props))
+  validator: (data) => {
+    return validate(schema('substance.alcohol.negative', data))
   },
   scrollToBottom: ''
 }

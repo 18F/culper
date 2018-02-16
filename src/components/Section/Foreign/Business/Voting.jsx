@@ -80,7 +80,6 @@ export default class Voting extends SubsectionElement {
                      scrollIntoView={this.props.scrollIntoView}>
             <VotingItem name="Item"
                         bind={true}
-                        applicantBirthdate={this.props.applicantBirthdate}
                         required={this.props.required}
                         scrollIntoView={this.props.scrollIntoView}
                         />
@@ -95,14 +94,13 @@ Voting.defaultProps = {
   name: 'Voting',
   HasForeignVoting: {},
   List: {},
-  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'business/voting',
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('foreign.business.voting', props))
+  validator: (data) => {
+    return validate(schema('foreign.business.voting', data))
   },
   defaultState: true,
   scrollToBottom: ''

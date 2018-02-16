@@ -3,6 +3,7 @@ import { i18n } from '../../../../config'
 import { ValidationElement, Field, Textarea, DateRange,
          RadioGroup, Radio, Show, Text } from '../../../Form'
 import Treatment from '../Treatment'
+import { getContext } from '../../../../validators/datecontrol'
 
 export default class Diagnosis extends ValidationElement {
   constructor (props) {
@@ -67,6 +68,7 @@ export default class Diagnosis extends ValidationElement {
 
   render () {
     const prefix = this.props.prefix
+    const applicantBirthdate = getContext().applicantBirthdate
     return (
       <div className="diagnosis">
         <Field title={i18n.t(`psychological.${prefix}.heading.condition`)}
@@ -144,10 +146,9 @@ export default class Diagnosis extends ValidationElement {
                scrollIntoView={this.props.scrollIntoView}>
           <DateRange name="Diagnosed"
                      {...this.props.Diagnosed}
-                     applicantBirthdate={this.props.applicantBirthdate}
                      receiveProps={this.props.receiveProps}
                      onUpdate={this.updateDiagnosed}
-                     minDate={this.props.applicantBirthdate}
+                     minDate={applicantBirthdate}
                      onError={this.props.onError}
                      required={this.props.required}
                      />
@@ -239,7 +240,6 @@ export default class Diagnosis extends ValidationElement {
 
 Diagnosis.defaultProps = {
   prefix: 'diagnosis',
-  applicantBirthdate: {},
   addressBooks: {},
   dispatch: (action) => {},
   onUpdate: (queue) => {},
