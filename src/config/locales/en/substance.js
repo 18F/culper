@@ -49,9 +49,9 @@ export const substance = {
       },
       help: {
         occurred: {
-          title: 'Need help with this date?',
-          message: 'Provide the month/year when this negative impact occurred',
-          note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
+          title: 'Estimate the date if unsure',
+          message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+          note: ''
         },
         circumstances: {
           title: 'Need help with the circumstances?',
@@ -59,9 +59,9 @@ export const substance = {
           note: ''
         },
         used: {
-          title: 'Need help with the dates of involvement?',
-          message: 'Tell us the full date range of the involvement or use',
-          note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
+          title: 'Estimate the date if unsure',
+          message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
+          note: ''
         }
       },
       collection: {
@@ -112,9 +112,9 @@ export const substance = {
           note: ''
         },
         counselingDates: {
-          title: 'Need help with the counseling dates?',
-          message: 'Tell us the dates when you were in counseling or treatment',
-          note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
+          title: 'Estimate the date if unsure',
+          message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
+          note: ''
         },
         actionTaken: {
           title: 'Need help with action taken to seek counseling or treatment',
@@ -127,12 +127,12 @@ export const substance = {
           note: ''
         },
         treatmentProviderAddress: {
-          title: 'Not sure of the treatment provider\'s address?',
-          message: 'Try looking up the treatment provider\'s name, this could help you find the address.',
-          note: 'Note: If you can only find a phone number try calling and asking for the address. Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
+          title: 'Try looking up the treatment provider\'s name, this could help you find the address',
+          message: 'If you can only find a phone number try calling and asking for the address.',
+          note: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
         },
         treatmentProviderTelephone: {
-          title: 'Not sure of the treatment provider\'s telephone?',
+          title: 'Look up the treatment provider',
           message: 'Try looking up the treatment provider\'s name, this could help you find the phone number.',
           note: ''
         },
@@ -161,9 +161,9 @@ export const substance = {
       },
       help: {
         counselingDates: {
-          title: 'Need help with the counseling dates?',
-          message: 'Tell us the full range of counseling or treatment',
-          note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
+          title: 'Estimate the date if unsure',
+          message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
+          note: ''
         },
         treatmentProviderName: {
           title: 'Need help with the treatment provider name?',
@@ -171,12 +171,12 @@ export const substance = {
           note: ''
         },
         treatmentProviderAddress: {
-          title: 'Not sure of the treatment provider\'s address?',
-          message: 'Try looking up the treatment provider\'s name, this could help you find the address.',
-          note: 'Note: If you can only find a phone number try calling and asking for the address. Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
+          title: 'Try looking up the treatment provider\'s name, this could help you find the address',
+          message: 'If you can only find a phone number try calling and asking for the address.',
+          note: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
         },
         treatmentProviderTelephone: {
-          title: 'Not sure of the treatment provider\'s telephone?',
+          title: 'Look up the treatment provider',
           message: 'Try looking up the treatment provider\'s name, this could help you find the phone number.',
           note: ''
         },
@@ -218,9 +218,9 @@ export const substance = {
           note: ''
         },
         treatmentProviderAddress: {
-          title: 'Not sure of the treatment provider\'s address?',
-          message: 'Try looking up the treatment provider\'s name, this could help you find the address.',
-          note: 'Note: If you can only find a phone number try calling and asking for the address. Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
+          title: 'Try looking up the treatment provider\'s name, this could help you find the address',
+          message: 'If you can only find a phone number try calling and asking for the address.',
+          note: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
         },
         agencyName: {
           title: 'Need help with the agency name?',
@@ -233,13 +233,13 @@ export const substance = {
           note: 'Note: If you can only find a phone number try calling and asking for the address. Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
         },
         treatmentBeganDate: {
-          title: 'Not sure of the exact date?',
-          message: 'Give us your best guess and check the "Estimated" checkbox.',
+          title: 'Estimate the date if unsure',
+          message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
         treatmentEndDate: {
-          title: 'Not sure of the exact date?',
-          message: 'Give us your best guess and check the "Estimated" checkbox.',
+          title: 'Estimate the date if unsure',
+          message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
         completedTreatment: {
@@ -412,9 +412,9 @@ export const substance = {
           note: ''
         },
         involvementDates: {
-          title: 'Need help with the dates of involvement?',
-          message: 'Tell us the full date range of your involvement.',
-          note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
+          title: 'Estimate the date if unsure',
+          message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+          note: '.'
         },
         estimatedUse: {
           title: 'Need help with the estimated times used?',
@@ -443,9 +443,9 @@ export const substance = {
           note: ''
         },
         involvementDates: {
-          title: 'Need help with the dates of involvement/use?',
-          message: 'Tell us the full date range of your involvement/use.',
-          note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
+          title: 'Estimate the date if unsure',
+          message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
+          note: '.'
         },
         estimatedUse: {
           title: 'Need help with the estimated times used?',
@@ -481,9 +481,9 @@ export const substance = {
           note: ''
         },
         involvementDates: {
-          title: 'Need help with the dates of involvement?',
-          message: 'Tell us the full date range of your involvement.',
-          note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
+          title: 'Estimate the date if unsure',
+          message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
+          note: ''
         },
         useWhileEmployed: {
           title: 'Need help with the use?',
@@ -554,19 +554,19 @@ export const substance = {
           note: ''
         },
         treatmentProviderAddress: {
-          title: 'Not sure of the treatment provider\'s address?',
-          message: 'Try looking up the provider\'s name, this could help you find the address.',
-          note: 'Note: If you can only find a phone number try calling and asking for the address. Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
+          title: 'Try looking up the provider\'s name, this could help you find the addres.',
+          message: 'If you can only find a phone number try calling and asking for the address.',
+          note: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
         },
         treatmentProviderTelephone: {
-          title: 'Need help with the treatment provider\'s telephone?',
+          title: 'Look up the provider',
           message: 'Try looking up the provider\'s name, this could help you find the phone number.',
           note: ''
         },
         treatmentDates: {
-          title: 'Need help with the treatment dates?',
-          message: 'Tell us the full date range you were in treatment.',
-          note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
+          title: 'Estimate the date if unsure',
+          message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+          note: ''
         },
         treatmentCompleted: {
           title: 'Need help with the treatment completion?',
@@ -621,19 +621,19 @@ export const substance = {
           note: ''
         },
         treatmentProviderAddress: {
-          title: 'Not sure of the treatment provider\'s address?',
-          message: 'Try looking up the provider\'s name, this could help you find the address.',
-          note: 'Note: If you can only find a phone number try calling and asking for the address. Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
+          title: 'Try looking up the provider\'s name, this could help you find the address',
+          message: 'If you can only find a phone number try calling and asking for the address.',
+          note: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
         },
         treatmentProviderTelephone: {
-          title: 'Need help with the treatment provider\'s telephone?',
+          title: 'Look up the provider',
           message: 'Try looking up the provider\'s name, this could help you find the phone number.',
           note: ''
         },
         treatmentDates: {
-          title: 'Need help with the treatment dates?',
-          message: 'Tell us the full date range you were in treatment.',
-          note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
+          title: 'Estimate the date if unsure',
+          message: 'If you are not sure of the exact date gives us your best guess and check the "Estimated" checkbox.',
+          note: ''
         },
         treatmentCompleted: {
           title: 'Need help with the treatment completion?',
