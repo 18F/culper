@@ -52,7 +52,7 @@ export default class Verify extends React.Component {
     const items = ((identification.Contacts || {}).PhoneNumbers || {}).items || []
     const filtered = items.filter(x => {
       const item = x.Item || {}
-      return (item.Telephone && item.Telephone.number) || item.noNumber
+      return (item.Telephone && (item.Telephone.number || '').trim()) || item.noNumber
     })
     return filtered.length
       ? filtered.map(n => {
