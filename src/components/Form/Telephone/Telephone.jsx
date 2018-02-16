@@ -225,17 +225,17 @@ export default class Telephone extends ValidationElement {
           padleft(this.state.domestic.first, 3),
           padleft(this.state.domestic.second, 3),
           padleft(this.state.domestic.third, 4)
-        ].join('')
+        ].join('').trim()
       case 'DSN':
         return [
           padleft(this.state.dsn.first, 3),
           padleft(this.state.dsn.second, 4)
-        ].join('')
+        ].join('').trim()
       case 'International':
         return [
           padleft(this.state.international.first, 3),
           this.state.international.second
-        ].join('')
+        ].join('').trim()
       default:
         return ''
     }
