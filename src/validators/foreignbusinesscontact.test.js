@@ -183,15 +183,13 @@ describe('Foreign business contact component validation', function () {
       {
         state: {
           SubsequentContacts: {
-            List: {
-              items: [
-                {
-                  Item: {
-                    Has: { value: 'No' }
-                  }
+            items: [
+              {
+                Item: {
+                  Has: { value: 'No' }
                 }
-              ]
-            }
+              }
+            ]
           }
         },
         expected: true
@@ -199,15 +197,13 @@ describe('Foreign business contact component validation', function () {
       {
         state: {
           SubsequentContacts: {
-            List: {
-              items: [
-                {
-                  Item: {
-                    Has: { value: 'Yes' }
-                  }
+            items: [
+              {
+                Item: {
+                  Has: { value: 'Yes' }
                 }
-              ]
-            }
+              }
+            ]
           }
         },
         expected: false
@@ -215,16 +211,14 @@ describe('Foreign business contact component validation', function () {
       {
         state: {
           SubsequentContacts: {
-            List: {
-              items: [
-                {
-                  Item: {
-                    Has: { value: 'Yes' },
-                    Explanation: {}
-                  }
+            items: [
+              {
+                Item: {
+                  Has: { value: 'Yes' },
+                  Explanation: {}
                 }
-              ]
-            }
+              }
+            ]
           }
         },
         expected: false
@@ -232,27 +226,30 @@ describe('Foreign business contact component validation', function () {
       {
         state: {
           SubsequentContacts: {
-            List: {
-              items: [
-                {
-                  Item: {
-                    Has: { value: 'Yes' },
-                    Subsequent: {
-                      value: 'This is the subsequent purpose'
-                    },
-                    Recent: {
-                      day: '1',
-                      month: '1',
-                      year: '2016',
-                      date: new Date('1/1/2016')
-                    },
-                    Future: {
-                      value: 'This is the subsequent future meetings'
-                    }
+            items: [
+              {
+                Item: {
+                  Has: { value: 'Yes' },
+                  Subsequent: {
+                    value: 'This is the subsequent purpose'
+                  },
+                  Recent: {
+                    day: '1',
+                    month: '1',
+                    year: '2016',
+                    date: new Date('1/1/2016')
+                  },
+                  Future: {
+                    value: 'This is the subsequent future meetings'
                   }
                 }
-              ]
-            }
+              },
+              {
+                Item: {
+                  Has: { value: 'No' }
+                }
+              }
+            ]
           }
         },
         expected: true
@@ -338,9 +335,7 @@ describe('Foreign business contact component validation', function () {
                     value: 'this is the purpose'
                   },
                   SubsequentContacts: {
-                    List: {
-                      items: [{ Item: { Has: { value: 'No' } } }]
-                    }
+                    items: [{ Item: { Has: { value: 'No' } } }]
                   }
                 }
               }

@@ -13,7 +13,7 @@ describe('Schema for financial taxes', () => {
             Agency: {},
             Country: {},
             Date: {},
-            Circumstance: {}
+            Circumstances: {}
           }
         }]
       }
