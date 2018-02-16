@@ -72,7 +72,7 @@ export const financial = {
         note: ''
       },
       actions: {
-        title: 'Have you starting trying to fix this problem?',
+        title: 'Have you started trying to fix this problem?',
         message: 'Explain what you have done to fix this problem. If you haven\'t started yet tell us why.',
         note: ''
       },
@@ -279,7 +279,7 @@ export const financial = {
       },
       description: {
         title: 'Need help providing a description?',
-        message: 'Tell us if you have starting trying to fix this issue. If you haven\'t started yet tell us why.',
+        message: 'Tell us if you have started trying to fix this issue. If you haven\'t started yet tell us why.',
         note: ''
       }
     },
@@ -342,7 +342,7 @@ export const financial = {
       },
       description: {
         title: 'Need help providing a description?',
-        message: 'Tell us if you have starting trying to fix this issue. If you haven\'t started yet tell us why.',
+        message: 'Tell us if you have started trying to fix this issue. If you haven\'t started yet tell us why.',
         note: ''
       }
     },
@@ -396,7 +396,7 @@ export const financial = {
         note: 'Note: If you can only find a phone number try calling and asking for the address.'
       },
       description: {
-        title: 'Have you starting trying to fix this problem?',
+        title: 'Have you started trying to fix this problem?',
         message: 'Explain what you have done to fix this problem. If you haven\'t started yet tell us why.',
         note: ''
       }
@@ -505,7 +505,7 @@ export const financial = {
         note: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
       },
       description: {
-        title: 'Have you starting trying to fix this problem?',
+        title: 'Have you started trying to fix this problem?',
         message: 'Explain what you have done to fix this problem. If you haven\'t started yet tell us why.',
         note: ''
       }
@@ -605,7 +605,7 @@ export const financial = {
         note: ''
       },
       description: {
-        title: 'Have you starting trying to fix this problem?',
+        title: 'Have you started trying to fix this problem?',
         message: 'Explain what you have done to fix this problem. If you haven\'t started yet tell us why.',
         note: ''
       }
