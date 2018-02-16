@@ -110,7 +110,7 @@ export const foreign = {
       },
       help: {
         directControl: {
-          title: '"Direct control" defined:?',
+          title: '"Direct control" defined:',
           message: 'Direct control means there are *no* intermediary or intervening factors between the foreign financial interest and the owner/controller.',
           note: 'Example: You own a bakery in a foreign country and you directly control all aspects of the business such as pricing, baking, etc.'
         }
