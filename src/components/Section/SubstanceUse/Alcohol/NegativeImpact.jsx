@@ -59,7 +59,7 @@ export default class NegativeImpact extends ValidationElement {
                        />
         </Field>
 
-        <Field title={i18n.t('substance.alcohol.negativeImpact.heading.circumstances')} />
+        <Field title={i18n.t('substance.alcohol.negativeImpact.heading.circumstances')} className="no-margin-bottom" />
 
         <Field title={i18n.t('substance.alcohol.negativeImpact.label.circumstances')}
                titleSize="label"
