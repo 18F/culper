@@ -242,7 +242,6 @@ export default class IndirectInterest extends ValidationElement {
         </Field>
 
         <Field title={i18n.t(`foreign.activities.indirect.interest.heading.cost`)}
-               help={`foreign.activities.indirect.interest.help.cost`}
                scrollIntoView={this.props.scrollIntoView}>
           <Currency name="Cost"
                     className="cost"
@@ -277,7 +276,6 @@ export default class IndirectInterest extends ValidationElement {
         </Field>
 
         <Field title={i18n.t(`foreign.activities.indirect.interest.heading.value`)}
-               help={`foreign.activities.indirect.interest.help.value`}
                scrollIntoView={this.props.scrollIntoView}>
           <Currency name="Value"
                     className="value"
@@ -323,7 +321,6 @@ export default class IndirectInterest extends ValidationElement {
         </Field>
 
         <Field title={i18n.t(`foreign.activities.indirect.interest.heading.explanation`)}
-               help={`foreign.activities.indirect.interest.help.explanation`}
                scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Explanation"
                     className="explanation"
