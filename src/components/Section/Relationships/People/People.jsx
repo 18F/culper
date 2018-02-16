@@ -10,7 +10,7 @@ import SubsectionElement from '../../SubsectionElement'
 import SummaryProgress from '../../History/SummaryProgress'
 import PeopleCounter from './PeopleCounter'
 import { Summary, DateSummary, NameSummary } from '../../../Summary'
-import { today, daysAgo } from '../../History/dateranges'
+import { extractDate, today, daysAgo } from '../../History/dateranges'
 import { InjectGaps } from '../../History/summaries'
 import { Gap } from '../../History/Gap'
 
@@ -123,7 +123,10 @@ export default class People extends SubsectionElement {
       }
 
       const knownDates = item.Item.Dates
-      if (knownDates.from.date && knownDates.to.date) {
+      const kfrom = extractDate(knownDates.from)
+      const kto = extractDate(knownDates.to)
+      const present = (knownDates || {}).present || false
+      if (kfrom && (present || kto)) {
         return dates.concat(item.Item.Dates)
       }
       return dates
