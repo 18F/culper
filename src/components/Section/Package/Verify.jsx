@@ -56,7 +56,7 @@ export default class Verify extends React.Component {
     })
     return filtered.length
       ? filtered.map(n => {
-        return TelephoneSummary(n.Item.Telephone, i18n.t('releases.verify.label.none'))
+        return <div>{ TelephoneSummary(n.Item.Telephone, i18n.t('releases.verify.label.none')) }</div>
       })
       : i18n.t('releases.verify.label.none')
   }
