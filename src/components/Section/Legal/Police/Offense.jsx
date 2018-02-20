@@ -281,7 +281,7 @@ export default class Offense extends ValidationElement {
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Show when={this.props.WasCited.value === 'Yes'}>
+        <Show when={(this.props.WasCited || {}).value === 'Yes'}>
           <div>
             <Field title={i18n.t('legal.police.heading.needmore')}
                    optional={true}
@@ -340,7 +340,7 @@ export default class Offense extends ValidationElement {
           </div>
         </Show>
 
-        <Show when={this.props.WasCharged.value === 'No'}>
+        <Show when={(this.props.WasCharged || {}).value === 'No'}>
           <Field title={i18n.t('legal.police.label.explanation')}
                  titleSize="label"
                  scrollIntoView={this.props.scrollIntoView}>
@@ -354,7 +354,7 @@ export default class Offense extends ValidationElement {
           </Field>
         </Show>
 
-        <Show when={this.props.WasCharged.value === 'Yes'}>
+        <Show when={(this.props.WasCharged || {}).value === 'Yes'}>
           <div>
             <Field title={i18n.t('legal.police.heading.needmore')}
                    optional={true}
@@ -412,7 +412,7 @@ export default class Offense extends ValidationElement {
               <RadioGroup className="offense-chargetype option-list"
                           onError={this.props.onError}
                           required={this.props.required}
-                          selectedValue={this.props.ChargeType}>
+                          selectedValue={(this.props.ChargeType || {}).value}>
                 <Radio name="charge-felony"
                        className="charge-felony"
                        label={i18n.t('legal.police.label.felony')}
@@ -481,7 +481,7 @@ export default class Offense extends ValidationElement {
                     scrollIntoView={this.props.scrollIntoView}>
             </Branch>
 
-            <Show when={this.props.WasSentenced.value === 'Yes'}>
+            <Show when={(this.props.WasSentenced || {}).value === 'Yes'}>
               <div>
                 <Field title={i18n.t('legal.police.heading.needmore')}
                        optional={true}
@@ -499,7 +499,7 @@ export default class Offense extends ValidationElement {
               </div>
             </Show>
 
-            <Show when={this.props.WasSentenced.value === 'No'}>
+            <Show when={(this.props.WasSentenced || {}).value === 'No'}>
               <div>
                 <Branch name="awaiting_trial"
                         label={i18n.t('legal.police.heading.awaitingTrial')}

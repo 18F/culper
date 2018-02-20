@@ -17,13 +17,13 @@ type Sentence struct {
 	PayloadProbationDatesNA     Payload `json:"ProbationDatesNA" sql:"-"`
 
 	// Validator specific fields
-	Description          *Textarea      `json:"-"`
-	ExceedsYear          *Branch        `json:"-"`
-	Incarcerated         *Branch        `json:"-"`
-	IncarcerationDates   *DateRange     `json:"-"`
-	IncarcerationDatesNA *NotApplicable `json:"-"`
-	ProbationDates       *DateRange     `json:"-"`
-	ProbationDatesNA     *NotApplicable `json:"-"`
+	Description          *Textarea      `json:"-" sql:"-"`
+	ExceedsYear          *Branch        `json:"-" sql:"-"`
+	Incarcerated         *Branch        `json:"-" sql:"-"`
+	IncarcerationDates   *DateRange     `json:"-" sql:"-"`
+	IncarcerationDatesNA *NotApplicable `json:"-" sql:"-"`
+	ProbationDates       *DateRange     `json:"-" sql:"-"`
+	ProbationDatesNA     *NotApplicable `json:"-" sql:"-"`
 
 	// Persister specific fields
 	ID                     int `json:"-"`

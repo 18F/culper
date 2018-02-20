@@ -44,7 +44,7 @@ export default class OrderedCounselings extends SubsectionElement {
     const counselingDates = DateSummary(o.CounselingDates)
 
     let seekers = []
-    for (const s of (o.Seekers || [])) {
+    for (const s of ((o.Seekers || {}).values || [])) {
       switch (s) {
         case 'Employer':
           seekers.push('Employer')

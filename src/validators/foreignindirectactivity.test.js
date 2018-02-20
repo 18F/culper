@@ -33,7 +33,7 @@ describe('Foreign Indirect Activity validation', function () {
             items: [
               {
                 Item: {
-                  InterestTypes: ['Yourself'],
+                  InterestTypes: { values: ['Yourself'] },
                   InterestType: {
                     value: 'Some type'
                   },

@@ -2,10 +2,10 @@ import { validGenericTextfield, validCurrency, validDateField, validBranch } fro
 
 export default class ForeignBenefitValidator {
   constructor (data = {}) {
-    this.interestTypes = data.InterestTypes || []
-    this.benefitType = data.BenefitType
+    this.interestTypes = (data.InterestTypes || {}).values || []
+    this.benefitType = (data.BenefitType || {}).value
     this.otherBenefitType = data.OtherBenefitType
-    this.benefitFrequency = data.BenefitFrequency
+    this.benefitFrequency = (data.BenefitFrequency || {}).value
     this.oneTimeBenefit = data.OneTimeBenefit
     this.futureBenefit = data.FutureBenefit
     this.continuingBenefit = data.ContinuingBenefit
@@ -109,8 +109,8 @@ export class OneTimeBenefitValidator {
 
 export class FutureBenefitValidator {
   constructor (data = {}) {
-    this.begin = data.Begin
-    this.frequency = data.Frequency
+    this.began = data.Began
+    this.frequency = (data.Frequency || {}).value
     this.otherFrequency = data.OtherFrequency
     this.country = data.Country
     this.value = data.Value
@@ -119,8 +119,8 @@ export class FutureBenefitValidator {
     this.obligatedExplanation = data.ObligatedExplanation
   }
 
-  validBegin () {
-    return !!this.begin && validDateField(this.begin)
+  validBegan () {
+    return !!this.began && validDateField(this.began)
   }
 
   validFrequency () {
@@ -164,7 +164,7 @@ export class FutureBenefitValidator {
   }
 
   isValid () {
-    return this.validBegin() &&
+    return this.validBegan() &&
       this.validFrequency() &&
       this.validCountry() &&
       this.validValue() &&
@@ -178,7 +178,7 @@ export class ContinuingBenefitValidator {
   constructor (data = {}) {
     this.began = data.Began
     this.end = data.End
-    this.frequency = data.Frequency
+    this.frequency = (data.Frequency || {}).value
     this.otherFrequency = data.OtherFrequency
     this.country = data.Country
     this.value = data.Value

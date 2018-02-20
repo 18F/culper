@@ -6,7 +6,7 @@ describe('Hospitalization validation', function () {
     const tests = [
       {
         state: {
-          Admission: 'Voluntary',
+          Admission: { value: 'Voluntary' },
           Explanation: {
             value: 'Because I can'
           }
@@ -15,7 +15,7 @@ describe('Hospitalization validation', function () {
       },
       {
         state: {
-          Admission: 'Foo',
+          Admission: { value: 'Foo' },
           Explanation: {
             value: 'Because I can'
           }
@@ -59,7 +59,7 @@ describe('Hospitalization validation', function () {
             },
             present: false
           },
-          Admission: 'Voluntary',
+          Admission: { value: 'Voluntary' },
           Explanation: {
             value: 'Because I can'
           }
@@ -129,7 +129,7 @@ describe('Hospitalization validation', function () {
                     },
                     present: false
                   },
-                  Admission: 'Voluntary',
+                  Admission: { value: 'Voluntary' },
                   Explanation: {
                     value: 'Because I can'
                   }
@@ -174,7 +174,7 @@ describe('Hospitalization validation', function () {
                     },
                     present: false
                   },
-                  Admission: 'Voluntary',
+                  Admission: { value: 'Voluntary' },
                   Explanation: {
                     value: 'Because I can'
                   }
@@ -218,7 +218,7 @@ describe('Hospitalization validation', function () {
                   },
                   present: false
                 },
-                Admission: 'Voluntary',
+                Admission: { value: 'Voluntary' },
                 Explanation: {
                   value: 'Because I can'
                 }
@@ -246,7 +246,7 @@ describe('Hospitalization validation', function () {
                   zipcode: '22202',
                   layout: Location.ADDRESS
                 },
-                Admission: 'Voluntary',
+                Admission: { value: 'Voluntary' },
                 Explanation: {
                   value: 'Because I can'
                 }

@@ -14,7 +14,7 @@ describe('Schema for financial taxes', () => {
             OtherBenefitType: {},
             BenefitFrequency: {},
             OneTimeBenefit: {
-              Begin: {},
+              Began: {},
               End: {},
               Frequency: {},
               OtherFrequency: {},
@@ -29,7 +29,7 @@ describe('Schema for financial taxes', () => {
               ObligatedExplanation: {}
             },
             FutureBenefit: {
-              Begin: {},
+              Began: {},
               End: {},
               Frequency: {},
               OtherFrequency: {},
@@ -44,7 +44,7 @@ describe('Schema for financial taxes', () => {
               ObligatedExplanation: {}
             },
             ContinuingBenefit: {
-              Begin: {},
+              Began: {},
               End: {},
               Frequency: {},
               OtherFrequency: {},
