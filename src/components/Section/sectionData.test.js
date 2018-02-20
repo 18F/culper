@@ -189,10 +189,13 @@ describe('Retrieving section data', () => {
     ]
 
     tests.forEach(test => {
-      if (sectionData(test.section, test.subsection, test.application) === null) {
-        console.log(`Failure on ${test.section} and ${test.subsection}`)
+      const results = sectionData(test.section, test.subsection, test.application)
+      for (const r of results) {
+        if (r.data !== true) {
+          console.log(`Failure on ${test.section} and ${test.subsection}`)
+        }
+        expect(r.data).toBe(true)
       }
-      expect(sectionData(test.section, test.subsection, test.application)).toBe(true)
     })
   })
 })
