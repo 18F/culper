@@ -1,12 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { updateApplication } from '../../actions/ApplicationActions'
 import { i18n } from '../../config'
-import schema from '../../schema'
-import { api } from '../../services'
 import AuthenticatedView from '../../views/AuthenticatedView'
 import { Show } from '../Form'
-import { sectionData } from '../Section/sectionData'
+import { saveSection } from '../../middleware/history'
 
 class SavedIndicator extends React.Component {
   constructor (props) {
@@ -41,23 +38,11 @@ class SavedIndicator extends React.Component {
     const application = this.props.app
     const section = this.props.section.section
     const subsection = this.props.section.subsection
-    const pending = sectionData(section, subsection, application)
-    const payload = schema(`${section}/${subsection}`.replace(/\//g, '.'), pending, false)
+    const self = this
 
-    if (pending) {
-      this.setState({elapsed: 0, animate: true}, () => {
-        api
-          .save(payload)
-          .then(r => {
-            this.props.dispatch(updateApplication('Settings', 'saved', new Date()))
-            this.setState({animate: false})
-          })
-          .catch(() => {
-            console.warn(`Failed to save data for the ${section} section and ${subsection} subsection`)
-            this.setState({animate: false})
-          })
-      })
-    }
+    saveSection(application, section, subsection, this.props.dispatch, () => {
+      self.setState({animate: false})
+    })
   }
 
   mouseEnter (event) {
