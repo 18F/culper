@@ -78,7 +78,7 @@ func (entity *Signature) Save(context *db.DatabaseContext, account int) (int, er
 		return entity.ID, err
 	}
 
-	context.Find(&Signature{ID: account}, func(result interface{}) {
+	context.Find(&Signature{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*Signature)
 		if entity.Name == nil {
 			entity.Name = &Text{}
@@ -118,7 +118,7 @@ func (entity *Signature) Delete(context *db.DatabaseContext, account int) (int, 
 		return entity.ID, err
 	}
 
-	context.Find(&Signature{ID: account}, func(result interface{}) {
+	context.Find(&Signature{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*Signature)
 		if entity.Name == nil {
 			entity.Name = &Text{}
