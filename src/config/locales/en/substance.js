@@ -228,9 +228,9 @@ export const substance = {
           note: ''
         },
         agencyAddress: {
-          title: 'Not sure of the agency\'s address?',
-          message: 'Try looking up the agency\'s name, this could help you find the address.',
-          note: 'Note: If you can only find a phone number try calling and asking for the address. Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
+          title: 'Try looking up the agency\'s name, this could help you find the address',
+          message: 'If you can only find a phone number try calling and asking for the address.',
+          note: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
         },
         treatmentBeganDate: {
           title: 'Estimate the date if unsure',
@@ -414,7 +414,7 @@ export const substance = {
         involvementDates: {
           title: 'Estimate the date if unsure',
           message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
-          note: '.'
+          note: ''
         },
         estimatedUse: {
           title: 'Need help with the estimated times used?',
@@ -554,7 +554,7 @@ export const substance = {
           note: ''
         },
         treatmentProviderAddress: {
-          title: 'Try looking up the provider\'s name, this could help you find the addres.',
+          title: 'Try looking up the provider\'s name, this could help you find the address',
           message: 'If you can only find a phone number try calling and asking for the address.',
           note: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
         },
@@ -565,7 +565,7 @@ export const substance = {
         },
         treatmentDates: {
           title: 'Estimate the date if unsure',
-          message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+          message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
         treatmentCompleted: {
@@ -632,7 +632,7 @@ export const substance = {
         },
         treatmentDates: {
           title: 'Estimate the date if unsure',
-          message: 'If you are not sure of the exact date gives us your best guess and check the "Estimated" checkbox.',
+          message: 'If you are not sure of the exact dates gives us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
         treatmentCompleted: {
