@@ -15,6 +15,7 @@ describe('Schema for financial taxes', () => {
               country: null
             },
             Citizenship: {},
+            CitizenshipDocumentation: {},
             MaidenSameAsListed: {},
             MaidenName: {},
             Aliases: {
