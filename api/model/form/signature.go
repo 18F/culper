@@ -78,6 +78,20 @@ func (entity *Signature) Save(context *db.DatabaseContext, account int) (int, er
 		return entity.ID, err
 	}
 
+	context.Find(&Signature{ID: account}, func(result interface{}) {
+		previous := result.(*Signature)
+		if entity.Name == nil {
+			entity.Name = &Text{}
+		}
+		entity.NameID = previous.NameID
+		entity.Name.ID = previous.NameID
+		if entity.Date == nil {
+			entity.Date = &DateControl{}
+		}
+		entity.DateID = previous.DateID
+		entity.Date.ID = previous.DateID
+	})
+
 	nameID, err := entity.Name.Save(context, account)
 	if err != nil {
 		return nameID, err
@@ -103,6 +117,20 @@ func (entity *Signature) Delete(context *db.DatabaseContext, account int) (int, 
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
+
+	context.Find(&Signature{ID: account}, func(result interface{}) {
+		previous := result.(*Signature)
+		if entity.Name == nil {
+			entity.Name = &Text{}
+		}
+		entity.NameID = previous.NameID
+		entity.Name.ID = previous.NameID
+		if entity.Date == nil {
+			entity.Date = &DateControl{}
+		}
+		entity.DateID = previous.DateID
+		entity.Date.ID = previous.DateID
+	})
 
 	if _, err := entity.Name.Delete(context, account); err != nil {
 		return entity.ID, err
