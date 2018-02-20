@@ -99,6 +99,7 @@ Bankruptcies.defaultProps = {
   List: Accordion.defaultList,
   HasBankruptcy: {},
   addressBooks: {},
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'financial',
   subsection: 'bankruptcy',
