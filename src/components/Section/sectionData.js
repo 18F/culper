@@ -401,6 +401,12 @@ export const sectionData = (section, subsection, application = {}) => {
     return [
       { path: 'legal/technology/unlawful', data: wrap(application.Legal).Unlawful }
     ]
+  case 'legal/police/intro':
+    return [
+      { path: 'legal/police/additionaloffenses', data: wrap(application.Legal).PoliceOtherOffenses },
+      { path: 'legal/police/domesticviolence', data: wrap(application.Legal).PoliceDomesticViolence },
+      { path: 'legal/police/offenses', data: wrap(application.Legal).PoliceOffenses }
+    ]
   case 'legal/intro':
   case 'legal/review':
     return [
