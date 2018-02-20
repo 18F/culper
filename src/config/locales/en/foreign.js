@@ -968,7 +968,7 @@ export const foreign = {
         date: {
           title: 'Estimate the date if unsure',
           message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
-          note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
+          note: ''
         },
         circumstances: {
           title: 'Need help with the circumstances?',
@@ -1177,7 +1177,7 @@ export const foreign = {
           note: ''
         },
         dates: {
-          title: 'Try looking up the event, this could help you find the dates.',
+          title: 'Try looking up the event, this could help you find the dates',
           message: 'If you can\'t find the exact date give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
@@ -1339,7 +1339,7 @@ export const foreign = {
       },
       help: {
         branch: {
-          title: 'Foreign national defined?',
+          title: 'Foreign national defined:',
           message: 'A foreign national is defined as any person who is not a citizen or national of the U.S.',
           note: ''
         },
@@ -1371,7 +1371,7 @@ export const foreign = {
         organizationaddress: {
           title: 'Try looking up the organization\'s name, this could help you find the address',
           message: 'If you can only find a phone number try calling and asking for the address.',
-          note: 'Note: Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
+          note: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
         },
         dates: {
           title: 'Full date range the sponsored foreign national was in the U.S.',
@@ -1437,7 +1437,7 @@ export const foreign = {
           note: ''
         },
         dates: {
-          title: 'Full date range you held this political office.',
+          title: 'Full date range you held this political office',
           message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
@@ -1574,7 +1574,7 @@ export const foreign = {
       },
       dates: {
         title: 'Estimate the date if unsure',
-        message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+        message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
         note: ''
       },
       days: {

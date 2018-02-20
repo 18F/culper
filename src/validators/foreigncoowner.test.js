@@ -98,31 +98,36 @@ describe('CoOwner validation', function () {
                   Has: {
                     value: 'Yes'
                   },
-                  CoOwner: {
-                    Name: {
-                      first: 'Foo',
-                      firstInitialOnly: false,
-                      middle: 'J',
-                      middleInitialOnly: true,
-                      noMiddleName: false,
-                      last: 'Bar',
-                      lastInitialOnly: false,
-                      suffix: 'Jr'
-                    },
-                    Address: {
-                      country: { value: 'United States' },
-                      street: '1234 Some Rd',
-                      city: 'Arlington',
-                      state: 'Virginia',
-                      zipcode: '22202',
-                      layout: Location.ADDRESS
-                    },
-                    Countries: {
-                      value: ['Germany']
-                    },
-                    RelationshipNature: {
-                      value: 'Some stuff'
-                    }
+                  Name: {
+                    first: 'Foo',
+                    firstInitialOnly: false,
+                    middle: 'J',
+                    middleInitialOnly: true,
+                    noMiddleName: false,
+                    last: 'Bar',
+                    lastInitialOnly: false,
+                    suffix: 'Jr'
+                  },
+                  Address: {
+                    country: { value: 'United States' },
+                    street: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'Virginia',
+                    zipcode: '22202',
+                    layout: Location.ADDRESS
+                  },
+                  Countries: {
+                    value: ['Germany']
+                  },
+                  RelationshipNature: {
+                    value: 'Some stuff'
+                  }
+                }
+              },
+              {
+                Item: {
+                  Has: {
+                    value: 'No'
                   }
                 }
               }

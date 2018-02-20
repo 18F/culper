@@ -7,7 +7,7 @@ import (
 )
 
 type Benefit struct {
-	PayloadBegin                Payload `json:"Begin,omitempty" sql:"-"`
+	PayloadBegin                Payload `json:"Began,omitempty" sql:"-"`
 	PayloadEnd                  Payload `json:"End,omitempty" sql:"-"`
 	PayloadFrequency            Payload `json:"Frequency,omitempty" sql:"-"`
 	PayloadOtherFrequency       Payload `json:"OtherFrequency,omitempty" sql:"-"`

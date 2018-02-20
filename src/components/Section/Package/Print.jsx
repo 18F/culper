@@ -160,7 +160,7 @@ function mapStateToProps (state) {
   const military = app.Military || {}
   const foreign = app.Foreign || {}
   const financial = app.Financial || {}
-  const substanceUse = app.SubstanceUse || {}
+  const substanceUse = app.Substance || {}
   const legal = app.Legal || {}
   const psychological = app.Psychological || {}
   const settings = app.Settings || { locked: false, hash: '' }

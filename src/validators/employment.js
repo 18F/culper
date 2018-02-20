@@ -66,7 +66,7 @@ export class EmploymentValidator {
       return false
     }
 
-    const branchValidator = new BranchCollection(this.additional.List)
+    const branchValidator = new BranchCollection(this.additional)
     if (!branchValidator.validKeyValues()) {
       return false
     }

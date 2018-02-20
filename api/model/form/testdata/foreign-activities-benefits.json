@@ -92,7 +92,7 @@
               "FutureBenefit": {
                 "type": "benefit",
                 "props": {
-                  "Begin": {
+                  "Began": {
                     "type": "datecontrol",
                     "props": {
                       "month": "7",
@@ -156,7 +156,7 @@
               "ContinuingBenefit": {
                 "type": "benefit",
                 "props": {
-                  "Begin": {
+                  "Began": {
                     "type": "datecontrol",
                     "props": {
                       "month": "7",

@@ -5,12 +5,12 @@ describe('Foreign Born Benefits', function () {
     const tests = [
       {
         props: {
-          InterestTypes: ['Yourself'],
-          BenefitType: 'Other',
+          InterestTypes: { values: ['Yourself'] },
+          BenefitType: { value: 'Other' },
           OtherBenefitType: {
             value: 'Other'
           },
-          BenefitFrequency: 'OneTime',
+          BenefitFrequency: { value: 'OneTime' },
           OneTimeBenefit: {
             Received: {
               month: '1',
@@ -36,16 +36,16 @@ describe('Foreign Born Benefits', function () {
       },
       {
         props: {
-          InterestTypes: ['Yourself'],
-          BenefitType: 'Educational',
-          BenefitFrequency: 'Future',
+          InterestTypes: { values: ['Yourself'] },
+          BenefitType: { value: 'Educational' },
+          BenefitFrequency: { value: 'Future' },
           FutureBenefit: {
-            Begin: {
+            Began: {
               month: '1',
               day: '1',
               year: '2010'
             },
-            Frequency: 'Other',
+            Frequency: { value: 'Other' },
             OtherFrequency: {
               value: 'Other'
             },
@@ -68,9 +68,9 @@ describe('Foreign Born Benefits', function () {
       },
       {
         props: {
-          InterestTypes: ['Yourself'],
-          BenefitType: 'Educational',
-          BenefitFrequency: 'Continuing',
+          InterestTypes: { values: ['Yourself'] },
+          BenefitType: { value: 'Educational' },
+          BenefitFrequency: { value: 'Continuing' },
           ContinuingBenefit: {
             Began: {
               month: '1',
@@ -82,7 +82,7 @@ describe('Foreign Born Benefits', function () {
               day: '1',
               year: '2020'
             },
-            Frequency: 'Weekly',
+            Frequency: { value: 'Weekly' },
             Country: {
               value: 'Germany'
             },
@@ -102,9 +102,9 @@ describe('Foreign Born Benefits', function () {
       },
       {
         props: {
-          InterestTypes: ['Yourself'],
-          BenefitType: 'Educational',
-          BenefitFrequency: 'Other',
+          InterestTypes: { values: ['Yourself'] },
+          BenefitType: { value: 'Educational' },
+          BenefitFrequency: { value: 'Other' },
           OtherBenefit: {
             value: 'Sweet'
           }
@@ -122,9 +122,9 @@ describe('Foreign Born Benefits', function () {
     const tests = [
       {
         props: {
-          InterestTypes: ['Yourself'],
-          BenefitType: 'Educational',
-          BenefitFrequency: 'Does not exist'
+          InterestTypes: { values: ['Yourself'] },
+          BenefitType: { value: 'Educational' },
+          BenefitFrequency: { value: 'Does not exist' }
         },
         expected: false
       }
@@ -139,25 +139,25 @@ describe('Foreign Born Benefits', function () {
     const tests = [
       {
         props: {
-          BenefitType: 'Educational'
+          BenefitType: { value: 'Educational' }
         },
         expected: true
       },
       {
         props: {
-          BenefitType: 'Medical'
+          BenefitType: { value: 'Medical' }
         },
         expected: true
       },
       {
         props: {
-          BenefitType: 'Retirement'
+          BenefitType: { value: 'Retirement' }
         },
         expected: true
       },
       {
         props: {
-          BenefitType: 'DoesntExist'
+          BenefitType: { value: 'DoesntExist' }
         },
         expected: false
       }
@@ -234,12 +234,12 @@ describe('Foreign Born Benefits', function () {
     const tests = [
       {
         props: {
-          Begin: {
+          Began: {
             month: '1',
             day: '1',
             year: '2010'
           },
-          Frequency: 'Weekly',
+          Frequency: { value: 'Weekly' },
           Country: {
             value: 'Germany'
           },
@@ -307,7 +307,7 @@ describe('Foreign Born Benefits', function () {
             day: '1',
             year: '2020'
           },
-          Frequency: 'Weekly',
+          Frequency: { value: 'Weekly' },
           Country: {
             value: 'Germany'
           },
@@ -365,19 +365,19 @@ describe('Foreign Born Benefits', function () {
     const tests = [
       {
         props: {
-          Frequency: 'Annually'
+          Frequency: { value: 'Annually' }
         },
         expected: true
       },
       {
         props: {
-          Frequency: 'Nope'
+          Frequency: { value: 'Nope' }
         },
         expected: false
       },
       {
         props: {
-          Frequency: 'Other',
+          Frequency: { value: 'Other' },
           OtherFrequency: {
             value: 'Something else'
           }
@@ -395,19 +395,19 @@ describe('Foreign Born Benefits', function () {
     const tests = [
       {
         props: {
-          Frequency: 'Annually'
+          Frequency: { value: 'Annually' }
         },
         expected: true
       },
       {
         props: {
-          Frequency: 'Nope'
+          Frequency: { value: 'Nope' }
         },
         expected: false
       },
       {
         props: {
-          Frequency: 'Other',
+          Frequency: { value: 'Other' },
           OtherFrequency: {
             value: 'Something else'
           }

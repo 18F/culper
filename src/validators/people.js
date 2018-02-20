@@ -2,7 +2,7 @@ import DateRangeValidator from './daterange'
 import NameValidator from './name'
 import LocationValidator from './location'
 import { validAccordion, validGenericTextfield, validPhoneNumber, validNotApplicable } from './helpers'
-import { decimalAdjust, rangeSorter, julian, findPercentage, today, daysAgo, julianNow } from '../components/Section/History/dateranges'
+import { extractDate, decimalAdjust, rangeSorter, julian, findPercentage, today, daysAgo, julianNow } from '../components/Section/History/dateranges'
 
 const minimumYears = 7
 const minimumPeople = 3
@@ -22,27 +22,33 @@ export default class PeopleValidator {
   validYearRange () {
     const julianMax = julian(daysAgo(today, 365 * minimumYears))
 
-    const dates = this.list.items.reduce((dates, item) => {
+    // Collect all the valid date ranges
+    let dates = []
+    for (const item of this.list.items) {
       if (!item || !item.Item || !item.Item.Dates) {
-        return dates
+        continue
       }
 
       const knownDates = item.Item.Dates
-      if (knownDates.from.date && knownDates.to.date) {
-        return dates.concat(item.Item.Dates)
+      const kfrom = extractDate(knownDates.from)
+      const kto = extractDate(knownDates.to)
+      const present = (knownDates || {}).present || false
+      if (kfrom && (present || kto)) {
+        dates.push(item.Item.Dates)
       }
-      return dates
-    }, [])
+    }
 
     const ranges = dates.sort(rangeSorter).map((dates) => {
       let left = 0
       let width = 0
+      const dfrom = extractDate(dates.from)
+      const dto = dates.present === true ? new Date() : extractDate(dates.to)
 
-      if (dates.from && dates.from.date && dates.to && dates.to.date) {
-        const from = julian(dates.from.date)
-        const to = julian(dates.to.date)
+      if (dfrom && dto) {
+        const from = julian(dfrom)
+        const to = julian(dto)
 
-        if (dates.from.date >= julianMax || to >= julianMax) {
+        if (from >= julianMax || to >= julianMax) {
           // Meat of the calculations into percentages
           let right = findPercentage(julianNow, julianMax, to)
           left = findPercentage(julianNow, julianMax, from)

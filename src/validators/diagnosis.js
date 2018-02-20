@@ -4,7 +4,7 @@ import { validGenericTextfield } from './helpers'
 
 export default class DiagnosisValidator {
   constructor (data = {}) {
-    this.condition = data.Condition || ''
+    this.condition = (data.Condition || {}).value
     this.diagnosed = data.Diagnosed || {}
     this.treatment = data.Treatment || {}
     this.effective = (data.Effective || {}).value
@@ -37,6 +37,7 @@ export default class DiagnosisValidator {
       this.validEffective()
   }
 }
+
 export class ExistingConditionsDiagnosisValidator extends DiagnosisValidator {
   constructor (data = {}) {
     super(data)

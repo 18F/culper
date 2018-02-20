@@ -130,8 +130,7 @@ export const financial = {
       help: {
         title: 'Need help with the details of your bankruptcy petition?',
         message: [
-          'If you don\'t have paperwork you may be able to find your details here:',
-          '[www.pacer.gov](https://www.pacer.gov/)'
+          'If you don\'t have paperwork you may be able to find your details here: [www.pacer.gov](https://www.pacer.gov/)',
         ],
         note: ''
       }
@@ -278,8 +277,8 @@ export const financial = {
         note: ''
       },
       description: {
-        title: 'Need help providing a description?',
-        message: 'Tell us if you have started trying to fix this issue. If you haven\'t started yet tell us why.',
+        title: 'Have you started trying to fix this problem?',
+        message: 'Explain what you have done to fix this problem. If you haven\'t started yet tell us why.',
         note: ''
       }
     },

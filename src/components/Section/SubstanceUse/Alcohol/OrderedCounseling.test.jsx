@@ -52,7 +52,7 @@ describe('The OrderedCounseling component', () => {
     const expected = {
       onUpdate: () => { updates++ },
       ActionTaken: { value: 'No' },
-      Seekers: ['Employer']
+      Seekers: { values: ['Employer'] }
     }
     const component = mount(<OrderedCounseling {...expected} />)
     expect(component.find('.ordered-counseling').length).toBe(1)
@@ -66,7 +66,7 @@ describe('The OrderedCounseling component', () => {
     const expected = {
       onUpdate: () => { updates++ },
       ActionTaken: { value: 'No' },
-      Seekers: ['Other']
+      Seekers: { values: ['Other'] }
     }
     const component = mount(<OrderedCounseling {...expected} />)
     expect(component.find('.ordered-counseling').length).toBe(1)

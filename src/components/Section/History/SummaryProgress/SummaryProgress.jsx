@@ -1,7 +1,7 @@
 import React from 'react'
 import { newGuid } from '../../../Form/ValidationElement'
 import { ValidationElement } from '../../../Form'
-import { decimalAdjust, rangeSorter, julian, findPercentage, today, daysAgo, julianNow } from '../dateranges'
+import { extractDate, decimalAdjust, rangeSorter, julian, findPercentage, today, daysAgo, julianNow } from '../dateranges'
 
 export default class SummaryProgress extends ValidationElement {
   total () {
@@ -24,10 +24,12 @@ export default class SummaryProgress extends ValidationElement {
     return items.sort(rangeSorter).map((dates) => {
       let left = 0
       let width = 0
+      const dfrom = extractDate(dates.from)
+      const dto = dates.present === true ? new Date() : extractDate(dates.to)
 
-      if (dates.from && dates.from.date && dates.to && dates.to.date) {
-        const from = julian(dates.from.date)
-        const to = julian(dates.to.date)
+      if (dfrom && dto) {
+        const from = julian(dfrom)
+        const to = julian(dto)
 
         if (from >= julianMax || to >= julianMax) {
           // Meat of the calculations into percentages
