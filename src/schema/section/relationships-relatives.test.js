@@ -21,6 +21,7 @@ describe('Schema for financial taxes', () => {
               branch: null,
               items: [{
                 Item: {
+                  Has: {},
                   Name: {},
                   MaidenName: {},
                   Dates: {

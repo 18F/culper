@@ -16,6 +16,7 @@ export const relationshipsRelatives = (data = {}) => {
           const yitem = y.Item || {}
           return {
             Item: {
+              Has: form.branch(yitem.Has),
               Name: form.name(yitem.Name),
               MaidenName: form.branch(yitem.MaidenName),
               Dates: form.daterange(yitem.Dates),
