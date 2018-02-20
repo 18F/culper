@@ -9,7 +9,7 @@ import { branch } from './branch'
 
 export const benefit = (data = {}) => {
   return general('benefit', {
-    Begin: datecontrol(data.Begin),
+    Began: datecontrol(data.Began),
     End: datecontrol(data.End),
     Frequency: radio(data.Frequency),
     OtherFrequency: textarea(data.OtherFrequency),

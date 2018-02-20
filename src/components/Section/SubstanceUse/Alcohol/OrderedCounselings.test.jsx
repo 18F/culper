@@ -76,7 +76,7 @@ describe('The OrderedCounselings component', () => {
         },
         items: [{
           Item: {
-            Seekers: ['Employer', 'MedicalProfessional', 'MentalHealthProfessional', 'CourtOfficial', 'NotOrdered', 'Other']
+            Seekers: { values: ['Employer', 'MedicalProfessional', 'MentalHealthProfessional', 'CourtOfficial', 'NotOrdered', 'Other'] }
           }
         }]
       }

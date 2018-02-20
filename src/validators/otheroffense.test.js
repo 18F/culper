@@ -177,7 +177,7 @@ describe('OtherOffense validation', function () {
     const tests = [
       {
         state: {
-          ChargeType: 'Felony'
+          ChargeType: { value: 'Felony' }
         },
         expected: true
       }
@@ -261,7 +261,7 @@ describe('OtherOffense validation', function () {
           WasSentenced: { value: 'Yes' },
           Sentence: {
             AwaitingTrial: { value: 'Yes' },
-            AwaitingTrialExplanation: 'Yes',
+            AwaitingTrialExplanation: { value: 'Yes' },
             ExceedsYear: { value: 'Yes' },
             Incarcerated: { value: 'Yes' },
             IncarcerationDates: {
@@ -324,7 +324,7 @@ describe('OtherOffense validation', function () {
           InvolvedViolence: { value: 'No' },
           InvolvedFirearms: { value: 'Yes' },
           InvolvedSubstances: { value: 'No' },
-          ChargeType: 'Felony',
+          ChargeType: { value: 'Felony' },
           CourtAddress: {
             country: { value: 'United States' },
             street: '1234 Some Rd',
@@ -351,7 +351,7 @@ describe('OtherOffense validation', function () {
           WasSentenced: { value: 'Yes' },
           Sentence: {
             AwaitingTrial: { value: 'Yes' },
-            AwaitingTrialExplanation: 'Yes',
+            AwaitingTrialExplanation: { value: 'Yes' },
             ExceedsYear: { value: 'Yes' },
             Incarcerated: { value: 'Yes' },
             IncarcerationDates: {
@@ -405,7 +405,7 @@ describe('OtherOffense validation', function () {
           InvolvedViolence: { value: 'No' },
           InvolvedFirearms: { value: 'Yes' },
           InvolvedSubstances: { value: 'No' },
-          ChargeType: 'Felony',
+          ChargeType: { value: 'Felony' },
           CourtAddress: {
             country: { value: 'United States' },
             street: '1234 Some Rd',

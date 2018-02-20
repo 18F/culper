@@ -32,11 +32,11 @@ export class ForeignNationalValidator {
     this.nameExplanation = data.NameExplanation
     this.firstContact = data.FirstContact
     this.lastContact = data.LastContact
-    this.methods = data.Methods || []
+    this.methods = (data.Methods || {}).values || []
     this.methodsExplanation = data.MethodsExplanation
-    this.frequency = data.Frequency
+    this.frequency = (data.Frequency || {}).value
     this.frequencyExplanation = data.FrequencyExplanation
-    this.relationship = data.Relationship || []
+    this.relationship = (data.Relationship || {}).values || []
     this.relationshipExplanation = data.RelationshipExplanation
     this.aliases = data.Aliases || {}
     this.citizenship = data.Citizenship
@@ -73,7 +73,7 @@ export class ForeignNationalValidator {
   validMethods () {
     const choices = ['In person', 'Telephone', 'Electronic', 'Written']
     const wanting = ['Other']
-    return !!this.methods && this.methods.length > 0 &&
+    return this.methods && this.methods.length > 0 &&
       this.methods.every(x => choices.includes(x) || wanting.includes(x)) &&
       (this.methods.some(x => wanting.includes(x)) ? validGenericTextfield(this.methodsExplanation) : true)
   }

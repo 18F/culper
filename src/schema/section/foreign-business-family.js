@@ -9,7 +9,7 @@ export const foreignBusinessFamily = (data = {}) => {
         Agency: form.text(xitem.Agency),
         Country: form.country(xitem.Country),
         Date: form.datecontrol(xitem.Date),
-        Circumstance: form.textarea(xitem.Circumstance)
+        Circumstances: form.textarea(xitem.Circumstances)
       }
     }
   })

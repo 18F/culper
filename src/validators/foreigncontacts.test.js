@@ -112,31 +112,31 @@ describe('Foreign contacts component validation', function () {
       },
       {
         data: {
-          Methods: []
+          Methods: { values: [] }
         },
         expected: false
       },
       {
         data: {
-          Methods: ['In person']
+          Methods: { values: ['In person'] }
         },
         expected: true
       },
       {
         data: {
-          Methods: ['In person', 'Written']
+          Methods: { values: ['In person', 'Written'] }
         },
         expected: true
       },
       {
         data: {
-          Methods: ['In person', 'Other']
+          Methods: { values: ['In person', 'Other'] }
         },
         expected: false
       },
       {
         data: {
-          Methods: ['In person', 'Other'],
+          Methods: { values: ['In person', 'Other'] },
           MethodsExplanation: {
             value: 'explanation'
           }
@@ -156,25 +156,25 @@ describe('Foreign contacts component validation', function () {
       },
       {
         data: {
-          Frequency: ''
+          Frequency: { value: '' }
         },
         expected: false
       },
       {
         data: {
-          Frequency: 'Weekly'
+          Frequency: { value: 'Weekly' }
         },
         expected: true
       },
       {
         data: {
-          Frequency: 'Other'
+          Frequency: { value: 'Other' }
         },
         expected: false
       },
       {
         data: {
-          Frequency: 'Other',
+          Frequency: { value: 'Other' },
           FrequencyExplanation: {
             value: 'explanation'
           }
@@ -194,31 +194,31 @@ describe('Foreign contacts component validation', function () {
       },
       {
         data: {
-          Relationship: []
+          Relationship: { values: [] }
         },
         expected: false
       },
       {
         data: {
-          Relationship: ['Personal']
+          Relationship: { values: ['Personal'] }
         },
         expected: true
       },
       {
         data: {
-          Relationship: ['Personal', 'Professional']
+          Relationship: { values: ['Personal', 'Professional'] }
         },
         expected: true
       },
       {
         data: {
-          Relationship: ['Personal', 'Other']
+          Relationship: { values: ['Personal', 'Other'] }
         },
         expected: false
       },
       {
         data: {
-          Relationship: ['Personal', 'Other'],
+          Relationship: { values: ['Personal', 'Other'] },
           RelationshipExplanation: {
             value: 'explanation'
           }
@@ -227,7 +227,7 @@ describe('Foreign contacts component validation', function () {
       },
       {
         data: {
-          Relationship: ['Personal', 'Obligation'],
+          Relationship: { values: ['Personal', 'Obligation'] },
           RelationshipExplanation: {
             value: 'explanation'
           }
@@ -286,6 +286,11 @@ describe('Foreign contacts component validation', function () {
                     lastInitialOnly: false,
                     suffix: 'Jr'
                   }
+                }
+              },
+              {
+                Item: {
+                  Has: { value: 'No' }
                 }
               }
             ]
@@ -627,9 +632,9 @@ describe('Foreign contacts component validation', function () {
                     year: '2016',
                     date: new Date('1/1/2016')
                   },
-                  Methods: ['In person'],
-                  Frequency: 'Weekly',
-                  Relationship: ['Personal'],
+                  Methods: { values: ['In person'] },
+                  Frequency: { value: 'Weekly' },
+                  Relationship: { values: ['Personal'] },
                   Aliases: {
                     items: [{ Item: { Has: { value: 'No' } } }]
                   },

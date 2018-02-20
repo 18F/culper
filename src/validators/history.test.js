@@ -58,9 +58,7 @@ describe('Employment component validation', function () {
                     }
                   },
                   Additional: {
-                    List: {
-                      items: [{ Item: { Has: { value: 'No' } } }]
-                    }
+                    items: [{ Item: { Has: { value: 'No' } } }]
                   },
                   Telephone: {
                     noNumber: '',

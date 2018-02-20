@@ -31,7 +31,7 @@ export default class HospitalizationsValidator {
 export class HospitalizationValidator {
   constructor (data = {}) {
     this.treatmentDate = data.TreatmentDate
-    this.admission = data.Admission || { value: null }
+    this.admission = (data.Admission || {}).value
     this.facility = data.Facility
     this.facilityAddress = data.FacilityAddress
     this.explanation = data.Explanation

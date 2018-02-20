@@ -3,7 +3,7 @@ import ForeignCoOwnersValidator from './foreigncoowner'
 
 export default class ForeignDirectInterestValidator {
   constructor (data = {}) {
-    this.interestTypes = data.InterestTypes
+    this.interestTypes = (data.InterestTypes || {}).values || []
     this.interestType = data.InterestType
     this.acquired = data.Acquired
     this.howAcquired = data.HowAcquired
