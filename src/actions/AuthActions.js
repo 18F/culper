@@ -40,11 +40,12 @@ export function login (username, password, fn) {
  */
 export function logout () {
   return function (dispatch, getState) {
-    api.setToken('')
-    dispatch({
-      type: AuthConstants.LOGOUT
-    })
-    dispatch(push('/login'))
+    const clear = () => {
+      api.setToken('')
+      dispatch({ type: AuthConstants.LOGOUT })
+      dispatch(push('/login'))
+    }
+    return api.logout().then(clear).catch(clear)
   }
 }
 
