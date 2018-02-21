@@ -98,34 +98,42 @@ class SavedIndicator extends React.Component {
     return `${timespan} ${unit} ${i18n.t('saved.ago')}`
   }
 
+  allowed () {
+    return (window.location.pathname || '').indexOf('form/package') === -1
+  }
+
   render () {
+    if (!this.allowed()) {
+      return null
+    }
+
     const klass = `saved-indicator ${this.state.animate ? 'active' : ''}`.trim()
     const klassCircle = `spinner-icon ${this.state.animate ? 'spin' : ''}`.trim()
     const klassIcon = `fa fa-floppy-o ${this.state.animate ? 'invert' : ''}`.trim()
     return (
-    <button className={klass}
-            onClick={this.save}
-            onMouseEnter={this.mouseEnter}
-            onMouseLeave={this.mouseLeave}>
+      <button className={klass}
+              onClick={this.save}
+              onMouseEnter={this.mouseEnter}
+              onMouseLeave={this.mouseLeave}>
 
-      <div className="spinner">
-        <div className={klassCircle}></div>
-        <i className={klassIcon} aria-hidden="true"></i>
-      </div>
+        <div className="spinner">
+          <div className={klassCircle}></div>
+          <i className={klassIcon} aria-hidden="true"></i>
+        </div>
 
-      <span className="spinner-label">
-        <Show when={this.state.animate}>
-          <strong className="one-line">{i18n.t('saved.saving')}</strong>
-        </Show>
-        <Show when={!this.state.animate && this.state.hover}>
-          <strong className="one-line">{i18n.t('saved.action')}</strong>
-        </Show>
-        <Show when={!this.state.animate && !this.state.hover}>
-          <strong>{i18n.t('saved.saved')}</strong>
-          <span className="time">{this.calculateTime()}</span>
-        </Show>
-      </span>
-    </button>
+        <span className="spinner-label">
+          <Show when={this.state.animate}>
+            <strong className="one-line">{i18n.t('saved.saving')}</strong>
+          </Show>
+          <Show when={!this.state.animate && this.state.hover}>
+            <strong className="one-line">{i18n.t('saved.action')}</strong>
+          </Show>
+          <Show when={!this.state.animate && !this.state.hover}>
+            <strong>{i18n.t('saved.saved')}</strong>
+            <span className="time">{this.calculateTime()}</span>
+          </Show>
+        </span>
+      </button>
     )
   }
 }

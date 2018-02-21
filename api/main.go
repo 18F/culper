@@ -56,6 +56,7 @@ func main() {
 
 	// Account specific actions
 	a := r.PathPrefix("/me").Subrouter()
+	a.HandleFunc("/logout", inject(handlers.Logout, handlers.JwtTokenValidatorHandler)).Methods("GET")
 	a.HandleFunc("/validate", inject(handlers.Validate, handlers.JwtTokenValidatorHandler)).Methods("POST")
 	a.HandleFunc("/save", inject(handlers.Save, handlers.JwtTokenValidatorHandler)).Methods("POST", "PUT")
 	a.HandleFunc("/status", inject(handlers.Status, handlers.JwtTokenValidatorHandler)).Methods("GET")

@@ -46,6 +46,11 @@ func RootHandler(w http.ResponseWriter, r *http.Request) {
 			Verbs:       []string{"GET"},
 		},
 		endpoint{
+			Path:        "/me/logout",
+			Description: "end session for account",
+			Verbs:       []string{"GET"},
+		},
+		endpoint{
 			Path:        "/me/validate",
 			Description: "validation",
 			Verbs:       []string{"POST"},
