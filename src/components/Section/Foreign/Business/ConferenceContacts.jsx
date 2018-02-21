@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Field, Textarea, BranchCollection } from '../../../Form'
+import { ValidationElement, Field, Textarea, BranchCollection, AccordionItem } from '../../../Form'
 
 export default class ConferenceContacts extends ValidationElement {
   constructor (props) {
@@ -36,16 +36,19 @@ export default class ConferenceContacts extends ValidationElement {
                           required={this.props.required}
                           onError={this.props.onError}
                           scrollIntoView={this.props.scrollIntoView}>
-          <Field title={i18n.t('foreign.business.conferences.heading.explanation')}
-                 titleSize="label"
-                 help="foreign.business.conferences.help.explanation"
-                 scrollIntoView={this.props.scrollIntoView}>
-            <Textarea name="Explanation"
-                      className="conferences-explanation"
-                      bind={true}
-                      required={this.props.required}
-                      />
-          </Field>
+          <AccordionItem scrollIntoView={this.props.scrollIntoView}
+                         required={false}>
+            <Field title={i18n.t('foreign.business.conferences.heading.explanation')}
+                   titleSize="label"
+                   help="foreign.business.conferences.help.explanation"
+                   scrollIntoView={this.props.scrollIntoView}>
+              <Textarea name="Explanation"
+                        className="conferences-explanation"
+                        bind={true}
+                        required={this.props.required}
+                        />
+            </Field>
+          </AccordionItem>
         </BranchCollection>
       </div>
     )
