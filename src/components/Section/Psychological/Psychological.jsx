@@ -46,7 +46,6 @@ class Psychological extends SectionElement {
               { i18n.m('psychological.intro.para3') }
               { i18n.m('psychological.intro.para4') }
             </Field>
-
           </SectionView>
 
           <SectionView name="competence"
@@ -124,9 +123,8 @@ class Psychological extends SectionElement {
                        showTop={true}
                        back={this.props.ShowExistingConditions ? 'psychological/conditions' : 'psychological/diagnoses'}
                        backLabel={i18n.t(this.props.ShowExistingConditions ? 'psychological.destination.existingConditions' : 'psychological.destination.diagnoses')}
-                       next="submit"
+                       next="package/review"
                        nextLabel={ i18n.t('application.destination.submit') }>
-
             <Competence name="Competence"
                         {...this.props.Competence}
                         defaultState={false}
