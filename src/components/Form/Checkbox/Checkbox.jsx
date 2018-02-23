@@ -1,5 +1,6 @@
 import React from 'react'
 import ValidationElement from '../ValidationElement'
+import { ariaLabel } from '../Generic'
 
 export default class Checkbox extends ValidationElement {
   constructor (props) {
@@ -155,6 +156,7 @@ export default class Checkbox extends ValidationElement {
   }
 
   render () {
+    const speech = this.props.ariaLabel ? this.props.ariaLabel : `${this.props.label} for ${ariaLabel(this.refs.checkbox)}`
     if (this.props.toggle === 'false') {
       return (
         <div className={this.divClass()}>
@@ -171,6 +173,7 @@ export default class Checkbox extends ValidationElement {
                  onFocus={this.handleFocus}
                  onBlur={this.handleBlur}
                  checked={this.state.checked}
+                 aria-label={speech}
                  />
           <label className={this.labelClass()}
                  htmlFor={this.state.uid}>
@@ -198,6 +201,7 @@ export default class Checkbox extends ValidationElement {
                  onFocus={this.handleFocus}
                  onBlur={this.handleBlur}
                  checked={this.state.checked}
+                 aria-label={speech}
                  />
           {this.props.children}
           <span>{this.props.label}</span>
