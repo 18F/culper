@@ -51,7 +51,8 @@ export const application = {
     button: 'Save/Print',
     done: [
       '## You are done!',
-      '### Thanks for submitting for your SF-86'
+      '### Thanks for submitting for your SF-86',
+      'If you need assistance contact the office who initiated your form.'
     ]
   },
   hashCode: {
