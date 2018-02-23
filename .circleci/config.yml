@@ -140,7 +140,10 @@ jobs:
           name: Deploy
           command: |
             set -x
-            make deploy
+            make deploy-check && make deploy-configure
+            eval $(aws ecr get-login --no-include-email)
+            make deploy-ecr
+            make deploy-s3
 
 workflows:
   version: 2

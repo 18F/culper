@@ -93,7 +93,6 @@ deploy-configure:
 # 	eval $(aws ecr get-login --no-include-email)
 deploy-ecr:
 	echo "Deploying to ECR"
-	eval $(aws ecr get-login --no-include-email)
 	docker tag eapp_golang:smallest ${AWS_ECR_IMAGE}:${tag}
 	docker push ${AWS_ECR_IMAGE}:${tag}
 deploy-s3:
