@@ -75,7 +75,7 @@ package-image:
 #
 # Deploy
 #
-deploy: deploy-check deploy-configure deploy-login deploy-ecr deploy-s3
+deploy: deploy-check deploy-configure deploy-ecr deploy-s3
 deploy-check:
 	echo "Checking deployment prerequisites"
 	if test -z "$$AWS_DEFAULT_REGION"; then echo "AWS_DEFAULT_REGION is missing"; exit 1; fi;
@@ -88,11 +88,12 @@ deploy-configure:
 	aws --version
 	aws configure set default.region ${AWS_DEFAULT_REGION}
 	aws configure set default.output text
-deploy-login:
-	echo "Logging in to AWS"
-	eval $(aws ecr get-login --no-include-email)
+# deploy-login:
+# 	echo "Logging in to AWS"
+# 	eval $(aws ecr get-login --no-include-email)
 deploy-ecr:
 	echo "Deploying to ECR"
+	eval $(aws ecr get-login --no-include-email)
 	docker tag eapp_golang:smallest ${AWS_ECR_IMAGE}:${tag}
 	docker push ${AWS_ECR_IMAGE}:${tag}
 deploy-s3:
