@@ -50,12 +50,14 @@ export const foreign = {
       no: 'No'
     },
     label: {
-      number: 'Passport number',
+      bookNumber: 'Passport number',
+      cardNumber: 'Passport card number',
       book: 'Passport',
       card: 'Passport card'
     },
     placeholder: {
-      number: 'A########'
+      bookNumber: 'A########',
+      cardNumber: 'C########'
     },
     name: 'Provide the name in which passport was first issued',
     number: 'Provide your U.S. passport number',

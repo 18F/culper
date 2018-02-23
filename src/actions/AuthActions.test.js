@@ -38,13 +38,17 @@ describe('Auth actions', function () {
   })
 
   it('should create an action to handle logout', function () {
+    const mock = new MockAdapter(api.proxy)
+    mock.onGet('/me/logout').reply(200)
+
     const store = mockStore({ authentication: [] })
     const expectedAction = [
       { type: AuthConstants.LOGOUT },
       { type: 'PUSH', to: '/login', scrollTo: 'scrollTo' }
     ]
-    store.dispatch(logout('john', 'admin'))
-    expect(store.getActions()).toEqual(expectedAction)
+    store.dispatch(logout()).then(() => {
+      expect(store.getActions()).toEqual(expectedAction)
+    })
   })
 
   it('should create an action to handle qrcode', function () {

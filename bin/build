@@ -1,4 +1,5 @@
 #! /bin/sh
+curl "https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js" -o ./lib/dap.min.js
 yarn install
 yarn build
 ./bin/permissions
