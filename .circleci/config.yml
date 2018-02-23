@@ -117,6 +117,7 @@ jobs:
           name: Setup
           command: |
             set -x
+            cp .env.test .env
             make setup
       - run:
           name: Test
@@ -124,11 +125,22 @@ jobs:
             set -x
             make test
       - run:
+          name: Build
+          command: |
+            set -x
+            cp .env.production .env
+            make build
+      - run:
           name: Package
           command: |
             set -x
             cp .env.production .env
             make package
+      - run:
+          name: Deploy
+          command: |
+            set -x
+            make deploy
 
 workflows:
   version: 2
@@ -155,3 +167,4 @@ workflows:
             branches:
               only:
                 - master
+                - aws-deployment

@@ -57,12 +57,37 @@ package-clean:
 	docker rmi -f eapp_golang:smallest
 package-static:
 	docker run --rm \
-               -v ~/src/github.com/18F/e-QIP-prototype:/go/src/github.com/18F/e-QIP-prototype \
+               -v ${PWD}:/go/src/github.com/18F/e-QIP-prototype \
                -w /go/src/github.com/18F/e-QIP-prototype/api \
                -e "CGO_ENABLED=0" \
                golang:latest go build -ldflags '-w -extldflags "-static"' -o api
 package-image:
 	docker build -f Dockerfile.eapp_golang . -t eapp_golang:smallest
+
+#
+# Deploy
+#
+deploy: deploy-tag deploy-check deploy-configure deploy-login deploy-ecr deploy-s3
+deploy-tag:
+	export AWS_ECR_TAG=$(git describe --tags)
+deploy-check:
+	if test -z "$$AWS_DEFAULT_REGION"; then echo "AWS_DEFAULT_REGION is missing"; exit 1; fi;
+	if test -z "$$AWS_ECR_IMAGE"; then echo "AWS_ECR_IMAGE is missing"; exit 1; fi;
+	if test -z "$$AWS_ECR_TAG"; then echo "AWS_ECR_TAG is missing"; exit 1; fi;
+	if test -z "$$AWS_S3_BUCKET"; then echo "AWS_S3_BUCKET is missing"; exit 1; fi;
+	if test -z "$$AWS_ACCESS_KEY_ID"; then echo "AWS_ACCESS_KEY_ID is missing"; exit 1; fi;
+	if test -z "$$AWS_SECRET_ACCESS_KEY"; then echo "AWS_SECRET_ACCESS_KEY is missing"; exit 1; fi;
+deploy-configure:
+	aws --version
+	aws configure set default.region ${AWS_DEFAULT_REGION}
+	aws configure set default.output text
+deploy-login:
+	eval $(aws ecr get-login --no-include-email)
+deploy-ecr:
+	docker tag eapp_golang:smallest ${AWS_ECR_IMAGE}:${AWS_ECR_TAG}
+	docker push ${AWS_ECR_IMAGE}:${AWS_ECR_TAG}
+deploy-s3:
+	aws sync ${PWD}/dist s3://${AWS_S3_BUCKET} --delete
 
 #
 # Suites
