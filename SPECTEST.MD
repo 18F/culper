@@ -28,19 +28,19 @@ E.g. to run the test cases related to the Foreign Activities section:
 
 #### Check the test results
 The shell running the test case will output the test case results.  If there is an error during the test run, you can find a screen capture of the browser state when the error occurred by using the rollowing URL: 
-`file:///<<home>>/Code/go/src/github.com/18F/e-QIP-prototype/specs/screenshots/`  (where <<home>> is the
+`file:///<<home>>/Code/go/src/github.com/18F/e-QIP-prototype/specs/screenshots/`  (where <<home>> is your home directory)
 
 
 ## Cleanup
 It is a good practice to clean up the docker containers after completing the test case runs, or after a code refresh. 
 
 ### **Down** - stops docker container and removes container image from cache
-`docker system down`
+`docker-compose down`
+
 `docker-compose -f nightwatch-compose.yml down`
 
 ### **Prune** - Clean all cached containers (good for freeing up space) 
 `docker system prune`
-`docker-compose -f nightwatch-compose.yml prune`
 
 ### **Check what's running** - If you are unsure what docker containers are currently running
-`sudo docker-compose ps`
+`docker-compose ps`
