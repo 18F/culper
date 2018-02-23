@@ -1,5 +1,13 @@
 MAKEFLAGS += --silent
 
+#
+# Variables
+#
+release := $(shell git rev-list --tags --max-count=1)
+version := $(shell git describe --tags $(release))
+hash    := $(shell git rev-parse --short HEAD)
+tag     := "$(version)-$(hash)"
+
 all: clean setup test build
 
 #
@@ -67,27 +75,29 @@ package-image:
 #
 # Deploy
 #
-deploy: deploy-tag deploy-check deploy-configure deploy-login deploy-ecr deploy-s3
-deploy-tag:
-	export AWS_ECR_TAG=$(git describe --tags)
+deploy: deploy-check deploy-configure deploy-login deploy-ecr deploy-s3
 deploy-check:
+	echo "Checking deployment prerequisites"
 	if test -z "$$AWS_DEFAULT_REGION"; then echo "AWS_DEFAULT_REGION is missing"; exit 1; fi;
 	if test -z "$$AWS_ECR_IMAGE"; then echo "AWS_ECR_IMAGE is missing"; exit 1; fi;
-	if test -z "$$AWS_ECR_TAG"; then echo "AWS_ECR_TAG is missing"; exit 1; fi;
 	if test -z "$$AWS_S3_BUCKET"; then echo "AWS_S3_BUCKET is missing"; exit 1; fi;
 	if test -z "$$AWS_ACCESS_KEY_ID"; then echo "AWS_ACCESS_KEY_ID is missing"; exit 1; fi;
 	if test -z "$$AWS_SECRET_ACCESS_KEY"; then echo "AWS_SECRET_ACCESS_KEY is missing"; exit 1; fi;
 deploy-configure:
+	echo "Configuring AWS CLI"
 	aws --version
 	aws configure set default.region ${AWS_DEFAULT_REGION}
 	aws configure set default.output text
 deploy-login:
+	echo "Logging in to AWS"
 	eval $(aws ecr get-login --no-include-email)
 deploy-ecr:
-	docker tag eapp_golang:smallest ${AWS_ECR_IMAGE}:${AWS_ECR_TAG}
-	docker push ${AWS_ECR_IMAGE}:${AWS_ECR_TAG}
+	echo "Deploying to ECR"
+	docker tag eapp_golang:smallest ${AWS_ECR_IMAGE}:${tag}
+	docker push ${AWS_ECR_IMAGE}:${tag}
 deploy-s3:
-	aws sync ${PWD}/dist s3://${AWS_S3_BUCKET} --delete
+	echo "Deploying to S3"
+	aws s3 sync ${PWD}/dist s3://${AWS_S3_BUCKET} --delete
 
 #
 # Suites
@@ -108,3 +118,5 @@ run:
 	docker-compose up web api db
 docs:
 	docker-compose up docs
+tag:
+	echo $(tag)
