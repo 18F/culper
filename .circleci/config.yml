@@ -128,13 +128,13 @@ jobs:
           name: Build
           command: |
             set -x
-            cp .env.production .env
+            cp .env.aws .env
             make build
       - run:
           name: Package
           command: |
             set -x
-            cp .env.production .env
+            cp .env.aws .env
             make package
       - run:
           name: Deploy
@@ -169,5 +169,4 @@ workflows:
           filters:
             branches:
               only:
-                - master
                 - aws-deployment
