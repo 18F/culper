@@ -54,9 +54,9 @@ export const psychological = {
     },
     help: {
       occurred: {
-        title: 'Need help with the date this occurred?',
-        message: 'Tell us the month and year when a court or agency declared you mentally incompetent.',
-        note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
+        title: 'Estimate the date if unsure',
+        message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+        note: ''
       },
       courtName: {
         title: 'Need help with this court or agency name?',
@@ -64,18 +64,18 @@ export const psychological = {
         note: ''
       },
       courtAddress: {
-        title: 'Not sure of the court or agency address?',
-        message: 'Try looking up the court or agency name, this could help you find the address.',
-        note: 'Note: If you can only find a phone number try calling and asking for the address. Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
+        title: 'Try looking up the court or agency name, this could help you find the address',
+        message: 'If you can only find a phone number try calling and asking for the address',
+        note: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
       },
       incompetent: {
         title: 'Need help with this question?',
         message: 'Has a court or administrative agency EVER ordered you to consult with a mental health professional?'
       },
       disposition: {
-        title: 'Need help entering the final disposition?',
-        message: 'Tell us the ruling regarding the court or agency\'s decision.',
-        note: 'Note: If you can’t remember your disposition a family member or the court/agency may be able to help you.'
+        title: 'Tell us the ruling regarding the court or agency\'s decision',
+        message: 'If you can’t remember your disposition a family member or the court/agency may be able to help you.',
+        note: ''
       }
     },
     collection: {
@@ -104,9 +104,9 @@ export const psychological = {
     },
     help: {
       occurred: {
-        title: 'Need help with the date this occurred?',
-        message: 'Tell us the month and year when a court or agency ordered you to consult with a professional.',
-        note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
+        title: 'Estimate the date if unsure',
+        message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+        note: ''
       },
       courtName: {
         title: 'Need help with this court or agency name?',
@@ -114,14 +114,14 @@ export const psychological = {
         note: ''
       },
       courtAddress: {
-        title: 'Not sure of the court or agency address?',
-        message: 'Try looking up the court or agency name, this could help you find the address.',
-        note: 'Note: If you can only find a phone number try calling and asking for the address. Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
+        title: 'Try looking up the court or agency name, this could help you find the address',
+        message: 'If you can only find a phone number try calling and asking for the address.',
+        note: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
       },
       disposition: {
-        title: 'Need help with the disposition?',
-        message: 'Tell us the ruling regarding the court or agency\'s decision.',
-        note: 'Note: If you can’t remember your disposition a family member or the court/agency may be able to help you.'
+        title: 'Tell us the ruling regarding the court or agency\'s decision',
+        message: 'If you can’t remember your disposition a family member or the court/agency may be able to help you.',
+        note: ''
       },
       appealed: {
         title: 'Need help with whether this matter was appealed?',
@@ -168,9 +168,9 @@ export const psychological = {
         note: ''
       },
       treatment: {
-        title: 'Need help the date range of your hospitalization?',
-        message: 'Tell us the full date range (admission to release) of your hospitalization.',
-        note: 'If you are not sure of the exact date range give us your best guess and check the "Estimated" checkbox.'
+        title: 'Estimate the date if unsure',
+        message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+        note: ''
       },
       facility: {
         title: 'Need help with this facility name?',
@@ -178,9 +178,9 @@ export const psychological = {
         note: ''
       },
       address: {
-        title: 'Not sure of the facility address?',
-        message: 'Try looking up the facility name, this could help you find the address.',
-        note: 'Note: If you can only find a phone number try calling and asking for the address. Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
+        title: 'Try looking up the facility name, this could help you find the address',
+        message: 'If you can only find a phone number try calling and asking for the address.',
+        note: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
       }
     }
   },
@@ -209,8 +209,8 @@ export const psychological = {
         note: ''
       },
       diagnosed: {
-        title: 'Need help the date range of your diagnosis or health condition?',
-        message: 'Tell us the full date range you have had this diagnosis or health condition.',
+        title: 'Estimate the date if unsure',
+        message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
         note: 'Note: If this is a current diagnosis or health condition enter the start date and click the "Present" button for the "To date".'
       },
       explanation: {
@@ -231,9 +231,9 @@ export const psychological = {
       },
       help: {
         address: {
-          title: 'Not sure of the health care professional\'s address?',
-          message: 'Try looking up their name, this could help you find the address.',
-          note: 'Note: If you can only find a phone number try calling and asking for the address. Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
+          title: 'Try looking up their name, this could help you find the address',
+          message: 'If you can only find a phone number try calling and asking for the address.',
+          note: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
         },
         name: {
           title: 'Need help the name of the healthcare professional?',
@@ -254,9 +254,9 @@ export const psychological = {
       },
       help: {
         address: {
-          title: 'Not sure of the agency/organization/facility\'s address?',
-          message: 'Try looking up the name, this could help you find the address.',
-          note: 'Note: If you can only find a phone number try calling and asking for the address. Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
+          title: 'Try looking up the name, this could help you find the address.',
+          message: 'If you can only find a phone number try calling and asking for the address',
+          note: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
         },
         name: {
           title: 'Need help entering name of the facility where treatment was provided?',
@@ -298,9 +298,9 @@ export const psychological = {
           note: 'Note: If you can’t remember this name a family member may be able to help you.'
         },
         address: {
-          title: 'Not sure of the health care professional\'s address?',
-          message: 'Try looking up their name, this could help you find the address.',
-          note: 'Note: If you can only find a phone number try calling and asking for the address. Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
+          title: 'Try looking up their name, this could help you find the address',
+          message: 'If you can only find a phone number try calling and asking for the address.',
+          note: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
         }
       }
     },
@@ -342,9 +342,9 @@ export const psychological = {
           message: 'Tell us the full name of the healthcare professional.'
         },
         address: {
-          title: 'Not sure of the health care professional\'s address?',
-          message: 'Try looking up their name, this could help you find the address.',
-          note: 'Note: If you can only find a phone number try calling and asking for the address. Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
+          title: 'Try looking up the health care professional\'s name, this could help you find the address',
+          message: 'If you can only find a phone number try calling and asking for the address',
+          note: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
         }
       }
     }
@@ -410,9 +410,9 @@ export const psychological = {
           note: ''
         },
         diagnosed: {
-          title: 'Need help the date range of your counseling or treatment?',
-          message: 'Provide the full date range (start to finish) of your counseling or treatment.',
-          note: 'If you are not sure of the exact date range give us your best guess and check the "Estimated" checkbox.'
+          title: 'Provide the full date range (start to finish) of your counseling or treatment',
+          message: 'If you are not sure of the exact date range give us your best guess and check the "Estimated" checkbox.',
+          note: ''
         }
       },
       person: {
@@ -427,9 +427,9 @@ export const psychological = {
         },
         help: {
           address: {
-            title: 'Not sure of this health care professional\'s address?',
-            message: 'Try looking up their name, a physical or mailing address should be associated with it.',
-            note: 'Note: If you can only find a phone number try calling and asking for the address. Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
+            title: 'Try looking up this health care professional\'s name',
+            message: 'A physical or mailing address should be associated with the name. If you can only find a phone number try calling and asking for the address.',
+            note: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
           },
           name: {
             title: 'Need help the name and number of this healthcare professional?',
@@ -450,9 +450,9 @@ export const psychological = {
         },
         help: {
           address: {
-            title: 'Not sure of the treatment facility\'s address?',
-            message: 'Try looking up their name, this could help you find the address.',
-            note: 'Note: If you can only find a phone number try calling and asking for the address. Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
+            title: 'Try looking up the treatment facility\'s name, this could help you find the address',
+            message: 'If you can only find a phone number try calling and asking for the address.',
+            note: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
           },
           name: {
             title: 'Need help the facility where treatment was provided?',
