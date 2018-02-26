@@ -529,7 +529,7 @@ export const legal = {
       },
       help: {
         date: {
-          title: 'Need help with this date?',
+          title: 'Estimate the date if unsure',
           message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
@@ -539,8 +539,8 @@ export const legal = {
           note: ''
         },
         location: {
-          title: 'Need help with this address?',
-          message: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
+          title: 'Acronyms:',
+          message: 'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
           note: ''
         },
         action: {
@@ -567,7 +567,7 @@ export const legal = {
       },
       help: {
         date: {
-          title: 'Need help with this date?',
+          title: 'Estimate the date if unsure',
           message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
@@ -577,8 +577,8 @@ export const legal = {
           note: ''
         },
         location: {
-          title: 'Need help with this address?',
-          message: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
+          title: 'Acronyms:',
+          message: 'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
           note: ''
         },
         action: {
@@ -605,7 +605,7 @@ export const legal = {
       },
       help: {
         date: {
-          title: 'Need help with this date?',
+          title: 'Estimate the date if unsure',
           message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
@@ -615,8 +615,8 @@ export const legal = {
           note: ''
         },
         location: {
-          title: 'Need help with this address?',
-          message: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
+          title: 'Acronyms:',
+          message: 'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
           note: ''
         },
         action: {
@@ -663,12 +663,12 @@ export const legal = {
           note: ''
         },
         address: {
-          title: 'Can\'t remember the organization\'s address?',
-          message: 'Try looking up the name of the organization, there may be an address associated with it.',
+          title: 'Acronyms:',
+          message: 'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
           note: ''
         },
         dates: {
-          title: 'Need help with the dates?',
+          title: 'Estimate the date if unsure',
           message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
@@ -709,7 +709,7 @@ export const legal = {
           note: ''
         },
         dates: {
-          title: 'Need help with the dates?',
+          title: 'Estimate the date if unsure',
           message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
           note: ''
         }
@@ -735,7 +735,7 @@ export const legal = {
           note: ''
         },
         dates: {
-          title: 'Need help with the dates?',
+          title: 'Estimate the date if unsure',
           message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
           note: ''
         }
@@ -772,12 +772,12 @@ export const legal = {
           note: ''
         },
         address: {
-          title: 'Can\'t remember the organization\'s address?',
-          message: 'Try looking up the name of the organization, there may be an address associated with it.',
+          title: 'Acronyms:',
+          message: 'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
           note: ''
         },
         dates: {
-          title: 'Need help with the dates?',
+          title: 'Estimate the date if unsure',
           message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
@@ -829,13 +829,13 @@ export const legal = {
           note: ''
         },
         address: {
-          title: 'Can\'t remember the organization\'s address?',
-          message: 'Try looking up the name of the organization, there may be an address associated with it.',
+          title: 'Acronyms:',
+          message: 'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
           note: ''
         },
         dates: {
-          title: 'Need help with the dates?',
-          message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
+          title: 'Estimate the date if unsure',
+          message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
         positions: {
@@ -875,8 +875,8 @@ export const legal = {
           note: ''
         },
         dates: {
-          title: 'Need help with the dates?',
-          message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
+          title: 'Estimate the date if unsure',
+          message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
           note: ''
         }
       }
