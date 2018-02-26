@@ -60,6 +60,7 @@ export default class ForeignContact extends React.Component {
       <div className="foreign-contact">
         <Field title={i18n.t('military.foreign.heading.contact.name')}
                optional={true}
+               filterErrors={Name.requiredErrorsOnly}
                scrollIntoView={this.props.scrollIntoView}>
           <Name name="Name"
                 className="foreign-contact-name"
@@ -111,7 +112,6 @@ export default class ForeignContact extends React.Component {
           <DateRange name="Dates"
                      className="foreign-contact-dates"
                      {...this.props.Dates}
-                     applicantBirthdate={this.props.applicantBirthdate}
                      onUpdate={this.updateDates}
                      onError={this.props.onError}
                      required={this.props.required}
@@ -141,7 +141,6 @@ ForeignContact.defaultProps = {
   Title: {},
   Dates: {},
   Frequency: {},
-  applicantBirthdate: {},
   addressBooks: {},
   dispatch: (action) => {},
   onUpdate: (queue) => {},

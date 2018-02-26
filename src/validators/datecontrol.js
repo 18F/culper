@@ -1,17 +1,28 @@
-import { today, daysAgo } from '../components/Section/History/dateranges'
+import store from '../store'
+import { extractApplicantBirthdate } from '../components/Section/extractors'
+import { extractDate, today, daysAgo } from '../components/Section/History/dateranges'
+
+export const getContext = () => {
+  const state = store.getState()
+  const app = state.application || {}
+  return {
+    applicantBirthdate: extractApplicantBirthdate(app)
+  }
+}
 
 export default class DateControlValidator {
-  constructor (state = {}, props = {}) {
-    this.month = state.month || props.month
-    this.day = state.day || props.day
-    this.year = state.year || props.year
-    this.hideDay = props.hideDay
-    this.maxDate = props.maxDate
-    this.minDate = props.minDate
-    this.noMaxDate = props.noMaxDate
-    this.relationship = props.relationship || ''
+  constructor (data = {}, context = null) {
+    this.month = data.month
+    this.day = data.day
+    this.year = data.year
+    this.hideDay = data.hideDay
+    this.maxDate = data.maxDate
+    this.minDate = data.minDate
+    this.noMaxDate = data.noMaxDate
+    this.relationship = data.relationship || ''
+    context = context || getContext()
 
-    this.limits = dateLimits(this.relationship, props.applicantBirthdate)
+    this.limits = dateLimits(this.relationship, context.applicantBirthdate)
     if (!this.maxDate || (this.maxDate && this.maxDate > this.limits.maxDate)) {
       this.maxDate = this.limits.maxDate
     }
@@ -39,7 +50,7 @@ export default class DateControlValidator {
     }
 
     const date = new Date(`${this.month}/${this.day}/${this.year}`)
-    return date <= this.maxDate
+    return date < this.maxDate
   }
 
   validMinDate () {
@@ -54,7 +65,7 @@ export default class DateControlValidator {
     }
 
     const date = new Date(`${this.month}/${this.day}/${this.year}`)
-    return date >= this.minDate
+    return date > this.minDate
   }
 
   isValid () {
@@ -66,18 +77,6 @@ export default class DateControlValidator {
   }
 }
 
-const extractDate = (dateObj) => {
-  if (dateObj instanceof Date) {
-    return dateObj
-  }
-
-  if (!dateObj || !dateObj.month || !dateObj.day || !dateObj.year) {
-    return null
-  }
-
-  return new Date(`${dateObj.month}/${dateObj.day}/${dateObj.year}`)
-}
-
 export const dateLimits = (relationship, birthdate) => {
   let max = new Date()
   let min = extractDate(birthdate)
@@ -85,12 +84,12 @@ export const dateLimits = (relationship, birthdate) => {
   switch (relationship) {
   case 'Self':
     max = daysAgo(today, 365 * 16)
-    min = daysAgo(today, 365 * 130)
+    min = daysAgo(today, (365 * 130) + 1)
     break
   case 'Mother':
   case 'Father':
     max = min
-    min = daysAgo(today, 365 * 200)
+    min = daysAgo(today, (365 * 200) + 1)
     break
   case 'Child':
     break
@@ -105,15 +104,15 @@ export const dateLimits = (relationship, birthdate) => {
   case 'Half-brother':
   case 'Half-sister':
   case 'Father-in-law':
-  case 'Monther-in-law':
+  case 'Mother-in-law':
   case 'Guardian':
   case 'Other':
-    min = daysAgo(today, 365 * 200)
+    min = daysAgo(today, (365 * 200) + 1)
     break
   default:
     // Everything else just uses the defaults
     if (!min) {
-      min = daysAgo(today, 365 * 200)
+      min = daysAgo(today, (365 * 200) + 1)
     }
   }
 

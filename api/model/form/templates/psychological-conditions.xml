@@ -1,0 +1,33 @@
+<AdverselyAffected>
+  <Answer>{{branch .props.HasCondition}}</Answer>
+  <AnswerComment></AnswerComment>
+  <Treatment>
+    <Answer>{{radio .props.ReceivedTreatment}}</Answer>
+    <AnswerComment></AnswerComment>
+    {{if radio .props.ReceivedTreatment | eq "No"}}
+    <DidNotReceiveTreatment>
+      <Comment></Comment>
+      <Explanation>{{textarea .props.Explanation}}</Explanation>
+    </DidNotReceiveTreatment>
+    {{end}}
+    {{range $index, $item := .props.TreatmentList.props.items}}
+    {{with $Item := $item.Item}}
+    <TreatmentOccurrence ID="{{$index}}">
+      <Condition>{{radio $Item.Condition}}</Condition>
+      {{daterange $Item.Diagnosed}}
+      <HealthCareProfessional>{{treatment $Item.Treatment}}</HealthCareProfessional>
+      <TreatmentFacility>{{treatment $Item.Facility}}</TreatmentFacility>
+      <Comment></Comment>
+    </TreatmentOccurrence>
+    <HaveAdditionalEntryAnswer>{{branch .props.TreatmentList.props.branch}}</HaveAdditionalEntryAnswer>
+    <SummaryComment></SummaryComment>
+    {{end}}
+    {{end}}
+  </Treatment>
+  <NotFollowedTreatment>
+    <Answer>{{branch .props.DidNotFollow}}</Answer>
+    <AnswerComment></AnswerComment>
+    <Explanation>{{textarea .props.DidNotFollowExplanation}}</Explanation>
+    <ExplanationComment></ExplanationComment>
+  </NotFollowedTreatment>
+</AdverselyAffected>

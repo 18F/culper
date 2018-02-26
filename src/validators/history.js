@@ -2,10 +2,8 @@ import { EmploymentValidator } from './employment'
 import { validAccordion } from './helpers'
 
 export default class HistoryValidator {
-  constructor (state = {}, props) {
-    this.list = state.List || {
-      items: []
-    }
+  constructor (data = {}) {
+    this.list = data.List || { items: [] }
   }
 
   validEmployment () {

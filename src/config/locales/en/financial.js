@@ -67,13 +67,13 @@ export const financial = {
         note: ''
       },
       description: {
-        title: 'Need help with this description?',
-        message: 'We are looking for a full explanation of this financial problem. Go into as much detail as you need to fully explain.',
+        title: 'Full explanation of this financial problem',
+        message: 'Go into as much detail as you need to fully explain.',
         note: ''
       },
       actions: {
-        title: 'Need help with the actions taken?',
-        message: 'Tell us if you have starting trying to fix this problem. If you haven\'t started yet tell us why.',
+        title: 'Have you started trying to fix this problem?',
+        message: 'Explain what you have done to fix this problem. If you haven\'t started yet tell us why.',
         note: ''
       },
       comments: {
@@ -116,7 +116,7 @@ export const financial = {
     title: 'In the last seven (7) years have you filed a petition under any chapter of the bankruptcy code?',
     notApplicable: 'Not applicable',
     help: {
-      title: 'We are asking about the following bankruptcy petition types.',
+      title: 'Chapter 7, Chapter 11, Chapter 12, or Chapter 13',
       message: 'Answer yes if you filed a petition under Chapter 7, Chapter 11, Chapter 12, or Chapter 13.',
       note: 'Note: You will be asked to provide details of the petition or petitions.'
     },
@@ -130,8 +130,7 @@ export const financial = {
       help: {
         title: 'Need help with the details of your bankruptcy petition?',
         message: [
-          'If you don\'t have paperwork you may be able to find your details here:',
-          '[www.pacer.gov](https://www.pacer.gov/)'
+          'If you don\'t have paperwork you may be able to find your details here: [www.pacer.gov](https://www.pacer.gov/)',
         ],
         note: ''
       }
@@ -204,9 +203,9 @@ export const financial = {
     courtAddress: {
       label: 'This address is',
       help: {
-        title: 'Not sure of the facility address?',
-        message: 'Try looking up the facility name, this could help you find the address.',
-        note: 'Note: If you can only find a phone number try calling and asking for the address. Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
+        title: 'Try looking up the facility name, this could help you find the address',
+        message: 'If you can only find a phone number try calling and asking for the address.',
+        note: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
       }
     }
   },
@@ -278,8 +277,8 @@ export const financial = {
         note: ''
       },
       description: {
-        title: 'Need help providing a description?',
-        message: 'Tell us if you have starting trying to fix this issue. If you haven\'t started yet tell us why.',
+        title: 'Have you started trying to fix this problem?',
+        message: 'Explain what you have done to fix this problem. If you haven\'t started yet tell us why.',
         note: ''
       }
     },
@@ -321,9 +320,9 @@ export const financial = {
         note: ''
       },
       address: {
-        title: 'Not sure of the agency or company address?',
-        message: 'Try looking up the agency or company name, this could help you find the address.',
-        note: 'Note: If you can only find a phone number try calling and asking for the address. Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
+        title: 'Try looking up the agency or company name, this could help you find the address',
+        message: 'If you can only find a phone number try calling and asking for the address.',
+        note: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
       },
       date: {
         title: 'Need help with the date?',
@@ -342,7 +341,7 @@ export const financial = {
       },
       description: {
         title: 'Need help providing a description?',
-        message: 'Tell us if you have starting trying to fix this issue. If you haven\'t started yet tell us why.',
+        message: 'Tell us if you have started trying to fix this issue. If you haven\'t started yet tell us why.',
         note: ''
       }
     },
@@ -376,8 +375,8 @@ export const financial = {
         note: ''
       },
       explanation: {
-        title: 'Need help with the explanation?',
-        message: 'We are looking for a full explanation of this credit counseling. Go into as much detail as you need to fully explain.',
+        title: 'Full explanation of this credit counseling',
+        message: 'Go into as much detail as you need to fully explain.',
         note: ''
       },
       name: {
@@ -386,18 +385,18 @@ export const financial = {
         note: ''
       },
       telephone: {
-        title: 'Not sure of this organization\'s phone number?',
-        message: 'Try looking up their name, this could help you find their number. ',
+        title: 'Look up the organization',
+        message: 'Try looking up the organization\'s name, this could help you find their number.',
         note: ''
       },
       address: {
-        title: 'Not sure of this organization\'s address?',
+        title: 'Look up the organization',
         message: 'Try looking up the organization\'s name, this could help you find the address.',
-        note: 'Note: If you can only find a phone number try calling and asking for the address. Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
+        note: 'Note: If you can only find a phone number try calling and asking for the address.'
       },
       description: {
-        title: 'Need help providing a description?',
-        message: 'Tell us if you have starting trying to fix this issue. If you haven\'t started yet tell us why.',
+        title: 'Have you started trying to fix this problem?',
+        message: 'Explain what you have done to fix this problem. If you haven\'t started yet tell us why.',
         note: ''
       }
     },
@@ -475,8 +474,8 @@ export const financial = {
         note: ''
       },
       reason: {
-        title: 'Need help with the reason(s) for the financial issue?',
-        message: 'We are looking for a full explanation of this issue. Go into as much detail as you need to fully explain.',
+        title: 'Full explanation of this issue',
+        message: 'Go into as much detail as you need to fully explain.',
         note: ''
       },
       status: {
@@ -500,13 +499,13 @@ export const financial = {
         note: ''
       },
       courtaddress: {
-        title: 'Not sure of the court address?',
-        message: 'Try looking up the court name, this could help you find the address.',
-        note: 'Note: If you can only find a phone number try calling and asking for the address. Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
+        title: 'Try looking up the court name, this could help you find the address',
+        message: 'If you can only find a phone number try calling and asking for the address.',
+        note: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
       },
       description: {
-        title: 'Need help providing a description?',
-        message: 'Tell us if you have starting trying to fix this issue. If you haven\'t started yet tell us why.',
+        title: 'Have you started trying to fix this problem?',
+        message: 'Explain what you have done to fix this problem. If you haven\'t started yet tell us why.',
         note: ''
       }
     },
@@ -585,8 +584,8 @@ export const financial = {
         note: ''
       },
       reason: {
-        title: 'Need help with the reason(s) for the financial issue?',
-        message: 'We are looking for a full explanation of this issue. Go into as much detail as you need to fully explain.',
+        title: 'Full explanation of this issue',
+        message: 'Go into as much detail as you need to fully explain.',
         note: ''
       },
       status: {
@@ -605,8 +604,8 @@ export const financial = {
         note: ''
       },
       description: {
-        title: 'Need help providing a description?',
-        message: 'Tell us if you have starting trying to fix this issue. If you haven\'t started yet tell us why.',
+        title: 'Have you started trying to fix this problem?',
+        message: 'Explain what you have done to fix this problem. If you haven\'t started yet tell us why.',
         note: ''
       }
     },

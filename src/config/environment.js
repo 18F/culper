@@ -54,6 +54,7 @@ class Env {
   }
 
   EndpointBasicAuthentication () { return '/auth/basic' }
+  EndpointLogout () { return '/me/logout' }
   EndpointRefresh () { return '/refresh' }
   EndpointSaml () { return `${this.ApiBaseURL()}/auth/saml` }
   EndpointTwoFactor (account) { return `/2fa/${account}` }
@@ -61,7 +62,9 @@ class Env {
   EndpointTwoFactorReset (account) { return `/2fa/${account}/reset` }
   EndpointSave (payload) { return '/me/save' }
   EndpointSection (type) { return `/me/section?type=${type || ''}` }
+  EndpointStatus () { return '/me/status' }
   EndpointForm () { return '/me/form' }
+  EndpointSubmit () { return '/me/form/submit' }
   EndpointFormHash () { return '/me/form/hash' }
   EndpointValidate (payload) { return '/me/validate' }
 }

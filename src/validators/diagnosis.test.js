@@ -5,7 +5,7 @@ describe('Diagnosis validation', function () {
   it('validates effective', () => {
     const tests = [
       {
-        state: {
+        data: {
           Effective: { value: 'Yes' },
           Explanation: {
             value: null
@@ -14,7 +14,7 @@ describe('Diagnosis validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           Effective: { value: 'No' },
           Explanation: {
             value: null
@@ -23,7 +23,7 @@ describe('Diagnosis validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           Effective: { value: 'No' },
           Explanation: {
             value: 'The explanation'
@@ -32,7 +32,7 @@ describe('Diagnosis validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           Effective: { value: 'Nope' },
           Explanation: {
             value: 'The explanation'
@@ -41,37 +41,41 @@ describe('Diagnosis validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
+          prefix: 'existingConditions.diagnosis',
           Effective: { value: 'Nope' },
           Explanation: {
             value: 'The explanation'
           }
         },
-        props: {
-          prefix: 'existingConditions.diagnosis'
-        },
         expected: true
       }
     ]
     tests.forEach(test => {
-      expect(new DiagnosisValidator(test.state, test.props).validEffective()).toBe(test.expected)
+      expect(new DiagnosisValidator(test.data).validEffective()).toBe(test.expected)
     })
   })
 
   it('validates diagnosis', () => {
     const tests = [
       {
-        state: {
-          Condition: 'Test',
+        data: {
+          Condition: { value: 'Test' },
           Effective: { value: 'Yes' },
           Explanation: {
             value: null
           },
           Diagnosed: {
             from: {
+              month: '1',
+              day: '1',
+              year: '2010',
               date: new Date('1/1/2010')
             },
             to: {
+              month: '1',
+              day: '1',
+              year: '2012',
               date: new Date('1/1/2012')
             },
             present: false
@@ -123,7 +127,7 @@ describe('Diagnosis validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new DiagnosisValidator(test.state, null).isValid()).toBe(test.expected)
+      expect(new DiagnosisValidator(test.data).isValid()).toBe(test.expected)
     })
   })
 })

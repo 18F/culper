@@ -332,7 +332,7 @@ export default class Accordion extends ValidationElement {
     return (
       <div className="summary-container">
         <div className="summary">
-          <a className={`left ${openState(item, initial)}`} onClick={this.toggle.bind(this, item)}>
+          <a href="javascript:;;;" className={`left ${openState(item, initial)}`} onClick={this.toggle.bind(this, item)}>
             <span className="button-with-icon">
               <i className={chevron(item)} aria-hidden="true"></i>
               <span className="toggle">{this.openText(item)}</span>
@@ -340,14 +340,14 @@ export default class Accordion extends ValidationElement {
             {svg}
             {this.props.summary(item, index, initial)}
           </a>
-          <a className="right remove" onClick={this.remove.bind(this, item)}>
+          <a href="javascript:;;;" className="right remove" onClick={this.remove.bind(this, item)}>
             <span className="button-with-icon">
               <i className="fa fa-trash" aria-hidden="true"></i>
               <span>{this.props.removeLabel}</span>
             </span>
           </a>
         </div>
-        <Show when={closedAndIncomplete && !initial}>
+        <Show when={closedAndIncomplete}>
           {this.props.byline(item, index, initial, this.props.incomplete, this.props.required)}
         </Show>
       </div>
@@ -361,7 +361,7 @@ export default class Accordion extends ValidationElement {
     return (
       <div className={`details ${openState(item, initial)}`}>
         {this.factory(item, index, this.props.children)}
-        <a className="close" onClick={this.toggle.bind(this, item)}>
+        <a href="javascript:;;;" className="close" onClick={this.toggle.bind(this, item)}>
           <span>{this.props.closeLabel}</span>
         </a>
       </div>

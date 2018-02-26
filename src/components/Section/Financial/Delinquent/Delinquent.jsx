@@ -115,7 +115,6 @@ export default class Delinquent extends SubsectionElement {
                      appendLabel={i18n.t('financial.delinquent.collection.append')}>
             <DelinquentItem name="Item"
                             bind={true}
-                            applicantBirthdate={this.props.applicantBirthdate}
                             dispatch={this.props.dispatch}
                             addressBooks={this.props.addressBooks}
                             required={this.props.required}
@@ -136,10 +135,9 @@ Delinquent.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'financial',
   subsection: 'delinquent',
-  applicantBirthdate: {},
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('financial.delinquent', props))
+  validator: (data) => {
+    return validate(schema('financial.delinquent', data))
   },
   defaultState: true
 }

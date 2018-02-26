@@ -5,7 +5,7 @@ describe('Employment component validation', function () {
   it('should validate entire history', function () {
     const tests = [
       {
-        state: {
+        data: {
           List: {
             items: [
               {
@@ -16,9 +16,15 @@ describe('Employment component validation', function () {
                   },
                   Dates: {
                     from: {
+                      month: '1',
+                      day: '1',
+                      year: '2010',
                       date: new Date('1/1/2010')
                     },
                     to: {
+                      month: '1',
+                      day: '1',
+                      year: '2012',
                       date: new Date('1/1/2012')
                     },
                     present: false
@@ -52,9 +58,7 @@ describe('Employment component validation', function () {
                     }
                   },
                   Additional: {
-                    List: {
-                      items: [{ Item: { Has: { value: 'No' } } }]
-                    }
+                    items: [{ Item: { Has: { value: 'No' } } }]
                   },
                   Telephone: {
                     noNumber: '',
@@ -111,23 +115,26 @@ describe('Employment component validation', function () {
                     }
                   },
                   Reprimand: {
-                    Reasons: {
-                      items: [
-                        {
-                          Item: {
-                            Has: { value: 'Yes' },
-                            Date: {
-                              date: new Date('1/1/2015'),
-                              month: '1',
-                              year: '2015'
-                            },
-                            Text: {
-                              value: 'Foo'
-                            }
+                    items: [
+                      {
+                        Item: {
+                          Has: { value: 'Yes' },
+                          Date: {
+                            date: new Date('1/1/2015'),
+                            month: '1',
+                            year: '2015'
+                          },
+                          Text: {
+                            value: 'Foo'
                           }
                         }
-                      ]
-                    }
+                      },
+                      {
+                        Item: {
+                          Has: { value: 'No' }
+                        }
+                      }
+                    ]
                   }
                 }
               }
@@ -135,28 +142,11 @@ describe('Employment component validation', function () {
           }
         },
         expected: true
-      },
-      //{
-        //state: {
-          //List: {
-            //items: [
-              //{
-                //type: 'Employment',
-                //Item: {
-                  //EmploymentActivity: {
-                    //value: 'Contractor'
-                  //}
-                //}
-              //}
-            //]
-          //}
-        //},
-        //expected: false
-      //}
+      }
     ]
 
     tests.forEach(test => {
-      expect(new HistoryValidator(test.state, null).isValid()).toBe(test.expected)
+      expect(new HistoryValidator(test.data).isValid()).toBe(test.expected)
     })
   })
 })

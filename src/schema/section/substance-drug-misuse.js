@@ -14,7 +14,7 @@ export const substanceDrugMisuse = (data = {}) => {
     }
   })
   return {
-    UsedDrugs: form.branch(data.UsedDrugs),
+    MisusedDrugs: form.branch(data.MisusedDrugs),
     List: form.collection(items, (data.List || {}).branch)
   }
 }

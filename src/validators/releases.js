@@ -44,6 +44,6 @@ export const formIsSigned = (store = {}) => {
 }
 
 export const formIsLocked = (store = {}) => {
-  const releases = (store.Submission || {}).Releases || {}
-  return releases.Locked && formIsSigned(store)
+  const settings = store.Settings || {}
+  return settings.Locked && formIsSigned(store)
 }

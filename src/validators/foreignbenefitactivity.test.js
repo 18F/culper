@@ -33,9 +33,9 @@ describe('Foreign RealEstate Activity validation', function () {
             items: [
               {
                 Item: {
-                  InterestTypes: ['Yourself'],
-                  BenefitType: 'Educational',
-                  BenefitFrequency: 'OneTime',
+                  InterestTypes: { values: ['Yourself'] },
+                  BenefitType: { value: 'Educational' },
+                  BenefitFrequency: { value: 'OneTime' },
                   OneTimeBenefit: {
                     Received: {
                       month: '1',

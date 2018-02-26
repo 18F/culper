@@ -101,7 +101,7 @@ export const relationships = {
         halfbrother: 'Half-brother',
         halfsister: 'Half-sister',
         fatherinlaw: 'Father-in-law',
-        montherinlaw: 'Mother-in-law',
+        motherinlaw: 'Mother-in-law',
         guardian: 'Guardian'
       },
       abroad: {
@@ -203,8 +203,8 @@ export const relationships = {
         note: ''
       },
       birthdate: {
-        title: 'Need help with the date of birth?',
-        message: 'Provide the closest date of birth',
+        title: 'Estimate the date if unsure',
+          message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
         note: ''
       },
       birthplace: {
@@ -213,9 +213,9 @@ export const relationships = {
         note: ''
       },
       citizenship: {
-        title: 'Need help with the citizenship?',
-        message: 'Tell us all of the citizenships for this person.',
-        note: 'Note: You can provide multiple citizenships in this question.'
+        title: 'List all citizenships this person has',
+        message: 'You can provide multiple citizenships in this question.',
+        note: ''
       },
       maiden: {
         title: 'Need help with the maiden name?',
@@ -228,13 +228,13 @@ export const relationships = {
         note: ''
       },
       address: {
-        title: 'Need help with the address?',
-        message: 'Provide the address of the relative',
+        title: 'Acronyms:',
+          message: 'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
         note: ''
       },
       abroad: {
         title: 'Need help if the relative was born abroad?',
-        message: 'Select the appropriate type of documentation',
+        message: 'Select the appropriate type of documentation.',
         note: ''
       },
       naturalized: {
@@ -403,6 +403,9 @@ export const relationships = {
         annulled: 'Annulled',
         birthplace: 'Was this person born in the United States of America?'
       },
+      para: {
+        intro: 'Provide information about any person from whom you are divorced/dissolved, annulled, or widowed.'
+      },
       deceased: {
         label: {
           yes: 'Yes',
@@ -418,8 +421,8 @@ export const relationships = {
       },
       help: {
         birthdate: {
-          title: 'Need help with the birthdate?',
-          message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
+          title: 'Estimate the date if unsure',
+          message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
         birthplace: {
@@ -428,8 +431,8 @@ export const relationships = {
           note: ''
         },
         recognized: {
-          title: 'Need help with providing date your civil marriage, civil union, or domestic partnership was legally recognized?',
-          message: 'Provide the date your civil marriage, civil union, or domestic partnership was legally recognized',
+          title: 'Estimate the date if unsure',
+          message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
         separated: {
@@ -453,13 +456,13 @@ export const relationships = {
           note: ''
         },
         address: {
-          title: 'Need help with providing address?',
-          message: 'Provide the address of the person',
+          title: 'Acronyms:',
+          message: 'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
           note: ''
         },
         dateDivorced: {
-          title: 'Need help with providing date divorced/dissolved?',
-          message: 'Provide the date divorced/dissolved, annulled or widowed',
+          title: 'Estimate the date if unsure',
+          message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
           note: ''
         }
       }
@@ -473,8 +476,8 @@ export const relationships = {
     },
     help: {
       address: {
-        title: 'Need help with the marital address?',
-        message: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
+        title: 'Acronyms:',
+        message: 'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
         note: ''
       },
       addressSeparated: {
@@ -488,13 +491,13 @@ export const relationships = {
         note: ''
       },
       dateSeparated: {
-        title: 'Need help with the date of separation?',
-        message: 'Provide the date of separation',
+        title: 'Estimate the date if unsure',
+        message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
         note: ''
       },
       birthdate: {
-        title: 'Need help with the birthdate?',
-        message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
+        title: 'Estimate the date if unsure',
+        message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
         note: ''
       },
       birthplace: {
@@ -503,8 +506,8 @@ export const relationships = {
         note: ''
       },
       foreignBornDocument: {
-        title: 'Need help with selecting the appropriate documentation?',
-        message: 'If the person is foreign born, provide one type of documentation that he or she possesses and the document number',
+        title: 'Find the documentation',
+        message: 'The document type and number will be on the documentation.',
         note: ''
       },
       othernames: {
@@ -533,9 +536,9 @@ export const relationships = {
         note: ''
       },
       citizenship: {
-        title: 'Need help with their citizenship?',
-        message: 'Tell us all of the citizenships this person has.',
-        note: 'Note: You can provide multiple citizenships in this question.'
+        title: 'List all citizenships this person has',
+        message: 'You can provide multiple citizenships in this question.',
+        note: ''
       }
     }
   },
@@ -582,8 +585,8 @@ export const relationships = {
     },
     help: {
       birthdate: {
-        title: 'Need help with the birthdate?',
-        message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
+        title: 'Estimate the date if unsure',
+        message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
         note: ''
       },
       birthplace: {
@@ -622,8 +625,8 @@ export const relationships = {
         note: ''
       },
       dateDivorced: {
-        title: 'Need help with providing date divorced/dissolved?',
-        message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
+        title: 'Estimate the date if unsure',
+        message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
         note: ''
       },
       foreignBornDocument: {
@@ -637,19 +640,19 @@ export const relationships = {
         note: ''
       },
       cohabitationBegan: {
-        title: 'Need help with when cohabitation began?',
-        message: 'Provide date cohabitation residing with person began',
+        title: 'When did you start living with this person?',
+        message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
         note: ''
       },
       hasCohabitant: {
-        title: 'Need help deciding whether or not you have a cohabitant?',
+        title: 'The reason you live with this person',
         message: 'If you live with your cohabitant for reasons of convenience (e.g. a roommate) your answer would be "No". If you share any type of bonds of affection, obligation, or other commitment your answer would be "Yes".',
         note: ''
       },
       citizenship: {
-        title: 'Need help with their citizenship?',
-        message: 'Tell us all of the citizenships this person has.',
-        note: 'Note: You can provide multiple citizenships in this question.'
+        title: 'List all citizenships this person has',
+        message: 'You can provide multiple citizenships in this question.',
+        note: ''
       }
     }
   },
@@ -700,9 +703,9 @@ export const relationships = {
       },
       help: {
         knownDates: {
-          title: 'Need help with this date range?',
-          message: 'Tell us the entire time you have known this person.',
-          note: 'Note: If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.'
+          title: 'Tell us the entire time you have known this person',
+          message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
+          note: ''
         },
         rank: {
           title: 'Need help with the rank/title?',
@@ -730,8 +733,8 @@ export const relationships = {
           note: ''
         },
         address: {
-          title: 'Need help with the address?',
-          message: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
+          title: 'Acronyms:',
+          message: 'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
           note: ''
         }
       },

@@ -137,9 +137,9 @@ export default class Offense extends ValidationElement {
     })
   }
 
-  updateChargeType (event) {
+  updateChargeType (value) {
     this.update({
-      ChargeType: event.target.value
+      ChargeType: value
     })
   }
 
@@ -195,7 +195,6 @@ export default class Offense extends ValidationElement {
                scrollIntoView={this.props.scrollIntoView}>
           <DateControl name="Date"
                        {...this.props.Date}
-                       applicantBirthdate={this.props.applicantBirthdate}
                        className="offense-date"
                        onUpdate={this.updateDate}
                        onError={this.props.onError}
@@ -282,7 +281,7 @@ export default class Offense extends ValidationElement {
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Show when={this.props.WasCited.value === 'Yes'}>
+        <Show when={(this.props.WasCited || {}).value === 'Yes'}>
           <div>
             <Field title={i18n.t('legal.police.heading.needmore')}
                    optional={true}
@@ -341,7 +340,7 @@ export default class Offense extends ValidationElement {
           </div>
         </Show>
 
-        <Show when={this.props.WasCharged.value === 'No'}>
+        <Show when={(this.props.WasCharged || {}).value === 'No'}>
           <Field title={i18n.t('legal.police.label.explanation')}
                  titleSize="label"
                  scrollIntoView={this.props.scrollIntoView}>
@@ -355,7 +354,7 @@ export default class Offense extends ValidationElement {
           </Field>
         </Show>
 
-        <Show when={this.props.WasCharged.value === 'Yes'}>
+        <Show when={(this.props.WasCharged || {}).value === 'Yes'}>
           <div>
             <Field title={i18n.t('legal.police.heading.needmore')}
                    optional={true}
@@ -413,26 +412,26 @@ export default class Offense extends ValidationElement {
               <RadioGroup className="offense-chargetype option-list"
                           onError={this.props.onError}
                           required={this.props.required}
-                          selectedValue={this.props.ChargeType}>
+                          selectedValue={(this.props.ChargeType || {}).value}>
                 <Radio name="charge-felony"
                        className="charge-felony"
                        label={i18n.t('legal.police.label.felony')}
                        value="Felony"
-                       onChange={this.updateChargeType}
+                       onUpdate={this.updateChargeType}
                        onError={this.props.onError}
                        />
                 <Radio name="charge-misdemeanor"
                        className="charge-misdemeanor"
                        label={i18n.t('legal.police.label.misdemeanor')}
                        value="Misdemeanor"
-                       onChange={this.updateChargeType}
+                       onUpdate={this.updateChargeType}
                        onError={this.props.onError}
                        />
                 <Radio name="charge-other"
                        className="charge-other"
                        label={i18n.t('legal.police.label.other')}
                        value="Other"
-                       onChange={this.updateChargeType}
+                       onUpdate={this.updateChargeType}
                        onError={this.props.onError}
                        />
               </RadioGroup>
@@ -463,7 +462,6 @@ export default class Offense extends ValidationElement {
                    scrollIntoView={this.props.scrollIntoView}>
               <DateControl name="CourtDate"
                            {...this.props.CourtDate}
-                           applicantBirthdate={this.props.applicantBirthdate}
                            hideDay={true}
                            className="offense-courtdate"
                            onUpdate={this.updateCourtDate}
@@ -483,7 +481,7 @@ export default class Offense extends ValidationElement {
                     scrollIntoView={this.props.scrollIntoView}>
             </Branch>
 
-            <Show when={this.props.WasSentenced.value === 'Yes'}>
+            <Show when={(this.props.WasSentenced || {}).value === 'Yes'}>
               <div>
                 <Field title={i18n.t('legal.police.heading.needmore')}
                        optional={true}
@@ -493,7 +491,6 @@ export default class Offense extends ValidationElement {
                 </Field>
                 <Sentence name="Sentence"
                           {...this.props.Sentence}
-                          applicantBirthdate={this.props.applicantBirthdate}
                           onError={this.props.onError}
                           required={this.props.required}
                           onUpdate={this.updateSentence}
@@ -502,7 +499,7 @@ export default class Offense extends ValidationElement {
               </div>
             </Show>
 
-            <Show when={this.props.WasSentenced.value === 'No'}>
+            <Show when={(this.props.WasSentenced || {}).value === 'No'}>
               <div>
                 <Branch name="awaiting_trial"
                         label={i18n.t('legal.police.heading.awaitingTrial')}
@@ -555,7 +552,6 @@ Offense.defaultProps = {
   Sentence: {},
   AwaitingTrial: {},
   AwaitingTrialExplanation: {},
-  applicantBirthdate: {},
   addressBooks: {},
   dispatch: (action) => {},
   onUpdate: (queue) => {},

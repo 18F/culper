@@ -5,7 +5,7 @@ export const substanceDrugUsage = (data = {}) => {
     const xitem = x.Item || {}
     return {
       Item: {
-        DrugType: form.checkbox(xitem.DrugType),
+        DrugType: form.radio(xitem.DrugType),
         FirstUse: form.datecontrol(xitem.FirstUse),
         RecentUse: form.datecontrol(xitem.RecentUse),
         NatureOfUse: form.textarea(xitem.NatureOfUse),

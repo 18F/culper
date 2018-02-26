@@ -30,7 +30,7 @@ export default class OrderedCounselingsValidator {
 
 export class OrderedCounselingValidator {
   constructor (data = {}) {
-    this.seekers = data.Seekers
+    this.seekers = (data.Seekers || {}).values || []
     this.otherSeeker = data.OtherSeeker
     this.actionTaken = (data.ActionTaken || {}).value
     this.noActionTakenExplanation = data.NoActionTakenExplanation

@@ -66,7 +66,7 @@ export class EmploymentValidator {
       return false
     }
 
-    const branchValidator = new BranchCollection(this.additional.List)
+    const branchValidator = new BranchCollection(this.additional)
     if (!branchValidator.validKeyValues()) {
       return false
     }
@@ -115,15 +115,14 @@ export class EmploymentValidator {
         return false
       }
 
-      if (branchValidator.hasNo()) {
-        return true
+      if (!branchValidator.hasNo()) {
+        return false
       }
 
       return branchValidator.each(item => {
-        return !!item.Item &&
-          item.Item.Reason &&
-          validDateField(item.Item.Date) &&
-          validGenericTextfield(item.Item.Text)
+        return validGenericTextfield(item.Reason) &&
+          validDateField(item.Date) &&
+          validGenericTextfield(item.Text)
       })
     }
 
@@ -147,27 +146,18 @@ export class EmploymentValidator {
 
   validReprimand () {
     if (this.withinSevenYears()) {
-      if (!this.reprimand.Reasons) {
+      const branchValidator = new BranchCollection(this.reprimand)
+      if (!branchValidator.validKeyValues()) {
         return false
       }
 
-      for (let r of (this.reprimand.Reasons.items || [])) {
-        const item = r.Item || {}
-        const has = item.Has || {}
-        if (has.value === 'No') {
-          continue
-        }
-        if (!item) {
-          return false
-        }
-        if (!validGenericTextfield(item.Text)) {
-          return false
-        }
-
-        if (!validGenericMonthYear(item.Date)) {
-          return false
-        }
+      if (!branchValidator.hasNo()) {
+        return false
       }
+
+      return branchValidator.each(item => {
+        return validGenericTextfield(item.Text) && validGenericMonthYear(item.Date)
+      })
     }
 
     return true

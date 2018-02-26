@@ -62,8 +62,8 @@ ApplicantBirthPlace.defaultProps = {
   section: 'identification',
   subsection: 'birthplace',
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('identification.birthplace', props))
+  validator: (data) => {
+    return validate(schema('identification.birthplace', data))
   }
 }
 

@@ -126,7 +126,10 @@ export const validNotApplicable = (notApplicable, logic, notLogic) => {
 
 export const withinSevenYears = (from, to) => {
   const sevenYearsAgo = daysAgo(today, 365 * 7)
-  if ((from && from.date && from.date >= sevenYearsAgo) || (to && to.date && to.date >= sevenYearsAgo)) {
+  const fromDate = buildDate(from)
+  const toDate = buildDate(to)
+
+  if ((fromDate && fromDate >= sevenYearsAgo) || (toDate && toDate >= sevenYearsAgo)) {
     return true
   }
   return false
@@ -268,5 +271,18 @@ export const nameIsEmpty = (name) => {
       return true
     default:
       return false
+  }
+}
+export const buildDate = (date) => {
+  if (!date) {
+    return null
+  }
+  let year = date.year
+  let month = date.month
+  let day = date.day
+  if (year && year.length > 3 && month && day) {
+    return new Date(parseInt(year), parseInt(month) - 1, parseInt(day))
+  } else {
+    return null
   }
 }

@@ -6,13 +6,13 @@ describe('Foreign business employment component validation', function () {
   it('validate foreign business employment name', () => {
     const tests = [
       {
-        state: {
+        data: {
           Name: {}
         },
         expected: false
       },
       {
-        state: {
+        data: {
           Name: {
             first: 'Foo',
             firstInitialOnly: false,
@@ -34,13 +34,13 @@ describe('Foreign business employment component validation', function () {
   it('validate foreign business employment description', () => {
     const tests = [
       {
-        state: {
+        data: {
           Description: {}
         },
         expected: false
       },
       {
-        state: {
+        data: {
           Description: {
             value: 'this is the description'
           }
@@ -55,13 +55,13 @@ describe('Foreign business employment component validation', function () {
   it('validate foreign business employment date', () => {
     const tests = [
       {
-        state: {
+        data: {
           Date: {}
         },
         expected: false
       },
       {
-        state: {
+        data: {
           Date: {
             day: '1',
             month: '1',
@@ -79,13 +79,13 @@ describe('Foreign business employment component validation', function () {
   it('validate foreign business employment address', () => {
     const tests = [
       {
-        state: {
+        data: {
           Address: {}
         },
         expected: false
       },
       {
-        state: {
+        data: {
           Address: {
             city: 'Munich',
             country: { value: 'Germany' },
@@ -102,25 +102,25 @@ describe('Foreign business employment component validation', function () {
   it('validate foreign business employment acceptance', () => {
     const tests = [
       {
-        state: {
+        data: {
           Accepted: ''
         },
         expected: false
       },
       {
-        state: {
+        data: {
           Accepted: { value: 'No' }
         },
         expected: false
       },
       {
-        state: {
+        data: {
           Accepted: { value: 'Yes' }
         },
         expected: false
       },
       {
-        state: {
+        data: {
           Accepted: { value: 'Yes' },
           Explanation: {
             value: 'this is the explanation'
@@ -129,7 +129,7 @@ describe('Foreign business employment component validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           Accepted: { value: 'No' },
           Explanation: {
             value: 'this is the explanation'
@@ -145,17 +145,17 @@ describe('Foreign business employment component validation', function () {
   it('validate foreign business employment', () => {
     const tests = [
       {
-        state: {},
+        data: {},
         expected: false
       },
       {
-        state: {
+        data: {
           HasForeignEmployment: { value: 'No' }
         },
         expected: true
       },
       {
-        state: {
+        data: {
           HasForeignEmployment: { value: 'Yes' },
           List: {
             branch: { value: 'No' },
@@ -165,7 +165,7 @@ describe('Foreign business employment component validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           HasForeignEmployment: { value: 'Yes' },
           List: {
             branch: { value: 'No' },

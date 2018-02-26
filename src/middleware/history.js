@@ -1,9 +1,11 @@
+import axios from 'axios'
 import { env } from '../config'
 import SectionConstants from '../actions/SectionConstants'
 import { updateApplication, clearErrors } from '../actions/ApplicationActions'
 import { sectionData } from '../components/Section/sectionData'
 import schema from '../schema'
 import { api } from '../services'
+import { unstickAll } from '../components/Sticky/sidebar'
 
 export const findPosition = (el) => {
   let currentTop = 0
@@ -38,9 +40,6 @@ export const push = (path, scrollTo = 'scrollTo') => {
 export const historyMiddleware = store => next => action => {
   // If we get a PUSH_STATE type, modify hisory
   if (action.type === PUSH_STATE) {
-    if (action.scrollTo) {
-      window.scroll(0, findPosition(document.getElementById(action.scrollTo)))
-    }
     env.History().push(action.to)
   }
 
@@ -50,23 +49,6 @@ export const historyMiddleware = store => next => action => {
 
 // Retrieve the section's answers
 export const sectionMiddleware = store => next => action => {
-  // TODO: Remove if no longer necessary
-  // if (action.type === SectionConstants.SECTION_UPDATE || action.type === SectionConstants.SUBSECTION_UPDATE) {
-  //   if (action.section && action.subsection) {
-  //     const payloadType = `${action.section}/${action.subsection}`.replace(/\//g, '.')
-  //     api
-  //       .section(payloadType)
-  //       .then(r => {
-  //         store.dispatch(updateApplication(action.section, action.subsection, unschema(r.data)))
-  //       })
-  //       .catch(() => {
-  //         if (console && console.warn) {
-  //           console.warn(`Failed to retrieve data for the "${action.section}" section and "${action.subsection}" subsection`)
-  //         }
-  //       })
-  //   }
-  // }
-
   // Allow redux to continue the flow and executing the next middleware
   next(action)
 }
@@ -74,23 +56,14 @@ export const sectionMiddleware = store => next => action => {
 // Save the previous section's answers
 export const saveMiddleware = store => next => action => {
   if (action.type === SectionConstants.SECTION_UPDATE || action.type === SectionConstants.SUBSECTION_UPDATE) {
+    window.scroll(0, findPosition(document.getElementById(action.scrollTo || 'scrollTo')))
+    unstickAll()
+
     if (action.previous && action.previous.section && action.previous.application) {
-      const section = action.previous.section
       const application = action.previous.application
-      const pending = sectionData(section.section, section.subsection, application)
-      if (pending) {
-        const payload = schema(`${section.section}/${section.subsection}`.replace(/\//g, '.'), pending, false)
-        api
-          .save(payload)
-          .then(r => {
-            store.dispatch(updateApplication('Settings', 'saved', new Date()))
-          })
-          .catch(() => {
-            if (console && console.warn) {
-              console.warn(`Failed to save data for the "${section.section}" section and "${section.subsection}" subsection`)
-            }
-          })
-      }
+      const section = action.previous.section.section
+      const subsection = action.previous.section.subsection
+      saveSection(application, section, subsection, store.dispatch)
     }
   }
 
@@ -114,4 +87,40 @@ export const clearErrorsMiddleware = store => next => action => {
 
   // Allow redux to continue the flow and executing the next middleware
   next(action)
+}
+
+export const saveSection = (application, section, subsection, dispatch, done) => {
+  const pending = sectionData(section, subsection, application)
+  if (pending.length === 0) {
+    if (done) {
+      done()
+    }
+    return
+  }
+
+  let requests = []
+  for (const p of pending) {
+    requests.push(api.save(schema(p.path.replace(/\//g, '.'), p.data, false)))
+  }
+
+  axios
+    .all(requests)
+    .then(() => {
+      if (dispatch) {
+        dispatch(updateApplication('Settings', 'saved', new Date()))
+      }
+
+      if (done) {
+        done()
+      }
+    })
+    .catch(() => {
+      if (console && console.warn) {
+        console.warn(`Failed to save data for the "${section}" section and "${subsection}" subsection`)
+      }
+
+      if (done) {
+        done()
+      }
+    })
 }

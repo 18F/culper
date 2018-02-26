@@ -55,7 +55,6 @@ export default class VotingItem extends ValidationElement {
                scrollIntoView={this.props.scrollIntoView}>
           <DateControl name="Date"
                        {...this.props.Date}
-                       applicantBirthdate={this.props.applicantBirthdate}
                        onUpdate={this.updateDate}
                        onError={this.props.onError}
                        className="foreign-business-voting-date"
@@ -104,7 +103,6 @@ export default class VotingItem extends ValidationElement {
 }
 
 VotingItem.defaultProps = {
-  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

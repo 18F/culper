@@ -13,7 +13,8 @@ applications:
     - usps-api
   env:
     PATH: /bin:/usr/bin:$HOME/bin
-    GOVERSION: go1.9.3
+    GOVERSION: go1.9.4
+    GOLANG_ENV: development
     LOG_LEVEL: debug
     CORS_ALLOWED: https://eqip-prototype-staging.fr.cloud.gov
     API_REDIRECT: https://eqip-prototype-staging.fr.cloud.gov

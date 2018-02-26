@@ -140,18 +140,12 @@ const validators = {
   },
   'history.employment': (data) => {
     return new logic.HistoryEmploymentValidator(data).isValid()
-    //TODO: return ((data.List || {}).items || []).every(x => {
-      //return (data.List || {}).branch === 'No' && new logic.EmploymentValidator(x.Item).isValid()
-    //})
   },
   'history.federal': (data) => {
     return new logic.FederalServiceValidator(data).isValid()
   },
   'history.residence': (data) => {
     return new logic.HistoryResidenceValidator(data).isValid()
-    //TODO: return ((data.List || {}).items || []).every(x => {
-      //return new logic.ResidenceValidator(x.Item, null).isValid()
-    //})
   },
   'relationships.status.cohabitant': (data) => {
     return new logic.CohabitantsValidator(data).isValid()
@@ -249,25 +243,25 @@ const validators = {
   'substance.alcohol.voluntary': (data) => {
     return new logic.AlcoholVoluntaryCounselingsValidator(data).isValid()
   },
-  'substance.drug.clearance': (data) => {
+  'substance.drugs.clearance': (data) => {
     return new logic.DrugClearanceUsesValidator(data).isValid()
   },
-  'substance.drug.misuse': (data) => {
+  'substance.drugs.misuse': (data) => {
     return new logic.DrugPrescriptionUsesValidator(data).isValid()
   },
-  'substance.drug.ordered': (data) => {
+  'substance.drugs.ordered': (data) => {
     return new logic.DrugOrderedTreatmentsValidator(data).isValid()
   },
-  'substance.drug.publicsafety': (data) => {
+  'substance.drugs.publicsafety': (data) => {
     return new logic.DrugPublicSafetyUsesValidator(data).isValid()
   },
-  'substance.drug.purchase': (data) => {
+  'substance.drugs.purchase': (data) => {
     return new logic.DrugInvolvementsValidator(data).isValid()
   },
-  'substance.drug.usage': (data) => {
+  'substance.drugs.usage': (data) => {
     return new logic.DrugUsesValidator(data).isValid()
   },
-  'substance.drug.voluntary': (data) => {
+  'substance.drugs.voluntary': (data) => {
     return new logic.DrugVoluntaryTreatmentsValidator(data).isValid()
   },
   'legal.associations.activities-to-overthrow': (data) => {

@@ -51,7 +51,6 @@ export default class EngagedInTerrorismItem extends ValidationElement {
                scrollIntoView={this.props.scrollIntoView}>
           <DateRange name="Dates"
                      {...this.props.Dates}
-                     applicantBirthdate={this.props.applicantBirthdate}
                      onUpdate={this.updateDates}
                      onError={this.props.onError}
                      className="legal-associations-engaged-dates"
@@ -64,7 +63,6 @@ export default class EngagedInTerrorismItem extends ValidationElement {
 }
 
 EngagedInTerrorismItem.defaultProps = {
-  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

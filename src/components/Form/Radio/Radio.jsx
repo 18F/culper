@@ -18,6 +18,7 @@ export default class Radio extends ValidationElement {
     this.handleChange = this.handleChange.bind(this)
     this.handleClick = this.handleClick.bind(this)
     this.handleKeyPress = this.handleKeyPress.bind(this)
+    this.skipNext = false
   }
 
   componentWillReceiveProps (newProps) {
@@ -32,18 +33,43 @@ export default class Radio extends ValidationElement {
   }
 
   /**
-   * Handle the change event.
+   * The concept of skipping an update was brought about by the unnatural way
+   * people think a radio button should behave (this was found through a year's
+   * worth of usability testing).
+   *
+   * Expected behavior:
+   *   - a click/keypress on the radio button should toggle its checked value
+   *   - key presses may be enter, space, and browser default
+   *
+   * When a mouse click event is fired we make a change to the value of the radio
+   * button thus causing another change event. This second event we need to account
+   * for and skip further processing.
    */
-  handleChange (event) {
-    event.persist()
-    const futureChecked = !this.state.checked
-    const futureValue = futureChecked ? this.props.value : ''
+  skip(clicked) {
+    if (this.skipNext) {
+      this.skipNext = false
+      return true
+    }
 
-    this.setState({ checked: futureChecked, value: futureValue }, () => {
+    this.skipNext = clicked
+    return false
+  }
+
+  /**
+   * Update the value of the radio button
+   */
+  update(clicked = false) {
+    if (this.skip(clicked)) {
+      return
+    }
+
+    const checked = !this.state.checked
+    const value = checked ? this.props.value : ''
+    this.setState({ checked: checked, value: value }, () => {
       this.props.onUpdate({
         name: this.props.name,
-        value: futureValue,
-        checked: futureChecked
+        value: value,
+        checked: checked
       })
 
       // Toggling the focus of the element serves two purposes
@@ -59,17 +85,29 @@ export default class Radio extends ValidationElement {
     })
   }
 
-  handleClick (event) {
-    event.persist()
-    this.handleChange(event)
+  /**
+   * Handle the change event.
+   */
+  handleChange (event) {
+    this.update()
   }
 
+  /**
+   * Handle the click event.
+   */
+  handleClick (event) {
+    this.update(true)
+  }
+
+  /**
+   * Handle the key press event.
+   */
   handleKeyPress (event) {
     const allowedKeys = [' ', 'Enter']
     if (allowedKeys.includes(event.key)) {
       event.preventDefault()
       event.stopPropagation()
-      this.handleChange(event)
+      this.update()
     }
   }
 

@@ -31,7 +31,9 @@ input[type='checkbox'], input[type='radio'] {
     position: relative;
     top: auto;
     left: auto;
-    z-index: -1;
+
+    // This was hiding the time of day for telephone numbers.
+    // z-index: -1;
   }
 }
 
@@ -195,7 +197,8 @@ select {
     }
 
     &.usa-input-focus {
-      box-shadow: 0 0 3px #3e94cf, 0 0 7px #3e94cf;
+      outline: 2px dotted #aeb0b5;
+      outline-offset: 3px;
     }
 
     &:hover {
@@ -212,7 +215,8 @@ select {
     &.checked:focus,
     input [type='checkbox'].usa-input-focus,
     input [type='checkbox']:focus {
-      box-shadow: none;
+      outline: 2px dotted #aeb0b5;
+      outline-offset: 3px;
     }
 
     // Configure buttons for handling text in decorative blocks
@@ -252,6 +256,7 @@ select {
       text-align: center;
       background: transparent;
       border: none;
+      z-index: unset;
 
       > span {
         display: inline;

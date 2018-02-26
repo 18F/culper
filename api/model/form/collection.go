@@ -73,6 +73,12 @@ func (entity *Collection) Valid() (bool, error) {
 
 // Save the Collection entity.
 func (entity *Collection) Save(context *db.DatabaseContext, account int) (int, error) {
+	// Flush the collection contents prior to saving them.
+	// This ensures previously persisted data is not left around.
+	copy := &Collection{}
+	*copy = *entity
+	copy.Delete(context, account)
+
 	entity.AccountID = account
 
 	// If there is a branch payload but the branch if non-existent

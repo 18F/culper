@@ -1,6 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../config'
-import { Location, ValidationElement, Field, Text, DateControl, BranchCollection, Svg, Show } from '../../Form'
+import { Location, ValidationElement, Field, Text, DateControl, BranchCollection, Svg, Show, AccordionItem } from '../../Form'
+import { AppealItem } from './AppealItem'
 
 export default class Order extends ValidationElement {
   constructor (props) {
@@ -66,7 +67,6 @@ export default class Order extends ValidationElement {
                scrollIntoView={this.props.scrollIntoView}>
           <DateControl name="Occurred"
                        {...this.props.Occurred}
-                       applicantBirthdate={this.props.applicantBirthdate}
                        label={i18n.t(`psychological${prefix}.label.occurred`)}
                        hideDay={true}
                        onUpdate={this.updateOccurred}
@@ -121,57 +121,22 @@ export default class Order extends ValidationElement {
         </Show>
 
         <BranchCollection className="appeals"
+                          {...this.props.Appeals}
                           label={i18n.t(`psychological.${prefix}.heading.appealed`)}
                           appendLabel={i18n.t(`psychological.${prefix}.heading.appealedAnother`)}
-                          {...this.props.Appeals}
                           onError={this.props.onError}
                           required={this.props.required}
                           onUpdate={this.updateAppeals}
-                          scrollIntoView={this.props.scrollIntoView}
-                          >
-
-          <Field title={i18n.t(`psychological.${prefix}.heading.needMore`)}
-                 optional={true}
-                 className="more title"
-                 scrollIntoView={this.props.scrollIntoView}>
-            <Svg src="/img/date-down-arrow.svg" className="more arrow" />
-          </Field>
-
-          <Field title={i18n.t(`psychological.${prefix}.heading.appealCourtName`)}
-                 scrollIntoView={this.props.scrollIntoView}>
-            <Text name="CourtName"
-                  className="appealcourtname"
-                  bind={true}
-                  onError={this.props.onError}
-                  required={this.props.required}
-                  />
-          </Field>
-
-          <Field title={i18n.t(`psychological.${prefix}.heading.appealCourtName`)}
-                 optional={true}
-                 adjustFor="address"
-                 scrollIntoView={this.props.scrollIntoView}>
-            <Location name="CourtAddress"
-                      className="appealcourtaddress"
+                          scrollIntoView={this.props.scrollIntoView}>
+          <AppealItem name="Item"
                       bind={true}
-                      label={i18n.t(`psychological.${prefix}.label.courtAddress`)}
-                      layout={Location.ADDRESS}
-                      geocode={true}
+                      prefix={this.props.prefix}
+                      addressBooks={this.props.addressBooks}
+                      dispatch={this.props.dispatch}
                       onError={this.props.onError}
                       required={this.props.required}
+                      scrollIntoView={this.props.scrollIntoView}
                       />
-          </Field>
-
-          <Field title={i18n.t(`psychological.${prefix}.heading.disposition`)}
-                 help={`psychological.${prefix}.help.disposition`}
-                 scrollIntoView={this.props.scrollIntoView}>
-            <Text name="Disposition"
-                  className="disposition"
-                  bind={true}
-                  onError={this.props.onError}
-                  required={this.props.required}
-                  />
-          </Field>
         </BranchCollection>
       </div>
     )
@@ -181,7 +146,6 @@ export default class Order extends ValidationElement {
 Order.defaultProps = {
   List: [],
   prefix: 'order',
-  applicantBirthdate: {},
   addressBooks: {},
   dispatch: (action) => {},
   onUpdate: (queue) => {},

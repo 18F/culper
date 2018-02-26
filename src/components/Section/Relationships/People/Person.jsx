@@ -62,8 +62,8 @@ export default class Person extends React.Component {
     })
   }
 
-  updateRelationship (event) {
-    let relations = event.target.value
+  updateRelationship (values) {
+    let relations = values.value
     let currentRelationships = (this.props.Relationship || {}).values || []
     let selected = [...currentRelationships]
 
@@ -128,7 +128,6 @@ export default class Person extends React.Component {
           <DateRange name="Dates"
                      className="known-dates"
                      {...this.props.Dates}
-                     applicantBirthdate={this.props.applicantBirthdate}
                      onUpdate={this.updateDates}
                      onError={this.props.onError}
                      required={this.props.required}
@@ -137,6 +136,7 @@ export default class Person extends React.Component {
 
         <Field title={i18n.t('relationships.people.person.heading.name')}
                optional={true}
+               filterErrors={Name.requiredErrorsOnly}
                scrollIntoView={this.props.scrollIntoView}>
           <Name name="Name"
                 className="name"
@@ -180,7 +180,7 @@ export default class Person extends React.Component {
                       label={i18n.t(`relationships.people.person.label.relationship.neighbor`)}
                       value="Neighbor"
                       onError={this.props.onError}
-                      onChange={this.updateRelationship}>
+                      onUpdate={this.updateRelationship}>
               <div className="relationship-icon neighbor">
                 <Svg src="/img/neighbor-icon.svg" />
               </div>
@@ -189,7 +189,7 @@ export default class Person extends React.Component {
                       label={i18n.t(`relationships.people.person.label.relationship.friend`)}
                       value="Friend"
                       onError={this.props.onError}
-                      onChange={this.updateRelationship}>
+                      onUpdate={this.updateRelationship}>
               <div className="relationship-icon friend">
                 <Svg src="/img/friend-icon.svg" />
               </div>
@@ -198,7 +198,7 @@ export default class Person extends React.Component {
                       label={i18n.t(`relationships.people.person.label.relationship.workAssociate`)}
                       value="WorkAssociate"
                       onError={this.props.onError}
-                      onChange={this.updateRelationship}>
+                      onUpdate={this.updateRelationship}>
               <div className="relationship-icon landlord">
                 <Svg src="/img/business-associate-icon.svg" />
               </div>
@@ -207,7 +207,7 @@ export default class Person extends React.Component {
                       label={i18n.t(`relationships.people.person.label.relationship.schoolmate`)}
                       value="Schoolmate"
                       onError={this.props.onError}
-                      onChange={this.updateRelationship}>
+                      onUpdate={this.updateRelationship}>
               <div className="relationship-icon business">
                 <Svg src="/img/schoolmate.svg" />
               </div>
@@ -216,7 +216,7 @@ export default class Person extends React.Component {
                       label={i18n.t(`relationships.people.person.label.relationship.other`)}
                       value="Other"
                       onError={this.props.onError}
-                      onChange={this.updateRelationship}>
+                      onUpdate={this.updateRelationship}>
               <div className="relationship-icon other">
                 <Svg src="/img/other-icon.svg" />
               </div>
@@ -311,7 +311,6 @@ Person.defaultProps = {
   Relationship: { values: [] },
   RankNotApplicable: { applicable: true },
   EmailNotApplicable: { applicable: true },
-  applicantBirthdate: {},
   addressBooks: {},
   addressBook: 'Reference',
   dispatch: (action) => {},

@@ -6,6 +6,7 @@ import (
 	"net/http"
 )
 
+// EncodeErrJSON will return an error in JSON format.
 func EncodeErrJSON(w http.ResponseWriter, errors interface{}) error {
 	w.Header().Set("Content-Type", "application/json")
 	return json.NewEncoder(w).Encode(struct {
@@ -23,8 +24,5 @@ func EncodeJSON(w http.ResponseWriter, data interface{}) error {
 
 // DecodeJSON decodes a request body to the specified interface
 func DecodeJSON(r io.Reader, v interface{}) error {
-	if err := json.NewDecoder(r).Decode(v); err != nil {
-		return err
-	}
-	return nil
+	return json.NewDecoder(r).Decode(v)
 }

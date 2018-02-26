@@ -2,7 +2,6 @@
 <Consultancies>
   <Answer>{{branch .props.HasForeignFamily}}</Answer>
   <Comment></Comment>
-
   {{range $index, $item := .props.List.props.items}}
   {{with $Item := $item.Item}}
   <Consultancy ID="{{$index}}">
@@ -12,9 +11,9 @@
     </Agency>
     <Circumstances>{{text $Item.Circumstances}}</Circumstances>
     <Date Type="{{dateEstimated $Item.Date}}">
-      {{date $Item.Date}}
+      {{monthYear $Item.Date}}
     </Date>
-    <EntryComment>string</EntryComment>
+    <EntryComment></EntryComment>
     <LegalName>
       {{name $Item.Name}}
     </LegalName>

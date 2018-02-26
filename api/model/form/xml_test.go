@@ -51,9 +51,11 @@ func TestPackage(t *testing.T) {
 		{Schema: "military-history.xml", Data: readSectionData("testdata/military-history.json")},
 		{Schema: "military-selective.xml", Data: readSectionData("testdata/military-selective.json")},
 		{Schema: "foreign.xml", Data: application},
+		{Schema: "foreign-travel.xml", Data: readSectionData("testdata/foreign-travel.json")},
 		{Schema: "foreign-contacts.xml", Data: readSectionData("testdata/foreign-contacts.json")},
 		{Schema: "foreign-direct-interests.xml", Data: readSectionData("testdata/foreign-activities-direct.json")},
 		{Schema: "foreign-indirect-interests.xml", Data: readSectionData("testdata/foreign-activities-indirect.json")},
+		{Schema: "foreign-passports.xml", Data: readSectionData("testdata/citizenship-passports.json")},
 		{Schema: "foreign-realestate-holdings.xml", Data: readSectionData("testdata/foreign-activities-realestate.json")},
 		{Schema: "foreign-financial-benefits.xml", Data: readSectionData("testdata/foreign-activities-benefits.json")},
 		{Schema: "foreign-national-support.xml", Data: readSectionData("testdata/foreign-activities-support.json")},
@@ -78,6 +80,30 @@ func TestPackage(t *testing.T) {
 		{Schema: "substance-drug-purchase.xml", Data: readSectionData("testdata/substance-drug-purchase.json")},
 		{Schema: "substance-drug-usage.xml", Data: readSectionData("testdata/substance-drug-usage.json")},
 		{Schema: "substance-drug-voluntary.xml", Data: readSectionData("testdata/substance-drug-voluntary.json")},
+		{Schema: "legal.xml", Data: application},
+		{Schema: "legal-police-offenses.xml", Data: readSectionData("testdata/legal-police-offenses.json")},
+		{Schema: "legal-police-additional-offenses.xml", Data: readSectionData("testdata/legal-police-additionaloffenses.json")},
+		{Schema: "legal-police-domestic-violence.xml", Data: readSectionData("testdata/legal-police-domesticviolence.json")},
+		{Schema: "legal-investigations-denied.xml", Data: readSectionData("testdata/legal-investigations-revoked.json")},
+		{Schema: "legal-investigations-debarment.xml", Data: readSectionData("testdata/legal-investigations-debarred.json")},
+		{Schema: "legal-investigations-investigated.xml", Data: readSectionData("testdata/legal-investigations-history.json")},
+		{Schema: "legal-court.xml", Data: readSectionData("testdata/legal-court.json")},
+		{Schema: "legal-technology-unauthorized.xml", Data: readSectionData("testdata/legal-technology-unauthorized.json")},
+		{Schema: "legal-technology-manipulating.xml", Data: readSectionData("testdata/legal-technology-manipulating.json")},
+		{Schema: "legal-technology-unlawful.xml", Data: readSectionData("testdata/legal-technology-unlawful.json")},
+		{Schema: "legal-associations-activities-to-overthrow.xml", Data: readSectionData("testdata/legal-associations-activities-to-overthrow.json")},
+		{Schema: "legal-associations-advocating.xml", Data: readSectionData("testdata/legal-associations-advocating.json")},
+		{Schema: "legal-associations-membership-violence-or-force.xml", Data: readSectionData("testdata/legal-associations-membership-violence-or-force.json")},
+		{Schema: "legal-associations-terrorist-organization.xml", Data: readSectionData("testdata/legal-associations-terrorist-organization.json")},
+		{Schema: "legal-associations-engaged-in-terrorism.xml", Data: readSectionData("testdata/legal-associations-engaged-in-terrorism.json")},
+		{Schema: "legal-associations-terrorism-association.xml", Data: readSectionData("testdata/legal-associations-terrorism-association.json")},
+		{Schema: "legal-associations-membership-overthrow.xml", Data: readSectionData("testdata/legal-associations-membership-overthrow.json")},
+		{Schema: "psychological.xml", Data: application},
+		{Schema: "psychological-competence.xml", Data: readSectionData("testdata/psychological-competence.json")},
+		{Schema: "psychological-conditions.xml", Data: readSectionData("testdata/psychological-conditions.json")},
+		{Schema: "psychological-consultations.xml", Data: readSectionData("testdata/psychological-consultations.json")},
+		{Schema: "psychological-diagnoses.xml", Data: readSectionData("testdata/psychological-diagnoses.json")},
+		{Schema: "psychological-hospitalizations.xml", Data: readSectionData("testdata/psychological-hospitalizations.json")},
 	}
 
 	for _, test := range tests {
@@ -85,8 +111,6 @@ func TestPackage(t *testing.T) {
 		if tmpl == "" {
 			t.Fatalf("XML template (%s) should not be empty", test.Schema)
 		}
-		//fmt.Println(tmpl)
-
 	}
 }
 
@@ -141,6 +165,7 @@ func applicationData() map[string]interface{} {
 			"Political":          readSectionData("testdata/foreign-business-political.json"),
 			"Voting":             readSectionData("testdata/foreign-business-voting.json"),
 			"Passport":           readSectionData("testdata/foreign-passport.json"),
+			"Travel":             readSectionData("testdata/foreign-travel.json"),
 		},
 		"Substance": map[string]interface{}{
 			"ReceivedCounselings":  readSectionData("testdata/substance-alcohol-additional.json"),
@@ -154,6 +179,32 @@ func applicationData() map[string]interface{} {
 			"DrugInvolvements":     readSectionData("testdata/substance-drug-purchase.json"),
 			"DrugUses":             readSectionData("testdata/substance-drug-usage.json"),
 			"VoluntaryTreatments":  readSectionData("testdata/substance-drug-voluntary.json"),
+		},
+		"Legal": map[string]interface{}{
+			"PoliceOffenses":          readSectionData("testdata/legal-police-offenses.json"),
+			"PoliceOtherOffenses":     readSectionData("testdata/legal-police-additionaloffenses.json"),
+			"PoliceDomesticViolence":  readSectionData("testdata/legal-police-domesticviolence.json"),
+			"Revoked":                 readSectionData("testdata/legal-investigations-revoked.json"),
+			"Debarred":                readSectionData("testdata/legal-investigations-debarred.json"),
+			"History":                 readSectionData("testdata/legal-investigations-history.json"),
+			"NonCriminalCourtActions": readSectionData("testdata/legal-court.json"),
+			"Unauthorized":            readSectionData("testdata/legal-technology-unauthorized.json"),
+			"Unlawful":                readSectionData("testdata/legal-technology-unlawful.json"),
+			"Manipulating":            readSectionData("testdata/legal-technology-manipulating.json"),
+			"ActivitiesToOverthrow":   readSectionData("testdata/legal-associations-activities-to-overthrow.json"),
+			"Advocating":              readSectionData("testdata/legal-associations-advocating.json"),
+			"MembershipViolence":      readSectionData("testdata/legal-associations-membership-violence-or-force.json"),
+			"TerroristOrganization":   readSectionData("testdata/legal-associations-terrorist-organization.json"),
+			"EngagedInTerrorism":      readSectionData("testdata/legal-associations-engaged-in-terrorism.json"),
+			"TerrorismAssociation":    readSectionData("testdata/legal-associations-terrorism-association.json"),
+			"MembershipOverthrow":     readSectionData("testdata/legal-associations-membership-overthrow.json"),
+		},
+		"Psychological": map[string]interface{}{
+			"Competence":         readSectionData("testdata/psychological-competence.json"),
+			"ExistingConditions": readSectionData("testdata/psychological-conditions.json"),
+			"Consultations":      readSectionData("testdata/psychological-consultations.json"),
+			"Diagnoses":          readSectionData("testdata/psychological-diagnoses.json"),
+			"Hospitalizations":   readSectionData("testdata/psychological-hospitalizations.json"),
 		},
 	}
 }

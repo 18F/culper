@@ -15,19 +15,17 @@ describe('The employment additional activity component', () => {
       onUpdate: () => {
         updates++
       },
-      List: {
-        items: [
-          {
-            Item: {
-              Has: { value: 'Yes' },
-              Position: {
-                name: 'Position',
-                value: 'Dev'
-              }
+      items: [
+        {
+          Item: {
+            Has: { value: 'Yes' },
+            Position: {
+              name: 'Position',
+              value: 'Dev'
             }
           }
-        ]
-      }
+        }
+      ]
     }
 
     const component = mount(<AdditionalActivity {...expected} />)

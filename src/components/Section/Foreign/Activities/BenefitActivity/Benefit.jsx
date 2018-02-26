@@ -36,7 +36,7 @@ export default class Benefit extends ValidationElement {
 
   updateInterestTypes (values) {
     let interestType = values.value
-    let selected = [...(this.props.InterestTypes || [])]
+    let selected = [...((this.props.InterestTypes || {}).values || [])]
     if (selected.includes(interestType)) {
       selected.splice(selected.indexOf(interestType), 1)
     } else {
@@ -44,7 +44,7 @@ export default class Benefit extends ValidationElement {
     }
 
     this.update({
-      InterestTypes: selected
+      InterestTypes: { values: selected }
     })
   }
 
@@ -101,7 +101,7 @@ export default class Benefit extends ValidationElement {
           <CheckboxGroup className="interest-types"
                          onError={this.props.onError}
                          required={this.props.required}
-                         selectedValues={(this.props.InterestTypes || {}).value}>
+                         selectedValues={(this.props.InterestTypes || {}).values}>
             <Checkbox name="interest-type"
                       label={i18n.m('foreign.activities.benefit.label.interestTypes.yourself')}
                       value="Yourself"
@@ -227,7 +227,6 @@ export default class Benefit extends ValidationElement {
         <Show when={(this.props.BenefitFrequency || {}).value === 'OneTime'}>
           <OneTimeBenefit name="OneTimeBenefit"
                           {...this.props.OneTimeBenefit}
-                          applicantBirthdate={this.props.applicantBirthdate}
                           onUpdate={this.updateOneTimeBenefit}
                           onError={this.props.onError}
                           required={this.props.required}
@@ -238,7 +237,6 @@ export default class Benefit extends ValidationElement {
         <Show when={(this.props.BenefitFrequency || {}).value === 'Future'}>
           <FutureBenefit name="FutureBenefit"
                          {...this.props.FutureBenefit}
-                         applicantBirthdate={this.props.applicantBirthdate}
                          onUpdate={this.updateFutureBenefit}
                          onError={this.props.onError}
                          required={this.props.required}
@@ -249,7 +247,6 @@ export default class Benefit extends ValidationElement {
         <Show when={(this.props.BenefitFrequency || {}).value === 'Continuing'}>
           <ContinuingBenefit name="ContinuingBenefit"
                              {...this.props.ContinuingBenefit}
-                             applicantBirthdate={this.props.applicantBirthdate}
                              onUpdate={this.updateContinuingBenefit}
                              onError={this.props.onError}
                              required={this.props.required}
@@ -265,7 +262,6 @@ Benefit.defaultProps = {
   InterestTypes: {},
   BenefitType: {},
   BenefitFrequency: {},
-  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

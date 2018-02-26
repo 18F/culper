@@ -2,7 +2,8 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import { ValidationElement, Field, Name, Textarea, DateControl,
          CheckboxGroup, Checkbox, RadioGroup, Radio, Country,
-         Text, NotApplicable, Show, BranchCollection, Location } from '../../../Form'
+         Text, NotApplicable, Show, BranchCollection, Location, AccordionItem } from '../../../Form'
+
 
 export default class ForeignNational extends ValidationElement {
   constructor (props) {
@@ -75,6 +76,7 @@ export default class ForeignNational extends ValidationElement {
 
   updateNameNotApplicable (value) {
     this.update({
+      Name: null,
       NameNotApplicable: value
     })
   }
@@ -124,14 +126,6 @@ export default class ForeignNational extends ValidationElement {
   }
 
   updateRelationship (values) {
-    //let selected = values.value
-    //let list = [...(this.props.Relationship || [])]
-
-    //if (list.includes(selected)) {
-      //list.splice(list.indexOf(selected), 1)
-    //} else {
-      //list.push(selected)
-    //}
     const list = Checkbox.select(values, this.props.Relationship)
     this.update({
       Relationship: { values: list }
@@ -233,6 +227,7 @@ export default class ForeignNational extends ValidationElement {
       <div className="foreign-national">
         <Field title={i18n.t('foreign.contacts.heading.name')}
                optional={true}
+               filterErrors={Name.requiredErrorsOnly}
                className={this.props.NameNotApplicable.applicable ? '' : 'no-margin-bottom'}
                scrollIntoView={this.props.scrollIntoView}>
           <NotApplicable name="NameNotApplicable"
@@ -273,7 +268,6 @@ export default class ForeignNational extends ValidationElement {
           <DateControl name="FirstContact"
                        className="first-contact"
                        {...this.props.FirstContact}
-                       applicantBirthdate={this.props.applicantBirthdate}
                        onUpdate={this.updateFirstContact}
                        onError={this.props.onError}
                        required={this.props.required}
@@ -287,7 +281,7 @@ export default class ForeignNational extends ValidationElement {
           <DateControl name="LastContact"
                        className="last-contact"
                        {...this.props.LastContact}
-                       applicantBirthdate={this.props.applicantBirthdate}
+                       prefix="contact.last"
                        minDate={(this.props.FirstContact || {}).date}
                        onUpdate={this.updateLastContact}
                        onError={this.props.onError}
@@ -343,7 +337,7 @@ export default class ForeignNational extends ValidationElement {
           </CheckboxGroup>
         </Field>
 
-        <Show when={((this.props.Methods || {}).value || []).some(x => x === 'Other')}>
+        <Show when={((this.props.Methods || {}).values || []).some(x => x === 'Other')}>
           <Field title={i18n.t('foreign.contacts.heading.explanation')}
                  titleSize="label"
                  scrollIntoView={this.props.scrollIntoView}>
@@ -358,7 +352,7 @@ export default class ForeignNational extends ValidationElement {
         </Show>
 
         <Field title={i18n.t('foreign.contacts.heading.frequency')}
-               className={this.props.Frequency === 'Other' ? 'no-margin-bottom' : ''}
+               className={(this.props.Frequency || {}).value === 'Other' ? 'no-margin-bottom' : ''}
                adjustFor="big-buttons"
                scrollIntoView={this.props.scrollIntoView}>
           <RadioGroup className="frequency"
@@ -426,7 +420,7 @@ export default class ForeignNational extends ValidationElement {
         </Show>
 
         <Field title={i18n.t('foreign.contacts.heading.relationship')}
-               className={((this.props.Relationship || {}).values || []).some(x => x === 'Other') ? 'no-margin-bottom' : ''}
+               className={((this.props.Relationship || {}).values || []).some(x => x === 'Other' || x === 'Obligation') ? 'no-margin-bottom' : ''}
                adjustFor="p"
                scrollIntoView={this.props.scrollIntoView}>
           {i18n.m('foreign.contacts.para.checkall')}
@@ -465,7 +459,7 @@ export default class ForeignNational extends ValidationElement {
           </CheckboxGroup>
         </Field>
 
-        <Show when={((this.props.Relationship || {}).value || []).some(x => x === 'Other' || x === 'Obligation')}>
+        <Show when={((this.props.Relationship || {}).values || []).some(x => x === 'Other' || x === 'Obligation')}>
           <Field title={i18n.t('foreign.contacts.heading.explanation')}
                  titleSize="label"
                  adjustFor="textarea"
@@ -489,11 +483,14 @@ export default class ForeignNational extends ValidationElement {
                           required={this.props.required}
                           onError={this.props.onError}
                           scrollIntoView={this.props.scrollIntoView}>
-          <Field title={i18n.t('foreign.contacts.heading.aliasname')}
-                 optional={true}
-                 scrollIntoView={this.props.scrollIntoView}>
-            <Name name="Alias" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
-          </Field>
+          <AccordionItem scrollIntoView={this.props.scrollIntoView}>
+              <Field title={i18n.t('foreign.contacts.heading.aliasname')}
+                     optional={true}
+                     filterErrors={Name.requiredErrorsOnly}
+                     scrollIntoView={this.props.scrollIntoView}>
+                <Name name="Alias" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
+            </Field>
+          </AccordionItem>
         </BranchCollection>
 
         <Field title={i18n.t('foreign.contacts.heading.citizenship')}
@@ -522,7 +519,6 @@ export default class ForeignNational extends ValidationElement {
                          onError={this.props.onError}>
             <DateControl name="Birthdate"
                          {...this.props.Birthdate}
-                         applicantBirthdate={this.props.applicantBirthdate}
                          relationship="Other"
                          onUpdate={this.updateBirthdate}
                          onError={this.props.onError}
@@ -710,7 +706,6 @@ ForeignNational.defaultProps = {
   OrganizationAddressNotApplicable: { applicable: true },
   HasAffiliations: {},
   Affiliations: {},
-  applicantBirthdate: {},
   addressBooks: {},
   dispatch: (action) => {},
   onUpdate: (queue) => {},

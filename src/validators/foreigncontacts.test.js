@@ -6,11 +6,11 @@ describe('Foreign contacts component validation', function () {
   it('validate foreign national name', function () {
     const tests = [
       {
-        state: {},
+        data: {},
         expected: false
       },
       {
-        state: {
+        data: {
           NameNotApplicable: {
             applicable: false
           }
@@ -18,7 +18,7 @@ describe('Foreign contacts component validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           NameNotApplicable: {
             applicable: false
           },
@@ -29,7 +29,7 @@ describe('Foreign contacts component validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           NameNotApplicable: {
             applicable: true
           },
@@ -38,7 +38,7 @@ describe('Foreign contacts component validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           NameNotApplicable: {
             applicable: true
           },
@@ -63,11 +63,11 @@ describe('Foreign contacts component validation', function () {
   it('validate foreign nation date of first contact', function () {
     const tests = [
       {
-        state: {},
+        data: {},
         expected: false
       },
       {
-        state: {
+        data: {
           FirstContact: {
             day: '1',
             month: '1',
@@ -85,11 +85,11 @@ describe('Foreign contacts component validation', function () {
   it('validate foreign nation date of last contact', function () {
     const tests = [
       {
-        state: {},
+        data: {},
         expected: false
       },
       {
-        state: {
+        data: {
           LastContact: {
             day: '1',
             month: '1',
@@ -107,36 +107,36 @@ describe('Foreign contacts component validation', function () {
   it('validate foreign national methods of contact', function () {
     const tests = [
       {
-        state: {},
+        data: {},
         expected: false
       },
       {
-        state: {
-          Methods: []
+        data: {
+          Methods: { values: [] }
         },
         expected: false
       },
       {
-        state: {
-          Methods: ['In person']
+        data: {
+          Methods: { values: ['In person'] }
         },
         expected: true
       },
       {
-        state: {
-          Methods: ['In person', 'Written']
+        data: {
+          Methods: { values: ['In person', 'Written'] }
         },
         expected: true
       },
       {
-        state: {
-          Methods: ['In person', 'Other']
+        data: {
+          Methods: { values: ['In person', 'Other'] }
         },
         expected: false
       },
       {
-        state: {
-          Methods: ['In person', 'Other'],
+        data: {
+          Methods: { values: ['In person', 'Other'] },
           MethodsExplanation: {
             value: 'explanation'
           }
@@ -151,30 +151,30 @@ describe('Foreign contacts component validation', function () {
   it('validate foreign national frequency of contact', function () {
     const tests = [
       {
-        state: {},
+        data: {},
         expected: false
       },
       {
-        state: {
-          Frequency: ''
+        data: {
+          Frequency: { value: '' }
         },
         expected: false
       },
       {
-        state: {
-          Frequency: 'Weekly'
+        data: {
+          Frequency: { value: 'Weekly' }
         },
         expected: true
       },
       {
-        state: {
-          Frequency: 'Other'
+        data: {
+          Frequency: { value: 'Other' }
         },
         expected: false
       },
       {
-        state: {
-          Frequency: 'Other',
+        data: {
+          Frequency: { value: 'Other' },
           FrequencyExplanation: {
             value: 'explanation'
           }
@@ -189,36 +189,36 @@ describe('Foreign contacts component validation', function () {
   it('validate foreign national nature of the relationship', function () {
     const tests = [
       {
-        state: {},
+        data: {},
         expected: false
       },
       {
-        state: {
-          Relationship: []
+        data: {
+          Relationship: { values: [] }
         },
         expected: false
       },
       {
-        state: {
-          Relationship: ['Personal']
+        data: {
+          Relationship: { values: ['Personal'] }
         },
         expected: true
       },
       {
-        state: {
-          Relationship: ['Personal', 'Professional']
+        data: {
+          Relationship: { values: ['Personal', 'Professional'] }
         },
         expected: true
       },
       {
-        state: {
-          Relationship: ['Personal', 'Other']
+        data: {
+          Relationship: { values: ['Personal', 'Other'] }
         },
         expected: false
       },
       {
-        state: {
-          Relationship: ['Personal', 'Other'],
+        data: {
+          Relationship: { values: ['Personal', 'Other'] },
           RelationshipExplanation: {
             value: 'explanation'
           }
@@ -226,8 +226,8 @@ describe('Foreign contacts component validation', function () {
         expected: true
       },
       {
-        state: {
-          Relationship: ['Personal', 'Obligation'],
+        data: {
+          Relationship: { values: ['Personal', 'Obligation'] },
           RelationshipExplanation: {
             value: 'explanation'
           }
@@ -242,11 +242,11 @@ describe('Foreign contacts component validation', function () {
   it('validate foreign national aliases', function () {
     const tests = [
       {
-        state: {},
+        data: {},
         expected: false
       },
       {
-        state: {
+        data: {
           Aliases: {
             items: []
           }
@@ -254,7 +254,7 @@ describe('Foreign contacts component validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           Aliases: {
             items: [{ Item: { Has: { value: 'No' } } }]
           }
@@ -262,7 +262,7 @@ describe('Foreign contacts component validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           Aliases: {
             items: [{ Item: { Has: { value: 'Yes' } } }]
           }
@@ -270,7 +270,7 @@ describe('Foreign contacts component validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           Aliases: {
             items: [
               {
@@ -287,6 +287,11 @@ describe('Foreign contacts component validation', function () {
                     suffix: 'Jr'
                   }
                 }
+              },
+              {
+                Item: {
+                  Has: { value: 'No' }
+                }
               }
             ]
           }
@@ -301,18 +306,18 @@ describe('Foreign contacts component validation', function () {
   it('validate foreign national citizenship', function () {
     const tests = [
       {
-        state: {
+        data: {
         },
         expected: false
       },
       {
-        state: {
+        data: {
           Citizenship: {}
         },
         expected: false
       },
       {
-        state: {
+        data: {
           Citizenship: {
             value: ['United States']
           }
@@ -320,7 +325,7 @@ describe('Foreign contacts component validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           Citizenship: {
             value: ['United States', 'Germany']
           }
@@ -335,11 +340,11 @@ describe('Foreign contacts component validation', function () {
   it('validate foreign national date of birth', function () {
     const tests = [
       {
-        state: {},
+        data: {},
         expected: false
       },
       {
-        state: {
+        data: {
           BirthdateNotApplicable: {
             applicable: false
           }
@@ -347,7 +352,7 @@ describe('Foreign contacts component validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           BirthdateNotApplicable: {
             applicable: true
           },
@@ -356,7 +361,7 @@ describe('Foreign contacts component validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           BirthdateNotApplicable: {
             applicable: true
           },
@@ -377,11 +382,11 @@ describe('Foreign contacts component validation', function () {
   it('validate foreign national place of birth', function () {
     const tests = [
       {
-        state: {},
+        data: {},
         expected: false
       },
       {
-        state: {
+        data: {
           BirthplaceNotApplicable: {
             applicable: false
           }
@@ -389,7 +394,7 @@ describe('Foreign contacts component validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           BirthplaceNotApplicable: {
             applicable: true
           },
@@ -398,7 +403,7 @@ describe('Foreign contacts component validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           BirthplaceNotApplicable: {
             applicable: true
           },
@@ -420,11 +425,11 @@ describe('Foreign contacts component validation', function () {
   it('validate foreign national current address', function () {
     const tests = [
       {
-        state: {},
+        data: {},
         expected: false
       },
       {
-        state: {
+        data: {
           AddressNotApplicable: {
             applicable: false
           }
@@ -432,7 +437,7 @@ describe('Foreign contacts component validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           AddressNotApplicable: {
             applicable: true
           },
@@ -441,7 +446,7 @@ describe('Foreign contacts component validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           AddressNotApplicable: {
             applicable: true
           },
@@ -464,11 +469,11 @@ describe('Foreign contacts component validation', function () {
   it('validate foreign national employer', function () {
     const tests = [
       {
-        state: {},
+        data: {},
         expected: false
       },
       {
-        state: {
+        data: {
           EmployerNotApplicable: {
             applicable: false
           }
@@ -476,7 +481,7 @@ describe('Foreign contacts component validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           EmployerNotApplicable: {
             applicable: true
           },
@@ -485,7 +490,7 @@ describe('Foreign contacts component validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           EmployerNotApplicable: {
             applicable: true
           },
@@ -503,11 +508,11 @@ describe('Foreign contacts component validation', function () {
   it('validate foreign national employer address', function () {
     const tests = [
       {
-        state: {},
+        data: {},
         expected: false
       },
       {
-        state: {
+        data: {
           EmployerAddressNotApplicable: {
             applicable: false
           }
@@ -515,7 +520,7 @@ describe('Foreign contacts component validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           EmployerAddressNotApplicable: {
             applicable: true
           },
@@ -524,7 +529,7 @@ describe('Foreign contacts component validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           EmployerAddressNotApplicable: {
             applicable: true
           },
@@ -547,30 +552,30 @@ describe('Foreign contacts component validation', function () {
   it('validate foreign national affiliations', function () {
     const tests = [
       {
-        state: {},
+        data: {},
         expected: false
       },
       {
-        state: {
+        data: {
           HasAffiliations: { value: 'No' }
         },
         expected: true
       },
       {
-        state: {
+        data: {
           HasAffiliations: { value: 'I don\'t know' }
         },
         expected: true
       },
       {
-        state: {
+        data: {
           HasAffiliations: { value: 'Yes' },
           Affiliations: {}
         },
         expected: false
       },
       {
-        state: {
+        data: {
           HasAffiliations: { value: 'Yes' },
           Affiliations: {
             value: 'list of my affiliations'
@@ -586,23 +591,23 @@ describe('Foreign contacts component validation', function () {
   it('validate foreign contacts', function () {
     const tests = [
       {
-        state: {},
+        data: {},
         expected: false
       },
       {
-        state: {
+        data: {
           HasForeignContacts: { value: 'No' }
         },
         expected: true
       },
       {
-        state: {
+        data: {
           HasForeignContacts: { value: 'Yes' }
         },
         expected: false
       },
       {
-        state: {
+        data: {
           HasForeignContacts: { value: 'Yes' },
           List: {
             branch: { value: 'No' },
@@ -627,9 +632,9 @@ describe('Foreign contacts component validation', function () {
                     year: '2016',
                     date: new Date('1/1/2016')
                   },
-                  Methods: ['In person'],
-                  Frequency: 'Weekly',
-                  Relationship: ['Personal'],
+                  Methods: { values: ['In person'] },
+                  Frequency: { value: 'Weekly' },
+                  Relationship: { values: ['Personal'] },
                   Aliases: {
                     items: [{ Item: { Has: { value: 'No' } } }]
                   },

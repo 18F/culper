@@ -5,13 +5,13 @@ describe('Person validator', function () {
   it('should validate relationship', function () {
     const tests = [
       {
-        state: {
+        data: {
           Relationship: {}
         },
         expected: false
       },
       {
-        state: {
+        data: {
           Relationship: {
             values: ['Friend']
           }
@@ -19,7 +19,7 @@ describe('Person validator', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           Relationship: {
             values: []
           }
@@ -27,7 +27,7 @@ describe('Person validator', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           Relationship: {
             values: ['What']
           }
@@ -35,7 +35,7 @@ describe('Person validator', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           Relationship: {
             values: ['Other']
           },
@@ -48,14 +48,14 @@ describe('Person validator', function () {
     ]
 
     tests.forEach(test => {
-      expect(new PersonValidator(test.state, null).validRelationship()).toBe(test.expected)
+      expect(new PersonValidator(test.data).validRelationship()).toBe(test.expected)
     })
   })
 
   it('should validate person', function () {
     const tests = [
       {
-        state: {
+        data: {
           Name: {
             first: 'Foo',
             firstInitialOnly: false,
@@ -71,9 +71,15 @@ describe('Person validator', function () {
           },
           Dates: {
             from: {
+              month: '1',
+              day: '1',
+              year: '2005',
               date: new Date('1/1/2005')
             },
             to: {
+              month: '1',
+              day: '1',
+              year: '2017',
               date: new Date('1/1/2017')
             },
             present: false
@@ -114,14 +120,14 @@ describe('Person validator', function () {
     ]
 
     tests.forEach(test => {
-      expect(new PersonValidator(test.state, null).isValid()).toBe(test.expected)
+      expect(new PersonValidator(test.data).isValid()).toBe(test.expected)
     })
   })
 
   it('should validate people', function () {
     const tests = [
       {
-        state: {
+        data: {
           List: {
             branch: { value: 'No' },
             items: []
@@ -130,7 +136,7 @@ describe('Person validator', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           List: {
             branch: { value: 'No' },
             items: [{ Item: {} }, { Item: {} }, { Item: {} }]
@@ -139,7 +145,7 @@ describe('Person validator', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           List: {
             branch: { value: 'No' },
             items: [
@@ -160,9 +166,15 @@ describe('Person validator', function () {
                   },
                   Dates: {
                     from: {
+                      month: '1',
+                      day: '1',
+                      year: '2009',
                       date: new Date('1/1/2009')
                     },
                     to: {
+                      month: '1',
+                      day: '1',
+                      year: '2017',
                       date: new Date('1/1/2017')
                     },
                     present: false
@@ -216,9 +228,15 @@ describe('Person validator', function () {
                   },
                   Dates: {
                     from: {
+                      month: '1',
+                      day: '1',
+                      year: '2010',
                       date: new Date('1/1/2010')
                     },
                     to: {
+                      month: '1',
+                      day: '1',
+                      year: '2012',
                       date: new Date('1/1/2012')
                     },
                     present: false
@@ -272,9 +290,15 @@ describe('Person validator', function () {
                   },
                   Dates: {
                     from: {
+                      month: '1',
+                      day: '1',
+                      year: '2010',
                       date: new Date('1/1/2010')
                     },
                     to: {
+                      month: '1',
+                      day: '1',
+                      year: '2012',
                       date: new Date('1/1/2012')
                     },
                     present: false
@@ -319,14 +343,14 @@ describe('Person validator', function () {
     ]
 
     tests.forEach(test => {
-      expect(new PeopleValidator(test.state, null).isValid()).toBe(test.expected)
+      expect(new PeopleValidator(test.data).isValid()).toBe(test.expected)
     })
   })
 
   it('should count number of valid people', function () {
     const tests = [
       {
-        state: {
+        data: {
           List: {
             branch: { value: 'No' },
             items: []
@@ -335,7 +359,7 @@ describe('Person validator', function () {
         expected: 0
       },
       {
-        state: {
+        data: {
           List: {
             branch: { value: 'No' },
             items: [{
@@ -355,9 +379,15 @@ describe('Person validator', function () {
                 },
                 Dates: {
                   from: {
+                    month: '1',
+                    day: '1',
+                    year: '2005',
                     date: new Date('1/1/2005')
                   },
                   to: {
+                    month: '1',
+                    day: '1',
+                    year: '2017',
                     date: new Date('1/1/2017')
                   },
                   present: false
@@ -401,7 +431,7 @@ describe('Person validator', function () {
     ]
 
     tests.forEach(test => {
-      expect(new PeopleValidator(test.state, null).validCount()).toBe(test.expected)
+      expect(new PeopleValidator(test.data).validCount()).toBe(test.expected)
     })
   })
 })

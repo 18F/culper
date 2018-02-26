@@ -10,7 +10,7 @@ import SubsectionElement from '../../SubsectionElement'
 import SummaryProgress from '../../History/SummaryProgress'
 import PeopleCounter from './PeopleCounter'
 import { Summary, DateSummary, NameSummary } from '../../../Summary'
-import { today, daysAgo } from '../../History/dateranges'
+import { extractDate, today, daysAgo } from '../../History/dateranges'
 import { InjectGaps } from '../../History/summaries'
 import { Gap } from '../../History/Gap'
 
@@ -123,7 +123,10 @@ export default class People extends SubsectionElement {
       }
 
       const knownDates = item.Item.Dates
-      if (knownDates.from.date && knownDates.to.date) {
+      const kfrom = extractDate(knownDates.from)
+      const kto = extractDate(knownDates.to)
+      const present = (knownDates || {}).present || false
+      if (kfrom && (present || kto)) {
         return dates.concat(item.Item.Dates)
       }
       return dates
@@ -179,7 +182,6 @@ export default class People extends SubsectionElement {
                    appendLabel={i18n.t('relationships.people.person.collection.appendLabel')}>
           <Person name="Item"
                   bind={true}
-                  applicantBirthdate={this.props.applicantBirthdate}
                   addressBooks={this.props.addressBooks}
                   dispatch={this.props.dispatch}
                   required={this.props.required}
@@ -196,11 +198,10 @@ People.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'relationships',
   subsection: 'people',
-  applicantBirthdate: {},
   addressBooks: {},
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('relationships.people', props))
+  validator: (data) => {
+    return validate(schema('relationships.people', data))
   },
   defaultState: true,
   totalYears: 7,

@@ -1,0 +1,6 @@
+<TerrorismAssociations>
+  <Answer>{{branch .props.HasTerrorism}}</Answer>
+  <AssociationComment></AssociationComment>
+  <Comment></Comment>
+  <Explanation>{{text .props.Explanation}}</Explanation>
+</TerrorismAssociations>

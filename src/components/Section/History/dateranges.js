@@ -1,4 +1,20 @@
 /**
+ * Take one of the many schemas of a date and always output a valid
+ * Date object or null.
+ */
+export const extractDate = (dateObj) => {
+  if (dateObj instanceof Date) {
+    return dateObj
+  }
+
+  if (!dateObj || !dateObj.month || !dateObj.day || !dateObj.year) {
+    return null
+  }
+
+  return new Date(`${dateObj.month}/${dateObj.day}/${dateObj.year}`)
+}
+
+/**
  * Do some fancy decimal rounding allowing for different types:
  *  - round
  *  - floor

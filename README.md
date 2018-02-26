@@ -127,6 +127,8 @@ Running the feature specifications is an on-demand process and can be ran throug
 docker-compose -f nightwatch-compose.yml up
 ```
 
+For additional informtion on how to perform the feature specification automated UI test suite, visit [Spec Test][27].
+
 ### Packaging Application
 
 To package up the application, use the command:
@@ -203,3 +205,4 @@ Please refer to the [contributing documentation][18].
 [24]: https://codecov.io/gh/18F/e-QIP-prototype
 [25]: https://codecov.io/gh/truetandem/e-QIP-prototype
 [26]: SPRINTS.MD
+[27]: SPECTEST.MD

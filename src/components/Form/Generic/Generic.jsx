@@ -32,6 +32,37 @@ export const autotab = (event, maxlength, back, next) => {
   }
 }
 
+// Find the closest element matching the query selector
+export const closest = (el, selector) => {
+  var matches
+  ['matches', 'webkitMatchesSelector', 'mozMatchesSelector', 'msMatchesSelector', 'oMatchesSelector'].some(function (fn) {
+    if (typeof document.body[fn] === 'function') {
+      matches = fn
+      return true
+    }
+    return false
+  })
+
+  var parent
+  while (el) {
+    parent = el.parentElement
+    if (parent && parent[matches](selector)) {
+      return parent
+    }
+    el = parent
+  }
+  return null
+}
+
+// Find the closes element (field) with an aria-label applied
+export const ariaLabel = (el) => {
+  var nearest = closest(el, '.field')
+  if (nearest) {
+    return nearest.getAttribute('aria-label')
+  }
+  return null
+}
+
 export default class Generic extends ValidationElement {
   constructor (props) {
     super(props)
@@ -184,6 +215,7 @@ export default class Generic extends ValidationElement {
                type={this.props.type}
                placeholder={this.props.placeholder}
                aria-describedby={this.errorName()}
+               aria-label={this.props.label || ariaLabel(this.refs.input)}
                disabled={this.props.disabled}
                maxLength={this.props.maxlength}
                pattern={this.props.pattern}

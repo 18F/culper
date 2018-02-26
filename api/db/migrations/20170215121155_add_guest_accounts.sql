@@ -1,4 +1,4 @@
-
+-- +goose Env GOLANG_ENV:development GOLANG_ENV:staging
 -- +goose Up
 -- SQL in section 'Up' is executed when this migration is applied
 -- +goose StatementBegin

@@ -3,7 +3,7 @@ export const error = {
     last: {
       required: {
         title: 'The last name is required',
-        message: '',
+        message: 'The last name must be provided.',
         note: ''
       },
       length: {
@@ -22,6 +22,11 @@ export const error = {
       }
     },
     first: {
+      required: {
+        title: 'The first name is required',
+        message: 'The first name must be provided.',
+        note: ''
+      },
       length: {
         title: 'There is a problem with the first name',
         message: [
@@ -946,6 +951,38 @@ export const error = {
       min: {
         title: 'There is a problem with the date',
         message: 'The date should be after the date treatment began.'
+      }
+    }
+  },
+  contact: {
+    last: {
+      max: {
+        title: 'There is a problem with the date',
+        message: 'The date can\'t be in the future.'
+      },
+      min: {
+        title: 'There is a problem with the date',
+        message: 'The date should be after the first contact.'
+      }
+    }
+  },
+  passport: {
+    expiration: {
+      min: {
+        title: 'There is a problem with the date',
+        message: 'The date should be after the passport was issued.'
+      }
+    }
+  },
+  parent: {
+    dob: {
+      max: {
+        title: 'There is a problem with the date',
+        message: 'The date can\'t be in the future and must be before your date of birth.'
+      },
+      min: {
+        title: 'There is a problem with the date',
+        message: 'The age may not exceed 200 years.'
       }
     }
   },

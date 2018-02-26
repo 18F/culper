@@ -2,12 +2,10 @@
   <Answer>{{branch .props.HasInterests}}</Answer>
   <AnswerComment></AnswerComment>
   <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
-
   {{range $index, $item := .props.List.props.items}}
   {{with $Item := $item.Item}}
   <IndirectInterest ID="{{$index}}">
     <Comment></Comment>
-
     <ControllingParty>
       {{with $first := text $Item.Firstname}}
       <LegalName>
@@ -16,27 +14,23 @@
       </LegalName>
       {{end}}
     </ControllingParty>
-
     <Coowners>
       <Answer>{{branchcollectionHas $Item.CoOwners.props.List}}</Answer>
       <AnswerComment></AnswerComment>
-
-      {{range $index, $coowner := $Item.CoOwners.props.List.props.items}}
+      {{range $cindex, $coowner := $Item.CoOwners.props.List.props.items}}
       {{with $Coowner := $coowner.Item}}
-      <Coowner ID="{{$index}}">
+      <Coowner ID="{{$cindex}}">
         <Address>
           {{location $Coowner.Address}}
         </Address>
         <Comment></Comment>
-
         <CountriesOfCitizenship>
-          {{range $index, $country := $Coowner.Countries.props.value}}
-          <Citizenship ID="{{$index}}">
+          {{range $ccindex, $country := $Coowner.Countries.props.value}}
+          <Citizenship ID="{{$ccindex}}">
             <Country>{{$country}}</Country>
           </Citizenship>
           {{end}}
         </CountriesOfCitizenship>
-
         <LegalName>
           {{name $Coowner.Name}}
         </LegalName>
@@ -44,24 +38,18 @@
       </Coowner>
       {{end}}
       {{end}}
-
       <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
       <SummaryComment></SummaryComment>
     </Coowners>
-
     <Cost Estimated="{{$Item.CostEstimated.props.checked}}">{{text $Item.Cost}}</Cost>
     <CurrentValue Estimated="{{$Item.ValueEstimated.props.checked}}">{{text $Item.Value}}</CurrentValue>
-
     <DateAcquired Type="{{dateEstimated $Item.Acquired}}">
       {{date $Item.Acquired}}
     </DateAcquired>
-
     <DateSold Type="{{dateEstimated $Item.Sold}}" NotApplicable="{{notApplicable $Item.SoldNotApplicable}}">
       {{date $Item.Sold}}
     </DateSold>
-
     <HowAcquired>{{text $Item.HowAcquired}}</HowAcquired>
-
     <Members
       Yourself="{{checkboxHas $Item.InterestTypes "Yourself"}}"
       Spouse="{{checkboxHas $Item.InterestTypes "Spouse"}}"

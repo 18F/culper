@@ -4,7 +4,8 @@ import { i18n } from '../../config'
 
 export class SectionViews extends React.Component {
   handleTransition (routePath, event) {
-    this.props.dispatch(push(`/form/${routePath}`))
+    const parts = (routePath || '').split('/')
+    this.props.update({ section: parts.shift(), subsection: parts.join('/') || 'intro'})
   }
 
   render () {
@@ -92,6 +93,10 @@ export class SectionViews extends React.Component {
       <div>{children}</div>
     )
   }
+}
+
+SectionViews.defaultProps = {
+  update: (props) => { console.warn(`Failed to navigate to section: ${props.section} and subsection: ${props.subsection}.`) }
 }
 
 export function SectionView (props) {

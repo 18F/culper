@@ -82,7 +82,6 @@ export default class Family extends SubsectionElement {
                      scrollIntoView={this.props.scrollIntoView}>
             <FamilyItem name="Item"
                         bind={true}
-                        applicantBirthdate={this.props.applicantBirthdate}
                         onError={this.props.onError}
                         required={this.props.required}
                         scrollIntoView={this.props.scrollIntoView}
@@ -102,10 +101,9 @@ Family.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'business/family',
-  applicantBirthdate: {},
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('foreign.business.family', props))
+  validator: (data) => {
+    return validate(schema('foreign.business.family', data))
   },
   defaultState: true,
   scrollToBottom: ''

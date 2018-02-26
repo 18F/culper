@@ -119,7 +119,6 @@ export default class TerroristOrganizationItem extends ValidationElement {
                scrollIntoView={this.props.scrollIntoView}>
           <DateRange name="Dates"
                      {...this.props.Dates}
-                     applicantBirthdate={this.props.applicantBirthdate}
                      onUpdate={this.updateDates}
                      onError={this.props.onError}
                      className="legal-associations-terrorist-dates"
@@ -191,7 +190,6 @@ export default class TerroristOrganizationItem extends ValidationElement {
 TerroristOrganizationItem.defaultProps = {
   PositionsNotApplicable: { applicable: true },
   ContributionsNotApplicable: { applicable: true },
-  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

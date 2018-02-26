@@ -2,6 +2,7 @@ package form
 
 import (
 	"crypto/sha256"
+	"encoding/hex"
 	"encoding/json"
 	"html/template"
 
@@ -500,6 +501,21 @@ var (
 		},
 	}
 )
+
+type FormMetadata struct {
+	Locked bool
+	Hash   string
+}
+
+func Metadata(context *db.DatabaseContext, account int, locked bool) []byte {
+	hash := Hash(context, account)
+	meta := &FormMetadata{
+		Locked: locked,
+		Hash:   hex.EncodeToString(hash[:]),
+	}
+	js, _ := json.MarshalIndent(meta, "", "  ")
+	return js
+}
 
 // Application returns the application state in JSON format.
 func Application(context *db.DatabaseContext, account int, hashable bool) []byte {

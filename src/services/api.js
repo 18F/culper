@@ -132,6 +132,10 @@ class Api {
     return this.post(env.EndpointBasicAuthentication(), { username: username, password: password }, false)
   }
 
+  logout () {
+    return this.get(env.EndpointLogout())
+  }
+
   refresh () {
     return this.post(env.EndpointRefresh())
   }
@@ -142,6 +146,14 @@ class Api {
 
   section (type) {
     return this.get(env.EndpointSection(type))
+  }
+
+  status () {
+    return this.get(env.EndpointStatus())
+  }
+
+  submit () {
+    return this.post(env.EndpointSubmit())
   }
 
   form () {

@@ -88,7 +88,6 @@ export default class DrugUse extends ValidationElement {
           <DateControl name="FirstUse"
                        className="first-use"
                        {...this.props.FirstUse}
-                       applicantBirthdate={this.props.applicantBirthdate}
                        hideDay={true}
                        showEstimated={false}
                        onUpdate={this.updateFirstUse}
@@ -103,7 +102,6 @@ export default class DrugUse extends ValidationElement {
           <DateControl name="RecentUse"
                        className="recent-use"
                        {...this.props.RecentUse}
-                       applicantBirthdate={this.props.applicantBirthdate}
                        hideDay={true}
                        showEstimated={false}
                        onUpdate={this.updateRecentUse}
@@ -175,6 +173,5 @@ DrugUse.defaultProps = {
   UseWhileEmployed: {},
   UseWhileClearance: {},
   UseWhileFuture: {},
-  applicantBirthdate: {},
   onError: (value, arr) => { return arr }
 }

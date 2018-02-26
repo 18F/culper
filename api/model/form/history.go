@@ -141,14 +141,17 @@ func (entity *HistoryResidence) SetID(id int) {
 }
 
 type HistoryEmployment struct {
-	PayloadList Payload `json:"List" sql:"-"`
+	PayloadList             Payload `json:"List" sql:"-"`
+	PayloadEmploymentRecord Payload `json:"EmploymentRecord" sql:"-"`
 
 	// Validator specific fields
-	List *Collection `json:"-"`
+	List             *Collection `json:"-"`
+	EmploymentRecord *Branch     `json:"-"`
 
 	// Persister specific fields
-	ID     int `json:"-"`
-	ListID int `json:"-" pg:", fk:List"`
+	ID                 int `json:"-"`
+	ListID             int `json:"-" pg:", fk:List"`
+	EmploymentRecordID int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -164,6 +167,12 @@ func (entity *HistoryEmployment) Unmarshal(raw []byte) error {
 	}
 	entity.List = list.(*Collection)
 
+	employmentRecord, err := entity.PayloadEmploymentRecord.Entity()
+	if err != nil {
+		return err
+	}
+	entity.EmploymentRecord = employmentRecord.(*Branch)
+
 	return err
 }
 
@@ -172,12 +181,21 @@ func (entity *HistoryEmployment) Marshal() Payload {
 	if entity.List != nil {
 		entity.PayloadList = entity.List.Marshal()
 	}
+	if entity.EmploymentRecord != nil {
+		entity.PayloadEmploymentRecord = entity.EmploymentRecord.Marshal()
+	}
 	return MarshalPayloadEntity("history.employment", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
 func (entity *HistoryEmployment) Valid() (bool, error) {
-	return entity.List.Valid()
+	if ok, err := entity.List.Valid(); !ok {
+		return false, err
+	}
+	if ok, err := entity.EmploymentRecord.Valid(); !ok {
+		return false, err
+	}
+	return true, nil
 }
 
 // Save will create or update the database.
@@ -195,6 +213,12 @@ func (entity *HistoryEmployment) Save(context *db.DatabaseContext, account int) 
 		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
+
+		if entity.EmploymentRecord == nil {
+			entity.EmploymentRecord = &Branch{}
+		}
+		entity.EmploymentRecord.ID = previous.EmploymentRecordID
+		entity.EmploymentRecordID = previous.EmploymentRecordID
 	})
 
 	listID, err := entity.List.Save(context, account)
@@ -202,6 +226,12 @@ func (entity *HistoryEmployment) Save(context *db.DatabaseContext, account int) 
 		return listID, err
 	}
 	entity.ListID = listID
+
+	employmentRecordID, err := entity.EmploymentRecord.Save(context, account)
+	if err != nil {
+		return employmentRecordID, err
+	}
+	entity.EmploymentRecordID = employmentRecordID
 
 	if err := context.Save(entity); err != nil {
 		return entity.ID, err
@@ -225,6 +255,12 @@ func (entity *HistoryEmployment) Delete(context *db.DatabaseContext, account int
 		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
+
+		if entity.EmploymentRecord == nil {
+			entity.EmploymentRecord = &Branch{}
+		}
+		entity.EmploymentRecord.ID = previous.EmploymentRecordID
+		entity.EmploymentRecordID = previous.EmploymentRecordID
 	})
 
 	if entity.ID != 0 {
@@ -234,6 +270,10 @@ func (entity *HistoryEmployment) Delete(context *db.DatabaseContext, account int
 	}
 
 	if _, err := entity.List.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err := entity.EmploymentRecord.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
@@ -261,6 +301,13 @@ func (entity *HistoryEmployment) Get(context *db.DatabaseContext, account int) (
 		}
 	}
 
+	if entity.EmploymentRecordID != 0 {
+		entity.EmploymentRecord = &Branch{ID: entity.EmploymentRecordID}
+		if _, err := entity.EmploymentRecord.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	return entity.ID, nil
 }
 
@@ -280,14 +327,14 @@ type HistoryEducation struct {
 	PayloadList        Payload `json:"List" sql:"-"`
 
 	// Validator specific fields
-	HasAttended *Branch     `json:"-"`
-	HasDegree10 *Branch     `json:"-"`
-	List        *Collection `json:"-"`
+	HasAttended *Branch     `json:"-" sql:"-"`
+	HasDegree10 *Branch     `json:"-" sql:"-"`
+	List        *Collection `json:"-" sql:"-"`
 
 	// Persister specific fields
 	ID            int `json:"-"`
 	HasAttendedID int `json:"-" pg:", fk:HasAttended"`
-	HasDegree10ID int `json:"-" pg:", fk:HasDegree10"`
+	HasDegree10ID int `json:"-" pg:", fk:HasDegree10" sql:"has_degree10_id"`
 	ListID        int `json:"-" pg:", fk:List"`
 }
 

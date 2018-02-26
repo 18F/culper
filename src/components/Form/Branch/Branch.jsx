@@ -20,7 +20,7 @@ export default class Branch extends React.Component {
       // When a `warning` should be displayed AND they do no approve the change then
       // set the old value back to "Yes".
       if (this.props.warning && window.confirm(this.props.confirmation) === false) {
-        values.value = this.props.yesValue
+        return
       }
     }
 

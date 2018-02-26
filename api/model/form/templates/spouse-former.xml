@@ -15,8 +15,8 @@
       </Place>
     </Birth>
     <CountriesOfCitizenship>
-      {{range $index, $country := $Item.Citizenship.value}}
-      <Citizenship>
+      {{range $cindex, $country := $Item.Citizenship.value}}
+      <Citizenship ID="{{$cindex}}">
         <Country>{{$country}}</Country>
       </Citizenship>
       {{end}}
@@ -25,6 +25,7 @@
       <Answer>{{branch $Item.Deceased}}</Answer>
     </Deceased>
     <DivorcedAnnulledComment></DivorcedAnnulledComment>
+    <DivorcedAnnulledComment2></DivorcedAnnulledComment2>
     <EntryComment></EntryComment>
     <LegalName>
       {{name $Item.Name}}
@@ -48,6 +49,7 @@
         </Place>
       </DivorceRecordLocation>
     </Separation>
+    <Telephone>{{telephone $Item.Telephone}}</Telephone>
   </FormerSpouse>
   {{end}}
   {{end}}

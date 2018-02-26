@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { reportCompletion } from '../../../actions/ApplicationActions'
 import { ResidenceValidator, EmploymentValidator, HistoryEducationValidator, EducationValidator, EducationItemValidator } from '../../../validators'
 import { i18n } from '../../../config'
-import { extractApplicantBirthdate } from '../extractors'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
 import SectionComments from '../SectionComments'
@@ -325,7 +324,7 @@ class History extends SectionElement {
   render () {
     return (
       <div className="history">
-        <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
+        <SectionViews current={this.props.subsection} dispatch={this.props.dispatch} update={this.props.update}>
           <SectionView name="intro"
                        back="relationships/review"
                        backLabel={i18n.t('relationships.destination.review')}
@@ -366,7 +365,6 @@ class History extends SectionElement {
                        overrideInitial={this.overrideInitial}
                        onUpdate={this.updateResidence}
                        onError={this.handleError}
-                       applicantBirthdate={this.props.applicantBirthdate}
                        addressBooks={this.props.AddressBooks}
                        dispatch={this.props.dispatch}
                        scrollIntoView={false}
@@ -386,7 +384,6 @@ class History extends SectionElement {
                         overrideInitial={this.overrideInitial}
                         onUpdate={this.updateEmployment}
                         onError={this.handleError}
-                        applicantBirthdate={this.props.applicantBirthdate}
                         addressBooks={this.props.AddressBooks}
                         dispatch={this.props.dispatch}
                         scrollIntoView={false}
@@ -408,7 +405,6 @@ class History extends SectionElement {
                          onUpdate={this.updateEducation}
                          onError={this.handleError}
                          dispatch={this.props.dispatch}
-                         applicantBirthdate={this.props.applicantBirthdate}
                          addressBooks={this.props.AddressBooks}
                          scrollIntoView={false}
                          required={true}
@@ -419,7 +415,6 @@ class History extends SectionElement {
             <Federal name="federal"
                      {...this.props.Federal}
                      defaultState={false}
-                     applicantBirthdate={this.props.applicantBirthdate}
                      addressBooks={this.props.AddressBooks}
                      dispatch={this.props.dispatch}
                      onUpdate={this.handleUpdate.bind(this, 'Federal')}
@@ -465,7 +460,6 @@ class History extends SectionElement {
                        overrideInitial={this.overrideInitial}
                        onUpdate={this.updateResidence}
                        onError={this.handleError}
-                       applicantBirthdate={this.props.applicantBirthdate}
                        addressBooks={this.props.AddressBooks}
                        dispatch={this.props.dispatch}
                        />
@@ -506,7 +500,6 @@ class History extends SectionElement {
               overrideInitial={this.overrideInitial}
               onUpdate={this.updateEmployment}
               onError={this.handleError}
-              applicantBirthdate={this.props.applicantBirthdate}
               addressBooks={this.props.AddressBooks}
               dispatch={this.props.dispatch}
               />
@@ -568,7 +561,6 @@ class History extends SectionElement {
                            onUpdate={this.updateEducation}
                            onError={this.handleError}
                            dispatch={this.props.dispatch}
-                           applicantBirthdate={this.props.applicantBirthdate}
                            addressBooks={this.props.AddressBooks}
                            />
               </div>
@@ -583,7 +575,6 @@ class History extends SectionElement {
                        >
             <Federal name="federal"
                      {...this.props.Federal}
-                     applicantBirthdate={this.props.applicantBirthdate}
                      addressBooks={this.props.AddressBooks}
                      dispatch={this.props.dispatch}
                      onUpdate={this.handleUpdate.bind(this, 'Federal')}
@@ -627,7 +618,6 @@ function mapStateToProps (state) {
     Errors: errors.history || [],
     Completed: completed.history || [],
     Birthdate: processDate(identification.ApplicantBirthDate),
-    applicantBirthdate: extractApplicantBirthdate(app),
     AddressBooks: addressBooks
   }
 }

@@ -147,7 +147,6 @@ export default class OtherOffense extends ValidationElement {
                scrollIntoView={this.props.scrollIntoView}>
           <DateControl name="Date"
                        {...this.props.Date}
-                       applicantBirthdate={this.props.applicantBirthdate}
                        className="offense-date"
                        onUpdate={this.updateDate}
                        onError={this.props.onError}
@@ -296,7 +295,6 @@ export default class OtherOffense extends ValidationElement {
                scrollIntoView={this.props.scrollIntoView}>
           <DateControl name="CourtDate"
                        {...this.props.CourtDate}
-                       applicantBirthdate={this.props.applicantBirthdate}
                        hideDay={true}
                        className="offense-courtdate"
                        onUpdate={this.updateCourtDate}
@@ -316,7 +314,7 @@ export default class OtherOffense extends ValidationElement {
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Show when={this.props.WasSentenced.value === 'Yes'}>
+        <Show when={(this.props.WasSentenced || {}).value === 'Yes'}>
           <div>
             <Field title={i18n.t('legal.police.heading.needmore')}
                    optional={true}
@@ -326,7 +324,6 @@ export default class OtherOffense extends ValidationElement {
             </Field>
             <Sentence name="Sentence"
                       {...this.props.Sentence}
-                      applicantBirthdate={this.props.applicantBirthdate}
                       onError={this.props.onError}
                       required={this.props.required}
                       onUpdate={this.updateSentence}
@@ -334,7 +331,7 @@ export default class OtherOffense extends ValidationElement {
                       />
           </div>
         </Show>
-        <Show when={this.props.WasSentenced.value === 'No'}>
+        <Show when={(this.props.WasSentenced || {}).value === 'No'}>
           <div>
             <Branch name="awaiting_trial"
                     label={i18n.t('legal.police.heading.awaitingTrial')}
@@ -368,7 +365,6 @@ OtherOffense.defaultProps = {
   InvolvedFirearms: {},
   InvolvedSubstances: {},
   WasSentenced: {},
-  applicantBirthdate: {},
   addressBooks: {},
   dispatch: (action) => {},
   onUpdate: (queue) => {},

@@ -53,6 +53,7 @@ export default class Alias extends ValidationElement {
         <Field title={i18n.t('relationships.relatives.heading.alias.title')}
                titleSize="h3"
                optional={true}
+               filterErrors={Name.requiredErrorsOnly}
                scrollIntoView={this.props.scrollIntoView}>
           {i18n.m('relationships.relatives.para.alias')}
           <Name name="Name"
@@ -84,7 +85,6 @@ export default class Alias extends ValidationElement {
                      className="alias-dates"
                      {...this.props.Dates}
                      prefix="relative"
-                     applicantBirthdate={this.props.applicantBirthdate}
                      onUpdate={this.updateDates}
                      onError={this.props.onError}
                      required={this.props.required}
@@ -113,7 +113,6 @@ Alias.defaultProps = {
   Dates: {},
   Reason: {},
   hideMaiden: false,
-  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

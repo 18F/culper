@@ -25,20 +25,21 @@ export class HistoryValidator {
   constructor (data = {}) {
     this.agencyNotApplicable = data.AgencyNotApplicable
     this.agency = data.Agency
+    this.agencyExplanation = data.AgencyExplanation
     this.completedNotApplicable = data.CompletedNotApplicable
     this.completed = data.Completed
     this.issued = data.Issued // optional
     this.grantedNotApplicable = data.GrantedNotApplicable
     this.granted = data.Granted
-    this.clearanceNotApplicable = data.ClearanceNotApplicable
-    this.clearance = data.Clearance
+    this.clearanceNotApplicable = data.ClearanceLevelNotApplicable
+    this.clearance = data.ClearanceLevel || {}
   }
 
   validAgency () {
     return validNotApplicable(this.agencyNotApplicable, () => {
-      let valid = !!this.agency && !!this.agency.Agency
-      if (valid && ['U.S. Department of Treasury', 'Foreign government', 'Other'].includes(this.agency.Agency)) {
-        valid = !!this.agency.Explanation && validGenericTextfield(this.agency.Explanation)
+      let valid = !!this.agency && !!this.agency.value
+      if (valid && ['U.S. Department of Treasury', 'Foreign government', 'Other'].includes((this.agency || {}).value)) {
+        valid = !!this.agencyExplanation && validGenericTextfield(this.agencyExplanation || {})
       }
       return valid
     })
@@ -50,10 +51,6 @@ export class HistoryValidator {
     })
   }
 
-  // validIssued () {
-  //   return !!this.issued && validGenericTextfield(this.issued)
-  // }
-
   validGranted () {
     return validNotApplicable(this.grantedNotApplicable, () => {
       return !!this.granted && validDateField(this.granted)
@@ -62,9 +59,9 @@ export class HistoryValidator {
 
   validClearance () {
     return validNotApplicable(this.clearanceNotApplicable, () => {
-      let valid = !!this.clearance && !!this.clearance.Level
-      if (valid && this.clearance.Level === 'Other') {
-        valid = !!this.clearance.Explanation && validGenericTextfield(this.clearance.Explanation)
+      let valid = !!((this.clearance || {}).Level || {}).value
+      if (valid && ((this.clearance || {}).Level || {}).value === 'Other') {
+        valid = validGenericTextfield((this.clearance || {}).Explanation || {})
       }
       return valid
     })
@@ -73,7 +70,6 @@ export class HistoryValidator {
   isValid () {
     return this.validAgency() &&
       this.validCompleted() &&
-      // this.validIssued() &&
       this.validGranted() &&
       this.validClearance()
   }

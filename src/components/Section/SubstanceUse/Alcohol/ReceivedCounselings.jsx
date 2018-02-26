@@ -87,7 +87,6 @@ export default class ReceivedCounselings extends SubsectionElement {
                      scrollIntoView={this.props.scrollIntoView}>
             <ReceivedCounseling name="Item"
                                 bind={true}
-                                applicantBirthdate={this.props.applicantBirthdate}
                                 required={this.props.required}
                                 scrollIntoView={this.props.scrollIntoView} />
           </Accordion>
@@ -103,10 +102,9 @@ ReceivedCounselings.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'substance',
   subsection: 'alcohol/additional',
-  applicantBirthdate: {},
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('substance.alcohol.additional', props))
+  validator: (data) => {
+    return validate(schema('substance.alcohol.additional', data))
   },
   scrollToBottom: ''
 }

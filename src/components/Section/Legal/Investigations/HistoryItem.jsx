@@ -17,14 +17,15 @@ export default class HistoryItem extends ValidationElement {
     this.updateGrantedNotApplicable = this.updateGrantedNotApplicable.bind(this)
     this.updateGranted = this.updateGranted.bind(this)
     this.updateGrantedComments = this.updateGrantedComments.bind(this)
-    this.updateClearanceNotApplicable = this.updateClearanceNotApplicable.bind(this)
-    this.updateClearance = this.updateClearance.bind(this)
+    this.updateClearanceLevelNotApplicable = this.updateClearanceLevelNotApplicable.bind(this)
+    this.updateClearanceLevel = this.updateClearanceLevel.bind(this)
   }
 
   update (queue) {
     this.props.onUpdate({
       AgencyNotApplicable: this.props.AgencyNotApplicable,
       Agency: this.props.Agency,
+      AgencyExplanation: this.props.AgencyExplanation,
       CompletedNotApplicable: this.props.CompletedNotApplicable,
       Completed: this.props.Completed,
       CompletedComments: this.props.CompletedComments,
@@ -32,8 +33,8 @@ export default class HistoryItem extends ValidationElement {
       GrantedNotApplicable: this.props.GrantedNotApplicable,
       Granted: this.props.Granted,
       GrantedComments: this.props.GrantedComments,
-      ClearanceNotApplicable: this.props.ClearanceNotApplicable,
-      Clearance: this.props.Clearance,
+      ClearanceLevelNotApplicable: this.props.ClearanceLevelNotApplicable,
+      ClearanceLevel: this.props.ClearanceLevel,
       ...queue
     })
   }
@@ -41,13 +42,15 @@ export default class HistoryItem extends ValidationElement {
   updateAgencyNotApplicable (values) {
     this.update({
       AgencyNotApplicable: values,
-      Agency: null
+      Agency: null,
+      AgencyExplanation: null
     })
   }
 
   updateAgency (values) {
     this.update({
-      Agency: values
+      Agency: values.Agency,
+      AgencyExplanation: values.Explanation
     })
   }
 
@@ -95,16 +98,16 @@ export default class HistoryItem extends ValidationElement {
     })
   }
 
-  updateClearanceNotApplicable (values) {
+  updateClearanceLevelNotApplicable (values) {
     this.update({
-      ClearanceNotApplicable: values,
-      Clearance: null
+      ClearanceLevelNotApplicable: values,
+      ClearanceLevel: null
     })
   }
 
-  updateClearance (values) {
+  updateClearanceLevel (values) {
     this.update({
-      Clearance: values
+      ClearanceLevel: values
     })
   }
 
@@ -123,7 +126,7 @@ export default class HistoryItem extends ValidationElement {
                          label={i18n.t('legal.investigations.history.label.idk')}
                          required={this.props.required}>
             <InvestigatingAgency name="Agency"
-                                 {...this.props.Agency}
+                                 { ...{ Agency: this.props.Agency, Explanation: this.props.AgencyExplanation } }
                                  onUpdate={this.updateAgency}
                                  onError={this.props.onError}
                                  className="legal-investigations-history-agency"
@@ -151,7 +154,6 @@ export default class HistoryItem extends ValidationElement {
                          required={this.props.required}>
             <DateControl name="Completed"
                          {...this.props.Completed}
-                         applicantBirthdate={this.props.applicantBirthdate}
                          onUpdate={this.updateCompleted}
                          onError={this.props.onError}
                          className="legal-investigations-history-completed"
@@ -190,7 +192,6 @@ export default class HistoryItem extends ValidationElement {
                          required={this.props.required}>
             <DateControl name="Granted"
                          {...this.props.Granted}
-                         applicantBirthdate={this.props.applicantBirthdate}
                          onUpdate={this.updateGranted}
                          onError={this.props.onError}
                          className="legal-investigations-history-granted"
@@ -202,17 +203,17 @@ export default class HistoryItem extends ValidationElement {
         <Field title={i18n.t('legal.investigations.history.heading.clearance')}
                adjustFor="big-button"
                scrollIntoView={this.props.scrollIntoView}>
-          <NotApplicable name="ClearanceNotApplicable"
+          <NotApplicable name="ClearanceLevelNotApplicable"
                          className="legal-investigations-history-clearance-notapplicable"
-                         {...this.props.ClearanceNotApplicable}
-                         onUpdate={this.updateClearanceNotApplicable}
+                         {...this.props.ClearanceLevelNotApplicable}
+                         onUpdate={this.updateClearanceLevelNotApplicable}
                          onError={this.props.onError}
                          or={i18n.m('legal.investigations.history.para.or')}
                          label={i18n.t('legal.investigations.history.label.idk')}
                          required={this.props.required}>
-            <ClearanceLevel name="Clearance"
-                            {...this.props.Clearance}
-                            onUpdate={this.updateClearance}
+            <ClearanceLevel name="ClearanceLevel"
+                            {...this.props.ClearanceLevel}
+                            onUpdate={this.updateClearanceLevel}
                             onError={this.props.onError}
                             className="legal-investigations-history-clearance"
                             required={this.props.required}
@@ -227,11 +228,10 @@ export default class HistoryItem extends ValidationElement {
 
 HistoryItem.defaultProps = {
   required: false,
-  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   AgencyNotApplicable: { applicable: true },
   CompletedNotApplicable: { applicable: true },
   GrantedNotApplicable: { applicable: true },
-  ClearanceNotApplicable: { applicable: true }
+  ClearanceLevelNotApplicable: { applicable: true }
 }

@@ -4,7 +4,7 @@ describe('Physical attributes validation', function () {
   it('should validate height', function () {
     const tests = [
       {
-        state: {
+        data: {
           Height: {
             feet: 1,
             inches: 0
@@ -13,7 +13,7 @@ describe('Physical attributes validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           Height: {
             feet: 5,
             inches: 0
@@ -22,7 +22,7 @@ describe('Physical attributes validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           Height: {
             feet: 0,
             inches: 2
@@ -31,7 +31,7 @@ describe('Physical attributes validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           Height: null
         },
         expected: false
@@ -39,26 +39,26 @@ describe('Physical attributes validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new IdentificationPhysicalValidator(test.state, null).validHeight()).toBe(test.expected)
+      expect(new IdentificationPhysicalValidator(test.data).validHeight()).toBe(test.expected)
     })
   })
 
   it('should validate weight', function () {
     const tests = [
       {
-        state: {
+        data: {
           Weight: { value: 0 }
         },
         expected: false
       },
       {
-        state: {
+        data: {
           Weight: { value: 6 }
         },
         expected: false
       },
       {
-        state: {
+        data: {
           Weight: { value: 10 }
         },
         expected: true
@@ -66,32 +66,32 @@ describe('Physical attributes validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new IdentificationPhysicalValidator(test.state, null).validWeight()).toBe(test.expected)
+      expect(new IdentificationPhysicalValidator(test.data).validWeight()).toBe(test.expected)
     })
   })
 
   it('should validate hair color', function () {
     const tests = [
       {
-        state: {
+        data: {
           HairColor: { value: '' }
         },
         expected: false
       },
       {
-        state: {
+        data: {
           HairColor: { value: 'Brown' }
         },
         expected: true
       },
       {
-        state: {
+        data: {
           HairColor: null
         },
         expected: false
       },
       {
-        state: {
+        data: {
           HairColor: { value: 'SomethingDifferent' }
         },
         expected: false
@@ -99,32 +99,32 @@ describe('Physical attributes validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new IdentificationPhysicalValidator(test.state, null).validHairColor()).toBe(test.expected)
+      expect(new IdentificationPhysicalValidator(test.data).validHairColor()).toBe(test.expected)
     })
   })
 
   it('should validate eye color', function () {
     const tests = [
       {
-        state: {
+        data: {
           EyeColor: { value: 'Black' }
         },
         expected: true
       },
       {
-        state: {
+        data: {
           EyeColor: { value: '' }
         },
         expected: false
       },
       {
-        state: {
+        data: {
           EyeColor: null
         },
         expected: false
       },
       {
-        state: {
+        data: {
           EyeColor: { value: 'SomethingDifferent' }
         },
         expected: false
@@ -132,26 +132,26 @@ describe('Physical attributes validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new IdentificationPhysicalValidator(test.state, null).validEyeColor()).toBe(test.expected)
+      expect(new IdentificationPhysicalValidator(test.data).validEyeColor()).toBe(test.expected)
     })
   })
 
   it('should validate sex', function () {
     const tests = [
       {
-        state: {
+        data: {
           Sex: { value: 'female' }
         },
         expected: true
       },
       {
-        state: {
+        data: {
           Sex: { value: 'male' }
         },
         expected: true
       },
       {
-        state: {
+        data: {
           Sex: null
         },
         expected: false
@@ -159,14 +159,14 @@ describe('Physical attributes validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new IdentificationPhysicalValidator(test.state, null).validSex()).toBe(test.expected)
+      expect(new IdentificationPhysicalValidator(test.data).validSex()).toBe(test.expected)
     })
   })
 
   it('should validate physical attributes', function () {
     const tests = [
       {
-        state: {
+        data: {
           Height: {
             feet: 5,
             inches: 0
@@ -179,7 +179,7 @@ describe('Physical attributes validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           Height: {
             feet: 5,
             inches: 0
@@ -194,7 +194,7 @@ describe('Physical attributes validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new IdentificationPhysicalValidator(test.state, null).isValid()).toBe(test.expected)
+      expect(new IdentificationPhysicalValidator(test.data).isValid()).toBe(test.expected)
     })
   })
 })

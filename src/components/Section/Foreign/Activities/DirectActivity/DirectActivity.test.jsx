@@ -26,7 +26,9 @@ describe('The DirectActivity component', () => {
             InterestType: {
               value: 'Foo'
             },
-            InterestTypes: ['Yourself']
+            InterestTypes: {
+              values: ['Yourself']
+            }
           },
           open: true
         }]
@@ -43,7 +45,9 @@ describe('The DirectActivity component', () => {
       List: {
         items: [{
           Item: {
-            InterestTypes: ['Yourself']
+            InterestTypes: {
+              values: ['Yourself']
+            }
           },
           open: true
         }]
@@ -77,7 +81,9 @@ describe('The DirectActivity component', () => {
         items: [
           {
             Item: {
-              InterestTypes: ['Yourself'],
+              InterestTypes: {
+                values: ['Yourself']
+              },
               InterestType: {
                 value: 'Some type'
               },

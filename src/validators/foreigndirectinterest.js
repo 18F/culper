@@ -3,7 +3,7 @@ import ForeignCoOwnersValidator from './foreigncoowner'
 
 export default class ForeignDirectInterestValidator {
   constructor (data = {}) {
-    this.interestTypes = data.InterestTypes
+    this.interestTypes = (data.InterestTypes || {}).values || []
     this.interestType = data.InterestType
     this.acquired = data.Acquired
     this.howAcquired = data.HowAcquired
@@ -46,7 +46,7 @@ export default class ForeignDirectInterestValidator {
   }
 
   validCoOwners () {
-    return new ForeignCoOwnersValidator(null, this.coOwners).isValid()
+    return new ForeignCoOwnersValidator(this.coOwners).isValid()
   }
 
   validExplanation () {

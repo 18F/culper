@@ -37,9 +37,9 @@ export default class OrderedCounseling extends ValidationElement {
     }
   }
 
-  updateSeekers (event) {
-    let seeker = event.target.value
-    let selected = [...(this.props.Seekers || [])].filter(x => x !== 'NotOrdered')
+  updateSeekers (values) {
+    let seeker = values.value
+    let selected = [...((this.props.Seekers || {}).values || [])].filter(x => x !== 'NotOrdered')
 
     if (seeker === 'NotOrdered') {
       selected = [seeker]
@@ -102,14 +102,14 @@ export default class OrderedCounseling extends ValidationElement {
           <CheckboxGroup className="seekers"
                          onError={this.props.onError}
                          required={this.props.required}
-                         selectedValues={this.props.Seekers}>
+                         selectedValues={(this.props.Seekers || {}).values || []}>
 
             <Checkbox name="seekers-employer"
                       label={i18n.m('substance.alcohol.orderedCounseling.seekers.label.employer')}
                       value="Employer"
                       className="seekers-employer"
                       onError={this.props.onError}
-                      onChange={this.updateSeekers}
+                      onUpdate={this.updateSeekers}
                       />
 
             <Checkbox name="seekers-medicalProfessional"
@@ -117,7 +117,7 @@ export default class OrderedCounseling extends ValidationElement {
                       value="MedicalProfessional"
                       className="seekers-medical-professional"
                       onError={this.props.onError}
-                      onChange={this.updateSeekers}
+                      onUpdate={this.updateSeekers}
                       />
 
             <Checkbox name="seekers-mentalHealthProfessional"
@@ -125,7 +125,7 @@ export default class OrderedCounseling extends ValidationElement {
                       value="MentalHealthProfessional"
                       className="seekers-mental-health-professional"
                       onError={this.props.onError}
-                      onChange={this.updateSeekers}
+                      onUpdate={this.updateSeekers}
                       />
 
             <Checkbox name="seekers-courtOfficial"
@@ -133,7 +133,7 @@ export default class OrderedCounseling extends ValidationElement {
                       value="CourtOfficial"
                       className="seekers-court-official"
                       onError={this.props.onError}
-                      onChange={this.updateSeekers}
+                      onUpdate={this.updateSeekers}
                       />
 
             <Checkbox name="seekers-notordered"
@@ -141,7 +141,7 @@ export default class OrderedCounseling extends ValidationElement {
                       value="NotOrdered"
                       className="seekers-not-ordered"
                       onError={this.props.onError}
-                      onChange={this.updateSeekers}
+                      onUpdate={this.updateSeekers}
                       />
 
             <Checkbox name="seekers-other"
@@ -149,10 +149,10 @@ export default class OrderedCounseling extends ValidationElement {
                       value="Other"
                       className="seekers-other"
                       onError={this.props.onError}
-                      onChange={this.updateSeekers}
+                      onUpdate={this.updateSeekers}
                       />
           </CheckboxGroup>
-          <Show when={this.props.Seekers && this.props.Seekers.includes('Other')}>
+          <Show when={((this.props.Seekers || {}).values || []).includes('Other')}>
             <Field title={i18n.t('substance.alcohol.orderedCounseling.label.otherSeeker')}
                    titleSize="label"
                    adjustFor="text"
@@ -187,7 +187,6 @@ export default class OrderedCounseling extends ValidationElement {
               <DateRange name="CounselingDates"
                          className="counseling-dates"
                          {...this.props.CounselingDates}
-                         applicantBirthdate={this.props.applicantBirthdate}
                          onUpdate={this.updateCounselingDates}
                          onError={this.props.onError}
                          required={this.props.required}
@@ -282,7 +281,6 @@ export default class OrderedCounseling extends ValidationElement {
 OrderedCounseling.defaultProps = {
   ActionTaken: {},
   CompletedTreatment: {},
-  applicantBirthdate: {},
   addressBooks: {},
   dispatch: (action) => {},
   onError: (value, arr) => { return arr }

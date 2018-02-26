@@ -7,7 +7,7 @@ import { login, handleLoginSuccess } from '../../actions/AuthActions'
 import { push } from '../../middleware/history'
 import { Consent, Show } from '../../components/Form'
 
-class Login extends React.Component {
+export class Login extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -177,7 +177,6 @@ class Login extends React.Component {
                    name="user"
                    type="text"
                    placeholder={i18n.t('login.basic.username.placeholder')}
-                   autoFocus
                    value={this.state.username}
                    onChange={this.onUsernameChange} />
           </div>
@@ -287,7 +286,6 @@ Login.defaultProps = {
   username: '',
   password: '',
   showPassword: false
-  // location: () => { return window.location }
 }
 
 /**

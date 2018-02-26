@@ -69,6 +69,7 @@ export default class JobOffer extends ValidationElement {
       <div className="job-offer">
         <Field title={i18n.t('foreign.business.employment.heading.name')}
                optional={true}
+               filterErrors={Name.requiredErrorsOnly}
                scrollIntoView={this.props.scrollIntoView}>
           <Name name="Name"
                 className="employment-name"
@@ -96,7 +97,6 @@ export default class JobOffer extends ValidationElement {
                scrollIntoView={this.props.scrollIntoView}>
           <DateControl name="Date"
                        {...this.props.Date}
-                       applicantBirthdate={this.props.applicantBirthdate}
                        className="employment-date"
                        onUpdate={this.updateDate}
                        onError={this.props.onError}
@@ -121,7 +121,7 @@ export default class JobOffer extends ValidationElement {
         <Branch name="Accepted"
                 label={i18n.t('foreign.business.employment.heading.accepted')}
                 labelSize="h3"
-                className="employment-accepted"
+                className={`employment-accepted ${(this.props.Accepted || {}).value ? 'no-margin-bottom' : ''}`.trim()}
                 {...this.props.Accepted}
                 onUpdate={this.updateAccepted}
                 onError={this.props.onError}
@@ -129,7 +129,7 @@ export default class JobOffer extends ValidationElement {
                 scrollIntoView={this.props.scrollIntoView}
                 />
 
-        <Show when={this.props.Accepted.value === 'Yes' || this.props.Accepted.value === 'No'}>
+        <Show when={(this.props.Accepted || {}).value}>
           <Field title={i18n.t('foreign.business.employment.label.explanation')}
                  titleSize="label"
                  scrollIntoView={this.props.scrollIntoView}>
@@ -155,7 +155,6 @@ JobOffer.defaultProps = {
   Address: {},
   Accepted: {},
   Explanation: {},
-  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

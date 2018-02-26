@@ -176,7 +176,6 @@ a:focus {
 .header-container {
   // This is necessary to make sure the header is always on top of content
   .header {
-    position: relative;
     z-index: 1000;
     overflow: hidden;
   }
@@ -295,7 +294,7 @@ a:focus {
 }
 
 /* frame out the live form area for consistency */
-.eapp-core {
+.eapp-structure-right.eapp-core {
   padding-top: 5rem !important;
   padding-bottom: 4rem !important;
 }

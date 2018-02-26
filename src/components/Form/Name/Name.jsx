@@ -162,8 +162,7 @@ export default class Name extends ValidationElement {
     }))
 
     // Take the original and concatenate our new error values to it
-    this.props.onError(value, requiredErr.filter(err => err.code === 'name.required'))
-    return arr
+    return this.props.onError(value, arr)
   }
 
   filterErrors (errors) {
@@ -463,6 +462,10 @@ Name.defaultProps = {
   errorCodes: [],
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
+}
+
+Name.requiredErrorsOnly = (errors) => {
+  return errors.filter(err => err.code.indexOf('required') !== -1)
 }
 
 Name.errors = [

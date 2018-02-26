@@ -18,6 +18,7 @@ func defaultTemplate(templateName string, data map[string]interface{}) template.
 		"branch":               branch,
 		"branchToBool":         branchToBool,
 		"branchcollectionHas":  branchcollectionHas,
+		"branchAny":            branchAny,
 		"checkbox":             checkbox,
 		"checkboxHas":          checkboxHas,
 		"checkboxTrueFalse":    checkboxTrueFalse,
@@ -27,6 +28,7 @@ func defaultTemplate(templateName string, data map[string]interface{}) template.
 		"dateEstimated":        dateEstimated,
 		"daterange":            daterange,
 		"email":                email,
+		"hasRelativeType":      hasRelativeType,
 		"location":             location,
 		"locationIsPostOffice": locationIsPostOffice,
 		"monthYear":            monthYear,
@@ -39,6 +41,7 @@ func defaultTemplate(templateName string, data map[string]interface{}) template.
 		"telephoneNoNumber":    telephoneNoNumber,
 		"text":                 text,
 		"textarea":             textarea,
+		"treatment":            treatment,
 		"tmpl":                 defaultTemplate,
 	}
 	return xmlTemplateWithFuncs(templateName, data, fmap)
@@ -95,43 +98,44 @@ func branch(data map[string]interface{}) string {
 	return simpleValue(data)
 }
 
+func branchAny(branches ...map[string]interface{}) string {
+	for _, branch := range branches {
+		if simpleValue(branch) == "Yes" {
+			return "Yes"
+		}
+	}
+	return "No"
+}
+
 func branchcollectionHas(data map[string]interface{}) string {
 	props, ok := data["props"]
 	if !ok {
 		return "No"
 	}
 
-	list, ok := (props.(map[string]interface{}))["List"]
+	items, ok := (props.(map[string]interface{}))["items"].([]interface{})
 	if !ok {
 		return "No"
 	}
 
-	listProps, ok := (list.(map[string]interface{}))["props"]
-	if !ok {
+	if len(items) == 0 {
 		return "No"
 	}
 
-	listItems, ok := (listProps.(map[string]interface{}))["items"]
-	if !ok {
-		return "No"
+	for _, item := range items {
+		bi := item.(map[string]interface{})["Item"]
+		b, ok := (bi.(map[string]interface{}))["Has"]
+		if !ok {
+			return "No"
+		}
+
+		val := simpleValue(b.(map[string]interface{}))
+		if val == "Yes" {
+			return val
+		}
 	}
 
-	listItemsArray := listItems.([]map[string]interface{})
-	if len(listItemsArray) == 0 {
-		return "No"
-	}
-
-	firstItem, ok := (listItemsArray[0]["Item"])
-	if !ok {
-		return "No"
-	}
-
-	b, ok := (firstItem.(map[string]interface{}))["Has"]
-	if !ok {
-		return "No"
-	}
-
-	return simpleValue(b.(map[string]interface{}))
+	return "No"
 }
 
 func email(data map[string]interface{}) string {
@@ -177,6 +181,37 @@ func checkboxHas(data map[string]interface{}, target string) string {
 			}
 		}
 	}
+	return "False"
+}
+
+func hasRelativeType(data map[string]interface{}, target string) string {
+	props, ok := data["props"]
+	if !ok {
+		return "False"
+	}
+
+	items, ok := (props.(map[string]interface{}))["items"].([]interface{})
+	if !ok {
+		return "False"
+	}
+
+	if len(items) == 0 {
+		return "False"
+	}
+
+	for _, item := range items {
+		ci := item.(map[string]interface{})["Item"]
+		relation, ok := (ci.(map[string]interface{}))["Relation"]
+		if !ok {
+			return "False"
+		}
+
+		val := simpleValue(relation.(map[string]interface{}))
+		if val == target {
+			return "True"
+		}
+	}
+
 	return "False"
 }
 
@@ -389,4 +424,13 @@ func location(data map[string]interface{}) template.HTML {
 
 func countryValue(data map[string]interface{}) template.HTML {
 	return xmlTemplate("country.xml", data)
+}
+
+func treatment(data map[string]interface{}) template.HTML {
+	fmap := template.FuncMap{
+		"text":      text,
+		"telephone": telephone,
+		"location":  location,
+	}
+	return xmlTemplateWithFuncs("treatment.xml", data, fmap)
 }

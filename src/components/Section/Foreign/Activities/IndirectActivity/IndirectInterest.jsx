@@ -48,7 +48,7 @@ export default class IndirectInterest extends ValidationElement {
 
   updateInterestTypes (values) {
     let interestType = values.value
-    let selected = [...(this.props.InterestTypes || [])]
+    let selected = [...((this.props.InterestTypes || {}).values || [])]
     if (selected.includes(interestType)) {
       selected.splice(selected.indexOf(interestType), 1)
     } else {
@@ -56,7 +56,7 @@ export default class IndirectInterest extends ValidationElement {
     }
 
     this.update({
-      InterestTypes: selected
+      InterestTypes: { values: selected }
     })
   }
 
@@ -156,7 +156,7 @@ export default class IndirectInterest extends ValidationElement {
           <CheckboxGroup className="interest-types option-list"
                          onError={this.props.onError}
                          required={this.props.required}
-                         selectedValues={(this.props.InterestTypes || {}).value}>
+                         selectedValues={(this.props.InterestTypes || {}).values}>
             <Checkbox name="interest-type"
                       label={i18n.m(`foreign.activities.indirect.interest.label.interestTypes.yourself`)}
                       value="Yourself"
@@ -234,7 +234,6 @@ export default class IndirectInterest extends ValidationElement {
           <DateControl name="Acquired"
                        className="acquired"
                        {...this.props.Acquired}
-                       applicantBirthdate={this.props.applicantBirthdate}
                        label={i18n.t(`foreign.activities.indirect.interest.label.acquired`)}
                        onUpdate={this.updateAcquired}
                        onError={this.props.onError}
@@ -243,7 +242,6 @@ export default class IndirectInterest extends ValidationElement {
         </Field>
 
         <Field title={i18n.t(`foreign.activities.indirect.interest.heading.cost`)}
-               help={`foreign.activities.indirect.interest.help.cost`}
                scrollIntoView={this.props.scrollIntoView}>
           <Currency name="Cost"
                     className="cost"
@@ -278,7 +276,6 @@ export default class IndirectInterest extends ValidationElement {
         </Field>
 
         <Field title={i18n.t(`foreign.activities.indirect.interest.heading.value`)}
-               help={`foreign.activities.indirect.interest.help.value`}
                scrollIntoView={this.props.scrollIntoView}>
           <Currency name="Value"
                     className="value"
@@ -314,7 +311,6 @@ export default class IndirectInterest extends ValidationElement {
             <DateControl name="Sold"
                          className="sold"
                          {...this.props.Sold}
-                         applicantBirthdate={this.props.applicantBirthdate}
                          minDate={(this.props.Acquired || {}).date}
                          label={i18n.t(`foreign.activities.indirect.interest.label.sold`)}
                          onUpdate={this.updateSold}
@@ -325,7 +321,6 @@ export default class IndirectInterest extends ValidationElement {
         </Field>
 
         <Field title={i18n.t(`foreign.activities.indirect.interest.heading.explanation`)}
-               help={`foreign.activities.indirect.interest.help.explanation`}
                scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Explanation"
                     className="explanation"
@@ -354,7 +349,6 @@ export default class IndirectInterest extends ValidationElement {
 IndirectInterest.defaultProps = {
   SoldNotApplicable: { applicable: true },
   prefix: 'activities.indirect.interest',
-  applicantBirthdate: {},
   addressBooks: {},
   dispatch: (action) => {},
   onUpdate: (queue) => {},

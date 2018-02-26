@@ -6,7 +6,6 @@
     {{range $index, $item := .props.List.props.items}}
     {{with $Item := $item.Item}}
     <Incident ID="{{$index}}">
-      <!--Optional:-->
       <Actions>{{textarea $Item.Description}}</Actions>
       <Agency>{{text $Item.Agency}}</Agency>
       <Amount Estimated="{{checkboxTrueFalse $Item.AmountEstimated}}">{{number $Item.Amount}}</Amount>

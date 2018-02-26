@@ -3,15 +3,12 @@
   <CountriesVisited>
     <Answer>{{branch .props.HasForeignTravelOutside}}</Answer>
   </CountriesVisited>
-
-  <HaveAdditionalEntryAnswer>Yes</HaveAdditionalEntryAnswer>
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
   <SolelyForUSGovernment>
     <Answer>{{branch .props.HasForeignTravelOfficial}}</Answer>
     <Comment></Comment>
   </SolelyForUSGovernment>
-
   <SummaryComment></SummaryComment>
-
   {{range $index, $item := .props.List.props.items}}
   {{with $Item := $item.Item}}
   <Travels>
@@ -29,10 +26,7 @@
         <Explanation>{{text $Item.InterestExplanation}}</Explanation>
       </ContactedByPersonWithInterestInYourJob>
       {{country $Item.Country}}
-
-      <DateRange>
-        {{daterange $Item.Dates}}
-      </DateRange>
+      {{daterange $Item.Dates}}
       <Detained>
         <Answer>{{branch $Item.Questioned}}</Answer>
         <Explanation>{{text $Item.QuestionExplanation}}</Explanation>

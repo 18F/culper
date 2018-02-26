@@ -15,6 +15,7 @@
     <Citizenship>
       <ProofOfStatus>
         <Comment></Comment>
+        <DocumentExpiration Type="{{dateEstimated $doc.DocumentExpiration}}">{{date $doc.DocumentExpiration}}</DocumentExpiration>
         <DocumentNumber>{{text $doc.DocumentNumber}}</DocumentNumber>
         <Type>{{text $doc.DocumentType}}</Type>
         <TypeOtherExplanation>{{text $doc.OtherExplanation}}</TypeOtherExplanation>
@@ -28,27 +29,25 @@
     </CohabitationDate>
     <ContinueComment></ContinueComment>
     <CountriesOfCitizenship>
-      <Citizenship>
-        {{range $index, $country := $Item.Citizenship.value}}
+      {{range $cindex, $country := $Item.Citizenship.value}}
+      <Citizenship ID="{{$cindex}}">
         <Country>{{$country}}</Country>
-        {{end}}
       </Citizenship>
+      {{end}}
     </CountriesOfCitizenship>
     <EntryComment></EntryComment>
     <LegalName>
       {{name $Item.Name}}
     </LegalName>
     <OtherNamesUsed NotApplicable="{{if len $Item.OtherNames.props.items | eq 0}}True{{else}}False{{end}}">
-      {{range $index, $othername := $Item.OtherNames.props.items}}
+      {{range $oindex, $othername := $Item.OtherNames.props.items}}
       {{with $other := $othername.Item}}
-      <OtherName ID="{{$index}}">
+      <OtherName ID="{{$oindex}}">
         {{daterange $other.DatesUsed}}
         <LegalName>
           {{name $other.OtherName}}
         </LegalName>
-        <Maiden>
-          <Answer>{{branch $other.MaidenName}}</Answer>
-        </Maiden>
+        <Maiden>{{if branch $other.MaidenName | eq "Yes"}}True{{else}}False{{end}}</Maiden>
       </OtherName>
       {{end}}
       {{end}}

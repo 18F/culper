@@ -4,7 +4,6 @@
   <Comment></Comment>
   <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
 </ForeignJobOffer>
-
 <ForeignJobOffers>
   {{range $index, $item := .props.List.props.items}}
   {{with $Item := $item.Item}}
@@ -19,11 +18,9 @@
         {{location $Item.Address}}
       </Place>
     </Location>
-
     <OfferDate Type="{{dateEstimated $Item.Date}}">
       {{monthYear $Item.Date}}
     </OfferDate>
-
     <OfferorLegalName>
       {{name $Item.Name}}
     </OfferorLegalName>

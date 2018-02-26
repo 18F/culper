@@ -10,6 +10,7 @@ describe('Schema for financial taxes', () => {
         items: [{
           Item: {
             Agency: {},
+            AgencyExplanation: {},
             AgencyNotApplicable: {},
             Completed: {},
             CompletedNotApplicable: {},

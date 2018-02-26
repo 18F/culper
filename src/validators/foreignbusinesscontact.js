@@ -36,7 +36,7 @@ export class ContactValidator {
   }
 
   validName () {
-    return !!this.name && new NameValidator(this.name, null).isValid()
+    return !!this.name && new NameValidator(this.name).isValid()
   }
 
   validLocation () {
@@ -68,7 +68,7 @@ export class ContactValidator {
       return false
     }
 
-    const branchValidator = new BranchCollection(this.subsequentContacts.List)
+    const branchValidator = new BranchCollection(this.subsequentContacts)
     if (!branchValidator.validKeyValues()) {
       return false
     }

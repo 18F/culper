@@ -13,7 +13,7 @@ export default class OtherOffenseValidator {
     this.explanation = data.Explanation
     this.courtName = data.CourtName
     this.courtAddress = data.CourtAddress
-    this.chargeType = data.ChargeType
+    this.chargeType = (data.ChargeType || {}).value
     this.courtCharge = data.CourtCharge
     this.courtOutcome = data.CourtOutcome
     this.courtDate = data.CourtDate
@@ -73,7 +73,7 @@ export default class OtherOffenseValidator {
     }
 
     if (this.wasSentenced === 'Yes') {
-      return new SentenceValidator(this.sentence, null).isValid()
+      return new SentenceValidator(this.sentence).isValid()
     }
 
     return false

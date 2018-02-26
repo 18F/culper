@@ -5,7 +5,7 @@ describe('CoOwner validation', function () {
   it('should validate countries', function () {
     const tests = [
       {
-        props: {
+        data: {
           Countries: {
             value: ['Germany']
           }
@@ -13,7 +13,7 @@ describe('CoOwner validation', function () {
         expected: true
       },
       {
-        props: {
+        data: {
           Countries: {
             value: []
           }
@@ -21,7 +21,7 @@ describe('CoOwner validation', function () {
         expected: false
       },
       {
-        props: {
+        data: {
           Countries: {
             value: null
           }
@@ -30,14 +30,14 @@ describe('CoOwner validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new ForeignCoOwnerValidator(null, test.props).validCountries()).toBe(test.expected)
+      expect(new ForeignCoOwnerValidator(test.data).validCountries()).toBe(test.expected)
     })
   })
 
   it('should validate co-owner', function () {
     const tests = [
       {
-        props: {
+        data: {
           Name: {
             first: 'Foo',
             firstInitialOnly: false,
@@ -67,14 +67,14 @@ describe('CoOwner validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new ForeignCoOwnerValidator(null, test.props).isValid()).toBe(test.expected)
+      expect(new ForeignCoOwnerValidator(test.data).isValid()).toBe(test.expected)
     })
   })
 
   it('should validate list of co-owners', function () {
     const tests = [
       {
-        props: {
+        data: {
           List: {
             items: []
           }
@@ -82,7 +82,7 @@ describe('CoOwner validation', function () {
         expected: false
       },
       {
-        props: {
+        data: {
           List: {
             items: [{ Item: { Has: { value: 'No' } } }]
           }
@@ -90,7 +90,7 @@ describe('CoOwner validation', function () {
         expected: true
       },
       {
-        props: {
+        data: {
           List: {
             items: [
               {
@@ -98,31 +98,36 @@ describe('CoOwner validation', function () {
                   Has: {
                     value: 'Yes'
                   },
-                  CoOwner: {
-                    Name: {
-                      first: 'Foo',
-                      firstInitialOnly: false,
-                      middle: 'J',
-                      middleInitialOnly: true,
-                      noMiddleName: false,
-                      last: 'Bar',
-                      lastInitialOnly: false,
-                      suffix: 'Jr'
-                    },
-                    Address: {
-                      country: { value: 'United States' },
-                      street: '1234 Some Rd',
-                      city: 'Arlington',
-                      state: 'Virginia',
-                      zipcode: '22202',
-                      layout: Location.ADDRESS
-                    },
-                    Countries: {
-                      value: ['Germany']
-                    },
-                    RelationshipNature: {
-                      value: 'Some stuff'
-                    }
+                  Name: {
+                    first: 'Foo',
+                    firstInitialOnly: false,
+                    middle: 'J',
+                    middleInitialOnly: true,
+                    noMiddleName: false,
+                    last: 'Bar',
+                    lastInitialOnly: false,
+                    suffix: 'Jr'
+                  },
+                  Address: {
+                    country: { value: 'United States' },
+                    street: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'Virginia',
+                    zipcode: '22202',
+                    layout: Location.ADDRESS
+                  },
+                  Countries: {
+                    value: ['Germany']
+                  },
+                  RelationshipNature: {
+                    value: 'Some stuff'
+                  }
+                }
+              },
+              {
+                Item: {
+                  Has: {
+                    value: 'No'
                   }
                 }
               }
@@ -133,7 +138,7 @@ describe('CoOwner validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new ForeignCoOwnersValidator(null, test.props).isValid()).toBe(test.expected)
+      expect(new ForeignCoOwnersValidator(test.data).isValid()).toBe(test.expected)
     })
   })
 })

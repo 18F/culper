@@ -21,16 +21,22 @@ describe('ordered counseling component validation', function () {
       },
       {
         state: {
-          Seekers: ['Other'],
+          Seekers: { values: ['Other'] },
           OtherSeeker: {
             value: 'Other'
           },
           ActionTaken: { value: 'Yes' },
           CounselingDates: {
             from: {
+              month: '1',
+              day: '1',
+              year: '2010',
               date: new Date('1/1/2010')
             },
             to: {
+              month: '1',
+              day: '1',
+              year: '2012',
               date: new Date('1/1/2012')
             },
             present: false
@@ -106,9 +112,15 @@ describe('ordered counseling component validation', function () {
                   ActionTaken: { value: 'Yes' },
                   CounselingDates: {
                     from: {
+                      month: '1',
+                      day: '1',
+                      year: '2010',
                       date: new Date('1/1/2010')
                     },
                     to: {
+                      month: '1',
+                      day: '1',
+                      year: '2012',
                       date: new Date('1/1/2012')
                     },
                     present: false

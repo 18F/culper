@@ -64,7 +64,7 @@ describe('Police record validation', function () {
                   InvolvedViolence: { value: 'No' },
                   InvolvedFirearms: { value: 'Yes' },
                   InvolvedSubstances: { value: 'No' },
-                  ChargeType: 'Felony',
+                  ChargeType: { value: 'Felony' },
                   CourtAddress: {
                     country: { value: 'United States' },
                     street: '1234 Some Rd',
@@ -96,18 +96,30 @@ describe('Police record validation', function () {
                     Incarcerated: { value: 'Yes' },
                     IncarcerationDates: {
                       from: {
+                        month: '1',
+                        day: '1',
+                        year: '2000',
                         date: new Date('1/1/2000')
                       },
                       to: {
+                        month: '1',
+                        day: '1',
+                        year: '2004',
                         date: new Date('1/1/2004')
                       },
                       present: false
                     },
                     ProbationDates: {
                       from: {
+                        month: '1',
+                        day: '1',
+                        year: '2000',
                         date: new Date('1/1/2000')
                       },
                       to: {
+                        month: '1',
+                        day: '1',
+                        year: '2004',
                         date: new Date('1/1/2004')
                       },
                       present: false

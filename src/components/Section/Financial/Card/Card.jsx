@@ -93,7 +93,6 @@ export default class Card extends SubsectionElement {
             <CardItem name="Item"
                       bind={true}
                       dispatch={this.props.dispatch}
-                      applicantBirthdate={this.props.applicantBirthdate}
                       addressBooks={this.props.addressBooks}
                       required={this.props.required}
                       scrollIntoView={this.props.scrollIntoView}
@@ -112,10 +111,9 @@ Card.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'financial',
   subsection: 'card',
-  applicantBirthdate: {},
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('financial.card', props))
+  validator: (data) => {
+    return validate(schema('financial.card', data))
   },
   defaultState: true
 }

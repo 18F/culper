@@ -1,0 +1,29 @@
+<CivilCourtRecord Version="1" Type="Pooled">
+  <CivilCourtAction>
+    <Answer>{{branch .props.HasCourtActions}}</Answer>
+  </CivilCourtAction>
+  <Comment></Comment>
+  <CourtActions>
+    {{range $index, $item := .props.List.props.items}}
+    {{with $Item := $item.Item}}
+    <CourtAction ID="{{$index}}">
+      <Court>
+        <Address>
+          {{location $Item.CourtAddress}}
+        </Address>
+        <Name>{{text $Item.CourtName}}</Name>
+      </Court>
+      <Date Type="{{dateEstimated $Item.CivilActionDate}}">
+        {{monthYear $Item.CivilActionDate}}
+      </Date>
+      <EntryComment></EntryComment>
+      <Nature>{{text $Item.NatureOfAction}}</Nature>
+      <Parties>{{text $Item.PrincipalPartyNames}}</Parties>
+      <Result>{{text $Item.ResultsOfAction}}</Result>
+    </CourtAction>
+    {{end}}
+    {{end}}
+  </CourtActions>
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+  <SummaryComment></SummaryComment>
+</CivilCourtRecord>

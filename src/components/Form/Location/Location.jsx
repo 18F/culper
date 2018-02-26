@@ -38,6 +38,18 @@ export const country = (obj) => {
   return obj
 }
 
+export const countryValueResolver = (props) => {
+  if (typeof props.country === 'string') {
+    let valueArr = props.country ? [props.country] : []
+    let comments = props.countryComments || ''
+    return {
+      value: valueArr,
+      comments: comments
+    }
+  }
+  return props.country
+}
+
 export default class Location extends ValidationElement {
   constructor (props) {
     super(props)
@@ -80,6 +92,7 @@ export default class Location extends ValidationElement {
       state: this.props.state,
       county: this.props.county,
       country: this.props.country,
+      countryComments: this.props.countryComments,
       layout: this.props.layout,
       validated: this.props.validated,
       ...queue
@@ -314,6 +327,7 @@ export default class Location extends ValidationElement {
   updateCountry (values) {
     this.update({
       country: values,
+      countryComments: values.comments,
       validated: this.props.validated && countryString(values) === countryString(this.props.country)
     })
   }
@@ -339,6 +353,7 @@ export default class Location extends ValidationElement {
       zipcode: location.zipcode,
       county: location.county,
       country: location.country,
+      countryComments: location.countryComments,
       validated: false
     })
   }
@@ -456,7 +471,7 @@ export default class Location extends ValidationElement {
       case 'country':
         return (
           <Country name="country"
-                   {...this.props.country}
+                   {...countryValueResolver(this.props)}
                    className="country"
                    key={field}
                    label={this.props.countryLabel}

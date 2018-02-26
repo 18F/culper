@@ -5,9 +5,9 @@ import { validAccordion, validNotApplicable, validGenericTextfield, validDateFie
          BranchCollection } from './helpers'
 
 export default class ForeignContactsValidator {
-  constructor (state = {}, props = {}) {
-    this.hasForeignContacts = (state.HasForeignContacts || {}).value
-    this.list = state.List || {}
+  constructor (data = {}) {
+    this.hasForeignContacts = (data.HasForeignContacts || {}).value
+    this.list = data.List || {}
   }
 
   validList () {
@@ -26,37 +26,37 @@ export default class ForeignContactsValidator {
 }
 
 export class ForeignNationalValidator {
-  constructor (state = {}, props = {}) {
-    this.name = state.Name
-    this.nameNotApplicable = state.NameNotApplicable
-    this.nameExplanation = state.NameExplanation
-    this.firstContact = state.FirstContact
-    this.lastContact = state.LastContact
-    this.methods = state.Methods || []
-    this.methodsExplanation = state.MethodsExplanation
-    this.frequency = state.Frequency
-    this.frequencyExplanation = state.FrequencyExplanation
-    this.relationship = state.Relationship || []
-    this.relationshipExplanation = state.RelationshipExplanation
-    this.aliases = state.Aliases || {}
-    this.citizenship = state.Citizenship
-    this.birthdate = state.Birthdate
-    this.birthdateNotApplicable = state.BirthdateNotApplicable
-    this.birthplace = state.Birthplace
-    this.birthplaceNotApplicable = state.BirthplaceNotApplicable
-    this.address = state.Address
-    this.addressNotApplicable = state.AddressNotApplicable
-    this.employer = state.Employer
-    this.employerNotApplicable = state.EmployerNotApplicable
-    this.employerAddress = state.EmployerAddress
-    this.employerAddressNotApplicable = state.EmployerAddressNotApplicable
-    this.hasAffiliations = (state.HasAffiliations || {}).value
-    this.affiliations = state.Affiliations
+  constructor (data = {}) {
+    this.name = data.Name
+    this.nameNotApplicable = data.NameNotApplicable
+    this.nameExplanation = data.NameExplanation
+    this.firstContact = data.FirstContact
+    this.lastContact = data.LastContact
+    this.methods = (data.Methods || {}).values || []
+    this.methodsExplanation = data.MethodsExplanation
+    this.frequency = (data.Frequency || {}).value
+    this.frequencyExplanation = data.FrequencyExplanation
+    this.relationship = (data.Relationship || {}).values || []
+    this.relationshipExplanation = data.RelationshipExplanation
+    this.aliases = data.Aliases || {}
+    this.citizenship = data.Citizenship
+    this.birthdate = data.Birthdate
+    this.birthdateNotApplicable = data.BirthdateNotApplicable
+    this.birthplace = data.Birthplace
+    this.birthplaceNotApplicable = data.BirthplaceNotApplicable
+    this.address = data.Address
+    this.addressNotApplicable = data.AddressNotApplicable
+    this.employer = data.Employer
+    this.employerNotApplicable = data.EmployerNotApplicable
+    this.employerAddress = data.EmployerAddress
+    this.employerAddressNotApplicable = data.EmployerAddressNotApplicable
+    this.hasAffiliations = (data.HasAffiliations || {}).value
+    this.affiliations = data.Affiliations
   }
 
   validName () {
     return validNotApplicable(this.nameNotApplicable, () => {
-      return new NameValidator(this.name, null).isValid()
+      return new NameValidator(this.name).isValid()
     }, () => {
       return validGenericTextfield(this.nameExplanation)
     })
@@ -73,7 +73,7 @@ export class ForeignNationalValidator {
   validMethods () {
     const choices = ['In person', 'Telephone', 'Electronic', 'Written']
     const wanting = ['Other']
-    return !!this.methods && this.methods.length > 0 &&
+    return this.methods && this.methods.length > 0 &&
       this.methods.every(x => choices.includes(x) || wanting.includes(x)) &&
       (this.methods.some(x => wanting.includes(x)) ? validGenericTextfield(this.methodsExplanation) : true)
   }
@@ -103,7 +103,7 @@ export class ForeignNationalValidator {
     }
 
     return branchValidator.each(item => {
-      return new NameValidator(item.Alias, null).isValid()
+      return new NameValidator(item.Alias).isValid()
     })
   }
 
@@ -119,7 +119,7 @@ export class ForeignNationalValidator {
 
   validBirthplace () {
     return validNotApplicable(this.birthplaceNotApplicable, () => {
-      return !!this.birthplace && new BirthPlaceValidator(this.birthplace, null).isValid()
+      return !!this.birthplace && new BirthPlaceValidator(this.birthplace).isValid()
     })
   }
 

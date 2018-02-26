@@ -1,45 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>eApp Prototype</title>
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eApp Prototype</title>
 
-        <!-- Icons -->
-        <link href="/img/favicons/favicon.ico"     rel="shortcut icon"                type="image/ico">
-        <link href="/img/favicons/favicon.png"     rel="icon"                         type="image/png">
-        <link href="/img/favicons/favicon-192.png" rel="icon"                         type="image/png" sizes="192x192">
-        <link href="/img/favicons/favicon-57.png"  rel="apple-touch-icon-precomposed" type="image/png">
-        <link href="/img/favicons/favicon-72.png"  rel="apple-touch-icon-precomposed" type="image/png" sizes="72x72">
-        <link href="/img/favicons/favicon-114.png" rel="apple-touch-icon-precomposed" type="image/png" sizes="114x114">
-        <link href="/img/favicons/favicon-144.png" rel="apple-touch-icon-precomposed" type="image/png" sizes="144x144">
-        <link href="https://fonts.googleapis.com/css?family=Italianno" rel="stylesheet"/>
+    <!-- Icons -->
+    <link href="/img/favicons/favicon.ico"     rel="shortcut icon"                type="image/ico">
+    <link href="/img/favicons/favicon.png"     rel="icon"                         type="image/png">
+    <link href="/img/favicons/favicon-192.png" rel="icon"                         type="image/png" sizes="192x192">
+    <link href="/img/favicons/favicon-57.png"  rel="apple-touch-icon-precomposed" type="image/png">
+    <link href="/img/favicons/favicon-72.png"  rel="apple-touch-icon-precomposed" type="image/png" sizes="72x72">
+    <link href="/img/favicons/favicon-114.png" rel="apple-touch-icon-precomposed" type="image/png" sizes="114x114">
+    <link href="/img/favicons/favicon-144.png" rel="apple-touch-icon-precomposed" type="image/png" sizes="144x144">
 
-        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-            <script type="text/javascript" src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-            <script type="text/javascript" src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
-        <link rel="stylesheet" type="text/css" href="/css/eqip.css" />
-        <link rel="stylesheet" type="text/css" href="/css/eqip.print.css" media="print" />
-    </head>
-    <body>
-        <div id="app"></div>
-        <noscript>
-            <div class="usa-alert usa-alert-warning">
-                <div class="usa-alert-body">
-                    <h3 class="usa-alert-heading">Your browser does not support JavaScript.</h3>
-                    <p class="usa-alert-text">In order to view the full content of this site, please use a browser with JavaScript enabled. If you cannot, you may want to view the <a href="https://github.com/18F/fedramp-data/blob/master/data/data.json">data driving this marketplace.</a></p>
-                </div>
-            </div>
-        </noscript>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script type="text/javascript" src="/html5shiv.min.js"></script>
+      <script type="text/javascript" src="/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" type="text/css" href="/css/eqip.css" />
+  </head>
+  <body>
+    <table class="print-table">
+      <thead class="print-only">
+        <tr>
+          <th>
+            &nbsp;
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div id="app"></div>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot class="print-only">
+        <tr>
+          <th>
+            &nbsp;
+          </th>
+        </tr>
+      </tfoot>
+    </table>
+    <div class="print-header print-only">FOR OFFICIAL USE ONLY</div>
+    <div class="print-footer print-only">FOR OFFICIAL USE ONLY</div>
 
-        <!-- Include scripts at the bottom for performance gains in some browsers -->
-        <script type="text/javascript" language="javascript" src="/eqip.js"></script>
+    <noscript>
+      <div class="usa-alert usa-alert-warning">
+        <div class="usa-alert-body">
+          <h3 class="usa-alert-heading">Your browser does not support JavaScript.</h3>
+          <p class="usa-alert-text">In order to view the full content of this site, please use a browser with JavaScript enabled. If you cannot, you may want to view the <a href="https://github.com/18F/fedramp-data/blob/master/data/data.json">data driving this marketplace.</a></p>
+        </div>
+      </div>
+    </noscript>
 
-        <!-- We participate in the US government's analytics program. See the data at analytics.usa.gov. -->
-        <script type="text/javascript" language="javascript" src="https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js?agency=GSA" id="_fed_an_ua_tag"></script>
-    </body>
+    <!-- Include scripts at the bottom for performance gains in some browsers -->
+    <script type="text/javascript" language="javascript" src="/eqip.js"></script>
+
+    <!-- We participate in the US government's analytics program. See the data at analytics.usa.gov. -->
+    <script type="text/javascript" language="javascript" src="/dap.min.js" id="_fed_an_ua_tag"></script>
+  </body>
 </html>

@@ -41,10 +41,7 @@ export default class DrugUses extends SubsectionElement {
 
   summary (item, index) {
     const o = (item || {}).Item || {}
-    let drug = (o.DrugType || {}).DrugType
-    if (drug === 'Other') {
-      drug = ((o.DrugType || {}).DrugTypeOther || {}).value
-    }
+    const drug = (o.DrugType || {}).value
 
     return Summary({
       type: i18n.t('substance.drugs.use.collection.itemType'),
@@ -87,7 +84,6 @@ export default class DrugUses extends SubsectionElement {
                      scrollIntoView={this.props.scrollIntoView}>
             <DrugUse name="Item"
                      bind={true}
-                     applicantBirthdate={this.props.applicantBirthdate}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView} />
           </Accordion>
@@ -103,10 +99,9 @@ DrugUses.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'substance',
   subsection: 'drugs/usage',
-  applicantBirthdate: {},
   dispatch: () => {},
-  validator: (state, props) => {
-    return validate(schema('substance.drug.usage', props))
+  validator: (data) => {
+    return validate(schema('substance.drugs.usage', data))
   },
   scrollToBottom: ''
 }

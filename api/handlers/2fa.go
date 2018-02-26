@@ -113,6 +113,8 @@ func TwofactorVerifyHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, signedToken)
 }
 
+// TwofactorResetHandler allows for multiple factor authentication to be reset.
+// NOTE: This should not be enabled on production environments.
 func TwofactorResetHandler(w http.ResponseWriter, r *http.Request) {
 	log := logmsg.NewLoggerFromRequest(r)
 	if cf.TwofactorDisabled() {
@@ -155,6 +157,8 @@ func TwofactorResetHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, jwtToken)
 }
 
+// getAccountFromRequest extracts account information from the token returning an
+// error and/or the associated account.
 func getAccountFromRequest(r *http.Request) (*model.Account, error) {
 	log := logmsg.NewLoggerFromRequest(r)
 	log.Info(logmsg.RetrievingAccount)

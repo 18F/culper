@@ -3,6 +3,7 @@ import * as form from '../form'
 export const historyEmployment = (data = {}) => {
   const items = ((data.List || {}).items || []).map(x => {
     const xitem = x.Item || {}
+    const reprimand = (xitem.Reprimand || {})
     return {
       Item: {
         EmploymentActivity: form.employmentactivity(xitem.EmploymentActivity),
@@ -26,7 +27,7 @@ export const historyEmployment = (data = {}) => {
         Telephone: form.telephone(xitem.Telephone),
         PhysicalAddress: form.physicaladdress(xitem.PhysicalAddress),
         ReasonLeft: form.reasonleft(xitem.ReasonLeft),
-        Reprimand: form.collection(((xitem.Reprimand || {}).items || []).map(y => {
+        Reprimand: form.collection(((reprimand || {}).items || []).map(y => {
           const yitem = y.Item || {}
           return {
             Item: {
@@ -44,6 +45,7 @@ export const historyEmployment = (data = {}) => {
     }
   })
   return {
+    EmploymentRecord: form.branch(data.EmploymentRecord),
     List: form.collection(items, (data.List || {}).branch)
   }
 }
