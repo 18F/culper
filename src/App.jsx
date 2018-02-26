@@ -205,6 +205,7 @@ const validWebToken = () => {
     if (env.IsTest()) {
       console.log('Skip refreshing web tokens')
       resolve(api.getToken())
+      return
     }
 
     const token = api.getToken()

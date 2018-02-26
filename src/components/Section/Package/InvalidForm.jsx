@@ -39,8 +39,8 @@ export default class InvalidForm extends React.Component {
 
 export class InvalidSection extends React.Component {
   render () {
-    const incompleteSubsections = this.props.mark.subsections.map(subsection => {
-      return (<div key={subsection.url}>{ subsection.name }</div>)
+    const incompleteSubsections = this.props.mark.subsections.map((subsection, i) => {
+      return (<div key={`${subsection.url}-${i}`}>{ subsection.name }</div>)
     })
 
     return (

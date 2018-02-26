@@ -63,7 +63,7 @@ export class ToggleItem extends React.Component {
     const validIcon = `${this.props.section ? '' : 'mini'} eapp-status-icon-valid`.trim()
     const errorIcon = `${this.props.section ? '' : 'mini'} eapp-status-icon-error`.trim()
     return (
-      <div ref="item" key={this.props.title} className={`${this.props.section ? 'section' : 'subsection'} ${this.state.visible ? 'open' : 'closed'}`}>
+      <div ref="item" className={`${this.props.section ? 'section' : 'subsection'} ${this.state.visible ? 'open' : 'closed'}`}>
         <span className="section-title">
           <a href="javascript:;;;" title={this.props.title} className={this.props.className} onClick={this.toggle}>
             <Show when={this.props.number}>
