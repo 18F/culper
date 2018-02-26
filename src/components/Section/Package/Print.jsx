@@ -97,7 +97,7 @@ class Print extends SectionElement {
       }
 
       return (
-        <div className="section-print-container">
+        <div className="section-print-container" key={index}>
           <h3 className="section-print-header">{section.title}</h3>
           { sectionComponent }
         </div>
