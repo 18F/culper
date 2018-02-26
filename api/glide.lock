@@ -1,5 +1,9 @@
 hash: 385e526a462b58a8d3ab168cab4361e1246691ecd6614ca4c08644abce0ea50e
+<<<<<<< HEAD
 updated: 2018-02-23T13:54:15.401450978Z
+=======
+updated: 2018-02-22T19:24:12.093389205Z
+>>>>>>> master
 imports:
 - name: bitbucket.org/liamstask/goose
   version: 8488cc47d90c8a502b1c41a462a6d9cc8ee0a895
@@ -12,7 +16,11 @@ imports:
 - name: github.com/dgryski/dgoogauth
   version: fd153d5969d30bd701e10f3530228f001213047c
 - name: github.com/go-pg/pg
+<<<<<<< HEAD
   version: 62ce1a18dd39eab82c8a3fc1a5b076e59c0a284f
+=======
+  version: 09019f8cbd9623b942a6c823a6f824f92e1882e3
+>>>>>>> master
   subpackages:
   - internal
   - internal/parser

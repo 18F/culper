@@ -197,11 +197,31 @@ export default class EmploymentItem extends ValidationElement {
     return activity && !['Unemployment'].includes(activity)
   }
 
+  /**
+   * Only show the reasons for leaving if
+   *
+   *  - employed there within the last 7 years
+   *  - employed by:
+   *    - Active Military
+   *    - National Guard
+   *    - USPHS
+   *    - Other Federal
+   *    - State Government
+   *    - Federal Contractor
+   *    - Non-Government
+   *    - Self Employment
+   *    - Unemployment
+   *    - Other
+   */
   showLeaving () {
     const activity = (this.props.EmploymentActivity || {}).value
     const sevenYearsAgo = daysAgo(today, 365 * 7)
-    const from = buildDate((this.props.Dates || {}).from)
-    const to = buildDate((this.props.Dates || {}).to)
+    const now = new Date()
+    const dates = this.props.Dates || {}
+    const from = buildDate(dates.from)
+    const to = dates.present === true ? now : buildDate(dates.to)
+
+    // Check user is within seven years and part of approved employers.
     return (from && from >= sevenYearsAgo) || (to && to >= sevenYearsAgo) &&
       ['ActiveMilitary', 'NationalGuard', 'USPHS', 'OtherFederal', 'StateGovernment', 'FederalContractor', 'NonGovernment', 'SelfEmployment', 'Unemployment', 'Other'].includes(activity)
   }
@@ -436,24 +456,23 @@ export default class EmploymentItem extends ValidationElement {
           </div>
         </Show>
 
-        <Show when={this.showLeaving()}>
-          <div>
-            <ReasonLeft name="ReasonLeft"
-                        {...this.props.ReasonLeft}
-                        onUpdate={this.updateReasonLeft}
-                        onError={this.props.onError}
-                        required={this.props.required}
-                        scrollIntoView={this.props.scrollIntoView}
-                        />
+        <ReasonLeft name="ReasonLeft"
+                    {...this.props.ReasonLeft}
+                    Dates={this.props.Dates}
+                    onUpdate={this.updateReasonLeft}
+                    onError={this.props.onError}
+                    required={this.props.required}
+                    scrollIntoView={this.props.scrollIntoView}
+                    />
 
-            <Reprimand name="Reprimand"
-                       {...this.props.Reprimand}
-                       onUpdate={this.updateReprimand}
-                       onError={this.props.onError}
-                       required={this.props.required}
-                       scrollIntoView={this.props.scrollIntoView}
-                       />
-          </div>
+        <Show when={this.showLeaving()}>
+          <Reprimand name="Reprimand"
+                     {...this.props.Reprimand}
+                     onUpdate={this.updateReprimand}
+                     onError={this.props.onError}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}
+                     />
         </Show>
       </div>
     )
