@@ -92,8 +92,8 @@ deploy-configure:
 	aws configure set default.output text
 deploy-ecr:
 	echo "Deploying to ECR"
-	docker tag eapp_golang:smallest ${AWS_ECR_IMAGE}:${tag}
-	docker push ${AWS_ECR_IMAGE}:${tag}
+	docker tag eapp_golang:smallest ${AWS_ECR_IMAGE}:${version}
+	docker push ${AWS_ECR_IMAGE}:${version}
 deploy-s3:
 	echo "Deploying to S3"
 	aws s3 sync ${PWD}/dist s3://${AWS_S3_BUCKET} --delete
