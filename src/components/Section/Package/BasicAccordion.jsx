@@ -24,6 +24,7 @@ export default class BasicAccordion extends React.Component {
       const validIcon = item.valid() ? <span className="valid-icon"></span> : null
       return (
         <BasicAccordionItem
+          key={item.title}
           onClick={toggle}
           component={item.component()}
           title={item.title}
