@@ -43,7 +43,6 @@ export default class Treatment extends ValidationElement {
     return (
       <div className="treatment">
         <Field title={i18n.t(`psychological.${prefix}.heading.name`)}
-               help={`psychological.${prefix}.help.name`}
                adjustFor="labels"
                scrollIntoView={this.props.scrollIntoView}>
           <Text name="Name"
