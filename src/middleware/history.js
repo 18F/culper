@@ -90,7 +90,7 @@ export const clearErrorsMiddleware = store => next => action => {
 }
 
 export const saveSection = (application, section, subsection, dispatch, done) => {
-  const pending = sectionData(section, subsection, application)
+  const pending = sectionData(section, subsection, application) || []
   if (pending.length === 0) {
     if (done) {
       done()
