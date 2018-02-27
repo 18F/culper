@@ -45,7 +45,6 @@ class App extends React.Component {
 
   logout () {
     this.props.dispatch(logout())
-    window.location = window.location.pathname
   }
 
   showInstructions (event) {
@@ -206,6 +205,7 @@ const validWebToken = () => {
     if (env.IsTest()) {
       console.log('Skip refreshing web tokens')
       resolve(api.getToken())
+      return
     }
 
     const token = api.getToken()

@@ -54,6 +54,7 @@ class Env {
   }
 
   EndpointBasicAuthentication () { return '/auth/basic' }
+  EndpointLogout () { return '/me/logout' }
   EndpointRefresh () { return '/refresh' }
   EndpointSaml () { return `${this.ApiBaseURL()}/auth/saml` }
   EndpointTwoFactor (account) { return `/2fa/${account}` }

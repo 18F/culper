@@ -14,6 +14,7 @@ applications:
   env:
     PATH: /bin:/usr/bin:$HOME/bin
     GOVERSION: go1.9.4
+    GOLANG_ENV: development
     CORS_ALLOWED: https://eqip-prototype-dev.fr.cloud.gov
     API_REDIRECT: https://eqip-prototype-dev.fr.cloud.gov
     API_BASE_URL: https://eqip-prototype-api-dev.fr.cloud.gov

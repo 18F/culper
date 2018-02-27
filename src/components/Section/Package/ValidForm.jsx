@@ -104,7 +104,7 @@ export default class ValidForm extends ValidationElement {
                                   LegalName={self.props.LegalName}
                                   />
               <Show when={signaturePresent(self.props.AdditionalComments)}>
-                <button onClick={self.togglePanel(1)}>{i18n.t('application.validForm.next')}</button>
+                <button className="next-release" onClick={self.togglePanel(1)}>{i18n.t('application.validForm.next')}</button>
               </Show>
             </div>
           )
@@ -135,7 +135,7 @@ export default class ValidForm extends ValidationElement {
                 </div>
               </Show>
               <Show when={signaturePresent(self.props.General) && (self.props.hideHippa || (!self.hideHippa && signaturePresent(self.props.Medical)))}>
-                <button onClick={self.togglePanel(2)}>{i18n.t('application.validForm.next')}</button>
+                <button className="next-release" onClick={self.togglePanel(2)}>{i18n.t('application.validForm.next')}</button>
               </Show>
             </div>
           )
