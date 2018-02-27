@@ -1,5 +1,6 @@
 import React from 'react'
 import ValidationElement from '../ValidationElement'
+import { ariaLabel } from '../Generic'
 
 export default class Radio extends ValidationElement {
   constructor (props) {
@@ -215,6 +216,7 @@ export default class Radio extends ValidationElement {
   }
 
   render () {
+    const speech = this.props.ariaLabel ? this.props.ariaLabel : `${this.props.label} for ${ariaLabel(this.refs.radio)}`
     if (this.props.native) {
       return (
         <div className={this.divClass()}>
@@ -231,6 +233,7 @@ export default class Radio extends ValidationElement {
                  onFocus={this.handleFocus}
                  onBlur={this.handleBlur}
                  checked={this.state.checked}
+                 aria-label={speech}
                  />
           <label htmlFor={this.state.uid}>
             {this.props.label}
@@ -258,6 +261,7 @@ export default class Radio extends ValidationElement {
                  onFocus={this.handleFocus}
                  onBlur={this.handleBlur}
                  checked={this.state.checked}
+                 aria-label={speech}
                  />
           {this.props.children}
           <span>{this.props.label}</span>
@@ -276,6 +280,7 @@ Radio.defaultProps = {
   error: false,
   valid: false,
   native: false,
+  ariaLabel: '',
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }
