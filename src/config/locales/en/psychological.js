@@ -74,7 +74,7 @@ export const psychological = {
       },
       disposition: {
         title: 'Tell us the ruling regarding the court or agency\'s decision',
-        message: 'If you can’t remember your disposition a family member or the court/agency may be able to help you.',
+        message: 'If you can\’t remember your disposition a family member or the court/agency may be able to help you.',
         note: ''
       }
     },
