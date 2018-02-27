@@ -28,7 +28,7 @@ class Navigation extends React.Component {
     })
   }
 
-  componentDidUnmount () {
+  componentUnmount () {
     this.unlisten()
   }
 
@@ -106,6 +106,7 @@ class Navigation extends React.Component {
       if (subsection.subsections) {
         return (
           <ToggleItem title={subsection.name}
+                      key={subUrl}
                       section={false}
                       className={subClass}
                       visible={isActive(subUrl, pathname)}>
@@ -180,6 +181,7 @@ class Navigation extends React.Component {
               : this.state.selected === section.name
         return (
           <ToggleItem title={section.name}
+                      key={url}
                       section={true}
                       number={section.showNumber ? sectionNum : null}
                       className={sectionClass}

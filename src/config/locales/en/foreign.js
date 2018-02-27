@@ -1202,8 +1202,8 @@ export const foreign = {
       collection: {
         summary: {
           title: 'Summary of foreign business conferences',
-          item: 'Conference',
-          unknown: '*Provide details of conference below*'
+          item: 'Event',
+          unknown: '*Provide details of the event below*'
         },
         appendTitle: 'Have you in the last seven (7) years, attended or participated in any additional conferences, trade shows, seminars, or meetings outside the U.S.?',
         appendMessage: [
