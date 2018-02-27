@@ -2,25 +2,17 @@ import React from 'react'
 import { rangeSorter, julian, today, daysAgo } from '../dateranges'
 
 /**
- * Scan an array of items (of date ranges) and count those found within the
- * appropriate date range.
+ * Scan an array of items (of date ranges) and count those found with
+ * appropriate date(s).
  */
-const scan = (items, julianMax) => {
+const scan = (items) => {
   let counter = 0
 
   for (const dates of items.sort(rangeSorter)) {
-    if (dates.from && dates.from.date && dates.to && dates.to.date) {
-      const from = julian(dates.from.date)
-      const to = julian(dates.to.date)
-
-      if (from >= julianMax || to >= julianMax) {
-        counter++
-      }
+    if (dates.from && dates.from.date && (dates.present || (dates.to && dates.to.date))) {
+      counter++
     } else if (dates.date) {
-      const d = julian(dates.date)
-      if (d >= julianMax) {
-        counter++
-      }
+      counter++
     }
   }
 
@@ -32,12 +24,9 @@ export default class SummaryCounter extends React.Component {
    * Compile the ranges from the list of items
    */
   ranges () {
-    const total = parseInt(this.props.total || 10)
-    const julianMax = julian(daysAgo(today, 365 * total))
-
     return {
-      schools: scan(this.props.schools && this.props.schools() || [], julianMax),
-      diplomas: scan(this.props.diplomas && this.props.diplomas() || [], julianMax)
+      schools: scan(this.props.schools && this.props.schools() || []),
+      diplomas: scan(this.props.diplomas && this.props.diplomas() || [])
     }
   }
 
