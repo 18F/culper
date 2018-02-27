@@ -169,4 +169,4 @@ workflows:
           filters:
             branches:
               only:
-                - aws-deployment
+                - master
