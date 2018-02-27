@@ -68,7 +68,7 @@ export default class Modal extends React.Component {
   closer () {
     if (this.props.closeable) {
       return (
-        <a className="modal-close" href="javascript:;;" title="Click to close" onClick={this.dismiss}>
+        <a role="button" className="modal-close" href="javascript:;;" title="Click to close" onClick={this.dismiss}>
           <Svg src="/img/close-icon.svg" />
         </a>
       )
@@ -89,7 +89,7 @@ export default class Modal extends React.Component {
 
     // When there is nothing special do the status quo
     return (
-      <div className="modal" onClick={this.dismiss}>
+      <div className="modal" role="dialog" aria-hidden="false" onClick={this.dismiss}>
         <div className="modal-wrap">
           <div className={klass} onClick={this.doNothing}>
             {this.closer()}
