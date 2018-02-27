@@ -59,7 +59,7 @@ export function validateApplication (dispatch, application = {}) {
   navigationWalker((path, child) => {
     if (path.length && path[0].store && child.store && child.validator) {
       const sectionName = path[0].url
-      let data = application[path[0].store][child.store] || {}
+      let data = (application[path[0].store] || {})[child.store] || {}
 
       let subsectionName = child.url
       if (path.length > 1) {

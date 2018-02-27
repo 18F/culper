@@ -140,7 +140,6 @@ export default class Diagnoses extends SubsectionElement {
                     labelSize="h3"
                     className="didnotconsult"
                     {...this.props.DidNotConsult}
-                    help="psychological.diagnoses.help.didNotConsult"
                     onError={this.handleError}
                     required={this.props.required}
                     onUpdate={this.updateDidNotConsult}
@@ -152,7 +151,6 @@ export default class Diagnoses extends SubsectionElement {
                     labelSize="h3"
                     className="intreatment"
                     {...this.props.InTreatment}
-                    help="psychological.diagnoses.help.inTreatment"
                     warning={true}
                     onError={this.handleError}
                     required={this.props.required}

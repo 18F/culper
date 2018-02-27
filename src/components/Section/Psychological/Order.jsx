@@ -76,7 +76,6 @@ export default class Order extends ValidationElement {
         </Field>
 
         <Field title={i18n.t(`psychological.${prefix}.heading.courtName`)}
-               help={`psychological.${prefix}.help.courtName`}
                scrollIntoView={this.props.scrollIntoView}>
           <Text name="CourtName"
                 className="courtname"

@@ -52,7 +52,6 @@ export default class TerrorismAssociation extends SubsectionElement {
 
         <Show when={this.props.HasTerrorism.value === 'Yes'}>
           <Field title={i18n.t('legal.associations.terrorism.heading.explanation')}
-                  help="legal.associations.terrorism.help.explanation"
                   adjustFor="textarea"
                   scrollIntoView={this.props.scrollIntoView}>
             <Textarea name="Explanation"
