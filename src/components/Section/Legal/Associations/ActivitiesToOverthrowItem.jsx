@@ -46,6 +46,7 @@ export default class ActivitiesToOverthrowItem extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('legal.associations.activities.heading.dates')}
+               help="legal.associations.activities.help.dates"
                adjustFor="daterange"
                scrollIntoView={this.props.scrollIntoView}>
           <DateRange name="Dates"
