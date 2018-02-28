@@ -13,7 +13,7 @@ export class ErrorList extends React.Component {
    * @returns {NodeList} Structured errors.
    */
   errors () {
-    const messages = errorMessages()
+    const messages = this.props.errorMessages()
     if (!messages || messages.length === 0) {
       return null
     }
@@ -69,6 +69,10 @@ export class ErrorList extends React.Component {
   render () {
     return this.errors()
   }
+}
+
+ErrorList.defaultProps = {
+  errorMessages: () => { return errorMessages() }
 }
 
 /**
