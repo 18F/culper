@@ -5,7 +5,12 @@ import (
 	"encoding/gob"
 	"encoding/xml"
 	"io"
+	"text/template"
 )
+
+type RequestBody interface {
+	XML() string
+}
 
 // SOAPEnvelope contains the entire contents of a SOAP request
 // Based on schema defined in http://schemas.xmlsoap.org/soap/envelope/. The basic
@@ -37,6 +42,21 @@ func NewSOAPEnvelope(action Body, unsigned, signed string) SOAPEnvelope {
 	}
 }
 
+func NewSOAPEnvelopeTemplate(action RequestBody, unsigned, signed string) (io.Reader, error) {
+	tmpl := template.Must(template.New("envelope.xml").ParseFiles("envelope.xml"))
+	var output bytes.Buffer
+	err := tmpl.Execute(&output, struct {
+		RequestBody RequestBody
+		Signed      string
+		Unsigned    string
+	}{
+		RequestBody: action,
+		Signed:      signed,
+		Unsigned:    unsigned,
+	})
+	return bytes.NewReader(output.Bytes()), err
+}
+
 // XML generates the xml for this specific struct as a Reader
 func (s *SOAPEnvelope) XML() (io.Reader, error) {
 	var buf bytes.Buffer
@@ -65,7 +85,7 @@ type Authentication struct {
 
 // SOAPBody is a generic container for content
 type SOAPBody struct {
-	XMLName xml.Name `xml:"http://webservice.ws.eqip.opm.gov S:Body"`
+	XMLName xml.Name `xml:"xmlns:ns2:http://webservice.ws.eqip.opm.gov S:Body"`
 	Body    Body
 }
 
@@ -205,6 +225,16 @@ type Request struct {
 // <xs:complexType name="isAlive"><xs:sequence/>
 type IsAlive struct {
 	XMLName xml.Name `xml:"ns2:isAlive"`
+}
+
+func (a IsAlive) XML() string {
+	tmpl := template.Must(template.New("is-alive.xml").ParseFiles("is-alive.xml"))
+	var output bytes.Buffer
+	err := tmpl.Execute(&output, nil)
+	if err != nil {
+		return "Unable to parse template"
+	}
+	return output.String()
 }
 
 // CallerInfo represents the agency and agency user making the web service call.
