@@ -48,7 +48,7 @@ export default class DomesticViolence extends ValidationElement {
 
   render () {
     return (
-      <div className="section-content domestic-violence" {...super.dataAttributes(this.props)}>
+      <div className="domestic-violence">
         <Field title={i18n.t('legal.police.heading.domesticExplanation')}
                titleSize="h3"
                help="legal.police.help.domesticExplanation"
