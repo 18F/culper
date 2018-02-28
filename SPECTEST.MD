@@ -27,7 +27,12 @@ E.g. to run the test cases related to the Foreign Activities section:
 
 
 #### Check the test results
-The shell running the test case will output the test case results.  If there is an error during the test run, you can find a screen capture of the browser state when the error occurred by using the rollowing URL: 
+The shell running the test case will output the test case results:
+
+![testcomplete](https://user-images.githubusercontent.com/12962390/36751785-2036488c-1bcf-11e8-9da3-e6bfd99c1290.png)
+
+
+If there is an error during the test run, you can find a screen capture of the browser state when the error occurred by using the rollowing URL: 
 `file:///<<home>>/Code/go/src/github.com/18F/e-QIP-prototype/specs/screenshots/`  (where <<home>> is your home directory)
 
 
