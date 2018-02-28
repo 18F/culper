@@ -48,7 +48,7 @@ export class ErrorList extends React.Component {
     return (
       <div className="error-list">
         <div className="field">
-          <h2 className="title h2">{`Here is a list of the ${issues} ${issues > 1 ? 'questions' : 'question'} with issues`}</h2>
+          <h3 className="title h3">{`Here is a list of the ${issues} ${issues > 1 ? 'questions' : 'question'} with issues`}</h3>
           <div className="table expand">
             <span className="messages error-messages">
               <div className="message error">

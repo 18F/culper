@@ -394,28 +394,26 @@ class History extends SectionElement {
                         required={true}
                         />
 
-            <Show when={(this.props.Education.HasAttended || {}).value === 'Yes' || (this.props.Education.HasDegree10 || {}).value === 'Yes'}>
-              <hr className="section-divider" />
-              <span className="section-heading">
-                <Svg src="/img/school-cap.svg" />
-                {i18n.t('history.education.collection.caption')}
-              </span>
-              <Education {...this.props.Education}
-                         section="history"
-                         subsection="education"
-                         defaultState={false}
-                         realtime={true}
-                         sort={sort}
-                         totalYears={this.totalYears()}
-                         overrideInitial={this.overrideInitial}
-                         onUpdate={this.updateEducation}
-                         onError={this.handleError}
-                         dispatch={this.props.dispatch}
-                         addressBooks={this.props.AddressBooks}
-                         scrollIntoView={false}
-                         required={true}
-                         />
-            </Show>
+            <hr className="section-divider" />
+            <span className="section-heading">
+              <Svg src="/img/school-cap.svg" />
+              {i18n.t('history.education.collection.caption')}
+            </span>
+            <Education {...this.props.Education}
+                       section="history"
+                       subsection="education"
+                       defaultState={false}
+                       realtime={true}
+                       sort={sort}
+                       totalYears={this.totalYears()}
+                       overrideInitial={this.overrideInitial}
+                       onUpdate={this.updateEducation}
+                       onError={this.handleError}
+                       dispatch={this.props.dispatch}
+                       addressBooks={this.props.AddressBooks}
+                       scrollIntoView={false}
+                       required={true}
+                       />
 
             <hr className="section-divider" />
             <Federal name="federal"

@@ -64,7 +64,7 @@ class Identification extends SectionElement {
             <ContactInformation name="contacts"
                                 {...this.props.Contacts}
                                 section="identification"
-                                subsection="contact"
+                                subsection="contacts"
                                 minimumPhoneNumbers={1}
                                 minimumEmails={1}
                                 shouldFilterEmptyItems={true}
