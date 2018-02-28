@@ -1,6 +1,7 @@
 .datecontrol {
-  display: inline-block;
-  width: initial !important;
+  display: table !important;
+  width: auto !important;
+  min-width: 0;
 
   .month {
     width: 7rem;
