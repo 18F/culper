@@ -95,14 +95,14 @@ input[type='checkbox'], input[type='radio'] {
   input[type='email'],
   textarea,
   select {
-    background: url('../img/exclamation-point.svg') no-repeat right 0.7rem center / 1.7rem 1.7rem;
+    background: url('../img/exclamation-point.svg') no-repeat right 0.7rem center / 1.7rem 100%;
     box-shadow: none;
     border-width: 2px;
     width: 100%;
 
     &.usa-input-success {
       box-shadow: none;
-      background: url('../img/exclamation-point.svg') no-repeat right 0.7rem center / 1.7rem 1.7rem;
+      background: url('../img/exclamation-point.svg') no-repeat right 0.7rem center / 1.7rem 100%;
       border-width: 2px;
       width: 100%;
     }
@@ -126,7 +126,7 @@ select {
 
   &.usa-input-success {
     box-shadow: none;
-    background: url('../img/checkmark.svg') no-repeat right 0.7rem center / 1.7rem 1.7rem;
+    background: url('../img/checkmark.svg') no-repeat right 0.7rem center / 1.7rem 100%;
     border-width: 2px;
     width: 100%;
   }
