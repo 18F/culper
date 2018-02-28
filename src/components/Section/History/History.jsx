@@ -358,6 +358,8 @@ class History extends SectionElement {
               {i18n.t('history.residence.collection.caption')}
             </span>
             <Residence {...this.props.Residence}
+                       section="history"
+                       subsection="residence"
                        defaultState={false}
                        realtime={true}
                        sort={sort}
@@ -377,6 +379,8 @@ class History extends SectionElement {
               {i18n.t('history.employment.default.collection.caption')}
             </span>
             <Employment {...this.props.Employment}
+                        section="history"
+                        subsection="employment"
                         defaultState={false}
                         realtime={true}
                         sort={sort}
@@ -397,6 +401,8 @@ class History extends SectionElement {
                 {i18n.t('history.education.collection.caption')}
               </span>
               <Education {...this.props.Education}
+                         section="history"
+                         subsection="education"
                          defaultState={false}
                          realtime={true}
                          sort={sort}
@@ -414,6 +420,8 @@ class History extends SectionElement {
             <hr className="section-divider" />
             <Federal name="federal"
                      {...this.props.Federal}
+                     section="history"
+                     subsection="federal"
                      defaultState={false}
                      addressBooks={this.props.AddressBooks}
                      dispatch={this.props.dispatch}

@@ -64,7 +64,7 @@ export default class Taxes extends SubsectionElement {
 
   render () {
     return (
-      <div className="taxes">
+      <div className="section-content taxes" {...super.dataAttributes(this.props)}>
         <Branch name="has_taxes"
                 label={i18n.t('financial.taxes.title')}
                 labelSize="h2"

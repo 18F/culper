@@ -42,6 +42,8 @@ class Financial extends SectionElement {
                        nextLabel={i18n.t('substance.destination.intro')}>
             <Bankruptcies name="bankruptcy"
                           {...this.props.Bankruptcy}
+                          section="financial"
+                          subsection="bankruptcy"
                           addressBooks={this.props.AddressBooks}
                           dispatch={this.props.dispatch}
                           onUpdate={this.handleUpdate.bind(this, 'Bankruptcy')}
@@ -53,6 +55,8 @@ class Financial extends SectionElement {
             <hr className="section-divider" />
             <Gambling name="gambling"
                       {...this.props.Gambling}
+                      section="financial"
+                      subsection="gambling"
                       dispatch={this.props.dispatch}
                       onUpdate={this.handleUpdate.bind(this, 'Gambling')}
                       onError={this.handleError}
@@ -60,10 +64,11 @@ class Financial extends SectionElement {
                       required={true}
                       scrollIntoView={false}
                       />
-
             <hr className="section-divider" />
             <Taxes name="taxes"
                    {...this.props.Taxes}
+                   section="financial"
+                   subsection="taxes"
                    dispatch={this.props.dispatch}
                    onUpdate={this.handleUpdate.bind(this, 'Taxes')}
                    onError={this.handleError}
@@ -71,10 +76,11 @@ class Financial extends SectionElement {
                    required={true}
                    scrollIntoView={false}
                    />
-
             <hr className="section-divider" />
             <Card name="card"
                   {...this.props.Card}
+                  section="financial"
+                  subsection="card"
                   addressBooks={this.props.AddressBooks}
                   dispatch={this.props.dispatch}
                   onUpdate={this.handleUpdate.bind(this, 'Card')}
@@ -83,10 +89,11 @@ class Financial extends SectionElement {
                   required={true}
                   scrollIntoView={false}
                   />
-
             <hr className="section-divider" />
             <Credit name="credit"
                     {...this.props.Credit}
+                    section="financial"
+                    subsection="credit"
                     addressBooks={this.props.AddressBooks}
                     dispatch={this.props.dispatch}
                     onUpdate={this.handleUpdate.bind(this, 'Credit')}
@@ -95,10 +102,11 @@ class Financial extends SectionElement {
                     required={true}
                     scrollIntoView={false}
                     />
-
             <hr className="section-divider" />
             <Delinquent name="delinquent"
                         {...this.props.Delinquent}
+                        section="financial"
+                        subsection="delinquent"
                         addressBooks={this.props.AddressBooks}
                         dispatch={this.props.dispatch}
                         onUpdate={this.handleUpdate.bind(this, 'Delinquent')}
@@ -107,10 +115,11 @@ class Financial extends SectionElement {
                         required={true}
                         scrollIntoView={false}
                         />
-
             <hr className="section-divider" />
             <Nonpayment name="nonpayment"
                         {...this.props.Nonpayment}
+                        section="financial"
+                        subsection="nonpayment"
                         dispatch={this.props.dispatch}
                         onUpdate={this.handleUpdate.bind(this, 'Nonpayment')}
                         onError={this.handleError}

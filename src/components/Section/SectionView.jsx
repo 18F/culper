@@ -1,6 +1,6 @@
 import React from 'react'
 import { push } from '../../middleware/history'
-import { i18n } from '../../config'
+import { ErrorList } from '../ErrorList'
 
 export class SectionViews extends React.Component {
   handleTransition (routePath, event) {
@@ -67,7 +67,7 @@ export class SectionViews extends React.Component {
 
         let topButtons = null
         if (child.props.showTop && buttons) {
-          topButtons = <div className="top-btns"></div>
+          topButtons = <div className="top-btns"><ErrorList /></div>
         }
 
         let bottomButtons = null

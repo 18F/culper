@@ -39,12 +39,12 @@ class SubstanceUse extends SectionElement {
   componentWillReceiveProps (next) {
     // Redirect to first alcohol subsection if root subsection is accessed
     switch (next.subsection) {
-      case 'alcohol':
-        this.props.dispatch(push(`/form/substance/alcohol/negative`))
-        break
-      case 'drugs':
-        this.props.dispatch(push(`/form/substance/drugs/usage`))
-        break
+    case 'alcohol':
+      this.props.dispatch(push(`/form/substance/alcohol/negative`))
+      break
+    case 'drugs':
+      this.props.dispatch(push(`/form/substance/drugs/usage`))
+      break
     }
   }
 
@@ -274,9 +274,10 @@ class SubstanceUse extends SectionElement {
                        showTop={true}
                        next="legal/intro"
                        nextLabel={ i18n.t('legal.destination.intro') }>
-
             <DrugUses name="druguses"
                       {...this.props.DrugUses}
+                      section="substance"
+                      subsection="substance/drugs/usage"
                       defaultState={false}
                       dispatch={this.props.dispatch}
                       onError={this.handleError}
@@ -288,6 +289,8 @@ class SubstanceUse extends SectionElement {
             <hr className="section-divider" />
             <DrugInvolvements name="druginvolvements"
                               {...this.props.DrugInvolvements}
+                              section="substance"
+                              subsection="substance/drugs/purchase"
                               defaultState={false}
                               dispatch={this.props.dispatch}
                               onError={this.handleError}
@@ -299,6 +302,8 @@ class SubstanceUse extends SectionElement {
             <hr className="section-divider" />
             <DrugClearanceUses name="drugclearanceuses"
                                {...this.props.DrugClearanceUses}
+                               section="substance"
+                               subsection="substance/drugs/clearance"
                                defaultState={false}
                                dispatch={this.props.dispatch}
                                onError={this.handleError}
@@ -310,6 +315,8 @@ class SubstanceUse extends SectionElement {
             <hr className="section-divider" />
             <DrugPublicSafetyUses name="drugpublicsafety"
                                   {...this.props.DrugPublicSafetyUses}
+                                  section="substance"
+                                  subsection="substance/drugs/publicsafety"
                                   defaultState={false}
                                   dispatch={this.props.dispatch}
                                   onError={this.handleError}
@@ -321,6 +328,8 @@ class SubstanceUse extends SectionElement {
             <hr className="section-divider" />
             <PrescriptionUses name="prescriptionuses"
                               {...this.props.PrescriptionUses}
+                              section="substance"
+                              subsection="substance/drugs/misuse"
                               defaultState={false}
                               dispatch={this.props.dispatch}
                               onError={this.handleError}
@@ -332,6 +341,8 @@ class SubstanceUse extends SectionElement {
             <hr className="section-divider" />
             <OrderedTreatments name="ordered"
                                {...this.props.OrderedTreatments}
+                               section="substance"
+                               subsection="substance/drugs/ordered"
                                defaultState={false}
                                dispatch={this.props.dispatch}
                                onError={this.handleError}
@@ -343,6 +354,8 @@ class SubstanceUse extends SectionElement {
             <hr className="section-divider" />
             <VoluntaryTreatments name="voluntary"
                                  {...this.props.VoluntaryTreatments}
+                                 section="substance"
+                                 subsection="substance/drugs/voluntary"
                                  defaultState={false}
                                  dispatch={this.props.dispatch}
                                  onError={this.handleError}
@@ -355,6 +368,8 @@ class SubstanceUse extends SectionElement {
             <NegativeImpacts name="negative"
                              defaultState={false}
                              {...this.props.NegativeImpacts}
+                             section="substance"
+                             subsection="substance/alcohol/negative"
                              dispatch={this.props.dispatch}
                              onError={this.handleError}
                              onUpdate={this.updateNegativeImpacts}
@@ -366,6 +381,8 @@ class SubstanceUse extends SectionElement {
             <OrderedCounselings name="ordered"
                                 defaultState={false}
                                 {...this.props.OrderedCounselings}
+                                section="substance"
+                                subsection="substance/alcohol/ordered"
                                 dispatch={this.props.dispatch}
                                 onError={this.handleError}
                                 onUpdate={this.updateOrderedCounselings}
@@ -377,6 +394,8 @@ class SubstanceUse extends SectionElement {
             <VoluntaryCounselings name="voluntary"
                                   defaultState={false}
                                   {...this.props.VoluntaryCounselings}
+                                  section="substance"
+                                  subsection="substance/alcohol/voluntary"
                                   dispatch={this.props.dispatch}
                                   onError={this.handleError}
                                   onUpdate={this.updateVoluntaryCounselings}
@@ -388,6 +407,8 @@ class SubstanceUse extends SectionElement {
             <ReceivedCounselings name="additional"
                                  defaultState={false}
                                  {...this.props.ReceivedCounselings}
+                                 section="substance"
+                                 subsection="substance/alcohol/additional"
                                  dispatch={this.props.dispatch}
                                  onError={this.handleError}
                                  onUpdate={this.updateReceivedCounselings}

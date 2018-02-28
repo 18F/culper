@@ -53,7 +53,7 @@ export default class History extends SubsectionElement {
 
   render () {
     return (
-      <div className="investigations-history">
+      <div className="section-content investigations-history" {...super.dataAttributes(this.props)}>
         <Branch name="has_history"
                 label={i18n.t('legal.investigations.history.heading.title')}
                 labelSize="h2"

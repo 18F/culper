@@ -26,10 +26,10 @@ export default class ApplicantBirthPlace extends SubsectionElement {
   }
 
   render () {
-    const klass = `applicant-birthplace ${this.props.className || ''}`.trim()
+    const klass = `section-content applicant-birthplace ${this.props.className || ''}`.trim()
 
     return (
-      <div className={klass}>
+      <div className={klass} {...super.dataAttributes(this.props)}>
         <Field title={i18n.t('identification.birthplace.title')}
                titleSize="h2"
                scrollIntoView={this.props.scrollIntoView}>

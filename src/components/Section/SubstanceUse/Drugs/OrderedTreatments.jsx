@@ -55,7 +55,7 @@ export default class OrderedTreatments extends SubsectionElement {
 
   render () {
     return (
-      <div className="ordered-treatments">
+      <div className="section-content ordered-treatments" {...super.dataAttributes(this.props)}>
         <Branch name="TreatmentOrdered"
                 label={i18n.t('substance.drugs.heading.orderedTreatments')}
                 labelSize="h2"

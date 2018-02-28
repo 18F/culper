@@ -55,7 +55,7 @@ export default class Cohabitants extends SubsectionElement {
 
   render () {
     return (
-      <div className="cohabitants">
+      <div className="section-content cohabitants" {...super.dataAttributes(this.props)}>
         <Branch name="hasCohabitant"
                 label={i18n.t('relationships.cohabitant.heading.hasCohabitant')}
                 labelSize="h3"

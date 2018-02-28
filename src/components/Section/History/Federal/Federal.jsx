@@ -56,7 +56,7 @@ export default class Federal extends SubsectionElement {
 
   render () {
     return (
-      <div className="federal">
+      <div className="section-content federal" {...super.dataAttributes(this.props)}>
         <Branch name="has_federalservice"
                 label={i18n.t('history.federal.heading.branch')}
                 labelSize="h2"
