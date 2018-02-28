@@ -215,7 +215,7 @@ export default class Generic extends ValidationElement {
                type={this.props.type}
                placeholder={this.props.placeholder}
                aria-describedby={this.errorName()}
-               aria-label={this.props.label || ariaLabel(this.refs.input)}
+               aria-label={this.props.ariaLabel || this.props.label || ariaLabel(this.refs.input)}
                disabled={this.props.disabled}
                maxLength={this.props.maxlength}
                pattern={this.props.pattern}
@@ -252,6 +252,7 @@ Generic.defaultProps = {
   autocapitalize: true,
   autocorrect: true,
   autocomplete: true,
+  ariaLabel: '',
   tabNext: () => {},
   tabBack: () => {},
   onError: (value, arr) => { return arr }

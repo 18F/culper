@@ -465,5 +465,5 @@ export const sectionData = (section, subsection, application = {}) => {
     ]
   }
 
-  return null
+  return []
 }

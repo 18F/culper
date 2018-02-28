@@ -40,6 +40,20 @@ class SavedIndicator extends React.Component {
     const subsection = this.props.section.subsection
     const self = this
 
+    // So, this is fun, it was determined the save button is not required on
+    // `form/package/print` but should still be available on any other section
+    // found in "Review and submit". The crux is saving within this section does
+    // nothing since it was declared signatures should **only** be saved when
+    // the form is **submitted**.
+    //
+    // So what we have here is a reset of the elapsed time when the save button
+    // is clicked within the "Review and submit" section to provide comfort to
+    // the end user.
+    if (this.isRoute('form/package')) {
+      self.setState({elapsed: 0})
+      return
+    }
+
     saveSection(application, section, subsection, this.props.dispatch, () => {
       self.setState({animate: false})
     })
@@ -99,7 +113,11 @@ class SavedIndicator extends React.Component {
   }
 
   allowed () {
-    return (window.location.pathname || '').indexOf('form/package') === -1
+    return !this.isRoute('form/package/print')
+  }
+
+  isRoute(route) {
+    return (window.location.pathname || '').indexOf(route) !== -1
   }
 
   render () {

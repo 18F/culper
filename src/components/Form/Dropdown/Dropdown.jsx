@@ -327,7 +327,7 @@ export default class Dropdown extends ValidationElement {
       onCopy: this.props.clipboard ? this.props.onCopy : this.disallowClipboard,
       onCut: this.props.clipboard ? this.props.onCut : this.disallowClipboard,
       onPaste: this.props.clipboard ? this.props.onPaste : this.disallowClipboard,
-      'aria-label': this.props.label || ariaLabel(this.refs.autosuggest),
+      'aria-label': this.props.ariaLabel || this.props.label || ariaLabel(this.refs.autosuggest),
       'aria-describedby': this.errorName()
     }
 

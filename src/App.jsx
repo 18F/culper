@@ -103,8 +103,7 @@ class App extends React.Component {
                       <div className="usa-grid usa-banner-inner">
                         <img src="/img/favicons/favicon-57.png" alt="U.S. flag" />
                         <p>{i18n.t('app.banner.title')}</p>
-                        <button className="usa-accordion-button usa-banner-button"
-                          aria-expanded="false" aria-controls="gov-banner">
+                        <button className="usa-accordion-button usa-banner-button" aria-expanded="false" aria-controls="gov-banner">
                           <span className="usa-banner-button-text">{i18n.t('app.banner.button')}</span>
                         </button>
                       </div>

@@ -1,5 +1,13 @@
 MAKEFLAGS += --silent
 
+#
+# Variables
+#
+release := $(shell git rev-list --tags --max-count=1)
+version := $(shell git describe --tags $(release))
+hash    := $(shell git rev-parse --short HEAD)
+tag     := "$(version)-$(hash)"
+
 all: clean setup test build
 
 #
@@ -57,12 +65,38 @@ package-clean:
 	docker rmi -f eapp_golang:smallest
 package-static:
 	docker run --rm \
-               -v ~/src/github.com/18F/e-QIP-prototype:/go/src/github.com/18F/e-QIP-prototype \
+               -v ${PWD}:/go/src/github.com/18F/e-QIP-prototype \
                -w /go/src/github.com/18F/e-QIP-prototype/api \
                -e "CGO_ENABLED=0" \
                golang:latest go build -ldflags '-w -extldflags "-static"' -o api
 package-image:
 	docker build -f Dockerfile.eapp_golang . -t eapp_golang:smallest
+
+#
+# Deploy
+#
+deploy: deploy-check deploy-configure deploy-ecr deploy-s3
+deploy-check:
+	echo "Checking deployment prerequisites"
+	if test -z "$$AWS_DEFAULT_REGION"; then echo "AWS_DEFAULT_REGION is missing"; exit 1; fi;
+	if test -z "$$AWS_ECR_IMAGE"; then echo "AWS_ECR_IMAGE is missing"; exit 1; fi;
+	if test -z "$$AWS_S3_BUCKET"; then echo "AWS_S3_BUCKET is missing"; exit 1; fi;
+	if test -z "$$AWS_ACCESS_KEY_ID"; then echo "AWS_ACCESS_KEY_ID is missing"; exit 1; fi;
+	if test -z "$$AWS_SECRET_ACCESS_KEY"; then echo "AWS_SECRET_ACCESS_KEY is missing"; exit 1; fi;
+deploy-configure:
+	echo "Configuring AWS CLI"
+	aws --version
+	aws configure set default.aws_access_key_id ${AWS_ACCESS_KEY_ID}
+	aws configure set default.aws_secret_access_key ${AWS_SECRET_ACCESS_KEY}
+	aws configure set default.region ${AWS_DEFAULT_REGION}
+	aws configure set default.output text
+deploy-ecr:
+	echo "Deploying to ECR"
+	docker tag eapp_golang:smallest ${AWS_ECR_IMAGE}:${version}
+	docker push ${AWS_ECR_IMAGE}:${version}
+deploy-s3:
+	echo "Deploying to S3"
+	aws s3 sync ${PWD}/dist s3://${AWS_S3_BUCKET} --delete
 
 #
 # Suites
@@ -83,3 +117,5 @@ run:
 	docker-compose up web api db
 docs:
 	docker-compose up docs
+tag:
+	echo $(tag)
