@@ -1,9 +1,17 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { i18n, navigationWalker } from '../../config'
+import { navigationWalker } from '../../config'
 import { closest } from '../Form/Generic'
 
+/**
+ * The error list component.
+ * @extends React.Component
+ */
 export class ErrorList extends React.Component {
+  /**
+   * Errors in a structured format.
+   * @returns {NodeList} Structured errors.
+   */
   errors () {
     const messages = errorMessages()
     if (!messages || messages.length === 0) {
@@ -12,12 +20,15 @@ export class ErrorList extends React.Component {
 
     let issues = 0
     const sectionErrors = []
+
+    // Loop through each `key` which is essentially the related title
+    // of the field with an error.
     for (const key in messages) {
       const title = messages[key][0].title
       const uuid = messages[key][0].uuid
       const bullets = messages[key].map((msg, i, arr) => {
         issues++
-        return <li key={i}><a href={`#${msg.id}`}>{msg.message}</a></li>
+        return <li key={i}><a href={`#${msg.id}`} title={msg.message}>{msg.message}</a></li>
       })
       sectionErrors.push(
         <span key={title}>
@@ -27,34 +38,44 @@ export class ErrorList extends React.Component {
       )
     }
 
+    // If there were no issues counted then return nothing.
     if (issues === 0) {
       return null
     }
 
+    // Wrap in a little bit more structure to provide a headline with
+    // additional context of how many issues were found.
     return (
-      <div className="field">
-        <h2 class="title h2">{`Here is a list of the ${issues} ${issues > 1 ? 'questions' : 'question'} with issues`}</h2>
-        <div className="table expand">
-          <span className="messages error-messages">
-            <div className="message error">
-              <i className="fa fa-exclamation"></i>
-              {sectionErrors}
-            </div>
-          </span>
+      <div className="error-list">
+        <div className="field">
+          <h2 className="title h2">{`Here is a list of the ${issues} ${issues > 1 ? 'questions' : 'question'} with issues`}</h2>
+          <div className="table expand">
+            <span className="messages error-messages">
+              <div className="message error">
+                <i className="fa fa-exclamation"></i>
+                {sectionErrors}
+              </div>
+            </span>
+          </div>
         </div>
       </div>
     )
   }
 
+  /**
+   * Renders the error list.
+   * @returns {NodeList} The rendered component.
+   */
   render () {
-    return (
-      <div className="error-list">
-        {this.errors()}
-      </div>
-    )
+    return this.errors()
   }
 }
 
+/**
+ * Will map the current state of the application with the props of the component.
+ * @param {object} state - The application's state.
+ * @returns {object} An object with section, app, and errors returned.
+ */
 function mapStateToProps (state) {
   const section = state.section || {}
   const app = state.application || {}
@@ -68,6 +89,11 @@ function mapStateToProps (state) {
 
 export default connect(mapStateToProps)(ErrorList)
 
+/**
+ * Find the closest section title to the error.
+ * @param {Node} el - The node to use as a reference point.
+ * @returns {string} The section title.
+ */
 const sectionTitle = (el) => {
   const content = closest(el, '.section-content')
   if (!content) {
@@ -98,6 +124,11 @@ const sectionTitle = (el) => {
   return header.textContent.trim()
 }
 
+/**
+ * Find the accordion summary.
+ * @param {Node} el - The node to use as a reference point.
+ * @returns {string} The accordion summary.
+ */
 const accordionSummary = (el) => {
   const accordionItem = closest(el, '.item')
   if (!accordionItem) {
@@ -117,6 +148,20 @@ const accordionSummary = (el) => {
   return summaryIndex.textContent.replace(':', '').trim()
 }
 
+/**
+ * Returns the field element by identifier.
+ * @param {string} id - The unique identifier.
+ * @returns {Node} The field element.
+ */
+const field = (id) => {
+  return document.querySelector(`.field[data-uuid="${id}"]`)
+}
+
+/**
+ * Find the field title.
+ * @param {Node} el - The node to use as a reference point.
+ * @returns {string} The field title.
+ */
 const fieldTitle = (id) => {
   const field = document.querySelector(`.field[data-uuid="${id}"]`)
   if (!field) {
@@ -129,6 +174,11 @@ const fieldTitle = (id) => {
   return title.textContent.trim()
 }
 
+/**
+ * Find the field unique identifier.
+ * @param {Node} el - The node to use as a reference point.
+ * @returns {string} The unique identifier.
+ */
 const fieldId = (el) => {
   const field = closest(el, '.field')
   if (!field) {
@@ -137,10 +187,21 @@ const fieldId = (el) => {
   return field.dataset.uuid || null
 }
 
+/**
+ * Determines if the element is within an accordion element.
+ * @param {Node} el - The node to use as a reference point.
+ * @returns {bool} True if found in an accordion, and false otherwise.
+ */
 const inAccordion = (el) => {
   return closest(el, '.accordion') !== null
 }
 
+/**
+ * Group an array by a specific property and return as a hash.
+ * @param {array} arr - The original array.
+ * @param {function} getter - A function to specify how to signify what is a key.
+ * @returns {object} A hash grouped by the given getter.
+ */
 const groupBy = (arr, getter) => {
   let map = {}
   arr.forEach(item => {
@@ -153,6 +214,10 @@ const groupBy = (arr, getter) => {
   return map
 }
 
+/**
+ * Find all error messages in the document.
+ * @returns {object} A hash grouped by title with a value of an array of errors.
+ */
 const errorMessages = () => {
   const elements = document.querySelectorAll(':not(.error-list) .field .messages .message.error')
   const messages = []

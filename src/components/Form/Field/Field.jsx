@@ -319,7 +319,7 @@ export default class Field extends ValidationElement {
 
     return (
       <div className={klass} data-uuid={this.state.uuid} ref="field" aria-label={this.props.title}>
-        <a id={this.state.uuid} name={this.state.uuid} />
+        <a id={this.state.uuid} name={this.state.uuid} className="anchor" aria-hidden="true" />
         {this.title(required)}
         <span className="icon">
           {this.icon()}

@@ -1,65 +1,42 @@
-// import React from 'react'
-// import MockAdapter from 'axios-mock-adapter'
-// import configureMockStore from 'redux-mock-store'
-// import thunk from 'redux-thunk'
-// import { Provider } from 'react-redux'
-// import { mount } from 'enzyme'
-// import SavedIndicator from './SavedIndicator'
+import React from 'react'
+import MockAdapter from 'axios-mock-adapter'
+import configureMockStore from 'redux-mock-store'
+import thunk from 'redux-thunk'
+import { Provider } from 'react-redux'
+import { mount } from 'enzyme'
+import ErrorList from './ErrorList'
 
-// describe('The saved indicator component', () => {
-//   // Setup
-//   window.token = 'fake-token'
-//   const middlewares = [ thunk ]
-//   const mockStore = configureMockStore(middlewares)
+describe('The error list component', () => {
+  // Setup
+  const middlewares = [ thunk ]
+  const mockStore = configureMockStore(middlewares)
 
-//   it('hidden when not authenticated', () => {
-//     window.token = ''
-//     const store = mockStore({ authentication: [] })
-//     const component = mount(<Provider store={store}><SavedIndicator /></Provider>)
-//     expect(component.find('button').length).toEqual(0)
-//     window.token = 'fake-token'
-//   })
+  it('renders nothing if no errors are present', () => {
+    const store = mockStore({})
+    const component = mount(<Provider store={store}><ErrorList /></Provider>)
+    expect(component.find('.error-list').length).toBe(0)
+  })
 
-//   it('visible when authenticated', () => {
-//     const store = mockStore({ authentication: { authenticated: true, twofactor: true } })
-//     const component = mount(<Provider store={store}><SavedIndicator /></Provider>)
-//     expect(component.find('button').length).toEqual(1)
-//   })
-
-//   it('displays in seconds if under a minute', () => {
-//     const elapsed = 10 * 1000
-//     const store = mockStore({ authentication: { authenticated: true, twofactor: true } })
-//     const component = mount(<Provider store={store}><SavedIndicator elapsed={elapsed} /></Provider>)
-//     expect(component.find('.time').text()).toContain('sec')
-//   })
-
-//   it('displays in minutes if under an hour', () => {
-//     const elapsed = 60 * 1000
-//     const store = mockStore({ authentication: { authenticated: true, twofactor: true } })
-//     const component = mount(<Provider store={store}><SavedIndicator elapsed={elapsed} /></Provider>)
-//     expect(component.find('.time').text()).toContain('min')
-//   })
-
-//   it('displays in hours if under a day', () => {
-//     const elapsed = 60 * 60 * 1000
-//     const store = mockStore({ authentication: { authenticated: true, twofactor: true } })
-//     const component = mount(<Provider store={store}><SavedIndicator elapsed={elapsed} /></Provider>)
-//     expect(component.find('.time').text()).toContain('hour')
-//   })
-
-//   it('displays in days if greater than 24 hours', () => {
-//     const elapsed = 24 * 60 * 60 * 1000
-//     const store = mockStore({ authentication: { authenticated: true, twofactor: true } })
-//     const component = mount(<Provider store={store}><SavedIndicator elapsed={elapsed} /></Provider>)
-//     expect(component.find('.time').text()).toContain('day')
-//   })
-
-//   it('mouse in and out', () => {
-//     const store = mockStore({ authentication: { authenticated: true, twofactor: true } })
-//     const component = mount(<Provider store={store}><SavedIndicator interval={1} /></Provider>)
-//     component.find('button').simulate('mouseenter')
-//     expect(component.find('SavedIndicator').getNode().state.hover).toBe(true)
-//     component.find('button').simulate('mouseleave')
-//     expect(component.find('SavedIndicator').getNode().state.hover).toBe(false)
-//   })
-// })
+  // it('renders list of errors', () => {
+  //   const faked = (
+  //     <div className="section-content" data-section="identification" data-subsection="name">
+  //       <div className="field" data-uuid="1">
+  //         <a id="1" name="1" aria-hidden="true" />
+  //         <h2 className="title h2">Test field</h2>
+  //         <div className="table expand">
+  //           <span className="messages error-messages">
+  //             <div className="message error">
+  //               <i className="fa fa-exclamation"></i>
+  //             </div>
+  //           </span>
+  //         </div>
+  //       </div>
+  //     </div>
+  //   )
+  //   const store = mockStore({})
+  //   const component = mount(<Provider store={store}><div><ErrorList />{faked}</div></Provider>)
+  //   expect(component.find('.error-list').length).toBe(1)
+  //   expect(component.find('.error-list .field .title').length).toBe(1)
+  //   expect(component.find('.error-list .field .error-messages').length).toBe(1)
+  // })
+})
