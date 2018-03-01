@@ -53,7 +53,7 @@ export default class Voting extends SubsectionElement {
 
   render () {
     return (
-      <div className="foreign-business-voting">
+      <div className="section-content foreign-business-voting" {...super.dataAttributes(this.props)}>
         <Branch name="has_foreign_voting"
                 label={i18n.t('foreign.business.voting.heading.title')}
                 labelSize="h2"

@@ -62,7 +62,7 @@ export default class Credit extends SubsectionElement {
 
   render () {
     return (
-      <div className="credit-counseling">
+      <div className="section-content credit-counseling" {...super.dataAttributes(this.props)}>
         <Branch name="has_credit"
                 label={i18n.t('financial.credit.title')}
                 labelSize="h2"

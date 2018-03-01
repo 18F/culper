@@ -53,7 +53,7 @@ export default class Manipulating extends SubsectionElement {
 
   render () {
     return (
-      <div className="legal-technology-manipulating">
+      <div className="section-content legal-technology-manipulating" {...super.dataAttributes(this.props)}>
         <Branch name="has_manipulating"
                 label={i18n.t('legal.technology.manipulating.heading.title')}
                 labelSize="h2"

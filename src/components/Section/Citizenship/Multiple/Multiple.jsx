@@ -53,7 +53,7 @@ export default class Multiple extends SubsectionElement {
 
   render () {
     return (
-      <div className="multiple">
+      <div className="section-content multiple" {...super.dataAttributes(this.props)}>
         <Field title={i18n.t('citizenship.multiple.heading.title')}
                titleSize="h2"
                optional={true}

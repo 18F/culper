@@ -52,7 +52,7 @@ export default class Support extends SubsectionElement {
 
   render () {
     return (
-      <div className="foreign-activities-support">
+      <div className="section-content foreign-activities-support" {...super.dataAttributes(this.props)}>
         <Branch name="has_foreign_support"
                 label={i18n.t('foreign.activities.support.heading.title')}
                 labelSize="h2"

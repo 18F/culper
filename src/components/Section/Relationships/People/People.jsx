@@ -139,7 +139,7 @@ export default class People extends SubsectionElement {
 
   render () {
     return (
-      <div className="people">
+      <div className="section-content people" {...super.dataAttributes(this.props)}>
         <Field title={i18n.t('relationships.people.heading.title')}
                titleSize="h2"
                optional={true}

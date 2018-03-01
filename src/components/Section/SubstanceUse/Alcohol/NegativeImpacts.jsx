@@ -54,7 +54,7 @@ export default class NegativeImpacts extends SubsectionElement {
 
   render () {
     return (
-      <div className="negative-impacts">
+      <div className="section-content negative-impacts" {...super.dataAttributes(this.props)}>
         <Branch name="has_impacts"
                 label={i18n.t('substance.alcohol.heading.negativeImpact')}
                 labelSize="h2"
