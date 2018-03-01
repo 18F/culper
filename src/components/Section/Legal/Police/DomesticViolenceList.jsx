@@ -29,7 +29,7 @@ export default class DomesticViolenceList extends SubsectionElement {
 
   render () {
     return (
-      <div className="domestic-violence-list">
+      <div className="section-content domestic-violence-list" {...super.dataAttributes(this.props)}>
         <BranchCollection label={i18n.t('legal.police.label.domesticViolence')}
                           labelSize="h2"
                           className="has-order"

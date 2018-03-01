@@ -17,6 +17,7 @@ export const foreignActivitiesIndirect = (data = {}) => {
         Value: form.number(xitem.Value),
         ValueEstimated: form.checkbox(xitem.ValueEstimated),
         Sold: form.datecontrol(xitem.Sold),
+        SoldNotApplicable: form.notapplicable(xitem.SoldNotApplicable),
         Explanation: form.textarea(xitem.Explanation),
         CoOwners: form.coowners(xitem.CoOwners)
       }

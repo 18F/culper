@@ -319,6 +319,39 @@ func Save(w http.ResponseWriter, r *http.Request) {
 	EncodeErrJSON(w, nil)
 }
 
+// Logout will end the user session.
+func Logout(w http.ResponseWriter, r *http.Request) {
+	log := logmsg.NewLoggerFromRequest(r)
+	account := &model.Account{}
+	account.WithContext(db.NewDB())
+
+	// Valid token and audience while populating the audience ID
+	_, err := jwt.CheckToken(r, account.ValidJwtToken, cf.TargetAudiences()...)
+	if err != nil {
+		log.WithError(err).Warn(logmsg.InvalidJWT)
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	// Get the account information from the data store
+	context := db.NewDB()
+	account.WithContext(context)
+	if err := account.Get(); err != nil {
+		log.WithError(err).Warn(logmsg.NoAccount)
+		EncodeErrJSON(w, err)
+		return
+	}
+
+	// If the account is locked then we cannot proceed
+	if account.Locked {
+		log.Warn(logmsg.AccountLocked)
+		EncodeErrJSON(w, err)
+		return
+	}
+
+	log.Info(logmsg.LoggedOut)
+}
+
 // SaveAttachment will store an attachment for the account.
 func SaveAttachment(w http.ResponseWriter, r *http.Request) {
 	log := logmsg.NewLoggerFromRequest(r)

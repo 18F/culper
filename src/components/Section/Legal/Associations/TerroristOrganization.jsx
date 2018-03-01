@@ -53,7 +53,7 @@ export default class TerroristOrganization extends SubsectionElement {
 
   render () {
     return (
-      <div className="legal-associations-terrorist">
+      <div className="section-content legal-associations-terrorist" {...super.dataAttributes(this.props)}>
         {i18n.m('legal.associations.terrorist.para.intro')}
 
         <Branch name="has_terrorist"

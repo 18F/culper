@@ -1,3 +1,4 @@
+import axios from 'axios'
 import { env } from '../config'
 import SectionConstants from '../actions/SectionConstants'
 import { updateApplication, clearErrors } from '../actions/ApplicationActions'
@@ -59,22 +60,10 @@ export const saveMiddleware = store => next => action => {
     unstickAll()
 
     if (action.previous && action.previous.section && action.previous.application) {
-      const section = action.previous.section
       const application = action.previous.application
-      const pending = sectionData(section.section, section.subsection, application)
-      if (pending) {
-        const payload = schema(`${section.section}/${section.subsection}`.replace(/\//g, '.'), pending, false)
-        api
-          .save(payload)
-          .then(r => {
-            store.dispatch(updateApplication('Settings', 'saved', new Date()))
-          })
-          .catch(() => {
-            if (console && console.warn) {
-              console.warn(`Failed to save data for the "${section.section}" section and "${section.subsection}" subsection`)
-            }
-          })
-      }
+      const section = action.previous.section.section
+      const subsection = action.previous.section.subsection
+      saveSection(application, section, subsection, store.dispatch)
     }
   }
 
@@ -98,4 +87,40 @@ export const clearErrorsMiddleware = store => next => action => {
 
   // Allow redux to continue the flow and executing the next middleware
   next(action)
+}
+
+export const saveSection = (application, section, subsection, dispatch, done) => {
+  const pending = sectionData(section, subsection, application) || []
+  if (pending.length === 0) {
+    if (done) {
+      done()
+    }
+    return
+  }
+
+  let requests = []
+  for (const p of pending) {
+    requests.push(api.save(schema(p.path.replace(/\//g, '.'), p.data, false)))
+  }
+
+  axios
+    .all(requests)
+    .then(() => {
+      if (dispatch) {
+        dispatch(updateApplication('Settings', 'saved', new Date()))
+      }
+
+      if (done) {
+        done()
+      }
+    })
+    .catch(() => {
+      if (console && console.warn) {
+        console.warn(`Failed to save data for the "${section}" section and "${subsection}" subsection`)
+      }
+
+      if (done) {
+        done()
+      }
+    })
 }

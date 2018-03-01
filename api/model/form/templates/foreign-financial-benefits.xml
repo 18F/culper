@@ -36,8 +36,8 @@
 
     {{if radio $Item.BenefitFrequency | eq "Future"}}
     {{with $Benefit := $Item.FutureBenefit.props}}
-    <BeginDate Type="{{dateEstimated $Benefit.Begin}}">
-      {{date $Benefit.Begin}}
+    <BeginDate Type="{{dateEstimated $Benefit.Began}}">
+      {{date $Benefit.Began}}
     </BeginDate>
     <BenefitComment></BenefitComment>
     <Comment></Comment>

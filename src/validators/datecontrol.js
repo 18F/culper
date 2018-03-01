@@ -1,6 +1,6 @@
 import store from '../store'
 import { extractApplicantBirthdate } from '../components/Section/extractors'
-import { today, daysAgo } from '../components/Section/History/dateranges'
+import { extractDate, today, daysAgo } from '../components/Section/History/dateranges'
 
 export const getContext = () => {
   const state = store.getState()
@@ -75,18 +75,6 @@ export default class DateControlValidator {
 
     return true
   }
-}
-
-const extractDate = (dateObj) => {
-  if (dateObj instanceof Date) {
-    return dateObj
-  }
-
-  if (!dateObj || !dateObj.month || !dateObj.day || !dateObj.year) {
-    return null
-  }
-
-  return new Date(`${dateObj.month}/${dateObj.day}/${dateObj.year}`)
 }
 
 export const dateLimits = (relationship, birthdate) => {

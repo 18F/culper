@@ -62,7 +62,7 @@ export default class Selective extends SubsectionElement {
 
   render () {
     return (
-      <div className="selective">
+      <div className="section-content selective" {...super.dataAttributes(this.props)}>
         <Branch name="was_bornafter"
                 label={i18n.t('military.selective.heading.born')}
                 labelSize="h2"

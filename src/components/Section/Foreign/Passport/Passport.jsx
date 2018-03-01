@@ -121,13 +121,14 @@ export default class Passport extends SubsectionElement {
   }
 
   render () {
+    const passportType = (this.props.Card || {}).value || 'Book'
     let re = this.props.reBook
-    if ((this.props.Card || {}).value === 'Card') {
+    if (passportType === 'Card') {
       re = this.props.reCard
     }
 
     return (
-      <div className="passport">
+      <div className="section-content passport" {...super.dataAttributes(this.props)}>
         <Field title={i18n.t('foreign.passport.title')}
                titleSize="h2"
                optional={true}
@@ -212,8 +213,8 @@ export default class Passport extends SubsectionElement {
                 </RadioGroup>
                 <Text name="number"
                       {...this.props.Number}
-                      label={i18n.t('foreign.passport.label.number')}
-                      placeholder={i18n.t('foreign.passport.placeholder.number')}
+                      label={i18n.t(`foreign.passport.label.${passportType.toLowerCase()}Number`)}
+                      placeholder={i18n.t(`foreign.passport.placeholder.${passportType.toLowerCase()}Number`)}
                       pattern={re}
                       maxlength="9"
                       className="number passport-number"

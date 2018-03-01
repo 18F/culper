@@ -10,12 +10,14 @@ export const relationshipsRelatives = (data = {}) => {
         Birthdate: form.datecontrol(xitem.Birthdate),
         Birthplace: form.location(xitem.Birthplace),
         Citizenship: form.country(xitem.Citizenship),
+        CitizenshipDocumentation: form.radio(xitem.CitizenshipDocumentation),
         MaidenSameAsListed: form.branch(xitem.MaidenSameAsListed),
         MaidenName: form.name(xitem.MaidenName),
         Aliases: form.collection(((xitem.Aliases || {}).items || []).map(y => {
           const yitem = y.Item || {}
           return {
             Item: {
+              Has: form.branch(yitem.Has),
               Name: form.name(yitem.Name),
               MaidenName: form.branch(yitem.MaidenName),
               Dates: form.daterange(yitem.Dates),

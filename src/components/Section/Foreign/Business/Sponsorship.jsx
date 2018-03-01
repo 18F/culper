@@ -53,7 +53,7 @@ export default class Sponsorship extends SubsectionElement {
 
   render () {
     return (
-      <div className="foreign-business-sponsorship">
+      <div className="section-content foreign-business-sponsorship" {...super.dataAttributes(this.props)}>
         <Branch name="has_foreign_sponsorship"
                 label={i18n.t('foreign.business.sponsorship.heading.title')}
                 labelSize="h2"

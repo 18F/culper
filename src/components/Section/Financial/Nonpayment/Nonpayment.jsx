@@ -83,7 +83,7 @@ export default class Nonpayment extends SubsectionElement {
 
   render () {
     return (
-      <div className="nonpayment">
+      <div className="section-content nonpayment" {...super.dataAttributes(this.props)}>
         <Branch name="has_nonpayment"
                 label={i18n.t('financial.nonpayment.title')}
                 labelSize="h2"

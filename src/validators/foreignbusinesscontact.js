@@ -68,7 +68,7 @@ export class ContactValidator {
       return false
     }
 
-    const branchValidator = new BranchCollection(this.subsequentContacts.List)
+    const branchValidator = new BranchCollection(this.subsequentContacts)
     if (!branchValidator.validKeyValues()) {
       return false
     }

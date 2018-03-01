@@ -56,7 +56,7 @@ export default class Bankruptcies extends SubsectionElement {
 
   render () {
     return (
-      <div className="bankruptcies">
+      <div className="section-content bankruptcies" {...super.dataAttributes(this.props)}>
         <Branch name="has_bankruptcydebt"
                 label={i18n.t('financial.bankruptcy.title')}
                 labelSize="h2"
@@ -99,6 +99,7 @@ Bankruptcies.defaultProps = {
   List: Accordion.defaultList,
   HasBankruptcy: {},
   addressBooks: {},
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'financial',
   subsection: 'bankruptcy',

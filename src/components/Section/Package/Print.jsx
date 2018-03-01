@@ -63,102 +63,41 @@ class Print extends SectionElement {
       let sectionComponent = null
       switch (section.url) {
         case 'identification':
-          sectionComponent = (
-            <IdentificationSections
-              {...this.props.Identification}
-              dispatch={this.props.dispatch}
-              onError={this.handleError}
-            />
-          )
+          sectionComponent = <IdentificationSections {...this.props.Identification} />
           break
         case 'relationships':
-          sectionComponent = (
-            <RelationshipSections
-              {...this.props.Relationships}
-              dispatch={this.props.dispatch}
-              onError={this.handleError}
-            />
-          )
+          sectionComponent = <RelationshipSections {...this.props.Relationships} />
           break
         case 'history':
-          sectionComponent = (
-            <HistorySections
-              {...this.props.History}
-              dispatch={this.props.dispatch}
-              onError={this.handleError}
-            />
-          )
+          sectionComponent = <HistorySections {...this.props.History} />
           break
         case 'citizenship':
-          sectionComponent = (
-            <CitizenshipSections
-              {...this.props.Citizenship}
-              dispatch={this.props.dispatch}
-              onError={this.handleError}
-            />
-          )
+          sectionComponent = <CitizenshipSections {...this.props.Citizenship} />
           break
         case 'military':
-          sectionComponent = (
-            <MilitarySections
-              {...this.props.Military}
-              application={this.props.Application}
-              dispatch={this.props.dispatch}
-              onError={this.handleError}
-            />
-          )
+          sectionComponent = <MilitarySections {...this.props.Military} application={this.props.Application} />
           break
         case 'foreign':
-          sectionComponent = (
-            <ForeignSections
-              {...this.props.Foreign}
-              dispatch={this.props.dispatch}
-              onError={this.handleError}
-            />
-          )
+          sectionComponent = <ForeignSections {...this.props.Foreign} />
           break
         case 'financial':
-          sectionComponent = (
-            <FinancialSections
-              {...this.props.Financial}
-              dispatch={this.props.dispatch}
-              onError={this.handleError}
-            />
-          )
+          sectionComponent = <FinancialSections {...this.props.Financial} />
           break
         case 'substance':
-          sectionComponent = (
-            <SubstanceUseSections
-              {...this.props.SubstanceUse}
-              dispatch={this.props.dispatch}
-              onError={this.handleError}
-            />
-          )
+          sectionComponent = <SubstanceUseSections {...this.props.SubstanceUse} />
           break
         case 'legal':
-          sectionComponent = (
-            <LegalSections
-              {...this.props.Legal}
-              dispatch={this.props.dispatch}
-              onError={this.handleError}
-            />
-          )
+          sectionComponent = <LegalSections {...this.props.Legal} />
           break
         case 'psychological':
-          sectionComponent = (
-            <PsychologicalSections
-              {...this.props.Psychological}
-              dispatch={this.props.dispatch}
-              onError={this.handleError}
-            />
-          )
+          sectionComponent = <PsychologicalSections {...this.props.Psychological} />
           break
         default:
           return null
       }
 
       return (
-        <div className="section-print-container">
+        <div className="section-print-container" key={index}>
           <h3 className="section-print-header">{section.title}</h3>
           { sectionComponent }
         </div>
@@ -221,7 +160,7 @@ function mapStateToProps (state) {
   const military = app.Military || {}
   const foreign = app.Foreign || {}
   const financial = app.Financial || {}
-  const substanceUse = app.SubstanceUse || {}
+  const substanceUse = app.Substance || {}
   const legal = app.Legal || {}
   const psychological = app.Psychological || {}
   const settings = app.Settings || { locked: false, hash: '' }

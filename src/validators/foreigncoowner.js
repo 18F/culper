@@ -18,7 +18,7 @@ export default class ForeignCoOwnersValidator {
     }
 
     return validator.each((item) => {
-      return new ForeignCoOwnerValidator(item.CoOwner).isValid()
+      return new ForeignCoOwnerValidator(item).isValid()
     })
   }
 }

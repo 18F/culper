@@ -26,6 +26,7 @@ export default class County extends ValidationElement {
     return (
       <Text name={this.props.name}
             label={this.props.label}
+            ariaLabel={this.props.ariaLabel}
             placeholder={this.props.placeholder}
             minlength="2"
             maxlength="100"

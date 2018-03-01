@@ -9,7 +9,7 @@ const navigation = [
     showNumber: true,
     locked: validators.formIsLocked,
     subsections: [
-      { exclude: true, name: 'Intro', url: 'intro' },
+      { exclude: true, name: 'Introduction', url: 'intro' },
       { name: 'Full name', url: 'name', store: 'ApplicantName', validator: validators.IdentificationNameValidator },
       { name: 'Other names used', url: 'othernames', store: 'OtherNames', validator: validators.IdentificationOtherNamesValidator },
       { name: 'Your contact information', url: 'contacts', store: 'Contacts', validator: validators.IdentificationContactInformationValidator },
@@ -28,7 +28,7 @@ const navigation = [
     showNumber: true,
     locked: validators.formIsLocked,
     subsections: [
-      { exclude: true, name: 'Intro', url: 'intro' },
+      { exclude: true, name: 'Introduction', url: 'intro' },
       {
         name: 'Marital & relationship status',
         url: 'status',
@@ -50,7 +50,7 @@ const navigation = [
     showNumber: true,
     locked: validators.formIsLocked,
     subsections: [
-      { exclude: true, name: 'Intro', url: 'intro' },
+      { exclude: true, name: 'Introduction', url: 'intro' },
       { name: 'Where you have lived', url: 'residence', store: 'Residence', validator: validators.HistoryResidenceValidator },
       { name: 'Employment activities', url: 'employment', store: 'Employment', validator: validators.HistoryEmploymentValidator },
       { name: 'Where you went to school', url: 'education', store: 'Education', validator: validators.HistoryEducationValidator },
@@ -66,7 +66,7 @@ const navigation = [
     showNumber: true,
     locked: validators.formIsLocked,
     subsections: [
-      { exclude: true, name: 'Intro', url: 'intro' },
+      { exclude: true, name: 'Introduction', url: 'intro' },
       { name: 'Citizenship status', url: 'status', store: 'Status', validator: validators.CitizenshipValidator },
       { name: 'Dual/multiple citizenship', url: 'multiple', store: 'Multiple', validator: validators.CitizenshipMultipleValidator },
       { name: 'Foreign passports', url: 'passports', store: 'Passports', validator: validators.CitizenshipPassportsValidator },
@@ -81,7 +81,7 @@ const navigation = [
     showNumber: true,
     locked: validators.formIsLocked,
     subsections: [
-      { exclude: true, name: 'Intro', url: 'intro' },
+      { exclude: true, name: 'Introduction', url: 'intro' },
       { name: 'Selective service record', url: 'selective', store: 'Selective', validator: validators.SelectiveServiceValidator, hiddenFunc: validators.hideSelectiveService },
       { name: 'U.S. military', url: 'history', store: 'History', validator: validators.MilitaryHistoryValidator },
       { name: 'Disciplinary procedures', url: 'disciplinary', store: 'Disciplinary', validator: validators.MilitaryDisciplinaryValidator, hiddenFunc: validators.hideDisciplinaryProcedures },
@@ -97,7 +97,7 @@ const navigation = [
     showNumber: true,
     locked: validators.formIsLocked,
     subsections: [
-      { exclude: true, name: 'Intro', url: 'intro' },
+      { exclude: true, name: 'Introduction', url: 'intro' },
       { name: 'U.S. passport information', url: 'passport', store: 'Passport', validator: validators.PassportValidator },
       { name: 'Foreign contacts', url: 'contacts', store: 'Contacts', validator: validators.ForeignContactsValidator },
       {
@@ -138,7 +138,7 @@ const navigation = [
     showNumber: true,
     locked: validators.formIsLocked,
     subsections: [
-      { exclude: true, name: 'Intro', url: 'intro' },
+      { exclude: true, name: 'Introduction', url: 'intro' },
       { name: 'Bankruptcy', url: 'bankruptcy', store: 'Bankruptcy', validator: validators.BankruptcyValidator },
       { name: 'Gambling', url: 'gambling', store: 'Gambling', validator: validators.GamblingValidator },
       { name: 'Taxes', url: 'taxes', store: 'Taxes', validator: validators.TaxesValidator },
@@ -157,7 +157,7 @@ const navigation = [
     showNumber: true,
     locked: validators.formIsLocked,
     subsections: [
-      { exclude: true, name: 'Intro', url: 'intro' },
+      { exclude: true, name: 'Introduction', url: 'intro' },
       {
         name: 'Illegal use of drugs and drug activity',
         url: 'drugs',
@@ -192,12 +192,12 @@ const navigation = [
     showNumber: true,
     locked: validators.formIsLocked,
     subsections: [
-      { exclude: true, name: 'Intro', url: 'intro' },
+      { exclude: true, name: 'Introduction', url: 'intro' },
       {
         name: 'Police record',
         url: 'police',
         subsections: [
-          { exclude: true, name: 'Intro', url: 'intro' },
+          { exclude: true, name: 'Introduction', url: 'intro' },
           { name: 'Offenses', url: 'offenses', store: 'PoliceOffenses', validator: validators.PoliceOffensesValidator },
           { name: 'Additional offenses', url: 'additionaloffenses', store: 'PoliceOtherOffenses', validator: validators.PoliceOtherOffensesValidator },
           { name: 'Domestic violence', url: 'domesticviolence', store: 'PoliceDomesticViolence', validator: validators.DomesticViolenceValidator }
@@ -246,7 +246,7 @@ const navigation = [
     showNumber: true,
     locked: validators.formIsLocked,
     subsections: [
-      { exclude: true, name: 'Intro', url: 'intro' },
+      { exclude: true, name: 'Introduction', url: 'intro' },
       { name: 'Competence', url: 'competence', store: 'Competence', validator: validators.CompetenceValidator },
       { name: 'Consultations', url: 'consultations', store: 'Consultations', validator: validators.ConsultationValidator },
       { name: 'Hospitalizations', url: 'hospitalizations', store: 'Hospitalizations', validator: validators.HospitalizationsValidator },

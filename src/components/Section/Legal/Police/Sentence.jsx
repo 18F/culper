@@ -22,8 +22,8 @@ export default class Sentence extends ValidationElement {
       ExceedsYear: this.props.ExceedsYear,
       Incarcerated: this.props.Incarcerated,
       IncarcerationDates: this.props.IncarcerationDates,
-      ProbationDates: this.props.ProbationDates,
       IncarcerationDatesNA: this.props.IncarcerationDatesNA,
+      ProbationDates: this.props.ProbationDates,
       ProbationDatesNA: this.props.ProbationDatesNA,
       ...queue
     })

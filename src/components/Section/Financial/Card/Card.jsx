@@ -65,7 +65,7 @@ export default class Card extends SubsectionElement {
 
   render () {
     return (
-      <div className="card-abuse">
+      <div className="section-content card-abuse" {...super.dataAttributes(this.props)}>
         <Branch name="has_cardabuse"
                 label={i18n.t('financial.card.title')}
                 labelSize="h2"

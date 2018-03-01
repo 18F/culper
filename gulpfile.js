@@ -28,6 +28,7 @@ var paths = {
   },
   html: [
     './src/**/*.html',
+    './lib/**/*.js',
     './Staticfile'
   ],
   fonts: [

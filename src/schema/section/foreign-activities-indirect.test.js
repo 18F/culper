@@ -25,6 +25,7 @@ describe('Schema for financial taxes', () => {
             },
             ValueEstimated: {},
             Sold: {},
+            SoldNotApplicable: {},
             Explanation: {},
             CoOwners: {
               List: {

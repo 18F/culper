@@ -1,12 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { updateApplication } from '../../actions/ApplicationActions'
 import { i18n } from '../../config'
-import schema from '../../schema'
-import { api } from '../../services'
 import AuthenticatedView from '../../views/AuthenticatedView'
 import { Show } from '../Form'
-import { sectionData } from '../Section/sectionData'
+import { saveSection } from '../../middleware/history'
 
 class SavedIndicator extends React.Component {
   constructor (props) {
@@ -41,23 +38,25 @@ class SavedIndicator extends React.Component {
     const application = this.props.app
     const section = this.props.section.section
     const subsection = this.props.section.subsection
-    const pending = sectionData(section, subsection, application)
-    const payload = schema(`${section}/${subsection}`.replace(/\//g, '.'), pending, false)
+    const self = this
 
-    if (pending) {
-      this.setState({elapsed: 0, animate: true}, () => {
-        api
-          .save(payload)
-          .then(r => {
-            this.props.dispatch(updateApplication('Settings', 'saved', new Date()))
-            this.setState({animate: false})
-          })
-          .catch(() => {
-            console.warn(`Failed to save data for the ${section} section and ${subsection} subsection`)
-            this.setState({animate: false})
-          })
-      })
+    // So, this is fun, it was determined the save button is not required on
+    // `form/package/print` but should still be available on any other section
+    // found in "Review and submit". The crux is saving within this section does
+    // nothing since it was declared signatures should **only** be saved when
+    // the form is **submitted**.
+    //
+    // So what we have here is a reset of the elapsed time when the save button
+    // is clicked within the "Review and submit" section to provide comfort to
+    // the end user.
+    if (this.isRoute('form/package')) {
+      self.setState({elapsed: 0})
+      return
     }
+
+    saveSection(application, section, subsection, this.props.dispatch, () => {
+      self.setState({animate: false})
+    })
   }
 
   mouseEnter (event) {
@@ -113,34 +112,46 @@ class SavedIndicator extends React.Component {
     return `${timespan} ${unit} ${i18n.t('saved.ago')}`
   }
 
+  allowed () {
+    return !this.isRoute('form/package/print')
+  }
+
+  isRoute(route) {
+    return (window.location.pathname || '').indexOf(route) !== -1
+  }
+
   render () {
+    if (!this.allowed()) {
+      return null
+    }
+
     const klass = `saved-indicator ${this.state.animate ? 'active' : ''}`.trim()
     const klassCircle = `spinner-icon ${this.state.animate ? 'spin' : ''}`.trim()
     const klassIcon = `fa fa-floppy-o ${this.state.animate ? 'invert' : ''}`.trim()
     return (
-    <button className={klass}
-            onClick={this.save}
-            onMouseEnter={this.mouseEnter}
-            onMouseLeave={this.mouseLeave}>
+      <button className={klass}
+              onClick={this.save}
+              onMouseEnter={this.mouseEnter}
+              onMouseLeave={this.mouseLeave}>
 
-      <div className="spinner">
-        <div className={klassCircle}></div>
-        <i className={klassIcon} aria-hidden="true"></i>
-      </div>
+        <div className="spinner">
+          <div className={klassCircle}></div>
+          <i className={klassIcon} aria-hidden="true"></i>
+        </div>
 
-      <span className="spinner-label">
-        <Show when={this.state.animate}>
-          <strong className="one-line">{i18n.t('saved.saving')}</strong>
-        </Show>
-        <Show when={!this.state.animate && this.state.hover}>
-          <strong className="one-line">{i18n.t('saved.action')}</strong>
-        </Show>
-        <Show when={!this.state.animate && !this.state.hover}>
-          <strong>{i18n.t('saved.saved')}</strong>
-          <span className="time">{this.calculateTime()}</span>
-        </Show>
-      </span>
-    </button>
+        <span className="spinner-label">
+          <Show when={this.state.animate}>
+            <strong className="one-line">{i18n.t('saved.saving')}</strong>
+          </Show>
+          <Show when={!this.state.animate && this.state.hover}>
+            <strong className="one-line">{i18n.t('saved.action')}</strong>
+          </Show>
+          <Show when={!this.state.animate && !this.state.hover}>
+            <strong>{i18n.t('saved.saved')}</strong>
+            <span className="time">{this.calculateTime()}</span>
+          </Show>
+        </span>
+      </button>
     )
   }
 }

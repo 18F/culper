@@ -46,12 +46,13 @@ export const application = {
   print: {
     title: [
       '## Please print and save your responses',
-      '**This will be your only opportunity.** Be sure to print and save your responses before leaving this screen. To save a PDF click the Save/Print button then change the printer "Destination" to "Save as PDF".'
+      '**This will be your only opportunity.** Your form will be locked when you logout. Be sure to print and save your responses before leaving this screen. To save a PDF click the Save/Print button then change the printer "Destination" to "Save as PDF".'
     ],
     button: 'Save/Print',
     done: [
       '## You are done!',
-      '### Thanks for submitting for your SF-86'
+      '### Thanks for submitting for your SF-86',
+      'If you need assistance contact the office who initiated your form.'
     ]
   },
   hashCode: {

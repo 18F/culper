@@ -54,7 +54,7 @@ export default class Competence extends SubsectionElement {
 
   render () {
     return (
-      <div className="competence">
+      <div className="section-content competence" {...super.dataAttributes(this.props)}>
         <Branch name="is_incompetent"
                 label={i18n.t('psychological.heading.competence')}
                 labelSize="h2"

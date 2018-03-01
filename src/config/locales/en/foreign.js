@@ -50,12 +50,14 @@ export const foreign = {
       no: 'No'
     },
     label: {
-      number: 'Passport number',
+      bookNumber: 'Passport number',
+      cardNumber: 'Passport card number',
       book: 'Passport',
       card: 'Passport card'
     },
     placeholder: {
-      number: 'A########'
+      bookNumber: 'A########',
+      cardNumber: 'C########'
     },
     name: 'Provide the name in which passport was first issued',
     number: 'Provide your U.S. passport number',
@@ -968,7 +970,7 @@ export const foreign = {
         date: {
           title: 'Estimate the date if unsure',
           message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
-          note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
+          note: ''
         },
         circumstances: {
           title: 'Need help with the circumstances?',
@@ -1177,7 +1179,7 @@ export const foreign = {
           note: ''
         },
         dates: {
-          title: 'Try looking up the event, this could help you find the dates.',
+          title: 'Try looking up the event, this could help you find the dates',
           message: 'If you can\'t find the exact date give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
@@ -1200,8 +1202,8 @@ export const foreign = {
       collection: {
         summary: {
           title: 'Summary of foreign business conferences',
-          item: 'Conference',
-          unknown: '*Provide details of conference below*'
+          item: 'Event',
+          unknown: '*Provide details of the event below*'
         },
         appendTitle: 'Have you in the last seven (7) years, attended or participated in any additional conferences, trade shows, seminars, or meetings outside the U.S.?',
         appendMessage: [
@@ -1339,7 +1341,7 @@ export const foreign = {
       },
       help: {
         branch: {
-          title: 'Foreign national defined?',
+          title: 'Foreign national defined:',
           message: 'A foreign national is defined as any person who is not a citizen or national of the U.S.',
           note: ''
         },
@@ -1371,7 +1373,7 @@ export const foreign = {
         organizationaddress: {
           title: 'Try looking up the organization\'s name, this could help you find the address',
           message: 'If you can only find a phone number try calling and asking for the address.',
-          note: 'Note: Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
+          note: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
         },
         dates: {
           title: 'Full date range the sponsored foreign national was in the U.S.',
@@ -1437,7 +1439,7 @@ export const foreign = {
           note: ''
         },
         dates: {
-          title: 'Full date range you held this political office.',
+          title: 'Full date range you held this political office',
           message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
@@ -1574,7 +1576,7 @@ export const foreign = {
       },
       dates: {
         title: 'Estimate the date if unsure',
-        message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+        message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
         note: ''
       },
       days: {

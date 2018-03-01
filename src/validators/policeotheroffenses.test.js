@@ -64,7 +64,7 @@ describe('Police record validation', function () {
                   InvolvedViolence: { value: 'No' },
                   InvolvedFirearms: { value: 'Yes' },
                   InvolvedSubstances: { value: 'No' },
-                  ChargeType: 'Felony',
+                  ChargeType: { value: 'Felony' },
                   CourtAddress: {
                     country: { value: 'United States' },
                     street: '1234 Some Rd',

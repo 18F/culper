@@ -361,7 +361,7 @@ export default class Telephone extends ValidationElement {
   dsn () {
     return (
       <div className="numbers">
-        <label className={this.props.noNumber ? 'disabled' : ''}>{i18n.t('telephone.dsn.label')}</label>
+        <label className={`${this.props.typeClass || ''} ${this.props.noNumber ? 'disabled' : ''}`.trim()}>{i18n.t('telephone.dsn.label')}</label>
         <Text name="dsn_first"
               ref="dsn_first"
               className="number three"
@@ -417,7 +417,7 @@ export default class Telephone extends ValidationElement {
   domestic () {
     return (
       <div className="numbers">
-        <label className={this.props.noNumber ? 'disabled' : ''}>{i18n.t('telephone.domestic.label')}</label>
+        <label className={`${this.props.typeClass || ''} ${this.props.noNumber ? 'disabled' : ''}`.trim()}>{i18n.t('telephone.domestic.label')}</label>
 
         <span className="separator">(</span>
         <Text name="domestic_first"
@@ -509,7 +509,7 @@ export default class Telephone extends ValidationElement {
   international () {
     return (
       <div className="international numbers">
-        <label className={this.props.noNumber ? 'disabled' : ''}>{i18n.t('telephone.international.label')}</label>
+        <label className={`{this.props.typeClass || ''} ${this.props.noNumber ? 'disabled' : ''}`.trim()}>{i18n.t('telephone.international.label')}</label>
         <span className="separator">+</span>
         <Text name="int_first"
               ref="int_first"
@@ -716,6 +716,7 @@ Telephone.defaultProps = {
   name: 'telephone',
   value: '',
   type: 'Domestic',
+  typeClass: '',
   numberType: '',
   timeOfDay: 'Both',
   number: '',

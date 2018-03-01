@@ -59,7 +59,7 @@ export default class Travel extends SubsectionElement {
 
   render () {
     return (
-      <div className="foreign-travel">
+      <div className="section-content foreign-travel" {...super.dataAttributes(this.props)}>
         <Branch label={i18n.t('foreign.travel.heading.outside')}
                 labelSize="h2"
                 name="has_foreign_travel_outside"

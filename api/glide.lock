@@ -1,5 +1,5 @@
 hash: 385e526a462b58a8d3ab168cab4361e1246691ecd6614ca4c08644abce0ea50e
-updated: 2018-02-14T13:23:43.21369009Z
+updated: 2018-02-26T15:35:27.230883866Z
 imports:
 - name: bitbucket.org/liamstask/goose
   version: 8488cc47d90c8a502b1c41a462a6d9cc8ee0a895
@@ -12,7 +12,7 @@ imports:
 - name: github.com/dgryski/dgoogauth
   version: fd153d5969d30bd701e10f3530228f001213047c
 - name: github.com/go-pg/pg
-  version: eff1632b1caea7c554b174d5551ff2791021810c
+  version: 62ce1a18dd39eab82c8a3fc1a5b076e59c0a284f
   subpackages:
   - internal
   - internal/parser
@@ -42,7 +42,7 @@ imports:
 - name: github.com/microcosm-cc/bluemonday
   version: 542fd4642604d0d0c26112396ce5b1a9d01eee0b
 - name: github.com/mitchellh/mapstructure
-  version: a4e142e9c047c904fa2f1e144d9a84e6133024bc
+  version: 00c29f56e2386353d58c599509e8dc3801b0d716
 - name: github.com/nu7hatch/gouuid
   version: 179d4d0c4d8d407a32af483c2354df1d2c91e6c3
 - name: github.com/rifflock/lfshook
@@ -67,22 +67,22 @@ imports:
   - bitset
   - reedsolomon
 - name: github.com/truetandem/plucked
-  version: c7bfb06603c47f75ea8719d4f41ca372691050a2
+  version: 0f6081814ce7f59da72e48a6748bf9b5c444e813
   subpackages:
   - migration
 - name: golang.org/x/crypto
-  version: 650f4a345ab4e5b245a3034b110ebc7299e68186
+  version: beaf6a35706e5032ae4c3fcf342c663c069f44d2
   subpackages:
   - bcrypt
   - blowfish
   - ssh/terminal
 - name: golang.org/x/net
-  version: f5dfe339be1d06f81b22525fe34671ee7d2c8904
+  version: cbe0f9307d0156177f9dd5dc85da1a31abc5f2fb
   subpackages:
   - html
   - html/atom
 - name: golang.org/x/sys
-  version: 37707fdb30a5b38865cfb95e5aab41707daec7fd
+  version: f6cff0780e542efa0c8e864dc8fa522808f6a598
   subpackages:
   - unix
   - windows

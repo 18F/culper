@@ -21,7 +21,7 @@ describe('ordered counseling component validation', function () {
       },
       {
         state: {
-          Seekers: ['Other'],
+          Seekers: { values: ['Other'] },
           OtherSeeker: {
             value: 'Other'
           },

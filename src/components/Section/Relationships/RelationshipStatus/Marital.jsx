@@ -74,7 +74,7 @@ export default class Marital extends SubsectionElement {
 
   render () {
     return (
-      <div className="marital">
+      <div className="section-content marital" {...super.dataAttributes(this.props)}>
         <Field title={i18n.t('relationships.marital.heading.title')}
           scrollIntoView={this.props.scrollIntoView}>
           <RadioGroup name="status" className="status-options" selectedValue={this.props.Status.value} required={this.props.required} onError={this.handleError}>

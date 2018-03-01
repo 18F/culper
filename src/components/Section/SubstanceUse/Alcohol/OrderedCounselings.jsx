@@ -44,7 +44,7 @@ export default class OrderedCounselings extends SubsectionElement {
     const counselingDates = DateSummary(o.CounselingDates)
 
     let seekers = []
-    for (const s of (o.Seekers || [])) {
+    for (const s of ((o.Seekers || {}).values || [])) {
       switch (s) {
         case 'Employer':
           seekers.push('Employer')
@@ -78,7 +78,7 @@ export default class OrderedCounselings extends SubsectionElement {
 
   render () {
     return (
-      <div className="ordered-counselings">
+      <div className="section-content ordered-counselings" {...super.dataAttributes(this.props)}>
         <Branch name="HasBeenOrdered"
                 label={i18n.t('substance.alcohol.heading.orderedCounseling')}
                 labelSize="h2"

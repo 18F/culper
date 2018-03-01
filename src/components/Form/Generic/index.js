@@ -1,3 +1,3 @@
-import Generic, { autotab, ariaLabel } from './Generic'
+import Generic, { autotab, ariaLabel, closest } from './Generic'
 export default Generic
-export { autotab, ariaLabel }
+export { autotab, ariaLabel, closest }
