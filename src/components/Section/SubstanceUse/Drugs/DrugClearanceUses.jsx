@@ -55,7 +55,7 @@ export default class DrugClearanceUses extends SubsectionElement {
 
   render () {
     return (
-      <div className="drug-clearance-uses">
+      <div className="section-content drug-clearance-uses" {...super.dataAttributes(this.props)}>
         <Branch name="UsedDrugs"
                 label={i18n.t('substance.drugs.heading.drugClearanceUses')}
                 labelSize="h2"

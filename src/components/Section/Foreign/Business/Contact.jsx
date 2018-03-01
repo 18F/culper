@@ -57,7 +57,7 @@ export default class Contact extends SubsectionElement {
 
   render () {
     return (
-      <div className="foreign-business-contact">
+      <div className="section-content foreign-business-contact" {...super.dataAttributes(this.props)}>
         {i18n.m('foreign.business.contact.para.intro')}
 
         <Branch name="has_foreign_contact"

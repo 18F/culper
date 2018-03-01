@@ -53,7 +53,7 @@ export default class Advocating extends SubsectionElement {
 
   render () {
     return (
-      <div className="legal-associations-advocating">
+      <div className="section-content legal-associations-advocating" {...super.dataAttributes(this.props)}>
         <Branch name="has_advocated"
                 label={i18n.t('legal.associations.advocating.heading.title')}
                 labelSize="h2"

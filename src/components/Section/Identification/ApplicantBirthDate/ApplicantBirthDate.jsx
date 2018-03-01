@@ -51,11 +51,11 @@ export default class ApplicantBirthDate extends SubsectionElement {
   }
 
   render () {
-    const klass = `birthdate ${this.props.className || ''}`.trim()
+    const klass = `section-content birthdate ${this.props.className || ''}`.trim()
     const klassError = `${this.state.error ? 'usa-input-error' : ''}`.trim()
 
     return (
-      <div className={klass}>
+      <div className={klass} {...super.dataAttributes(this.props)}>
         <Field title={i18n.t('identification.birthdate.title')}
                titleSize="h2"
                help="identification.birthdate.help"

@@ -221,7 +221,7 @@ export default class Status extends SubsectionElement {
 
   render () {
     return (
-      <div className="status">
+      <div className="section-content status" {...super.dataAttributes(this.props)}>
         <Field title={i18n.t('citizenship.status.heading.title')}
                titleSize="h2"
                optional={true}

@@ -69,6 +69,8 @@ class Military extends SectionElement {
             <Show when={showSelectiveService}>
               <Selective name="selective"
                          {...this.props.Selective}
+                         section="military"
+                         subsection="selective"
                          dispatch={this.props.dispatch}
                          onUpdate={this.updateSelective}
                          onError={this.handleError}
@@ -80,6 +82,8 @@ class Military extends SectionElement {
 
             <History name="history"
                      {...this.props.History}
+                     section="military"
+                     subsection="history"
                      defaultState={false}
                      dispatch={this.props.dispatch}
                      onUpdate={this.updateHistory}
@@ -92,6 +96,8 @@ class Military extends SectionElement {
               <hr className="section-divider"/>
               <Disciplinary name="disciplinary"
                             {...this.props.Disciplinary}
+                            section="military"
+                            subsection="disciplinary"
                             defaultState={false}
                             dispatch={this.props.dispatch}
                             onUpdate={this.updateDisciplinary}
@@ -104,6 +110,8 @@ class Military extends SectionElement {
             <hr className="section-divider"/>
             <Foreign name="foreign"
                      {...this.props.Foreign}
+                     section="military"
+                     subsection="foreign"
                      addressBooks={this.props.AddressBooks}
                      defaultState={false}
                      dispatch={this.props.dispatch}

@@ -128,7 +128,7 @@ export default class Passport extends SubsectionElement {
     }
 
     return (
-      <div className="passport">
+      <div className="section-content passport" {...super.dataAttributes(this.props)}>
         <Field title={i18n.t('foreign.passport.title')}
                titleSize="h2"
                optional={true}

@@ -81,7 +81,7 @@ export default class History extends SubsectionElement {
 
   render () {
     return (
-      <div className="military-history">
+      <div className="section-content military-history" {...super.dataAttributes(this.props)}>
         <Branch name="has_served"
                 label={i18n.t('military.history.heading.served')}
                 labelSize="h2"

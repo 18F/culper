@@ -53,7 +53,7 @@ export default class Ventures extends SubsectionElement {
 
   render () {
     return (
-      <div className="foreign-business-ventures">
+      <div className="section-content foreign-business-ventures" {...super.dataAttributes(this.props)}>
         <Branch name="has_foreign_ventures"
                 label={i18n.t('foreign.business.ventures.heading.title')}
                 labelSize="h2"

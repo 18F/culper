@@ -358,6 +358,8 @@ class History extends SectionElement {
               {i18n.t('history.residence.collection.caption')}
             </span>
             <Residence {...this.props.Residence}
+                       section="history"
+                       subsection="residence"
                        defaultState={false}
                        realtime={true}
                        sort={sort}
@@ -377,6 +379,8 @@ class History extends SectionElement {
               {i18n.t('history.employment.default.collection.caption')}
             </span>
             <Employment {...this.props.Employment}
+                        section="history"
+                        subsection="employment"
                         defaultState={false}
                         realtime={true}
                         sort={sort}
@@ -390,30 +394,65 @@ class History extends SectionElement {
                         required={true}
                         />
 
-            <Show when={(this.props.Education.HasAttended || {}).value === 'Yes' || (this.props.Education.HasDegree10 || {}).value === 'Yes'}>
-              <hr className="section-divider" />
-              <span className="section-heading">
-                <Svg src="/img/school-cap.svg" />
-                {i18n.t('history.education.collection.caption')}
-              </span>
-              <Education {...this.props.Education}
-                         defaultState={false}
-                         realtime={true}
-                         sort={sort}
-                         totalYears={this.totalYears()}
-                         overrideInitial={this.overrideInitial}
-                         onUpdate={this.updateEducation}
-                         onError={this.handleError}
-                         dispatch={this.props.dispatch}
-                         addressBooks={this.props.AddressBooks}
-                         scrollIntoView={false}
-                         required={true}
-                         />
+            <hr className="section-divider" />
+            <span className="section-heading">
+              <Svg src="/img/school-cap.svg" />
+              {i18n.t('history.education.collection.caption')}
+            </span>
+
+            <Field title={i18n.t('history.education.title')}
+                   titleSize="h2"
+                   optional={true}
+                   className="no-margin-bottom">
+              {i18n.m('history.education.info')}
+            </Field>
+
+            <Branch name="branch_school"
+                    {...this.props.Education.HasAttended}
+                    help="history.education.help.attendance"
+                    label={i18n.t('history.education.label.attendance')}
+                    labelSize="h3"
+                    warning={true}
+                    onUpdate={this.updateBranchAttendance}
+                    >
+            </Branch>
+            <Show when={this.props.Education.HasAttended.value === 'No'}>
+              <Branch name="branch_degree10"
+                      {...this.props.Education.HasDegree10}
+                      help="history.education.help.degree10"
+                      label={i18n.t('history.education.label.degree10')}
+                      labelSize="h3"
+                      warning={true}
+                      onUpdate={this.updateBranchDegree10}
+                      >
+              </Branch>
+            </Show>
+            <Show when={this.props.Education.HasAttended.value === 'Yes' || this.props.Education.HasDegree10.value === 'Yes'}>
+              <div>
+                <span id="scrollToHistory"></span>
+                <Education {...this.props.Education}
+                           section="history"
+                           subsection="education"
+                           defaultState={false}
+                           realtime={true}
+                           sort={sort}
+                           totalYears={this.totalYears()}
+                           overrideInitial={this.overrideInitial}
+                           onUpdate={this.updateEducation}
+                           onError={this.handleError}
+                           dispatch={this.props.dispatch}
+                           addressBooks={this.props.AddressBooks}
+                           scrollIntoView={false}
+                           required={true}
+                           />
+              </div>
             </Show>
 
             <hr className="section-divider" />
             <Federal name="federal"
                      {...this.props.Federal}
+                     section="history"
+                     subsection="federal"
                      defaultState={false}
                      addressBooks={this.props.AddressBooks}
                      dispatch={this.props.dispatch}

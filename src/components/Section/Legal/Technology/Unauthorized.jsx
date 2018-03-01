@@ -54,7 +54,7 @@ export default class Unauthorized extends SubsectionElement {
 
   render () {
     return (
-      <div className="legal-technology-unauthorized">
+      <div className="section-content legal-technology-unauthorized" {...super.dataAttributes(this.props)}>
         {i18n.m('legal.technology.unauthorized.para.intro')}
 
         <Branch name="has_unauthorized"

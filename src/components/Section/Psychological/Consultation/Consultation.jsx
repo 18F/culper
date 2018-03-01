@@ -53,7 +53,7 @@ export default class Consultation extends SubsectionElement {
 
   render () {
     return (
-      <div className="consultation">
+      <div className="section-content consultation" {...super.dataAttributes(this.props)}>
         <Branch name="is_incompetent"
                 label={i18n.t('psychological.heading.consultation')}
                 labelSize="h2"

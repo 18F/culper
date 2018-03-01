@@ -52,7 +52,7 @@ export default class Family extends SubsectionElement {
 
   render () {
     return (
-      <div className="foreign-business-family">
+      <div className="section-content foreign-business-family" {...super.dataAttributes(this.props)}>
         <Branch name="has_foreign_family"
                 label={i18n.t('foreign.business.family.heading.title')}
                 labelSize="h2"

@@ -57,7 +57,7 @@ export default class DrugInvolvements extends SubsectionElement {
 
   render () {
     return (
-      <div className="drug-involvements">
+      <div className="section-content drug-involvements" {...super.dataAttributes(this.props)}>
         <Branch name="Involved"
                 label={i18n.t('substance.drugs.heading.drugInvolvement')}
                 labelSize="h2"

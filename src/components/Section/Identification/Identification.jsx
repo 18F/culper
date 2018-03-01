@@ -40,6 +40,8 @@ class Identification extends SectionElement {
                        backLabel={i18n.t('identification.destination.physical')}>
             <ApplicantName name="name"
                            {...this.props.ApplicantName}
+                           section="identification"
+                           subsection="name"
                            dispatch={this.props.dispatch}
                            onUpdate={this.handleUpdate.bind(this, 'ApplicantName')}
                            onError={this.handleError}
@@ -49,6 +51,8 @@ class Identification extends SectionElement {
             <hr className="section-divider" />
             <OtherNames name="othernames"
                         {...this.props.OtherNames}
+                        section="identification"
+                        subsection="othernames"
                         defaultState={false}
                         dispatch={this.props.dispatch}
                         onUpdate={this.handleUpdate.bind(this, 'OtherNames')}
@@ -59,6 +63,8 @@ class Identification extends SectionElement {
             <hr className="section-divider" />
             <ContactInformation name="contacts"
                                 {...this.props.Contacts}
+                                section="identification"
+                                subsection="contacts"
                                 minimumPhoneNumbers={1}
                                 minimumEmails={1}
                                 shouldFilterEmptyItems={true}
@@ -72,6 +78,8 @@ class Identification extends SectionElement {
             <hr className="section-divider" />
             <ApplicantBirthDate name="birthdate"
                                 {...this.props.ApplicantBirthDate}
+                                section="identification"
+                                subsection="birthdate"
                                 dispatch={this.props.dispatch}
                                 onUpdate={this.handleUpdate.bind(this, 'ApplicantBirthDate')}
                                 onError={this.handleError}
@@ -81,6 +89,8 @@ class Identification extends SectionElement {
             <hr className="section-divider" />
             <ApplicantBirthPlace name="birthplace"
                                  {...this.props.ApplicantBirthPlace}
+                                 section="identification"
+                                 subsection="birthplace"
                                  dispatch={this.props.dispatch}
                                  onUpdate={this.handleUpdate.bind(this, 'ApplicantBirthPlace')}
                                  onError={this.handleError}
@@ -90,6 +100,8 @@ class Identification extends SectionElement {
             <hr className="section-divider" />
             <ApplicantSSN name="ssn"
                           {...this.props.ApplicantSSN}
+                          section="identification"
+                          subsection="ssn"
                           dispatch={this.props.dispatch}
                           onUpdate={this.handleUpdate.bind(this, 'ApplicantSSN')}
                           onError={this.handleError}
@@ -99,6 +111,8 @@ class Identification extends SectionElement {
             <hr className="section-divider" />
             <Physical name="physical"
                       {...this.props.Physical}
+                      section="identification"
+                      subsection="physical"
                       dispatch={this.props.dispatch}
                       onUpdate={this.handleUpdate.bind(this, 'Physical')}
                       onError={this.handleError}
@@ -108,6 +122,8 @@ class Identification extends SectionElement {
             <hr className="section-divider" />
             <SectionComments name="comments"
                              {...this.props.Comments}
+                             section="identification"
+                             subsection="name"
                              title={i18n.t('identification.review.comments')}
                              dispatch={this.props.dispatch}
                              onUpdate={this.handleUpdate.bind(this, 'Comments')}
