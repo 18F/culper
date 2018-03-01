@@ -37,7 +37,7 @@ export default class Education extends SubsectionElement {
 
   render () {
     return (
-      <div className="education">
+      <div className="section-content education" {...super.dataAttributes(this.props)}>
         <Accordion scrollToTop={this.props.scrollToTop}
                    defaultState={this.props.defaultState}
                    {...this.props.List}

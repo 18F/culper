@@ -140,6 +140,8 @@ class Foreign extends SectionElement {
                        >
             <Passport name="passport"
                       {...this.props.Passport}
+                      section="foreign"
+                      subsection="passport"
                       dispatch={this.props.dispatch}
                       onUpdate={this.updatePassport}
                       onError={this.handleError}
@@ -149,6 +151,8 @@ class Foreign extends SectionElement {
             <hr className="section-divider"/>
             <Contacts name="contacts"
                       {...this.props.Contacts}
+                      section="foreign"
+                      subsection="contacts"
                       defaultState={false}
                       addressBooks={this.props.AddressBooks}
                       dispatch={this.props.dispatch}
@@ -160,6 +164,8 @@ class Foreign extends SectionElement {
             <hr className="section-divider"/>
             <DirectActivity name="directActivity"
                             {...this.props.DirectActivity}
+                            section="foreign"
+                            subsection="activities/direct"
                             defaultState={false}
                             addressBooks={this.props.AddressBooks}
                             dispatch={this.props.dispatch}
@@ -171,6 +177,8 @@ class Foreign extends SectionElement {
             <hr className="section-divider"/>
             <IndirectActivity name="indirectActivity"
                               {...this.props.IndirectActivity}
+                              section="foreign"
+                              subsection="activities/indirect"
                               defaultState={false}
                               addressBooks={this.props.AddressBooks}
                               dispatch={this.props.dispatch}
@@ -182,6 +190,8 @@ class Foreign extends SectionElement {
             <hr className="section-divider"/>
             <RealEstateActivity name="realEstateActivity"
                                 {...this.props.RealEstateActivity}
+                                section="foreign"
+                                subsection="activities/realestate"
                                 defaultState={false}
                                 dispatch={this.props.dispatch}
                                 onUpdate={this.updateRealEstateActivity}
@@ -192,6 +202,8 @@ class Foreign extends SectionElement {
             <hr className="section-divider"/>
             <BenefitActivity name="benefitActivity"
                              {...this.props.BenefitActivity}
+                             section="foreign"
+                             subsection="activities/benefits"
                              defaultState={false}
                              dispatch={this.props.dispatch}
                              onUpdate={this.updateBenefitActivity}
@@ -202,6 +214,8 @@ class Foreign extends SectionElement {
             <hr className="section-divider"/>
             <Support name="support"
                      {...this.props.Support}
+                     section="foreign"
+                     subsection="activities/support"
                      defaultState={false}
                      addressBooks={this.props.AddressBooks}
                      dispatch={this.props.dispatch}
@@ -213,6 +227,8 @@ class Foreign extends SectionElement {
             <hr className="section-divider"/>
             <Advice name="advice"
                     {...this.props.Advice}
+                    section="foreign"
+                    subsection="business/advice"
                     defaultState={false}
                     dispatch={this.props.dispatch}
                     onUpdate={this.updateAdvice}
@@ -223,6 +239,8 @@ class Foreign extends SectionElement {
             <hr className="section-divider"/>
             <Family name="family"
                     {...this.props.Family}
+                    section="foreign"
+                    subsection="business/family"
                     defaultState={false}
                     dispatch={this.props.dispatch}
                     onUpdate={this.updateFamily}
@@ -233,6 +251,8 @@ class Foreign extends SectionElement {
             <hr className="section-divider"/>
             <Employment name="employment"
                         {...this.props.Employment}
+                        section="foreign"
+                        subsection="business/employment"
                         defaultState={false}
                         dispatch={this.props.dispatch}
                         onUpdate={this.updateEmployment}
@@ -243,6 +263,8 @@ class Foreign extends SectionElement {
             <hr className="section-divider"/>
             <Ventures name="ventures"
                       {...this.props.Ventures}
+                      section="foreign"
+                      subsection="business/ventures"
                       defaultState={false}
                       addressBooks={this.props.AddressBooks}
                       dispatch={this.props.dispatch}
@@ -254,6 +276,8 @@ class Foreign extends SectionElement {
             <hr className="section-divider"/>
             <Conferences name="Conferences"
                          {...this.props.Conferences}
+                         section="foreign"
+                         subsection="business/conferences"
                          defaultState={false}
                          dispatch={this.props.dispatch}
                          onUpdate={this.updateConferences}
@@ -264,6 +288,8 @@ class Foreign extends SectionElement {
             <hr className="section-divider"/>
             <Contact name="Contact"
                      {...this.props.Contact}
+                     section="foreign"
+                     subsection="business/contact"
                      defaultState={false}
                      addressBooks={this.props.AddressBooks}
                      dispatch={this.props.dispatch}
@@ -275,6 +301,8 @@ class Foreign extends SectionElement {
             <hr className="section-divider"/>
             <Sponsorship name="Sponsorship"
                          {...this.props.Sponsorship}
+                         section="foreign"
+                         subsection="business/sponsorship"
                          defaultState={false}
                          addressBooks={this.props.AddressBooks}
                          dispatch={this.props.dispatch}
@@ -286,6 +314,8 @@ class Foreign extends SectionElement {
             <hr className="section-divider"/>
             <Political name="Political"
                        {...this.props.Political}
+                       section="foreign"
+                       subsection="business/political"
                        defaultState={false}
                        dispatch={this.props.dispatch}
                        onUpdate={this.updatePolitical}
@@ -296,6 +326,8 @@ class Foreign extends SectionElement {
             <hr className="section-divider"/>
             <Voting name="Voting"
                     {...this.props.Voting}
+                    section="foreign"
+                    subsection="business/voting"
                     defaultState={false}
                     dispatch={this.props.dispatch}
                     onUpdate={this.updateVoting}
@@ -306,6 +338,8 @@ class Foreign extends SectionElement {
             <hr className="section-divider"/>
             <Travel name="Travel"
                     {...this.props.Travel}
+                    section="foreign"
+                    subsection="business/travel"
                     defaultState={false}
                     dispatch={this.props.dispatch}
                     onUpdate={this.updateTravel}

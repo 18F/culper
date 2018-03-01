@@ -58,7 +58,7 @@ export default class Disciplinary extends SubsectionElement {
 
   render () {
     return (
-      <div className="disciplinary">
+      <div className="section-content disciplinary" {...super.dataAttributes(this.props)}>
         <Branch name="has_disciplinary"
                 label={i18n.t('military.disciplinary.para.info')}
                 labelSize="h2"

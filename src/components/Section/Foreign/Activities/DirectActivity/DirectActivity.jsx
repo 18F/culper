@@ -61,7 +61,7 @@ export default class DirectActivity extends SubsectionElement {
 
   render () {
     return (
-      <div className="direct">
+      <div className="section-content direct" {...super.dataAttributes(this.props)}>
         <Branch name="has_interests"
                 label={i18n.t('foreign.activities.direct.heading.title')}
                 labelSize="h2"

@@ -81,12 +81,12 @@ export default class ApplicantSSN extends SubsectionElement {
   }
 
   render () {
-    const klass = `applicant-ssn ${this.props.className || ''}`.trim()
+    const klass = `section-content applicant-ssn ${this.props.className || ''}`.trim()
     const klassVerify = `applicant-ssn-verification ${this.state.error ? 'usa-input-error' : ''}`.trim()
     const verify = validSSN(this.props.ssn) && !this.props.verified && !this.props.ssn.notApplicable
 
     return (
-      <div className={klass}>
+      <div className={klass} {...super.dataAttributes(this.props)}>
         <Field title={i18n.t('identification.ssn.title')}
                titleSize="h2"
                help="identification.ssn.help"

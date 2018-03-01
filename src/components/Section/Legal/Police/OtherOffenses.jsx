@@ -70,7 +70,7 @@ export default class OtherOffenses extends SubsectionElement {
 
   render () {
     return (
-      <div className="police-other-offenses">
+      <div className="section-content police-other-offenses" {...super.dataAttributes(this.props)}>
         <Branch name="has_otheroffenses"
                 label={i18n.t('legal.police.para.otherOffense.intro')}
                 labelSize="h2"

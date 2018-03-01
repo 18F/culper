@@ -35,10 +35,10 @@ export default class Physical extends SubsectionElement {
   }
 
   render () {
-    const klass = `physical ${this.props.className || ''}`.trim()
+    const klass = `section-content physical ${this.props.className || ''}`.trim()
 
     return (
-      <div className={klass}>
+      <div className={klass} {...super.dataAttributes(this.props)}>
         <Field title={i18n.t('identification.traits.title')}
                titleSize="h2"
                optional={true}

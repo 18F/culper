@@ -80,7 +80,7 @@ export default class Delinquent extends SubsectionElement {
 
   render () {
     return (
-      <div className="delinquent">
+      <div className="section-content delinquent" {...super.dataAttributes(this.props)}>
         <Branch name="has_delinquent"
                 label={i18n.t('financial.delinquent.title')}
                 labelSize="h2"

@@ -40,6 +40,8 @@ class Citizenship extends SectionElement {
                        nextLabel={i18n.t('military.destination.intro')}>
             <Status name="status"
                     {...this.props.Status}
+                    section="citizenship"
+                    subsection="status"
                     defaultState={false}
                     dispatch={this.props.dispatch}
                     onUpdate={this.handleUpdate.bind(this, 'Status')}
@@ -47,10 +49,11 @@ class Citizenship extends SectionElement {
                     required={true}
                     scrollIntoView={false}
                     />
-
             <hr className="section-divider"/>
             <Multiple name="multiple"
                       {...this.props.Multiple}
+                      section="citizenship"
+                      subsection="multiple"
                       defaultState={false}
                       dispatch={this.props.dispatch}
                       onUpdate={this.handleUpdate.bind(this, 'Multiple')}
@@ -58,10 +61,11 @@ class Citizenship extends SectionElement {
                       required={true}
                       scrollIntoView={false}
                       />
-
             <hr className="section-divider"/>
             <Passports name="passports"
                        {...this.props.Passports}
+                       section="citizenship"
+                       subsection="passports"
                        defaultState={false}
                        dispatch={this.props.dispatch}
                        onUpdate={this.handleUpdate.bind(this, 'Passports')}

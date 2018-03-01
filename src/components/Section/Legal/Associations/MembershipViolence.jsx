@@ -53,7 +53,7 @@ export default class MembershipViolence extends SubsectionElement {
 
   render () {
     return (
-      <div className="legal-associations-violence">
+      <div className="section-content legal-associations-violence" {...super.dataAttributes(this.props)}>
         <Branch name="has_violence"
                 label={i18n.t('legal.associations.violence.heading.title')}
                 labelSize="h2"

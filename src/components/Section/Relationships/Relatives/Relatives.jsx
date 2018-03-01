@@ -50,7 +50,7 @@ export default class Relatives extends SubsectionElement {
 
   render () {
     return (
-      <div className="relatives">
+      <div className="section-content relatives" {...super.dataAttributes(this.props)}>
         <Field title={i18n.t('relationships.relatives.heading.title')}
                titleSize="h2"
                optional={true}
