@@ -65,7 +65,7 @@ export const psychological = {
       },
       courtAddress: {
         title: 'Try looking up the court or agency name, this could help you find the address',
-        message: 'If you can only find a phone number try calling and asking for the address',
+        message: 'If you can only find a phone number try calling and asking for the address.',
         note: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
       },
       incompetent: {
@@ -255,7 +255,7 @@ export const psychological = {
       help: {
         address: {
           title: 'Try looking up the name, this could help you find the address.',
-          message: 'If you can only find a phone number try calling and asking for the address',
+          message: 'If you can only find a phone number try calling and asking for the address.',
           note: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
         },
         name: {
@@ -343,7 +343,7 @@ export const psychological = {
         },
         address: {
           title: 'Try looking up the health care professional\'s name, this could help you find the address',
-          message: 'If you can only find a phone number try calling and asking for the address',
+          message: 'If you can only find a phone number try calling and asking for the address.',
           note: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
         }
       }
