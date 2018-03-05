@@ -243,7 +243,7 @@ select {
       // All the div's (except the first) are treated as
       // subtext.
       > div:not(:first-of-type) {
-        font-size: smaller;
+        font-size: small;
         margin-top: -3rem;
       }
     }
