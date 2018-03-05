@@ -1,6 +1,11 @@
 .people {
   .summaryprogress {
+    margin-bottom: 4.9rem;
+  }
+
+  .summaryprogress.progress {
     display: inline-block;
+    vertical-align: middle;
   }
 
   .people-summary {
@@ -9,15 +14,19 @@
     .content {
       width: 75%;
     }
-
     .stats {
       width: 25%;
     }
   }
 
+  .summary-progress {
+    margin-bottom: 0 !important;
+  }
+
   .counter {
     height: 66px;
     vertical-align: middle;
+    display: inline-block;
     width: 16rem;
     text-align: center;
   }
