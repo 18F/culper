@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../config'
-import { gaps } from './dateranges'
+import { gaps, extractDate } from './dateranges'
 import { Svg } from '../../Form'
 import { newGuid } from '../../Form/ValidationElement'
 import { AddressSummary, DateSummary, NameSummary } from '../../Summary'
@@ -274,90 +274,63 @@ export const InjectGaps = (list = [], start) => {
 
   const hasDates = (item) => {
     const dates = ((item || {}).Item || {}).Dates || {}
-    const from = dates.from || {}
-    const to = dates.to || {}
-    return from.date && to.date
+    const from = extractDate(dates.from)
+    const to = dates.present === true ? new Date() : extractDate(dates.to)
+    return from && to
+  }
+
+  const gapToItem = (gap) => {
+    return {
+      type: 'Gap',
+      uuid: newGuid(),
+      open: false,
+      Item: {
+        Dates: {
+          from: {
+            date: gap.from,
+            month: `${gap.from.getMonth()+1}`,
+            day: `${gap.from.getDate()}`,
+            year: `${gap.from.getFullYear()}`
+          },
+          to: {
+            date: gap.to,
+            month: `${gap.to.getMonth()+1}`,
+            day: `${gap.to.getDate()}`,
+            year: `${gap.to.getFullYear()}`
+          }
+        }
+      }
+    }
+  }
+
+  const sort = (a, b) => {
+    // Helper to find the date value or default it to 0
+    const getOptionalDate = (obj) => {
+      return ((((obj || {}).Item || {}).Dates || {}).to || {}).date || 0
+    }
+
+    const first = getOptionalDate(a)
+    const second = getOptionalDate(b)
+
+    if (first < second) {
+      return 1
+    } else if (first > second) {
+      return -1
+    }
+
+    return 0
   }
 
   // Find all our "holes" for this type
   const ranges = list
         .filter(item => { return hasDates(item) })
         .map(item => {
-          return {
-            from: new Date(item.Item.Dates.from.date),
-            to: new Date(item.Item.Dates.to.date)
-          }
+          const dates = ((item || {}).Item || {}).Dates || {}
+          const from = extractDate(dates.from)
+          const to = dates.present === true ? new Date() : extractDate(dates.to)
+          return { from, to }
         })
-  let holes = gaps(ranges, start)
 
-  const equalDates = (first, second) => {
-    if (!first || !second) {
-      return false
-    }
-    // TODO Remove
-    if (!(first instanceof Date) || !(second instanceof Date)) {
-      return false
-    }
-    return first.toDateString() === second.toDateString()
-  }
-
-  for (const item of list) {
-    if (!item.Item || !item.Item.Dates) {
-      continue
-    }
-
-    for (let i = holes.length - 1; i > -1; i--) {
-      const gap = holes[i]
-
-      if (equalDates(gap.to, item.Item.Dates.from.date)) {
-        let g = holes.splice(i, 1)[0]
-        list.push({
-          type: 'Gap',
-          uuid: newGuid(),
-          open: false,
-          Item: {
-            Dates: {
-              from: {
-                date: g.from,
-                month: `${g.from.getMonth()+1}`,
-                day: `${g.from.getDate()}`,
-                year: `${g.from.getFullYear()}`
-              },
-              to: {
-                date: g.to,
-                month: `${g.to.getMonth()+1}`,
-                day: `${g.to.getDate()}`,
-                year: `${g.to.getFullYear()}`
-              }
-            }
-          }
-        })
-      } else if (equalDates(gap.from, item.Item.Dates.to.date)) {
-        let g = holes.splice(i, 1)[0]
-        list.push({
-          type: 'Gap',
-          uuid: newGuid(),
-          open: false,
-          Item: {
-            Dates: {
-              from: {
-                date: g.from,
-                month: `${g.from.getMonth()+1}`,
-                day: `${g.from.getDate()}`,
-                year: `${g.from.getFullYear()}`
-              },
-              to: {
-                date: g.to,
-                month: `${g.to.getMonth()+1}`,
-                day: `${g.to.getDate()}`,
-                year: `${g.to.getFullYear()}`
-              }
-            }
-          }
-        })
-      }
-    }
-  }
-
-  return list
+  gaps(ranges, start).forEach(gap => list.push(gapToItem(gap)))
+  return list.sort(sort)
 }

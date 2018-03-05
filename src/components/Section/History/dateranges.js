@@ -55,15 +55,14 @@ export const decimalAdjust = (type, value, exp) => {
  *   }
  */
 export const rangeSorter = (a, b) => {
-  if (!!(a.from || {}).date && !!(b.from || {}).date) {
-    return rangeSorter({ from: a.from.date }, { from: b.from.date })
-  }
+  const af = extractDate(a.from)
+  const bf = extractDate(b.from)
 
-  if (a.from < b.from) {
+  if (af < bf) {
     return -1
   }
 
-  if (a.from > b.from) {
+  if (af > bf) {
     return 1
   }
 
@@ -198,6 +197,13 @@ export const endOfMonth = (date) => {
  * Find the gaps in the timeline
  */
 export const gaps = (ranges = [], start = ten, buffer = 30) => {
+  // If any of the ranges covers the entire timeline then return no gaps
+  for (const range of ranges) {
+    if (daysAgo(range.from, -1 * buffer) <= start && range.to >= daysAgo(start, buffer)) {
+      return []
+    }
+  }
+
   let holes = []
   const fullStop = today
   const length = ranges.length - 1
@@ -208,7 +214,7 @@ export const gaps = (ranges = [], start = ten, buffer = 30) => {
     }
 
     // Finds the gaps from the past to the present
-    const stop = new Date(range.from)
+    const stop = range.from
     if (stop > start && daysBetween(start, stop) > buffer) {
       holes.push({ from: start, to: range.from })
     }

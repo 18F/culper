@@ -202,7 +202,6 @@ export default connect(mapStateToProps)(App)
 const validWebToken = () => {
   return new Promise((resolve, reject) => {
     if (env.IsTest()) {
-      console.log('Skip refreshing web tokens')
       resolve(api.getToken())
       return
     }

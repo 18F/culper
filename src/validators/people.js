@@ -109,6 +109,20 @@ export class PersonValidator {
     this.address = data.Address
   }
 
+  validName () {
+    return new NameValidator(this.name).isValid()
+  }
+
+  validDates() {
+    return new DateRangeValidator(this.dates).isValid()
+  }
+
+  validRank () {
+    return validNotApplicable(this.rankNotApplicable, () => {
+      return validGenericTextfield(this.rank)
+    })
+  }
+
   validRelationship () {
     if (!this.relationship || !this.relationship.length) {
       return false
@@ -124,16 +138,27 @@ export class PersonValidator {
     return true
   }
 
+  validPhones () {
+    return validPhoneNumber(this.mobileTelephone) && validPhoneNumber(this.otherTelephone)
+  }
+
+  validEmail () {
+    return validNotApplicable(this.emailNotApplicable, () => {
+      return validGenericTextfield(this.email)
+    })
+  }
+
+  validAddress () {
+    return new LocationValidator(this.address).isValid()
+  }
+
   isValid () {
-    return new NameValidator(this.name).isValid() &&
-      validNotApplicable(this.rankNotApplicable, () => {
-        return validGenericTextfield(this.rank)
-      }) && new DateRangeValidator(this.dates).isValid() &&
+    return this.validName() &&
+      this.validDates() &&
+      this.validRank() &&
       this.validRelationship() &&
-      validPhoneNumber(this.mobileTelephone) &&
-      validPhoneNumber(this.otherTelephone) &&
-      validNotApplicable(this.emailNotApplicable, () => {
-        return validGenericTextfield(this.email)
-      }) && new LocationValidator(this.address).isValid()
+      this.validPhones() &&
+      this.validEmail() &&
+      this.validAddress()
   }
 }
