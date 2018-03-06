@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
-import { Login, AccessDenied, Locked, Help, Form } from './views'
+import { Login, AccessDenied, Locked, TokenRefresh, Help, Form } from './views'
 import { Router, Switch, Route } from 'react-router'
 import { Provider } from 'react-redux'
 import { env } from './config'
@@ -118,6 +118,7 @@ ReactDOM.render(
           <Route exact path="/login" component={Login} />
           <Route exact path="/accessdenied" component={AccessDenied} />
           <Route exact path="/locked" component={Locked} />
+          <Route exact path="/token" component={TokenRefresh} />
         </Switch>
       </Main>
     </Router>

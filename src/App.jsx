@@ -68,16 +68,6 @@ class App extends React.Component {
   }
 
   render () {
-    validWebToken()
-      .then(token => {
-        if (!token) {
-          this.props.dispatch(logout())
-        }
-      })
-      .catch(() => {
-        this.props.dispatch(logout())
-      })
-
     const logoutButton = this.props.authenticated || this.props.twofactor
         ? (<a href="#" onClick={this.logout} className="logout">{i18n.t('app.logout')}</a>)
         : null
@@ -198,28 +188,3 @@ function mapStateToProps (state) {
 // Wraps the the App component with connect() which adds the dispatch()
 // function to the props property for this component
 export default connect(mapStateToProps)(App)
-
-const validWebToken = () => {
-  return new Promise((resolve, reject) => {
-    if (env.IsTest()) {
-      resolve(api.getToken())
-      return
-    }
-
-    const token = api.getToken()
-    if (!token) {
-      reject()
-      return
-    }
-
-    api.refresh()
-      .then(r => {
-        api.setToken(r.data)
-        resolve(r.data)
-      })
-      .catch(() => {
-        api.setToken('')
-        reject()
-      })
-  })
-}
