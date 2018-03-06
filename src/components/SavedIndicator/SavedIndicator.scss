@@ -19,7 +19,7 @@ $border-size: 5px;
 
   &:focus {
     outline: none;
-    outline-offset: initial;
+    outline-offset: auto;
   }
 
   &.active,
@@ -93,8 +93,8 @@ $border-size: 5px;
   .spinner {
     position: relative;
     top: -1rem;
-    width: initial;
-    height: initial;
+    width: auto;
+    height: auto;
 
     .spinner-icon,
     .spinner-icon:after {
