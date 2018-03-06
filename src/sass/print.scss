@@ -1,11 +1,21 @@
 // Override the default styling of TABLE applied from
 // USWDS.
 .print-table {
+  display: block;
   margin: 0;
   padding: 0;
   width: 100%;
 
+  tbody {
+    display: block;
+  }
+
+  tr {
+    display: block;
+  }
+
   th, td {
+    display: block;
     margin: 0;
     padding: 0;
     border: none;
@@ -49,6 +59,8 @@
   // only way to get header + footer on each page without overlapping content
   // on subsequent pages.
   .print-table {
+    display: table;
+
     thead {
       display: table-header-group;
     }
@@ -62,6 +74,18 @@
         color: transparent;
         padding: 2mm;
       }
+    }
+
+    tbody {
+      display: table-row-group;
+    }
+
+    tr {
+      display: table-row;
+    }
+
+    th, td {
+      display: table-cell;
     }
   }
 
