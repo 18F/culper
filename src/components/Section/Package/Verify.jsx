@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { i18n } from '../../../config'
+import { updateSection } from '../../../actions/SectionActions'
 import { SSN } from './helpers'
 import { Field } from '../../Form'
 import { sort } from '../History/History'
@@ -75,6 +76,10 @@ export default class Verify extends React.Component {
       : residences[0]
   }
 
+  clicked (section, subsection, event) {
+    this.props.dispatch(updateSection(section, subsection))
+  }
+
   render () {
     const identification = this.props.Identification || {}
     const name = this.primaryName()
@@ -128,7 +133,7 @@ export default class Verify extends React.Component {
 
         <Field optional={true}
                className="release-fix-information">
-          <Link to="/form/identification" className="usa-button">
+          <Link to="/form/identification" className="usa-button" onClick={this.clicked.bind(this, 'identification', 'intro')}>
             <span>{i18n.t('releases.verify.label.changeInformation')}</span>
             <i className="fa fa-arrow-circle-right" aria-hidden="true"></i>
           </Link>
@@ -142,7 +147,7 @@ export default class Verify extends React.Component {
 
         <Field optional={true}
                className="release-fix-current-address">
-          <Link to="/form/history/residence" className="usa-button">
+          <Link to="/form/history/residence" className="usa-button" onClick={this.clicked.bind(this, 'history', 'residence')}>
             <span>{i18n.t('releases.verify.label.changeAddress')}</span>
             <i className="fa fa-arrow-circle-right" aria-hidden="true"></i>
           </Link>
@@ -154,5 +159,6 @@ export default class Verify extends React.Component {
 
 Verify.defaultProps = {
   identification: {},
-  history: {}
+  history: {},
+  dispatch: (action) => {}
 }

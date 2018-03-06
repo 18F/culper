@@ -11,6 +11,7 @@ import SubmissionStatus from './SubmissionStatus'
 import Print from './Print'
 import { push } from '../../../middleware/history'
 import { updateApplication } from '../../../actions/ApplicationActions'
+import { updateSection } from '../../../actions/SectionActions'
 import axios from 'axios'
 import { api } from '../../../services'
 import schema from '../../../schema'
@@ -42,8 +43,8 @@ class Package extends SectionElement {
         const statusData = ((status || {}).data || {})
         this.props.dispatch(updateApplication('Settings', 'locked', statusData.Locked || false))
         this.props.dispatch(updateApplication('Settings', 'hash', statusData.Hash || false))
+        this.props.update({ section: 'package', subsection: 'print' })
         this.handleUpdate('Releases', releases)
-        this.props.dispatch(push('/form/package/print'))
       }))
       .catch(() => {
         console.warn('Failed to form package')
@@ -64,12 +65,16 @@ class Package extends SectionElement {
     for (const sectionName in tally) {
       const mark = tally[sectionName]
       if (mark.errors > 0) {
+        // We do not call `this.props.update` here because there is no hard
+        // route to `package/errors`. By only pushing the new location we keep
+        // the navigation element marking `/review` as active but allow us to
+        // display a different internal route.
         this.props.dispatch(push('/form/package/errors'))
         return
       }
     }
 
-    this.props.dispatch(push('/form/package/submit'))
+    this.props.update({ section: 'package', subsection: 'submit' })
     return
   }
 
@@ -77,7 +82,7 @@ class Package extends SectionElement {
    * TODO: Remove after testing. Hook to get to releases form
    */
   goToReleases () {
-    this.props.dispatch(push('/form/package/submit'))
+    this.props.update({ section: 'package', subsection: 'submit' })
   }
 
   errorCheck () {
@@ -134,12 +139,13 @@ class Package extends SectionElement {
         </SectionView>
         <SectionView name="errors">
           <SubmissionStatus valid={false} transition={false}>
-            <InvalidForm tally={tally} />
+            <InvalidForm tally={tally} dispatch={this.props.dispatch} />
           </SubmissionStatus>
         </SectionView>
         <SectionView name="submit">
           <SubmissionStatus valid={true} transition={false}>
             <ValidForm {...releases}
+                       dispatch={this.props.dispatch}
                        onUpdate={this.updateSubmission}
                        hideHippa={hideHippa(this.props.Application)}
                        LegalName={this.props.LegalName}
