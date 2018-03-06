@@ -14,11 +14,6 @@
     visibility: hidden;
   }
 
-  .modal-open {
-    height: auto;
-    overflow-y: auto !important;
-  }
-
   // Consent form
   .consent-modal {
     display: none;
@@ -61,49 +56,51 @@
   }
 
   .modal-open .introduction-modal {
-    position: fixed !important;
+    display: block;
+    position: unset;
     overflow-y: auto;
     background-color: rgba(255, 255, 255, 1) !important;
+    z-index: 9999;
 
     .modal {
-      overflow-y: auto;
+      overflow-y: visible;
       background-color: rgba(255, 255, 255, 1) !important;
 
       .modal-wrap {
         display: block;
       }
-    }
 
-    .introduction-content {
-      width: 100%;
-      min-width: 100%;
-      height: auto;
-      margin: 0 !important;
-      padding-bottom: 5rem; // padding for ipad and iphone
-      border: none;
-      box-shadow: none;
-
-      .modal-close {
-        position: fixed;
-        top: 1rem;
-        right: 2rem;
-      }
-
-      .introduction-legal {
-        overflow-y: auto;
-        max-height: auto;
+      .introduction-content {
+        width: 100%;
+        min-width: 100%;
+        height: auto;
+        margin: 0 !important;
+        padding-bottom: 5rem; // padding for ipad and iphone
         border: none;
-        padding: 0 1rem;
-      }
+        box-shadow: none;
 
-      .introduction-acceptance {
-        max-height: auto;
-        margin: 0;
-        padding: 4rem 1rem;
+        .modal-close {
+          position: fixed;
+          top: 1rem;
+          right: 2rem;
+        }
 
-        .block label {
-          width: 11rem;
-          min-width: 11rem;
+        .introduction-legal {
+          overflow-y: visible;
+          max-height: none;
+          border: none;
+          padding: 0 1rem;
+        }
+
+        .introduction-acceptance {
+          max-height: auto;
+          margin: 0;
+          padding: 4rem 1rem;
+
+          .block label {
+            width: 11rem;
+            min-width: 11rem;
+          }
         }
       }
     }

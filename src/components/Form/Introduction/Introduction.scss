@@ -4,18 +4,26 @@
   z-index: 9999;
 
   &.closeable {
-    .modal-content {
-      position: relative;
-    }
+    .modal {
+      .introduction-content {
+        position: relative;
 
-    .modal-close {
-      position: absolute;
-      top: -1.5rem;
-      right: -1rem;
-    }
+        @media only screen and (max-height: 800px) {
+          height: 100vh;
+          margin-top: 5vh !important;
+          margin-bottom: 5vh !important;
+        }
 
-    .modal .introduction-content .introduction-legal {
-      max-height: 90vh;
+        .introduction-legal {
+          max-height: 90vh;
+        }
+
+        .modal-close {
+          position: absolute;
+          top: -1.5rem;
+          right: -1rem;
+        }
+      }
     }
   }
 
