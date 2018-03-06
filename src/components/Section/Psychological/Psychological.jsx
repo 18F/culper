@@ -127,6 +127,8 @@ class Psychological extends SectionElement {
                        nextLabel={ i18n.t('application.destination.submit') }>
             <Competence name="Competence"
                         {...this.props.Competence}
+                        section="psychological"
+                        subsection="competence"
                         defaultState={false}
                         dispatch={this.props.dispatch}
                         onError={this.handleError}
@@ -137,6 +139,8 @@ class Psychological extends SectionElement {
             <hr className="section-divider" />
             <Consultation name="Consultations"
                           {...this.props.Consultations}
+                          section="psychological"
+                          subsection="consultations"
                           defaultState={false}
                           dispatch={this.props.dispatch}
                           onError={this.handleError}
@@ -147,6 +151,8 @@ class Psychological extends SectionElement {
             <hr className="section-divider" />
             <Hospitalizations name="Hospitalizations"
                               {...this.props.Hospitalizations}
+                              section="psychological"
+                              subsection="hospitalizations"
                               defaultState={false}
                               dispatch={this.props.dispatch}
                               onError={this.handleError}
@@ -157,6 +163,8 @@ class Psychological extends SectionElement {
             <hr className="section-divider" />
             <Diagnoses name="Diagnoses"
                        {...this.props.Diagnoses}
+                       section="psychological"
+                       subsection="diagnoses"
                        defaultState={false}
                        dispatch={this.props.dispatch}
                        onError={this.handleError}
@@ -170,6 +178,8 @@ class Psychological extends SectionElement {
                 <hr className="section-divider" />
                 <ExistingConditions name="ExistingConditions"
                                     {...this.props.ExistingConditions}
+                                    section="psychological"
+                                    subsection="conditions"
                                     defaultState={false}
                                     dispatch={this.props.dispatch}
                                     onError={this.handleError}

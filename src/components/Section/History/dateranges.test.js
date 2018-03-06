@@ -39,32 +39,32 @@ describe('date ranges ', function () {
     const tests = [
       {
         ranges: [
-          { from: { date: new Date('1/1/2009') } },
-          { from: { date: new Date('1/1/2010') } }
+          { from: new Date('1/1/2009') },
+          { from: new Date('1/1/2010') }
         ],
         expected: [
-          { from: { date: new Date('1/1/2009') } },
-          { from: { date: new Date('1/1/2010') } },
+          { from: new Date('1/1/2009') },
+          { from: new Date('1/1/2010') },
         ]
       },
       {
         ranges: [
-          { from: { date: new Date('1/1/2010') } },
-          { from: { date: new Date('1/1/2010') } }
+          { from: new Date('1/1/2010') },
+          { from: new Date('1/1/2010') }
         ],
         expected: [
-          { from: { date: new Date('1/1/2010') } },
-          { from: { date: new Date('1/1/2010') } }
+          { from: new Date('1/1/2010') },
+          { from: new Date('1/1/2010') }
         ]
       },
       {
         ranges: [
-          { from: { date: new Date('1/1/2012') } },
-          { from: { date: new Date('1/1/2010') } }
+          { from: new Date('1/1/2012') },
+          { from: new Date('1/1/2010') }
         ],
         expected: [
-          { from: { date: new Date('1/1/2010') } },
-          { from: { date: new Date('1/1/2012') } }
+          { from: new Date('1/1/2010') },
+          { from: new Date('1/1/2012') }
         ]
       }
     ]

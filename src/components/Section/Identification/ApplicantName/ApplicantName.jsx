@@ -26,10 +26,10 @@ export default class ApplicantName extends SubsectionElement {
   }
 
   render () {
-    const klass = `applicant-name ${this.props.className || ''}`.trim()
+    const klass = `section-content applicant-name ${this.props.className || ''}`.trim()
 
     return (
-      <div className={klass}>
+      <div className={klass} {...super.dataAttributes(this.props)}>
         <Field title={i18n.t('identification.name.title')}
                titleSize="h2"
                optional={true}

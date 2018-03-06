@@ -136,6 +136,8 @@ class Relationships extends SectionElement {
                        nextLabel={i18n.t('history.destination.intro')}>
             <Marital name="marital"
                      {...this.props.Marital}
+                     section="relationships"
+                     subsection="status/marital"
                      defaultState={false}
                      addressBooks={this.props.AddressBooks}
                      dispatch={this.props.dispatch}
@@ -150,6 +152,8 @@ class Relationships extends SectionElement {
             <hr className="section-divider"/>
             <Cohabitants name="cohabitants"
                          {...this.props.Cohabitants}
+                         section="relationships"
+                         subsection="status/cohabitant"
                          defaultState={false}
                          spouse={this.props.Spouse}
                          dispatch={this.props.dispatch}
@@ -162,6 +166,8 @@ class Relationships extends SectionElement {
             <hr className="section-divider"/>
             <People name="people"
                     {...this.props.People}
+                    section="relationships"
+                    subsection="people"
                     defaultState={false}
                     addressBooks={this.props.AddressBooks}
                     dispatch={this.props.dispatch}
@@ -174,6 +180,8 @@ class Relationships extends SectionElement {
             <hr className="section-divider"/>
             <Relatives name="relatives"
                        {...this.props.Relatives}
+                       section="relationships"
+                       subsection="relatives"
                        defaultState={false}
                        addressBooks={this.props.AddressBooks}
                        dispatch={this.props.dispatch}

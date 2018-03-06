@@ -56,7 +56,7 @@ export default class OtherNames extends SubsectionElement {
 
   render () {
     return (
-      <div className="other-names">
+      <div className="section-content other-names" {...super.dataAttributes(this.props)}>
         <Field title={i18n.t('identification.othernames.title')}
                titleSize="h2"
                optional={true}

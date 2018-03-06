@@ -55,7 +55,7 @@ export default class Political extends SubsectionElement {
 
   render () {
     return (
-      <div className="foreign-business-political">
+      <div className="section-content foreign-business-political" {...super.dataAttributes(this.props)}>
         <Branch name="has_foreign_political"
                 label={i18n.t('foreign.business.political.heading.title')}
                 labelSize="h2"

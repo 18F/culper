@@ -53,7 +53,7 @@ export default class Unlawful extends SubsectionElement {
 
   render () {
     return (
-      <div className="legal-technology-unlawful">
+      <div className="section-content legal-technology-unlawful" {...super.dataAttributes(this.props)}>
         <Branch name="has_unlawful"
                 label={i18n.t('legal.technology.unlawful.heading.title')}
                 labelSize="h2"

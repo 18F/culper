@@ -52,7 +52,7 @@ export default class NonCriminalCourtActions extends SubsectionElement {
 
   render () {
     return (
-      <div className="non-criminal-court-actions">
+      <div className="section-content non-criminal-court-actions" {...super.dataAttributes(this.props)}>
         <Branch name="HasCourtActions"
                 label={i18n.t('legal.nonCriminalAction.heading.hasCourtActions')}
                 labelSize="h2"
