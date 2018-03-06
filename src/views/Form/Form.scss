@@ -265,7 +265,7 @@ select {
 
     &.no-toggle.checked,
     &.no-toggle:hover {
-      color: initial;
+      color: inherit;
       border: none;
       background: transparent;
     }
@@ -364,7 +364,7 @@ select {
 
   &.disabled {
     label {
-      cursor: initial;
+      cursor: inherit;
       background: $eapp-grey-light;
 
       &.usa-input-focus,
