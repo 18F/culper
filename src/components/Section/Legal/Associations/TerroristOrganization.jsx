@@ -86,6 +86,7 @@ export default class TerroristOrganization extends SubsectionElement {
                                        addressBooks={this.props.addressBooks}
                                        dispatch={this.props.dispatch}
                                        required={this.props.required}
+                                       scrollIntoView={this.props.scrollIntoView}
                                        />
 
           </Accordion>
