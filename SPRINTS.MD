@@ -1,7 +1,7 @@
 # Sprint Backlogs
 View the e-QIP Prototype Sprint information including: duration, story points completed, backlog items, and burndown reports
 
-Team Velocity: **89 pts**
+Team Velocity: **90 pts**
 
 
 ## Sprint 1 
@@ -228,12 +228,19 @@ Story Points Completed: 88
 ```
 View Sprint 32 [backlog items][63] completed and [burndown chart][66]
 
-## Sprint 33 (current sprint)
+## Sprint 33
 ```
 Duration: Feb 22, 2018 to Mar 7, 2018
-Story Points Planned: 115
+Story Points Completed: 115
 ```
-View Sprint 33 [backlog items][65] in progress
+View Sprint 33 [backlog items][65] completed and [burndown chart][68]
+
+## Sprint 34 (current sprint)
+```
+Duration: Mar 8, 2018 to Mar 21, 2018
+Story Points Planned: 131
+```
+View Sprint 34 [backlog items][67] in progress
 
 [1]: http://burndown.io/#truetandem/e-QIP-prototype/14
 [2]: https://github.com/truetandem/e-QIP-prototype/milestone/2?closed=1
@@ -299,5 +306,7 @@ View Sprint 33 [backlog items][65] in progress
 [62]: https://github.com/truetandem/e-QIP-prototype/issues/2497
 [63]: https://github.com/truetandem/e-QIP-prototype/milestone/33?closed=1
 [64]: https://github.com/truetandem/e-QIP-prototype/issues/2595
-[65]: https://github.com/truetandem/e-QIP-prototype/milestone/34
+[65]: https://github.com/truetandem/e-QIP-prototype/milestone/34?closed=1
 [66]: https://github.com/truetandem/e-QIP-prototype/issues/2659
+[67]: https://github.com/truetandem/e-QIP-prototype/milestone/35
+[68]: https://github.com/truetandem/e-QIP-prototype/issues/2710
