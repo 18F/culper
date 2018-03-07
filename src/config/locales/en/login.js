@@ -53,5 +53,12 @@ export const login = {
       'If you need assistance contact the office who initiated your form.'
     ],
     button: 'Back to login'
+  },
+  token: {
+    title: 'You have been logged out',
+    para: [
+      'For security reasons you have been logged out. This may be due to a slow connection speed and/or inactivity. Please log in again to continue.'
+    ],
+    button: 'Back to login'
   }
 }
