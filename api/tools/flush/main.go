@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/18F/e-QIP-prototype/api/db"
 	"github.com/18F/e-QIP-prototype/api/logmsg"
 	"github.com/18F/e-QIP-prototype/api/model"
 	"github.com/18F/e-QIP-prototype/api/tools"
@@ -8,7 +9,7 @@ import (
 
 func main() {
 	log := logmsg.NewLogger()
-	tools.Command(log, func(account *model.Account) {
+	tools.Command(log, func(context *db.DatabaseContext, account *model.Account) {
 		account.Token = ""
 		account.TokenUsed = false
 		if err := account.Save(); err != nil {

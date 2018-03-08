@@ -14,7 +14,7 @@ var (
 	flagAll = flag.Bool("all", false, "apply to all accounts")
 )
 
-func Command(log *logrus.Logger, action func(*model.Account)) {
+func Command(log *logrus.Logger, action func(*db.DatabaseContext, *model.Account)) {
 	context := db.NewDB()
 	flag.Parse()
 
@@ -36,7 +36,7 @@ func Command(log *logrus.Logger, action func(*model.Account)) {
 			}
 
 			// Perform the provided actions on the given account.
-			action(account)
+			action(context, account)
 		}
 	} else {
 		// Assume all arguments are a username delimited by white space.
@@ -50,7 +50,7 @@ func Command(log *logrus.Logger, action func(*model.Account)) {
 			}
 
 			// Perform the provided actions on the given account.
-			action(account)
+			action(context, account)
 		}
 	}
 }
