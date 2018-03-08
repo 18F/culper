@@ -16,6 +16,10 @@ import { navigation } from '../../config'
  */
 class SectionTitle extends React.Component {
   render () {
+    if (this.props.hidden) {
+      return null
+    }
+
     const splitSubsections = (this.props.section.subsection || '').split('/')
 
     let title = null
@@ -66,6 +70,10 @@ function mapStateToProps (state) {
   return {
     section: section
   }
+}
+
+SectionTitle.defaultProps = {
+  hidden: false
 }
 
 // Wraps the the component with connect() which adds the dispatch()

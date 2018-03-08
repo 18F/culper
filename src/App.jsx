@@ -72,9 +72,12 @@ class App extends React.Component {
         ? (<a href="#" onClick={this.logout} className="logout">{i18n.t('app.logout')}</a>)
         : null
     const klassApp = `${this.designClass()} ${this.props.settings.modalOpen ? 'modal-open' : ''}`.trim()
-    const klassTitle = `eapp-structure-right eapp-title ${this.props.settings.mobileNavigation ? 'mobile-hidden' : 'visible'}`.trim()
-    const klassNavigation = `eapp-structure-left eapp-navigation ${this.props.settings.mobileNavigation ? 'mobile-visible' : 'mobile-hidden'}`.trim()
-    const klassCore = `eapp-structure-right eapp-core ${this.props.settings.mobileNavigation ? 'mobile-hidden' : 'visible'}`.trim()
+    const mobileNavigation = this.props.settings.mobileNavigation || false
+    const klassTitle = 'eapp-structure-right eapp-title'
+    const klassHeading = `eapp-structure-wrap eapp-header ${mobileNavigation ? 'mobile-navigation' : ''}`.trim()
+    const klassMain = `eapp-structure-wrap eapp-main ${mobileNavigation ? 'mobile-navigation' : ''}`.trim()
+    const klassNavigation = `eapp-structure-left eapp-navigation ${mobileNavigation ? 'mobile-visible tablet-visible desktop-visible' : 'mobile-hidden'}`
+    const klassCore = `eapp-structure-right eapp-core ${mobileNavigation ? 'mobile-hidden' : 'visible'}`
 
     return (
       <div className={klassApp}>
@@ -89,7 +92,7 @@ class App extends React.Component {
               <header className="usa-header usa-header-basic" role="banner">
                 <div className="usa-banner mobile-hidden">
                   <div className="usa-accordion">
-                    <header className="usa-banner-header">
+                    <div className="usa-banner-header">
                       <div className="usa-grid usa-banner-inner">
                         <img src="/img/favicons/favicon-57.png" alt="U.S. flag" />
                         <p>{i18n.t('app.banner.title')}</p>
@@ -97,7 +100,7 @@ class App extends React.Component {
                           <span className="usa-banner-button-text">{i18n.t('app.banner.button')}</span>
                         </button>
                       </div>
-                    </header>
+                    </div>
                     <div className="usa-banner-content usa-grid usa-accordion-content" id="gov-banner">
                       <div className="usa-banner-guidance-gov usa-width-one-half">
                         <img className="usa-banner-icon usa-media_block-img" src="/img/icon-dot-gov.svg" alt="Dot gov" />
@@ -118,19 +121,21 @@ class App extends React.Component {
                     </div>
                   </div>
                 </div>
-                <div className="eapp-structure-wrap eapp-header">
+                <div className={klassHeading}>
                   <div className="eapp-structure-row">
                     <div className="eapp-structure-left eapp-logo" id="logo">
-                      <img className="eapp-logo-icon" src="/img/US-OfficeOfPersonnelManagement-Seal.svg" alt="Office of Personnet Management" />
-                      <span className="eapp-logo-text">SF86</span>
                       <NavigationToggle />
+                      <div className="text-center">
+                        <img className="eapp-logo-icon" src="/img/US-OfficeOfPersonnelManagement-Seal.svg" alt="Office of Personnet Management" />
+                        <span className="eapp-logo-text">SF86</span>
+                      </div>
                     </div>
                     <div className={klassTitle}>
-                      <div className="eapp-logout mobile-hidden">
-                        <button onClick={this.showInstructions} className="instructions">{i18n.t('app.instructions')}</button>
+                      <div className="eapp-logout">
+                        <button onClick={this.showInstructions} className="instructions mobile-hidden">{i18n.t('app.instructions')}</button>
                         {logoutButton}
                       </div>
-                      <SectionTitle />
+                      <SectionTitle hidden={mobileNavigation} />
                     </div>
                   </div>
                 </div>
@@ -141,12 +146,13 @@ class App extends React.Component {
             </div>
           </div>
         </StickyHeader>
-        <main className="eapp-structure-wrap">
+        <main className={klassMain}>
           <div className="eapp-structure-row">
             <div className={klassNavigation}>
               <Sticky options={{tolerance: 400, ignoreWindowComparison: true}}>
                 <ScoreCard />
                 <Navigation />
+                <button onClick={this.showInstructions} className="instructions mobile-visible"><span>{i18n.t('app.instructions')}</span></button>
               </Sticky>
               &nbsp;
             </div>
