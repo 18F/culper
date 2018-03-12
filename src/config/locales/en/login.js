@@ -10,9 +10,9 @@ export const login = {
     disabled: 'Multiple factor authentication is currently disabled.'
   },
   saml: {
-    title: 'Log in with CAC',
-    para: 'This option is for CAC users with a computer configured for CAC use.\nWhen prompted for a certificate, select the one with "EMAIL" in the name.',
-    button: 'Log in with CAC'
+    title: 'Log in with CAC/PIV',
+    para: 'This option is for users with a computer configured for CAC or PIV use.\nWhen prompted for a certificate, select the one with "EMAIL" in the name.',
+    button: 'Log in with CAC/PIV'
   },
   basic: {
     title: 'Log in with username',
