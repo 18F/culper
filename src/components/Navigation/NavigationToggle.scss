@@ -1,22 +1,14 @@
 .navigation-toggle {
   position: absolute;
   top: 0;
-  right: 0;
+  left: 0;
   padding-top: 1.7rem;
+  padding-left: 1.7rem;
+  padding-right: 1.7rem;
   height: 5.5rem;
-  width: 50%;
-  text-align: center;
-  background-color: #194b88;
 
-  @media only screen and (max-width: 350px) {
-    text-align: right;
-    width: 2rem;
-    padding-right: 4rem;
-
-    > span {
-      display: none !important;
-      visibility: hidden;
-    }
+  .fa.fa-times {
+    font-size: 1.9rem;
   }
 
   &:hover,

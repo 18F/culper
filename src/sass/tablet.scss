@@ -40,6 +40,11 @@
 }
 
 @media only screen and (max-width: 1250px) {
+  .tablet-hidden {
+    display: block !important;
+    visibility: visible;
+  }
+
   .accordion {
     margin: 0;
   }
