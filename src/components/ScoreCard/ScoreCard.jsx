@@ -21,9 +21,9 @@ class ScoreCard extends React.Component {
 }
 
 function mapStateToProps (state) {
-  let section = state.section || {}
-  let app = state.application || {}
-  let completed = app.Completed || {}
+  const section = state.section || {}
+  const app = state.application || {}
+  const completed = app.Completed || {}
   return {
     application: app,
     section: section,

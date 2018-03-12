@@ -127,12 +127,9 @@ a:focus {
         vertical-align: middle;
       }
 
-      span {
+      .eapp-logo-text {
         display: inline-block;
         margin-left: 2rem;
-      }
-
-      .eapp-logo-text {
         font-size: 3rem;
         font-weight: $eapp-bold;
         margin-top: 4.7rem;
@@ -182,7 +179,7 @@ a:focus {
   }
 }
 
-@media screen and (min-width: 850px) {
+@media screen and (min-width: 1001px) {
   .sticky-header {
     .header-container {
       height: 16.7rem;
