@@ -110,6 +110,7 @@ export default class ApplicantSSN extends SubsectionElement {
                  className={klassVerify}
                  onUpdate={this.updateVerification}
                  onError={this.verificationError}
+                 required={verify && this.props.required}
                  />
           </Field>
         </Show>
