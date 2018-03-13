@@ -4,8 +4,9 @@ import { legalPoliceDomesticViolence } from './legal-police-domesticviolence'
 describe('Schema for financial taxes', () => {
   it('can wrap in schema', () => {
     const data = {
+      HasDomesticViolence: { value: 'Yes' },
       List: {
-        branch: null,
+        branch: { value: 'No' },
         items: [{
           Item: {
             Has: {},

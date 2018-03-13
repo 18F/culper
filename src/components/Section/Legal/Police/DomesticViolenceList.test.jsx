@@ -27,30 +27,29 @@ describe('The DomesticViolenceList  component', () => {
     const expected = {
       name: 'sentence',
       onUpdate: () => {},
+      HasDomesticViolence: { value: 'Yes' },
       List: {
+        branch: { value: 'No' },
         items: [
           {
             Item: {
-              Has: { value: 'Yes' },
-              domestic: {
-                CourtName: {
-                  value: '4th Circuit Court'
-                },
-                CourtAddress: {
-                  country: 'United States',
-                  street: '1234 Some Rd',
-                  city: 'Arlington',
-                  state: 'Virginia',
-                  zipcode: '22202',
-                  layout: Location.ADDRESS
-                },
-                Explanation: {
-                  value: 'Some content'
-                },
-                Issued: {
-                  month: '1',
-                  year: '2009'
-                }
+              CourtName: {
+                value: '4th Circuit Court'
+              },
+              CourtAddress: {
+                country: 'United States',
+                street: '1234 Some Rd',
+                city: 'Arlington',
+                state: 'Virginia',
+                zipcode: '22202',
+                layout: Location.ADDRESS
+              },
+              Explanation: {
+                value: 'Some content'
+              },
+              Issued: {
+                month: '1',
+                year: '2009'
               }
             }
           }

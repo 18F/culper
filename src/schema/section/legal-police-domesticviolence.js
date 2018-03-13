@@ -5,7 +5,6 @@ export const legalPoliceDomesticViolence = (data = {}) => {
     const xitem = x.Item || {}
     return {
       Item: {
-        Has: form.branch(xitem.Has),
         Explanation: form.textarea(xitem.Explanation),
         Issued: form.datecontrol(xitem.Issued),
         CourtName: form.text(xitem.CourtName),
@@ -14,6 +13,7 @@ export const legalPoliceDomesticViolence = (data = {}) => {
     }
   })
   return {
-    List: form.collection(items)
+    HasDomesticViolence: form.branch(data.HasDomesticViolence),
+    List: form.collection(items, (data.List || {}).branch)
   }
 }

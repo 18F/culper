@@ -1,6 +1,12 @@
 {
   "type": "legal.police.domesticviolence",
   "props": {
+    "HasDomesticViolence": {
+      "type": "branch",
+      "props": {
+        "value": "Yes"
+      }
+    },
     "List": {
       "type": "collection",
       "props": {
@@ -45,7 +51,13 @@
               }
             }
           }
-        ]
+        ],
+        "branch": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        }
       }
     }
   }
