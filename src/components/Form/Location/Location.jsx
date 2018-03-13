@@ -73,6 +73,12 @@ export default class Location extends ValidationElement {
     // Instance field to prevent setState calls after unmount
     this.geocodeCancel = false
 
+    // Animations
+    this.animationDelay = null
+    this.cancelAnimations = this.cancelAnimations.bind(this)
+    this.delayAnimations = this.delayAnimations.bind(this)
+    this.triggerAnimations = this.triggerAnimations.bind(this)
+
     this.state = {
       uid: `${this.props.name}-${super.guid()}`,
       geocodeResult: props.geocodeResult,
@@ -255,7 +261,20 @@ export default class Location extends ValidationElement {
 
   handleBlur (event) {
     super.handleBlur(event)
+  }
 
+  cancelAnimations (w = window) {
+    if (this.animationDelay) {
+      w.clearTimeout(this.animationDelay)
+    }
+  }
+
+  delayAnimations (ms, w = window) {
+    this.cancelAnimations()
+    this.animationDelay = w.setTimeout(this.triggerAnimations, ms)
+  }
+
+  triggerAnimations () {
     // If we can't geocode or it is already validated we skip validation.
     const validator = new LocationValidator(this.props)
     if (!this.props.geocode || this.props.validated || !validator.canGeocode()) {
@@ -267,6 +286,7 @@ export default class Location extends ValidationElement {
       return
     }
 
+    this.cancelAnimations()
     this.setState({ spinner: true, suggestions: false }, () => {
       validator
         .geocode()
@@ -339,7 +359,15 @@ export default class Location extends ValidationElement {
     })
   }
 
-  updateAddress (address) {
+  updateAddress (address, delay = null) {
+    if (delay !== null) {
+      if (delay === 0) {
+        this.cancelAnimations()
+      } else {
+        this.delayAnimations(delay)
+      }
+    }
+
     this.update({
       validated: false,
       ...address
