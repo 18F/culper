@@ -5,6 +5,7 @@ import { identificationContacts } from './identification-contacts'
 import { identificationOthernames } from './identification-othernames'
 import { identificationPhysical } from './identification-physical'
 import { identificationSSN } from './identification-ssn'
+import { identificationComments } from './identification-comments'
 import { financialBankruptcy } from './financial-bankruptcy'
 import { financialCard } from './financial-card'
 import { financialCredit } from './financial-credit'
@@ -12,6 +13,7 @@ import { financialDelinquent } from './financial-delinquent'
 import { financialGambling } from './financial-gambling'
 import { financialNonpayment } from './financial-nonpayment'
 import { financialTaxes } from './financial-taxes'
+import { financialComments } from './financial-comments'
 import { foreignActivitiesBenefits } from './foreign-activities-benefits'
 import { foreignActivitiesDirect } from './foreign-activities-direct'
 import { foreignActivitiesIndirect } from './foreign-activities-indirect'
@@ -29,6 +31,7 @@ import { foreignBusinessVoting } from './foreign-business-voting'
 import { foreignContacts } from './foreign-contacts'
 import { foreignPassport } from './foreign-passport'
 import { foreignTravel } from './foreign-travel'
+import { foreignComments } from './foreign-comments'
 import { legalAssociationsActivitiesToOverthrow } from './legal-associations-activities-to-overthrow'
 import { legalAssociationsAdvocating } from './legal-associations-advocating'
 import { legalAssociationsEngagedInTerrorism } from './legal-associations-engaged-in-terrorism'
@@ -46,15 +49,18 @@ import { legalPoliceOffenses } from './legal-police-offenses'
 import { legalTechnologyManipulating } from './legal-technology-manipulating'
 import { legalTechnologyUnauthorized } from './legal-technology-unauthorized'
 import { legalTechnologyUnlawful } from './legal-technology-unlawful'
+import { legalComments } from './legal-comments'
 import { militaryDisciplinary } from './military-disciplinary'
 import { militaryForeign } from './military-foreign'
 import { militaryHistory } from './military-history'
 import { militarySelective } from './military-selective'
+import { militaryComments } from './military-comments'
 import { psychologicalCompetence } from './psychological-competence'
 import { psychologicalConsultations } from './psychological-consultations'
 import { psychologicalDiagnoses } from './psychological-diagnoses'
 import { psychologicalExisting } from './psychological-existing'
 import { psychologicalHospitalizations } from './psychological-hospitalizations'
+import { psychologicalComments } from './psychological-comments'
 import { substanceAlcoholAdditional } from './substance-alcohol-additional'
 import { substanceAlcoholNegative } from './substance-alcohol-negative'
 import { substanceAlcoholOrdered } from './substance-alcohol-ordered'
@@ -66,17 +72,21 @@ import { substanceDrugPublicSafety } from './substance-drug-publicsafety'
 import { substanceDrugPurchase } from './substance-drug-purchase'
 import { substanceDrugUsage } from './substance-drug-usage'
 import { substanceDrugVoluntary } from './substance-drug-voluntary'
+import { substanceComments } from './substance-comments'
 import { citizenshipMultiple } from './citizenship-multiple'
 import { citizenshipPassports } from './citizenship-passports'
 import { citizenshipStatus } from './citizenship-status'
+import { citizenshipComments } from './citizenship-comments'
 import { relationshipsCohabitants } from './relationships-cohabitants'
 import { relationshipsMarital } from './relationships-marital'
 import { relationshipsPeople } from './relationships-people'
 import { relationshipsRelatives } from './relationships-relatives'
+import { relationshipsComments } from './relationships-comments'
 import { historyEducation } from './history-education'
 import { historyEmployment } from './history-employment'
 import { historyFederal } from './history-federal'
 import { historyResidence } from './history-residence'
+import { historyComments } from './history-comments'
 import { submission } from './submission'
 
 export {
@@ -87,6 +97,7 @@ export {
   identificationOthernames,
   identificationPhysical,
   identificationSSN,
+  identificationComments,
   financialBankruptcy,
   financialCard,
   financialCredit,
@@ -94,6 +105,7 @@ export {
   financialGambling,
   financialNonpayment,
   financialTaxes,
+  financialComments,
   foreignActivitiesBenefits,
   foreignActivitiesDirect,
   foreignActivitiesIndirect,
@@ -111,6 +123,7 @@ export {
   foreignContacts,
   foreignPassport,
   foreignTravel,
+  foreignComments,
   legalAssociationsActivitiesToOverthrow,
   legalAssociationsAdvocating,
   legalAssociationsEngagedInTerrorism,
@@ -128,15 +141,18 @@ export {
   legalTechnologyManipulating,
   legalTechnologyUnauthorized,
   legalTechnologyUnlawful,
+  legalComments,
   militaryDisciplinary,
   militaryForeign,
   militaryHistory,
   militarySelective,
+  militaryComments,
   psychologicalCompetence,
   psychologicalConsultations,
   psychologicalDiagnoses,
   psychologicalExisting,
   psychologicalHospitalizations,
+  psychologicalComments,
   substanceAlcoholAdditional,
   substanceAlcoholNegative,
   substanceAlcoholOrdered,
@@ -148,16 +164,20 @@ export {
   substanceDrugPurchase,
   substanceDrugUsage,
   substanceDrugVoluntary,
+  substanceComments,
   citizenshipMultiple,
   citizenshipPassports,
   citizenshipStatus,
+  citizenshipComments,
   relationshipsCohabitants,
   relationshipsMarital,
   relationshipsPeople,
   relationshipsRelatives,
+  relationshipsComments,
   historyEducation,
   historyEmployment,
   historyFederal,
   historyResidence,
+  historyComments,
   submission
 }
