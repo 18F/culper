@@ -1,5 +1,5 @@
 FROM golang:1.9.4
-RUN apt update; apt -y install postgresql xmlsec1;
+RUN export DEBIAN_FRONTEND=noninteractive; apt-get -q -y update; apt-get -q -y install postgresql xmlsec1;
 RUN go get github.com/derekparker/delve/cmd/dlv;
 RUN go get -u github.com/Masterminds/glide; \
     cd $GOPATH/src/github.com/Masterminds/glide; \
