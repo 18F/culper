@@ -1,0 +1,11 @@
+{
+  "type": "identification.comments",
+  "props": {
+    "Comments": {
+      "type": "text",
+      "props": {
+        "value": "test commentary"
+      }
+    }
+  }
+}
