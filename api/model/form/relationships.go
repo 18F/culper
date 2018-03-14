@@ -728,3 +728,138 @@ func (entity *RelationshipsRelatives) GetID() int {
 func (entity *RelationshipsRelatives) SetID(id int) {
 	entity.ID = id
 }
+
+// RelationshipsComments subsection of identification section.
+type RelationshipsComments struct {
+	PayloadComments Payload `json:"Comments" sql:"-"`
+
+	// Validator specific fields
+	Comments *Text `json:"-"`
+
+	// Persister specific fields
+	ID         int `json:"-"`
+	CommentsID int `json:"-"`
+}
+
+// Unmarshal bytes in to the entity properties.
+func (entity *RelationshipsComments) Unmarshal(raw []byte) error {
+	err := json.Unmarshal(raw, entity)
+	if err != nil {
+		return err
+	}
+
+	comments, err := entity.PayloadComments.Entity()
+	if err != nil {
+		return err
+	}
+	entity.Comments = comments.(*Text)
+
+	return err
+}
+
+// Marshal to payload structure
+func (entity *RelationshipsComments) Marshal() Payload {
+	if entity.Comments != nil {
+		entity.PayloadComments = entity.Comments.Marshal()
+	}
+	return MarshalPayloadEntity("identification.comments", entity)
+}
+
+// Valid checks the value(s) against an battery of tests.
+func (entity *RelationshipsComments) Valid() (bool, error) {
+	return entity.Comments.Valid()
+}
+
+// Save will create or update the database.
+func (entity *RelationshipsComments) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
+
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
+	context.Find(&RelationshipsComments{ID: account}, func(result interface{}) {
+		previous := result.(*RelationshipsComments)
+		if entity.Comments == nil {
+			entity.Comments = &Text{}
+		}
+		entity.CommentsID = previous.CommentsID
+		entity.Comments.ID = previous.CommentsID
+	})
+
+	commentsID, err := entity.Comments.Save(context, account)
+	if err != nil {
+		return commentsID, err
+	}
+	entity.CommentsID = commentsID
+
+	if err := context.Save(entity); err != nil {
+		return entity.ID, err
+	}
+
+	return entity.ID, nil
+}
+
+// Delete will remove the entity from the database.
+func (entity *RelationshipsComments) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
+
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
+	context.Find(&RelationshipsComments{ID: account}, func(result interface{}) {
+		previous := result.(*RelationshipsComments)
+		if entity.Comments == nil {
+			entity.Comments = &Text{}
+		}
+		entity.CommentsID = previous.CommentsID
+		entity.CommentsID = previous.CommentsID
+	})
+
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	if _, err := entity.Comments.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	return entity.ID, nil
+}
+
+// Get will retrieve the entity from the database.
+func (entity *RelationshipsComments) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
+
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	if entity.CommentsID != 0 {
+		entity.Comments = &Text{ID: entity.CommentsID}
+		if _, err := entity.Comments.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	return entity.ID, nil
+}
+
+// GetID returns the entity identifier.
+func (entity *RelationshipsComments) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *RelationshipsComments) SetID(id int) {
+	entity.ID = id
+}

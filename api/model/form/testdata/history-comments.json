@@ -1,0 +1,11 @@
+{
+  "type": "history.comments",
+  "props": {
+    "Comments": {
+      "type": "text",
+      "props": {
+        "value": "test commentary"
+      }
+    }
+  }
+}
