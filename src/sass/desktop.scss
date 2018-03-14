@@ -1,4 +1,16 @@
-.desktop-hidden {
-  display: none !important;
+.desktop-visible {
+  display: none;
   visibility: hidden;
+}
+
+@media only screen and (min-width: 1413px) {
+  .desktop-visible {
+    display: block !important;
+    visibility: visible !important;
+  }
+
+  .desktop-hidden {
+    display: none !important;
+    visibility: hidden;
+  }
 }

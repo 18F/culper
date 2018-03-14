@@ -14,11 +14,6 @@
     visibility: hidden;
   }
 
-  .modal-open {
-    height: auto;
-    overflow-y: auto !important;
-  }
-
   // Consent form
   .consent-modal {
     display: none;
@@ -61,49 +56,51 @@
   }
 
   .modal-open .introduction-modal {
-    position: fixed !important;
+    display: block;
+    position: unset;
     overflow-y: auto;
     background-color: rgba(255, 255, 255, 1) !important;
+    z-index: 9999;
 
     .modal {
-      overflow-y: auto;
+      overflow-y: visible;
       background-color: rgba(255, 255, 255, 1) !important;
 
       .modal-wrap {
         display: block;
       }
-    }
 
-    .introduction-content {
-      width: 100%;
-      min-width: 100%;
-      height: auto;
-      margin: 0 !important;
-      padding-bottom: 5rem; // padding for ipad and iphone
-      border: none;
-      box-shadow: none;
-
-      .modal-close {
-        position: fixed;
-        top: 1rem;
-        right: 2rem;
-      }
-
-      .introduction-legal {
-        overflow-y: auto;
-        max-height: auto;
+      .introduction-content {
+        width: 100%;
+        min-width: 100%;
+        height: auto;
+        margin: 0 !important;
+        padding-bottom: 5rem; // padding for ipad and iphone
         border: none;
-        padding: 0 1rem;
-      }
+        box-shadow: none;
 
-      .introduction-acceptance {
-        max-height: auto;
-        margin: 0;
-        padding: 4rem 1rem;
+        .modal-close {
+          position: fixed;
+          top: 1rem;
+          right: 2rem;
+        }
 
-        .block label {
-          width: 11rem;
-          min-width: 11rem;
+        .introduction-legal {
+          overflow-y: visible;
+          max-height: none;
+          border: none;
+          padding: 0 1rem;
+        }
+
+        .introduction-acceptance {
+          max-height: auto;
+          margin: 0;
+          padding: 4rem 1rem;
+
+          .block label {
+            width: 11rem;
+            min-width: 11rem;
+          }
         }
       }
     }
@@ -150,23 +147,25 @@
         display: block;
 
         > .eapp-logo {
+          display: block;
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
           width: 100%;
           height: 5.5rem;
-          display: inline-block;
+          z-index: 100;
 
-          > .eapp-logo-icon {
-            width: 3.5rem;
+          .eapp-logo-icon {
+            width: 3.2rem;
             height: auto;
-            margin-left: 1rem;
+            margin-left: 0;
             vertical-align: text-bottom;
           }
 
-          span {
-            margin-left: 1rem;
-          }
-
-          > .eapp-logo-text {
+          .eapp-logo-text {
             margin-top: 1rem;
+            margin-left: 1rem;
           }
         }
 
@@ -174,9 +173,29 @@
           padding: 1rem;
           display: block;
           height: auto;
+          margin-top: 5.5rem;
+
+          > .eapp-logout {
+            position: fixed;
+            top: 0;
+            right: 0;
+
+            > a {
+              padding: 1.7rem;
+            }
+          }
 
           > .title {
             margin: 0;
+          }
+        }
+      }
+
+      &.mobile-navigation {
+        > .eapp-structure-row {
+          > .eapp-title {
+            padding: 0;
+            margin-top: 0.5rem;
           }
         }
       }
@@ -192,8 +211,71 @@
     }
 
     .form-navigation {
+      transform: translateX(-100%);
+      -webkit-transform: translateX(-100%);
+
       .section-name {
         max-width: 88%;
+      }
+    }
+
+    &.mobile-visible {
+      padding-left: 1.6rem;
+      padding-right: 1.6rem;
+
+      .score-card {
+        font-size: 2.8rem;
+        padding-bottom: 1rem;
+        padding-left: 2.1rem;
+        text-align: left;
+
+        > .score-card-done,
+        > .score-card-total,
+        > .score-card-text {
+          display: inline-block;
+          line-height: normal;
+        }
+
+        > .score-card-done,
+        > .score-card-total {
+          font-size: 2.6rem;
+        }
+
+        > .score-card-text {
+          font-size: 1.9rem;
+          margin-left: 1rem;
+        }
+      }
+
+      .form-navigation {
+        animation: slide-out 0.5s forwards;
+        -webkit-animation: slide-out 0.5s forwards;
+
+        @keyframes slide-out {
+          0% { transform: translateX(-100%); }
+          100% { transform: translateX(0%); }
+        }
+
+        @-webkit-keyframes slide-out {
+          0% { transform: translateX(-100%); }
+          100% { transform: translateX(0%); }
+        }
+      }
+
+      .instructions {
+        margin-top: 3rem;
+        margin-bottom: 4rem;
+        margin-left: 2rem;
+        width: auto;
+        text-align: left;
+        background: none;
+        font-weight: initial;
+        font-size: 1.6rem;
+
+        > span {
+          color: #0071bc;
+          border-bottom: 1px dashed #0071bc;
+        }
       }
     }
   }

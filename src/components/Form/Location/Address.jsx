@@ -43,38 +43,43 @@ export default class Address extends ValidationElement {
   }
 
   updateStreet (values) {
+    const noChange = values.value === this.props.street
     this.update({
       street: values.value,
-      validated: this.props.validated && values.value === this.props.street
-    })
+      validated: this.props.validated && noChange
+    }, noChange ? null : 2000)
   }
 
   updateStreet2 (values) {
+    const noChange = values.value === this.props.street2
     this.update({
       street2: values.value,
       validated: this.props.validated && values.value === this.props.street2
-    })
+    }, noChange ? null : 2000)
   }
 
   updateCity (values) {
+    const noChange = values.value === this.props.city
     this.update({
       city: values.value,
       validated: this.props.validated && values.value === this.props.city
-    })
+    }, noChange ? null : 2000)
   }
 
   updateState (values) {
+    const noChange = values.value === this.props.state
     this.update({
       state: values.value,
       validated: this.props.validated && values.value === this.props.state
-    })
+    }, noChange ? null : 1500)
   }
 
   updateZipcode (values) {
+    const noChange = values.value === this.props.zipcode
     this.update({
       zipcode: values.value,
       validated: this.props.validated && values.value === this.props.zipcode
-    })
+    }, noChange ? null : 1000)
   }
 
   updateCountry (values) {
@@ -118,7 +123,7 @@ export default class Address extends ValidationElement {
     })
   }
 
-  update (updateValues) {
+  update (updateValues, delay = null) {
     this.props.onUpdate({
       street: this.props.street,
       street2: this.props.street2,
@@ -128,7 +133,7 @@ export default class Address extends ValidationElement {
       zipcode: this.props.zipcode,
       validated: this.props.validated,
       ...updateValues
-    })
+    }, delay)
   }
 
   addressTypeFunc (props) {
