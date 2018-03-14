@@ -1,28 +1,25 @@
 import LocationValidator from './location'
-import { validGenericTextfield, validGenericMonthYear, BranchCollection } from './helpers'
+import { validGenericTextfield, validGenericMonthYear, validBranch, validAccordion } from './helpers'
 
 export default class DomesticViolence {
   constructor (data = {}) {
+    this.hasDomesticViolence = (data.HasDomesticViolence || {}).value
     this.list = data.List || []
   }
 
-  isValid () {
-    if (!this.list) {
-      return false
-    }
-
-    const branchValidator = new BranchCollection(this.list)
-    if (!branchValidator.validKeyValues()) {
-      return false
-    }
-
-    if (branchValidator.hasNo()) {
+  validItems () {
+    if (this.hasDomesticViolence === 'No') {
       return true
     }
 
-    return branchValidator.each(item => {
-      return new DomesticViolenceItem(item.domestic).isValid()
+    return validAccordion(this.list, (item) => {
+      return new DomesticViolenceItem(item).isValid()
     })
+  }
+
+  isValid () {
+    return validBranch(this.hasDomesticViolence) &&
+      this.validItems()
   }
 }
 
