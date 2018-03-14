@@ -38,30 +38,29 @@ describe('Domestic Violence validation', function () {
     const tests = [
       {
         data: {
+          HasDomesticViolence: { value: 'Yes' },
           List: {
+            branch: { value: 'No' },
             items: [
               {
                 Item: {
-                  Has: { value: 'Yes' },
-                  domestic: {
-                    CourtName: {
-                      value: '4th Circuit Court'
-                    },
-                    CourtAddress: {
-                      country: { value: 'United States' },
-                      street: '1234 Some Rd',
-                      city: 'Arlington',
-                      state: 'Virginia',
-                      zipcode: '22202',
-                      layout: Location.ADDRESS
-                    },
-                    Explanation: {
-                      value: 'Some content'
-                    },
-                    Issued: {
-                      month: '1',
-                      year: '2009'
-                    }
+                  CourtName: {
+                    value: '4th Circuit Court'
+                  },
+                  CourtAddress: {
+                    country: { value: 'United States' },
+                    street: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'Virginia',
+                    zipcode: '22202',
+                    layout: Location.ADDRESS
+                  },
+                  Explanation: {
+                    value: 'Some content'
+                  },
+                  Issued: {
+                    month: '1',
+                    year: '2009'
                   }
                 }
               }
@@ -76,24 +75,10 @@ describe('Domestic Violence validation', function () {
       },
       {
         data: {
+          HasDomesticViolence: { value: 'Yes' },
           List: {
-            items: []
-          }
-        },
-        expected: false
-      },
-      {
-        data: {
-          List: {
-            items: [{ Item: { Has: { value: 'No' } } }]
-          }
-        },
-        expected: true
-      },
-      {
-        data: {
-          List: {
-            items: [{ Item: { Has: { value: 'Yes' } } }]
+            branch: { value: 'No' },
+            items: [{ Item: {} }]
           }
         },
         expected: false

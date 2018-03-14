@@ -155,7 +155,7 @@ func TwofactorResettable() bool {
 // IsTest returns if the environment is in a test environment
 func IsTest() bool {
 	e := UserService("GOLANG", "ENV")
-	if e == "test" || e == "development" {
+	if e == "test" {
 		return true
 	}
 	return false
