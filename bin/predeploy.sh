@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 
 set -e
 
@@ -7,17 +7,33 @@ SPACE=$1
 #
 # Determine what environment to configure based on the repo/branch
 #
+if [ "$SPACE" = "cloudgov" ]; then
+		if [ "$CIRCLE_BRANCH" = "master" ]; then
+				if [ "$CIRCLE_PROJECT_USERNAME" = "18F" ]; then
+						ENV_FILE=".env.production"
+				elif [ "$CIRCLE_PROJECT_USERNAME" = "truetandem" ]; then
+						ENV_FILE=".env.staging"
+				fi
+		elif [ "$CIRCLE_BRANCH" = "develop" ]; then
+				ENV_FILE=".env.dev"
+		fi
+elif [ "$SPACE" = "aws" ]; then
+		if [ "$CIRCLE_BRANCH" = "master" ]; then
+				if [ "$CIRCLE_PROJECT_USERNAME" = "18F" ]; then
+						ENV_FILE=".env.aws.production"
+				elif [ "$CIRCLE_PROJECT_USERNAME" = "truetandem" ]; then
+						ENV_FILE=".env.aws.staging"
+				fi
+		elif [ "$CIRCLE_BRANCH" = "develop" ]; then
+				ENV_FILE=".env.aws.dev"
+		fi
+fi
 
-# Use CircleCI's ENV variables
-# TODO: Remove CIRCLE vars and use "staging" space if/when we're in one repo; else when Circle implements `owner` as a job filter.
-if [ "$SPACE" = "production" ] && [ "$CIRCLE_PROJECT_USERNAME" = "18F" ]; then
-  ENV_FILE=".env.production"
-elif [ "$SPACE" = "production" ] && [ "$CIRCLE_PROJECT_USERNAME" = "truetandem" ]; then
-  ENV_FILE=".env.staging"
-elif [ "$SPACE" = "dev" ]; then
-  ENV_FILE=".env.dev"
-else
-  ENV_FILE=".env.test"
+#
+# If no environment file was specified assume test.
+#
+if [ "$ENV_FILE" == "" ]; then
+		ENV_FILE=".env.test"
 fi
 
 #
@@ -30,8 +46,15 @@ fi
 cp -f $ENV_FILE .env
 
 #
-# Re-initialize the containers and build with the new environment
-# variables.
+# Add CI/CD variables to the environment file.
 #
-# docker-compose build
-docker-compose run frontend ./bin/build
+if [ "$CODECOV_TOKEN" != "" ]; then
+		echo CODECOV_TOKEN=$CODECOV_TOKEN >> .env
+fi
+
+#
+# Set all variables in the file to the machine.
+#
+set -a
+. .env
+set +a
