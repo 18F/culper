@@ -10,6 +10,8 @@ describe('The DomesticViolenceList  component', () => {
     }
     const component = mount(<DomesticViolenceList {...expected} />)
     expect(component.find('.domestic-violence-list').length).toBe(1)
+    expect(component.find('.has-domestic-violence').length).toBe(1)
+    expect(component.find('.has-order').length).toBe(0)
   })
 
   it('updates value', () => {
@@ -19,7 +21,7 @@ describe('The DomesticViolenceList  component', () => {
       onUpdate: () => { updates++ }
     }
     const component = mount(<DomesticViolenceList {...expected} />)
-    component.find('.has-order .yes input').simulate('change')
+    component.find('.has-domestic-violence .yes input').simulate('change')
     expect(updates).toBe(1)
   })
 
