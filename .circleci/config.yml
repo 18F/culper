@@ -1,172 +1,80 @@
 version: 2
 jobs:
-  build:
-    machine: true
-    steps:
-      - checkout
-      - run:
-          name: Create test certificates
-          command: |
-            set -x
-            ./bin/gen-test-certificates.sh
-      - run:
-          name: Build docker images
-          command: |
-            set -x
-            cp .env.test .env
-            docker-compose build db api
-      - run:
-          name: Run unit tests for API
-          command: |
-            set -x
-            docker-compose run api ./bin/test.sh
-      - run:
-          name: Run unit tests for the front end
-          command: |
-            set -x
-            npm install
-            npm test
-      - run:
-          name: Code coverage
-          command: |
-            set -x
-            echo CODECOV_TOKEN=$CODECOV_TOKEN >> .env
-            NODE_ENV=test npm install -g codecov && codecov
-
-  deploy_development:
-    machine: true
-    steps:
-      - checkout
-      - run:
-          name: Create test certificates
-          command: |
-            set -x
-            ./bin/gen-test-certificates.sh
-      - run:
-          name: Build docker images
-          command: |
-            set -x
-            cp .env.test .env
-            docker-compose build db api
-      - run:
-          name: Run unit tests for API
-          command: |
-            set -x
-            docker-compose run api ./bin/test.sh
-      - run:
-          name: Run unit tests for the front end
-          command: |
-            set -x
-            npm install
-            npm test
-      - run:
-          name: Code coverage
-          command: |
-            set -x
-            echo CODECOV_TOKEN=$CODECOV_TOKEN >> .env
-            NODE_ENV=test npm install -g codecov && codecov
-      - deploy:
-          command: |
-            set -x
-            cp .env.dev .env
-            ./bin/deploy.sh dev
-
-  deploy_production:
-    machine: true
-    steps:
-      - checkout
-      - run:
-          name: Create test certificates
-          command: |
-            set -x
-            ./bin/gen-test-certificates.sh
-      - run:
-          name: Build docker images
-          command: |
-            set -x
-            cp .env.test .env
-            docker-compose build db api
-      - run:
-          name: Run unit tests for API
-          command: |
-            set -x
-            docker-compose run api ./bin/test.sh
-      - run:
-          name: Run unit tests for the front end
-          command: |
-            set -x
-            npm install
-            npm test
-      - run:
-          name: Code coverage
-          command: |
-            set -x
-            echo CODECOV_TOKEN=$CODECOV_TOKEN >> .env
-            NODE_ENV=test npm install -g codecov && codecov
-      - deploy:
-          command: |
-            set -x
-            cp .env.production .env
-            ./bin/deploy.sh production
-
-  deploy_aws:
+  test:
     machine: true
     steps:
       - checkout
       - run:
           name: Setup
           command: |
-            set -x
             cp .env.test .env
             make setup
       - run:
           name: Test
+          command: make test
+      - run:
+          name: Code coverage
           command: |
-            set -x
-            make test
+            if [ "$CODECOV_TOKEN" != "" ]; then
+              echo CODECOV_TOKEN=$CODECOV_TOKEN >> .env
+              make coverage
+            fi
+
+  cloudgov:
+    machine: true
+    steps:
+      - checkout
+      - run:
+          name: Prepare for target environment
+          command: ./bin/predeploy.sh cloudgov
       - run:
           name: Build
-          command: |
-            set -x
-            cp .env.aws .env
-            make build
+          command: make build
+      - deploy:
+          command: ./bin/deploy-cloudgov
+
+  aws:
+    machine: true
+    steps:
+      - checkout
+      - run:
+          name: Prepare for target environment
+          command: ./bin/predeploy.sh aws
+      - run:
+          name: Build
+          command: make build
       - run:
           name: Package
           command: |
-            set -x
-            cp .env.aws .env
+            ./bin/aws-login
             make package
-      - run:
-          name: Deploy
+      - deploy:
           command: |
-            set -x
+            set -a
+            source .env
             make deploy-check && make deploy-configure
-            make deploy-s3
-            eval $(aws ecr get-login --no-include-email)
-            make deploy-ecr
+            ./bin/aws-login
+            make deploy-go
+            make deploy-react
 
 workflows:
   version: 2
   build_and_deploy:
     jobs:
-      - build:
+      - test
+      - cloudgov:
+          requires:
+            - test
           filters:
             branches:
-              ignore:
+              only:
+                - master
                 - develop
-                - master
-      - deploy_development:
+      - aws:
+          requires:
+            - test
           filters:
             branches:
               only:
+                - master
                 - develop
-      - deploy_production:
-          filters:
-            branches:
-              only:
-                - master
-      - deploy_aws:
-          filters:
-            branches:
-              only:
-                - master
