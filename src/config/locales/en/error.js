@@ -658,7 +658,7 @@ export const error = {
         pattern: {
           title: 'There is a problem with the ZIP Code',
           message: 'The ZIP Code should be either 5 or 9 digits.',
-          note: ''
+          note: 'Note: A 9 digit zip code should be in the following format #####-####.'
         }
       },
       country: {
