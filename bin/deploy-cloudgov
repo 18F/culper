@@ -4,18 +4,13 @@ set -e
 
 API="https://api.fr.cloud.gov"
 ORG="gsa-acq-eqip"
-SPACE=$1
-
-if [ $# -ne 1 ]; then
-		echo "Usage: deploy-cloudgov <space>"
-		exit
-fi
 
 #
 # Determine what environment to configure based on the repo/branch
 #
 if [ "$CIRCLE_BRANCH" = "master" ]; then
 		if [ "$CIRCLE_PROJECT_USERNAME" = "18F" ]; then
+				SPACE="production"
 				API_NAME="eqip-prototype-api"
 				API_MANIFEST="manifest-api.yml"
 				FRONTEND_NAME="eqip-prototype"
@@ -28,6 +23,7 @@ if [ "$CIRCLE_BRANCH" = "master" ]; then
 				FRONTEND_MANIFEST="manifest-frontend-staging.yml"
 		fi
 elif [ "$CIRCLE_BRANCH" = "develop" ]; then
+		SPACE="dev"
 		API_NAME="eqip-prototype-api-dev"
 		API_MANIFEST="manifest-api-dev.yml"
 		FRONTEND_NAME="eqip-prototype-dev"
@@ -35,7 +31,7 @@ elif [ "$CIRCLE_BRANCH" = "develop" ]; then
 		CF_USERNAME=$CF_USERNAME_DEV
 		CF_PASSWORD=$CF_PASSWORD_DEV
 else
-		echo "Unknown space: $SPACE"
+		echo "No deployment target"
 		exit
 fi
 

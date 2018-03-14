@@ -542,14 +542,17 @@ func (entity *LegalPoliceAdditionalOffenses) SetID(id int) {
 
 // LegalPoliceDomesticViolence structure
 type LegalPoliceDomesticViolence struct {
-	PayloadList Payload `json:"List" sql:"-"`
+	PayloadHasDomesticViolence Payload `json:"HasDomesticViolence" sql:"-"`
+	PayloadList                Payload `json:"List" sql:"-"`
 
 	// Validator specific fields
-	List *Collection `json:"-"`
+	HasDomesticViolence *Branch     `json:"-"`
+	List                *Collection `json:"-"`
 
 	// Persister specific fields
-	ID     int `json:"-"`
-	ListID int `json:"-" pg:", fk:List"`
+	ID                    int `json:"-"`
+	HasDomesticViolenceID int `json:"-"`
+	ListID                int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -558,6 +561,12 @@ func (entity *LegalPoliceDomesticViolence) Unmarshal(raw []byte) error {
 	if err != nil {
 		return err
 	}
+
+	hasDomesticViolence, err := entity.PayloadHasDomesticViolence.Entity()
+	if err != nil {
+		return err
+	}
+	entity.HasDomesticViolence = hasDomesticViolence.(*Branch)
 
 	list, err := entity.PayloadList.Entity()
 	if err != nil {
@@ -570,6 +579,9 @@ func (entity *LegalPoliceDomesticViolence) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *LegalPoliceDomesticViolence) Marshal() Payload {
+	if entity.HasDomesticViolence != nil {
+		entity.PayloadHasDomesticViolence = entity.HasDomesticViolence.Marshal()
+	}
 	if entity.List != nil {
 		entity.PayloadList = entity.List.Marshal()
 	}
@@ -578,6 +590,9 @@ func (entity *LegalPoliceDomesticViolence) Marshal() Payload {
 
 // Valid checks the value(s) against an battery of tests.
 func (entity *LegalPoliceDomesticViolence) Valid() (bool, error) {
+	if entity.HasDomesticViolence.Value == "No" {
+		return true, nil
+	}
 	return entity.List.Valid()
 }
 
@@ -591,12 +606,23 @@ func (entity *LegalPoliceDomesticViolence) Save(context *db.DatabaseContext, acc
 
 	context.Find(&LegalPoliceDomesticViolence{ID: account}, func(result interface{}) {
 		previous := result.(*LegalPoliceDomesticViolence)
+		if entity.HasDomesticViolence == nil {
+			entity.HasDomesticViolence = &Branch{}
+		}
+		entity.HasDomesticViolenceID = previous.HasDomesticViolenceID
+		entity.HasDomesticViolence.ID = previous.HasDomesticViolenceID
 		if entity.List == nil {
 			entity.List = &Collection{}
 		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
+
+	hasDomesticViolenceID, err := entity.HasDomesticViolence.Save(context, account)
+	if err != nil {
+		return hasDomesticViolenceID, err
+	}
+	entity.HasDomesticViolenceID = hasDomesticViolenceID
 
 	listID, err := entity.List.Save(context, account)
 	if err != nil {
@@ -621,6 +647,11 @@ func (entity *LegalPoliceDomesticViolence) Delete(context *db.DatabaseContext, a
 
 	context.Find(&LegalPoliceDomesticViolence{ID: account}, func(result interface{}) {
 		previous := result.(*LegalPoliceDomesticViolence)
+		if entity.HasDomesticViolence == nil {
+			entity.HasDomesticViolence = &Branch{}
+		}
+		entity.HasDomesticViolenceID = previous.HasDomesticViolenceID
+		entity.HasDomesticViolence.ID = previous.HasDomesticViolenceID
 		if entity.List == nil {
 			entity.List = &Collection{}
 		}
@@ -632,6 +663,10 @@ func (entity *LegalPoliceDomesticViolence) Delete(context *db.DatabaseContext, a
 		if err := context.Delete(entity); err != nil {
 			return entity.ID, err
 		}
+	}
+
+	if _, err := entity.HasDomesticViolence.Delete(context, account); err != nil {
+		return entity.ID, err
 	}
 
 	if _, err := entity.List.Delete(context, account); err != nil {
@@ -651,6 +686,13 @@ func (entity *LegalPoliceDomesticViolence) Get(context *db.DatabaseContext, acco
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	if entity.HasDomesticViolenceID != 0 {
+		entity.HasDomesticViolence = &Branch{ID: entity.HasDomesticViolenceID}
+		if _, err := entity.HasDomesticViolence.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
