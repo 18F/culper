@@ -357,6 +357,7 @@ export const relationships = {
       citizenship: 'Provide this person\'s country(ies) of citizenship',
       location: 'Provide the location',
       address: 'Provide this person\'s current address, if different than your current address',
+      addressWithoutCurrent: 'Provide this person\'s current address',
       telephone: 'Provide this person\'s telephone number',
       email: 'Provide this person\'s email address',
       separated: 'Are you separated?',
@@ -369,6 +370,10 @@ export const relationships = {
     notApplicable: {
       or: 'or',
       label: 'Not applicable'
+    },
+    useCurrentAddress: {
+      or: 'or',
+      label: 'Use my current address'
     },
     deceasedAddressNotApplicable: {
       or: 'or',
