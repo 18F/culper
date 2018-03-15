@@ -662,9 +662,6 @@ export const relationships = {
     }
   },
   people: {
-    heading: {
-      title: 'People who know you well'
-    },
     label: {
       unit: 'People added'
     },
