@@ -90,8 +90,8 @@ const navigation = [
     ]
   },
   {
-    name: 'Foreign activities',
-    title: 'Foreign activities',
+    name: 'Foreign associations',
+    title: 'Foreign associations',
     url: 'foreign',
     store: 'Foreign',
     showNumber: true,
