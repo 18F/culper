@@ -12,11 +12,30 @@ describe('The date component', () => {
       disabled: false,
       error: true,
       focus: false,
-      valid: false
+      valid: false,
+      month: '1',
+      day: '42',
+      year: '2000'
     }
     const component = mount(<DateControl {...expected} />)
+    component.find('.day input').simulate('change')
     expect(component.find('.day input').length).toEqual(1)
     expect(component.find('.flags .estimated').length).toBe(1)
+    expect(component.find('.usa-input-error').length).toBe(1)
+  })
+
+  it('can override overall error', () => {
+    const expected = {
+      name: 'input-error',
+      label: 'DateControl input error',
+      disabled: false,
+      error: true,
+      focus: false,
+      valid: false,
+      overrideError: true
+    }
+    const component = mount(<DateControl {...expected} />)
+    expect(component.find('.datecontrol.usa-input-error').length).toBe(0)
   })
 
   it('renders appropriately with focus', () => {
