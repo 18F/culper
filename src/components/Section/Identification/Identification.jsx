@@ -34,10 +34,10 @@ class Identification extends SectionElement {
                        title={i18n.t('review.title')}
                        para={i18n.m('review.para')}
                        showTop={true}
-                       next="relationships/intro"
-                       nextLabel={i18n.t('relationships.destination.intro')}
                        back="identification/physical"
-                       backLabel={i18n.t('identification.destination.physical')}>
+                       backLabel={i18n.t('identification.destination.physical')}
+                       next="history/intro"
+                       nextLabel={i18n.t('history.destination.intro')}>
             <ApplicantName name="name"
                            {...this.props.ApplicantName}
                            section="identification"

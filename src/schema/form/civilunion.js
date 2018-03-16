@@ -39,6 +39,7 @@ export const civilunion = (data = {}) => {
     })),
     SSN: ssn(data.SSN),
     Separated: branch(data.Separated),
-    Telephone: telephone(data.Telephone)
+    Telephone: telephone(data.Telephone),
+    UseCurrentAddress: notapplicable(data.UseCurrentAddress)
   })
 }

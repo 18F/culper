@@ -370,6 +370,7 @@ select {
       &.usa-input-focus,
       &.checked,
       &:hover {
+        color: $eapp-grey-dark;
         background: $eapp-grey-light;
       }
     }
