@@ -554,7 +554,7 @@ var (
 		},
 		sectionInformation{
 			name:       "Submission",
-			subsection: "Submit",
+			subsection: "Releases",
 			payload:    "submission.releases",
 			hashable:   false,
 		},

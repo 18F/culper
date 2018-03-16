@@ -4,6 +4,7 @@ import { i18n } from '../../config'
 import AuthenticatedView from '../../views/AuthenticatedView'
 import { Show } from '../Form'
 import { saveSection } from '../../middleware/history'
+import { formIsLocked } from '../../validators'
 
 class SavedIndicator extends React.Component {
   constructor (props) {
@@ -113,7 +114,7 @@ class SavedIndicator extends React.Component {
   }
 
   allowed () {
-    return !this.isRoute('form/package/print')
+    return !formIsLocked(this.props.app) && !this.isRoute('form/package/print')
   }
 
   isRoute(route) {

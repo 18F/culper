@@ -45,5 +45,5 @@ export const formIsSigned = (store = {}) => {
 
 export const formIsLocked = (store = {}) => {
   const settings = store.Settings || {}
-  return settings.Locked && formIsSigned(store)
+  return settings.locked
 }
