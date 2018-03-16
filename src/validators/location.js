@@ -80,7 +80,8 @@ export default class LocationValidator {
     if (!this.zipcode) {
       return false
     }
-    return this.zipcode.length === 5
+    const withoutDashes = this.zipcode.replace('-', '').length
+    return withoutDashes === 5 || withoutDashes === 9
   }
 
   validCounty () {

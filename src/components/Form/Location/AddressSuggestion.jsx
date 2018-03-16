@@ -1,4 +1,5 @@
 import React from 'react'
+import { countryString } from '../../../validators/location'
 
 /**
  * Helper component that renders address information found
@@ -6,7 +7,7 @@ import React from 'react'
 export function AddressSuggestion (props) {
   const suggestion = props.suggestion
   const current = props.current
-  const country = (current.country || {}).value
+  const country = countryString(current.country)
 
   switch (country) {
     case 'United States':

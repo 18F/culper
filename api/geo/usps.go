@@ -315,6 +315,7 @@ func (address *USPSAddress) ToResult(geoValues Values) (result Result) {
 
 	// Check if there are deviations between what was requested versus what
 	// was returned. If we find any, mark result as Partial
+	ziplength := len(geoValues.Zipcode)
 	switch {
 	case address.ReturnText != "":
 		fallthrough
@@ -326,7 +327,11 @@ func (address *USPSAddress) ToResult(geoValues Values) (result Result) {
 		fallthrough
 	case !strings.EqualFold(result.State, geoValues.State):
 		fallthrough
-	case !strings.EqualFold(result.Zipcode, geoValues.Zipcode):
+	case ziplength < 5:
+		fallthrough
+	case ziplength >= 5 && !strings.EqualFold(result.Zipcode, geoValues.Zipcode[0:5]):
+		fallthrough
+	case ziplength > 5 && !strings.EqualFold(address.Zip4, geoValues.Zipcode[ziplength-4:ziplength]):
 		result.Partial = true
 	}
 
