@@ -4,7 +4,7 @@
   <References>
     {{range $index, $item := .props.List.props.items}}
     {{with $Item := $item.Item}}
-    <Reference ID={{$index}}>
+    <Reference ID="{{$index}}">
       <Address>
         {{location $Item.Address}}
       </Address>

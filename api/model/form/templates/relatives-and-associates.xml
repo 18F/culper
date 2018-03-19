@@ -139,8 +139,8 @@
         </OtherNamesUsed>
         <Type>{{text $Item.Relation}}</Type>
       </Relative>
+      {{end}}
+      {{end}}
     </Relatives>
-    {{end}}
-    {{end}}
     <SummaryComment></SummaryComment>
   </RelativesAndAssociates>

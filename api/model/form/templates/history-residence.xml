@@ -29,7 +29,7 @@
         <LastContact>
           <Date Type="{{dateEstimated $Item.ReferenceLastContact}}">{{monthYear $Item.ReferenceLastContact}}</Date>
         </LastContact>
-        <LegalName>{{name $Item.ReferenceFullName}}</LegalName>
+        <LegalName>{{name $Item.ReferenceName}}</LegalName>
         <RelationshipOtherExplanation>{{text $Item.ReferenceRelationshipOther}}</RelationshipOtherExplanation>
         <RelationshipTypes Neighbor="{{checkboxHas $Item.ReferenceRelationship "Neighbor"}}" Friend="{{checkboxHas $Item.ReferenceRelationship "Friend"}}" Schoolmate="{{checkboxHas $Item.ReferenceRelationship "Schoolmate"}}" WorkAssociate="{{checkboxHas $Item.ReferenceRelationship "WorkAssociate"}}" Other="{{checkboxHas $Item.ReferenceRelationship "Other"}}" />
         <Telephone>

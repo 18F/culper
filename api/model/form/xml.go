@@ -3,6 +3,7 @@ package form
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"html/template"
 	"path"
 	"strings"
@@ -172,9 +173,13 @@ func checkbox(data map[string]interface{}) string {
 }
 
 func checkboxHas(data map[string]interface{}, target string) string {
+	fmt.Println("debug::checkboxHas::::::::::::::::::", data, target)
 	props, ok := data["props"]
 	if ok {
-		values := (props.(map[string]interface{}))["values"].([]interface{})
+		values, ok := (props.(map[string]interface{}))["values"].([]interface{})
+		if !ok {
+			return "False"
+		}
 		for _, s := range values {
 			if s == target {
 				return "True"
@@ -266,9 +271,9 @@ func telephoneNoNumber(data map[string]interface{}) string {
 
 	telephone := entity.(*Telephone)
 	if telephone.NoNumber {
-		return "False"
+		return "True"
 	}
-	return "True"
+	return "False"
 }
 
 func checkboxTrueFalse(data map[string]interface{}) string {

@@ -1,4 +1,4 @@
-<IdentifyingInformation>
+<IdentifyingInformation Type="Pooled" Version="1">
   {{tmpl "identification-birth.xml" .Identification }}
   {{tmpl "identification-eyecolor.xml" .Identification.Physical.props.EyeColor }}
   {{tmpl "identification-name.xml" .Identification.ApplicantName }}

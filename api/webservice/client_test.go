@@ -107,18 +107,3 @@ func TestIsAlive(t *testing.T) {
 		t.Fatal("Expected no errors but received %v", err)
 	}
 }
-
-func TestLiveIsAlive(t *testing.T) {
-	const cert = "/home/john/eqip/certs/ws.pkcs.key"
-	//const cert2 = "./testdata/test.pkcs.key"
-	//const url = "https://e-qipav.opm.gov/eqipwebservices"
-	const url = "https://e-qipav.opm.gov/eqipwebservices/EqipWS"
-	//const url = "https://e-qipav.opm.gov/eqipwebservices/eqip-webservices/EqipWS"
-	//const url = "https://e-qipav.opm.gov/eqip-webservices/EqipWS"
-	//const url = "http://localhost:5000/eqip-webservices/EqipWS"
-	client := NewClient(url, cert)
-	err := client.IsAlive2()
-	if err != nil {
-		t.Error(err)
-	}
-}

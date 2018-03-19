@@ -9,9 +9,9 @@
     <Comment></Comment>
   </SolelyForUSGovernment>
   <SummaryComment></SummaryComment>
-  {{range $index, $item := .props.List.props.items}}
-  {{with $Item := $item.Item}}
   <Travels>
+    {{range $index, $item := .props.List.props.items}}
+    {{with $Item := $item.Item}}
     <Travel ID="{{$index}}">
       <ContactedByForeignMilitaryOrganization>
         <Answer>{{branch $Item.Contacted}}</Answer>

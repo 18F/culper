@@ -88,8 +88,8 @@
         {{end}}
       </Sentenced>
     </Offense>
+    {{end}}
+    {{end}}
     <SummaryComment></SummaryComment>
   </Offenses>
-  {{end}}
-  {{end}}
 </Ever>

@@ -1,3 +1,4 @@
 <City>{{.props.city}}</City>
 <State>{{.props.state}}</State>
 <County>{{.props.county}}</County>
+<Country>United States</Country>

@@ -2,9 +2,13 @@ package webservice
 
 import (
 	"bytes"
+	"compress/zlib"
+	"encoding/base64"
 	"encoding/gob"
 	"encoding/xml"
+	"fmt"
 	"io"
+	"io/ioutil"
 	"text/template"
 )
 
@@ -12,38 +16,153 @@ type RequestBody interface {
 	XML() string
 }
 
-// SOAPEnvelope contains the entire contents of a SOAP request
-// Based on schema defined in http://schemas.xmlsoap.org/soap/envelope/. The basic
-// structure:
-//
-//	<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-//		<xs:complexType name="Header">...</xs:complexType>
-//		<xs:complexType name="Body">...</xs:complexType>
-//	</xs:schema>
-type SOAPEnvelope struct {
-	XMLName xml.Name `xml:"S:Envelope"`
-	Header  SOAPHeader
-	Body    SOAPBody
+type GetRequestFormPDF struct {
+	CallerInfo CallerInfo
+	RequestKey RequestKey
 }
 
-// NewSOAPEnvelope sets up the structure for a soap request
-func NewSOAPEnvelope(action Body, unsigned, signed string) SOAPEnvelope {
-	return SOAPEnvelope{
-		Header: SOAPHeader{
-			Authentication: Authentication{
-				Namespace:                defaultAuthNamespace,
-				UnencryptedSecurityToken: unsigned,
-				EncryptedSecurityToken:   signed,
+func (r GetRequestFormPDF) XML() string {
+	tmpl := template.Must(template.New("get-request-form-pdf.xml").Parse(getRequestFormPdfResponseTemplate))
+	var output bytes.Buffer
+	err := tmpl.Execute(&output, r)
+	if err != nil {
+		fmt.Println(err)
+		return "Unable to parse template"
+	}
+	return output.String()
+}
+
+type UserTemplate string
+
+func (t *UserTemplate) Load(app map[string]interface{}) error {
+	tmpl := template.Must(template.New("user.xml").Parse(userTemplate))
+	var output bytes.Buffer
+	if err := tmpl.Execute(&output, app); err != nil {
+		return err
+	}
+	*t = UserTemplate(output.String())
+	return nil
+}
+
+type Base64Content string
+
+func (b *Base64Content) Compress(content string) error {
+	var zlibBytes bytes.Buffer
+	gw := zlib.NewWriter(&zlibBytes)
+	_, err := gw.Write([]byte(content))
+	if err != nil {
+		return err
+	}
+	if err := gw.Flush(); err != nil {
+		return err
+	}
+	if err := gw.Close(); err != nil {
+		return err
+	}
+	base64Str := base64.StdEncoding.EncodeToString(zlibBytes.Bytes())
+	*b = Base64Content(base64Str)
+	return nil
+}
+
+type ImportRequest struct {
+	CallerInfo     CallerInfo // arg0
+	User2          UserTemplate
+	AgencyKey      AgencyKey      // arg2
+	AgencyGroupKey AgencyGroupKey // arg3
+	Base64Content  Base64Content  // arg4
+	Attachments    []Attachment   // arg5
+}
+
+func (a ImportRequest) XML() string {
+	tmpl := template.Must(template.New("import-request.xml").Parse(importRequestTemplate))
+	var output bytes.Buffer
+	err := tmpl.Execute(&output, a)
+	if err != nil {
+		return "Unable to parse template"
+	}
+	return output.String()
+}
+
+func NewImportRequest(app map[string]interface{}, xmlContent string) (*ImportRequest, error) {
+	var temp struct {
+		XML string `xml:",innerxml"`
+	}
+	err := xml.Unmarshal([]byte(fmt.Sprintf("<wrap>%s</wrap>", xmlContent)), &temp)
+	if err != nil {
+		fmt.Println("Error unmarshalling xml: ", err)
+		return nil, err
+	}
+	ioutil.WriteFile("latest.xmp.xml", []byte(temp.XML), 0777)
+	var user UserTemplate
+	if err := user.Load(app); err != nil {
+		return nil, err
+	}
+	var base64Content Base64Content
+	if err := base64Content.Compress(temp.XML); err != nil {
+		return nil, err
+	}
+
+	r := &ImportRequest{
+		CallerInfo: CallerInfo{
+			Agency: &AgencyKey{
+				AgencyID: 1365,
+			},
+			AgencyUser: &UserKey{
+				PseudoSSN: false,
+				SSN:       "18fuser01",
 			},
 		},
-		Body: SOAPBody{
-			Body: action,
+		User2: user,
+		AgencyKey: AgencyKey{
+			AgencyID: 1,
 		},
+		AgencyGroupKey: AgencyGroupKey{
+			GroupID: 5219,
+		},
+		Base64Content: base64Content,
 	}
+	return r, nil
+}
+
+type GetRequestFormPDFResponse struct {
+	Return string `xml:"return"`
+}
+
+type DemographicData struct {
+	Birth     DemoBirth
+	FullName  DemoFullName
+	Email     string
+	Telephone string
+}
+
+type DemoBirth struct {
+	Date  DemoDate
+	Place DemoPlace
+}
+type DemoDate struct {
+	Day   string
+	Month string
+	Year  string
+}
+type DemoPlace struct {
+	City    string
+	Country string
+	County  string
+	State   string
+}
+type DemoFullName struct {
+	First  string
+	Middle string
+	Last   string
+}
+
+type User struct {
+	DemographicData DemographicData
+	Key             UserKey
 }
 
 func NewSOAPEnvelopeTemplate(action RequestBody, unsigned, signed string) (io.Reader, error) {
-	tmpl := template.Must(template.New("envelope.xml").ParseFiles("envelope.xml"))
+	tmpl := template.Must(template.New("envelope.xml").Parse(envelopeTemplate))
 	var output bytes.Buffer
 	err := tmpl.Execute(&output, struct {
 		RequestBody RequestBody
@@ -54,39 +173,10 @@ func NewSOAPEnvelopeTemplate(action RequestBody, unsigned, signed string) (io.Re
 		Signed:      signed,
 		Unsigned:    unsigned,
 	})
-	return bytes.NewReader(output.Bytes()), err
-}
-
-// XML generates the xml for this specific struct as a Reader
-func (s *SOAPEnvelope) XML() (io.Reader, error) {
-	var buf bytes.Buffer
-	enc := xml.NewEncoder(&buf)
-	// For debugging
-	enc.Indent("  ", "    ")
-	if err := enc.Encode(s); err != nil {
+	if err != nil {
 		return nil, err
 	}
-	return bytes.NewReader(buf.Bytes()), nil
-}
-
-// SOAPHeader contains authentication information
-type SOAPHeader struct {
-	XMLName        xml.Name `xml:"SOAP-ENV:Header"`
-	Authentication Authentication
-}
-
-// Authentication contains unencrypted and encrypted security tokens
-type Authentication struct {
-	XMLName                  xml.Name `xml:"eqipws-auth:Authentication"`
-	Namespace                string   `xml:"xmlns:eqipws-auth,attr"`
-	UnencryptedSecurityToken string   `xml:"UnencryptedSecurityToken"`
-	EncryptedSecurityToken   string   `xml:"EncryptedSecurityToken"`
-}
-
-// SOAPBody is a generic container for content
-type SOAPBody struct {
-	XMLName xml.Name `xml:"xmlns:ns2:http://webservice.ws.eqip.opm.gov S:Body"`
-	Body    Body
+	return bytes.NewReader(output.Bytes()), err
 }
 
 // SOAPFault contains information about a webservice error. The general structure for SOAP 1.1
@@ -148,28 +238,6 @@ func (e ErrEqipWSException) Error() string {
 	return e.Message
 }
 
-// ImportRequest defines the structure for the element used to import
-// applicant information
-//	<xs:complexType name="importRequest">
-//		<xs:sequence>
-//			<xs:element name="arg0" type="tns:callerInfo" minOccurs="0"/>
-//			<xs:element name="arg1" type="tns:user" minOccurs="0"/>
-//			<xs:element name="arg2" type="tns:agencyKey" minOccurs="0"/>
-//			<xs:element name="arg3" type="tns:agencyGroupKey" minOccurs="0"/>
-//			<xs:element name="arg4" type="xs:base64Binary" nillable="true" minOccurs="0"/>
-//			<xs:element name="arg5" type="tns:attachment" minOccurs="0" maxOccurs="unbounded"/>
-//		</xs:sequence>
-//	</xs:complexType>
-type ImportRequest struct {
-	XMLName        xml.Name       `xml:"ns2:importRequest"`
-	CallerInfo     CallerInfo     `xml:"arg0"`
-	User           UserKey        `xml:"arg1>key"`
-	AgencyKey      AgencyKey      `xml:"arg2"`
-	AgencyGroupKey AgencyGroupKey `xml:"arg3"`
-	Base64Content  string         `xml:"arg4"`
-	Attachments    []Attachment   `xml:"arg5"`
-}
-
 // ImportRequestResponse is the response returned when a request is successful
 //	<xs:complexType name="importRequestResponse">
 //		<xs:sequence>
@@ -195,7 +263,6 @@ func (response *ImportRequestResponse) Keys() (int, string) {
 	if response == nil || response.Return == nil {
 		return 0, ""
 	}
-
 	ret := response.Return
 	akey := ret.InitiatingAgency
 	rkey := ret.RequestKey
