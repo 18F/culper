@@ -1,5 +1,5 @@
 <BeenInOrganizationDedicatedToTerrorism>
-  <Answer>{{branch .props.HasTerrorists}}</Answer>
+  <Answer>{{branch .props.HasTerrorist}}</Answer>
   <Comment></Comment>
   <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
   <Organizations>

@@ -1,5 +1,5 @@
 <VoluntaryTreatment>
-  <Answer>{{branch .props.Involved}}</Answer>
+  <Answer>{{branch .props.TreatmentVoluntary}}</Answer>
   <Comment></Comment>
   <Consultations>
     {{range $index, $item := .props.List.props.items}}

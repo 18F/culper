@@ -1,5 +1,5 @@
 <MisuseOfPrescriptionDrugs>
-  <Answer>{{branch .props.UsedDrugs}}</Answer>
+  <Answer>{{branch .props.MisusedDrugs}}</Answer>
   <Comment></Comment>
   <Instances>
     {{range $index, $item := .props.List.props.items}}
