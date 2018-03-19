@@ -67,9 +67,9 @@ export default class ValidForm extends ValidationElement {
   }
 
   submit () {
-    if (window.confirm('Are you sure you want to submit this application?')) {
+    //if (window.confirm('Are you sure you want to submit this application?')) {
       this.props.onSubmit()
-    }
+    //}
   }
 
   togglePanel (nextIndex, open = true) {

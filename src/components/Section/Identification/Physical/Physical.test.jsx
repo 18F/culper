@@ -34,7 +34,7 @@ describe('The physical attributes section', () => {
         feet: 5,
         inches: 10
       },
-      Sex: 'male',
+      Sex: 'Male',
       Weight: 180,
       onUpdate: () => { updates++ }
     }
