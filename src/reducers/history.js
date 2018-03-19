@@ -18,12 +18,13 @@ const history = function (state = {}, action) {
 }
 
 export const populateCurrentAddress = (history) => {
-  if (!history.Residence || !history.Residence.length) {
+  const items = (((history || {}).Residence || {}).List || {}).items || []
+  if (items.length === 0) {
     return history
   }
 
   let found = false
-  for (let r of history.Residence) {
+  for (let r of items) {
     if (!r.Item) {
       continue
     }

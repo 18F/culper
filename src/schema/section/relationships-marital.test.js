@@ -47,7 +47,8 @@ describe('Schema for financial taxes', () => {
         },
         SSN: {},
         Separated: {},
-        Telephone: {}
+        Telephone: {},
+        UseCurrentAddress: {}
       },
       DivorcedList: {
         branch: { value: 'No' },

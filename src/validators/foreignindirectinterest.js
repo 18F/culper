@@ -65,7 +65,9 @@ export default class ForeignIndirectInterestValidator {
   }
 
   validExplanation () {
-    return validGenericTextfield(this.explanation)
+    return validNotApplicable(this.soldNotApplicable, () => {
+      return validGenericTextfield(this.explanation)
+    })
   }
 
   isValid () {
