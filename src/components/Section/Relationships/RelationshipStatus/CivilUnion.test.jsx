@@ -64,10 +64,10 @@ describe('The civil union component', () => {
     }
 
     const component = mount(<CivilUnion {...expected} />)
-    expect(component.find('.current-address').length).toEqual(1)
-    component.find('.current-address input').simulate('change')
-    expect(updates).toBe(2)
-    component.find('.current-address input').simulate('change')
-    expect(component.find('.current-address label.checked').length).toEqual(0)
+    expect(component.find('.current-address.button').length).toEqual(1)
+    component.find('.current-address.button input').simulate('change')
+    expect(updates).toBe(1)
+    component.find('.current-address.button input').simulate('change')
+    expect(component.find('.current-address.button label.checked').length).toEqual(0)
   })
 })

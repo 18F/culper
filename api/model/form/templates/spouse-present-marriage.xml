@@ -14,7 +14,7 @@
       </PhysicalLocation>
     </APOFPO>
     {{else}}
-    <Address UseMyCurrentAddress="{{checkboxTrueFalse $Item.UseCurrentAddress}}">
+    <Address UseMyCurrentAddress="{{notApplicable $Item.UseCurrentAddress}}">
       {{location $Item.Address}}
     </Address>
     {{end}}
