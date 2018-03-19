@@ -1,28 +1,26 @@
-<EmploymentActivities>
+<EmploymentActivities Type="Pooled" Version="1">
   <Employments>
     {{range $index, $item := .props.List.props.items}}
     {{with $Item := $item.Item}}
     <Employment ID="{{$index}}">
-      {{daterange $Item.Dates}}
+      {{monthYearDaterange $Item.Dates}}
       <Type>{{radio $Item.EmploymentActivity}}</Type>
       <EmploymentTypeOtherExplanation>{{$Item.EmploymentActivity.props.otherExplanation}}</EmploymentTypeOtherExplanation>
       <EmploymentCodeComment></EmploymentCodeComment>
       <WorkHours>{{radio $Item.Status}}</WorkHours>
-
       {{if locationIsPostOffice $Item.Address}}
       <APOFPO>
         <Address>{{location $Item.Address}}</Address>
         <AddressComment></AddressComment>
       </APOFPO>
       {{end}}
-
-      {{if radio $Item.EmploymentActivity | ne "OtherFederal"}}
-      {{if radio $Item.EmploymentActivity | ne "StateGovernment"}}
-      {{if radio $Item.EmploymentActivity | ne "FederalContractor"}}
-      {{if radio $Item.EmploymentActivity | ne "NonGovernment"}}
-      {{if radio $Item.EmploymentActivity | ne "SelfEmployment"}}
-      {{if radio $Item.EmploymentActivity | ne "Unemployment"}}
-      {{if radio $Item.EmploymentActivity | ne "Other"}}
+      {{- if radio $Item.EmploymentActivity | ne "OtherFederal"}}
+      {{- if radio $Item.EmploymentActivity | ne "StateGovernment"}}
+      {{- if radio $Item.EmploymentActivity | ne "FederalContractor"}}
+      {{- if radio $Item.EmploymentActivity | ne "NonGovernment"}}
+      {{- if radio $Item.EmploymentActivity | ne "SelfEmployment"}}
+      {{- if radio $Item.EmploymentActivity | ne "Unemployment"}}
+      {{- if radio $Item.EmploymentActivity | ne "Other"}}
       <MilitaryEmploymentComment></MilitaryEmploymentComment>
       <MilitaryService>
         <DutyStation>
@@ -32,19 +30,19 @@
         </DutyStation>
         <Rank>{{text $Item.Title}}</Rank>
       </MilitaryService>
-      {{end}}
-      {{end}}
-      {{end}}
-      {{end}}
-      {{end}}
-      {{end}}
-      {{end}}
+      {{- end}}
+      {{- end}}
+      {{- end}}
+      {{- end}}
+      {{- end}}
+      {{- end}}
+      {{- end}}
 
-      {{if radio $Item.EmploymentActivity | ne "ActiveMilitaryDuty"}}
-      {{if radio $Item.EmploymentActivity | ne "NationalGuard"}}
-      {{if radio $Item.EmploymentActivity | ne "USPHS"}}
-      {{if radio $Item.EmploymentActivity | ne "SelfEmployment"}}
-      {{if radio $Item.EmploymentActivity | ne "Unemployment"}}
+      {{- if radio $Item.EmploymentActivity | ne "ActiveMilitaryDuty"}}
+      {{- if radio $Item.EmploymentActivity | ne "NationalGuard"}}
+      {{- if radio $Item.EmploymentActivity | ne "USPHS"}}
+      {{- if radio $Item.EmploymentActivity | ne "SelfEmployment"}}
+      {{- if radio $Item.EmploymentActivity | ne "Unemployment"}}
       <CivilEmployment>
         <Employer>{{text $Item.Employment}}</Employer>
         <PositionTitle>{{text $Item.Title}}</PositionTitle>
@@ -52,7 +50,12 @@
           <Address>{{location $Item.Address}}</Address>
           <Telephone>{{telephone $Item.Telephone}}</Telephone>
         </EmployersLocation>
-        <PreviousEmployments NotApplicable="{{if len $Item.Additional.props.items | eq 0}}True{{else}}False{{end}}">
+
+        {{ if eq (branchcollectionHas $Item.Additional) "No" }}
+        <PreviousEmployments NotApplicable="True" />
+        {{ else }}
+        <PreviousEmployments
+          NotApplicable="{{branchcollectionHas $Item.Additional}}">
           {{range $eindex, $additional := $Item.Additional.props.items}}
           {{with $Previous := $additional.Item}}
           <PreviousEmployment ID="{{$eindex}}">
@@ -63,14 +66,16 @@
           {{end}}
           {{end}}
         </PreviousEmployments>
-      </CivilEmployment>
-      {{end}}
-      {{end}}
-      {{end}}
-      {{end}}
-      {{end}}
+        {{end}}
 
-      {{if radio $Item.EmploymentActivity | eq "SelfEmployed"}}
+      </CivilEmployment>
+      {{- end}}
+      {{- end}}
+      {{- end}}
+      {{- end}}
+      {{- end}}
+
+      {{- if radio $Item.EmploymentActivity | eq "SelfEmployed"}}
       <SelfEmployment>
         <Occupation>{{text $Item.Title}}</Occupation>
         <Business>
@@ -79,22 +84,22 @@
           <Telephone>{{telephone $Item.Telephone}}</Telephone>
         </Business>
       </SelfEmployment>
-      {{end}}
+      {{- end}}
 
-      {{if radio $Item.EmploymentActivity | ne "ActiveMilitaryDuty"}}
-      {{if radio $Item.EmploymentActivity | ne "NationalGuard"}}
-      {{if radio $Item.EmploymentActivity | ne "USPHS"}}
+      {{- if radio $Item.EmploymentActivity | ne "ActiveMilitaryDuty"}}
+      {{- if radio $Item.EmploymentActivity | ne "NationalGuard"}}
+      {{- if radio $Item.EmploymentActivity | ne "USPHS"}}
       <NonMilitaryEmploymentComment></NonMilitaryEmploymentComment>
-      {{end}}
-      {{end}}
-      {{end}}
-
+      {{- end}}
+      {{- end}}
+      {{- end}}
       <Dismissals>
-        <Answer>{{if len $Item.ReasonLeft.props.Reasons.props.items}}Yes{{else}}No{{end}}</Answer>
+        <Answer>{{branchcollectionHas $Item.ReasonLeft.props.Reasons}}</Answer>
         <AnswerComment></AnswerComment>
         <Comment></Comment>
-        {{range $lindex, $left := $Item.ReasonLeft.props.Reasons.props.items}}
-        {{with $Dismissal := $left.Item}}
+        {{- range $lindex, $left := $Item.ReasonLeft.props.Reasons.props.items}}
+        {{- with $Dismissal := $left.Item}}
+        {{- if eq (branch $Dismissal.Has) "Yes"}}
         <Dismissal ID="{{$lindex}}">
           <Date Type="{{dateEstimated $Dismissal.Date}}">{{monthYear $Dismissal.Date}}</Date>
           <Reason>{{textarea $Item.ReasonLeft.props.ReasonDescription}}</Reason>
@@ -102,25 +107,28 @@
           <SeveranceTypeComment>{{textarea $Dismissal.Text}}</SeveranceTypeComment>
           <Comment></Comment>
         </Dismissal>
-        {{end}}
-        {{end}}
+        {{- end}}
+        {{- end}}
+        {{- end}}
         <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
       </Dismissals>
 
       <Incidents>
-        <Answer>{{if len $Item.Reprimand.props.items}}Yes{{else}}No{{end}}</Answer>
+        <Answer>{{branchcollectionHas $Item.Reprimand}}</Answer>
         <AnswerComment></AnswerComment>
         <Comment></Comment>
         <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
-        {{range $rindex, $reprimand := $Item.Reprimand.props.items}}
-        {{with $Reprimand := $reprimand.Item}}
+        {{- range $rindex, $reprimand := $Item.Reprimand.props.items}}
+        {{- with $Reprimand := $reprimand.Item}}
+        {{- if eq (branch $Reprimand.Has) "Yes"}}
         <Incident ID="{{$rindex}}">
           <Date Type="{{dateEstimated $Reprimand.Date}}">{{monthYear $Reprimand.Date}}</Date>
           <Reason>{{textarea $Reprimand.Text}}</Reason>
           <Comment></Comment>
         </Incident>
-        {{end}}
-        {{end}}
+        {{- end}}
+        {{- end}}
+        {{- end}}
       </Incidents>
 
       <JobLocation>
@@ -141,7 +149,7 @@
         <Reason>{{textarea $Item.ReasonLeft.props.ReasonDescription}}</Reason>
       </LeftJob>
 
-      {{with $supervisor := $Item.props.Supervisor.props}}
+      {{with $supervisor := $Item.Supervisor.props}}
       <Supervisor>
         <Name>{{text $supervisor.SupervisorName}}</Name>
         <Title>{{text $supervisor.Title}}</Title>
@@ -176,8 +184,8 @@
         {{end}}
       </Verifier>
     </Employment>
-    {{end}}
-    {{end}}
+    {{- end}}
+    {{- end}}
   </Employments>
   <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
   <SummaryComment></SummaryComment>

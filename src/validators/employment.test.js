@@ -25,7 +25,7 @@ describe('Employment component validation', function () {
             present: false
           },
           Status: {
-            value: 'Fulltime'
+            value: 'FullTime'
           },
           Title: {
             value: 'IT Support'
@@ -137,7 +137,7 @@ describe('Employment component validation', function () {
             present: false
           },
           Status: {
-            value: 'Fulltime'
+            value: 'FullTime'
           },
           Title: {
             value: 'IT Support'
@@ -258,7 +258,7 @@ describe('Employment component validation', function () {
             present: false
           },
           Status: {
-            value: 'Fulltime'
+            value: 'FullTime'
           },
           Employment: {
             value: 'LM'
@@ -382,7 +382,7 @@ describe('Employment component validation', function () {
             present: false
           },
           Status: {
-            value: 'Fulltime'
+            value: 'FullTime'
           },
           Title: {
             value: 'IT Support'
@@ -544,7 +544,7 @@ describe('Employment component validation', function () {
             present: false
           },
           Status: {
-            value: 'Fulltime'
+            value: 'FullTime'
           },
           Employment: {
             value: 'Self Enterprises'
@@ -1524,7 +1524,7 @@ describe('Employment component validation', function () {
               present: false
             },
             Status: {
-              value: 'Fulltime'
+              value: 'FullTime'
             },
             Title: {
               value: 'IT Support'
