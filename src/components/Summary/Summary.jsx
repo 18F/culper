@@ -21,16 +21,48 @@ export const Summary = (props = {}) => {
     ...props
   }
 
-  const t = props.index < 0 ? props.type : `${props.type} ${props.index + 1}`
-  const l = !props.left && props.right ? '' : !props.left && !props.right ? props.placeholder : props.left
-  const klass = `summary-item-content ${l === props.placeholder ? 'default' : 'has-content'}`
+  const title = props.index < 0 ? props.type : `${props.type} ${props.index + 1}`
+  const left = !props.left && props.right ? '' : !props.left && !props.right ? props.placeholder : props.left
+  const klass = `summary-item-content ${left === props.placeholder ? 'default' : 'has-content'}`
+
+  let tlen = letters(title) + 2
+  let rlen = letters(props.right)
+  let llen = letters(left)
+  let mlen = 54 - tlen - rlen
+  if (llen > mlen) {
+    llen = mlen - 1
+  }
+
   return (
     <span className={klass}>
-      <span className="index">{t}:</span>
-      <span className="context"><strong>{l}</strong></span>
+      <span className="index">{title}:</span>
+      <span className="context"><strong className={`at-${llen}`}>{left}</strong></span>
       <Show when={props.right}>
-        <span className="dates"><strong>{props.right}</strong></span>
+        <span className="dates"><strong className={`at-${rlen}`}>{props.right}</strong></span>
       </Show>
     </span>
   )
+}
+
+/**
+ * Counts the number of letters in a string.
+ * @param {object} obj - The react object
+ * @returns {integer} The number of letters.
+ */
+const letters = (obj) => {
+  if (!obj) {
+    return 0
+  }
+
+  const objectType = Object.prototype.toString.call(obj)
+  if (objectType === '[object Object]' && obj.props) {
+    if (obj.props.children) {
+      return obj.props.children.length
+    }
+    if (obj.props.source) {
+      return obj.props.source.length
+    }
+  }
+
+  return obj.length || 0
 }
