@@ -1216,7 +1216,7 @@
                   "Status": {
                     "type": "radio",
                     "props": {
-                      "value": "Fulltime"
+                      "value": "FullTime"
                     }
                   },
                   "Supervisor": {
@@ -1252,7 +1252,7 @@
                           "layout": "Address",
                           "street": "1234 Supervisro",
                           "city": "arlington",
-                          "state": "va",
+                          "state": "VA",
                           "zipcode": "22202",
                           "country": "United States",
                           "validated": true
@@ -1402,7 +1402,7 @@
                   "ReferenceEmailNotApplicable": {
                     "type": "notapplicable",
                     "props": {
-                      "applicable": false
+                      "applicable": true
                     }
                   },
                   "ReferenceLastContact": {
@@ -1681,7 +1681,7 @@
         "Sex": {
           "type": "text",
           "props": {
-            "value": "male"
+            "value": "Male"
           }
         },
         "Weight": {
@@ -2222,7 +2222,7 @@
         "RegistrationNumber": {
           "type": "text",
           "props": {
-            "value": "A12345"
+            "value": "123456"
           }
         },
         "Explanation": {
@@ -2433,7 +2433,7 @@
         "Status": {
           "type": "radio",
           "props": {
-            "value": "Never",
+            "value": "NeverMarried",
             "checked": true
           }
         },
@@ -2747,7 +2747,7 @@
                       "layout": "Address",
                       "street": "1555 PersonYouKnowFirstnameTwo",
                       "city": "Arlington",
-                      "state": "va",
+                      "state": "VA",
                       "zipcode": "22202",
                       "country": "United States",
                       "validated": true
@@ -2861,7 +2861,7 @@
                       "layout": "Address",
                       "street": "123 PersonYouKnowThree",
                       "city": "Arlington",
-                      "state": "va",
+                      "state": "VA",
                       "zipcode": "22202",
                       "country": "United States",
                       "validated": true
@@ -3281,7 +3281,7 @@
                       "layout": "Address",
                       "street": "534 Father Rd",
                       "city": "Alexandria",
-                      "state": "va",
+                      "state": "VA",
                       "zipcode": "22310",
                       "country": "United States",
                       "validated": true
