@@ -8,26 +8,36 @@
       <Address>
         {{location $Item.Address}}
       </Address>
-      {{daterange $Item.Dates}}
+      {{monthYearDaterange $Item.Dates}}
       <Email DoNotKnow="{{notApplicable $Item.EmailNotApplicable}}">{{text $Item.Email}}</Email>
       <EntryComment></EntryComment>
       <LegalName>
         {{name $Item.Name}}
       </LegalName>
       <RelationshipType
-          Neighbor="{{checkboxHas $Item.Relationship "Neighbor"}}"
-          Friend="{{checkboxHas $Item.Relationship "Friend"}}"
-          WorkAssociate="{{checkboxHas $Item.Relationship "Business"}}"
-          Schoolmate="{{checkboxHas $Item.Relationship "School"}}"
-          Other="{{checkboxHas $Item.Relationship "Other"}}"
-          />
+        {{- if eq (checkboxHas $Item.Relationship "Neighbor") "True"}}
+        Neighbor="True"
+        {{end}}
+        {{- if eq (checkboxHas $Item.Relationship "Friend") "True"}}
+        Friend="True"
+        {{end}}
+        {{- if eq (checkboxHas $Item.Relationship "Schoolmate") "True"}}
+        Schoolmate="True"
+        {{end}}
+        {{- if eq (checkboxHas $Item.Relationship "WorkAssociate") "True"}}
+        WorkAssociate="True"
+        {{end}}
+        {{- if eq (checkboxHas $Item.Relationship "Other") "True"}}
+        Other="True"
+        {{end}}
+        />
         <RelationshipTypeOtherExplanation>{{text $Item.RelationshipOther}}</RelationshipTypeOtherExplanation>
         <Telephone>
           <Home DoNotKnow="{{$Item.OtherTelephone.noNumber}}">
-            {{telephoneNoNumber $Item.OtherTelephone}}
+            {{telephone $Item.OtherTelephone}}
           </Home>
           <Mobile DoNotKnow="{{$Item.MobileTelephone.noNumber}}">
-            {{telephoneNoNumber $Item.MobileTelephone}}
+            {{telephone $Item.MobileTelephone}}
           </Mobile>
         </Telephone>
         <Title NotApplicable="{{notApplicable $Item.RankNotApplicable}}">{{text $Item.Rank}}</Title>
