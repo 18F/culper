@@ -1,7 +1,7 @@
 {{$citizenship := .Citizenship.Status.props}}
 {{$passport := .Foreign.Passport.props}}
 <Citizenship Version="1" Type="Pooled">
-  <Status>{{radio $citizenship.CitizenshipStatus}}</Status>
+  <Status>{{radio $citizenship.CitizenshipStatus | citizenshipStatus}}</Status>
   <StatusComment></StatusComment>
   {{if radio $citizenship.CitizenshipStatus | eq "NotCitizen"}}
   <Alien>

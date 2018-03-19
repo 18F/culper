@@ -23,8 +23,10 @@ func defaultTemplate(templateName string, data map[string]interface{}) template.
 		"checkbox":             checkbox,
 		"checkboxHas":          checkboxHas,
 		"checkboxTrueFalse":    checkboxTrueFalse,
+		"citizenshipStatus":    citizenshipStatus,
 		"country":              countryValue,
 		"countryComments":      countryComments,
+		"citizenshipHas":       citizenshipHas,
 		"date":                 date,
 		"dateEstimated":        dateEstimated,
 		"daterange":            daterange,
@@ -39,6 +41,7 @@ func defaultTemplate(templateName string, data map[string]interface{}) template.
 		"notApplicable":        notApplicable,
 		"number":               number,
 		"radio":                radio,
+		"relationshipType":     relationshipType,
 		"telephone":            telephone,
 		"telephoneNoNumber":    telephoneNoNumber,
 		"text":                 text,
@@ -219,6 +222,63 @@ func hasRelativeType(data map[string]interface{}, target string) string {
 	}
 
 	return "False"
+}
+
+func relationshipType(str string) string {
+	types := map[string]string{
+		"Mother":       "01",
+		"Father":       "02",
+		"Stepmother":   "03",
+		"Stepfather":   "04",
+		"FosterParent": "05",
+		"Child":        "06",
+		"Stepchild":    "07",
+		"Brother":      "08",
+		"Sister":       "09",
+		"Stepbrother":  "10",
+		"Stepsister":   "11",
+		"HalfBrother":  "12",
+		"HalfSister":   "13",
+		"FatherInLaw":  "14",
+		"MotherInLaw":  "15",
+		"Guardian":     "16",
+	}
+	return fmt.Sprintf("%s%s", types[str], str)
+}
+
+func citizenshipStatus(status string) string {
+	alias := map[string]string{
+		"Citizen":     "USByBirth",
+		"ForeignBorn": "USByBirthOutsideUS",
+		"Naturalized": "USNotByBirth",
+		"Derived":     "DerivedUSCitizen",
+		"NotCitizen":  "Alien",
+	}
+	return alias[status]
+}
+
+func citizenshipHas(data map[string]interface{}, country string) bool {
+	props, ok := data["props"]
+	if !ok {
+		return false
+	}
+
+	items, ok := (props.(map[string]interface{}))["value"].([]interface{})
+	if !ok {
+		return false
+	}
+
+	if len(items) == 0 {
+		return false
+	}
+
+	for _, item := range items {
+		if item == country {
+			return true
+		}
+	}
+
+	return false
 }
 
 // Put attribute helpers here

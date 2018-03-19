@@ -99,7 +99,7 @@ describe('Marital validation', function () {
       {
         state: {
           Status: {
-            value: 'Never'
+            value: 'NeverMarried'
           }
 
         },
@@ -132,7 +132,7 @@ describe('Marital validation', function () {
       {
         state: {
           Status: {
-            value: 'Never'
+            value: 'NeverMarried'
           }
         },
         expected: true
