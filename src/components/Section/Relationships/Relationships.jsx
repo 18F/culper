@@ -52,8 +52,8 @@ class Relationships extends SectionElement {
       <div>
         <SectionViews current={this.props.subsection} dispatch={this.props.dispatch} update={this.props.update}>
           <SectionView name="intro"
-                       back="identification/review"
-                       backLabel={i18n.t('identification.destination.review')}
+                       back="history/review"
+                       backLabel={i18n.t('history.destination.review')}
                        next="relationships/status/marital"
                        nextLabel={i18n.t('relationships.destination.marital')}>
             <Field title={i18n.t('relationships.intro.title')}
@@ -132,8 +132,8 @@ class Relationships extends SectionElement {
                        showTop={true}
                        back="relationships/relatives"
                        backLabel={i18n.t('relationships.destination.relatives')}
-                       next="history/intro"
-                       nextLabel={i18n.t('history.destination.intro')}>
+                       next="citizenship/intro"
+                       nextLabel={i18n.t('citizenship.destination.intro')}>
             <Marital name="marital"
                      {...this.props.Marital}
                      section="relationships"

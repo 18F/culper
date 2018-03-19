@@ -259,9 +259,9 @@
           }
         },
         "UseCurrentAddress": {
-          "type": "checkbox",
+          "type": "notapplicable",
           "props": {
-            "checked": false
+            "applicable": true
           }
         }
       }

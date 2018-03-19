@@ -1,18 +1,18 @@
 export const foreign = {
   intro: {
-    title: 'Section 6: Foreign activities',
-    body: 'You will be asked questions about your current and previous foreign activities and be asked to provide details if necessary.'
+    title: 'Section 6: Foreign associations',
+    body: 'You will be asked questions about your current and previous foreign associations and be asked to provide details if necessary.'
   },
   tour: {
     para: 'Take a guided tour through the section'
   },
   review: {
-    para: 'View all the sections associated with foreign activities at once',
-    comments: 'Add a comment to clarify any of your responses in the foreign activities section'
+    para: 'View all the sections associated with foreign associations at once',
+    comments: 'Add a comment to clarify any of your responses in the foreign associations section'
   },
   destination: {
     intro: 'Foreign intro',
-    review: 'Review Foreign Activities',
+    review: 'Review Foreign Associations',
     history: 'Your History',
     tbd: 'TBD',
     contacts: 'Foreign Contacts',
