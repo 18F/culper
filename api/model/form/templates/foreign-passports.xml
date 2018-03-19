@@ -1,4 +1,5 @@
 <ForeignPassports>
+  <Answer>{{branchcollectionHas .props.Passports}}</Answer>
   <AnswerComment>string</AnswerComment>
   {{range $index, $item := .props.Passports.props.items}}
   {{with $Item := $item.Item}}

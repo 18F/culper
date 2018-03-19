@@ -28,6 +28,7 @@ func defaultTemplate(templateName string, data map[string]interface{}) template.
 		"date":                 date,
 		"dateEstimated":        dateEstimated,
 		"daterange":            daterange,
+		"monthYearDaterange":   monthYearDaterange,
 		"email":                email,
 		"hasRelativeType":      hasRelativeType,
 		"location":             location,
@@ -349,6 +350,14 @@ func nameLastFirst(data map[string]interface{}) template.HTML {
 func daterange(data map[string]interface{}) template.HTML {
 	fmap := template.FuncMap{
 		"date":          date,
+		"dateEstimated": dateEstimated,
+	}
+	return xmlTemplateWithFuncs("date-range.xml", data, fmap)
+}
+
+func monthYearDaterange(data map[string]interface{}) template.HTML {
+	fmap := template.FuncMap{
+		"date":          monthYear,
 		"dateEstimated": dateEstimated,
 	}
 	return xmlTemplateWithFuncs("date-range.xml", data, fmap)

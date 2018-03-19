@@ -11,7 +11,7 @@
       {{else}}
       <Address>{{location $Item.Address}}</Address>
       {{end}}
-      {{daterange $Item.Dates}}
+      {{monthYearDaterange $Item.Dates}}
       <DetailComment></DetailComment>
       <ResidenceType>{{radio $Item.Role}}</ResidenceType>
       <StatusOtherExplanation>{{text $Item.RoleOther}}</StatusOtherExplanation>
@@ -31,7 +31,23 @@
         </LastContact>
         <LegalName>{{name $Item.ReferenceName}}</LegalName>
         <RelationshipOtherExplanation>{{text $Item.ReferenceRelationshipOther}}</RelationshipOtherExplanation>
-        <RelationshipTypes Neighbor="{{checkboxHas $Item.ReferenceRelationship "Neighbor"}}" Friend="{{checkboxHas $Item.ReferenceRelationship "Friend"}}" Schoolmate="{{checkboxHas $Item.ReferenceRelationship "Schoolmate"}}" WorkAssociate="{{checkboxHas $Item.ReferenceRelationship "WorkAssociate"}}" Other="{{checkboxHas $Item.ReferenceRelationship "Other"}}" />
+        <RelationshipTypes
+          {{- if eq (checkboxHas $Item.ReferenceRelationship "Neighbor") "True" -}}
+          Neighbor="True"
+          {{end}}
+          {{- if eq (checkboxHas $Item.ReferenceRelationship "Friend") "True"}}
+          Friend="True"
+          {{end}}
+          {{- if eq (checkboxHas $Item.ReferenceRelationship "Schoolmate") "True"}}
+          Schoolmate="True"
+          {{end}}
+          {{- if eq (checkboxHas $Item.ReferenceRelationship "WorkAssociate") "True"}}
+          WorkAssociate="True"
+          {{end}}
+          {{- if eq (checkboxHas $Item.ReferenceRelationship "Other") "True"}}
+          Other="True"
+          {{end}}
+          />
         <Telephone>
           <Day DoNotKnow="{{telephoneNoNumber $Item.ReferencePhoneDay}}">{{telephone $Item.ReferencePhoneDay}}</Day>
           <Evening DoNotKnow="{{telephoneNoNumber $Item.ReferencePhoneEvening}}">{{telephone $Item.ReferencePhoneEvening}}</Evening>

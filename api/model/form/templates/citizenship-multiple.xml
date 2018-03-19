@@ -1,7 +1,7 @@
 <DualCitizenship Version="1" Type="Pooled">
-  {{range $index, $item := .props.List.props.items}}
-  {{with $Item := $item.Item}}
   <DualCitizenships>
+    {{range $index, $item := .props.List.props.items}}
+    {{with $Item := $item.Item}}
     <Citizenship ID="{{$index}}">
       {{country $Item.Country}}
       <CountryOfCitizenshipDetailComment>{{countryComments $Item.Country}}</CountryOfCitizenshipDetailComment>
@@ -17,9 +17,9 @@
         <Explanation>{{textarea $Item.RenouncedExplanation}}</Explanation>
       </TakenActionToRenounceCitizenship>
     </Citizenship>
+    {{end}}
+    {{end}}
   </DualCitizenships>
-  {{end}}
-  {{end}}
   <HeldDualCitizenship>
     <Answer>{{branch .props.HasMultiple}}</Answer>
     <AnswerComment></AnswerComment>
