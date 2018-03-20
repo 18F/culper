@@ -22,8 +22,12 @@
   </DualCitizenships>
   <HeldDualCitizenship>
     <Answer>{{branch .props.HasMultiple}}</Answer>
+    {{- if branch .props.HasMultiple | eq "Yes"}}
     <AnswerComment></AnswerComment>
     <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+    {{end}}
   </HeldDualCitizenship>
+  {{- if branch .props.HasMultiple | eq "Yes"}}
   <SummaryComment></SummaryComment>
+  {{end}}
 </DualCitizenship>

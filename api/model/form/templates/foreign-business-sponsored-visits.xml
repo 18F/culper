@@ -2,7 +2,6 @@
 <SponsoredVisits>
   <Answer>{{branch .props.HasForeignSponsorship}}</Answer>
   <Comment></Comment>
-  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
   {{range $index, $item := .props.List.props.items}}
   {{with $Item := $item.Item}}
   <SponsoredVisit ID="{{$index}}">
@@ -47,5 +46,8 @@
   </SponsoredVisit>
   {{end}}
   {{end}}
+  {{- if branch .props.HasForeignSponsorship | eq "Yes"}}
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
   <SummaryComment></SummaryComment>
+  {{end}}
 </SponsoredVisits>

@@ -19,6 +19,8 @@
     {{end}}
     {{end}}
   </Instances>
+  {{- if branch .props.MisusedDrugs | eq "Yes"}}
   <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
   <SummaryComment></SummaryComment>
+  {{end}}
 </MisuseOfPrescriptionDrugs>

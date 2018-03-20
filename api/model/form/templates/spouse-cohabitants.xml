@@ -68,7 +68,9 @@
   </Cohabitant>
   {{end}}
   {{end}}
+  {{if branch .props.HasCohabitant | eq "Yes"}}
   <Comment></Comment>
   <HaveAdditionalEntryAnswer>{{branch .props.CohabitantList.props.branch}}</HaveAdditionalEntryAnswer>
   <SummaryComment></SummaryComment>
+  {{end}}
 </Cohabitants>

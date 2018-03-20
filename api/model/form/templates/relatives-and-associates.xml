@@ -120,6 +120,7 @@
         <LegalName>
           {{name $Item.Name}}
         </LegalName>
+        {{if text $Item.Relation | eq "Mother"}}
         <MothersMaidenName>
           <Comment></Comment>
           <FullName>
@@ -132,6 +133,7 @@
             {{- end}}
           </FullName>
         </MothersMaidenName>
+        {{end}}
         <OtherNamesUsed>
           <Answer>{{branchcollectionHas $Item.Aliases}}</Answer>
           <AnswerComment></AnswerComment>
@@ -152,8 +154,11 @@
           {{end}}
           {{end}}
           {{end}}
+
+          {{if branchcollectionHas $Item.Aliases | eq "Yes"}}
           <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
           <SummaryComment></SummaryComment>
+          {{end}}
         </OtherNamesUsed>
         <Type>{{text $Item.Relation | relationshipType}}</Type>
       </Relative>

@@ -1,6 +1,7 @@
 <AdverselyAffected>
   <Answer>{{branch .props.HasCondition}}</Answer>
   <AnswerComment></AnswerComment>
+  {{if branch .props.HasCondition | eq "Yes"}}
   <Treatment>
     <Answer>{{radio .props.ReceivedTreatment}}</Answer>
     <AnswerComment></AnswerComment>
@@ -24,10 +25,14 @@
     {{end}}
     {{end}}
   </Treatment>
+  {{end}}
+
+  {{if branch .props.HasCondition | eq "Yes"}}
   <NotFollowedTreatment>
     <Answer>{{branch .props.DidNotFollow}}</Answer>
     <AnswerComment></AnswerComment>
     <Explanation>{{textarea .props.DidNotFollowExplanation}}</Explanation>
     <ExplanationComment></ExplanationComment>
   </NotFollowedTreatment>
+  {{end}}
 </AdverselyAffected>

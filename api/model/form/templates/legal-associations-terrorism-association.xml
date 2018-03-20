@@ -1,6 +1,8 @@
 <TerrorismAssociations>
   <Answer>{{branch .props.HasTerrorism}}</Answer>
-  <AssociationComment></AssociationComment>
   <Comment></Comment>
+  {{- if branch .props.HasTerrorism | eq "Yes"}}
+  <AssociationComment></AssociationComment>
   <Explanation>{{text .props.Explanation}}</Explanation>
+  {{end}}
 </TerrorismAssociations>

@@ -2,7 +2,6 @@
   <Offenses>
     <Answer>{{branch .props.HasOtherOffenses}}</Answer>
     <Comment></Comment>
-    <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
     {{range $index, $item := .props.List.props.items}}
     {{with $Item := $item.Item}}
     <Offense ID="{{$index}}">
@@ -90,6 +89,10 @@
     </Offense>
     {{end}}
     {{end}}
+
+    {{- if branch .props.HasOtherOffenses | eq "Yes"}}
+    <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
     <SummaryComment></SummaryComment>
+    {{end}}
   </Offenses>
 </Ever>

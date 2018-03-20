@@ -96,6 +96,8 @@
     {{end}}
     {{end}}
   </Contacts>
+  {{- if branchcollectionHas .props.List | eq "Yes"}}
   <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
   <SummaryComment></SummaryComment>
+  {{end}}
 </ForeignContacts>

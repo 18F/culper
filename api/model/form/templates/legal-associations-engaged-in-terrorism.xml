@@ -1,8 +1,6 @@
 <EngagedInTerrorism>
   <Answer>{{branch .props.HasEngaged}}</Answer>
   <Comment></Comment>
-  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
-  <SummaryComment></SummaryComment>
   <TerroristActs>
     {{range $index, $item := .props.List.props.items}}
     {{with $Item := $item.Item}}
@@ -14,4 +12,9 @@
     {{end}}
     {{end}}
   </TerroristActs>
+
+  {{- if branch .props.HasEngaged | eq "Yes"}}
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+  <SummaryComment></SummaryComment>
+  {{end}}
 </EngagedInTerrorism>

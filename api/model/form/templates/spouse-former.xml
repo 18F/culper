@@ -1,5 +1,5 @@
+{{- if len .props.items | gt 0}}
 <FormerSpouses>
-  <Comment></Comment>
   {{range $index, $item := .props.items}}
   {{with $Item := $item.Item}}
   <FormerSpouse ID="{{$index}}">
@@ -53,6 +53,11 @@
   </FormerSpouse>
   {{end}}
   {{end}}
+
+  {{if branch .props.branch | eq "Yes"}}
   <HaveAdditionalEntryAnswer>{{branch .props.branch}}</HaveAdditionalEntryAnswer>
   <SummaryComment></SummaryComment>
+  <Comment></Comment>
+  {{end}}
 </FormerSpouses>
+{{end}}

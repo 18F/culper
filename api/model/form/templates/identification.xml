@@ -10,3 +10,4 @@
   {{tmpl "identification-weight.xml" .Identification.Physical.props.Weight}}
   <YourInfoComment></YourInfoComment>
 </IdentifyingInformation>
+{{tmpl "identification-contacts.xml" .Identification.Contacts}}

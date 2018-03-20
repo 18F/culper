@@ -1,7 +1,6 @@
 <AdvocatedTerrorism>
   <Answer>{{branch .props.HasAdvocated}}</Answer>
   <Comment></Comment>
-  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
   <Instances>
     {{range $index, $item := .props.List.props.items}}
     {{with $Item := $item.Item}}
@@ -13,5 +12,9 @@
     {{end}}
     {{end}}
   </Instances>
+
+  {{- if branch .props.HasAdvocated | eq "Yes"}}
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
   <SummaryComment></SummaryComment>
+  {{end}}
 </AdvocatedTerrorism>

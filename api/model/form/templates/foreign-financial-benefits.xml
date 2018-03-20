@@ -89,6 +89,8 @@
   </ForeignFinancialBenefit>
   {{end}}
   {{end}}
+  {{if branch .props.HasBenefits | eq "Yes"}}
   <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
   <SummaryComment></SummaryComment>
+  {{end}}
 </ForeignFinancialBenefits>

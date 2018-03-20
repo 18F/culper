@@ -1,7 +1,6 @@
 <DelinquencyInvolvingEnforcement>
   <Answer>{{branch .props.HasDelinquent}}</Answer>
   <Comment></Comment>
-  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
   <Incidents>
     {{range $index, $item := .props.List.props.items}}
     {{with $Item := $item.Item}}
@@ -30,5 +29,9 @@
     {{end}}
     {{end}}
   </Incidents>
+
+  {{- if branch .props.HasDelinquent | eq "Yes"}}
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
   <SummaryComment></SummaryComment>
+  {{end}}
 </DelinquencyInvolvingEnforcement>

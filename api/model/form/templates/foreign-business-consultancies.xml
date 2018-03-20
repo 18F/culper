@@ -20,6 +20,8 @@
   </Consultancy>
   {{end}}
   {{end}}
+  {{- if branch .props.HasForeignFamily | eq "Yes"}}
   <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
   <SummaryComment></SummaryComment>
+  {{end}}
 </Consultancies>

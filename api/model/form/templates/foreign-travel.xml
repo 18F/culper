@@ -3,12 +3,10 @@
   <CountriesVisited>
     <Answer>{{branch .props.HasForeignTravelOutside}}</Answer>
   </CountriesVisited>
-  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
   <SolelyForUSGovernment>
     <Answer>{{branch .props.HasForeignTravelOfficial}}</Answer>
     <Comment></Comment>
   </SolelyForUSGovernment>
-  <SummaryComment></SummaryComment>
   <Travels>
     {{range $index, $item := .props.List.props.items}}
     {{with $Item := $item.Item}}
@@ -60,4 +58,8 @@
     {{end}}
     {{end}}
   </Travels>
+  {{- if branch .props.HasForeignTravelOutside | eq "Yes"}}
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+  <SummaryComment></SummaryComment>
+  {{end}}
 </ForeignTravels>

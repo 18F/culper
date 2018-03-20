@@ -1,3 +1,3 @@
 <HaveFormerSpouse>
-  <Answer>{{branch .props.branch}}</Answer>
+  <Answer>{{if len .props.items | eq 0}}No{{else}}Yes{{end}}</Answer>
 </HaveFormerSpouse>

@@ -95,8 +95,6 @@
       {{- end}}
       <Dismissals>
         <Answer>{{branchcollectionHas $Item.ReasonLeft.props.Reasons}}</Answer>
-        <AnswerComment></AnswerComment>
-        <Comment></Comment>
         {{- range $lindex, $left := $Item.ReasonLeft.props.Reasons.props.items}}
         {{- with $Dismissal := $left.Item}}
         {{- if eq (branch $Dismissal.Has) "Yes"}}
@@ -110,14 +108,15 @@
         {{- end}}
         {{- end}}
         {{- end}}
+        {{- if branchcollectionHas $Item.ReasonLeft.props.Reasons | eq "Yes"}}
         <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+        <AnswerComment></AnswerComment>
+        <Comment></Comment>
+        {{end}}
       </Dismissals>
 
       <Incidents>
         <Answer>{{branchcollectionHas $Item.Reprimand}}</Answer>
-        <AnswerComment></AnswerComment>
-        <Comment></Comment>
-        <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
         {{- range $rindex, $reprimand := $Item.Reprimand.props.items}}
         {{- with $Reprimand := $reprimand.Item}}
         {{- if eq (branch $Reprimand.Has) "Yes"}}
@@ -129,6 +128,11 @@
         {{- end}}
         {{- end}}
         {{- end}}
+        {{- if branchcollectionHas $Item.Reprimand | eq "Yes" }}
+        <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+        <AnswerComment></AnswerComment>
+        <Comment></Comment>
+        {{end}}
       </Incidents>
 
       <JobLocation>

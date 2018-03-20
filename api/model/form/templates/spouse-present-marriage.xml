@@ -1,3 +1,4 @@
+{{if .props.Status.props.value  | ne "NeverMarried"}}
 <PresentMarriage>
   {{with $Item := .CivilUnion.props}}
   <CurrentSpouse>
@@ -105,3 +106,4 @@
   </CurrentSpouse>
   {{end}}
 </PresentMarriage>
+{{end}}
