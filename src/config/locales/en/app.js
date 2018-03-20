@@ -1,7 +1,7 @@
 export const app = {
   logout: 'Logout',
   instructions: 'Instructions',
-  skip: 'Skip to main content',
+  skip: 'Skip to form questions',
   banner: {
     title: 'An official website of the United States government',
     button: 'Here\'s how you know',
