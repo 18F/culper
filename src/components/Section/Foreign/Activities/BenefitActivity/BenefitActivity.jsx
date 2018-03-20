@@ -74,7 +74,7 @@ export default class BenefitActivity extends SubsectionElement {
       index: index,
       left: summary,
       right: benefit.Date,
-      placeholder: i18n.m('foreign.activities.benefit.collection.summary')
+      placeholder: i18n.t('foreign.activities.benefit.collection.summary')
     })
   }
 

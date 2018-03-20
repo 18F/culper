@@ -94,7 +94,7 @@ export default class PassportItem extends ValidationElement {
       index: index,
       left: country,
       right: dates,
-      placeholder: i18n.m('citizenship.multiple.collection.travel.summary.unknown')
+      placeholder: i18n.t('citizenship.multiple.collection.travel.summary.unknown')
     })
   }
 

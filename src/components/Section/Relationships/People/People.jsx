@@ -95,7 +95,7 @@ export default class People extends SubsectionElement {
       index: index,
       left: name,
       right: date,
-      placeholder: i18n.m('relationships.people.person.collection.summary.unknown')
+      placeholder: i18n.t('relationships.people.person.collection.summary.unknown')
     })
   }
 

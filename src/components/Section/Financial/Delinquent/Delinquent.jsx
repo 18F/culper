@@ -61,7 +61,7 @@ export default class Delinquent extends SubsectionElement {
       index: index,
       left: text,
       right: from,
-      placeholder: i18n.m('financial.delinquent.collection.summary.unknown')
+      placeholder: i18n.t('financial.delinquent.collection.summary.unknown')
     })
   }
 

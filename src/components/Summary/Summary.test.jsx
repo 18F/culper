@@ -50,4 +50,10 @@ describe('The summary helper', () => {
     expect(summary.find('.context').text()).toEqual('left shoe')
     expect(summary.find('.dates').text()).toEqual('right shoe')
   })
+
+  it('calculates characters', () => {
+    const summary = mount(Summary({title: 'Shoe', left: 'left shoe', right: 'right shoe', placeholder: 'saving a spot in line'}))
+    expect(summary.find('.context .at-9').length).toBe(1)
+    expect(summary.find('.dates .at-10').length).toBe(1)
+  })
 })

@@ -47,7 +47,7 @@ export default class Debarred extends SubsectionElement {
       index: index,
       left: agency,
       right: dates,
-      placeholder: i18n.m('legal.investigations.debarred.collection.unknown')
+      placeholder: i18n.t('legal.investigations.debarred.collection.unknown')
     })
   }
 

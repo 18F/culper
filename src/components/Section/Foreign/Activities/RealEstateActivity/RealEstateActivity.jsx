@@ -55,7 +55,7 @@ export default class RealEstateActivity extends SubsectionElement {
       index: index,
       left: who || address ? summary : '',
       right: acquired,
-      placeholder: i18n.m('foreign.activities.realestate.collection.summary')
+      placeholder: i18n.t('foreign.activities.realestate.collection.summary')
     })
   }
 

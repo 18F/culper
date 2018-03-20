@@ -60,7 +60,7 @@ export default class Nonpayment extends SubsectionElement {
       index: index,
       left: text,
       right: date,
-      placeholder: i18n.m('financial.nonpayment.collection.summary.unknown')
+      placeholder: i18n.t('financial.nonpayment.collection.summary.unknown')
     })
   }
 

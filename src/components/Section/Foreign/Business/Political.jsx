@@ -49,7 +49,7 @@ export default class Political extends SubsectionElement {
       index: index,
       left: text,
       right: dates,
-      placeholder: i18n.m('foreign.business.political.collection.summary.unknown')
+      placeholder: i18n.t('foreign.business.political.collection.summary.unknown')
     })
   }
 

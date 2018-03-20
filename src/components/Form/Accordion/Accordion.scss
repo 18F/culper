@@ -1,6 +1,31 @@
 @import 'eqip-colors';
 @import 'eqip-fonts';
 
+$breakpoints: (
+  1225px: 0.08,
+  1180px: 0.26,
+  1145px: 0.18,
+  1123px: 0.36,
+  1060px: 0.46,
+  1000px: 0.08,
+  800px:  0.08,
+  730px:  0.36,
+  600px:  0.62,
+  452px:  0.76
+);
+
+@mixin truncate-at($width) {
+  &.at-#{$width} {
+    max-width: $width + rem;
+
+    @each $bp, $adjuster in $breakpoints {
+      @media only screen and (max-width: $bp) {
+        max-width: ($width - ($width * $adjuster)) + rem;
+      }
+    }
+  }
+}
+
 @keyframes openbox {
   0% {
     max-height: 0;
@@ -215,6 +240,15 @@
             overflow: hidden;
             text-overflow: ellipsis;
 
+            &.italic {
+              font-style: italic;
+            }
+
+            // Adjust truncation for various lengths of the content
+            @for $i from 1 through 64 {
+              @include truncate-at($i);
+            }
+
             p {
               margin-bottom: 0.3rem;
             }
@@ -230,6 +264,14 @@
           float: right;
           text-align: right;
           height: 4.9rem;
+
+          // Hide on smaller screens to allow more context
+          @media only screen and (max-width: 650px) {
+            display: block;
+            float: none;
+            text-align: left;
+            margin-top: -5rem;
+          }
         }
       }
 
