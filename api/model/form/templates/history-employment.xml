@@ -5,7 +5,7 @@
     {{- $isPresent := $Item.Dates.props.present}}
     <Employment ID="{{$index}}">
       {{- monthYearDaterange $Item.Dates}}
-      <Type>{{radio $Item.EmploymentActivity}}</Type>
+      <Type>{{radio $Item.EmploymentActivity | employmentType}}</Type>
       <EmploymentTypeOtherExplanation>{{$Item.EmploymentActivity.props.otherExplanation}}</EmploymentTypeOtherExplanation>
       <EmploymentCodeComment></EmploymentCodeComment>
       <WorkHours>{{radio $Item.Status}}</WorkHours>

@@ -25,7 +25,11 @@
         <Address>{{location $Item.ReferenceAddress}}</Address>
         {{end}}
         <Comment>{{textarea $Item.ReferenceComments}}</Comment>
-        <Email DoNotKnow="{{notApplicable $Item.ReferenceEmailNotApplicable}}">{{email $Item.ReferenceEmail}}</Email>
+        {{- if notApplicable $Item.ReferenceEmailNotApplicable | eq "True"}}
+        <Email DoNotKnow="True"></Email>
+        {{else}}
+        <Email>{{email $Item.ReferenceEmail}}</Email>
+        {{end}}
         <LastContact>
           <Date Type="{{dateEstimated $Item.ReferenceLastContact}}">{{monthYear $Item.ReferenceLastContact}}</Date>
         </LastContact>
