@@ -307,7 +307,7 @@ export default class DateControl extends ValidationElement {
   }
 
   render () {
-    let klass = `datecontrol ${this.state.error ? 'usa-input-error' : ''} ${this.props.className || ''} ${this.props.hideDay ? 'day-hidden' : ''}`.trim()
+    let klass = `datecontrol ${this.state.error && !this.props.overrideError ? 'usa-input-error' : ''} ${this.props.className || ''} ${this.props.hideDay ? 'day-hidden' : ''}`.trim()
     return (
       <div className={klass}>
         <div>
@@ -404,6 +404,7 @@ DateControl.defaultProps = {
   value: '',
   estimated: false,
   showEstimated: true,
+  overrideError: false,
   error: false,
   valid: false,
   hideDay: false,
