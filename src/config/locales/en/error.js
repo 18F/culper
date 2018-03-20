@@ -77,7 +77,11 @@ export const error = {
   birthdate: {
     age: {
       title: 'The applicant age is not approved',
-      message: 'Applicants must be older than 16 and less than 130 years of age',
+      message: [
+        'Your date of birth indicates you are under the age of 16, please confirm the date is correct using the button above.',
+        '*or*',
+        'Applicants must be younger than 130 years old.'
+      ],
       note: ''
     }
   },
