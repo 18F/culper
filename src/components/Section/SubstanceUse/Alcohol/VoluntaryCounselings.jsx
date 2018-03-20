@@ -49,7 +49,7 @@ export default class VoluntaryCounselings extends SubsectionElement {
       index: index,
       left: counselor,
       right: counselingDates,
-      placeholder: i18n.m('substance.alcohol.voluntaryCounseling.collection.summary')
+      placeholder: i18n.t('substance.alcohol.voluntaryCounseling.collection.summary')
     })
   }
 

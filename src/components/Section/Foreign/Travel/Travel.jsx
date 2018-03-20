@@ -53,7 +53,7 @@ export default class Travel extends SubsectionElement {
       index: index,
       left: country,
       right: date,
-      placeholder: i18n.m('foreign.travel.collection.summary.unknown')
+      placeholder: i18n.t('foreign.travel.collection.summary.unknown')
     })
   }
 

@@ -275,7 +275,7 @@ export const legal = {
       summary: {
         title: 'Summary of offenses',
         item: 'Offense',
-        unknown: '*Provide offense below*'
+        unknown: 'Provide offense below'
       },
       appendTitle: 'Do you have any other offenses where any of the following has happened to you?',
       appendMessage: [
@@ -345,7 +345,7 @@ export const legal = {
       collection: {
         description: 'Summary of investigations',
         item: 'Investigation',
-        unknown: '*Provide investigation details below*',
+        unknown: 'Provide investigation details below',
         appendTitle: 'Do you have another investigation to enter?',
         appendLabel: 'Add another investigation'
       },
@@ -400,7 +400,7 @@ export const legal = {
       collection: {
         description: 'Summary of denials',
         item: 'Denial',
-        unknown: '*Provide denial details below*',
+        unknown: 'Provide denial details below',
         appendTitle: 'Do you have another denied, revoked, or suspended security clearance eligibility/access authorization to enter?',
         appendLabel: 'Add another denial'
       },
@@ -432,7 +432,7 @@ export const legal = {
       collection: {
         description: 'Summary of debarments',
         item: 'Debarment',
-        unknown: '*Provide debarment details below*',
+        unknown: 'Provide debarment details below',
         appendTitle: 'Do you have another Government debarment to enter?',
         appendLabel: 'Add another debarment'
       },
@@ -467,7 +467,7 @@ export const legal = {
     },
     collection: {
       description: 'Summary of court actions',
-      summary: '*Provide your court action details below*',
+      summary: 'Provide your court action details below',
       appendTitle: 'Are there any other civil court actions in the last ten (10) years to report?',
       appendLabel: 'Add another court action',
       itemType: 'Court Action'
@@ -523,7 +523,7 @@ export const legal = {
       collection: {
         description: 'Summary of unauthorized access',
         item: 'Access',
-        unknown: '*Provide unauthorized access details below*',
+        unknown: 'Provide unauthorized access details below',
         appendTitle: 'Are there any other incidents to report?',
         appendLabel: 'Add another unauthorized access'
       },
@@ -561,7 +561,7 @@ export const legal = {
       collection: {
         description: 'Summary of modified, destroyed, manipulated, or denied access',
         item: 'Incident',
-        unknown: '*Provide details below*',
+        unknown: 'Provide details below',
         appendTitle: 'Are there any other incidents to report?',
         appendLabel: 'Add another incident'
       },
@@ -599,7 +599,7 @@ export const legal = {
       collection: {
         description: 'Summary of unlawful use',
         item: 'Use',
-        unknown: '*Provide details below*',
+        unknown: 'Provide details below',
         appendTitle: 'Are there any other incidents to report?',
         appendLabel: 'Add another unlawful use'
       },
@@ -652,7 +652,7 @@ export const legal = {
       collection: {
         description: 'Summary of terrorist organizations',
         item: 'Organization',
-        unknown: '*Provide details of organization below*',
+        unknown: 'Provide details of organization below',
         appendTitle: 'Do you have any other instances of being a member of an organization dedicated to terrorism, either with an awareness of the organization\'s dedication to that end, or with the specific intent to further such activities to report?',
         appendLabel: 'Add another terrorist organization'
       },
@@ -698,7 +698,7 @@ export const legal = {
       collection: {
         description: 'Summary of acts of terrorism',
         item: 'Act',
-        unknown: '*Provide details for the terrorism below*',
+        unknown: 'Provide details for the terrorism below',
         appendTitle: 'Do you have any other instances of knowingly engaging in acts of terrorism to report?',
         appendLabel: 'Add another act of terrorism'
       },
@@ -724,7 +724,7 @@ export const legal = {
       collection: {
         description: 'Summary of advocating terrorism',
         item: 'Instance',
-        unknown: '*Provide details of the instance below*',
+        unknown: 'Provide details of the instance below',
         appendTitle: 'Do you have any other instances of advocating acts of terrorism or activities designed to overthrow the U.S. Government by force to report?',
         appendLabel: 'Add another instance'
       },
@@ -761,7 +761,7 @@ export const legal = {
       collection: {
         description: 'Summary of memberships',
         item: 'Membership',
-        unknown: '*Please provide membership details below*',
+        unknown: 'Please provide membership details below',
         appendTitle: 'Do you have any other instances of being a member of an organization dedicated to the use of violence or force to overthrow the United States Government, which engaged in activities to that end with an awareness of the organization’s dedication to that end or with the specific intent to further such activities to report?',
         appendLabel: 'Add another membership'
       },
@@ -818,7 +818,7 @@ export const legal = {
       collection: {
         description: 'Summary of memberships',
         item: 'Membership',
-        unknown: '*Provide membership details below*',
+        unknown: 'Provide membership details below',
         appendTitle: 'Do you have any other instances of being a member of an organization that advocates or practices commission of acts of force or violence to discourage others from exercising their rights under the U.S. Constitution or any state of the United States with the specific intent to further such action to report',
         appendLabel: 'Add another membership'
       },
@@ -864,7 +864,7 @@ export const legal = {
       collection: {
         description: 'Summary of acts of terrorism',
         item: 'Activity',
-        unknown: '*Provide details below*',
+        unknown: 'Provide details below',
         appendTitle: 'Do you have any other instances of having knowingly engaged in activities designed to overthrow the U.S. Government by force to report?',
         appendLabel: 'Add another activity'
       },

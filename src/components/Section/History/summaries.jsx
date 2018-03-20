@@ -3,7 +3,7 @@ import { i18n } from '../../../config'
 import { gaps, extractDate } from './dateranges'
 import { Svg } from '../../Form'
 import { newGuid } from '../../Form/ValidationElement'
-import { AddressSummary, DateSummary, NameSummary } from '../../Summary'
+import { Summary, AddressSummary, DateSummary, NameSummary } from '../../Summary'
 import { ResidenceValidator, EmploymentValidator, EducationItemValidator } from '../../../validators'
 import { openState, chevron } from '../../Form/Accordion/Accordion'
 
@@ -44,22 +44,19 @@ export const CustomSummary = (validation, summary, more, item, index, initial, c
  * Renders a formatted summary information for a residence row
  */
 export const ResidenceSummary = (item, errors, open) => {
-  const address = AddressSummary(item.Address, i18n.m('history.residence.collection.summary.unknown'))
+  const address = AddressSummary(item.Address)
   const dates = DateSummary(item.Dates, i18n.t('history.employment.default.noDate.label'))
   const svg = errors && !open
         ? <Svg src="/img/exclamation-point.svg" className="incomplete" />
         : null
 
-  return (
-    <span>
-      {svg}
-      <span className="index">
-        {i18n.t('history.residence.collection.summary.item')}:
-      </span>
-      <span className="employer title-case"><strong>{address}</strong></span>
-      <span className="dates"><strong>{dates}</strong></span>
-    </span>
-  )
+  return Summary({
+    icon: svg,
+    type: i18n.t('history.residence.collection.summary.item'),
+    left: address,
+    right: dates,
+    placeholder: i18n.t('history.residence.collection.summary.unknown')
+  })
 }
 
 const PersonSummary = (item, errors) => {
@@ -72,12 +69,10 @@ const PersonSummary = (item, errors) => {
     return null
   }
 
-  return (
-    <span>
-      <span className="index">{i18n.t('history.residence.collection.summary.item2')}: </span>
-      <span className="title-case"><strong>{name}</strong></span>
-    </span>
-  )
+  return Summary({
+    type: i18n.t('history.residence.collection.summary.item2'),
+    left: name
+  })
 }
 
 export const ResidenceCustomSummary = (item, index, initial, callback, toggle, openText, remove, byline) => {
@@ -131,22 +126,19 @@ const employmentTitle = (activity, item, unk) => {
  */
 export const EmploymentSummary = (item, errors, open) => {
   const activity = (item.EmploymentActivity || {}).value
-  const employer = employmentTitle(activity, item, i18n.m('history.employment.default.collection.summary.unknown'))
+  const employer = employmentTitle(activity, item)
   const dates = DateSummary(item.Dates, i18n.t('history.employment.default.noDate.label'))
   const svg = errors && !open
         ? <Svg src="/img/exclamation-point.svg" className="incomplete" />
         : null
 
-  return (
-    <span>
-      {svg}
-      <span className="index">
-        {i18n.t('history.employment.default.collection.summary.employer')}:
-      </span>
-      <span className="employer"><strong>{ employer }</strong></span>
-      <span className="dates"><strong>{ dates }</strong></span>
-    </span>
-  )
+  return Summary({
+    icon: svg,
+    type: i18n.t('history.employment.default.collection.summary.employer'),
+    left: employer,
+    right: dates,
+    placeholder: i18n.t('history.employment.default.collection.summary.unknown')
+  })
 }
 
 const ActivitySummary = (item, errors) => {
@@ -158,13 +150,11 @@ const ActivitySummary = (item, errors) => {
     const dates = DateSummary(activity.DatesEmployed, i18n.t('history.employment.default.noDate.label'))
 
     if ((activity.Position || {}).value && dates) {
-      return (
-        <span>
-          <span className="index">{i18n.t('history.education.default.collection.summary.item2')}: </span>
-          <span><strong>{activity.Position.value}</strong></span>
-          <span className="dates"><strong>{dates}</strong></span>
-        </span>
-      )
+      return Summary({
+        type: i18n.t('history.education.default.collection.summary.item2'),
+        left: activity.Position.value,
+        right: dates
+      })
     }
 
     return null
@@ -196,44 +186,40 @@ export const EmploymentCustomSummary = (item, index, initial, callback, toggle, 
  * Renders a formatted summary information for an education row
  */
 export const EducationSummary = (item, errors, open) => {
-  const school = (item.Name && item.Name.value ? item.Name.value : i18n.m('history.education.collection.school.summary.unknown'))
+  const school = (item.Name && item.Name.value ? item.Name.value : '')
   const dates = DateSummary(item.Dates, i18n.t('history.employment.default.noDate.label'))
   const svg = errors && !open
         ? <Svg src="/img/exclamation-point.svg" className="incomplete" />
         : null
 
-  return (
-    <span>
-      {svg}
-      <span className="index">
-        {i18n.t('history.education.collection.school.summary.item')}:
-      </span>
-      <span className="employer"><strong>{ school }</strong></span>
-      <span className="dates"><strong>{ dates }</strong></span>
-    </span>
-  )
+  return Summary({
+    icon: svg,
+    type: i18n.t('history.education.collection.school.summary.item'),
+    left: school,
+    right: dates,
+    placeholder: i18n.t('history.education.collection.school.summary.unknown')
+  })
 }
 
 const DiplomaSummary = (item, errors) => {
-  if ((item.Diplomas || []).length === 0) {
+  if (((item.Diplomas || {}).items || []).length === 0) {
     return []
   }
 
   return item.Diplomas.items.map((degree, index) => {
-    const dd = degree.Diploma || {}
+    const dd = degree.Item || {}
     const other = (dd.DiplomaOther || {}).value || ''
-    const diploma = dd.Diploma || ''
+    const diploma = (dd.Diploma || {}).value || ''
     const val = diploma
           ? diploma === 'Other' ? other : diploma
           : other
 
     if (val) {
-      return (
-        <span>
-          <span className="index">{i18n.t('history.education.collection.school.summary.item2')} {index + 1}: </span>
-          <span><strong>{val}</strong></span>
-        </span>
-      )
+      return Summary({
+        type: i18n.t('history.education.collection.school.summary.item2'),
+        index: index,
+        left: val
+      })
     }
 
     return null

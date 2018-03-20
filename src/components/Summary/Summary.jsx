@@ -28,15 +28,16 @@ export const Summary = (props = {}) => {
   let tlen = letters(title) + 2
   let rlen = letters(props.right)
   let llen = letters(left)
-  let mlen = 54 - tlen - rlen
+  let mlen = 50 - tlen - rlen
   if (llen > mlen) {
     llen = mlen - 1
   }
 
   return (
     <span className={klass}>
+      {props.icon}
       <span className="index">{title}:</span>
-      <span className="context"><strong className={`at-${llen}`}>{left}</strong></span>
+      <span className="context"><strong className={`at-${llen} ${!props.left && !props.right ? 'italic' : ''}`}>{left}</strong></span>
       <Show when={props.right}>
         <span className="dates"><strong className={`at-${rlen}`}>{props.right}</strong></span>
       </Show>
@@ -57,6 +58,10 @@ const letters = (obj) => {
   const objectType = Object.prototype.toString.call(obj)
   if (objectType === '[object Object]' && obj.props) {
     if (obj.props.children) {
+      const childrenType = Object.prototype.toString.call(obj.props.children)
+      if (childrenType === '[object Array]') {
+        return obj.props.children.join(' ').length
+      }
       return obj.props.children.length
     }
     if (obj.props.source) {

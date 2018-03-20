@@ -47,7 +47,7 @@ export default class EngagedInTerrorism extends SubsectionElement {
       index: index,
       left: details,
       right: dates,
-      placeholder: i18n.m('legal.associations.engaged.collection.unknown')
+      placeholder: i18n.t('legal.associations.engaged.collection.unknown')
     })
   }
 

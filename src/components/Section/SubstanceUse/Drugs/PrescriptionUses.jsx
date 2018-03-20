@@ -49,7 +49,7 @@ export default class PrescriptionUses extends SubsectionElement {
       index: index,
       left: name,
       right: range,
-      placeholder: i18n.m('substance.drugs.prescription.collection.summary')
+      placeholder: i18n.t('substance.drugs.prescription.collection.summary')
     })
   }
 

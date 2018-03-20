@@ -67,7 +67,7 @@ export default class Gambling extends SubsectionElement {
       index: index,
       left: losses,
       right: dates,
-      placeholder: i18n.m('financial.gambling.collection.summary.unknownlosses')
+      placeholder: i18n.t('financial.gambling.collection.summary.unknownlosses')
     })
   }
 

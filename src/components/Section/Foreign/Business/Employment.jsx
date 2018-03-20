@@ -48,7 +48,7 @@ export default class Employment extends SubsectionElement {
       index: index,
       left: job,
       right: date,
-      placeholder: i18n.m('foreign.business.employment.collection.summary.unknown')
+      placeholder: i18n.t('foreign.business.employment.collection.summary.unknown')
     })
   }
 
