@@ -50,7 +50,7 @@ export default class OtherNames extends SubsectionElement {
       index: index,
       left: name,
       right: dates,
-      placeholder: i18n.m('identification.othernames.collection.summary.unknown')
+      placeholder: i18n.t('identification.othernames.collection.summary.unknown')
     })
   }
 

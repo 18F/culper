@@ -2,6 +2,7 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import schema from '../../../../schema'
 import validate from '../../../../validators'
+import { Summary, NameSummary } from '../../../Summary'
 import { ForeignActivitiesSupportValidator, SupportValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion } from '../../../Form'
@@ -38,16 +39,13 @@ export default class Support extends SubsectionElement {
   }
 
   summary (item, index) {
-    const obj = item || {}
-    const name = obj.Name || {}
-    const display = `${name.first || ''} ${name.middle || ''} ${name.last || ''}`.trim() || i18n.m('foreign.activities.support.collection.summary.unknown')
-
-    return (
-      <span>
-        <span className="index">{i18n.t('foreign.activities.support.collection.summary.item')} {index + 1}:</span>
-        <span><strong>{display}</strong></span>
-      </span>
-    )
+    const name = NameSummary((item || {}).Name)
+    return Summary({
+      type: i18n.t('foreign.activities.support.collection.summary.item'),
+      index: index,
+      left: name,
+      placeholder: i18n.t('foreign.activities.support.collection.summary.unknown')
+    })
   }
 
   render () {

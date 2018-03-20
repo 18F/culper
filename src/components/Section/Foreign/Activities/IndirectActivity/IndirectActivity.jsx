@@ -57,7 +57,7 @@ export default class IndirectActivity extends SubsectionElement {
       index: index,
       left: summary,
       right: cost,
-      placeholder: i18n.m('foreign.activities.indirect.collection.summary')
+      placeholder: i18n.t('foreign.activities.indirect.collection.summary')
     })
   }
 

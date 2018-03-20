@@ -47,7 +47,7 @@ export default class Consultation extends SubsectionElement {
       index: index,
       left: courtName,
       right: occurred,
-      placeholder: i18n.m('psychological.consultation.collection.summaryCourtName')
+      placeholder: i18n.t('psychological.consultation.collection.summaryCourtName')
     })
   }
 

@@ -22,7 +22,7 @@ export const relationships = {
     collection: {
       summary: {
         title: 'Summary of relatives',
-        unknown: '*Click to provide details*',
+        unknown: 'Click to provide details',
         item: 'Relative'
       },
       appendTitle: 'Do you have an additional relative to enter?',
@@ -742,7 +742,7 @@ export const relationships = {
       },
       collection: {
         summary: {
-          unknown: '*Provide the person\'s information below*'
+          unknown: 'Provide the person\'s information below'
         },
         description: 'Summary of people who know you',
         appendLabel: 'Add another person',
