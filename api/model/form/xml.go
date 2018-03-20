@@ -32,6 +32,7 @@ func defaultTemplate(templateName string, data map[string]interface{}) template.
 		"daterange":            daterange,
 		"monthYearDaterange":   monthYearDaterange,
 		"email":                email,
+		"employmentType":       employmentType,
 		"hasRelativeType":      hasRelativeType,
 		"location":             location,
 		"locationIsPostOffice": locationIsPostOffice,
@@ -255,6 +256,22 @@ func citizenshipStatus(status string) string {
 		"NotCitizen":  "Alien",
 	}
 	return alias[status]
+}
+
+func employmentType(empType string) string {
+	alias := map[string]string{
+		"ActiveMilitary":    "ActiveMilitaryDuty",
+		"NationalGuard":     "NationalGuard",
+		"USPHS":             "USPHS",
+		"OtherFederal":      "OtherFederal",
+		"StateGovernment":   "State",
+		"SelfEmployment":    "SelfEmployed",
+		"Unemployment":      "Unemployed",
+		"FederalContractor": "FederalContractor",
+		"NonGovernment":     "NonGovernment",
+		"Other":             "Other",
+	}
+	return alias[empType]
 }
 
 func citizenshipHas(data map[string]interface{}, country string) bool {

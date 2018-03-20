@@ -1,14 +1,15 @@
 <EmploymentActivities Type="Pooled" Version="1">
   <Employments>
-    {{range $index, $item := .props.List.props.items}}
-    {{with $Item := $item.Item}}
+    {{- range $index, $item := .props.List.props.items}}
+    {{- with $Item := $item.Item}}
+    {{- $isPresent := $Item.Dates.props.present}}
     <Employment ID="{{$index}}">
-      {{monthYearDaterange $Item.Dates}}
+      {{- monthYearDaterange $Item.Dates}}
       <Type>{{radio $Item.EmploymentActivity}}</Type>
       <EmploymentTypeOtherExplanation>{{$Item.EmploymentActivity.props.otherExplanation}}</EmploymentTypeOtherExplanation>
       <EmploymentCodeComment></EmploymentCodeComment>
       <WorkHours>{{radio $Item.Status}}</WorkHours>
-      {{if locationIsPostOffice $Item.Address}}
+      {{- if locationIsPostOffice $Item.Address}}
       <APOFPO>
         <Address>{{location $Item.Address}}</Address>
         <AddressComment></AddressComment>
@@ -75,7 +76,7 @@
       {{- end}}
       {{- end}}
 
-      {{- if radio $Item.EmploymentActivity | eq "SelfEmployed"}}
+      {{- if radio $Item.EmploymentActivity | eq "SelfEmployment"}}
       <SelfEmployment>
         <Occupation>{{text $Item.Title}}</Occupation>
         <Business>
@@ -93,6 +94,8 @@
       {{- end}}
       {{- end}}
       {{- end}}
+
+      {{- if not $isPresent}}
       <Dismissals>
         <Answer>{{branchcollectionHas $Item.ReasonLeft.props.Reasons}}</Answer>
         {{- range $lindex, $left := $Item.ReasonLeft.props.Reasons.props.items}}
@@ -114,6 +117,7 @@
         <Comment></Comment>
         {{end}}
       </Dismissals>
+      {{end}}
 
       <Incidents>
         <Answer>{{branchcollectionHas $Item.Reprimand}}</Answer>
@@ -141,17 +145,16 @@
         {{if branch $Item.PhysicalAddress.props.HasDifferentAddress | eq "Yes"}}
         <Address>{{location $Item.PhysicalAddress.props.Address}}</Address>
         <Telephone>{{telephone $Item.PhysicalAddress.props.Telephone}}</Telephone>
-        {{else}}
-        <Address>{{location $Item.Address}}</Address>
-        <Telephone>{{telephone $Item.Telephone}}</Telephone>
-        {{end}}
         <Comment></Comment>
+        {{end}}
       </JobLocation>
 
+      {{- if not $isPresent}}
       <LeftJob>
         <Comment>{{textarea $Item.ReasonLeft.props.Comments}}</Comment>
         <Reason>{{textarea $Item.ReasonLeft.props.ReasonDescription}}</Reason>
       </LeftJob>
+      {{end}}
 
       {{with $supervisor := $Item.Supervisor.props}}
       <Supervisor>
@@ -171,6 +174,7 @@
       </Supervisor>
       {{end}}
 
+      {{- if or (radio $Item.EmploymentActivity | eq "SelfEmployment") (radio $Item.EmploymentActivity | eq "Unemployment")}}
       <Verifier>
         <LegalName>{{nameLastFirst $Item.ReferenceName}}</LegalName>
         {{if locationIsPostOffice $Item.ReferenceAddress}}
@@ -187,6 +191,7 @@
         <UnemploymentComment></UnemploymentComment>
         {{end}}
       </Verifier>
+      {{- end}}
     </Employment>
     {{- end}}
     {{- end}}
