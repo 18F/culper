@@ -48,7 +48,7 @@ export default class DrugUses extends SubsectionElement {
       index: index,
       left: drug,
       right: null,
-      placeholder: i18n.m('substance.drugs.use.collection.summary')
+      placeholder: i18n.t('substance.drugs.use.collection.summary')
     })
   }
 

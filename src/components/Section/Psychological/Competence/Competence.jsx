@@ -48,7 +48,7 @@ export default class Competence extends SubsectionElement {
       index: index,
       left: courtName,
       right: occurred,
-      placeholder: i18n.m('psychological.competence.collection.summaryCourtName')
+      placeholder: i18n.t('psychological.competence.collection.summaryCourtName')
     })
   }
 

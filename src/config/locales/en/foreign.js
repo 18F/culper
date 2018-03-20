@@ -104,7 +104,7 @@ export const foreign = {
         howAcquired: 'Such as purchase, gift, etc.'
       },
       collection: {
-        summary: '*Provide your direct financial interests here*',
+        summary: 'Provide your direct financial interests here',
         description: 'Summary of financial interests',
         appendTitle: 'Do you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children have any additional foreign financial interests?',
         appendLabel: 'Add another direct interest',
@@ -222,7 +222,7 @@ export const foreign = {
         title: 'Have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children EVER had any foreign financial interests that someone controlled on your behalf?'
       },
       collection: {
-        summary: '*Provide your indirect financial interests here*',
+        summary: 'Provide your indirect financial interests here',
         description: 'Summary of financial interests',
         appendTitle: 'Do you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children have any additional foreign financial interests controlled on your behalf?',
         appendLabel: 'Add another indirect interest',
@@ -354,7 +354,7 @@ export const foreign = {
         title: 'Have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children EVER owned, or do you anticipate owning, or plan to purchase real estate in a foreign country?'
       },
       collection: {
-        summary: '*Provide your real estate purchase here*',
+        summary: 'Provide your real estate purchase here',
         description: 'Summary of financial purchase',
         appendTitle: 'Do you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children have any additional foreign financial interests?',
         appendLabel: 'Add another real estate purchase',
@@ -499,7 +499,7 @@ export const foreign = {
         summary: {
           title: 'Summary of foreign financial support',
           item: 'Support',
-          unknown: '*Provide details of foreign financial support below*'
+          unknown: 'Provide details of foreign financial support below'
         },
         appendTitle: 'Have you additionally provided financial support for any foreign national?',
         append: 'Add another instance'
@@ -541,7 +541,7 @@ export const foreign = {
         }
       },
       collection: {
-        summary: '*Provide your financial benefits here*',
+        summary: 'Provide your financial benefits here',
         description: 'Summary of financial benefits',
         appendTitle: 'Do you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children receive any additional benefits from a foreign country?',
         appendLabel: 'Add another benefit',
@@ -873,7 +873,7 @@ export const foreign = {
       summary: {
         title: 'Summary of foreign contacts',
         item: 'Foreign national',
-        unknown: '*Provide the foreign national below*'
+        unknown: 'Provide the foreign national below'
       },
       appendTitle: 'Do you have, or have you had, close and/or continuing contact with any additional foreign national within the last seven (7) years with whom you, or your spouse, or cohabitant are bound by affection, influence, common interests, and/or obligation?',
       appendMessage: [
@@ -927,7 +927,7 @@ export const foreign = {
         summary: {
           title: 'Summary of foreign business advice',
           item: 'Advice',
-          unknown: '*Provide details of foreign business advice below*'
+          unknown: 'Provide details of foreign business advice below'
         },
         appendTitle: 'Have you in the last seven (7) years provided advice or support to any other individual associated with a foreign business or other foreign organization that you have not previously listed as a former employer?',
         appendMessage: [
@@ -982,7 +982,7 @@ export const foreign = {
         summary: {
           title: 'Summary of family foreign business advice',
           item: 'Advice',
-          unknown: '*Provide details of family foreign business advice below*'
+          unknown: 'Provide details of family foreign business advice below'
         },
         appendTitle: 'Have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or any member of your immediate family in the last seven (7) years been asked to provide advice or serve as a consultant, even informally, by any other foreign government official or agency?',
         appendMessage: [
@@ -1038,7 +1038,7 @@ export const foreign = {
         summary: {
           title: 'Summary of foreign business job offers',
           item: 'Offer',
-          unknown: '*Provide details of foreign business job below*'
+          unknown: 'Provide details of foreign business job below'
         },
         appendTitle: 'Has any additional foreign national, in the last seven (7) years, offered you a job, asked you to work a consultant, or consider employment with them?',
         append: 'Add another job offer'
@@ -1125,7 +1125,7 @@ export const foreign = {
         summary: {
           title: 'Summary of foreign business ventures',
           item: 'Venture',
-          unknown: '*Provide details of foreign business ventures below*'
+          unknown: 'Provide details of foreign business ventures below'
         },
         appendTitle: 'Have you, in the last seven (7) years, been involved in any other type of business venture with a foreign national not described above?',
         appendMessage: [
@@ -1203,7 +1203,7 @@ export const foreign = {
         summary: {
           title: 'Summary of foreign business conferences',
           item: 'Event',
-          unknown: '*Provide details of the event below*'
+          unknown: 'Provide details of the event below'
         },
         appendTitle: 'Have you in the last seven (7) years, attended or participated in any additional conferences, trade shows, seminars, or meetings outside the U.S.?',
         appendMessage: [
@@ -1303,7 +1303,7 @@ export const foreign = {
         summary: {
           title: 'Summary of foreign government contacts',
           item: 'Contact',
-          unknown: '*Provide details of contact below*'
+          unknown: 'Provide details of contact below'
         },
         appendTitle: 'Have you or any member of your immediate family in the last seven (7) years had any additional contact with a foreign government, its establishment or its representatives, whether inside or outside the U.S.?',
         appendMessage: [
@@ -1400,7 +1400,7 @@ export const foreign = {
         summary: {
           title: 'Summary of foreign national sponsorship',
           item: 'Sponsorship',
-          unknown: '*Provide details of sponsorship below*'
+          unknown: 'Provide details of sponsorship below'
         },
         appendTitle: 'Have you in the last seven (7) years sponsored any additional foreign national to come to the U.S. as a student, for work, or for permanent residence?',
         appendMessage: [],
@@ -1463,7 +1463,7 @@ export const foreign = {
         summary: {
           title: 'Summary of foreign political office',
           item: 'Office',
-          unknown: '*Provide details of political office below*'
+          unknown: 'Provide details of political office below'
         },
         appendTitle: 'Have you EVER held any additional political office in a foreign country?',
         appendMessage: [],
@@ -1509,7 +1509,7 @@ export const foreign = {
         summary: {
           title: 'Summary of foreign elections',
           item: 'Election',
-          unknown: '*Provide details of election below*'
+          unknown: 'Provide details of election below'
         },
         appendTitle: 'Do you have other instances of voting in the election of a foreign country to report?',
         appendMessage: [],
@@ -1629,7 +1629,7 @@ export const foreign = {
       summary: {
         title: 'Summary of foreign travel',
         item: 'Travel',
-        unknown: '*Provide details of your travel below*'
+        unknown: 'Provide details of your travel below'
       },
       appendTitle: 'Do you have additional travel outside the U.S. in the last seven (7) years for other than solely U.S. Government business on official government orders?',
       appendMessage: [],

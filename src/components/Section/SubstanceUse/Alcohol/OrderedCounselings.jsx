@@ -72,7 +72,7 @@ export default class OrderedCounselings extends SubsectionElement {
       index: index,
       left: seekers.join(', '),
       right: counselingDates,
-      placeholder: i18n.m('substance.alcohol.receivedCounseling.collection.summary')
+      placeholder: i18n.t('substance.alcohol.receivedCounseling.collection.summary')
     })
   }
 

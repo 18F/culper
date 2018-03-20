@@ -47,7 +47,7 @@ export default class Ventures extends SubsectionElement {
       index: index,
       left: name,
       right: date,
-      placeholder: i18n.m('foreign.business.ventures.collection.summary.unknown')
+      placeholder: i18n.t('foreign.business.ventures.collection.summary.unknown')
     })
   }
 

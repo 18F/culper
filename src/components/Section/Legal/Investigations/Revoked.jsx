@@ -47,7 +47,7 @@ export default class Revoked extends SubsectionElement {
       index: index,
       left: agency,
       right: dates,
-      placeholder: i18n.m('legal.investigations.revoked.collection.unknown')
+      placeholder: i18n.t('legal.investigations.revoked.collection.unknown')
     })
   }
 
