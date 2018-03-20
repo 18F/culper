@@ -19,10 +19,17 @@ describe('The summary components', () => {
           },
           Dates: {
             from: {
-              date: new Date(1989, 12, 17)
+              date: new Date(1989, 12, 17),
+              month: '12',
+              day: '17',
+              year: '1989'
             },
             to: {
-              date: new Date()
+              date: new Date(2000, 1, 1),
+              month: '1',
+              day: '1',
+              year: '2000',
+              present: false
             }
           }
         }
@@ -46,7 +53,7 @@ describe('The summary components', () => {
       expected.remove,
       expected.byline))
     expect(component.find('.index').length).toEqual(1)
-    expect(component.find('.employer').length).toEqual(1)
+    expect(component.find('.context').length).toEqual(1)
     expect(component.find('.dates').length).toEqual(1)
   })
 
@@ -59,10 +66,17 @@ describe('The summary components', () => {
           },
           Dates: {
             from: {
-              date: new Date(1989, 12, 17)
+              date: new Date(1989, 12, 17),
+              month: '12',
+              day: '17',
+              year: '1989'
             },
             to: {
-              date: new Date()
+              date: new Date(2000, 1, 1),
+              month: '1',
+              day: '1',
+              year: '2000',
+              present: false
             }
           }
         }
@@ -86,7 +100,7 @@ describe('The summary components', () => {
       expected.remove,
       expected.byline))
     expect(component.find('.index').length).toEqual(1)
-    expect(component.find('.employer').length).toEqual(1)
+    expect(component.find('.context').length).toEqual(1)
     expect(component.find('.dates').length).toEqual(1)
   })
 
@@ -99,10 +113,17 @@ describe('The summary components', () => {
           },
           Dates: {
             from: {
-              date: new Date(1989, 12, 17)
+              date: new Date(1989, 12, 17),
+              month: '12',
+              day: '17',
+              year: '1989'
             },
             to: {
-              date: new Date()
+              date: new Date(2000, 1, 1),
+              month: '1',
+              day: '1',
+              year: '2000',
+              present: false
             }
           }
         }
@@ -126,7 +147,7 @@ describe('The summary components', () => {
       expected.remove,
       expected.byline))
     expect(component.find('.index').length).toEqual(1)
-    expect(component.find('.employer').length).toEqual(1)
+    expect(component.find('.context').length).toEqual(1)
     expect(component.find('.dates').length).toEqual(1)
   })
 

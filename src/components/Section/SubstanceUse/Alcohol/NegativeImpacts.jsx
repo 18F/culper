@@ -48,7 +48,7 @@ export default class NegativeImpacts extends SubsectionElement {
       index: index,
       left: occurred,
       right: null,
-      placeholder: i18n.m('substance.alcohol.negativeImpact.collection.summary')
+      placeholder: i18n.t('substance.alcohol.negativeImpact.collection.summary')
     })
   }
 

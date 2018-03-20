@@ -50,7 +50,7 @@ export default class Federal extends SubsectionElement {
       index: index,
       left: agency,
       right: dates,
-      placeholder: i18n.m('history.federal.collection.summary.unknown')
+      placeholder: i18n.t('history.federal.collection.summary.unknown')
     })
   }
 

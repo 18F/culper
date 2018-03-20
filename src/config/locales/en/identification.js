@@ -74,7 +74,7 @@ export const identification = {
         name: 'Name',
         present: 'Now',
         nodates: 'NA',
-        unknown: '*Provide your full name below*'
+        unknown: 'Provide your full name below'
       },
       append: 'Add another name',
       appendTitle: 'Do you have additional names to enter?'
@@ -167,8 +167,8 @@ export const identification = {
       summary: {
         title: 'Summary of email addresses',
         email: 'Email',
-        unknownEmail: '*Provide your email address below*',
-        unknownPhone: '*Provide your telephone number below*',
+        unknownEmail: 'Provide your email address below',
+        unknownPhone: 'Provide your telephone number below',
         phoneNumber: 'Phone number'
       },
       phoneNumbers: {

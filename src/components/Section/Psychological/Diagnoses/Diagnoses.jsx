@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import schema from '../../../../schema'
-import { Summary, DateSummary } from '../../../Summary'
+import { Summary, NameSummary, DateSummary } from '../../../Summary'
 import validate, { DiagnosisValidator, TreatmentValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion, Branch, Show } from '../../../Form'
@@ -78,21 +78,20 @@ export default class Diagnoses extends SubsectionElement {
       index: index,
       left: facility,
       right: diagnosisDate,
-      placeholder: i18n.m('psychological.diagnoses.collection.summary')
+      placeholder: i18n.t('psychological.diagnoses.collection.summary')
     })
   }
 
   treatmentSummary (item, index) {
     const o = (item || {}).Treatment || {}
-    const name = (o.Name || {}).value ? `${o.Name.value}` : i18n.m('psychological.diagnoses.treatment.collection.summary')
-    const type = i18n.t('psychological.diagnoses.treatment.collection.itemType')
+    const name = (o.Name || {}).value || ''
 
-    return (
-      <span>
-        <span className="index">{type} {index + 1}:</span>
-        <span className="info"><strong>{name}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('psychological.diagnoses.treatment.collection.itemType'),
+      index: index,
+      left: name,
+      placeholder: i18n.t('psychological.diagnoses.treatment.collection.summary')
+    })
   }
 
   render () {

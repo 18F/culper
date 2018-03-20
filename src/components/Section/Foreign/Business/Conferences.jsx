@@ -47,7 +47,7 @@ export default class Conferences extends SubsectionElement {
       index: index,
       left: city,
       right: date,
-      placeholder: i18n.m('foreign.business.conferences.collection.summary.unknown')
+      placeholder: i18n.t('foreign.business.conferences.collection.summary.unknown')
     })
   }
 

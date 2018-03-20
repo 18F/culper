@@ -44,7 +44,7 @@ export default class Relatives extends SubsectionElement {
       index: index,
       left: name,
       right: null,
-      placeholder: i18n.m('relationships.relatives.collection.summary.unknown')
+      placeholder: i18n.t('relationships.relatives.collection.summary.unknown')
     })
   }
 

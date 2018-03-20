@@ -33,7 +33,7 @@ export const financial = {
     collection: {
       summary: {
         title: 'Summary of financial problems',
-        unknownlosses: '*Provide your financial problem details*',
+        unknownlosses: 'Provide your financial problem details',
         present: 'Now',
         nodates: 'NA',
         debt: 'Debt'
@@ -91,7 +91,7 @@ export const financial = {
       summary: {
         title: 'Summary of Bankruptcy',
         item: 'Petition',
-        unknown: '*Provide your petition details below*',
+        unknown: 'Provide your petition details below',
         nodates: 'NA',
         chapter: 'Chapter',
         appendTitle: 'In the last seven (7) years, have you filed any additional petitions under any chapter of the bankruptcy code?'
@@ -285,7 +285,7 @@ export const financial = {
     collection: {
       summary: {
         title: 'Summary of failed tax filings',
-        unknown: '*Provide your tax filing information below*',
+        unknown: 'Provide your tax filing information below',
         item: 'Agency'
       },
       appendTitle: 'Are there any other instances in the last seven (7) years where you failed to file or pay Federal, state, or other taxes when required by law or ordinance?',
@@ -348,7 +348,7 @@ export const financial = {
     collection: {
       summary: {
         title: 'Summary of employer card abuses',
-        unknown: '*Provide your card abuse information below*',
+        unknown: 'Provide your card abuse information below',
         item: 'Employer'
       },
       appendTitle: 'Are there any other instances in the last seven (7) years where you have been counseled, warned, or disciplined for violating the term of agreement for a travel or credit card provided by your employer?',
@@ -403,7 +403,7 @@ export const financial = {
     collection: {
       summary: {
         title: 'Summary of credit counseling',
-        unknown: '*Provide your credit counseling details below*',
+        unknown: 'Provide your credit counseling details below',
         item: 'Service'
       },
       appendTitle: 'Are you currently utilizing, or seeking assistance from any other credit counseling service or similar resource to resolve your financial difficulties?',
@@ -512,7 +512,7 @@ export const financial = {
     collection: {
       summary: {
         title: 'Summary of delinquent payment issues',
-        unknown: '*Provide your payment issue details below*',
+        unknown: 'Provide your payment issue details below',
         item: 'Service'
       },
       appendTitle: 'Other than previously listed, are there any other instances of the following occurrences?',
@@ -612,7 +612,7 @@ export const financial = {
     collection: {
       summary: {
         title: 'Summary of non-payment issues',
-        unknown: '*Provide your non-payment details below*',
+        unknown: 'Provide your non-payment details below',
         item: 'Service'
       },
       appendTitle: 'Other than previously listed, are there any other instances of the following occurrences?',
