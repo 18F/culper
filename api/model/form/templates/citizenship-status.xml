@@ -113,6 +113,10 @@
       {{end}}
     </ProofOfUSCitizenship>
   </USCitizen>
+
+  {{- if radio $citizenship.CitizenshipStatus | eq "Naturalized"}}
   <UsCitizenNaturalizationComment></UsCitizenNaturalizationComment>
+  {{end}}
+
   {{end}}
 </Citizenship>

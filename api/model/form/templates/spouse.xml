@@ -1,7 +1,9 @@
 <Spouse Version="1" Type="Pooled">
   {{tmpl "spouse-cohabitants.xml" .Relationships.Cohabitants}}
+  {{- if radio .Relationships.Marital.props.Status | ne "NeverMarried"}}
   {{tmpl "spouse-former.xml" .Relationships.Marital.props.DivorcedList}}
   {{tmpl "spouse-have-former.xml" .Relationships.Marital.props.DivorcedList}}
+  {{- end}}
   {{tmpl "spouse-marital-status.xml" .Relationships.Marital.props.Status}}
   {{tmpl "spouse-present-marriage.xml" .Relationships.Marital}}
 </Spouse>

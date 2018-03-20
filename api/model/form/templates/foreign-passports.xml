@@ -1,8 +1,9 @@
 <ForeignPassports>
   <Answer>{{branchcollectionHas .props.Passports}}</Answer>
-  <AnswerComment>string</AnswerComment>
-  {{range $index, $item := .props.Passports.props.items}}
-  {{with $Item := $item.Item}}
+  <AnswerComment></AnswerComment>
+  {{- range $index, $item := .props.Passports.props.items}}
+  {{- with $Item := $item.Item}}
+  {{- if branch $Item.Has | eq "Yes"}}
   <ForeignPassport ID="{{$index}}">
     {{if branch $Item.Used | eq "Yes"}}
     <CountriesTraveled>
@@ -35,8 +36,9 @@
       <AnswerComment></AnswerComment>
     </UsedPassportForTravel>
   </ForeignPassport>
-  {{end}}
-  {{end}}
+  {{- end}}
+  {{- end}}
+  {{- end}}
 
   {{- if branchcollectionHas .props.Passports | eq "Yes"}}
   <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
