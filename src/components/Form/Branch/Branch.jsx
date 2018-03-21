@@ -53,6 +53,7 @@ export default class Branch extends React.Component {
           <Radio name={this.props.name}
                  label={this.props.yesLabel}
                  value={this.props.yesValue}
+                 ariaLabel={this.props.yesAriaLabel}
                  className="yes"
                  onUpdate={this.handleUpdate}
                  onError={this.props.onError}
@@ -60,6 +61,7 @@ export default class Branch extends React.Component {
           <Radio name={this.props.name}
                  label={this.props.noLabel}
                  value={this.props.noValue}
+                 ariaLabel={this.props.noAriaLabel}
                  className="no"
                  onUpdate={this.handleUpdate}
                  onError={this.props.onError}
@@ -74,8 +76,10 @@ export default class Branch extends React.Component {
 Branch.defaultProps = {
   yesLabel: i18n.t('branch.label.yes'),
   yesValue: i18n.t('branch.value.yes'),
+  yesAriaLabel: null,
   noLabel: i18n.t('branch.label.no'),
   noValue: i18n.t('branch.value.no'),
+  noAriaLabel: null,
   labelSize: 'label',
   adjustFor: 'buttons',
   warning: false,

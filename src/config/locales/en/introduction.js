@@ -85,6 +85,10 @@ export const introduction = {
     title: 'Persons completing this form should begin after carefully reading the preceding instructions',
     para: [
       'I have read the instructions and I understand that if I withhold, misrepresent, or falsify information on this form, I am subject to the penalties for inaccurate or false statement (per U. S. Criminal Code, Title 18, section 1001), denial or revocation of a security clearance, and/or removal and debarment from Federal Service.'
-    ]
+    ],
+    aria: {
+      yes: 'Yes, I agree to this agreement',
+      no: 'No, I do not agree to this agreement'
+    }
   }
 }
