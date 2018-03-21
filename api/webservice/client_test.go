@@ -108,3 +108,73 @@ func TestIsAlive(t *testing.T) {
 		t.Fatal("Expected no errors but received %v", err)
 	}
 }
+
+//func TestWebservice(t *testing.T) {
+//filename := os.Getenv("DEBUG_WS_FILENAME")
+//b, err := ioutil.ReadFile(filename)
+//if err != nil {
+//t.Error(err)
+//}
+
+//var js map[string]interface{}
+//if err := json.Unmarshal(b, &js); err != nil {
+//t.Error(err)
+//}
+
+//xml := string(form.DefaultTemplate("application.xml", js))
+//importRequest, err := newImportRequest(js, xml)
+//if err != nil {
+//t.Error(err)
+//}
+
+//url := os.Getenv("WS_URL")
+//cert := os.Getenv("WS_CERT")
+//client := NewClient(url, cert)
+
+//importResp, err := client.ImportRequest(importRequest)
+//if err != nil {
+//t.Error(err)
+//}
+//wsErr := importResp.Error()
+//if wsErr != nil {
+//switch e := wsErr.(type) {
+//case *ErrEqipWSException:
+//for _, msg := range e.ErrorMessages {
+//fmt.Println(msg)
+//}
+//fmt.Println("Total: ", len(e.ErrorMessages))
+//}
+//} else {
+//fmt.Println(importResp.ImportRequestResponse.Keys())
+//fmt.Println(string(importResp.ResponseBody))
+//}
+//}
+
+//func newImportRequest(application map[string]interface{}, xmlContent string) (*ImportRequest, error) {
+//var ciAgencyUserPseudoSSN bool
+//ciAgencyIDEnv := os.Getenv("WS_CALLERINFO_AGENCY_ID")
+//if ciAgencyIDEnv == "" {
+//return nil, fmt.Errorf(logmsg.WebserviceMissingCallerInfoAgencyID)
+//}
+//ciAgencyUserSSNEnv := os.Getenv("WS_CALLERINFO_AGENCY_USER_SSN")
+//if ciAgencyUserSSNEnv == "" {
+//return nil, fmt.Errorf(logmsg.WebserviceMissingCallerInfoAgencySSN)
+//}
+//agencyIDEnv := os.Getenv("WS_AGENCY_ID")
+//if agencyIDEnv == "" {
+//return nil, fmt.Errorf(logmsg.WebserviceMissingAgencyID)
+//}
+//agencyGroupIDEnv := os.Getenv("WS_AGENCY_GROUP_ID")
+//ciAgencyUserPseudoSSNEnv := os.Getenv("WS_CALLERINFO_AGENCY_USER_PSEUDOSSN")
+//if ciAgencyUserPseudoSSNEnv == "" {
+//return nil, fmt.Errorf(logmsg.WebserviceMissingCallerInfoAgencyPseudoSSN)
+//}
+//b, err := strconv.ParseBool(ciAgencyUserPseudoSSNEnv)
+//if err != nil {
+//return nil, fmt.Errorf(logmsg.WebserviceMissingCallerInfoAgencyPseudoSSN)
+//}
+//ciAgencyUserPseudoSSN = b
+
+//ci := NewCallerInfo(ciAgencyIDEnv, ciAgencyUserPseudoSSN, ciAgencyUserSSNEnv)
+//return NewImportRequest(ci, agencyIDEnv, agencyGroupIDEnv, application, xmlContent)
+//}
