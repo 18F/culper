@@ -7,8 +7,7 @@
 | Release | [![Build Status][badge_ci_18f]][2] | [![codecov][badge_cov_18f]][24] | [![Code Climate][badge_cc_18f]][3] | [![Go Report Card][badge_goreportcard_18f]][22] |
 | Staging | [![Build Status][badge_ci_tt]][5]  | [![codecov][badge_cov_tt]][25]  | [![Code Climate][badge_cc_tt]][6]  | [![Go Report Card][badge_goreportcard_tt]][23]  |
 
-To create the e-QIP questionnaire prototype, the project team is employing a user-centered design approach leveraging key principles from the
-[U.S. Digital Services Playbook][8]:
+To create the e-QIP questionnaire prototype, the project team is employing a user-centered design approach leveraging key principles from the [U.S. Digital Services Playbook][8]:
 
 1. Understand what people need
 2. Address the whole experience, from start to finish
@@ -20,10 +19,11 @@ To create the e-QIP questionnaire prototype, the project team is employing a use
     - [Sprint Backlogs](#sprint-backlogs)
  - [Getting to know the code](#getting-to-know-the-code)
     - [Clone all things](#clone-all-things)
-    - [Checking dependencies](#checking-dependencies)
+    - [Configuration settings](#configuration-settings
+  )
+    - [Setup](#setup)
     - [Running a local server](#running-a-local-server)
     - [Executing tests and coverage reports](#executing-tests-and-coverage-reports)
-    - [Packaging Application](#packaging-application)
     - [Generating Documentation](#generating-documentation)
     - [Tooling](#tooling)
 
@@ -118,107 +118,95 @@ cp .env.example .env
 | `WS_URL`                    | X        |       | X    | URL to external web service                                                          |                                                                 |
 | `WS_KEY`                    | X        |       | X    | File path to private key used to sign security tokens for the external web service   |                                                                 |
 
-### Docker/docker-compose setup
+## Running the application
 
-Once `cd`'d into the cloned repository (and having created a `.env` file):
+To skip [setup](#setup), [building](#building-the-application), and [testing](#executing-tests-and-coverage-reports) you can run:
 
-```
-$ docker-compose up
-```
-
-### Checking dependencies
-
-For quick development we use [yarn][19] but you may use [npm][16] as well. Once
-this has been installed we execute a single command:
-
-```
-yarn install
+``` shell
+make
 ```
 
-For dependencies on the backend use [glide][17]:
+### Setup
 
-```
-glide install
+Configure pre-requisites using:
+
+```shell
+make setup
 ```
 
 ### Building the application
 
 Compiling all of the assets can be done simply using the command:
 
+```shell
+make build
 ```
-yarn build
-```
-
-This will compile JavaScript, SASS, and place all files where they need to be. Both versions of JavaScript files (minified and not) are preserved.
-
-### Running a local server
-
-To run a local server we are using [docker][21] containers leveraging the [docker-compose][20] tool:
-
-```
-docker-compose up
-```
-
-Then direct your browser at [http://localhost:8080](http://localhost:8080). The access the site in development use the username `test01` and password `password01`.
 
 ### Executing tests and coverage reports
 
 To make a single pass through the test suite use the command:
 
-```
-yarn test
+```shell
+make test
+make coverage
 ```
 
-The individual test results will be seen in the output, and the coverage
-results may be viewed after running ```yarn test```.
+### Running a local server
+
+To run a local server we are using [docker][21] containers leveraging the [docker-compose][20] tool via the command:
+
+```shell
+make run
+```
+
+Then direct your browser at [http://localhost:8080](http://localhost:8080). The access the site in development use the username `test01` and password `password01`.
+
+### Docker containers
+
+| Container | Image               |
+| --------  | ------------------- |
+| api       | [Dockerfile.api](Dockerfile.api) |
+| db        | postgres:9.6.5      |
+| web       | nginx:alpine        |
+| frontend  | node:8.5.0          |
+
+The IdAM solution **is not** part of this project.
+
+## Additional
 
 ### Executing feature specifications
 
-Running the feature specifications is an on-demand process and can be ran through [docker-compose][20] by specifying a different configuration file:
+Running the feature specifications is an on-demand process and can be ran using:
 
-```
-docker-compose -f nightwatch-compose.yml up
+```shell
+make specs
 ```
 
 For additional informtion on how to perform the feature specification automated UI test suite, visit [Spec Test][27].
 
-### Packaging Application
+### Generating Documentation
 
-To package up the application, use the command:
+To generate documentation from the source code and database schema type:
 
-```
-yarn build
-```
-
-This will generate the following file structure:
-
-```
-dist/
-   css/
-   fonts/
-   img/
-   eqip.min.js
-   index.html
+```shell
+make docs
 ```
 
-where
- - `css/` contains the production ready stylesheets
- - `fonts/` contains the fonts used in the application
- - `img/` contains the images used in the application
+All of the documentation may then be found in the respective directories under `doc/`.
 
 ### Tooling
 
 #### Linters
 
-For Ninjas (Vim) just install ```syntastic``` and everything should be handled.
-For Pirates (Emacs) just install ```flycheck``` and everything should be handled.
+For Ninjas (Vim) just install `syntastic` and everything should be handled.
+For Pirates (Emacs) just install `flycheck` and everything should be handled.
 
 For command-line alternatives there are the following:
+ - For JavaScript, [JSHint][14] which may be installed with `yarn add jshint`
+ - For HTML, [html-lint][15] which may be installed with `yarn add html-lint`
 
- - For JavaScript, [JSHint][14] which may be installed with ```yarn add jshint```
- - For HTML, [html-lint][15] which may be installed with ```yarn add html-lint```
 
-### Contributing
+## Contributing
 
 Please refer to the [contributing documentation][18].
 
