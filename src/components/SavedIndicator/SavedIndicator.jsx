@@ -129,8 +129,23 @@ class SavedIndicator extends React.Component {
     const klass = `saved-indicator ${this.state.animate ? 'active' : ''}`.trim()
     const klassCircle = `spinner-icon ${this.state.animate ? 'spin' : ''}`.trim()
     const klassIcon = `fa fa-floppy-o ${this.state.animate ? 'invert' : ''}`.trim()
+
+    // Determine the appropriate response for screen readers.
+    let talkback = null
+    if (!this.state.animate) {
+      if (this.state.hover) {
+        talkback = i18n.t('saved.action')
+      } else {
+        talkback = `${i18n.t('saved.saved')} ${this.calculateTime()}. ${i18n.t('saved.action')}?`
+      }
+    } else {
+      talkback = i18n.t('saved.saving')
+    }
+
     return (
       <button className={klass}
+              aria-label={talkback}
+              title={talkback}
               onClick={this.save}
               onMouseEnter={this.mouseEnter}
               onMouseLeave={this.mouseLeave}>
