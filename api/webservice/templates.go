@@ -78,7 +78,7 @@ const importRequestTemplate = `
       <pseudoSsn>{{.CallerInfo.AgencyUser.PseudoSSN}}</pseudoSsn>
       <ssn>{{.CallerInfo.AgencyUser.SSN}}</ssn>
     </agencyUser>
-    <callerIpAddress>76.219.232.180</callerIpAddress>
+    <callerIpAddress></callerIpAddress>
   </arg0>
   <arg1 xmlns="">
   {{.Applicant}}
@@ -93,30 +93,9 @@ const importRequestTemplate = `
 </ns2:importRequest>
 `
 
-//const importRequestTemplate = `
-//<ns2:importRequest xmlns:ns2="http://webservice.ws.eqip.opm.gov/">
-//<arg0 xmlns="">
-//<agency>
-//<agencyId>{{.CallerInfo.Agency.AgencyID}}</agencyId>
-//</agency>
-//<agencyUser>
-//<pseudoSsn>{{.CallerInfo.AgencyUser.PseudoSSN}}</pseudoSsn>
-//<ssn>{{.CallerInfo.AgencyUser.SSN}}</ssn>
-//</agencyUser>
-//<callerIpAddress>76.219.232.180</callerIpAddress>
-//</arg0>
-//<arg1 xmlns="">
-//{{.User}}
-//</arg1>
-//<arg2 xmlns="">
-//<agencyId>{{.AgencyKey.AgencyID}}</agencyId>
-//</arg2>
-//<arg3 xmlns="">
-//<groupId>{{.AgencyGroupKey.GroupID}}</groupId>
-//</arg3>
-//<arg4>{{- .Base64Content -}}</arg4>
-//</ns2:importRequest>
-//`
+const isAliveTemplate = `
+<ns2:isAlive xmlns:ns2="http://webservice.ws.eqip.opm.gov/" />
+`
 
 const envelopeTemplate = `
 <?xml version="1.0"?>
