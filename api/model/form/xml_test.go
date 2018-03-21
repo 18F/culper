@@ -2,38 +2,9 @@ package form
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"testing"
-
-	"github.com/18F/e-QIP-prototype/api/webservice"
 )
-
-func TestPackageImport(t *testing.T) {
-	application := readSectionData("testdata/ws-submission.json")
-	//tmpl := defaultTemplate("application.xml", application)
-	content := defaultTemplate("application.xml", application)
-
-	const cert = ""
-	const url = ""
-	client := webservice.NewClient(url, cert)
-	importRequest, err := webservice.NewImportRequest(application, string(content))
-	if err != nil {
-		t.Error(err)
-	}
-	importResp, err := client.ImportRequest(importRequest)
-	if err != nil {
-		switch e := err.(type) {
-		case *webservice.ErrEqipWSException:
-			for _, msg := range e.ErrorMessages {
-				fmt.Println(msg)
-			}
-		}
-
-		t.Error(err)
-	}
-	fmt.Println(importResp)
-}
 
 func TestPackage(t *testing.T) {
 	application := applicationData()

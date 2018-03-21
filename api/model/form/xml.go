@@ -11,6 +11,8 @@ import (
 	"github.com/18F/e-QIP-prototype/api/logmsg"
 )
 
+var DefaultTemplate = defaultTemplate
+
 func defaultTemplate(templateName string, data map[string]interface{}) template.HTML {
 	// fmap is a mapping of functions to be used within the XML template execution.
 	// These can be helper functions for formatting or even to process complex structure
@@ -30,6 +32,7 @@ func defaultTemplate(templateName string, data map[string]interface{}) template.
 		"date":                 date,
 		"dateEstimated":        dateEstimated,
 		"daterange":            daterange,
+		"foreignDocType":       foreignDocType,
 		"monthYearDaterange":   monthYearDaterange,
 		"email":                email,
 		"employmentType":       employmentType,
@@ -256,6 +259,27 @@ func citizenshipStatus(status string) string {
 		"NotCitizen":  "Alien",
 	}
 	return alias[status]
+}
+
+func foreignDocType(docType string) string {
+	alias := map[string]string{
+		"FS240":                              "FS240or545",
+		"DS1350":                             "DS1350",
+		"AlienRegistration":                  "NaturalizedAlienRegistration",
+		"PermanentResident":                  "NaturalizedPermanentResident",
+		"CertificateOfNaturalization":        "NaturalizationCertificate",
+		"DerivedAlienRegistration":           "DerivedAlienRegistration",
+		"DerivedPermanentResident":           "DerivedPermanentResident",
+		"DerivedCertificateOfNaturalization": "DerivedCitizenshipCertificate",
+		"I-551":               "NonCitizenI551",
+		"I-766":               "NonCitizenI766",
+		"I-94":                "NonCitizenI94",
+		"Visa":                "NonCitizenVisa",
+		"NonImmigrantStudent": "NonCitizenI20",
+		"ExchangeVisitor":     "NonCitizenDS2019",
+		"Other":               "Other",
+	}
+	return alias[docType]
 }
 
 func employmentType(empType string) string {
