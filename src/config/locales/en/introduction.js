@@ -12,7 +12,7 @@ export const introduction = {
     '---',
     '# How to save your progress',
     '**This form will auto save your progress continuously throughout.** Each input will be validated and save as you enter your information.',
-    'To confirm your auto saving and find out when the last save was look for the save icon on each screen.',
+    'To confirm you\'re auto saving and find out when the last save was check for the save icon on each screen.',
     '---',
     '# Purpose of this form',
     'This form will be used by the United States (U.S.) Government in conducting background investigations, reinvestigations, and continuous evaluations of persons under consideration for, or retention of, national security positions as defined in 5 CFR 732, and for individuals requiring eligibility for access to classified information under Executive Order 12968. This form may also be used by agencies in determining whether a subject performing work for, or on behalf of, the Government under a contract should be deemed eligible for logical or physical access when the nature of the work to be performed is sensitive and could bring about an adverse effect on the national security.',
