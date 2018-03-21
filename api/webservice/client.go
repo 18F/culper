@@ -2,7 +2,6 @@ package webservice
 
 import (
 	"bytes"
-	"encoding/base64"
 	"encoding/xml"
 	"fmt"
 	"io/ioutil"
@@ -17,44 +16,14 @@ type Client struct {
 
 // ImportRequest is used to import applicant information into eqip. Based on the documentation,
 // error responses possible with this service call include EqipWSException and CharacterEncodingException.
-func (c *Client) ImportRequest(r *ImportRequest) (*ImportRequestResponse, error) {
+func (c *Client) ImportRequest(r *ImportRequest) (*ImportSOAPResponse, error) {
 	// Use anonymous struct to create temporary structure that pulls out just what we need
-	var importResp struct {
-		SOAPFault
-		ImportRequestResponse *ImportRequestResponse `xml:"Body>importRequestResponse"`
-	}
+	var importResp ImportSOAPResponse
 	// Execute request. Errors returned here will be network, decoder or token generation related
 	if err := c.Send(r, &importResp); err != nil {
 		return nil, err
 	}
-	// Now check if application level errors were returned in the <Fault> element
-	if err := importResp.SOAPFault.Error(); err != nil {
-		return nil, err
-	}
-	return importResp.ImportRequestResponse, nil
-}
-
-func (c *Client) GetRequestFormPDF(r *GetRequestFormPDF) (*GetRequestFormPDFResponse, error) {
-	// Use anonymous struct to create temporary structure that pulls out just what we need
-	var getPDFresp struct {
-		SOAPFault
-		GetRequestFormPDFResponse *GetRequestFormPDFResponse `xml:"Body>getRequestFormPdfResponse"`
-	}
-	// Execute request. Errors returned here will be network, decoder or token generation related
-	if err := c.Send(r, &getPDFresp); err != nil {
-		return nil, err
-	}
-	// Now check if application level errors were returned in the <Fault> element
-	if err := getPDFresp.SOAPFault.Error(); err != nil {
-		return nil, err
-	}
-
-	b, err := base64.StdEncoding.DecodeString(getPDFresp.GetRequestFormPDFResponse.Return)
-	if err != nil {
-		return nil, err
-	}
-	ioutil.WriteFile("test.pdf", b, 0777)
-	return getPDFresp.GetRequestFormPDFResponse, nil
+	return &importResp, nil
 }
 
 func (c *Client) Send(action RequestBody, response Body) error {
@@ -65,7 +34,6 @@ func (c *Client) Send(action RequestBody, response Body) error {
 		return err
 	}
 
-	//envelope := NewSOAPEnvelope(action, unsignedToken, string(signedToken))
 	xmlContent, err := NewSOAPEnvelopeTemplate(action, unsignedToken, string(signedToken))
 	if err != nil {
 		fmt.Println("Error: ", err)
@@ -87,26 +55,22 @@ func (c *Client) Send(action RequestBody, response Body) error {
 	fmt.Println("============================================================")
 	resp, err := http.Post(c.endpointURL, "text/xml; charset=utf-8", bytes.NewReader(temp.XML))
 	if err != nil {
+		response.SetResponseBody([]byte(err.Error()))
 		return err
 	}
 	defer resp.Body.Close()
 	if bodyBytes, err := ioutil.ReadAll(resp.Body); err != nil {
+		response.SetResponseBody([]byte(err.Error()))
 		return err
 	} else {
-		respStr := string(bodyBytes)
-		fmt.Println("=============== Response ================")
-		fmt.Println(respStr)
-		fmt.Println("=========================================")
+		response.SetResponseBody(bodyBytes)
 		return xml.Unmarshal(bodyBytes, response)
-
 	}
 }
 
 func (c *Client) IsAlive() error {
 	// Use anonymous struct to create temporary structure that pulls out just what we need
-	var isAliveResp struct {
-		SOAPFault
-	}
+	var isAliveResp IsAliveSOAPResponse
 	var isAlive IsAlive
 	if err := c.Send(&isAlive, &isAliveResp); err != nil {
 		return err

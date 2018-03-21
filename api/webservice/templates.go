@@ -31,22 +31,7 @@ const xmpTemplate = `
     <InvestigativeRequirement>I</InvestigativeRequirement>
     <ApplicantAffiliation>MIL</ApplicantAffiliation>
     <IPAC>DOD-NAVY</IPAC>
-    <RequestingOfficials>
-      <Requestor>
-        <Name>AARON Strohl Laney</Name>
-        <Email>eml152dummy@MailDomain.com</Email>
-        <Telephone>
-          <Number>1 (763) 323-2004</Number>
-        </Telephone>
-      </Requestor>
-      <SecondRequestor>
-        <Name>JAMES Strohl Laney</Name>
-        <Email>eml153dummy@MailDomain.com</Email>
-        <Telephone>
-          <Number>1 (298) 723-1913</Number>
-        </Telephone>
-      </SecondRequestor>
-    </RequestingOfficials>
+    <RequestingOfficials></RequestingOfficials>
   </AgencyUsageBlock>
 </XMP>
 `
@@ -87,7 +72,7 @@ const importRequestTemplate = `
 <ns2:importRequest xmlns:ns2="http://webservice.ws.eqip.opm.gov/">
   <arg0 xmlns="">
     <agency>
-      <agencyId>{{.CallerInfo.Agency.AgencyID}}</agencyId>
+      <agencyId>{{.CallerInfo.AgencyID}}</agencyId>
     </agency>
     <agencyUser>
       <pseudoSsn>{{.CallerInfo.AgencyUser.PseudoSSN}}</pseudoSsn>
@@ -96,38 +81,46 @@ const importRequestTemplate = `
     <callerIpAddress>76.219.232.180</callerIpAddress>
   </arg0>
   <arg1 xmlns="">
-  {{.User2}}
+  {{.Applicant}}
   </arg1>
   <arg2 xmlns="">
-    <agencyId>{{.AgencyKey.AgencyID}}</agencyId>
+    <agencyId>{{.AgencyID}}</agencyId>
   </arg2>
   <arg3 xmlns="">
-    <groupId>{{.AgencyGroupKey.GroupID}}</groupId>
+    <groupId>{{.AgencyGroupID}}</groupId>
   </arg3>
-  <arg4>{{- .Base64Content -}}</arg4>
+  <arg4>{{- .Content -}}</arg4>
 </ns2:importRequest>
 `
+
+//const importRequestTemplate = `
+//<ns2:importRequest xmlns:ns2="http://webservice.ws.eqip.opm.gov/">
+//<arg0 xmlns="">
+//<agency>
+//<agencyId>{{.CallerInfo.Agency.AgencyID}}</agencyId>
+//</agency>
+//<agencyUser>
+//<pseudoSsn>{{.CallerInfo.AgencyUser.PseudoSSN}}</pseudoSsn>
+//<ssn>{{.CallerInfo.AgencyUser.SSN}}</ssn>
+//</agencyUser>
+//<callerIpAddress>76.219.232.180</callerIpAddress>
+//</arg0>
+//<arg1 xmlns="">
+//{{.User}}
+//</arg1>
+//<arg2 xmlns="">
+//<agencyId>{{.AgencyKey.AgencyID}}</agencyId>
+//</arg2>
+//<arg3 xmlns="">
+//<groupId>{{.AgencyGroupKey.GroupID}}</groupId>
+//</arg3>
+//<arg4>{{- .Base64Content -}}</arg4>
+//</ns2:importRequest>
+//`
 
 const envelopeTemplate = `
 <?xml version="1.0"?>
 <eapp>
 <S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/"><SOAP-ENV:Header xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"><eqipws-auth:Authentication xmlns:eqipws-auth="urn:gov.opm.eqip.ws/Authentication"><UnencryptedSecurityToken xmlns="">{{- .Unsigned -}}</UnencryptedSecurityToken><EncryptedSecurityToken xmlns="">{{- .Signed -}}</EncryptedSecurityToken></eqipws-auth:Authentication></SOAP-ENV:Header><S:Body xmlns:ns2="http://webservice.ws.eqip.opm.gov/">{{- .RequestBody.XML -}}</S:Body></S:Envelope>
 </eapp>
-`
-
-const getRequestFormPdfResponseTemplate = `
-<ns2:getRequestFormPdf xmlns:ns2="http://webservice.ws.eqip.opm.gov/">
-  <arg0 xmlns="">
-    <agency>
-      <agencyId>{{.CallerInfo.Agency.AgencyID}}</agencyId>
-    </agency>
-    <agencyUser>
-      <pseudoSsn>{{.CallerInfo.AgencyUser.PseudoSSN}}</pseudoSsn>
-      <ssn>{{.CallerInfo.AgencyUser.SSN}}</ssn>
-    </agencyUser>
-  </arg0>
-  <arg1>
-    <requestId>{{.RequestKey.RequestID}}</requestId>
-  </arg1>
-</ns2:getRequestFormPdf>
 `

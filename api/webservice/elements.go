@@ -12,24 +12,149 @@ import (
 	"text/template"
 )
 
-type RequestBody interface {
-	XML() string
+type ImportRequest struct {
+	CallerInfo    CallerInfo
+	Applicant     UserTemplate
+	AgencyID      string
+	AgencyGroupID string
+	Content       Base64Content
 }
 
-type GetRequestFormPDF struct {
-	CallerInfo CallerInfo
-	RequestKey RequestKey
-}
-
-func (r GetRequestFormPDF) XML() string {
-	tmpl := template.Must(template.New("get-request-form-pdf.xml").Parse(getRequestFormPdfResponseTemplate))
+func (a ImportRequest) XML() string {
+	tmpl := template.Must(template.New("import-request.xml").Parse(importRequestTemplate))
 	var output bytes.Buffer
-	err := tmpl.Execute(&output, r)
+	err := tmpl.Execute(&output, a)
 	if err != nil {
 		fmt.Println(err)
 		return "Unable to parse template"
 	}
 	return output.String()
+}
+
+func NewImportRequest(ci CallerInfo, agencyID, agencyGroupID string, app map[string]interface{}, xmlContent string) (*ImportRequest, error) {
+	var temp struct {
+		XML string `xml:",innerxml"`
+	}
+	err := xml.Unmarshal([]byte(fmt.Sprintf("<wrap>%s</wrap>", xmlContent)), &temp)
+	if err != nil {
+		fmt.Println("Error unmarshalling xml: ", err)
+		return nil, err
+	}
+	ioutil.WriteFile("latest.xmp.xml", []byte(temp.XML), 0777)
+	var user UserTemplate
+	if err := user.Load(app); err != nil {
+		return nil, err
+	}
+	var base64Content Base64Content
+	if err := base64Content.Compress(temp.XML); err != nil {
+		return nil, err
+	}
+
+	r := &ImportRequest{
+		CallerInfo:    ci,
+		Applicant:     user,
+		AgencyID:      agencyID,
+		AgencyGroupID: agencyGroupID,
+		Content:       base64Content,
+	}
+	return r, nil
+}
+
+type CallerInfo struct {
+	AgencyID   string
+	AgencyUser AgencyUser
+}
+
+type AgencyUser struct {
+	PseudoSSN bool
+	SSN       string
+}
+
+// ImportRequest contains information to send a SOAP import request to the eqip service
+//type ImportRequest struct {
+//CallerInfo     CallerInfo     // arg0
+//User           UserTemplate   // arg1
+//AgencyKey      AgencyKey      // arg2
+//AgencyGroupKey AgencyGroupKey // arg3
+//Base64Content  Base64Content  // arg4
+//Attachments    []Attachment   // arg5
+//}
+
+//// XML populates the element for an Import Request
+//func (a ImportRequest) XML() string {
+//tmpl := template.Must(template.New("import-request.xml").Parse(importRequestTemplate))
+//var output bytes.Buffer
+//err := tmpl.Execute(&output, a)
+//if err != nil {
+//return "Unable to parse template"
+//}
+//return output.String()
+//}
+
+func NewCallerInfo(agencyID string, psuedoSSN bool, ssn string) CallerInfo {
+	return CallerInfo{
+		AgencyID: agencyID,
+		AgencyUser: AgencyUser{
+			PseudoSSN: psuedoSSN,
+			SSN:       ssn,
+		},
+	}
+}
+
+//func NewImportRequest(app map[string]interface{}, xmlContent string) (*ImportRequest, error) {
+////var ciAgencyID int
+////var ciAgencyPseudoSSN bool
+////var agencyID int
+////var agencyGroupID int
+
+////ciAgencyIDEnv := os.Getenv("WS_CALLERINFO_AGENCY_ID")
+////ciAgencyUserEnv := os.Getenv("WS_CALLERINFO_AGENCY_USER_PSEUDOSSN")
+////ciAgencyUserSSNEnv := os.Getenv("WS_CALLERINFO_AGENCY_USER_SSN")
+////agencyUserIDEnv := os.Getenv("WS_AGENCY_ID")
+////agencyGroupIDEnv := os.Getenv("WS_AGENCY_GROUP_ID")
+
+//var temp struct {
+//XML string `xml:",innerxml"`
+//}
+//err := xml.Unmarshal([]byte(fmt.Sprintf("<wrap>%s</wrap>", xmlContent)), &temp)
+//if err != nil {
+//fmt.Println("Error unmarshalling xml: ", err)
+//return nil, err
+//}
+//ioutil.WriteFile("latest.xmp.xml", []byte(temp.XML), 0777)
+//var user UserTemplate
+//if err := user.Load(app); err != nil {
+//return nil, err
+//}
+//var base64Content Base64Content
+//if err := base64Content.Compress(temp.XML); err != nil {
+//return nil, err
+//}
+
+//r := &ImportRequest{
+//CallerInfo: CallerInfo{
+//Agency: &AgencyKey{
+//AgencyID: 1365,
+//},
+//AgencyUser: &UserKey{
+//PseudoSSN: false,
+//SSN:       "18fuser01",
+//},
+//},
+//User: user,
+//AgencyKey: AgencyKey{
+//AgencyID: 1,
+//},
+//AgencyGroupKey: AgencyGroupKey{
+//GroupID: 5219,
+//},
+//Base64Content: base64Content,
+//}
+//return r, nil
+//}
+
+type RequestBody interface {
+	XML() string
 }
 
 type UserTemplate string
@@ -64,103 +189,7 @@ func (b *Base64Content) Compress(content string) error {
 	return nil
 }
 
-type ImportRequest struct {
-	CallerInfo     CallerInfo // arg0
-	User2          UserTemplate
-	AgencyKey      AgencyKey      // arg2
-	AgencyGroupKey AgencyGroupKey // arg3
-	Base64Content  Base64Content  // arg4
-	Attachments    []Attachment   // arg5
-}
-
-func (a ImportRequest) XML() string {
-	tmpl := template.Must(template.New("import-request.xml").Parse(importRequestTemplate))
-	var output bytes.Buffer
-	err := tmpl.Execute(&output, a)
-	if err != nil {
-		return "Unable to parse template"
-	}
-	return output.String()
-}
-
-func NewImportRequest(app map[string]interface{}, xmlContent string) (*ImportRequest, error) {
-	var temp struct {
-		XML string `xml:",innerxml"`
-	}
-	err := xml.Unmarshal([]byte(fmt.Sprintf("<wrap>%s</wrap>", xmlContent)), &temp)
-	if err != nil {
-		fmt.Println("Error unmarshalling xml: ", err)
-		return nil, err
-	}
-	ioutil.WriteFile("latest.xmp.xml", []byte(temp.XML), 0777)
-	var user UserTemplate
-	if err := user.Load(app); err != nil {
-		return nil, err
-	}
-	var base64Content Base64Content
-	if err := base64Content.Compress(temp.XML); err != nil {
-		return nil, err
-	}
-
-	r := &ImportRequest{
-		CallerInfo: CallerInfo{
-			Agency: &AgencyKey{
-				AgencyID: 1365,
-			},
-			AgencyUser: &UserKey{
-				PseudoSSN: false,
-				SSN:       "18fuser01",
-			},
-		},
-		User2: user,
-		AgencyKey: AgencyKey{
-			AgencyID: 1,
-		},
-		AgencyGroupKey: AgencyGroupKey{
-			GroupID: 5219,
-		},
-		Base64Content: base64Content,
-	}
-	return r, nil
-}
-
-type GetRequestFormPDFResponse struct {
-	Return string `xml:"return"`
-}
-
-type DemographicData struct {
-	Birth     DemoBirth
-	FullName  DemoFullName
-	Email     string
-	Telephone string
-}
-
-type DemoBirth struct {
-	Date  DemoDate
-	Place DemoPlace
-}
-type DemoDate struct {
-	Day   string
-	Month string
-	Year  string
-}
-type DemoPlace struct {
-	City    string
-	Country string
-	County  string
-	State   string
-}
-type DemoFullName struct {
-	First  string
-	Middle string
-	Last   string
-}
-
-type User struct {
-	DemographicData DemographicData
-	Key             UserKey
-}
-
+// NewSOAPEnvelopeTemplate populates the envelope element for a SOAP request
 func NewSOAPEnvelopeTemplate(action RequestBody, unsigned, signed string) (io.Reader, error) {
 	tmpl := template.Must(template.New("envelope.xml").Parse(envelopeTemplate))
 	var output bytes.Buffer
@@ -304,18 +333,23 @@ func (a IsAlive) XML() string {
 	return output.String()
 }
 
-// CallerInfo represents the agency and agency user making the web service call.
-//	<xs:complexType name="callerInfo">
-//		<xs:sequence>
-//			<xs:element name="agency" type="tns:agencyKey" minOccurs="0"/>
-//			<xs:element name="agencyUser" type="tns:userKey" minOccurs="0"/>
-//			<xs:element name="callerIpAddress" type="xs:string" minOccurs="0"/>
-//		</xs:sequence>
-//	 </xs:complexType
-type CallerInfo struct {
-	Agency          *AgencyKey `xml:"agency"`
-	AgencyUser      *UserKey   `xml:"agencyUser"`
-	CallerIPAddress string     `xml:"callerIpAddress"`
+type IsAliveSOAPResponse struct {
+	SOAPFault
+	ResponseBody []byte
+}
+
+func (r *IsAliveSOAPResponse) SetResponseBody(b []byte) {
+	r.ResponseBody = b
+}
+
+type ImportSOAPResponse struct {
+	SOAPFault
+	ImportRequestResponse *ImportRequestResponse `xml:"Body>importRequestResponse"`
+	ResponseBody          []byte
+}
+
+func (r *ImportSOAPResponse) SetResponseBody(b []byte) {
+	r.ResponseBody = b
 }
 
 // AgencyKey represents the identifier for an Agency in e-QIP
@@ -335,10 +369,10 @@ type AgencyKey struct {
 //			  <xs:element name="groupId" type="xs:int"/>
 //		  </xs:sequence>
 //	  </xs:complexType>
-type AgencyGroupKey struct {
-	XMLName xml.Name
-	GroupID int `xml:"groupId"`
-}
+//type AgencyGroupKey struct {
+//XMLName xml.Name
+//GroupID int `xml:"groupId"`
+//}
 
 // UserKey represents a User within the e-QIP system
 //	  <xs:complexType name="userKey">
@@ -347,10 +381,10 @@ type AgencyGroupKey struct {
 //			  <xs:element name="ssn" type="xs:string" minOccurs="0"/>
 //		  </xs:sequence>
 //	  </xs:complexType>
-type UserKey struct {
-	PseudoSSN bool   `xml:"pseudoSsn"`
-	SSN       string `xml:"ssn"`
-}
+//type UserKey struct {
+//PseudoSSN bool   `xml:"pseudoSsn"`
+//SSN       string `xml:"ssn"`
+//}
 
 // Attachment represents a document that is attached to an e-QIP investigation request
 //	  <xs:complexType name="attachment">*/
@@ -393,4 +427,6 @@ type RequestKey struct {
 }
 
 // Body is used for the contents of a SOAP body
-type Body interface{}
+type Body interface {
+	SetResponseBody([]byte)
+}

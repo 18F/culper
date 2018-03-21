@@ -622,6 +622,15 @@ func Package(context *db.DatabaseContext, account int, hashable bool) template.H
 	return defaultTemplate("application.xml", js)
 }
 
+func ApplicationData(context *db.DatabaseContext, account int, hashable bool) (map[string]interface{}, error) {
+	jsonBytes := Application(context, account, hashable)
+	var js map[string]interface{}
+	if err := json.Unmarshal(jsonBytes, &js); err != nil {
+		return nil, err
+	}
+	return js, nil
+}
+
 // PurgeAccountStorage removes all data associated with an account
 func PurgeAccountStorage(context *db.DatabaseContext, account int) {
 	for _, section := range catalogue {
