@@ -22,7 +22,7 @@ export const relationships = {
     collection: {
       summary: {
         title: 'Summary of relatives',
-        unknown: '*Click to provide details*',
+        unknown: 'Click to provide details',
         item: 'Relative'
       },
       appendTitle: 'Do you have an additional relative to enter?',
@@ -357,6 +357,7 @@ export const relationships = {
       citizenship: 'Provide this person\'s country(ies) of citizenship',
       location: 'Provide the location',
       address: 'Provide this person\'s current address, if different than your current address',
+      addressWithoutCurrent: 'Provide this person\'s current address',
       telephone: 'Provide this person\'s telephone number',
       email: 'Provide this person\'s email address',
       separated: 'Are you separated?',
@@ -369,6 +370,10 @@ export const relationships = {
     notApplicable: {
       or: 'or',
       label: 'Not applicable'
+    },
+    useCurrentAddress: {
+      or: 'or',
+      label: 'Use my current address'
     },
     deceasedAddressNotApplicable: {
       or: 'or',
@@ -737,7 +742,7 @@ export const relationships = {
       },
       collection: {
         summary: {
-          unknown: '*Provide the person\'s information below*'
+          unknown: 'Provide the person\'s information below'
         },
         description: 'Summary of people who know you',
         appendLabel: 'Add another person',

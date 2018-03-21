@@ -66,7 +66,7 @@ export const substance = {
       },
       collection: {
         description: 'Summary of negative impacts',
-        summary: '*Provide your negative impact details below*',
+        summary: 'Provide your negative impact details below',
         appendTitle: 'Has the use of alcohol had other negative impacts on your work performance, your professional or personal relationships, your finances, or resulted in intervention by law enforcement/public safety personnel?',
         appendLabel: 'Add another negative impact',
         itemType: 'Negative impact'
@@ -100,7 +100,7 @@ export const substance = {
       },
       collection: {
         description: 'Summary of counselings',
-        summary: '*Provide your counseling details below*',
+        summary: 'Provide your counseling details below',
         appendTitle: 'Do you have additional instances of having been ordered, advised or asked to seek counseling or treatment as a result of your use of alcohol to enter?',
         appendLabel: 'Add another counseling',
         itemType: 'Counseling'
@@ -154,7 +154,7 @@ export const substance = {
       },
       collection: {
         description: 'Summary of counselings',
-        summary: '*Provide your counseling details below*',
+        summary: 'Provide your counseling details below',
         appendTitle: 'Do you have additional instances where you have voluntarily sought counseling or treatment as a result of your use of alcohol to enter?',
         appendLabel: 'Add another counseling',
         itemType: 'Counseling'
@@ -206,7 +206,7 @@ export const substance = {
       },
       collection: {
         description: 'Summary of counselings',
-        summary: '*Provide your counseling details below*',
+        summary: 'Provide your counseling details below',
         appendTitle: 'Did you receive alcohol-related counseling or treatment another time?',
         appendLabel: 'Add another counseling',
         itemType: 'Counseling'
@@ -326,7 +326,7 @@ export const substance = {
       },
       collection: {
         description: 'Summary of drug uses',
-        summary: '*Provide your drug use details below*',
+        summary: 'Provide your drug use details below',
         appendTitle: 'Do you have an additional instance(s) of illegal use of a drug or controlled substance to enter?',
         appendLabel: 'Add another drug use',
         itemType: 'Drug Use'
@@ -393,7 +393,7 @@ export const substance = {
       },
       collection: {
         description: 'Summary of drug involvement',
-        summary: '*Provide your drug involvement details below*',
+        summary: 'Provide your drug involvement details below',
         appendTitle: 'Do you have an additional instance(s) of having been involved in the illegal purchase, manufacture, cultivation, trafficking, production, transfer, shipping, receiving, handling or sale of a drug or controlled substance to enter?',
         appendLabel: 'Add another drug involvement',
         itemType: 'Drug involvement'
@@ -424,7 +424,7 @@ export const substance = {
       },
       collection: {
         description: 'Summary of drug involvement',
-        summary: '*Provide your drug involvement details below*',
+        summary: 'Provide your drug involvement details below',
         appendTitle: 'Do you have an additional instance(s) of the illegal use or involvement with a drug or controlled substance while possessing a security clearance to enter?',
         appendLabel: 'Add another drug involvement',
         itemType: 'Drug involvement'
@@ -455,7 +455,7 @@ export const substance = {
       },
       collection: {
         description: 'Summary of drug involvement',
-        summary: '*Provide your drug involvement details below*',
+        summary: 'Provide your drug involvement details below',
         appendTitle: 'Do you have an additional instance(s) of illegal use or involvement with a drug or controlled substance while employed as a law enforcement officer, prosecutor, or courtroom official; or while in a position directly and immediately affecting the public safety to enter?',
         appendLabel: 'Add another drug involvement',
         itemType: 'Drug involvement'
@@ -498,7 +498,7 @@ export const substance = {
       },
       collection: {
         description: 'Summary of drug misuse',
-        summary: '*Provide your drug misuse details below*',
+        summary: 'Provide your drug misuse details below',
         appendTitle: 'Do you have an additional instance(s) of intentionally engaging in the misuse of prescription drugs in the last seven (7) years to enter?',
         appendLabel: 'Add another drug misuse',
         itemType: 'Drug misuse'
@@ -581,7 +581,7 @@ export const substance = {
       },
       collection: {
         description: 'Summary of treatments',
-        summary: '*Provide your treatment details below*',
+        summary: 'Provide your treatment details below',
         appendTitle: 'Do you have another instance of having been ordered, advised, or asked to seek drug or controlled substance counseling or treatment to enter?',
         appendLabel: 'Add another treatment',
         itemType: 'Treatment'
@@ -648,7 +648,7 @@ export const substance = {
       },
       collection: {
         description: 'Summary of treatments',
-        summary: '*Provide your treatment details below*',
+        summary: 'Provide your treatment details below',
         appendTitle: 'Do you have another instance of EVER voluntarily seeking counseling or treatment as a result of your use of a drug or controlled substance?',
         appendLabel: 'Add another treatment',
         itemType: 'Treatment'

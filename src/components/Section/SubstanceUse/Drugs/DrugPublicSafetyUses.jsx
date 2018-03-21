@@ -49,7 +49,7 @@ export default class DrugPublicSafetyUses extends SubsectionElement {
       index: index,
       left: description,
       right: range,
-      placeholder: i18n.m('substance.drugs.clearance.collection.summary')
+      placeholder: i18n.t('substance.drugs.clearance.collection.summary')
     })
   }
 

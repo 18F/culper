@@ -107,7 +107,6 @@ export default class CivilUnion extends ValidationElement {
 
   updateAddress (values) {
     this.update({
-      UseCurrentAddress: false,
       Address: values
     })
   }
@@ -161,14 +160,9 @@ export default class CivilUnion extends ValidationElement {
   }
 
   updateUseCurrentAddress (values) {
-    if (values.checked) {
-      this.updateAddress(this.props.currentAddress)
-    } else {
-      this.updateAddress({})
-    }
-
     this.update({
-      UseCurrentAddress: values
+      UseCurrentAddress: values,
+      Address: !values.applicable ? {...this.props.currentAddress} : {}
     })
   }
 
@@ -334,31 +328,45 @@ export default class CivilUnion extends ValidationElement {
                       />
           </Field>
 
-          <Field title={i18n.t('relationships.civilUnion.heading.address')}
+          <Field title={i18n.t(`relationships.civilUnion.heading.address${this.props.currentAddress ? '' : 'WithoutCurrent'}`)}
                  optional={true}
                  help="relationships.civilUnion.help.address"
                  scrollIntoView={this.props.scrollIntoView}
                  adjustFor="address">
             <Show when={this.props.currentAddress}>
-              <Checkbox name="current_address"
-                        className="current-address"
-                        label="Use current address"
-                        {...this.props.UseCurrentAddress}
-                        onUpdate={this.updateUseCurrentAddress}
+              <NotApplicable name="UseCurrentAddress"
+                             {...this.props.UseCurrentAddress}
+                             className="current-address"
+                             label={i18n.t('relationships.civilUnion.useCurrentAddress.label')}
+                             or={i18n.m('relationships.civilUnion.useCurrentAddress.or')}
+                             onUpdate={this.updateUseCurrentAddress}
+                             onError={this.props.onError}>
+                <Location name="Address"
+                          {...this.props.Address}
+                          layout={Location.ADDRESS}
+                          geocode={true}
+                          addressBooks={this.props.addressBooks}
+                          addressBook="Relative"
+                          dispatch={this.props.dispatch}
+                          onUpdate={this.updateAddress}
+                          onError={this.props.onError}
+                          required={this.props.required}
+                          />
+              </NotApplicable>
+            </Show>
+            <Show when={!this.props.currentAddress}>
+              <Location name="Address"
+                        {...this.props.Address}
+                        layout={Location.ADDRESS}
+                        geocode={true}
+                        addressBooks={this.props.addressBooks}
+                        addressBook="Relative"
+                        dispatch={this.props.dispatch}
+                        onUpdate={this.updateAddress}
                         onError={this.props.onError}
+                        required={this.props.required}
                         />
             </Show>
-            <Location name="Address"
-                      {...this.props.Address}
-                      layout={Location.ADDRESS}
-                      geocode={true}
-                      addressBooks={this.props.addressBooks}
-                      addressBook="Relative"
-                      dispatch={this.props.dispatch}
-                      onUpdate={this.updateAddress}
-                      onError={this.props.onError}
-                      required={this.props.required}
-                      />
           </Field>
 
           <Field title={i18n.t('relationships.civilUnion.heading.telephone')}
@@ -467,7 +475,7 @@ CivilUnion.defaultProps = {
     applicable: true
   },
   Divorced: {},
-  UseCurrentAddress: false,
+  UseCurrentAddress: {},
   addressBooks: {},
   dispatch: (action) => {},
   onUpdate: (queue) => {},

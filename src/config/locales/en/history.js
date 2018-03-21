@@ -58,7 +58,7 @@ export const history = {
       summary: {
         title: 'Summary of places you have lived',
         item: 'Address',
-        unknown: '*Provide residence details*',
+        unknown: 'Provide residence details',
         incomplete: 'This residence\'s information is incomplete',
         item2: 'Person'
       },
@@ -152,7 +152,7 @@ export const history = {
           title: 'Summary of your work history',
           employer: 'Employer',
           incomplete: 'This employer\'s information is incomplete',
-          unknown: '*Provide employer details*',
+          unknown: 'Provide employer details',
           item2: 'Title'
         }
       },
@@ -1510,7 +1510,7 @@ export const history = {
         summary: {
           title: 'Summary of education',
           item: 'School',
-          unknown: '*Provide your education details*',
+          unknown: 'Provide your education details',
           incomplete: 'This education\'s information is incomplete',
           item2: 'Diploma'
         },
@@ -1521,7 +1521,7 @@ export const history = {
         summary: {
           title: 'Summary of degrees/diplomas',
           item: 'Degree',
-          unknown: '*Provide your degree/diploma details*'
+          unknown: 'Provide your degree/diploma details'
         },
         append: 'Add another diploma/degree'
       }
@@ -1660,7 +1660,7 @@ export const history = {
         item: 'Federal service',
         present: 'Now',
         nodates: 'NA',
-        unknown: '*Provide federal service below*'
+        unknown: 'Provide federal service below'
       },
       appendTitle: 'Do you have additional former federal civilian employment, excluding military service, NOT indicated previously, to report?',
       append: 'Add another former federal service'

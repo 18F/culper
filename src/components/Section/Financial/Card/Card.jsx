@@ -59,7 +59,7 @@ export default class Card extends SubsectionElement {
       index: index,
       left: agency,
       right: from,
-      placeholder: i18n.m('financial.card.collection.summary.unknown')
+      placeholder: i18n.t('financial.card.collection.summary.unknown')
     })
   }
 

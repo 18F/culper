@@ -47,7 +47,7 @@ export default class Sponsorship extends SubsectionElement {
       index: index,
       left: name,
       right: dates,
-      placeholder: i18n.m('foreign.business.sponsorship.collection.summary.unknown')
+      placeholder: i18n.t('foreign.business.sponsorship.collection.summary.unknown')
     })
   }
 

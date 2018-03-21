@@ -55,7 +55,7 @@ export default class Marital extends SubsectionElement {
       index: index,
       left: name,
       right: date,
-      placeholder: i18n.m('relationships.relatives.collection.summary.unknown')
+      placeholder: i18n.t('relationships.relatives.collection.summary.unknown')
     })
   }
 

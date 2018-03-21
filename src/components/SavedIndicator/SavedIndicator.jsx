@@ -4,6 +4,7 @@ import { i18n } from '../../config'
 import AuthenticatedView from '../../views/AuthenticatedView'
 import { Show } from '../Form'
 import { saveSection } from '../../middleware/history'
+import { formIsLocked } from '../../validators'
 
 class SavedIndicator extends React.Component {
   constructor (props) {
@@ -113,7 +114,7 @@ class SavedIndicator extends React.Component {
   }
 
   allowed () {
-    return !this.isRoute('form/package/print')
+    return !formIsLocked(this.props.app) && !this.isRoute('form/package/print')
   }
 
   isRoute(route) {
@@ -128,8 +129,23 @@ class SavedIndicator extends React.Component {
     const klass = `saved-indicator ${this.state.animate ? 'active' : ''}`.trim()
     const klassCircle = `spinner-icon ${this.state.animate ? 'spin' : ''}`.trim()
     const klassIcon = `fa fa-floppy-o ${this.state.animate ? 'invert' : ''}`.trim()
+
+    // Determine the appropriate response for screen readers.
+    let talkback = null
+    if (!this.state.animate) {
+      if (this.state.hover) {
+        talkback = i18n.t('saved.action')
+      } else {
+        talkback = `${i18n.t('saved.saved')} ${this.calculateTime()}. ${i18n.t('saved.action')}?`
+      }
+    } else {
+      talkback = i18n.t('saved.saving')
+    }
+
     return (
       <button className={klass}
+              aria-label={talkback}
+              title={talkback}
               onClick={this.save}
               onMouseEnter={this.mouseEnter}
               onMouseLeave={this.mouseLeave}>

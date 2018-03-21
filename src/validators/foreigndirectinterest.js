@@ -50,7 +50,9 @@ export default class ForeignDirectInterestValidator {
   }
 
   validExplanation () {
-    return validGenericTextfield(this.explanation)
+    return validNotApplicable(this.relinquishedNotApplicable, () => {
+      return validGenericTextfield(this.explanation)
+    })
   }
 
   isValid () {

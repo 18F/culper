@@ -50,7 +50,7 @@ export default class OtherOffenses extends SubsectionElement {
       index: index,
       left: description,
       right: dates,
-      placeholder: i18n.m('legal.police.collection.summary.unknown')
+      placeholder: i18n.t('legal.police.collection.summary.unknown')
     })
   }
 

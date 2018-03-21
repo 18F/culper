@@ -113,7 +113,7 @@ export default class ForeignService extends ValidationElement {
       index: index,
       left: name,
       right: dates,
-      placeholder: i18n.m('military.foreign.collection.contacts.summary.unknown')
+      placeholder: i18n.t('military.foreign.collection.contacts.summary.unknown')
     })
   }
 

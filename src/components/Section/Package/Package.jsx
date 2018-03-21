@@ -38,20 +38,19 @@ class Package extends SectionElement {
     const payload = schema(`package.submit`, data, false)
 
     axios
-      .all([api.save(payload), api.submit(), api.status()])
-      .then(axios.spread((save, submit,  status) => {
-        const statusData = ((status || {}).data || {})
+      .all([api.save(payload), api.submit()])
+      .then(() => {
+        return api.status()
+      })
+      .then(response => {
+        const statusData = ((response || {}).data || {})
         this.props.dispatch(updateApplication('Settings', 'locked', statusData.Locked || false))
         this.props.dispatch(updateApplication('Settings', 'hash', statusData.Hash || false))
         this.props.update({ section: 'package', subsection: 'print' })
         this.handleUpdate('Releases', releases)
-      }))
+      })
       .catch(() => {
         console.warn('Failed to form package')
-        data = {
-          ...data,
-          Locked: false
-        }
         this.handleUpdate('Releases', data)
       })
   }

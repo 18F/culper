@@ -47,7 +47,7 @@ export default class Manipulating extends SubsectionElement {
       index: index,
       left: incident,
       right: dates,
-      placeholder: i18n.m('legal.technology.manipulating.collection.unknown')
+      placeholder: i18n.t('legal.technology.manipulating.collection.unknown')
     })
   }
 

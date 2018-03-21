@@ -1,6 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../../config'
-import { ValidationElement, Currency, Field, Text, DateControl, Textarea, NotApplicable, Checkbox, CheckboxGroup } from '../../../../Form'
+import { ValidationElement, Currency, Field, Text, DateControl, Textarea,
+         NotApplicable, Checkbox, CheckboxGroup, Show } from '../../../../Form'
 import CoOwners from '../CoOwners'
 
 export default class IndirectInterest extends ValidationElement {
@@ -128,7 +129,8 @@ export default class IndirectInterest extends ValidationElement {
 
   updateSoldNotApplicable (values) {
     this.update({
-      SoldNotApplicable: values
+      SoldNotApplicable: values,
+      Explanation: values.applicable ? this.props.Explanation : {}
     })
   }
 
@@ -320,16 +322,18 @@ export default class IndirectInterest extends ValidationElement {
           </NotApplicable>
         </Field>
 
-        <Field title={i18n.t(`foreign.activities.indirect.interest.heading.explanation`)}
-               scrollIntoView={this.props.scrollIntoView}>
-          <Textarea name="Explanation"
-                    className="explanation"
-                    {...this.props.Explanation}
-                    onUpdate={this.updateExplanation}
-                    onError={this.props.onError}
-                    required={this.props.required}
-                    />
-        </Field>
+        <Show when={(this.props.SoldNotApplicable || {}).applicable}>
+          <Field title={i18n.t(`foreign.activities.indirect.interest.heading.explanation`)}
+                 scrollIntoView={this.props.scrollIntoView}>
+            <Textarea name="Explanation"
+                      className="explanation"
+                      {...this.props.Explanation}
+                      onUpdate={this.updateExplanation}
+                      onError={this.props.onError}
+                      required={this.props.required}
+                      />
+          </Field>
+        </Show>
 
         <CoOwners prefix={prefix}
                   {...this.props.CoOwners}
