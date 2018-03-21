@@ -48,7 +48,7 @@ export default class Unauthorized extends SubsectionElement {
       index: index,
       left: incident,
       right: dates,
-      placeholder: i18n.m('legal.technology.unauthorized.collection.unknown')
+      placeholder: i18n.t('legal.technology.unauthorized.collection.unknown')
     })
   }
 

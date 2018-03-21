@@ -156,7 +156,7 @@ export const military = {
       summary: {
         title: 'Summary of military history',
         item: 'Branch',
-        unknown: '*Provide your military history below*'
+        unknown: 'Provide your military history below'
       },
       appendTitle: 'Do you have additional military service to report?',
       append: 'Add additional military history'
@@ -215,7 +215,7 @@ export const military = {
       summary: {
         title: 'Summary of disciplinary procedures',
         item: 'Procedure',
-        unknown: '*Provide the disciplinary procedure below*'
+        unknown: 'Provide the disciplinary procedure below'
       },
       appendTitle: 'In the last 7 years do you have additional military disciplinary procedures to report?',
       appendMessage: 'In the last 7 years do you have additional military disciplinary procedures to report?',
@@ -339,7 +339,7 @@ export const military = {
         summary: {
           title: 'Summary of foreign military contacts',
           item: 'Name',
-          unknown: '*Provide foreign military contact below*'
+          unknown: 'Provide foreign military contact below'
         },
         appendTitle: 'Do you have an additional foreign military service contact to report?',
         append: 'Add another contact'

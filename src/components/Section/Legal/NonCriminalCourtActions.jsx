@@ -46,7 +46,7 @@ export default class NonCriminalCourtActions extends SubsectionElement {
       index: index,
       left: courtName,
       right: date,
-      placeholder: i18n.m('legal.nonCriminalAction.collection.summary')
+      placeholder: i18n.t('legal.nonCriminalAction.collection.summary')
     })
   }
 

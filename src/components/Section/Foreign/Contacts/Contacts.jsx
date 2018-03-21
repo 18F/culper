@@ -45,8 +45,7 @@ export default class Contacts extends SubsectionElement {
       type: i18n.t('foreign.contacts.collection.summary.item'),
       index: index,
       left: name,
-      right: null,
-      placeholder: i18n.m('foreign.contacts.collection.summary.unknown')
+      placeholder: i18n.t('foreign.contacts.collection.summary.unknown')
     })
   }
 

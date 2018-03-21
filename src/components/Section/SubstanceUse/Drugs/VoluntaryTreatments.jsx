@@ -49,7 +49,7 @@ export default class VoluntaryTreatments extends SubsectionElement {
       index: index,
       left: name,
       right: range,
-      placeholder: i18n.m('substance.drugs.voluntary.collection.summary')
+      placeholder: i18n.t('substance.drugs.voluntary.collection.summary')
     })
   }
 

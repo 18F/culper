@@ -263,7 +263,7 @@ export const citizenship = {
         summary: {
           title: 'Summary of dual/multiple citizenships',
           item: 'Country',
-          unknown: '*Provide citizenship details below*'
+          unknown: 'Provide citizenship details below'
         },
         appendTitle: 'Do you have an additional citizenship to provide?',
         append: 'Add another citizenship'
@@ -272,7 +272,7 @@ export const citizenship = {
         summary: {
           title: 'Summary of foreign passports',
           item: 'Country',
-          unknown: '*Provide passport details below*'
+          unknown: 'Provide passport details below'
         },
         appendTitle: 'Do you have an additional foreign passport (or identity card) to report?',
         append: 'Add another foreign passport'
@@ -281,7 +281,7 @@ export const citizenship = {
         summary: {
           title: 'Summary of foreign travel',
           item: 'Country',
-          unknown: '*Provide travel details below*'
+          unknown: 'Provide travel details below'
         },
         append: 'Add another foreign travel'
       }

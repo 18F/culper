@@ -56,7 +56,7 @@ export default class Credit extends SubsectionElement {
       index: index,
       left: name,
       right: null,
-      placeholder: i18n.m('financial.credit.collection.summary.unknown')
+      placeholder: i18n.t('financial.credit.collection.summary.unknown')
     })
   }
 

@@ -49,7 +49,7 @@ export default class OrderedTreatments extends SubsectionElement {
       index: index,
       left: explanation,
       right: range,
-      placeholder: i18n.m('substance.drugs.ordered.collection.summary')
+      placeholder: i18n.t('substance.drugs.ordered.collection.summary')
     })
   }
 

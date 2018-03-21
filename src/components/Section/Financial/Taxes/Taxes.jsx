@@ -58,7 +58,7 @@ export default class Taxes extends SubsectionElement {
       index: index,
       left: agency,
       right: year,
-      placeholder: i18n.m('financial.taxes.collection.summary.unknown')
+      placeholder: i18n.t('financial.taxes.collection.summary.unknown')
     })
   }
 
