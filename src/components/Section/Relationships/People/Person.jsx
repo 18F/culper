@@ -108,6 +108,7 @@ export default class Person extends React.Component {
 
   updateEmailNotApplicable (values) {
     this.update({
+      Email: {},
       EmailNotApplicable: values
     })
   }
