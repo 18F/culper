@@ -7,16 +7,16 @@ describe('The Telephone component', () => {
     const component = mount(<Telephone name="phone" type="DSN" />)
     expect(component.find('.phonetype').length).toBe(1)
     expect(component.find('.nonumber').length).toBeGreaterThan(0)
-    expect(component.find('a.domestic-number').length).toEqual(1)
-    expect(component.find('a.international-number').length).toEqual(1)
+    expect(component.find('.domestic-number').length).toEqual(1)
+    expect(component.find('.international-number').length).toEqual(1)
     expect(component.find('input[name="dsn_first"]').length).toEqual(1)
     expect(component.find('input[name="dsn_second"]').length).toEqual(1)
   })
 
   it('renders international fields', () => {
     const component = mount(<Telephone name="phone" type="International" />)
-    expect(component.find('a.domestic-number').length).toEqual(1)
-    expect(component.find('a.dsn-number').length).toEqual(1)
+    expect(component.find('.domestic-number').length).toEqual(1)
+    expect(component.find('.dsn-number').length).toEqual(1)
     expect(component.find('input[name="int_first"]').length).toEqual(1)
     expect(component.find('input[name="int_second"]').length).toEqual(1)
   })
@@ -97,7 +97,7 @@ describe('The Telephone component', () => {
       }
     }
     const component = mount(<Telephone {...expected} />)
-    component.find('a.international-number').simulate('click')
+    component.find('.international-number').simulate('click')
     component.find({ type: 'text', name: 'domestic_first' }).simulate('change', { target: { value: '111' } })
     component.find({ type: 'text', name: 'domestic_second' }).simulate('change', { target: { value: '222' } })
     component.find({ type: 'text', name: 'domestic_third' }).simulate('change', { target: { value: '3333' } })
@@ -118,7 +118,7 @@ describe('The Telephone component', () => {
       }
     }
     const component = mount(<Telephone {...expected} />)
-    component.find('a.domestic-number').simulate('click')
+    component.find('.domestic-number').simulate('click')
     component.find({ type: 'text', name: 'dsn_first' }).simulate('change', { target: { value: '111' } })
     component.find({ type: 'text', name: 'dsn_second' }).simulate('change', { target: { value: '222' } })
     component.find('.nonumber input').simulate('change')
@@ -137,7 +137,7 @@ describe('The Telephone component', () => {
       }
     }
     const component = mount(<Telephone {...expected} />)
-    component.find('a.dsn-number').simulate('click')
+    component.find('.dsn-number').simulate('click')
     component.find({ type: 'text', name: 'int_first' }).simulate('change', { target: { value: '111' } })
     component.find({ type: 'text', name: 'int_second' }).simulate('change', { target: { value: '222' } })
     component.find({ type: 'text', name: 'int_extension' }).simulate('change', { target: { value: '4444' } })
