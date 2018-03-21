@@ -48,20 +48,28 @@ To view the items completed during each development sprint and to view the burnd
 
 ## Getting to know the code
 
+### Dependencies
+
+ - git
+ - docker
+ - docker-compose
+ - make
+ - openssl
+
 ### Clone all things
 
 Clone the repository and `cd` into it:
 
-```
+```shell
 mkdir -p $GOPATH/src/github.com/18F
 cd $GOPATH/src/github.com/18F
 git clone https://github.com/18F/e-QIP-prototype
 cd e-QIP-prototype
 ```
 
-Then to develop locally, create a `.env` file:
+Then to develop locally, create a [`.env`](.env.example) file:
 
-```
+```shell
 cp .env.example .env
 ```
 
