@@ -16,6 +16,19 @@ textarea {
   resize: vertical;
 }
 
+button {
+  &.link {
+    background: #fff;
+    color: $eapp-blue;
+    text-decoration: underline;
+    text-decoration-color: $eapp-blue;
+    text-decoration-style: dashed;
+    text-underline-position: under;
+    padding: 0;
+    margin: 0;
+  }
+}
+
 /* bring in USWD validation classes and alter for our design */
 input[type='text'], textarea, select {
   padding-right: 3rem;

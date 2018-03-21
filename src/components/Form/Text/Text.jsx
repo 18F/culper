@@ -53,6 +53,7 @@ export default class Text extends ValidationElement {
     return (
       <Generic name={this.props.name}
                label={this.props.label}
+               ariaLabel={this.props.ariaLabel}
                placeholder={this.props.placeholder}
                type="text"
                className={this.props.className}
