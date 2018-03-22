@@ -16,11 +16,11 @@ describe('The reason left component', () => {
   })
 
   it('display explanation and date when a value is selected', () => {
-    const past = daysAgo(today, 365 * 7)
+    const past = daysAgo(today, 366 * 7)
     const expected = {
       name: 'peace_i_am_out',
       Dates: {
-        present: false,
+        present: true,
         from: { month: `${past.getMonth()+1}`, day: `${past.getDate()}`, year: `${past.getFullYear()}` },
         to: {}
       },
@@ -62,7 +62,7 @@ describe('The reason left component', () => {
       {
         name: 'peace_i_am_out',
         Dates: {
-          present: false,
+          present: true,
           from: { month: `${past.getMonth()+1}`, day: `${past.getDate()}`, year: `${past.getFullYear()}` },
           to: {}
         },
@@ -73,7 +73,7 @@ describe('The reason left component', () => {
       {
         name: 'peace_i_am_out',
         Dates: {
-          present: false,
+          present: true,
           from: { month: `${past.getMonth()+1}`, day: `${past.getDate()}`, year: `${past.getFullYear()}` },
           to: {}
         },
@@ -84,7 +84,7 @@ describe('The reason left component', () => {
       {
         name: 'peace_i_am_out',
         Dates: {
-          present: false,
+          present: true,
           from: { month: `${past.getMonth()+1}`, day: `${past.getDate()}`, year: `${past.getFullYear()}` },
           to: {}
         },
@@ -95,7 +95,7 @@ describe('The reason left component', () => {
       {
         name: 'peace_i_am_out',
         Dates: {
-          present: false,
+          present: true,
           from: { month: `${past.getMonth()+1}`, day: `${past.getDate()}`, year: `${past.getFullYear()}` },
           to: {}
         },

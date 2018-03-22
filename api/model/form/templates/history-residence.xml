@@ -38,19 +38,19 @@
         <LegalName>{{name $Item.ReferenceName}}</LegalName>
         <RelationshipOtherExplanation>{{text $Item.ReferenceRelationshipOther}}</RelationshipOtherExplanation>
         <RelationshipTypes
-          {{- if eq (checkboxHas $Item.ReferenceRelationship "Neighbor") "True" -}}
+          {{if eq (checkboxHas $Item.ReferenceRelationship "Neighbor") "True" -}}
           Neighbor="True"
           {{end}}
-          {{- if eq (checkboxHas $Item.ReferenceRelationship "Friend") "True"}}
+          {{if eq (checkboxHas $Item.ReferenceRelationship "Friend") "True"}}
           Friend="True"
           {{end}}
-          {{- if eq (checkboxHas $Item.ReferenceRelationship "Schoolmate") "True"}}
+          {{if eq (checkboxHas $Item.ReferenceRelationship "Schoolmate") "True"}}
           Schoolmate="True"
           {{end}}
-          {{- if eq (checkboxHas $Item.ReferenceRelationship "WorkAssociate") "True"}}
+          {{if eq (checkboxHas $Item.ReferenceRelationship "WorkAssociate") "True"}}
           WorkAssociate="True"
           {{end}}
-          {{- if eq (checkboxHas $Item.ReferenceRelationship "Other") "True"}}
+          {{if eq (checkboxHas $Item.ReferenceRelationship "Other") "True"}}
           Other="True"
           {{end}}
           />

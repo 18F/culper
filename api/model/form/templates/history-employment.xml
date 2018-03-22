@@ -39,7 +39,7 @@
       {{- end}}
       {{- end}}
 
-      {{- if radio $Item.EmploymentActivity | ne "ActiveMilitaryDuty"}}
+      {{- if radio $Item.EmploymentActivity | ne "ActiveMilitary"}}
       {{- if radio $Item.EmploymentActivity | ne "NationalGuard"}}
       {{- if radio $Item.EmploymentActivity | ne "USPHS"}}
       {{- if radio $Item.EmploymentActivity | ne "SelfEmployment"}}
@@ -87,7 +87,7 @@
       </SelfEmployment>
       {{- end}}
 
-      {{- if radio $Item.EmploymentActivity | ne "ActiveMilitaryDuty"}}
+      {{- if radio $Item.EmploymentActivity | ne "ActiveMilitary"}}
       {{- if radio $Item.EmploymentActivity | ne "NationalGuard"}}
       {{- if radio $Item.EmploymentActivity | ne "USPHS"}}
       <NonMilitaryEmploymentComment></NonMilitaryEmploymentComment>
@@ -139,6 +139,7 @@
         {{end}}
       </Incidents>
 
+      {{- if radio $Item.EmploymentActivity | ne "ActiveMilitary"}}
       <JobLocation>
         <Answer>{{branch $Item.PhysicalAddress.props.HasDifferentAddress}}</Answer>
         <AnswerComment></AnswerComment>
@@ -148,6 +149,7 @@
         <Comment></Comment>
         {{end}}
       </JobLocation>
+      {{- end}}
 
       {{- if not $isPresent}}
       <LeftJob>
