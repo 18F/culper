@@ -43,9 +43,11 @@ setup-xmlsec:
 #
 # Linters
 #
-lint: lint-react
+lint: lint-react lint-go
 lint-react:
 	docker-compose run --rm frontend yarn lint
+lint-go:
+	docker-compose run --rm api ./bin/lint
 
 #
 # Testing

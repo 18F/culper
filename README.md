@@ -18,14 +18,19 @@ To create the e-QIP questionnaire prototype, the project team is employing a use
  - [Project Management](#project-management)
     - [Sprint Backlogs](#sprint-backlogs)
  - [Getting to know the code](#getting-to-know-the-code)
+    - [Dependencies](#dependencies)
     - [Clone all things](#clone-all-things)
-    - [Configuration settings](#configuration-settings
-  )
-    - [Setup](#setup)
-    - [Running a local server](#running-a-local-server)
-    - [Executing tests and coverage reports](#executing-tests-and-coverage-reports)
-    - [Generating Documentation](#generating-documentation)
+    - [Running the application](#running-the-application)
+       - [Setup](#setup)
+       - [Building the application](#building-the-application)
+       - [Executing tests and coverage reports](#executing-tests-and-coverage-reports)
+       - [Running a local server](#running-a-local-server)
+ - [Docker containers](#docker-containers)
+ - [Additional](#additional)
+    - [Feature specifications](#feature-specifications)
+    - [Generating documentation](#generating-documentation)
     - [Tooling](#tooling)
+ - [Contributing](#contributing)
 
 ## Project Management
 
@@ -73,50 +78,8 @@ Then to develop locally, create a [`.env`](.env.example) file:
 cp .env.example .env
 ```
 
-### Configuration settings
+For more information on the various settings, examples, and values please refer to the [configuration](CONFIGURATION.md) documentation.
 
-| Environment Variable        | Required | Front | Back | Description                                                                          | Values                                                          |
-| --------------------------- | -------- | ----- | ---- | -----------                                                                          | ------                                                          |
-| `NODE_ENV`                  | X        | X     |      | Node environment setting                                                             | test, development, staging, production                          |
-| `GOLANG_ENV`                | X        |       | X    | Go environment setting                                                               | test, development, staging, production                          |
-| `LOG_LEVEL`                 |          |       | X    | Log level for the backend API                                                        | debug, info, warning, error, fatal, panic                       |
-| `LOG_FILE`                  |          |       | X    | Path to local file system log file                                                   |                                                                 |
-| `LOG_SYSLOG`                |          |       | X    | Syslog connection string                                                             |                                                                 |
-| `LOG_SYSLOG_CERT`           |          |       | X    | Syslog certificate for TLS                                                           |                                                                 |
-| `SESSION_TIMEOUT`           |          |       | X    | Session timeout in minutes                                                           | 15                                                              |
-| `API_REDIRECT`              |          |       | X    | Frontend URL for the backend to redirect responses to                                | (self)                                                          |
-| `API_BASE_URL`              |          | X     |      | Backend URL for the frontend to direct requests to                                   | {server_protocol}://{server_host}:{server_port}/api             |
-| `PORT`                      |          |       | X    | Port to use for backend API                                                          | 3000                                                            |
-| `HASH_ROUTING`              |          | X     |      | Flag to enable hash routing                                                          | True: 1, False: (empty)                                         |
-| `DB_MIGRATION_TARGET`       |          |       | X    | Target a specific database migration step                                            |                                                                 |
-| `DATABASE_URI`              |          |       | X    | Database connection string (if used do no set other database connection information) | postgres://[db-username]:[db-password]@[db-host]:5432/[db-name] |
-| `DATABASE_USER`             |          |       | X    | Database user name                                                                   | postgres                                                        |
-| `DATABASE_PASSWORD`         |          |       | X    | Database password                                                                    | (none)                                                          |
-| `DATABASE_NAME`             |          |       | X    | Database instance name                                                               | postgres                                                        |
-| `DATABASE_HOST`             |          |       | X    | Database host name and port                                                          | localhost:5432                                                  |
-| `CORS_ALLOWED`              | X        |       | X    | Whitelist of address for CORS                                                        | regex: (localhost)                                              |
-|                             |          |       |      |                                                                                      | url: http://localhost                                           |
-|                             |          |       |      |                                                                                      | multiple: http://localhost;https://test.com                     |
-|                             |          |       |      |                                                                                      | wildcard: *                                                     |
-| `FLUSH_STORAGE`             |          |       | X    | Flag to enable flushing of persisted information upon logging in                     | True: 1, False: (empty)                                         |
-| `USPS_API_API_KEY`          |          |       | X    | USPS API key for address validation                                                  |                                                                 |
-| `JWT_SECRET`                | X        |       | X    | Secret used for token signing and validation                                         |                                                                 |
-| `BASIC_ENABLED`             |          | X     | X    | Flag to enable basic user/password authentication                                    | True: 1, False: (empty)                                         |
-| `SAML_ENABLED`              |          | X     | X    | Flag to enable SAML authentication                                                   | True: 1, False: (empty)                                         |
-| `SAML_PUBLIC_CERT`          |          |       | X    | File path to SAML public certificate                                                 |                                                                 |
-| `SAML_PRIVATE_CERT`         |          |       | X    | File path to SAML private certificate                                                |                                                                 |
-| `SAML_IDP_SSO_URL`          |          |       | X    | URL to identity data provider SSO                                                    |                                                                 |
-| `SAML_IDP_SSO_DESC_URL`     |          |       | X    | URL to identity data provider's SSO description                                      |                                                                 |
-| `SAML_IDP_PUBLIC_CERT`      |          |       | X    | File path to identity data provider's public certificate                             |                                                                 |
-| `SAML_SIGN_REQUEST`         |          |       | X    | Flag to enable signing requests                                                      | True: 1, False: (empty)                                         |
-| `SAML_CONSUMER_SERVICE_URL` |          |       | X    | URL to consumer service                                                              |                                                                 |
-| `DISABLE_2FA`               |          | X     | X    | Flag to disable MFA authentication                                                   | True: 1, False: (empty)                                         |
-| `ALLOW_2FA_RESET`           |          |       | X    | Flag to allow resetting MFA association to an account                                | True: 1, False: (empty)                                         |
-| `WINDOW_SIZE`               |          |       | X    | Window size used in MFA authentication                                               |                                                                 |
-| `TLS_CERT`                  |          |       | X    | File path to TLS certificate for use with the backend API                            |                                                                 |
-| `TLS_KEY`                   |          |       | X    | File path to TLS private key for use the backend API                                 |                                                                 |
-| `WS_URL`                    | X        |       | X    | URL to external web service                                                          |                                                                 |
-| `WS_KEY`                    | X        |       | X    | File path to private key used to sign security tokens for the external web service   |                                                                 |
 
 ## Running the application
 
@@ -161,7 +124,7 @@ make run
 
 Then direct your browser at [http://localhost:8080](http://localhost:8080). The access the site in development use the username `test01` and password `password01`.
 
-### Docker containers
+## Docker containers
 
 | Container | Image               |
 | --------  | ------------------- |
@@ -174,7 +137,7 @@ The IdAM solution **is not** part of this project.
 
 ## Additional
 
-### Executing feature specifications
+### Feature specifications
 
 Running the feature specifications is an on-demand process and can be ran using:
 
