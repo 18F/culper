@@ -55,9 +55,6 @@ func (c *Client) Send(action RequestBody, response Body) error {
 		fmt.Println("Error unmarshalling xml: ", err)
 		return err
 	}
-	fmt.Println("======================== XML Request =======================")
-	fmt.Println(string(temp.XML))
-	fmt.Println("============================================================")
 	resp, err := http.Post(c.endpointURL, "text/xml; charset=utf-8", bytes.NewReader(temp.XML))
 	// Regardless of what happens, we always save the response body. In the event of network http error,
 	// we set the response body to the error message
