@@ -57,7 +57,10 @@ class Package extends SectionElement {
       })
       .catch(() => {
         console.warn('Failed to form package')
-        this.setState({ submissionError: true })
+        this.setState({
+          submitting: false,
+          submissionError: true
+        })
         this.handleUpdate('Releases', data)
       })
   }

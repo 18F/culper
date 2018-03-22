@@ -164,6 +164,7 @@ export default class ValidForm extends ValidationElement {
   render () {
     const accordionItems = this.state.accordionItems
     const signed = formIsSigned({ Submission: { Releases: { ...this.props } } })
+    const btnText = this.props.submitting ? i18n.t('application.validForm.submitting') : i18n.t('application.validForm.submit')
     return (
       <div className="valid-form">
         { i18n.m(`application.submissionStatus.valid2`) }
@@ -171,7 +172,7 @@ export default class ValidForm extends ValidationElement {
         <BasicAccordion items={accordionItems} />
         <div className="text-right">
           <button onClick={this.submit} className="submit usa-button" disabled={this.props.submitting || !signed}>
-            { i18n.t('application.validForm.submit') }
+            { btnText }
             <i className="fa fa-arrow-circle-right" aria-hidden="true"></i>
           </button>
         </div>
