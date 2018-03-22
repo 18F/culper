@@ -14,43 +14,43 @@ When running the application using the provided [docker-compose.yml](docker-comp
 
 | Environment Variable             | Required      | Front-end (web)      | Back-end (api)      |
 | -------------------------------- |:-------------:|:--------------------:|:-------------------:|
-| [`NODE_ENV`](#NODE_ENV)                  | X             | X                    |                     |
-| [`GOLANG_ENV`](#GOLANG_ENV)                | X             |                      | X                   |
-| [`LOG_LEVEL`](#LOG_LEVEL)                 |               |                      | X                   |
-| [`LOG_FILE`](#LOG_FILE)                  |               |                      | X                   |
-| [`LOG_SYSLOG`](#LOG_SYSLOG)                |               |                      | X                   |
-| [`LOG_SYSLOG_CERT`](#LOG_SYSLOG_CERT)           |               |                      | X                   |
-| [`SESSION_TIMEOUT`](#SESSION_TIMEOUT)           |               |                      | X                   |
-| [`API_REDIRECT`](#API_REDIRECT)              |               |                      | X                   |
-| [`API_BASE_URL`](#API_BASE_URL)              |               | X                    |                     |
-| [`PORT`](#PORT)                      |               |                      | X                   |
-| [`HASH_ROUTING`](#HASH_ROUTING)              |               | X                    |                     |
-| [`DB_MIGRATION_TARGET`](#DB_MIGRATION_TARGET)       |               |                      | X                   |
-| [`DATABASE_URI`](#DATABASE_URI)              |               |                      | X                   |
-| [`DATABASE_USER`](#DATABASE_USER)             |               |                      | X                   |
-| [`DATABASE_PASSWORD`](#DATABASE_PASSWORD)         |               |                      | X                   |
-| [`DATABASE_NAME`](#DATABASE_NAME)             |               |                      | X                   |
-| [`DATABASE_HOST`](#DATABASE_HOST)             |               |                      | X                   |
-| [`CORS_ALLOWED`](#CORS_ALLOWED)              | X             |                      | X                   |
-| [`FLUSH_STORAGE`](#FLUSH_STORAGE)             |               |                      | X                   |
-| [`USPS_API_API_KEY`](#USPS_API_API_KEY)          |               |                      | X                   |
-| [`JWT_SECRET`](#JWT_SECRET)                | X             |                      | X                   |
-| [`BASIC_ENABLED`](#BASIC_ENABLED)             |               | X                    | X                   |
-| [`SAML_ENABLED`](#SAML_ENABLED)              |               | X                    | X                   |
-| [`SAML_PUBLIC_CERT`](#SAML_PUBLIC_CERT)          |               |                      | X                   |
-| [`SAML_PRIVATE_CERT`](#SAML_PRIVATE_CERT)         |               |                      | X                   |
-| [`SAML_IDP_SSO_URL`](#SAML_IDP_SSO_URL)          |               |                      | X                   |
-| [`SAML_IDP_SSO_DESC_URL`](#SAML_IDP_SSO_DESC_URL)     |               |                      | X                   |
-| [`SAML_IDP_PUBLIC_CERT`](#SAML_IDP_PUBLIC_CERT)      |               |                      | X                   |
-| [`SAML_SIGN_REQUEST`](#SAML_SIGN_REQUEST)         |               |                      | X                   |
-| [`SAML_CONSUMER_SERVICE_URL`](#SAML_CONSUMER_SERVICE_URL) |               |                      | X                   |
-| [`DISABLE_2FA`](#DISABLE_2FA)               |               | X                    | X                   |
-| [`ALLOW_2FA_RESET`](#ALLOW_2FA_RESET)           |               |                      | X                   |
-| [`WINDOW_SIZE`](#WINDOW_SIZE)               |               |                      | X                   |
-| [`TLS_CERT`](#TLS_CERT)                  |               |                      | X                   |
-| [`TLS_KEY`](#TLS_KEY)                   |               |                      | X                   |
-| [`WS_URL`](#WS_URL)                    | X             |                      | X                   |
-| [`WS_KEY`](#WS_KEY)                    | X             |                      | X                   |
+| [`NODE_ENV`](#node_env)                  | X             | X                    |                     |
+| [`GOLANG_ENV`](#golang_env)                | X             |                      | X                   |
+| [`LOG_LEVEL`](#log_level)                 |               |                      | X                   |
+| [`LOG_FILE`](#log_file)                  |               |                      | X                   |
+| [`LOG_SYSLOG`](#log_syslog)                |               |                      | X                   |
+| [`LOG_SYSLOG_CERT`](#log_syslog_cert)           |               |                      | X                   |
+| [`SESSION_TIMEOUT`](#session_timeout)           |               |                      | X                   |
+| [`API_REDIRECT`](#api_redirect)              |               |                      | X                   |
+| [`API_BASE_URL`](#api_base_url)              |               | X                    |                     |
+| [`PORT`](#port)                      |               |                      | X                   |
+| [`HASH_ROUTING`](#hash_routing)              |               | X                    |                     |
+| [`DB_MIGRATION_TARGET`](#db_migration_target)       |               |                      | X                   |
+| [`DATABASE_URI`](#database_uri)              |               |                      | X                   |
+| [`DATABASE_USER`](#database_user)             |               |                      | X                   |
+| [`DATABASE_PASSWORD`](#database_password)         |               |                      | X                   |
+| [`DATABASE_NAME`](#database_name)             |               |                      | X                   |
+| [`DATABASE_HOST`](#database_host)             |               |                      | X                   |
+| [`CORS_ALLOWED`](#cors_allowed)              | X             |                      | X                   |
+| [`FLUSH_STORAGE`](#flush_storage)             |               |                      | X                   |
+| [`USPS_API_API_KEY`](#usps_api_api_key)          |               |                      | X                   |
+| [`JWT_SECRET`](#jwt_secret)                | X             |                      | X                   |
+| [`BASIC_ENABLED`](#basic_enabled)             |               | X                    | X                   |
+| [`SAML_ENABLED`](#saml_enabled)              |               | X                    | X                   |
+| [`SAML_PUBLIC_CERT`](#saml_public_cert)          |               |                      | X                   |
+| [`SAML_PRIVATE_CERT`](#saml_private_cert)         |               |                      | X                   |
+| [`SAML_IDP_SSO_URL`](#saml_idp_sso_url)          |               |                      | X                   |
+| [`SAML_IDP_SSO_DESC_URL`](#saml_idp_sso_desc_url)     |               |                      | X                   |
+| [`SAML_IDP_PUBLIC_CERT`](#saml_idp_public_cert)      |               |                      | X                   |
+| [`SAML_SIGN_REQUEST`](#saml_sign_request)         |               |                      | X                   |
+| [`SAML_CONSUMER_SERVICE_URL`](#saml_consumer_service_url) |               |                      | X                   |
+| [`DISABLE_2FA`](#disable_2fa)               |               | X                    | X                   |
+| [`ALLOW_2FA_RESET`](#allow_2fa_reset)           |               |                      | X                   |
+| [`WINDOW_SIZE`](#window_size)               |               |                      | X                   |
+| [`TLS_CERT`](#tls_cert)                  |               |                      | X                   |
+| [`TLS_KEY`](#tls_key)                   |               |                      | X                   |
+| [`WS_URL`](#ws_url)                    | X             |                      | X                   |
+| [`WS_KEY`](#ws_key)                    | X             |                      | X                   |
 
 ## `NODE_ENV`
 
