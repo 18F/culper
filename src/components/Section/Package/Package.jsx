@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { navigation, navigationWalker } from '../../../config'
+import { i18n, navigationWalker } from '../../../config'
 import { hideHippa } from '../../../validators/releases'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
@@ -15,6 +15,7 @@ import { updateSection } from '../../../actions/SectionActions'
 import axios from 'axios'
 import { api } from '../../../services'
 import schema from '../../../schema'
+import { Show } from '../../Form'
 
 class Package extends SectionElement {
   constructor (props) {
@@ -26,6 +27,10 @@ class Package extends SectionElement {
     this.errorCheck = this.errorCheck.bind(this)
     // TODO: Remove after testing
     this.goToReleases = this.goToReleases.bind(this)
+    this.state = {
+      submitting: false,
+      submissionError: false
+    }
   }
 
   updateSubmission (values) {
@@ -36,6 +41,7 @@ class Package extends SectionElement {
     const releases = (this.props.Submission || {}).Releases || {}
     let data = { ...releases }
     const payload = schema(`package.submit`, data, false)
+    this.setState({ submitting: true })
 
     axios
       .all([api.save(payload), api.submit()])
@@ -51,6 +57,7 @@ class Package extends SectionElement {
       })
       .catch(() => {
         console.warn('Failed to form package')
+        this.setState({ submissionError: true })
         this.handleUpdate('Releases', data)
       })
   }
@@ -147,12 +154,24 @@ class Package extends SectionElement {
                        dispatch={this.props.dispatch}
                        onUpdate={this.updateSubmission}
                        hideHippa={hideHippa(this.props.Application)}
+                       submitting={this.state.submitting}
                        LegalName={this.props.LegalName}
                        onSubmit={this.onSubmit}
                        Identification={this.props.Identification}
                        History={this.props.History}
                        />
           </SubmissionStatus>
+          <Show when={this.state.submissionError}>
+            <div className="field">
+              <div className="table">
+                <div className="messages">
+                  <div className="message error">
+                    {i18n.m('error.submission.message')}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Show>
         </SectionView>
         <SectionView name="print">
           <Print {...releases} />

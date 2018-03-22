@@ -170,7 +170,7 @@ export default class ValidForm extends ValidationElement {
         { i18n.m('releases.additionalComments.contents') }
         <BasicAccordion items={accordionItems} />
         <div className="text-right">
-          <button onClick={this.submit} className="submit usa-button" disabled={!signed}>
+          <button onClick={this.submit} className="submit usa-button" disabled={this.props.submitting || !signed}>
             { i18n.t('application.validForm.submit') }
             <i className="fa fa-arrow-circle-right" aria-hidden="true"></i>
           </button>
@@ -195,5 +195,6 @@ ValidForm.defaultProps = {
   Credit: {
     Signature: {}
   },
-  Locked: false
+  Locked: false,
+  submitting: false
 }
