@@ -9,7 +9,7 @@ import { validPhoneNumber, validNotApplicable, validDateField, validAccordion,
 const relationshipOptions = ['Neighbor', 'Friend', 'Landlord', 'Business', 'Other']
 
 // Options for roles
-const roleOptions = ['Other', 'Military', 'Own', 'Rented']
+const roleOptions = ['Other', 'MilitaryHousing', 'Own', 'Rent']
 const threeYearsAgo = daysAgo(today, 365 * 3)
 const withinThreeYears = (from, to) => {
   return (from && from >= threeYearsAgo) || (to && to >= threeYearsAgo)

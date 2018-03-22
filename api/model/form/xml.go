@@ -181,7 +181,6 @@ func checkbox(data map[string]interface{}) string {
 }
 
 func checkboxHas(data map[string]interface{}, target string) string {
-	fmt.Println("debug::checkboxHas::::::::::::::::::", data, target)
 	props, ok := data["props"]
 	if ok {
 		values, ok := (props.(map[string]interface{}))["values"].([]interface{})
@@ -228,6 +227,7 @@ func hasRelativeType(data map[string]interface{}, target string) string {
 	return "False"
 }
 
+// relationshipType translates our enums to eqip specific enums
 func relationshipType(str string) string {
 	types := map[string]string{
 		"Mother":       "01",
@@ -250,6 +250,7 @@ func relationshipType(str string) string {
 	return fmt.Sprintf("%s%s", types[str], str)
 }
 
+// citizenshipStatus translates our enums to eqip specific enums
 func citizenshipStatus(status string) string {
 	alias := map[string]string{
 		"Citizen":     "USByBirth",
@@ -261,6 +262,7 @@ func citizenshipStatus(status string) string {
 	return alias[status]
 }
 
+// foreignDocType translates our enums to eqip specific enums
 func foreignDocType(docType string) string {
 	alias := map[string]string{
 		"FS240":                              "FS240or545",
@@ -282,6 +284,7 @@ func foreignDocType(docType string) string {
 	return alias[docType]
 }
 
+// employmentType translates our enums to eqip specific enums
 func employmentType(empType string) string {
 	alias := map[string]string{
 		"ActiveMilitary":    "ActiveMilitaryDuty",

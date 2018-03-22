@@ -179,6 +179,7 @@ const (
 	WebserviceMissingCallerInfoAgencyID        = "Missing Caller Info Agency ID"
 	WebserviceMissingCallerInfoAgencySSN       = "Missing Caller Info Agency SSN"
 	WebserviceMissingCallerInfoAgencyPseudoSSN = "Missing Caller Info Agency Pseudo SSN"
+	WebserviceCannotGetApplicationData         = "Unable to retrieve Form Application Data"
 	WebserviceMissingAgencyID                  = "Missing Agency ID"
 	TransmissionError                          = "Error transmitting package"
 	TransmissionStorageError                   = "Failed to store transmission record"

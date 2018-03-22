@@ -8,7 +8,6 @@ import (
 	"encoding/xml"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"text/template"
 )
 
@@ -16,8 +15,8 @@ import (
 type ImportRequest struct {
 	CallerInfo    CallerInfo
 	Applicant     UserTemplate
-	AgencyID      string
-	AgencyGroupID string
+	AgencyID      int
+	AgencyGroupID int
 	Content       Base64Content
 }
 
@@ -35,22 +34,13 @@ func (a ImportRequest) XML() string {
 
 // NewImportRequest creates an import request to be sent to the webservice. This is a helper func that properly sets up
 // the user demographic data, compresses and encodes the xml content and fills in the agency ids
-func NewImportRequest(ci CallerInfo, agencyID, agencyGroupID string, app map[string]interface{}, xmlContent string) (*ImportRequest, error) {
-	var temp struct {
-		XML string `xml:",innerxml"`
-	}
-	err := xml.Unmarshal([]byte(fmt.Sprintf("<wrap>%s</wrap>", xmlContent)), &temp)
-	if err != nil {
-		fmt.Println("Error unmarshalling xml: ", err)
-		return nil, err
-	}
-	ioutil.WriteFile("latest.xmp.xml", []byte(temp.XML), 0777)
+func NewImportRequest(ci CallerInfo, agencyID, agencyGroupID int, app map[string]interface{}, xmlContent string) (*ImportRequest, error) {
 	var user UserTemplate
 	if err := user.Load(app); err != nil {
 		return nil, err
 	}
 	var base64Content Base64Content
-	if err := base64Content.Compress(temp.XML); err != nil {
+	if err := base64Content.Compress(xmlContent); err != nil {
 		return nil, err
 	}
 
@@ -261,8 +251,7 @@ type Request struct {
 
 // IsAlive is a no-op method that allows for testing that the e-QIP Agency Web Service Interface is available and operating
 // <xs:complexType name="isAlive"><xs:sequence/>
-type IsAlive struct {
-}
+type IsAlive struct{}
 
 // XML returns the xml representation of IsAlive
 func (a IsAlive) XML() string {
@@ -303,7 +292,6 @@ func (r *ImportSOAPResponse) SetResponseBody(b []byte) {
 //		</xs:sequence>
 //	</xs:complexType>
 type AgencyKey struct {
-	XMLName  xml.Name
 	AgencyID int `xml:"agencyId"`
 }
 
