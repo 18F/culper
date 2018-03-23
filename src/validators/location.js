@@ -70,7 +70,7 @@ export default class LocationValidator {
   }
 
   validState () {
-    const code = toCode(this.state || '')
+    const code = toCode(this.state || '').toUpperCase()
 
     if (this.isPostOffice()) {
       return ['AA', 'AE', 'AP'].includes(code)
