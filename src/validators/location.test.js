@@ -262,7 +262,7 @@ describe('the location component', function () {
         addressType: 'United States',
         address: '1234 Some Rd',
         city: 'Arlington',
-        state: 'Virginia',
+        state: 'VA',
         zipcode: '22202'
       },
       expected: {
@@ -293,7 +293,7 @@ describe('the location component', function () {
         country: { value: 'United States' },
         street: '1234 Some Rd',
         city: 'Arlington',
-        state: 'Virginia',
+        state: 'VA',
         zipcode: '22202'
       },
       expected: {
@@ -324,7 +324,7 @@ describe('the location component', function () {
         country: { value: 'United States' },
         street: '1234 Some Rd',
         city: 'Arlington',
-        state: 'Virginia',
+        state: 'VA',
         zipcode: '22202'
       },
       expected: {
@@ -352,7 +352,7 @@ describe('the location component', function () {
           country: { value: 'United States' },
           street: '1234 Some Rd',
           city: 'Arlington',
-          state: 'Virginia',
+          state: 'VA',
           zipcode: '2'
         },
         expected: false
@@ -362,7 +362,7 @@ describe('the location component', function () {
           country: { value: 'United States' },
           street: '1234 Some Rd',
           city: 'Arlington',
-          state: 'Virginia',
+          state: 'VA',
           zipcode: null
         },
         expected: false

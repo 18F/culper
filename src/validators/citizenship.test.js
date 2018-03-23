@@ -290,7 +290,7 @@ describe('citizenship component validation', function () {
             //layout: Location.CITY_STATE_COUNTRY,
             //country: { value: 'United States' },
             //city: 'Arlington',
-            //state: 'Virginia'
+            //state: 'VA'
           //},
           //DocumentName: {
             //first: 'Foo',
@@ -340,7 +340,7 @@ describe('citizenship component validation', function () {
           //EntryLocation: {
             //country: { value: 'United States' },
             //city: 'Arlington',
-            //state: 'Virginia',
+            //state: 'VA',
             //layout: Location.CITY_STATE
           //},
           //PriorCitizenship: {
@@ -360,7 +360,7 @@ describe('citizenship component validation', function () {
             //country: 'United States',
             //street: '1234 Some Rd',
             //city: 'Arlington',
-            //state: 'Virginia',
+            //state: 'VA',
             //zipcode: '22202',
             //layout: Location.US_ADDRESS
           //},
@@ -436,7 +436,7 @@ describe('citizenship component validation', function () {
           //},
           //EntryLocation: {
             //city: 'Arlington',
-            //state: 'Virginia',
+            //state: 'VA',
             //country: { value: 'United States' },
             //layout: Location.CITY_STATE
           //},

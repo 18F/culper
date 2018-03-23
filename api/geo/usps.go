@@ -24,6 +24,7 @@ var (
 		"-2147219400":     "error.geocode.city",
 		"-2147219401":     "error.geocode.notfound",
 		"-2147219403":     "error.geocode.multiple",
+		"Generic":         "error.geocode.generic",
 		"Default Address": "error.geocode.defaultAddress",
 		"Partial":         "error.geocode.partial",
 		"System":          "error.geocode.system",
@@ -73,8 +74,9 @@ func (g USPSGeocoder) query(geoValues Values) (results Results, err error) {
 			log.WithField("code", errCode).Warn(logmsg.USPSKnownErrorCode)
 			return results, fmt.Errorf("%v", errCode)
 		}
-		log.WithField("code", "geocode.generic").Warn(logmsg.USPSUnknownErrorCode)
-		return results, fmt.Errorf("%v", "geocode.generic")
+		errCode := USPSErrorCodes["Generic"]
+		log.WithField("code", errCode).Warn(logmsg.USPSUnknownErrorCode)
+		return results, fmt.Errorf("%v", errCode)
 
 	}
 
