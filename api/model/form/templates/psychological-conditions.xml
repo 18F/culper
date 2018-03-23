@@ -25,9 +25,6 @@
     {{end}}
     {{end}}
   </Treatment>
-  {{end}}
-
-  {{if branch .props.HasCondition | eq "Yes"}}
   <NotFollowedTreatment>
     <Answer>{{branch .props.DidNotFollow}}</Answer>
     <AnswerComment></AnswerComment>

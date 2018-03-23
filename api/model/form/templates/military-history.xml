@@ -34,8 +34,6 @@
   {{end}}
   {{end}}
 </MilitaryService>
-{{end}}
-{{- if branch .props.HasServed | eq "Yes"}}
 <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
 <SummaryComment></SummaryComment>
 {{end}}
