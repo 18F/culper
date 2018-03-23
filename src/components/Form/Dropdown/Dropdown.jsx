@@ -313,7 +313,7 @@ export default class Dropdown extends ValidationElement {
 
   render () {
     const option = this.state.options.filter(v => {
-      return v.value === this.state.value
+      return [v.text.toLowerCase(), v.value.toLowerCase()].includes(this.state.value.toLowerCase())
     }).shift()
 
     const value = (option && !this.state.focus)

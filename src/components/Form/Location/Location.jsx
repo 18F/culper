@@ -677,7 +677,7 @@ export default class Location extends ValidationElement {
         </span>
       )
     }
-    return (<p>{i18n.t(`${e}.para`)}</p>)
+    return i18n.m(`${e}.para`)
   }
 
   dismissAlternative () {
