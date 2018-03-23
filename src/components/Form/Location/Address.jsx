@@ -47,7 +47,7 @@ export default class Address extends ValidationElement {
     this.update({
       street: values.value,
       validated: this.props.validated && noChange
-    }, noChange ? null : 2000)
+    }, noChange ? null : 6000)
   }
 
   updateStreet2 (values) {
@@ -55,7 +55,7 @@ export default class Address extends ValidationElement {
     this.update({
       street2: values.value,
       validated: this.props.validated && values.value === this.props.street2
-    }, noChange ? null : 2000)
+    }, noChange ? null : 6000)
   }
 
   updateCity (values) {
@@ -63,7 +63,7 @@ export default class Address extends ValidationElement {
     this.update({
       city: values.value,
       validated: this.props.validated && values.value === this.props.city
-    }, noChange ? null : 2000)
+    }, noChange ? null : 6000)
   }
 
   updateState (values) {
@@ -71,7 +71,7 @@ export default class Address extends ValidationElement {
     this.update({
       state: values.value,
       validated: this.props.validated && values.value === this.props.state
-    }, noChange ? null : 1500)
+    }, noChange ? null : 6000)
   }
 
   updateZipcode (values) {
