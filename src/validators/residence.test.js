@@ -7,7 +7,7 @@ describe('Residence component validation', function () {
       {
         state: {
           Role: {
-            value: 'Military'
+            value: 'MilitaryHousing'
           }
         },
         expected: true
@@ -74,7 +74,7 @@ describe('Residence component validation', function () {
             present: false
           },
           Role: {
-            value: 'Military'
+            value: 'MilitaryHousing'
           },
           Address: {
             country: { value: 'United States' },

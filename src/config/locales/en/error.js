@@ -993,5 +993,8 @@ export const error = {
   required: {
     title: 'There is a problem with this field',
     message: 'This field is required'
+  },
+  submission: {
+    message: 'There was a problem submitting your SF-86. Please contact support for additional information.'
   }
 }

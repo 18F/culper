@@ -1,5 +1,5 @@
 <OrderedAdvisedOrAskedToSeekCounseling>
-  <Answer>{{branch .props.Involved}}</Answer>
+  <Answer>{{branch .props.TreatmentOrdered}}</Answer>
   <Comment></Comment>
   <Consultations>
     {{range $index, $item := .props.List.props.items}}
@@ -46,6 +46,8 @@
     {{end}}
     {{end}}
   </Consultations>
+  {{- if branch .props.TreatmentOrdered | eq "Yes"}}
   <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
   <SummaryComment></SummaryComment>
+  {{end}}
 </OrderedAdvisedOrAskedToSeekCounseling>

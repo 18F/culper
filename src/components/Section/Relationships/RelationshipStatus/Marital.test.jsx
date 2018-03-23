@@ -24,7 +24,7 @@ describe('The relationship status component', () => {
     expect(component.find('.marital').length).toEqual(1)
     component.find('.status-options input[value="InCivilUnion"]').simulate('change')
     component.find('.civil-union .civil .first input').simulate('change')
-    component.find('.status-options input[value="Never"]').simulate('change')
+    component.find('.status-options input[value="NeverMarried"]').simulate('change')
     expect(updates).toBe(3)
   })
 

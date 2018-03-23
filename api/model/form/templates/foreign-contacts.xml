@@ -1,7 +1,7 @@
 <ForeignContacts>
   <Comment></Comment>
   <ContactWithForeignNationalBoundByAffectionInfluenceObligation>
-    <Answer>{{branch .props.List.props.branch}}</Answer>
+    <Answer>{{branchcollectionHas .props.List}}</Answer>
   </ContactWithForeignNationalBoundByAffectionInfluenceObligation>
   <Contacts>
     {{range $index, $item := .props.List.props.items}}
@@ -96,6 +96,8 @@
     {{end}}
     {{end}}
   </Contacts>
+  {{- if branchcollectionHas .props.List | eq "Yes"}}
   <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
   <SummaryComment></SummaryComment>
+  {{end}}
 </ForeignContacts>

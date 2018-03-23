@@ -19,10 +19,9 @@
   {{end}}
   {{end}}
 </Diagnosed>
-<AlteredTreatment>
-  <Answer>{{branch .props.DidNotConsult}}</Answer>
-  <AnswerComment></AnswerComment>
-</AlteredTreatment>
+
+<!-- Only show when Yes is marked at the top -->
+{{- if branch .props.Diagnosed | eq "Yes"}}
 <CurrentlyInTreatment>
   <Answer>{{branch .props.InTreatment}}</Answer>
   <AnswerComment></AnswerComment>
@@ -33,6 +32,15 @@
   </TreatmentOccurrence>
   {{end}}
   {{end}}
-  <HaveAdditionalEntryAnswer>{{branch .props.TreatmentList.props.branch}}</HaveAdditionalEntryAnswer>
+
+  {{ if branch .props.Diagnosed | eq "Yes" }}
+  <HaveAdditionalEntryAnswer>{{branch .props.DiagnosisList.props.branch}}</HaveAdditionalEntryAnswer>
   <SummaryComment></SummaryComment>
+  {{end}}
 </CurrentlyInTreatment>
+
+<AlteredTreatment>
+  <Answer>{{branch .props.DidNotConsult}}</Answer>
+  <AnswerComment></AnswerComment>
+</AlteredTreatment>
+{{end}}

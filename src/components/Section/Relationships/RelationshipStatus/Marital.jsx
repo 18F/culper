@@ -80,7 +80,7 @@ export default class Marital extends SubsectionElement {
           <RadioGroup name="status" className="status-options" selectedValue={this.props.Status.value} required={this.props.required} onError={this.handleError}>
             <Radio label={i18n.m('relationships.marital.label.status.never')}
                    className="status-never"
-                   value="Never"
+                   value="NeverMarried"
                    onUpdate={this.updateStatus}
                    onError={this.handleError}
                    />

@@ -1,5 +1,6 @@
+{{if text .props.Status | ne "NeverMarried"}}
 <PresentMarriage>
-  {{with $Item := .CivilUnion.props}}
+  {{with $Item := .props.CivilUnion.props}}
   <CurrentSpouse>
     {{if locationIsPostOffice $Item.Address}}
     <APOFPO>
@@ -39,7 +40,7 @@
     {{end}}
     <ContinueComment></ContinueComment>
     <CountriesOfCitizenship>
-      {{range $cindex, $country := $Item.Citizenship.value}}
+      {{range $cindex, $country := $Item.Citizenship.props.value}}
       <Citizenship ID="{{$cindex}}">
         <Country>{{$country}}</Country>
       </Citizenship>
@@ -55,10 +56,14 @@
         {{date $Item.EnteredCivilUnion}}
       </Date>
       <Place>
+        {{$Item.Location}}
         {{location $Item.Location}}
       </Place>
     </Marriage>
-    <OtherNamesUsed NotApplicable="{{if len $Item.OtherNames.props.items | eq 0}}True{{else}}False{{end}}">
+    {{ if eq (branchcollectionHas $Item.OtherNames) "No" }}
+    <OtherNamesUsed NotApplicable="True" />
+    {{else}}
+    <OtherNamesUsed>
       {{range $oindex, $othername := $Item.OtherNames.props.items}}
       {{with $other := $othername.Item}}
       <OtherName ID="{{$oindex}}">
@@ -71,6 +76,7 @@
       {{end}}
       {{end}}
     </OtherNamesUsed>
+    {{end}}
     {{with $ssn := $Item.SSN}}
     <SSN NotApplicable="{{ $ssn.props.notApplicable }}">
       <FirstThree>
@@ -105,3 +111,4 @@
   </CurrentSpouse>
   {{end}}
 </PresentMarriage>
+{{end}}

@@ -188,7 +188,7 @@ export default class Cohabitant extends ValidationElement {
                scrollIntoView={this.props.scrollIntoView}>
           <Location name="birthplace"
                     {...this.props.BirthPlace}
-                    layout={Location.BIRTHPLACE}
+                    layout={Location.BIRTHPLACE_WITHOUT_COUNTY}
                     className="birthplace"
                     label={i18n.t('relationships.cohabitant.label.birthplace')}
                     onUpdate={this.updateBirthPlace}

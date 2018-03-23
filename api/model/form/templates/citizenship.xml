@@ -1,2 +1,9 @@
 {{tmpl "citizenship-status.xml" .}}
 {{tmpl "citizenship-multiple.xml" .Citizenship.Multiple}}
+{{with $passport := .Foreign.Passport.props}}
+<USPassport Type="Pooled" Version="1">
+  <DoPossessUSPassport>
+    <Answer>{{branch $passport.HasPassports}}</Answer>
+  </DoPossessUSPassport>
+</USPassport>
+{{end}}

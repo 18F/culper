@@ -249,19 +249,19 @@ export default class ResidenceItem extends ValidationElement {
                       selectedValue={(this.props.Role || {}).value}>
             <Radio name="role-owned"
                    label={i18n.m('history.residence.label.role.owned')}
-                   value="Owned"
+                   value="Own"
                    onUpdate={this.updateRole}
                    onError={this.props.onError}
                    />
             <Radio name="role-rented"
                    label={i18n.m('history.residence.label.role.rented')}
-                   value="Rented"
+                   value="Rent"
                    onUpdate={this.updateRole}
                    onError={this.props.onError}
                    />
             <Radio name="role-military"
                    label={i18n.m('history.residence.label.role.military')}
-                   value="Military"
+                   value="MilitaryHousing"
                    onUpdate={this.updateRole}
                    onError={this.props.onError}
                    />
@@ -273,7 +273,7 @@ export default class ResidenceItem extends ValidationElement {
                    />
           </RadioGroup>
         </Field>
-        <Show when={(this.props.Role || {}).value && !['Owned', 'Rented', 'Military'].includes((this.props.Role || {}).value)}>
+        <Show when={(this.props.Role || {}).value && !['Own', 'Rent', 'Military'].includes((this.props.Role || {}).value)}>
           <Field title={i18n.t('history.residence.label.role.explanation')}
                  titleSize="label"
                  adjustFor="text"
