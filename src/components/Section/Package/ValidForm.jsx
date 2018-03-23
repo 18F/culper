@@ -7,8 +7,8 @@ import BasicAccordion from './BasicAccordion'
 import AdditionalComments from './AdditionalComments'
 import General from './General'
 import Medical from './Medical'
-import Credit from  './Credit'
-import Verify from  './Verify'
+import Credit from './Credit'
+import Verify from './Verify'
 
 const signaturePresent = (data) => {
   return new SignatureValidator(data).isValid()
@@ -67,9 +67,9 @@ export default class ValidForm extends ValidationElement {
   }
 
   submit () {
-    //if (window.confirm('Are you sure you want to submit this application?')) {
+    if (window.confirm('Are you sure you want to submit this application?')) {
       this.props.onSubmit()
-    //}
+    }
   }
 
   togglePanel (nextIndex, open = true) {

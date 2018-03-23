@@ -295,29 +295,6 @@ type AgencyKey struct {
 	AgencyID int `xml:"agencyId"`
 }
 
-// AgencyGroupKey represents the identifier for an Agency Group in e-QIP
-//	  <xs:complexType name="agencyGroupKey">
-//		  <xs:sequence>
-//			  <xs:element name="groupId" type="xs:int"/>
-//		  </xs:sequence>
-//	  </xs:complexType>
-//type AgencyGroupKey struct {
-//XMLName xml.Name
-//GroupID int `xml:"groupId"`
-//}
-
-// UserKey represents a User within the e-QIP system
-//	  <xs:complexType name="userKey">
-//		  <xs:sequence>
-//			  <xs:element name="pseudoSsn" type="xs:boolean"/>
-//			  <xs:element name="ssn" type="xs:string" minOccurs="0"/>
-//		  </xs:sequence>
-//	  </xs:complexType>
-//type UserKey struct {
-//PseudoSSN bool   `xml:"pseudoSsn"`
-//SSN       string `xml:"ssn"`
-//}
-
 // Attachment represents a document that is attached to an e-QIP investigation request
 //	  <xs:complexType name="attachment">*/
 //		  <xs:sequence>

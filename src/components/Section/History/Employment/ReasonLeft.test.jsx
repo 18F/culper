@@ -16,7 +16,7 @@ describe('The reason left component', () => {
   })
 
   it('display explanation and date when a value is selected', () => {
-    const past = daysAgo(today, 366 * 7)
+    const past = daysAgo(today, 365 * 7)
     const expected = {
       name: 'peace_i_am_out',
       Dates: {

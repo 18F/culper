@@ -1,41 +1,5 @@
 package webservice
 
-const xmpTemplate = `
-<XMP version="3.00">
-  {{.SubmittedRequestInfo}}
-  <AgencyUsageBlock>
-    <TypeOfInvestigation>
-      <Type>64</Type>
-      <Service>B</Service>
-    </TypeOfInvestigation>
-    <SensitivityLevel>
-      <Code>2</Code>
-    </SensitivityLevel>
-    <Access>
-      <Code>2</Code>
-    </Access>
-    <Action>
-      <Nature>MIL</Nature>
-    </Action>
-    <Position>
-      <Title>Military</Title>
-    </Position>
-    <SON>957B</SON>
-    <LocationOPF>
-      <Code>None</Code>
-    </LocationOPF>
-    <SOI>NV00</SOI>
-    <LocationSEC>
-      <Code>None</Code>
-    </LocationSEC>
-    <InvestigativeRequirement>I</InvestigativeRequirement>
-    <ApplicantAffiliation>MIL</ApplicantAffiliation>
-    <IPAC>DOD-NAVY</IPAC>
-    <RequestingOfficials></RequestingOfficials>
-  </AgencyUsageBlock>
-</XMP>
-`
-
 const userTemplate = `
 {{- $ssn := .Identification.ApplicantSSN.props.ssn.props}}
 {{- $name := .Identification.ApplicantName.props.Name.props }}
