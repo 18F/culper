@@ -404,7 +404,7 @@ describe('Relatives validation', function () {
             country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
-            state: 'Virginia',
+            state: 'VA',
             zipcode: '22202',
             layout: Location.ADDRESS
           }
@@ -451,7 +451,7 @@ describe('Relatives validation', function () {
             country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
-            state: 'Virginia',
+            state: 'VA',
             zipcode: '22202',
             layout: Location.ADDRESS
           }
@@ -546,7 +546,7 @@ describe('Relatives validation', function () {
             country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
-            state: 'Virginia',
+            state: 'VA',
             zipcode: '22202',
             layout: Location.ADDRESS
           },
@@ -683,7 +683,7 @@ describe('Relatives validation', function () {
           },
           Birthplace: {
             city: 'Arlington',
-            state: 'Virginia',
+            state: 'VA',
             country: { value: 'United States' },
             layout: Location.BIRTHPLACE_WITHOUT_COUNTY
           },
@@ -692,7 +692,7 @@ describe('Relatives validation', function () {
             country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
-            state: 'Virginia',
+            state: 'VA',
             zipcode: '22202',
             layout: Location.ADDRESS
           }
@@ -787,7 +787,7 @@ describe('Relatives validation', function () {
           },
           Birthplace: {
             city: 'Arlington',
-            state: 'Virginia',
+            state: 'VA',
             country: { value: 'United States' },
             layout: Location.BIRTHPLACE_WITHOUT_COUNTY
           },
@@ -795,7 +795,7 @@ describe('Relatives validation', function () {
             country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
-            state: 'Virginia',
+            state: 'VA',
             zipcode: '22202',
             layout: Location.ADDRESS
           }
@@ -889,7 +889,7 @@ describe('Relatives validation', function () {
           },
           Birthplace: {
             city: 'Arlington',
-            state: 'Virginia',
+            state: 'VA',
             country: { value: 'United States' },
             layout: Location.BIRTHPLACE_WITHOUT_COUNTY
           },
@@ -898,7 +898,7 @@ describe('Relatives validation', function () {
             country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
-            state: 'Virginia',
+            state: 'VA',
             zipcode: '22202',
             layout: Location.ADDRESS
           }
@@ -954,7 +954,7 @@ describe('Relatives validation', function () {
             street: '1234 Some Rd',
             city: 'Arlington',
             zipcode: '22202',
-            state: 'Virginia',
+            state: 'VA',
             country: { value: 'United States' },
             layout: Location.US_ADDRESS
           }
@@ -1156,7 +1156,7 @@ describe('Relatives validation', function () {
             country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
-            state: 'Virginia',
+            state: 'VA',
             zipcode: '22202',
             layout: Location.ADDRESS
           }
@@ -1210,7 +1210,7 @@ describe('Relatives validation', function () {
             country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
-            state: 'Virginia',
+            state: 'VA',
             zipcode: '22202',
             layout: Location.ADDRESS
           }
@@ -1264,7 +1264,7 @@ describe('Relatives validation', function () {
             country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
-            state: 'Virginia',
+            state: 'VA',
             zipcode: '22202',
             layout: Location.ADDRESS
           }
@@ -1317,7 +1317,7 @@ describe('Relatives validation', function () {
             country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
-            state: 'Virginia',
+            state: 'VA',
             zipcode: '22202',
             layout: Location.ADDRESS
           }
@@ -1368,7 +1368,7 @@ describe('Relatives validation', function () {
             country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
-            state: 'Virginia',
+            state: 'VA',
             zipcode: '22202',
             layout: Location.ADDRESS
           }
@@ -1419,7 +1419,7 @@ describe('Relatives validation', function () {
             country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
-            state: 'Virginia',
+            state: 'VA',
             zipcode: '22202',
             layout: Location.ADDRESS
           }
@@ -1452,7 +1452,7 @@ describe('Relatives validation', function () {
             country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
-            state: 'Virginia',
+            state: 'VA',
             zipcode: '22202',
             layout: Location.ADDRESS
           }
@@ -1478,7 +1478,7 @@ describe('Relatives validation', function () {
             country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
-            state: 'Virginia',
+            state: 'VA',
             zipcode: '22202',
             layout: Location.ADDRESS
           }
@@ -1624,7 +1624,7 @@ describe('Relatives validation', function () {
                   },
                   Birthplace: {
                     city: 'Arlington',
-                    state: 'Virginia',
+                    state: 'VA',
                     country: { value: ['United States'] },
                     layout: Location.BIRTHPLACE_WITHOUT_COUNTY
                   },
@@ -1686,7 +1686,7 @@ describe('Relatives validation', function () {
                     country: { value: 'United States' },
                     street: '1234 Some Rd',
                     city: 'Arlington',
-                    state: 'Virginia',
+                    state: 'VA',
                     zipcode: '22202',
                     layout: Location.ADDRESS
                   }
