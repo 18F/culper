@@ -60,7 +60,8 @@ func TestImportRequestEqipException(t *testing.T) {
 	defer ts.Close()
 
 	client := NewClient(ts.URL, testPrivateKeyPath)
-	_, err := client.ImportRequest(&ImportRequest{})
+	importResp, _ := client.ImportRequest(&ImportRequest{})
+	err := importResp.Error()
 	if err == nil {
 		t.Fatal("Expected error to be returned")
 	}
@@ -74,7 +75,7 @@ func TestImportRequestEqipException(t *testing.T) {
 	}
 
 	if wsErr.Message != expectedErr.Message {
-		t.Fatal("Expected error to be %v but got %v", expectedErr.Message, wsErr.Message)
+		t.Fatalf("Expected error to be %v but got %v", expectedErr.Message, wsErr.Message)
 	}
 
 	if len(wsErr.ErrorMessages) != len(expectedErr.ErrorMessages) {
@@ -105,6 +106,6 @@ func TestIsAlive(t *testing.T) {
 	client := NewClient(ts.URL, testPrivateKeyPath)
 	err := client.IsAlive()
 	if err != nil {
-		t.Fatal("Expected no errors but received %v", err)
+		t.Fatalf("Expected no errors but received %v", err)
 	}
 }

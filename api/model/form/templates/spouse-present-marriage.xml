@@ -1,4 +1,4 @@
-{{if .props.Status.props.value  | ne "NeverMarried"}}
+{{if text .props.Status | ne "NeverMarried"}}
 <PresentMarriage>
   {{with $Item := .props.CivilUnion.props}}
   <CurrentSpouse>
@@ -60,7 +60,10 @@
         {{location $Item.Location}}
       </Place>
     </Marriage>
-    <OtherNamesUsed NotApplicable="{{if len $Item.OtherNames.props.items | eq 0}}True{{else}}False{{end}}">
+    {{ if eq (branchcollectionHas $Item.OtherNames) "No" }}
+    <OtherNamesUsed NotApplicable="True" />
+    {{else}}
+    <OtherNamesUsed>
       {{range $oindex, $othername := $Item.OtherNames.props.items}}
       {{with $other := $othername.Item}}
       <OtherName ID="{{$oindex}}">
@@ -73,6 +76,7 @@
       {{end}}
       {{end}}
     </OtherNamesUsed>
+    {{end}}
     {{with $ssn := $Item.SSN}}
     <SSN NotApplicable="{{ $ssn.props.notApplicable }}">
       <FirstThree>

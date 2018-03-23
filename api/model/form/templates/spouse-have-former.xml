@@ -1,3 +1,7 @@
+{{- if .props.items }}
+{{- if len .props.items | gt 0}}
 <HaveFormerSpouse>
-  <Answer>{{if len .props.items | eq 0}}No{{else}}Yes{{end}}</Answer>
+  <Answer>Yes</Answer>
 </HaveFormerSpouse>
+{{- end}}
+{{- end}}

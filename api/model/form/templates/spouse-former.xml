@@ -1,3 +1,4 @@
+{{- if .props.items }}
 {{- if len .props.items | gt 0}}
 <FormerSpouses>
   {{range $index, $item := .props.items}}
@@ -60,4 +61,5 @@
   <Comment></Comment>
   {{end}}
 </FormerSpouses>
+{{end}}
 {{end}}
