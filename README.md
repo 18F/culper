@@ -26,6 +26,7 @@ To create the e-QIP questionnaire prototype, the project team is employing a use
        - [Executing tests and coverage reports](#executing-tests-and-coverage-reports)
        - [Running a local server](#running-a-local-server)
  - [Docker containers](#docker-containers)
+ - [Architectural diagram](#architectural-diagram)
  - [Additional](#additional)
     - [Feature specifications](#feature-specifications)
     - [Generating documentation](#generating-documentation)
@@ -135,6 +136,13 @@ Then direct your browser at [http://localhost:8080](http://localhost:8080). The 
 
 The IdAM solution **is not** part of this project.
 
+## Architectural diagram
+
+![eapparchitecture](https://user-images.githubusercontent.com/12962390/37600234-1ecdb4ba-2b5d-11e8-99b3-a07f46aef611.png)
+
+There are several possible architectures which may be implemented. The diagram references one of those possible solutions and highlights the basic flow of data within the system. It also demonstrates integration with external systems (e.g. identity services) which are not part of this project but may be part of the overall system.
+
+
 ## Additional
 
 ### Feature specifications
@@ -145,7 +153,7 @@ Running the feature specifications is an on-demand process and can be ran using:
 make specs
 ```
 
-For additional informtion on how to perform the feature specification automated UI test suite, visit [Spec Test][27].
+For additional information on how to perform the feature specification automated UI test suite, visit [Spec Test][27].
 
 ### Generating Documentation
 
