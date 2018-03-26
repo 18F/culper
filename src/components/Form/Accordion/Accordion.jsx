@@ -332,15 +332,15 @@ export default class Accordion extends ValidationElement {
     return (
       <div className="summary-container">
         <div className="summary">
-          <a href="javascript:;;;" className={`left ${openState(item, initial)}`} onClick={this.toggle.bind(this, item)}>
-            <span className="button-with-icon">
+          <a href="javascript:;;;" className={`left ${openState(item, initial)}`} title={`Click to ${this.openText(item).toLowerCase()} this item`} onClick={this.toggle.bind(this, item)}>
+            <span className="button-with-icon" aria-hidden="true">
               <i className={chevron(item)} aria-hidden="true"></i>
               <span className="toggle">{this.openText(item)}</span>
             </span>
             {svg}
             {this.props.summary(item, index, initial)}
           </a>
-          <a href="javascript:;;;" className="right remove" onClick={this.remove.bind(this, item)}>
+          <a href="javascript:;;;" className="right remove" aria-label="Remove this item" title="Remove this item" onClick={this.remove.bind(this, item)}>
             <span className="button-with-icon">
               <i className="fa fa-trash" aria-hidden="true"></i>
               <span>{this.props.removeLabel}</span>
@@ -361,9 +361,6 @@ export default class Accordion extends ValidationElement {
     return (
       <div className={`details ${openState(item, initial)}`}>
         {this.factory(item, index, this.props.children)}
-        <a href="javascript:;;;" className="close" onClick={this.toggle.bind(this, item)}>
-          <span>{this.props.closeLabel}</span>
-        </a>
       </div>
     )
   }
@@ -374,7 +371,7 @@ export default class Accordion extends ValidationElement {
   }
 
   /**
-   * Render the indivual items in the array.
+   * Render the individual items in the array.
    */
   content () {
     // Ensure we have the minimum amount of items required
