@@ -446,6 +446,15 @@ export default class Accordion extends ValidationElement {
     )
   }
 
+  description () {
+    const ariaOnly = this.props.items.length < 2
+    return (
+      <strong className={ariaOnly ? 'aria-description' : ''}>
+        {this.props.description}
+      </strong>
+    )
+  }
+
   /**
    * Render the accordion caption which is essentially a `table-caption`
    * for the accordion
@@ -469,14 +478,12 @@ export default class Accordion extends ValidationElement {
 
   render () {
     const klass = `accordion ${this.props.className}`.trim()
-    const description = this.props.items.length < 2 ? '' : this.props.description
 
     return (
       <div ref="accordion">
         <div className={klass}>
-          <strong>{description}</strong>
+          {this.description()}
           {this.caption()}
-
           <div className="items">
             {this.content()}
           </div>
@@ -484,7 +491,6 @@ export default class Accordion extends ValidationElement {
             {this.appendButton()}
           </div>
         </div>
-
         {this.addendum()}
       </div>
     )
