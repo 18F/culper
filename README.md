@@ -56,11 +56,11 @@ To view the items completed during each development sprint and to view the burnd
 
 ### Dependencies
 
- - git
- - docker
- - docker-compose
- - make
- - openssl
+ - [git][https://git-scm.com]
+ - [docker][21]
+ - [docker-compose][20]
+ - [make][https://www.gnu.org/software/make/]
+ - [openssl][https://openssl.org]
 
 ### Clone all things
 
@@ -92,7 +92,7 @@ make
 
 ### Setup
 
-Configure pre-requisites using:
+Configure prerequisites using:
 
 ```shell
 make setup
