@@ -1,6 +1,8 @@
 package jwt
 
 import (
+	"crypto/sha512"
+	"encoding/hex"
 	"errors"
 	"fmt"
 	"net/http"
@@ -10,6 +12,7 @@ import (
 	"time"
 
 	jwt "github.com/dgrijalva/jwt-go"
+	uuid "github.com/nu7hatch/gouuid"
 )
 
 const (
@@ -20,7 +23,7 @@ const (
 )
 
 var (
-	JwtSecret        = []byte(os.Getenv("JWT_SECRET"))
+	JwtSecret        = Secret()
 	AuthBearerRegexp = regexp.MustCompile("Bearer\\s(.*)")
 	Expiration       = Timeout()
 )
@@ -77,7 +80,7 @@ func CurrentAudience(r *http.Request) string {
 // NewToken generates a new Jwt signed token using a users account information
 func NewToken(id int, audience string) (string, time.Time, error) {
 	expiresAt := time.Now().Add(Expiration)
-	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.StandardClaims{
+	token := jwt.NewWithClaims(jwt.SigningMethodHS512, jwt.StandardClaims{
 		Id:        strconv.FormatInt(int64(id), 10),
 		Issuer:    Issuer,
 		Audience:  audience,
@@ -113,9 +116,33 @@ func KeyFunc(token *jwt.Token) (interface{}, error) {
 // Timeout returns the duration in time for how long a session is considered valid.
 // Per policy this defaults to 15 minutes.
 func Timeout() time.Duration {
-	var timeout int
-	if i, err := strconv.Atoi(os.Getenv("SESSION_TIMEOUT")); err != nil || i < 1 {
+	timeout, err := strconv.Atoi(os.Getenv("SESSION_TIMEOUT"))
+	if err != nil || timeout < 1 {
 		timeout = 15
 	}
 	return time.Duration(timeout) * time.Minute
+}
+
+// Secret returns the secret to use with JWT tokens.
+func Secret() []byte {
+	secret := os.Getenv("JWT_SECRET")
+	if secret == "" {
+		// If no secret is present then generate one at random
+		id, err := uuid.NewV4()
+		if err == nil {
+			secret = id.String()
+		} else {
+			// If there was an error generating a random UUID then use
+			// a combination of the error and the current timestamp.
+			t := time.Now()
+			secret = err.Error() + t.Format("20060102150405")
+		}
+
+		// Hash the secret and convert to hex then store it for later usage.
+		hash := sha512.Sum512([]byte(secret))
+		secret = hex.EncodeToString(hash[:])
+		os.Setenv("JWT_SECRET", secret)
+	}
+
+	return []byte(secret)
 }
