@@ -1,8 +1,8 @@
 package jwt
 
 import (
-	"crypto/sha512"
-	"encoding/hex"
+	"crypto/rand"
+	"encoding/base64"
 	"errors"
 	"fmt"
 	"net/http"
@@ -12,7 +12,6 @@ import (
 	"time"
 
 	jwt "github.com/dgrijalva/jwt-go"
-	uuid "github.com/nu7hatch/gouuid"
 )
 
 const (
@@ -126,21 +125,18 @@ func Timeout() time.Duration {
 // Secret returns the secret to use with JWT tokens.
 func Secret() []byte {
 	secret := os.Getenv("JWT_SECRET")
+
 	if secret == "" {
 		// If no secret is present then generate one at random
-		id, err := uuid.NewV4()
-		if err == nil {
-			secret = id.String()
-		} else {
-			// If there was an error generating a random UUID then use
-			// a combination of the error and the current timestamp.
-			t := time.Now()
-			secret = err.Error() + t.Format("20060102150405")
+		c := 64
+		b := make([]byte, c)
+		_, err := rand.Read(b)
+		if err != nil {
+			// Fail securely
+			panic("Could not randomize JWT secret")
 		}
 
-		// Hash the secret and convert to hex then store it for later usage.
-		hash := sha512.Sum512([]byte(secret))
-		secret = hex.EncodeToString(hash[:])
+		secret = base64.StdEncoding.EncodeToString(b)
 		os.Setenv("JWT_SECRET", secret)
 	}
 
