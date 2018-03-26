@@ -2,7 +2,6 @@
 <VotedInForeignElection>
   <Answer>{{branch .props.HasForeignVoting}}</Answer>
   <Comment></Comment>
-  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
 </VotedInForeignElection>
 <VotedInForeignElections>
   {{range $index, $item := .props.List.props.items}}
@@ -18,5 +17,8 @@
   </ForeignElection>
   {{end}}
   {{end}}
+  {{- if branch .props.HasForeignVoting | eq "Yes"}}
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
   <SummaryComment></SummaryComment>
+  {{end}}
 </VotedInForeignElections>

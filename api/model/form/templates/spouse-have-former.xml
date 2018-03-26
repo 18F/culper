@@ -1,3 +1,7 @@
+{{- if .props.items }}
+{{- if len .props.items | gt 0}}
 <HaveFormerSpouse>
-  <Answer>{{branch .props.branch}}</Answer>
+  <Answer>Yes</Answer>
 </HaveFormerSpouse>
+{{- end}}
+{{- end}}

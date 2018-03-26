@@ -1,6 +1,5 @@
 <IllegalEntry>
   <Answer>{{branch .props.HasUnauthorized}}</Answer>
-  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
   <Comment></Comment>
   <Incidents>
     {{range $index, $item := .props.List.props.items}}
@@ -19,6 +18,9 @@
     {{end}}
     {{end}}
   </Incidents>
+  {{- if branch .props.HasUnauthorized | eq "Yes"}}
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
   <SummaryComment></SummaryComment>
+  {{end}}
 </IllegalEntry>
 

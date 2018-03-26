@@ -1,4 +1,5 @@
 <Answer>{{branch .props.HasServed}}</Answer>
+{{- if branch .props.HasServed | eq "Yes"}}
 <MilitaryService>
   {{range $index, $item := .props.List.props.items}}
   {{with $Item := $item.Item}}
@@ -34,5 +35,6 @@
   {{end}}
 </MilitaryService>
 <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
-<Comment></Comment>
 <SummaryComment></SummaryComment>
+{{end}}
+<Comment></Comment>

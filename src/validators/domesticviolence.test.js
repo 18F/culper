@@ -13,7 +13,7 @@ describe('Domestic Violence validation', function () {
             country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
-            state: 'Virginia',
+            state: 'VA',
             zipcode: '22202',
             layout: Location.ADDRESS
           },
@@ -51,7 +51,7 @@ describe('Domestic Violence validation', function () {
                     country: { value: 'United States' },
                     street: '1234 Some Rd',
                     city: 'Arlington',
-                    state: 'Virginia',
+                    state: 'VA',
                     zipcode: '22202',
                     layout: Location.ADDRESS
                   },

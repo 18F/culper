@@ -15,7 +15,8 @@ export const application = {
     generalItem: 'Release of Information & HIPAA',
     creditItem: 'Credit reporting disclosure',
     submit: 'Submit your SF-86',
-    next: 'Go to next release'
+    next: 'Go to next release',
+    submitting: 'Submitting form...'
   },
   invalidForm: [
     '### List of incomplete sections',

@@ -1,7 +1,11 @@
 <GovernmentDebarment>
   <Answer>{{branch .props.HasDebarment}}</Answer>
+  {{- if branch .props.HasDebarment | eq "Yes"}}
   <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+  {{end}}
 </GovernmentDebarment>
+
+{{- if branch .props.HasDebarment | eq "Yes"}}
 <GovernmentDebarments>
   <Comment></Comment>
   {{range $index, $item := .props.List.props.items}}
@@ -18,3 +22,4 @@
   {{end}}
   <SummaryComment></SummaryComment>
 </GovernmentDebarments>
+{{end}}

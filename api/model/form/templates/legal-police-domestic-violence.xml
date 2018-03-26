@@ -1,7 +1,6 @@
 <RestrainingOrders>
   <Answer>{{branch .props.HasDomesticViolence}}</Answer>
   <Comment></Comment>
-  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
   {{range $index, $item := .props.List.props.items}}
   {{with $Item := $item.Item}}
   <RestrainingOrder ID="{{$index}}">
@@ -21,5 +20,8 @@
   </RestrainingOrder>
   {{end}}
   {{end}}
+  {{- if branch .props.HasDomesticViolence | eq "Yes"}}
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
   <SummaryComment></SummaryComment>
+  {{end}}
 </RestrainingOrders>

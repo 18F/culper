@@ -1,6 +1,8 @@
+<!-- Only show when user has served -->
+{{- if branch .History.props.HasServed | eq "Yes"}}
 <Charges>
-  <Answer>{{branch .props.HasDisciplinary}}</Answer>
-  {{range $index, $item := .props.List.props.items}}
+  <Answer>{{branch .Disciplinary.props.HasDisciplinary}}</Answer>
+  {{range $index, $item := .Disciplinary.props.List.props.items}}
   {{with $Item := $item.Item}}
   <Charge ID="{{$index}}">
     <Authority>{{textarea $Item.Court}}</Authority>
@@ -15,6 +17,9 @@
   {{end}}
   {{end}}
   <Comment></Comment>
-  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+  {{- if branch .Disciplinary.props.HasDisciplinary | eq "Yes"}}
+  <HaveAdditionalEntryAnswer>{{branch .Disciplinary.props.List.props.branch}}</HaveAdditionalEntryAnswer>
   <SummaryComment></SummaryComment>
+  {{end}}
 </Charges>
+{{end}}

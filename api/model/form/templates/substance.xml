@@ -5,7 +5,7 @@
   {{tmpl "substance-alcohol-voluntary.xml" .Substance.VoluntaryCounselings}}
 </UseOfAlcohol>
 <IllegalDrugUse Version="1" Type="Pooled">
-  {{tmpl "substance-drug-clearance.xml" .Substance.DrugClearanceUse}}
+  {{tmpl "substance-drug-clearance.xml" .Substance.DrugClearanceUses}}
   {{tmpl "substance-drug-misuse.xml" .Substance.PrescriptionUses}}
   {{tmpl "substance-drug-ordered.xml" .Substance.OrderedTreatments}}
   {{tmpl "substance-drug-publicsafety.xml" .Substance.DrugPublicSafetyUses}}

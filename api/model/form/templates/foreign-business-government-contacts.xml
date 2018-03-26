@@ -48,6 +48,8 @@
   </GovernmentContact>
   {{end}}
   {{end}}
+  {{- if branch .props.HasForeignContact | eq "Yes"}}
   <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
   <SummaryComment></SummaryComment>
+  {{end}}
 </GovernmentContacts>

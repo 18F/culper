@@ -4,7 +4,7 @@
   </From>
   <To>
     {{if .props.present}}
-    <Date Type="Present">{{date .props.to}}</Date>
+    <Date Type="Present"></Date>
     {{else}}
     <Date Type="{{dateEstimated .props.to}}">{{date .props.to}}</Date>
     {{end}}

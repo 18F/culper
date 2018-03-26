@@ -2,8 +2,9 @@
   <Answer>{{branchcollectionHas .props.List}}</Answer>
 </ForeignService>
 <ForeignMilitaryService>
-  {{range $index, $item := .props.List.props.items}}
-  {{with $Item := $item.Item}}
+  {{- range $index, $item := .props.List.props.items}}
+  {{- with $Item := $item.Item}}
+  {{- if branch $Item.Has | eq "Yes"}}
   <Service ID="{{$index}}">
     <AssociationDescription>{{textarea $Item.Circumstances}}</AssociationDescription>
     <Branch>{{text $Item.Division}}</Branch>
@@ -35,7 +36,10 @@
   </Service>
   {{end}}
   {{end}}
-  <HaveAdditionalEntryAnswer>{{branch .props.Items.props.branch}}</HaveAdditionalEntryAnswer>
-  <Comment></Comment>
+  {{end}}
+  {{- if branch .props.HasDisciplinary | eq "Yes"}}
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
   <SummaryComment></SummaryComment>
+  {{end}}
+  <Comment></Comment>
 </ForeignMilitaryService>

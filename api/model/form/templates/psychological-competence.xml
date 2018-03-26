@@ -31,6 +31,8 @@
   </DeclaredAsMentallyIncompetentOccurrence>
   {{end}}
   {{end}}
+  {{if branch .props.IsIncompetent | eq "Yes"}}
   <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
   <SummaryComment></SummaryComment>
+  {{end}}
 </DeclaredAsMentallyIncompetent>

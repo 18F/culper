@@ -1,7 +1,6 @@
 <IndirectInterests>
   <Answer>{{branch .props.HasInterests}}</Answer>
   <AnswerComment></AnswerComment>
-  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
   {{range $index, $item := .props.List.props.items}}
   {{with $Item := $item.Item}}
   <IndirectInterest ID="{{$index}}">
@@ -62,5 +61,8 @@
   </IndirectInterest>
   {{end}}
   {{end}}
+  {{- if branch .props.HasInterests | eq "Yes"}}
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
   <SummaryComment></SummaryComment>
+  {{end}}
 </IndirectInterests>

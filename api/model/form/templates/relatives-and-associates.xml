@@ -36,10 +36,15 @@
         <Date Type="{{dateEstimated $Item.Birthdate}}">
           {{ date $Item.Birthdate }}
         </Date>
-        <Place>
-          {{ location $Item.Birthplace }}
-        </Place>
+        <Place>{{ location $Item.Birthplace }}</Place>
       </Birth>
+      {{- $birthCountry := $Item.Birthplace.props.country }}
+      {{- $foreignPOB := ne $birthCountry "United States" }}
+      {{- $usCitizen := citizenshipHas $Item.Citizenship "United States" }}
+      {{- $deceased := eq (branch $Item.IsDeceased) "Yes" }}
+      {{- $usAddress := eq $Item.Address.props.country "United States" }}
+
+      {{- if or (and $usCitizen $foreignPOB $deceased) (and $usAddress $foreignPOB $usAddress) (and $foreignPOB $usCitizen) }}
       <Citizenship>
         <ProofOfStatus>
           <Comment></Comment>
@@ -55,18 +60,23 @@
           <TypeOtherExplanation>{{text $Item.DocumentComments}}</TypeOtherExplanation>
         </ProofOfStatus>
       </Citizenship>
+      {{- end}}
+
       <CountriesOfCitizenship>
-        <Citizenship>
-          {{range $index, $country := $Item.Citizenship.value}}
-          <Country ID="{{$index}}">{{ $country }}</Country>
-          {{end}}
+        {{- range $index, $country := $Item.Citizenship.props.value}}
+        <Citizenship ID="{{$index}}">
+          <Country>{{ $country }}</Country>
         </Citizenship>
+        {{- end}}
       </CountriesOfCitizenship>
+
       <Deceased>
         <Answer>{{branch $Item.IsDeceased}}</Answer>
         <AnswerComment></AnswerComment>
       </Deceased>
       <EntryComment></EntryComment>
+
+      {{- if and (not $usCitizen) (not $deceased) }}
       <ForeignRelative>
         <AffiliatedWithForeignGovernment>
           <Answer>{{branch $Item.HasAffiliation}}</Answer>
@@ -105,22 +115,31 @@
             />
           <MethodsOfContactTypeOtherExplanation>{{text $Item.MethodsComments}}</MethodsOfContactTypeOtherExplanation>
         </ForeignRelative>
+        {{end}}
+
         <LegalName>
           {{name $Item.Name}}
         </LegalName>
+        {{if text $Item.Relation | eq "Mother"}}
         <MothersMaidenName>
           <Comment></Comment>
           <FullName>
-            <LegalName SameAsListed="{{branchToBool $Item.MaidenSameAsListed}}">
+            {{- if eq (branchToBool $Item.MaidenSameAsListed.props) "True"}}
+            <LegalName SameAsListed="True" />
+            {{- else }}
+            <LegalName>
               {{name $Item.MaidenName}}
             </LegalName>
+            {{- end}}
           </FullName>
         </MothersMaidenName>
+        {{end}}
         <OtherNamesUsed>
           <Answer>{{branchcollectionHas $Item.Aliases}}</Answer>
           <AnswerComment></AnswerComment>
-          {{range $oindex, $othername := $Item.Aliases.props.items}}
-          {{with $Alias := $othername.Item}}
+          {{- range $oindex, $othername := $Item.Aliases.props.items}}
+          {{- with $Alias := $othername.Item}}
+          {{- if eq (branch $Alias.Has) "Yes" }}
           <OtherName ID="{{$oindex}}">
             <Comment></Comment>
             {{ daterange $Alias.Dates }}
@@ -134,13 +153,17 @@
           </OtherName>
           {{end}}
           {{end}}
+          {{end}}
+
+          {{if branchcollectionHas $Item.Aliases | eq "Yes"}}
           <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
           <SummaryComment></SummaryComment>
+          {{end}}
         </OtherNamesUsed>
-        <Type>{{text $Item.Relation}}</Type>
+        <Type>{{text $Item.Relation | relationshipType}}</Type>
       </Relative>
+      {{end}}
+      {{end}}
     </Relatives>
-    {{end}}
-    {{end}}
     <SummaryComment></SummaryComment>
   </RelativesAndAssociates>

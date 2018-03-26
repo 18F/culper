@@ -3,15 +3,16 @@
   <CountriesVisited>
     <Answer>{{branch .props.HasForeignTravelOutside}}</Answer>
   </CountriesVisited>
-  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+
+  <!-- Only render if user has marked yes for countries visited -->
+  {{- if branch .props.HasForeignTravelOutside | eq "Yes"}}
   <SolelyForUSGovernment>
     <Answer>{{branch .props.HasForeignTravelOfficial}}</Answer>
     <Comment></Comment>
   </SolelyForUSGovernment>
-  <SummaryComment></SummaryComment>
-  {{range $index, $item := .props.List.props.items}}
-  {{with $Item := $item.Item}}
   <Travels>
+    {{range $index, $item := .props.List.props.items}}
+    {{with $Item := $item.Item}}
     <Travel ID="{{$index}}">
       <ContactedByForeignMilitaryOrganization>
         <Answer>{{branch $Item.Contacted}}</Answer>
@@ -60,4 +61,10 @@
     {{end}}
     {{end}}
   </Travels>
+  {{end}}
+
+  {{- if branch .props.HasForeignTravelOutside | eq "Yes"}}
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+  <SummaryComment></SummaryComment>
+  {{end}}
 </ForeignTravels>

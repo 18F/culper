@@ -2,7 +2,6 @@
 <OtherForeignEmployment>
   <Answer>{{branch .props.HasForeignVentures}}</Answer>
   <Comment></Comment>
-  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
 </OtherForeignEmployment>
 <OtherForeignEmployments>
   {{range $index, $item := .props.List.props.items}}
@@ -35,5 +34,8 @@
   </OtherForeignEmployment>
   {{end}}
   {{end}}
+  {{- if branch .props.HasForeignVentures | eq "Yes"}}
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
   <SummaryComment></SummaryComment>
+  {{end}}
 </OtherForeignEmployments>

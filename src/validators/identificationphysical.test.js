@@ -140,13 +140,13 @@ describe('Physical attributes validation', function () {
     const tests = [
       {
         data: {
-          Sex: { value: 'female' }
+          Sex: { value: 'Female' }
         },
         expected: true
       },
       {
         data: {
-          Sex: { value: 'male' }
+          Sex: { value: 'Male' }
         },
         expected: true
       },
@@ -174,7 +174,7 @@ describe('Physical attributes validation', function () {
           Weight: { value: 100 },
           HairColor: { value: 'Brown' },
           EyeColor: { value: 'Black' },
-          Sex: { value: 'female' }
+          Sex: { value: 'Female' }
         },
         expected: true
       },
@@ -187,7 +187,7 @@ describe('Physical attributes validation', function () {
           Weight: { value: -1 },
           HairColor: { value: 'Brown' },
           EyeColor: { value: 'Black' },
-          Sex: { value: 'female' }
+          Sex: { value: 'Female' }
         },
         expected: false
       }
