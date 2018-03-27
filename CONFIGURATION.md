@@ -320,7 +320,7 @@ Flag to allow resetting multiple factor authentication (MFA) association to an a
 
 ## `WINDOW_SIZE`
 
-Window size used in multiple factor authentication (MFA) authentication.
+Window size used in multiple factor authentication (MFA) authentication. Valid range from 0 to 100 but values beyond 3 through 5 are considered bad security practices.
 
 **Target** - Back-end (api)<br>
 **Default** - `3`<br>
