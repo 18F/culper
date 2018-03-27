@@ -204,15 +204,15 @@ Whitelist of address(es) for cross-origin resource sharing (CORS). CORS restrict
 
 ### Examples
 
-| Type               | Example                           |
-| ------------------ | --------------------------------- |
-| explicit           | http://localhost                  |
-| multiple           | http://localhost;https://test.com |
-| wildcard           | *                                 |
-| regular expression | http[s?]://localhost              |
+| Type               | Example                            |
+| ------------------ | ---------------------------------- |
+| explicit           | http://localhost                   |
+| multiple           | http://localhost;https://test\.com |
+| wildcard           | *                                  |
+| regular expression | https?://localhost               |
 
 **Target** - Back-end (api)<br>
-**Default** - `(localhost)`<br>
+**Default** - *empty*<br>
 
 ## `FLUSH_STORAGE`
 
