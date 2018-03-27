@@ -22,7 +22,7 @@ When running the application using the provided [docker-compose.yml](docker-comp
 | [`LOG_SYSLOG_CERT`](#log_syslog_cert)                     |                 |                        | X                     |
 | [`SESSION_TIMEOUT`](#session_timeout)                     |                 |                        | X                     |
 | [`API_REDIRECT`](#api_redirect)                        |                 |                        | X                     |
-| [`API_BASE_URL`](#api_base_url)                        |                 | X                      |                       |
+| [`API_BASE_URL`](#api_base_url)                        | X               | X                      |                       |
 | [`PORT`](#port)                                |                 |                        | X                     |
 | [`HASH_ROUTING`](#hash_routing)                        |                 | X                      |                       |
 | [`DB_MIGRATION_TARGET`](#db_migration_target)                 |                 |                        | X                     |
@@ -137,7 +137,7 @@ Front-end URL for the back-end to redirect responses to. If this value is not se
 
 Back-end URL for the front-end to direct requests to.
 
-**Target** - Front-end (web)<br>
+**Target** - Front-end (web), Back-end (api)<br>
 **Default** - `{server_protocol}://{server_host}:{server_port}/api`<br>
 
 ## `PORT`
@@ -268,28 +268,28 @@ File path (absolute or relative) to SAML private certificate.
 
 ## `SAML_IDP_SSO_URL`
 
-URL to identity data provider SSO.
+Endpoint to SAML 2.0 Single Sign-On (SSO) identity provider. The client will be redirected to this URL to complete the authentication process. This value will be provided by the IdAM configuration settings.
 
 **Target** - Back-end (api)<br>
 **Default** - *not enabled*<br>
 
 ## `SAML_IDP_SSO_DESC_URL`
 
-URL to identity data provider's SSO description.
+The identity provider's issuer URL. This value will be provided by the IdAM configuration settings.
 
 **Target** - Back-end (api)<br>
 **Default** - *not enabled*<br>
 
 ## `SAML_IDP_PUBLIC_CERT`
 
-File path (absolute or relative) to identity data provider's public certificate.
+File path (absolute or relative) to identity data provider's public certificate (X.509 PEM) used to verify the authentication response signature. This certificate will be provided by the IdAM solution.
 
 **Target** - Back-end (api)<br>
 **Default** - *not enabled*<br>
 
 ## `SAML_SIGN_REQUEST`
 
-Flag to enable signing SAML requests.
+Flag to enable signing of SAML 2.0 requests.
 
 **Target** - Back-end (api)<br>
 **Default** - False: *empty*<br>
@@ -297,10 +297,10 @@ Flag to enable signing SAML requests.
 
 ## `SAML_CONSUMER_SERVICE_URL`
 
-URL to the SAML consumer service.
+Endpoint for assertion consumer service. After authentication is completed the customer will be redirected to this endpoint for local processes to verify and handle the response.
 
 **Target** - Back-end (api)<br>
-**Default** - *not enabled*<br>
+**Default** - `{API_BASE_URL}/auth/saml/callback`<br>
 
 ## `DISABLE_2FA`
 
