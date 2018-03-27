@@ -327,14 +327,14 @@ Window size used in multiple factor authentication (MFA) authentication. Valid r
 
 ## `TLS_CERT`
 
-File path (absolute or relative) to TLS certificate for use with the back-end API.
+File path (absolute or relative) to TLS public certificate (X.509 PEM) certificate for use with the back-end API.
 
 **Target** - Back-end (api)<br>
 **Default** - *not enabled*<br>
 
 ## `TLS_KEY`
 
-File path (absolute or relative) to TLS private key for use the back-end API.
+File path (absolute or relative) to TLS private key (X.509 PEM) for use the back-end API.
 
 **Target** - Back-end (api)<br>
 **Default** - *not enabled*<br>
