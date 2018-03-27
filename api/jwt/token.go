@@ -22,7 +22,8 @@ const (
 )
 
 var (
-	JwtSecret        = Secret()
+	JwtSecret        = Secret(512)
+	JwtSigningMethod = jwt.SigningMethodHS512
 	AuthBearerRegexp = regexp.MustCompile("Bearer\\s(.*)")
 	Expiration       = Timeout()
 )
@@ -79,7 +80,7 @@ func CurrentAudience(r *http.Request) string {
 // NewToken generates a new Jwt signed token using a users account information
 func NewToken(id int, audience string) (string, time.Time, error) {
 	expiresAt := time.Now().Add(Expiration)
-	token := jwt.NewWithClaims(jwt.SigningMethodHS512, jwt.StandardClaims{
+	token := jwt.NewWithClaims(JwtSigningMethod, jwt.StandardClaims{
 		Id:        strconv.FormatInt(int64(id), 10),
 		Issuer:    Issuer,
 		Audience:  audience,
@@ -123,12 +124,12 @@ func Timeout() time.Duration {
 }
 
 // Secret returns the secret to use with JWT tokens.
-func Secret() []byte {
+func Secret(size int) []byte {
 	secret := os.Getenv("JWT_SECRET")
 
 	if secret == "" {
 		// If no secret is present then generate one at random
-		c := 64
+		c := size / 8
 		b := make([]byte, c)
 		_, err := rand.Read(b)
 		if err != nil {
