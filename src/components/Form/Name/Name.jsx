@@ -226,6 +226,7 @@ export default class Name extends ValidationElement {
                adjustFor="labels">
           <Text name="middle"
                 ref="middle"
+                pattern="^[a-zA-Z\-\.' ]*$"
                 minlength="0"
                 minlength={this.props.middleInitialOnly ? 1 : 2}
                 maxlength={maxMiddle}
