@@ -1,6 +1,6 @@
 export const relationships = {
   intro: {
-    title: 'Section 2: Relationships',
+    title: 'Section 3: Relationships',
     body: 'You will be asked questions about your personal relationships and be asked to provide details if necessary.'
   },
   tour: {

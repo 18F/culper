@@ -1,6 +1,6 @@
 export const history = {
   intro: {
-    title: 'Section 3: Your history',
+    title: 'Section 2: Your history',
     body: 'You will be asked questions about your history and be asked to provide details if necessary. This section includes where you have lived, where you have worked, and where you went to school.'
   },
   tour: {
