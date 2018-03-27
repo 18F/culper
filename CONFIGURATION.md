@@ -22,7 +22,7 @@ When running the application using the provided [docker-compose.yml](docker-comp
 | [`LOG_SYSLOG_CERT`](#log_syslog_cert)                     |                 |                        | X                     |
 | [`SESSION_TIMEOUT`](#session_timeout)                     |                 |                        | X                     |
 | [`API_REDIRECT`](#api_redirect)                        |                 |                        | X                     |
-| [`API_BASE_URL`](#api_base_url)                        | X               | X                      |                       |
+| [`API_BASE_URL`](#api_base_url)                        | X               | X                      | X                     |
 | [`PORT`](#port)                                |                 |                        | X                     |
 | [`HASH_ROUTING`](#hash_routing)                        |                 | X                      |                       |
 | [`DB_MIGRATION_TARGET`](#db_migration_target)                 |                 |                        | X                     |
