@@ -1,6 +1,6 @@
 export const relationships = {
   intro: {
-    title: 'Section 2: Relationships',
+    title: 'Section 3: Relationships',
     body: 'You will be asked questions about your personal relationships and be asked to provide details if necessary.'
   },
   tour: {
@@ -145,7 +145,7 @@ export const relationships = {
         telephone: 'Telephone',
         electronic: [
           'Electronic',
-          '(such as e-mail, texting, chat rooms, etc.)'
+          '(such as email, texting, chat rooms, etc.)'
         ],
         written: 'Written correspondence',
         other: [
@@ -680,7 +680,7 @@ export const relationships = {
         relationship: 'Provide this person\'s  relationship to you',
         mobileTelephone: 'Provide mobile/cell phone number for this person',
         otherTelephone: 'Provide another phone number for this person',
-        email: 'Provide e-mail address for this person',
+        email: 'Provide email address for this person',
         address: 'Provide home or work address for this person'
       },
       label: {
