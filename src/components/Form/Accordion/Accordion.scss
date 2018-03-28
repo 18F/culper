@@ -78,6 +78,12 @@ $breakpoints: (
     line-height: 5rem;
     min-height: 5rem;
     padding: 0 10%;
+
+    /* For screen readers we want the text to be "navigatable"
+       but for non-screenreaders do not display it */
+    &.aria-description {
+      opacity: 0;
+    }
   }
 
   .items {
