@@ -14,15 +14,16 @@ export const CustomSummary = (validation, summary, more, item, index, initial, c
 
   const target = item.Item || {}
   const errors = item.Item && !validation(target)
+  const text = openText() || ''
 
   return (
     <div className="summary-container">
       <div className="summary">
         <span className={`left ${openState(item, initial)}`}>
-          <a href="javascript:;;;" onClick={toggle()} title={`Click to ${openText().toLowerCase()} this item`}>
+          <a href="javascript:;;;" onClick={toggle()} title={`Click to ${text.toLowerCase()} this item`}>
             <span className="button-with-icon" aria-hidden="true">
               <i className={chevron(item)} aria-hidden="true"></i>
-              <span className="toggle">{openText()}</span>
+              <span className="toggle">{text}</span>
             </span>
             {summary(target, errors)}
           </a>

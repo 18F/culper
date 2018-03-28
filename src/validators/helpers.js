@@ -260,6 +260,14 @@ export const validSSN = (ssn) => {
   if (ssn.notApplicable === true) {
     return true
   }
+
+  // Legacy system only excluded explicit values
+  const fullSSN = `${ssn.first}-${ssn.middle}-${ssn.last}`
+  const legacyInvalid = ['999-99-9999', '123-45-6789']
+  if (legacyInvalid.some(x => x === fullSSN)) {
+    return false
+  }
+
   return !!ssn.first && !!ssn.middle && !!ssn.last &&
     ssn.first.length === 3 && ssn.middle.length === 2 && ssn.last.length === 4
 }
