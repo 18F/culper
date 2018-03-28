@@ -237,7 +237,7 @@ export default class Name extends ValidationElement {
                 onError={this.handleErrorMiddle}
                 onFocus={this.props.onFocus}
                 onBlur={this.props.onBlur}
-                required={this.props.required}
+                required={!this.props.noMiddleName && this.props.required}
                 />
           <div className="middle-options flags">
             <Checkbox name="noMiddleName"

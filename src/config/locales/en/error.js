@@ -740,6 +740,12 @@ export const error = {
         'For passport cards the number begins with a "C" and followed by 8 digits.'
       ],
       note: ''
+    },
+    expiration: {
+      min: {
+        title: 'There is a problem with the date',
+        message: 'The date should be after the passport was issued.'
+      }
     }
   },
   currency: {
@@ -967,14 +973,6 @@ export const error = {
       min: {
         title: 'There is a problem with the date',
         message: 'The date should be after the first contact.'
-      }
-    }
-  },
-  passport: {
-    expiration: {
-      min: {
-        title: 'There is a problem with the date',
-        message: 'The date should be after the passport was issued.'
       }
     }
   },
