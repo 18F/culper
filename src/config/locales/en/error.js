@@ -51,9 +51,9 @@ export const error = {
       length: {
         title: 'There is a problem with the middle name',
         message: [
-          'You are only allowed 100 characters.',
+          'If the middle name is an initial then check the "Initial only" checkbox.',
           '*and/or*',
-          'If the middle name is an initial then check the "Initial only" checkbox.'
+          'You are only allowed 100 characters.'
         ],
         note: ''
       },
@@ -740,6 +740,12 @@ export const error = {
         'For passport cards the number begins with a "C" and followed by 8 digits.'
       ],
       note: ''
+    },
+    expiration: {
+      min: {
+        title: 'There is a problem with the date',
+        message: 'The date should be after the passport was issued.'
+      }
     }
   },
   currency: {
@@ -967,14 +973,6 @@ export const error = {
       min: {
         title: 'There is a problem with the date',
         message: 'The date should be after the first contact.'
-      }
-    }
-  },
-  passport: {
-    expiration: {
-      min: {
-        title: 'There is a problem with the date',
-        message: 'The date should be after the passport was issued.'
       }
     }
   },
