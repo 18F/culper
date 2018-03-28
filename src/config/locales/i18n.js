@@ -80,5 +80,17 @@ class I18n {
 export const i18n = new I18n()
 
 export const markdown = (text, key) => {
-  return (<ReactMarkdown source={text} key={key} />)
+  return (<ReactMarkdown source={text} key={key} renderers={customRenderers} />)
+}
+
+const customRenderers = {
+  // We want our markdown links to open in a new tab or window since they
+  // are always external links.
+  link: (props, key) => {
+    return React.createElement('a', {
+      target: '_blank',
+      title: props.title || undefined,
+      href: props.href
+    }, props.children)
+  }
 }
