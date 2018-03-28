@@ -22,8 +22,8 @@ const (
 )
 
 var (
-	JwtSecret        = Secret(512)
-	JwtSigningMethod = jwt.SigningMethodHS512
+	JwtSecret        = Secret(256)
+	JwtSigningMethod = jwt.SigningMethodHS256
 	AuthBearerRegexp = regexp.MustCompile("Bearer\\s(.*)")
 	Expiration       = Timeout()
 )
