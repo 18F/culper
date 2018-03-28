@@ -51,9 +51,9 @@ export const error = {
       length: {
         title: 'There is a problem with the middle name',
         message: [
-          'You are only allowed 100 characters.',
+          'If the middle name is an initial then check the "Initial only" checkbox.',
           '*and/or*',
-          'If the middle name is an initial then check the "Initial only" checkbox.'
+          'You are only allowed 100 characters.'
         ],
         note: ''
       },
