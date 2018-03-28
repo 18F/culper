@@ -381,4 +381,21 @@ describe('The accordion component', () => {
     expect(items.length).toEqual(1)
     expect(items.every(x => { return x.open })).toBe(true)
   })
+
+  it('aria summary is present when no description is visually rendered', () => {
+    let items = [
+      { uuid: '1' },
+    ]
+
+    const expected = {
+      items: items,
+      summary: (item, index) => {
+        return (<div className="table">Item {index}</div>)
+      },
+      onUpdate: (x) => { items = x.items }
+    }
+    const component = mount(<Accordion {...expected}><div className="hello">hello</div></Accordion>)
+    expect(items.length).toEqual(1)
+    expect(component.find('.aria-description').length).toBe(1)
+  })
 })

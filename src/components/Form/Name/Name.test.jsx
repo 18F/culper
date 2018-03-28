@@ -219,4 +219,42 @@ describe('The Name component', () => {
       expect(component.find('.usa-input-error-label').length === 0).toEqual(test.expected)
     })
   })
+
+  it('handles no middle name requirements', () => {
+    const expected = [
+      {
+        name: 'applicant-middle',
+        first: 'John',
+        middle: '',
+        noMiddleName: false,
+        last: 'Doe',
+        required: true,
+        errors: 1
+      },
+      {
+        name: 'applicant-middle',
+        first: 'John',
+        middle: '',
+        noMiddleName: true,
+        last: 'Doe',
+        required: true,
+        errors: 0
+      },
+      {
+        name: 'applicant-middle',
+        first: 'John',
+        middle: 'Smith',
+        last: 'Doe',
+        required: true,
+        errors: 0
+      }
+    ]
+
+    expected.forEach((ex) => {
+      const component = mount(<Name {...ex} />)
+      component.find({ name: 'middle' }).simulate('change')
+      console.log(component.html())
+      expect(component.find('.usa-input-error-label').length).toEqual(ex.errors)
+    })
+  })
 })

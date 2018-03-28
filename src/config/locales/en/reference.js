@@ -29,7 +29,7 @@ export const reference = {
       explanation: 'Please provide an explanation',
       comments: 'Add a comment to this question'
     },
-    email: 'Provide e-mail address for this person',
+    email: 'Provide email address for this person',
     idk: 'Not applicable',
     address: 'The address of your contact during this time period'
   },
