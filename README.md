@@ -50,6 +50,7 @@ truetandem/e-QIP-prototype#issue_number Commit description
 [Keywords][13] can be used to change the status of the associated issue
 
 ## Sprint Backlogs
+
 To view the items completed during each development sprint and to view the burndown charts for each respective sprint, please visit the [Sprint Backlogs][26] page.
 
 ## Getting to know the code
@@ -84,7 +85,7 @@ For more information on the various settings, examples, and values please refer 
 
 ## Running the application
 
-To skip [setup](#setup), [building](#building-the-application), and [testing](#executing-tests-and-coverage-reports) you can run:
+To avoid manually running separate commands for [setup](#setup), [building](#building-the-application), and [testing](#executing-tests-and-coverage-reports) you can instead execute:
 
 ``` shell
 make
