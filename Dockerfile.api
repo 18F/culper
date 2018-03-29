@@ -1,4 +1,4 @@
-FROM golang:1.9.4
+FROM golang:1.10.0
 RUN export DEBIAN_FRONTEND=noninteractive; apt-get -q -y update; apt-get -q -y install postgresql xmlsec1;
 RUN go get github.com/derekparker/delve/cmd/dlv;
 RUN go get golang.org/x/lint/golint;
