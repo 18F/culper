@@ -175,6 +175,11 @@ func configureSAML(r *http.Request) saml.ServiceProviderSettings {
 		SPSignRequest:               os.Getenv("SAML_SIGN_REQUEST") != "",
 		AssertionConsumerServiceURL: os.Getenv("SAML_CONSUMER_SERVICE_URL"),
 	}
+
+	if sp.AssertionConsumerServiceURL == "" {
+		sp.AssertionConsumerServiceURL = os.Getenv("API_BASE_URL") + "/auth/saml/callback"
+	}
+
 	sp.Init()
 	return sp
 }

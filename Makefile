@@ -8,7 +8,7 @@ version := $(shell git describe --tags $(release))
 hash    := $(shell git rev-parse --short HEAD)
 tag     := "$(version)-$(hash)"
 
-all: clean setup test build
+all: clean setup lint test build
 
 #
 # Cleaning
@@ -21,19 +21,33 @@ clean-front:
 	rm -rf ./jest/*
 clean-go: clean-back
 clean-back:
+	rm -rf ./api/bin/xmlsec1
 	rm -rf ./api/api
 
 #
 # Setup
 #
-setup: setup-certificates setup-docker
+setup: setup-certificates setup-docker setup-xmlsec
 setup-certificates:
 	./bin/gen-test-certificates.sh
 setup-docker: setup-docker-react setup-docker-go
 setup-docker-react:
 	docker-compose build frontend
+	docker-compose run --rm frontend yarn install
 setup-docker-go:
 	docker-compose build web db api
+	docker-compose run --rm api ./bin/install
+setup-xmlsec:
+	docker-compose run --rm api ./bin/compile-xmlsec
+
+#
+# Linters
+#
+lint: lint-react lint-go
+lint-react:
+	docker-compose run --rm frontend yarn lint
+lint-go:
+	docker-compose run --rm api ./bin/lint
 
 #
 # Testing
@@ -41,10 +55,17 @@ setup-docker-go:
 test: test-react test-go
 test-react: test-front
 test-front:
+	docker-compose run --rm frontend yarn lint
 	docker-compose run --rm frontend ./bin/test
 test-go: test-back
 test-back:
 	docker-compose run --rm api make test
+
+#
+# Integration testing
+#
+specs:
+	docker-compose -f nightwatch-compose.yml up
 
 #
 # Coverage

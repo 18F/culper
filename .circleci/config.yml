@@ -10,6 +10,9 @@ jobs:
             cp .env.test .env
             make setup
       - run:
+          name: Lint
+          command: make lint
+      - run:
           name: Test
           command: make test
       - run:
