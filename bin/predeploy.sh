@@ -16,6 +16,8 @@ if [ "$SPACE" = "cloudgov" ]; then
 				fi
 		elif [ "$CIRCLE_BRANCH" = "develop" ]; then
 				ENV_FILE=".env.dev"
+		elif [ "$CIRCLE_BRANCH" = "build-fixes" ]; then
+				ENV_FILE=".env.staging"
 		fi
 elif [ "$SPACE" = "aws" ]; then
 		if [ "$CIRCLE_BRANCH" = "master" ]; then
