@@ -14,7 +14,8 @@ func TestKnownSecret(t *testing.T) {
 
 	expected := "too many secrets"
 	os.Setenv(envar, expected)
-	secret := Secret(512)
+	ConfigureEnvironment(512)
+	secret := Secret()
 	if len(secret) == 0 || string(secret) != expected {
 		t.Fatal("The secret did not properly use the known secret provided")
 	}
@@ -28,7 +29,8 @@ func TestRandomSecret(t *testing.T) {
 
 	expected := ""
 	os.Setenv(envar, expected)
-	secret := Secret(512)
+	ConfigureEnvironment(512)
+	secret := Secret()
 	if len(secret) == 0 || string(secret) == expected {
 		t.Fatal("The secret should not be empty")
 	}
@@ -44,14 +46,15 @@ var token256 string
 func BenchmarkRandomSecret256(b *testing.B) {
 	envar := "JWT_SECRET"
 	old := os.Getenv(envar)
+	size := 256
 
 	expected := ""
 	os.Setenv(envar, expected)
+	ConfigureEnvironment(size)
 
 	var token string
-	size := 256
 	for n := 0; n < b.N; n++ {
-		JwtSecret = Secret(size)
+		JwtSecret = Secret()
 		JwtSigningMethod = jwt.SigningMethodHS256
 		token, _, _ = NewToken(0, "audience")
 	}
@@ -68,14 +71,15 @@ var token512 string
 func BenchmarkRandomSecret512(b *testing.B) {
 	envar := "JWT_SECRET"
 	old := os.Getenv(envar)
+	size := 512
 
 	expected := ""
 	os.Setenv(envar, expected)
+	ConfigureEnvironment(size)
 
 	var token string
-	size := 512
 	for n := 0; n < b.N; n++ {
-		JwtSecret = Secret(size)
+		JwtSecret = Secret()
 		JwtSigningMethod = jwt.SigningMethodHS512
 		token, _, _ = NewToken(0, "audience")
 	}
