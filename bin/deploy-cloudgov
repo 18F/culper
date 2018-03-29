@@ -30,12 +30,6 @@ elif [ "$CIRCLE_BRANCH" = "develop" ]; then
 		FRONTEND_MANIFEST="manifest-frontend-dev.yml"
 		CF_USERNAME=$CF_USERNAME_DEV
 		CF_PASSWORD=$CF_PASSWORD_DEV
-elif [ "$CIRCLE_BRANCH" = "build-fixes" ]; then
-		SPACE="staging"
-		API_NAME="eqip-prototype-api-staging"
-		API_MANIFEST="manifest-api-staging.yml"
-		FRONTEND_NAME="eqip-prototype-staging"
-		FRONTEND_MANIFEST="manifest-frontend-staging.yml"
 else
 		echo "No deployment target"
 		exit

@@ -81,7 +81,6 @@ workflows:
               only:
                 - master
                 - develop
-                - build-fixes
       - aws:
           requires:
             - test
