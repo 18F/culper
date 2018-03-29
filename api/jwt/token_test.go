@@ -93,7 +93,7 @@ func TestTimeout(t *testing.T) {
 	timeout := Timeout()
 	fifteen := time.Duration(15) * time.Minute
 	if timeout != fifteen {
-		t.Fatal("Default session timeout %v is not %v", timeout, fifteen)
+		t.Fatalf("Default session timeout %v is not %v", timeout, fifteen)
 	}
 
 	// Test setting a custom time in minutes
