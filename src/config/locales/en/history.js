@@ -1,6 +1,6 @@
 export const history = {
   intro: {
-    title: 'Section 3: Your history',
+    title: 'Section 2: Your history',
     body: 'You will be asked questions about your history and be asked to provide details if necessary. This section includes where you have lived, where you have worked, and where you went to school.'
   },
   tour: {
@@ -44,7 +44,7 @@ export const history = {
   },
   residence: {
     title: 'Where you have lived',
-    info: 'List the places where your have lived beginning with your present residence and working back 10 years.',
+    info: 'List the places where you have lived beginning with your present residence and working back 10 years.',
     info2: 'Residences for the entire period must be accounted for without breaks.',
     info3a: ' - **Indicate the actual physical location of your residence**, not a Post Office box or a permanent residence when you were not physically located there.',
     info3b: ' - **If you split your time between one or more residences during a time period**, you must list all residences.',

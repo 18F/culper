@@ -14,21 +14,22 @@ export const CustomSummary = (validation, summary, more, item, index, initial, c
 
   const target = item.Item || {}
   const errors = item.Item && !validation(target)
+  const text = openText() || ''
 
   return (
     <div className="summary-container">
       <div className="summary">
         <span className={`left ${openState(item, initial)}`}>
-          <a href="javascript:;;;" onClick={toggle()}>
-            <span className="button-with-icon">
+          <a href="javascript:;;;" onClick={toggle()} title={`Click to ${text.toLowerCase()} this item`}>
+            <span className="button-with-icon" aria-hidden="true">
               <i className={chevron(item)} aria-hidden="true"></i>
-              <span className="toggle">{openText()}</span>
+              <span className="toggle">{text}</span>
             </span>
             {summary(target, errors)}
           </a>
           {more(target, errors)}
         </span>
-        <a href="javascript:;;;" className="right remove" onClick={remove()}>
+        <a href="javascript:;;;" className="right remove" onClick={remove()} title="Remove this item">
           <span className="button-with-icon">
             <i className="fa fa-trash" aria-hidden="true"></i>
             <span>{i18n.t('collection.remove')}</span>

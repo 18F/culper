@@ -13,45 +13,30 @@ class Api {
    * Helper method to extract query parameters from the url
    */
   getQueryValue (key) {
-    let query = window.location.search.substring(1)
-    let vars = query.split('&')
-    let values = []
-
-    for (let i = 0; i < vars.length; i++) {
-      let pair = vars[i].split('=')
-      if (pair[0] === key) {
-        values.push(pair[1])
-      }
-    }
-
-    if (values.length === 0) {
-      return null
-    } else if (values.length === 1) {
-      return values[0]
-    }
-
-    return values
+    return this.getSplitValue(key, window.location.search.substring(1), '&', '=')
   }
 
   getCookieValue (key) {
-    let cookies = document.cookie
-    let vars = cookies.split(';')
-    let values = []
+    return this.getSplitValue(key, document.cookie, ';', '=')
+  }
+
+  getSplitValue (key, raw, delim1, delim2) {
+    const vars = raw.split(delim1)
 
     for (let i = 0; i < vars.length; i++) {
-      let pair = vars[i].split('=')
-      if (pair[0].trim() === key) {
-        values.push(pair[1].trim())
+      const pair = vars[i].split(delim2)
+      if (pair.length != 2) {
+        continue
+      }
+
+      const pairKey = pair[0].trim()
+      const pairValue = pair[1].trim()
+      if (pairKey === key && pairValue) {
+        return pairValue
       }
     }
 
-    if (values.length === 0) {
-      return null
-    } else if (values.length === 1) {
-      return values[0]
-    }
-
-    return values
+    return null
   }
 
   getToken () {

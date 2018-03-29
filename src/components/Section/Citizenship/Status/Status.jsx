@@ -781,6 +781,7 @@ export default class Status extends SubsectionElement {
               <DateControl name="AlienRegistrationExpiration"
                            className="alien-registration-expiration"
                            {...this.props.AlienRegistrationExpiration}
+                           noMaxDate={true}
                            onUpdate={this.updateAlienRegistrationExpiration}
                            onError={this.handleError}
                            required={this.props.required}
@@ -889,6 +890,7 @@ export default class Status extends SubsectionElement {
               <DateControl name="DocumentExpiration"
                            className="document-expiration"
                            {...this.props.DocumentExpiration}
+                           noMaxDate={true}
                            onUpdate={this.updateDocumentExpiration}
                            onError={this.handleError}
                            required={this.props.required}

@@ -770,7 +770,7 @@ export const foreign = {
       telephone: 'Telephone',
       electronic: [
         'Electronic',
-        '(such as e-mail, texting, chat rooms, etc)'
+        '(such as email, texting, chat rooms, etc)'
       ],
       written: 'Written correspondence',
       daily: 'Daily',

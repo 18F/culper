@@ -1,6 +1,8 @@
 package jwt
 
 import (
+	"crypto/rand"
+	"encoding/base64"
 	"errors"
 	"fmt"
 	"net/http"
@@ -20,7 +22,8 @@ const (
 )
 
 var (
-	JwtSecret        = []byte(os.Getenv("JWT_SECRET"))
+	JwtSecret        = Secret(256)
+	JwtSigningMethod = jwt.SigningMethodHS256
 	AuthBearerRegexp = regexp.MustCompile("Bearer\\s(.*)")
 	Expiration       = Timeout()
 )
@@ -77,7 +80,7 @@ func CurrentAudience(r *http.Request) string {
 // NewToken generates a new Jwt signed token using a users account information
 func NewToken(id int, audience string) (string, time.Time, error) {
 	expiresAt := time.Now().Add(Expiration)
-	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.StandardClaims{
+	token := jwt.NewWithClaims(JwtSigningMethod, jwt.StandardClaims{
 		Id:        strconv.FormatInt(int64(id), 10),
 		Issuer:    Issuer,
 		Audience:  audience,
@@ -113,9 +116,30 @@ func KeyFunc(token *jwt.Token) (interface{}, error) {
 // Timeout returns the duration in time for how long a session is considered valid.
 // Per policy this defaults to 15 minutes.
 func Timeout() time.Duration {
-	var timeout int
-	if i, err := strconv.Atoi(os.Getenv("SESSION_TIMEOUT")); err != nil || i < 1 {
+	timeout, err := strconv.Atoi(os.Getenv("SESSION_TIMEOUT"))
+	if err != nil || timeout < 1 {
 		timeout = 15
 	}
 	return time.Duration(timeout) * time.Minute
+}
+
+// Secret returns the secret to use with JWT tokens.
+func Secret(size int) []byte {
+	secret := os.Getenv("JWT_SECRET")
+
+	if secret == "" {
+		// If no secret is present then generate one at random
+		c := size / 8
+		b := make([]byte, c)
+		_, err := rand.Read(b)
+		if err != nil {
+			// Fail securely
+			panic("Could not randomize JWT secret")
+		}
+
+		secret = base64.StdEncoding.EncodeToString(b)
+		os.Setenv("JWT_SECRET", secret)
+	}
+
+	return []byte(secret)
 }
