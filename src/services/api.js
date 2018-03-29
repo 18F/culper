@@ -13,33 +13,18 @@ class Api {
    * Helper method to extract query parameters from the url
    */
   getQueryValue (key) {
-    const query = window.location.search.substring(1)
-    const vars = query.split('&')
-    const values = []
-
-    for (let i = 0; i < vars.length; i++) {
-      let pair = vars[i].split('=')
-      if (pair[0] === key) {
-        values.push(pair[1])
-      }
-    }
-
-    if (values.length === 0) {
-      return null
-    } else if (values.length === 1) {
-      return values[0]
-    }
-
-    return values
+    return this.getSplitValue(key, window.location.search.substring(1), '&', '=')
   }
 
   getCookieValue (key) {
-    const cookies = document.cookie
-    const vars = cookies.split(';')
-    const values = []
+    return this.getSplitValue(key, document.cookie, ';', '=')
+  }
+
+  getSplitValue (key, raw, delim1, delim2) {
+    const vars = raw.split(delim1)
 
     for (let i = 0; i < vars.length; i++) {
-      const pair = vars[i].split('=')
+      const pair = vars[i].split(delim2)
       if (pair.length != 2) {
         continue
       }
@@ -47,15 +32,11 @@ class Api {
       const pairKey = pair[0].trim()
       const pairValue = pair[1].trim()
       if (pairKey === key && pairValue) {
-        values.push(pairValue)
+        return pairValue
       }
     }
 
-    if (values.length === 0) {
-      return null
-    }
-
-    return values[0]
+    return null
   }
 
   getToken () {
