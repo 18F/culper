@@ -206,6 +206,8 @@ export default class IndirectInterest extends ValidationElement {
           <Text name="Firstname"
                 label={i18n.t(`foreign.activities.indirect.interest.label.firstname`)}
                 {...this.props.Firstname}
+                pattern="^[a-zA-Z\-\.' ]*$"
+                prefix="name.first"
                 onUpdate={this.updateFirstname}
                 onError={this.props.onError}
                 required={this.props.required}
@@ -213,6 +215,8 @@ export default class IndirectInterest extends ValidationElement {
           <Text name="Lastname"
                 label={i18n.t(`foreign.activities.indirect.interest.label.lastname`)}
                 {...this.props.Lastname}
+                pattern="^[a-zA-Z\-\.' ]*$"
+                prefix="name.last"
                 onUpdate={this.updateLastname}
                 onError={this.props.onError}
                 required={this.props.required}
