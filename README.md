@@ -61,7 +61,6 @@ To view the items completed during each development sprint and to view the burnd
  - [docker][21]
  - [docker-compose][20]
  - [make](https://www.gnu.org/software/make/)
- - [openssl](https://openssl.org)
 
 ### Clone all things
 

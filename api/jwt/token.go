@@ -22,7 +22,7 @@ const (
 )
 
 var (
-	JwtSecret        = Secret(256)
+	JwtSecret        = Secret()
 	JwtSigningMethod = jwt.SigningMethodHS256
 	AuthBearerRegexp = regexp.MustCompile("Bearer\\s(.*)")
 	Expiration       = Timeout()
@@ -124,22 +124,32 @@ func Timeout() time.Duration {
 }
 
 // Secret returns the secret to use with JWT tokens.
-func Secret(size int) []byte {
-	secret := os.Getenv("JWT_SECRET")
+func Secret() []byte {
+	return []byte(os.Getenv("JWT_SECRET"))
+}
 
-	if secret == "" {
-		// If no secret is present then generate one at random
-		c := size / 8
-		b := make([]byte, c)
-		_, err := rand.Read(b)
-		if err != nil {
-			// Fail securely
-			panic("Could not randomize JWT secret")
-		}
-
-		secret = base64.StdEncoding.EncodeToString(b)
-		os.Setenv("JWT_SECRET", secret)
+// ConfigureEnvironment ensure the secret is set prior to use.
+func ConfigureEnvironment(size int) error {
+	if size == 256 {
+		JwtSigningMethod = jwt.SigningMethodHS256
+	} else if size == 512 {
+		JwtSigningMethod = jwt.SigningMethodHS512
 	}
 
-	return []byte(secret)
+	secret := os.Getenv("JWT_SECRET")
+	if secret != "" {
+		return nil
+	}
+
+	// If no secret is present then generate one at random
+	c := size / 8
+	b := make([]byte, c)
+	_, err := rand.Read(b)
+	if err != nil {
+		// Fail securely
+		panic("Could not randomize JWT secret")
+	}
+
+	secret = base64.StdEncoding.EncodeToString(b)
+	return os.Setenv("JWT_SECRET", secret)
 }

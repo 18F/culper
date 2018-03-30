@@ -1,2 +1,0 @@
-#!/bin/sh
-../bin/compile-xmlsec1.sh
