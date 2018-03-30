@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"strings"
 
 	"github.com/18F/e-QIP-prototype/api/cf"
 	"github.com/18F/e-QIP-prototype/api/db"
@@ -101,7 +102,7 @@ func SamlCallbackHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	username := response.Assertion.Subject.NameID.Value
+	username := cleanName(response.Assertion.Subject.NameID.Value)
 	if username == "" {
 		log.WithError(err).Warn(logmsg.SamlIdentifierMissing)
 		redirectAccessDenied(w, r)
@@ -188,4 +189,32 @@ func createAuthenticationRequest(settings saml.ServiceProviderSettings) (*saml.A
 		encodedXml, err = request.EncodedString()
 	}
 	return request, encodedXml, err
+}
+
+// cleanName applies some basic sanitization of the NameID for storage.
+func cleanName(nameID string) string {
+	// Trim any leading or trailing whitespace characters.
+	nameID = strings.TrimSpace(nameID)
+
+	// Check for any special whitespace characters within the string and
+	// remove them.
+	for _, c := range []string{"\n", "\t", "\r"} {
+		nameID = strings.Replace(nameID, c, "", -1)
+	}
+
+	// The database only allows the username to be 200 characters.
+	// Passing an empty substring to `strings.Count()` returns the number of
+	// runes + 1.
+	if strings.Count(nameID, "")-1 > 200 {
+		runes := []rune{}
+		for i, r := range nameID {
+			if i > 199 {
+				break
+			}
+			runes = append(runes, r)
+		}
+		nameID = string(runes)
+	}
+
+	return nameID
 }

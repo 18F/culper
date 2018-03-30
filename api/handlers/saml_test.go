@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"strings"
 	"testing"
 
 	saml "github.com/RobotsAndPencils/go-saml"
@@ -45,5 +46,23 @@ func TestSamlResponse(t *testing.T) {
 	err = response.Validate(&settings)
 	if err != nil {
 		t.Fatal(err)
+	}
+}
+
+func TestCleanName(t *testing.T) {
+	var tests = []struct {
+		nameID   string
+		expected string
+	}{
+		{"test01", "test01"},
+		{" \t\n test01     \n\n\r\t", "test01"},
+		{"t\te\r\nst\n01", "test01"},
+		{"123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890", "12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890"},
+	}
+
+	for _, x := range tests {
+		if !strings.EqualFold(cleanName(x.nameID), x.expected) {
+			t.Fatal("Expected name to be '%s' but was '%s'.", x.expected, x.nameID)
+		}
 	}
 }
