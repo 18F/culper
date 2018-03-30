@@ -560,9 +560,11 @@ export default class Location extends ValidationElement {
           />
       )
     case Location.ADDRESS:
+    case Location.US_ADDRESS:
       return (
         <Address
           {...this.props}
+          disableToggle={this.props.layout === Location.US_ADDRESS}
           onBlur={this.handleBlur}
           onUpdate={this.updateAddress}
           onError={this.handleError}
@@ -577,8 +579,6 @@ export default class Location extends ValidationElement {
       return this.renderFields(['city', 'country'])
     case Location.CITY_STATE_COUNTRY:
       return this.renderFields(['city', 'state', 'country'])
-    case Location.US_ADDRESS:
-      return this.renderFields(['street', 'street2', 'city', 'stateZipcode'])
     case Location.STREET_CITY:
       return this.renderFields(['street', 'city'])
     case Location.COUNTRY:

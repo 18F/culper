@@ -31,6 +31,10 @@ jobs:
           name: Prepare for target environment
           command: ./bin/predeploy.sh cloudgov
       - run:
+          name: Setup
+          command: |
+            make setup
+      - run:
           name: Build
           command: make build
       - deploy:
@@ -43,6 +47,10 @@ jobs:
       - run:
           name: Prepare for target environment
           command: ./bin/predeploy.sh aws
+      - run:
+          name: Setup
+          command: |
+            make setup
       - run:
           name: Build
           command: make build
