@@ -1,5 +1,5 @@
 <ForeignFinancialBenefits>
-  <Answer>{{branch .props.List.props.branch}}</Answer>
+  <Answer>{{branch .props.HasBenefits}}</Answer>
   <AnswerComment></AnswerComment>
   {{range $index, $item := .props.List.props.items}}
   {{with $Item := $item.Item}}
@@ -89,6 +89,8 @@
   </ForeignFinancialBenefit>
   {{end}}
   {{end}}
+  {{if branch .props.HasBenefits | eq "Yes"}}
   <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
   <SummaryComment></SummaryComment>
+  {{end}}
 </ForeignFinancialBenefits>

@@ -52,11 +52,13 @@ export class Introduction extends React.Component {
             </div>
             <Show when={!this.props.forceOpen}>
               <Branch name="acceptance_of_terms"
+                      {...this.props.settings.acceptedTerms}
                       label={i18n.t('introduction.acceptance.title')}
                       labelSize="h3"
+                      yesAriaLabel={i18n.t('introduction.acceptance.aria.yes')}
+                      noAriaLabel={i18n.t('introduction.acceptance.aria.no')}
                       optional={true}
                       className="introduction-acceptance"
-                      {...this.props.settings.acceptedTerms}
                       onUpdate={this.updateBranch}>
                 {i18n.m('introduction.acceptance.para')}
               </Branch>

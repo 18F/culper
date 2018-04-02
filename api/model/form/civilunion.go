@@ -24,6 +24,7 @@ type CivilUnion struct {
 	PayloadSSN                           Payload `json:"SSN" sql:"-"`
 	PayloadSeparated                     Payload `json:"Separated" sql:"-"`
 	PayloadTelephone                     Payload `json:"Telephone" sql:"-"`
+	PayloadUseCurrentAddress             Payload `json:"UseCurrentAddress" sql:"-"`
 
 	// Validator specific fields
 	Address                       *Location            `json:"-"`
@@ -42,6 +43,7 @@ type CivilUnion struct {
 	SSN                           *SSN                 `json:"-" sql:"-"`
 	Separated                     *Branch              `json:"-"`
 	Telephone                     *Telephone           `json:"-"`
+	UseCurrentAddress             *NotApplicable       `json:"-"`
 
 	// Persister specific fields
 	ID                              int `json:"-" sql:",pk"`
@@ -62,6 +64,7 @@ type CivilUnion struct {
 	SSNID                           int `json:"-"`
 	SeparatedID                     int `json:"-"`
 	TelephoneID                     int `json:"-"`
+	UseCurrentAddressID             int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -167,6 +170,12 @@ func (entity *CivilUnion) Unmarshal(raw []byte) error {
 	}
 	entity.Telephone = telephone.(*Telephone)
 
+	useCurrentAddress, err := entity.PayloadUseCurrentAddress.Entity()
+	if err != nil {
+		return err
+	}
+	entity.UseCurrentAddress = useCurrentAddress.(*NotApplicable)
+
 	return err
 }
 
@@ -219,6 +228,9 @@ func (entity *CivilUnion) Marshal() Payload {
 	}
 	if entity.Telephone != nil {
 		entity.PayloadTelephone = entity.Telephone.Marshal()
+	}
+	if entity.UseCurrentAddress != nil {
+		entity.PayloadUseCurrentAddress = entity.UseCurrentAddress.Marshal()
 	}
 	return MarshalPayloadEntity("civilunion", entity)
 }
@@ -302,6 +314,11 @@ func (entity *CivilUnion) Valid() (bool, error) {
 	}
 	if entity.Telephone != nil {
 		if ok, err := entity.Telephone.Valid(); !ok {
+			return false, err
+		}
+	}
+	if entity.UseCurrentAddress != nil {
+		if ok, err := entity.UseCurrentAddress.Valid(); !ok {
 			return false, err
 		}
 	}
@@ -398,6 +415,11 @@ func (entity *CivilUnion) Save(context *db.DatabaseContext, account int) (int, e
 		}
 		entity.Telephone.ID = previous.TelephoneID
 		entity.TelephoneID = previous.TelephoneID
+		if entity.UseCurrentAddress == nil {
+			entity.UseCurrentAddress = &NotApplicable{}
+		}
+		entity.UseCurrentAddress.ID = previous.UseCurrentAddressID
+		entity.UseCurrentAddressID = previous.UseCurrentAddressID
 	})
 
 	addressID, err := entity.Address.Save(context, account)
@@ -496,6 +518,12 @@ func (entity *CivilUnion) Save(context *db.DatabaseContext, account int) (int, e
 	}
 	entity.TelephoneID = telephoneID
 
+	useCurrentAddressID, err := entity.UseCurrentAddress.Save(context, account)
+	if err != nil {
+		return useCurrentAddressID, err
+	}
+	entity.UseCurrentAddressID = useCurrentAddressID
+
 	if err := context.Save(entity); err != nil {
 		return entity.ID, err
 	}
@@ -593,6 +621,11 @@ func (entity *CivilUnion) Delete(context *db.DatabaseContext, account int) (int,
 		}
 		entity.Telephone.ID = previous.TelephoneID
 		entity.TelephoneID = previous.TelephoneID
+		if entity.UseCurrentAddress == nil {
+			entity.UseCurrentAddress = &NotApplicable{}
+		}
+		entity.UseCurrentAddress.ID = previous.UseCurrentAddressID
+		entity.UseCurrentAddressID = previous.UseCurrentAddressID
 	})
 
 	if entity.ID != 0 {
@@ -647,6 +680,9 @@ func (entity *CivilUnion) Delete(context *db.DatabaseContext, account int) (int,
 		return entity.ID, err
 	}
 	if _, err := entity.Telephone.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+	if _, err := entity.UseCurrentAddress.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
@@ -743,6 +779,11 @@ func (entity *CivilUnion) Get(context *db.DatabaseContext, account int) (int, er
 		}
 		entity.Telephone.ID = previous.TelephoneID
 		entity.TelephoneID = previous.TelephoneID
+		if entity.UseCurrentAddress == nil {
+			entity.UseCurrentAddress = &NotApplicable{}
+		}
+		entity.UseCurrentAddress.ID = previous.UseCurrentAddressID
+		entity.UseCurrentAddressID = previous.UseCurrentAddressID
 	})
 
 	if entity.ID != 0 {
@@ -828,6 +869,11 @@ func (entity *CivilUnion) Get(context *db.DatabaseContext, account int) (int, er
 	}
 	if entity.TelephoneID != 0 {
 		if _, err := entity.Telephone.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+	if entity.UseCurrentAddressID != 0 {
+		if _, err := entity.UseCurrentAddress.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}

@@ -75,7 +75,7 @@ export default class History extends SubsectionElement {
       index: index,
       left: service,
       right: dates,
-      placeholder: i18n.m('military.history.collection.summary.unknown')
+      placeholder: i18n.t('military.history.collection.summary.unknown')
     })
   }
 

@@ -45,7 +45,8 @@ export const sectionData = (section, subsection, application = {}) => {
       { path: 'identification/name', data: wrap(application.Identification).ApplicantName },
       { path: 'identification/othernames', data: wrap(application.Identification).OtherNames },
       { path: 'identification/physical', data: wrap(application.Identification).Physical },
-      { path: 'identification/ssn', data: wrap(application.Identification).ApplicantSSN }
+      { path: 'identification/ssn', data: wrap(application.Identification).ApplicantSSN },
+      { path: 'identification/comments', data: wrap(application.Identification).Comments }
     ]
 
   case 'financial/bankruptcy':
@@ -85,7 +86,8 @@ export const sectionData = (section, subsection, application = {}) => {
       { path: 'financial/card', data: wrap(application.Financial).Card },
       { path: 'financial/credit', data: wrap(application.Financial).Credit },
       { path: 'financial/delinquent', data: wrap(application.Financial).Delinquent },
-      { path: 'financial/nonpayment', data: wrap(application.Financial).Nonpayment }
+      { path: 'financial/nonpayment', data: wrap(application.Financial).Nonpayment },
+      { path: 'financial/comments', data: wrap(application.Financial).Comments }
     ]
 
   case 'history/education':
@@ -110,7 +112,8 @@ export const sectionData = (section, subsection, application = {}) => {
       { path: 'history/education', data: wrap(application.History).Education },
       { path: 'history/employment', data: wrap(application.History).Employment },
       { path: 'history/federal', data: wrap(application.History).Federal },
-      { path: 'history/residence', data: wrap(application.History).Residence }
+      { path: 'history/residence', data: wrap(application.History).Residence },
+      { path: 'history/comments', data: wrap(application.History).Comments }
     ]
 
   case 'relationships/status/marital':
@@ -135,7 +138,8 @@ export const sectionData = (section, subsection, application = {}) => {
       { path: 'relationships/status/marital', data: wrap(application.Relationships).Marital },
       { path: 'relationships/status/cohabitant', data: wrap(application.Relationships).Cohabitants },
       { path: 'relationships/people', data: wrap(application.Relationships).People },
-      { path: 'relationships/relatives', data: wrap(application.Relationships).Relatives }
+      { path: 'relationships/relatives', data: wrap(application.Relationships).Relatives },
+      { path: 'relationships/comments', data: wrap(application.Relationships).Comments }
     ]
 
   case 'citizenship/multiple':
@@ -155,7 +159,8 @@ export const sectionData = (section, subsection, application = {}) => {
     return [
       { path: 'citizenship/multiple', data: wrap(application.Citizenship).Multiple },
       { path: 'citizenship/passports', data: wrap(application.Citizenship).Passports },
-      { path: 'citizenship/status', data: wrap(application.Citizenship).Status }
+      { path: 'citizenship/status', data: wrap(application.Citizenship).Status },
+      { path: 'citizenship/comments', data: wrap(application.Citizenship).Comments }
     ]
 
   case 'military/selective':
@@ -180,7 +185,8 @@ export const sectionData = (section, subsection, application = {}) => {
       { path: 'military/selective', data: wrap(application.Military).Selective },
       { path: 'military/history', data: wrap(application.Military).History },
       { path: 'military/disciplinary', data: wrap(application.Military).Disciplinary },
-      { path: 'military/foreign', data: wrap(application.Military).Foreign }
+      { path: 'military/foreign', data: wrap(application.Military).Foreign },
+      { path: 'military/comments', data: wrap(application.Military).Comments }
     ]
 
   case 'foreign/activities/benefits':
@@ -270,7 +276,8 @@ export const sectionData = (section, subsection, application = {}) => {
       { path: 'foreign/business/voting', data: wrap(application.Foreign).Voting },
       { path: 'foreign/contacts', data: wrap(application.Foreign).Contacts },
       { path: 'foreign/passport', data: wrap(application.Foreign).Passport },
-      { path: 'foreign/travel', data: wrap(application.Foreign).Travel }
+      { path: 'foreign/travel', data: wrap(application.Foreign).Travel },
+      { path: 'foreign/comments', data: wrap(application.Foreign).Comments }
     ]
 
   case 'substance/alcohol/additional':
@@ -330,7 +337,8 @@ export const sectionData = (section, subsection, application = {}) => {
       { path: 'substance/drugs/publicsafety', data: wrap(application.Substance).DrugPublicSafetyUses },
       { path: 'substance/drugs/purchase', data: wrap(application.Substance).DrugInvolvements },
       { path: 'substance/drugs/usage', data: wrap(application.Substance).DrugUses },
-      { path: 'substance/drugs/voluntary', data: wrap(application.Substance).VoluntaryTreatments }
+      { path: 'substance/drugs/voluntary', data: wrap(application.Substance).VoluntaryTreatments },
+      { path: 'substance/comments', data: wrap(application.Substance).Comments }
     ]
 
   case 'legal/associations/activities-to-overthrow':
@@ -426,7 +434,8 @@ export const sectionData = (section, subsection, application = {}) => {
       { path: 'legal/police/offenses', data: wrap(application.Legal).PoliceOffenses },
       { path: 'legal/technology/manipulating', data: wrap(application.Legal).Manipulating },
       { path: 'legal/technology/unauthorized', data: wrap(application.Legal).Unauthorized },
-      { path: 'legal/technology/unlawful', data: wrap(application.Legal).Unlawful }
+      { path: 'legal/technology/unlawful', data: wrap(application.Legal).Unlawful },
+      { path: 'legal/comments', data: wrap(application.Legal).Comments }
     ]
 
   case 'psychological/competence':
@@ -456,7 +465,8 @@ export const sectionData = (section, subsection, application = {}) => {
       { path: 'psychological/conditions', data: wrap(application.Psychological).ExistingConditions },
       { path: 'psychological/consultations', data: wrap(application.Psychological).Consultations },
       { path: 'psychological/diagnoses', data: wrap(application.Psychological).Diagnoses },
-      { path: 'psychological/hospitalizations', data: wrap(application.Psychological).Hospitalizations }
+      { path: 'psychological/hospitalizations', data: wrap(application.Psychological).Hospitalizations },
+      { path: 'psychological/comments', data: wrap(application.Psychological).Comments }
     ]
 
   case 'submission/releases':

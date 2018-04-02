@@ -12,6 +12,8 @@
   </Activities>
   <Answer>{{branch .props.HasActivities}}</Answer>
   <Comment></Comment>
+  {{- if branch .props.HasActivities | eq "Yes"}}
   <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
   <SummaryComment></SummaryComment>
+  {{end}}
 </ActivitiesToOverthrowTheUSGovernment>

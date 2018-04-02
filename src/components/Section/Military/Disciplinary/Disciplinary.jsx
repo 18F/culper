@@ -52,7 +52,7 @@ export default class Disciplinary extends SubsectionElement {
       index: index,
       left: service,
       right: dates,
-      placeholder: i18n.m('military.disciplinary.collection.summary.unknown')
+      placeholder: i18n.t('military.disciplinary.collection.summary.unknown')
     })
   }
 

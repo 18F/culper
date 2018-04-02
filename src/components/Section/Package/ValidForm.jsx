@@ -7,8 +7,8 @@ import BasicAccordion from './BasicAccordion'
 import AdditionalComments from './AdditionalComments'
 import General from './General'
 import Medical from './Medical'
-import Credit from  './Credit'
-import Verify from  './Verify'
+import Credit from './Credit'
+import Verify from './Verify'
 
 const signaturePresent = (data) => {
   return new SignatureValidator(data).isValid()
@@ -164,14 +164,15 @@ export default class ValidForm extends ValidationElement {
   render () {
     const accordionItems = this.state.accordionItems
     const signed = formIsSigned({ Submission: { Releases: { ...this.props } } })
+    const btnText = this.props.submitting ? i18n.t('application.validForm.submitting') : i18n.t('application.validForm.submit')
     return (
       <div className="valid-form">
         { i18n.m(`application.submissionStatus.valid2`) }
         { i18n.m('releases.additionalComments.contents') }
         <BasicAccordion items={accordionItems} />
         <div className="text-right">
-          <button onClick={this.submit} className="submit usa-button" disabled={!signed}>
-            { i18n.t('application.validForm.submit') }
+          <button onClick={this.submit} className="submit usa-button" disabled={this.props.submitting || !signed}>
+            { btnText }
             <i className="fa fa-arrow-circle-right" aria-hidden="true"></i>
           </button>
         </div>
@@ -195,5 +196,6 @@ ValidForm.defaultProps = {
   Credit: {
     Signature: {}
   },
-  Locked: false
+  Locked: false,
+  submitting: false
 }

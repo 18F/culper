@@ -38,12 +38,23 @@ export function login (username, password, fn) {
 /**
  * Logs out a user
  */
-export function logout () {
+export function logout (error = '') {
   return function (dispatch, getState) {
     const clear = () => {
       api.setToken('')
       dispatch({ type: AuthConstants.LOGOUT })
-      dispatch(push('/login'))
+      dispatch(push(`/login${error ? '?error=' : ''}${error ? error : ''}`))
+    }
+    return api.logout().then(clear).catch(clear)
+  }
+}
+
+export function tokenError () {
+  return function (dispatch, getState) {
+    const clear = () => {
+      api.setToken('')
+      dispatch({ type: AuthConstants.LOGOUT })
+      dispatch(push('/token'))
     }
     return api.logout().then(clear).catch(clear)
   }

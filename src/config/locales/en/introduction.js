@@ -4,15 +4,15 @@ export const introduction = {
     '**Follow instructions completely or your form will be unable to be processed. If you have any questions, contact the office that provided you the form.**',
     '## Instructions for completing this form ',
     '1. **Follow the instructions provided to you by the office that gave you this form** and any other clarifying instructions, provided by that office, to assist you with completion of this form. You should retain a copy of the completed form for your records.',
-    '2. **All questions on this form must be answered**. If no response is necessary or applicable, indicate this on the form by checking the associated "Not Applicable" box, unless otherwise noted.',
+    '2. **All questions on this form must be answered**. If no response is necessary or applicable, indicate this on the form by checking the associated "Not Applicable" checkbox, unless otherwise noted.',
     '3. **Do not abbreviate the names of cities or foreign countries**.',
-    '4. **All dates provided in this form must be in Month/Day/Year or Month/Year format**. The year should be entered as a four character number (e.g., 1978 or 2001). If you are unable to report an exact date, approximate or estimate the date to the best of your ability, and indicate this by checking the "Estimated" box.',
+    '4. **All dates provided in this form must be in Month/Day/Year or Month/Year format**. The year should be entered as a four character number (e.g., 1978 or 2001). If you are unable to report an exact date, approximate or estimate the date to the best of your ability, and indicate this by checking the "Estimated" checkbox.',
     '---',
     'All questions on this form must be answered **completely and truthfully** in order that the Government may make the determinations described below on a complete record. Penalties for inaccurate or false statements are discussed below. **If you are a current civilian employee of the federal government:** failure to answer any questions completely and truthfully could result in an adverse personnel action against you, including loss of employment; with respect to these sections: Illegal Use of Drugs and Drug Activity, Use of Information Technology Systems, and Association Record, however, neither your truthful responses nor information derived from those responses will be used as evidence against you in a subsequent criminal proceeding.',
     '---',
     '# How to save your progress',
     '**This form will auto save your progress continuously throughout.** Each input will be validated and save as you enter your information.',
-    'To confirm your auto saving and find out when the last save was look for the icon below at the bottom of each screen.',
+    'To confirm you\'re auto saving and find out when the last save was check for the save icon on each screen.',
     '---',
     '# Purpose of this form',
     'This form will be used by the United States (U.S.) Government in conducting background investigations, reinvestigations, and continuous evaluations of persons under consideration for, or retention of, national security positions as defined in 5 CFR 732, and for individuals requiring eligibility for access to classified information under Executive Order 12968. This form may also be used by agencies in determining whether a subject performing work for, or on behalf of, the Government under a contract should be deemed eligible for logical or physical access when the nature of the work to be performed is sensitive and could bring about an adverse effect on the national security.',
@@ -85,6 +85,10 @@ export const introduction = {
     title: 'Persons completing this form should begin after carefully reading the preceding instructions',
     para: [
       'I have read the instructions and I understand that if I withhold, misrepresent, or falsify information on this form, I am subject to the penalties for inaccurate or false statement (per U. S. Criminal Code, Title 18, section 1001), denial or revocation of a security clearance, and/or removal and debarment from Federal Service.'
-    ]
+    ],
+    aria: {
+      yes: 'Yes, I agree to this agreement',
+      no: 'No, I do not agree to this agreement'
+    }
   }
 }

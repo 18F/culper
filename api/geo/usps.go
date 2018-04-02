@@ -24,6 +24,7 @@ var (
 		"-2147219400":     "error.geocode.city",
 		"-2147219401":     "error.geocode.notfound",
 		"-2147219403":     "error.geocode.multiple",
+		"Generic":         "error.geocode.generic",
 		"Default Address": "error.geocode.defaultAddress",
 		"Partial":         "error.geocode.partial",
 		"System":          "error.geocode.system",
@@ -73,8 +74,9 @@ func (g USPSGeocoder) query(geoValues Values) (results Results, err error) {
 			log.WithField("code", errCode).Warn(logmsg.USPSKnownErrorCode)
 			return results, fmt.Errorf("%v", errCode)
 		}
-		log.WithField("code", "geocode.generic").Warn(logmsg.USPSUnknownErrorCode)
-		return results, fmt.Errorf("%v", "geocode.generic")
+		errCode := USPSErrorCodes["Generic"]
+		log.WithField("code", errCode).Warn(logmsg.USPSUnknownErrorCode)
+		return results, fmt.Errorf("%v", errCode)
 
 	}
 
@@ -315,6 +317,7 @@ func (address *USPSAddress) ToResult(geoValues Values) (result Result) {
 
 	// Check if there are deviations between what was requested versus what
 	// was returned. If we find any, mark result as Partial
+	ziplength := len(geoValues.Zipcode)
 	switch {
 	case address.ReturnText != "":
 		fallthrough
@@ -326,7 +329,11 @@ func (address *USPSAddress) ToResult(geoValues Values) (result Result) {
 		fallthrough
 	case !strings.EqualFold(result.State, geoValues.State):
 		fallthrough
-	case !strings.EqualFold(result.Zipcode, geoValues.Zipcode):
+	case ziplength < 5:
+		fallthrough
+	case ziplength >= 5 && !strings.EqualFold(result.Zipcode, geoValues.Zipcode[0:5]):
+		fallthrough
+	case ziplength > 5 && !strings.EqualFold(address.Zip4, geoValues.Zipcode[ziplength-4:ziplength]):
 		result.Partial = true
 	}
 

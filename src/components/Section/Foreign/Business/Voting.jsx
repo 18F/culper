@@ -47,7 +47,7 @@ export default class Voting extends SubsectionElement {
       index: index,
       left: country,
       right: date,
-      placeholder: i18n.m('foreign.business.voting.collection.summary.unknown')
+      placeholder: i18n.t('foreign.business.voting.collection.summary.unknown')
     })
   }
 

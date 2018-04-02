@@ -87,7 +87,7 @@ export default class ExistingConditions extends SubsectionElement {
       index: index,
       left: condition,
       right: date,
-      placeholder: i18n.m('psychological.existingConditions.treatment.collection.summary')
+      placeholder: i18n.t('psychological.existingConditions.treatment.collection.summary')
     })
   }
 

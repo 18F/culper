@@ -36,7 +36,7 @@ describe('CivilUnion validation', function () {
           AddressSeparated: {
             country: { value: 'United States' },
             city: 'Arlington',
-            state: 'Virginia',
+            state: 'VA',
             zipcode: '22202',
             layout: Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY
           },
@@ -184,7 +184,7 @@ describe('CivilUnion validation', function () {
             country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
-            state: 'Virginia',
+            state: 'VA',
             zipcode: '22202',
             layout: Location.ADDRESS
           }
@@ -197,7 +197,7 @@ describe('CivilUnion validation', function () {
             country: { value: 'United States' },
             street: '',
             city: '',
-            state: 'Virginia',
+            state: 'VA',
             zipcode: '22202',
             layout: Location.ADDRESS
           }
@@ -246,7 +246,7 @@ describe('CivilUnion validation', function () {
           Location: {
             country: { value: 'United States' },
             city: 'Arlington',
-            state: 'Virginia',
+            state: 'VA',
             county: 'Arlington',
             zipcode: '22202',
             layout: Location.BIRTHPLACE
@@ -255,7 +255,7 @@ describe('CivilUnion validation', function () {
             country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
-            state: 'Virginia',
+            state: 'VA',
             zipcode: '22202',
             layout: Location.ADDRESS
           },

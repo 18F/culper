@@ -26,7 +26,7 @@ export default class EmploymentStatus extends ValidationElement {
                   onError={this.props.onError}>
         <Radio name="employment_status"
                label={i18n.t('history.employment.default.status.fullTime')}
-               value="Fulltime"
+               value="FullTime"
                className="fulltime"
                disabled={this.props.disabled}
                onUpdate={this.handleFieldChange}
@@ -34,7 +34,7 @@ export default class EmploymentStatus extends ValidationElement {
                />
         <Radio name="employment_status"
                label={i18n.t('history.employment.default.status.partTime')}
-               value="Parttime"
+               value="PartTime"
                className="parttime"
                disabled={this.props.disabled}
                onUpdate={this.handleFieldChange}

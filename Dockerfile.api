@@ -1,6 +1,4 @@
-FROM golang:1.9.4
-RUN apt update; apt -y install postgresql xmlsec1;
-RUN go get github.com/derekparker/delve/cmd/dlv;
+FROM golang:1.10.0
 RUN go get -u github.com/Masterminds/glide; \
     cd $GOPATH/src/github.com/Masterminds/glide; \
     git checkout tags/$(git describe --tags $(git rev-list --tags --max-count=1)); \

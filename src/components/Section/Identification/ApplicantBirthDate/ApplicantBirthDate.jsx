@@ -3,8 +3,7 @@ import { i18n } from '../../../../config'
 import schema from '../../../../schema'
 import validate from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
-import { Field, DateControl } from '../../../Form'
-import { now } from '../../History/dateranges'
+import { Field, DateControl, Show, Checkbox } from '../../../Form'
 
 export default class ApplicantBirthDate extends SubsectionElement {
   constructor (props) {
@@ -12,39 +11,73 @@ export default class ApplicantBirthDate extends SubsectionElement {
 
     this.state = {
       uid: `${this.props.name}-${super.guid()}`,
-      error: false
+      errors: [],
+      needsConfirmation: false
     }
 
-    this.onUpdate = this.onUpdate.bind(this)
+    this.update = this.update.bind(this)
+    this.updateDate = this.updateDate.bind(this)
+    this.updateConfirmed = this.updateConfirmed.bind(this)
     this.handleError = this.handleError.bind(this)
+    this.confirmationError = this.confirmationError.bind(this)
   }
 
   /**
    * Handle the change event.
    */
-  onUpdate (value) {
+  update (queue) {
     this.props.onUpdate({
-      Date: {
-        month: value.month,
-        day: value.day,
-        year: value.year,
-        estimated: value.estimated,
-        date: value.date
-      }
+      Date: this.props.Date,
+      Confirmed: this.props.Confirmed,
+      ...queue
+    })
+  }
+
+  updateDate (values) {
+    this.update({
+      Date: values,
+      Confirmed: { value: '', checked: false }
+    })
+  }
+
+  updateConfirmed (values) {
+    this.update({
+      Confirmed: values
     })
   }
 
   handleError (value, arr) {
-    const then = new Date(value)
     let local = [...arr]
+
+    const hasMinMaxError = local.some(x => x.valid === false && (x.code === 'date.min' || x.code === 'date.max'))
+    const birthdateValid = this.props.Confirmed && this.props.Confirmed.checked === true
+          ? true
+          : hasMinMaxError ? false : null
     local.push({
       code: 'birthdate.age',
-      valid: local.some(x => (x.code === 'date.min' && x.valid === false) || (x.code === 'date.max' && x.valid === false)) ? false : null,
+      valid: birthdateValid,
       uid: this.state.uid
     })
     local = local.filter(x => x.code !== 'date.min' && x.code !== 'date.max')
 
-    this.setState({ error: local.some(x => x.valid === false) })
+    // Store the errors
+    this.setState({ errors: local, needsConfirmation: hasMinMaxError })
+
+    // Take the original and concatenate our new error values to it
+    return super.handleError(value, local)
+  }
+
+  confirmationError (value, arr) {
+    let local = [...this.state.errors]
+    local = local.filter(x => x.code !== 'birthdate.age')
+    local.push({
+      code: 'birthdate.age',
+      valid: value,
+      uid: this.state.uid
+    })
+
+    // Store the errors
+    this.setState({ errors: local })
 
     // Take the original and concatenate our new error values to it
     return super.handleError(value, local)
@@ -52,23 +85,31 @@ export default class ApplicantBirthDate extends SubsectionElement {
 
   render () {
     const klass = `section-content birthdate ${this.props.className || ''}`.trim()
-    const klassError = `${this.state.error ? 'usa-input-error' : ''}`.trim()
-
     return (
       <div className={klass} {...super.dataAttributes(this.props)}>
         <Field title={i18n.t('identification.birthdate.title')}
                titleSize="h2"
                help="identification.birthdate.help"
-               adjustFor="labels"
                scrollIntoView={this.props.scrollIntoView}>
           <DateControl name={this.props.name}
                        {...this.props.Date}
-                       className={klassError}
                        relationship="Self"
-                       onUpdate={this.onUpdate}
+                       overrideError={(this.props.Confirmed || {}).checked}
+                       onUpdate={this.updateDate}
                        onError={this.handleError}
                        required={this.props.required}
                        />
+          <Show when={this.state.needsConfirmation}>
+            <Checkbox {...this.props.Confirmed}
+                      name="Confirmed"
+                      label={i18n.t('identification.birthdate.confirmation')}
+                      value="Confirmed"
+                      className="age-warning"
+                      onUpdate={this.updateConfirmed}
+                      onError={this.confirmationError}
+                      required={this.state.needsConfirmation && this.props.required}
+                      />
+          </Show>
         </Field>
       </div>
     )
@@ -77,10 +118,11 @@ export default class ApplicantBirthDate extends SubsectionElement {
 
 ApplicantBirthDate.defaultProps = {
   Date: {},
+  Confirmed: {},
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'identification',
   subsection: 'birthdate',
-  onUpdate: (queue) => {},
   dispatch: () => {},
   validator: (data) => {
     return validate(schema('identification.birthdate', data))

@@ -47,7 +47,7 @@ export default class Advocating extends SubsectionElement {
       index: index,
       left: details,
       right: dates,
-      placeholder: i18n.m('legal.associations.advocating.collection.unknown')
+      placeholder: i18n.t('legal.associations.advocating.collection.unknown')
     })
   }
 

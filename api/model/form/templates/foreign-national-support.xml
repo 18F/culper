@@ -24,6 +24,9 @@
   </ForeignNationalSupported>
   {{end}}
   {{end}}
+
+  {{- if branch .props.HasForeignSupport | eq "Yes"}}
   <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
   <SummaryComment></SummaryComment>
+  {{end}}
 </ForeignNationalsSupported>

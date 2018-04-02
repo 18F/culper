@@ -74,7 +74,6 @@ describe('History Reducer', function () {
           ]
         },
         expected: {
-          CurrentAddress: null,
           Residence: [
             {
               Item: null
@@ -99,7 +98,6 @@ describe('History Reducer', function () {
           ]
         },
         expected: {
-          CurrentAddress: null,
           Residence: [
             {
               Item: {
@@ -126,7 +124,6 @@ describe('History Reducer', function () {
           ]
         },
         expected: {
-          CurrentAddress: null,
           Residence: [
             {
               Item: {
@@ -156,7 +153,6 @@ describe('History Reducer', function () {
           ]
         },
         expected: {
-          CurrentAddress: {},
           Residence: [
             {
               Item: {

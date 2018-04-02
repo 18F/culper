@@ -1,13 +1,13 @@
 package handlers
 
 import (
-	"encoding/base64"
 	"encoding/hex"
 	"errors"
 	"fmt"
 	"io/ioutil"
 	"net/http"
 	"os"
+	"strconv"
 	"time"
 
 	"github.com/18F/e-QIP-prototype/api/cf"
@@ -139,54 +139,8 @@ func Submit(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	url := os.Getenv("WS_URL")
-	if url == "" {
-		log.Warn(logmsg.WebserviceMissingURL)
-		EncodeErrJSON(w, errors.New(logmsg.WebserviceMissingURL))
-		return
-	}
-	key := os.Getenv("WS_KEY")
-	if key == "" {
-		log.Warn(logmsg.WebserviceMissingKey)
-		EncodeErrJSON(w, errors.New(logmsg.WebserviceMissingKey))
-		return
-	}
-
-	// Generate an XML package and send to the external webservice.
-	log.Info(logmsg.GeneratingPackage)
-	xml := form.Package(context, account.ID, false)
-	xmlEncoded := base64.StdEncoding.EncodeToString([]byte(xml))
-
-	log.Info(logmsg.TransmissionStarted)
-	client := webservice.NewClient(url, key)
-	response, err := client.ImportRequest(&webservice.ImportRequest{
-		Base64Content: xmlEncoded,
-	})
-	log.Info(logmsg.TransmissionStopped)
-
-	// Store transmission information
-	status := "Sent"
-	if err != nil {
-		status = err.Error()
-	}
-	agencyKey, requestKey := response.Keys()
-	transmission := &model.Transmission{
-		AccountID:  account.ID,
-		Raw:        response.Bytes(),
-		AgencyKey:  agencyKey,
-		RequestKey: requestKey,
-		Status:     status,
-		Created:    time.Now(),
-		Modified:   time.Now(),
-	}
-	if err = transmission.Save(context); err != nil {
-		log.Warn(logmsg.TransmissionStorageError)
-		EncodeErrJSON(w, err)
-		return
-	}
-	log.Info(logmsg.TransmissionRecorded)
-	if status != "Sent" {
-		log.Warn(logmsg.TransmissionError)
+	if err := transmit(w, r, account, context); err != nil {
+		w.WriteHeader(http.StatusConflict)
 		EncodeErrJSON(w, err)
 		return
 	}
@@ -315,7 +269,6 @@ func Save(w http.ResponseWriter, r *http.Request) {
 		EncodeErrJSON(w, err)
 		return
 	}
-
 	EncodeErrJSON(w, nil)
 }
 
@@ -368,4 +321,125 @@ func GetAttachment(w http.ResponseWriter, r *http.Request) {
 func DeleteAttachment(w http.ResponseWriter, r *http.Request) {
 	log := logmsg.NewLoggerFromRequest(r)
 	log.Debug("Not implemented: /me/attachment/{id}/delete")
+}
+
+func transmit(w http.ResponseWriter, r *http.Request, account *model.Account, context *db.DatabaseContext) error {
+	log := logmsg.NewLoggerFromRequest(r)
+	url := os.Getenv("WS_URL")
+	if url == "" {
+		log.Warn(logmsg.WebserviceMissingURL)
+		return errors.New(logmsg.WebserviceMissingURL)
+	}
+	key := os.Getenv("WS_KEY")
+	if key == "" {
+		log.Warn(logmsg.WebserviceMissingKey)
+		return errors.New(logmsg.WebserviceMissingKey)
+	}
+
+	// Generate an XML package and send to the external webservice.
+	log.Info(logmsg.GeneratingPackage)
+	xml := form.Package(context, account.ID, false)
+	data, err := form.ApplicationData(context, account.ID, false)
+	if err != nil {
+		log.Warn(logmsg.WebserviceCannotGetApplicationData, err)
+		return err
+	}
+
+	log.Info(logmsg.TransmissionStarted)
+	client := webservice.NewClient(url, key)
+
+	ir, err := newImportRequest(data, string(xml))
+	if err != nil {
+		log.Warn(err)
+		return err
+	}
+	response, err := client.ImportRequest(ir)
+	log.Info(logmsg.TransmissionStopped, err)
+
+	// Store transmission information
+	var agencyKey int
+	var requestKey string
+	status := "Sent"
+
+	switch {
+	case err != nil:
+		// Error with actual http call
+		status = err.Error()
+		agencyKey = ir.AgencyID
+	case response.Error() != nil:
+		// Errors specific to webservice call
+		status = response.Error().Error()
+		agencyKey = ir.AgencyID
+	default:
+		// No errors. Retrieve agency and request keys
+		agencyKey, requestKey = response.ImportRequestResponse.Keys()
+	}
+
+	transmission := &model.Transmission{
+		AccountID:  account.ID,
+		Raw:        response.ResponseBody,
+		AgencyKey:  agencyKey,
+		RequestKey: requestKey,
+		Status:     status,
+		Created:    time.Now(),
+		Modified:   time.Now(),
+	}
+	if err = transmission.Save(context); err != nil {
+		log.Warn(logmsg.TransmissionStorageError)
+		return err
+	}
+	log.Info(logmsg.TransmissionRecorded)
+	if status != "Sent" {
+		log.Warn(logmsg.TransmissionError)
+		return errors.New(logmsg.TransmissionError)
+	}
+	return nil
+}
+func newImportRequest(application map[string]interface{}, xmlContent string) (*webservice.ImportRequest, error) {
+	var ciAgencyUserPseudoSSN bool
+	var agencyID int
+	var agencyGroupID int
+
+	ciAgencyIDEnv := os.Getenv("WS_CALLERINFO_AGENCY_ID")
+	if ciAgencyIDEnv == "" {
+		return nil, fmt.Errorf(logmsg.WebserviceMissingCallerInfoAgencyID)
+	}
+	ciAgencyUserSSNEnv := os.Getenv("WS_CALLERINFO_AGENCY_USER_SSN")
+	if ciAgencyUserSSNEnv == "" {
+		return nil, fmt.Errorf(logmsg.WebserviceMissingCallerInfoAgencySSN)
+	}
+	// Parse agency id
+	agencyIDEnv := os.Getenv("WS_AGENCY_ID")
+	if agencyIDEnv == "" {
+		return nil, fmt.Errorf(logmsg.WebserviceMissingAgencyID)
+	} else {
+		i, err := strconv.Atoi(agencyIDEnv)
+		if err != nil {
+			return nil, err
+		}
+		agencyID = i
+	}
+
+	// Parse agency group id if necessary
+	agencyGroupIDEnv := os.Getenv("WS_AGENCY_GROUP_ID")
+	if agencyGroupIDEnv != "" {
+		i, err := strconv.Atoi(agencyGroupIDEnv)
+		if err != nil {
+			return nil, err
+		}
+		agencyGroupID = i
+	}
+
+	ciAgencyUserPseudoSSNEnv := os.Getenv("WS_CALLERINFO_AGENCY_USER_PSEUDOSSN")
+	if ciAgencyUserPseudoSSNEnv == "" {
+		return nil, fmt.Errorf(logmsg.WebserviceMissingCallerInfoAgencyPseudoSSN)
+	}
+	b, err := strconv.ParseBool(ciAgencyUserPseudoSSNEnv)
+	if err != nil {
+		return nil, fmt.Errorf(logmsg.WebserviceMissingCallerInfoAgencyPseudoSSN)
+	}
+	ciAgencyUserPseudoSSN = b
+
+	ci := webservice.NewCallerInfo(ciAgencyIDEnv, ciAgencyUserPseudoSSN, ciAgencyUserSSNEnv)
+	return webservice.NewImportRequest(ci, agencyID, agencyGroupID, application, xmlContent)
 }

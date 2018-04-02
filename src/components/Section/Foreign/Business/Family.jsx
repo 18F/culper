@@ -46,7 +46,7 @@ export default class Family extends SubsectionElement {
       index: index,
       left: name,
       right: null,
-      placeholder: i18n.m('foreign.business.family.collection.summary.unknown')
+      placeholder: i18n.t('foreign.business.family.collection.summary.unknown')
     })
   }
 

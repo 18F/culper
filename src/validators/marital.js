@@ -11,7 +11,7 @@ export default class MaritalValidator {
 
   validStatus () {
     const statusValue = this.status.value || ''
-    return ['Never', 'Married', 'InCivilUnion', 'Separated', 'Annulled', 'Divorced', 'Widowed'].includes(statusValue)
+    return ['NeverMarried', 'Married', 'InCivilUnion', 'Separated', 'Annulled', 'Divorced', 'Widowed'].includes(statusValue)
   }
 
   validDivorce () {

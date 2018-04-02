@@ -2,6 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import { ResidenceCustomSummary, EmploymentCustomSummary, EducationCustomSummary, InjectGaps } from './summaries'
 import Location from '../../Form/Location'
+import { today } from './dateranges'
 
 describe('The summary components', () => {
   it('can display residence summary', () => {
@@ -18,10 +19,17 @@ describe('The summary components', () => {
           },
           Dates: {
             from: {
-              date: new Date(1989, 12, 17)
+              date: new Date(1989, 12, 17),
+              month: '12',
+              day: '17',
+              year: '1989'
             },
             to: {
-              date: new Date()
+              date: new Date(2000, 1, 1),
+              month: '1',
+              day: '1',
+              year: '2000',
+              present: false
             }
           }
         }
@@ -45,7 +53,7 @@ describe('The summary components', () => {
       expected.remove,
       expected.byline))
     expect(component.find('.index').length).toEqual(1)
-    expect(component.find('.employer').length).toEqual(1)
+    expect(component.find('.context').length).toEqual(1)
     expect(component.find('.dates').length).toEqual(1)
   })
 
@@ -58,10 +66,17 @@ describe('The summary components', () => {
           },
           Dates: {
             from: {
-              date: new Date(1989, 12, 17)
+              date: new Date(1989, 12, 17),
+              month: '12',
+              day: '17',
+              year: '1989'
             },
             to: {
-              date: new Date()
+              date: new Date(2000, 1, 1),
+              month: '1',
+              day: '1',
+              year: '2000',
+              present: false
             }
           }
         }
@@ -85,7 +100,7 @@ describe('The summary components', () => {
       expected.remove,
       expected.byline))
     expect(component.find('.index').length).toEqual(1)
-    expect(component.find('.employer').length).toEqual(1)
+    expect(component.find('.context').length).toEqual(1)
     expect(component.find('.dates').length).toEqual(1)
   })
 
@@ -98,10 +113,17 @@ describe('The summary components', () => {
           },
           Dates: {
             from: {
-              date: new Date(1989, 12, 17)
+              date: new Date(1989, 12, 17),
+              month: '12',
+              day: '17',
+              year: '1989'
             },
             to: {
-              date: new Date()
+              date: new Date(2000, 1, 1),
+              month: '1',
+              day: '1',
+              year: '2000',
+              present: false
             }
           }
         }
@@ -125,69 +147,44 @@ describe('The summary components', () => {
       expected.remove,
       expected.byline))
     expect(component.find('.index').length).toEqual(1)
-    expect(component.find('.employer').length).toEqual(1)
+    expect(component.find('.context').length).toEqual(1)
     expect(component.find('.dates').length).toEqual(1)
   })
 
   it('can inject gaps', () => {
-    const list = [
-      {
-        type: 'Residence',
+    const expand = (date) => {
+      return {
+        day: `${date.getDate()}`,
+        month: `${date.getMonth() + 1}`,
+        year: `${date.getFullYear()}`,
+        date: date
+      }
+    }
+
+    const item = (type, from, to) => {
+      return {
+        type: type,
         Item: {
           Dates: {
-            from: {
-              date: new Date(new Date().getFullYear() - 5, 12, 17)
-            },
-            to: {
-              date: new Date()
-            }
-          }
-        }
-      },
-      {
-        type: 'Residence',
-        Item: {
-          Dates: {
-            from: {
-              date: new Date(new Date().getFullYear() - 11, 12, 17)
-            },
-            to: {
-              date: new Date(new Date().getFullYear() - 9, 12, 17)
-            }
-          }
-        }
-      },
-      {
-        type: 'Employment',
-        Item: {
-          Dates: {
-            from: {
-              date: new Date(new Date().getFullYear() - 5, 12, 17)
-            },
-            to: {
-              date: new Date()
-            }
-          }
-        }
-      },
-      {
-        type: 'Gap',
-        Item: {
-          Dates: {
-            from: {
-              date: new Date(new Date().getFullYear() - 10, 12, 17)
-            },
-            to: {
-              date: new Date(new Date().getFullYear() - 5, 12, 17)
-            }
+            from: expand(from),
+            to: expand(to)
           }
         }
       }
+    }
+
+    const list = [
+      item('Residence',  new Date(today.getFullYear() -  5, 12, 17), today),
+      item('Residence',  new Date(today.getFullYear() - 11, 12, 17), new Date(today.getFullYear() - 9, 12, 17)),
+      item('Employment', new Date(today.getFullYear() -  5, 12, 17), today),
+      item('Gap',        new Date(today.getFullYear() - 10, 12, 17), new Date(today.getFullYear() - 5, 12, 17))
     ]
+
     const residence = InjectGaps(list.filter(x => x.type === 'Residence' || x.type === 'Gap'))
     const employment = InjectGaps(list.filter(x => x.type === 'Employment' || x.type === 'Gap'))
+
     expect(residence.filter(item => item.type === 'Residence').length).toEqual(2)
-    expect(residence.filter(item => item.type === 'Gap').length).toEqual(1)
+    expect(residence.filter(item => item.type === 'Gap').length).toEqual(0)
     expect(employment.filter(item => item.type === 'Employment').length).toEqual(1)
     expect(employment.filter(item => item.type === 'Gap').length).toEqual(1)
   })

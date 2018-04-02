@@ -39,6 +39,8 @@ export default class Checkbox extends ValidationElement {
           checked: checked
         })
       }
+
+      this.handleValidation()
     })
   }
 

@@ -2,4 +2,12 @@
   .datecontrol {
     display: inline-block;
   }
+
+  .age-warning {
+    display: block;
+
+    label {
+      width: 30rem;
+    }
+  }
 }

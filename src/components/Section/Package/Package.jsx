@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { navigation, navigationWalker } from '../../../config'
+import { i18n, navigationWalker } from '../../../config'
 import { hideHippa } from '../../../validators/releases'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
@@ -11,9 +11,11 @@ import SubmissionStatus from './SubmissionStatus'
 import Print from './Print'
 import { push } from '../../../middleware/history'
 import { updateApplication } from '../../../actions/ApplicationActions'
+import { updateSection } from '../../../actions/SectionActions'
 import axios from 'axios'
 import { api } from '../../../services'
 import schema from '../../../schema'
+import { Show } from '../../Form'
 
 class Package extends SectionElement {
   constructor (props) {
@@ -25,6 +27,10 @@ class Package extends SectionElement {
     this.errorCheck = this.errorCheck.bind(this)
     // TODO: Remove after testing
     this.goToReleases = this.goToReleases.bind(this)
+    this.state = {
+      submitting: false,
+      submissionError: false
+    }
   }
 
   updateSubmission (values) {
@@ -35,22 +41,26 @@ class Package extends SectionElement {
     const releases = (this.props.Submission || {}).Releases || {}
     let data = { ...releases }
     const payload = schema(`package.submit`, data, false)
+    this.setState({ submitting: true })
 
     axios
-      .all([api.save(payload), api.submit(), api.status()])
-      .then(axios.spread((save, submit,  status) => {
-        const statusData = ((status || {}).data || {})
+      .all([api.save(payload), api.submit()])
+      .then(() => {
+        return api.status()
+      })
+      .then(response => {
+        const statusData = ((response || {}).data || {})
         this.props.dispatch(updateApplication('Settings', 'locked', statusData.Locked || false))
         this.props.dispatch(updateApplication('Settings', 'hash', statusData.Hash || false))
+        this.props.update({ section: 'package', subsection: 'print' })
         this.handleUpdate('Releases', releases)
-        this.props.dispatch(push('/form/package/print'))
-      }))
+      })
       .catch(() => {
         console.warn('Failed to form package')
-        data = {
-          ...data,
-          Locked: false
-        }
+        this.setState({
+          submitting: false,
+          submissionError: true
+        })
         this.handleUpdate('Releases', data)
       })
   }
@@ -64,12 +74,16 @@ class Package extends SectionElement {
     for (const sectionName in tally) {
       const mark = tally[sectionName]
       if (mark.errors > 0) {
+        // We do not call `this.props.update` here because there is no hard
+        // route to `package/errors`. By only pushing the new location we keep
+        // the navigation element marking `/review` as active but allow us to
+        // display a different internal route.
         this.props.dispatch(push('/form/package/errors'))
         return
       }
     }
 
-    this.props.dispatch(push('/form/package/submit'))
+    this.props.update({ section: 'package', subsection: 'submit' })
     return
   }
 
@@ -77,7 +91,7 @@ class Package extends SectionElement {
    * TODO: Remove after testing. Hook to get to releases form
    */
   goToReleases () {
-    this.props.dispatch(push('/form/package/submit'))
+    this.props.update({ section: 'package', subsection: 'submit' })
   }
 
   errorCheck () {
@@ -134,20 +148,33 @@ class Package extends SectionElement {
         </SectionView>
         <SectionView name="errors">
           <SubmissionStatus valid={false} transition={false}>
-            <InvalidForm tally={tally} />
+            <InvalidForm tally={tally} dispatch={this.props.dispatch} />
           </SubmissionStatus>
         </SectionView>
         <SectionView name="submit">
           <SubmissionStatus valid={true} transition={false}>
             <ValidForm {...releases}
+                       dispatch={this.props.dispatch}
                        onUpdate={this.updateSubmission}
                        hideHippa={hideHippa(this.props.Application)}
+                       submitting={this.state.submitting}
                        LegalName={this.props.LegalName}
                        onSubmit={this.onSubmit}
                        Identification={this.props.Identification}
                        History={this.props.History}
                        />
           </SubmissionStatus>
+          <Show when={this.state.submissionError}>
+            <div className="field">
+              <div className="table">
+                <div className="messages">
+                  <div className="message error">
+                    {i18n.m('error.submission.message')}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Show>
         </SectionView>
         <SectionView name="print">
           <Print {...releases} />

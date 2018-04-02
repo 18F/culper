@@ -1,5 +1,6 @@
 import React from 'react'
 import { i18n, env } from '../../../config'
+import { updateSection } from '../../../actions/SectionActions'
 import { Link } from 'react-router-dom'
 import { Show } from '../../Form'
 
@@ -10,7 +11,12 @@ export default class InvalidForm extends React.Component {
       valid: null,
       width: 0
     }
+    this.clicked = this.clicked.bind(this)
     this.errors = this.errors.bind(this)
+  }
+
+  clicked (section, subsection, event) {
+    this.props.dispatch(updateSection(section, subsection))
   }
 
   errors () {
@@ -18,7 +24,7 @@ export default class InvalidForm extends React.Component {
     for (const sectionName in this.props.tally) {
       const mark = this.props.tally[sectionName]
       if (mark.errors) {
-        errors.push(<InvalidSection key={mark.section.url} mark={mark} />)
+        errors.push(<InvalidSection key={mark.section.url} mark={mark} onClick={this.clicked} />)
       }
     }
     return errors
@@ -30,7 +36,7 @@ export default class InvalidForm extends React.Component {
         { i18n.m(`application.invalidForm`) }
         { this.errors() }
         <Show when={!env.IsProduction()}>
-          <Link to={`/form/package/submit`}>Simulate valid form</Link>
+          <Link to={`/form/package/submit`} onClick={this.clicked.bind(this, 'package', 'submit')}>Simulate valid form</Link>
         </Show>
       </div>
     )
@@ -51,7 +57,7 @@ export class InvalidSection extends React.Component {
               <i className="fa fa-exclamation"></i>
               <h3>{ this.props.mark.section.title }</h3>
               <ul>{ incompleteSubsections }</ul>
-              <Link to={`/form/${this.props.mark.section.url}/review`}>
+              <Link to={`/form/${this.props.mark.section.url}/review`} onClick={this.props.onClick.bind(this, this.props.mark.section.url, 'review')}>
                 <button className="back usa-button-outline">Back to section</button>
               </Link>
             </div>
@@ -63,5 +69,6 @@ export class InvalidSection extends React.Component {
 }
 
 InvalidForm.defaultProps = {
-  tally: {}
+  tally: {},
+  dispatch: (action) => {}
 }

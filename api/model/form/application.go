@@ -16,7 +16,6 @@ type sectionInformation struct {
 	hashable   bool
 }
 
-// TODO: Fix the section/subsections to align appropriately
 var (
 	catalogue = []sectionInformation{
 		sectionInformation{
@@ -62,6 +61,12 @@ var (
 			hashable:   true,
 		},
 		sectionInformation{
+			name:       "Identification",
+			subsection: "Comments",
+			payload:    "identification.comments",
+			hashable:   true,
+		},
+		sectionInformation{
 			name:       "Financial",
 			subsection: "Bankruptcy",
 			payload:    "financial.bankruptcy",
@@ -104,6 +109,12 @@ var (
 			hashable:   true,
 		},
 		sectionInformation{
+			name:       "Financial",
+			subsection: "Comments",
+			payload:    "financial.comments",
+			hashable:   true,
+		},
+		sectionInformation{
 			name:       "History",
 			subsection: "Residence",
 			payload:    "history.residence",
@@ -125,6 +136,12 @@ var (
 			name:       "History",
 			subsection: "Federal",
 			payload:    "history.federal",
+			hashable:   true,
+		},
+		sectionInformation{
+			name:       "History",
+			subsection: "Comments",
+			payload:    "history.comments",
 			hashable:   true,
 		},
 		sectionInformation{
@@ -152,6 +169,12 @@ var (
 			hashable:   true,
 		},
 		sectionInformation{
+			name:       "Relationships",
+			subsection: "Comments",
+			payload:    "relationships.comments",
+			hashable:   true,
+		},
+		sectionInformation{
 			name:       "Citizenship",
 			subsection: "Status",
 			payload:    "citizenship.status",
@@ -167,6 +190,12 @@ var (
 			name:       "Citizenship",
 			subsection: "Passports",
 			payload:    "citizenship.passports",
+			hashable:   true,
+		},
+		sectionInformation{
+			name:       "Citizenship",
+			subsection: "Comments",
+			payload:    "citizenship.comments",
 			hashable:   true,
 		},
 		sectionInformation{
@@ -191,6 +220,12 @@ var (
 			name:       "Military",
 			subsection: "Foreign",
 			payload:    "military.foreign",
+			hashable:   true,
+		},
+		sectionInformation{
+			name:       "Military",
+			subsection: "Comments",
+			payload:    "military.comments",
 			hashable:   true,
 		},
 		sectionInformation{
@@ -296,6 +331,12 @@ var (
 			hashable:   true,
 		},
 		sectionInformation{
+			name:       "Foreign",
+			subsection: "Comments",
+			payload:    "foreign.comments",
+			hashable:   true,
+		},
+		sectionInformation{
 			name:       "Substance",
 			subsection: "DrugClearanceUses",
 			payload:    "substance.drugs.clearance",
@@ -359,6 +400,12 @@ var (
 			name:       "Substance",
 			subsection: "ReceivedCounselings",
 			payload:    "substance.alcohol.additional",
+			hashable:   true,
+		},
+		sectionInformation{
+			name:       "Substance",
+			subsection: "Comments",
+			payload:    "substance.comments",
 			hashable:   true,
 		},
 		sectionInformation{
@@ -464,6 +511,12 @@ var (
 			hashable:   true,
 		},
 		sectionInformation{
+			name:       "Legal",
+			subsection: "Comments",
+			payload:    "legal.comments",
+			hashable:   true,
+		},
+		sectionInformation{
 			name:       "Psychological",
 			subsection: "Competence",
 			payload:    "psychological.competence",
@@ -494,8 +547,14 @@ var (
 			hashable:   true,
 		},
 		sectionInformation{
+			name:       "Psychological",
+			subsection: "Comments",
+			payload:    "psychological.comments",
+			hashable:   true,
+		},
+		sectionInformation{
 			name:       "Submission",
-			subsection: "Submit",
+			subsection: "Releases",
 			payload:    "submission.releases",
 			hashable:   false,
 		},
@@ -561,6 +620,15 @@ func Package(context *db.DatabaseContext, account int, hashable bool) template.H
 		return template.HTML("")
 	}
 	return defaultTemplate("application.xml", js)
+}
+
+func ApplicationData(context *db.DatabaseContext, account int, hashable bool) (map[string]interface{}, error) {
+	jsonBytes := Application(context, account, hashable)
+	var js map[string]interface{}
+	if err := json.Unmarshal(jsonBytes, &js); err != nil {
+		return nil, err
+	}
+	return js, nil
 }
 
 // PurgeAccountStorage removes all data associated with an account

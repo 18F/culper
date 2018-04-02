@@ -2,7 +2,6 @@
 <SupportActivities>
   <Answer>{{branch .props.HasForeignAdvice}}</Answer>
   <Comment></Comment>
-  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
   {{range $index, $item := .props.List.props.items}}
   {{with $Item := $item.Item}}
   <SupportActivity ID="{{$index}}">
@@ -20,5 +19,8 @@
   {{end}}
 </SupportActivities>
 <SupportActivity>
-  <SummaryComment></SummaryComment>
+{{- if branch .props.HasForeignAdvice | eq "Yes"}}
+<HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+<SummaryComment></SummaryComment>
+{{end}}
 </SupportActivity>

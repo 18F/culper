@@ -182,7 +182,7 @@ export default class DateControl extends ValidationElement {
 
   updateDay (values) {
     this.update(
-      this.refs.day.refs.number.input,
+      this.refs.day.refs.number.refs.input,
       this.state.year,
       this.state.month,
       values.value,
@@ -191,7 +191,7 @@ export default class DateControl extends ValidationElement {
 
   updateYear (values) {
     this.update(
-      this.refs.year.refs.number.input,
+      this.refs.year.refs.number.refs.input,
       values.value,
       this.state.month,
       this.state.day,
@@ -307,7 +307,7 @@ export default class DateControl extends ValidationElement {
   }
 
   render () {
-    let klass = `datecontrol ${this.state.error ? 'usa-input-error' : ''} ${this.props.className || ''} ${this.props.hideDay ? 'day-hidden' : ''}`.trim()
+    let klass = `datecontrol ${this.state.error && !this.props.overrideError ? 'usa-input-error' : ''} ${this.props.className || ''} ${this.props.hideDay ? 'day-hidden' : ''}`.trim()
     return (
       <div className={klass}>
         <div>
@@ -404,6 +404,7 @@ DateControl.defaultProps = {
   value: '',
   estimated: false,
   showEstimated: true,
+  overrideError: false,
   error: false,
   valid: false,
   hideDay: false,

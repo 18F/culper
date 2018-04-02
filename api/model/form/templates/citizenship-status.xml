@@ -1,7 +1,7 @@
-{{with $citizenship := .Citizenship.Status.props}}
-{{with $passport := .Foreign.Passport.props}}
+{{$citizenship := .Citizenship.Status.props}}
+{{$passport := .Foreign.Passport.props}}
 <Citizenship Version="1" Type="Pooled">
-  <Status>{{radio $citizenship.CitizenshipStatus}}</Status>
+  <Status>{{radio $citizenship.CitizenshipStatus | citizenshipStatus}}</Status>
   <StatusComment></StatusComment>
   {{if radio $citizenship.CitizenshipStatus | eq "NotCitizen"}}
   <Alien>
@@ -98,7 +98,7 @@
       </NaturalizationCertificate>
       <NaturalizationCertificateComment></NaturalizationCertificateComment>
       {{end}}
-      {{if branch $passport.HasPassports | eq "Yes"}}
+      {{if radio $citizenship.CitizenshipStatus | eq "Citizen"}}
       <USPassport>
         <Comment>{{textarea $passport.Comments}}</Comment>
         <DateExpired>
@@ -113,8 +113,10 @@
       {{end}}
     </ProofOfUSCitizenship>
   </USCitizen>
+
+  {{- if radio $citizenship.CitizenshipStatus | eq "Naturalized"}}
   <UsCitizenNaturalizationComment></UsCitizenNaturalizationComment>
   {{end}}
+
+  {{end}}
 </Citizenship>
-{{end}}
-{{end}}

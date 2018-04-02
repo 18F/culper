@@ -1,3 +1,4 @@
+{{- if branch .props.HasRevocations | eq "Yes"}}
 <ClearanceDenials>
   {{range $index, $item := .props.List.props.items}}
   {{with $Item := $item.Item}}
@@ -16,7 +17,11 @@
   <Comment></Comment>
   <SummaryComment></SummaryComment>
 </ClearanceDenials>
+{{end}}
+
 <ClearanceDenied>
   <Answer>{{branch .props.HasRevocations}}</Answer>
+  {{- if branch .props.HasRevocations | eq "Yes"}}
   <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+  {{end}}
 </ClearanceDenied>

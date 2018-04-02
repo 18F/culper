@@ -1,0 +1,16 @@
+<ContactInformation Version="1" Type="Pooled">
+  {{- range $index, $item := .props.Emails.props.items}}
+  {{- with $Item := $item.Item}}
+  <HomeEmail>
+    <Email>{{text $Item.Email}}</Email>
+  </HomeEmail>
+  {{- end}}
+  {{- end}}
+  {{- range $index, $item := .props.PhoneNumbers.props.items}}
+  {{- with $Item := $item.Item}}
+  <HomeTelephone>
+    <Telephone>{{- telephone $Item.Telephone -}}</Telephone>
+  </HomeTelephone>
+  {{- end}}
+  {{- end}}
+</ContactInformation>

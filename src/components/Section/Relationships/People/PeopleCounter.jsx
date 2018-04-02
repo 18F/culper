@@ -9,11 +9,11 @@ export default class PeopleCounter extends React.Component {
 
   render () {
     const valid = this.validPeople()
-    const count = valid > this.props.minimum ? this.props.minimum : valid
-    const countClass = 'count ' + (count >= this.props.minimum ? 'covered' : '')
+    const covered = valid > this.props.minimum ? this.props.minimum : valid
+    const countClass = `count ${valid >= this.props.minimum ? 'covered' : ''}`.trim()
     return (
       <div className="people-counter">
-        <div className={countClass}>{count}/{this.props.minimum}</div>
+        <div className={countClass}>{covered}/{this.props.minimum}</div>
         <div className="unit">{i18n.t('relationships.people.label.unit')}</div>
       </div>
     )
@@ -21,6 +21,6 @@ export default class PeopleCounter extends React.Component {
 }
 
 PeopleCounter.defaultProps = {
-  List: [],
+  List: { branch: {}, items: [] },
   minimum: 3
 }

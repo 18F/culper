@@ -47,7 +47,7 @@ export default class Unlawful extends SubsectionElement {
       index: index,
       left: incident,
       right: dates,
-      placeholder: i18n.m('legal.technology.unlawful.collection.unknown')
+      placeholder: i18n.t('legal.technology.unlawful.collection.unknown')
     })
   }
 

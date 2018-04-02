@@ -50,7 +50,7 @@ export default class ContactInformation extends SubsectionElement {
       index: index,
       left: addr,
       right: null,
-      placeholder: i18n.m('identification.contacts.collection.summary.unknownEmail')
+      placeholder: i18n.t('identification.contacts.collection.summary.unknownEmail')
     })
   }
 
@@ -64,7 +64,7 @@ export default class ContactInformation extends SubsectionElement {
       index: index,
       left: number,
       right: null,
-      placeholder: i18n.m('identification.contacts.collection.summary.unknownPhone')
+      placeholder: i18n.t('identification.contacts.collection.summary.unknownPhone')
     })
   }
 

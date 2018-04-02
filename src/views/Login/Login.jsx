@@ -78,6 +78,9 @@ export class Login extends React.Component {
     const err = this.getQueryValue('error')
     if (err) {
       switch (err) {
+      case 'token':
+        this.props.dispatch(push('/token'))
+        return
       case 'access_denied':
         this.props.dispatch(push('/accessdenied'))
         return

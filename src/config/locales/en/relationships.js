@@ -1,6 +1,6 @@
 export const relationships = {
   intro: {
-    title: 'Section 2: Relationships',
+    title: 'Section 3: Relationships',
     body: 'You will be asked questions about your personal relationships and be asked to provide details if necessary.'
   },
   tour: {
@@ -22,7 +22,7 @@ export const relationships = {
     collection: {
       summary: {
         title: 'Summary of relatives',
-        unknown: '*Click to provide details*',
+        unknown: 'Click to provide details',
         item: 'Relative'
       },
       appendTitle: 'Do you have an additional relative to enter?',
@@ -145,7 +145,7 @@ export const relationships = {
         telephone: 'Telephone',
         electronic: [
           'Electronic',
-          '(such as e-mail, texting, chat rooms, etc.)'
+          '(such as email, texting, chat rooms, etc.)'
         ],
         written: 'Written correspondence',
         other: [
@@ -357,6 +357,7 @@ export const relationships = {
       citizenship: 'Provide this person\'s country(ies) of citizenship',
       location: 'Provide the location',
       address: 'Provide this person\'s current address, if different than your current address',
+      addressWithoutCurrent: 'Provide this person\'s current address',
       telephone: 'Provide this person\'s telephone number',
       email: 'Provide this person\'s email address',
       separated: 'Are you separated?',
@@ -369,6 +370,10 @@ export const relationships = {
     notApplicable: {
       or: 'or',
       label: 'Not applicable'
+    },
+    useCurrentAddress: {
+      or: 'or',
+      label: 'Use my current address'
     },
     deceasedAddressNotApplicable: {
       or: 'or',
@@ -657,9 +662,6 @@ export const relationships = {
     }
   },
   people: {
-    heading: {
-      title: 'People who know you well'
-    },
     label: {
       unit: 'People added'
     },
@@ -678,7 +680,7 @@ export const relationships = {
         relationship: 'Provide this person\'s  relationship to you',
         mobileTelephone: 'Provide mobile/cell phone number for this person',
         otherTelephone: 'Provide another phone number for this person',
-        email: 'Provide e-mail address for this person',
+        email: 'Provide email address for this person',
         address: 'Provide home or work address for this person'
       },
       label: {
@@ -740,7 +742,7 @@ export const relationships = {
       },
       collection: {
         summary: {
-          unknown: '*Provide the person\'s information below*'
+          unknown: 'Provide the person\'s information below'
         },
         description: 'Summary of people who know you',
         appendLabel: 'Add another person',

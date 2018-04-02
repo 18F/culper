@@ -1,7 +1,9 @@
 <Education>
   <AttendedAnySchools>
     <Answer>{{branch .props.HasAttended}}</Answer>
+    {{if branch .props.HasAttended | eq "Yes"}}
     <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+    {{end}}
   </AttendedAnySchools>
   <AttendedAnySchoolsComment></AttendedAnySchoolsComment>
   <ReceivedDegreeOrDiploma>
@@ -47,5 +49,4 @@
     {{end}}
     {{end}}
   </SchoolsAttended>
-  <Comment></Comment>
 </Education>

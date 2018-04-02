@@ -16,6 +16,19 @@ textarea {
   resize: vertical;
 }
 
+button {
+  &.link {
+    background: #fff;
+    color: $eapp-blue;
+    text-decoration: underline;
+    text-decoration-color: $eapp-blue;
+    text-decoration-style: dashed;
+    text-underline-position: under;
+    padding: 0;
+    margin: 0;
+  }
+}
+
 /* bring in USWD validation classes and alter for our design */
 input[type='text'], textarea, select {
   padding-right: 3rem;
@@ -243,7 +256,7 @@ select {
       // All the div's (except the first) are treated as
       // subtext.
       > div:not(:first-of-type) {
-        font-size: smaller;
+        font-size: small;
         margin-top: -3rem;
       }
     }
@@ -265,7 +278,7 @@ select {
 
     &.no-toggle.checked,
     &.no-toggle:hover {
-      color: initial;
+      color: inherit;
       border: none;
       background: transparent;
     }
@@ -364,12 +377,13 @@ select {
 
   &.disabled {
     label {
-      cursor: initial;
+      cursor: inherit;
       background: $eapp-grey-light;
 
       &.usa-input-focus,
       &.checked,
       &:hover {
+        color: $eapp-grey-dark;
         background: $eapp-grey-light;
       }
     }

@@ -369,6 +369,7 @@ export default class Telephone extends ValidationElement {
               pattern="\d{3}"
               prefilter={digitsOnly}
               label=""
+              ariaLabel={i18n.t('telephone.aria.dsnThree')}
               aria-describedby=""
               disabled={this.props.noNumber}
               maxlength="3"
@@ -387,6 +388,7 @@ export default class Telephone extends ValidationElement {
               pattern="\d{4}"
               prefilter={digitsOnly}
               label=""
+              ariaLabel={i18n.t('telephone.aria.dsnFour')}
               aria-describedby=""
               disabled={this.props.noNumber}
               minlengh="4"
@@ -418,14 +420,13 @@ export default class Telephone extends ValidationElement {
     return (
       <div className="numbers">
         <label className={`${this.props.typeClass || ''} ${this.props.noNumber ? 'disabled' : ''}`.trim()}>{i18n.t('telephone.domestic.label')}</label>
-
         <span className="separator">(</span>
         <Text name="domestic_first"
               ref="domestic_first"
               className="number three"
               placeholder="000"
               label=""
-              aria-describedby=""
+              ariaLabel={i18n.t('telephone.aria.domesticAreaCode')}
               disabled={this.props.noNumber}
               maxlength="3"
               pattern="\d{3}"
@@ -442,7 +443,7 @@ export default class Telephone extends ValidationElement {
               className="number three"
               placeholder="000"
               label=""
-              aria-describedby=""
+              ariaLabel={i18n.t('telephone.aria.domesticThree')}
               disabled={this.props.noNumber}
               maxlength="3"
               pattern="\d{3}"
@@ -460,7 +461,7 @@ export default class Telephone extends ValidationElement {
               className="number four"
               placeholder="0000"
               label=""
-              aria-describedby=""
+              ariaLabel={i18n.t('telephone.aria.domesticFour')}
               disabled={this.props.noNumber}
               minlengh="4"
               maxlength="4"
@@ -479,7 +480,7 @@ export default class Telephone extends ValidationElement {
               className="number six"
               placeholder="000000"
               label={i18n.t('telephone.domestic.extension.label')}
-              aria-describedby=""
+              ariaLabel={i18n.t('telephone.aria.extension')}
               disabled={this.props.noNumber}
               maxlength="10"
               pattern="^\d{0,10}$"
@@ -516,7 +517,7 @@ export default class Telephone extends ValidationElement {
               className="number three"
               placeholder="000"
               label=""
-              aria-describedby=""
+              ariaLabel={i18n.t('telephone.aria.countryCode')}
               disabled={this.props.noNumber}
               maxlength="3"
               pattern="\d{1,3}"
@@ -533,7 +534,7 @@ export default class Telephone extends ValidationElement {
               className="number ten"
               placeholder="0000000000"
               label=""
-              aria-describedby=""
+              ariaLabel={i18n.t('telephone.aria.phoneNumber')}
               disabled={this.props.noNumber}
               maxlength="10"
               pattern="\d{10}"
@@ -551,7 +552,7 @@ export default class Telephone extends ValidationElement {
               className="number six"
               placeholder="000000"
               label={i18n.t('telephone.international.extension.label')}
-              aria-describedby=""
+              ariaLabel={i18n.t('telephone.aria.extension')}
               disabled={this.props.noNumber}
               maxlength="10"
               pattern="^\d{0,10}$"
@@ -602,23 +603,23 @@ export default class Telephone extends ValidationElement {
           Switch to:
           <Show when={phoneType !== 'Domestic'}>
             <span className="type">
-              <a className="domestic-number" href="javascript:;" onClick={this.updateToggleDomestic}>
+              <button className="domestic-number link" onClick={this.updateToggleDomestic} title={i18n.t('telephone.aria.domestic')} aria-label={i18n.t('telephone.aria.domestic')}>
                 {i18n.t('telephone.type.domestic')}
-              </a>
+              </button>
             </span>
           </Show>
           <Show when={phoneType !== 'DSN'}>
             <span className="type">
-              <a className="dsn-number" href="javascript:;" onClick={this.updateToggleDsn}>
+              <button className="dsn-number link" onClick={this.updateToggleDsn} title={i18n.t('telephone.aria.dsn')} aria-label={i18n.t('telephone.aria.dsn')}>
                 {i18n.t('telephone.type.dsn')}
-              </a>
+              </button>
             </span>
           </Show>
           <Show when={phoneType !== 'International'}>
             <span className="type">
-              <a className="international-number" href="javascript:;" onClick={this.updateToggleInternational}>
+              <button className="international-number link" onClick={this.updateToggleInternational} title={i18n.t('telephone.aria.international')} aria-label={i18n.t('telephone.aria.international')}>
                 {i18n.t('telephone.type.international')}
-              </a>
+              </button>
             </span>
           </Show>
         </div>
@@ -643,6 +644,7 @@ export default class Telephone extends ValidationElement {
                    className="time day"
                    label={i18n.t('telephone.timeOfDay.day')}
                    value="Day"
+                   ariaLabel={i18n.t('telephone.aria.day')}
                    disabled={this.props.noNumber}
                    onUpdate={this.updateTimeOfDay}
                    onError={this.handleErrorTime}
@@ -651,6 +653,7 @@ export default class Telephone extends ValidationElement {
                    className="time night"
                    label={i18n.t('telephone.timeOfDay.night')}
                    value="Night"
+                   ariaLabel={i18n.t('telephone.aria.night')}
                    disabled={this.props.noNumber}
                    onUpdate={this.updateTimeOfDay}
                    onError={this.handleErrorTime}
@@ -659,6 +662,7 @@ export default class Telephone extends ValidationElement {
                    className="time both"
                    label={i18n.t('telephone.timeOfDay.both')}
                    value="Both"
+                   ariaLabel={i18n.t('telephone.aria.both')}
                    disabled={this.props.noNumber}
                    onUpdate={this.updateTimeOfDay}
                    onError={this.handleErrorTime}
@@ -668,7 +672,7 @@ export default class Telephone extends ValidationElement {
 
         <Show when={this.props.showNumberType}>
           <div className={`phonetype ${this.props.noNumber ? 'disabled' : ''}`.trim()}>
-            <label>Select phone number type</label>
+            <label>{i18n.t('telephone.numberType.title')}</label>
             <RadioGroup selectedValue={this.props.numberType}
                         required={this.required()}
                         disabled={this.props.noNumber}>
@@ -676,6 +680,7 @@ export default class Telephone extends ValidationElement {
                      className="phonetype-option cell"
                      label={i18n.t('telephone.numberType.cell')}
                      value="Cell"
+                     ariaLabel={i18n.t('telephone.aria.cell')}
                      disabled={this.props.noNumber}
                      onUpdate={this.updateNumberType}
                      onError={this.handleErrorNumberType}
@@ -684,6 +689,7 @@ export default class Telephone extends ValidationElement {
                      className="phonetype-option home"
                      label={i18n.t('telephone.numberType.home')}
                      value="Home"
+                     ariaLabel={i18n.t('telephone.aria.home')}
                      disabled={this.props.noNumber}
                      onUpdate={this.updateNumberType}
                      onError={this.handleErrorNumberType}
@@ -692,6 +698,7 @@ export default class Telephone extends ValidationElement {
                      className="phonetype-option work"
                      label={i18n.t('telephone.numberType.work')}
                      value="Work"
+                     ariaLabel={i18n.t('telephone.aria.work')}
                      disabled={this.props.noNumber}
                      onUpdate={this.updateNumberType}
                      onError={this.handleErrorNumberType}
@@ -700,6 +707,7 @@ export default class Telephone extends ValidationElement {
                      className="phonetype-option other"
                      label={i18n.t('telephone.numberType.other')}
                      value="Other"
+                     ariaLabel={i18n.t('telephone.aria.other')}
                      disabled={this.props.noNumber}
                      onUpdate={this.updateNumberType}
                      onError={this.handleErrorNumberType}

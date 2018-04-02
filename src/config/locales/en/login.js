@@ -10,9 +10,9 @@ export const login = {
     disabled: 'Multiple factor authentication is currently disabled.'
   },
   saml: {
-    title: 'Log in with CAC',
-    para: 'This option is for CAC users with a computer configured for CAC use.\nWhen prompted for a certificate, select the one with "EMAIL" in the name.',
-    button: 'Log in with CAC'
+    title: 'Log in with CAC/PIV',
+    para: 'This option is for users with a computer configured for CAC or PIV use.\nWhen prompted for a certificate, select the one with "EMAIL" in the name.',
+    button: 'Log in with CAC/PIV'
   },
   basic: {
     title: 'Log in with username',
@@ -51,6 +51,13 @@ export const login = {
     title: 'Your form has been submitted and is locked',
     para: [
       'If you need assistance contact the office who initiated your form.'
+    ],
+    button: 'Back to login'
+  },
+  token: {
+    title: 'You have been logged out',
+    para: [
+      'For security reasons you have been logged out. This may be due to a slow connection speed and/or inactivity. Please log in again to continue.'
     ],
     button: 'Back to login'
   }

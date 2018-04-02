@@ -3,12 +3,15 @@ package form
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"html/template"
 	"path"
 	"strings"
 
 	"github.com/18F/e-QIP-prototype/api/logmsg"
 )
+
+var DefaultTemplate = defaultTemplate
 
 func defaultTemplate(templateName string, data map[string]interface{}) template.HTML {
 	// fmap is a mapping of functions to be used within the XML template execution.
@@ -22,12 +25,17 @@ func defaultTemplate(templateName string, data map[string]interface{}) template.
 		"checkbox":             checkbox,
 		"checkboxHas":          checkboxHas,
 		"checkboxTrueFalse":    checkboxTrueFalse,
+		"citizenshipStatus":    citizenshipStatus,
 		"country":              countryValue,
 		"countryComments":      countryComments,
+		"citizenshipHas":       citizenshipHas,
 		"date":                 date,
 		"dateEstimated":        dateEstimated,
 		"daterange":            daterange,
+		"foreignDocType":       foreignDocType,
+		"monthYearDaterange":   monthYearDaterange,
 		"email":                email,
+		"employmentType":       employmentType,
 		"hasRelativeType":      hasRelativeType,
 		"location":             location,
 		"locationIsPostOffice": locationIsPostOffice,
@@ -37,6 +45,7 @@ func defaultTemplate(templateName string, data map[string]interface{}) template.
 		"notApplicable":        notApplicable,
 		"number":               number,
 		"radio":                radio,
+		"relationshipType":     relationshipType,
 		"telephone":            telephone,
 		"telephoneNoNumber":    telephoneNoNumber,
 		"text":                 text,
@@ -174,7 +183,10 @@ func checkbox(data map[string]interface{}) string {
 func checkboxHas(data map[string]interface{}, target string) string {
 	props, ok := data["props"]
 	if ok {
-		values := (props.(map[string]interface{}))["values"].([]interface{})
+		values, ok := (props.(map[string]interface{}))["values"].([]interface{})
+		if !ok {
+			return "False"
+		}
 		for _, s := range values {
 			if s == target {
 				return "True"
@@ -213,6 +225,104 @@ func hasRelativeType(data map[string]interface{}, target string) string {
 	}
 
 	return "False"
+}
+
+// relationshipType translates our enums to eqip specific enums
+func relationshipType(str string) string {
+	types := map[string]string{
+		"Mother":       "01",
+		"Father":       "02",
+		"Stepmother":   "03",
+		"Stepfather":   "04",
+		"FosterParent": "05",
+		"Child":        "06",
+		"Stepchild":    "07",
+		"Brother":      "08",
+		"Sister":       "09",
+		"Stepbrother":  "10",
+		"Stepsister":   "11",
+		"HalfBrother":  "12",
+		"HalfSister":   "13",
+		"FatherInLaw":  "14",
+		"MotherInLaw":  "15",
+		"Guardian":     "16",
+	}
+	return fmt.Sprintf("%s%s", types[str], str)
+}
+
+// citizenshipStatus translates our enums to eqip specific enums
+func citizenshipStatus(status string) string {
+	alias := map[string]string{
+		"Citizen":     "USByBirth",
+		"ForeignBorn": "USByBirthOutsideUS",
+		"Naturalized": "USNotByBirth",
+		"Derived":     "DerivedUSCitizen",
+		"NotCitizen":  "Alien",
+	}
+	return alias[status]
+}
+
+// foreignDocType translates our enums to eqip specific enums
+func foreignDocType(docType string) string {
+	alias := map[string]string{
+		"FS240":                              "FS240or545",
+		"DS1350":                             "DS1350",
+		"AlienRegistration":                  "NaturalizedAlienRegistration",
+		"PermanentResident":                  "NaturalizedPermanentResident",
+		"CertificateOfNaturalization":        "NaturalizationCertificate",
+		"DerivedAlienRegistration":           "DerivedAlienRegistration",
+		"DerivedPermanentResident":           "DerivedPermanentResident",
+		"DerivedCertificateOfNaturalization": "DerivedCitizenshipCertificate",
+		"I-551":               "NonCitizenI551",
+		"I-766":               "NonCitizenI766",
+		"I-94":                "NonCitizenI94",
+		"Visa":                "NonCitizenVisa",
+		"NonImmigrantStudent": "NonCitizenI20",
+		"ExchangeVisitor":     "NonCitizenDS2019",
+		"Other":               "Other",
+	}
+	return alias[docType]
+}
+
+// employmentType translates our enums to eqip specific enums
+func employmentType(empType string) string {
+	alias := map[string]string{
+		"ActiveMilitary":    "ActiveMilitaryDuty",
+		"NationalGuard":     "NationalGuard",
+		"USPHS":             "USPHS",
+		"OtherFederal":      "OtherFederal",
+		"StateGovernment":   "State",
+		"SelfEmployment":    "SelfEmployed",
+		"Unemployment":      "Unemployed",
+		"FederalContractor": "FederalContractor",
+		"NonGovernment":     "NonGovernment",
+		"Other":             "Other",
+	}
+	return alias[empType]
+}
+
+func citizenshipHas(data map[string]interface{}, country string) bool {
+	props, ok := data["props"]
+	if !ok {
+		return false
+	}
+
+	items, ok := (props.(map[string]interface{}))["value"].([]interface{})
+	if !ok {
+		return false
+	}
+
+	if len(items) == 0 {
+		return false
+	}
+
+	for _, item := range items {
+		if item == country {
+			return true
+		}
+	}
+
+	return false
 }
 
 // Put attribute helpers here
@@ -266,9 +376,9 @@ func telephoneNoNumber(data map[string]interface{}) string {
 
 	telephone := entity.(*Telephone)
 	if telephone.NoNumber {
-		return "False"
+		return "True"
 	}
-	return "True"
+	return "False"
 }
 
 func checkboxTrueFalse(data map[string]interface{}) string {
@@ -344,6 +454,14 @@ func nameLastFirst(data map[string]interface{}) template.HTML {
 func daterange(data map[string]interface{}) template.HTML {
 	fmap := template.FuncMap{
 		"date":          date,
+		"dateEstimated": dateEstimated,
+	}
+	return xmlTemplateWithFuncs("date-range.xml", data, fmap)
+}
+
+func monthYearDaterange(data map[string]interface{}) template.HTML {
+	fmap := template.FuncMap{
+		"date":          monthYear,
 		"dateEstimated": dateEstimated,
 	}
 	return xmlTemplateWithFuncs("date-range.xml", data, fmap)

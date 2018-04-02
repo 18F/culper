@@ -65,7 +65,7 @@ export const psychological = {
       },
       courtAddress: {
         title: 'Try looking up the court or agency name, this could help you find the address',
-        message: 'If you can only find a phone number try calling and asking for the address',
+        message: 'If you can only find a phone number try calling and asking for the address.',
         note: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
       },
       incompetent: {
@@ -79,7 +79,7 @@ export const psychological = {
       }
     },
     collection: {
-      summaryCourtName: '*Provide your order details below*',
+      summaryCourtName: 'Provide your order details below',
       description: 'Summary of orders',
       appendTitle: 'Do you have an additional instance where a court or administrative agency EVER issued an order declaring you mentally incompetent?',
       appendLabel: 'Add another order',
@@ -134,7 +134,7 @@ export const psychological = {
       }
     },
     collection: {
-      summaryCourtName: '*Provide your order details below*',
+      summaryCourtName: 'Provide your order details below',
       description: 'Summary of orders',
       appendTitle: 'Do you have an additional instance where a court or administrative agency EVER issued an order declaring you mentally incompetent?',
       appendLabel: 'Add another order',
@@ -156,7 +156,7 @@ export const psychological = {
     },
     collection: {
       description: 'Summary of hospitalizations',
-      summary: '*Provide your hospitalization details below*',
+      summary: 'Provide your hospitalization details below',
       appendTitle: 'Do you have an additional instance where you have EVER been hospitalized for a mental health condition?',
       appendLabel: 'Add another hospitalization',
       itemType: 'Hospitalization'
@@ -255,7 +255,7 @@ export const psychological = {
       help: {
         address: {
           title: 'Try looking up the name, this could help you find the address.',
-          message: 'If you can only find a phone number try calling and asking for the address',
+          message: 'If you can only find a phone number try calling and asking for the address.',
           note: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
         },
         name: {
@@ -275,7 +275,7 @@ export const psychological = {
     },
     collection: {
       description: 'Summary of diagnoses',
-      summary: '*Provide your diagnosis details below*',
+      summary: 'Provide your diagnosis details below',
       appendTitle: 'Do you have an additional instance where you EVER had been diagnosed by a physician or other health professional (for example, a psychiatrist, psychologist, licensed clinical social worker, or nurse practitioner) with psychotic disorder, schizophrenia, schizoaffective disorder, delusional disorder, bipolar mood disorder, borderline personality disorder, or antisocial personality disorder?',
       appendMessage: 'Health professional examples: a psychiatrist, psychologist, licensed clinical social worker, or nurse practitioner.',
       appendLabel: 'Add another diagnosis',
@@ -307,7 +307,7 @@ export const psychological = {
     treatment: {
       collection: {
         description: 'Summary of treatments',
-        summary: '*Provide your treatment details below*',
+        summary: 'Provide your treatment details below',
         appendTitle: 'Do you have an additional instance where you are currently in treatment?',
         appendLabel: 'Add another treatment',
         itemType: 'Treatment'
@@ -343,7 +343,7 @@ export const psychological = {
         },
         address: {
           title: 'Try looking up the health care professional\'s name, this could help you find the address',
-          message: 'If you can only find a phone number try calling and asking for the address',
+          message: 'If you can only find a phone number try calling and asking for the address.',
           note: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
         }
       }
@@ -388,7 +388,7 @@ export const psychological = {
     treatment: {
       collection: {
         description: 'Summary of treatments',
-        summary: '*Provide your treatment details below*',
+        summary: 'Provide your treatment details below',
         appendTitle: 'Do you have an additional instance where you ever received are you currently receiving counseling or treatment for that condition',
         appendLabel: 'Add another treatment',
         itemType: 'Treatment'
