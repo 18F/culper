@@ -32,6 +32,7 @@ func defaultTemplate(templateName string, data map[string]interface{}) template.
 		"date":                 date,
 		"dateEstimated":        dateEstimated,
 		"daterange":            daterange,
+		"daysInRange":          daysInRange,
 		"degreeType":           degreeType,
 		"foreignDocType":       foreignDocType,
 		"monthYearDaterange":   monthYearDaterange,
@@ -172,7 +173,10 @@ func radio(data map[string]interface{}) string {
 func checkbox(data map[string]interface{}) string {
 	props, ok := data["props"]
 	if ok {
-		values := (props.(map[string]interface{}))["values"].([]interface{})
+		values, ok := (props.(map[string]interface{}))["values"].([]interface{})
+		if !ok {
+			return ""
+		}
 		ss := []string{}
 		for _, v := range values {
 			ss = append(ss, v.(string))
@@ -348,6 +352,18 @@ func citizenshipHas(data map[string]interface{}, country string) bool {
 	}
 
 	return false
+}
+
+func daysInRange(v string) string {
+	alias := map[string]string{
+		"1-5":              "OneToFive",
+		"6-10":             "SixToTen",
+		"11-20":            "ElevenToTwenty",
+		"21-30":            "TwentyoneToThirty",
+		"More than 30":     "MoreThanThirty",
+		"Many short trips": "ManyShortTrips",
+	}
+	return alias[v]
 }
 
 // Put attribute helpers here
