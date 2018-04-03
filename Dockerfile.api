@@ -1,4 +1,4 @@
-FROM golang:1.10.0
+FROM golang:1.10
 RUN go get -u github.com/Masterminds/glide; \
     cd $GOPATH/src/github.com/Masterminds/glide; \
     git checkout tags/$(git describe --tags $(git rev-list --tags --max-count=1)); \
