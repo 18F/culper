@@ -10,7 +10,11 @@
         </Form>
         <Applicant>
           <Name>{{$name.first}} {{$name.middle}} {{$name.last}}</Name>
-          <SSN NotApplicable="{{$ssn.notApplicable}}">{{$ssn.first}}{{$ssn.middle}}{{$ssn.last}}</SSN>
+          {{if $ssn.notApplicable}}
+          <SSN NotApplicable="True" />
+          {{else}}
+          <SSN>{{$ssn.first}}{{$ssn.middle}}{{$ssn.last}}</SSN>
+          {{end}}
         </Applicant>
         <Responses>
           <AgencyInstructionsForApplicant></AgencyInstructionsForApplicant>
