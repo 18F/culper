@@ -7,8 +7,6 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/18F/e-QIP-prototype/api/jwt"
-	"github.com/18F/e-QIP-prototype/api/logmsg"
 	cfenv "github.com/cloudfoundry-community/go-cfenv"
 )
 

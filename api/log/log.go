@@ -2,13 +2,9 @@ package log
 
 import (
 	"log/syslog"
-	"net/http"
 	"net/url"
 	"os"
 	"path"
-	"strings"
-
-	"github.com/18F/e-QIP-prototype/api/jwt"
 
 	"github.com/rifflock/lfshook"
 	"github.com/sirupsen/logrus"
@@ -86,31 +82,31 @@ func NewLogger() *logrus.Logger {
 	return log
 }
 
-// NewLoggerFromRequest creates a custom logger based on properties found in an HTTP request.
-func NewLoggerFromRequest(r *http.Request) *logrus.Entry {
-	log := NewLogger()
+// // NewLoggerFromRequest creates a custom logger based on properties found in an HTTP request.
+// func NewLoggerFromRequest(r *http.Request) *logrus.Entry {
+// 	log := NewLogger()
 
-	id := ""
-	token, err := jwt.ParseWithClaims(jwt.ExtractToken(r))
-	if err == nil && token.Valid {
-		id = jwt.TokenClaims(token).Id
-	}
+// 	id := ""
+// 	token, err := jwt.ParseWithClaims(jwt.ExtractToken(r))
+// 	if err == nil && token.Valid {
+// 		id = jwt.TokenClaims(token).Id
+// 	}
 
-	ip := r.RemoteAddr
-	proxies := r.Header.Get(http.CanonicalHeaderKey("x-forwarded-for"))
-	if proxies != "" {
-		for _, proxy := range strings.Split(proxies, ", ") {
-			ip = proxy
-		}
-	}
+// 	ip := r.RemoteAddr
+// 	proxies := r.Header.Get(http.CanonicalHeaderKey("x-forwarded-for"))
+// 	if proxies != "" {
+// 		for _, proxy := range strings.Split(proxies, ", ") {
+// 			ip = proxy
+// 		}
+// 	}
 
-	// Return request specific settings
-	contextLogger := log.WithFields(logrus.Fields{
-		"ip":      ip,
-		"account": id,
-	})
-	return contextLogger
-}
+// 	// Return request specific settings
+// 	contextLogger := log.WithFields(logrus.Fields{
+// 		"ip":      ip,
+// 		"account": id,
+// 	})
+// 	return contextLogger
+// }
 
 // Support for logging to an append only log file.
 func hookLocalFile(log *logrus.Logger) {
