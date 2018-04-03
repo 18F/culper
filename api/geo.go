@@ -3,9 +3,6 @@ package api
 import (
 	"errors"
 	"fmt"
-
-	"github.com/18F/e-QIP-prototype/api/cf"
-	"github.com/18F/e-QIP-prototype/api/logmsg"
 )
 
 var (
@@ -17,24 +14,24 @@ var (
 	ErrNoResultsFound = errors.New("No geolocation results were found")
 )
 
-func init() {
-	log := logmsg.NewLogger()
-	uspsUserID := cf.UserService("usps-api", "api_key")
-	if uspsUserID == "" {
-		log.Warn(logmsg.USPSMissingKey)
-	}
+// func init() {
+// 	log := logmsg.NewLogger()
+// 	uspsUserID := cf.UserService("usps-api", "api_key")
+// 	if uspsUserID == "" {
+// 		log.Warn(logmsg.USPSMissingKey)
+// 	}
 
-	Geocode = NewUSPSGeocoder(uspsUserID)
-}
+// 	Geocode = NewUSPSGeocoder(uspsUserID)
+// }
 
 // Geocoder is an interface for geocoding implementations
 type Geocoder interface {
-	Validate(Values) (Results, error)
+	Validate(Values) (GeocodeResults, error)
 }
 
 // Result represents geocoded information that has been transformed from the original source.
 // All Geocoders should convert their location information into a Result struct
-type Result struct {
+type GeocodeResult struct {
 	Street    string
 	Street2   string
 	City      string
@@ -49,10 +46,10 @@ type Result struct {
 
 // Results contains a list of found Result. It contains helper methods to determine if
 // partial matches were found
-type Results []Result
+type GeocodeResults []GeocodeResult
 
 // HasPartial determines if any of the matches is partial
-func (r Results) HasPartial() bool {
+func (r GeocodeResults) HasPartial() bool {
 	for _, result := range r {
 		if result.Partial {
 			return true
@@ -62,7 +59,7 @@ func (r Results) HasPartial() bool {
 }
 
 // HasErrors checks if any of the results contains error information
-func (r Results) HasErrors() bool {
+func (r GeocodeResults) HasErrors() bool {
 	for _, result := range r {
 		if result.Error != "" {
 			return true
@@ -72,12 +69,12 @@ func (r Results) HasErrors() bool {
 }
 
 // Empty determines if any results are available
-func (r Results) Empty() bool {
+func (r GeocodeResults) Empty() bool {
 	return len(r) == 0
 }
 
 // String returns a friendly representation of a Result
-func (r Result) String() string {
+func (r GeocodeResult) String() string {
 	return fmt.Sprintf("Street: %s\nStreet2: %s\nCity: %s\nState: %s\nZipcode: %s\nCounty: %s\nCountry: %s\nPartial: %v\nFormatted: %s",
 		r.Street,
 		r.Street2,
@@ -92,7 +89,7 @@ func (r Result) String() string {
 }
 
 // Values stores generic geospatial related query parameters
-type Values struct {
+type GeocodeValues struct {
 	Street  string
 	Street2 string
 	City    string

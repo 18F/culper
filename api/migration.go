@@ -5,7 +5,6 @@ package api
 import (
 	"path/filepath"
 
-	"github.com/18F/e-QIP-prototype/api/cf"
 	"github.com/truetandem/plucked/migration"
 )
 
@@ -48,7 +47,9 @@ func (service Migration) CurrentVersion(directory, environment, schema string) (
 // instead of the YAML file. This is ideal to reduce the dependencies in production.
 func (service Migration) databaseConf(directory, environment, schema string) (*migration.DBConf, error) {
 	// Pull from database connection string from the environment
-	uri := cf.DatabaseURI("aws-rds")
+	// TODO: Figure this one out
+	// uri := cf.DatabaseURI("aws-rds")
+	uri := ""
 	return &migration.DBConf{
 		MigrationsDir: filepath.Join(directory, "migrations"),
 		Env:           environment,

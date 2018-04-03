@@ -2,8 +2,6 @@ package api
 
 import (
 	"fmt"
-
-	"github.com/18F/e-QIP-prototype/api/geo"
 )
 
 // ValidationResult is an interface to be used by errors that return a properly formatted struct
@@ -113,7 +111,7 @@ func (e ErrFieldRequired) Result(fieldname string) interface{} {
 // ErrInvalidLocation represents an error for location information with additional options
 type ErrInvalidLocation struct {
 	Message     string
-	Suggestions []geo.Result
+	Suggestions []GeocodeResult
 }
 
 // Error returns the error message.
@@ -126,7 +124,7 @@ func (e ErrInvalidLocation) Result(fieldname string) interface{} {
 	return struct {
 		Fieldname   string
 		Error       string
-		Suggestions []geo.Result
+		Suggestions []GeocodeResult
 	}{
 		fieldname,
 		e.Error(),
