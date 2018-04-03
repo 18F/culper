@@ -8,7 +8,7 @@
       <Actions>{{textarea $Item.Actions}}</Actions>
       <Amount>{{number $Item.Losses}}</Amount>
       <Comment></Comment>
-      {{daterange $Item.Dates}}
+      {{monthYearDaterange $Item.Dates}}
       <Description>{{textarea $Item.Description}}</Description>
     </Incident>
     {{end}}
