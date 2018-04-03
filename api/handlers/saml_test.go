@@ -62,7 +62,7 @@ func TestCleanName(t *testing.T) {
 
 	for _, x := range tests {
 		if !strings.EqualFold(cleanName(x.nameID), x.expected) {
-			t.Fatal("Expected name to be '%s' but was '%s'.", x.expected, x.nameID)
+			t.Fatalf("Expected name to be '%s' but was '%s'.", x.expected, x.nameID)
 		}
 	}
 }
