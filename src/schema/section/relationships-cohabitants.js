@@ -15,7 +15,7 @@ export const relationshipsCohabitants = (data = {}) => {
           return {
             Item: {
               Has: form.branch(yitem.Has),
-              Name: form.name(yitem.Name),
+              OtherName: form.name(yitem.OtherName),
               MaidenName: form.branch(yitem.MaidenName),
               DatesUsed: form.daterange(yitem.DatesUsed)
             }
