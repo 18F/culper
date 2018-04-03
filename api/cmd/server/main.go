@@ -25,16 +25,17 @@ func main() {
 
 	flag.Parse()
 	if !*flagSkipMigration {
-		if err := db.MigrateUp("db", "environment", ""); err != nil {
-			log.WithError(err).Warn(logmsg.WarnFailedMigration)
+		migration := Migration{Env: settings}
+		if err := migration.Up("db", "environment", ""); err != nil {
+			logger.Warn(api.WarnFailedMigration, err, api.LogFields{})
 		}
 	}
 
 	// Make sure the JWT are properly configured
-	if err := jwt.ConfigureEnvironment(256); err != nil {
-		log.WithError(err).Warn(logmsg.WarnFailedMigration)
+	if err := token.ConfigureEnvironment(256); err != nil {
+		logger.Warn(api.WarnFailedMigration, err, api.LogFields{})
 	} else {
-		log.Info(logmsg.WarnFailedMigration)
+		logger.Info(api.WarnFailedMigration, api.LogFields{})
 	}
 
 	// Declare a new router with any middleware injected
@@ -43,12 +44,12 @@ func main() {
 	r.HandleFunc("/refresh", http.JwtTokenRefresh{Env: settings, Log: logger, Token: token, Database: database}).Methods("POST")
 
 	// Two-factor authentication
-	if !cf.TwofactorDisabled() {
+	if !settings.True(api.DISABLE_2FA) {
 		s := r.PathPrefix("/2fa").Subrouter()
 		s.HandleFunc("/{account}", http.MFAGenerateHandler{Env: settings, Log: logger, Token: token, Database: database})
 		s.HandleFunc("/{account}/verify", http.MFAVerifyHandler{Env: settings, Log: logger, Token: token, Database: database})
 
-		if cf.TwofactorResettable() {
+		if settings.True(api.ALLOW_2FA_RESET) {
 			s.HandleFunc("/{account}/reset", http.MFAResetHandler{Env: settings, Log: logger, Token: token, Database: database})
 		}
 	}
@@ -78,9 +79,10 @@ func main() {
 	router := http.CORS(http.StandardLogging(r))
 
 	// Get the public address
-	address := cf.PublicAddress()
+	// TODO: Replace public address
+	address := ":" + settings.String(api.PORT)
 
 	// Listen and serve
 	server := http.Server{Env: settings, Log: logger}
-	log.Fatal(server.ListenAndServe(address, router))
+	logger.Fatal(server.ListenAndServe(address, router), api.LogFields{})
 }

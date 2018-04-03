@@ -4,26 +4,27 @@ import (
 	"flag"
 	"os"
 
-	"github.com/18F/e-QIP-prototype/api/db"
-	"github.com/18F/e-QIP-prototype/api/logmsg"
-	"github.com/18F/e-QIP-prototype/api/model"
-	"github.com/sirupsen/logrus"
+	"github.com/18F/e-QIP-prototype/api"
+	"github.com/18F/e-QIP-prototype/api/env"
+	"github.com/18F/e-QIP-prototype/api/postgresql"
 )
 
 var (
 	flagAll = flag.Bool("all", false, "apply to all accounts")
 )
 
-func Command(log *logrus.Logger, action func(*db.DatabaseContext, *model.Account)) {
-	context := db.NewDB()
+func Command(log *api.LogService, action func(*api.DatabaseService, *api.Account)) {
+	settings := &env.Native{}
+	database := &postgresql.DatabaseService{Log: logger, Env: settings}
+	context := database.NewDatabase()
 	flag.Parse()
 
 	if *flagAll {
 		// Retrieve all accounts within the system from the database so we
 		// may iterate through them.
-		var accounts []*model.Account
+		var accounts []*api.Account
 		if err := context.Database.Model(&accounts).Select(); err != nil {
-			log.WithError(err).Warn(logmsg.NoAccount)
+			log.Warn(api.NoAccount, err, api.LogFields{})
 			return
 		}
 
@@ -31,7 +32,7 @@ func Command(log *logrus.Logger, action func(*db.DatabaseContext, *model.Account
 		for _, account := range accounts {
 			account.WithContext(context)
 			if err := account.Get(); err != nil {
-				log.WithField("account", account.Username).WithError(err).Warn(logmsg.NoAccount)
+				log.Warn(api.NoAccount, err, api.LogFields{"account": account.Username})
 				continue
 			}
 
@@ -42,10 +43,10 @@ func Command(log *logrus.Logger, action func(*db.DatabaseContext, *model.Account
 		// Assume all arguments are a username delimited by white space.
 		for _, username := range os.Args[1:] {
 			// Retrieve the account with the provided username and database context.
-			account := &model.Account{Username: username}
+			account := &api.Account{Username: username}
 			account.WithContext(context)
 			if err := account.Get(); err != nil {
-				log.WithField("account", account.Username).WithError(err).Warn(logmsg.NoAccount)
+				log.Warn(api.NoAccount, err, api.LogFields{"account": account.Username})
 				continue
 			}
 

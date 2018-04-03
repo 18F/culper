@@ -1,19 +1,18 @@
 package main
 
 import (
-	"github.com/18F/e-QIP-prototype/api/db"
-	"github.com/18F/e-QIP-prototype/api/logmsg"
-	"github.com/18F/e-QIP-prototype/api/model"
-	"github.com/18F/e-QIP-prototype/api/tools"
+	"github.com/18F/e-QIP-prototype/api"
+	"github.com/18F/e-QIP-prototype/api/cmd"
+	"github.com/18F/e-QIP-prototype/api/log"
 )
 
 func main() {
-	log := logmsg.NewLogger()
-	tools.Command(log, func(context *db.DatabaseContext, account *model.Account) {
+	log := &log.LogService{log: log.NewLogger()}
+	cmd.Command(log, func(context *api.DatabaseService, account *api.Account) {
 		if err := account.Unlock(); err != nil {
-			log.WithField("account", account.Username).WithError(err).Warn("Failed to unlock account")
+			log.Warn("Failed to unlock account", err, api.LogFields{"account": account.Username})
 		} else {
-			log.WithField("account", account.Username).Info("Account unlocked")
+			log.Warn("Account unlocked", api.LogFields{"account": account.Username})
 		}
 	})
 }

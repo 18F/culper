@@ -1,21 +1,15 @@
 package main
 
 import (
-	"github.com/18F/e-QIP-prototype/api/db"
-	"github.com/18F/e-QIP-prototype/api/logmsg"
-	"github.com/18F/e-QIP-prototype/api/model"
-	"github.com/18F/e-QIP-prototype/api/tools"
+	"github.com/18F/e-QIP-prototype/api"
+	"github.com/18F/e-QIP-prototype/api/cmd"
+	"github.com/18F/e-QIP-prototype/api/log"
 )
 
 func main() {
-	log := logmsg.NewLogger()
-	tools.Command(log, func(context *db.DatabaseContext, account *model.Account) {
-		account.Token = ""
-		account.TokenUsed = false
-		if err := account.Save(); err != nil {
-			log.WithField("account", account.Username).WithError(err).Warn("Failed to reset MFA")
-		} else {
-			log.WithField("account", account.Username).Info("Account MFA reset")
-		}
+	log := &log.LogService{log: log.NewLogger()}
+	cmd.Command(log, func(context *api.DatabaseService, account *api.Account) {
+		api.PurgeAccountStorage(context, account.ID)
+		log.Info("Account information purged", api.LogFields{"account": account.Username})
 	})
 }
