@@ -12,7 +12,11 @@
       <DateFailedToPay Type={{if checkboxTrueFalse $Item.YearEstimated | eq "true" }}"Estimated"{{else}}""{{end}}>
         <Year>{{number $Item.Year}}</Year>
       </DateFailedToPay>
-      <DateSatisfied Type="{{dateEstimated $Item.Date}}" NotApplicable="{{notApplicable $Item.DateNotApplicable}}">{{monthYear $Item.Date}}</DateSatisfied>
+      {{if notApplicable $Item.DateNotApplicable | eq "True"}}
+      <DateSatisfied NotApplicable="True" />
+      {{else}}
+      <DateSatisfied Type="{{dateEstimated $Item.Date}}">{{monthYear $Item.Date}}</DateSatisfied>
+      {{end}}
       <Reason>{{textarea $Item.Reason}}</Reason>
       <TaxType>{{text $Item.TaxType}}</TaxType>
       <Type>{{radio $Item.Failure}}</Type>
