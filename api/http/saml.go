@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"strings"
 
 	"github.com/18F/e-QIP-prototype/api"
 	saml "github.com/RobotsAndPencils/go-saml"
@@ -28,7 +29,6 @@ func (service SamlHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	sp := configureSAML(r)
 	service.Log.Debug("SAML configuration", api.LogFields{
 		"PublicCertPath":              sp.PublicCertPath,
 		"PrivateKeyPath":              sp.PrivateKeyPath,
@@ -40,22 +40,18 @@ func (service SamlHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	})
 
 	// Generate the AuthnRequest and then get a base64 encoded string of the XML
-	authnRequest := sp.GetAuthnRequest()
-	var b64XML string
-	var err error
-	if sp.SPSignRequest {
-		b64XML, err = authnRequest.EncodedSignedString(sp.PrivateKeyPath)
-	} else {
-		b64XML, err = authnRequest.EncodedString()
-	}
+	request, encoded, err := createAuthenticationRequest(sp)
 	if err != nil {
 		service.Log.Warn(api.SamlRequestError, err, api.LogFields{})
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
+	} else {
+		requestAsXml, _ := request.String()
+		log.WithField("xml", requestAsXml).Debug("SAML authentication request")
 	}
 
 	// Get a URL formed with the SAMLRequest parameter
-	url, err := saml.GetAuthnRequestURL(sp.IDPSSOURL, b64XML, "state")
+	url, err := saml.GetAuthnRequestURL(sp.IDPSSOURL, encoded, "state")
 	if err != nil {
 		service.Log.Warn(api.SamlRequestURLError, err, api.LogFields{})
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -68,7 +64,7 @@ func (service SamlHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		Base64XML string
 		URL       string
 	}{
-		b64XML,
+		encoded,
 		url,
 	})
 }
@@ -104,7 +100,7 @@ func (service SamlCallbackHandler) ServeHTTP(w http.ResponseWriter, r *http.Requ
 		return
 	}
 
-	sp := configureSAML(r)
+	sp := configureSAML(service.Env)
 	err = response.Validate(&sp)
 	if err != nil {
 		service.Log.Warn(api.SamlInvalid, err, api.LogFields{})
@@ -112,7 +108,7 @@ func (service SamlCallbackHandler) ServeHTTP(w http.ResponseWriter, r *http.Requ
 		return
 	}
 
-	username := response.Assertion.Subject.NameID.Value
+	username := cleanName(response.Assertion.Subject.NameID.Value)
 	if username == "" {
 		service.Log.Warn(api.SamlIdentifierMissing, err, api.LogFields{})
 		redirectAccessDenied(w, r)
@@ -183,4 +179,47 @@ func configureSAML(env *api.Settings) saml.ServiceProviderSettings {
 
 	sp.Init()
 	return sp
+}
+
+// Create a SAML 2.0 authentication request based on the service provider settings.
+// If configured to sign the request then the Base64 XML will be signed.
+func createAuthenticationRequest(settings saml.ServiceProviderSettings) (*saml.AuthnRequest, string, error) {
+	var encodedXml string
+	var err error
+
+	request := settings.GetAuthnRequest()
+	if settings.SPSignRequest {
+		encodedXml, err = request.EncodedSignedString(settings.PrivateKeyPath)
+	} else {
+		encodedXml, err = request.EncodedString()
+	}
+	return request, encodedXml, err
+}
+
+// cleanName applies some basic sanitization of the NameID for storage.
+func cleanName(nameID string) string {
+	// Trim any leading or trailing whitespace characters.
+	nameID = strings.TrimSpace(nameID)
+
+	// Check for any special whitespace characters within the string and
+	// remove them.
+	for _, c := range []string{"\n", "\t", "\r"} {
+		nameID = strings.Replace(nameID, c, "", -1)
+	}
+
+	// The database only allows the username to be 200 characters.
+	// Passing an empty substring to `strings.Count()` returns the number of
+	// runes + 1.
+	if strings.Count(nameID, "")-1 > 200 {
+		runes := []rune{}
+		for i, r := range nameID {
+			if i > 199 {
+				break
+			}
+			runes = append(runes, r)
+		}
+		nameID = string(runes)
+	}
+
+	return nameID
 }

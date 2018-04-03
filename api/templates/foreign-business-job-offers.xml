@@ -2,6 +2,10 @@
 <ForeignJobOffer>
   <Answer>{{branch .props.HasForeignEmployment}}</Answer>
   <Comment></Comment>
+  {{- if branch .props.HasForeignEmployment | eq "Yes"}}
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+  <SummaryComment></SummaryComment>
+  {{end}}
 </ForeignJobOffer>
 <ForeignJobOffers>
   {{range $index, $item := .props.List.props.items}}

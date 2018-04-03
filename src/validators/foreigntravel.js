@@ -63,12 +63,12 @@ export class TravelValidator {
 
   validDays () {
     const options = ['1-5', '6-10', '11-20', '21-30', 'More than 30', 'Many short trips']
-    return !!this.days && this.days.length > 0 && this.days.every(x => options.includes(x))
+    return !!this.days && this.days.values && this.days.values.length > 0 && this.days.values.every(x => options.includes(x))
   }
 
   validPurpose () {
     const options = ['Business', 'Volunteer', 'Education', 'Tourism', 'Conference', 'Family', 'Other']
-    return !!this.purpose && this.purpose.length > 0 && this.purpose.every(x => options.includes(x))
+    return !!this.purpose && this.purpose.values && this.purpose.values.length > 0 && this.purpose.values.every(x => options.includes(x))
   }
 
   validQuestioned () {

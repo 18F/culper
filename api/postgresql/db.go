@@ -86,8 +86,8 @@ func (service *DatabaseService) Insert(query ...interface{}) error {
 }
 
 // Update persists the existing model in the data store
-func (service *DatabaseService) Update(query ...interface{}) error {
-	return service.Database.Update(query...)
+func (context *DatabaseContext) Update(query interface{}) error {
+	return context.Database.Update(query)
 }
 
 // Save persists the model in the data store
