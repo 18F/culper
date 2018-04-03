@@ -32,6 +32,7 @@ func defaultTemplate(templateName string, data map[string]interface{}) template.
 		"date":                 date,
 		"dateEstimated":        dateEstimated,
 		"daterange":            daterange,
+		"degreeType":           degreeType,
 		"foreignDocType":       foreignDocType,
 		"monthYearDaterange":   monthYearDaterange,
 		"email":                email,
@@ -45,6 +46,7 @@ func defaultTemplate(templateName string, data map[string]interface{}) template.
 		"notApplicable":        notApplicable,
 		"number":               number,
 		"radio":                radio,
+		"schoolType":           schoolType,
 		"relationshipType":     relationshipType,
 		"telephone":            telephone,
 		"telephoneNoNumber":    telephoneNoNumber,
@@ -260,6 +262,29 @@ func citizenshipStatus(status string) string {
 		"NotCitizen":  "Alien",
 	}
 	return alias[status]
+}
+
+func schoolType(t string) string {
+	alias := map[string]string{
+		"High School":    "HighSchool",
+		"College":        "College",
+		"Vocational":     "Vocational",
+		"Correspondence": "Correspondence",
+	}
+	return alias[t]
+}
+
+func degreeType(t string) string {
+	alias := map[string]string{
+		"High School Diploma": "HighSchool",
+		"Associate":           "Associate",
+		"Bachelor":            "Bachelor",
+		"Master":              "Master",
+		"Doctorate":           "Doctorate",
+		"Professional":        "Professional",
+		"Other":               "Other",
+	}
+	return alias[t]
 }
 
 // foreignDocType translates our enums to eqip specific enums

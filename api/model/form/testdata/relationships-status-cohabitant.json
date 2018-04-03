@@ -112,7 +112,7 @@
                   "items": [
                     {
                       "Item": {
-                        "Name": {
+                        "OtherName": {
                           "type": "name",
                           "props": {
                             "first": "John",
