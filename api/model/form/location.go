@@ -233,7 +233,6 @@ func has(target string, options ...string) bool {
 	return false
 }
 
-// TODO: Read `states` and `countries` from an external source.
 var (
 	states = []string{
 		"AL",
