@@ -1,7 +1,7 @@
 <ForeignContacts>
   <Comment></Comment>
   <ContactWithForeignNationalBoundByAffectionInfluenceObligation>
-    <Answer>{{branchcollectionHas .props.List}}</Answer>
+    <Answer>{{branch .props.HasForeignContacts}}</Answer>
   </ContactWithForeignNationalBoundByAffectionInfluenceObligation>
   <Contacts>
     {{range $index, $item := .props.List.props.items}}
@@ -34,10 +34,18 @@
         <Frequency>{{text $Item.Frequency}}</Frequency>
         <FrequencyTypeOtherExplanation>{{text $Item.FrequencyExplanation}}</FrequencyTypeOtherExplanation>
         <Nature
-          Business="{{checkboxHas $Item.Relationship "Professional"}}"
-          Personal="{{checkboxHas $Item.Relationship "Personal"}}"
-          Obligation="{{checkboxHas $Item.Relationship "Obligation"}}"
-          Other="{{checkboxHas $Item.Relationship "Other"}}"
+          {{ if checkboxHas $Item.Relationship "Professional" | eq "True"}}
+          Business="True"
+          {{end}}
+          {{ if checkboxHas $Item.Relationship "Personal" | eq "True"}}
+          Personal="True"
+          {{end}}
+          {{ if checkboxHas $Item.Relationship "Obligation" | eq "True"}}
+          Obligation="True"
+          {{end}}
+          {{ if checkboxHas $Item.Relationship "Other" | eq "True"}}
+          Other="True"
+          {{end}}
           />
         <NatureOtherExplanation>{{text $Item.RelationshipExplanation}}</NatureOtherExplanation>
         <Type

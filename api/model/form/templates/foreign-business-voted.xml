@@ -1,6 +1,9 @@
 <!-- Voting -->
 <VotedInForeignElection>
   <Answer>{{branch .props.HasForeignVoting}}</Answer>
+  {{- if branch .props.HasForeignVoting | eq "Yes"}}
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+  {{end}}
   <Comment></Comment>
 </VotedInForeignElection>
 <VotedInForeignElections>

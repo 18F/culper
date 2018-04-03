@@ -10,7 +10,7 @@
     <Comment></Comment>
     {{country $Item.Country}}
     <CurrentEligibility>{{text $Item.Eligibility}}</CurrentEligibility>
-    {{daterange $Item.Dates}}
+    {{monthYearDaterange $Item.Dates}}
     <Position>{{text $Item.Position}}</Position>
     <Reason>{{text $Item.Reason}}</Reason>
   </ForeignPoliticalOffice>
