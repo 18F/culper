@@ -184,7 +184,6 @@ export default class DelinquentItem extends ValidationElement {
                       onUpdate={this.updateAmount}
                       onError={this.props.onError}
                       className="delinquent-amount"
-                      placeholder={i18n.t('financial.delinquent.placeholder.amount')}
                       min="1"
                       required={this.props.required}
                       />

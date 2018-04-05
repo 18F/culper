@@ -81,9 +81,6 @@ export const financial = {
         message: 'If you need to provide any additional comments about this information enter them below',
         note: ''
       }
-    },
-    placeholder: {
-      losses: '0'
     }
   },
   bankruptcy: {
@@ -161,7 +158,6 @@ export const financial = {
     },
     totalAmount: {
       label: 'Amount',
-      placeholder: '0',
       help: {
         title: 'Need help with the total amount?',
         message: 'Provide the total amount (in U.S. dollars) involved in the bankruptcy',
@@ -232,8 +228,7 @@ export const financial = {
       or: 'or'
     },
     placeholder: {
-      year: '0000',
-      amount: '0'
+      year: '0000'
     },
     help: {
       branch: {
@@ -548,9 +543,6 @@ export const financial = {
     label: {
       notresolved: 'Not resolved',
       estimated: 'Estimated'
-    },
-    placeholder: {
-      amount: '0'
     },
     help: {
       branch: {
