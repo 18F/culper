@@ -12,7 +12,6 @@ import { Section, SavedIndicator } from '../../components'
 //     display the subsection only.
 class Form extends React.Component {
   componentWillMount () {
-    this.props.dispatch(getApplicationState())
     this.defaultRedirect()
   }
 

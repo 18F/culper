@@ -62,5 +62,8 @@ export const application = {
   alert: {
     navigation: 'Your form has been submitted and is locked',
     logout: 'Make sure you save and/or print your responses before logging out'
+  },
+  loading: {
+    title: '#### We are loading your data'
   }
 }

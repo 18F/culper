@@ -4,7 +4,7 @@ import schema, { unschema } from '../schema'
 import validate from '../validators'
 import { push } from '../middleware/history'
 
-export function getApplicationState () {
+export function getApplicationState (done) {
   return function (dispatch, getState) {
     let locked = false
     let formData = {}
@@ -37,6 +37,9 @@ export function getApplicationState () {
       }
 
       validateApplication(dispatch, formData)
+      if (done) {
+        done()
+      }
     })
     .catch(() => {
       if (console && console.warn) {
