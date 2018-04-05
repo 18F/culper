@@ -12,7 +12,7 @@ func main() {
 		account.Token = ""
 		account.TokenUsed = false
 		if err := account.Save(); err != nil {
-			log.Warn("Failed to reset MFA", err, api.LogFields{"account": account.Username})
+			log.WarnError("Failed to reset MFA", err, api.LogFields{"account": account.Username})
 		} else {
 			log.Info("Account MFA reset", api.LogFields{"account": account.Username})
 		}

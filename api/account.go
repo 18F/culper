@@ -2,12 +2,6 @@ package api
 
 import (
 	"errors"
-	"fmt"
-	"strconv"
-	"time"
-
-	"github.com/18F/e-QIP-prototype/api/db"
-	"github.com/18F/e-QIP-prototype/api/jwt"
 )
 
 var (
@@ -31,107 +25,129 @@ type Account struct {
 	TokenUsed bool
 	Email     string
 	Locked    bool
-	db        *db.DatabaseContext
 }
 
-// WithContext sets a db connection for a particular model
-func (a *Account) WithContext(ctx *db.DatabaseContext) {
-	a.db = ctx
-}
-
-// BasicAuthentication checks if the username and password are valid and returns the users account
-func (a *Account) BasicAuthentication(password string) error {
-	var basicMembership BasicAuthMembership
-
-	// Find if basic auth record exists for given account username
-	err := a.db.Database.Model(&basicMembership).
-		Column("basic_auth_membership.*", "Account").
-		Where("Account.username = ?", a.Username).
-		Select()
-
-	if err != nil {
-		fmt.Printf("Basic Authentication Error: [%v]\n", err)
-		return ErrAccoundDoesNotExist
+// Save the Account entity.
+func (entity *Account) Save(context DatabaseService, account int) (int, error) {
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
 	}
 
-	// Check if plaintext password matches hashed password
-	if matches := basicMembership.PasswordMatch(password); !matches {
-		return ErrPasswordDoesNotMatch
+	if err := context.Save(entity); err != nil {
+		return entity.ID, err
 	}
 
-	a = basicMembership.Account
-	return nil
+	return entity.ID, nil
 }
 
-// NewJwtToken generates a new token with the explicit audience.
-func (a *Account) NewJwtToken(audience string) (string, time.Time, error) {
-	return jwt.NewToken(a.ID, audience)
-}
-
-// ValidJwtToken parses a token and determines if the token is valid
-func (a *Account) ValidJwtToken(rawToken, audience string) (bool, error) {
-	token, err := jwt.ParseWithClaims(rawToken)
-	if err != nil {
-		// Invalid token
-		return false, err
+// Delete the Account entity.
+func (entity *Account) Delete(context DatabaseService, account int) (int, error) {
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
 	}
 
-	if token.Valid {
-		claims := jwt.TokenClaims(token)
-		a.ID, err = strconv.Atoi(claims.Id)
-		if err != nil {
-			return false, err
-		}
-
-		if claims.Audience != audience {
-			return false, errors.New("Invalid audience")
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
 		}
 	}
 
-	// Everything is good
-	return token.Valid, nil
+	return entity.ID, nil
 }
 
-// Get account from the database
-func (a *Account) Get() error {
-	if a.db.Database == nil {
-		return errors.New("No database context found")
+// Get the Account entity.
+func (entity *Account) Get(context DatabaseService, account int) (int, error) {
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
 	}
 
-	if a.ID == 0 {
-		return a.db.Database.
-			Model(a).
-			Where("Account.username = ?", a.Username).
-			Select()
+	if err := entity.Find(context); err != nil {
+		return entity.ID, err
 	}
 
-	return a.db.Database.Select(a)
+	return entity.ID, nil
 }
 
-// Save a database entity
-func (a *Account) Save() error {
-	if a.db.Database == nil {
-		return errors.New("No database context found")
-	}
+// GetID returns the entity identifier.
+func (entity *Account) GetID() int {
+	return entity.ID
+}
 
-	var err error
-	if a.ID == 0 {
-		err = a.db.Database.Insert(a)
-	} else {
-		err = a.db.Database.Update(a)
-	}
+// SetID sets the entity identifier.
+func (entity *Account) SetID(id int) {
+	entity.ID = id
+}
 
-	return err
+func (entity *Account) Find(context DatabaseService) error {
+	if entity.ID == 0 {
+		return context.Where(entity, "Account.username = ?", entity.Username)
+	}
+	return context.Select(entity)
 }
 
 // Lock will mark the account in a `locked` status.
-func (a *Account) Lock() error {
+func (a *Account) Lock(context DatabaseService) error {
 	a.Locked = true
-	return a.Save()
+	_, err := a.Save(context, 0)
+	return err
 }
 
 // Unlock will mark the account in an `unlocked` status.
-func (a *Account) Unlock() error {
+func (a *Account) Unlock(context DatabaseService) error {
 	a.Locked = false
-	return a.Save()
+	_, err := a.Save(context, 0)
+	return err
 }
+
+// // TODO: BasicAuthentication checks if the username and password are valid and returns the users account
+// func (a *Account) BasicAuthentication(password string) error {
+// 	var basicMembership BasicAuthMembership
+
+// 	// Find if basic auth record exists for given account username
+// 	err := a.db.Database.Model(&basicMembership).
+// 		Column("basic_auth_membership.*", "Account").
+// 		Where("Account.username = ?", a.Username).
+// 		Select()
+
+// 	if err != nil {
+// 		fmt.Printf("Basic Authentication Error: [%v]\n", err)
+// 		return ErrAccoundDoesNotExist
+// 	}
+
+// 	// Check if plaintext password matches hashed password
+// 	if matches := basicMembership.PasswordMatch(password); !matches {
+// 		return ErrPasswordDoesNotMatch
+// 	}
+
+// 	a = basicMembership.Account
+// 	return nil
+// }
+
+// // TODO: NewJwtToken generates a new token with the explicit audience.
+// func (a *Account) NewJwtToken(audience string) (string, time.Time, error) {
+// 	return jwt.NewToken(a.ID, audience)
+// }
+
+// // TODO: ValidJwtToken parses a token and determines if the token is valid
+// func (a *Account) ValidJwtToken(rawToken, audience string) (bool, error) {
+// 	token, err := jwt.ParseWithClaims(rawToken)
+// 	if err != nil {
+// 		// Invalid token
+// 		return false, err
+// 	}
+
+// 	if token.Valid {
+// 		claims := jwt.TokenClaims(token)
+// 		a.ID, err = strconv.Atoi(claims.Id)
+// 		if err != nil {
+// 			return false, err
+// 		}
+
+// 		if claims.Audience != audience {
+// 			return false, errors.New("Invalid audience")
+// 		}
+// 	}
+
+// 	// Everything is good
+// 	return token.Valid, nil
+// }

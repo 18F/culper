@@ -1,19 +1,14 @@
 package cloudfoundry
 
-import (
-	"fmt"
-	"net/url"
-	"os"
-	"regexp"
-	"strings"
+import "strconv"
 
-	cfenv "github.com/cloudfoundry-community/go-cfenv"
-)
-
-type CloudFoundry struct
+type CloudFoundry struct{}
 
 func (env CloudFoundry) Has(name string) bool {
-	return VcapService(name) != ""
+	if VcapService(name) == "" {
+		return false
+	}
+	return true
 }
 
 func (env CloudFoundry) String(name string) string {
@@ -209,24 +204,4 @@ func (env CloudFoundry) Int(name string) int {
 // 		return false
 // 	}
 // 	return true
-// }
-
-// // AllowedOrigin checks the given origin is whitelisted as an acceptable address.
-// func AllowedOrigin(origin string) bool {
-// 	addresses := strings.TrimSpace(os.Getenv("CORS_ALLOWED"))
-// 	for _, addr := range strings.Split(addresses, ";") {
-// 		if addr == "" {
-// 			continue
-// 		}
-
-// 		if addr == "*" {
-// 			return true
-// 		}
-// 		re := regexp.MustCompile(strings.TrimSpace(addr))
-// 		if re.MatchString(origin) {
-// 			return true
-// 		}
-// 	}
-
-// 	return false
 // }

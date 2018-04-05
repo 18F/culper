@@ -3,7 +3,6 @@ package api
 import (
 	"time"
 
-	"github.com/18F/e-QIP-prototype/api/db"
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -14,26 +13,78 @@ type BasicAuthMembership struct {
 	Account      *Account
 	PasswordHash string
 	Created      time.Time
-	db           *db.DatabaseContext
 }
 
-// WithContext sets a db connection for a particular model
-func (b *BasicAuthMembership) WithContext(ctx *db.DatabaseContext) {
-	b.db = ctx
+// Save the Account entity.
+func (entity *BasicAuthMembership) Save(context DatabaseService, account int) (int, error) {
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
+	if err := context.Save(entity); err != nil {
+		return entity.ID, err
+	}
+
+	return entity.ID, nil
+}
+
+// Delete the Account entity.
+func (entity *BasicAuthMembership) Delete(context DatabaseService, account int) (int, error) {
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	return entity.ID, nil
+}
+
+// Get the Account entity.
+func (entity *BasicAuthMembership) Get(context DatabaseService, account int) (int, error) {
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
+	if err := entity.Find(context); err != nil {
+		return entity.ID, err
+	}
+
+	return entity.ID, nil
+}
+
+// GetID returns the entity identifier.
+func (entity *BasicAuthMembership) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *BasicAuthMembership) SetID(id int) {
+	entity.ID = id
+}
+
+func (entity *BasicAuthMembership) Find(context DatabaseService) error {
+	// if entity.ID == 0 {
+	// 	return context.Where(entity, "Account.username = ?", entity.Username)
+	// }
+	return context.Select(entity)
 }
 
 // PasswordMatch determines if a plain text password matches its equivalent password hash
-func (b *BasicAuthMembership) PasswordMatch(password string) bool {
-	return bcrypt.CompareHashAndPassword([]byte(b.PasswordHash), []byte(password)) == nil
+func (entity *BasicAuthMembership) PasswordMatch(password string) bool {
+	return bcrypt.CompareHashAndPassword([]byte(entity.PasswordHash), []byte(password)) == nil
 }
 
 // HashPassword converts a plaintext password and generates a hash and updates the
 // PasswordHash
-func (b *BasicAuthMembership) HashPassword(password string) error {
+func (entity *BasicAuthMembership) HashPassword(password string) error {
 	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
 	if err != nil {
 		return err
 	}
-	b.PasswordHash = string(hashedPassword)
+	entity.PasswordHash = string(hashedPassword)
 	return nil
 }

@@ -5,8 +5,6 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"html/template"
-
-	"github.com/18F/e-QIP-prototype/api/db"
 )
 
 type sectionInformation struct {
@@ -566,7 +564,7 @@ type FormMetadata struct {
 	Hash   string
 }
 
-func Metadata(context *db.DatabaseContext, account int, locked bool) []byte {
+func Metadata(context DatabaseService, account int, locked bool) []byte {
 	hash := Hash(context, account)
 	meta := &FormMetadata{
 		Locked: locked,
@@ -577,7 +575,7 @@ func Metadata(context *db.DatabaseContext, account int, locked bool) []byte {
 }
 
 // Application returns the application state in JSON format.
-func Application(context *db.DatabaseContext, account int, hashable bool) []byte {
+func Application(context DatabaseService, account int, hashable bool) []byte {
 	application := make(map[string]map[string]Payload)
 
 	for _, section := range catalogue {
@@ -612,17 +610,17 @@ func Application(context *db.DatabaseContext, account int, hashable bool) []byte
 }
 
 // Package an application for transmitting to cold storage
-func Package(context *db.DatabaseContext, account int, hashable bool) template.HTML {
+func Package(context DatabaseService, xml XmlService, account int, hashable bool) template.HTML {
 	jsonBytes := Application(context, account, hashable)
 	var js map[string]interface{}
 	if err := json.Unmarshal(jsonBytes, &js); err != nil {
 		// NOTE: Maybe do something else here.
 		return template.HTML("")
 	}
-	return defaultTemplate("application.xml", js)
+	return xml.DefaultTemplate("application.xml", js)
 }
 
-func ApplicationData(context *db.DatabaseContext, account int, hashable bool) (map[string]interface{}, error) {
+func ApplicationData(context DatabaseService, account int, hashable bool) (map[string]interface{}, error) {
 	jsonBytes := Application(context, account, hashable)
 	var js map[string]interface{}
 	if err := json.Unmarshal(jsonBytes, &js); err != nil {
@@ -632,7 +630,7 @@ func ApplicationData(context *db.DatabaseContext, account int, hashable bool) (m
 }
 
 // PurgeAccountStorage removes all data associated with an account
-func PurgeAccountStorage(context *db.DatabaseContext, account int) {
+func PurgeAccountStorage(context DatabaseService, account int) {
 	for _, section := range catalogue {
 		payload := &Payload{
 			Type: section.payload,
@@ -650,7 +648,7 @@ func PurgeAccountStorage(context *db.DatabaseContext, account int) {
 }
 
 // Hash returns the computed hash checksum of the application state
-func Hash(context *db.DatabaseContext, account int) [sha256.Size]byte {
+func Hash(context DatabaseService, account int) [sha256.Size]byte {
 	return sha256.Sum256(Application(context, account, true))
 }
 

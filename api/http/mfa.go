@@ -35,7 +35,7 @@ func (handler MFAGenerateHandler) ServeHTTP(w http.ResponseWriter, r *http.Reque
 	// Valid token and audience
 	_, err = handler.TokenService.CheckToken(r, account.ValidJwtToken)
 	if err != nil {
-		handler.Log.Warn(api.InvalidJWT, err, api.LogFields{})
+		handler.Log.WarnError(api.InvalidJWT, err, api.LogFields{})
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
@@ -45,7 +45,7 @@ func (handler MFAGenerateHandler) ServeHTTP(w http.ResponseWriter, r *http.Reque
 		handler.Log.Info(api.GenerateQRCode, api.LogFields{})
 		png, err = mfa.Generate(account.Username, account.Token)
 		if err != nil {
-			handler.Log.Warn(api.QRCodeError, err, api.LogFields{})
+			handler.Log.WarnError(api.QRCodeError, err, api.LogFields{})
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
@@ -63,7 +63,7 @@ type MFAVerifyHandler struct {
 
 // TwofactorVerifyHandler verifies a token provided by the end user.
 func (handler MFAVerifyHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	if handler.Env.True(api.2FA_DISABLED) {
+	if handler.Env.True(api.DISABLED_2FA) {
 		log.Warn(api.MFAAttemptDenied, api.LogFields{})
 		http.Error(w, "Multiple factor authentication is disabled", http.StatusInternalServerError)
 		return
@@ -78,7 +78,7 @@ func (handler MFAVerifyHandler) ServeHTTP(w http.ResponseWriter, r *http.Request
 	// Valid token and audience
 	_, err = handler.Token.CheckToken(r, account.ValidJwtToken, jwt.BasicAuthAudience)
 	if err != nil {
-		log.Warn(api.InvalidJWT, err, api.LogFields{})
+		log.WarnError(api.InvalidJWT, err, api.LogFields{})
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
@@ -90,7 +90,7 @@ func (handler MFAVerifyHandler) ServeHTTP(w http.ResponseWriter, r *http.Request
 
 	ok, err := mfa.Authenticate(body.Token, account.Token)
 	if err != nil {
-		log.Warn(api.MFAError, err, api.LogFields{})
+		log.WarnError(api.MFAError, err, api.LogFields{})
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
@@ -103,7 +103,7 @@ func (handler MFAVerifyHandler) ServeHTTP(w http.ResponseWriter, r *http.Request
 
 	account.TokenUsed = true
 	if err := account.Save(); err != nil {
-		log.Warn(api.AccountUpdateError, err, api.LogFields{})
+		log.WarnError(api.AccountUpdateError, err, api.LogFields{})
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
@@ -111,7 +111,7 @@ func (handler MFAVerifyHandler) ServeHTTP(w http.ResponseWriter, r *http.Request
 	// Generate a new token
 	signedToken, _, err := account.NewJwtToken(jwt.TwoFactorAudience)
 	if err != nil {
-		log.Warn(api.JWTError, err, api.LogFields{})
+		log.WarnError(api.JWTError, err, api.LogFields{})
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
@@ -131,7 +131,7 @@ type MFAResetHandler struct {
 // TwofactorResetHandler allows for multiple factor authentication to be reset.
 // NOTE: This should not be enabled on production environments.
 func (handler MFAResetHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	if handler.Env.True(api.2FA_DISABLED) {
+	if handler.Env.True(api.DISABLED_2FA) {
 		log.Warn(api.MFAAttemptDenied)
 		http.Error(w, "Multiple factor authentication is disabled", http.StatusInternalServerError)
 		return
@@ -153,7 +153,7 @@ func (handler MFAResetHandler) ServeHTTP(w http.ResponseWriter, r *http.Request)
 	// Valid token and audience
 	jwtToken, err := handler.Token.CheckToken(r, account.ValidJwtToken)
 	if err != nil {
-		log.Warn(api.InvalidJWT, err, api.LogFields{})
+		log.WarnError(api.InvalidJWT, err, api.LogFields{})
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
@@ -163,7 +163,7 @@ func (handler MFAResetHandler) ServeHTTP(w http.ResponseWriter, r *http.Request)
 	account.Token = ""
 	account.TokenUsed = false
 	if err := account.Save(); err != nil {
-		log.Warn(api.AccountUpdateError, err, api.LogFields{})
+		log.WarnError(api.AccountUpdateError, err, api.LogFields{})
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
@@ -173,8 +173,8 @@ func (handler MFAResetHandler) ServeHTTP(w http.ResponseWriter, r *http.Request)
 
 // getAccountFromRequest extracts account information from the token returning an
 // error and/or the associated account.
-func getAccountFromRequest(r *http.Request, log *api.LogService) (*model.Account, error) {
-	log.Info(logmsg.RetrievingAccount, api.LogFields{})
+func getAccountFromRequest(r *http.Request, log *api.LogService) (*api.Account, error) {
+	log.Info(api.RetrievingAccount, api.LogFields{})
 
 	// Sanity check for username
 	vars := mux.Vars(r)
@@ -190,7 +190,7 @@ func getAccountFromRequest(r *http.Request, log *api.LogService) (*model.Account
 	}
 
 	if err := account.Get(); err != nil {
-		log.Warn(api.NoAccount, err, api.LogFields{})
+		log.WarnError(api.NoAccount, err, api.LogFields{})
 		return account, err
 	}
 
@@ -198,7 +198,7 @@ func getAccountFromRequest(r *http.Request, log *api.LogService) (*model.Account
 	if account.Token == "" {
 		account.Token = mfa.Secret()
 		if err := account.Save(); err != nil {
-			log.Warn(api.AccountUpdateError, err, api.LogFields{})
+			log.WarnError(api.AccountUpdateError, err, api.LogFields{})
 			return account, err
 		}
 	}

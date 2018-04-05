@@ -3,8 +3,6 @@ package api
 import (
 	"encoding/json"
 	"errors"
-
-	"github.com/18F/e-QIP-prototype/api/db"
 )
 
 // Payload is a basic structure to encapsulate a generic structure.
@@ -74,14 +72,14 @@ func (payload Payload) Valid() (bool, error) {
 // of named properties which each value being that of a Payload.
 type PayloadProperties map[string]Payload
 
-func (entity *PayloadProperties) Save(context *db.DatabaseContext, account int) (int, error) {
+func (entity *PayloadProperties) Save(context DatabaseService, account int) (int, error) {
 	return 0, nil
 }
 
-func (entity *PayloadProperties) Delete(context *db.DatabaseContext, account int) (int, error) {
+func (entity *PayloadProperties) Delete(context DatabaseService, account int) (int, error) {
 	return 0, nil
 }
 
-func (entity *PayloadProperties) Get(context *db.DatabaseContext, account int) (int, error) {
+func (entity *PayloadProperties) Get(context DatabaseService, account int) (int, error) {
 	return 0, nil
 }

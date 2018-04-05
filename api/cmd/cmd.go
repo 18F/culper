@@ -13,9 +13,9 @@ var (
 	flagAll = flag.Bool("all", false, "apply to all accounts")
 )
 
-func Command(log *api.LogService, action func(*api.DatabaseService, *api.Account)) {
+func Command(log api.LogService, action func(api.DatabaseService, *api.Account)) {
 	settings := &env.Native{}
-	database := &postgresql.DatabaseService{Log: logger, Env: settings}
+	database := &postgresql.DatabaseService{Log: log, Env: settings}
 	context := database.NewDatabase()
 	flag.Parse()
 
@@ -24,7 +24,7 @@ func Command(log *api.LogService, action func(*api.DatabaseService, *api.Account
 		// may iterate through them.
 		var accounts []*api.Account
 		if err := context.Database.Model(&accounts).Select(); err != nil {
-			log.Warn(api.NoAccount, err, api.LogFields{})
+			log.WarnError(api.NoAccount, err, api.LogFields{})
 			return
 		}
 
@@ -32,7 +32,7 @@ func Command(log *api.LogService, action func(*api.DatabaseService, *api.Account
 		for _, account := range accounts {
 			account.WithContext(context)
 			if err := account.Get(); err != nil {
-				log.Warn(api.NoAccount, err, api.LogFields{"account": account.Username})
+				log.WarnError(api.NoAccount, err, api.LogFields{"account": account.Username})
 				continue
 			}
 
@@ -46,7 +46,7 @@ func Command(log *api.LogService, action func(*api.DatabaseService, *api.Account
 			account := &api.Account{Username: username}
 			account.WithContext(context)
 			if err := account.Get(); err != nil {
-				log.Warn(api.NoAccount, err, api.LogFields{"account": account.Username})
+				log.WarnError(api.NoAccount, err, api.LogFields{"account": account.Username})
 				continue
 			}
 

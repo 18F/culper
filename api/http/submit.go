@@ -4,15 +4,11 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
-	"os"
 	"strconv"
 	"time"
 
 	"github.com/18F/e-QIP-prototype/api"
-	"github.com/18F/e-QIP-prototype/api/db"
-	"github.com/18F/e-QIP-prototype/api/model"
-	"github.com/18F/e-QIP-prototype/api/model/form"
-	"github.com/18F/e-QIP-prototype/api/webservice"
+	"github.com/18F/e-QIP-prototype/api/eqip"
 )
 
 type SubmitHandler struct {
@@ -20,6 +16,7 @@ type SubmitHandler struct {
 	Log      *api.LogService
 	Token    *api.TokenService
 	Database *api.DatabaseService
+	Xml      *api.XmlService
 }
 
 // Submit the application package to the external web service for further processing.
@@ -29,14 +26,14 @@ func (service SubmitHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	// Valid token and audience while populating the audience ID
 	_, err := service.Token.CheckToken(account.ValidJwtToken)
 	if err != nil {
-		service.Log.Warn(api.InvalidJWT, err, api.LogFields{})
+		service.Log.WarnError(api.InvalidJWT, err, api.LogFields{})
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
 	// Get the account information from the data store
 	if err := account.Get(); err != nil {
-		service.Log.Warn(api.NoAccount, err, api.LogFields{})
+		service.Log.WarnError(api.NoAccount, err, api.LogFields{})
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
@@ -56,44 +53,43 @@ func (service SubmitHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 	// Lock the account
 	if err = account.Lock(); err != nil {
-		service.Log.Warn(api.AccountUpdateError, err, api.LogFields{})
+		service.Log.WarnError(api.AccountUpdateError, err, api.LogFields{})
 		EncodeErrJSON(w, err)
 		return
 	}
 }
 
-func transmit(w http.ResponseWriter, r *http.Request, account *model.Account, context *db.DatabaseContext) error {
-	log := api.NewLoggerFromRequest(r)
-	url := os.Getenv("WS_URL")
+func (service SubmitHandler) transmit(w http.ResponseWriter, r *http.Request, account *api.Account) error {
+	url := service.Env.String(api.WS_URL)
 	if url == "" {
-		log.Warn(api.WebserviceMissingURL)
+		service.Log.Warn(api.WebserviceMissingURL, api.LogFields{})
 		return errors.New(api.WebserviceMissingURL)
 	}
-	key := os.Getenv("WS_KEY")
+	key := service.Env.String(api.WS_KEY)
 	if key == "" {
-		log.Warn(api.WebserviceMissingKey)
+		service.Log.Warn(api.WebserviceMissingKey, api.LogFields{})
 		return errors.New(api.WebserviceMissingKey)
 	}
 
 	// Generate an XML package and send to the external webservice.
-	log.Info(api.GeneratingPackage)
-	xml := form.Package(context, account.ID, false)
-	data, err := form.ApplicationData(context, account.ID, false)
+	service.Log.Info(api.GeneratingPackage, api.LogFields{})
+	xml := api.Package(service.Database, service.Xml, account.ID, false)
+	data, err := api.ApplicationData(service.Database, account.ID, false)
 	if err != nil {
-		log.Warn(api.WebserviceCannotGetApplicationData, err)
+		service.Log.WarnError(api.WebserviceCannotGetApplicationData, err, api.LogFields{})
 		return err
 	}
 
-	log.Info(api.TransmissionStarted)
-	client := webservice.NewClient(url, key)
+	service.Log.Info(api.TransmissionStarted, api.LogFields{})
+	client := eqip.NewClient(url, key)
 
 	ir, err := newImportRequest(data, string(xml))
 	if err != nil {
-		log.Warn(err)
+		service.Log.WarnError(err, api.LogFields{})
 		return err
 	}
 	response, err := client.ImportRequest(ir)
-	log.Info(api.TransmissionStopped, err)
+	service.Log.InfoError(api.TransmissionStopped, err, api.LogFields{})
 
 	// Store transmission information
 	var agencyKey int
@@ -114,7 +110,7 @@ func transmit(w http.ResponseWriter, r *http.Request, account *model.Account, co
 		agencyKey, requestKey = response.ImportRequestResponse.Keys()
 	}
 
-	transmission := &model.Transmission{
+	transmission := &api.Transmission{
 		AccountID:  account.ID,
 		Raw:        response.ResponseBody,
 		AgencyKey:  agencyKey,
@@ -123,33 +119,33 @@ func transmit(w http.ResponseWriter, r *http.Request, account *model.Account, co
 		Created:    time.Now(),
 		Modified:   time.Now(),
 	}
-	if err = transmission.Save(context); err != nil {
-		log.Warn(api.TransmissionStorageError)
+	if err = transmission.Save(service.Database); err != nil {
+		service.Log.Warn(api.TransmissionStorageError, api.LogFields{})
 		return err
 	}
-	log.Info(api.TransmissionRecorded)
+	service.Log.Info(api.TransmissionRecorded, api.LogFields{})
 	if status != "Sent" {
-		log.Warn(api.TransmissionError)
+		service.Log.Warn(api.TransmissionError, api.LogFields{})
 		return errors.New(api.TransmissionError)
 	}
 	return nil
 }
 
-func newImportRequest(application map[string]interface{}, xmlContent string) (*webservice.ImportRequest, error) {
+func (service SubmitHandler) newImportRequest(application map[string]interface{}, xmlContent string) (*eqip.ImportRequest, error) {
 	var ciAgencyUserPseudoSSN bool
 	var agencyID int
 	var agencyGroupID int
 
-	ciAgencyIDEnv := os.Getenv("WS_CALLERINFO_AGENCY_ID")
+	ciAgencyIDEnv := service.Env.String(api.WS_CALLERINFO_AGENCY_ID)
 	if ciAgencyIDEnv == "" {
 		return nil, fmt.Errorf(api.WebserviceMissingCallerInfoAgencyID)
 	}
-	ciAgencyUserSSNEnv := os.Getenv("WS_CALLERINFO_AGENCY_USER_SSN")
+	ciAgencyUserSSNEnv := service.Env.String(api.WS_CALLERINFO_AGENCY_USER_SSN)
 	if ciAgencyUserSSNEnv == "" {
 		return nil, fmt.Errorf(api.WebserviceMissingCallerInfoAgencySSN)
 	}
 	// Parse agency id
-	agencyIDEnv := os.Getenv("WS_AGENCY_ID")
+	agencyIDEnv := service.Env.String(api.WS_AGENCY_ID)
 	if agencyIDEnv == "" {
 		return nil, fmt.Errorf(api.WebserviceMissingAgencyID)
 	} else {
@@ -161,7 +157,7 @@ func newImportRequest(application map[string]interface{}, xmlContent string) (*w
 	}
 
 	// Parse agency group id if necessary
-	agencyGroupIDEnv := os.Getenv("WS_AGENCY_GROUP_ID")
+	agencyGroupIDEnv := service.Env.Getenv(api.WS_AGENCY_GROUP_ID)
 	if agencyGroupIDEnv != "" {
 		i, err := strconv.Atoi(agencyGroupIDEnv)
 		if err != nil {
@@ -170,7 +166,7 @@ func newImportRequest(application map[string]interface{}, xmlContent string) (*w
 		agencyGroupID = i
 	}
 
-	ciAgencyUserPseudoSSNEnv := os.Getenv("WS_CALLERINFO_AGENCY_USER_PSEUDOSSN")
+	ciAgencyUserPseudoSSNEnv := service.Env.String(api.WS_CALLERINFO_AGENCY_USER_PSEUDOSSN)
 	if ciAgencyUserPseudoSSNEnv == "" {
 		return nil, fmt.Errorf(api.WebserviceMissingCallerInfoAgencyPseudoSSN)
 	}
@@ -180,6 +176,6 @@ func newImportRequest(application map[string]interface{}, xmlContent string) (*w
 	}
 	ciAgencyUserPseudoSSN = b
 
-	ci := webservice.NewCallerInfo(ciAgencyIDEnv, ciAgencyUserPseudoSSN, ciAgencyUserSSNEnv)
-	return webservice.NewImportRequest(ci, agencyID, agencyGroupID, application, xmlContent)
+	ci := eqip.NewCallerInfo(ciAgencyIDEnv, ciAgencyUserPseudoSSN, ciAgencyUserSSNEnv)
+	return eqip.NewImportRequest(ci, agencyID, agencyGroupID, application, xmlContent)
 }

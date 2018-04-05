@@ -10,7 +10,7 @@ func main() {
 	log := &log.LogService{log: log.NewLogger()}
 	cmd.Command(log, func(context *api.DatabaseService, account *api.Account) {
 		if err := account.Unlock(); err != nil {
-			log.Warn("Failed to unlock account", err, api.LogFields{"account": account.Username})
+			log.WarnError("Failed to unlock account", err, api.LogFields{"account": account.Username})
 		} else {
 			log.Warn("Account unlocked", api.LogFields{"account": account.Username})
 		}

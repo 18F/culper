@@ -5,10 +5,13 @@ import (
 	"strconv"
 )
 
-type Native struct
+type Native struct{}
 
 func (env Native) Has(name string) bool {
-	return os.Getenv(name) != ""
+	if os.Getenv(name) == "" {
+		return false
+	}
+	return true
 }
 
 func (env Native) String(name string) string {

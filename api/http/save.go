@@ -21,14 +21,14 @@ func (service SaveHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	// Valid token and audience while populating the audience ID
 	_, err := service.Token.CheckToken(account.ValidJwtToken)
 	if err != nil {
-		service.Log.Warn(api.InvalidJWT, err, api.LogFields{})
+		service.Log.WarnError(api.InvalidJWT, err, api.LogFields{})
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
 	// Get the account information from the data store
 	if err := account.Get(); err != nil {
-		service.Log.Warn(api.NoAccount, err, api.LogFields{})
+		service.Log.WarnError(api.NoAccount, err, api.LogFields{})
 		EncodeErrJSON(w, err)
 		return
 	}
@@ -43,7 +43,7 @@ func (service SaveHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	// Read the body of the request (which should be in JSON)
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {
-		service.Log.Warn(api.PayloadEmpty, err, api.LogFields{})
+		service.Log.WarnError(api.PayloadEmpty, err, api.LogFields{})
 		EncodeErrJSON(w, err)
 		return
 	}
@@ -51,7 +51,7 @@ func (service SaveHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	// Deserialize the initial payload from a JSON structure
 	payload := &api.Payload{}
 	if err := payload.Unmarshal(body); err != nil {
-		service.Log.Warn(api.PayloadDeserializeError, err, api.LogFields{})
+		service.Log.WarnError(api.PayloadDeserializeError, err, api.LogFields{})
 		EncodeErrJSON(w, err)
 		return
 	}
@@ -59,14 +59,14 @@ func (service SaveHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	// Extract the entity interface of the payload and validate it
 	entity, err := payload.Entity()
 	if err != nil {
-		service.Log.Warn(api.PayloadEntityError, err, api.LogFields{})
+		service.Log.WarnError(api.PayloadEntityError, err, api.LogFields{})
 		EncodeErrJSON(w, err)
 		return
 	}
 
 	// Save to storage and report any errors
 	if _, err = entity.Save(context, account.ID); err != nil {
-		service.Log.Warn(api.EntitySaveError, err, api.LogFields{})
+		service.Log.WarnError(api.EntitySaveError, err, api.LogFields{})
 		EncodeErrJSON(w, err)
 		return
 	}

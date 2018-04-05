@@ -8,12 +8,14 @@ import (
 	"path"
 	"strings"
 
-	"github.com/18F/e-QIP-prototype/api/logmsg"
+	"github.com/18F/e-QIP-prototype/api"
 )
 
-var DefaultTemplate = defaultTemplate
+type XmlService struct {
+	Log api.LogService
+}
 
-func defaultTemplate(templateName string, data map[string]interface{}) template.HTML {
+func (service XmlService) DefaultTemplate(templateName string, data map[string]interface{}) template.HTML {
 	// fmap is a mapping of functions to be used within the XML template execution.
 	// These can be helper functions for formatting or even to process complex structure
 	// types.
@@ -54,20 +56,18 @@ func defaultTemplate(templateName string, data map[string]interface{}) template.
 		"text":                 text,
 		"textarea":             textarea,
 		"treatment":            treatment,
-		"tmpl":                 defaultTemplate,
+		"tmpl":                 service.DefaultTemplate,
 	}
 	return xmlTemplateWithFuncs(templateName, data, fmap)
 }
 
 func xmlTemplate(name string, data map[string]interface{}) template.HTML {
-	log := logmsg.NewLogger()
-
 	path := path.Join("templates", name)
 	tmpl := template.Must(template.New(name).ParseFiles(path))
-
 	var output bytes.Buffer
 	if err := tmpl.Execute(&output, data); err != nil {
-		log.WithError(err).WithField("name", name).Warn("Failed to execute XML template")
+		// service.Log.WarnError("Failed to execute XML template", err, api.LogFields{"name": name})
+		return template.HTML("")
 	}
 	return template.HTML(output.String())
 }
@@ -75,14 +75,12 @@ func xmlTemplate(name string, data map[string]interface{}) template.HTML {
 // xmlTemplateWithFuncs executes an XML template with mapped functions to be used with the
 // given entity.
 func xmlTemplateWithFuncs(name string, data map[string]interface{}, fmap template.FuncMap) template.HTML {
-	log := logmsg.NewLogger()
-
 	path := path.Join("templates", name)
 	tmpl := template.Must(template.New(name).Funcs(fmap).ParseFiles(path))
-
 	var output bytes.Buffer
 	if err := tmpl.Execute(&output, data); err != nil {
-		log.WithError(err).WithField("name", name).Warn("Failed to execute XML template")
+		// service.Log.WarnError("Failed to execute XML template", err, api.LogFields{"name": name})
+		return template.HTML("")
 	}
 	return template.HTML(output.String())
 }
@@ -369,17 +367,14 @@ func daysInRange(v string) string {
 // Put attribute helpers here
 
 func dateEstimated(data map[string]interface{}) string {
-	log := logmsg.NewLogger()
-
 	// Deserialize the initial payload from a JSON structure
-	payload := &Payload{}
+	payload := &api.Payload{}
 	entity, err := payload.UnmarshalEntity(getInterfaceAsBytes(data))
 	if err != nil {
-		log.WithError(err).WithField("funcMap", "dateEstimated").Warn(logmsg.PayloadEntityError)
 		return ""
 	}
 
-	date := entity.(*DateControl)
+	date := entity.(*api.DateControl)
 	if date.Estimated {
 		return "Estimated"
 	}
@@ -387,17 +382,14 @@ func dateEstimated(data map[string]interface{}) string {
 }
 
 func notApplicable(data map[string]interface{}) string {
-	log := logmsg.NewLogger()
-
 	// Deserialize the initial payload from a JSON structure
-	payload := &Payload{}
+	payload := &api.Payload{}
 	entity, err := payload.UnmarshalEntity(getInterfaceAsBytes(data))
 	if err != nil {
-		log.WithError(err).WithField("funcMap", "notApplicable").Warn(logmsg.PayloadEntityError)
 		return ""
 	}
 
-	na := entity.(*NotApplicable)
+	na := entity.(*api.NotApplicable)
 	if na.Applicable {
 		return "False"
 	}
@@ -405,17 +397,14 @@ func notApplicable(data map[string]interface{}) string {
 }
 
 func telephoneNoNumber(data map[string]interface{}) string {
-	log := logmsg.NewLogger()
-
 	// Deserialize the initial payload from a JSON structure
-	payload := &Payload{}
+	payload := &api.Payload{}
 	entity, err := payload.UnmarshalEntity(getInterfaceAsBytes(data))
 	if err != nil {
-		log.WithError(err).WithField("funcMap", "notApplicable").Warn(logmsg.PayloadEntityError)
 		return ""
 	}
 
-	telephone := entity.(*Telephone)
+	telephone := entity.(*api.Telephone)
 	if telephone.NoNumber {
 		return "True"
 	}
@@ -423,17 +412,14 @@ func telephoneNoNumber(data map[string]interface{}) string {
 }
 
 func checkboxTrueFalse(data map[string]interface{}) string {
-	log := logmsg.NewLogger()
-
 	// Deserialize the initial payload from a JSON structure
-	payload := &Payload{}
+	payload := &api.Payload{}
 	entity, err := payload.UnmarshalEntity(getInterfaceAsBytes(data))
 	if err != nil {
-		log.WithError(err).WithField("funcMap", "checkboxTrueFalse").Warn(logmsg.PayloadEntityError)
 		return ""
 	}
 
-	cb := entity.(*Checkbox)
+	cb := entity.(*api.Checkbox)
 	if cb.Checked {
 		return "true"
 	}
@@ -441,18 +427,15 @@ func checkboxTrueFalse(data map[string]interface{}) string {
 }
 
 func locationIsPostOffice(data map[string]interface{}) string {
-	log := logmsg.NewLogger()
-
 	// Deserialize the initial payload from a JSON structure
-	payload := &Payload{}
+	payload := &api.Payload{}
 	// entity, err := payload.UnmarshalEntity(getInterfaceAsBytes(data))
 	entity, err := payload.UnmarshalEntity(getInterfaceAsBytes(data))
 	if err != nil {
-		log.WithError(err).WithField("funcMap", "location").Warn(logmsg.PayloadEntityError)
 		return ""
 	}
 
-	location := entity.(*Location)
+	location := entity.(*api.Location)
 	if location.IsPostOffice() {
 		return "True"
 	}
@@ -518,60 +501,57 @@ func monthYear(data map[string]interface{}) template.HTML {
 
 // location assumes the data comes in as the props
 func location(data map[string]interface{}) template.HTML {
-	log := logmsg.NewLogger()
-
 	// Deserialize the initial payload from a JSON structure
-	payload := &Payload{}
+	payload := &api.Payload{}
 	// entity, err := payload.UnmarshalEntity(getInterfaceAsBytes(data))
 	entity, err := payload.UnmarshalEntity(getInterfaceAsBytes(data))
 	if err != nil {
-		log.WithError(err).WithField("funcMap", "location").Warn(logmsg.PayloadEntityError)
 		return template.HTML("")
 	}
 
-	location := entity.(*Location)
+	location := entity.(*api.Location)
 	domestic := location.IsDomestic()
 	postoffice := location.IsPostOffice()
 
 	switch location.Layout {
-	case LayoutBirthPlace:
+	case api.LayoutBirthPlace:
 		if domestic {
 			return xmlTemplate("location-city-state-county.xml", data)
 		}
 		return xmlTemplate("location-city-county.xml", data)
-	case LayoutBirthPlaceWithoutCounty:
+	case api.LayoutBirthPlaceWithoutCounty:
 		if domestic {
 			return xmlTemplate("location-city-state.xml", data)
 		}
 		return xmlTemplate("location-city-country.xml", data)
-	case LayoutCountry:
+	case api.LayoutCountry:
 		return xmlTemplate("location-country.xml", data)
-	case LayoutUSCityStateInternationalCity:
+	case api.LayoutUSCityStateInternationalCity:
 		if domestic {
 			return xmlTemplate("location-city-state.xml", data)
 		}
 		return xmlTemplate("location-city-country.xml", data)
-	case LayoutUSCityStateInternationalCityCountry:
+	case api.LayoutUSCityStateInternationalCityCountry:
 		if domestic {
 			return xmlTemplate("location-city-state.xml", data)
 		}
 		return xmlTemplate("location-city-country.xml", data)
-	case LayoutCityState:
+	case api.LayoutCityState:
 		return xmlTemplate("location-city-state.xml", data)
-	case LayoutStreetCityCountry:
+	case api.LayoutStreetCityCountry:
 		return xmlTemplate("location-street-city-country.xml", data)
-	case LayoutCityCountry:
+	case api.LayoutCityCountry:
 		return xmlTemplate("location-city-country.xml", data)
-	case LayoutUSCityStateZipcodeInternationalCity:
+	case api.LayoutUSCityStateZipcodeInternationalCity:
 		if domestic {
 			return xmlTemplate("location-city-state-zipcode.xml", data)
 		}
 		return xmlTemplate("location-city-country.xml", data)
-	case LayoutCityStateCountry:
+	case api.LayoutCityStateCountry:
 		return xmlTemplate("location-city-state-country.xml", data)
-	case LayoutUSAddress:
+	case api.LayoutUSAddress:
 		return xmlTemplate("location-street-city-state-zipcode.xml", data)
-	case LayoutStreetCity:
+	case api.LayoutStreetCity:
 		return xmlTemplate("location-street-city.xml", data)
 	default:
 		if domestic || postoffice {

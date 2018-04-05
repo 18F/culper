@@ -13,6 +13,8 @@ import (
 	"io/ioutil"
 	"time"
 	"unicode"
+
+	"github.com/satori/go.uuid"
 )
 
 const (

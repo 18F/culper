@@ -5,9 +5,13 @@ type DatabaseService interface {
 	CheckTable(entity interface{}) error
 	Raw(query interface{}, params ...interface{}) error
 	Find(query interface{}, callback func(query interface{}))
+	Where(model interface{}, condition string, params ...interface{}) error
+	ColumnsWhere(model interface{}, columns []string, condition string, params ...interface{}) error
 	Insert(query ...interface{}) error
 	Update(query ...interface{}) error
 	Save(query ...interface{}) error
 	Delete(query interface{}) error
 	Select(query interface{}) error
+	Count(model interface{}, condition string, params ...interface{}) int
+	Array(model interface{}, expr string, retval interface{}, condition string, params ...interface{})
 }

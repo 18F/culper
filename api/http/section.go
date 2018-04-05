@@ -20,14 +20,14 @@ func (service SectionHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) 
 	// Valid token and audience while populating the audience ID
 	_, err := service.Token.CheckToken(account.ValidJwtToken)
 	if err != nil {
-		service.Log.Warn(api.InvalidJWT, err, api.LogFields{})
+		service.Log.WarnError(api.InvalidJWT, err, api.LogFields{})
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
 	// Get the account information from the data store
 	if err := account.Get(); err != nil {
-		service.Log.Warn(api.NoAccount, err, api.LogFields{})
+		service.Log.WarnError(api.NoAccount, err, api.LogFields{})
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
@@ -41,7 +41,7 @@ func (service SectionHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) 
 
 	payloadType := r.FormValue("type")
 	if payloadType == "" {
-		service.Log.Warn(api.PayloadMissingType, err, api.LogFields{})
+		service.Log.WarnError(api.PayloadMissingType, err, api.LogFields{})
 		http.Error(w, "No payload type provided", http.StatusInternalServerError)
 		return
 	}
@@ -51,13 +51,13 @@ func (service SectionHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) 
 	}
 	entity, err := payload.Entity()
 	if err != nil {
-		service.Log.Warn(api.PayloadEntityError, err, api.LogFields{})
+		service.Log.WarnError(api.PayloadEntityError, err, api.LogFields{})
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
 	if _, err = entity.Get(service.Database, account.ID); err != nil {
-		service.Log.Warn(api.EntityError, err, api.LogFields{})
+		service.Log.WarnError(api.EntityError, err, api.LogFields{})
 		EncodeJSON(w, `{}`)
 		return
 	}

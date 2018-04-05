@@ -8,10 +8,10 @@ import (
 )
 
 type BasicAuthHandler struct {
-	Env      *api.Settings
-	Log      *api.LogService
-	Token    *api.TokenService
-	Database *api.DatabaseService
+	Env      api.Settings
+	Log      api.LogService
+	Token    api.TokenService
+	Database api.DatabaseService
 }
 
 // BasicAuth processes a users request to login with a Username and Password
@@ -28,7 +28,7 @@ func (service BasicAuthHandler) ServeHTTP(w http.ResponseWriter, r *http.Request
 	}
 
 	if err := DecodeJSON(r.Body, &respBody); err != nil {
-		service.Log.Warn(api.BasicAuthError, err, api.LogFields{})
+		service.Log.WarnError(api.BasicAuthError, err, api.LogFields{})
 		Error(w, r, err)
 		return
 	}
@@ -51,14 +51,14 @@ func (service BasicAuthHandler) ServeHTTP(w http.ResponseWriter, r *http.Request
 
 	// Associate with a database context.
 	if err := account.Get(); err != nil {
-		service.Log.Username.Warn(api.AccountUpdateError, err, api.LogFields{"username", username})
+		service.Log.Username.WarnError(api.AccountUpdateError, err, api.LogFields{"username", username})
 		Error(w, r, err)
 		return
 	}
 
 	// Validate the user name and password combination
 	if err := account.BasicAuthentication(respBody.Password); err != nil {
-		service.Log.ID.Warn(api.BasicAuthInvalid, err, api.LogFields{"account", account.ID})
+		service.Log.ID.WarnError(api.BasicAuthInvalid, err, api.LogFields{"account", account.ID})
 		Error(w, r, err)
 		return
 	}
@@ -66,7 +66,7 @@ func (service BasicAuthHandler) ServeHTTP(w http.ResponseWriter, r *http.Request
 	// Generate jwt token
 	signedToken, _, err := account.NewJwtToken(api.BasicAuthAudience)
 	if err != nil {
-		service.Log.ID.Warn(api.JWTError, err, api.LogFields{"account", account.ID})
+		service.Log.ID.WarnError(api.JWTError, err, api.LogFields{"account", account.ID})
 		Error(w, r, err)
 		return
 	}

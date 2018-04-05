@@ -7,13 +7,11 @@ import (
 	"encoding/base64"
 	"errors"
 	"net/url"
-	"os"
 	"strconv"
 	"strings"
 	"text/template"
 
-	"github.com/18F/e-QIP-prototype/api/cf"
-	"github.com/18F/e-QIP-prototype/api/logmsg"
+	"github.com/18F/e-QIP-prototype/api"
 	"github.com/dgryski/dgoogauth"
 	"github.com/keighl/mandrill"
 	"github.com/microcosm-cc/bluemonday"
@@ -29,8 +27,13 @@ var (
 	templateEmail = template.Must(template.New("email").Parse(`# Passcode\n\n{{ . }}`))
 )
 
+type MFAService struct {
+	Log api.LogService
+	Env api.Settings
+}
+
 // Secret creates a random secret and then base32 encodes it.
-func Secret() string {
+func (service MFAService) Secret() string {
 	secret := make([]byte, 6)
 	_, err := rand.Read(secret)
 	if err != nil {
@@ -43,7 +46,7 @@ func Secret() string {
 
 // Generate will create a QR code in PNG format which will then
 // be base64 encoded so it can traverse the wire to the front end.
-func Generate(account, secret string) (string, error) {
+func (service MFAService) Generate(account, secret string) (string, error) {
 	u, err := url.Parse("otpauth://" + auth)
 	if err != nil {
 		return "", err
@@ -70,16 +73,14 @@ func Generate(account, secret string) (string, error) {
 
 // Authenticate validates the initial token generated when configuring two-factor
 // authentication for the first time.
-func Authenticate(token, secret string) (ok bool, err error) {
-	log := logmsg.NewLogger()
-
+func (service MFAService) Authenticate(token, secret string) (ok bool, err error) {
 	// Get the adjustable window size
 	size := 3
-	if os.Getenv("WINDOW_SIZE") != "" {
-		i, e := strconv.Atoi(os.Getenv("WINDOW_SIZE"))
+	if service.Env.Has(api.WINDOW_SIZE) {
+		i, e := strconv.Atoi(service.Env.String(api.WINDOW_SIZE))
 		if e == nil {
 			size = i
-			log.Debug("Setting window size of", i)
+			service.Log.Debug("Setting MFA window size", api.LogFields{"window": i})
 		}
 	}
 
@@ -94,7 +95,7 @@ func Authenticate(token, secret string) (ok bool, err error) {
 }
 
 // Email delivers code to the specified address.
-func Email(address, secret string) error {
+func (service MFAService) Email(address, secret string) error {
 	// Get a valid token for two-factor authentication
 	code := dgoogauth.ComputeCode(secret, 0)
 	if code == -1 {
@@ -102,7 +103,7 @@ func Email(address, secret string) error {
 	}
 
 	// Pull the API key for the mail service
-	key := cf.UserService("eqip-smtp", "api_key")
+	key := service.Env.String("EQIP_SMTP_API_KEY")
 	if key == "" {
 		return errors.New("Could not retrieve API key")
 	}

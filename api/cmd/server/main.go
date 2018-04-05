@@ -22,18 +22,19 @@ func main() {
 	settings := &env.Native{}
 	database := &postgresql.DatabaseService{Log: logger, Env: settings}
 	token := &jwt.TokenService{Env: settings}
+	xml := &xml.XmlService{Log: logger}
 
 	flag.Parse()
 	if !*flagSkipMigration {
 		migration := Migration{Env: settings}
 		if err := migration.Up("db", "environment", ""); err != nil {
-			logger.Warn(api.WarnFailedMigration, err, api.LogFields{})
+			logger.WarnError(api.WarnFailedMigration, err, api.LogFields{})
 		}
 	}
 
 	// Make sure the JWT are properly configured
 	if err := token.ConfigureEnvironment(256); err != nil {
-		logger.Warn(api.WarnFailedMigration, err, api.LogFields{})
+		logger.WarnError(api.WarnFailedMigration, err, api.LogFields{})
 	} else {
 		logger.Info(api.WarnFailedMigration, api.LogFields{})
 	}
@@ -72,11 +73,11 @@ func main() {
 	a.HandleFunc("/status", http.StatusHandler{Env: settings, Log: logger, Token: token, Database: database}).Methods("GET")
 	a.HandleFunc("/form", http.FormHandler{Env: settings, Log: logger, Token: token, Database: database}).Methods("GET")
 	a.HandleFunc("/form/hash", http.HashHandler{Env: settings, Log: logger, Token: token, Database: database}).Methods("GET")
-	a.HandleFunc("/form/submit", http.SubmitHandler{Env: settings, Log: logger, Token: token, Database: database}).Methods("GET")
+	a.HandleFunc("/form/submit", http.SubmitHandler{Env: settings, Log: logger, Token: token, Database: database, Xml: xml}).Methods("GET")
 	a.HandleFunc("/form/section", http.SectionHandler{Env: settings, Log: logger, Token: token, Database: database}).Methods("GET")
 
 	// Inject middleware
-	router := http.CORS(http.StandardLogging(r))
+	router := http.CORS(http.StandardLogging(r, logger), logger, settings)
 
 	// Get the public address
 	// TODO: Replace public address

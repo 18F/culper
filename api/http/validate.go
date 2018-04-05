@@ -19,7 +19,7 @@ func (service ValidateHandler) ServeHTTP(w http.ResponseWriter, r *http.Request)
 	// Read the body of the request (which should be in JSON)
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {
-		service.Log.Warn(api.PayloadEmpty, err, api.LogFields{})
+		service.Log.WarnError(api.PayloadEmpty, err, api.LogFields{})
 		EncodeErrJSON(w, err)
 		return
 	}
@@ -27,14 +27,14 @@ func (service ValidateHandler) ServeHTTP(w http.ResponseWriter, r *http.Request)
 	// Deserialize the initial payload from a JSON structure
 	payload := &api.Payload{}
 	if err := payload.Unmarshal(body); err != nil {
-		service.Log.Warn(api.PayloadDeserializeError, err, api.LogFields{})
+		service.Log.WarnError(api.PayloadDeserializeError, err, api.LogFields{})
 		EncodeErrJSON(w, err)
 		return
 	}
 
 	// Extract the entity interface of the payload and validate it
 	if ok, err := payload.Valid(); !ok {
-		service.Log.Warn(api.PayloadInvalid, err, api.LogFields{})
+		service.Log.WarnError(api.PayloadInvalid, err, api.LogFields{})
 		EncodeErrJSON(w, err)
 		return
 	}

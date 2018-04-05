@@ -23,12 +23,12 @@ type endpoint struct {
 }
 
 type RootHandler struct {
-	Env *api.Settings
+	Env api.Settings
 }
 
 // rootHandler accepts GET requests to get all endpoints that the API
 // supports.
-func RootHandler(w http.ResponseWriter, r *http.Request) {
+func (service RootHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("X-Eqip-Media-Type", fmt.Sprintf("%s.%s", APIName, APIVersion))
 	w.Header().Set("Content-Type", "application/json")
 
@@ -96,7 +96,7 @@ func RootHandler(w http.ResponseWriter, r *http.Request) {
 		},
 	}
 
-	if !service.Env.True(api.2FA_DISABLED) {
+	if !service.Env.True(api.DISABLED_2FA) {
 		mfa := []endpoint{
 			endpoint{
 				Path:        "/2fa",
@@ -116,7 +116,7 @@ func RootHandler(w http.ResponseWriter, r *http.Request) {
 		}
 		endpoints = append(endpoints, mfa...)
 
-	  if service.Env.True(api.ALLOW_2FA_RESET) {
+		if service.Env.True(api.ALLOW_2FA_RESET) {
 			endpoints = append(endpoints, endpoint{
 				Path:        "/2fa/:account/reset",
 				Description: "two factor reset",

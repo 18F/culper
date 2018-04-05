@@ -2,6 +2,7 @@ package cloudfoundry
 
 import (
 	"encoding/json"
+	"os"
 	"strings"
 )
 
@@ -51,10 +52,10 @@ func VcapService(name string) string {
 // 	return strings.ToUpper(s)
 // }
 
-// // native calls the native environment call for environment variable
-// func native(name string) string {
-// 	return os.Getenv(name)
-// }
+// native calls the native environment call for environment variable
+func native(name string) string {
+	return os.Getenv(name)
+}
 
 // vcap extracts the proper service credentials from the VCAP_SERVICES
 func vcap(name, credential string) string {

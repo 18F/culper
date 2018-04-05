@@ -2,8 +2,6 @@ package api
 
 import (
 	"encoding/json"
-
-	"github.com/18F/e-QIP-prototype/api/db"
 )
 
 type Benefit struct {
@@ -200,71 +198,16 @@ func (entity *Benefit) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *Benefit) Save(context *db.DatabaseContext, account int) (int, error) {
+func (entity *Benefit) Save(context DatabaseService, account int) (int, error) {
 	entity.AccountID = account
 
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	context.Find(&Benefit{ID: entity.ID, AccountID: account}, func(result interface{}) {
-		previous := result.(*Benefit)
-		if entity.Begin == nil {
-			entity.Begin = &DateControl{}
-		}
-		entity.Begin.ID = previous.BeginID
-		entity.BeginID = previous.BeginID
-		if entity.End == nil {
-			entity.End = &DateControl{}
-		}
-		entity.End.ID = previous.EndID
-		entity.EndID = previous.EndID
-		if entity.Frequency == nil {
-			entity.Frequency = &Radio{}
-		}
-		entity.Frequency.ID = previous.FrequencyID
-		entity.FrequencyID = previous.FrequencyID
-		if entity.OtherFrequency == nil {
-			entity.OtherFrequency = &Textarea{}
-		}
-		entity.OtherFrequency.ID = previous.OtherFrequencyID
-		entity.OtherFrequencyID = previous.OtherFrequencyID
-		if entity.Received == nil {
-			entity.Received = &DateControl{}
-		}
-		entity.Received.ID = previous.ReceivedID
-		entity.ReceivedID = previous.ReceivedID
-		if entity.Country == nil {
-			entity.Country = &Country{}
-		}
-		entity.Country.ID = previous.CountryID
-		entity.CountryID = previous.CountryID
-		if entity.Value == nil {
-			entity.Value = &Number{}
-		}
-		entity.Value.ID = previous.ValueID
-		entity.ValueID = previous.ValueID
-		if entity.ValueEstimated == nil {
-			entity.ValueEstimated = &Checkbox{}
-		}
-		entity.ValueEstimated.ID = previous.ValueEstimatedID
-		entity.ValueEstimatedID = previous.ValueEstimatedID
-		if entity.Reason == nil {
-			entity.Reason = &Textarea{}
-		}
-		entity.Reason.ID = previous.ReasonID
-		entity.ReasonID = previous.ReasonID
-		if entity.Obligated == nil {
-			entity.Obligated = &Branch{}
-		}
-		entity.Obligated.ID = previous.ObligatedID
-		entity.ObligatedID = previous.ObligatedID
-		if entity.ObligatedExplanation == nil {
-			entity.ObligatedExplanation = &Textarea{}
-		}
-		entity.ObligatedExplanation.ID = previous.ObligatedExplanationID
-		entity.ObligatedExplanationID = previous.ObligatedExplanationID
-	})
+	if err := entity.Find(context); err != nil {
+		return entity.ID, err
+	}
 
 	if entity.PayloadBegin.Type != "" {
 		beginID, err := entity.Begin.Save(context, account)
@@ -350,71 +293,16 @@ func (entity *Benefit) Save(context *db.DatabaseContext, account int) (int, erro
 }
 
 // Delete will remove the entity from the database.
-func (entity *Benefit) Delete(context *db.DatabaseContext, account int) (int, error) {
+func (entity *Benefit) Delete(context DatabaseService, account int) (int, error) {
 	entity.AccountID = account
 
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	context.Find(&Benefit{ID: entity.ID, AccountID: account}, func(result interface{}) {
-		previous := result.(*Benefit)
-		if entity.Begin == nil {
-			entity.Begin = &DateControl{}
-		}
-		entity.Begin.ID = previous.BeginID
-		entity.BeginID = previous.BeginID
-		if entity.End == nil {
-			entity.End = &DateControl{}
-		}
-		entity.End.ID = previous.EndID
-		entity.EndID = previous.EndID
-		if entity.Frequency == nil {
-			entity.Frequency = &Radio{}
-		}
-		entity.Frequency.ID = previous.FrequencyID
-		entity.FrequencyID = previous.FrequencyID
-		if entity.OtherFrequency == nil {
-			entity.OtherFrequency = &Textarea{}
-		}
-		entity.OtherFrequency.ID = previous.OtherFrequencyID
-		entity.OtherFrequencyID = previous.OtherFrequencyID
-		if entity.Received == nil {
-			entity.Received = &DateControl{}
-		}
-		entity.Received.ID = previous.ReceivedID
-		entity.ReceivedID = previous.ReceivedID
-		if entity.Country == nil {
-			entity.Country = &Country{}
-		}
-		entity.Country.ID = previous.CountryID
-		entity.CountryID = previous.CountryID
-		if entity.Value == nil {
-			entity.Value = &Number{}
-		}
-		entity.Value.ID = previous.ValueID
-		entity.ValueID = previous.ValueID
-		if entity.ValueEstimated == nil {
-			entity.ValueEstimated = &Checkbox{}
-		}
-		entity.ValueEstimated.ID = previous.ValueEstimatedID
-		entity.ValueEstimatedID = previous.ValueEstimatedID
-		if entity.Reason == nil {
-			entity.Reason = &Textarea{}
-		}
-		entity.Reason.ID = previous.ReasonID
-		entity.ReasonID = previous.ReasonID
-		if entity.Obligated == nil {
-			entity.Obligated = &Branch{}
-		}
-		entity.Obligated.ID = previous.ObligatedID
-		entity.ObligatedID = previous.ObligatedID
-		if entity.ObligatedExplanation == nil {
-			entity.ObligatedExplanation = &Textarea{}
-		}
-		entity.ObligatedExplanation.ID = previous.ObligatedExplanationID
-		entity.ObligatedExplanationID = previous.ObligatedExplanationID
-	})
+	if err := entity.Find(context); err != nil {
+		return entity.ID, err
+	}
 
 	if entity.BeginID != 0 {
 		if _, err := entity.Begin.Delete(context, account); err != nil {
@@ -480,71 +368,16 @@ func (entity *Benefit) Delete(context *db.DatabaseContext, account int) (int, er
 }
 
 // Get will retrieve the entity from the database.
-func (entity *Benefit) Get(context *db.DatabaseContext, account int) (int, error) {
+func (entity *Benefit) Get(context DatabaseService, account int) (int, error) {
 	entity.AccountID = account
 
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	context.Find(&Benefit{ID: entity.ID, AccountID: account}, func(result interface{}) {
-		previous := result.(*Benefit)
-		if entity.Begin == nil {
-			entity.Begin = &DateControl{}
-		}
-		entity.Begin.ID = previous.BeginID
-		entity.BeginID = previous.BeginID
-		if entity.End == nil {
-			entity.End = &DateControl{}
-		}
-		entity.End.ID = previous.EndID
-		entity.EndID = previous.EndID
-		if entity.Frequency == nil {
-			entity.Frequency = &Radio{}
-		}
-		entity.Frequency.ID = previous.FrequencyID
-		entity.FrequencyID = previous.FrequencyID
-		if entity.OtherFrequency == nil {
-			entity.OtherFrequency = &Textarea{}
-		}
-		entity.OtherFrequency.ID = previous.OtherFrequencyID
-		entity.OtherFrequencyID = previous.OtherFrequencyID
-		if entity.Received == nil {
-			entity.Received = &DateControl{}
-		}
-		entity.Received.ID = previous.ReceivedID
-		entity.ReceivedID = previous.ReceivedID
-		if entity.Country == nil {
-			entity.Country = &Country{}
-		}
-		entity.Country.ID = previous.CountryID
-		entity.CountryID = previous.CountryID
-		if entity.Value == nil {
-			entity.Value = &Number{}
-		}
-		entity.Value.ID = previous.ValueID
-		entity.ValueID = previous.ValueID
-		if entity.ValueEstimated == nil {
-			entity.ValueEstimated = &Checkbox{}
-		}
-		entity.ValueEstimated.ID = previous.ValueEstimatedID
-		entity.ValueEstimatedID = previous.ValueEstimatedID
-		if entity.Reason == nil {
-			entity.Reason = &Textarea{}
-		}
-		entity.Reason.ID = previous.ReasonID
-		entity.ReasonID = previous.ReasonID
-		if entity.Obligated == nil {
-			entity.Obligated = &Branch{}
-		}
-		entity.Obligated.ID = previous.ObligatedID
-		entity.ObligatedID = previous.ObligatedID
-		if entity.ObligatedExplanation == nil {
-			entity.ObligatedExplanation = &Textarea{}
-		}
-		entity.ObligatedExplanation.ID = previous.ObligatedExplanationID
-		entity.ObligatedExplanationID = previous.ObligatedExplanationID
-	})
+	if err := entity.Find(context); err != nil {
+		return entity.ID, err
+	}
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
@@ -629,4 +462,67 @@ func (entity *Benefit) GetID() int {
 // SetID sets the entity identifier.
 func (entity *Benefit) SetID(id int) {
 	entity.ID = id
+}
+
+func (entity *Benefit) Find(context DatabaseService) error {
+	context.Find(&Benefit{ID: entity.ID, AccountID: entity.AccountID}, func(result interface{}) {
+		previous := result.(*Benefit)
+		if entity.Begin == nil {
+			entity.Begin = &DateControl{}
+		}
+		entity.Begin.ID = previous.BeginID
+		entity.BeginID = previous.BeginID
+		if entity.End == nil {
+			entity.End = &DateControl{}
+		}
+		entity.End.ID = previous.EndID
+		entity.EndID = previous.EndID
+		if entity.Frequency == nil {
+			entity.Frequency = &Radio{}
+		}
+		entity.Frequency.ID = previous.FrequencyID
+		entity.FrequencyID = previous.FrequencyID
+		if entity.OtherFrequency == nil {
+			entity.OtherFrequency = &Textarea{}
+		}
+		entity.OtherFrequency.ID = previous.OtherFrequencyID
+		entity.OtherFrequencyID = previous.OtherFrequencyID
+		if entity.Received == nil {
+			entity.Received = &DateControl{}
+		}
+		entity.Received.ID = previous.ReceivedID
+		entity.ReceivedID = previous.ReceivedID
+		if entity.Country == nil {
+			entity.Country = &Country{}
+		}
+		entity.Country.ID = previous.CountryID
+		entity.CountryID = previous.CountryID
+		if entity.Value == nil {
+			entity.Value = &Number{}
+		}
+		entity.Value.ID = previous.ValueID
+		entity.ValueID = previous.ValueID
+		if entity.ValueEstimated == nil {
+			entity.ValueEstimated = &Checkbox{}
+		}
+		entity.ValueEstimated.ID = previous.ValueEstimatedID
+		entity.ValueEstimatedID = previous.ValueEstimatedID
+		if entity.Reason == nil {
+			entity.Reason = &Textarea{}
+		}
+		entity.Reason.ID = previous.ReasonID
+		entity.ReasonID = previous.ReasonID
+		if entity.Obligated == nil {
+			entity.Obligated = &Branch{}
+		}
+		entity.Obligated.ID = previous.ObligatedID
+		entity.ObligatedID = previous.ObligatedID
+		if entity.ObligatedExplanation == nil {
+			entity.ObligatedExplanation = &Textarea{}
+		}
+		entity.ObligatedExplanation.ID = previous.ObligatedExplanationID
+		entity.ObligatedExplanationID = previous.ObligatedExplanationID
+	})
+
+	return nil
 }

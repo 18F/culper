@@ -1,5 +1,10 @@
 package api
 
+import (
+	"encoding/json"
+	"strings"
+)
+
 // Different potential layouts used by the frontend.
 // File: /src/components/Form/Location/Layouts.js
 const (
@@ -31,6 +36,223 @@ type Location struct {
 	Country         string `json:"country,omitempty"`
 	CountryComments string `json:"countryComments,omitempty"`
 	Validated       bool   `json:"validated,omitempty"`
+}
+
+// Unmarshal bytes in to the entity properties.
+func (entity *Location) Unmarshal(raw []byte) error {
+	return json.Unmarshal(raw, entity)
+}
+
+// Marshal to payload structure
+func (entity *Location) Marshal() Payload {
+	return MarshalPayloadEntity("location", entity)
+}
+
+func (entity *Location) Save(context DatabaseService, account int) (int, error) {
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
+	if err := context.Save(entity); err != nil {
+		return entity.ID, err
+	}
+
+	return entity.ID, nil
+}
+
+func (entity *Location) Delete(context DatabaseService, account int) (int, error) {
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	return entity.ID, nil
+}
+
+func (entity *Location) Get(context DatabaseService, account int) (int, error) {
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	return entity.ID, nil
+}
+
+// Valid checks the value(s) against an battery of tests.
+func (entity *Location) Valid() (bool, error) {
+	if entity.Validated {
+		return true, nil
+	}
+
+	var stack ErrorStack
+	domestic := entity.IsDomestic()
+	postoffice := entity.IsPostOffice()
+	international := !domestic && !postoffice
+
+	switch entity.Layout {
+	case LayoutBirthPlace:
+		if domestic {
+			stack = validateFields(entity, "city", "state", "county")
+		} else {
+			stack = validateFields(entity, "city", "county")
+		}
+	case LayoutBirthPlaceWithoutCounty:
+		if domestic {
+			stack = validateFields(entity, "city", "state")
+		} else {
+			stack = validateFields(entity, "city", "county")
+		}
+	case LayoutCountry:
+		stack = validateFields(entity, "country")
+	case LayoutUSCityStateInternationalCity:
+		if domestic {
+			stack = validateFields(entity, "city", "state")
+		} else {
+			stack = validateFields(entity, "city", "country")
+		}
+	case LayoutUSCityStateInternationalCityCountry:
+		if domestic {
+			stack = validateFields(entity, "city", "state")
+		} else {
+			stack = validateFields(entity, "city", "country")
+		}
+	case LayoutCityState:
+		stack = validateFields(entity, "city", "state")
+	case LayoutStreetCityCountry:
+		stack = validateFields(entity, "street", "city", "country")
+	case LayoutCityCountry:
+		stack = validateFields(entity, "city", "country")
+	case LayoutUSCityStateZipcodeInternationalCity:
+		if domestic {
+			stack = validateFields(entity, "city", "state", "zipcode")
+		} else {
+			stack = validateFields(entity, "city", "country")
+		}
+	case LayoutCityStateCountry:
+		stack = validateFields(entity, "city", "state", "country")
+	case LayoutUSAddress:
+		stack = validateFields(entity, "street", "city", "state", "zipcode")
+	case LayoutStreetCity:
+		stack = validateFields(entity, "street", "city")
+	default:
+		if domestic || postoffice {
+			stack = validateFields(entity, "street", "city", "state", "zipcode")
+		}
+		stack = validateFields(entity, "street", "city", "country")
+	}
+
+	geocode := entity.Layout == LayoutAddress || entity.Layout == LayoutUSAddress
+	if !stack.HasErrors() && !international && geocode {
+		// Perform geocoding
+		results, err := Geocode.Validate(
+			GeocodeValues{
+				Street:  string(entity.Street1),
+				Street2: string(entity.Street2),
+				City:    string(entity.City),
+				State:   string(entity.State),
+				Zipcode: string(entity.Zipcode),
+			})
+
+		if err != nil {
+			stack.Append("Location", ErrInvalidLocation{
+				Message:     err.Error(),
+				Suggestions: results,
+			})
+		}
+	}
+
+	return !stack.HasErrors(), stack
+}
+
+func validateFields(entity *Location, props ...string) ErrorStack {
+	var stack ErrorStack
+
+	for _, prop := range props {
+		switch strings.ToLower(prop) {
+		case "street":
+			street1 := strings.TrimSpace(entity.Street1)
+			if street1 == "" {
+				stack.Append("Location", ErrFieldRequired{"Missing street"})
+			}
+		case "city":
+			city := strings.TrimSpace(entity.City)
+			if city == "" {
+				stack.Append("Location", ErrFieldRequired{"Missing city"})
+			}
+		case "state":
+			state := strings.TrimSpace(entity.State)
+			if state == "" {
+				stack.Append("Location", ErrFieldRequired{"Missing state"})
+			} else if !has(state, states...) {
+				stack.Append("Location", ErrFieldInvalid{"Invalid state"})
+			}
+		case "zipcode":
+			zipcode := strings.TrimSpace(entity.Zipcode)
+			if zipcode == "" {
+				stack.Append("Location", ErrFieldRequired{"Missing ZIP code"})
+			}
+		case "county":
+			county := strings.TrimSpace(entity.County)
+			if county == "" {
+				stack.Append("Location", ErrFieldRequired{"Missing county"})
+			}
+		case "country":
+			country := strings.TrimSpace(entity.Country)
+			if country == "" {
+				stack.Append("Location", ErrFieldRequired{"Missing country"})
+			} else if !has(country, countries...) {
+				stack.Append("Location", ErrFieldInvalid{"Invalid country"})
+			}
+		}
+	}
+
+	return stack
+}
+
+func has(target string, options ...string) bool {
+	for _, option := range options {
+		if strings.EqualFold(target, option) {
+			return true
+		}
+	}
+
+	return false
+}
+
+// ID returns the entity identifier.
+func (entity *Location) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *Location) SetID(id int) {
+	entity.ID = id
+}
+
+func (entity *Location) Find(context DatabaseService) error {
+	return nil
+}
+
+func (entity *Location) IsDomestic() bool {
+	return entity.Country == "United States" || entity.Layout == LayoutUSAddress
+}
+
+func (entity *Location) IsPostOffice() bool {
+	return entity.Country == "POSTOFFICE"
+}
+
+func (entity *Location) IsInternational() bool {
+	return !entity.IsDomestic() && !entity.IsPostOffice()
 }
 
 // TODO: Read `states` and `countries` from an external source.
@@ -369,25 +591,3 @@ var (
 		"Zimbabwe",
 	}
 )
-
-// ID returns the entity identifier.
-func (entity *Location) GetID() int {
-	return entity.ID
-}
-
-// SetID sets the entity identifier.
-func (entity *Location) SetID(id int) {
-	entity.ID = id
-}
-
-func (entity *Location) IsDomestic() bool {
-	return entity.Country == "United States" || entity.Layout == LayoutUSAddress
-}
-
-func (entity *Location) IsPostOffice() bool {
-	return entity.Country == "POSTOFFICE"
-}
-
-func (entity *Location) IsInternational() bool {
-	return !entity.IsDomestic() && !entity.IsPostOffice()
-}

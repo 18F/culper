@@ -6,6 +6,7 @@ type Entity interface {
 	Marshaller
 	Validator
 	Persister
+	Finder
 }
 
 // Identifier allows for entities to be tagged with an ID
@@ -28,7 +29,13 @@ type Validator interface {
 // Persister interface provides common functionality for persisting
 // data to storage.
 type Persister interface {
-	Save(context *DatabaseService, account int) (int, error)
-	Delete(context *DatabaseService, account int) (int, error)
-	Get(context *DatabaseService, account int) (int, error)
+	Save(context DatabaseService, account int) (int, error)
+	Delete(context DatabaseService, account int) (int, error)
+	Get(context DatabaseService, account int) (int, error)
+}
+
+// Finder interface provides common functionality for finding persisted
+// data using properties other than the primary key.
+type Finder interface {
+	Find(context DatabaseService) error
 }

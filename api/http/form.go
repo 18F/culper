@@ -22,14 +22,14 @@ func (service FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	// Valid token and audience while populating the audience ID
 	_, err := service.Token.CheckToken(account.ValidJwtToken)
 	if err != nil {
-		service.Log.WithError(err).Warn(api.InvalidJWT, err, api.LogFields{})
+		service.Log.WarnError(api.InvalidJWT, err, api.LogFields{})
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
 	// Get the account information from the data store
 	if err := account.Get(); err != nil {
-		service.Log.WithError(err).Warn(api.NoAccount, err, api.LogFields{})
+		service.Log.WarnError(api.NoAccount, err, api.LogFields{})
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}

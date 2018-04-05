@@ -14,19 +14,9 @@ var (
 	ErrNoResultsFound = errors.New("No geolocation results were found")
 )
 
-// func init() {
-// 	log := logmsg.NewLogger()
-// 	uspsUserID := cf.UserService("usps-api", "api_key")
-// 	if uspsUserID == "" {
-// 		log.Warn(logmsg.USPSMissingKey)
-// 	}
-
-// 	Geocode = NewUSPSGeocoder(uspsUserID)
-// }
-
 // Geocoder is an interface for geocoding implementations
 type Geocoder interface {
-	Validate(Values) (GeocodeResults, error)
+	Validate(GeocodeValues) (GeocodeResults, error)
 }
 
 // Result represents geocoded information that has been transformed from the original source.

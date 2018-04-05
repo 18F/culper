@@ -38,7 +38,7 @@ func (service RefreshHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) 
 	// Valid token and audience
 	_, err := service.Token.CheckToken(account.ValidJwtToken)
 	if err != nil {
-		service.Log.Warn(api.InvalidJWT, err, api.LogFields{})
+		service.Log.WarnError(api.InvalidJWT, err, api.LogFields{})
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
@@ -46,7 +46,7 @@ func (service RefreshHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) 
 	// Generate a new token
 	signedToken, _, err := account.NewJwtToken(service.Token.CurrentAudience(r))
 	if err != nil {
-		service.Log.Warn(api.JWTError, err, api.LogFields{})
+		service.Log.WarnError(api.JWTError, err, api.LogFields{})
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}

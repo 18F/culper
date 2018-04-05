@@ -9,19 +9,20 @@ import (
 )
 
 type Migration struct {
-	Env      *Settings
-	Database *DatabaseService
+	Env      Settings
+	Database DatabaseService
 }
 
 // MigrateUp attempts to push any pending updates to the database
 func (service Migration) Up(directory, environment, schema string) error {
-	conf, err := databaseConf(directory, environment, schema)
+	conf, err := service.databaseConf(directory, environment, schema)
 	if err != nil {
 		return err
 	}
 
+	var target int64
 	if service.Env.Has(DB_MIGRATION_TARGET) {
-		target, err := migration.NumericComponent(service.Env.String("DB_MIGRATION_TARGET"))
+		target, err = migration.NumericComponent(service.Env.String("DB_MIGRATION_TARGET"))
 		if err != nil {
 			target, err = migration.GetMostRecentDBVersion(conf.MigrationsDir)
 			if err != nil {
@@ -35,7 +36,7 @@ func (service Migration) Up(directory, environment, schema string) error {
 
 // CurrentVersion gets the database current version according to the migration status
 func (service Migration) CurrentVersion(directory, environment, schema string) (int64, error) {
-	conf, err := databaseConf(directory, environment, schema)
+	conf, err := service.databaseConf(directory, environment, schema)
 	if err != nil {
 		return 0, err
 	}
@@ -54,7 +55,7 @@ func (service Migration) databaseConf(directory, environment, schema string) (*m
 		MigrationsDir: filepath.Join(directory, "migrations"),
 		Env:           environment,
 		PgSchema:      schema,
-		Driver:        databaseDriver(uri),
+		Driver:        service.databaseDriver(uri),
 	}, nil
 }
 

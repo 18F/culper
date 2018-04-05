@@ -42,7 +42,7 @@ func (service SamlHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	// Generate the AuthnRequest and then get a base64 encoded string of the XML
 	request, encoded, err := createAuthenticationRequest(sp)
 	if err != nil {
-		service.Log.Warn(api.SamlRequestError, err, api.LogFields{})
+		service.Log.WarnError(api.SamlRequestError, err, api.LogFields{})
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	} else {
@@ -53,7 +53,7 @@ func (service SamlHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	// Get a URL formed with the SAMLRequest parameter
 	url, err := saml.GetAuthnRequestURL(sp.IDPSSOURL, encoded, "state")
 	if err != nil {
-		service.Log.Warn(api.SamlRequestURLError, err, api.LogFields{})
+		service.Log.WarnError(api.SamlRequestURLError, err, api.LogFields{})
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
@@ -95,7 +95,7 @@ func (service SamlCallbackHandler) ServeHTTP(w http.ResponseWriter, r *http.Requ
 	authnResponseXML, _ := response.String()
 	service.Log.Debug("SAML authentication response", api.LogFields{"xml", authnResponseXML})
 	if err != nil {
-		service.Log.Warn(api.SamlParseError, err, api.LogFields{})
+		service.Log.WarnError(api.SamlParseError, err, api.LogFields{})
 		redirectAccessDenied(w, r)
 		return
 	}
@@ -103,14 +103,14 @@ func (service SamlCallbackHandler) ServeHTTP(w http.ResponseWriter, r *http.Requ
 	sp := configureSAML(service.Env)
 	err = response.Validate(&sp)
 	if err != nil {
-		service.Log.Warn(api.SamlInvalid, err, api.LogFields{})
+		service.Log.WarnError(api.SamlInvalid, err, api.LogFields{})
 		redirectAccessDenied(w, r)
 		return
 	}
 
 	username := cleanName(response.Assertion.Subject.NameID.Value)
 	if username == "" {
-		service.Log.Warn(api.SamlIdentifierMissing, err, api.LogFields{})
+		service.Log.WarnError(api.SamlIdentifierMissing, err, api.LogFields{})
 		redirectAccessDenied(w, r)
 		return
 	}
@@ -120,7 +120,7 @@ func (service SamlCallbackHandler) ServeHTTP(w http.ResponseWriter, r *http.Requ
 		Username: username,
 	}
 	if err := account.Get(); err != nil {
-		service.Log.Warn(api.NoAccount, err, api.LogFields{"username": username})
+		service.Log.WarnError(api.NoAccount, err, api.LogFields{"username": username})
 
 		// Attempt to create a new account if one is not
 		// found in the system but is verified to have
@@ -130,7 +130,7 @@ func (service SamlCallbackHandler) ServeHTTP(w http.ResponseWriter, r *http.Requ
 		// make sure the final release does not allow the creation
 		// of a new account and returns an error in its place.
 		if err := account.Save(); err != nil {
-			service.Log.Warn(api.AccountUpdateError, err, api.LogFields{"username": username})
+			service.Log.WarnError(api.AccountUpdateError, err, api.LogFields{"username": username})
 			redirectAccessDenied(w, r)
 			return
 		}
@@ -139,7 +139,7 @@ func (service SamlCallbackHandler) ServeHTTP(w http.ResponseWriter, r *http.Requ
 	// Generate jwt token
 	signedToken, _, err := account.NewJwtToken(jwt.SingleSignOnAudience)
 	if err != nil {
-		service.Log.Warn(api.JWTError, err, api.LogFields{"account": account})
+		service.Log.WarnError(api.JWTError, err, api.LogFields{"account": account})
 		redirectAccessDenied(w, r)
 		return
 	}

@@ -3,18 +3,18 @@ package api
 type LogFields map[string]interface{}
 
 type LogService interface {
-	Print(message, fields ...LogField)
-	Print(message string, err error, fields LogFields)
-	Debug(message, fields ...LogField)
-	Debug(message string, err error, fields LogFields)
-	Warn(message, fields ...LogField)
-	Warn(message string, err error, fields LogFields)
-	Info(message, fields ...LogField)
-	Info(message string, err error, fields LogFields)
-	Fatal(message, fields ...LogField)
-	Fatal(message string, err error, fields LogFields)
-	Panic(message, fields ...LogField)
-	Panic(message string, err error, fields LogFields)
+	Print(message string, fields LogFields)
+	PrintError(message string, err error, fields LogFields)
+	Debug(message string, fields LogFields)
+	DebugError(message string, err error, fields LogFields)
+	Warn(message string, fields LogFields)
+	WarnError(message string, err error, fields LogFields)
+	Info(message string, fields LogFields)
+	InfoError(message string, err error, fields LogFields)
+	Fatal(message string, fields LogFields)
+	FatalError(message string, err error, fields LogFields)
+	Panic(message string, fields LogFields)
+	PanicError(message string, err error, fields LogFields)
 }
 
 // Warning messages
