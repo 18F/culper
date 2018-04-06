@@ -168,7 +168,6 @@ export default class NonpaymentItem extends ValidationElement {
                       onUpdate={this.updateAmount}
                       onError={this.props.onError}
                       className="nonpayment-amount"
-                      placeholder={i18n.t('financial.nonpayment.placeholder.amount')}
                       min="1"
                       required={this.props.required}
                       />

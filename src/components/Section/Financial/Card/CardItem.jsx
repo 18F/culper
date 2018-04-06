@@ -134,7 +134,6 @@ export default class CardItem extends ValidationElement {
             <Currency name="Amount"
                       {...this.props.Amount}
                       className="card-amount"
-                      placeholder={i18n.t('financial.card.placeholder.amount')}
                       min="1"
                       required={this.props.required}
                       onUpdate={this.updateAmount}
