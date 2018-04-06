@@ -217,9 +217,9 @@ export const identification = {
       verify: 'Please verify your social security number'
     },
     placeholder: {
-      last: '0000',
-      middle: '00',
-      first: '000'
+      last: '####',
+      middle: '##',
+      first: '###'
     }
   },
   traits: {
@@ -281,9 +281,9 @@ export const identification = {
       comments: 'Add a comment about sex'
     },
     placeholder: {
-      feet: '0',
-      inches: '0',
-      pounds: '0'
+      feet: '#',
+      inches: '##',
+      pounds: '###'
     },
     hair: {
       bald: 'Bald',
