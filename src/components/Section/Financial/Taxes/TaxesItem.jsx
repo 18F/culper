@@ -127,7 +127,7 @@ export default class TaxesItem extends ValidationElement {
           <Number name="Year"
                   {...this.props.Year}
                   className="taxes-year"
-                  placeholder={i18n.t('financial.taxes.placeholder.year')}
+                  placeholder={i18n.t('date.placeholder.year')}
                   prefix="date"
                   min={minYearFiled.minDate.getFullYear()}
                   required={this.props.required}

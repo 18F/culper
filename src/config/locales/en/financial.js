@@ -227,9 +227,6 @@ export const financial = {
     para: {
       or: 'or'
     },
-    placeholder: {
-      year: '0000'
-    },
     help: {
       branch: {
         title: 'Need help with the type of tax failure?',
@@ -299,9 +296,6 @@ export const financial = {
     },
     label: {
       estimated: 'Estimated'
-    },
-    placeholder: {
-      amount: '0'
     },
     help: {
       branch: {
@@ -433,9 +427,6 @@ export const financial = {
     label: {
       notresolved: 'Not resolved',
       estimated: 'Estimated'
-    },
-    placeholder: {
-      amount: '0'
     },
     help: {
       branch: {
