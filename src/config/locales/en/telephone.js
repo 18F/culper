@@ -34,6 +34,12 @@ export const telephone = {
     work: 'Work',
     other: 'Other'
   },
+  placeholder: {
+    three: '###',
+    four: '####',
+    six: '######',
+    ten: '##########'
+  },
   aria: {
     domestic: 'Switch to United States number',
     dsn: 'Switch to DSN number',

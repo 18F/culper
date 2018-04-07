@@ -87,7 +87,7 @@ export default class SSN extends ValidationElement {
             valid: true
           }])
         })
-      return
+      return []
     }
     return this.handleError('notApplicable', value, arr)
   }

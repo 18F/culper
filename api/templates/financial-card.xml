@@ -8,7 +8,7 @@
       <Actions>{{textarea $Item.Description}}</Actions>
       <Agency>
         <Address>{{location $Item.Address}}</Address>
-        <Name>{{text $Item.Name}}</Name>
+        <Name>{{text $Item.Agency}}</Name>
       </Agency>
       <Amount Estimated="{{checkboxTrueFalse $Item.AmountEstimated}}">{{number $Item.Amount}}</Amount>
       <Comment></Comment>
