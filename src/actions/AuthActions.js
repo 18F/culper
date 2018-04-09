@@ -18,7 +18,7 @@ export function login (username, password) {
         dispatch(handleLoginSuccess(response.data))
 
         if (!mfa.enabled) {
-          dispatch(push('/form/identification/intro'))
+          dispatch(push('/loading'))
         }
       })
       .catch(error => {
