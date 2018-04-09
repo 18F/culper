@@ -27,6 +27,7 @@ clean: stop clear
 	-@rm -rf ./api/api
 	-@rm -rf ./api/eapp.key
 	-@rm -rf ./api/eapp.crt
+	-@rm -rf ./api/webservice/testdata/test.cer
 	-@rm -rf ./api/webservice/testdata/test.key
 	-@rm -rf ./api/webservice/testdata/test.pkcs.key
 
