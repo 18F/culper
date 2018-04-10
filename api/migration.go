@@ -19,14 +19,11 @@ func (service Migration) Up(directory, environment, schema string) error {
 		return err
 	}
 
-	var target int64
-	if service.Env.Has(DB_MIGRATION_TARGET) {
-		target, err = migration.NumericComponent(service.Env.String("DB_MIGRATION_TARGET"))
+	target, err := migration.NumericComponent(service.Env.String("DB_MIGRATION_TARGET"))
+	if err != nil {
+		target, err = migration.GetMostRecentDBVersion(conf.MigrationsDir)
 		if err != nil {
-			target, err = migration.GetMostRecentDBVersion(conf.MigrationsDir)
-			if err != nil {
-				return err
-			}
+			return err
 		}
 	}
 

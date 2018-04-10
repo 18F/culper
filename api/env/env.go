@@ -12,9 +12,18 @@ import (
 type Native struct{}
 
 func (env Native) Configure() {
-	if !env.Has(api.DATABASE_URI) {
-		os.Setenv(api.DATABASE_URI, env.buildDatabaseURI())
-	}
+	env.ensure(api.GOLANG_ENV, "development")
+	env.ensure(api.LOG_LEVEL, "warning")
+	env.ensure(api.SESSION_TIMEOUT, "15")
+	env.ensure(api.DATABASE_URI, env.buildDatabaseURI())
+	env.ensure(api.PORT, "3000")
+	env.ensure(api.HASH_ROUTING, "0")
+	env.ensure(api.FLUSH_STORAGE, "0")
+	env.ensure(api.BASIC_ENABLED, "0")
+	env.ensure(api.SAML_ENABLED, "0")
+	env.ensure(api.DISABLE_2FA, "0")
+	env.ensure(api.ALLOW_2FA_RESET, "0")
+	env.ensure(api.WINDOW_SIZE, "3")
 }
 
 func (env Native) Has(name string) bool {
@@ -42,6 +51,12 @@ func (env Native) Int(name string) int {
 		return 0
 	}
 	return i
+}
+
+func (env Native) ensure(name, value string) {
+	if !env.Has(name) {
+		os.Setenv(name, value)
+	}
 }
 
 func (env Native) buildDatabaseURI() string {

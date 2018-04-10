@@ -112,3 +112,21 @@ func TestTimeout(t *testing.T) {
 
 	os.Setenv(api.SESSION_TIMEOUT, old)
 }
+
+func TestValidateToken(t *testing.T) {
+	service := TokenService{Env: mock.Native{}}
+	token, _, err := service.NewToken(1, api.BasicAuthAudience)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	valid, id, _ := service.validateToken(token, api.BasicAuthAudience)
+	if !valid || id != 1 {
+		t.Fatalf("Expected JWT Token to be valid")
+	}
+
+	valid, _, _ = service.validateToken("badtoken", api.BasicAuthAudience)
+	if valid {
+		t.Fatalf("Expected JWT Token to be invalid")
+	}
+}

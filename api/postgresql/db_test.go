@@ -84,7 +84,7 @@ func TestCollections(t *testing.T) {
 
 		savedItems := len(savedEntity.Items)
 		if savedItems != 1 {
-			t.Fatalf("Collection did not have 1 items but was %d\n\nEntity: %v", savedItems, savedEntity.Items)
+			t.Fatalf("Collection did not have 1 items but was %d", savedItems)
 		}
 		if _, err := savedEntity.Delete(service, account); err != nil {
 			t.Fatalf("Error deleting [%s]: %v\n\nEntity: %v", test.Data, err, savedEntity)
@@ -426,5 +426,31 @@ func TestPayloadPersistence(t *testing.T) {
 		if _, err := entity.Delete(service, account); err != nil {
 			t.Fatalf("Error deleting [%s]: %v\n\nEntity: %v", test.Data, err, entity)
 		}
+	}
+}
+
+func TestApplication(t *testing.T) {
+	account := 1
+	settings := mock.Native{}
+	settings.Configure()
+	service := &DatabaseService{Log: mock.LogService{Off: true}, Env: settings}
+	service.Configure()
+
+	js := api.Application(service, account, false)
+	if len(js) == 0 {
+		t.Fatal("Failed to get application state")
+	}
+}
+
+func TestHash(t *testing.T) {
+	account := 1
+	settings := mock.Native{}
+	settings.Configure()
+	service := &DatabaseService{Log: mock.LogService{Off: true}, Env: settings}
+	service.Configure()
+
+	sig := api.Hash(service, account)
+	if len(sig) == 0 {
+		t.Fatal("Failed to get application data hash")
 	}
 }

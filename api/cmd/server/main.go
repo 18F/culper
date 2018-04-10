@@ -2,6 +2,8 @@ package main
 
 import (
 	"flag"
+	"os"
+	"path/filepath"
 
 	"github.com/18F/e-QIP-prototype/api"
 	"github.com/18F/e-QIP-prototype/api/cloudfoundry"
@@ -34,8 +36,9 @@ func main() {
 
 	flag.Parse()
 	if !*flagSkipMigration {
+		ex, _ := os.Executable()
 		migration := api.Migration{Env: settings}
-		if err := migration.Up("db", "environment", ""); err != nil {
+		if err := migration.Up(filepath.Dir(ex), settings.String(api.GOLANG_ENV), ""); err != nil {
 			logger.WarnError(api.WarnFailedMigration, err, api.LogFields{})
 		}
 	}
@@ -49,17 +52,17 @@ func main() {
 
 	// Declare a new router with any middleware injected
 	r := mux.NewRouter()
-	r.HandleFunc("/", http.RootHandler{Env: settings}.ServeHTTP)
+	r.HandleFunc("/", http.RootHandler{Env: settings}.ServeHTTP).Methods("GET")
 	r.HandleFunc("/refresh", http.RefreshHandler{Env: settings, Log: logger, Token: token, Database: database}.ServeHTTP).Methods("POST")
 
 	// Two-factor authentication
 	if !settings.True(api.DISABLE_2FA) {
 		s := r.PathPrefix("/2fa").Subrouter()
-		s.HandleFunc("/{account}", http.MFAGenerateHandler{Env: settings, Log: logger, Token: token, Database: database, MFA: mfasvc}.ServeHTTP)
-		s.HandleFunc("/{account}/verify", http.MFAVerifyHandler{Env: settings, Log: logger, Token: token, Database: database, MFA: mfasvc}.ServeHTTP)
+		s.HandleFunc("/{account}", http.MFAGenerateHandler{Env: settings, Log: logger, Token: token, Database: database, MFA: mfasvc}.ServeHTTP).Methods("GET")
+		s.HandleFunc("/{account}/verify", http.MFAVerifyHandler{Env: settings, Log: logger, Token: token, Database: database, MFA: mfasvc}.ServeHTTP).Methods("POST")
 
 		if settings.True(api.ALLOW_2FA_RESET) {
-			s.HandleFunc("/{account}/reset", http.MFAResetHandler{Env: settings, Log: logger, Token: token, Database: database, MFA: mfasvc}.ServeHTTP)
+			s.HandleFunc("/{account}/reset", http.MFAResetHandler{Env: settings, Log: logger, Token: token, Database: database, MFA: mfasvc}.ServeHTTP).Methods("GET")
 		}
 	}
 
@@ -76,12 +79,12 @@ func main() {
 	// Account specific actions
 	a := r.PathPrefix("/me").Subrouter()
 	a.HandleFunc("/logout", http.LogoutHandler{Env: settings, Log: logger, Token: token, Database: database}.ServeHTTP).Methods("GET")
-	a.HandleFunc("/validate", http.ValidateHandler{Env: settings, Log: logger, Token: token, Database: database}.ServeHTTP).Methods("GET")
-	a.HandleFunc("/save", http.SaveHandler{Env: settings, Log: logger, Token: token, Database: database}.ServeHTTP).Methods("GET")
+	a.HandleFunc("/validate", http.ValidateHandler{Env: settings, Log: logger, Token: token, Database: database}.ServeHTTP).Methods("POST")
+	a.HandleFunc("/save", http.SaveHandler{Env: settings, Log: logger, Token: token, Database: database}.ServeHTTP).Methods("POST", "PUT")
 	a.HandleFunc("/status", http.StatusHandler{Env: settings, Log: logger, Token: token, Database: database}.ServeHTTP).Methods("GET")
 	a.HandleFunc("/form", http.FormHandler{Env: settings, Log: logger, Token: token, Database: database}.ServeHTTP).Methods("GET")
 	a.HandleFunc("/form/hash", http.HashHandler{Env: settings, Log: logger, Token: token, Database: database}.ServeHTTP).Methods("GET")
-	a.HandleFunc("/form/submit", http.SubmitHandler{Env: settings, Log: logger, Token: token, Database: database, Xml: xmlsvc}.ServeHTTP).Methods("GET")
+	a.HandleFunc("/form/submit", http.SubmitHandler{Env: settings, Log: logger, Token: token, Database: database, Xml: xmlsvc}.ServeHTTP).Methods("POST")
 	a.HandleFunc("/form/section", http.SectionHandler{Env: settings, Log: logger, Token: token, Database: database}.ServeHTTP).Methods("GET")
 
 	// Inject middleware
