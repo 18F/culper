@@ -26,8 +26,8 @@ var (
 )
 
 type Server struct {
-	Env *api.Settings
-	Log *api.Settings
+	Env api.Settings
+	Log api.LogService
 }
 
 type serverFunc func(server *http.Server) error
@@ -42,11 +42,11 @@ func (service Server) ListenAndServe(address string, router http.Handler) error 
 		server = &http.Server{
 			Addr:         address,
 			Handler:      router,
-			TLSConfig:    cfg,
+			TLSConfig:    TransportLayerSecurity,
 			TLSNextProto: make(map[string]func(*http.Server, *tls.Conn, http.Handler), 0),
 		}
 		serverFunc = func(s *http.Server) error {
-			return s.ListenAndServeTLS(service.Env.String(api.TLS_CERT), service.Env(api.TLS_KEY))
+			return s.ListenAndServeTLS(service.Env.String(api.TLS_CERT), service.Env.String(api.TLS_KEY))
 		}
 	} else {
 		message = api.StartingServer

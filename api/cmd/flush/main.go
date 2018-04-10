@@ -7,9 +7,9 @@ import (
 )
 
 func main() {
-	log := &log.LogService{log: log.NewLogger()}
-	cmd.Command(log, func(context *api.DatabaseService, account *api.Account) {
+	logger := &log.LogService{Log: log.NewLogger()}
+	cmd.Command(logger, func(context api.DatabaseService, account *api.Account) {
 		api.PurgeAccountStorage(context, account.ID)
-		log.Info("Account information purged", api.LogFields{"account": account.Username})
+		logger.Info("Account information purged", api.LogFields{"account": account.Username})
 	})
 }

@@ -8,10 +8,10 @@ import (
 )
 
 type StatusHandler struct {
-	Env      *api.Settings
-	Log      *api.LogService
-	Token    *api.TokenService
-	Database *api.DatabaseService
+	Env      api.Settings
+	Log      api.LogService
+	Token    api.TokenService
+	Database api.DatabaseService
 }
 
 // Status returns the accounts current state.
@@ -19,7 +19,7 @@ func (service StatusHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	account := &api.Account{}
 
 	// Valid token and audience while populating the audience ID
-	_, err := service.Token.CheckToken(account.ValidJwtToken)
+	_, id, err := service.Token.CheckToken(r)
 	if err != nil {
 		service.Log.WarnError(api.InvalidJWT, err, api.LogFields{})
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -27,7 +27,8 @@ func (service StatusHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Get the account information from the data store
-	if err := account.Get(); err != nil {
+	account.ID = id
+	if _, err := account.Get(service.Database, id); err != nil {
 		service.Log.WarnError(api.NoAccount, err, api.LogFields{})
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return

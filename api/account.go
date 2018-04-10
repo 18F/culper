@@ -2,6 +2,7 @@ package api
 
 import (
 	"errors"
+	"fmt"
 )
 
 var (
@@ -88,66 +89,33 @@ func (entity *Account) Find(context DatabaseService) error {
 // Lock will mark the account in a `locked` status.
 func (a *Account) Lock(context DatabaseService) error {
 	a.Locked = true
-	_, err := a.Save(context, 0)
+	_, err := a.Save(context, a.ID)
 	return err
 }
 
 // Unlock will mark the account in an `unlocked` status.
 func (a *Account) Unlock(context DatabaseService) error {
 	a.Locked = false
-	_, err := a.Save(context, 0)
+	_, err := a.Save(context, a.ID)
 	return err
 }
 
-// // TODO: BasicAuthentication checks if the username and password are valid and returns the users account
-// func (a *Account) BasicAuthentication(password string) error {
-// 	var basicMembership BasicAuthMembership
+// BasicAuthentication checks if the username and password are valid and returns the users account
+func (a *Account) BasicAuthentication(context DatabaseService, password string) error {
+	var basicMembership BasicAuthMembership
 
-// 	// Find if basic auth record exists for given account username
-// 	err := a.db.Database.Model(&basicMembership).
-// 		Column("basic_auth_membership.*", "Account").
-// 		Where("Account.username = ?", a.Username).
-// 		Select()
+	// Find if basic auth record exists for given account username
+	err := context.ColumnsWhere(&basicMembership, []string{"basic_auth_membership.*", "Account"}, "Account.username = ?", a.Username)
+	if err != nil {
+		fmt.Printf("Basic Authentication Error: [%v]\n", err)
+		return ErrAccoundDoesNotExist
+	}
 
-// 	if err != nil {
-// 		fmt.Printf("Basic Authentication Error: [%v]\n", err)
-// 		return ErrAccoundDoesNotExist
-// 	}
+	// Check if plaintext password matches hashed password
+	if matches := basicMembership.PasswordMatch(password); !matches {
+		return ErrPasswordDoesNotMatch
+	}
 
-// 	// Check if plaintext password matches hashed password
-// 	if matches := basicMembership.PasswordMatch(password); !matches {
-// 		return ErrPasswordDoesNotMatch
-// 	}
-
-// 	a = basicMembership.Account
-// 	return nil
-// }
-
-// // TODO: NewJwtToken generates a new token with the explicit audience.
-// func (a *Account) NewJwtToken(audience string) (string, time.Time, error) {
-// 	return jwt.NewToken(a.ID, audience)
-// }
-
-// // TODO: ValidJwtToken parses a token and determines if the token is valid
-// func (a *Account) ValidJwtToken(rawToken, audience string) (bool, error) {
-// 	token, err := jwt.ParseWithClaims(rawToken)
-// 	if err != nil {
-// 		// Invalid token
-// 		return false, err
-// 	}
-
-// 	if token.Valid {
-// 		claims := jwt.TokenClaims(token)
-// 		a.ID, err = strconv.Atoi(claims.Id)
-// 		if err != nil {
-// 			return false, err
-// 		}
-
-// 		if claims.Audience != audience {
-// 			return false, errors.New("Invalid audience")
-// 		}
-// 	}
-
-// 	// Everything is good
-// 	return token.Valid, nil
-// }
+	a = basicMembership.Account
+	return nil
+}

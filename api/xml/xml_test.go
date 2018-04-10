@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"testing"
+
+	"github.com/18F/e-QIP-prototype/api/mock"
 )
 
 func TestPackage(t *testing.T) {
@@ -106,8 +108,11 @@ func TestPackage(t *testing.T) {
 		{Schema: "psychological-hospitalizations.xml", Data: readSectionData("testdata/psychological-hospitalizations.json")},
 	}
 
+	logger := mock.LogService{}
+	service := XmlService{Log: logger}
+
 	for _, test := range tests {
-		tmpl := defaultTemplate(test.Schema, test.Data)
+		tmpl := service.DefaultTemplate(test.Schema, test.Data)
 		if tmpl == "" {
 			t.Fatalf("XML template (%s) should not be empty", test.Schema)
 		}

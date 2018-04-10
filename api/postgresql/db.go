@@ -12,21 +12,20 @@ import (
 
 // DatabaseService to help abstract the technical implementation per driver used.
 type DatabaseService struct {
-	Database *pg.DB
 	Log      api.LogService
 	Env      api.Settings
+	database *pg.DB
 }
 
-// NewDatabase establishes a new database connection
-func (service DatabaseService) NewDatabase() *DatabaseService {
-	// TODO: Fix
-	addr := ""
-	// addr := cf.DatabaseURI("aws-rds")
+// Configure establishes a new database connection
+func (service *DatabaseService) Configure() {
+	addr := service.Env.String(api.DATABASE_URI)
 
 	// Parse the address as a URI. If it fails return an empty connection
 	uri, err := url.Parse(addr)
 	if err != nil {
-		return &DatabaseService{Database: pg.Connect(&pg.Options{})}
+		service.database = pg.Connect(&pg.Options{})
+		return
 	}
 
 	// Remove the leading slash on the path to retrieve the database name
@@ -53,7 +52,7 @@ func (service DatabaseService) NewDatabase() *DatabaseService {
 		}
 	})
 
-	return &DatabaseService{Database: db}
+	service.database = db
 }
 
 // CheckTable ensures a the table exists for the persistor.
@@ -63,52 +62,57 @@ func (service *DatabaseService) CheckTable(entity interface{}) error {
 			Temp:        true,
 			IfNotExists: true,
 		}
-		return service.Database.CreateTable(entity, options)
+		return service.database.CreateTable(entity, options)
 	}
 	return nil
 }
 
 // Raw executes a string of SQL.
 func (service *DatabaseService) Raw(query interface{}, params ...interface{}) error {
-	_, err := service.Database.Exec(query, params...)
+	_, err := service.database.Exec(query, params...)
 	return err
 }
 
 // Find will check if the model exists and run the additional functionality.
 func (service *DatabaseService) Find(query interface{}, callback func(query interface{})) {
-	if count, err := service.Database.Model(query).Count(); count > 0 && err == nil {
+	if count, err := service.database.Model(query).Count(); count > 0 && err == nil {
 		service.Select(query)
 		callback(query)
 	}
 }
 
+// Find all instances of a type of model.
+func (service *DatabaseService) FindAll(query interface{}) error {
+	return service.database.Model(query).Select()
+}
+
 // Conditional selection based on the model in the data store.
 func (service *DatabaseService) Where(model interface{}, condition string, params ...interface{}) error {
-	return service.Database.Model(model).Where(condition, params...).Select()
+	return service.database.Model(model).Where(condition, params...).Select()
 }
 
 // Conditional selection based on the model in the data store only returning specific quoted columns.
 func (service *DatabaseService) ColumnsWhere(model interface{}, columns []string, condition string, params ...interface{}) error {
-	return service.Database.Model(model).Column(columns...).Where(condition, params...).Select()
+	return service.database.Model(model).Column(columns...).Where(condition, params...).Select()
 }
 
 func (service *DatabaseService) Count(model interface{}, condition string, params ...interface{}) int {
-	count, _ := service.Database.Model(model).Where(condition, params...).Count()
+	count, _ := service.database.Model(model).Where(condition, params...).Count()
 	return count
 }
 
 func (service *DatabaseService) Array(model interface{}, expr string, retval interface{}, condition string, params ...interface{}) {
-	service.Database.Model(model).ColumnExpr(expr).Where(condition, params...).Select(pg.Array(retval))
+	service.database.Model(model).ColumnExpr(expr).Where(condition, params...).Select(pg.Array(retval))
 }
 
 // Insert persists the new model in the data store
 func (service *DatabaseService) Insert(query ...interface{}) error {
-	return service.Database.Insert(query...)
+	return service.database.Insert(query...)
 }
 
 // Update persists the existing model in the data store
 func (context *DatabaseService) Update(query interface{}) error {
-	return context.Database.Update(query)
+	return context.database.Update(query)
 }
 
 // Save persists the model in the data store
@@ -130,10 +134,10 @@ func (service *DatabaseService) Save(query ...interface{}) error {
 
 // Delete removes the model from the data store
 func (service *DatabaseService) Delete(query interface{}) error {
-	return service.Database.Delete(query)
+	return service.database.Delete(query)
 }
 
 // Select returns the model from the data store
 func (service *DatabaseService) Select(query interface{}) error {
-	return service.Database.Select(query)
+	return service.database.Select(query)
 }

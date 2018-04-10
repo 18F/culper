@@ -50,33 +50,33 @@ func (service BasicAuthHandler) ServeHTTP(w http.ResponseWriter, r *http.Request
 	}
 
 	// Associate with a database context.
-	if err := account.Get(); err != nil {
-		service.Log.Username.WarnError(api.AccountUpdateError, err, api.LogFields{"username", username})
+	if _, err := account.Get(service.Database, 0); err != nil {
+		service.Log.WarnError(api.AccountUpdateError, err, api.LogFields{"username": account.Username})
 		Error(w, r, err)
 		return
 	}
 
 	// Validate the user name and password combination
-	if err := account.BasicAuthentication(respBody.Password); err != nil {
-		service.Log.ID.WarnError(api.BasicAuthInvalid, err, api.LogFields{"account", account.ID})
+	if err := account.BasicAuthentication(service.Database, respBody.Password); err != nil {
+		service.Log.WarnError(api.BasicAuthInvalid, err, api.LogFields{"account": account.ID})
 		Error(w, r, err)
 		return
 	}
 
 	// Generate jwt token
-	signedToken, _, err := account.NewJwtToken(api.BasicAuthAudience)
+	signedToken, _, err := service.Token.NewToken(account.ID, api.BasicAuthAudience)
 	if err != nil {
-		service.Log.ID.WarnError(api.JWTError, err, api.LogFields{"account", account.ID})
+		service.Log.WarnError(api.JWTError, err, api.LogFields{"account": account.ID})
 		Error(w, r, err)
 		return
 	}
 
 	// If we need to flush the storage first then do so now.
-	if service.Env.True(FLUSH_STORAGE) {
-		service.Log.ID.Info(api.PurgeAccountData, api.LogFields{"account", account.ID})
-		postgresql.PurgeAccountStorage(context, account.ID)
+	if service.Env.True(api.FLUSH_STORAGE) {
+		service.Log.Info(api.PurgeAccountData, api.LogFields{"account": account.ID})
+		api.PurgeAccountStorage(service.Database, account.ID)
 	}
 
-	service.Log.ID.Info(api.BasicAuthValid, api.LogFields{"account", account.ID})
+	service.Log.Info(api.BasicAuthValid, api.LogFields{"account": account.ID})
 	EncodeJSON(w, signedToken)
 }

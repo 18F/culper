@@ -96,7 +96,7 @@ func (service RootHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		},
 	}
 
-	if !service.Env.True(api.DISABLED_2FA) {
+	if !service.Env.True(api.DISABLE_2FA) {
 		mfa := []endpoint{
 			endpoint{
 				Path:        "/2fa",

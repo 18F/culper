@@ -7,14 +7,14 @@ import (
 )
 
 func main() {
-	log := &log.LogService{log: log.NewLogger()}
-	cmd.Command(log, func(context *api.DatabaseService, account *api.Account) {
+	logger := &log.LogService{Log: log.NewLogger()}
+	cmd.Command(logger, func(context api.DatabaseService, account *api.Account) {
 		account.Token = ""
 		account.TokenUsed = false
-		if err := account.Save(); err != nil {
-			log.WarnError("Failed to reset MFA", err, api.LogFields{"account": account.Username})
+		if _, err := account.Save(context, account.ID); err != nil {
+			logger.WarnError("Failed to reset MFA", err, api.LogFields{"account": account.Username})
 		} else {
-			log.Info("Account MFA reset", api.LogFields{"account": account.Username})
+			logger.Info("Account MFA reset", api.LogFields{"account": account.Username})
 		}
 	})
 }

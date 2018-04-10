@@ -1,4 +1,4 @@
-package api
+package postgresql
 
 import (
 	"fmt"
@@ -8,8 +8,8 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/18F/e-QIP-prototype/api/db"
-	"github.com/18F/e-QIP-prototype/api/geo"
+	"github.com/18F/e-QIP-prototype/api"
+	"github.com/18F/e-QIP-prototype/api/mock"
 )
 
 // readTestData pulls in test data as a string
@@ -31,6 +31,11 @@ func readBinaryData(filepath string) ([]byte, error) {
 }
 
 func TestCollections(t *testing.T) {
+	settings := mock.Native{}
+	settings.Configure()
+	service := &DatabaseService{Log: mock.LogService{Off: true}, Env: settings}
+	service.Configure()
+
 	tests := []struct {
 		Data string
 	}{
@@ -46,7 +51,7 @@ func TestCollections(t *testing.T) {
 		}
 
 		// Deserialize the initial payload from a JSON structure
-		payload := &Payload{}
+		payload := &api.Payload{}
 		if err := payload.Unmarshal(raw); err != nil {
 			t.Fatalf("Failed to deserialize JSON: %v\n:Error: %v\n", string(raw), err)
 		}
@@ -61,13 +66,13 @@ func TestCollections(t *testing.T) {
 		}
 
 		account := 1
-		context := db.NewDB()
-		id, err := entity.Save(context, account)
+		id, err := entity.Save(service, account)
 		if err != nil {
 			t.Fatalf("Error saving [%s]: %v\n\nEntity: %v", test.Data, err, entity)
 		}
-		savedEntity := &Collection{ID: id}
-		if _, err := savedEntity.Get(context, account); err != nil {
+
+		savedEntity := &api.Collection{ID: id}
+		if _, err := savedEntity.Get(service, account); err != nil {
 			t.Fatalf("Error getting [%s]: %v\n\nEntity: %v", test.Data, err, savedEntity)
 		}
 		if savedEntity.BranchID == 0 {
@@ -76,16 +81,12 @@ func TestCollections(t *testing.T) {
 			log.Println("collection branch id", savedEntity.Branch.ID)
 			log.Println("collection branch value", savedEntity.Branch.Value)
 		}
+
 		savedItems := len(savedEntity.Items)
 		if savedItems != 1 {
-			t.Fatalf("Collection did not have 1 items but was %d", savedItems)
+			t.Fatalf("Collection did not have 1 items but was %d\n\nEntity: %v", savedItems, savedEntity.Items)
 		}
-		// prettyOriginal, _ := json.MarshalIndent(entity.Marshal(), "", "  ")
-		// prettySaved, _ := json.MarshalIndent(savedEntity.Marshal(), "", "  ")
-		// if bytes.EqualFold(prettyOriginal, prettySaved) {
-		// 	t.Fatalf("The original entity does not match the retrieved copy.\nOriginal => %s\nReceived => %s", string(prettyOriginal), string(prettySaved))
-		// }
-		if _, err := savedEntity.Delete(context, account); err != nil {
+		if _, err := savedEntity.Delete(service, account); err != nil {
 			t.Fatalf("Error deleting [%s]: %v\n\nEntity: %v", test.Data, err, savedEntity)
 		}
 	}
@@ -237,7 +238,7 @@ func TestPayloadValidate(t *testing.T) {
 	}
 
 	// HTTP test server to field any third party requests
-	xml, _ := readTestData("../../geo/testdata/valid_address.xml")
+	xml, _ := readTestData("testdata/valid_address.xml")
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/xml")
 		fmt.Fprintln(w, xml)
@@ -245,7 +246,7 @@ func TestPayloadValidate(t *testing.T) {
 	defer server.Close()
 
 	// Setup the geocoder to use our mock endpoint
-	geo.Geocode = geo.NewTestUSPSGeocoder("test", server.URL)
+	api.Geocode = mock.Geocoder{}
 
 	for _, test := range tests {
 		// Get the test data as a byte array
@@ -255,16 +256,18 @@ func TestPayloadValidate(t *testing.T) {
 		}
 
 		// Deserialize the initial payload from a JSON structure
-		payload := &Payload{}
+		payload := &api.Payload{}
 		if err := payload.Unmarshal(raw); err != nil {
 			t.Fatalf("Failed to deserialize JSON: %v\n:Error: %v\n", string(raw), err)
 		}
 
-		// Extract the entity interface of the payload and validate it
+		// Extract the entity interface of the payload
 		entity, err := payload.Entity()
 		if err != nil {
 			t.Fatalf("Failed to unpackage the payload for [%s]: %v", test.Data, err)
 		}
+
+		// Validate the entity
 		if ok, err := entity.Valid(); !ok {
 			t.Fatalf("Error with [%s]: %v\n\nEntity: %v", test.Data, err, entity)
 		}
@@ -272,6 +275,12 @@ func TestPayloadValidate(t *testing.T) {
 }
 
 func TestPayloadPersistence(t *testing.T) {
+	settings := mock.Native{}
+	settings.Configure()
+	service := &DatabaseService{Log: mock.LogService{Off: true}, Env: settings}
+	service.Configure()
+	api.Geocode = mock.Geocoder{}
+
 	tests := []struct {
 		Data string
 	}{
@@ -396,7 +405,7 @@ func TestPayloadPersistence(t *testing.T) {
 		}
 
 		// Deserialize the initial payload from a JSON structure
-		payload := &Payload{}
+		payload := &api.Payload{}
 		if err := payload.Unmarshal(raw); err != nil {
 			t.Fatalf("Failed to deserialize JSON: %v\n:Error: %v\n", string(raw), err)
 		}
@@ -408,14 +417,13 @@ func TestPayloadPersistence(t *testing.T) {
 		}
 
 		account := 1
-		context := db.NewDB()
-		if _, err := entity.Save(context, account); err != nil {
+		if _, err := entity.Save(service, account); err != nil {
 			t.Fatalf("Error saving [%s]: %v\n\nEntity: %v", test.Data, err, entity)
 		}
-		if _, err := entity.Get(context, account); err != nil {
+		if _, err := entity.Get(service, account); err != nil {
 			t.Fatalf("Error getting [%s]: %v\n\nEntity: %v", test.Data, err, entity)
 		}
-		if _, err := entity.Delete(context, account); err != nil {
+		if _, err := entity.Delete(service, account); err != nil {
 			t.Fatalf("Error deleting [%s]: %v\n\nEntity: %v", test.Data, err, entity)
 		}
 	}

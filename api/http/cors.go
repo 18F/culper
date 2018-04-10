@@ -10,7 +10,7 @@ import (
 
 // CORS Wraps an http handler with logic to handle cors requests.
 // Specifies the allowed origins, methods and headers.
-func CORS(h http.Handler, log *api.LogService, env *api.Settings) http.Handler {
+func CORS(h http.Handler, log api.LogService, env api.Settings) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		origin := r.Header.Get("Origin")
 		if allowedOrigin(origin, env) {
@@ -36,7 +36,7 @@ func CORS(h http.Handler, log *api.LogService, env *api.Settings) http.Handler {
 }
 
 // AllowedOrigin checks the given origin is whitelisted as an acceptable address.
-func allowedOrigin(origin string, env *api.Settings) bool {
+func allowedOrigin(origin string, env api.Settings) bool {
 	addresses := strings.TrimSpace(env.String(api.CORS_ALLOWED))
 	for _, addr := range strings.Split(addresses, ";") {
 		if addr == "" {

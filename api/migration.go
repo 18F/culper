@@ -9,8 +9,7 @@ import (
 )
 
 type Migration struct {
-	Env      Settings
-	Database DatabaseService
+	Env Settings
 }
 
 // MigrateUp attempts to push any pending updates to the database
@@ -48,9 +47,7 @@ func (service Migration) CurrentVersion(directory, environment, schema string) (
 // instead of the YAML file. This is ideal to reduce the dependencies in production.
 func (service Migration) databaseConf(directory, environment, schema string) (*migration.DBConf, error) {
 	// Pull from database connection string from the environment
-	// TODO: Figure this one out
-	// uri := cf.DatabaseURI("aws-rds")
-	uri := ""
+	uri := service.Env.String(DATABASE_URI)
 	return &migration.DBConf{
 		MigrationsDir: filepath.Join(directory, "migrations"),
 		Env:           environment,

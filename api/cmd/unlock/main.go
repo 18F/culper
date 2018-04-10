@@ -7,12 +7,12 @@ import (
 )
 
 func main() {
-	log := &log.LogService{log: log.NewLogger()}
-	cmd.Command(log, func(context *api.DatabaseService, account *api.Account) {
-		if err := account.Unlock(); err != nil {
-			log.WarnError("Failed to unlock account", err, api.LogFields{"account": account.Username})
+	logger := &log.LogService{Log: log.NewLogger()}
+	cmd.Command(logger, func(context api.DatabaseService, account *api.Account) {
+		if err := account.Unlock(context); err != nil {
+			logger.WarnError("Failed to unlock account", err, api.LogFields{"account": account.Username})
 		} else {
-			log.Warn("Account unlocked", api.LogFields{"account": account.Username})
+			logger.Warn("Account unlocked", api.LogFields{"account": account.Username})
 		}
 	})
 }

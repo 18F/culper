@@ -1,5 +1,13 @@
 package api
 
+type Settings interface {
+	Configure()
+	Has(string) bool
+	String(string) string
+	True(string) bool
+	Int(string) int
+}
+
 const (
 	// NODE_ENV Sets the Node environment to configure the application for a specific uses:
 	//
@@ -291,10 +299,3 @@ const (
 	// Default: *empty*
 	WS_AGENCY_GROUP_ID = "WS_AGENCY_GROUP_ID"
 )
-
-type Settings interface {
-	Has(string) bool
-	String(string) string
-	True(string) bool
-	Int(string) int
-}

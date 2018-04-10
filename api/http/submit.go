@@ -12,11 +12,11 @@ import (
 )
 
 type SubmitHandler struct {
-	Env      *api.Settings
-	Log      *api.LogService
-	Token    *api.TokenService
-	Database *api.DatabaseService
-	Xml      *api.XmlService
+	Env      api.Settings
+	Log      api.LogService
+	Token    api.TokenService
+	Database api.DatabaseService
+	Xml      api.XmlService
 }
 
 // Submit the application package to the external web service for further processing.
@@ -24,7 +24,7 @@ func (service SubmitHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	account := &api.Account{}
 
 	// Valid token and audience while populating the audience ID
-	_, err := service.Token.CheckToken(account.ValidJwtToken)
+	_, id, err := service.Token.CheckToken(r)
 	if err != nil {
 		service.Log.WarnError(api.InvalidJWT, err, api.LogFields{})
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -32,7 +32,8 @@ func (service SubmitHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Get the account information from the data store
-	if err := account.Get(); err != nil {
+	account.ID = id
+	if _, err := account.Get(service.Database, id); err != nil {
 		service.Log.WarnError(api.NoAccount, err, api.LogFields{})
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -45,14 +46,14 @@ func (service SubmitHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if err := transmit(w, r, account, service.Database); err != nil {
+	if err := service.transmit(w, r, account); err != nil {
 		w.WriteHeader(http.StatusConflict)
 		EncodeErrJSON(w, err)
 		return
 	}
 
 	// Lock the account
-	if err = account.Lock(); err != nil {
+	if err = account.Lock(service.Database); err != nil {
 		service.Log.WarnError(api.AccountUpdateError, err, api.LogFields{})
 		EncodeErrJSON(w, err)
 		return
@@ -83,9 +84,9 @@ func (service SubmitHandler) transmit(w http.ResponseWriter, r *http.Request, ac
 	service.Log.Info(api.TransmissionStarted, api.LogFields{})
 	client := eqip.NewClient(url, key)
 
-	ir, err := newImportRequest(data, string(xml))
+	ir, err := service.newImportRequest(data, string(xml))
 	if err != nil {
-		service.Log.WarnError(err, api.LogFields{})
+		service.Log.WarnError(api.WebserviceErrorCreatingImportRequest, err, api.LogFields{})
 		return err
 	}
 	response, err := client.ImportRequest(ir)
@@ -157,7 +158,7 @@ func (service SubmitHandler) newImportRequest(application map[string]interface{}
 	}
 
 	// Parse agency group id if necessary
-	agencyGroupIDEnv := service.Env.Getenv(api.WS_AGENCY_GROUP_ID)
+	agencyGroupIDEnv := service.Env.String(api.WS_AGENCY_GROUP_ID)
 	if agencyGroupIDEnv != "" {
 		i, err := strconv.Atoi(agencyGroupIDEnv)
 		if err != nil {

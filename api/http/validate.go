@@ -8,10 +8,10 @@ import (
 )
 
 type ValidateHandler struct {
-	Env      *api.Settings
-	Log      *api.LogService
-	Token    *api.TokenService
-	Database *api.DatabaseService
+	Env      api.Settings
+	Log      api.LogService
+	Token    api.TokenService
+	Database api.DatabaseService
 }
 
 // Validate checks if an entire address is valid

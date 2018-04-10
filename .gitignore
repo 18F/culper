@@ -55,7 +55,10 @@ __snapshots__/
 .gitmessage
 .projectile
 bin
-/api/api
+/api/cmd/server/server
+/api/cmd/flush/flush
+/api/cmd/reset/reset
+/api/cmd/unlock/unlock
 /build/
 /doc/
 /dist/

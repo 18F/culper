@@ -7,7 +7,7 @@ import (
 )
 
 // StandardLogging middleware for HTTP handling.
-func StandardLogging(h http.Handler, log *api.LogService) http.Handler {
+func StandardLogging(h http.Handler, log api.LogService) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		log.Info(api.WebRequest, api.LogFields{
 			"method": r.Method,

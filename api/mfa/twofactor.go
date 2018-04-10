@@ -1,11 +1,9 @@
 package mfa
 
 import (
-	"bytes"
 	"crypto/rand"
 	"encoding/base32"
 	"encoding/base64"
-	"errors"
 	"net/url"
 	"strconv"
 	"strings"
@@ -13,9 +11,6 @@ import (
 
 	"github.com/18F/e-QIP-prototype/api"
 	"github.com/dgryski/dgoogauth"
-	"github.com/keighl/mandrill"
-	"github.com/microcosm-cc/bluemonday"
-	"github.com/russross/blackfriday"
 	qr "github.com/skip2/go-qrcode"
 )
 
@@ -94,41 +89,41 @@ func (service MFAService) Authenticate(token, secret string) (ok bool, err error
 	return otpc.Authenticate(token)
 }
 
-// Email delivers code to the specified address.
-func (service MFAService) Email(address, secret string) error {
-	// Get a valid token for two-factor authentication
-	code := dgoogauth.ComputeCode(secret, 0)
-	if code == -1 {
-		return errors.New("Failed to generate code")
-	}
+// // Email delivers code to the specified address.
+// func (service MFAService) Email(address, secret string) error {
+// 	// Get a valid token for two-factor authentication
+// 	code := dgoogauth.ComputeCode(secret, 0)
+// 	if code == -1 {
+// 		return errors.New("Failed to generate code")
+// 	}
 
-	// Pull the API key for the mail service
-	key := service.Env.String("EQIP_SMTP_API_KEY")
-	if key == "" {
-		return errors.New("Could not retrieve API key")
-	}
+// 	// Pull the API key for the mail service
+// 	key := service.Env.String("EQIP_SMTP_API_KEY")
+// 	if key == "" {
+// 		return errors.New("Could not retrieve API key")
+// 	}
 
-	// Form the mail service
-	client := mandrill.ClientWithKey(key)
-	message := &mandrill.Message{
-		FromEmail: "noreply@mail.gov",
-		FromName:  "E-QIP",
-		Subject:   "E-QIP Passcode",
-	}
-	message.AddRecipient(address, address, "to")
+// 	// Form the mail service
+// 	client := mandrill.ClientWithKey(key)
+// 	message := &mandrill.Message{
+// 		FromEmail: "noreply@mail.gov",
+// 		FromName:  "E-QIP",
+// 		Subject:   "E-QIP Passcode",
+// 	}
+// 	message.AddRecipient(address, address, "to")
 
-	// The template is stored in markdown format to easily
-	// transform something human readable to HTML as well
-	var plain bytes.Buffer
-	err := templateEmail.Execute(&plain, code)
-	if err != nil {
-		return err
-	}
-	message.Text = plain.String()
-	unsafe := blackfriday.MarkdownCommon(plain.Bytes())
-	message.HTML = string(bluemonday.UGCPolicy().SanitizeBytes(unsafe))
+// 	// The template is stored in markdown format to easily
+// 	// transform something human readable to HTML as well
+// 	var plain bytes.Buffer
+// 	err := templateEmail.Execute(&plain, code)
+// 	if err != nil {
+// 		return err
+// 	}
+// 	message.Text = plain.String()
+// 	unsafe := blackfriday.MarkdownCommon(plain.Bytes())
+// 	message.HTML = string(bluemonday.UGCPolicy().SanitizeBytes(unsafe))
 
-	// Send the message and return any errors from the service
-	_, err = client.MessagesSend(message)
-	return err
-}
+// 	// Send the message and return any errors from the service
+// 	_, err = client.MessagesSend(message)
+// 	return err
+// }

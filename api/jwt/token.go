@@ -29,25 +29,26 @@ type TokenService struct {
 }
 
 // CheckToken tests if the token is valid and is of the correct audience.
-func (service TokenService) CheckToken(request *http.Request, validTokenFunc func(string, string) (bool, error)) (string, error) {
+func (service TokenService) CheckToken(request *http.Request) (string, int, error) {
+	id := 0
 	jwtToken := service.ExtractToken(request)
 	if jwtToken == "" {
-		return "", errors.New("No authorization token header found")
+		return "", id, errors.New("No authorization token header found")
 	}
 
 	valid := false
 	var err error
 	for _, audience := range service.TargetAudiences() {
-		if valid, err = validTokenFunc(jwtToken, audience); valid {
+		if valid, id, err = service.validateToken(jwtToken, audience); valid {
 			break
 		}
 	}
 
 	if !valid {
-		return jwtToken, err
+		return jwtToken, id, err
 	}
 
-	return jwtToken, nil
+	return jwtToken, id, nil
 }
 
 // ExtractToken returns the token from an HTTP request header.
@@ -174,4 +175,29 @@ func (service TokenService) TargetAudiences() []string {
 	}
 
 	return audiences
+}
+
+// ValidJwtToken parses a token and determines if the token is valid
+func (service TokenService) validateToken(rawToken, audience string) (bool, int, error) {
+	id := 0
+	token, err := service.ParseWithClaims(rawToken)
+	if err != nil {
+		// Invalid token
+		return false, id, err
+	}
+
+	if token.Valid {
+		claims := service.TokenClaims(token)
+		id, err = strconv.Atoi(claims.Id)
+		if err != nil {
+			return false, id, err
+		}
+
+		if claims.Audience != audience {
+			return false, id, errors.New("Invalid audience")
+		}
+	}
+
+	// Everything is good
+	return token.Valid, id, nil
 }

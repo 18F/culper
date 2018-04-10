@@ -68,6 +68,7 @@ const (
 	WebserviceMissingCallerInfoAgencyPseudoSSN = "Missing Caller Info Agency Pseudo SSN"
 	WebserviceCannotGetApplicationData         = "Unable to retrieve Form Application Data"
 	WebserviceMissingAgencyID                  = "Missing Agency ID"
+	WebserviceErrorCreatingImportRequest       = "Unable to create import request"
 	TransmissionError                          = "Error transmitting package"
 	TransmissionStorageError                   = "Failed to store transmission record"
 )
@@ -84,6 +85,7 @@ const (
 	SamlValid            = "SAML authentication validated"
 	StartingServer       = "Starting server"
 	StartingServerTLS    = "Starting server with HTTPS/TLS"
+	StoppingServer       = "Stopping server"
 	TransmissionRecorded = "Transmission recorded"
 	TransmissionStarted  = "Transmission began"
 	TransmissionStopped  = "Transmission ended"

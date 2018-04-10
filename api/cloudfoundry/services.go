@@ -3,12 +3,11 @@ package cloudfoundry
 import (
 	"encoding/json"
 	"os"
-	"strings"
 )
 
-// vcapService represents the JSON structure found in the CloudFoundry
+// vcapJSON represents the JSON structure found in the CloudFoundry
 // VCAP_SERVICES environment variable
-type vcapService struct {
+type vcapJSON struct {
 	UserProvided []service `json:"user-provided"`
 }
 
@@ -19,38 +18,6 @@ type service struct {
 	Label       string            `json:"label"`
 	Credentials map[string]string `json:"credentials"`
 }
-
-// VcapService will attempt to pull credential information for a service by
-// service name and credential name.
-//
-// If there is a VCAP_SERVICES environment variable it will attempt to parse
-// its JSON value.
-//
-// Otherwise it will look for an environment variable in a normalized name
-// and use its value:
-//
-//  - app-smtp => APP_SMTP
-//  - app-postgres => APP_POSTGRES
-func VcapService(name string) string {
-	parts := strings.SplitN(name, "_", 2)
-
-	// If the environment contains VCAP services pull the credentials
-	serviceCredential := vcap(parts[0], parts[1])
-	if serviceCredential != "" {
-		return serviceCredential
-	}
-	return ""
-	// // Fallback to the native environment variable
-	// return native(slugify(name, credential))
-}
-
-// // slugify provides a concatenation of strings to then perform
-// // a dirty normalization.
-// func slugify(slugs ...string) string {
-// 	s := strings.Join(slugs, "_")
-// 	s = strings.Replace(s, "-", "_", -1)
-// 	return strings.ToUpper(s)
-// }
 
 // native calls the native environment call for environment variable
 func native(name string) string {
@@ -66,7 +33,7 @@ func vcap(name, credential string) string {
 	}
 
 	// The VCAP_SERVICES stores a JSON value which we can parse
-	var v vcapService
+	var v vcapJSON
 	if err := json.Unmarshal([]byte(services), &v); err == nil {
 		// Look for the user provided service and it's specific credential
 		for _, s := range v.UserProvided {

@@ -7,23 +7,26 @@ import (
 	"net/http/httptest"
 	"reflect"
 	"testing"
+
+	"github.com/18F/e-QIP-prototype/api"
+	"github.com/18F/e-QIP-prototype/api/mock"
 )
 
 func TestQuerySuccess(t *testing.T) {
 	tests := []struct {
-		Values          Values
+		Values          api.GeocodeValues
 		XML             string
-		ExpectedResults Results
+		ExpectedResults api.GeocodeResults
 	}{
 		{
-			Values: Values{
+			Values: api.GeocodeValues{
 				Street:  "123 Some Rd",
 				City:    "Arlington",
 				State:   "VA",
 				Zipcode: "22202",
 			},
-			XML: "testdata/valid_address.xml",
-			ExpectedResults: Results{
+			XML: "../testdata/valid_address.xml",
+			ExpectedResults: api.GeocodeResults{
 				{
 					Street:  "123 SOME RD",
 					City:    "ARLINGTON",
@@ -34,14 +37,14 @@ func TestQuerySuccess(t *testing.T) {
 			},
 		},
 		{
-			Values: Values{
+			Values: api.GeocodeValues{
 				Street:  "123 Some Road",
 				City:    "Arlington",
 				State:   "VA",
 				Zipcode: "22202",
 			},
-			XML: "testdata/valid_address.xml",
-			ExpectedResults: Results{
+			XML: "../testdata/valid_address.xml",
+			ExpectedResults: api.GeocodeResults{
 				{
 					Street:  "123 SOME RD",
 					City:    "ARLINGTON",
@@ -66,6 +69,8 @@ func TestQuerySuccess(t *testing.T) {
 
 		geocoder := USPSGeocoder{
 			baseURI: ts.URL,
+			Env:     mock.Native{},
+			Log:     mock.LogService{},
 		}
 		results, _ := geocoder.query(test.Values)
 		equal := reflect.DeepEqual(results, test.ExpectedResults)
@@ -78,33 +83,33 @@ func TestQuerySuccess(t *testing.T) {
 
 func TestQueryError(t *testing.T) {
 	tests := []struct {
-		Values      Values
+		Values      api.GeocodeValues
 		XML         string
 		ExpectError bool
 	}{
 		{
-			Values: Values{
+			Values: api.GeocodeValues{
 				Street:  "123 Some Rd",
 				City:    "Arlington",
 				State:   "VA",
 				Zipcode: "22202",
 			},
-			XML:         "testdata/address_error.xml",
+			XML:         "../testdata/address_error.xml",
 			ExpectError: true,
 		},
 		{
-			Values:      Values{},
-			XML:         "testdata/foo_address.xml",
+			Values:      api.GeocodeValues{},
+			XML:         "../testdata/foo_address.xml",
 			ExpectError: true,
 		},
 		{
-			Values:      Values{},
-			XML:         "testdata/address_returntext.xml",
+			Values:      api.GeocodeValues{},
+			XML:         "../testdata/address_returntext.xml",
 			ExpectError: true,
 		},
 		{
-			Values:      Values{},
-			XML:         "testdata/usps_error.xml",
+			Values:      api.GeocodeValues{},
+			XML:         "../testdata/usps_error.xml",
 			ExpectError: true,
 		},
 	}
@@ -122,13 +127,14 @@ func TestQueryError(t *testing.T) {
 
 		geocoder := USPSGeocoder{
 			baseURI: ts.URL,
+			Env:     mock.Native{},
+			Log:     mock.LogService{},
 		}
 		_, err = geocoder.query(test.Values)
 		if (err == nil) == test.ExpectError {
 			t.Errorf("Expected %v but got %v for %v\n", test.ExpectError, (err == nil), test.XML)
 		}
 	}
-
 }
 
 func readTestdata(filepath string) (string, error) {
