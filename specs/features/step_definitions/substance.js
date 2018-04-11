@@ -1,42 +1,59 @@
 const { client } = require('nightwatch-cucumber')
 const { defineSupportCode } = require('cucumber')
 
+let subcontext = ""
 let counter = 0
 
-defineSupportCode(({Given, Then, When}) => {
+const filenum = () => {
+  const size = 4
+  const num = counter++
 
-  When(/^I go to the substance (.*?) section$/, (subsection) => {
+  let s = '' + num
+  while (s.length < size) {
+    s = '0' + s
+  }
+  return s + '-' + subcontext
+}
+
+defineSupportCode(({Given, Then, When}) => {
+  When(/^I click Next to go to substance (.*?)$/, (subsection) => {
+    subcontext = subsection
+    return navigateToNext(subsection)
+    })
+
+  When(/^I navigate to the substance (.*?) section$/, (subsection) => {
+    subcontext = subsection
     const section = 'substance'
-    return navigateToSection(section)
-      .then(() => { return navigateToSubsection(section, subsection) })
+    const sectionTitle = 'Substance use'
+    navigateToSection(sectionTitle)
+    return navigateToSubsection(section, subsection)
   })
 
-  When(/^I fill in the substance (.*?) section$/, (subsection) => {
-    const section = 'substance'
-    let promise = navigateToSection(section).then(() => { return navigateToSubsection(section, subsection) })
-
+  When(/^I fill in the substance (.*?) section (.*?) subsection$/, (section, subsection) => {
     switch (subsection) {
-      case 'alcohol/negative':
+      // "alcohol" subsections
+      case 'negative':
         return completeAlcoholNegative(promise)
-      case 'alcohol/ordered':
+      case 'ordered':
         return completeAlcoholOrdered(promise)
-      case 'alcohol/voluntary':
+      case 'voluntary':
         return completeAlcoholVoluntary(promise)
-      case 'alcohol/additional':
+      case 'additional':
         return completeAlcoholAdditional(promise)
-      case 'drugs/usage':
+      // "drugs" subsections
+      case 'usage':
         return completeDrugsUsage(promise)
-      case 'drugs/purchase':
+      case 'purchase':
         return completeDrugsPurchase(promise)
-      case 'drugs/clearance':
+      case 'clearance':
         return completeDrugsClearance(promise)
-      case 'drugs/publicsafety':
+      case 'publicsafety':
         return completeDrugsPublicSafety(promise)
-      case 'drugs/misuse':
+      case 'misuse':
         return completeDrugsMisuse(promise)
-      case 'drugs/ordered':
+      case 'ordered':
         return completeDrugsOrderedTreatment(promise)
-      case 'drugs/voluntary':
+      case 'voluntary':
         return completeDrugsVoluntaryTreatment(promise)
       default:
         return promise
@@ -44,6 +61,7 @@ defineSupportCode(({Given, Then, When}) => {
   })
 
   Then(/^I should be in the substance (.*?) section$/, (subsection) => {
+    subcontext = subsection
     return shouldBeInSubsection('substance', subsection)
   })
 })
@@ -182,55 +200,39 @@ const completeDrugsVoluntaryTreatment = (promise) => {
     .then(() => { return setText('.no-treatment-explanation textarea', 'No treatment explanation') })
 }
 
-
-const filenum = () => {
-  const size = 4
-  const num = counter++
-
-  let s = '' + num
-  while (s.length < size) {
-    s = '0' + s
-  }
-
-  return s
-}
-
 const navigateToSection = (section) => {
-  const selector = '.section a[href="/form/' + section + '"]'
+  const selector = '.section a[title="' + section + '"]'
   return client
     .assert.visible(selector)
     .click(selector)
-    .pause(3000)
+    .pause(1000)
     .saveScreenshot('./screenshots/Substance/' + filenum() + '-navigate-section.png')
 }
 
-const navigateToSubsection = (section, subsection) => {
-  const crumbs = subsection.split('/')
-  for (let i = 0; i < crumbs.length; i++) {
-    let path = ''
-    for (let j = 0; j < (i + 1); j++) {
-      if (path.length) {
-        path += '/'
-      }
-      path += crumbs[j]
-    }
-
-    const selector = '.section a[href="/form/' + section + '/' + path + '"]'
-    client
-      .assert.visible(selector)
-      .click(selector)
-      .pause(3000)
-      .saveScreenshot('./screenshots/Substance/' + filenum() + '-navigate-subsection.png')
-  }
-
+const navigateToSectionTitle = (section) => {
+  const selector = '.subsection a[title="' + section + '"]'
   return client
+    .assert.visible(selector)
+    .click(selector)
+    .pause(1000)
+    .saveScreenshot('./screenshots/Substance/' + filenum() + '-navigate-sectiontitle.png')
 }
 
-const navigateToNext = () => {
+const navigateToSubsection = (section, subsection) => {
+  const selector = '.subsection a[href="/form/' + section + '/' + subsection + '"]'
+  return client
+    .assert.visible(selector)
+    .click(selector)
+    .click(selector)
+    .pause(1000)
+    .saveScreenshot('./screenshots/Substance/' + filenum() + '-navigate-subsection.png')
+}
+
+const navigateToNext = (subsection) => {
   return client
     .assert.visible('button.next')
     .click('button.next')
-    .pause(3000)
+    .pause(1000)
     .saveScreenshot('./screenshots/Substance/' + filenum() + '-navigate-next.png')
 }
 
@@ -243,7 +245,7 @@ const setOption = (selector) => {
   return client
     .assert.visible(selector)
     .click(selector)
-    .pause(3000)
+    .pause(500)
     .saveScreenshot('./screenshots/Substance/' + filenum() + '-set-option.png')
 }
 

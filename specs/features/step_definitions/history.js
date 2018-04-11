@@ -1,6 +1,8 @@
 const { client } = require('nightwatch-cucumber')
 const { defineSupportCode } = require('cucumber')
 
+let subcontext = ""
+let range = 10
 let counter = 0
 
 const filenum = () => {
@@ -11,42 +13,40 @@ const filenum = () => {
   while (s.length < size) {
     s = '0' + s
   }
-
-  return s
+  return s + '-' + subcontext
 }
 
-let range = 10
-
 defineSupportCode(({Given, Then, When}) => {
-  When(/^I go to the history section$/, () => {
-    return navigateToSection('history')
+  When(/^I click Next to go to history (.*?)$/, (subsection) => {
+    subcontext = subsection
+    return navigateToNext(subsection)
   })
 
-  When(/^I go to the history (.*?) section$/, (subsection) => {
+  When(/^I navigate to the history (.*?) section$/, (subsection) => {
+    subcontext = subsection
     const section = 'history'
-    return navigateToSection(section)
-      .then(() => { return navigateToSubsection(section, subsection) })
+    const sectionTitle = 'Your history'
+    navigateToSection(sectionTitle)
+    return navigateToSubsection(section, subsection)
   })
 
   When(/^I fill in the history (.*?) section$/, (subsection) => {
-    const section = 'history'
-    let promise = navigateToSection(section).then(() => { return navigateToSubsection(section, subsection) })
-
     switch (subsection) {
     case 'residence':
-      return completeResidence(promise)
+      return completeResidence(client)
     case 'employment':
-      return completeEmployment(promise)
+      return completeEmployment(client)
     case 'education':
-      return completeEducation(promise)
+      return completeEducation(client)
     case 'federal':
-      return completeFederal(promise)
+      return completeFederal(client)
     default:
-      return promise
+      return client
     }
   })
 
   Then(/^I should be in the history (.*?) section$/, (subsection) => {
+    subcontext = subsection
     return shouldBeInSubsection('history', subsection)
   })
 })
@@ -60,17 +60,20 @@ const completeResidence = (promise) => {
     .then(() => { return setText('.residence .daterange .datecontrol.from .year input', getCurrentYear()-range) })
     .then(() => { return setOption('.residence .daterange .from-present .block label') })
     .then(() => { return setOption('.residence .role.option-list .block label') })
-    .then(() => { return checkValue('.history .stats .fraction .completed', range) })
     .then(() => { return setText('.residence .reference .first input', 'John') })
-    .then(() => { return setText('.residence .reference .middle input', 'Q') })
+    .then(() => { return setText('.residence .reference .middle input', 'Quincy') })
     .then(() => { return setText('.residence .reference .last input', 'Public') })
     .then(() => { return setText('.residence .component .datecontrol.reference-last-contact .usa-form-group.month input', '1') })
     .then(() => { return setText('.residence .component .datecontrol.reference-last-contact .usa-form-group.day input', '1') })
     .then(() => { return setText('.residence .component .datecontrol.reference-last-contact .usa-form-group.year input', getCurrentYear()-range) })
     .then(() => { return setOption('.residence .relationship .block label') })
     .then(() => { return setDomesticTelephone('.residence .telephone', '703', '111', '2222', 'Cell') })
+    .then(() => { return setOption('.residence .telephone.reference-phone-day .nonumber.block') })
+    .then(() => { return setOption('.residence .telephone.reference-phone-mobile .nonumber.block') })
     .then(() => { return setText('.residence .reference-email input', 'test@test.com') })
     .then(() => { return setDomesticAddress('.residence .reference-address .address', '13709 Walsingham Rd', 'Largo', 'FL', '33774') })
+    .then(() => { return setOptionWithPause('.residence .branch.addendum .no.block') })
+    .then(() => { return checkValue('.history .stats .fraction .completed', range) })
 }
 
 const completeEmployment = (promise) => {
@@ -83,27 +86,34 @@ const completeEmployment = (promise) => {
     .then(() => { return setText('.employment .daterange .datecontrol.from .day input', '1') })
     .then(() => { return setText('.employment .daterange .datecontrol.from .year input', getCurrentYear()-range) })
     .then(() => { return setOption('.employment .daterange .from-present .block label') })
-    .then(() => { return checkValue('.history .stats .fraction .completed', range) })
     .then(() => { return setDomesticAddress('.employment .address', '13709 Walsingham Rd', 'Largo', 'FL', '33774') })
     .then(() => { return setDomesticTelephone('.employment .telephone', '703', '111', '2222', 'Cell') })
+    .then(() => { return setOption('.employment .physical-address .option-list .no.block') })
     .then(() => { return setText('.employment .supervisor .field input', 'Test Supervisor') })
     .then(() => { return setText('.employment .supervisor .field .supervisor-title input', 'Lead Supervisor') })
     .then(() => { return setText('.employment .supervisor .field .supervisor-email input', 'supervisor@test.com') })
     .then(() => { return setDomesticAddress('.employment .supervisor-address .address', '13709 Walsingham Rd', 'Largo', 'FL', '33774') })
     .then(() => { return setDomesticTelephone('.employment .telephone.supervisor-telephone', '703', '333', '4444', 'Cell') })
     .then(() => { return setOption('.employment .activity .field .no.block label') })
-    .then(() => { return setText('.employment .reason-leaving .reason-description textarea', 'Reason for leaving text 1') })
+    .then(() => { return setOption('.employment .reason-leaving .reason-options .branch .option-list .yes.block') })
+    .then(() => { return setOption('.employment .reason-leaving .reason-options .employment-left .block') })
+    .then(() => { return setText('.employment .reason-leaving .explanation-left textarea', 'Reason for leaving text 1') })
+    .then(() => { return setText('.employment .reason-leaving .date-left .datecontrol .month input', '1') })
+    .then(() => { return setText('.employment .reason-leaving .date-left .datecontrol .day input', '1') })
+    .then(() => { return setText('.employment .reason-leaving .date-left .datecontrol .year input', getCurrentYear()) })
+    .then(() => { return setOption('.employment .reason-leaving .reason-options .branch .no.block') })
     .then(() => { return setOption('.employment .reason-leaving .field .yes.block label') })
     .then(() => { return setOption('.employment .reason-leaving .employment-left.option-list .block label') })
     .then(() => { return setText('.employment .reason-leaving .explanation-left textarea', 'Reason for leaving text 2') })
     .then(() => { return setText('.employment .date-left .datecontrol .month input', '1') })
     .then(() => { return setText('.employment .date-left .datecontrol .day input', '1') })
     .then(() => { return setText('.employment .date-left .datecontrol .year input', getCurrentYear()) })
-    .then(() => { return setOption('.employment .reason-leaving .field .no.block label') })
-    .then(() => { return setOption('.employment .reprimand-branch .field .yes.block label') })
+    .then(() => { return setOptionIndex('.employment .reason-leaving .reason-options .no.block label', 1) })
+    .then(() => { return setOption('.employment .reprimand-branch .branch .option-list .yes.block') })
     .then(() => { return setText('.employment .reprimand-branch .explanation-left textarea', 'Reason for reprimand text') })
     .then(() => { return setText('.employment .reprimand-branch .date-left .datecontrol .month input', '1') })
     .then(() => { return setText('.employment .reprimand-branch .date-left .datecontrol .year input', getCurrentYear()) })
+    .then(() => { return checkValue('.history .stats .fraction .completed', range) })
 }
 
 const completeEducation = (promise) => {
@@ -120,7 +130,7 @@ const completeEducation = (promise) => {
     .then(() => { return setDomesticAddress('.education .address', '13709 Walsingham Rd', 'Largo', 'FL', '33774') })
     .then(() => { return setOption('.education .option-list .type-college.block label') })
     .then(() => { return setText('.education .reference .first input', 'John') })
-    .then(() => { return setText('.education .reference .middle input', 'Q') })
+    .then(() => { return setText('.education .reference .middle input', 'Quincy') })
     .then(() => { return setText('.education .reference .last input', 'Public') })
     .then(() => { return setText('.education .datecontrol.reference-last-contact .month input', '1') })
     .then(() => { return setText('.education .datecontrol.reference-last-contact .day input', '1') })
@@ -151,20 +161,21 @@ const completeFederal = (promise) => {
 }
 
 const navigateToSection = (section) => {
-  const selector = '.section a[href="/form/' + section + '"]'
+  const selector = '.section a[title="' + section + '"]'
   return client
     .assert.visible(selector)
     .click(selector)
-    .pause(3000)
+    .pause(1000)
     .saveScreenshot('./screenshots/History/' + filenum() + '-navigate-section.png')
 }
 
 const navigateToSubsection = (section, subsection) => {
-  const selector = '.section a[href="/form/' + section + '/' + subsection + '"]'
+  const selector = '.subsection a[href="/form/' + section + '/' + subsection + '"]'
   return client
     .assert.visible(selector)
     .click(selector)
-    .pause(3000)
+    .click(selector)
+    .pause(1000)
     .saveScreenshot('./screenshots/History/' + filenum() + '-navigate-subsection.png')
 }
 
@@ -172,7 +183,7 @@ const navigateToNext = () => {
   return client
     .assert.visible('button.next')
     .click('button.next')
-    .pause(3000)
+    .pause(1000)
     .saveScreenshot('./screenshots/History/' + filenum() + '-navigate-next.png')
 }
 
@@ -197,7 +208,7 @@ const setDomesticTelephone = (selector, first, second, third) => {
     .setValue(selector + ' input[name="domestic_first"]', first)
     .setValue(selector + ' input[name="domestic_second"]', second)
     .setValue(selector + ' input[name="domestic_third"]', third)
-    .click(selector + ' .phonetype-option.cell')
+    .click(selector + ' .phonetype-option.cell label')
     .saveScreenshot('./screenshots/History/' + filenum() + '-set-telephone.png')
 }
 
@@ -211,7 +222,25 @@ const setOption = (selector) => {
   return client
     .assert.visible(selector)
     .click(selector)
-    .pause(3000)
+    .pause(500)
+    .saveScreenshot('./screenshots/History/' + filenum() + '-set-option.png')
+}
+
+const setOptionIndex = (selector, idx) => {
+  element = client.elements('css selector', selector)[idx]
+  return client
+    .assert.visible(element)
+    .click(element)
+    .pause(500)
+    .saveScreenshot('./screenshots/History/' + filenum() + '-set-option.png')
+}
+
+const setOptionWithPause = (selector) => {
+  return client
+    .assert.visible(selector)
+    .click(selector)
+    .pause(2000)
+    .click(selector)
     .saveScreenshot('./screenshots/History/' + filenum() + '-set-option.png')
 }
 
@@ -226,7 +255,7 @@ const click = (selector) => {
   return client
     .assert.visible(selector)
     .click(selector)
-    .pause(3000)
+    .pause(500)
     .saveScreenshot('./screenshots/History/' + filenum() + '-click.png')
 }
 
@@ -237,6 +266,13 @@ const setDate = (selector, month, day, year) => {
     .setValue(selector + ' .day input', day)
     .setValue(selector + ' .year input', year)
     .saveScreenshot('./screenshots/History/' + filenum() + '-set-date.png')
+}
+
+const setCountry = (selector, text) => {
+  return client
+    .assert.visible(selector)
+    .setValue(selector, [text, client.Keys.ENTER])
+    .saveScreenshot('./screenshots/History/' + filenum() + '-set-country.png')
 }
 
 const checkValue = (selector, value) => {

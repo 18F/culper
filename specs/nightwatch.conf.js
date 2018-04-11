@@ -22,7 +22,7 @@ module.exports = {
   },
   test_settings: {
     default: {
-      launch_url: 'http://web:2015',
+      launch_url: 'http://web:8080',
       selenium_host: 'hub',
       selenium_port: '4444',
       silent: true,
