@@ -1,6 +1,7 @@
 const { client } = require('nightwatch-cucumber')
 const { defineSupportCode } = require('cucumber')
 
+let subcontext = ""
 let range = 7
 let counter = 0
 
@@ -13,29 +14,38 @@ const filenum = () => {
     s = '0' + s
   }
 
-  return s
+  return s + '-' + subcontext
 }
 
 defineSupportCode(({Given, Then, When}) => {
+  When(/^I click Next to go to citizenship (.*?)$/, (subsection) => {
+    subcontext = subsection
+    return navigateToNext(subsection)
+  })
+
+  When(/^I navigate to the citizenship (.*?) section$/, (subsection) => {
+    subcontext = subsection
+    const section = 'citizenship'
+    const sectionTitle = 'Citizenship'
+    navigateToSection(sectionTitle)
+    return navigateToSubsection(section, subsection)
+  })
 
   When(/^I fill in the citizenship (.*?) section$/, (subsection) => {
-    const section = 'Citizenship'
-    let promise = navigateToSection(section)
-      .then(() => { return navigateToSubsection(section.toLowerCase(), subsection) })
-
     switch (subsection) {
       case 'status':
-        return completeCitizenshipStatus(promise)
+        return completeCitizenshipStatus(client)
       case 'multiple':
-        return completeCitizenshipMultiple(promise)
+        return completeCitizenshipMultiple(client)
       case 'passports':
-        return completeCitizenshipForeignPassports(promise)
+        return completeCitizenshipForeignPassports(client)
       default:
-        return promise
+        return client
     }
   })
 
   Then(/^I should be in the citizenship (.*?) section$/, (subsection) => {
+    subcontext = subsection
     return shouldBeInSubsection('citizenship', subsection)
   })
 })
@@ -48,7 +58,7 @@ const completeCitizenshipStatus = (promise) => {
     .then(() => { return setText('.status .datecontrol.entry-date .year input', '1980') })
     .then(() => { return setText('.status .location.entry-location .city input', 'Fairfax') })
     .then(() => { return setText('.status .location.entry-location .state input', 'VA') })
-    .then(() => { return setText('.status .country.prior-citizenship input', 'Canada') })
+    .then(() => { return setCountry('.status .country.prior-citizenship input', 'Canada') })
     .then(() => { return setOption('.status .branch.has-alien-registration .yes.block label') })
     .then(() => { return setText('.status .alien-registration-number input', '123456789') })
     .then(() => { return setText('.status .certificate-number input', '987654321') })
@@ -61,13 +71,13 @@ const completeCitizenshipStatus = (promise) => {
     .then(() => { return setText('.status .certificate-name .field .middle input', 'CertMiddle') })
     .then(() => { return setText('.status .certificate-name .field .last input', 'CertLast') })
     .then(() => { return setOption('.status .blocks.citizenship-basis .citizenship-basis-other.block label') })
-    .then(() => { return setText('.status .with-comments .comments textarea', 'This is a test explanation') })
+    .then(() => { return setText('.status .citizenship-basis-explanation textarea', 'This is a test explanation') })
 }
 
 const completeCitizenshipMultiple = (promise) => {
   return promise
     .then(() => { return setOption('.multiple .branch.has-multiple .blocks .yes.block label') })
-    .then(() => { return setText('.multiple .country.citizenship-country input', 'Canada') })
+    .then(() => { return setCountry('.multiple .country.citizenship-country input', 'Canada') })
     .then(() => { return setText('.multiple .daterange.citizenship-dates .datecontrol.from .month input', '1') })
     .then(() => { return setText('.multiple .daterange.citizenship-dates .datecontrol.from .day input', '1') })
     .then(() => { return setText('.multiple .daterange.citizenship-dates .datecontrol.from .year input', '1980') })
@@ -85,7 +95,7 @@ const completeCitizenshipMultiple = (promise) => {
 const completeCitizenshipForeignPassports = (promise) => {
   return promise
     .then(() => { return setOption('.passports .has-foreignpassport .blocks .yes.block label') })
-    .then(() => { return setText('.passports .country.passport-country input', 'Canada') })
+    .then(() => { return setCountry('.passports .country.passport-country input', 'Canada') })
     .then(() => { return setText('.passports .datecontrol.passport-issued .month input', '2') })
     .then(() => { return setText('.passports .datecontrol.passport-issued .day input', '2') })
     .then(() => { return setText('.passports .datecontrol.passport-issued .year input', '1990') })
@@ -99,7 +109,7 @@ const completeCitizenshipForeignPassports = (promise) => {
     .then(() => { return setText('.passports .datecontrol.passport-expiration .day input', '2') })
     .then(() => { return setText('.passports .datecontrol.passport-expiration .year input', '2000') })
     .then(() => { return setOption('.passports .branch.passport-used .blocks .yes.block label') })
-    .then(() => { return setText('.passports .citizenship-item .country input', 'Ireland') })
+    .then(() => { return setCountry('.passports .citizenship-item .country input', 'Ireland') })
     .then(() => { return setText('.passports .citizenship-item .daterange .datecontrol.from .month input', '1') })
     .then(() => { return setText('.passports .citizenship-item .daterange .datecontrol.from .day input', '1') })
     .then(() => { return setText('.passports .citizenship-item .daterange .datecontrol.from .year input', '1995') })
@@ -113,7 +123,7 @@ const navigateToSection = (section) => {
   return client
     .assert.visible(selector)
     .click(selector)
-    .pause(3000)
+    .pause(1000)
     .saveScreenshot('./screenshots/Citizenship/' + filenum() + '-navigate-section.png')
 }
 
@@ -123,7 +133,7 @@ const navigateToSubsection = (section, subsection) => {
     .assert.visible(selector)
     .click(selector)
     .click(selector)
-    .pause(3000)
+    .pause(1000)
     .saveScreenshot('./screenshots/Citizenship/' + filenum() + '-navigate-subsection.png')
 }
 
@@ -131,7 +141,7 @@ const navigateToNext = () => {
   return client
     .assert.visible('button.next')
     .click('button.next')
-    .pause(3000)
+    .pause(1000)
     .saveScreenshot('./screenshots/Citizenship/' + filenum() + '-navigate-next.png')
 }
 
@@ -164,7 +174,7 @@ const setOption = (selector) => {
   return client
     .assert.visible(selector)
     .click(selector)
-    .pause(3000)
+    .pause(500)
     .saveScreenshot('./screenshots/Citizenship/' + filenum() + '-set-option.png')
 }
 
@@ -175,11 +185,18 @@ const setText = (selector, text) => {
     .saveScreenshot('./screenshots/Citizenship/' + filenum() + '-set-text.png')
 }
 
+const setCountry = (selector, text) => {
+  return client
+    .assert.visible(selector)
+    .setValue(selector, [text, client.Keys.ENTER])
+    .saveScreenshot('./screenshots/Citizenship/' + filenum() + '-set-country.png')
+}
+
 const setTextWithPause = (selector, text) => {
   return client
     .assert.visible(selector)
     .setValue(selector, text)
-    .pause(5000)
+    .pause(1000)
     .saveScreenshot('./screenshots/Citizenship/' + filenum() + '-set-text.png')
 }
 

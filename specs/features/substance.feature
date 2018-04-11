@@ -1,89 +1,68 @@
 Feature: Substance
 
-  Scenario: Complete drugs usage section
+  Scenario: Log in to the form
     Given I am a registered user
     And I log in
-    And I fill in the substance drugs/usage section
-    And I click next
+
+  Scenario: Navigate to the Substance use section
+    And I navigate to the substance intro section
+    And I click Next to go to substance drugs/usage
+    Then I should be in the substance drugs/usage section
+
+  Scenario: Complete drugs usage section
+    #And I fill in the substance drugs section usage subsection
+    And I click Next to go to substance drugs/purchase
     Then I should be in the substance drugs/purchase section
-    Then I log out
 
   Scenario: Complete drugs purchase section
-    Given I am a registered user
-    And I log in
-    And I fill in the substance drugs/purchase section
-    And I click next
+    #And I fill in the substance drugs section purchase subsection
+    And I click Next to go to substance drugs/clearance
     Then I should be in the substance drugs/clearance section
-    Then I log out
 
   Scenario: Complete drugs security clearance position section
-    Given I am a registered user
-    And I log in
-    And I fill in the substance drugs/clearance section
-    And I click next
+    #And I fill in the substance drugs section clearance subsection
+    And I click Next to go to substance drugs/publicsafety
     Then I should be in the substance drugs/publicsafety section
-    Then I log out
 
   Scenario: Complete drugs public safety position section
-    Given I am a registered user
-    And I log in
-    And I fill in the substance drugs/publicsafety section
-    And I click next
+    #And I fill in the substance drugs section publicsafety subsection
+    And I click Next to go to substance drugs/misuse
     Then I should be in the substance drugs/misuse section
-    Then I log out
 
   Scenario: Complete drugs misuse section
-    Given I am a registered user
-    And I log in
-    And I fill in the substance drugs/misuse section
-    And I click next
+    #And I fill in the substance drugs section misuse subsection
+    And I click Next to go to substance drugs/ordered
     Then I should be in the substance drugs/ordered section
-    Then I log out
 
   Scenario: Complete mandatory counseling or treatment
-    Given I am a registered user
-    And I log in
-    And I fill in the substance drugs/ordered section
-    And I click next
+    #And I fill in the substance drugs section ordered subsection
+    And I click Next to go to substance drugs/voluntary
     Then I should be in the substance drugs/voluntary section
-    Then I log out
 
   Scenario: Complete voluntary counseling or treatment
-    Given I am a registered user
-    And I log in
-    And I fill in the substance drugs/voluntary section
-    And I click next
+    #And I fill in the substance drugs section voluntary subsection
+    And I click Next to go to substance alcohol/negative
     Then I should be in the substance alcohol/negative section
-    Then I log out
 
   Scenario: Complete substance negative impact section
-    Given I am a registered user
-    And I log in
-    And I fill in the substance alcohol/negative section
-    And I click next
+    #And I fill in the substance alcohol section negative subsection
+    And I click Next to go to substance alcohol/ordered
     Then I should be in the substance alcohol/ordered section
-    Then I log out
 
   Scenario: Complete substance mandatory counseling or treatment section
-    Given I am a registered user
-    And I log in
-    And I fill in the substance alcohol/ordered section
-    And I click next
+    #And I fill in the substance alcohol section ordered subsection
+    And I click Next to go to substance alcohol/voluntary
     Then I should be in the substance alcohol/voluntary section
-    Then I log out
 
   Scenario: Complete substance voluntary counseling or treatment section
-    Given I am a registered user
-    And I log in
-    And I fill in the substance alcohol/voluntary section
-    And I click next
+    #And I fill in the substance alcohol section voluntary subsection
+    And I click Next to go to substance alcohol/additional
     Then I should be in the substance alcohol/additional section
-    Then I log out
 
   Scenario: Complete substance additional instances section
-    Given I am a registered user
-    And I log in
-    And I fill in the substance alcohol/additional section
-    And I click next
+    #And I fill in the substance alcohol section additional subsection
+    And I click Next to go to substance review section
     Then I should be in the substance review section
+
+  Scenario: Log out of the form
     Then I log out

@@ -25,8 +25,8 @@ defineSupportCode(({Given, Then, When}) => {
   When(/^I log in$/, () => {
     return goToLoginPage()
       .then(() => { return signIn(credentials.username, credentials.password) })
-      .then(() => { return getQrCode(credentials.token, (token) => { credentials.token = token }) })
-      .then(() => { return provideToken(credentials.token) })
+      //.then(() => { return getQrCode(credentials.token, (token) => { credentials.token = token }) })
+      //.then(() => { return provideToken(credentials.token) })
       .then(() => { return acceptIntroduction() })
       .then(() => { return haveAccess() })
   })
@@ -71,6 +71,10 @@ defineSupportCode(({Given, Then, When}) => {
     return client
       .url(client.launch_url + '/#/login')
       .waitForElementVisible('body', 1000)
+      .assert.visible('.consent-legal')
+      .saveScreenshot('./screenshots/Authentication/00-consent.png')
+      .click('.consent-acceptance')
+      .pause(500)
       .saveScreenshot('./screenshots/Authentication/01-login.png')
   }
 
@@ -79,8 +83,8 @@ defineSupportCode(({Given, Then, When}) => {
       .setValue('input[type="text"]', username)
       .setValue('input[type="password"]', password)
       .saveScreenshot('./screenshots/Authentication/02-credentials.png')
-      .click('#basic button[type="submit"]')
-      .pause(3000)
+      .click('.auth.basic button[type="submit"]')
+      .pause(1000)
       .saveScreenshot('./screenshots/Authentication/03-submitted.png')
   }
 
@@ -147,7 +151,7 @@ defineSupportCode(({Given, Then, When}) => {
       .assert.urlContains('/form')
       .saveScreenshot('./screenshots/Authentication/08-accept-introduction.png')
       .click('.introduction-acceptance .yes label')
-      .pause(3000)
+      .pause(500)
   }
 
   const haveAccess = () => {
@@ -159,7 +163,7 @@ defineSupportCode(({Given, Then, When}) => {
   const logout = () => {
     return client
       .isVisible('a.logout', (result) => {
-        client.click('a.logout').pause(3000)
+        client.click('a.logout').pause(1000)
       })
       .end()
   }

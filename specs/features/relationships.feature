@@ -1,33 +1,33 @@
 Feature: Relationships
 
-  Scenario: Complete the marital status subsection
+  Scenario: Log in to the form
     Given I am a registered user
     And I log in
+
+  Scenario: Navigate to the relationships section
+    And I navigate to the relationships intro section
+    And I click Next to go to relationships status/marital
+    Then I should be in the relationships status/marital section
+
+  Scenario: Complete the marital status subsection
     And I fill in the relationships status/marital section
-    And I click next
+    And I click Next to go to relationships status/cohabitant
     Then I should be in the relationships status/cohabitant section
-    Then I log out
 
   Scenario: Complete the relationships status cohabitant subsection
-    Given I am a registered user
-    And I log in
     And I fill in the relationships status/cohabitant section
-    And I click next
+    And I click Next to go to relationships people
     Then I should be in the relationships people section
-    Then I log out
 
   Scenario: Complete the relationships people subsection
-    Given I am a registered user
-    And I log in
     And I fill in the relationships people section
-    And I click next
+    And I click Next to go to relationships relatives
     Then I should be in the relationships relatives section
-    Then I log out
 
   Scenario: Complete the relationships relatives subsection
-    Given I am a registered user
-    And I log in
     And I fill in the relationships relatives section
-    And I click next
-    Then I should be in the relationships rev section
+    And I click Next to go to relationships review
+    Then I should be in the relationships review section
+
+  Scenario: Log out of the form
     Then I log out
