@@ -25,27 +25,10 @@ export default class HairColor extends ValidationElement {
     return (
       <div className={this.divClass()}>
         <label>{this.props.label}</label>
-        <RadioGroup
-          className="option-list eapp-extend-labels"
-          selectedValue={this.props.value}
-          onError={this.props.onError}
-          required={this.props.required}>
-          <Radio name="hair-bald"
-                 label={i18n.t('identification.traits.hair.bald')}
-                 value="Bald"
-                 className="bald"
-                 labelClass="black"
-                 disabled={this.props.disabled}
-                 onUpdate={this.handleUpdate}
-                 onError={this.props.onError}
-                 onBlur={this.props.onBlur}
-                 onFocus={this.props.onFocus}
-                 required={this.props.required}
-                 >
-            <div className="hair-icon bald">
-              <Svg src="/img/bald.svg" />
-            </div>
-          </Radio>
+        <RadioGroup className="option-list eapp-extend-labels"
+                    selectedValue={this.props.value}
+                    onError={this.props.onError}
+                    required={this.props.required}>
           <Radio name="hair-black"
                  label={i18n.t('identification.traits.hair.black')}
                  value="Black"
@@ -57,20 +40,6 @@ export default class HairColor extends ValidationElement {
                  onFocus={this.props.onFocus}
                  >
             <div className="hair-icon black">
-              <Svg src="/img/hair.svg" />
-            </div>
-          </Radio>
-          <Radio name="hair-blonde"
-                 label={i18n.t('identification.traits.hair.blonde')}
-                 value="Blonde"
-                 className="blonde"
-                 disabled={this.props.disabled}
-                 onUpdate={this.handleUpdate}
-                 onError={this.props.onError}
-                 onBlur={this.props.onBlur}
-                 onFocus={this.props.onFocus}
-                 >
-            <div className="hair-icon blonde">
               <Svg src="/img/hair.svg" />
             </div>
           </Radio>
@@ -88,20 +57,6 @@ export default class HairColor extends ValidationElement {
               <Svg src="/img/hair.svg" />
             </div>
           </Radio>
-          <Radio name="hair-gray"
-                 label={i18n.t('identification.traits.hair.gray')}
-                 value="Gray"
-                 className="gray"
-                 disabled={this.props.disabled}
-                 onUpdate={this.handleUpdate}
-                 onError={this.props.onError}
-                 onBlur={this.props.onBlur}
-                 onFocus={this.props.onFocus}
-                 >
-            <div className="hair-icon gray">
-              <Svg src="/img/hair.svg" />
-            </div>
-          </Radio>
           <Radio name="hair-red"
                  label={i18n.t('identification.traits.hair.red')}
                  value="Red"
@@ -113,6 +68,20 @@ export default class HairColor extends ValidationElement {
                  onFocus={this.props.onFocus}
                  >
             <div className="hair-icon red">
+              <Svg src="/img/hair.svg" />
+            </div>
+          </Radio>
+          <Radio name="hair-blonde"
+                 label={i18n.t('identification.traits.hair.blonde')}
+                 value="Blonde"
+                 className="blonde"
+                 disabled={this.props.disabled}
+                 onUpdate={this.handleUpdate}
+                 onError={this.props.onError}
+                 onBlur={this.props.onBlur}
+                 onFocus={this.props.onFocus}
+                 >
+            <div className="hair-icon blonde">
               <Svg src="/img/hair.svg" />
             </div>
           </Radio>
@@ -130,6 +99,20 @@ export default class HairColor extends ValidationElement {
               <Svg src="/img/hair.svg" />
             </div>
           </Radio>
+          <Radio name="hair-gray"
+                 label={i18n.t('identification.traits.hair.gray')}
+                 value="Gray"
+                 className="gray"
+                 disabled={this.props.disabled}
+                 onUpdate={this.handleUpdate}
+                 onError={this.props.onError}
+                 onBlur={this.props.onBlur}
+                 onFocus={this.props.onFocus}
+                 >
+            <div className="hair-icon gray">
+              <Svg src="/img/hair.svg" />
+            </div>
+          </Radio>
           <Radio name="hair-white"
                  label={i18n.t('identification.traits.hair.white')}
                  value="White"
@@ -142,6 +125,22 @@ export default class HairColor extends ValidationElement {
                  >
             <div className="hair-icon white">
               <Svg src="/img/hair.svg" />
+            </div>
+          </Radio>
+          <Radio name="hair-bald"
+                 label={i18n.t('identification.traits.hair.bald')}
+                 value="Bald"
+                 className="bald"
+                 labelClass="black"
+                 disabled={this.props.disabled}
+                 onUpdate={this.handleUpdate}
+                 onError={this.props.onError}
+                 onBlur={this.props.onBlur}
+                 onFocus={this.props.onFocus}
+                 required={this.props.required}
+                 >
+            <div className="hair-icon bald">
+              <Svg src="/img/bald.svg" />
             </div>
           </Radio>
           <Radio name="hair-blue"

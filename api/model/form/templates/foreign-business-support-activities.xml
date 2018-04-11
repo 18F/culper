@@ -6,10 +6,10 @@
   {{with $Item := $item.Item}}
   <SupportActivity ID="{{$index}}">
     {{country $Item.Country}}
-    {{daterange $Item.Dates}}
+    {{monthYearDaterange $Item.Dates}}
     <DescribeCompensation>{{text $Item.Compensation}}</DescribeCompensation>
     <EntryComment></EntryComment>
-    <Explanation></Explanation>
+    <Explanation>{{text $Item.Description}}</Explanation>
     <LegalName>
       {{name $Item.Name}}
     </LegalName>
@@ -17,6 +17,7 @@
   </SupportActivity>
   {{end}}
   {{end}}
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
 </SupportActivities>
 <SupportActivity>
 {{- if branch .props.HasForeignAdvice | eq "Yes"}}

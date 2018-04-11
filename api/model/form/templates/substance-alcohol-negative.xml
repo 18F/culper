@@ -8,7 +8,7 @@
       <Date Type="{{dateEstimated $Item.Occurred}}">{{monthYear $Item.Occurred}}</Date>
       <Circumstances>{{textarea $Item.Circumstances}}</Circumstances>
       <Impact>{{textarea $Item.NegativeImpact}}</Impact>
-      {{daterange $Item.Used}}
+      {{monthYearDaterange $Item.Used}}
       <Comment></Comment>
     </Incident>
     {{end}}

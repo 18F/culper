@@ -32,6 +32,8 @@ func defaultTemplate(templateName string, data map[string]interface{}) template.
 		"date":                 date,
 		"dateEstimated":        dateEstimated,
 		"daterange":            daterange,
+		"daysInRange":          daysInRange,
+		"degreeType":           degreeType,
 		"foreignDocType":       foreignDocType,
 		"monthYearDaterange":   monthYearDaterange,
 		"email":                email,
@@ -45,6 +47,7 @@ func defaultTemplate(templateName string, data map[string]interface{}) template.
 		"notApplicable":        notApplicable,
 		"number":               number,
 		"radio":                radio,
+		"schoolType":           schoolType,
 		"relationshipType":     relationshipType,
 		"telephone":            telephone,
 		"telephoneNoNumber":    telephoneNoNumber,
@@ -170,7 +173,10 @@ func radio(data map[string]interface{}) string {
 func checkbox(data map[string]interface{}) string {
 	props, ok := data["props"]
 	if ok {
-		values := (props.(map[string]interface{}))["values"].([]interface{})
+		values, ok := (props.(map[string]interface{}))["values"].([]interface{})
+		if !ok {
+			return ""
+		}
 		ss := []string{}
 		for _, v := range values {
 			ss = append(ss, v.(string))
@@ -262,6 +268,29 @@ func citizenshipStatus(status string) string {
 	return alias[status]
 }
 
+func schoolType(t string) string {
+	alias := map[string]string{
+		"High School":    "HighSchool",
+		"College":        "College",
+		"Vocational":     "Vocational",
+		"Correspondence": "Correspondence",
+	}
+	return alias[t]
+}
+
+func degreeType(t string) string {
+	alias := map[string]string{
+		"High School Diploma": "HighSchool",
+		"Associate":           "Associate",
+		"Bachelor":            "Bachelor",
+		"Master":              "Master",
+		"Doctorate":           "Doctorate",
+		"Professional":        "Professional",
+		"Other":               "Other",
+	}
+	return alias[t]
+}
+
 // foreignDocType translates our enums to eqip specific enums
 func foreignDocType(docType string) string {
 	alias := map[string]string{
@@ -323,6 +352,18 @@ func citizenshipHas(data map[string]interface{}, country string) bool {
 	}
 
 	return false
+}
+
+func daysInRange(v string) string {
+	alias := map[string]string{
+		"1-5":              "OneToFive",
+		"6-10":             "SixToTen",
+		"11-20":            "ElevenToTwenty",
+		"21-30":            "TwentyoneToThirty",
+		"More than 30":     "MoreThanThirty",
+		"Many short trips": "ManyShortTrips",
+	}
+	return alias[v]
 }
 
 // Put attribute helpers here

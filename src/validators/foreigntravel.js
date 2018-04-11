@@ -35,8 +35,8 @@ export class TravelValidator {
   constructor (data = {}) {
     this.dates = data.Dates
     this.country = data.Country
-    this.days = data.Days || []
-    this.purpose = data.Purpose || []
+    this.days = (data.Days || {}).values || []
+    this.purpose = (data.Purpose || {}).values || []
     this.questioned = (data.Questioned || {}).value
     this.questionedExplanation = data.QuestionedExplanation
     this.encounter = (data.Encounter || {}).value

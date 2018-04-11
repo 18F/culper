@@ -215,7 +215,6 @@ export default class Bankruptcy extends ValidationElement {
                     {...this.props.TotalAmount}
                     className="amount"
                     min="1"
-                    placeholder={i18n.t('financial.bankruptcy.totalAmount.placeholder')}
                     required={this.props.required}
                     />
           <div className="flags">
