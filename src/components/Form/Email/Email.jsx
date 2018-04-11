@@ -45,6 +45,7 @@ export default class Email extends ValidationElement {
     return (
       <Generic name={this.props.name}
                label={this.props.label}
+               ariaLabel={this.props.ariaLabel}
                placeholder={this.props.placeholder}
                className={`email ${this.props.className || ''}`.trim()}
                type="text"

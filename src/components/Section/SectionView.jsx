@@ -1,6 +1,6 @@
 import React from 'react'
 import { push } from '../../middleware/history'
-import { i18n } from '../../config'
+import { ErrorList } from '../ErrorList'
 
 export class SectionViews extends React.Component {
   handleTransition (routePath, event) {
@@ -16,8 +16,9 @@ export class SectionViews extends React.Component {
       if (currentSection === child.props.name) {
         let previousButton = <div className="btn-cell"></div>
         if (child.props.back) {
+          const backtalk = `Back to ${child.props.backLabel}`
           previousButton = (
-            <button className="btn-cell back" onClick={this.handleTransition.bind(this, child.props.back)}>
+            <button className="btn-cell back" title={backtalk} aria-label={backtalk} onClick={this.handleTransition.bind(this, child.props.back)}>
               <div className="actions back">
                 <div className="icon">
                   <i className="fa fa-arrow-circle-left" aria-hidden="true"></i>
@@ -33,8 +34,9 @@ export class SectionViews extends React.Component {
 
         let nextButton = <div className="btn-cell"></div>
         if (child.props.next) {
+          const nexttalk = `Next to ${child.props.nextLabel}`
           nextButton = (
-            <button className="btn-cell next" onClick={this.handleTransition.bind(this, child.props.next)}>
+            <button className="btn-cell next" title={nexttalk} aria-label={nexttalk} onClick={this.handleTransition.bind(this, child.props.next)}>
               <div className="actions next">
                 <div className="text">
                   <div className="direction">Next</div>
@@ -67,7 +69,7 @@ export class SectionViews extends React.Component {
 
         let topButtons = null
         if (child.props.showTop && buttons) {
-          topButtons = <div className="top-btns"></div>
+          topButtons = <div className="top-btns"><ErrorList /></div>
         }
 
         let bottomButtons = null

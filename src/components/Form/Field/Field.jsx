@@ -27,6 +27,7 @@ export default class Field extends ValidationElement {
     super(props)
 
     this.state = {
+      uuid: `field-${super.guid()}`,
       errors: props.errors,
       helpActive: props.helpActive,
       commentsActive: props.commentsActive,
@@ -37,7 +38,6 @@ export default class Field extends ValidationElement {
     this.toggleComments = this.toggleComments.bind(this)
     this.handleError = this.handleError.bind(this)
     this.children = this.children.bind(this)
-
     this.errors = props.errors || []
   }
 
@@ -190,10 +190,12 @@ export default class Field extends ValidationElement {
     }
 
     const klass = `toggle ${this.props.titleSize} ${this.state.helpActive ? 'active' : ''} ${this.props.adjustFor ? `adjust-for-${this.props.adjustFor}` : ''}`.trim()
+    const title = `Show help ${this.props.title ? 'for' : ''} ${this.props.title || ''}`.trim()
 
     return (
       <a href="javascript:;"
-         title={`Show help ${this.props.title ? 'for' : ''} ${this.props.title || ''}`.trim()}
+         title={title}
+         aria-label={title}
          className={klass}
          onClick={this.toggleHelp}>
         <Svg src="/img/info.svg" />
@@ -318,7 +320,8 @@ export default class Field extends ValidationElement {
     const klassComponent = `component ${this.props.shrink ? 'shrink' : ''}`.trim()
 
     return (
-      <div className={klass} ref="field" aria-label={this.props.title}>
+      <div className={klass} data-uuid={this.state.uuid} ref="field" aria-label={this.props.title}>
+        <a id={this.state.uuid} name={this.state.uuid} className="anchor" aria-hidden="true" />
         {this.title(required)}
         <span className="icon">
           {this.icon()}

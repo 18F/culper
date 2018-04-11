@@ -37,7 +37,7 @@ export default class TerrorismAssociation extends SubsectionElement {
 
   render () {
     return (
-      <div className="legal-associations-terrorism">
+      <div className="section-content legal-associations-terrorism" {...super.dataAttributes(this.props)}>
         <Branch name="has_terrorsim"
                 label={i18n.t('legal.associations.terrorism.heading.title')}
                 labelSize="h2"
@@ -52,7 +52,6 @@ export default class TerrorismAssociation extends SubsectionElement {
 
         <Show when={this.props.HasTerrorism.value === 'Yes'}>
           <Field title={i18n.t('legal.associations.terrorism.heading.explanation')}
-                  help="legal.associations.terrorism.help.explanation"
                   adjustFor="textarea"
                   scrollIntoView={this.props.scrollIntoView}>
             <Textarea name="Explanation"

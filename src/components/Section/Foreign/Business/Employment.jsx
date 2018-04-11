@@ -54,7 +54,7 @@ export default class Employment extends SubsectionElement {
 
   render () {
     return (
-      <div className="foreign-business-employment">
+      <div className="section-content foreign-business-employment" {...super.dataAttributes(this.props)}>
         <Branch name="has_foreign_employment"
                 label={i18n.t('foreign.business.employment.heading.title')}
                 labelSize="h2"

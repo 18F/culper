@@ -30,7 +30,7 @@ export default class Passports extends SubsectionElement {
 
   render () {
     return (
-      <div className="passports">
+      <div className="section-content passports" {...super.dataAttributes(this.props)}>
         <Field title={i18n.t('citizenship.multiple.heading.passport.title')}
                titleSize="h2"
                optional={true}

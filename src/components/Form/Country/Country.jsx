@@ -161,6 +161,7 @@ export default class Country extends ValidationElement {
                             label={this.props.label}
                             placeholder={this.props.placeholder}
                             className={klass}
+                            ariaLabel={this.props.ariaLabel}
                             disabled={this.props.disabled}
                             onUpdate={this.updateCountry}
                             onError={this.handleError}
@@ -177,6 +178,7 @@ export default class Country extends ValidationElement {
                     label={this.props.label}
                     placeholder={this.props.placeholder}
                     className={klass}
+                    ariaLabel={this.props.ariaLabel}
                     disabled={this.props.disabled}
                     onUpdate={this.updateCountry}
                     onError={this.handleError}

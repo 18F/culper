@@ -121,7 +121,7 @@ export default class ContactInformation extends SubsectionElement {
     }
 
     return (
-      <div className="contact">
+      <div className="section-content contact" {...super.dataAttributes(this.props)}>
         <Field title={i18n.t('identification.contacts.title')}
                titleSize="h2"
                className="no-margin-bottom"
@@ -191,6 +191,7 @@ export default class ContactInformation extends SubsectionElement {
               <Field optional={true}
                      scrollIntoView={this.props.scrollIntoView}>
                 <Telephone name="Telephone"
+                           typeClass="title"
                            placeholder={i18n.t('identification.contacts.placeholder.telephone')}
                            allowNotApplicable={false}
                            bind={true}

@@ -82,7 +82,6 @@ export default class TerroristOrganizationItem extends ValidationElement {
     return (
       <div>
         <Field title={i18n.t('legal.associations.terrorist.heading.organization')}
-               help="legal.associations.terrorist.help.organization"
                adjustFor="text"
                scrollIntoView={this.props.scrollIntoView}>
           <Text name="Organization"
@@ -127,7 +126,6 @@ export default class TerroristOrganizationItem extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('legal.associations.terrorist.heading.positions')}
-               help="legal.associations.terrorist.help.positions"
                adjustFor="text"
                scrollIntoView={this.props.scrollIntoView}>
           <NotApplicable name="PositionsNotApplicable"
@@ -149,7 +147,6 @@ export default class TerroristOrganizationItem extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('legal.associations.terrorist.heading.contributions')}
-               help="legal.associations.terrorist.help.contributions"
                adjustFor="text"
                scrollIntoView={this.props.scrollIntoView}>
           <NotApplicable name="ContributionsNotApplicable"
@@ -171,7 +168,6 @@ export default class TerroristOrganizationItem extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('legal.associations.terrorist.heading.reasons')}
-               help="legal.associations.terrorist.help.reasons"
                adjustFor="textarea"
                scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Reasons"

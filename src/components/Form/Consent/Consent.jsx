@@ -34,6 +34,7 @@ export class Consent extends React.Component {
             </div>
             <button name="consent"
                     className="consent-acceptance"
+                    role="button"
                     title={i18n.t('consent.acceptance.title')}
                     onClick={this.click}>
               {i18n.t('consent.acceptance.title')}

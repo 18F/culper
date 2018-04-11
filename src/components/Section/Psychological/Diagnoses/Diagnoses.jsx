@@ -97,7 +97,7 @@ export default class Diagnoses extends SubsectionElement {
 
   render () {
     return (
-      <div className="diagnoses">
+      <div className="section-content diagnoses" {...super.dataAttributes(this.props)}>
         {i18n.m('psychological.heading.diagnoses')}
 
         <Branch name="diagnosed"
@@ -140,7 +140,6 @@ export default class Diagnoses extends SubsectionElement {
                     labelSize="h3"
                     className="didnotconsult"
                     {...this.props.DidNotConsult}
-                    help="psychological.diagnoses.help.didNotConsult"
                     onError={this.handleError}
                     required={this.props.required}
                     onUpdate={this.updateDidNotConsult}
@@ -152,7 +151,6 @@ export default class Diagnoses extends SubsectionElement {
                     labelSize="h3"
                     className="intreatment"
                     {...this.props.InTreatment}
-                    help="psychological.diagnoses.help.inTreatment"
                     warning={true}
                     onError={this.handleError}
                     required={this.props.required}

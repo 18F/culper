@@ -457,6 +457,8 @@ class Legal extends SectionElement {
 
             <Offenses name="offenses"
                       {...this.props.PoliceOffenses}
+                      section="legal"
+                      subsection="police/offenses"
                       addressBooks={this.props.AddressBooks}
                       defaultState={false}
                       dispatch={this.props.dispatch}
@@ -469,6 +471,8 @@ class Legal extends SectionElement {
             <hr className="section-divider"/>
             <OtherOffenses name="otheroffenses"
                            {...this.props.PoliceOtherOffenses}
+                           section="legal"
+                           subsection="police/additionaloffenses"
                            addressBooks={this.props.AddressBooks}
                            defaultState={false}
                            dispatch={this.props.dispatch}
@@ -481,6 +485,8 @@ class Legal extends SectionElement {
             <hr className="section-divider"/>
             <DomesticViolenceList name="domesticviolence"
                                   {...this.props.PoliceDomesticViolence}
+                                  section="legal"
+                                  subsection="police/domesticviolence"
                                   addressBooks={this.props.AddressBooks}
                                   dispatch={this.props.dispatch}
                                   onUpdate={this.updatePoliceDomesticViolence}
@@ -492,6 +498,8 @@ class Legal extends SectionElement {
             <hr className="section-divider"/>
             <History name="history"
                      {...this.props.History}
+                     section="legal"
+                     subsection="investigations/history"
                      defaultState={false}
                      dispatch={this.props.dispatch}
                      onUpdate={this.updateHistory}
@@ -503,6 +511,8 @@ class Legal extends SectionElement {
             <hr className="section-divider"/>
             <Revoked name="revoked"
                      {...this.props.Revoked}
+                     section="legal"
+                     subsection="investigations/revoked"
                      defaultState={false}
                      dispatch={this.props.dispatch}
                      onUpdate={this.updateRevoked}
@@ -514,6 +524,8 @@ class Legal extends SectionElement {
             <hr className="section-divider"/>
             <Debarred name="debarred"
                       {...this.props.Debarred}
+                      section="legal"
+                      subsection="investigations/debarred"
                       defaultState={false}
                       dispatch={this.props.dispatch}
                       onUpdate={this.updateDebarred}
@@ -525,6 +537,8 @@ class Legal extends SectionElement {
             <hr className="section-divider" />
             <NonCriminalCourtActions name="courtactions"
                                      {...this.props.NonCriminalCourtActions}
+                                     section="legal"
+                                     subsection="court"
                                      addressBooks={this.props.AddressBooks}
                                      defaultState={false}
                                      dispatch={this.props.dispatch}
@@ -536,6 +550,8 @@ class Legal extends SectionElement {
             <hr className="section-divider" />
             <Unauthorized name="unauthorized"
                           {...this.props.Unauthorized}
+                          section="legal"
+                          subsection="technology/unauthorized"
                           addressBooks={this.props.AddressBooks}
                           defaultState={false}
                           dispatch={this.props.dispatch}
@@ -548,6 +564,8 @@ class Legal extends SectionElement {
             <hr className="section-divider" />
             <Manipulating name="manipulating"
                           {...this.props.Manipulating}
+                          section="legal"
+                          subsection="technology/manipulating"
                           addressBooks={this.props.AddressBooks}
                           defaultState={false}
                           dispatch={this.props.dispatch}
@@ -560,6 +578,8 @@ class Legal extends SectionElement {
             <hr className="section-divider" />
             <Unlawful name="unlawful"
                       {...this.props.Unlawful}
+                      section="legal"
+                      subsection="technology/unlawful"
                       addressBooks={this.props.AddressBooks}
                       defaultState={false}
                       dispatch={this.props.dispatch}
@@ -572,6 +592,8 @@ class Legal extends SectionElement {
             <hr className="section-divider" />
             <TerroristOrganization name="terroristOrganization"
                                    {...this.props.TerroristOrganization}
+                                   section="legal"
+                                   subsection="associations/terrorist-organization"
                                    addressBooks={this.props.AddressBooks}
                                    dispatch={this.props.dispatch}
                                    onUpdate={this.updateTerroristOrganization}
@@ -583,6 +605,8 @@ class Legal extends SectionElement {
             <hr className="section-divider" />
             <EngagedInTerrorism name="engagedInTerrorism"
                                 {...this.props.EngagedInTerrorism}
+                                section="legal"
+                                subsection="associations/engaged-in-terrorism"
                                 dispatch={this.props.dispatch}
                                 onUpdate={this.updateEngagedInTerrorism}
                                 onError={this.handleError}
@@ -593,6 +617,8 @@ class Legal extends SectionElement {
             <hr className="section-divider" />
             <Advocating name="advocating"
                         {...this.props.Advocating}
+                        section="legal"
+                        subsection="associations/advocating"
                         dispatch={this.props.dispatch}
                         onUpdate={this.updateAdvocating}
                         onError={this.handleError}
@@ -603,6 +629,8 @@ class Legal extends SectionElement {
             <hr className="section-divider" />
             <MembershipOverthrow name="membershipOverthrow"
                                  {...this.props.MembershipOverthrow}
+                                 section="legal"
+                                 subsection="associations/membership-overthrow"
                                  addressBooks={this.props.AddressBooks}
                                  dispatch={this.props.dispatch}
                                  onUpdate={this.updateMembershipOverthrow}
@@ -614,6 +642,8 @@ class Legal extends SectionElement {
             <hr className="section-divider" />
             <MembershipViolence name="membershipViolence"
                                 {...this.props.MembershipViolence}
+                                section="legal"
+                                subsection="associations/membership-violence-or-force"
                                 addressBooks={this.props.AddressBooks}
                                 dispatch={this.props.dispatch}
                                 onUpdate={this.updateMembershipViolence}
@@ -625,6 +655,8 @@ class Legal extends SectionElement {
             <hr className="section-divider" />
             <ActivitiesToOverthrow name="activitiesToOverthrow"
                                    {...this.props.ActivitiesToOverthrow}
+                                   section="legal"
+                                   subsection="associations/activities-to-overthrow"
                                    dispatch={this.props.dispatch}
                                    onUpdate={this.updateActivitiesToOverthrow}
                                    onError={this.handleError}
@@ -635,6 +667,8 @@ class Legal extends SectionElement {
             <hr className="section-divider" />
             <TerrorismAssociation name="terrorismAssociation"
                                   {...this.props.TerrorismAssociation}
+                                  section="legal"
+                                  subsection="associations/terrorism-association"
                                   dispatch={this.props.dispatch}
                                   onUpdate={this.updateTerrorismAssociation}
                                   onError={this.handleError}

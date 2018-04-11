@@ -78,6 +78,9 @@ export class Login extends React.Component {
     const err = this.getQueryValue('error')
     if (err) {
       switch (err) {
+      case 'token':
+        this.props.dispatch(push('/token'))
+        return
       case 'access_denied':
         this.props.dispatch(push('/accessdenied'))
         return
@@ -262,16 +265,17 @@ export class Login extends React.Component {
   }
 
   render () {
+    const modalOpen = document.body.classList.contains('modal-open')
     return (
       <div className="login eapp-core" id="login">
         <Consent dispatch={this.props.dispatch} />
-        <div id="seal-header" className="seal-header text-center">
+        <div id="seal-header" className="seal-header text-center" aria-hidden={modalOpen} aria-disabled={modalOpen}>
           <div className="content">
             <img src="/img/US-OfficeOfPersonnelManagement-Seal.svg" alt="U.S. Office of Personnel Management" />
             <h2>{i18n.t('login.title')}</h2>
           </div>
         </div>
-        <div className="content">
+        <div className="content" aria-hidden={modalOpen} aria-disabled={modalOpen}>
           {this.props.authenticated && this.mfa.enabled && !this.props.twofactor && this.twofactorForm()}
           {!this.props.authenticated && this.loginForm()}
         </div>

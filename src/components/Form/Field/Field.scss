@@ -2,7 +2,7 @@
 @import 'eqip-fonts';
 
 .field {
-  border-left: 0.75rem solid #fff;
+  border-left: 0.75rem solid transparent;
   margin-left: -0.75rem;
   margin-bottom: 7rem;
 
@@ -10,6 +10,12 @@
     border-left: 0.75rem solid $eapp-grey-light;
     padding-left: 2rem;
     margin-left: -2.7rem;
+  }
+
+  > .anchor {
+    display: block;
+    margin-top: -7rem;
+    padding-top: 7rem;
   }
 
   > .title {
@@ -280,7 +286,7 @@
 
     > .table > .content > .component {
       width: 100%;
-      max-width: initial !important;
+      max-width: auto !important;
     }
 
     > .messages > .message {
