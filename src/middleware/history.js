@@ -77,6 +77,8 @@ export const sectionMiddleware = store => next => action => {
       api.setToken(r.data)
       if (r.data === '') {
         store.dispatch(tokenError())
+      } else {
+        store.dispatch(updateApplication('Settings', 'lastRefresh', new Date().getTime()))
       }
     }).catch(() => {
       refreshPending = false

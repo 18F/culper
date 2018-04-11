@@ -5,17 +5,16 @@ import { i18n } from '../../config'
 class TokenRefresh extends React.Component {
   render () {
     return (
-      <div className="login eapp-core" id="login">
-        <div id="seal-header" className="seal-header text-center">
-          <div className="content">
-            <img src="/img/US-OfficeOfPersonnelManagement-Seal.svg" alt="U.S. Office of Personnel Management" />
-            <h2>{i18n.t('login.title')}</h2>
-          </div>
+      <div className="token-error login eapp-core" id="login">
+        <div id="seal-header" className="seal-header">
+          <img src="/img/US-OfficeOfPersonnelManagement-Seal.svg" alt="U.S. Office of Personnel Management" />
+          <h3>{i18n.t('login.token.heading')}</h3>
         </div>
         <div className="content">
           <div className="table one">
             <div id="tokenrefresh" className="auth denied">
               <h2>{i18n.t('login.token.title')}</h2>
+              <strong>{i18n.t('login.token.saved').replace('{time}', this.props.saved.toLocaleTimeString())}</strong>
               {i18n.m('login.token.para')}
               <a href="/login" className="usa-button-primary">
                 {i18n.t('login.token.button')}
@@ -37,7 +36,11 @@ TokenRefresh.defaultProps = {}
  * method is executed which causes a re-render.
  */
 function mapStateToProps (state) {
-  return {}
+  const app = state.application || {}
+  const settings = app.Settings || {}
+  return {
+    saved: settings.saved || new Date()
+  }
 }
 
 // Wraps the the App component with connect() which adds the dispatch()
