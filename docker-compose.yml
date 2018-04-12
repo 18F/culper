@@ -45,7 +45,7 @@ services:
     working_dir: /usr/src/app
     volumes:
       - .:/usr/src/app
-      - /usr/src/app/node_modules
+      # - /usr/src/app/node_modules
     command: ./bin/watch
     networks:
       - eapp
@@ -84,6 +84,16 @@ services:
       - eapp
     depends_on:
       - db
+
+  deps:
+    image: buildpack-deps:stretch-scm
+    volumes:
+      - .:/usr/src/app
+    working_dir: /usr/src/app
+    environment:
+      DEBIAN_FRONTEND: noninteractive
+    networks:
+      - eapp
 
 networks:
   eapp:

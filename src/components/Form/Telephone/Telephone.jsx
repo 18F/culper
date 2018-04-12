@@ -365,7 +365,7 @@ export default class Telephone extends ValidationElement {
         <Text name="dsn_first"
               ref="dsn_first"
               className="number three"
-              placeholder="000"
+              placeholder={i18n.t('telephone.placeholder.three')}
               pattern="\d{3}"
               prefilter={digitsOnly}
               label=""
@@ -384,7 +384,7 @@ export default class Telephone extends ValidationElement {
         <Text name="dsn_second"
               ref="dsn_second"
               className="number four"
-              placeholder="0000"
+              placeholder={i18n.t('telephone.placeholder.four')}
               pattern="\d{4}"
               prefilter={digitsOnly}
               label=""
@@ -424,7 +424,7 @@ export default class Telephone extends ValidationElement {
         <Text name="domestic_first"
               ref="domestic_first"
               className="number three"
-              placeholder="000"
+              placeholder={i18n.t('telephone.placeholder.three')}
               label=""
               ariaLabel={i18n.t('telephone.aria.domesticAreaCode')}
               disabled={this.props.noNumber}
@@ -441,7 +441,7 @@ export default class Telephone extends ValidationElement {
         <Text name="domestic_second"
               ref="domestic_second"
               className="number three"
-              placeholder="000"
+              placeholder={i18n.t('telephone.placeholder.three')}
               label=""
               ariaLabel={i18n.t('telephone.aria.domesticThree')}
               disabled={this.props.noNumber}
@@ -459,7 +459,7 @@ export default class Telephone extends ValidationElement {
         <Text name="domestic_third"
               ref="domestic_third"
               className="number four"
-              placeholder="0000"
+              placeholder={i18n.t('telephone.placeholder.four')}
               label=""
               ariaLabel={i18n.t('telephone.aria.domesticFour')}
               disabled={this.props.noNumber}
@@ -478,7 +478,7 @@ export default class Telephone extends ValidationElement {
         <Text name="domestic_extension"
               ref="domestic_extension"
               className="number six"
-              placeholder="000000"
+              placeholder={i18n.t('telephone.placeholder.six')}
               label={i18n.t('telephone.domestic.extension.label')}
               ariaLabel={i18n.t('telephone.aria.extension')}
               disabled={this.props.noNumber}
@@ -515,7 +515,7 @@ export default class Telephone extends ValidationElement {
         <Text name="int_first"
               ref="int_first"
               className="number three"
-              placeholder="000"
+              placeholder={i18n.t('telephone.placeholder.three')}
               label=""
               ariaLabel={i18n.t('telephone.aria.countryCode')}
               disabled={this.props.noNumber}
@@ -532,7 +532,7 @@ export default class Telephone extends ValidationElement {
         <Text name="int_second"
               ref="int_second"
               className="number ten"
-              placeholder="0000000000"
+              placeholder={i18n.t('telephone.placeholder.ten')}
               label=""
               ariaLabel={i18n.t('telephone.aria.phoneNumber')}
               disabled={this.props.noNumber}
@@ -550,7 +550,7 @@ export default class Telephone extends ValidationElement {
         <Text name="int_extension"
               ref="int_extension"
               className="number six"
-              placeholder="000000"
+              placeholder={i18n.t('telephone.placeholder.six')}
               label={i18n.t('telephone.international.extension.label')}
               ariaLabel={i18n.t('telephone.aria.extension')}
               disabled={this.props.noNumber}

@@ -67,7 +67,6 @@ export default class GamblingItem extends ValidationElement {
           <Currency name="Losses"
                     {...this.props.Losses}
                     className="losses"
-                    placeholder={i18n.t('financial.gambling.placeholder.losses')}
                     min="1"
                     onUpdate={this.updateLosses}
                     onError={this.props.onError}

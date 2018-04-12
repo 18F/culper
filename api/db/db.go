@@ -88,8 +88,8 @@ func (context *DatabaseContext) Insert(query ...interface{}) error {
 }
 
 // Update persists the existing model in the data store
-func (context *DatabaseContext) Update(query ...interface{}) error {
-	return context.Database.Update(query...)
+func (context *DatabaseContext) Update(query interface{}) error {
+	return context.Database.Update(query)
 }
 
 // Save persists the model in the data store

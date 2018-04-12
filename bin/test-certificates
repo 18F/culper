@@ -9,6 +9,10 @@ rm -f "$WS_KEY"
 rm -f "$WS_PKCS"
 rm -f "$WS_CER"
 
+chown 1000:1000 "$WS_KEY"
+chown 1000:1000 "$WS_PKCS"
+chown 1000:1000 "$WS_CER"
+
 openssl genrsa -out "$WS_KEY" 2048
 openssl pkcs8 -topk8 -inform PEM -in "$WS_KEY" -outform DER -nocrypt -out "$WS_PKCS"
 openssl req -new -x509 -subj "$SUBJ" -days 365 -key "$WS_KEY" -out "$WS_CER" -sha256
@@ -30,3 +34,6 @@ openssl req -new -x509 -subj "$SUBJ" -days 365 -key "$SAML_KEY" -out "$SAML_CER"
 # User=rw Group=r Other=r
 chmod 0644 "$SAML_KEY"
 chmod 0644 "$SAML_CER"
+
+chown 1000:1000 "$SAML_KEY"
+chown 1000:1000 "$SAML_CER"

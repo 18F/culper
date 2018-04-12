@@ -144,6 +144,7 @@ const (
 	EntitySaveError                            = "Error getting entity data"
 	InvalidJWT                                 = "Invalid JSON web token"
 	JWTError                                   = "Failed to generate JSON web token"
+	JWTSecretNotSet                            = "JSON web token secret is not set"
 	MFAAttemptDenied                           = "An attempt for multiple factor authentication was denied"
 	MFAEmailError                              = "Failed to send email for multiple factor authentication"
 	MFAError                                   = "Error during multiple factor authentication"
@@ -202,4 +203,5 @@ const (
 	TransmissionStopped  = "Transmission ended"
 	ValidatingJWT        = "Validating JSON web token"
 	WebRequest           = "Web server request received"
+	JWTSecretSet         = "JSON web token secret is set"
 )

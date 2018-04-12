@@ -9,7 +9,7 @@
         <Address SameAsAbove="{{if branch $Item.UseSameAddress | eq "Yes"}}True{{else}}False{{end}}">{{location $Item.AgencyAddress}}</Address>
         <Name>{{text $Item.AgencyName}}</Name>
       </Agency>
-      <BeginDate Type="{{dateEstimated $Item.TreatmentBeginDate}}">{{monthYear $Item.TreatmentBeginDate}}</BeginDate>
+      <BeginDate Type="{{dateEstimated $Item.TreatmentBeginDate}}">{{monthYear $Item.TreatmentBeganDate}}</BeginDate>
       <Comment></Comment>
       <CompletedTreatmentProgram>
         <Answer>{{branch $Item.CompletedTreatment}}</Answer>

@@ -112,7 +112,7 @@ const validators = {
     return new logic.IdentificationPhysicalValidator(data).isValid()
   },
   'identification.ssn': (data) => {
-    return new logic.IdentificationSSNValidator(data).isValid() && data.verified
+    return new logic.IdentificationSSNValidator(data).isValid()
   },
   'financial.bankruptcy': (data) => {
     return new logic.BankruptcyValidator(data).isValid()

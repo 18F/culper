@@ -6,17 +6,17 @@ export default class CitizenshipValidator {
   constructor (data = {}) {
     this.citizenshipStatus = (data.CitizenshipStatus || {}).value
     this.abroadDocumentation = (data.AbroadDocumentation || {}).value
-    this.explanation = (data.Explanation || {})
-    this.documentNumber = (data.DocumentNumber || {}).value
+    this.explanation = data.Explanation || {}
+    this.documentNumber = data.DocumentNumber || {}
     this.documentIssued = data.DocumentIssued
     this.documentName = data.DocumentName
     this.documentExpiration = data.DocumentExpiration
     this.documentType = (data.DocumentType || {}).value
     this.placeIssued = data.PlaceIssued
-    this.certificateNumber = (data.CertificateNumber || {})
+    this.certificateNumber = data.CertificateNumber || {}
     this.certificateIssued = data.CertificateIssued
     this.certificateName = data.CertificateName
-    this.certificateCourtName = (data.CertificateCourtName || {})
+    this.certificateCourtName = data.CertificateCourtName || {}
     this.certificateCourtAddress = data.CertificateCourtAddress
     this.bornOnMilitaryInstallation = (data.BornOnMilitaryInstallation || {}).value
     this.militaryBase = (data.MilitaryBase || {})
@@ -24,11 +24,11 @@ export default class CitizenshipValidator {
     this.entryLocation = data.EntryLocation
     this.priorCitizenship = (data.PriorCitizenship || {}).value
     this.hasAlienRegistration = (data.HasAlienRegistration || {}).value
-    this.alienRegistrationNumber = (data.AlienRegistrationNumber || {})
+    this.alienRegistrationNumber = data.AlienRegistrationNumber || {}
     this.alienRegistrationExpiration = data.AlienRegistrationExpiration
     this.basis = (data.Basis || {}).value
-    this.permanentResidentCardNumber = (data.PermanentResidentCardNumber || {})
-    this.residenceStatus = (data.ResidenceStatus || {}).value
+    this.permanentResidentCardNumber = data.PermanentResidentCardNumber || {}
+    this.residenceStatus = data.ResidenceStatus
   }
 
   validCitizenshipStatus () {

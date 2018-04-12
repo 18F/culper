@@ -1,63 +1,75 @@
 const { client } = require('nightwatch-cucumber')
 const { defineSupportCode } = require('cucumber')
 
+let subcontext = ""
+
 let counter = 0
 
+const filenum = () => {
+  const size = 4
+  const num = counter++
+
+  let s = '' + num
+  while (s.length < size) {
+    s = '0' + s
+  }
+
+  return s + '-' + subcontext
+}
+
 defineSupportCode(({Given, Then, When}) => {
-  When(/^I go to the identification section$/, () => {
-    return navigateToSection('identification')
+
+  When(/^I click Next to go to identification (.*?)$/, (subsection) => {
+    subcontext = subsection
+    return navigateToNext(subsection)
   })
 
-  When(/^I go to the identification (.*?) section$/, (subsection) => {
+  When(/^I navigate to the identification (.*?) section$/, (subsection) => {
+    subcontext = subsection
     const section = 'identification'
-    return navigateToSection(section)
-      .then(() => { return navigateToSubsection(section, subsection) })
+    const sectionTitle = 'Information about you'
+    navigateToSection(sectionTitle)
+    return navigateToSubsection(section, subsection)
   })
 
   When(/^I fill in the identification (.*?) section$/, (subsection) => {
-    const section = 'identification'
-    let promise = navigateToSection(section).then(() => { return navigateToSubsection(section, subsection) })
-
+    subcontext = subsection
     switch (subsection) {
     case 'name':
-      return completeFullName(promise)
+      return completeFullName(client)
     case 'othernames':
-      return completeOtherNamesUsed(promise)
-    case 'birthdate':
-      return completeBirthDate(promise)
-    case 'birthplace':
-      return completeBirthPlace(promise)
+      return completeOtherNamesUsed(client)
     case 'contacts':
-      return completeContacts(promise)
+      return completeContacts(client)
+    case 'birthdate':
+      return completeBirthDate(client)
+    case 'birthplace':
+      return completeBirthPlace(client)
     case 'ssn':
-      return completeSocialSecurityNumber(promise)
+      return completeSocialSecurityNumber(client)
     case 'physical':
-      return completePhysicalAttributes(promise)
+      return completePhysicalAttributes(client)
     default:
-      return promise
+      return client
     }
   })
 
   Then(/^I should be in the identification (.*?) section$/, (subsection) => {
+    subcontext = subsection
     return shouldBeInSubsection('identification', subsection)
   })
 })
 
 const completeFullName = (promise) => {
   return promise
-      .then(() => { return setText('input[name="first"]', 'Charles') })
-      .then(() => { return setText('input[name="middle"]', 'F') })
-      .then(() => { return setText('input[name="last"]', 'Xavier') })
+      .then(() => { return setName('.name', 'Charles', 'Francis', 'Xavier') })
 }
 
 const completeOtherNamesUsed = (promise) => {
   return promise
       .then(() => { return setOption('.other-names .branch .yes') })
-      .then(() => { return click('.other-names .accordion .item a.toggle') })
-      .then(() => { return setText('input[name="first"]', 'Professor') })
-      .then(() => { return click('input[name="noMiddleName"]') })
-      .then(() => { return setText('input[name="last"]', 'X') })
-      .then(() => { return setOption('.maiden-name label') })
+      .then(() => { return setName('.name', 'Chuck', 'Frank', 'Xavier') })
+      .then(() => { return setOption('.maiden-name .no.block') })
       .then(() => { return setText('.datecontrol.from .month input', '1') })
       .then(() => { return setText('.datecontrol.from .day input', '1') })
       .then(() => { return setText('.datecontrol.from .year input', '2010') })
@@ -65,33 +77,36 @@ const completeOtherNamesUsed = (promise) => {
       .then(() => { return setText('.datecontrol.to .day input', '1') })
       .then(() => { return setText('.datecontrol.to .year input', '2011') })
       .then(() => { return setText('textarea[name="Reason"]', 'Just a nickname I go by') })
+      .then(() => { return setOption('.other-names .branch.addendum .no') })
+}
+
+const completeContacts = (promise) => {
+  return promise
+      .then(() => { return click('.contact .email-collection .accordion .item .toggle.fa.fa-chevron-down') })
+      .then(() => { return setText('input[name="Email"]', 'professor@xmen.org') })
+      .then(() => { return scrollToItem('.contact .telephone-collection .items .summary-container .summary .button-with-icon') })
+      .then(() => { return click('.contact .telephone-collection .items .summary-container .summary .button-with-icon') })
+      .then(() => { return scrollToItem('input[name="domestic_first"]') })
+      .then(() => { return setText('input[name="domestic_first"]', '202') })
+      .then(() => { return setText('input[name="domestic_second"]', '867') })
+      .then(() => { return setText('input[name="domestic_third"]', '5309') })
+      .then(() => { return setOption('.timeofday .day label') })
+      .then(() => { return setOption('.phonetype .work label') })
 }
 
 const completeBirthDate = (promise) => {
   return promise
       .then(() => { return setText('input[name="month"]', '11') })
       .then(() => { return setText('input[name="day"]', '10') })
-      .then(() => { return setText('input[name="year"]', '1775') })
+      .then(() => { return setText('input[name="year"]', '1990') })
 }
 
 const completeBirthPlace = (promise) => {
   return promise
-      .then(() => { return setOption('.birthplace .branch .yes') })
+      .then(() => { return setOption('.applicant-birthplace .branch .yes.block') })
       .then(() => { return setText('input[name="state"]', 'New York') })
       .then(() => { return setText('input[name="city"]', 'New York City') })
       .then(() => { return setText('input[name="county"]', 'Manhattan') })
-}
-
-const completeContacts = (promise) => {
-  return promise
-      .then(() => { return click('.contact .email-collection .item a.toggle') })
-      .then(() => { return setText('input[name="Email"]', 'professor@xmen.org') })
-      .then(() => { return click('.contact .telephone-collection .item a.toggle') })
-      .then(() => { return setText('input[name="domestic_first"]', '202') })
-      .then(() => { return setText('input[name="domestic_second"]', '867') })
-      .then(() => { return setText('input[name="domestic_third"]', '5309') })
-      .then(() => { return setOption('.timeofday .day label') })
-      .then(() => { return setOption('.phonetype .work label') })
 }
 
 const completeSocialSecurityNumber = (promise) => {
@@ -109,60 +124,36 @@ const completePhysicalAttributes = (promise) => {
       .then(() => { return setText('input[name="feet"]', '6') })
       .then(() => { return setText('input[name="inches"]', '0') })
       .then(() => { return setText('input[name="pounds"]', '190') })
-      .then(() => { return setOption('.hair-colors .bald.eapp-blocks-checkbox label') })
-      .then(() => { return setOption('.eye-colors .brown.eapp-blocks-radio label') })
+      .then(() => { return setOption('.hair-colors .bald.block.extended label') })
+      .then(() => { return setOption('.eye-colors .black.block.extended label') })
       .then(() => { return setOption('.sex .male label') })
 }
 
-const filenum = () => {
-  const size = 4
-  const num = counter++
-
-  let s = '' + num
-  while (s.length < size) {
-    s = '0' + s
-  }
-
-  return s
-}
-
 const navigateToSection = (section) => {
-  const selector = '.section a[href="/form/' + section + '"]'
+  const selector = '.section a[title="' + section + '"]'
   return client
     .assert.visible(selector)
     .click(selector)
-    .pause(3000)
-    .saveScreenshot('./screenshots/Identification/' + filenum() + '-navigate-section.png')
+    .pause(500)
+  //  .saveScreenshot('./screenshots/Identification/' + filenum() + '-navigate-section.png')
 }
 
 const navigateToSubsection = (section, subsection) => {
-  const crumbs = subsection.split('/')
-  for (let i = 0; i < crumbs.length; i++) {
-    let path = ''
-    for (let j = 0; j < (i + 1); j++) {
-      if (path.length) {
-        path += '/'
-      }
-      path += crumbs[j]
-    }
-
-    const selector = '.section a[href="/form/' + section + '/' + path + '"]'
-    client
-      .assert.visible(selector)
-      .click(selector)
-      .pause(3000)
-      .saveScreenshot('./screenshots/Identification/' + filenum() + '-navigate-subsection.png')
-  }
-
+  const selector = '.subsection a[href="/form/' + section + '/' + subsection + '"]'
   return client
+    .assert.visible(selector)
+    .click(selector)
+    .click(selector)
+    .pause(500)
+  //  .saveScreenshot('./screenshots/Foreign/' + filenum() + '-navigate-subsection.png')
 }
 
 const navigateToNext = () => {
   return client
     .assert.visible('button.next')
     .click('button.next')
-    .pause(3000)
-    .saveScreenshot('./screenshots/Identification/' + filenum() + '-navigate-next.png')
+    .pause(500)
+  //  .saveScreenshot('./screenshots/Identification/' + filenum() + '-navigate-next.png')
 }
 
 const shouldBeInSubsection = (section, subsection) => {
@@ -173,21 +164,35 @@ const shouldBeInSubsection = (section, subsection) => {
 const click = (selector) => {
   return client
     .click(selector)
-    .pause(3000)
-    .saveScreenshot('./screenshots/Identification/' + filenum() + '-click.png')
+    .pause(500)
+    //.saveScreenshot('./screenshots/Identification/' + filenum() + '-click.png')
 }
 
 const setOption = (selector) => {
   return client
     .assert.visible(selector)
     .click(selector)
-    .pause(3000)
-    .saveScreenshot('./screenshots/Identification/' + filenum() + '-set-option.png')
+    .pause(500)
+    //.saveScreenshot('./screenshots/Identification/' + filenum() + '-set-option.png')
 }
 
 const setText = (selector, text) => {
   return client
     .assert.visible(selector)
     .setValue(selector, text)
-    .saveScreenshot('./screenshots/Identification/' + filenum() + '-set-text.png')
+    //.saveScreenshot('./screenshots/Identification/' + filenum() + '-set-text.png')
+}
+
+const setName = (selector, first, middle, last) => {
+  return client
+    .assert.visible(selector)
+    .setValue(selector + ' .first input', first)
+    .setValue(selector + ' .middle input', middle)
+    .setValue(selector + ' .last input', last)
+    //.saveScreenshot('./screenshots/Identification/' + filenum() + '-set-name.png')
+}
+
+const scrollToItem = (selector) => {
+  return client.getLocationInView(selector)
+  //.saveScreenshot('./screenshots/Identification/' + filenum() + '-scrolltoview.png')
 }

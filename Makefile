@@ -8,84 +8,112 @@ version := $(shell git describe --tags $(release))
 hash    := $(shell git rev-parse --short HEAD)
 tag     := "$(version)-$(hash)"
 
-all: clean setup test build
+
+all: clean setup lint test build
+.SILENT: all
+.PHONY: all
+
+clear:
+	@rm -rf ./errors
 
 #
 # Cleaning
 #
-clean: stop clean-react clean-go
-clean-react: clean-front
-clean-front:
-	rm -rf ./dist/*
-	rm -rf ./coverage/*
-	rm -rf ./jest/*
-clean-go: clean-back
-clean-back:
-	rm -rf ./api/api
+clean: stop clear
+	-@rm -rf ./dist/*
+	-@rm -rf ./coverage/*
+	-@rm -rf ./jest/*
+	-@rm -rf ./api/bin/xmlsec1
+	-@rm -rf ./api/api
+	-@rm -rf ./api/eapp.key
+	-@rm -rf ./api/eapp.crt
+	-@rm -rf ./api/webservice/testdata/test.cer
+	-@rm -rf ./api/webservice/testdata/test.key
+	-@rm -rf ./api/webservice/testdata/test.pkcs.key
 
 #
 # Setup
 #
-setup: setup-certificates setup-docker
-setup-certificates:
-	./bin/gen-test-certificates.sh
-setup-docker: setup-docker-react setup-docker-go
-setup-docker-react:
-	docker-compose build frontend
-setup-docker-go:
-	docker-compose build web db api
+setup: stop setup-containers setup-certificates setup-dependencies
+setup-containers: clear
+	$(info Building containers)
+	@docker-compose build deps frontend web db api 2>errors
+setup-certificates: clear
+	$(info Generating test certificates)
+	@docker-compose run --rm deps ./bin/test-certificates 2>errors
+setup-dependencies: clear
+	$(info Installing dependencies)
+	@docker-compose run --rm frontend yarn install 2>errors
+	@docker-compose run --rm api ./bin/install 2>errors
+	@docker-compose run --rm deps ./bin/compile-xmlsec 2>errors
+
+#
+# Linters
+#
+lint: lint-react lint-go
+lint-react: clear
+	$(info Running React linter)
+	@docker-compose run --rm frontend yarn lint
+lint-go: clear
+	$(info Running Go linter)
+	@docker-compose run --rm api ./bin/lint
 
 #
 # Testing
 #
 test: test-react test-go
-test-react: test-front
-test-front:
-	docker-compose run --rm frontend ./bin/test
-test-go: test-back
-test-back:
-	docker-compose run --rm api make test
+test-react: clear
+	$(info Running React test suite)
+	@docker-compose run --rm frontend ./bin/test 2>errors
+test-go: clear
+	$(info Running Go test suite)
+	@docker-compose run --rm api make test 2>errors
+
+#
+# Integration testing
+#
+specs: clear
+	$(info Running integration test suite)
+	@docker-compose -f nightwatch-compose.yml up 2>errors
 
 #
 # Coverage
 #
-coverage: coverage-react
-coverage-react:
-	docker-compose run --rm frontend ./bin/coverage
+coverage: clear
+	$(info Running code coverage)
+	@docker-compose run --rm frontend ./bin/coverage 2>errors
 
 #
 # Building
 #
 build: build-react build-go
-build-react: build-front
-build-front:
-	docker-compose run --rm frontend ./bin/build
-build-go: build-back
-build-back:
-	docker-compose run --rm api make build
+build-react: clear
+	$(info Compiling React application)
+	@docker-compose run --rm frontend ./bin/build 2>errors
+build-go: clear
+	$(info Compiling Go application)
+	@docker-compose run --rm api make build 2>errors
 
 #
 # Packaging
 #
 package: package-react package-go
 package-clean:
-	docker rmi -f eapp_golang:smallest
-	docker rmi -f eapp_react:base
-	docker rm -f eapp_react_container
+	-@docker rmi -f eapp_golang:smallest
+	-@docker rmi -f eapp_react:base
+	-@docker rm -f eapp_react_container
 package-react:
-	docker pull ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/nbis_eapp:base
-	docker create --name=eapp_react_container ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/nbis_eapp:base
-	docker cp ./dist/ eapp_react_container:/var/www/html/
-	docker commit eapp_react_container eapp_react
-package-go: package-go-static package-go-image
-package-go-static:
-	docker run --rm \
+	@docker pull ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/nbis_eapp:base
+	@docker create --name=eapp_react_container ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/nbis_eapp:base
+	@docker cp ./dist/ eapp_react_container:/var/www/html/
+	@docker commit eapp_react_container eapp_react
+package-go:
+	@docker run --rm \
                -v ${PWD}:/go/src/github.com/18F/e-QIP-prototype \
                -w /go/src/github.com/18F/e-QIP-prototype/api \
                -e "CGO_ENABLED=0" \
                golang:latest go build -ldflags '-w -extldflags "-static"' -o api
-package-go-image:
-	docker build -f Dockerfile.eapp_golang . -t eapp_golang:smallest
+	@docker build -f Dockerfile.eapp_golang . -t eapp_golang:smallest
 
 #
 # Deploy
@@ -117,8 +145,8 @@ deploy-react:
 #
 # Suites
 #
-react: clean-react setup-docker-react test-react build-react
-go: clean-go setup-docker-go test-go build-go
+react: test-react build-react
+go: test-go build-go
 
 #
 # Operations

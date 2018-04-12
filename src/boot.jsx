@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
-import { Login, AccessDenied, Locked, TokenRefresh, Help, Form } from './views'
+import { Login, Loading, AccessDenied, Locked, TokenRefresh, Help, Form } from './views'
 import { Router, Switch, Route } from 'react-router'
 import { Provider } from 'react-redux'
 import { env } from './config'
@@ -43,44 +43,46 @@ const tabology = () => {
     '.modal *[tabindex]',
     '.modal *[contenteditable]'
   ]
+
   const modalElements = document.querySelectorAll(modalFocusable.join(', '))
-  for (const el of modalElements) {
-    el.dataset.modal = true
+  for (const mel of modalElements) {
+    mel.dataset.modal = true
   }
 
   const elements = document.querySelectorAll(focusable.join(', '))
   if (tabable) {
-    for (const el of elements) {
+    for (const tel of elements) {
       // Skip items found in the modal
-      if (el.dataset.modal) {
+      if (tel.dataset.modal) {
         continue
       }
 
       // Set the `tabindex` back to the original value or unset with `null`
-      el.setAttribute('tabindex', `${el.dataset.tabindex}` || null)
+      tel.setAttribute('tabindex', `${tel.dataset.tabindex || ''}` || null)
 
       // Remove the stored original value
-      delete el.dataset.tabindex
+      delete tel.dataset.tabindex
     }
   } else {
-    for (const el of elements) {
+    for (const utel of elements) {
       // Skip items found in the modal
-      if (el.dataset.modal) {
+      if (utel.dataset.modal) {
         continue
       }
 
       // Store the origina `tabindex` value if
       //  - one was present
       //  - it has not been previously stored
-      if (el.hasAttribute('tabindex') && `${el.dataset.tabindex}`.length === 0) {
-        el.dataset.tabindex = el.getAttribute('tabindex')
+      if (utel.hasAttribute('tabindex') && `${utel.dataset.tabindex || ''}`.length !== 0) {
+        utel.dataset.tabindex = utel.getAttribute('tabindex') || ''
       }
 
       // Set the current `tabindex` to -1
-      el.setAttribute('tabindex', '-1')
+      utel.setAttribute('tabindex', '-1')
     }
   }
 }
+
 var targetNode = document.getElementsByTagName('body')[0]
 var config = { attributes: true }
 var callback = function (mutationList) {
@@ -113,6 +115,7 @@ ReactDOM.render(
       <Main>
         <Switch>
           <Route exact path="/" component={Login} onEnter={onEnter} />
+          <Route exact path="/loading" component={Loading} />
           <Route exact path="/form/:section/:subsection*" component={AppWithForm} onEnter={onEnter} />
           <Route exact path="/help" component={Help} />
           <Route exact path="/login" component={Login} />

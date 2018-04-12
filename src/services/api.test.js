@@ -89,7 +89,7 @@ describe('The API', () => {
 
     window.location.search = '?foo=bar&foo=meh'
     foo = api.getQueryValue('foo')
-    expect(foo).toEqual(['bar', 'meh'])
+    expect(foo).toEqual('bar')
 
     window.location = previousLocation
   })

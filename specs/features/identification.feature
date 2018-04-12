@@ -1,57 +1,47 @@
 Feature: Identification
 
-  Scenario: Full name
+  Scenario: Log in to the form
     Given I am a registered user
     And I log in
+
+  Scenario: Navigate to the Indentification section
+    And I click Next to go to identification name
+    Then I should be in the identification name section
+
+  Scenario: Full name
     And I fill in the identification name section
-    And I click next
+    And I click Next to go to identification othernames
     Then I should be in the identification othernames section
-    Then I log out
 
   Scenario: Other names used
-    Given I am a registered user
-    And I log in
     And I fill in the identification othernames section
-    And I click next
-    Then I should be in the identification birthdate section
-    Then I log out
-
-  Scenario: Birth date
-    Given I am a registered user
-    And I log in
-    And I fill in the identification birthdate section
-    And I click next
-    Then I should be in the identification birthplace section
-    Then I log out
-
-  Scenario: Birth place
-    Given I am a registered user
-    And I log in
-    And I fill in the identification birthplace section
-    And I click next
+    And I click Next to go to identification contacts
     Then I should be in the identification contacts section
-    Then I log out
 
   Scenario: Contacts
-    Given I am a registered user
-    And I log in
     And I fill in the identification contacts section
-    And I click next
+    And I click Next to go to identification birthdate
+    Then I should be in the identification birthdate section
+
+  Scenario: Birth date
+    And I fill in the identification birthdate section
+    And I click Next to go to identification birthplace
+    Then I should be in the identification birthplace section
+
+  Scenario: Birth place
+    And I fill in the identification birthplace section
+    And I click Next to go to identification ssn
     Then I should be in the identification ssn section
-    Then I log out
 
   Scenario: Social security number
-    Given I am a registered user
-    And I log in
     And I fill in the identification ssn section
-    And I click next
+    And I click Next to go to identification physical
     Then I should be in the identification physical section
-    Then I log out
 
   Scenario: Physical attributes
-    Given I am a registered user
-    And I log in
     And I fill in the identification physical section
-    And I click next
+    And I click Next to go to identification review
     Then I should be in the identification review section
+
+  Scenario: Log out of the form
     Then I log out

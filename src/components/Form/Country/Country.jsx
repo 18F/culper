@@ -97,7 +97,7 @@ export default class Country extends ValidationElement {
           : () => { return true }
 
     const countryOptions = Object.keys(countries).filter(filter).map(x => {
-      return <option key={x} value={countries[x]}>{countries[x]}</option>
+      return <option key={x} value={countries[x].value}>{countries[x].text}</option>
     })
 
     // Check for children

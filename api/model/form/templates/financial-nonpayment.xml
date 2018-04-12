@@ -16,7 +16,32 @@
       <Description>{{textarea $Item.Description}}</Description>
       <IssueType>
         <Answer>{{if checkbox $Item.Infractions}}Yes{{else}}No{{end}}</Answer>
-        <Options Property="{{checkboxHas $Item.Infractions "Repossession"}}" Loan="{{checkboxHas $Item.Infractions "Defaulted"}}" Bills="{{checkboxHas $Item.Infractions "Collections"}}" CCcard="{{checkboxHas $Item.Infractions "Cancelled"}}" Evicted="{{checkboxHas $Item.Infractions "Evicted"}}" Wages="{{checkboxHas $Item.Infractions "Garnished"}}" PastDeliquency="{{checkboxHas $Item.Infractions "Delinquent"}}" CurrentDeliquency="{{checkboxHas $Item.Infractions "Any"}}" />
+        <Option
+          {{if (checkboxHas $Item.Infractions "Repossession") | eq "True"}}
+          Property="True"
+          {{end}}
+          {{if (checkboxHas $Item.Infractions "Defaulted") | eq "True"}}
+          Loan="True"
+          {{end}}
+          {{if (checkboxHas $Item.Infractions "Collections") | eq "True"}}
+          Bills="True"
+          {{end}}
+          {{if (checkboxHas $Item.Infractions "Cancelled") | eq "True"}}
+          CCcard="True"
+          {{end}}
+          {{if (checkboxHas $Item.Infractions "Evicted") | eq "True"}}
+          Evicted="True"
+          {{end}}
+          {{if (checkboxHas $Item.Infractions "Garnished") | eq "True"}}
+          Wages="True"
+          {{end}}
+          {{if (checkboxHas $Item.Infractions "Delinquent") | eq "True"}}
+          PastDeliquency="True"
+          {{end}}
+          {{if (checkboxHas $Item.Infractions "Any") | eq "True"}}
+          CurrentDeliquency="True"
+          {{end}}
+          />
       </IssueType>
       <PropertyType>{{text $Item.PropertyType}}</PropertyType>
       <Reason>{{textarea $Item.Reason}}</Reason>

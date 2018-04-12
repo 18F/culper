@@ -1,6 +1,7 @@
 const { client } = require('nightwatch-cucumber')
 const { defineSupportCode } = require('cucumber')
 
+let subcontext = ""
 let counter = 0
 
 const filenum = () => {
@@ -11,84 +12,75 @@ const filenum = () => {
   while (s.length < size) {
     s = '0' + s
   }
-
-  return s
+  return s + '-' + subcontext
 }
 
 defineSupportCode(({Given, Then, When}) => {
-
-  When(/^I fill in the foreign (.*?) section$/, (subsection) => {
-    const section = 'foreign'
-    const sectionTitle = 'Foreign activities'
-    let promise = navigateToSection(sectionTitle)
-      .then(() => { return navigateToSubsection(section, subsection) })
-
-    switch (subsection) {
-      case 'passport':
-        return completePassport(promise)
-      case 'contacts':
-        return completeContacts(promise)
-      case 'travel':
-        return completeForeignTravel(promise)
-      default:
-        return promise
-      }
-    })
-
-  When(/^I fill in the foreign (.*?) section (.*?) subsection$/, (section, subsection) => {
-    const parentsection = 'Foreign activities'
-    const sectionurl = 'foreign/' + section
-    let sectionheader = ''
-    if (section.includes('business')) {
-      sectionheader = 'Foreign business, professional activities, and government contacts'
-    } else {
-      sectionheader = 'Foreign activities'
-    }
-    let promise = navigateToSection(parentsection)
-      .then(() => { return navigateToSectionTitle(sectionheader) })
-      .then(() => { return navigateToSubsection(sectionurl, subsection) })
-
-    switch (subsection) {
-      // "activities" subsection
-      case 'direct':
-        return completeActivitiesDirectControl(promise)
-      case 'indirect':
-        return completeActivitiesIndirectControl(promise)
-      case 'realestate':
-        return completeActivitiesRealEstatePurchase(promise)
-      case 'benefits':
-        return completeActivitiesBenefits(promise)
-      case 'support':
-        return completeActivitiesSupport(promise)
-      // "business" subsection
-      case 'advice':
-        return completeBusinessAdvice(promise)
-      case 'family':
-        return completeBusinessAdviceFamily(promise)
-      case 'employment':
-        return completeBusinessEmploymentOffer(promise)
-      case 'ventures':
-        return completeBusinessOtherVentures(promise)
-      case 'conferences':
-        return completeBusinessConferences(promise)
-      case 'contact':
-        return completeBusinessContact(promise)
-      case 'sponsorship':
-        return completeBusinessSponsorship(promise)
-      case 'political':
-        return completeBusinessPolitical(promise)
-      case 'voting':
-        return completeBusinessVoting(promise)
-      default:
-        return promise
-      }
-    })
-
   When(/^I click Next to go to foreign (.*?)$/, (subsection) => {
+    subcontext = subsection
     return navigateToNext(subsection)
   })
 
+  When(/^I navigate to the foreign (.*?) section$/, (subsection) => {
+    subcontext = subsection
+    const section = 'foreign'
+    const sectionTitle = 'Foreign associations'
+    navigateToSection(sectionTitle)
+    return navigateToSubsection(section, subsection)
+  })
+
+  When(/^I fill in the foreign (.*?) section$/, (subsection) => {
+    switch (subsection) {
+      case 'passport':
+        return completePassport(client)
+      case 'contacts':
+        return completeContacts(client)
+      case 'travel':
+        return completeForeignTravel(client)
+      default:
+        return client
+      }
+  })
+
+  When(/^I fill in the foreign (.*?) section (.*?) subsection$/, (section, subsection) => {
+    switch (subsection) {
+      // "activities" subsections
+      case 'direct':
+        return completeActivitiesDirectControl(client)
+      case 'indirect':
+        return completeActivitiesIndirectControl(client)
+      case 'realestate':
+        return completeActivitiesRealEstatePurchase(client)
+      case 'benefits':
+        return completeActivitiesBenefits(client)
+      case 'support':
+        return completeActivitiesSupport(client)
+      // "business" subsection
+      case 'advice':
+        return completeBusinessAdvice(client)
+      case 'family':
+        return completeBusinessAdviceFamily(client)
+      case 'employment':
+        return completeBusinessEmploymentOffer(client)
+      case 'ventures':
+        return completeBusinessOtherVentures(client)
+      case 'conferences':
+        return completeBusinessConferences(client)
+      case 'contact':
+        return completeBusinessContact(client)
+      case 'sponsorship':
+        return completeBusinessSponsorship(client)
+      case 'political':
+        return completeBusinessPolitical(client)
+      case 'voting':
+        return completeBusinessVoting(client)
+      default:
+        return client
+      }
+  })
+
   Then(/^I should be in the foreign (.*?) section$/, (subsection) => {
+    subcontext = subsection
     return shouldBeInSubsection('foreign', subsection)
   })
 })
@@ -96,22 +88,24 @@ defineSupportCode(({Given, Then, When}) => {
 const completePassport = (promise) => {
   return promise
     .then(() => { return setOption('.passport .branch .yes') })
-    .then(() => { return setName('.name', 'Charles', 'F', 'Xavier') })
+    //.then(() => { return setOption('.passport .suggestions .dismiss a') })
+    .then(() => { return setName('.name', 'Charles', 'Francis', 'Xavier') })
     .then(() => { return setText('.number input', 'A12345678') })
-    .then(() => { return setDate('.datecontrol', '1', '1', '2010') })
+    .then(() => { return setDate('.datecontrol.passport-issued', '1', '1', '2015') })
+    .then(() => { return setDate('.datecontrol.passport-expiration', '1', '1', '2020') })
 }
 
 const completeContacts = (promise) => {
   return promise
     .then(() => { return setOption('.foreign-contacts .branch .yes') })
-    .then(() => { return setName('.foreign-contacts .foreign-national .name', 'Charles', 'F', 'Xavier') })
+    .then(() => { return setName('.foreign-contacts .foreign-national .name', 'Charles', 'Francis', 'Xavier') })
     .then(() => { return setDate('.foreign-contacts .datecontrol.first-contact', '1', '1', '2010') })
     .then(() => { return setDate('.foreign-contacts .datecontrol.last-contact', '1', '1', '2012') })
     .then(() => { return setOption('.foreign-contacts .methods .methods-inperson.block') })
     .then(() => { return setOption('.foreign-contacts .frequency .frequency-annually.block') })
     .then(() => { return setOption('.foreign-contacts .relationship .relationship-professional.block') })
     .then(() => { return setOption('.foreign-contacts .aliases .branch .no') })
-    .then(() => { return setText('.foreign-contacts .country.citizenship input', 'New Zealand') })
+    .then(() => { return setCountry('.foreign-contacts .country.citizenship input', 'New Zealand') })
     .then(() => { return setOption('.foreign-contacts .na-birthdate.button .block') })
     .then(() => { return setText('.foreign-contacts .na-birthplace .location .city input', 'Aukland') })
     .then(() => { return setText('.foreign-contacts .na-birthplace .location .country input', 'New Zealand') })
@@ -178,7 +172,7 @@ const completeActivitiesBenefits = (promise) => {
     .then(() => { return setOption('.benefit-activity .benefit-types .block') })
     .then(() => { return setOption('.benefit-activity .benefit-frequency .block') })
     .then(() => { return setDate('.benefit-activity .datecontrol.received', '1', '1', '2012') })
-    .then(() => { return setText('.benefit-activity .country input', 'France') })
+    .then(() => { return setCountry('.benefit-activity .country input', 'France') })
     .then(() => { return setText('.benefit-activity .currency .value input', '13000') })
     .then(() => { return setText('.benefit-activity .reason textarea', 'Description of why the benefit was received') })
     .then(() => { return setOption('.benefit-activity .obligated .branch .yes.block') })
@@ -189,7 +183,7 @@ const completeActivitiesBenefits = (promise) => {
 const completeActivitiesSupport = (promise) => {
   return promise
     .then(() => { return setOptionBlind('.foreign-activities-support .branch .yes.block') })
-    .then(() => { return setName('.foreign-activities-support-name', 'Charles', 'F', 'Xavier') })
+    .then(() => { return setName('.foreign-activities-support-name', 'Charles', 'Francis', 'Xavier') })
     .then(() => { return setDomesticAddress('.foreign-activities-support-address', '13709 Walsingham Rd', 'Largo', 'FL', '33774') })
     .then(() => { return setText('.foreign-activities-support-relationship textarea', 'Description of relationship') })
     .then(() => { return setText('.foreign-activities-support .currency .number input', '13000') })
@@ -202,9 +196,9 @@ const completeBusinessAdvice = (promise) => {
   return promise
     .then(() => { return setOption('.foreign-business-advice .branch .yes.block') })
     .then(() => { return setText('.foreign-business-advice .advice-description textarea', 'Description of advice request') })
-    .then(() => { return setName('.foreign-business-advice .advice-name', 'Charles', 'F', 'Xavier') })
+    .then(() => { return setName('.foreign-business-advice .advice-name', 'Charles', 'Francis', 'Xavier') })
     .then(() => { return setText('.foreign-business-advice .advice-organization input', 'Organization Name') })
-    .then(() => { return setText('.foreign-business-advice .advice-country input', 'United Kingdom') })
+    .then(() => { return setCountry('.foreign-business-advice .advice-country input', 'United Kingdom') })
     .then(() => { return setDate('.foreign-business-advice .daterange.advice-dates .datecontrol.from', '1', '1', '2012') })
     .then(() => { return setDate('.foreign-business-advice .daterange.advice-dates .datecontrol.to', '1', '1', '2013') })
     .then(() => { return setText('.foreign-business-advice .advice-compensation textarea', 'Description of advice compensation') })
@@ -214,9 +208,9 @@ const completeBusinessAdvice = (promise) => {
 const completeBusinessAdviceFamily = (promise) => {
   return promise
     .then(() => { return setOption('.foreign-business-family .branch .yes.block') })
-    .then(() => { return setName('.foreign-business-family .family-name', 'Charles', 'F', 'Xavier') })
+    .then(() => { return setName('.foreign-business-family .family-name', 'Charles', 'Francis', 'Xavier') })
     .then(() => { return setText('.foreign-business-family .family-agency input', 'Agency Name') })
-    .then(() => { return setText('.foreign-business-family .family-country input', 'United Kingdom') })
+    .then(() => { return setCountry('.foreign-business-family .family-country input', 'United Kingdom') })
     .then(() => { return setDate('.foreign-business-family .datecontrol.family-date', '1', '1', '2012') })
     .then(() => { return setText('.foreign-business-family .family-circumstances textarea', 'Explanation of request circumstances') })
     .then(() => { return setOption('.foreign-business-family .branch.addendum .no.block') })
@@ -225,7 +219,7 @@ const completeBusinessAdviceFamily = (promise) => {
 const completeBusinessEmploymentOffer = (promise) => {
   return promise
     .then(() => { return setOptionBlind('.foreign-business-employment .branch .yes.block') })
-    .then(() => { return setName('.foreign-business-employment .employment-name', 'Charles', 'F', 'Xavier') })
+    .then(() => { return setName('.foreign-business-employment .employment-name', 'Charles', 'Francis', 'Xavier') })
     .then(() => { return setText('.foreign-business-employment .employment-description textarea', 'Description of employment offer') })
     .then(() => { return setDate('.foreign-business-employment .datecontrol.employment-date', '1', '1', '2012') })
     .then(() => { return setOption('.foreign-business-employment .location.employment-address .no.block') })
@@ -240,9 +234,9 @@ const completeBusinessEmploymentOffer = (promise) => {
 const completeBusinessOtherVentures = (promise) => {
   return promise
     .then(() => { return setOptionBlind('.foreign-business-ventures .branch .yes.block') })
-    .then(() => { return setName('.foreign-business-ventures .ventures-name', 'Charles', 'F', 'Xavier') })
+    .then(() => { return setName('.foreign-business-ventures .ventures-name', 'Charles', 'Francis', 'Xavier') })
     .then(() => { return setDomesticAddress('.foreign-business-ventures .location.ventures-address', '13709 Walsingham Rd', 'Largo', 'FL', '33774') })
-    .then(() => { return setText('.foreign-business-ventures .country.ventures-citizenship input', 'United Kingdom') })
+    .then(() => { return setCountry('.foreign-business-ventures .country.ventures-citizenship input', 'United Kingdom') })
     .then(() => { return setText('.foreign-business-ventures .ventures-description textarea', 'Description of business venture') })
     .then(() => { return setText('.foreign-business-ventures .ventures-relationship textarea', 'Description of venture relationship') })
     .then(() => { return setDate('.foreign-business-ventures .daterange.ventures-dates .datecontrol.from', '1', '1', '2012') })
@@ -267,19 +261,20 @@ const completeBusinessConferences = (promise) => {
     .then(() => { return setText('.foreign-business-conferences .conferences-purpose textarea', 'Purpose of business conference') })
     .then(() => { return setOption('.foreign-business-conferences .foreign-business-conferences-contacts .yes.block') })
     .then(() => { return setText('.foreign-business-conferences .conferences-explanation textarea', 'Explanation of conference contacts') })
+    .then(() => { return setOption('.foreign-business-conferences .foreign-business-conferences-contacts .field.required.branch:nth-child(3) .no.block') })
     .then(() => { return setOption('.foreign-business-conferences .branch.addendum .no.block') })
 }
 
 const completeBusinessContact = (promise) => {
   return promise
     .then(() => { return setOption('.foreign-business-contact .branch .yes') })
-    .then(() => { return setName('.foreign-business-contact-name', 'Charles', 'F', 'Xavier') })
+    .then(() => { return setName('.foreign-business-contact-name', 'Charles', 'Francis', 'Xavier') })
     .then(() => { return setOption('.foreign-business-contact-location .toggleable-location .branch .yes.block') })
     .then(() => { return setText('.foreign-business-contact-location .city input', 'Largo') })
     .then(() => { return setText('.foreign-business-contact-location .state input', 'FL') })
     .then(() => { return setText('.foreign-business-contact-location .zipcode input', '33774') })
     .then(() => { return setDate('.foreign-business-contact-date', '1', '1', '2010') })
-    .then(() => { return setText('.foreign-business-contact-governments input', 'Germany') })
+    .then(() => { return setCountry('.foreign-business-contact-governments input', 'Germany') })
     .then(() => { return setText('.foreign-business-contact-establishment textarea', 'This is a reason for establishment') })
     .then(() => { return setText('.foreign-business-contact-representatives textarea', 'This is a reason for representatives') })
     .then(() => { return setText('.foreign-business-contact-purpose textarea', 'This is a purpose') })
@@ -287,13 +282,14 @@ const completeBusinessContact = (promise) => {
     .then(() => { return setText('.foreign-business-contact-subsequent textarea', 'Purpose of subsequent contact') })
     .then(() => { return setDate('.foreign-business-contact-recent', '1', '1', '2013') })
     .then(() => { return setText('.foreign-business-contact-future textarea', 'Future contact plans description') })
+    .then(() => { return setOption('.foreign-business-contact-subsequentcontacts .field.required.branch:nth-child(3) .no.block') })
     .then(() => { return setOption('.foreign-business-contact .branch.addendum .no.block') })
 }
 
 const completeBusinessSponsorship = (promise) => {
   return promise
     .then(() => { return setOptionBlind('.foreign-business-sponsorship .branch .yes') })
-    .then(() => { return setName('.foreign-business-sponsorship-name', 'Charles', 'F', 'Xavier') })
+    .then(() => { return setName('.foreign-business-sponsorship-name', 'Charles', 'Francis', 'Xavier') })
     .then(() => { return setDate('.foreign-business-sponsorship-birthdate', '1', '1', '2010') })
     .then(() => { return setOption('.foreign-business-sponsorship-birthplace .branch .yes') })
     .then(() => { return setText('.foreign-business-sponsorship-birthplace .state input', 'FL') })
@@ -315,7 +311,7 @@ const completeBusinessPolitical = (promise) => {
     .then(() => { return setText('.foreign-business-political-position input', 'President') })
     .then(() => { return setDate('.foreign-business-political-dates .from', '1', '1', '2010') })
     .then(() => { return setDate('.foreign-business-political-dates .to', '1', '1', '2011') })
-    .then(() => { return setText('.foreign-business-political-country input', 'Germany') })
+    .then(() => { return setCountry('.foreign-business-political-country input', 'Germany') })
     .then(() => { return setText('.foreign-business-political-reason textarea', 'This is a reason') })
     .then(() => { return setText('.foreign-business-political-eligibility input', 'No longer eligible') })
 }
@@ -324,7 +320,7 @@ const completeBusinessVoting = (promise) => {
   return promise
     .then(() => { return setOptionBlind('.foreign-business-voting .branch .yes') })
     .then(() => { return setDate('.foreign-business-voting-date', '1', '1', '2010') })
-    .then(() => { return setText('.foreign-business-voting-country input', 'Germany') })
+    .then(() => { return setCountry('.foreign-business-voting-country input', 'Germany') })
     .then(() => { return setText('.foreign-business-voting-reason textarea', 'This is a reason') })
     .then(() => { return setText('.foreign-business-voting-eligibility input', 'No longer eligible') })
 }
@@ -333,7 +329,7 @@ const completeForeignTravel = (promise) => {
   return promise
     .then(() => { return setOption('.foreign-travel-outside .branch .yes') })
     .then(() => { return setOption('.foreign-travel-official .branch .no') })
-    .then(() => { return setText('.foreign-travel-country input', 'Germany') })
+    .then(() => { return setCountry('.foreign-travel-country input', 'Germany') })
     .then(() => { return setDate('.foreign-travel-dates .from', '1', '1', '2010') })
     .then(() => { return setDate('.foreign-travel-dates .to', '1', '1', '2011') })
     .then(() => { return setOption('.foreign-travel-days .days-1-5') })
@@ -360,7 +356,7 @@ const navigateToSection = (section) => {
   return client
     .assert.visible(selector)
     .click(selector)
-    .pause(3000)
+    .pause(1000)
     .saveScreenshot('./screenshots/Foreign/' + filenum() + '-navigate-section.png')
 }
 
@@ -369,7 +365,7 @@ const navigateToSectionTitle = (section) => {
   return client
     .assert.visible(selector)
     .click(selector)
-    .pause(3000)
+    .pause(1000)
     .saveScreenshot('./screenshots/Foreign/' + filenum() + '-navigate-sectiontitle.png')
 }
 
@@ -379,15 +375,15 @@ const navigateToSubsection = (section, subsection) => {
     .assert.visible(selector)
     .click(selector)
     .click(selector)
-    .pause(3000)
+    .pause(1000)
     .saveScreenshot('./screenshots/Foreign/' + filenum() + '-navigate-subsection.png')
 }
 
-const navigateToNext = () => {
+const navigateToNext = (subsection) => {
   return client
     .assert.visible('button.next')
     .click('button.next')
-    .pause(3000)
+    .pause(1000)
     .saveScreenshot('./screenshots/Foreign/' + filenum() + '-navigate-next.png')
 }
 
@@ -400,7 +396,7 @@ const setOption = (selector) => {
   return client
     .assert.visible(selector)
     .click(selector)
-    .pause(3000)
+    .pause(500)
     .saveScreenshot('./screenshots/Foreign/' + filenum() + '-set-option.png')
 }
 
@@ -408,10 +404,10 @@ const setOptionBlind = (selector) => {
   return client
     .execute('scrollTo(0, 0)')
     .getLocationInView(selector)
-    .pause(3000)
+    .pause(500)
     .assert.visible(selector)
     .click(selector)
-    .pause(3000)
+    .pause(500)
     .saveScreenshot('./screenshots/Foreign/' + filenum() + '-set-option.png')
 }
 
@@ -419,7 +415,7 @@ const setOptionWithPause = (selector) => {
   return client
     .assert.visible(selector)
     .click(selector)
-    .pause(5000)
+    .pause(2000)
     .click(selector)
     .saveScreenshot('./screenshots/Foreign/' + filenum() + '-set-option.png')
 }
@@ -435,8 +431,15 @@ const setTextWithPause = (selector, text) => {
   return client
     .assert.visible(selector)
     .setValue(selector, text)
-    .pause(5000)
+    .pause(2000)
     .saveScreenshot('./screenshots/Foreign/' + filenum() + '-set-text.png')
+}
+
+const setCountry = (selector, text) => {
+  return client
+    .assert.visible(selector)
+    .setValue(selector, [text, client.Keys.ENTER])
+    .saveScreenshot('./screenshots/Foreign/' + filenum() + '-set-country.png')
 }
 
 const setDate = (selector, month, day, year) => {

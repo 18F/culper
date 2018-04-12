@@ -25,7 +25,7 @@ export default class DrugType extends ValidationElement {
   }
 
   updateDrugTypeOther (values) {
-    this.update({ value: values.value })
+    this.update({ value: values.value || 'Other' })
   }
 
   isOther (drug) {
@@ -39,7 +39,7 @@ export default class DrugType extends ValidationElement {
   render () {
     const other = this.isOther(this.props.value)
     const selected = other ? 'Other' : this.props.value
-    const explanation = other ? this.props.value : ''
+    const explanation = other && this.props.value !== 'Other' ? this.props.value : ''
     return (
       <div className="drug-type">
         <RadioGroup name="born"
