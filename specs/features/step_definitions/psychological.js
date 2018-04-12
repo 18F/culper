@@ -1,6 +1,7 @@
 const { client } = require('nightwatch-cucumber')
 const { defineSupportCode } = require('cucumber')
 
+let subcontext = ""
 let range = 7
 let counter = 0
 
@@ -12,18 +13,23 @@ const filenum = () => {
   while (s.length < size) {
     s = '0' + s
   }
-
-  return s
+  return s + '-' + subcontext
 }
 
 defineSupportCode(({Given, Then, When}) => {
+  When(/^I click Next to go to psychological (.*?)$/, (subsection) => {
+    return navigateToNext(subsection)
+  })
 
-  When(/^I fill in the psychological (.*?) section$/, (subsection) => {
+  When(/^I navigate to the psychological (.*?) section$/, (subsection) => {
+    subcontext = subsection
     const section = 'psychological'
     const sectionTitle = 'Psychological and emotional health'
-    let promise = navigateToSection(sectionTitle)
-      .then(() => { return navigateToSubsection(section, subsection) })
+    navigateToSection(sectionTitle)
+    return navigateToSubsection(section, subsection)
+  })
 
+  When(/^I fill in the psychological (.*?) section$/, (subsection) => {
     switch (subsection) {
       case 'competence':
         return completePsychologicalCompetence(promise)
@@ -38,11 +44,8 @@ defineSupportCode(({Given, Then, When}) => {
     }
   })
 
-  When(/^I click Next to go to psychological (.*?)$/, (subsection) => {
-    return navigateToNext(subsection)
-  })
-
   Then(/^I should be in the psychological (.*?) section$/, (subsection) => {
+    subcontext = subsection
     return shouldBeInSubsection('psychological', subsection)
   })
 })
@@ -118,7 +121,7 @@ const navigateToSection = (section) => {
   return client
     .assert.visible(selector)
     .click(selector)
-    .pause(3000)
+    .pause(1000)
     .saveScreenshot('./screenshots/Psychological/' + filenum() + '-navigate-section.png')
 }
 
@@ -128,7 +131,7 @@ const navigateToSubsection = (section, subsection) => {
     .assert.visible(selector)
     .click(selector)
     .click(selector)
-    .pause(3000)
+    .pause(1000)
     .saveScreenshot('./screenshots/Psychological/' + filenum() + '-navigate-subsection.png')
 }
 
@@ -136,7 +139,7 @@ const navigateToNext = (section) => {
   return client
     .assert.visible('button.next')
     .click('button.next')
-    .pause(3000)
+    .pause(1000)
     .saveScreenshot('./screenshots/Psychological/' + filenum() + '-navigate-next.png')
 }
 
@@ -169,7 +172,7 @@ const setOption = (selector) => {
   return client
     .assert.visible(selector)
     .click(selector)
-    .pause(3000)
+    .pause(1000)
     .saveScreenshot('./screenshots/Psychological/' + filenum() + '-set-option.png')
 }
 
@@ -177,7 +180,7 @@ const setOptionWithPause = (selector) => {
   return client
     .assert.visible(selector)
     .click(selector)
-    .pause(5000)
+    .pause(2000)
     .click(selector)
     .saveScreenshot('./screenshots/Psychological/' + filenum() + '-set-option.png')
 }
@@ -193,7 +196,7 @@ const setTextWithPause = (selector, text) => {
   return client
     .assert.visible(selector)
     .setValue(selector, text)
-    .pause(5000)
+    .pause(2000)
     .saveScreenshot('./screenshots/Psychological/' + filenum() + '-set-text.png')
 }
 
