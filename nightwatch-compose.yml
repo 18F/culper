@@ -3,10 +3,15 @@ version: '2'
 services:
   db:
     image: postgres:9.6.5
+    volumes:
+      - ./conf/postgres-configure.sh:/docker-entrypoint-initdb.d/postgres-configure.sh
+      - ./conf/postgres.conf:/srv/postgresql.conf
+      - ./api/eapp.crt:/srv/server.crt
+      - ./api/eapp.key:/srv/server.key
     expose:
       - '5432'
     networks:
-      - private
+      - eapp
 
   # Within the docker world this is the main entrypoint in to
   # this web application. This was done in order to have a
@@ -19,14 +24,17 @@ services:
   #  - serve compiled static assets
   #  - proxy /api requests to the backend API
   web:
-    image: abiosoft/caddy
+    image: nginx:alpine
+    command: nginx
     volumes:
-      - ./dist:/srv
-      - ./api/Caddyfile:/etc/Caddyfile
+      - ./conf/ssl:/etc/ssl
+      - ./conf/nginx.conf:/etc/nginx/nginx.conf
+      - ./dist:/usr/share/nginx/html
     ports:
-      - '8080:2015'
+      - '8080:8080'
+      - '8443:8443'
     networks:
-      - private
+      - eapp
     depends_on:
       - api
 
@@ -47,7 +55,7 @@ services:
       DATABASE_NAME: postgres
       DATABASE_HOST: db:5432
     networks:
-      - private
+      - eapp
     depends_on:
       - db
 
@@ -56,7 +64,7 @@ services:
     expose:
       - '4444'
     networks:
-      - private
+      - eapp
 
   # Selenium nodes currently don't support docker networks.
   # To get around this we emulate what `--link` would create for
@@ -71,7 +79,7 @@ services:
     volumes:
       - /dev/shm:/dev/shm
     networks:
-      - private
+      - eapp
     depends_on:
       - hub
 
@@ -83,11 +91,11 @@ services:
     volumes:
       - ./specs:/usr/src/app
     networks:
-      - private
+      - eapp
     depends_on:
       - chrome
       - web
 
 networks:
-  private:
+  eapp:
     driver: bridge

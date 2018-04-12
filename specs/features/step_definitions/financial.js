@@ -1,6 +1,7 @@
 const { client } = require('nightwatch-cucumber')
 const { defineSupportCode } = require('cucumber')
 
+let subcontext = ""
 let counter = 0
 
 const filenum = () => {
@@ -11,25 +12,24 @@ const filenum = () => {
   while (s.length < size) {
     s = '0' + s
   }
-
-  return s
+  return s + '-' + subcontext
 }
 
 defineSupportCode(({Given, Then, When}) => {
-  When(/^I go to the financial section$/, () => {
-    return navigateToSection('financial')
+  When(/^I click Next to go to financial (.*?)$/, (subsection) => {
+    subcontext = subsection
+    return navigateToNext(subsection)
   })
 
-  When(/^I go to the financial (.*?) section$/, (subsection) => {
+  When(/^I navigate to the financial (.*?) section$/, (subsection) => {
+    subcontext = subsection
     const section = 'financial'
-    return navigateToSection(section)
-      .then(() => { return navigateToSubsection(section, subsection) })
+    const sectionTitle = 'Financial record'
+    navigateToSection(sectionTitle)
+    return navigateToSubsection(section, subsection)
   })
 
   When(/^I fill in the financial (.*?) section$/, (subsection) => {
-    const section = 'financial'
-    let promise = navigateToSection(section).then(() => { return navigateToSubsection(section, subsection) })
-
     switch (subsection) {
     case 'bankruptcy':
       return completeBankruptcy(promise)
@@ -51,6 +51,7 @@ defineSupportCode(({Given, Then, When}) => {
   })
 
   Then(/^I should be in the financial (.*?) section$/, (subsection) => {
+    subcontext = subsection
     return shouldBeInSubsection('financial', subsection)
   })
 })
@@ -171,39 +172,30 @@ const completeNonpayment = (promise) => {
 }
 
 const navigateToSection = (section) => {
-  const selector = '.section a[href="/form/' + section + '"]'
+  const selector = '.section a[title="' + section + '"]'
   return client
     .assert.visible(selector)
     .click(selector)
-    .pause(3000)
+    .pause(1000)
     .saveScreenshot('./screenshots/Financial/' + filenum() + '-navigate-section.png')
 }
 
 const navigateToSubsection = (section, subsection) => {
-  const crumbs = subsection.split('/')
-  for (let i = 0; i < crumbs.length; i++) {
-    let path = ''
-    for (let j = 0; j < (i + 1); j++) {
-      if (path.length) {
-        path += '/'
-      }
-      path += crumbs[j]
-    }
+  const selector = '.subsection a[href="/form/' + section + '/' + subsection + '"]'
+  return client
+    .assert.visible(selector)
+    .click(selector)
+    .click(selector)
+    .pause(1000)
+    .saveScreenshot('./screenshots/Financial/' + filenum() + '-navigate-subsection.png')
 
-    const selector = '.section a[href="/form/' + section + '/' + path + '"]'
-    client
-      .assert.visible(selector)
-      .click(selector)
-      .pause(3000)
-      .saveScreenshot('./screenshots/Financial/' + filenum() + '-navigate-subsection.png')
-  }
 }
 
 const navigateToNext = () => {
   return client
     .assert.visible('button.next')
     .click('button.next')
-    .pause(3000)
+    .pause(1000)
     .saveScreenshot('./screenshots/Financial/' + filenum() + '-navigate-next.png')
 }
 
@@ -216,7 +208,7 @@ const click = (selector) => {
   return client
     .assert.visible(selector)
     .click(selector)
-    .pause(3000)
+    .pause(500)
     .saveScreenshot('./screenshots/Financial/' + filenum() + '-click.png')
 }
 
@@ -224,7 +216,7 @@ const setOption = (selector) => {
   return client
     .assert.visible(selector)
     .click(selector)
-    .pause(3000)
+    .pause(500)
     .saveScreenshot('./screenshots/Financial/' + filenum() + '-set-option.png')
 }
 

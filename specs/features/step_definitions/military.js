@@ -1,23 +1,35 @@
 const { client } = require('nightwatch-cucumber')
 const { defineSupportCode } = require('cucumber')
 
+let subcontext = ""
 let counter = 0
 
+const filenum = () => {
+  const size = 4
+  const num = counter++
+
+  let s = '' + num
+  while (s.length < size) {
+    s = '0' + s
+  }
+  return s + '-' + subcontext
+}
+
 defineSupportCode(({Given, Then, When}) => {
-  When(/^I go to the military section$/, () => {
-    return navigateToSection('military')
+  When(/^I click Next to go to military (.*?)$/, (subsection) => {
+    subcontext = subsection
+    return navigateToNext(subsection)
   })
 
-  When(/^I go to the military (.*?) section$/, (subsection) => {
+  When(/^I navigate to the military (.*?) section$/, (subsection) => {
+    subcontext = subsection
     const section = 'military'
-    return navigateToSection(section)
-      .then(() => { return navigateToSubsection(section, subsection) })
+    const sectionTitle = 'Military history'
+    navigateToSection(sectionTitle)
+    return navigateToSubsection(section, subsection)
   })
 
   When(/^I fill in the military (.*?) section$/, (subsection) => {
-    const section = 'military'
-    let promise = navigateToSection(section).then(() => { return navigateToSubsection(section, subsection) })
-
     switch (subsection) {
     case 'selective':
       return completeSelectiveService(promise)
@@ -33,6 +45,7 @@ defineSupportCode(({Given, Then, When}) => {
   })
 
   Then(/^I should be in the military (.*?) section$/, (subsection) => {
+    subcontext = subsection
     return shouldBeInSubsection('military', subsection)
   })
 })
@@ -109,54 +122,30 @@ const completeForeignMilitary = (promise) => {
     .then(() => { return setText('.foreign-contact-frequency input', 'Monthly') })
 }
 
-const filenum = () => {
-  const size = 4
-  const num = counter++
-
-  let s = '' + num
-  while (s.length < size) {
-    s = '0' + s
-  }
-
-  return s
-}
-
 const navigateToSection = (section) => {
-  const selector = '.section a[href="/form/' + section + '"]'
+  const selector = '.section a[title="' + section + '"]'
   return client
     .assert.visible(selector)
     .click(selector)
-    .pause(3000)
+    .pause(1000)
     .saveScreenshot('./screenshots/Military/' + filenum() + '-navigate-section.png')
 }
 
 const navigateToSubsection = (section, subsection) => {
-  const crumbs = subsection.split('/')
-  for (let i = 0; i < crumbs.length; i++) {
-    let path = ''
-    for (let j = 0; j < (i + 1); j++) {
-      if (path.length) {
-        path += '/'
-      }
-      path += crumbs[j]
-    }
-
-    const selector = '.section a[href="/form/' + section + '/' + path + '"]'
-    client
-      .assert.visible(selector)
-      .click(selector)
-      .pause(3000)
-      .saveScreenshot('./screenshots/Military/' + filenum() + '-navigate-subsection.png')
-  }
-
+  const selector = '.subsection a[href="/form/' + section + '/' + subsection + '"]'
   return client
+    .assert.visible(selector)
+    .click(selector)
+    .click(selector)
+    .pause(1000)
+    .saveScreenshot('./screenshots/Military/' + filenum() + '-navigate-subsection.png')
 }
 
 const navigateToNext = () => {
   return client
     .assert.visible('button.next')
     .click('button.next')
-    .pause(3000)
+    .pause(1000)
     .saveScreenshot('./screenshots/Military/' + filenum() + '-navigate-next.png')
 }
 
@@ -169,7 +158,7 @@ const click = (selector) => {
   return client
     .assert.visible(selector)
     .click(selector)
-    .pause(3000)
+    .pause(500)
     .saveScreenshot('./screenshots/Military/' + filenum() + '-click.png')
 }
 
@@ -177,7 +166,7 @@ const setOption = (selector) => {
   return client
     .assert.visible(selector)
     .click(selector)
-    .pause(3000)
+    .pause(500)
     .saveScreenshot('./screenshots/Military/' + filenum() + '-set-option.png')
 }
 
