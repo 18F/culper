@@ -279,14 +279,17 @@ func (entity *IdentificationBirthPlace) SetID(id int) {
 
 // IdentificationBirthDate subsection of identification section.
 type IdentificationBirthDate struct {
-	Payload Payload `json:"Date" sql:"-"`
+	PayloadDate      Payload `json:"Date" sql:"-"`
+	PayloadConfirmed Payload `json:"Confirmed" sql:"-"`
 
 	// Validator specific fields
-	Date *DateControl `json:"-"`
+	Date      *DateControl `json:"-"`
+	Confirmed *Checkbox    `json:"-"`
 
 	// Persister specific fields
-	ID     int `json:"-"`
-	DateID int `json:"-" pg:", fk:Date"`
+	ID          int `json:"-"`
+	DateID      int `json:"-" pg:", fk:Date"`
+	ConfirmedID int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -296,11 +299,17 @@ func (entity *IdentificationBirthDate) Unmarshal(raw []byte) error {
 		return err
 	}
 
-	date, err := entity.Payload.Entity()
+	date, err := entity.PayloadDate.Entity()
 	if err != nil {
 		return err
 	}
 	entity.Date = date.(*DateControl)
+
+	confirmed, err := entity.PayloadConfirmed.Entity()
+	if err != nil {
+		return err
+	}
+	entity.Confirmed = confirmed.(*Checkbox)
 
 	return err
 }
@@ -308,7 +317,10 @@ func (entity *IdentificationBirthDate) Unmarshal(raw []byte) error {
 // Marshal to payload structure
 func (entity *IdentificationBirthDate) Marshal() Payload {
 	if entity.Date != nil {
-		entity.Payload = entity.Date.Marshal()
+		entity.PayloadDate = entity.Date.Marshal()
+	}
+	if entity.Confirmed != nil {
+		entity.PayloadConfirmed = entity.Confirmed.Marshal()
 	}
 	return MarshalPayloadEntity("identification.birthdate", entity)
 }
@@ -333,6 +345,11 @@ func (entity *IdentificationBirthDate) Save(context *db.DatabaseContext, account
 		}
 		entity.DateID = previous.DateID
 		entity.Date.ID = previous.DateID
+		if entity.Confirmed == nil {
+			entity.Confirmed = &Checkbox{}
+		}
+		entity.ConfirmedID = previous.ConfirmedID
+		entity.Confirmed.ID = previous.ConfirmedID
 	})
 
 	dateID, err := entity.Date.Save(context, account)
@@ -340,6 +357,12 @@ func (entity *IdentificationBirthDate) Save(context *db.DatabaseContext, account
 		return dateID, err
 	}
 	entity.DateID = dateID
+
+	confirmedID, err := entity.Confirmed.Save(context, account)
+	if err != nil {
+		return confirmedID, err
+	}
+	entity.ConfirmedID = confirmedID
 
 	if err := context.Save(entity); err != nil {
 		return entity.ID, err
@@ -363,6 +386,11 @@ func (entity *IdentificationBirthDate) Delete(context *db.DatabaseContext, accou
 		}
 		entity.DateID = previous.DateID
 		entity.Date.ID = previous.DateID
+		if entity.Confirmed == nil {
+			entity.Confirmed = &Checkbox{}
+		}
+		entity.ConfirmedID = previous.ConfirmedID
+		entity.Confirmed.ID = previous.ConfirmedID
 	})
 
 	if entity.ID != 0 {
@@ -372,6 +400,10 @@ func (entity *IdentificationBirthDate) Delete(context *db.DatabaseContext, accou
 	}
 
 	if _, err := entity.Date.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err := entity.Confirmed.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
@@ -395,6 +427,13 @@ func (entity *IdentificationBirthDate) Get(context *db.DatabaseContext, account 
 	if entity.DateID != 0 {
 		entity.Date = &DateControl{ID: entity.DateID}
 		if _, err := entity.Date.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	if entity.ConfirmedID != 0 {
+		entity.Confirmed = &Checkbox{ID: entity.ConfirmedID}
+		if _, err := entity.Confirmed.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
@@ -1324,5 +1363,140 @@ func (entity *IdentificationPhysical) GetID() int {
 
 // SetID sets the entity identifier.
 func (entity *IdentificationPhysical) SetID(id int) {
+	entity.ID = id
+}
+
+// IdentificationComments subsection of identification section.
+type IdentificationComments struct {
+	PayloadComments Payload `json:"Comments" sql:"-"`
+
+	// Validator specific fields
+	Comments *Text `json:"-"`
+
+	// Persister specific fields
+	ID         int `json:"-"`
+	CommentsID int `json:"-"`
+}
+
+// Unmarshal bytes in to the entity properties.
+func (entity *IdentificationComments) Unmarshal(raw []byte) error {
+	err := json.Unmarshal(raw, entity)
+	if err != nil {
+		return err
+	}
+
+	comments, err := entity.PayloadComments.Entity()
+	if err != nil {
+		return err
+	}
+	entity.Comments = comments.(*Text)
+
+	return err
+}
+
+// Marshal to payload structure
+func (entity *IdentificationComments) Marshal() Payload {
+	if entity.Comments != nil {
+		entity.PayloadComments = entity.Comments.Marshal()
+	}
+	return MarshalPayloadEntity("identification.comments", entity)
+}
+
+// Valid checks the value(s) against an battery of tests.
+func (entity *IdentificationComments) Valid() (bool, error) {
+	return entity.Comments.Valid()
+}
+
+// Save will create or update the database.
+func (entity *IdentificationComments) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
+
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
+	context.Find(&IdentificationComments{ID: account}, func(result interface{}) {
+		previous := result.(*IdentificationComments)
+		if entity.Comments == nil {
+			entity.Comments = &Text{}
+		}
+		entity.CommentsID = previous.CommentsID
+		entity.Comments.ID = previous.CommentsID
+	})
+
+	commentsID, err := entity.Comments.Save(context, account)
+	if err != nil {
+		return commentsID, err
+	}
+	entity.CommentsID = commentsID
+
+	if err := context.Save(entity); err != nil {
+		return entity.ID, err
+	}
+
+	return entity.ID, nil
+}
+
+// Delete will remove the entity from the database.
+func (entity *IdentificationComments) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
+
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
+	context.Find(&IdentificationComments{ID: account}, func(result interface{}) {
+		previous := result.(*IdentificationComments)
+		if entity.Comments == nil {
+			entity.Comments = &Text{}
+		}
+		entity.CommentsID = previous.CommentsID
+		entity.CommentsID = previous.CommentsID
+	})
+
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	if _, err := entity.Comments.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	return entity.ID, nil
+}
+
+// Get will retrieve the entity from the database.
+func (entity *IdentificationComments) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
+
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	if entity.CommentsID != 0 {
+		entity.Comments = &Text{ID: entity.CommentsID}
+		if _, err := entity.Comments.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	return entity.ID, nil
+}
+
+// GetID returns the entity identifier.
+func (entity *IdentificationComments) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *IdentificationComments) SetID(id int) {
 	entity.ID = id
 }

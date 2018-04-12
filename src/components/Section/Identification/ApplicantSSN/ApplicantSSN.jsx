@@ -96,7 +96,7 @@ export default class ApplicantSSN extends SubsectionElement {
                className="applicant-ssn-initial"
                onUpdate={this.updateSSN}
                onError={this.handleError}
-               required={this.props.required}
+               required={!this.props.ssn.notApplicable && this.props.required}
                />
         </Field>
 
@@ -110,6 +110,7 @@ export default class ApplicantSSN extends SubsectionElement {
                  className={klassVerify}
                  onUpdate={this.updateVerification}
                  onError={this.verificationError}
+                 required={verify && this.props.required}
                  />
           </Field>
         </Show>

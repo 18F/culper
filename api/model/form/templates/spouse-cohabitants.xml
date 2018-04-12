@@ -11,17 +11,19 @@
         {{ location $Item.BirthPlace }}
       </Place>
     </Birth>
-    {{with $doc := $Item.ForeignBornDocument.props}}
+    {{- with $doc := $Item.ForeignBornDocument.props}}
+    {{- if text $doc.DocumentType | ne ""}}
     <Citizenship>
       <ProofOfStatus>
         <Comment></Comment>
         <DocumentExpiration Type="{{dateEstimated $doc.DocumentExpiration}}">{{date $doc.DocumentExpiration}}</DocumentExpiration>
         <DocumentNumber>{{text $doc.DocumentNumber}}</DocumentNumber>
-        <Type>{{text $doc.DocumentType}}</Type>
+        <Type>{{text $doc.DocumentType | foreignDocType}}</Type>
         <TypeOtherExplanation>{{text $doc.OtherExplanation}}</TypeOtherExplanation>
       </ProofOfStatus>
     </Citizenship>
-    {{end}}
+    {{- end}}
+    {{- end}}
     <CohabitationDate>
       <Date Type="{{dateEstimated $Item.Birthdate}}">
         {{date $Item.Birthdate}}
@@ -29,7 +31,7 @@
     </CohabitationDate>
     <ContinueComment></ContinueComment>
     <CountriesOfCitizenship>
-      {{range $cindex, $country := $Item.Citizenship.value}}
+      {{range $cindex, $country := $Item.Citizenship.props.value}}
       <Citizenship ID="{{$cindex}}">
         <Country>{{$country}}</Country>
       </Citizenship>
@@ -39,9 +41,13 @@
     <LegalName>
       {{name $Item.Name}}
     </LegalName>
-    <OtherNamesUsed NotApplicable="{{if len $Item.OtherNames.props.items | eq 0}}True{{else}}False{{end}}">
-      {{range $oindex, $othername := $Item.OtherNames.props.items}}
-      {{with $other := $othername.Item}}
+    {{- if branchcollectionHas $Item.OtherNames | eq "No"}}
+    <OtherNamesUsed NotApplicable="True" />
+    {{else}}
+    <OtherNamesUsed>
+      {{- range $oindex, $othername := $Item.OtherNames.props.items}}
+      {{- with $other := $othername.Item}}
+      {{- if branch $other.Has | eq "Yes"}}
       <OtherName ID="{{$oindex}}">
         {{daterange $other.DatesUsed}}
         <LegalName>
@@ -49,26 +55,28 @@
         </LegalName>
         <Maiden>{{if branch $other.MaidenName | eq "Yes"}}True{{else}}False{{end}}</Maiden>
       </OtherName>
-      {{end}}
-      {{end}}
+      {{- end}}
+      {{- end}}
+      {{- end}}
     </OtherNamesUsed>
+    {{end}}
     {{with $ssn := $Item.SSN}}
-    <SSN NotApplicable="{{ $ssn.props.notApplicable }}">
-      <FirstThree>
-        {{ $ssn.props.first }}
-      </FirstThree>
-      <NextTwo>
-        {{ $ssn.props.middle }}
-      </NextTwo>
-      <LastFour>
-        {{ $ssn.props.last }}
-      </LastFour>
+    {{if $ssn.props.notApplicable }}
+    <SSN NotApplicable="True" />
+    {{else}}
+    <SSN>
+      <FirstThree>{{ $ssn.props.first }}</FirstThree>
+      <NextTwo>{{ $ssn.props.middle }}</NextTwo>
+      <LastFour>{{ $ssn.props.last }}</LastFour>
     </SSN>
+    {{end}}
     {{end}}
   </Cohabitant>
   {{end}}
   {{end}}
+  {{if branch .props.HasCohabitant | eq "Yes"}}
   <Comment></Comment>
   <HaveAdditionalEntryAnswer>{{branch .props.CohabitantList.props.branch}}</HaveAdditionalEntryAnswer>
   <SummaryComment></SummaryComment>
+  {{end}}
 </Cohabitants>

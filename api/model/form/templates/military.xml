@@ -1,5 +1,5 @@
 <MilitaryHistory Version="1" Type="Pooled">
-  {{tmpl "military-disciplinary.xml" .Military.Disciplinary}}
+  {{tmpl "military-disciplinary.xml" .Military}}
   {{tmpl "military-foreign.xml" .Military.Foreign}}
   {{tmpl "military-history.xml" .Military.History}}
 </MilitaryHistory>

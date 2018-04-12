@@ -2,11 +2,10 @@
 <Meetings>
   <Answer>{{branch .props.HasForeignConferences}}</Answer>
   <Comment></Comment>
-  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
   {{range $index, $item := .props.List.props.items}}
   {{with $Item := $item.Item}}
   <Meeting ID="{{$index}}">
-    {{daterange $Item.Dates}}
+    {{monthYearDaterange $Item.Dates}}
     <EntryComment></EntryComment>
     <Location>
       <Place>
@@ -22,17 +21,24 @@
       <AnswerComment></AnswerComment>
       {{range $cindex, $contact := $Item.Contacts.props.List.props.items}}
       {{with $Contact := $contact.Item}}
+      {{if branch $Contact.Has | eq "Yes"}}
       <Contact ID="{{$cindex}}">
         <Comment></Comment>
         <Explanation>{{text $Contact.Explanation}}</Explanation>
       </Contact>
       {{end}}
       {{end}}
+      {{end}}
+      {{if branchcollectionHas $Item.Contacts.props.List | eq "Yes"}}
       <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
       <SummaryComment></SummaryComment>
+      {{end}}
     </SubsequentForeignContacts>
   </Meeting>
   {{end}}
   {{end}}
+  {{- if branch .props.HasForeignConferences | eq "Yes"}}
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
   <SummaryComment></SummaryComment>
+  {{end}}
 </Meetings>

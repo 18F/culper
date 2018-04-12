@@ -7,8 +7,7 @@
 | Release | [![Build Status][badge_ci_18f]][2] | [![codecov][badge_cov_18f]][24] | [![Code Climate][badge_cc_18f]][3] | [![Go Report Card][badge_goreportcard_18f]][22] |
 | Staging | [![Build Status][badge_ci_tt]][5]  | [![codecov][badge_cov_tt]][25]  | [![Code Climate][badge_cc_tt]][6]  | [![Go Report Card][badge_goreportcard_tt]][23]  |
 
-To create the e-QIP questionnaire prototype, the project team is employing a user-centered design approach leveraging key principles from the
-[U.S. Digital Services Playbook][8]:
+To create the e-QIP questionnaire prototype, the project team is employing a user-centered design approach leveraging key principles from the [U.S. Digital Services Playbook][8]:
 
 1. Understand what people need
 2. Address the whole experience, from start to finish
@@ -19,13 +18,20 @@ To create the e-QIP questionnaire prototype, the project team is employing a use
  - [Project Management](#project-management)
     - [Sprint Backlogs](#sprint-backlogs)
  - [Getting to know the code](#getting-to-know-the-code)
+    - [Dependencies](#dependencies)
     - [Clone all things](#clone-all-things)
-    - [Checking dependencies](#checking-dependencies)
-    - [Running a local server](#running-a-local-server)
-    - [Executing tests and coverage reports](#executing-tests-and-coverage-reports)
-    - [Packaging Application](#packaging-application)
-    - [Generating Documentation](#generating-documentation)
+    - [Running the application](#running-the-application)
+       - [Setup](#setup)
+       - [Building the application](#building-the-application)
+       - [Executing tests and coverage reports](#executing-tests-and-coverage-reports)
+       - [Running a local server](#running-a-local-server)
+ - [Docker containers](#docker-containers)
+ - [Architectural diagram](#architectural-diagram)
+ - [Additional](#additional)
+    - [Feature specifications](#feature-specifications)
+    - [Generating documentation](#generating-documentation)
     - [Tooling](#tooling)
+ - [Contributing](#contributing)
 
 ## Project Management
 
@@ -44,128 +50,134 @@ truetandem/e-QIP-prototype#issue_number Commit description
 [Keywords][13] can be used to change the status of the associated issue
 
 ## Sprint Backlogs
+
 To view the items completed during each development sprint and to view the burndown charts for each respective sprint, please visit the [Sprint Backlogs][26] page.
 
 ## Getting to know the code
+
+### Dependencies
+
+ - [git](https://git-scm.com)
+ - [docker][21]
+ - [docker-compose][20]
+ - [make](https://www.gnu.org/software/make/)
 
 ### Clone all things
 
 Clone the repository and `cd` into it:
 
-```
+```shell
 mkdir -p $GOPATH/src/github.com/18F
 cd $GOPATH/src/github.com/18F
 git clone https://github.com/18F/e-QIP-prototype
 cd e-QIP-prototype
 ```
 
-Then to develop locally, create a `.env` file:
+Then to develop locally, create a [`.env`](.env.example) file:
 
-```
+```shell
 cp .env.example .env
 ```
 
-### Docker/docker-compose setup
+For more information on the various settings, examples, and values please refer to the [configuration](CONFIGURATION.md) documentation.
 
-Once `cd`'d into the cloned repository (and having created a `.env` file):
 
-```
-$ docker-compose up
-```
+## Running the application
 
-### Checking dependencies
+To avoid manually running separate commands for [setup](#setup), [building](#building-the-application), and [testing](#executing-tests-and-coverage-reports) you can instead execute:
 
-For quick development we use [yarn][19] but you may use [npm][16] as well. Once
-this has been installed we execute a single command:
-
-```
-yarn install
+``` shell
+make
 ```
 
-For dependencies on the backend use [glide][17]:
+### Setup
 
-```
-glide install
+Configure prerequisites using:
+
+```shell
+make setup
 ```
 
 ### Building the application
 
 Compiling all of the assets can be done simply using the command:
 
+```shell
+make build
 ```
-yarn build
-```
-
-This will compile JavaScript, SASS, and place all files where they need to be. Both versions of JavaScript files (minified and not) are preserved.
-
-### Running a local server
-
-To run a local server we are using [docker][21] containers leveraging the [docker-compose][20] tool:
-
-```
-docker-compose up
-```
-
-Then direct your browser at [http://localhost:8080](http://localhost:8080). The access the site in development use the username `test01` and password `password01`.
 
 ### Executing tests and coverage reports
 
 To make a single pass through the test suite use the command:
 
-```
-yarn test
-```
-
-The individual test results will be seen in the output, and the coverage
-results may be viewed after running ```yarn test```.
-
-### Executing feature specifications
-
-Running the feature specifications is an on-demand process and can be ran through [docker-compose][20] by specifying a different configuration file:
-
-```
-docker-compose -f nightwatch-compose.yml up
+```shell
+make test
+make coverage
 ```
 
-For additional informtion on how to perform the feature specification automated UI test suite, visit [Spec Test][27].
+### Running a local server
 
-### Packaging Application
+To run a local server we are using [docker][21] containers leveraging the [docker-compose][20] tool via the command:
 
-To package up the application, use the command:
-
-```
-yarn build
+```shell
+make run
 ```
 
-This will generate the following file structure:
+Then direct your browser at [http://localhost:8080](http://localhost:8080). The access the site in development use the username `test01` and password `password01`.
 
-```
-dist/
-   css/
-   fonts/
-   img/
-   eqip.min.js
-   index.html
+## Docker containers
+
+| Container | Image               |
+| --------  | ------------------- |
+| api       | [Dockerfile.api](Dockerfile.api) |
+| db        | postgres:9.6.5      |
+| web       | nginx:alpine        |
+| frontend  | node:8.5.0          |
+
+The IdAM solution **is not** part of this project.
+
+## Architectural diagram
+
+![eapparchitecture](https://user-images.githubusercontent.com/12962390/37600234-1ecdb4ba-2b5d-11e8-99b3-a07f46aef611.png)
+
+There are several possible architectures which may be implemented. The diagram references one of those possible solutions and highlights the basic flow of data within the system. It also demonstrates integration with external systems (e.g. identity services) which are not part of this project but may be part of the overall system.
+
+
+## Additional
+
+### Feature specifications
+
+Running the feature specifications is an on-demand process and can be ran using:
+
+```shell
+make specs
 ```
 
-where
- - `css/` contains the production ready stylesheets
- - `fonts/` contains the fonts used in the application
- - `img/` contains the images used in the application
+For additional information on how to perform the feature specification automated UI test suite, visit [Spec Test][27].
+
+### Generating Documentation
+
+To generate documentation from the source code and database schema type:
+
+```shell
+make docs
+```
+
+All of the documentation may then be found in the respective directories under `doc/`.
 
 ### Tooling
 
 #### Linters
 
-For Ninjas (Vim) just install ```syntastic``` and everything should be handled.
-For Pirates (Emacs) just install ```flycheck``` and everything should be handled.
+For Ninjas (Vim) just install `syntastic` and everything should be handled.
+For Pirates (Emacs) just install `flycheck` and everything should be handled.
 
 For command-line alternatives there are the following:
+ - For JavaScript, [JSHint][14] which may be installed with `yarn add jshint`
+ - For HTML, [html-lint][15] which may be installed with `yarn add html-lint`
 
- - For JavaScript, [JSHint][14] which may be installed with ```yarn add jshint```
- - For HTML, [html-lint][15] which may be installed with ```yarn add html-lint```
 
-### Contributing
+## Contributing
 
 Please refer to the [contributing documentation][18].
 

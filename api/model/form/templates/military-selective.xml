@@ -4,12 +4,14 @@
     <AnswerComment></AnswerComment>
   </Registered>
   <Registration>
-    <DNKExplanation></DNKExplanation>
-    <DNKExplanationComment></DNKExplanationComment>
+    <Number>{{text .props.RegistrationNumber}}</Number>
+    {{- if branch .props.HasRegistered | eq "No"}}
     <LegalExemptionExplanation>{{textarea .props.Explanation}}</LegalExemptionExplanation>
     <LegalExemptionExplanationComment></LegalExemptionExplanationComment>
-    <Number>{{text .props.RegistrationNumber}}</Number>
     <NumberComment></NumberComment>
+    <DNKExplanation>{{textarea .props.Explanation}}</DNKExplanation>
+    <DNKExplanationComment></DNKExplanationComment>
+    {{end}}
   </Registration>
   <RegistrationRequired>
     <Answer>{{branch .props.WasBornAfter}}</Answer>

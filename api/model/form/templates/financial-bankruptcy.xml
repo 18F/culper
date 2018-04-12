@@ -19,9 +19,13 @@
       </Chapter13>
       {{end}}
       <Comment></Comment>
-      <DischargeDate Type="{{dateEstimated $Item.DateDischarged}}" NotApplicable="{{notApplicable $Item.DateDischargedNotApplicable}}">{{monthYear $Item.DateDischarged}}</DischargeDate>
+      {{if notApplicable $Item.DischargeDateNotApplicable | eq "True"}}
+      <DischargeDate NotApplicable="True" />
+      {{else}}
+      <DischargeDate Type="{{dateEstimated $Item.DateDischarged}}">{{monthYear $Item.DateDischarged}}</DischargeDate>
+      {{end}}
       <DischargedOfAllDebts>
-        <Answer>{{branch $Item.HasDischargedExplanation}}</Answer>
+        <Answer>{{branch $Item.HasDischargeExplanation}}</Answer>
         <AnswerComment></AnswerComment>
       </DischargedOfAllDebts>
       <Explanation>{{textarea $Item.DischargeExplanation}}</Explanation>
@@ -33,9 +37,16 @@
     </Activity>
     {{end}}
     {{end}}
+
+    {{- if branch .props.HasBankruptcy | eq "Yes"}}
+    <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+    {{end}}
   </Activities>
   <Answer>{{branch .props.HasBankruptcy}}</Answer>
+
+  {{- if branch .props.HasBankruptcy | eq "Yes"}}
   <Comment></Comment>
   <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
   <SummaryComment></SummaryComment>
+  {{end}}
 </Bankruptcy>

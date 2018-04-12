@@ -1,5 +1,5 @@
 hash: 385e526a462b58a8d3ab168cab4361e1246691ecd6614ca4c08644abce0ea50e
-updated: 2018-02-26T15:35:27.230883866Z
+updated: 2018-04-03T16:36:57.259493291Z
 imports:
 - name: bitbucket.org/liamstask/goose
   version: 8488cc47d90c8a502b1c41a462a6d9cc8ee0a895
@@ -12,7 +12,7 @@ imports:
 - name: github.com/dgryski/dgoogauth
   version: fd153d5969d30bd701e10f3530228f001213047c
 - name: github.com/go-pg/pg
-  version: 62ce1a18dd39eab82c8a3fc1a5b076e59c0a284f
+  version: a7da286fae957b07243bb3aaaf4897c3ca912c50
   subpackages:
   - internal
   - internal/parser
@@ -26,7 +26,7 @@ imports:
 - name: github.com/gorilla/mux
   version: 0eeaf8392f5b04950925b8a69fe70f110fa7cbfc
 - name: github.com/jinzhu/inflection
-  version: 1c35d901db3da928c72a72d8458480cc9ade058f
+  version: 04140366298a54a039076d798123ffa108fff46c
 - name: github.com/kardianos/osext
   version: ae77be60afb1dcacde03767a8c37337fad28ac14
 - name: github.com/keighl/mandrill
@@ -36,17 +36,17 @@ imports:
   subpackages:
   - yaml
 - name: github.com/lib/pq
-  version: 88edab0803230a3898347e77b474f8c1820a1f20
+  version: d34b9ff171c21ad295489235aec8b6626023cd04
   subpackages:
   - oid
 - name: github.com/microcosm-cc/bluemonday
-  version: 542fd4642604d0d0c26112396ce5b1a9d01eee0b
+  version: 995366fdf961d03629cd17361bddd32745718e2c
 - name: github.com/mitchellh/mapstructure
   version: 00c29f56e2386353d58c599509e8dc3801b0d716
 - name: github.com/nu7hatch/gouuid
   version: 179d4d0c4d8d407a32af483c2354df1d2c91e6c3
 - name: github.com/rifflock/lfshook
-  version: 1fdc019a35147ddbb3d25aedf713ad6d1430c144
+  version: bf539943797a1f34c1f502d07de419b5238ae6c6
 - name: github.com/RobotsAndPencils/go-saml
   version: fb13cb52a46b55a9f20e6d497658dd494c7c1ef1
   subpackages:
@@ -58,7 +58,7 @@ imports:
 - name: github.com/shurcooL/sanitized_anchor_name
   version: 86672fcb3f950f35f2e675df2240550f2a50762f
 - name: github.com/sirupsen/logrus
-  version: d682213848ed68c0a260ca37d6dd5ace8423f5ba
+  version: c155da19408a8799da419ed3eeb0cb5db0ad5dbc
   subpackages:
   - hooks/syslog
 - name: github.com/skip2/go-qrcode
@@ -71,18 +71,18 @@ imports:
   subpackages:
   - migration
 - name: golang.org/x/crypto
-  version: beaf6a35706e5032ae4c3fcf342c663c069f44d2
+  version: b2aa35443fbc700ab74c586ae79b81c171851023
   subpackages:
   - bcrypt
   - blowfish
   - ssh/terminal
 - name: golang.org/x/net
-  version: cbe0f9307d0156177f9dd5dc85da1a31abc5f2fb
+  version: b68f30494add4df6bd8ef5e82803f308e7f7c59c
   subpackages:
   - html
   - html/atom
 - name: golang.org/x/sys
-  version: f6cff0780e542efa0c8e864dc8fa522808f6a598
+  version: 378d26f46672a356c46195c28f61bdb4c0a781dd
   subpackages:
   - unix
   - windows

@@ -74,7 +74,7 @@ export const identification = {
         name: 'Name',
         present: 'Now',
         nodates: 'NA',
-        unknown: '*Provide your full name below*'
+        unknown: 'Provide your full name below'
       },
       append: 'Add another name',
       appendTitle: 'Do you have additional names to enter?'
@@ -92,6 +92,7 @@ export const identification = {
   },
   birthdate: {
     title: 'Provide your date of birth',
+    confirmation: 'I confirm this date is correct',
     help: {
       title: 'Check "Estimated" if date of birth is unknown',
       message: 'If you are not sure of your exact date of birth estimate it as best you can and check the "Estimated" checkbox. ',
@@ -166,8 +167,8 @@ export const identification = {
       summary: {
         title: 'Summary of email addresses',
         email: 'Email',
-        unknownEmail: '*Provide your email address below*',
-        unknownPhone: '*Provide your telephone number below*',
+        unknownEmail: 'Provide your email address below',
+        unknownPhone: 'Provide your telephone number below',
         phoneNumber: 'Phone number'
       },
       phoneNumbers: {

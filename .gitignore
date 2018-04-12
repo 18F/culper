@@ -48,6 +48,9 @@ __snapshots__/
 /api/vendor
 /api/.glide
 
+# Tools
+/api/tools
+
 # Build artifacts
 .gitmessage
 .projectile

@@ -47,7 +47,7 @@ export default class Multiple extends SubsectionElement {
       index: index,
       left: country,
       right: dates,
-      placeholder: i18n.m('citizenship.multiple.collection.citizenship.summary.unknown')
+      placeholder: i18n.t('citizenship.multiple.collection.citizenship.summary.unknown')
     })
   }
 

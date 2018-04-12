@@ -1,7 +1,6 @@
 <UnpaidTaxes>
   <Answer>{{branch .props.HasTaxes}}</Answer>
   <Comment></Comment>
-  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
   <Incidents>
     {{range $index, $item := .props.List.props.items}}
     {{with $Item := $item.Item}}
@@ -13,7 +12,11 @@
       <DateFailedToPay Type={{if checkboxTrueFalse $Item.YearEstimated | eq "true" }}"Estimated"{{else}}""{{end}}>
         <Year>{{number $Item.Year}}</Year>
       </DateFailedToPay>
-      <DateSatisfied Type="{{dateEstimated $Item.Date}}" NotApplicable="{{notApplicable $Item.DateNotApplicable}}">{{monthYear $Item.Date}}</DateSatisfied>
+      {{if notApplicable $Item.DateNotApplicable | eq "True"}}
+      <DateSatisfied NotApplicable="True" />
+      {{else}}
+      <DateSatisfied Type="{{dateEstimated $Item.Date}}">{{monthYear $Item.Date}}</DateSatisfied>
+      {{end}}
       <Reason>{{textarea $Item.Reason}}</Reason>
       <TaxType>{{text $Item.TaxType}}</TaxType>
       <Type>{{radio $Item.Failure}}</Type>
@@ -21,5 +24,8 @@
     {{end}}
     {{end}}
   </Incidents>
+  {{- if branch .props.HasTaxes | eq "Yes"}}
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
   <SummaryComment></SummaryComment>
+  {{end}}
 </UnpaidTaxes>

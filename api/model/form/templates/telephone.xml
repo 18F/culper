@@ -15,9 +15,11 @@ Also, here are some additional findings:
  - some <Telephone> elements do not have a <Time>
  - there is no reference to the `type` of phone number (i.e. home, work, cell)
 -->
-{{if .props.type | eq "International"}}
+{{- if .props.type | eq "International"}}
 <International>International</International>
-{{end}}
+{{- end}}
 <Number>{{.props.number}}</Number>
+{{- if ne .props.extension ""}}
 <Extension>{{.props.extension}}</Extension>
+{{- end}}
 <Time>{{.props.timeOfDay}}</Time>

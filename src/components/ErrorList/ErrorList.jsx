@@ -208,13 +208,19 @@ const inAccordion = (el) => {
  */
 const groupBy = (arr, getter) => {
   let map = {}
-  arr.forEach(item => {
+
+  if (!arr || arr.length === 0) {
+    return map
+  }
+
+  for (const item of arr) {
     const key = getter(item)
     if (!map[key]) {
       map[key] = []
     }
     map[key].push(item)
-  })
+  }
+
   return map
 }
 
@@ -225,11 +231,13 @@ const groupBy = (arr, getter) => {
 const errorMessages = () => {
   const elements = document.querySelectorAll(':not(.error-list) .field .messages .message.error')
   const messages = []
-  elements.forEach(el => {
+
+  for (const el of elements) {
     const id = fieldId(el)
     const message = fieldTitle(id)
     const title = inAccordion(el) ? accordionSummary(el) : sectionTitle(el)
     messages.push({ id, title, message })
-  })
+  }
+
   return groupBy(messages.filter(m => m.title && m.message), msg => msg.title)
 }

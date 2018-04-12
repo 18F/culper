@@ -43,6 +43,13 @@ ul {
 }
 
 /* design needs a touch more line height than standards */
+a {
+  text-decoration: underline;
+  text-decoration-color: $eapp-blue;
+  text-decoration-style: dashed;
+  text-underline-position: under;
+}
+
 a:focus {
   box-shadow: none;
 }
@@ -127,12 +134,9 @@ a:focus {
         vertical-align: middle;
       }
 
-      span {
+      .eapp-logo-text {
         display: inline-block;
         margin-left: 2rem;
-      }
-
-      .eapp-logo-text {
         font-size: 3rem;
         font-weight: $eapp-bold;
         margin-top: 4.7rem;
@@ -182,7 +186,7 @@ a:focus {
   }
 }
 
-@media screen and (min-width: 850px) {
+@media screen and (min-width: 1001px) {
   .sticky-header {
     .header-container {
       height: 16.7rem;

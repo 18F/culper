@@ -1,6 +1,6 @@
 export const history = {
   intro: {
-    title: 'Section 3: Your history',
+    title: 'Section 2: Your history',
     body: 'You will be asked questions about your history and be asked to provide details if necessary. This section includes where you have lived, where you have worked, and where you went to school.'
   },
   tour: {
@@ -44,7 +44,7 @@ export const history = {
   },
   residence: {
     title: 'Where you have lived',
-    info: 'List the places where your have lived beginning with your present residence and working back 10 years.',
+    info: 'List the places where you have lived beginning with your present residence and working back 10 years.',
     info2: 'Residences for the entire period must be accounted for without breaks.',
     info3a: ' - **Indicate the actual physical location of your residence**, not a Post Office box or a permanent residence when you were not physically located there.',
     info3b: ' - **If you split your time between one or more residences during a time period**, you must list all residences.',
@@ -58,7 +58,7 @@ export const history = {
       summary: {
         title: 'Summary of places you have lived',
         item: 'Address',
-        unknown: '*Provide residence details*',
+        unknown: 'Provide residence details',
         incomplete: 'This residence\'s information is incomplete',
         item2: 'Person'
       },
@@ -152,7 +152,7 @@ export const history = {
           title: 'Summary of your work history',
           employer: 'Employer',
           incomplete: 'This employer\'s information is incomplete',
-          unknown: '*Provide employer details*',
+          unknown: 'Provide employer details',
           item2: 'Title'
         }
       },
@@ -1510,7 +1510,7 @@ export const history = {
         summary: {
           title: 'Summary of education',
           item: 'School',
-          unknown: '*Provide your education details*',
+          unknown: 'Provide your education details',
           incomplete: 'This education\'s information is incomplete',
           item2: 'Diploma'
         },
@@ -1521,7 +1521,7 @@ export const history = {
         summary: {
           title: 'Summary of degrees/diplomas',
           item: 'Degree',
-          unknown: '*Provide your degree/diploma details*'
+          unknown: 'Provide your degree/diploma details'
         },
         append: 'Add another diploma/degree'
       }
@@ -1660,7 +1660,7 @@ export const history = {
         item: 'Federal service',
         present: 'Now',
         nodates: 'NA',
-        unknown: '*Provide federal service below*'
+        unknown: 'Provide federal service below'
       },
       appendTitle: 'Do you have additional former federal civilian employment, excluding military service, NOT indicated previously, to report?',
       append: 'Add another former federal service'

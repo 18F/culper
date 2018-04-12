@@ -47,7 +47,7 @@ export default class MembershipViolence extends SubsectionElement {
       index: index,
       left: details,
       right: dates,
-      placeholder: i18n.m('legal.associations.violence.collection.unknown')
+      placeholder: i18n.t('legal.associations.violence.collection.unknown')
     })
   }
 

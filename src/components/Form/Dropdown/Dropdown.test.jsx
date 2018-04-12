@@ -80,7 +80,7 @@ describe('The Dropdown component', () => {
   it('executes custom displayText func', () => {
     const expected = {
       name: 'state',
-      value: 'foo',
+      value: 'Foo',
       maxlength: '1',
       className: 'dropdown-test',
       displayText: (value, text) => {
@@ -95,9 +95,9 @@ describe('The Dropdown component', () => {
       </Dropdown>
     )
     expect(component.find('div.dropdown-test').length).toEqual(1)
-    expect(component.find('input').nodes[0].value).toEqual('foo---Bar')
+    expect(component.find('input').nodes[0].value).toEqual('bar---Foo')
     component.find('input').simulate('focus')
-    expect(component.state().value).toBe('foo')
+    expect(component.state().value).toBe('Foo')
   })
 
   it('enboldens matching text', () => {

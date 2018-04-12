@@ -48,7 +48,7 @@ export default class Hospitalizations extends SubsectionElement {
       index: index,
       left: facility,
       right: date,
-      placeholder: i18n.m('psychological.hospitalization.collection.summary')
+      placeholder: i18n.t('psychological.hospitalization.collection.summary')
     })
   }
 

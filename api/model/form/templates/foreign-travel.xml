@@ -3,15 +3,17 @@
   <CountriesVisited>
     <Answer>{{branch .props.HasForeignTravelOutside}}</Answer>
   </CountriesVisited>
-  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+
+  <!-- Only render if user has marked yes for countries visited -->
+  {{- if branch .props.HasForeignTravelOutside | eq "Yes"}}
   <SolelyForUSGovernment>
     <Answer>{{branch .props.HasForeignTravelOfficial}}</Answer>
     <Comment></Comment>
   </SolelyForUSGovernment>
-  <SummaryComment></SummaryComment>
-  {{range $index, $item := .props.List.props.items}}
-  {{with $Item := $item.Item}}
+  {{ if branch .props.HasForeignTravelOfficial | eq "No" }}
   <Travels>
+    {{range $index, $item := .props.List.props.items}}
+    {{with $Item := $item.Item}}
     <Travel ID="{{$index}}">
       <ContactedByForeignMilitaryOrganization>
         <Answer>{{branch $Item.Contacted}}</Answer>
@@ -26,13 +28,13 @@
         <Explanation>{{text $Item.InterestExplanation}}</Explanation>
       </ContactedByPersonWithInterestInYourJob>
       {{country $Item.Country}}
-      {{daterange $Item.Dates}}
+      {{monthYearDaterange $Item.Dates}}
       <Detained>
         <Answer>{{branch $Item.Questioned}}</Answer>
-        <Explanation>{{text $Item.QuestionExplanation}}</Explanation>
+        <Explanation>{{text $Item.QuestionedExplanation}}</Explanation>
       </Detained>
       <Duration>
-        <NumberOfDaysRange>{{checkbox $Item.Days}}</NumberOfDaysRange>
+        <NumberOfDaysRange>{{checkbox $Item.Days | daysInRange}}</NumberOfDaysRange>
       </Duration>
       <EntryComment></EntryComment>
       <InvolvedInCounterintelligence>
@@ -44,13 +46,27 @@
         <Explanation>{{text $Item.EncounterExplanation}}</Explanation>
       </PoliceEncounter>
       <PurposeOfVisit
-        Business="{{checkboxHas $Item.Purpose "Business"}}"
-        VolunteerActivities="{{checkboxHas $Item.Purpose "Volunteer"}}"
-        Education="{{checkboxHas $Item.Purpose "Education"}}"
-        Tourism="{{checkboxHas $Item.Purpose "Tourism"}}"
-        TradeShow="{{checkboxHas $Item.Purpose "Conference"}}"
-        VisitFamilyOrFriends="{{checkboxHas $Item.Purpose "Family"}}"
-        Other="{{checkboxHas $Item.Purpose "Other"}}"
+        {{if (checkboxHas $Item.Purpose "Business") | eq "True"}}
+        Business="True"
+        {{end}}
+        {{if (checkboxHas $Item.Purpose "Volunteer") | eq "True"}}
+        VolunteerActivities="True"
+        {{end}}
+        {{if (checkboxHas $Item.Purpose "Education") | eq "True"}}
+        Education="True"
+        {{end}}
+        {{if (checkboxHas $Item.Purpose "Tourism") | eq "True"}}
+        Tourism="True"
+        {{end}}
+        {{if (checkboxHas $Item.Purpose "Conference") | eq "True"}}
+        TradeShow="True"
+        {{end}}
+        {{if (checkboxHas $Item.Purpose "Family") | eq "True"}}
+        VisitFamilyOrFriends="True"
+        {{end}}
+        {{if (checkboxHas $Item.Purpose "Other") | eq "True"}}
+        Other="Other"
+        {{end}}
         />
       <Threatened>
         <Answer>{{branch $Item.Threatened}}</Answer>
@@ -60,4 +76,13 @@
     {{end}}
     {{end}}
   </Travels>
+  {{end}}
+  {{end}}
+
+  {{- if branch .props.HasForeignTravelOutside | eq "Yes"}}
+  {{- if branch .props.HasForeignTravelOfficial | eq "No"}}
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+  <SummaryComment></SummaryComment>
+  {{end}}
+  {{end}}
 </ForeignTravels>

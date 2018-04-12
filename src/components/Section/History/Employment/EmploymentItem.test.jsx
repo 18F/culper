@@ -44,7 +44,7 @@ describe('The employment component', () => {
     const props = {
       EmploymentActivity: { value: 'ActiveMilitary' },
       Dates: {
-        present: false,
+        present: true,
         from: { month: `${sevenYearsAgo.getMonth()+1}`, day: `${sevenYearsAgo.getDate()}`, year: `${sevenYearsAgo.getFullYear()}` },
         to: {}
       }
@@ -72,7 +72,7 @@ describe('The employment component', () => {
     const props = {
       EmploymentActivity: { value: 'ActiveMilitary' },
       Dates: {
-        present: false,
+        present: true,
         from: { month: `${sevenYearsAgo.getMonth()+1}`, day: `${sevenYearsAgo.getDate()}`, year: `${sevenYearsAgo.getFullYear()}` },
         to: {}
       }

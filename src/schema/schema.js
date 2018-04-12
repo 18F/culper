@@ -170,6 +170,9 @@ const transform = {
   'identification.ssn': (data) => {
     return section.identificationSSN(data)
   },
+  'identification.comments': (data) => {
+    return section.identificationComments(data)
+  },
   'financial.bankruptcy': (data) => {
     return section.financialBankruptcy(data)
   },
@@ -191,6 +194,9 @@ const transform = {
   'financial.nonpayment': (data) => {
     return section.financialNonpayment(data)
   },
+  'financial.comments': (data) => {
+    return section.financialComments(data)
+  },
   'history.education': (data) => {
     return section.historyEducation(data)
   },
@@ -202,6 +208,9 @@ const transform = {
   },
   'history.residence': (data) => {
     return section.historyResidence(data)
+  },
+  'history.comments': (data) => {
+    return section.historyComments(data)
   },
   'relationships.status.cohabitant': (data) => {
     return section.relationshipsCohabitants(data)
@@ -215,6 +224,9 @@ const transform = {
   'relationships.relatives': (data) => {
     return section.relationshipsRelatives(data)
   },
+  'relationships.comments': (data) => {
+    return section.relationshipsComments(data)
+  },
   'citizenship.multiple': (data) => {
     return section.citizenshipMultiple(data)
   },
@@ -223,6 +235,9 @@ const transform = {
   },
   'citizenship.status': (data) => {
     return section.citizenshipStatus(data)
+  },
+  'citizenship.comments': (data) => {
+    return section.citizenshipComments(data)
   },
   'military.selective': (data) => {
     return section.militarySelective(data)
@@ -235,6 +250,9 @@ const transform = {
   },
   'military.foreign': (data) => {
     return section.militaryForeign(data)
+  },
+  'military.comments': (data) => {
+    return section.militaryComments(data)
   },
   'foreign.activities.benefits': (data) => {
     return section.foreignActivitiesBenefits(data)
@@ -287,6 +305,9 @@ const transform = {
   'foreign.travel': (data) => {
     return section.foreignTravel(data)
   },
+  'foreign.comments': (data) => {
+    return section.foreignComments(data)
+  },
   'substance.alcohol.additional': (data) => {
     return section.substanceAlcoholAdditional(data)
   },
@@ -319,6 +340,9 @@ const transform = {
   },
   'substance.drugs.voluntary': (data) => {
     return section.substanceDrugVoluntary(data)
+  },
+  'substance.comments': (data) => {
+    return section.substanceComments(data)
   },
   'legal.associations.activities-to-overthrow': (data) => {
     return section.legalAssociationsActivitiesToOverthrow(data)
@@ -371,6 +395,9 @@ const transform = {
   'legal.technology.unlawful': (data) => {
     return section.legalTechnologyUnlawful(data)
   },
+  'legal.comments': (data) => {
+    return section.legalComments(data)
+  },
   'psychological.competence': (data) => {
     return section.psychologicalCompetence(data)
   },
@@ -385,6 +412,9 @@ const transform = {
   },
   'psychological.hospitalizations': (data) => {
     return section.psychologicalHospitalizations(data)
+  },
+  'psychological.comments': (data) => {
+    return section.psychologicalComments(data)
   },
   'psychological.treatment': (data) => {
     return form.treatment(data)

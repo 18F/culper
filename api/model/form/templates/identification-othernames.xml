@@ -1,19 +1,21 @@
 <OtherNamesUsed>
   <Answer>{{branch .props.HasOtherNames}}</Answer>
   <Comment></Comment>
+  {{- if branch .props.HasOtherNames | eq "Yes" }}
   <OtherNames>
     {{range $index, $item := .props.List.props.items}}
     {{with $Item := $item.Item}}
     <OtherName ID="{{$index}}">
       <LegalName>{{name $Item.Name}}</LegalName>
-      {{daterange $Item.DatesUsed}}
+      {{monthYearDaterange $Item.DatesUsed}}
       <Maiden>{{branch $Item.MaidenName}}</Maiden>
       <Reason>{{textarea $Item.Reason}}</Reason>
       <Comment></Comment>
     </OtherName>
+  <SummaryComment></SummaryComment>
   {{end}}
   {{end}}
   </OtherNames>
   <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
-  <SummaryComment></SummaryComment>
+  {{end}}
 </OtherNamesUsed>

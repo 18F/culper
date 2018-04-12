@@ -23,27 +23,28 @@ func TestImportRequestResponse(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Expected import request response but received %v", err)
 	}
-	if importResponse.Return == nil {
+	resp := importResponse.ImportRequestResponse
+	if resp.Return == nil {
 		t.Fatal("Expected return element to be populated")
 	}
 
-	if importResponse.Return.RequestKey == nil {
+	if resp.Return.RequestKey == nil {
 		t.Fatal("Expected return.RequestKey element to be populated")
 	}
 
-	if importResponse.Return.RequestKey.RequestID != "reqid1234" {
-		t.Fatalf("Expected RequestKey to be %v but got %v", "requid1234", importResponse.Return.RequestKey.RequestID)
+	if resp.Return.RequestKey.RequestID != "reqid1234" {
+		t.Fatalf("Expected RequestKey to be %v but got %v", "requid1234", resp.Return.RequestKey.RequestID)
 	}
 
-	if importResponse.Return.InitiatingAgency == nil {
+	if resp.Return.InitiatingAgency == nil {
 		t.Fatal("Expected return.InitiatingAgency element to be populated")
 	}
 
-	if importResponse.Return.InitiatingAgency.AgencyID != 123 {
-		t.Fatalf("Expected InitiatingAgency to be %v but got %v", 123, importResponse.Return.InitiatingAgency.AgencyID)
+	if resp.Return.InitiatingAgency.AgencyID != 123 {
+		t.Fatalf("Expected InitiatingAgency to be %v but got %v", 123, resp.Return.InitiatingAgency.AgencyID)
 	}
 
-	if !importResponse.Return.UserAleadyExisted {
+	if !resp.Return.UserAleadyExisted {
 		t.Fatal("Expected UserAleadyExisted to be true")
 	}
 }
@@ -59,7 +60,8 @@ func TestImportRequestEqipException(t *testing.T) {
 	defer ts.Close()
 
 	client := NewClient(ts.URL, testPrivateKeyPath)
-	_, err := client.ImportRequest(&ImportRequest{})
+	importResp, _ := client.ImportRequest(&ImportRequest{})
+	err := importResp.Error()
 	if err == nil {
 		t.Fatal("Expected error to be returned")
 	}
@@ -73,7 +75,7 @@ func TestImportRequestEqipException(t *testing.T) {
 	}
 
 	if wsErr.Message != expectedErr.Message {
-		t.Fatal("Expected error to be %v but got %v", expectedErr.Message, wsErr.Message)
+		t.Fatalf("Expected error to be %v but got %v", expectedErr.Message, wsErr.Message)
 	}
 
 	if len(wsErr.ErrorMessages) != len(expectedErr.ErrorMessages) {
@@ -104,6 +106,6 @@ func TestIsAlive(t *testing.T) {
 	client := NewClient(ts.URL, testPrivateKeyPath)
 	err := client.IsAlive()
 	if err != nil {
-		t.Fatal("Expected no errors but received %v", err)
+		t.Fatalf("Expected no errors but received %v", err)
 	}
 }

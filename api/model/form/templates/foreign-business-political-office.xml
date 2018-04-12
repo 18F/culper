@@ -10,12 +10,14 @@
     <Comment></Comment>
     {{country $Item.Country}}
     <CurrentEligibility>{{text $Item.Eligibility}}</CurrentEligibility>
-    {{daterange $Item.Dates}}
+    {{monthYearDaterange $Item.Dates}}
     <Position>{{text $Item.Position}}</Position>
     <Reason>{{text $Item.Reason}}</Reason>
   </ForeignPoliticalOffice>
   {{end}}
   {{end}}
+  {{- if branch .props.HasForeignPolitical | eq "Yes"}}
   <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
   <SummaryComment></SummaryComment>
+  {{end}}
 </ForeignPoliticalOffices>

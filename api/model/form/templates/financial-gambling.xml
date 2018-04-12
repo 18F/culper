@@ -1,7 +1,6 @@
 <ProblemsDueToGambling>
   <Answer>{{branch .props.HasGamblingDebt}}</Answer>
   <Comment></Comment>
-  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
   <Incidents>
     {{range $index, $item := .props.List.props.items}}
     {{with $Item := $item.Item}}
@@ -9,11 +8,14 @@
       <Actions>{{textarea $Item.Actions}}</Actions>
       <Amount>{{number $Item.Losses}}</Amount>
       <Comment></Comment>
-      {{daterange $Item.Dates}}
+      {{monthYearDaterange $Item.Dates}}
       <Description>{{textarea $Item.Description}}</Description>
     </Incident>
     {{end}}
     {{end}}
   </Incidents>
+  {{- if branch .props.HasGamblingDebt | eq "Yes"}}
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
   <SummaryComment></SummaryComment>
+  {{end}}
 </ProblemsDueToGambling>

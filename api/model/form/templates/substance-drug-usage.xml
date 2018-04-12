@@ -27,6 +27,8 @@
     {{end}}
     {{end}}
   </Instances>
+  {{- if branch .props.UsedDrugs | eq "Yes"}}
   <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
   <SummaryComment></SummaryComment>
+  {{end}}
 </IllegalUse>

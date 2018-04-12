@@ -3,21 +3,24 @@
     <Answer>{{branch .props.HasFederalService}}</Answer>
   </HadFormerFederalCivilianEmployment>
   <FederalServices>
-    {{range $index, $item := .props.List.props.items}}
-    {{with $Item := $item.Item}}
+    {{- range $index, $item := .props.List.props.items}}
+    {{- with $Item := $item.Item}}
     <FederalService ID="{{$index}}">
       <Agency>
-        <Location>{{location $Item.Address}}</Location>
+        <Location><Place>{{location $Item.Address}}</Place></Location>
         <Name>{{text $Item.Name}}</Name>
       </Agency>
-      {{daterange $Item.Dates}}
+      {{monthYearDaterange $Item.Dates}}
       <PositionTitle>{{text $Item.Position}}</PositionTitle>
       <EntryComment></EntryComment>
     </FederalService>
-    {{end}}
-    {{end}}
+    {{- end}}
+    {{- end}}
   </FederalServices>
+
+  {{- if branch .props.HasFederalService | eq "Yes"}}
   <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
   <SummaryComment></SummaryComment>
   <Comment></Comment>
+  {{- end}}
 </FormerFederalServiceActivities>

@@ -1,12 +1,10 @@
 {{ $ssn := .props.ssn }}
-<SSN NotApplicable="{{ $ssn.props.notApplicable }}">
-  <FirstThree>
-    {{ $ssn.props.first }}
-  </FirstThree>
-  <NextTwo>
-    {{ $ssn.props.middle }}
-  </NextTwo>
-  <LastFour>
-    {{ $ssn.props.last }}
-  </LastFour>
+{{ if $ssn.props.notApplicable }}
+<SSN NotApplicable="True" />
+{{else}}
+<SSN>
+  <FirstThree>{{ $ssn.props.first }}</FirstThree>
+  <NextTwo>{{ $ssn.props.middle }}</NextTwo>
+  <LastFour>{{ $ssn.props.last }}</LastFour>
 </SSN>
+{{end}}

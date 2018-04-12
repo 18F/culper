@@ -8,7 +8,7 @@ import { push } from '../middleware/history'
  * dispatches a login success handler and redirects to
  * home page.
  */
-export function login (username, password, fn) {
+export function login (username, password) {
   return function (dispatch, getState) {
     return api
       .login(username, password)
@@ -19,11 +19,6 @@ export function login (username, password, fn) {
 
         if (!mfa.enabled) {
           dispatch(push('/form/identification/intro'))
-        }
-
-        // TODO: Remove after usability testing
-        if (fn) {
-          fn()
         }
       })
       .catch(error => {

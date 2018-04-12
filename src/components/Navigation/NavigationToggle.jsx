@@ -8,39 +8,29 @@ import AuthenticatedView from '../../views/AuthenticatedView'
 export class NavigationToggle extends React.Component {
   constructor (props) {
     super(props)
-    this.logout = this.logout.bind(this)
     this.toggle = this.toggle.bind(this)
   }
 
-  logout () {
-    this.props.dispatch(logout())
-    window.location = window.location.pathname
+  toggle () {
+    this.props.dispatch(updateApplication('Settings', 'mobileNavigation', !this.isOpen()))
   }
 
-  toggle () {
-    const open = this.props.settings.mobileNavigation || false
-    this.props.dispatch(updateApplication('Settings', 'mobileNavigation', !open))
+  isOpen () {
+    return this.props.settings.mobileNavigation || false
   }
 
   render () {
-    if (this.props.settings.mobileNavigation) {
-      return (
-        <div className="navigation-override mobile-visible">
-          <a href="javascript:;;" className="logout" onClick={this.logout}>
-            <span>{i18n.t('app.logout')}</span>
-          </a>
-          <a href="javascript:;;" className="navigation-toggle" onClick={this.toggle}>
-            <i className="fa fa-times" aria-hidden="true"></i>
-            <span>Close navigation</span>
-          </a>
-        </div>
-      )
-    }
-
+    const open = this.isOpen()
+    const title = open ? 'Close navigation' : 'Open navigation'
+    const icon = `fa ${open ? 'fa-times' : 'fa-bars'}`
     return (
-      <a href="javascript:;;" className="navigation-toggle desktop-hidden tablet-hidden mobile-visible" onClick={this.toggle}>
-        <i className="fa fa-bars" aria-hidden="true"></i>
-        <span>Navigation</span>
+      <a href="javascript:;;"
+         className="navigation-toggle mobile-visible"
+         title={title}
+         aria-label={title}
+         onClick={this.toggle}>
+        <i className={icon}
+           aria-hidden="true"></i>
       </a>
     )
   }

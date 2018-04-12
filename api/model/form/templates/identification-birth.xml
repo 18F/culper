@@ -1,10 +1,6 @@
 {{ $birthDate := .ApplicantBirthDate.props.Date }}
 {{ $birthPlace := .ApplicantBirthPlace.props.Location }}
 <Birth>
-  <Date Type="{{dateEstimated $birthDate}}">
-    {{ date $birthDate }}
-  </Date>
-  <Place>
-    {{ location $birthPlace }}
-  </Place>
+  <Date Type="{{dateEstimated $birthDate}}">{{ date $birthDate }}</Date>
+  <Place>{{ location $birthPlace }}</Place>
 </Birth>

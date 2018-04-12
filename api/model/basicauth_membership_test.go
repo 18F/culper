@@ -20,7 +20,7 @@ func TestPasswordMatch(t *testing.T) {
 		}
 
 		if matches := basic.PasswordMatch(test.PasswordInput); test.Expected != matches {
-			t.Error("Error matching password. Expect [%v] but got [%v]\n", test.Expected, matches)
+			t.Errorf("Error matching password. Expect [%v] but got [%v]\n", test.Expected, matches)
 		}
 
 	}

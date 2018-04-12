@@ -9,6 +9,7 @@ import (
 	"github.com/18F/e-QIP-prototype/api/cf"
 	"github.com/18F/e-QIP-prototype/api/db"
 	"github.com/18F/e-QIP-prototype/api/handlers"
+	"github.com/18F/e-QIP-prototype/api/jwt"
 	"github.com/18F/e-QIP-prototype/api/logmsg"
 	"github.com/gorilla/mux"
 )
@@ -25,6 +26,13 @@ func main() {
 		if err := db.MigrateUp("db", "environment", ""); err != nil {
 			log.WithError(err).Warn(logmsg.WarnFailedMigration)
 		}
+	}
+
+	// Make sure the JWT are properly configured
+	if err := jwt.ConfigureEnvironment(256); err != nil {
+		log.WithError(err).Warn(logmsg.WarnFailedMigration)
+	} else {
+		log.Info(logmsg.WarnFailedMigration)
 	}
 
 	// Declare a new router with any middleware injected

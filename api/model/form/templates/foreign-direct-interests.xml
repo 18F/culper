@@ -1,14 +1,20 @@
 <DirectInterests>
-  <Answer>{{branch .props.List.props.branch}}</Answer>
+  <Answer>{{- branch .props.HasInterests -}}</Answer>
+  {{if branch .props.HasInterests | eq "Yes"}}
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+  {{end}}
+
   {{range $index, $item := .props.List.props.items}}
   {{with $Item := $item.Item}}
   <DirectInterest ID="{{$index}}">
     <Comment></Comment>
     <Coowners>
-      <Answer>{{branchcollectionHas $Item.Cowners.props.List}}</Answer>
+      <Answer>{{branchcollectionHas $Item.CoOwners.props.List}}</Answer>
       <AnswerComment></AnswerComment>
+      {{ if branchcollectionHas $Item.CoOwners.props.List | eq "Yes"}}
       {{range $cindex, $coowner := $Item.CoOwners.props.List.items}}
       {{with $Coowner := $coowner.Item}}
+      {{if branch $Coowner.Has | eq "Yes"}}
       <Coowner ID="{{$cindex}}">
         <Address>
           {{location $Coowner.Address}}
@@ -28,29 +34,41 @@
       </Coowner>
       {{end}}
       {{end}}
+      {{end}}
       <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
-      <SummaryComment></SummaryComment>
+      {{end}}
     </Coowners>
+
     <Cost Estimated="{{$Item.CostEstimated.props.checked}}">{{text $Item.Cost}}</Cost>
     <CurrentValue Estimated="{{$Item.ValueEstimated.props.checked}}">{{text $Item.Value}}</CurrentValue>
     <DateAcquired Type="{{dateEstimated $Item.Acquired}}">
       {{date $Item.Acquired}}
     </DateAcquired>
-    <DateRelinquished Type="{{dateEstimated $Item.Relinquished}}" NotApplicable="{{notApplicable $Item.RelinquishedNotApplicable}}">
+    {{if notApplicable $Item.RelinquishedNotApplicable | eq "True"}}
+    <DateRelinquished NotApplicable="True" />
+    {{else}}
+    <DateRelinquished Type="{{dateEstimated $Item.Relinquished}}">
       {{date $Item.Relinquished}}
     </DateRelinquished>
+    {{end}}
     <Explanation>{{text $Item.Explanation}}</Explanation>
     <HowAcquired>{{text $Item.HowAcquired}}</HowAcquired>
     <Members
-      Yourself="{{checkboxHas $Item.InterestTypes "Yourself"}}"
-      Spouse="{{checkboxHas $Item.InterestTypes "Spouse"}}"
-      Cohabitant="{{checkboxHas $Item.InterestTypes "Cohabitant"}}"
-      DependentChildren="{{checkboxHas $Item.InterestTypes "DependentChildren"}}"
+      {{if (checkboxHas $Item.InterestTypes "Yourself") | eq "True"}}
+      Yourself="True"
+      {{end}}
+      {{if (checkboxHas $Item.InterestTypes "Spouse") | eq "True"}}
+      Spouse="True"
+      {{end}}
+      {{if (checkboxHas $Item.InterestTypes "Cohabitant") | eq "True"}}
+      Cohabitant="True"
+      {{end}}
+      {{if (checkboxHas $Item.InterestTypes "DependentChildren") | eq "True"}}
+      DependentChildren="True"
+      {{end}}
       />
     <TypeOfFinancialInterest>{{text $Item.InterestType}}</TypeOfFinancialInterest>
   </DirectInterest>
-  {{end}}
-  {{end}}
-  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
-  <SummaryComment></SummaryComment>
+  {{- end -}}
+  {{- end -}}
 </DirectInterests>

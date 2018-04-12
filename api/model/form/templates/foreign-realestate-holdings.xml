@@ -1,18 +1,18 @@
 <RealEstateHoldings>
   <Answer>{{branch .props.HasInterests}}</Answer>
   <AnswerComment></AnswerComment>
-  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
   {{range $index, $item := .props.List.props.items}}
   {{with $Item := $item.Item}}
   <RealEstateHolding ID="{{$index}}">
     <Coowner>
-      <SummaryComment></SummaryComment>
     </Coowner>
     <Coowners>
       <Answer>{{branchcollectionHas $Item.CoOwners.props.List}}</Answer>
       <AnswerComment></AnswerComment>
+      {{ if branchcollectionHas $Item.CoOwners.props.List | eq "Yes"}}
       {{range $cindex, $coowner := $Item.CoOwners.props.List.props.items}}
       {{with $Coowner := $coowner.Item}}
+      {{if branch $Coowner.Has | eq "Yes"}}
       <Coowner ID="{{$cindex}}">
         <Address>
           {{location $Coowner.Address}}
@@ -32,7 +32,9 @@
       </Coowner>
       {{end}}
       {{end}}
+      {{end}}
       <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+      {{end}}
     </Coowners>
     <Cost Estimated="{{$Item.CostEstimated.props.checked}}">{{text $Item.Cost}}</Cost>
     <DateAcquired Type="{{dateEstimated $Item.Acquired}}">
@@ -46,14 +48,24 @@
       </Address>
     </Location>
     <Members
-      Yourself="{{checkboxHas $Item.InterestTypes "Yourself"}}"
-      Spouse="{{checkboxHas $Item.InterestTypes "Spouse"}}"
-      Cohabitant="{{checkboxHas $Item.InterestTypes "Cohabitant"}}"
-      DependentChildren="{{checkboxHas $Item.InterestTypes "DependentChildren"}}"
+      {{if (checkboxHas $Item.InterestTypes "Yourself") | eq "True"}}
+      Yourself="True"
+      {{end}}
+      {{if (checkboxHas $Item.InterestTypes "Spouse") | eq "True"}}
+      Spouse="True"
+      {{end}}
+      {{if (checkboxHas $Item.InterestTypes "Cohabitant") | eq "True"}}
+      Cohabitant="True"
+      {{end}}
+      {{if (checkboxHas $Item.InterestTypes "DependentChildren") | eq "True"}}
+      DependentChildren="True"
+      {{end}}
       />
     <Type>{{text $Item.RealEstateType}}</Type>
   </RealEstateHolding>
   {{end}}
   {{end}}
-  <SummaryComment></SummaryComment>
+  {{- if branch .props.HasInterests | eq "Yes"}}
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+  {{end}}
 </RealEstateHoldings>

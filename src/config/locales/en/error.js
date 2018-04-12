@@ -51,9 +51,9 @@ export const error = {
       length: {
         title: 'There is a problem with the middle name',
         message: [
-          'You are only allowed 100 characters.',
+          'If the middle name is an initial then check the "Initial only" checkbox.',
           '*and/or*',
-          'If the middle name is an initial then check the "Initial only" checkbox.'
+          'You are only allowed 100 characters.'
         ],
         note: ''
       },
@@ -77,7 +77,11 @@ export const error = {
   birthdate: {
     age: {
       title: 'The applicant age is not approved',
-      message: 'Applicants must be older than 16 and less than 130 years of age',
+      message: [
+        'Your date of birth indicates you are under the age of 16, please confirm the date is correct using the button above.',
+        '*or*',
+        'Applicants must be younger than 130 years old.'
+      ],
       note: ''
     }
   },
@@ -658,7 +662,7 @@ export const error = {
         pattern: {
           title: 'There is a problem with the ZIP Code',
           message: 'The ZIP Code should be either 5 or 9 digits.',
-          note: ''
+          note: 'Note: A 9 digit zip code should be in the following format #####-####.'
         }
       },
       country: {
@@ -736,6 +740,12 @@ export const error = {
         'For passport cards the number begins with a "C" and followed by 8 digits.'
       ],
       note: ''
+    },
+    expiration: {
+      min: {
+        title: 'There is a problem with the date',
+        message: 'The date should be after the passport was issued.'
+      }
     }
   },
   currency: {
@@ -966,14 +976,6 @@ export const error = {
       }
     }
   },
-  passport: {
-    expiration: {
-      min: {
-        title: 'There is a problem with the date',
-        message: 'The date should be after the passport was issued.'
-      }
-    }
-  },
   parent: {
     dob: {
       max: {
@@ -989,5 +991,8 @@ export const error = {
   required: {
     title: 'There is a problem with this field',
     message: 'This field is required'
+  },
+  submission: {
+    message: 'There was a problem submitting your SF-86. Please contact support for additional information.'
   }
 }

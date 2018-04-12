@@ -2,7 +2,6 @@
 <SponsoredVisits>
   <Answer>{{branch .props.HasForeignSponsorship}}</Answer>
   <Comment></Comment>
-  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
   {{range $index, $item := .props.List.props.items}}
   {{with $Item := $item.Item}}
   <SponsoredVisit ID="{{$index}}">
@@ -12,11 +11,18 @@
       </Address>
     </AddressWhileInUS>
     <Birth>
-      <Date Type="{{dateEstimated $Item.Birthdate}}" DoNotKnow="{{notApplicable $Item.BirthdateNotApplicable}}">
+      {{if notApplicable $Item.BirthdateNotApplicable | eq "True"}}
+      <Date DoNotKnow="True" />
+      {{else}}
+      <Date Type="{{dateEstimated $Item.Birthdate}}">
         {{monthYear $Item.Birthdate}}
       </Date>
+      {{end}}
       <Place>
         {{location $Item.Birthplace}}
+        {{if $Item.Birthplace.props.country | eq "United States"}}
+        <Country>United States</Country>
+        {{end}}
       </Place>
     </Birth>
     <CountriesOfCitizenship>
@@ -31,7 +37,7 @@
         {{location $Item.Residence}}
       </Address>
     </CurrentAddress>
-    {{daterange $Item.Dates}}
+    {{monthYearDaterange $Item.Dates}}
     <EntryComment></EntryComment>
     <Name>
       {{name $Item.Name}}
@@ -47,5 +53,8 @@
   </SponsoredVisit>
   {{end}}
   {{end}}
+  {{- if branch .props.HasForeignSponsorship | eq "Yes"}}
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
   <SummaryComment></SummaryComment>
+  {{end}}
 </SponsoredVisits>

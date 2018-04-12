@@ -9,19 +9,6 @@ import AuthenticatedNavigationToggle, { NavigationToggle } from './NavigationTog
 describe('The navigation toggle component', () => {
   window.token = 'fake-token'
 
-  it('can logout', () => {
-    let dispatched = 0
-    const props = {
-      dispatch: () => { dispatched++ },
-      settings: {
-        mobileNavigation: true
-      }
-    }
-    const component = mount(<NavigationToggle {...props} />)
-    component.find('.logout').simulate('click')
-    expect(dispatched).toEqual(1)
-  })
-
   it('can toggle', () => {
     let dispatched = 0
     const props = {
@@ -45,7 +32,7 @@ describe('The navigation toggle component', () => {
     expect(component.find('.navigation-override').length).toBe(0)
   })
 
-  it('visible when authenticated and mobile', () => {
+  it('visible when authenticated', () => {
     const middlewares = [ thunk ]
     const mockStore = configureMockStore(middlewares)
     const store = mockStore({
@@ -60,10 +47,10 @@ describe('The navigation toggle component', () => {
       }
     })
     const component = mount(<Provider store={store}><AuthenticatedNavigationToggle /></Provider>)
-    expect(component.find('.navigation-override').length).toBe(1)
+    expect(component.find('.navigation-toggle').length).toBe(1)
   })
 
-  it('hidden when not authenticated and mobile', () => {
+  it('hidden when not authenticated', () => {
     window.token = ''
     const middlewares = [ thunk ]
     const mockStore = configureMockStore(middlewares)
@@ -76,7 +63,7 @@ describe('The navigation toggle component', () => {
       }
     })
     const component = mount(<Provider store={store}><AuthenticatedNavigationToggle /></Provider>)
-    expect(component.find('.navigation-override').length).toBe(0)
+    expect(component.find('.navigation-toggle').length).toBe(0)
     window.token = 'fake-token'
   })
 })

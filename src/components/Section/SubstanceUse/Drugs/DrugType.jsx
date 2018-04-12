@@ -25,7 +25,7 @@ export default class DrugType extends ValidationElement {
   }
 
   updateDrugTypeOther (values) {
-    this.update({ value: values.value })
+    this.update({ value: values.value || 'Other' })
   }
 
   isOther (drug) {
@@ -33,99 +33,99 @@ export default class DrugType extends ValidationElement {
       return false
     }
 
-    return !['Cocaine', 'Stimulants', 'THC', 'Depressants', 'Ketamine', 'Narcotics', 'Hallucinogenic', 'Steriods', 'Inhalants'].includes(drug)
+    return !['Cocaine', 'Stimulants', 'THC', 'Depressants', 'Ketamine', 'Narcotics', 'Hallucinogenic', 'Steroids', 'Inhalants'].includes(drug)
   }
 
   render () {
     const other = this.isOther(this.props.value)
     const selected = other ? 'Other' : this.props.value
-    const explanation = other ? this.props.value : ''
+    const explanation = other && this.props.value !== 'Other' ? this.props.value : ''
     return (
       <div className="drug-type">
         <RadioGroup name="born"
-          onError={this.props.onError}
-          required={this.props.required}
-          selectedValue={selected}>
+                    onError={this.props.onError}
+                    required={this.props.required}
+                    selectedValue={selected}>
           <Radio className="cocaine"
-            label={i18n.m('substance.drugs.drugType.label.cocaine')}
-            value="Cocaine"
-            onUpdate={this.updateDrugType}
-            onError={this.props.onError}
-            onBlur={this.props.onBlur}
-            onFocus={this.props.onFocus}
-          />
+                 label={i18n.m('substance.drugs.drugType.label.cocaine')}
+                 value="Cocaine"
+                 onUpdate={this.updateDrugType}
+                 onError={this.props.onError}
+                 onBlur={this.props.onBlur}
+                 onFocus={this.props.onFocus}
+                 />
           <Radio className="stimulants"
-            label={i18n.m('substance.drugs.drugType.label.stimulants')}
-            value="Stimulants"
-            onUpdate={this.updateDrugType}
-            onError={this.props.onError}
-            onBlur={this.props.onBlur}
-            onFocus={this.props.onFocus}
-          />
+                 label={i18n.m('substance.drugs.drugType.label.stimulants')}
+                 value="Stimulants"
+                 onUpdate={this.updateDrugType}
+                 onError={this.props.onError}
+                 onBlur={this.props.onBlur}
+                 onFocus={this.props.onFocus}
+                 />
           <Radio className="thc"
-            label={i18n.m('substance.drugs.drugType.label.thc')}
-            value="THC"
-            onUpdate={this.updateDrugType}
-            onError={this.props.onError}
-            onBlur={this.props.onBlur}
-            onFocus={this.props.onFocus}
-          />
+                 label={i18n.m('substance.drugs.drugType.label.thc')}
+                 value="THC"
+                 onUpdate={this.updateDrugType}
+                 onError={this.props.onError}
+                 onBlur={this.props.onBlur}
+                 onFocus={this.props.onFocus}
+                 />
           <Radio className="depressants"
-            label={i18n.m('substance.drugs.drugType.label.depressants')}
-            value="Depressants"
-            onUpdate={this.updateDrugType}
-            onError={this.props.onError}
-            onBlur={this.props.onBlur}
-            onFocus={this.props.onFocus}
-          />
+                 label={i18n.m('substance.drugs.drugType.label.depressants')}
+                 value="Depressants"
+                 onUpdate={this.updateDrugType}
+                 onError={this.props.onError}
+                 onBlur={this.props.onBlur}
+                 onFocus={this.props.onFocus}
+                 />
           <Radio className="ketamine"
-            label={i18n.m('substance.drugs.drugType.label.ketamine')}
-            value="Ketamine"
-            onUpdate={this.updateDrugType}
-            onError={this.props.onError}
-            onBlur={this.props.onBlur}
-            onFocus={this.props.onFocus}
-          />
+                 label={i18n.m('substance.drugs.drugType.label.ketamine')}
+                 value="Ketamine"
+                 onUpdate={this.updateDrugType}
+                 onError={this.props.onError}
+                 onBlur={this.props.onBlur}
+                 onFocus={this.props.onFocus}
+                 />
           <Radio className="narcotics"
-            label={i18n.m('substance.drugs.drugType.label.narcotics')}
-            value="Narcotics"
-            onUpdate={this.updateDrugType}
-            onError={this.props.onError}
-            onBlur={this.props.onBlur}
-            onFocus={this.props.onFocus}
-          />
+                 label={i18n.m('substance.drugs.drugType.label.narcotics')}
+                 value="Narcotics"
+                 onUpdate={this.updateDrugType}
+                 onError={this.props.onError}
+                 onBlur={this.props.onBlur}
+                 onFocus={this.props.onFocus}
+                 />
           <Radio className="hallucinogenic"
-            label={i18n.m('substance.drugs.drugType.label.hallucinogenic')}
-            value="Hallucinogenic"
-            onUpdate={this.updateDrugType}
-            onError={this.props.onError}
-            onBlur={this.props.onBlur}
-            onFocus={this.props.onFocus}
-          />
+                 label={i18n.m('substance.drugs.drugType.label.hallucinogenic')}
+                 value="Hallucinogenic"
+                 onUpdate={this.updateDrugType}
+                 onError={this.props.onError}
+                 onBlur={this.props.onBlur}
+                 onFocus={this.props.onFocus}
+                 />
           <Radio className="steroids"
-            label={i18n.m('substance.drugs.drugType.label.steroids')}
-            value="Steroids"
-            onUpdate={this.updateDrugType}
-            onError={this.props.onError}
-            onBlur={this.props.onBlur}
-            onFocus={this.props.onFocus}
-          />
+                 label={i18n.m('substance.drugs.drugType.label.steroids')}
+                 value="Steroids"
+                 onUpdate={this.updateDrugType}
+                 onError={this.props.onError}
+                 onBlur={this.props.onBlur}
+                 onFocus={this.props.onFocus}
+                 />
           <Radio className="inhalants"
-            label={i18n.m('substance.drugs.drugType.label.inhalants')}
-            value="Inhalants"
-            onUpdate={this.updateDrugType}
-            onError={this.props.onError}
-            onBlur={this.props.onBlur}
-            onFocus={this.props.onFocus}
-          />
+                 label={i18n.m('substance.drugs.drugType.label.inhalants')}
+                 value="Inhalants"
+                 onUpdate={this.updateDrugType}
+                 onError={this.props.onError}
+                 onBlur={this.props.onBlur}
+                 onFocus={this.props.onFocus}
+                 />
           <Radio className="other"
-            label={i18n.m('substance.drugs.drugType.label.other')}
-            value="Other"
-            onUpdate={this.updateDrugType}
-            onError={this.props.onError}
-            onBlur={this.props.onBlur}
-            onFocus={this.props.onFocus}
-          />
+                 label={i18n.m('substance.drugs.drugType.label.other')}
+                 value="Other"
+                 onUpdate={this.updateDrugType}
+                 onError={this.props.onError}
+                 onBlur={this.props.onBlur}
+                 onFocus={this.props.onFocus}
+                 />
         </RadioGroup>
         <Show when={other}>
           <Field title={i18n.t('substance.drugs.drugType.label.drugTypeOther')}

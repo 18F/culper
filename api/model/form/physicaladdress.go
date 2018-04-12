@@ -20,9 +20,9 @@ type PhysicalAddress struct {
 	// Persister specific fields
 	ID                    int `json:"-"`
 	AccountID             int `json:"-"`
-	HasDifferentAddressID int `json:"-"`
-	AddressID             int `json:"-"`
-	TelephoneID           int `json:"-"`
+	HasDifferentAddressID int `json:"-" pg:", fk:HasDifferentAddress`
+	AddressID             int `json:"-" pg:", fk:Address"`
+	TelephoneID           int `json:"-" pg:", fk:Telephone"`
 }
 
 // Unmarshal bytes in to the entity properties.
