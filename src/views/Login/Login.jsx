@@ -2,7 +2,7 @@ import React from 'react'
 import { TwoFactor } from '../../components'
 import { connect } from 'react-redux'
 import { i18n, env } from '../../config'
-import { api } from '../../services'
+import { api, getQueryValue, getCookieValue, deleteCookie } from '../../services'
 import { login, handleLoginSuccess } from '../../actions/AuthActions'
 import { push } from '../../middleware/history'
 import { Consent, Show } from '../../components/Form'
@@ -39,27 +39,6 @@ export class Login extends React.Component {
     }
   }
 
-  getQueryValue (key) {
-    let query = this.props.location.search.substring(1)
-    let vars = query.split('&')
-    let values = []
-
-    for (let i = 0; i < vars.length; i++) {
-      let pair = vars[i].split('=')
-      if (pair[0] === key) {
-        values.push(pair[1])
-      }
-    }
-
-    if (values.length === 0) {
-      return null
-    } else if (values.length === 1) {
-      return values[0]
-    }
-
-    return values
-  }
-
   redirect () {
     // If user is authenticated, redirect to home page
     if (this.props.authenticated && this.props.twofactor) {
@@ -67,15 +46,16 @@ export class Login extends React.Component {
       return
     }
 
-    const token = this.getQueryValue('token')
+    const token = getCookieValue('token')
     if (token) {
+      deleteCookie('token')
       api.setToken(token)
       this.props.dispatch(handleLoginSuccess())
       this.props.dispatch(push('/loading'))
       return
     }
 
-    const err = this.getQueryValue('error')
+    const err = getQueryValue('error')
     if (err) {
       switch (err) {
       case 'token':
