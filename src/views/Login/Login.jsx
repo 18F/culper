@@ -26,10 +26,6 @@ export class Login extends React.Component {
     this.mfa = env.MultipleFactorAuthentication()
   }
 
-  componentDidMount () {
-    this.redirect()
-  }
-
   componentWillMount () {
     this.redirect()
     if (env.SamlEnabled()) {

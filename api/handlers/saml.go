@@ -3,6 +3,7 @@ package handlers
 import (
 	"fmt"
 	"net/http"
+	"net/url"
 	"os"
 	"strings"
 	"time"
@@ -141,11 +142,13 @@ func SamlCallbackHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	log.WithField("account", account.ID).Info(logmsg.SamlValid)
+	uri, _ := url.Parse(redirectTo)
+	domain := strings.Split(uri.Host, ":")[0]
 	expiration := time.Now().Add(time.Duration(1) * time.Minute)
 	cookie := &http.Cookie{
-		Domain:   "revolvingcow.servequake.com",
+		Domain:   domain,
 		Name:     "token",
-		Value:    "blah",
+		Value:    signedToken,
 		HttpOnly: false,
 		Path:     "/",
 		MaxAge:   60,
