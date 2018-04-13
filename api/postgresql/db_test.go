@@ -35,15 +35,20 @@ func TestCollections(t *testing.T) {
 	settings.Configure()
 	service := &DatabaseService{Log: mock.LogService{Off: true}, Env: settings}
 	service.Configure()
+	account := 1
 
 	tests := []struct {
-		Data string
+		Data  string
+		Items int
 	}{
-		{Data: "testdata/accordion.json"},
-		// {Data: "testdata/branchcollection.json"},
+		{Data: "testdata/accordion.json", Items: 2},
+		{Data: "testdata/branchcollection.json", Items: 4},
 	}
 
 	for _, test := range tests {
+		// Purge the account
+		api.PurgeAccountStorage(service, account)
+
 		// Get the test data as a byte array
 		raw, err := readBinaryData(test.Data)
 		if err != nil {
@@ -65,7 +70,6 @@ func TestCollections(t *testing.T) {
 			t.Fatalf("Error with [%s]: %v\n\nEntity: %v", test.Data, err, entity)
 		}
 
-		account := 1
 		id, err := entity.Save(service, account)
 		if err != nil {
 			t.Fatalf("Error saving [%s]: %v\n\nEntity: %v", test.Data, err, entity)
@@ -83,7 +87,7 @@ func TestCollections(t *testing.T) {
 		}
 
 		savedItems := len(savedEntity.Items)
-		if savedItems != 1 {
+		if savedItems != test.Items {
 			t.Fatalf("Collection did not have 1 items but was %d", savedItems)
 		}
 		if _, err := savedEntity.Delete(service, account); err != nil {
