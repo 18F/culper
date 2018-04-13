@@ -45,6 +45,7 @@ import ForeignBornDocuments from './ForeignBornDocuments/ForeignBornDocuments'
 import Currency from './Currency'
 import Location from './Location'
 import Spinner, { SpinnerAction } from './Spinner'
+import TimeoutWarning from './TimeoutWarning'
 
 export {
   ValidationElement,
@@ -90,5 +91,6 @@ export {
   Currency,
   Location,
   Spinner,
-  SpinnerAction
+  SpinnerAction,
+  TimeoutWarning
 }

@@ -253,7 +253,6 @@ describe('The Name component', () => {
     expected.forEach((ex) => {
       const component = mount(<Name {...ex} />)
       component.find({ name: 'middle' }).simulate('change')
-      console.log(component.html())
       expect(component.find('.usa-input-error-label').length).toEqual(ex.errors)
     })
   })
