@@ -6,6 +6,7 @@ import Section from './Section'
 import { SavedIndicator } from './SavedIndicator'
 import { ProgressBar } from './ProgressBar'
 import Sticky from './Sticky'
+import { TimeoutWarning } from './Form'
 
 export {
   TwoFactor,
@@ -16,5 +17,6 @@ export {
   Section,
   SavedIndicator,
   ProgressBar,
-  Sticky
+  Sticky,
+  TimeoutWarning
 }
