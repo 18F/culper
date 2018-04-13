@@ -20,7 +20,7 @@ When running the application using the provided [docker-compose.yml](docker-comp
 | [`LOG_FILE`](#log_file)                            |                 |                        | X                     |
 | [`LOG_SYSLOG`](#log_syslog)                          |                 |                        | X                     |
 | [`LOG_SYSLOG_CERT`](#log_syslog_cert)                     |                 |                        | X                     |
-| [`SESSION_TIMEOUT`](#session_timeout)                     |                 |                        | X                     |
+| [`SESSION_TIMEOUT`](#session_timeout)                     |                 | X                      | X                     |
 | [`API_REDIRECT`](#api_redirect)                        |                 |                        | X                     |
 | [`API_BASE_URL`](#api_base_url)                        | X               | X                      | X                     |
 | [`PORT`](#port)                                |                 |                        | X                     |
@@ -123,7 +123,7 @@ Logging to `syslog` may be used in conjunction with other logging sources.
 
 Session timeout in minutes. Periods of inactivity falling outside of the threshold will be considered invalid and are required to be re-authenticated.
 
-**Target** - Back-end (api)<br>
+**Target** - Front-end (web), Back-end (api)<br>
 **Default** - `15`<br>
 
 ## `API_REDIRECT`

@@ -1,4 +1,4 @@
-import { api } from './api'
+import { api, getQueryValue } from './api'
 import MockAdapter from 'axios-mock-adapter'
 
 describe('The API', () => {
@@ -80,15 +80,15 @@ describe('The API', () => {
       value: '?foo=bar&test=1'
     })
 
-    let foo = api.getQueryValue('foo')
+    let foo = getQueryValue('foo')
     expect(foo).toEqual('bar')
 
     window.location.search = ''
-    foo = api.getQueryValue('foo')
+    foo = getQueryValue('foo')
     expect(foo).toEqual(null)
 
     window.location.search = '?foo=bar&foo=meh'
-    foo = api.getQueryValue('foo')
+    foo = getQueryValue('foo')
     expect(foo).toEqual('bar')
 
     window.location = previousLocation

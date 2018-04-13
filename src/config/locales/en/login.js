@@ -55,9 +55,11 @@ export const login = {
     button: 'Back to login'
   },
   token: {
-    title: 'You have been logged out',
+    heading: 'Questionnaire for National Security Positions',
+    title: 'For security reasons you have been logged out',
+    saved: 'Your data was saved 1 minute prior to logout at {time}.',
     para: [
-      'For security reasons you have been logged out. This may be due to a slow connection speed and/or inactivity. Please log in again to continue.'
+      'This may be due to a slow connection speed and/or inactivity. Please log in again to continue.'
     ],
     button: 'Back to login'
   }

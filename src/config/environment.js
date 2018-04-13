@@ -53,6 +53,10 @@ class Env {
     return (process.env.SAML_ENABLED || '').length
   }
 
+  SessionTimeout () {
+    return parseInt(process.env.SESSION_TIMEOUT || '15', 10)
+  }
+
   EndpointBasicAuthentication () { return '/auth/basic' }
   EndpointLogout () { return '/me/logout' }
   EndpointRefresh () { return '/refresh' }

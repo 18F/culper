@@ -65,5 +65,10 @@ export const application = {
   },
   loading: {
     title: '#### We are loading your data'
+  },
+  timeout: {
+    title: 'Are you still working?',
+    message: 'Let us know below or you will be logged out in {time} seconds.',
+    button: 'Yes I\'m still working'
   }
 }
