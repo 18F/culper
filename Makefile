@@ -7,6 +7,8 @@ release := $(shell git rev-list --tags --max-count=1)
 version := $(shell git describe --tags $(release))
 hash    := $(shell git rev-parse --short HEAD)
 tag     := "$(version)-$(hash)"
+uid     := $(shell id -u)
+gid     := $(shell id -g)
 
 
 all: clean setup lint test build
@@ -16,10 +18,14 @@ all: clean setup lint test build
 clear:
 	@rm -rf ./errors
 
+reset-permissions: clear
+	$(info Resetting permissions)
+	@docker-compose run --rm deps ./bin/permissions $(uid) $(gid) 2>errors
+
 #
 # Cleaning
 #
-clean: stop clear
+clean: stop reset-permissions clear
 	-@rm -rf ./dist/*
 	-@rm -rf ./coverage/*
 	-@rm -rf ./jest/*
@@ -34,7 +40,7 @@ clean: stop clear
 #
 # Setup
 #
-setup: stop setup-containers setup-certificates setup-dependencies
+setup: stop setup-containers setup-certificates setup-dependencies reset-permissions
 setup-containers: clear
 	$(info Building containers)
 	@docker-compose build deps frontend web db api 2>errors
@@ -86,7 +92,7 @@ coverage: clear
 #
 # Building
 #
-build: build-react build-go
+build: build-react build-go reset-permissions
 build-react: clear
 	$(info Compiling React application)
 	@docker-compose run --rm frontend ./bin/build 2>errors
@@ -105,7 +111,7 @@ package-clean:
 package-react:
 	@docker pull ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/nbis_eapp:base
 	@docker create --name=eapp_react_container ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/nbis_eapp:base
-	@docker cp ./dist/ eapp_react_container:/var/www/html/
+	@docker cp ./dist eapp_react_container:/var/www/html/
 	@docker commit eapp_react_container eapp_react
 package-go:
 	@docker run --rm \
@@ -145,8 +151,8 @@ deploy-react:
 #
 # Suites
 #
-react: test-react build-react
-go: test-go build-go
+react: test-react build-react reset-permissions
+go: test-go build-go reset-permissions
 
 #
 # Operations
