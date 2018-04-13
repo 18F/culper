@@ -1,0 +1,4 @@
+#!/bin/sh
+mkdir -p /tmp/strace;
+rm -rf /tmp/strace/eapp.strace*;
+strace -ff -o /tmp/strace/eapp.strace $@

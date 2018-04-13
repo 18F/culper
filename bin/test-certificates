@@ -14,9 +14,9 @@ openssl pkcs8 -topk8 -inform PEM -in "$WS_KEY" -outform DER -nocrypt -out "$WS_P
 openssl req -new -x509 -subj "$SUBJ" -days 365 -key "$WS_KEY" -out "$WS_CER" -sha256
 
 # User=rw Group=r Other=r
-chmod 0600 "$WS_KEY"
-chmod 0640 "$WS_PKCS"
-chmod 0640 "$WS_CER"
+chmod 0644 "$WS_KEY"
+chmod 0644 "$WS_PKCS"
+chmod 0644 "$WS_CER"
 
 SAML_KEY=./api/eapp.key
 SAML_CER=./api/eapp.crt

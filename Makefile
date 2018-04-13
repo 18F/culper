@@ -155,6 +155,27 @@ react: test-react build-react reset-permissions
 go: test-go build-go reset-permissions
 
 #
+# seccomp
+#
+seccomp:
+	@docker run --name=eapp_strace \
+              --cap-drop ALL \
+              --cap-add SYS_ADMIN \
+              --cap-add NET_ADMIN \
+              --cap-add SYS_PTRACE \
+              --security-opt apparmor=docker-default \
+              --security-opt=no-new-privileges \
+              --rm \
+              --network=eqipprototype_eapp \
+              --expose=3000 \
+              -e "DATABASE_USER=postgres" \
+              -e "DATABASE_NAME=postgres" \
+              -e "DATABASE_HOST=db:5432" \
+              -v /tmp/strace:/tmp/strace \
+              -v /home/bryan/src/github.com/18F/e-QIP-prototype:/go/src/github.com/18F/e-QIP-prototype \
+              -w /go/src/github.com/18F/e-QIP-prototype/api \
+              eqipprototype_api ./bin/seccomp make test
+#
 # Operations
 #
 down:
