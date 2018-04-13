@@ -6,5 +6,6 @@ gid=$2
 chown -f -R $uid:$gid ./{dist,coverage,jest,node_modules,lib}
 chown -f $uid:$uid ./api/webservice/testdata/test.{key,pkcs.key,cer}
 chown -f $uid:$uid ./api/eapp.{key,crt}
+chown -f $uid:$uid ./api/eapp-seccomp.json
 
 exit 0

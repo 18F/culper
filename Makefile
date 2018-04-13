@@ -158,6 +158,14 @@ go: test-go build-go reset-permissions
 # seccomp
 #
 seccomp:
+seccomp-pre:
+	@docker run --name=eapp_strace \
+              --rm \
+              -v /tmp/strace:/tmp/strace \
+              -v /home/bryan/src/github.com/18F/e-QIP-prototype:/go/src/github.com/18F/e-QIP-prototype \
+              -w /go/src/github.com/18F/e-QIP-prototype/api \
+              eqipprototype_api ./bin/seccomp-setup
+seccomp-exec:
 	@docker run --name=eapp_strace \
               --cap-drop ALL \
               --cap-add SYS_ADMIN \
@@ -175,6 +183,14 @@ seccomp:
               -v /home/bryan/src/github.com/18F/e-QIP-prototype:/go/src/github.com/18F/e-QIP-prototype \
               -w /go/src/github.com/18F/e-QIP-prototype/api \
               eqipprototype_api ./bin/seccomp make test
+seccomp-post:
+	docker run --name=eapp_strace \
+              --rm \
+              -it \
+              -v /tmp/strace:/tmp/strace \
+              -v /home/bryan/src/github.com/18F/e-QIP-prototype:/go/src/github.com/18F/e-QIP-prototype \
+              -w /go/src/github.com/18F/e-QIP-prototype/api \
+              eqipprototype_api /bin/bash
 #
 # Operations
 #
