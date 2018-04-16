@@ -3,8 +3,10 @@ package handlers
 import (
 	"fmt"
 	"net/http"
+	"net/url"
 	"os"
 	"strings"
+	"time"
 
 	"github.com/18F/e-QIP-prototype/api/cf"
 	"github.com/18F/e-QIP-prototype/api/db"
@@ -140,13 +142,25 @@ func SamlCallbackHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	log.WithField("account", account.ID).Info(logmsg.SamlValid)
-	url := fmt.Sprintf("%s?token=%s", redirectTo, signedToken)
-	http.Redirect(w, r, url, http.StatusTemporaryRedirect)
+	uri, _ := url.Parse(redirectTo)
+	domain := strings.Split(uri.Host, ":")[0]
+	expiration := time.Now().Add(time.Duration(1) * time.Minute)
+	cookie := &http.Cookie{
+		Domain:   domain,
+		Name:     "token",
+		Value:    signedToken,
+		HttpOnly: false,
+		Path:     "/",
+		MaxAge:   60,
+		Expires:  expiration,
+	}
+	http.SetCookie(w, cookie)
+	http.Redirect(w, r, redirectTo, http.StatusFound)
 }
 
 func redirectAccessDenied(w http.ResponseWriter, r *http.Request) {
 	url := fmt.Sprintf("%s?error=access_denied", redirectTo)
-	http.Redirect(w, r, url, http.StatusTemporaryRedirect)
+	http.Redirect(w, r, url, http.StatusFound)
 }
 
 // Example configuration:
