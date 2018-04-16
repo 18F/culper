@@ -45,9 +45,9 @@ func main() {
 
 	// Make sure the JWT are properly configured
 	if err := token.ConfigureEnvironment(256); err != nil {
-		logger.WarnError(api.WarnFailedMigration, err, api.LogFields{})
+		logger.WarnError(api.JWTSecretNotSet, err, api.LogFields{})
 	} else {
-		logger.Info(api.WarnFailedMigration, api.LogFields{})
+		logger.Info(api.JWTSecretSet, api.LogFields{})
 	}
 
 	// Declare a new router with any middleware injected
