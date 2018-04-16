@@ -1,42 +1,43 @@
 import axios from 'axios'
 import env from '../config/environment'
 
+export const getQueryValue = (key) => {
+  return getSplitValue(key, window.location.search.substring(1), '&', '=')
+}
+
+export const getCookieValue = (key) => {
+  return getSplitValue(key, document.cookie, ';', '=')
+}
+
+const getSplitValue = (key, raw, delim1, delim2) => {
+  const vars = raw.split(delim1)
+
+  for (let i = 0; i < vars.length; i++) {
+    const pair = vars[i].split(delim2)
+    if (pair.length != 2) {
+      continue
+    }
+
+    const pairKey = pair[0].trim()
+    const pairValue = pair[1].trim()
+    if (pairKey === key && pairValue) {
+      return pairValue
+    }
+  }
+
+  return null
+}
+
+export const deleteCookie = (name) => {
+  document.cookie = `${name}=; domain=${window.location.hostname}; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
+}
+
 class Api {
   constructor () {
     this.proxy = axios.create({
       baseURL: env ? env.ApiBaseURL() : '/api',
       timeout: 10000
     })
-  }
-
-  /**
-   * Helper method to extract query parameters from the url
-   */
-  getQueryValue (key) {
-    return this.getSplitValue(key, window.location.search.substring(1), '&', '=')
-  }
-
-  getCookieValue (key) {
-    return this.getSplitValue(key, document.cookie, ';', '=')
-  }
-
-  getSplitValue (key, raw, delim1, delim2) {
-    const vars = raw.split(delim1)
-
-    for (let i = 0; i < vars.length; i++) {
-      const pair = vars[i].split(delim2)
-      if (pair.length != 2) {
-        continue
-      }
-
-      const pairKey = pair[0].trim()
-      const pairValue = pair[1].trim()
-      if (pairKey === key && pairValue) {
-        return pairValue
-      }
-    }
-
-    return null
   }
 
   getToken () {
@@ -48,12 +49,12 @@ class Api {
 
     // Look for token as cookie
     if (token === null) {
-      token = this.getCookieValue('token')
+      token = getCookieValue('token')
     }
 
     // Look for token in query string
     if (token === null) {
-      token = this.getQueryValue('token')
+      token = getQueryValue('token')
     }
 
     if (token === null && env && env.IsTest()) {
