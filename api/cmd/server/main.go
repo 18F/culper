@@ -34,7 +34,7 @@ func main() {
 	xmlsvc := xml.XmlService{Log: logger}
 	mfasvc := mfa.MFAService{Log: logger, Env: settings}
 	samlsvc := &saml.SamlService{Log: logger, Env: settings}
-	api.Geocode := usps.USPSGeocoder{Log: logger, Env: settings}
+	api.Geocode = usps.USPSGeocoder{Log: logger, Env: settings}
 
 	flag.Parse()
 	if !*flagSkipMigration {
