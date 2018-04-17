@@ -1,6 +1,12 @@
 import * as form from '../form'
 
 export const submission = (data = {}) => {
+  const attachments = data.Attachments || {}
+  let attachmentType = attachments.AttachmentType || {}
+  if (attachmentType.value === 'Other') {
+    attachmentType = attachments.OtherMethod || {}
+  }
+
   return {
     AdditionalComments: form.general('submission.additionalcomments', {
       Signature: form.signature((data.AdditionalComments || {}).Signature)
@@ -13,6 +19,9 @@ export const submission = (data = {}) => {
     }),
     Credit: form.general('submission.credit', {
       Signature: form.signature((data.Credit || {}).Signature)
+    }),
+    Attachments: form.general('submission.attachments', {
+      Method: form.text(attachmentType)
     }),
     Locked: data.Locked
   }

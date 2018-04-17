@@ -263,6 +263,11 @@ const navigation = [
     exclude: true,
     subsections: [
       {
+        name: 'Attachments',
+        url: 'attachments',
+        locked: validators.formIsLocked
+      },
+      {
         name: 'Review',
         url: 'review',
         locked: validators.formIsLocked

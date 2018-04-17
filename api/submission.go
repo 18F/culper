@@ -7,12 +7,14 @@ type Submission struct {
 	PayloadGeneral            Payload `json:"General" sql:"-"`
 	PayloadMedical            Payload `json:"Medical" sql:"-"`
 	PayloadCredit             Payload `json:"Credit" sql:"-"`
+	PayloadAttachments        Payload `json:"Attachments" sql:"-"`
 
 	// Validator specific fields
 	AdditionalComments *SubmissionAdditionalComments `json:"-" sql:"-"`
 	General            *SubmissionGeneral            `json:"-" sql:"-"`
 	Medical            *SubmissionMedical            `json:"-" sql:"-"`
 	Credit             *SubmissionCredit             `json:"-" sql:"-"`
+	Attachments        *SubmissionAttachments        `json:"-" sql:"-"`
 
 	// Persister specific fields
 	ID                   int `json:"-"`
@@ -20,6 +22,7 @@ type Submission struct {
 	GeneralID            int `json:"-"`
 	MedicalID            int `json:"-"`
 	CreditID             int `json:"-"`
+	AttachmentsID        int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -53,6 +56,12 @@ func (entity *Submission) Unmarshal(raw []byte) error {
 	}
 	entity.Credit = credit.(*SubmissionCredit)
 
+	attachments, err := entity.PayloadAttachments.Entity()
+	if err != nil {
+		return err
+	}
+	entity.Attachments = attachments.(*SubmissionAttachments)
+
 	return err
 }
 
@@ -69,6 +78,9 @@ func (entity *Submission) Marshal() Payload {
 	}
 	if entity.Credit != nil {
 		entity.PayloadCredit = entity.Credit.Marshal()
+	}
+	if entity.Attachments != nil {
+		entity.PayloadAttachments = entity.Attachments.Marshal()
 	}
 	return MarshalPayloadEntity("submission", entity)
 }
@@ -88,6 +100,9 @@ func (entity *Submission) Valid() (bool, error) {
 	}
 	if ok, err := entity.Credit.Valid(); !ok {
 		stack.Append("Credit", err)
+	}
+	if ok, err := entity.Attachments.Valid(); !ok {
+		stack.Append("Attachments", err)
 	}
 
 	return !stack.HasErrors(), stack
@@ -129,6 +144,12 @@ func (entity *Submission) Save(context DatabaseService, account int) (int, error
 	}
 	entity.CreditID = creditID
 
+	attachmentsID, err := entity.Attachments.Save(context, account)
+	if err != nil {
+		return attachmentsID, err
+	}
+	entity.AttachmentsID = attachmentsID
+
 	if err := context.Save(entity); err != nil {
 		return entity.ID, err
 	}
@@ -167,6 +188,10 @@ func (entity *Submission) Delete(context DatabaseService, account int) (int, err
 	}
 
 	if _, err := entity.Credit.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err := entity.Attachments.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
@@ -215,6 +240,13 @@ func (entity *Submission) Get(context DatabaseService, account int) (int, error)
 		}
 	}
 
+	if entity.AttachmentsID != 0 {
+		entity.Attachments = &SubmissionAttachments{ID: entity.AttachmentsID}
+		if _, err := entity.Attachments.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	return entity.ID, nil
 }
 
@@ -251,6 +283,11 @@ func (entity *Submission) Find(context DatabaseService) error {
 		}
 		entity.CreditID = previous.CreditID
 		entity.Credit.ID = previous.CreditID
+		if entity.Attachments == nil {
+			entity.Attachments = &SubmissionAttachments{}
+		}
+		entity.AttachmentsID = previous.AttachmentsID
+		entity.Attachments.ID = previous.AttachmentsID
 	})
 	return nil
 }
@@ -819,6 +856,148 @@ func (entity *SubmissionCredit) Find(context DatabaseService) error {
 		}
 		entity.SignatureID = previous.SignatureID
 		entity.Signature.ID = previous.SignatureID
+	})
+	return nil
+}
+
+type SubmissionAttachments struct {
+	PayloadMethod Payload `json:"Method" sql:"-"`
+
+	// Validator specific fields
+	Method *Text `json:"-" sql:"-"`
+
+	// Persister specific fields
+	ID       int `json:"-"`
+	MethodID int `json:"-"`
+}
+
+// Unmarshal bytes in to the entity properties.
+func (entity *SubmissionAttachments) Unmarshal(raw []byte) error {
+	err := json.Unmarshal(raw, entity)
+	if err != nil {
+		return err
+	}
+
+	method, err := entity.PayloadMethod.Entity()
+	if err != nil {
+		return err
+	}
+	entity.Method = method.(*Text)
+
+	return err
+}
+
+// Marshal to payload structure
+func (entity *SubmissionAttachments) Marshal() Payload {
+	if entity.Method != nil {
+		entity.PayloadMethod = entity.Method.Marshal()
+	}
+	return MarshalPayloadEntity("submission.attachments", entity)
+}
+
+// Valid checks the value(s) against an battery of tests.
+func (entity *SubmissionAttachments) Valid() (bool, error) {
+	var stack ErrorStack
+
+	if ok, err := entity.Method.Valid(); !ok {
+		stack.Append("Method", err)
+	}
+
+	return !stack.HasErrors(), stack
+}
+
+// Save will create or update the database.
+func (entity *SubmissionAttachments) Save(context DatabaseService, account int) (int, error) {
+	entity.ID = account
+
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
+	if err := entity.Find(context); err != nil {
+		return entity.ID, err
+	}
+
+	methodID, err := entity.Method.Save(context, account)
+	if err != nil {
+		return methodID, err
+	}
+	entity.MethodID = methodID
+
+	if err := context.Save(entity); err != nil {
+		return entity.ID, err
+	}
+
+	return entity.ID, nil
+}
+
+// Delete will remove the entity from the database.
+func (entity *SubmissionAttachments) Delete(context DatabaseService, account int) (int, error) {
+	entity.ID = account
+
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
+	if err := entity.Find(context); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	if _, err := entity.Method.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	return entity.ID, nil
+}
+
+// Get will retrieve the entity from the database.
+func (entity *SubmissionAttachments) Get(context DatabaseService, account int) (int, error) {
+	entity.ID = account
+
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	if entity.MethodID != 0 {
+		entity.Method = &Text{ID: entity.MethodID}
+		if _, err := entity.Method.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	return entity.ID, nil
+}
+
+// GetID returns the entity identifier.
+func (entity *SubmissionAttachments) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *SubmissionAttachments) SetID(id int) {
+	entity.ID = id
+}
+
+func (entity *SubmissionAttachments) Find(context DatabaseService) error {
+	context.Find(&SubmissionAttachments{ID: entity.ID}, func(result interface{}) {
+		previous := result.(*SubmissionAttachments)
+		if entity.Method == nil {
+			entity.Method = &Text{}
+		}
+		entity.MethodID = previous.MethodID
+		entity.Method.ID = previous.MethodID
 	})
 	return nil
 }

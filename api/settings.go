@@ -298,4 +298,16 @@ const (
 	// Target: Back-end (api)
 	// Default: *empty*
 	WS_AGENCY_GROUP_ID = "WS_AGENCY_GROUP_ID"
+
+	// FILE_MAXIMUM_SIZE
+	//
+	// Target: Front-end (web), Back-end (api)
+	// Default: 5000000
+	FILE_MAXIMUM_SIZE = "FILE_MAXIMUM_SIZE"
+
+	// FILE_TYPES
+	//
+	// Target: Front-end (web), Back-end (api)
+	// Default: ".tiff;.png;.pdf"
+	FILE_TYPES = "FILE_TYPES"
 )

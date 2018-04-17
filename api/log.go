@@ -71,6 +71,15 @@ const (
 	WebserviceErrorCreatingImportRequest       = "Unable to create import request"
 	TransmissionError                          = "Error transmitting package"
 	TransmissionStorageError                   = "Failed to store transmission record"
+	AttachmentNoFile                           = "No attachment file found in multipart form data"
+	AttachmentCopyBufferError                  = "Could not copy file buffer"
+	AttachmentNotSaved                         = "Attachment file failed to save in persistent storage"
+	AttachmentNotDeleted                       = "Attachment file failed to delete"
+	AttachmentNoID                             = "No identifier for attachment provided"
+	AttachmentNotFound                         = "Attachment file not found"
+	AttachmentSizeMismatch                     = "Attachment file size mismatch"
+	AttachmentSizeExceeded                     = "Attachment file size exceeded maximum allowed"
+	AttachmentTypeNotAllowed                   = "Attachment file type not allowed"
 )
 
 // Informative messages
@@ -92,4 +101,7 @@ const (
 	ValidatingJWT        = "Validating JSON web token"
 	WebRequest           = "Web server request received"
 	JWTSecretSet         = "JSON web token secret is set"
+	AttachmentSaved      = "Attachment saved"
+	AttachmentDeleted    = "Attachment deleted"
+	AttachmentDownloaded = "Attachment downloaded"
 )

@@ -6,21 +6,26 @@
   padding: 0;
   width: 100%;
 
-  tbody {
+  > tbody {
     display: block;
   }
 
-  tr {
-    display: block;
-  }
+  > tbody,
+  > thead,
+  > tfoot {
+    > tr {
+      display: block;
 
-  th, td {
-    display: block;
-    margin: 0;
-    padding: 0;
-    border: none;
-    background-color: transparent;
-    font-weight: 400;
+      > th,
+      > td {
+        display: block;
+        margin: 0;
+        padding: 0;
+        border: none;
+        background-color: transparent;
+        font-weight: 400;
+      }
+    }
   }
 }
 
@@ -61,31 +66,38 @@
   .print-table {
     display: table;
 
-    thead {
+    > thead {
       display: table-header-group;
     }
 
-    tfoot {
+    > tfoot {
       display: table-footer-group;
     }
 
-    thead, tfoot {
-      th {
-        color: transparent;
-        padding: 2mm;
+    > thead,
+    > tfoot {
+      > tr {
+        display: table-row;
+
+        > th {
+          display: table-cell;
+          color: transparent;
+          padding: 2mm;
+        }
       }
     }
 
-    tbody {
+    > tbody {
       display: table-row-group;
-    }
 
-    tr {
-      display: table-row;
-    }
+      > tr {
+        display: table-row;
+      }
 
-    th, td {
-      display: table-cell;
+      > th,
+      > td {
+        display: table-cell;
+      }
     }
   }
 

@@ -108,6 +108,17 @@
           }
         }
       }
+    },
+    "Attachments": {
+      "type": "submission.attachments",
+      "props": {
+        "Method": {
+          "type": "text",
+          "props": {
+            "value": "Upload"
+          }
+        }
+      }
     }
   }
 }

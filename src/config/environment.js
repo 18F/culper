@@ -57,6 +57,16 @@ class Env {
     return parseInt(process.env.SESSION_TIMEOUT || '15', 10)
   }
 
+  FileMaximumSize () {
+    return parseInt(process.env.FILE_MAXIMUM_SIZE || '5000000', 10)
+  }
+
+  FileTypes () {
+    return (process.env.FILE_TYPES || '.tiff;.png;.pdf').split(';').map(x => {
+      return x.replace('.', '').toUpperCase()
+    })
+  }
+
   EndpointBasicAuthentication () { return '/auth/basic' }
   EndpointLogout () { return '/me/logout' }
   EndpointRefresh () { return '/refresh' }
@@ -71,6 +81,10 @@ class Env {
   EndpointSubmit () { return '/me/form/submit' }
   EndpointFormHash () { return '/me/form/hash' }
   EndpointValidate (payload) { return '/me/validate' }
+  EndpointAttachment () { return '/me/attachment' }
+  EndpointAttachmentUpdate (id) { return `/me/attachment/${id}` }
+  EndpointAttachmentGet (id) { return `/me/attachment/${id}` }
+  EndpointAttachmentDelete (id) { return `/me/attachment/${id}/delete` }
 }
 
 const env = new Env()

@@ -88,6 +88,11 @@ func main() {
 	a.HandleFunc("/form/hash", http.HashHandler{Env: settings, Log: logger, Token: token, Database: database}.ServeHTTP).Methods("GET")
 	a.HandleFunc("/form/submit", http.SubmitHandler{Env: settings, Log: logger, Token: token, Database: database, Xml: xmlsvc}.ServeHTTP).Methods("POST")
 	a.HandleFunc("/form/section", http.SectionHandler{Env: settings, Log: logger, Token: token, Database: database}.ServeHTTP).Methods("GET")
+	a.HandleFunc("/attachment", http.AttachmentListHandler{Env: settings, Log: logger, Token: token, Database: database}.ServeHTTP).Methods("GET")
+	a.HandleFunc("/attachment", http.AttachmentSaveHandler{Env: settings, Log: logger, Token: token, Database: database}.ServeHTTP).Methods("POST", "PUT")
+	a.HandleFunc("/attachment/{id}", http.AttachmentGetHandler{Env: settings, Log: logger, Token: token, Database: database}.ServeHTTP).Methods("GET")
+	a.HandleFunc("/attachment/{id}", http.AttachmentUpdateHandler{Env: settings, Log: logger, Token: token, Database: database}.ServeHTTP).Methods("POST", "PUT")
+	a.HandleFunc("/attachment/{id}/delete", http.AttachmentDeleteHandler{Env: settings, Log: logger, Token: token, Database: database}.ServeHTTP).Methods("POST", "DELETE")
 
 	// Inject middleware
 	router := http.CORS(http.StandardLogging(r, logger), logger, settings)

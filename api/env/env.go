@@ -24,6 +24,8 @@ func (env Native) Configure() {
 	env.ensure(api.DISABLE_2FA, "0")
 	env.ensure(api.ALLOW_2FA_RESET, "0")
 	env.ensure(api.WINDOW_SIZE, "3")
+	env.ensure(api.FILE_MAXIMUM_SIZE, "5000000")
+	env.ensure(api.FILE_TYPES, ".tiff;.png;.pdf")
 }
 
 func (env Native) Has(name string) bool {

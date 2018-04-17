@@ -130,4 +130,5 @@ var transform = map[string]func() Entity{
 	"submission.general":                              func() Entity { return &SubmissionGeneral{} },
 	"submission.medical":                              func() Entity { return &SubmissionMedical{} },
 	"submission.credit":                               func() Entity { return &SubmissionCredit{} },
+	"submission.attachments":                          func() Entity { return &SubmissionAttachments{} },
 }
