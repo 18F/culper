@@ -18,4 +18,5 @@ applications:
     CORS_ALLOWED: https://eqip-prototype.fr.cloud.gov
     API_REDIRECT: https://eqip-prototype.fr.cloud.gov
     API_BASE_URL: https://eqip-prototype-api.fr.cloud.gov
-    SAML_ENABLED: 1
+    DISABLE_2FA=1
+    BASIC_ENABLED=1
