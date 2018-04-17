@@ -35,18 +35,12 @@ var (
 // USPSGeocoder geocodes address information using the United States Post Office webservice
 // API docs can be found https://www.usps.com/business/web-tools-apis/address-information-api.htm
 type USPSGeocoder struct {
-	Env     api.Settings
-	Log     api.LogService
-	baseURI string
-	userID  string
+	Env api.Settings
+	Log api.LogService
 }
 
 // Validate takes values to be geocoded and executes a web service call
 func (g USPSGeocoder) Validate(geoValues api.GeocodeValues) (api.GeocodeResults, error) {
-	uspsUserID := g.Env.String("USPS_API_API_KEY")
-	if uspsUserID == "" {
-		g.Log.Warn(api.USPSMissingKey, api.LogFields{})
-	}
 	return g.query(geoValues)
 }
 
@@ -162,11 +156,16 @@ func (g USPSGeocoder) prepareQueryURI(geoValues api.GeocodeValues) string {
 	// Set up query parameters
 	v := url.Values{}
 
+	userID := g.Env.String("USPS_API_API_KEY")
+	if userID == "" {
+		g.Log.Warn(api.USPSMissingKey, api.LogFields{})
+	}
+
 	// Populate USPS Address struct with generic geo values
 	address := USPSAddress{}
 	address.FromGeoValues(geoValues)
 	addressRequest := USPSAddressValidateRequest{
-		UserID:  g.userID,
+		UserID:  userID,
 		Address: address,
 	}
 
@@ -176,7 +175,7 @@ func (g USPSGeocoder) prepareQueryURI(geoValues api.GeocodeValues) string {
 	// Set the xml containing information to verify
 	v.Set("XML", addressRequest.ToXMLString())
 
-	uri := fmt.Sprintf("%v?%v", g.baseURI, v.Encode())
+	uri := fmt.Sprintf("%v?%v", USPSURI, v.Encode())
 	return uri
 }
 
@@ -355,25 +354,4 @@ type ErrUSPSSystem struct {
 // Error returns the USPS error message.
 func (e ErrUSPSSystem) Error() string {
 	return e.Message
-}
-
-// NewUSPSGeocoder creates a new instance of USPS Geocoder
-func NewUSPSGeocoder(userID string) *USPSGeocoder {
-	return &USPSGeocoder{
-		userID:  userID,
-		baseURI: USPSURI,
-	}
-}
-
-// NewTestUSPSGeocoder is used for mocking purposes. We can instantiate a new instance
-// and set the URL to that of an http test mock server
-func NewTestUSPSGeocoder(userID string, baseURI string) *USPSGeocoder {
-	if baseURI == "" {
-		baseURI = USPSURI
-	}
-
-	return &USPSGeocoder{
-		userID:  userID,
-		baseURI: baseURI,
-	}
 }

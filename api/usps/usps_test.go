@@ -67,10 +67,10 @@ func TestQuerySuccess(t *testing.T) {
 			fmt.Fprintln(w, xml)
 		}))
 
+		USPSURI = ts.URL
 		geocoder := USPSGeocoder{
-			baseURI: ts.URL,
-			Env:     mock.Native{},
-			Log:     mock.LogService{},
+			Env: mock.Native{},
+			Log: mock.LogService{},
 		}
 		results, _ := geocoder.query(test.Values)
 		equal := reflect.DeepEqual(results, test.ExpectedResults)
@@ -125,10 +125,10 @@ func TestQueryError(t *testing.T) {
 			fmt.Fprintln(w, xml)
 		}))
 
+		USPSURI = ts.URL
 		geocoder := USPSGeocoder{
-			baseURI: ts.URL,
-			Env:     mock.Native{},
-			Log:     mock.LogService{},
+			Env: mock.Native{},
+			Log: mock.LogService{},
 		}
 		_, err = geocoder.query(test.Values)
 		if (err == nil) == test.ExpectError {

@@ -14,6 +14,7 @@ import (
 	"github.com/18F/e-QIP-prototype/api/mfa"
 	"github.com/18F/e-QIP-prototype/api/postgresql"
 	"github.com/18F/e-QIP-prototype/api/saml"
+	"github.com/18F/e-QIP-prototype/api/usps"
 	"github.com/18F/e-QIP-prototype/api/xml"
 	"github.com/gorilla/mux"
 )
@@ -33,6 +34,7 @@ func main() {
 	xmlsvc := xml.XmlService{Log: logger}
 	mfasvc := mfa.MFAService{Log: logger, Env: settings}
 	samlsvc := &saml.SamlService{Log: logger, Env: settings}
+	api.Geocode := usps.USPSGeocoder{Log: logger, Env: settings}
 
 	flag.Parse()
 	if !*flagSkipMigration {
