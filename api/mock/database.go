@@ -49,5 +49,8 @@ func (service *DatabaseService) Count(model interface{}, condition string, param
 	return 0
 }
 
+func (service *DatabaseService) CountExpr(model interface{}, expr string, retval interface{}, condition string, params ...interface{}) {
+}
+
 func (service *DatabaseService) Array(model interface{}, expr string, retval interface{}, condition string, params ...interface{}) {
 }

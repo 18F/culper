@@ -101,6 +101,10 @@ func (service *DatabaseService) Count(model interface{}, condition string, param
 	return count
 }
 
+func (service *DatabaseService) CountExpr(model interface{}, expr string, retval interface{}, condition string, params ...interface{}) {
+	service.database.Model(model).ColumnExpr(expr).Where(condition, params...).Select(retval)
+}
+
 func (service *DatabaseService) Array(model interface{}, expr string, retval interface{}, condition string, params ...interface{}) {
 	service.database.Model(model).ColumnExpr(expr).Where(condition, params...).Select(pg.Array(retval))
 }

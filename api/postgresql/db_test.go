@@ -41,8 +41,8 @@ func TestCollections(t *testing.T) {
 		Data  string
 		Items int
 	}{
-		{Data: "testdata/accordion.json", Items: 2},
-		{Data: "testdata/branchcollection.json", Items: 4},
+		{Data: "testdata/accordion.json", Items: 1},
+		{Data: "testdata/branchcollection.json", Items: 2},
 	}
 
 	for _, test := range tests {
@@ -88,7 +88,7 @@ func TestCollections(t *testing.T) {
 
 		savedItems := len(savedEntity.Items)
 		if savedItems != test.Items {
-			t.Fatalf("Collection did not have 1 items but was %d", savedItems)
+			t.Fatalf("Collection did not have %d items but was %d", test.Items, savedItems)
 		}
 		if _, err := savedEntity.Delete(service, account); err != nil {
 			t.Fatalf("Error deleting [%s]: %v\n\nEntity: %v", test.Data, err, savedEntity)

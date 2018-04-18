@@ -14,5 +14,6 @@ type DatabaseService interface {
 	Delete(query interface{}) error
 	Select(query interface{}) error
 	Count(model interface{}, condition string, params ...interface{}) int
+	CountExpr(model interface{}, expr string, retval interface{}, condition string, params ...interface{})
 	Array(model interface{}, expr string, retval interface{}, condition string, params ...interface{})
 }

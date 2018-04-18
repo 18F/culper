@@ -195,7 +195,8 @@ func (entity *Collection) SetID(id int) {
 
 // collectionItemIDs the Collection item identifiers.
 func (entity *Collection) collectionItemIDs(context DatabaseService) {
-	count := context.Count(&CollectionItem{}, "id = ?", entity.ID)
+	var count int
+	context.CountExpr(&CollectionItem{}, "max(index) as max", &count, "id = ?", entity.ID)
 	entity.Items = []*CollectionItem{}
 	for i := 0; i < count; i++ {
 		entity.Items = append(entity.Items, &CollectionItem{ID: entity.ID, Index: i + 1})
