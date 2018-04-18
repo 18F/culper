@@ -105,7 +105,7 @@ package-clean:
 package-react:
 	@docker pull ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/nbis_eapp:base
 	@docker create --name=eapp_react_container ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/nbis_eapp:base
-	@docker cp ./dist/ eapp_react_container:/var/www/html/
+	@docker cp ./dist eapp_react_container:/var/www/html/
 	@docker commit eapp_react_container eapp_react
 package-go:
 	@docker run --rm \
@@ -147,6 +147,14 @@ deploy-react:
 #
 react: test-react build-react
 go: test-go build-go
+
+#
+# Checksums
+#
+checksum: clear
+	@docker-compose run --rm deps ./bin/checksum 2>errors
+check: clear
+	@docker-compose run --rm deps ./bin/checksum "test" 2>errors
 
 #
 # Operations

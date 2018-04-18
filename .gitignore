@@ -55,6 +55,7 @@ __snapshots__/
 .gitmessage
 .projectile
 bin
+/api/checksum
 /api/api
 /build/
 /doc/
