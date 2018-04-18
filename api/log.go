@@ -3,6 +3,7 @@ package api
 type LogFields map[string]interface{}
 
 type LogService interface {
+	AddField(name string, value interface{})
 	Print(message string, fields LogFields)
 	PrintError(message string, err error, fields LogFields)
 	Debug(message string, fields LogFields)
@@ -26,6 +27,7 @@ const (
 	BasicAuthInvalid                           = "Basic authentication invalid"
 	BasicAuthMissingPassword                   = "Basic authentication failed because missing a password"
 	BasicAuthMissingUsername                   = "Basic authentication failed because missing a username"
+	CORSDenied                                 = "CORS request denied"
 	EntityError                                = "Error getting entity data"
 	EntitySaveError                            = "Error getting entity data"
 	InvalidJWT                                 = "Invalid JSON web token"
@@ -99,6 +101,7 @@ const (
 	TransmissionStarted  = "Transmission began"
 	TransmissionStopped  = "Transmission ended"
 	ValidatingJWT        = "Validating JSON web token"
+	CORSIgnored          = "CORS ignoring OPTION method"
 	WebRequest           = "Web server request received"
 	JWTSecretSet         = "JSON web token secret is set"
 	AttachmentSaved      = "Attachment saved"

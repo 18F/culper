@@ -13,55 +13,62 @@ import (
 )
 
 type LogService struct {
-	Log *logrus.Logger
+	Log    *logrus.Logger
+	fields api.LogFields
 }
 
-func (service LogService) Print(message string, fields api.LogFields) {
-	service.Log.WithFields(logrus.Fields(fields)).Print(message)
+func (service *LogService) AddField(name string, value interface{}) {
+	if _, ok := service.fields[name]; !ok {
+		service.fields = service.mergeFields(api.LogFields{name: value})
+	}
 }
 
-func (service LogService) PrintError(message string, err error, fields api.LogFields) {
-	service.Log.WithFields(logrus.Fields(fields)).WithError(err).Print(message)
+func (service *LogService) Print(message string, fields api.LogFields) {
+	service.Log.WithFields(logrus.Fields(service.mergeFields(fields))).Print(message)
 }
 
-func (service LogService) Debug(message string, fields api.LogFields) {
-	service.Log.WithFields(logrus.Fields(fields)).Debug(message)
+func (service *LogService) PrintError(message string, err error, fields api.LogFields) {
+	service.Log.WithFields(logrus.Fields(service.mergeFields(fields))).WithError(err).Print(message)
 }
 
-func (service LogService) DebugError(message string, err error, fields api.LogFields) {
-	service.Log.WithFields(logrus.Fields(fields)).WithError(err).Debug(message)
+func (service *LogService) Debug(message string, fields api.LogFields) {
+	service.Log.WithFields(logrus.Fields(service.mergeFields(fields))).Debug(message)
 }
 
-func (service LogService) Warn(message string, fields api.LogFields) {
-	service.Log.WithFields(logrus.Fields(fields)).Warn(message)
+func (service *LogService) DebugError(message string, err error, fields api.LogFields) {
+	service.Log.WithFields(logrus.Fields(service.mergeFields(fields))).WithError(err).Debug(message)
 }
 
-func (service LogService) WarnError(message string, err error, fields api.LogFields) {
-	service.Log.WithFields(logrus.Fields(fields)).WithError(err).Warn(message)
+func (service *LogService) Warn(message string, fields api.LogFields) {
+	service.Log.WithFields(logrus.Fields(service.mergeFields(fields))).Warn(message)
 }
 
-func (service LogService) Info(message string, fields api.LogFields) {
-	service.Log.WithFields(logrus.Fields(fields)).Info(message)
+func (service *LogService) WarnError(message string, err error, fields api.LogFields) {
+	service.Log.WithFields(logrus.Fields(service.mergeFields(fields))).WithError(err).Warn(message)
 }
 
-func (service LogService) InfoError(message string, err error, fields api.LogFields) {
-	service.Log.WithFields(logrus.Fields(fields)).WithError(err).Info(message)
+func (service *LogService) Info(message string, fields api.LogFields) {
+	service.Log.WithFields(logrus.Fields(service.mergeFields(fields))).Info(message)
 }
 
-func (service LogService) Fatal(message string, fields api.LogFields) {
-	service.Log.WithFields(logrus.Fields(fields)).Fatal(message)
+func (service *LogService) InfoError(message string, err error, fields api.LogFields) {
+	service.Log.WithFields(logrus.Fields(service.mergeFields(fields))).WithError(err).Info(message)
 }
 
-func (service LogService) FatalError(message string, err error, fields api.LogFields) {
-	service.Log.WithFields(logrus.Fields(fields)).WithError(err).Fatal(message)
+func (service *LogService) Fatal(message string, fields api.LogFields) {
+	service.Log.WithFields(logrus.Fields(service.mergeFields(fields))).Fatal(message)
 }
 
-func (service LogService) Panic(message string, fields api.LogFields) {
-	service.Log.WithFields(logrus.Fields(fields)).Panic(message)
+func (service *LogService) FatalError(message string, err error, fields api.LogFields) {
+	service.Log.WithFields(logrus.Fields(service.mergeFields(fields))).WithError(err).Fatal(message)
 }
 
-func (service LogService) PanicError(message string, err error, fields api.LogFields) {
-	service.Log.WithFields(logrus.Fields(fields)).WithError(err).Panic(message)
+func (service *LogService) Panic(message string, fields api.LogFields) {
+	service.Log.WithFields(logrus.Fields(service.mergeFields(fields))).Panic(message)
+}
+
+func (service *LogService) PanicError(message string, err error, fields api.LogFields) {
+	service.Log.WithFields(logrus.Fields(service.mergeFields(fields))).WithError(err).Panic(message)
 }
 
 // NewLogger creates a custome logger with environment hooks.
@@ -83,31 +90,20 @@ func NewLogger() *logrus.Logger {
 	return log
 }
 
-// // NewLoggerFromRequest creates a custom logger based on properties found in an HTTP request.
-// func NewLoggerFromRequest(r *http.Request) *logrus.Entry {
-// 	log := NewLogger()
-
-// 	id := ""
-// 	token, err := jwt.ParseWithClaims(jwt.ExtractToken(r))
-// 	if err == nil && token.Valid {
-// 		id = jwt.TokenClaims(token).Id
-// 	}
-
-// 	ip := r.RemoteAddr
-// 	proxies := r.Header.Get(http.CanonicalHeaderKey("x-forwarded-for"))
-// 	if proxies != "" {
-// 		for _, proxy := range strings.Split(proxies, ", ") {
-// 			ip = proxy
-// 		}
-// 	}
-
-// 	// Return request specific settings
-// 	contextLogger := log.WithFields(logrus.Fields{
-// 		"ip":      ip,
-// 		"account": id,
-// 	})
-// 	return contextLogger
-// }
+func (service *LogService) mergeFields(fields api.LogFields) api.LogFields {
+	merged := api.LogFields{}
+	for k, v := range service.fields {
+		if _, ok := merged[k]; !ok {
+			merged[k] = v
+		}
+	}
+	for k, v := range fields {
+		if _, ok := merged[k]; !ok {
+			merged[k] = v
+		}
+	}
+	return merged
+}
 
 // Support for logging to an append only log file.
 func hookLocalFile(log *logrus.Logger) {

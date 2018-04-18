@@ -108,7 +108,7 @@ func TestPackage(t *testing.T) {
 		{Schema: "psychological-hospitalizations.xml", Data: readSectionData("testdata/psychological-hospitalizations.json")},
 	}
 
-	logger := mock.LogService{}
+	logger := &mock.LogService{}
 	service := XmlService{Log: logger}
 
 	for _, test := range tests {

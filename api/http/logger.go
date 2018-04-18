@@ -2,18 +2,35 @@ package http
 
 import (
 	"net/http"
+	"strings"
 
 	"github.com/18F/e-QIP-prototype/api"
 )
 
+type LoggingHandler struct {
+	Log api.LogService
+}
+
 // StandardLogging middleware for HTTP handling.
-func StandardLogging(h http.Handler, log api.LogService) http.Handler {
+func (service LoggingHandler) Middleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		log.Info(api.WebRequest, api.LogFields{
+		service.Log.AddField("ip", ipAddress(r))
+		service.Log.Info(api.WebRequest, api.LogFields{
 			"method": r.Method,
 			"url":    r.URL.String(),
 			"remote": r.RemoteAddr,
 		})
-		h.ServeHTTP(w, r)
+		next.ServeHTTP(w, r)
 	})
+}
+
+func ipAddress(r *http.Request) string {
+	ip := r.RemoteAddr
+	proxies := r.Header.Get(http.CanonicalHeaderKey("x-forwarded-for"))
+	if proxies != "" {
+		for _, proxy := range strings.Split(proxies, ", ") {
+			ip = proxy
+		}
+	}
+	return ip
 }

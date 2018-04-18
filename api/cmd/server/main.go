@@ -25,7 +25,7 @@ var (
 
 func main() {
 	cloudfoundry.Configure()
-	logger := log.LogService{Log: log.NewLogger()}
+	logger := &log.LogService{Log: log.NewLogger()}
 	settings := env.Native{}
 	settings.Configure()
 	database := &postgresql.DatabaseService{Log: logger, Env: settings}
@@ -54,6 +54,8 @@ func main() {
 
 	// Declare a new router with any middleware injected
 	r := mux.NewRouter()
+	r.Use(http.LoggingHandler{Log: logger}.Middleware)
+	r.Use(http.CORSHandler{Log: logger, Env: settings}.Middleware)
 	r.HandleFunc("/", http.RootHandler{Env: settings}.ServeHTTP).Methods("GET")
 	r.HandleFunc("/refresh", http.RefreshHandler{Env: settings, Log: logger, Token: token, Database: database}.ServeHTTP).Methods("POST")
 
@@ -80,6 +82,7 @@ func main() {
 
 	// Account specific actions
 	a := r.PathPrefix("/me").Subrouter()
+	a.Use(http.JWTHandler{Log: logger, Token: token}.Middleware)
 	a.HandleFunc("/logout", http.LogoutHandler{Env: settings, Log: logger, Token: token, Database: database}.ServeHTTP).Methods("GET")
 	a.HandleFunc("/validate", http.ValidateHandler{Env: settings, Log: logger, Token: token, Database: database}.ServeHTTP).Methods("POST")
 	a.HandleFunc("/save", http.SaveHandler{Env: settings, Log: logger, Token: token, Database: database}.ServeHTTP).Methods("POST", "PUT")
@@ -94,13 +97,10 @@ func main() {
 	a.HandleFunc("/attachment/{id}", http.AttachmentUpdateHandler{Env: settings, Log: logger, Token: token, Database: database}.ServeHTTP).Methods("POST", "PUT")
 	a.HandleFunc("/attachment/{id}/delete", http.AttachmentDeleteHandler{Env: settings, Log: logger, Token: token, Database: database}.ServeHTTP).Methods("POST", "DELETE")
 
-	// Inject middleware
-	router := http.CORS(http.StandardLogging(r, logger), logger, settings)
-
 	// Get the public address
 	address := settings.String(api.API_BASE_URL) + ":" + settings.String(api.PORT)
 
 	// Listen and serve
 	server := http.Server{Env: settings, Log: logger}
-	logger.FatalError(api.StoppingServer, server.ListenAndServe(address, router), api.LogFields{})
+	logger.FatalError(api.StoppingServer, server.ListenAndServe(address, r), api.LogFields{})
 }

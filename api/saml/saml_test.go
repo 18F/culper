@@ -13,7 +13,7 @@ import (
 
 func TestSamlResponse(t *testing.T) {
 	settings := mock.Native{}
-	service := &SamlService{Log: mock.LogService{}, Env: settings}
+	service := &SamlService{Log: &mock.LogService{}, Env: settings}
 
 	// Create a request
 	_, _, err := service.CreateAuthenticationRequest()

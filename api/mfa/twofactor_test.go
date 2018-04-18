@@ -21,7 +21,7 @@ var tests = []struct {
 }
 
 func TestSecret(t *testing.T) {
-	service := MFAService{Log: mock.LogService{}, Env: mock.Native{}}
+	service := MFAService{Log: &mock.LogService{}, Env: mock.Native{}}
 	first := service.Secret()
 	if first == "" {
 		t.Error("Secret should not be empty")
@@ -37,7 +37,7 @@ func TestSecret(t *testing.T) {
 }
 
 func TestGenerate(t *testing.T) {
-	service := MFAService{Log: mock.LogService{}, Env: mock.Native{}}
+	service := MFAService{Log: &mock.LogService{}, Env: mock.Native{}}
 	for _, x := range tests {
 		if png, err := service.Generate(x.account, base32.StdEncoding.EncodeToString(x.secret)); err == nil {
 			if png != x.base64 {
@@ -48,7 +48,7 @@ func TestGenerate(t *testing.T) {
 }
 
 func TestAuthenticate(t *testing.T) {
-	service := MFAService{Log: mock.LogService{}, Env: mock.Native{}}
+	service := MFAService{Log: &mock.LogService{}, Env: mock.Native{}}
 	for _, x := range tests {
 		if ok, err := service.Authenticate(x.token, base32.StdEncoding.EncodeToString(x.secret)); err == nil {
 			if ok {
