@@ -53,7 +53,7 @@ export default class OrderedCounseling extends ValidationElement {
       }
     }
 
-    this.update({Seekers: selected})
+    this.update({Seekers: { values: selected }})
   }
 
   updateOtherSeeker (values) {
