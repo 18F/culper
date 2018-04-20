@@ -56,6 +56,8 @@ When running the application using the provided [docker-compose.yml](docker-comp
 | [`WS_CALLERINFO_AGENCY_USER_PSEUDOSSN`](#ws-callerinfo-agency-user-pseudossn) | X               |                        | X                     |
 | [`WS_AGENCY_ID`](#ws-agency-id)                        | X               |                        | X                     |
 | [`WS_AGENCY_GROUP_ID`](#ws-agency-group-id)                  | X               |                        | X                     |
+| [`FILE_MAXIMUM_SIZE`](#file-maximum-size)                   |                 | X                      | X                     |
+| [`FILE_TYPES`](#file-types)                          |                 | X                      | X                     |
 
 ## `NODE_ENV`
 
@@ -388,3 +390,17 @@ Provided by OPM representing the destination agency's group.
 
 **Target** - Back-end (api)<br>
 **Default** - *empty*<br>
+
+## `FILE_MAXIMUM_SIZE`
+
+Maximum file size allowed for attachment files. This also needs to be applied to any additional configurations such as proxies or web servers which are in front of the services.
+
+**Target** - Front-end (web), Back-end (api)<br>
+**Default** - `5000000`<br>
+
+## `FILE_TYPES`
+
+Allowed file extensions for attachments.
+
+**Target** - Front-end (web), Back-end (api)<br>
+**Default** - `.tiff;.png;.pdf`<br>

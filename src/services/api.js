@@ -88,14 +88,18 @@ class Api {
     return this.proxy.get('/')
   }
 
-  get (endpoint, secure = true) {
-    const headers = secure ? { headers: this.bearerToken() } : {}
-    return this.proxy.get(endpoint, headers)
+  get (endpoint, secure = true, headers = {}) {
+    const h = secure
+          ? { headers: { ...headers, ...this.bearerToken() } }
+          : headers
+    return this.proxy.get(endpoint, h)
   }
 
-  post (endpoint, params = {}, secure = true) {
-    const headers = secure ? { headers: this.bearerToken() } : {}
-    return this.proxy.post(endpoint, params, headers)
+  post (endpoint, params = {}, secure = true, headers = {}) {
+    const h = secure
+          ? { headers: { ...headers, ...this.bearerToken() } }
+          : headers
+    return this.proxy.post(endpoint, params, h)
   }
 
   saml () {
@@ -152,6 +156,26 @@ class Api {
 
   validate (payload) {
     return this.post(env.EndpointValidate(), payload)
+  }
+
+  listAttachments () {
+    return this.get(env.EndpointAttachment())
+  }
+
+  saveAttachment (formData) {
+    return this.post(env.EndpointAttachment(), formData)
+  }
+
+  updateAttachment (id, description) {
+    return this.post(env.EndpointAttachmentUpdate(id), { description: description })
+  }
+
+  getAttachment (id) {
+    return this.get(env.EndpointAttachmentGet(id))
+  }
+
+  deleteAttachment (id) {
+    return this.post(env.EndpointAttachmentDelete(id))
   }
 }
 

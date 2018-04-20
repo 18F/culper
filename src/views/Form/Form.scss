@@ -327,7 +327,8 @@ select {
       .eye-icon,
       .sex-icon,
       .relationship-icon,
-      .military-service-icon {
+      .military-service-icon,
+      .attachment-icon {
         position: absolute;
         top: 0;
         left: 0;
@@ -356,7 +357,9 @@ select {
       &:hover .relationship-icon,
       &.checked .relationship-icon,
       &:hover .military-service-icon,
-      &.checked .military-service-icon {
+      &.checked .military-service-icon,
+      &:hover .attachment-icon,
+      &.checked .attachment-icon {
         border-radius: 50%;
         top: 1.4rem;
         left: 50%;

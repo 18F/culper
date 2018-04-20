@@ -1,4 +1,3 @@
-// import { describe, it, expect } from 'jest'
 import { api } from '../services/api'
 import MockAdapter from 'axios-mock-adapter'
 import configureMockStore from 'redux-mock-store'
@@ -102,7 +101,7 @@ describe('Auth actions', function () {
       },
       {
         type: 'PUSH',
-        to: '/form/identification/name',
+        to: '/loading',
         scrollTo: 'scrollTo'
       }
     ]
