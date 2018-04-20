@@ -7,23 +7,6 @@ import (
 	"github.com/18F/e-QIP-prototype/api"
 )
 
-// // JwtTokenValidatorHandler will validate a token or return an error.
-// func JwtTokenValidatorHandler(w http.ResponseWriter, r *http.Request) error {
-// 	log := logmsg.NewLoggerFromRequest(r)
-// 	account := &model.Account{}
-// 	account.WithContext(db.NewDB())
-
-// 	// Valid token and audience
-// 	audiences := cf.TargetAudiences()
-// 	_, id, err := jwt.CheckToken(r)
-// 	if err != nil {
-// 		log.WithError(err).Warn(logmsg.InvalidJWT)
-// 		return fmt.Errorf("Invalid authorization token: %v", err)
-// 	}
-
-// 	return nil
-// }
-
 type RefreshHandler struct {
 	Env      api.Settings
 	Log      api.LogService
