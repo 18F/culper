@@ -12,9 +12,14 @@ COPY ./api/eapp.key /eapp.key
 # Database migrations
 COPY ./api/db /db
 
+# Templates
+COPY ./api/templates /templates
+
+# Checksums
+COPY ./api/checksum /checksum
+
 # Third-party dependencies
 COPY ./api/bin/xmlsec1 /bin/xmlsec1
 
-# COPY ./eapp-backend /eapp-backend
 COPY ./api/api /eapp-backend
 ENTRYPOINT ["/eapp-backend"]

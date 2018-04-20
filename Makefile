@@ -155,6 +155,13 @@ react: test-react build-react reset-permissions
 go: test-go build-go reset-permissions
 
 #
+# Checksums
+#
+checksum: clear
+	@docker-compose run --rm deps ./bin/checksum 2>errors
+check: clear
+	@docker-compose run --rm deps ./bin/checksum "test" 2>errors
+
 # seccomp
 #
 seccomp:

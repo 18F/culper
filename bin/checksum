@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [ "$1" = "test" ]; then
+		sha256sum --check ./dist/checksum
+		sha256sum --check ./api/checksum;
+else
+		find ./dist/* -not -path "./dist/checksum" -type f -exec sha256sum {} \; > ./dist/checksum;
+		sha256sum ./api/api > ./api/checksum;
+		find ./api/templates/* -type f -exec sha256sum {} \; >> ./api/checksum;
+		find ./api/migrations/* -type f -exec sha256sum {} \; >> ./api/checksum;
+fi

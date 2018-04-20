@@ -37,6 +37,9 @@ jobs:
       - run:
           name: Build
           command: make build
+      - run:
+          name: Checksum
+          command: make checksum
       - deploy:
           command: ./bin/deploy-cloudgov
 
@@ -54,6 +57,9 @@ jobs:
       - run:
           name: Build
           command: make build
+      - run:
+          name: Checksum
+          command: make checksum
       - run:
           name: Package
           command: |
