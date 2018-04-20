@@ -19,6 +19,7 @@
     "dotenv": "^4.0.0",
     "esdoc": "^1.0.3",
     "eslint-plugin-react": "^7.3.0",
+    "file-saver": "^1.3.8",
     "font-awesome": "^4.7.0",
     "global": "^4.3.1",
     "history": "^4.7.2",
@@ -86,10 +87,10 @@
     "clearMocks": true
   },
   "scripts": {
-    "test": "NODE_ENV='test' ./node_modules/.bin/jest -u --logHeapUsage --coverage --silent && ./bin/permissions",
+    "test": "NODE_ENV='test' ./node_modules/.bin/jest -u --logHeapUsage --coverage --silent",
     "lint": "./node_modules/.bin/gulp lint",
     "coverage": "NODE_ENV=test npm install -g codecov && codecov",
-    "build": "./node_modules/.bin/gulp build && ./bin/permissions",
+    "build": "./node_modules/.bin/gulp build",
     "watch": "./node_modules/.bin/gulp watchdog",
     "docs": "./node_modules/.bin/jsdoc ./src -r -d ./doc/frontend"
   }

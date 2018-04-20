@@ -6,7 +6,11 @@ test:
 	GOLANG_ENV=test go test -cover $(shell go list ./... | grep -v /vendor/)
 
 build:
-	./bin/build.sh
+	go build -o api ./cmd/server
+	chown -f 1000:1000 ./api
 
 clean:
-	rm -f ./api
+	rm -f ./cmd/server/server
+	rm -f ./cmd/flush/flush
+	rm -f ./cmd/reset/reset
+	rm -f ./cmd/unlock/unlock
