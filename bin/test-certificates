@@ -22,6 +22,10 @@ chown 1000:1000 "$WS_KEY"
 chown 1000:1000 "$WS_PKCS"
 chown 1000:1000 "$WS_CER"
 
+chown 1000:1000 "$WS_KEY"
+chown 1000:1000 "$WS_PKCS"
+chown 1000:1000 "$WS_CER"
+
 SAML_KEY=./api/eapp.key
 SAML_CER=./api/eapp.crt
 
