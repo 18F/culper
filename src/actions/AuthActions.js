@@ -72,7 +72,7 @@ export function twofactor (account, token) {
       .then(response => {
         api.setToken(response.data)
         dispatch(handleTwoFactorSuccess())
-        dispatch(push('/form/identification/name'))
+        dispatch(push('/loading'))
       })
       .catch(error => {
         api.setToken('')
