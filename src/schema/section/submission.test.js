@@ -22,6 +22,9 @@ describe('Schema for financial taxes', () => {
           Date: {}
         }
       },
+      "Attachments": {
+        Method: {}
+      },
       Credit: {
         Signature: {
           Name: {},
