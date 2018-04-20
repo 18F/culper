@@ -2,6 +2,7 @@ package saml
 
 import (
 	"io/ioutil"
+	"os"
 	"regexp"
 	"strings"
 	"testing"
@@ -12,6 +13,14 @@ import (
 )
 
 func TestSamlResponse(t *testing.T) {
+	os.Setenv("SAML_PUBLIC_CERT", "/go/src/github.com/18F/e-QIP-prototype/api/eapp.crt")
+	os.Setenv("SAML_PRIVATE_CERT", "/go/src/github.com/18F/e-QIP-prototype/api/eapp.key")
+	os.Setenv("SAML_IDP_SSO_URL", "http://localhost:8080")
+	os.Setenv("SAML_IDP_SSO_DESC_URL", "http://localhost:8080")
+	os.Setenv("SAML_IDP_PUBLIC_CERT", "/go/src/github.com/18F/e-QIP-prototype/api/eapp.crt")
+	os.Setenv("SAML_SIGN_REQUEST", "1")
+	os.Setenv("SAML_CONSUMER_SERVICE_URL", "")
+
 	settings := mock.Native{}
 	service := &SamlService{Log: &mock.LogService{}, Env: settings}
 
