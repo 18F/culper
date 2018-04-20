@@ -56,7 +56,8 @@ function plugins () {
   [
     new webpack.EnvironmentPlugin([
       'API_BASE_URL', 'ALLOW_2FA_RESET', 'HASH_ROUTING', 'DISABLE_2FA',
-      'BASIC_ENABLED', 'SAML_ENABLED', 'SESSION_TIMEOUT'
+      'BASIC_ENABLED', 'SAML_ENABLED', 'SESSION_TIMEOUT', 'FILE_MAXIMUM_SIZE',
+      'FILE_TYPES'
     ]),
     new webpack.ProvidePlugin({
       'Promise': 'es6-promise',
