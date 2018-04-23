@@ -98,7 +98,7 @@ func main() {
 	a.HandleFunc("/attachment/{id}/delete", http.AttachmentDeleteHandler{Env: settings, Log: logger, Token: token, Database: database}.ServeHTTP).Methods("POST", "DELETE")
 
 	// Get the public address
-	address := settings.String(api.API_BASE_URL) + ":" + settings.String(api.PORT)
+	address := ":" + settings.String(api.PORT)
 
 	// Listen and serve
 	server := http.Server{Env: settings, Log: logger}
