@@ -49,6 +49,7 @@ When running the application using the provided [docker-compose.yml](docker-comp
 | [`WINDOW_SIZE`](#window_size)                         |                 |                        | X                     |
 | [`TLS_CERT`](#tls_cert)                            |                 |                        | X                     |
 | [`TLS_KEY`](#tls_key)                             |                 |                        | X                     |
+| [`WS_ENABLED`](#ws_url)                              | X               |                        | X                     |
 | [`WS_URL`](#ws_url)                              | X               |                        | X                     |
 | [`WS_KEY`](#ws_key)                              | X               |                        | X                     |
 | [`WS_CALLERINFO_AGENCY_ID`](#ws-callerinfo-agency-id)             | X               |                        | X                     |
@@ -340,6 +341,14 @@ File path (absolute or relative) to TLS private key (X.509 PEM) for use the back
 
 **Target** - Back-end (api)<br>
 **Default** - *not enabled*<br>
+
+## `WS_ENABLED`
+
+Determines whether to enabled the submission to the eqip webservice
+
+**Target** - Back-end (api)<br>
+**Default** - False: *empty*<br>
+**Values** - True: `1`, False: *empty*<br>
 
 ## `WS_URL`
 
