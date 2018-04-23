@@ -49,7 +49,7 @@ When running the application using the provided [docker-compose.yml](docker-comp
 | [`WINDOW_SIZE`](#window_size)                         |                 |                        | X                     |
 | [`TLS_CERT`](#tls_cert)                            |                 |                        | X                     |
 | [`TLS_KEY`](#tls_key)                             |                 |                        | X                     |
-| [`WS_ENABLED`](#ws_url)                              | X               |                        | X                     |
+| [`WS_ENABLED`](#ws_enabled)                              | X               |                        | X                     |
 | [`WS_URL`](#ws_url)                              | X               |                        | X                     |
 | [`WS_KEY`](#ws_key)                              | X               |                        | X                     |
 | [`WS_CALLERINFO_AGENCY_ID`](#ws-callerinfo-agency-id)             | X               |                        | X                     |
