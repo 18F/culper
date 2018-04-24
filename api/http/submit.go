@@ -61,6 +61,10 @@ func (service SubmitHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 }
 
 func (service SubmitHandler) transmit(w http.ResponseWriter, r *http.Request, account *api.Account) error {
+	if !service.Env.True(api.WS_ENABLED) {
+		service.Log.Info("Skipping webservice call", nil)
+		return nil
+	}
 	url := service.Env.String(api.WS_URL)
 	if url == "" {
 		service.Log.Warn(api.WebserviceMissingURL, api.LogFields{})
