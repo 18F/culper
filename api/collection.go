@@ -345,7 +345,7 @@ func (ci *CollectionItem) Get(context DatabaseService, account, collectionID, in
 		if err := context.Select(item); err != nil {
 			return err
 		}
-		entity = transform[item.Type]()
+		entity, _ = transform[item.Type]()
 		entity.SetID(item.ItemID)
 
 		if err := context.CheckTable(entity); err != nil {
