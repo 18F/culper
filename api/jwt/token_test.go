@@ -15,14 +15,13 @@ func TestKnownSecret(t *testing.T) {
 	old := service.Env.String(api.JWT_SECRET)
 
 	expected := "too many secrets"
-	os.Setenv(api.JWT_SECRET, expected)
-	service.ConfigureEnvironment(512)
-
+	JwtSecret = expected
 	secret := service.Secret()
 	if len(secret) == 0 || string(secret) != expected {
 		t.Fatal("The secret did not properly use the known secret provided")
 	}
 
+	JwtSecret = old
 	os.Setenv(api.JWT_SECRET, old)
 }
 

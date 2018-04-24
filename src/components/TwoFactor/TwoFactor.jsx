@@ -18,7 +18,7 @@ class TwoFactor extends React.Component {
 
   componentDidMount () {
     // Get the QR code from the API
-    this.props.dispatch(qrcode(this.props.username))
+    this.props.dispatch(qrcode())
   }
 
   base64png () {
@@ -36,14 +36,14 @@ class TwoFactor extends React.Component {
     // Send request to API to validate token
     event.preventDefault()
     if (this.state.code !== '') {
-      this.props.dispatch(twofactor(this.props.username, this.state.code))
+      this.props.dispatch(twofactor(this.state.code))
     }
   }
 
   handleReset (event) {
     event.preventDefault()
     this.setState({ code: '' }, () => {
-      this.props.dispatch(twofactorreset(this.props.username))
+      this.props.dispatch(twofactorreset())
     })
   }
 
