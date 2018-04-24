@@ -256,6 +256,12 @@ const (
 	// Default: *not enabled*
 	TLS_KEY = "TLS_KEY"
 
+	// WS_ENABLED Allows requests to be made to the eqip web service.
+	//
+	// Target: Back-end (api)
+	// Default: *not enabled*
+	WS_ENABLED = "WS_ENABLED"
+
 	// WS_URL The endpoint for the OPM web service used to submit the package for investigation.
 	//
 	// Target: Back-end (api)
