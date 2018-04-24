@@ -347,7 +347,7 @@ File path (absolute or relative) to TLS private key (X.509 PEM) for use the back
 Determines whether to enabled the submission to the eqip webservice
 
 **Target** - Back-end (api)<br>
-**Default** - False: *empty*<br>
+**Default** - True<br>
 **Values** - True: `1`, False: *empty*<br>
 
 ## `WS_URL`
