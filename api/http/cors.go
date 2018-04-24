@@ -18,6 +18,16 @@ type CORSHandler struct {
 func (service CORSHandler) Middleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		origin := r.Header.Get("Origin")
+
+		// Sometimes the "Origin" is empty or missing. This is typically due
+		// to a pre-flight in some use cases. When this occurs we fall back on
+		// verification of the "Referer" header.
+		//
+		// https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)_Prevention_Cheat_Sheet#Checking_the_Referer_Header
+		if origin == "" {
+			origin = r.Header.Get("Referer")
+		}
+
 		if allowedOrigin(origin, service.Env) {
 			service.Log.Debug("Setting allowed CORS parameters", api.LogFields{"origin": origin})
 			w.Header().Set("Access-Control-Allow-Origin", origin)

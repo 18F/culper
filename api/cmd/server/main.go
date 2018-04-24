@@ -54,8 +54,6 @@ func main() {
 
 	// Declare a new router with any middleware injected
 	r := mux.NewRouter()
-	r.Use(http.LoggingHandler{Log: logger}.Middleware)
-	r.Use(http.CORSHandler{Log: logger, Env: settings}.Middleware)
 	r.HandleFunc("/", http.RootHandler{Env: settings}.ServeHTTP).Methods("GET")
 	r.HandleFunc("/refresh", http.RefreshHandler{Env: settings, Log: logger, Token: token, Database: database}.ServeHTTP).Methods("POST")
 
@@ -81,26 +79,31 @@ func main() {
 	}
 
 	// Account specific actions
+	sec := http.JWTHandler{Log: logger, Token: token}
 	a := r.PathPrefix("/me").Subrouter()
-	a.Use(http.JWTHandler{Log: logger, Token: token}.Middleware)
-	a.HandleFunc("/logout", http.LogoutHandler{Env: settings, Log: logger, Token: token, Database: database}.ServeHTTP).Methods("GET")
-	a.HandleFunc("/validate", http.ValidateHandler{Env: settings, Log: logger, Token: token, Database: database}.ServeHTTP).Methods("POST")
-	a.HandleFunc("/save", http.SaveHandler{Env: settings, Log: logger, Token: token, Database: database}.ServeHTTP).Methods("POST", "PUT")
-	a.HandleFunc("/status", http.StatusHandler{Env: settings, Log: logger, Token: token, Database: database}.ServeHTTP).Methods("GET")
-	a.HandleFunc("/form", http.FormHandler{Env: settings, Log: logger, Token: token, Database: database}.ServeHTTP).Methods("GET")
-	a.HandleFunc("/form/hash", http.HashHandler{Env: settings, Log: logger, Token: token, Database: database}.ServeHTTP).Methods("GET")
-	a.HandleFunc("/form/submit", http.SubmitHandler{Env: settings, Log: logger, Token: token, Database: database, Xml: xmlsvc}.ServeHTTP).Methods("POST")
-	a.HandleFunc("/form/section", http.SectionHandler{Env: settings, Log: logger, Token: token, Database: database}.ServeHTTP).Methods("GET")
-	a.HandleFunc("/attachment", http.AttachmentListHandler{Env: settings, Log: logger, Token: token, Database: database}.ServeHTTP).Methods("GET")
-	a.HandleFunc("/attachment", http.AttachmentSaveHandler{Env: settings, Log: logger, Token: token, Database: database}.ServeHTTP).Methods("POST", "PUT")
-	a.HandleFunc("/attachment/{id}", http.AttachmentGetHandler{Env: settings, Log: logger, Token: token, Database: database}.ServeHTTP).Methods("GET")
-	a.HandleFunc("/attachment/{id}", http.AttachmentUpdateHandler{Env: settings, Log: logger, Token: token, Database: database}.ServeHTTP).Methods("POST", "PUT")
-	a.HandleFunc("/attachment/{id}/delete", http.AttachmentDeleteHandler{Env: settings, Log: logger, Token: token, Database: database}.ServeHTTP).Methods("POST", "DELETE")
+	a.Handle("/logout", sec.Middleware(http.LogoutHandler{Env: settings, Log: logger, Token: token, Database: database})).Methods("GET")
+	a.Handle("/validate", sec.Middleware(http.ValidateHandler{Env: settings, Log: logger, Token: token, Database: database})).Methods("POST")
+	a.Handle("/save", sec.Middleware(http.SaveHandler{Env: settings, Log: logger, Token: token, Database: database})).Methods("POST", "PUT")
+	a.Handle("/status", sec.Middleware(http.StatusHandler{Env: settings, Log: logger, Token: token, Database: database})).Methods("GET")
+	a.Handle("/form", sec.Middleware(http.FormHandler{Env: settings, Log: logger, Token: token, Database: database})).Methods("GET")
+	a.Handle("/form/hash", sec.Middleware(http.HashHandler{Env: settings, Log: logger, Token: token, Database: database})).Methods("GET")
+	a.Handle("/form/submit", sec.Middleware(http.SubmitHandler{Env: settings, Log: logger, Token: token, Database: database, Xml: xmlsvc})).Methods("POST")
+	a.Handle("/form/section", sec.Middleware(http.SectionHandler{Env: settings, Log: logger, Token: token, Database: database})).Methods("GET")
+	a.Handle("/attachment", sec.Middleware(http.AttachmentListHandler{Env: settings, Log: logger, Token: token, Database: database})).Methods("GET")
+	a.Handle("/attachment", sec.Middleware(http.AttachmentSaveHandler{Env: settings, Log: logger, Token: token, Database: database})).Methods("POST", "PUT")
+	a.Handle("/attachment/{id}", sec.Middleware(http.AttachmentGetHandler{Env: settings, Log: logger, Token: token, Database: database})).Methods("GET")
+	a.Handle("/attachment/{id}", sec.Middleware(http.AttachmentUpdateHandler{Env: settings, Log: logger, Token: token, Database: database})).Methods("POST", "PUT")
+	a.Handle("/attachment/{id}/delete", sec.Middleware(http.AttachmentDeleteHandler{Env: settings, Log: logger, Token: token, Database: database})).Methods("POST", "DELETE")
+
+	// Inject middleware
+	cors := http.CORSHandler{Log: logger, Env: settings}
+	logging := http.LoggingHandler{Log: logger}
+	router := cors.Middleware(logging.Middleware(r))
 
 	// Get the public address
-	address := settings.String(api.API_BASE_URL) + ":" + settings.String(api.PORT)
+	address := ":" + settings.String(api.PORT)
 
 	// Listen and serve
 	server := http.Server{Env: settings, Log: logger}
-	logger.FatalError(api.StoppingServer, server.ListenAndServe(address, r), api.LogFields{})
+	logger.FatalError(api.StoppingServer, server.ListenAndServe(address, router), api.LogFields{})
 }

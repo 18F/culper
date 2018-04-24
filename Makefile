@@ -111,7 +111,7 @@ package-clean:
 package-react:
 	@docker pull ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/nbis_eapp:base
 	@docker create --name=eapp_react_container ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/nbis_eapp:base
-	@docker cp ./dist eapp_react_container:/var/www/html/
+	@docker cp ./dist/. eapp_react_container:/var/www/html/
 	@docker commit eapp_react_container eapp_react
 package-go:
 	@docker run --rm \
@@ -119,7 +119,14 @@ package-go:
                -w /go/src/github.com/18F/e-QIP-prototype/api \
                -e "CGO_ENABLED=0" \
                golang:latest go build -ldflags '-w -extldflags "-static"' -o api
-	@docker build -f Dockerfile.eapp_golang . -t eapp_golang:smallest
+	@docker pull ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/nbis-ecr:base
+	@docker create --name=eapp_golang_container ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/nbis-ecr:base
+	@docker cp ./api/migrations/. eapp_golang_container:/migrations/
+	@docker cp ./api/templates/. eapp_golang_container:/templates/
+	@docker cp ./api/bin/xmlsec1 eapp_golang_container:/bin/
+	@docker cp ./api/checksum eapp_golang_container:/checksum
+	@docker cp ./api/api eapp_golang_container:/eapp-backend
+	@docker commit eapp_golang_container eapp_golang:smallest
 
 #
 # Deploy
