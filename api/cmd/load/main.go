@@ -4,7 +4,10 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"log"
+	"net/http"
 	"os"
+
+	"github.com/18F/e-QIP-prototype/api/cmd"
 )
 
 var (
@@ -12,19 +15,23 @@ var (
 )
 
 func main() {
-	// Figure out if the input is coming from an argument or a pipe.
-	stat, _ := os.Stdin.Stat()
-	mode := stat.Mode()
-	Piped = mode&os.ModeNamedPipe != 0
-
+	var payloads []json.RawMessage
 	var buffer []byte
 	var err error
 
-	if Piped {
+	// Figure out if the input is coming from an argument or a pipe.
+	if cmd.IsPiped() {
 		// Read the contents from standard input
 		buffer, err = ioutil.ReadAll(os.Stdin)
 		if err != nil {
 			log.Println("error reading from standard input:", err)
+			return
+		}
+
+		// Marshal standard input contents in to JSON
+		err = json.Unmarshal(buffer, &payloads)
+		if err != nil {
+			log.Println("error marshalling from standard input:", err)
 			return
 		}
 	} else {
@@ -34,17 +41,19 @@ func main() {
 				log.Println("error reading from file:", err)
 				return
 			}
-			break
+			payloads = append(payloads, buffer)
 		}
 	}
 
-	// Marshal standard input contents in to JSON
-	var messages []json.RawMessage
-	err = json.Unmarshal(buffer, &messages)
-	if err != nil {
-		log.Println("error marshalling from standard input:", err)
-		return
+	// Create a web client to interface with the RESTful API.
+	webclient := &cmd.WebClient{
+		Client: &http.Client{},
 	}
 
-	webclient(messages)
+	// Loop through all sections received
+	for _, payload := range payloads {
+		// POST a save request for section
+		webclient.Save(payload)
+	}
+	webclient.Logout()
 }
