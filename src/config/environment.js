@@ -1,8 +1,20 @@
 import { createHashHistory, createBrowserHistory } from 'history'
 
+const parseBool = (val) => {
+  const str = `${val || ''}`
+  switch (str.toLowerCase()) {
+  case '1':
+  case 't':
+  case 'true':
+    return true
+  default:
+    return false
+  }
+}
+
 class Env {
   History () {
-    const useHashRouting = process.env.HASH_ROUTING || ''
+    const useHashRouting = parseBool(process.env.HASH_ROUTING)
     if (!this.history) {
       this.history = useHashRouting ? createHashHistory() : createBrowserHistory()
     }
@@ -40,21 +52,25 @@ class Env {
     }
 
     return {
-      resettable: (process.env.ALLOW_2FA_RESET || '') !== '',
-      enabled: (process.env.DISABLE_2FA || '') === ''
+      resettable: parseBool(process.env.ALLOW_2FA_RESET),
+      enabled: !parseBool(process.env.DISABLE_2FA)
     }
   }
 
   BasicAuthenticationEnabled () {
-    return (process.env.BASIC_ENABLED || '').length
+    return parseBool(process.env.BASIC_ENABLED)
   }
 
   SamlEnabled () {
-    return (process.env.SAML_ENABLED || '').length
+    return parseBool(process.env.SAML_ENABLED)
   }
 
   SessionTimeout () {
     return parseInt(process.env.SESSION_TIMEOUT || '15', 10)
+  }
+
+  AttachmentsEnabled () {
+    return parseBool(process.env.ATTACHMENTS_ENABLED)
   }
 
   FileMaximumSize () {

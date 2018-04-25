@@ -1,3 +1,4 @@
+import env from './environment'
 import * as validators from '../validators'
 
 const navigation = [
@@ -265,7 +266,10 @@ const navigation = [
       {
         name: 'Attachments',
         url: 'attachments',
-        locked: validators.formIsLocked
+        locked: validators.formIsLocked,
+        hiddenFunc: (application) => {
+          return !env.AttachmentsEnabled()
+        }
       },
       {
         name: 'Review',
