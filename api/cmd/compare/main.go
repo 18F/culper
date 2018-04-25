@@ -138,7 +138,6 @@ func compare(first, second json.RawMessage) bool {
 			return false
 		}
 	} else {
-		log.Println("testing primitives")
 		var val1 interface{}
 		var val2 interface{}
 
