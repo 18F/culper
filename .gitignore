@@ -65,6 +65,8 @@ bin
 /api/cmd/fuzzer/fuzzer
 /api/cmd/load/load
 /api/cmd/transmit/transmit
+/api/cmd/compare/compare
+/api/cmd/form/form
 /build/
 /doc/
 /dist/
