@@ -20,6 +20,7 @@ const (
 )
 
 var (
+	JwtSecret        = ""
 	JwtSigningMethod = jwt.SigningMethodHS256
 	AuthBearerRegexp = regexp.MustCompile("Bearer\\s(.*)")
 )
@@ -130,7 +131,10 @@ func (service TokenService) Timeout() time.Duration {
 
 // Secret returns the secret to use with JWT tokens.
 func (service TokenService) Secret() []byte {
-	return []byte(service.Env.String(api.JWT_SECRET))
+	if JwtSecret == "" {
+		service.ConfigureEnvironment(256)
+	}
+	return []byte(JwtSecret)
 }
 
 // ConfigureEnvironment ensure the secret is set prior to use.
@@ -155,6 +159,7 @@ func (service TokenService) ConfigureEnvironment(size int) error {
 	}
 
 	secret := base64.StdEncoding.EncodeToString(b)
+	JwtSecret = secret
 	return os.Setenv(api.JWT_SECRET, secret)
 }
 
