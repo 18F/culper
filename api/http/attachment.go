@@ -22,6 +22,12 @@ type AttachmentListHandler struct {
 }
 
 func (service AttachmentListHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	if !service.Env.True(api.ATTACHMENTS_ENABLED) {
+		service.Log.Warn(api.AttachmentDenied, api.LogFields{})
+		http.Error(w, "Attachments is not implemented", http.StatusInternalServerError)
+		return
+	}
+
 	account := &api.Account{}
 
 	// Valid token and audience while populating the audience ID
@@ -65,6 +71,12 @@ type AttachmentSaveHandler struct {
 }
 
 func (service AttachmentSaveHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	if !service.Env.True(api.ATTACHMENTS_ENABLED) {
+		service.Log.Warn(api.AttachmentDenied, api.LogFields{})
+		http.Error(w, "Attachments is not implemented", http.StatusInternalServerError)
+		return
+	}
+
 	account := &api.Account{}
 
 	// Valid token and audience while populating the audience ID
@@ -165,6 +177,12 @@ type AttachmentUpdateHandler struct {
 }
 
 func (service AttachmentUpdateHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	if !service.Env.True(api.ATTACHMENTS_ENABLED) {
+		service.Log.Warn(api.AttachmentDenied, api.LogFields{})
+		http.Error(w, "Attachments is not implemented", http.StatusInternalServerError)
+		return
+	}
+
 	account := &api.Account{}
 
 	// Valid token and audience while populating the audience ID
@@ -233,6 +251,12 @@ type AttachmentGetHandler struct {
 }
 
 func (service AttachmentGetHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	if !service.Env.True(api.ATTACHMENTS_ENABLED) {
+		service.Log.Warn(api.AttachmentDenied, api.LogFields{})
+		http.Error(w, "Attachments is not implemented", http.StatusInternalServerError)
+		return
+	}
+
 	account := &api.Account{}
 
 	// Valid token and audience while populating the audience ID
@@ -285,6 +309,12 @@ type AttachmentDeleteHandler struct {
 }
 
 func (service AttachmentDeleteHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	if !service.Env.True(api.ATTACHMENTS_ENABLED) {
+		service.Log.Warn(api.AttachmentDenied, api.LogFields{})
+		http.Error(w, "Attachments is not implemented", http.StatusInternalServerError)
+		return
+	}
+
 	account := &api.Account{}
 
 	// Valid token and audience while populating the audience ID

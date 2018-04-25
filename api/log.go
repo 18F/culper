@@ -73,6 +73,7 @@ const (
 	WebserviceErrorCreatingImportRequest       = "Unable to create import request"
 	TransmissionError                          = "Error transmitting package"
 	TransmissionStorageError                   = "Failed to store transmission record"
+	AttachmentDenied                           = "An attempt for attachments was denied"
 	AttachmentNoFile                           = "No attachment file found in multipart form data"
 	AttachmentCopyBufferError                  = "Could not copy file buffer"
 	AttachmentNotSaved                         = "Attachment file failed to save in persistent storage"
