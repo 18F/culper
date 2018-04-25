@@ -7,12 +7,10 @@
   </AttendedAnySchools>
   <AttendedAnySchoolsComment></AttendedAnySchoolsComment>
 
-  {{if branch .props.HasDegree | eq "No"}}
   <ReceivedDegreeOrDiploma>
     <Answer>{{branch .props.HasDegree10}}</Answer>
     <Comment></Comment>
   </ReceivedDegreeOrDiploma>
-  {{end}}
 
   <SchoolsAttended>
     {{range $index, $item := .props.List.props.items}}

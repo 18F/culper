@@ -4,10 +4,10 @@
   {{range $index, $item := .props.DiagnosisList.props.items}}
   {{with $Item := $item.Item}}
   <DiagnosedOccurrence ID="{{$index}}">
-    <Diagnosis>{{radio $Item.Condition}}</Diagnosis>
-    {{daterange $Item.Diagnosed}}
+    <Diagnosis>{{radio $Item.Condition | diagnosisType }}</Diagnosis>
+    {{monthYearDaterange $Item.Diagnosed}}
     <HealthCareProfessional>{{treatment $Item.Treatment}}</HealthCareProfessional>
-    <TreatmentFacility>{{treatment $Item.Facility}}</TreatmentFacility>
+    <TreatmentFacility>{{treatment $Item.TreatmentFacility}}</TreatmentFacility>
     <TreatmentEffective>
       <Effective>{{branch $Item.Effective}}</Effective>
       <Explanation>{{textarea $Item.Explanation}}</Explanation>

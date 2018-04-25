@@ -8,13 +8,15 @@
       <Name>{{text $Item.CourtName}}</Name>
       <Address>{{location $Item.CourtAddress}}</Address>
     </Court>
-    <Date Type="{{dateEstimated $Item.Date}}">{{monthYear $Item.Date}}</Date>
+    <Date Type="{{dateEstimated $Item.Occurred}}">{{monthYear $Item.Occurred}}</Date>
     <FinalDisposition>{{textarea $Item.Disposition}}</FinalDisposition>
     <Appealed>
+      <Answer>{{branchcollectionHas $Item.Appeals.props.List}}</Answer>
+      <AnswerComment></AnswerComment>
+      {{ if branchcollectionHas $Item.Appeals.props.List | eq "Yes"}}
       {{range $aindex, $appeal := $Item.Appeals.props.items}}
       {{with $Appeal := $appeal.Item}}
-      <Answer>{{branch $Appeal.Has}}</Answer>
-      <AnswerComment></AnswerComment>
+      {{if branch $Appeal.Has | eq "Yes"}}
       <Appeal ID="{{$aindex}}">
         <Court>
           <Name>{{text $Appeal.CourtName}}</Name>
@@ -23,8 +25,10 @@
         <FinalDisposition>{{textarea $Appeal.Disposition}}</FinalDisposition>
         <Comment></Comment>
       </Appeal>
+      {{end}}
       <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
       <SummaryComment></SummaryComment>
+      {{end}}
       {{end}}
       {{end}}
     </Appealed>
