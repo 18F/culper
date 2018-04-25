@@ -60,11 +60,11 @@ func main() {
 	// Two-factor authentication
 	if !settings.True(api.DISABLE_2FA) {
 		s := r.PathPrefix("/2fa").Subrouter()
-		s.HandleFunc("/{account}", http.MFAGenerateHandler{Env: settings, Log: logger, Token: token, Database: database, MFA: mfasvc}.ServeHTTP).Methods("GET")
-		s.HandleFunc("/{account}/verify", http.MFAVerifyHandler{Env: settings, Log: logger, Token: token, Database: database, MFA: mfasvc}.ServeHTTP).Methods("POST")
+		s.HandleFunc("/", http.MFAGenerateHandler{Env: settings, Log: logger, Token: token, Database: database, MFA: mfasvc}.ServeHTTP).Methods("GET")
+		s.HandleFunc("/verify", http.MFAVerifyHandler{Env: settings, Log: logger, Token: token, Database: database, MFA: mfasvc}.ServeHTTP).Methods("POST")
 
 		if settings.True(api.ALLOW_2FA_RESET) {
-			s.HandleFunc("/{account}/reset", http.MFAResetHandler{Env: settings, Log: logger, Token: token, Database: database, MFA: mfasvc}.ServeHTTP).Methods("GET")
+			s.HandleFunc("/reset", http.MFAResetHandler{Env: settings, Log: logger, Token: token, Database: database, MFA: mfasvc}.ServeHTTP).Methods("GET")
 		}
 	}
 

@@ -6,18 +6,15 @@ describe('The enviroment config', () => {
   })
 
   it('Returns Two Factor Endpoint', () => {
-    const expected = 'foo'
-    expect(env.EndpointTwoFactor(expected)).toBe(`/2fa/${expected}`)
+    expect(env.EndpointTwoFactor()).toBe('/2fa/')
   })
 
   it('Returns Two Factor Verify Endpoint', () => {
-    const expected = 'foo'
-    expect(env.EndpointTwoFactorVerify(expected)).toBe(`/2fa/${expected}/verify`)
+    expect(env.EndpointTwoFactorVerify()).toBe('/2fa/verify')
   })
 
   it('Returns Two Factor Reset Endpoint', () => {
-    const expected = 'foo'
-    expect(env.EndpointTwoFactorReset(expected)).toBe(`/2fa/${expected}/reset`)
+    expect(env.EndpointTwoFactorReset()).toBe('/2fa/reset')
   })
 
   it('returns save endpoint', () => {

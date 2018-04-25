@@ -55,20 +55,20 @@ export function tokenError () {
   }
 }
 
-export function qrcode (account) {
+export function qrcode () {
   return function (dispatch) {
     return api
-      .twoFactor(account)
+      .twoFactor()
       .then(response => {
         dispatch(handleTwoFactorQrCode(response.data))
       })
   }
 }
 
-export function twofactor (account, token) {
+export function twofactor (token) {
   return function (dispatch, getState) {
     return api
-      .twoFactor(account, token)
+      .twoFactor(token)
       .then(response => {
         api.setToken(response.data)
         dispatch(handleTwoFactorSuccess())
@@ -81,14 +81,14 @@ export function twofactor (account, token) {
   }
 }
 
-export function twofactorreset (account) {
+export function twofactorreset () {
   return function (dispatch, getState) {
     return api
-      .twoFactorReset(account)
+      .twoFactorReset()
       .then(response => {
         api.setToken(response.data)
         dispatch(handleTwoFactorError('Two factor authentication reset'))
-        dispatch(qrcode(account))
+        dispatch(qrcode())
       })
       .catch(error => {
         api.setToken('')
