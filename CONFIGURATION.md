@@ -234,7 +234,7 @@ United States Postal Service (USPS) API key for address validation.
 
 ## `JWT_SECRET`
 
-The HS512 algorithm is used to sign each JavaScript Web Token using a secret random key of at least 512-bits. For example, `openssl rand 64 | base64 --wrap=0` generates an appropriate key. If this value is not specified, one will be automatically generated unique to the instance.
+The HS256 algorithm is used to sign each JavaScript Web Token using a secret random key of at least 256-bits. For example, `openssl rand -base64 32` generates an appropriate key. If this value is not specified, one will be automatically generated unique to the instance.
 
 **Target** - Back-end (api)<br>
 **Default** - *none*<br>
