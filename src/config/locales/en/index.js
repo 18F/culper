@@ -8,6 +8,8 @@ import { comments } from './comments'
 import { consent } from './consent'
 import { countries } from './countries'
 import { country } from './country'
+import { currency } from './currency'
+import { date } from './date'
 import { error } from './error'
 import { financial } from './financial'
 import { foreign } from './foreign'
@@ -60,6 +62,8 @@ const en = {
   collection,
   comments,
   country,
+  currency,
+  date,
   foreignBornDocuments,
   name,
   reference,

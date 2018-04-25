@@ -599,7 +599,6 @@ export default class Location extends ValidationElement {
         <Spinner show={this.state.spinner}
                  action={this.state.spinnerAction}
                  label={i18n.t('address.spinner')}
-                 onUpdate={this.updateSpinner}
                  />
       )
     }

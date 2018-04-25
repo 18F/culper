@@ -1,0 +1,25 @@
+.timeout-warning {
+  .modal {
+    background-color: rgba(255, 255, 255, 0.97);
+
+    .modal-content {
+      max-width: 64rem;
+      text-align: center;
+      background: transparent;
+      border: none;
+      box-shadow: none;
+
+      h2 {
+        margin-top: 1.3rem;
+      }
+
+      button {
+        padding: 1.7rem 3rem;
+
+        i {
+          margin-left: 1rem;
+        }
+      }
+    }
+  }
+}

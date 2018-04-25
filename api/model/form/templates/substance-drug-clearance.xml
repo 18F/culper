@@ -6,7 +6,7 @@
     {{with $Item := $item.Item}}
     <Involvement ID="{{$index}}">
       <Description>{{textarea $Item.Description}}</Description>
-      {{daterange $Item.InvolvementDates}}
+      {{monthYearDaterange $Item.InvolvementDates}}
       <NumberOfTimesUsed>{{text $Item.EstimatedUse}}</NumberOfTimesUsed>
       <Comment></Comment>
     </Involvement>

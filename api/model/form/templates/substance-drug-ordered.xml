@@ -13,11 +13,24 @@
         <Explanation>{{textarea $Item.NoActionTakenExplanation}}</Explanation>
       </DidNotReceiveTreatment>
       <CounselingOrderedBy>
-        <Answer Employer="{{checkboxHas $Item.OrderedBy "Employer"}}"
-                MedicalProfessional="{{checkboxHas $Item.OrderedBy "MedicalProfessional"}}"
-                MentalHealthProfessional="{{checkboxHas $Item.OrderedBy "MentalHealthProfessional"}}"
-                Court="{{checkboxHas $Item.OrderedBy "Jugde"}}"
-                None="{{checkboxHas $Item.OrderedBy "None"}}"/>
+        {{$Item.OrderedBy}}
+        <Answer
+          {{if (checkboxHas $Item.OrderedBy "Employer") | eq "True"}}
+          Employer="True"
+          {{end}}
+          {{if (checkboxHas $Item.OrderedBy "MedicalProfessional") | eq "True"}}
+          MedicalProfessional="True"
+          {{end}}
+          {{if (checkboxHas $Item.OrderedBy "MentalHealthProfessional") | eq "True"}}
+          MentalHealthProfessional="True"
+          {{end}}
+          {{if (checkboxHas $Item.OrderedBy "Judge") | eq "True"}}
+          Court="True"
+          {{end}}
+          {{if (checkboxHas $Item.OrderedBy "None") | eq "True"}}
+          None="True"
+          {{end}}
+          />
         <Comment></Comment>
         <Explanation>{{textarea $Item.Explanation}}</Explanation>
       </CounselingOrderedBy>

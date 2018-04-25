@@ -6,10 +6,10 @@
     {{with $Item := $item.Item}}
     <Instance ID="{{$index}}">
       <DrugsUsed>{{text $Item.PrescriptionName}}</DrugsUsed>
-      {{daterange $Item.InvolvementDates}}
+      {{monthYearDaterange $Item.InvolvementDates}}
       <Circumstances>{{textarea $Item.Reason}}</Circumstances>
       <InvolvementWhileEmployedAsLawEnforcement>
-        <Answer>{{branch $Item.UseWithEmployed}}</Answer>
+        <Answer>{{branch $Item.UseWhileEmployed}}</Answer>
       </InvolvementWhileEmployedAsLawEnforcement>
       <InvolvementWhilePossessingASecurityClearance>
         <Answer>{{branch $Item.UseWithClearance}}</Answer>

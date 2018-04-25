@@ -60,19 +60,19 @@ describe('Foreign travel component validation', function () {
     const tests = [
       {
         state: {
-          Days: []
+          Days: { values: [] }
         },
         expected: false
       },
       {
         state: {
-          Days: ['00000']
+          Days: { values: ['00000'] }
         },
         expected: false
       },
       {
         state: {
-          Days: ['1-5', '21-30']
+          Days: { values: ['1-5', '21-30'] }
         },
         expected: true
       }
@@ -85,19 +85,19 @@ describe('Foreign travel component validation', function () {
     const tests = [
       {
         state: {
-          Purpose: []
+          Purpose: { values: [] }
         },
         expected: false
       },
       {
         state: {
-          Purpose: ['Nothing']
+          Purpose: { values: ['Nothing'] }
         },
         expected: false
       },
       {
         state: {
-          Purpose: ['Business', 'Family']
+          Purpose: { values: ['Business', 'Family'] }
         },
         expected: true
       }
@@ -427,8 +427,8 @@ describe('Foreign travel component validation', function () {
                     },
                     present: false
                   },
-                  Days: ['1-5', '21-30'],
-                  Purpose: ['Business', 'Family'],
+                  Days: { values: ['1-5', '21-30'] },
+                  Purpose: { values: ['Business', 'Family'] },
                   Questioned: { value: 'No' },
                   Encounter: { value: 'No' },
                   Contacted: { value: 'No' },

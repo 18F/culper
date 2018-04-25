@@ -1,51 +1,75 @@
 const { client } = require('nightwatch-cucumber')
 const { defineSupportCode } = require('cucumber')
 
-defineSupportCode(({Given, Then, When}) => {
-  When(/^I go to the legal section$/, () => {
-    return navigateToSection('legal')
-  })
+let subcontext = ""
+let counter = 0
 
-  When(/^I go to the legal (.*?) section$/, (subsection) => {
+const filenum = () => {
+  const size = 4
+  const num = counter++
+
+  let s = '' + num
+  while (s.length < size) {
+    s = '0' + s
+  }
+  return s + '-' + subcontext
+}
+
+defineSupportCode(({Given, Then, When}) => {
+  When(/^I click Next to go to legal (.*?)$/, (subsection) => {
+    subcontext = subsection
+    return navigateToNext(subsection)
+    })
+
+  When(/^I navigate to the legal (.*?) section$/, (subsection) => {
+    subcontext = subsection
     const section = 'legal'
-    return navigateToSection(section)
-      .then(() => { return navigateToSubsection(section, subsection) })
-  })
+    const sectionTitle = 'Investigative and criminal history'
+    navigateToSection(sectionTitle)
+    return navigateToSubsection(section, subsection)
+    })
 
   When(/^I fill in the legal (.*?) section$/, (subsection) => {
-    const section = 'legal'
-    let promise = navigateToSection(section).then(() => { return navigateToSubsection(section, subsection) })
-
     switch (subsection) {
     case 'police':
       return completePoliceRecord(promise)
-    case 'investigations/history':
-      return completeInvestigationsHistory(promise)
-    case 'investigations/revoked':
-      return completeInvestigationsRevoked(promise)
-    case 'investigations/debarred':
-      return completeInvestigationsDebarred(promise)
     case 'court':
       return completeCourt(promise)
-    case 'technology/unauthorized':
+    default:
+      return promise
+    }
+  })
+
+  When(/^I fill in the legal (.*?) section (.*?) subsection$/, (section, subsection) => {
+    switch (subsection) {
+    // "investigations" subsections
+    case 'history':
+      return completeInvestigationsHistory(promise)
+    case 'revoked':
+      return completeInvestigationsRevoked(promise)
+    case 'debarred':
+      return completeInvestigationsDebarred(promise)
+    // "technology" subsections
+    case 'unauthorized':
       return completeTechnologyUnauthorized(promise)
-    case 'technology/manipulating':
+    case 'manipulating':
       return completeTechnologyManipulating(promise)
-    case 'technology/unlawful':
+    case 'unlawful':
       return completeTechnologyUnlawful(promise)
-    case 'associations/terrorist-organization':
+    // "associations" subsections
+    case 'terrorist-organization':
       return completeAssociationsTerroristOrganization(promise)
-    case 'associations/engaged-in-terrorism':
+    case 'engaged-in-terrorism':
       return completeAssociationsEngagedInTerrorism(promise)
-    case 'associations/advocating':
+    case 'advocating':
       return completeAssociationsAdvocating(promise)
-    case 'associations/membership-overthrow':
+    case 'membership-overthrow':
       return completeAssociationsMembershipOverthrow(promise)
-    case 'associations/membership-violence-or-force':
+    case 'membership-violence-or-force':
       return completeAssociationsMembershipViolence(promise)
-    case 'associations/activities-to-overthrow':
+    case 'activities-to-overthrow':
       return completeAssociationsActivitiesToOverthrow(promise)
-    case 'associations/terrorism-association':
+    case 'terrorism-association':
       return completeAssociationsTerrorism(promise)
     default:
       return promise
@@ -53,6 +77,7 @@ defineSupportCode(({Given, Then, When}) => {
   })
 
   Then(/^I should be in the legal (.*?) section$/, (subsection) => {
+    subcontext = subsection
     return shouldBeInSubsection('legal', subsection)
   })
 })
@@ -240,21 +265,8 @@ const completeAssociationsTerrorism = (promise) => {
     .then(() => { return setText('.legal-associations-terrorism-explanation textarea', 'No explanation') })
 }
 
-let counter = 0
-const filenum = () => {
-  const size = 4
-  const num = counter++
-
-  let s = '' + num
-  while (s.length < size) {
-    s = '0' + s
-  }
-
-  return s
-}
-
 const navigateToSection = (section) => {
-  const selector = '.section a[href="/form/' + section + '"]'
+  const selector = '.section a[title="' + section + '"]'
   return client
     .assert.visible(selector)
     .click(selector)
@@ -262,33 +274,30 @@ const navigateToSection = (section) => {
     .saveScreenshot('./screenshots/Legal/' + filenum() + '-navigate-section.png')
 }
 
-const navigateToSubsection = (section, subsection) => {
-  const crumbs = subsection.split('/')
-  for (let i = 0; i < crumbs.length; i++) {
-    let path = ''
-    for (let j = 0; j < (i + 1); j++) {
-      if (path.length) {
-        path += '/'
-      }
-      path += crumbs[j]
-    }
-
-    const selector = '.section a[href="/form/' + section + '/' + path + '"]'
-    client
-      .assert.visible(selector)
-      .click(selector)
-      .pause(3000)
-      .saveScreenshot('./screenshots/Legal/' + filenum() + '-navigate-subsection.png')
-  }
-
+const navigateToSectionTitle = (section) => {
+  const selector = '.subsection a[title="' + section + '"]'
   return client
+    .assert.visible(selector)
+    .click(selector)
+    .pause(1000)
+    .saveScreenshot('./screenshots/Legal/' + filenum() + '-navigate-sectiontitle.png')
+}
+
+const navigateToSubsection = (section, subsection) => {
+  const selector = '.subsection a[href="/form/' + section + '/' + subsection + '"]'
+  return client
+    .assert.visible(selector)
+    .click(selector)
+    .click(selector)
+    .pause(1000)
+    .saveScreenshot('./screenshots/Legal/' + filenum() + '-navigate-subsection.png')
 }
 
 const navigateToNext = () => {
   return client
     .assert.visible('button.next')
     .click('button.next')
-    .pause(3000)
+    .pause(1000)
     .saveScreenshot('./screenshots/Legal/' + filenum() + '-navigate-next.png')
 }
 
@@ -301,7 +310,7 @@ const click = (selector) => {
   return client
     .assert.visible(selector)
     .click(selector)
-    .pause(3000)
+    .pause(500)
     .saveScreenshot('./screenshots/Legal/' + filenum() + '-click.png')
 }
 
@@ -309,7 +318,7 @@ const setOption = (selector) => {
   return client
     .assert.visible(selector)
     .click(selector)
-    .pause(3000)
+    .pause(500)
     .saveScreenshot('./screenshots/Legal/' + filenum() + '-set-option.png')
 }
 

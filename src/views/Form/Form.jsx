@@ -2,7 +2,8 @@ import React from 'react'
 import { push } from '../../middleware/history'
 import { getApplicationState } from '../../actions/ApplicationActions'
 import AuthenticatedView from '../AuthenticatedView'
-import { Section, SavedIndicator } from '../../components'
+import { Section, SavedIndicator, TimeoutWarning } from '../../components'
+import { env } from '../../config'
 
 // The concept is that we have three different inputs:
 //  1. The index which just brings up the first entry of the form.
@@ -12,7 +13,6 @@ import { Section, SavedIndicator } from '../../components'
 //     display the subsection only.
 class Form extends React.Component {
   componentWillMount () {
-    this.props.dispatch(getApplicationState())
     this.defaultRedirect()
   }
 
@@ -41,6 +41,7 @@ class Form extends React.Component {
         <div id="info">
           <Section section={params.section} subsection={subsection} />
           <SavedIndicator interval="30000" />
+          <TimeoutWarning timeout={env.SessionTimeout()} />
         </div>
       </div>
     )

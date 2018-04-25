@@ -1,0 +1,24 @@
+.token-error {
+  .seal-header {
+    height: 7.8rem;
+    padding: 1rem 2rem;
+
+    img {
+      display: inline-block;
+      line-height: 1.6;
+      vertical-align: middle;
+      width: 5rem;
+      height: auto;
+      margin-right: 2rem;
+    }
+
+    h3 {
+      display: inline-block;
+      line-height: 1.6;
+      vertical-align: middle;
+      color: #fff;
+      max-width: unset;
+      text-align: left;
+    }
+  }
+}
