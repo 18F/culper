@@ -106,16 +106,16 @@ class Api {
     return this.get(env.EndpointSaml(), false)
   }
 
-  twoFactor (account, token) {
+  twoFactor (token) {
     if (token) {
-      return this.post(env.EndpointTwoFactorVerify(account), { token: token })
+      return this.post(env.EndpointTwoFactorVerify(), { token: token })
     }
 
-    return this.get(env.EndpointTwoFactor(account))
+    return this.get(env.EndpointTwoFactor())
   }
 
-  twoFactorReset (account) {
-    return this.get(env.EndpointTwoFactorReset(account))
+  twoFactorReset () {
+    return this.get(env.EndpointTwoFactorReset())
   }
 
   login (username, password) {

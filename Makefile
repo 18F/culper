@@ -120,12 +120,14 @@ package-go:
                -e "CGO_ENABLED=0" \
                golang:latest go build -ldflags '-w -extldflags "-static"' -o api
 	@docker pull ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/nbis-ecr:base
-	@docker create --name=eapp_golang_container ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/nbis-ecr:base
-	@docker cp ./api/migrations/. eapp_golang_container:/migrations/
-	@docker cp ./api/templates/. eapp_golang_container:/templates/
-	@docker cp ./api/bin/xmlsec1 eapp_golang_container:/bin/
-	@docker cp ./api/checksum eapp_golang_container:/checksum
-	@docker cp ./api/api eapp_golang_container:/eapp-backend
+	@docker create --name=eapp_golang_container ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/nbis-ecr:base /eapp-backend
+	-@mkdir -p ./api/dist/bin
+	-@cp -R ./api/migrations ./api/dist/
+	-@cp -R ./api/templates ./api/dist/
+	-@cp ./api/bin/xmlsec1 ./api/dist/bin/
+	-@cp ./api/checksum ./api/dist/
+	-@cp ./api/api ./api/dist/eapp-backend
+	@docker cp ./api/dist/. eapp_golang_container:/
 	@docker commit eapp_golang_container eapp_golang:smallest
 
 #

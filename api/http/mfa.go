@@ -1,12 +1,10 @@
 package http
 
 import (
-	"errors"
 	"fmt"
 	"net/http"
 
 	"github.com/18F/e-QIP-prototype/api"
-	"github.com/gorilla/mux"
 )
 
 type MFAGenerateHandler struct {
@@ -26,11 +24,7 @@ func (handler MFAGenerateHandler) ServeHTTP(w http.ResponseWriter, r *http.Reque
 		return
 	}
 
-	account, err := getAccountFromRequest(r, handler.Log, handler.MFA, handler.Database)
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
+	account := &api.Account{}
 
 	// Valid token and audience
 	_, id, err := handler.Token.CheckToken(r)
@@ -40,7 +34,21 @@ func (handler MFAGenerateHandler) ServeHTTP(w http.ResponseWriter, r *http.Reque
 		return
 	}
 
+	// Get the account information from the data store
 	account.ID = id
+	if _, err := account.Get(handler.Database, id); err != nil {
+		handler.Log.WarnError(api.NoAccount, err, api.LogFields{})
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	// If the account is locked then we cannot proceed
+	if account.Locked {
+		handler.Log.Warn(api.AccountLocked, api.LogFields{})
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
 	png := ""
 	if !account.TokenUsed {
 		handler.Log.Info(api.GenerateQRCode, api.LogFields{})
@@ -71,11 +79,7 @@ func (handler MFAVerifyHandler) ServeHTTP(w http.ResponseWriter, r *http.Request
 		return
 	}
 
-	account, err := getAccountFromRequest(r, handler.Log, handler.MFA, handler.Database)
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
+	account := &api.Account{}
 
 	// Valid token and audience
 	_, id, err := handler.Token.CheckToken(r)
@@ -84,7 +88,21 @@ func (handler MFAVerifyHandler) ServeHTTP(w http.ResponseWriter, r *http.Request
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
+
+	// Get the account information from the data store
 	account.ID = id
+	if _, err := account.Get(handler.Database, id); err != nil {
+		handler.Log.WarnError(api.NoAccount, err, api.LogFields{})
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	// If the account is locked then we cannot proceed
+	if account.Locked {
+		handler.Log.Warn(api.AccountLocked, api.LogFields{})
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 
 	var body struct {
 		Token string
@@ -147,21 +165,29 @@ func (handler MFAResetHandler) ServeHTTP(w http.ResponseWriter, r *http.Request)
 		return
 	}
 
-	// Retrieve the current account information
-	account, err := getAccountFromRequest(r, handler.Log, handler.MFA, handler.Database)
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-
 	// Valid token and audience
+	account := &api.Account{}
 	jwtToken, id, err := handler.Token.CheckToken(r)
 	if err != nil {
 		handler.Log.WarnError(api.InvalidJWT, err, api.LogFields{})
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
+
+	// Get the account information from the data store
 	account.ID = id
+	if _, err := account.Get(handler.Database, id); err != nil {
+		handler.Log.WarnError(api.NoAccount, err, api.LogFields{})
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	// If the account is locked then we cannot proceed
+	if account.Locked {
+		handler.Log.Warn(api.AccountLocked, api.LogFields{})
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 
 	// Make sure the account does not have a token assigned
 	handler.Log.Info(api.ResetMFA, api.LogFields{})
@@ -174,39 +200,4 @@ func (handler MFAResetHandler) ServeHTTP(w http.ResponseWriter, r *http.Request)
 	}
 
 	fmt.Fprintf(w, jwtToken)
-}
-
-// getAccountFromRequest extracts account information from the token returning an
-// error and/or the associated account.
-func getAccountFromRequest(r *http.Request, log api.LogService, mfasvc api.MFAService, database api.DatabaseService) (*api.Account, error) {
-	log.Info(api.RetrievingAccount, api.LogFields{})
-
-	// Sanity check for username
-	vars := mux.Vars(r)
-	username := vars["account"]
-	if username == "" {
-		log.Warn(api.NoUsername, api.LogFields{})
-		return &api.Account{}, errors.New("No username provided")
-	}
-
-	// Retrieve the current account information
-	account := &api.Account{
-		Username: username,
-	}
-
-	if _, err := account.Get(database, 0); err != nil {
-		log.WarnError(api.NoAccount, err, api.LogFields{})
-		return account, err
-	}
-
-	// Make sure the account has a token
-	if account.Token == "" {
-		account.Token = mfasvc.Secret()
-		if _, err := account.Save(database, 0); err != nil {
-			log.WarnError(api.AccountUpdateError, err, api.LogFields{})
-			return account, err
-		}
-	}
-
-	return account, nil
 }
