@@ -234,7 +234,7 @@ export class Login extends React.Component {
             <li><a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en">Download Google authenticator for Android</a></li>
             <li><a href="https://itunes.apple.com/us/app/google-authenticator/id388497605?mt=8">Download Google authenticator for iOS</a></li>
           </ul>
-          <TwoFactor username={this.state.username} />
+          <TwoFactor />
         </div>
       </div>
     )
