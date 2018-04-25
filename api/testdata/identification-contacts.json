@@ -15,7 +15,13 @@
               }
             }
           }
-        ]
+        ],
+        "branch": {
+          "type": "branch",
+          "props": {
+            "value": ""
+          }
+        }
       }
     },
     "PhoneNumbers": {
@@ -37,7 +43,13 @@
               }
             }
           }
-        ]
+        ],
+        "branch": {
+          "type": "branch",
+          "props": {
+            "value": ""
+          }
+        }
       }
     }
   }

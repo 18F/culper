@@ -80,6 +80,29 @@ func (wc *WebClient) Save(payload json.RawMessage) {
 	defer resp.Body.Close()
 }
 
+func (wc *WebClient) Form() json.RawMessage {
+	wc.preflight()
+	req, err := http.NewRequest("GET", wc.Address+"/me/form", nil)
+	if err != nil {
+		log.Println("Error creating request for submitting application.", err)
+		return []byte{}
+	}
+	req.Header.Add("Authorization", "Bearer "+wc.token)
+
+	resp, err := wc.Client.Do(req)
+	if err != nil || resp.StatusCode < 200 || resp.StatusCode > 299 {
+		log.Println("Error or bad response while submitting application.", err)
+		return []byte{}
+	}
+	defer resp.Body.Close()
+
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return []byte{}
+	}
+	return body
+}
+
 func (wc *WebClient) Submit() {
 	wc.preflight()
 	req, err := http.NewRequest("GET", wc.Address+"/me/form/submit", nil)
