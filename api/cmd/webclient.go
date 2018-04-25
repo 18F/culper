@@ -23,14 +23,21 @@ type WebClient struct {
 }
 
 func (wc *WebClient) GetInformation() {
+	emptyline := false
 	if wc.Address == "" {
+		emptyline = true
 		wc.Address = readline("API address: ", false)
 	}
 	if wc.Username == "" {
+		emptyline = true
 		wc.Username = readline("Username: ", false)
 	}
 	if wc.Password == "" {
+		emptyline = true
 		wc.Password = readline("Password: ", true)
+	}
+	if emptyline {
+		fmt.Println("\n")
 	}
 }
 
