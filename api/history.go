@@ -729,7 +729,7 @@ func (entity *HistoryComments) Marshal() Payload {
 	if entity.Comments != nil {
 		entity.PayloadComments = entity.Comments.Marshal()
 	}
-	return MarshalPayloadEntity("identification.comments", entity)
+	return MarshalPayloadEntity("history.comments", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.

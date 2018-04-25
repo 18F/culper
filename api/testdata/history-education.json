@@ -137,9 +137,21 @@
               "Diplomas": {
                 "type": "collection",
                 "props": {
+                  "branch": {
+                    "type": "branch",
+                    "props": {
+                      "value": ""
+                    }
+                  },
                   "items": [
                     {
                       "Item": {
+                        "Has": {
+                          "type": "branch",
+                          "props": {
+                            "value": "Yes"
+                          }
+                        },
                         "Diploma": {
                           "type": "radio",
                           "props": {
@@ -160,6 +172,14 @@
                             "year": "2017",
                             "estimated": false,
                             "date": "2017-07-25T00:00:00Z"
+                          }
+                        }
+                      },
+                      "Item": {
+                        "Has": {
+                          "type": "branch",
+                          "props": {
+                            "value": "No"
                           }
                         }
                       }

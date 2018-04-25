@@ -98,9 +98,21 @@
               "Aliases": {
                 "type": "collection",
                 "props": {
+                  "branch": {
+                    "type": "branch",
+                    "props": {
+                      "value": ""
+                    }
+                  },
                   "items": [
                     {
                       "Item": {
+                        "Has": {
+                          "type": "branch",
+                          "props": {
+                            "value": "Yes"
+                          }
+                        },
                         "Alias": {
                           "type": "name",
                           "props": {
@@ -113,6 +125,16 @@
                             "noMiddleName": false,
                             "suffix": "Other",
                             "suffixOther": "XX"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "Item": {
+                        "Has": {
+                          "type": "branch",
+                          "props": {
+                            "value": "No"
                           }
                         }
                       }

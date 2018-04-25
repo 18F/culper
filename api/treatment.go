@@ -51,6 +51,15 @@ func (entity *Treatment) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *Treatment) Marshal() Payload {
+	if entity.Name != nil {
+		entity.PayloadName = entity.Name.Marshal()
+	}
+	if entity.Phone != nil {
+		entity.PayloadPhone = entity.Phone.Marshal()
+	}
+	if entity.Address != nil {
+		entity.PayloadAddress = entity.Address.Marshal()
+	}
 	return MarshalPayloadEntity("psychological.treatment", entity)
 }
 

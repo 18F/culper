@@ -37,7 +37,7 @@ func (wc *WebClient) GetInformation() {
 		wc.Password = readline("Password: ", true)
 	}
 	if emptyline {
-		fmt.Println("\n")
+		fmt.Printf("\n\n")
 	}
 }
 

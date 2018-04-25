@@ -1219,7 +1219,7 @@ func (entity *PsychologicalComments) Marshal() Payload {
 	if entity.Comments != nil {
 		entity.PayloadComments = entity.Comments.Marshal()
 	}
-	return MarshalPayloadEntity("identification.comments", entity)
+	return MarshalPayloadEntity("psychological.comments", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.

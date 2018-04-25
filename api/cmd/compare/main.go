@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
@@ -53,11 +54,12 @@ func main() {
 	// Loop through all sections received
 	for _, payload := range payloads {
 		sig := signature(payload)
-		fmt.Printf("Payload \"%s\": ", sig)
-		if compare(walkJSON(form, sig), payload) {
-			fmt.Println("found in response")
+		matched := walkJSON(form, sig)
+
+		if compare(matched, payload) {
+			fmt.Printf("++ %s\n", sig)
 		} else {
-			fmt.Println("not found in response")
+			fmt.Printf("-- %s\n", sig)
 		}
 	}
 }
@@ -138,22 +140,7 @@ func compare(first, second json.RawMessage) bool {
 			return false
 		}
 	} else {
-		var val1 interface{}
-		var val2 interface{}
-
-		json.Unmarshal(first, &val1)
-		json.Unmarshal(first, &val2)
-
-		switch v := val1.(type) {
-		case float64:
-			return v == val2.(float64)
-		case string:
-			return v == val2.(string)
-		case bool:
-			return v == val2.(bool)
-		case nil:
-		default:
-		}
+		return bytes.EqualFold(first, second)
 	}
 	return true
 }

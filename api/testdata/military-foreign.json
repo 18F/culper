@@ -4,6 +4,12 @@
     "List": {
       "type": "collection",
       "props": {
+        "branch": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
         "items": [
           {
             "Item": {
@@ -85,9 +91,21 @@
               "List": {
                 "type": "collection",
                 "props": {
+                  "branch": {
+                    "type": "branch",
+                    "props": {
+                      "value": ""
+                    }
+                  },
                   "items": [
                     {
                       "Item": {
+                        "Has": {
+                          "type": "branch",
+                          "props": {
+                            "value": "Yes"
+                          }
+                        },
                         "Name": {
                           "type": "name",
                           "props": {
@@ -152,6 +170,16 @@
                           "type": "text",
                           "props": {
                             "value": "Weekly"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "Item": {
+                        "Has": {
+                          "type": "branch",
+                          "props": {
+                            "value": "No"
                           }
                         }
                       }

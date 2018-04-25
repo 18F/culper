@@ -19,7 +19,7 @@
         "branch": {
           "type": "branch",
           "props": {
-            "value": ""
+            "value": "No"
           }
         }
       }
@@ -47,7 +47,7 @@
         "branch": {
           "type": "branch",
           "props": {
-            "value": ""
+            "value": "No"
           }
         }
       }

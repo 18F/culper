@@ -10,6 +10,12 @@
     "List": {
       "type": "collection",
       "props": {
+        "branch": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
         "items": [
           {
             "Item": {
@@ -75,13 +81,35 @@
                   "List": {
                     "type": "collection",
                     "props": {
+                      "branch": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
                       "items": [
                         {
                           "Item": {
+                            "Has": {
+                              "type": "branch",
+                              "props": {
+                                "value": "Yes"
+                              }
+                            },
                             "Explanation": {
                               "type": "textarea",
                               "props": {
                                 "value": "my explanation"
+                              }
+                            }
+                          }
+                        },
+                        {
+                          "Item": {
+                            "Has": {
+                              "type": "branch",
+                              "props": {
+                                "value": "No"
                               }
                             }
                           }
