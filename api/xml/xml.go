@@ -43,6 +43,8 @@ func (service XmlService) DefaultTemplate(templateName string, data map[string]i
 		"hasRelativeType":      hasRelativeType,
 		"location":             location,
 		"locationIsPostOffice": locationIsPostOffice,
+		"maritalStatus":        maritalStatus,
+		"militaryStatus":       militaryStatus,
 		"monthYear":            monthYear,
 		"name":                 name,
 		"nameLastFirst":        nameLastFirst,
@@ -326,6 +328,28 @@ func employmentType(empType string) string {
 		"Other":             "Other",
 	}
 	return alias[empType]
+}
+
+func militaryStatus(status string) string {
+	alias := map[string]string{
+		"ActiveDuty":      "Active",
+		"ActiveReserve":   "ActiveReserve",
+		"InactiveReserve": "InactiveReserve",
+	}
+	return alias[status]
+}
+
+func maritalStatus(status string) string {
+	alias := map[string]string{
+		"NeverMarried": "NeverMarried",
+		"Married":      "Married",
+		"InCivilUnion": "Married",
+		"Separated":    "Separated",
+		"Annulled":     "Annulled",
+		"Divorced":     "Divorced",
+		"Widowed":      "Widowed",
+	}
+	return alias[status]
 }
 
 func citizenshipHas(data map[string]interface{}, country string) bool {
