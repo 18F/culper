@@ -1,6 +1,8 @@
 package api
 
-import "encoding/json"
+import (
+	"encoding/json"
+)
 
 type PsychologicalCompetence struct {
 	PayloadIsIncompetent Payload `json:"IsIncompetent" sql:"-"`

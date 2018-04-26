@@ -113,6 +113,7 @@ specs:
                             ./testdata/psychological-consultations.json \
                             ./testdata/psychological-diagnoses.json \
                             ./testdata/psychological-hospitalizations.json \
-                            > fuzzed.json
-	cat fuzzed.json | ./cmd/load/load
-	cat fuzzed.json | ./cmd/compare/compare
+                            > fuzzed.json;
+	cat fuzzed.json | ./cmd/load/load;
+	cat fuzzed.json | ./cmd/compare/compare;
+	rm -f ./fuzzed.json;

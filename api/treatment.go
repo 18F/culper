@@ -147,8 +147,6 @@ func (entity *Treatment) Delete(context DatabaseService, account int) (int, erro
 }
 
 func (entity *Treatment) Get(context DatabaseService, account int) (int, error) {
-	entity.ID = account
-
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}

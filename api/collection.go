@@ -252,7 +252,7 @@ func (ci *CollectionItem) Save(context DatabaseService, account, collectionID, i
 	}
 
 	err := ci.Each(func(name, entityType string, entity Entity, err error) error {
-		// If a named payload was not ablet to be decoded then skip the saving
+		// If a named payload was not able to be decoded then skip the saving
 		// bit.
 		if entityType == "" {
 			return nil
