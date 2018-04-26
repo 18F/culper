@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { i18n } from '../../../config'
+import { i18n, env } from '../../../config'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
 import SectionComments from '../SectionComments'
@@ -123,8 +123,8 @@ class Psychological extends SectionElement {
                        showTop={true}
                        back={this.props.ShowExistingConditions ? 'psychological/conditions' : 'psychological/diagnoses'}
                        backLabel={i18n.t(this.props.ShowExistingConditions ? 'psychological.destination.existingConditions' : 'psychological.destination.diagnoses')}
-                       next="package/review"
-                       nextLabel={ i18n.t('application.destination.submit') }>
+                       next={env.AttachmentsEnabled() ? 'package/attachments' : 'package/review'}
+                       nextLabel={env.AttachmentsEnabled() ? i18n.t('application.destination.attachments') : i18n.t('application.destination.submit')}>
             <Competence name="Competence"
                         {...this.props.Competence}
                         section="psychological"

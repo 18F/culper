@@ -79,21 +79,27 @@ func (service RootHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 			Description: "returns the form section",
 			Verbs:       []string{"GET"},
 		},
-		endpoint{
-			Path:        "/me/attachment",
-			Description: "store attachment",
-			Verbs:       []string{"POST", "PUT"},
-		},
-		endpoint{
-			Path:        "/me/attachment/:id",
-			Description: "get attachment",
-			Verbs:       []string{"GET"},
-		},
-		endpoint{
-			Path:        "/me/attachment/:id/delete",
-			Description: "delete attachment",
-			Verbs:       []string{"POST", "DELETE"},
-		},
+	}
+
+	if service.Env.True(api.ATTACHMENTS_ENABLED) {
+		attachments := []endpoint{
+			endpoint{
+				Path:        "/me/attachment",
+				Description: "store attachment",
+				Verbs:       []string{"POST", "PUT"},
+			},
+			endpoint{
+				Path:        "/me/attachment/:id",
+				Description: "get attachment",
+				Verbs:       []string{"GET"},
+			},
+			endpoint{
+				Path:        "/me/attachment/:id/delete",
+				Description: "delete attachment",
+				Verbs:       []string{"POST", "DELETE"},
+			},
+		}
+		endpoints = append(endpoints, attachments...)
 	}
 
 	if !service.Env.True(api.DISABLE_2FA) {

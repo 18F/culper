@@ -5,7 +5,7 @@
   {{with $Item := $item.Item}}
   <HospitalizedOccurrence ID="{{$index}}">
     <AdmissionType>{{radio $Item.Admission}}</AdmissionType>
-    {{daterange $Item.TreatmentDate}}
+    {{monthYearDaterange $Item.TreatmentDate}}
     <Facility>
       <Name>{{text $Item.Facility}}</Name>
       <Address>{{location $Item.FacilityAddress}}</Address>
