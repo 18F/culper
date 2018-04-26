@@ -57,6 +57,7 @@ When running the application using the provided [docker-compose.yml](docker-comp
 | [`WS_CALLERINFO_AGENCY_USER_PSEUDOSSN`](#ws-callerinfo-agency-user-pseudossn) | X               |                        | X                     |
 | [`WS_AGENCY_ID`](#ws-agency-id)                        | X               |                        | X                     |
 | [`WS_AGENCY_GROUP_ID`](#ws-agency-group-id)                  | X               |                        | X                     |
+| [`ATTACHMENTS_ENABLED`](#attachments-enabled)                          |                 | X                      | X                     |
 | [`FILE_MAXIMUM_SIZE`](#file-maximum-size)                   |                 | X                      | X                     |
 | [`FILE_TYPES`](#file-types)                          |                 | X                      | X                     |
 
@@ -399,6 +400,14 @@ Provided by OPM representing the destination agency's group.
 
 **Target** - Back-end (api)<br>
 **Default** - *empty*<br>
+
+## `ATTACHMENTS_ENABLED`
+
+Flag to enable uploading and management of attachments within the application.
+
+**Target** - Front-end (web), Back-end (api)<br>
+**Default** - True: `1`<br>
+**Values** - True: `1`, False: *empty*<br>
 
 ## `FILE_MAXIMUM_SIZE`
 

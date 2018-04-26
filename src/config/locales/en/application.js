@@ -1,5 +1,6 @@
 export const application = {
   destination: {
+    attachments: 'Attachments',
     submit: 'Submit'
   },
   header: [

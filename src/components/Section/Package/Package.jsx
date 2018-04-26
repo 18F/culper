@@ -146,7 +146,11 @@ class Package extends SectionElement {
     const releases = (this.props.Submission || {}).Releases || {}
     return (
       <SectionViews current={this.props.subsection} dispatch={this.props.dispatch} update={this.props.update}>
-        <SectionView name="attachments">
+        <SectionView name="attachments"
+                     back="psychological/review"
+                     backLabel={i18n.t('psychological.destination.review')}
+                     next="package/review"
+                     nextLabel={i18n.t('application.destination.submit')}>
           <Attachments {...this.props.Submission.Attachments}
                        onUpdate={this.updateAttachments} />
         </SectionView>

@@ -305,6 +305,13 @@ const (
 	// Default: *empty*
 	WS_AGENCY_GROUP_ID = "WS_AGENCY_GROUP_ID"
 
+	// ATTACHMENTS_ENABLED
+	//
+	// Target: Front-end (web), Back-end (api)
+	// Default: True: `1`
+	// Values: True: `1`, False: *empty*
+	ATTACHMENTS_ENABLED = "ATTACHMENTS_ENABLED"
+
 	// FILE_MAXIMUM_SIZE
 	//
 	// Target: Front-end (web), Back-end (api)
