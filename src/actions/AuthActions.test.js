@@ -52,7 +52,7 @@ describe('Auth actions', function () {
 
   it('should create an action to handle qrcode', function () {
     const mock = new MockAdapter(api.proxy)
-    mock.onGet('/2fa').reply(200, 'aernstiaenstieanstieansitenaiestnaientsi')
+    mock.onGet('/2fa/').reply(200, 'aernstiaenstieanstieansitenaiestnaientsi')
     const store = mockStore({ authentication: [] })
     const expectedAction = [
       {
