@@ -36,6 +36,7 @@ func (service XmlService) DefaultTemplate(templateName string, data map[string]i
 		"daterange":            daterange,
 		"daysInRange":          daysInRange,
 		"degreeType":           degreeType,
+		"diagnosisType":        diagnosisType,
 		"foreignDocType":       foreignDocType,
 		"monthYearDaterange":   monthYearDaterange,
 		"email":                email,
@@ -285,6 +286,19 @@ func degreeType(t string) string {
 		"Doctorate":           "Doctorate",
 		"Professional":        "Professional",
 		"Other":               "Other",
+	}
+	return alias[t]
+}
+
+func diagnosisType(t string) string {
+	alias := map[string]string{
+		"Psychotic disorder":              "PsychoticDisorder",
+		"Schizophrenia":                   "Schizophrenia",
+		"Schizoaffective disorder":        "SchizoaffectiveDisorder",
+		"Delusional disorder":             "DelusionalDisorder",
+		"Bipolar mood disorder":           "BipolarMoodDisorder",
+		"Borderline personality disorder": "BorderlinePersonalityDisorder",
+		"Antisocial personality disorder": "AntisocialPersonalityDisorder",
 	}
 	return alias[t]
 }
