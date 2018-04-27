@@ -2,10 +2,7 @@ version: "2"
 plugins:
   eslint:
     enabled: true
-    config:
-      extensions:
-        - .js
-        - .jsx
+    channel: "eslint-4"
   csslint:
     enabled: true
 exclude_paths:
