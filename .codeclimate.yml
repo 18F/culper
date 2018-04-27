@@ -1,4 +1,15 @@
 version: "2"
+checks:
+  similar-code:
+    threshold: 100
+  file-lines:
+    threshold: 750
+  method-count:
+    threshold: 50
+  method-lines:
+    threshold: 255
+  return-statements:
+    threshold: 10
 plugins:
   eslint:
     enabled: true
