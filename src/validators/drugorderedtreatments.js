@@ -45,27 +45,27 @@ export class DrugOrderedTreatmentValidator {
 
   validActionTaken () {
     switch (this.actionTaken) {
-      case 'Yes':
-        return validGenericTextfield(this.treatmentProvider) &&
-          new LocationValidator(this.treatmentProviderAddress).isValid() &&
-          validPhoneNumber(this.treatmentProviderTelephone) &&
-          new DateRangeValidator(this.treatmentDates).isValid() &&
-          this.validTreatmentCompleted()
-      case 'No':
-        return validGenericTextfield(this.noActionTakenExplanation)
-      default:
-        return false
+    case 'Yes':
+      return validGenericTextfield(this.treatmentProvider) &&
+        new LocationValidator(this.treatmentProviderAddress).isValid() &&
+        validPhoneNumber(this.treatmentProviderTelephone) &&
+        new DateRangeValidator(this.treatmentDates).isValid() &&
+        this.validTreatmentCompleted()
+    case 'No':
+      return validGenericTextfield(this.noActionTakenExplanation)
+    default:
+      return false
     }
   }
 
   validTreatmentCompleted () {
     switch (this.treatmentCompleted) {
-      case 'Yes':
-        return true
-      case 'No':
-        return validGenericTextfield(this.noTreatmentExplanation)
-      default:
-        return false
+    case 'Yes':
+      return true
+    case 'No':
+      return validGenericTextfield(this.noTreatmentExplanation)
+    default:
+      return false
     }
   }
 

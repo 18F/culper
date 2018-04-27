@@ -198,7 +198,7 @@ describe('Foreign business conferences component validation', function () {
               items: [
                 {
                   Item: {
-                    Has: { value: 'Yes'},
+                    Has: { value: 'Yes' },
                     Explanation: {}
                   }
                 }

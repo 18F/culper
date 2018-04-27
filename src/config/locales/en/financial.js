@@ -127,7 +127,7 @@ export const financial = {
       help: {
         title: 'Need help with the details of your bankruptcy petition?',
         message: [
-          'If you don\'t have paperwork you may be able to find your details here: [www.pacer.gov](https://www.pacer.gov/)',
+          'If you don\'t have paperwork you may be able to find your details here: [www.pacer.gov](https://www.pacer.gov/)'
         ],
         note: ''
       }

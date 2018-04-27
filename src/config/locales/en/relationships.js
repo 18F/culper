@@ -204,7 +204,7 @@ export const relationships = {
       },
       birthdate: {
         title: 'Estimate the date if unsure',
-          message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+        message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
         note: ''
       },
       birthplace: {
@@ -229,7 +229,7 @@ export const relationships = {
       },
       address: {
         title: 'Acronyms:',
-          message: 'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
+        message: 'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
         note: ''
       },
       abroad: {

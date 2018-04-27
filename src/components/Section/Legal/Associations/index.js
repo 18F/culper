@@ -5,5 +5,12 @@ import EngagedInTerrorism from './EngagedInTerrorism'
 import Advocating from './Advocating'
 import ActivitiesToOverthrow from './ActivitiesToOverthrow'
 import TerrorismAssociation from './TerrorismAssociation'
-export { TerroristOrganization, MembershipOverthrow, MembershipViolence,
-         EngagedInTerrorism, Advocating, ActivitiesToOverthrow, TerrorismAssociation }
+export {
+  TerroristOrganization,
+  MembershipOverthrow,
+  MembershipViolence,
+  EngagedInTerrorism,
+  Advocating,
+  ActivitiesToOverthrow,
+  TerrorismAssociation
+}

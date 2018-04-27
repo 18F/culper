@@ -54,23 +54,23 @@ export class OrderedCounselingValidator {
       return false
     }
     switch (this.actionTaken) {
-      case 'Yes':
-        return this.validActionTakenYes()
-      case 'No':
-        return validGenericTextfield(this.noActionTakenExplanation)
-      default:
-        return false
+    case 'Yes':
+      return this.validActionTakenYes()
+    case 'No':
+      return validGenericTextfield(this.noActionTakenExplanation)
+    default:
+      return false
     }
   }
 
   validCompletedTreatment () {
     switch (this.completedTreatment) {
-      case 'Yes':
-        return true
-      case 'No':
-        return validGenericTextfield(this.noCompletedTreatmentExplanation)
-      default:
-        return false
+    case 'Yes':
+      return true
+    case 'No':
+      return validGenericTextfield(this.noCompletedTreatmentExplanation)
+    default:
+      return false
     }
   }
 

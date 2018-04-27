@@ -1,13 +1,13 @@
-engines:
+version: "2"
+plugins:
   eslint:
     enabled: true
+    config:
+      extensions:
+        - .js
+        - .jsx
   csslint:
     enabled: true
-
-ratings:
-  paths:
-    - "src/**"
-
 exclude_paths:
   - "bin/"
   - "coverage/"

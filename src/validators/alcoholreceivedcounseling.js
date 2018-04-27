@@ -1,4 +1,3 @@
-import DateRangeValidator from './daterange'
 import LocationValidator from './location'
 import { validAccordion, validBranch, validGenericTextfield, validDateField } from './helpers'
 
@@ -43,11 +42,11 @@ export class ReceivedCounselingValidator {
 
   validCompletedTreatment () {
     switch (this.completedTreatment) {
-      case 'Yes':
-      case 'No':
-        return validGenericTextfield(this.noCompletedTreatmentExplanation)
-      default:
-        return false
+    case 'Yes':
+    case 'No':
+      return validGenericTextfield(this.noCompletedTreatmentExplanation)
+    default:
+      return false
     }
   }
 
