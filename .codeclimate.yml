@@ -1,8 +1,7 @@
 version: "2"
 checks:
   similar-code:
-    config:
-      threshold: 100
+    enabled: false
   file-lines:
     config:
       threshold: 750
