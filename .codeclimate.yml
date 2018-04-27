@@ -21,6 +21,7 @@ exclude_paths:
   - "**/*_test.go"
   - "**/vendor/"
   - "**/node_modules/"
+  - "specs/"
   - "dist/"
   - "api/migrations/"
   - "api/templates/"
