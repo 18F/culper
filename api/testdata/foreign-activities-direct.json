@@ -95,9 +95,21 @@
                   "List": {
                     "type": "collection",
                     "props": {
+                      "branch": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
                       "items": [
                         {
                           "Item": {
+                            "Has": {
+                              "type": "branch",
+                              "props": {
+                                "value": "Yes"
+                              }
+                            },
                             "Name": {
                               "type": "name",
                               "props": {
@@ -136,6 +148,16 @@
                               "type": "textarea",
                               "props": {
                                 "value": "the nature of the relationship"
+                              }
+                            }
+                          }
+                        },
+                        {
+                          "Item": {
+                            "Has": {
+                              "type": "branch",
+                              "props": {
+                                "value": "No"
                               }
                             }
                           }
