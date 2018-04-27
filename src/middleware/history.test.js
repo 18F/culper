@@ -1,12 +1,9 @@
-import React from 'react'
-import { mount } from 'enzyme'
 import { PUSH_STATE, historyMiddleware, push } from './history'
-import { env } from '../config'
 
 describe('history middleware', function () {
   const dispatch = () => {}
   const getState = () => {}
-  const nextHandler = historyMiddleware({dispatch: dispatch, getState, getState})
+  const nextHandler = historyMiddleware({dispatch: dispatch, getState: getState})
 
   it('should create an action to handle a history push', function () {
     const path = '/'

@@ -67,15 +67,15 @@ export class BankruptcyItemValidator {
 
   validPetitionType () {
     switch ((this.petitionType || {}).value) {
-      case 'Chapter7':
-      case 'Chapter11':
-      case 'Chapter12':
-        return true
-      case 'Chapter13':
-        return validGenericTextfield(this.trustee) &&
-          new LocationValidator(this.trusteeAddress).isValid()
-      default:
-        return false
+    case 'Chapter7':
+    case 'Chapter11':
+    case 'Chapter12':
+      return true
+    case 'Chapter13':
+      return validGenericTextfield(this.trustee) &&
+        new LocationValidator(this.trusteeAddress).isValid()
+    default:
+      return false
     }
   }
 

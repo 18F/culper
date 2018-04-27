@@ -1,9 +1,4 @@
-import configureMockStore from 'redux-mock-store'
-import thunk from 'redux-thunk'
 import { updateIdentificationApplicantName, updateIdentificationBirthPlace, updateIdentificationBirthDate, updateIdentificationSSN, reportErrors } from './ApplicationActions'
-
-const middlewares = [ thunk ]
-const mockStore = configureMockStore(middlewares)
 
 describe('Application actions', function () {
   it('should create an action for updating identification properties', function () {

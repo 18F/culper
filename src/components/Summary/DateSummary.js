@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react' // eslint-disable-line no-unused-vars
 import { i18n } from '../../config'
 
 export const DateSummary = (props, unknown = i18n.t('history.employment.default.noDate.label'), full = false) => {

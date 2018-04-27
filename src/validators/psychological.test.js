@@ -1,4 +1,4 @@
-import PsychologicalValidator, { showQuestion21E, hideExistingConditions } from './psychological'
+import PsychologicalValidator, { showQuestion21E } from './psychological'
 
 describe('Psychologicalvalidation', function () {
   it('Should validate completion status', function () {

@@ -29,6 +29,7 @@ export const validate = (dispatch, application = {}) => {
 
       let valid = null
       try {
+        // eslint-disable-next-line new-cap
         valid = new child.validator(data, data).isValid()
       } catch (e) {
         valid = null

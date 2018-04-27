@@ -289,9 +289,7 @@ const navigation = [
                   return
                 }
 
-                const sectionName = path[0].url
                 const data = (store[path[0].store] || {})[child.store] || {}
-
                 let subsectionName = child.url
                 if (path.length > 1) {
                   for (let i = path.length - 1; i > 0; i--) {
@@ -301,6 +299,7 @@ const navigation = [
 
                 let valid = null
                 try {
+                  // eslint-disable-next-line new-cap
                   valid = new child.validator(data, data).isValid()
                 } catch (e) {
                   valid = null
