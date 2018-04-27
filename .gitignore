@@ -62,6 +62,11 @@ bin
 /api/cmd/flush/flush
 /api/cmd/reset/reset
 /api/cmd/unlock/unlock
+/api/cmd/fuzzer/fuzzer
+/api/cmd/load/load
+/api/cmd/transmit/transmit
+/api/cmd/compare/compare
+/api/cmd/form/form
 /build/
 /doc/
 /dist/

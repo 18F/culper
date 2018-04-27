@@ -81,9 +81,21 @@
                   "List": {
                     "type": "collection",
                     "props": {
+                      "branch": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
                       "items": [
                         {
                           "Item": {
+                            "Has": {
+                              "type": "branch",
+                              "props": {
+                                "value": "Yes"
+                              }
+                            },
                             "Subsequent": {
                               "type": "textarea",
                               "props": {
@@ -104,6 +116,16 @@
                               "type": "textarea",
                               "props": {
                                 "value": "my future"
+                              }
+                            }
+                          }
+                        },
+                        {
+                          "Item": {
+                            "Has": {
+                              "type": "branch",
+                              "props": {
+                                "value": "No"
                               }
                             }
                           }

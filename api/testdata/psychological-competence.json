@@ -10,6 +10,12 @@
     "List": {
       "type": "collection",
       "props": {
+        "branch": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
         "items": [
           {
             "Item": {
@@ -46,9 +52,21 @@
               "Appeals": {
                 "type": "collection",
                 "props": {
+                  "branch": {
+                    "type": "branch",
+                    "props": {
+                      "value": "Yes"
+                    }
+                  },
                   "items": [
                     {
                       "Item": {
+                        "Has": {
+                          "type": "branch",
+                          "props": {
+                            "value": "Yes"
+                          }
+                        },
                         "CourtName": {
                           "type": "text",
                           "props": {
@@ -73,6 +91,16 @@
                           "type": "text",
                           "props": {
                             "value": "the final disposition"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "Item": {
+                        "Has": {
+                          "type": "branch",
+                          "props": {
+                            "value": "No"
                           }
                         }
                       }
