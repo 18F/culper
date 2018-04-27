@@ -15,6 +15,7 @@ exclude_paths:
   - "hooks/"
   - "lib/"
   - "src/**/*.test.jsx"
+  - "src/**/*.test.js"
   - "src/config/locales/"
   - "*.json"
   - "**/*_test.go"
