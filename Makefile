@@ -56,9 +56,12 @@ setup-dependencies: clear
 #
 # Linters
 #
-lint: lint-react lint-go
-lint-react: clear
-	$(info Running React linter)
+lint: lint-js lint-css lint-go
+lint-js: clear
+	$(info Running JavaScript linter)
+	@docker-compose run --rm frontend ./node_modules/.bin/eslint src/
+lint-css: clear
+	$(info Running SCSS linter)
 	@docker-compose run --rm frontend yarn lint
 lint-go: clear
 	$(info Running Go linter)

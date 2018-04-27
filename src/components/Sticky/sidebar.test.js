@@ -1,7 +1,4 @@
-import React from 'react'
-import { mount, sinon } from 'enzyme'
-import {
-         canBeSticky,
+import { canBeSticky,
          scrollDirection,
          boundaries,
          applyPositioning,
@@ -12,14 +9,9 @@ import {
          scrollTop,
          addClass,
          removeClass,
-         hasClass
-       } from './sidebar'
+         hasClass } from './sidebar'
 
 describe('The sidebar stickiness', () => {
-  const fire = (eventName, payload) => {
-    window.dispatchEvent(new window.UIEvent(eventName, payload))
-  }
-
   it('can be sticky', () => {
     let container = document.createElement('div')
     let content = document.createElement('div')

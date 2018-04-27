@@ -113,7 +113,7 @@ export class PersonValidator {
     return new NameValidator(this.name).isValid()
   }
 
-  validDates() {
+  validDates () {
     return new DateRangeValidator(this.dates).isValid()
   }
 

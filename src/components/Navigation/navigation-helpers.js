@@ -38,14 +38,16 @@ export const hasErrors = (route, props = {}) => {
 
     const se = props.errors[section]
     if (crumbs.length === 1) {
-      return se.some(e =>
-                     e.section.toLowerCase() === crumbs[0].toLowerCase() &&
-                     e.valid === false)
+      return se.some(
+        e =>
+          e.section.toLowerCase() === crumbs[0].toLowerCase() &&
+          e.valid === false)
     } else if (crumbs.length > 1) {
-      return se.some(e =>
-                     e.section.toLowerCase() === crumbs[0].toLowerCase() &&
-                     e.subsection.toLowerCase().indexOf(crumbs.slice(1, crumbs.length).join('/').toLowerCase()) === 0 &&
-                     e.valid === false)
+      return se.some(
+        e =>
+          e.section.toLowerCase() === crumbs[0].toLowerCase() &&
+          e.subsection.toLowerCase().indexOf(crumbs.slice(1, crumbs.length).join('/').toLowerCase()) === 0 &&
+          e.valid === false)
     }
   }
 
@@ -101,8 +103,8 @@ export const sectionsCompleted = (store, props) => {
 
   for (const section in store) {
     const valid = store[section]
-          .filter(e => e.section.toLowerCase() === section.toLowerCase() && e.valid === true)
-          .length
+      .filter(e => e.section.toLowerCase() === section.toLowerCase() && e.valid === true)
+      .length
     if (valid >= validations(navigation.find(n => n.url === section), props)) {
       sections++
     }

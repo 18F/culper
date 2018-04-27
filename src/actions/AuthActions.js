@@ -23,8 +23,8 @@ export function login (username, password) {
       })
       .catch(error => {
         switch (error.response.status) {
-          case 500:
-            dispatch(handleLoginError(error.response.data))
+        case 500:
+          dispatch(handleLoginError(error.response.data))
         }
       })
   }
@@ -38,7 +38,7 @@ export function logout (error = '') {
     const clear = () => {
       api.setToken('')
       dispatch({ type: AuthConstants.LOGOUT })
-      dispatch(push(`/login${error ? '?error=' : ''}${error ? error : ''}`))
+      dispatch(push(`/login${error ? '?error=' : ''}${error || ''}`))
     }
     return api.logout().then(clear).catch(clear)
   }

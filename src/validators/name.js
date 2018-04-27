@@ -48,23 +48,23 @@ export default class NameValidator {
    */
   validMiddle () {
     switch (this.noMiddleName) {
-        // If user does not have a middle name, make sure middle name is not entered
-      case true:
-        if (this.middle) {
-          return false
-        }
-        break
-        // User should have a middle name or initial
-      case false:
-        if (!this.middle) {
-          return false
-        }
-        if (this.middleInitialOnly && this.middle.length > 1) {
-          return false
-        }
-        break
-      default:
+    case true:
+      // If user does not have a middle name, make sure middle name is not entered
+      if (this.middle) {
         return false
+      }
+      break
+    case false:
+      // User should have a middle name or initial
+      if (!this.middle) {
+        return false
+      }
+      if (this.middleInitialOnly && this.middle.length > 1) {
+        return false
+      }
+      break
+    default:
+      return false
     }
     return true
   }

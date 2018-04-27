@@ -173,10 +173,10 @@ export class EmploymentValidator {
 
   isValid () {
     switch (this.employmentActivity.value) {
-      // Active Duty, National Guard/Reserve, or USPHS Commissioned Corps
     case 'ActiveMilitary':
     case 'NationalGuard':
     case 'USPHS':
+      // Active Duty, National Guard/Reserve, or USPHS Commissioned Corps
       return this.validDates() &&
         this.validTitle() &&
         this.validAssignedDuty() &&
@@ -187,12 +187,12 @@ export class EmploymentValidator {
         this.validReasonLeft() &&
         this.validReprimand()
 
-      // Other Federal employment, State Government, Federal Contractor, Non-government employment, or Other
     case 'OtherFederal':
     case 'StateGovernment':
     case 'FederalContractor':
     case 'NonGovernment':
     case 'Other':
+      // Other Federal employment, State Government, Federal Contractor, Non-government employment, or Other
       return this.validDates() &&
         this.validTitle() &&
         this.validEmployment() &&
@@ -205,8 +205,8 @@ export class EmploymentValidator {
         this.validReasonLeft() &&
         this.validReprimand()
 
-      // Self employment
     case 'SelfEmployment':
+      // Self employment
       return this.validDates() &&
         this.validTitle() &&
         this.validEmployment() &&
@@ -218,8 +218,8 @@ export class EmploymentValidator {
         this.validReasonLeft() &&
         this.validReprimand()
 
-      // Unemployment
     case 'Unemployment':
+      // Unemployment
       return this.validDates() &&
         this.validReference() &&
         this.validReasonLeft()

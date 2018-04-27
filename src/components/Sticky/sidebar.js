@@ -69,18 +69,19 @@ export class sidebar {
       this.options.callback(this.content, this.world)
     }
 
-    debug(this.options.log,
-          'world lastScrollTop: ' + this.world.lastScrollTop + '<br/>' +
-          'world direction: ' + this.world.direction + '<br/>' +
-          'world boundaries containerTop: ' + this.world.boundaries.containerTop + '<br/>' +
-          'world boundaries containerHeight: ' + this.world.boundaries.containerHeight + '<br/>' +
-          'world boundaries containerBottom: ' + this.world.boundaries.containerBottom + '<br/>' +
-          'world boundaries contentHeight: ' + this.world.boundaries.contentHeight + '<br/>' +
-          'world boundaries windowHeight: ' + this.world.boundaries.windowHeight + '<br/>' +
-          'positioning applied' + '<br/>' +
-          'content position: ' + this.content.style.position + '<br/>' +
-          'content top: ' + this.content.style.top + '<br/>' +
-          'content class: ' + this.content.className)
+    debug(
+      this.options.log,
+      'world lastScrollTop: ' + this.world.lastScrollTop + '<br/>' +
+      'world direction: ' + this.world.direction + '<br/>' +
+      'world boundaries containerTop: ' + this.world.boundaries.containerTop + '<br/>' +
+      'world boundaries containerHeight: ' + this.world.boundaries.containerHeight + '<br/>' +
+      'world boundaries containerBottom: ' + this.world.boundaries.containerBottom + '<br/>' +
+      'world boundaries contentHeight: ' + this.world.boundaries.contentHeight + '<br/>' +
+      'world boundaries windowHeight: ' + this.world.boundaries.windowHeight + '<br/>' +
+      'positioning applied' + '<br/>' +
+      'content position: ' + this.content.style.position + '<br/>' +
+      'content top: ' + this.content.style.top + '<br/>' +
+      'content class: ' + this.content.className)
   }
 }
 

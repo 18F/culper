@@ -2,7 +2,7 @@ import { api } from '../services/api'
 import MockAdapter from 'axios-mock-adapter'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
-import { login, logout, redirectToLogin, handleLoginSuccess, twofactor, qrcode, handleTwoFactorSuccess, handleLoginError, twofactorreset } from './AuthActions'
+import { login, logout, handleLoginSuccess, twofactor, qrcode, handleLoginError, twofactorreset } from './AuthActions'
 import AuthConstants from './AuthConstants'
 
 const middlewares = [ thunk ]
@@ -24,10 +24,10 @@ describe('Auth actions', function () {
     const store = mockStore({ authentication: [] })
 
     return store
-          .dispatch(login('john', 'admin'))
-          .then(function () {
-            expect(store.getActions()).toEqual(expectedActions)
-          })
+      .dispatch(login('john', 'admin'))
+      .then(function () {
+        expect(store.getActions()).toEqual(expectedActions)
+      })
   })
 
   it('should create an action to handle a successful login', function () {
@@ -84,10 +84,10 @@ describe('Auth actions', function () {
       }
     ]
     return store
-            .dispatch(login('john', 'doe'))
-            .then(() => {
-              expect(store.getActions()).toEqual(expectedAction)
-            })
+      .dispatch(login('john', 'doe'))
+      .then(() => {
+        expect(store.getActions()).toEqual(expectedAction)
+      })
   })
 
   it('should create an action to handle twofactor auth', function () {
