@@ -24,13 +24,13 @@ specs:
 	cd ./cmd/compare; go build; cd ../..;
 	cd ./cmd/fuzzer; go build; cd ../..;
 	cd ./cmd/load; go build; cd ../..;
-	./cmd/fuzzer/fuzzer ./testdata/identefication-birthdate.json \
-                            ./testdata/identefication-birthplace.json \
-                            ./testdata/identefication-comments.json \
-                            ./testdata/identefication-contacts.json \
-                            ./testdata/identefication-othernames.json \
-                            ./testdata/identefication-physical.json \
-                            ./testdata/identefication-ssn.json \
+	./cmd/fuzzer/fuzzer ./testdata/identification-birthdate.json \
+                            ./testdata/identification-birthplace.json \
+                            ./testdata/identification-comments.json \
+                            ./testdata/identification-contacts.json \
+                            ./testdata/identification-othernames.json \
+                            ./testdata/identification-physical.json \
+                            ./testdata/identification-ssn.json \
                             ./testdata/identification-name.json \
                             ./testdata/history-comments.json \
                             ./testdata/history-education.json \
