@@ -6,7 +6,7 @@ This is a collection of dependencies within the project and there associated lic
 
 | Apache | BSD | CC Attribution | CC0 | ISC | LGPL | MIT | SIL OFL | Unknown | Unlicense | WTF |
 | --     | --  | --             | --  | --  | --   | --  | --      | --      | --        | --  |
-| 31     | 94  | 1              | 8   | 78  | 1    | 805 | 2       | 13      | 3         | 6   |
+| 31     | 94  | 1              | 8   | 78  | 1    | 809 | 2       | 13      | 3         | 6   |
 
 ## Packages
 
@@ -15,12 +15,6 @@ This is a collection of dependencies within the project and there associated lic
  - **License**: CC0
 
 [View license](LICENSE.md)
-
-### goose
-
- - **License**: MIT
-
-[View license](api/vendor/bitbucket.org/liamstask/goose/MIT-License.md)
 
 ### go-saml
 
@@ -5628,7 +5622,7 @@ This is a collection of dependencies within the project and there associated lic
 ### randomatic
 
  - **License**: MIT
- - **Year**:    2017
+ - **Year**:    2016
  - **Author**:  Jon Schlinkert
 
 [View license](node_modules/randomatic/LICENSE)
@@ -7407,3 +7401,39 @@ This is a collection of dependencies within the project and there associated lic
  - **License**: MIT
 
 [View license](node_modules/yargs-parser/node_modules/camelcase/license)
+
+### notp
+
+ - **License**: MIT
+ - **Year**:    2011
+ - **Author**:  Guy Halford
+
+[View license](specs/node_modules/notp/LICENSE)
+
+### punycode
+
+ - **License**: MIT
+
+[View license](specs/node_modules/punycode/LICENSE-MIT.txt)
+
+### querystring
+
+ - **License**: MIT
+ - **Year**:    2012
+ - **Author**:  Irakli Gozalishvili
+
+[View license](specs/node_modules/querystring/License.md)
+
+### thirty-two
+
+ - **License**: MIT
+ - **Year**:    2011
+ - **Author**:  Chris Umbel
+
+[View license](specs/node_modules/thirty-two/LICENSE.txt)
+
+### url
+
+ - **License**: MIT
+
+[View license](specs/node_modules/url/LICENSE)
