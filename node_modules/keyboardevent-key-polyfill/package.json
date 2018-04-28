@@ -1,0 +1,26 @@
+{
+  "name": "keyboardevent-key-polyfill",
+  "version": "1.1.0",
+  "description": "polyfill for `KeyboardEvent.prototype.key`",
+  "main": "index.js",
+  "author": {
+    "name": "Chris Van",
+    "url": "https://twitter.com/cvanw/"
+  },
+  "license": "CC0-1.0",
+  "homepage": "https://github.com/cvan/keyboardevent-key-polyfill/",
+  "repository": "cvan/keyboardevent-key-polyfill",
+  "bugs": {
+    "url": "https://github.com/cvan/keyboardevent-key-polyfill/issues"
+  },
+  "keywords": [
+    "polyfill",
+    "event",
+    "keyboard",
+    "keyboard-event",
+    "key",
+    "key-event",
+    "client-side",
+    "browser"
+  ]
+}
