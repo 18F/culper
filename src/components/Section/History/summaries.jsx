@@ -48,7 +48,7 @@ export const ResidenceSummary = (item, errors, open) => {
   const address = AddressSummary(item.Address)
   const dates = DateSummary(item.Dates, i18n.t('history.employment.default.noDate.label'))
   const svg = errors && !open
-        ? <Svg alt="Incomplete" src="/img/exclamation-point.svg" className="incomplete" />
+        ? <Svg src="/img/exclamation-point.svg" className="incomplete" />
         : null
 
   return Summary({
