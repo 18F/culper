@@ -54,7 +54,9 @@ __snapshots__/
 # Build artifacts
 .gitmessage
 .projectile
-bin
+/bin
+/api/bin
+/api/dist
 /api/checksum
 /api/api
 /api/eapp-seccomp.json
