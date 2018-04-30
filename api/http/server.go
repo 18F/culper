@@ -8,6 +8,7 @@ import (
 )
 
 var (
+	// TransportLayerSecurity is the TLS configuration settings for a HTTPS server.
 	TransportLayerSecurity = &tls.Config{
 		MinVersion: tls.VersionTLS12,
 		CurvePreferences: []tls.CurveID{
@@ -25,6 +26,7 @@ var (
 	}
 )
 
+// Server is a HTTP/HTTPS server implementation.
 type Server struct {
 	Env api.Settings
 	Log api.LogService
@@ -32,6 +34,7 @@ type Server struct {
 
 type serverFunc func(server *http.Server) error
 
+// ListenAndServe will bind to the host address and port and serve the content.
 func (service Server) ListenAndServe(address string, router http.Handler) error {
 	var message string
 	var server *http.Server

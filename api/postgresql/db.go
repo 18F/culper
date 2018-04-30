@@ -81,30 +81,33 @@ func (service *DatabaseService) Find(query interface{}, callback func(query inte
 	}
 }
 
-// Find all instances of a type of model.
+// FindAll instances of a type of model.
 func (service *DatabaseService) FindAll(query interface{}) error {
 	return service.database.Model(query).Select()
 }
 
-// Conditional selection based on the model in the data store.
+// Where is a conditional selection based on the model in the data store.
 func (service *DatabaseService) Where(model interface{}, condition string, params ...interface{}) error {
 	return service.database.Model(model).Where(condition, params...).Select()
 }
 
-// Conditional selection based on the model in the data store only returning specific quoted columns.
+// ColumnsWhere is a conditional selection based on the model in the data store only returning specific quoted columns.
 func (service *DatabaseService) ColumnsWhere(model interface{}, columns []string, condition string, params ...interface{}) error {
 	return service.database.Model(model).Column(columns...).Where(condition, params...).Select()
 }
 
+// Count return the number of rows found.
 func (service *DatabaseService) Count(model interface{}, condition string, params ...interface{}) int {
 	count, _ := service.database.Model(model).Where(condition, params...).Count()
 	return count
 }
 
+// CountExpr return the number of rows found with an expression.
 func (service *DatabaseService) CountExpr(model interface{}, expr string, retval interface{}, condition string, params ...interface{}) {
 	service.database.Model(model).ColumnExpr(expr).Where(condition, params...).Select(retval)
 }
 
+// Array fills an array from the model and expression.
 func (service *DatabaseService) Array(model interface{}, expr string, retval interface{}, condition string, params ...interface{}) {
 	service.database.Model(model).ColumnExpr(expr).Where(condition, params...).Select(pg.Array(retval))
 }
@@ -115,7 +118,7 @@ func (service *DatabaseService) Insert(query ...interface{}) error {
 }
 
 // Update persists the existing model in the data store
-func (context *DatabaseService) Update(query interface{}) error {
+func (service *DatabaseService) Update(query interface{}) error {
 	return context.database.Update(query)
 }
 

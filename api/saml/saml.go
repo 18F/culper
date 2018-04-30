@@ -1,19 +1,21 @@
 package saml
 
 import (
+	"encoding/base64"
 	"strings"
 
 	"github.com/18F/e-QIP-prototype/api"
 	saml "github.com/RobotsAndPencils/go-saml"
 )
 
+// SamlService implements the handling of SAMl requests and responses.
 type SamlService struct {
 	Log      api.LogService
 	Env      api.Settings
 	provider saml.ServiceProviderSettings
 }
 
-// Create a SAML 2.0 authentication request based on the service provider settings.
+// CreateAuthenticationRequest creates a SAML 2.0 authentication request based on the service provider settings.
 // If configured to sign the request then the Base64 XML will be signed.
 func (service *SamlService) CreateAuthenticationRequest() (string, string, error) {
 	service.configure()
@@ -32,8 +34,8 @@ func (service *SamlService) CreateAuthenticationRequest() (string, string, error
 	if err != nil {
 		return "", "", err
 	}
-	requestAsXml, _ := request.String()
-	service.Log.Debug("SAML authentication request", api.LogFields{"xml": requestAsXml})
+	requestAsXML, _ := request.String()
+	service.Log.Debug("SAML authentication request", api.LogFields{"xml": requestAsXML})
 
 	// Get a URL formed with the SAMLRequest parameter
 	url, err = saml.GetAuthnRequestURL(service.provider.IDPSSOURL, encoded, "state")
@@ -43,11 +45,14 @@ func (service *SamlService) CreateAuthenticationRequest() (string, string, error
 	return encoded, url, err
 }
 
+// ValidateAuthenticationResponse validations a SAML authentication response.
 func (service *SamlService) ValidateAuthenticationResponse(encoded string) (string, error) {
 	service.configure()
+
+	authnResponseXML, _ := base64.StdEncoding.DecodeString(encoded)
+	service.Log.Debug("SAML authentication response", api.LogFields{"xml": string(authnResponseXML)})
+
 	response, err := saml.ParseEncodedResponse(encoded)
-	authnResponseXML, _ := response.String()
-	service.Log.Debug("SAML authentication response", api.LogFields{"xml": authnResponseXML})
 	if err != nil {
 		service.Log.WarnError(api.SamlParseError, err, api.LogFields{})
 		return "", err

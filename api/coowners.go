@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 )
 
+// CoOwners payload.
 type CoOwners struct {
 	PayloadList Payload `json:"List" sql:"-"`
 
@@ -132,6 +133,7 @@ func (entity *CoOwners) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *CoOwners) Find(context DatabaseService) error {
 	context.Find(&CoOwners{ID: entity.ID, AccountID: entity.AccountID}, func(result interface{}) {
 		previous := result.(*CoOwners)

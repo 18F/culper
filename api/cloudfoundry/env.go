@@ -8,6 +8,7 @@ import (
 	cfenv "github.com/cloudfoundry-community/go-cfenv"
 )
 
+// Configure the settings per the CloudFoundry environment.
 func Configure() {
 	current, err := cfenv.Current()
 	if err != nil {

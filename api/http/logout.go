@@ -6,6 +6,7 @@ import (
 	"github.com/18F/e-QIP-prototype/api"
 )
 
+// LogoutHandler is the handler for logging out of a session.
 type LogoutHandler struct {
 	Env      api.Settings
 	Log      api.LogService
@@ -13,7 +14,7 @@ type LogoutHandler struct {
 	Database api.DatabaseService
 }
 
-// Logout will end the user session.
+// ServeHTTP will end the user session.
 func (service LogoutHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	account := &api.Account{}
 

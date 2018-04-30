@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 )
 
+// FinancialBankruptcy represents the payload for the financial bankruptcy section.
 type FinancialBankruptcy struct {
 	PayloadHasBankruptcy Payload `json:"HasBankruptcy" sql:"-"`
 	PayloadList          Payload `json:"List" sql:"-"`
@@ -169,6 +170,7 @@ func (entity *FinancialBankruptcy) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *FinancialBankruptcy) Find(context DatabaseService) error {
 	context.Find(&FinancialBankruptcy{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*FinancialBankruptcy)
@@ -186,6 +188,7 @@ func (entity *FinancialBankruptcy) Find(context DatabaseService) error {
 	return nil
 }
 
+// FinancialGambling represents the payload for the financial gambling section.
 type FinancialGambling struct {
 	PayloadHasGamblingDebt Payload `json:"HasGamblingDebt" sql:"-"`
 	PayloadList            Payload `json:"List" sql:"-"`
@@ -351,6 +354,7 @@ func (entity *FinancialGambling) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *FinancialGambling) Find(context DatabaseService) error {
 	context.Find(&FinancialGambling{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*FinancialGambling)
@@ -368,6 +372,7 @@ func (entity *FinancialGambling) Find(context DatabaseService) error {
 	return nil
 }
 
+// FinancialTaxes represents the payload for the financial taxes section.
 type FinancialTaxes struct {
 	PayloadHasTaxes Payload `json:"HasTaxes" sql:"-"`
 	PayloadList     Payload `json:"List" sql:"-"`
@@ -537,6 +542,7 @@ func (entity *FinancialTaxes) SetID(id int) {
 	entity.ID = id
 }
 
+// Find is not used for attachments. Please use the `Get` method.
 func (entity *FinancialTaxes) Find(context DatabaseService) error {
 	context.Find(&FinancialTaxes{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*FinancialTaxes)
@@ -554,6 +560,7 @@ func (entity *FinancialTaxes) Find(context DatabaseService) error {
 	return nil
 }
 
+// FinancialCard represents the payload for the financial card section.
 type FinancialCard struct {
 	PayloadHasCardAbuse Payload `json:"HasCardAbuse" sql:"-"`
 	PayloadList         Payload `json:"List" sql:"-"`
@@ -723,6 +730,7 @@ func (entity *FinancialCard) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *FinancialCard) Find(context DatabaseService) error {
 	context.Find(&FinancialCard{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*FinancialCard)
@@ -740,6 +748,7 @@ func (entity *FinancialCard) Find(context DatabaseService) error {
 	return nil
 }
 
+// FinancialCredit represents the payload for the financial credit section.
 type FinancialCredit struct {
 	PayloadHasCreditCounseling Payload `json:"HasCreditCounseling" sql:"-"`
 	PayloadList                Payload `json:"List" sql:"-"`
@@ -909,6 +918,7 @@ func (entity *FinancialCredit) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *FinancialCredit) Find(context DatabaseService) error {
 	context.Find(&FinancialCredit{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*FinancialCredit)
@@ -926,6 +936,7 @@ func (entity *FinancialCredit) Find(context DatabaseService) error {
 	return nil
 }
 
+// FinancialDelinquent represents the payload for the financial delinquent section.
 type FinancialDelinquent struct {
 	PayloadHasDelinquent Payload `json:"HasDelinquent" sql:"-"`
 	PayloadList          Payload `json:"List" sql:"-"`
@@ -1091,6 +1102,7 @@ func (entity *FinancialDelinquent) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *FinancialDelinquent) Find(context DatabaseService) error {
 	context.Find(&FinancialDelinquent{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*FinancialDelinquent)
@@ -1108,6 +1120,7 @@ func (entity *FinancialDelinquent) Find(context DatabaseService) error {
 	return nil
 }
 
+// FinancialNonpayment represents the payload for the financial nonpayment section.
 type FinancialNonpayment struct {
 	PayloadHasNonpayment Payload `json:"HasNonpayment" sql:"-"`
 	PayloadList          Payload `json:"List" sql:"-"`
@@ -1273,6 +1286,7 @@ func (entity *FinancialNonpayment) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *FinancialNonpayment) Find(context DatabaseService) error {
 	context.Find(&FinancialNonpayment{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*FinancialNonpayment)
@@ -1290,7 +1304,7 @@ func (entity *FinancialNonpayment) Find(context DatabaseService) error {
 	return nil
 }
 
-// FinancialComments subsection of identification section.
+// FinancialComments represents the payload for the financial comments section.
 type FinancialComments struct {
 	PayloadComments Payload `json:"Comments" sql:"-"`
 
@@ -1415,6 +1429,7 @@ func (entity *FinancialComments) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *FinancialComments) Find(context DatabaseService) error {
 	context.Find(&FinancialComments{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*FinancialComments)

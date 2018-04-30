@@ -31,7 +31,7 @@ func main() {
 	database := &postgresql.DatabaseService{Log: logger, Env: settings}
 	database.Configure()
 	token := jwt.TokenService{Env: settings}
-	xmlsvc := xml.XmlService{Log: logger}
+	xmlsvc := xml.XMLService{Log: logger}
 	mfasvc := mfa.MFAService{Log: logger, Env: settings}
 	samlsvc := &saml.SamlService{Log: logger, Env: settings}
 	api.Geocode = usps.USPSGeocoder{Log: logger, Env: settings}

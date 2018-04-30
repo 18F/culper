@@ -7,6 +7,7 @@ import (
 	"github.com/18F/e-QIP-prototype/api"
 )
 
+// ValidateHandler is the handler for validating a payload.
 type ValidateHandler struct {
 	Env      api.Settings
 	Log      api.LogService
@@ -14,7 +15,7 @@ type ValidateHandler struct {
 	Database api.DatabaseService
 }
 
-// Validate checks if an entire address is valid
+// ServeHTTP validates if the payload pass validation procedures.
 func (service ValidateHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	// Read the body of the request (which should be in JSON)
 	body, err := ioutil.ReadAll(r.Body)

@@ -16,15 +16,22 @@ import (
 )
 
 const (
+	// Issuer is the JWT issuer.
 	Issuer = "eqip"
 )
 
 var (
-	JwtSecret        = ""
+	// JwtSecret is the secret used to generate tokens.
+	JwtSecret = ""
+
+	// JwtSigningMethod is the algorithm used for signing tokens.
 	JwtSigningMethod = jwt.SigningMethodHS256
+
+	// AuthBearerRegexp is a regular expression to extract the authorization token.
 	AuthBearerRegexp = regexp.MustCompile("Bearer\\s(.*)")
 )
 
+// TokenService is an implementation of JWT service handling.
 type TokenService struct {
 	Env api.Settings
 }
@@ -182,7 +189,7 @@ func (service TokenService) TargetAudiences() []string {
 	return audiences
 }
 
-// ValidJwtToken parses a token and determines if the token is valid
+// validJwtToken parses a token and determines if the token is valid
 func (service TokenService) validateToken(rawToken, audience string) (bool, int, error) {
 	id := 0
 	token, err := service.ParseWithClaims(rawToken)

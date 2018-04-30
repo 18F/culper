@@ -1,5 +1,7 @@
 package api
 
+// Settings represents environments settings to pull configuration information.
+// This may be via environment variables or a specific environment like CloudFoundry.
 type Settings interface {
 	Configure()
 	Has(string) bool
@@ -305,20 +307,20 @@ const (
 	// Default: *empty*
 	WS_AGENCY_GROUP_ID = "WS_AGENCY_GROUP_ID"
 
-	// ATTACHMENTS_ENABLED
+	// ATTACHMENTS_ENABLED Flag representing whether or not attachments are allowed.
 	//
 	// Target: Front-end (web), Back-end (api)
 	// Default: True: `1`
 	// Values: True: `1`, False: *empty*
 	ATTACHMENTS_ENABLED = "ATTACHMENTS_ENABLED"
 
-	// FILE_MAXIMUM_SIZE
+	// FILE_MAXIMUM_SIZE Is the maximum file size of an attachment allowed in bytes.
 	//
 	// Target: Front-end (web), Back-end (api)
 	// Default: 5000000
 	FILE_MAXIMUM_SIZE = "FILE_MAXIMUM_SIZE"
 
-	// FILE_TYPES
+	// FILE_TYPES Allowed file types of an attachment.
 	//
 	// Target: Front-end (web), Back-end (api)
 	// Default: ".tiff;.png;.pdf"

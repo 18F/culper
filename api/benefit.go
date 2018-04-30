@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 )
 
+// Benefit payload type.
 type Benefit struct {
 	PayloadBegin                Payload `json:"Began,omitempty" sql:"-"`
 	PayloadEnd                  Payload `json:"End,omitempty" sql:"-"`
@@ -464,6 +465,7 @@ func (entity *Benefit) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *Benefit) Find(context DatabaseService) error {
 	context.Find(&Benefit{ID: entity.ID, AccountID: entity.AccountID}, func(result interface{}) {
 		previous := result.(*Benefit)

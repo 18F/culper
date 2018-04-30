@@ -14,6 +14,7 @@ import (
 	"github.com/gorilla/mux"
 )
 
+// AttachmentListHandler is the handler for listing attachments.
 type AttachmentListHandler struct {
 	Env      api.Settings
 	Log      api.LogService
@@ -21,6 +22,7 @@ type AttachmentListHandler struct {
 	Database api.DatabaseService
 }
 
+// ServeHTTP serves the HTTP response.
 func (service AttachmentListHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	if !service.Env.True(api.ATTACHMENTS_ENABLED) {
 		service.Log.Warn(api.AttachmentDenied, api.LogFields{})
@@ -63,6 +65,7 @@ func (service AttachmentListHandler) ServeHTTP(w http.ResponseWriter, r *http.Re
 	EncodeJSON(w, attachments)
 }
 
+// AttachmentSaveHandler is the handler for saving attachments.
 type AttachmentSaveHandler struct {
 	Env      api.Settings
 	Log      api.LogService
@@ -70,6 +73,7 @@ type AttachmentSaveHandler struct {
 	Database api.DatabaseService
 }
 
+// ServeHTTP serves the HTTP response.
 func (service AttachmentSaveHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	if !service.Env.True(api.ATTACHMENTS_ENABLED) {
 		service.Log.Warn(api.AttachmentDenied, api.LogFields{})
@@ -169,6 +173,7 @@ func (service AttachmentSaveHandler) ServeHTTP(w http.ResponseWriter, r *http.Re
 	fmt.Fprint(w, attachment.ID)
 }
 
+// AttachmentUpdateHandler is the handler for updating attachments.
 type AttachmentUpdateHandler struct {
 	Env      api.Settings
 	Log      api.LogService
@@ -176,6 +181,7 @@ type AttachmentUpdateHandler struct {
 	Database api.DatabaseService
 }
 
+// ServeHTTP serves the HTTP response.
 func (service AttachmentUpdateHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	if !service.Env.True(api.ATTACHMENTS_ENABLED) {
 		service.Log.Warn(api.AttachmentDenied, api.LogFields{})
@@ -243,6 +249,7 @@ func (service AttachmentUpdateHandler) ServeHTTP(w http.ResponseWriter, r *http.
 	fmt.Fprint(w, attachment.ID)
 }
 
+// AttachmentGetHandler is the handler for getting attachments.
 type AttachmentGetHandler struct {
 	Env      api.Settings
 	Log      api.LogService
@@ -250,6 +257,7 @@ type AttachmentGetHandler struct {
 	Database api.DatabaseService
 }
 
+// ServeHTTP serves the HTTP response.
 func (service AttachmentGetHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	if !service.Env.True(api.ATTACHMENTS_ENABLED) {
 		service.Log.Warn(api.AttachmentDenied, api.LogFields{})
@@ -301,6 +309,7 @@ func (service AttachmentGetHandler) ServeHTTP(w http.ResponseWriter, r *http.Req
 	fmt.Fprint(w, base64.StdEncoding.EncodeToString(attachment.Raw))
 }
 
+// AttachmentDeleteHandler is the handler for deleting attachments.
 type AttachmentDeleteHandler struct {
 	Env      api.Settings
 	Log      api.LogService
@@ -308,6 +317,7 @@ type AttachmentDeleteHandler struct {
 	Database api.DatabaseService
 }
 
+// ServeHTTP serves the HTTP response.
 func (service AttachmentDeleteHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	if !service.Env.True(api.ATTACHMENTS_ENABLED) {
 		service.Log.Warn(api.AttachmentDenied, api.LogFields{})

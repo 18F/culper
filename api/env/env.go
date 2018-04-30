@@ -9,8 +9,10 @@ import (
 	"github.com/18F/e-QIP-prototype/api"
 )
 
+// Native settings using environment variables.
 type Native struct{}
 
+// Configure the environment.
 func (env Native) Configure() {
 	env.ensure(api.GOLANG_ENV, "development")
 	env.ensure(api.LOG_LEVEL, "warning")
@@ -30,6 +32,7 @@ func (env Native) Configure() {
 	env.ensure(api.WS_ENABLED, "1")
 }
 
+// Has returns if the environment has a value for the given environment variable.
 func (env Native) Has(name string) bool {
 	if os.Getenv(name) == "" {
 		return false
@@ -37,10 +40,12 @@ func (env Native) Has(name string) bool {
 	return true
 }
 
+// String returns the string value of the given environment variable.
 func (env Native) String(name string) string {
 	return os.Getenv(name)
 }
 
+// True returns the boolean value of the given environment variable.
 func (env Native) True(name string) bool {
 	b, err := strconv.ParseBool(os.Getenv(name))
 	if err != nil {
@@ -49,6 +54,7 @@ func (env Native) True(name string) bool {
 	return b
 }
 
+// Int returns the integer value of the given environment variable.
 func (env Native) Int(name string) int {
 	i, err := strconv.Atoi(os.Getenv(name))
 	if err != nil {

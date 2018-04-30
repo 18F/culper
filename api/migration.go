@@ -8,11 +8,12 @@ import (
 	"github.com/truetandem/plucked/migration"
 )
 
+// Migration is a service used for data storage migrations.
 type Migration struct {
 	Env Settings
 }
 
-// MigrateUp attempts to push any pending updates to the database
+// Up attempts to push any pending updates to the database
 func (service Migration) Up(directory, environment, schema string) error {
 	conf, err := service.databaseConf(directory, environment, schema)
 	if err != nil {
@@ -53,7 +54,7 @@ func (service Migration) databaseConf(directory, environment, schema string) (*m
 	}, nil
 }
 
-// databasDriver creates the structure required for migration database driver.
+// databaseDriver creates the structure required for migration database driver.
 func (service Migration) databaseDriver(uri string) migration.DBDriver {
 	return migration.DBDriver{
 		Name:    "postgres",

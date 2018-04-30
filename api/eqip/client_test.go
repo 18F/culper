@@ -82,7 +82,7 @@ func TestImportRequestEqipException(t *testing.T) {
 		t.Fatal("Error Messages length does not match between expected and received")
 	}
 
-	for i, _ := range wsErr.ErrorMessages {
+	for i := range wsErr.ErrorMessages {
 		if wsErr.ErrorMessages[i] != expectedErr.ErrorMessages[i] {
 			t.Fatalf("Expected error message at index %v to be %v but got %v",
 				i,

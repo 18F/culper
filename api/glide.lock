@@ -1,5 +1,5 @@
 hash: 385e526a462b58a8d3ab168cab4361e1246691ecd6614ca4c08644abce0ea50e
-updated: 2018-04-24T17:51:11.624311133Z
+updated: 2018-04-30T18:50:34.975314445Z
 imports:
 - name: bitbucket.org/liamstask/goose
   version: 8488cc47d90c8a502b1c41a462a6d9cc8ee0a895
@@ -69,13 +69,13 @@ imports:
   subpackages:
   - migration
 - name: golang.org/x/crypto
-  version: 2b6c08872f4b66da917bb4ce98df4f0307330f78
+  version: ae8bce0030810cf999bb2b9868ae5c7c58e6343b
   subpackages:
   - bcrypt
   - blowfish
   - ssh/terminal
 - name: golang.org/x/sys
-  version: 79b0c6888797020a994db17c8510466c72fe75d9
+  version: 4adea008a5e5f820b6028611ae0b6b3fbcec534b
   subpackages:
   - unix
   - windows

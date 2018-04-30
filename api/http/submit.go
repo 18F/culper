@@ -11,15 +11,16 @@ import (
 	"github.com/18F/e-QIP-prototype/api/eqip"
 )
 
+// SubmitHandler is the handler for submitting the application.
 type SubmitHandler struct {
 	Env      api.Settings
 	Log      api.LogService
 	Token    api.TokenService
 	Database api.DatabaseService
-	Xml      api.XmlService
+	XML      api.XMLService
 }
 
-// Submit the application package to the external web service for further processing.
+// ServeHTTP submits the application package to the external web service for further processing.
 func (service SubmitHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	account := &api.Account{}
 
@@ -78,7 +79,7 @@ func (service SubmitHandler) transmit(w http.ResponseWriter, r *http.Request, ac
 
 	// Generate an XML package and send to the external webservice.
 	service.Log.Info(api.GeneratingPackage, api.LogFields{})
-	xml := api.Package(service.Database, service.Xml, account.ID, false)
+	xml := api.Package(service.Database, service.XML, account.ID, false)
 	data, err := api.ApplicationData(service.Database, account.ID, false)
 	if err != nil {
 		service.Log.WarnError(api.WebserviceCannotGetApplicationData, err, api.LogFields{})
@@ -153,13 +154,12 @@ func (service SubmitHandler) newImportRequest(application map[string]interface{}
 	agencyIDEnv := service.Env.String(api.WS_AGENCY_ID)
 	if agencyIDEnv == "" {
 		return nil, fmt.Errorf(api.WebserviceMissingAgencyID)
-	} else {
-		i, err := strconv.Atoi(agencyIDEnv)
-		if err != nil {
-			return nil, err
-		}
-		agencyID = i
 	}
+	i, err := strconv.Atoi(agencyIDEnv)
+	if err != nil {
+		return nil, err
+	}
+	agencyID = i
 
 	// Parse agency group id if necessary
 	agencyGroupIDEnv := service.Env.String(api.WS_AGENCY_GROUP_ID)

@@ -12,61 +12,75 @@ import (
 	logrus_syslog "github.com/sirupsen/logrus/hooks/syslog"
 )
 
+// LogService implementation of logging using `logrus`.
 type LogService struct {
 	Log    *logrus.Logger
 	fields api.LogFields
 }
 
+// AddField will add a field using the name and value to the logger.
 func (service *LogService) AddField(name string, value interface{}) {
 	if _, ok := service.fields[name]; !ok {
 		service.fields = service.mergeFields(api.LogFields{name: value})
 	}
 }
 
+// Print outputs a message to the log.
 func (service *LogService) Print(message string, fields api.LogFields) {
 	service.Log.WithFields(logrus.Fields(service.mergeFields(fields))).Print(message)
 }
 
+// PrintError outputs a message and error to the log.
 func (service *LogService) PrintError(message string, err error, fields api.LogFields) {
 	service.Log.WithFields(logrus.Fields(service.mergeFields(fields))).WithError(err).Print(message)
 }
 
+// Debug outputs a debug message to the log.
 func (service *LogService) Debug(message string, fields api.LogFields) {
 	service.Log.WithFields(logrus.Fields(service.mergeFields(fields))).Debug(message)
 }
 
+// DebugError outputs a debug message and error to the log.
 func (service *LogService) DebugError(message string, err error, fields api.LogFields) {
 	service.Log.WithFields(logrus.Fields(service.mergeFields(fields))).WithError(err).Debug(message)
 }
 
+// Warn outputs a warning message to the log.
 func (service *LogService) Warn(message string, fields api.LogFields) {
 	service.Log.WithFields(logrus.Fields(service.mergeFields(fields))).Warn(message)
 }
 
+// WarnError outputs a warning message and error to the log.
 func (service *LogService) WarnError(message string, err error, fields api.LogFields) {
 	service.Log.WithFields(logrus.Fields(service.mergeFields(fields))).WithError(err).Warn(message)
 }
 
+// Info outputs a informative message to the log.
 func (service *LogService) Info(message string, fields api.LogFields) {
 	service.Log.WithFields(logrus.Fields(service.mergeFields(fields))).Info(message)
 }
 
+// InfoError outputs a informative message and error to the log.
 func (service *LogService) InfoError(message string, err error, fields api.LogFields) {
 	service.Log.WithFields(logrus.Fields(service.mergeFields(fields))).WithError(err).Info(message)
 }
 
+// Fatal outputs a fatal message to the log.
 func (service *LogService) Fatal(message string, fields api.LogFields) {
 	service.Log.WithFields(logrus.Fields(service.mergeFields(fields))).Fatal(message)
 }
 
+// FatalError outputs a fatal message and error to the log.
 func (service *LogService) FatalError(message string, err error, fields api.LogFields) {
 	service.Log.WithFields(logrus.Fields(service.mergeFields(fields))).WithError(err).Fatal(message)
 }
 
+// Panic outputs a panic message to the log.
 func (service *LogService) Panic(message string, fields api.LogFields) {
 	service.Log.WithFields(logrus.Fields(service.mergeFields(fields))).Panic(message)
 }
 
+// PanicError outputs a panic message and error to the log.
 func (service *LogService) PanicError(message string, err error, fields api.LogFields) {
 	service.Log.WithFields(logrus.Fields(service.mergeFields(fields))).WithError(err).Panic(message)
 }

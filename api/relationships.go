@@ -2,6 +2,7 @@ package api
 
 import "encoding/json"
 
+// RelationshipsMarital represents the payload for the relationships marital section.
 type RelationshipsMarital struct {
 	PayloadStatus       Payload `json:"Status" sql:"-"`
 	PayloadCivilUnion   Payload `json:"CivilUnion" sql:"-"`
@@ -206,6 +207,7 @@ func (entity *RelationshipsMarital) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *RelationshipsMarital) Find(context DatabaseService) error {
 	context.Find(&RelationshipsMarital{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*RelationshipsMarital)
@@ -228,6 +230,7 @@ func (entity *RelationshipsMarital) Find(context DatabaseService) error {
 	return nil
 }
 
+// RelationshipsCohabitants represents the payload for the relationships cohabitants section.
 type RelationshipsCohabitants struct {
 	PayloadHasCohabitant  Payload `json:"HasCohabitant" sql:"-"`
 	PayloadCohabitantList Payload `json:"CohabitantList" sql:"-"`
@@ -387,6 +390,7 @@ func (entity *RelationshipsCohabitants) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *RelationshipsCohabitants) Find(context DatabaseService) error {
 	context.Find(&RelationshipsCohabitants{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*RelationshipsCohabitants)
@@ -404,6 +408,7 @@ func (entity *RelationshipsCohabitants) Find(context DatabaseService) error {
 	return nil
 }
 
+// RelationshipsPeople represents the payload for the relationships people section.
 type RelationshipsPeople struct {
 	PayloadList Payload `json:"List" sql:"-"`
 
@@ -531,6 +536,7 @@ func (entity *RelationshipsPeople) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *RelationshipsPeople) Find(context DatabaseService) error {
 	context.Find(&RelationshipsPeople{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*RelationshipsPeople)
@@ -543,6 +549,7 @@ func (entity *RelationshipsPeople) Find(context DatabaseService) error {
 	return nil
 }
 
+// RelationshipsRelatives represents the payload for the relationships relatives section.
 type RelationshipsRelatives struct {
 	PayloadList Payload `json:"List" sql:"-"`
 
@@ -670,6 +677,7 @@ func (entity *RelationshipsRelatives) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *RelationshipsRelatives) Find(context DatabaseService) error {
 	context.Find(&RelationshipsRelatives{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*RelationshipsRelatives)
@@ -682,7 +690,7 @@ func (entity *RelationshipsRelatives) Find(context DatabaseService) error {
 	return nil
 }
 
-// RelationshipsComments subsection of identification section.
+// RelationshipsComments represents the payload for the relationships comments section.
 type RelationshipsComments struct {
 	PayloadComments Payload `json:"Comments" sql:"-"`
 
@@ -807,6 +815,7 @@ func (entity *RelationshipsComments) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *RelationshipsComments) Find(context DatabaseService) error {
 	context.Find(&RelationshipsComments{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*RelationshipsComments)

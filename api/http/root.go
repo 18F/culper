@@ -22,11 +22,12 @@ type endpoint struct {
 	Verbs       []string
 }
 
+// RootHandler is the handler for the root endpoint.
 type RootHandler struct {
 	Env api.Settings
 }
 
-// rootHandler accepts GET requests to get all endpoints that the API
+// ServeHTTP accepts GET requests to get all endpoints that the API
 // supports.
 func (service RootHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("X-Eqip-Media-Type", fmt.Sprintf("%s.%s", APIName, APIVersion))

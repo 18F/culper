@@ -7,6 +7,7 @@ import (
 	"github.com/18F/e-QIP-prototype/api"
 )
 
+// BasicAuthHandler is the handler for basic authentication.
 type BasicAuthHandler struct {
 	Env      api.Settings
 	Log      api.LogService
@@ -14,7 +15,7 @@ type BasicAuthHandler struct {
 	Database api.DatabaseService
 }
 
-// BasicAuth processes a users request to login with a Username and Password
+// ServeHTTP processes a users request to login with a Username and Password
 func (service BasicAuthHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	if !service.Env.True(api.BASIC_ENABLED) {
 		service.Log.Warn(api.BasicAuthAttemptDenied, api.LogFields{})

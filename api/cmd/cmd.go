@@ -14,6 +14,7 @@ var (
 	flagAll = flag.Bool("all", false, "apply to all accounts")
 )
 
+// Command represents a basic utility command.
 func Command(log api.LogService, action func(api.DatabaseService, *api.Account)) {
 	cloudfoundry.Configure()
 	settings := &env.Native{}

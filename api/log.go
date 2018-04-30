@@ -1,7 +1,10 @@
 package api
 
+// LogFields are named keys to hold additional information to be reported
+// in the log messages.
 type LogFields map[string]interface{}
 
+// LogService represents common methods for a logging service.
 type LogService interface {
 	AddField(name string, value interface{})
 	Print(message string, fields LogFields)
