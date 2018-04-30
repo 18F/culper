@@ -3,7 +3,6 @@ import { mount } from 'enzyme'
 import Attachments from './Attachments'
 
 describe('The attachments component', () => {
-
   it('displays for uploads', () => {
     const props = {
       AttachmentType: { value: 'Upload' }
@@ -38,7 +37,7 @@ describe('The attachments component', () => {
   })
 
   it('triggers updates', () => {
-    let updates = 0;
+    let updates = 0
     const props = {
       AttachmentType: { value: 'Upload' },
       onUpdate: () => { updates++ }
