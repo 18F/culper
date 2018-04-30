@@ -1,6 +1,6 @@
 # Dependencies and licenses
 
-This is a collection of dependencies within the project and there associated licenses and copyright information. The data collected was done using [automated tools](https://github.com/bmallred/licenses) and require manual review prior to acceptance.
+This is a collection of dependencies within the project and their associated licenses and copyright information. The data collected was done using [automated tools](https://github.com/bmallred/licenses) and require manual review prior to acceptance.
 
 ## Overview
 
