@@ -1,4 +1,4 @@
-import { PUSH_STATE, historyMiddleware, push } from './history'
+import { PUSH_STATE, historyMiddleware, push, findPosition } from './history'
 
 describe('history middleware', function () {
   const dispatch = () => {}
@@ -22,5 +22,16 @@ describe('history middleware', function () {
       expect(d).toEqual(dispatch)
       expect(s).toEqual(getState)
     })
+  })
+
+  it('should find the position', function () {
+    const el = {
+      offsetTop: 10,
+      offsetParent: {
+        offsetTop: 2
+      }
+    }
+    const top = findPosition(el)
+    expect(top).toEqual([12])
   })
 })

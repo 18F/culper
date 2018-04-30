@@ -59,4 +59,16 @@ describe('The other names section', () => {
     const component = mount(<OtherNames {...props} />)
     expect(component.find('.first input').length).toEqual(0)
   })
+
+  it('updates branch', () => {
+    let updates = 0
+    const props = {
+      onUpdate: () => {
+        updates++
+      }
+    }
+    const component = mount(<OtherNames {...props} />)
+    component.find('.branch .yes input').simulate('change')
+    expect(updates).toEqual(1)
+  })
 })
