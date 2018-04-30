@@ -62,6 +62,8 @@ To view the items completed during each development sprint and to view the burnd
  - [docker-compose][20]
  - [make](https://www.gnu.org/software/make/)
 
+For more information on licenses and third-party source code please refer to the [dependencies](DEPENDENCIES.md) documentation.
+
 ### Clone all things
 
 Clone the repository and `cd` into it:
