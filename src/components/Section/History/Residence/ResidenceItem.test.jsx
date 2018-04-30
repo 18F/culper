@@ -59,4 +59,42 @@ describe('The residence component', () => {
     const component = mount(<ResidenceItem {...expected} />)
     expect(component.find('.role.hidden').length).toEqual(0)
   })
+
+  it('performs updates for components', () => {
+    let updates = 0
+    const expected = {
+      name: 'residence',
+
+      Dates: {
+        from: {
+          day: '1',
+          month: '1',
+          year: '2014',
+          date: new Date('1/1/2014')
+        },
+        to: {
+          day: '1',
+          month: '1',
+          year: '2018',
+          date: new Date('1/1/2018')
+        }
+      },
+      onUpdate: () => {
+        updates++
+      }
+    }
+    const component = mount(<ResidenceItem {...expected} />)
+    component.find('.address .street input').first().simulate('change')
+    component.find('.datecontrol .month input').first().simulate('change')
+    component.find('.role input').first().simulate('change')
+    component.find('.reference-name .first input').simulate('change')
+    component.find('.reference-last-contact .month input').simulate('change')
+    component.find('.reference-relationship-neighbor input').simulate('change')
+    component.find('.reference-phone-evening .home input').simulate('change')
+    component.find('.reference-phone-day .home input').simulate('change')
+    component.find('.reference-phone-mobile .home input').simulate('change')
+    component.find('.reference-email input').simulate('change')
+    component.find('.reference-address .street input').first().simulate('change')
+    expect(updates).toBeGreaterThan(0)
+  })
 })

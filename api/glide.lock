@@ -1,10 +1,6 @@
 hash: 385e526a462b58a8d3ab168cab4361e1246691ecd6614ca4c08644abce0ea50e
 updated: 2018-04-30T18:50:34.975314445Z
 imports:
-- name: bitbucket.org/liamstask/goose
-  version: 8488cc47d90c8a502b1c41a462a6d9cc8ee0a895
-  subpackages:
-  - lib/goose
 - name: github.com/cloudfoundry-community/go-cfenv
   version: f920e9562d5f951cbf11785728f67258c38a10d0
 - name: github.com/dgrijalva/jwt-go

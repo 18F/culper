@@ -1,0 +1,19 @@
+{
+  "name": "resolve-id-refs",
+  "version": "0.1.0",
+  "description": "Resolve an ID reference list to an array of DOM elements",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint *.js test",
+    "test": "mocha -r jsdom-global/register"
+  },
+  "keywords": [],
+  "author": "Shawn Allen (https://github.com/shawnbot)",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "eslint": "^3.7.1",
+    "jsdom": "^9.6.0",
+    "jsdom-global": "^2.1.0",
+    "mocha": "^3.1.2"
+  }
+}
