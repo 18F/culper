@@ -1,5 +1,5 @@
 import React from 'react'
-const defaultAlt = 'Scalable vectory graphic'
+const defaultAlt = 'Scalable vector graphic'
 
 export default class Svg extends React.Component {
   render () {
@@ -218,9 +218,9 @@ const dust = {
       </svg>
     )
   },
-  '/img/exclamation.svg': () => {
+  '/img/exclamation.svg': (props) => {
     return (
-      <svg alt={this.props.alt || defaultAlt} tabIndex="-1" focusable="false" viewBox="0 0 15.95 15.95" enableBackground=":new 0 0 15.95 15.95;">
+      <svg alt={props.alt || defaultAlt} tabIndex="-1" focusable="false" viewBox="0 0 15.95 15.95" enableBackground=":new 0 0 15.95 15.95;">
         <path d="M15.95,7.97c0,4.4-3.57,7.97-7.97,7.97S0,12.38,0,7.97S3.57,0,7.97,0S15.95,3.57,15.95,7.97z M9.47,2.93
                  c0-0.07-0.03-0.14-0.1-0.19C9.31,2.69,9.21,2.66,9.12,2.66H6.84c-0.09,0-0.19,0.03-0.25,0.08c-0.07,0.04-0.1,0.11-0.1,0.19
                  l0.18,6.45c0,0.14,0.16,0.26,0.35,0.26h1.92c0.19,0,0.34-0.11,0.35-0.26L9.47,2.93z M9.31,10.98c0-0.19-0.14-0.34-0.32-0.34H6.99
@@ -228,18 +228,18 @@ const dust = {
       </svg>
     )
   },
-  '/img/submit-error.svg': () => {
+  '/img/submit-error.svg': (props) => {
     return (
-      <svg alt={this.props.alt || defaultAlt} tabIndex="-1" focusable="false" viewBox="0 0 15.9 16" enableBackground=":new 0 0 15.9 16;">
+      <svg alt={props.alt || defaultAlt} tabIndex="-1" focusable="false" viewBox="0 0 15.9 16" enableBackground=":new 0 0 15.9 16;">
         <path className="st2" d="M15.9,8c0,4.4-3.6,8-7.9,8S0,12.4,0,8s3.6-8,7.9-8S15.9,3.6,15.9,8z M9.4,3c0-0.2,0-0.3-0.3-0.3H6.8
                                  C6.5,2.7,6.5,2.8,6.5,3l0.2,6.5c0,0.1,0.2,0.3,0.4,0.3h1.9c0.2,0,0.3-0.1,0.4-0.3L9.4,3z M9.2,11c0-0.2-0.1-0.3-0.3-0.3H7
                                  c-0.2,0-0.3,0.2-0.3,0.3v2c0,0.2,0.2,0.3,0.3,0.3h2c0.2,0,0.3-0.2,0.3-0.3V11z"/>
       </svg>
     )
   },
-  '/img/schoolmate.svg': () => {
+  '/img/schoolmate.svg': (props) => {
     return (
-      <svg alt={this.props.alt || defaultAlt} tabIndex="-1" focusable="false" viewBox="0 0 52.3 41.62">
+      <svg alt={props.alt || defaultAlt} tabIndex="-1" focusable="false" viewBox="0 0 52.3 41.62">
         <path fill="" d="M51.72,14.24l-25.29,7.95c-0.09,0.02-0.16,0.02-0.23,0.02s-0.13,0-0.23-0.02l-14.72-4.65
                          c-1.29,1.02-2.19,3.5-2.37,6.55c0.86,0.5,1.42,1.4,1.42,2.46c0,1.02-0.52,1.9-1.31,2.42l1.31,9.78c0.02,0.2-0.04,0.41-0.18,0.56
                          C10,39.46,9.8,39.55,9.59,39.55H5.26c-0.2,0-0.41-0.09-0.54-0.25c-0.14-0.16-0.2-0.36-0.18-0.56l1.31-9.78
