@@ -60,6 +60,7 @@ const (
 	SamlParseError                             = "Error parsing SAML response"
 	SamlRequestError                           = "Error creating SAML authentication request"
 	SamlRequestURLError                        = "Error creating SAML authentication request URL"
+	SamlVerificationError                      = "Error verifying SAML response"
 	USPSDecodeError                            = "Error decoding USPS geocoding response"
 	USPSKnownErrorCode                         = "USPS known error received"
 	USPSMissingKey                             = "USPS API key has not been set"

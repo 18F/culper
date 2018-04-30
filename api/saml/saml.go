@@ -2,7 +2,9 @@ package saml
 
 import (
 	"encoding/base64"
+	"errors"
 	"strings"
+	"time"
 
 	"github.com/18F/e-QIP-prototype/api"
 	saml "github.com/RobotsAndPencils/go-saml"
@@ -58,7 +60,8 @@ func (service *SamlService) ValidateAuthenticationResponse(encoded string) (stri
 		return "", err
 	}
 
-	err = response.Validate(&service.provider)
+	// err = response.Validate(&service.provider)
+	err = service.validate(response, string(authnResponseXML))
 	if err != nil {
 		service.Log.WarnError(api.SamlInvalid, err, api.LogFields{})
 		return "", err
@@ -83,20 +86,71 @@ func (service *SamlService) ValidateAuthenticationResponse(encoded string) (stri
 //  - AssertionConsumerServiceURL: "http://localhost:8000/saml_consume",
 func (service *SamlService) configure() {
 	service.provider = saml.ServiceProviderSettings{
-		PublicCertPath:              service.Env.String("SAML_PUBLIC_CERT"),
-		PrivateKeyPath:              service.Env.String("SAML_PRIVATE_CERT"),
-		IDPSSOURL:                   service.Env.String("SAML_IDP_SSO_URL"),
-		IDPSSODescriptorURL:         service.Env.String("SAML_IDP_SSO_DESC_URL"),
-		IDPPublicCertPath:           service.Env.String("SAML_IDP_PUBLIC_CERT"),
-		SPSignRequest:               service.Env.True("SAML_SIGN_REQUEST"),
-		AssertionConsumerServiceURL: service.Env.String("SAML_CONSUMER_SERVICE_URL"),
+		PublicCertPath:              service.Env.String(api.SAML_PUBLIC_CERT),
+		PrivateKeyPath:              service.Env.String(api.SAML_PRIVATE_CERT),
+		IDPSSOURL:                   service.Env.String(api.SAML_IDP_SSO_URL),
+		IDPSSODescriptorURL:         service.Env.String(api.SAML_IDP_SSO_DESC_URL),
+		IDPPublicCertPath:           service.Env.String(api.SAML_IDP_PUBLIC_CERT),
+		SPSignRequest:               service.Env.True(api.SAML_SIGN_REQUEST),
+		AssertionConsumerServiceURL: service.Env.String(api.SAML_CONSUMER_SERVICE_URL),
 	}
 
 	if service.provider.AssertionConsumerServiceURL == "" {
-		service.provider.AssertionConsumerServiceURL = service.Env.String("API_BASE_URL") + "/auth/saml/callback"
+		service.provider.AssertionConsumerServiceURL = service.Env.String(api.API_BASE_URL) + "/auth/saml/callback"
 	}
 
 	service.provider.Init()
+}
+
+func (service *SamlService) validate(response *saml.Response, original string) error {
+	if response.Version != "2.0" {
+		return errors.New("unsupported SAML Version")
+	}
+
+	if len(response.ID) == 0 {
+		return errors.New("missing ID attribute on SAML Response")
+	}
+
+	if len(response.Assertion.ID) == 0 {
+		return errors.New("no Assertions")
+	}
+
+	if len(response.Signature.SignatureValue.Value) == 0 {
+		return errors.New("no signature")
+	}
+
+	if response.Destination != service.provider.AssertionConsumerServiceURL {
+		return errors.New("destination mismath expected: " + service.provider.AssertionConsumerServiceURL + " not " + response.Destination)
+	}
+
+	if response.Assertion.Subject.SubjectConfirmation.Method != "urn:oasis:names:tc:SAML:2.0:cm:bearer" {
+		return errors.New("assertion method exception")
+	}
+
+	if response.Assertion.Subject.SubjectConfirmation.SubjectConfirmationData.Recipient != service.provider.AssertionConsumerServiceURL {
+		return errors.New("subject recipient mismatch, expected: " + service.provider.AssertionConsumerServiceURL + " not " + response.Assertion.Subject.SubjectConfirmation.SubjectConfirmationData.Recipient)
+	}
+
+	//CHECK TIMES
+	expires := response.Assertion.Subject.SubjectConfirmation.SubjectConfirmationData.NotOnOrAfter
+	notOnOrAfter, e := time.Parse(time.RFC3339, expires)
+	if e != nil {
+		return e
+	}
+	if notOnOrAfter.Before(time.Now()) {
+		return errors.New("assertion has expired on: " + expires)
+	}
+
+	err := saml.VerifyResponseSignature(original, service.provider.IDPPublicCertPath)
+	if err != nil {
+		if service.Env.True(api.SAML_VERIFY_INSECURE) {
+			service.Log.WarnError(api.SamlVerificationError, err, api.LogFields{})
+		} else {
+			return err
+		}
+	}
+
+	return nil
 }
 
 // cleanName applies some basic sanitization of the NameID for storage.

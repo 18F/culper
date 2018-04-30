@@ -220,6 +220,13 @@ const (
 	// Values: True: `1`, False: *empty*
 	SAML_SIGN_REQUEST = "SAML_SIGN_REQUEST"
 
+	// SAML_VERIFY_INSECURE Flag to allow insecure validation of SAML 2.0 responses.
+	//
+	// Target: Back-end (api)
+	// Default: False: *empty*
+	// Values: True: `1`, False: *empty*
+	SAML_VERIFY_INSECURE = "SAML_VERIFY_INSECURE"
+
 	// SAML_CONSUMER_SERVICE_URL Endpoint for assertion consumer service. After authentication is completed the customer will be redirected to this endpoint for local processes to verify and handle the response.
 	//
 	// Target: Back-end (api)

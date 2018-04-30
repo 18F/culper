@@ -119,7 +119,7 @@ func (service *DatabaseService) Insert(query ...interface{}) error {
 
 // Update persists the existing model in the data store
 func (service *DatabaseService) Update(query interface{}) error {
-	return context.database.Update(query)
+	return service.database.Update(query)
 }
 
 // Save persists the model in the data store
