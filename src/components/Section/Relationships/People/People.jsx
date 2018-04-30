@@ -150,7 +150,7 @@ export default class People extends SubsectionElement {
                            unit={i18n.t('relationships.people.summaryProgress.unit')}
                            total={7}>
             <div className="summary-icon">
-              <Svg src="/img/people-who-know-you.svg" />
+              <Svg src="/img/people-who-know-you.svg" alt={i18n.t('relationships.people.summaryProgress.svgAlt')} />
             </div>
           </SummaryProgress>
         </div>

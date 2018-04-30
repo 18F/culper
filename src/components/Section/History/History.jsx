@@ -240,7 +240,7 @@ class History extends SectionElement {
                        total={this.totalYears()}
                        >
         <div className="summary-icon">
-          <Svg src="/img/residence-house.svg" />
+          <Svg src="/img/residence-house.svg" alt={i18n.t('history.residence.summary.svgAlt')} />
         </div>
       </SummaryProgress>
     )
@@ -255,7 +255,7 @@ class History extends SectionElement {
                        total={this.totalYears()}
                        >
         <div className="summary-icon">
-          <Svg src="/img/employer-briefcase.svg" />
+          <Svg src="/img/employer-briefcase.svg" alt={i18n.t('history.employment.summary.svgAlt')} />
         </div>
       </SummaryProgress>
     )
@@ -272,7 +272,7 @@ class History extends SectionElement {
                       total={this.totalYears()}
                       >
         <div className="summary-icon">
-          <Svg src="/img/school-cap.svg" />
+          <Svg src="/img/school-cap.svg" alt={i18n.t('history.education.summary.svgAlt')} />
         </div>
       </SummaryCounter>
     )
@@ -354,7 +354,7 @@ class History extends SectionElement {
 
             <hr className="section-divider" />
             <span className="section-heading">
-              <Svg src="/img/residence-house.svg" />
+              <Svg src="/img/residence-house.svg" alt={i18n.t('history.residence.summary.svgAlt')} />
               {i18n.t('history.residence.collection.caption')}
             </span>
             <Residence {...this.props.Residence}
@@ -375,7 +375,7 @@ class History extends SectionElement {
 
             <hr className="section-divider" />
             <span className="section-heading">
-              <Svg src="/img/employer-briefcase.svg" />
+              <Svg src="/img/employer-briefcase.svg" alt={i18n.t('history.employment.summary.svgAlt')} />
               {i18n.t('history.employment.default.collection.caption')}
             </span>
             <Employment {...this.props.Employment}
@@ -396,7 +396,7 @@ class History extends SectionElement {
 
             <hr className="section-divider" />
             <span className="section-heading">
-              <Svg src="/img/school-cap.svg" />
+              <Svg src="/img/school-cap.svg" alt={i18n.t('history.education.summary.svgAlt')} />
               {i18n.t('history.education.collection.caption')}
             </span>
 
