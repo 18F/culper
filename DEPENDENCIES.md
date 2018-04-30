@@ -4,9 +4,9 @@ This is a collection of dependencies within the project and there associated lic
 
 ## Overview
 
-| Apache | BSD | CC Attribution | CC0 | ISC | LGPL | MIT | SIL OFL | Unknown | Unlicense | WTF |
-| --     | --  | --             | --  | --  | --   | --  | --      | --      | --        | --  |
-| 31     | 94  | 1              | 8   | 78  | 1    | 809 | 2       | 13      | 3         | 6   |
+| Apache | BSD | CC Attribution | CC0 | ISC | LGPL | MIT | SIL OFL | Unlicense | WTF |
+| --     | --  | --             | --  | --  | --   | --  | --      | --        | --  |
+| 31     | 95  | 2              | 8   | 78  | 1    | 820 | 2       | 3         | 6   |
 
 ## Packages
 
@@ -87,7 +87,7 @@ This is a collection of dependencies within the project and there associated lic
 
 ### mandrill
 
- - **License**: Unknown
+ - **License**: BSD
  - **Year**:    2015
  - **Author**:  keighl
 
@@ -586,7 +586,7 @@ This is a collection of dependencies within the project and there associated lic
 
 ### atob
 
- - **License**: Unknown
+ - **License**: CC Attribution
 
 [View license](node_modules/atob/LICENSE.DOCS)
 
@@ -1156,7 +1156,7 @@ This is a collection of dependencies within the project and there associated lic
 
 ### clone
 
- - **License**: Unknown
+ - **License**: MIT
  - **Year**:    2015
  - **Author**:  Paul Vorbach
 
@@ -1878,7 +1878,7 @@ This is a collection of dependencies within the project and there associated lic
 
 ### lib
 
- - **License**: Unknown
+ - **License**: MIT
  - **Year**:    2005
  - **Author**:   Tom Wu
 
@@ -4034,7 +4034,7 @@ This is a collection of dependencies within the project and there associated lic
 
 ### jsbn
 
- - **License**: Unknown
+ - **License**: MIT
  - **Year**:    2005
  - **Author**:   Tom Wu
 
@@ -4112,7 +4112,7 @@ This is a collection of dependencies within the project and there associated lic
 
 ### json-loader
 
- - **License**: Unknown
+ - **License**: MIT
 
 [View license](node_modules/json-loader/LICENSE)
 
@@ -4358,7 +4358,7 @@ This is a collection of dependencies within the project and there associated lic
 
 ### loader-utils
 
- - **License**: Unknown
+ - **License**: MIT
 
 [View license](node_modules/loader-utils/LICENSE)
 
@@ -5353,7 +5353,7 @@ This is a collection of dependencies within the project and there associated lic
 
 ### path-platform
 
- - **License**: Unknown
+ - **License**: MIT
 
 [View license](node_modules/path-platform/LICENSE)
 
@@ -6808,7 +6808,7 @@ This is a collection of dependencies within the project and there associated lic
 
 ### uglifyjs-webpack-plugin
 
- - **License**: Unknown
+ - **License**: MIT
 
 [View license](node_modules/uglifyjs-webpack-plugin/LICENSE)
 
@@ -7015,7 +7015,7 @@ This is a collection of dependencies within the project and there associated lic
 
 ### clone
 
- - **License**: Unknown
+ - **License**: MIT
  - **Year**:    2014
  - **Author**:  Paul Vorbach
 
@@ -7081,7 +7081,7 @@ This is a collection of dependencies within the project and there associated lic
 
 ### watchpack
 
- - **License**: Unknown
+ - **License**: MIT
 
 [View license](node_modules/watchpack/LICENSE)
 
@@ -7103,7 +7103,7 @@ This is a collection of dependencies within the project and there associated lic
 
 ### webpack
 
- - **License**: Unknown
+ - **License**: MIT
 
 [View license](node_modules/webpack/LICENSE)
 
@@ -7185,7 +7185,7 @@ This is a collection of dependencies within the project and there associated lic
 
 ### clone
 
- - **License**: Unknown
+ - **License**: MIT
  - **Year**:    2015
  - **Author**:  Paul Vorbach
 
