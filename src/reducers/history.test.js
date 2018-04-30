@@ -192,4 +192,109 @@ describe('History Reducer', function () {
       expect(historyReducer(test.state, test.action)).toEqual(test.expected)
     })
   })
+
+  it('should populate current address', function () {
+    const tests = [
+      {
+        state: {
+          Residence: {
+            List: {
+              items: []
+            }
+          }
+        },
+        expected: {
+          Residence: {
+            List: {
+              items: []
+            }
+          }
+        }
+      },
+      {
+        state: {
+          Residence: {
+            List: {
+              items: [{}]
+            }
+          }
+        },
+        expected: {
+          CurrentAddress: null,
+          Residence: {
+            List: {
+              items: [{}]
+            }
+          }
+        }
+      },
+      {
+        state: {
+          Residence: {
+            List: {
+              items: [
+                {
+                  Item: {
+                    Address: {}
+                  }
+                }
+              ]
+            }
+          }
+        },
+        expected: {
+          CurrentAddress: null,
+          Residence: {
+            List: {
+              items: [
+                {
+                  Item: {
+                    Address: {}
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      {
+        state: {
+          Residence: {
+            List: {
+              items: [
+                {
+                  Item: {
+                    Dates: {
+                      present: true
+                    },
+                    Address: {}
+                  }
+                }
+              ]
+            }
+          }
+        },
+        expected: {
+          CurrentAddress: {},
+          Residence: {
+            List: {
+              items: [
+                {
+                  Item: {
+                    Dates: {
+                      present: true
+                    },
+                    Address: {}
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    ]
+    tests.forEach(test => {
+      expect(populateCurrentAddress(test.state)).toEqual(test.expected)
+    })
+  })
 })
