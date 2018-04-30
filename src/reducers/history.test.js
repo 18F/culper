@@ -1,4 +1,4 @@
-import historyReducer from './history'
+import historyReducer, { populateCurrentAddress } from './history'
 
 describe('History Reducer', function () {
   it('should handle default history update', function () {
@@ -163,6 +163,28 @@ describe('History Reducer', function () {
               }
             }
           ]
+        }
+      }
+    ]
+    tests.forEach(test => {
+      expect(historyReducer(test.state, test.action)).toEqual(test.expected)
+    })
+  })
+
+  it('should populate current address', function () {
+    const tests = [
+      {
+        state: {
+          Residence: null
+        },
+        action: {
+          section: 'History',
+          property: 'Residence',
+          type: 'History.Residence',
+          values: null
+        },
+        expected: {
+          Residence: null
         }
       }
     ]

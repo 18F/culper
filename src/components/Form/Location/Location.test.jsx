@@ -115,6 +115,10 @@ describe('The Address component', () => {
         selectors: ['.state', '.city']
       },
       {
+        props: { layout: Location.US_CITY_STATE_INTERNATIONAL_CITY_COUNTRY, country: { value: 'United States' } },
+        selectors: ['.state', '.city']
+      },
+      {
         props: { layout: Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY, country: { value: 'United States' } },
         selectors: ['.city', '.state', '.zipcode']
       },
@@ -166,6 +170,32 @@ describe('The Address component', () => {
         }
         expect(found).toBe(true)
       })
+    })
+  })
+
+  it('renders fields', () => {
+    const tests = [
+      {
+        fields: ['street']
+      },
+      {
+        fields: ['street2']
+      },
+      {
+        fields: ['city']
+      },
+      {
+        fields: ['state']
+      },
+      {
+        fields: ['stateZipcode']
+      }
+    ]
+
+    tests.forEach(test => {
+      const component = mount(<Location />)
+      let resolved = component.instance().renderFields(test.fields)
+      expect(resolved).not.toEqual(undefined)
     })
   })
 
@@ -388,5 +418,4 @@ describe('The Address component', () => {
       expect(book).toEqual(test.expect)
     })
   })
-
 })

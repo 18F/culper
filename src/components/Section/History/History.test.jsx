@@ -3,7 +3,7 @@ import MockAdapter from 'axios-mock-adapter'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
-import History from './History'
+import History, { totalYears } from './History'
 import { mount } from 'enzyme'
 
 const applicationState = {
@@ -43,6 +43,27 @@ describe('The History section', () => {
     sections.forEach((section) => {
       const component = mount(<Provider store={store}><History subsection={section} /></Provider>)
       expect(component.find('div').length).toBeGreaterThan(0)
+    })
+  })
+
+  it('can count total years', () => {
+    const tests = [
+      {
+        data: new Date('1/1/2010'),
+        expect: 10
+      },
+      {
+        data: new Date('1/1/2000'),
+        expect: 2
+      },
+      {
+        data: new Date('1/1/1980'),
+        expect: 10
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(totalYears(test.data)).toBe(test.expect)
     })
   })
 })

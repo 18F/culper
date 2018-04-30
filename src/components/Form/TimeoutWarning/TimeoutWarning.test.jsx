@@ -58,4 +58,16 @@ describe('The timeout warning component', () => {
       expect(seconds(test.data)).toEqual(test.expect)
     })
   })
+
+  it('convert ms to minutes', () => {
+    const tests = [
+      {
+        data: 2400,
+        expect: 1
+      }
+    ]
+    tests.forEach(test => {
+      expect(minutes(test.data)).toEqual(test.expect)
+    })
+  })
 })
