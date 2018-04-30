@@ -44,7 +44,7 @@ export default class OrderedTreatment extends ValidationElement {
 
   updateOrderedBy (cb) {
     let selected = cb.value
-    let list = [...this.props.OrderedBy].filter(x => x !== 'None')
+    let list = [...((this.props.OrderedBy || {}).values || [])]
 
     if (selected === 'None') {
       list = [selected]
@@ -56,7 +56,7 @@ export default class OrderedTreatment extends ValidationElement {
       }
     }
 
-    this.update({OrderedBy: list})
+    this.update({OrderedBy: { values: list }})
   }
 
   updateExplanation (values) {
@@ -108,7 +108,7 @@ export default class OrderedTreatment extends ValidationElement {
           <CheckboxGroup className="ordered-by"
                          required={this.props.required}
                          onError={this.props.onError}
-                         selectedValues={this.props.OrderedBy}>
+                         selectedValues={(this.props.OrderedBy || {}).values}>
             <Checkbox name="Employer"
                       label={i18n.m('substance.drugs.ordered.orderedBy.label.employer')}
                       value="Employer"
