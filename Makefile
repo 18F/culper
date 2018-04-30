@@ -49,8 +49,6 @@ setup-certificates: clear
 	@docker-compose run --rm deps ./bin/test-certificates 2>errors
 setup-dependencies: clear
 	$(info Installing dependencies)
-	@docker-compose run --rm frontend yarn install 2>errors
-	@docker-compose run --rm api ./bin/install 2>errors
 	@docker-compose run --rm deps ./bin/compile-xmlsec 2>errors
 
 #
