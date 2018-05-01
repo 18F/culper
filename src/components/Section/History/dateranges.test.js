@@ -1,6 +1,6 @@
 import { validDate, rangeSorter, daysInMonth, gaps,
-  daysAgo, today, ten, utc, julian, fromJulian, endOfMonth,
-  daysBetween, findPercentage } from './dateranges'
+         daysAgo, today, ten, utc, julian, fromJulian, endOfMonth,
+         daysBetween, findPercentage } from './dateranges'
 
 describe('date ranges ', function () {
   it('validate valid date', () => {
