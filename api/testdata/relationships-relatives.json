@@ -81,6 +81,12 @@
               "Aliases": {
                 "type": "collection",
                 "props": {
+                  "branch": {
+                    "type": "branch",
+                    "props": {
+                      "value": ""
+                    }
+                  },
                   "items": [
                     {
                       "Item": {

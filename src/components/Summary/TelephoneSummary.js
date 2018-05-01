@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react' // eslint-disable-line no-unused-vars
 
 export const TelephoneSummary = (props, unknown = '') => {
   if (!props) {
@@ -10,24 +10,24 @@ export const TelephoneSummary = (props, unknown = '') => {
     number = props.number
 
     switch (props.type) {
-      case 'DSN':
-        number = `${number.slice(0, 3).trim()}-${number.slice(3, 7).trim()}`
-        break
+    case 'DSN':
+      number = `${number.slice(0, 3).trim()}-${number.slice(3, 7).trim()}`
+      break
 
-      case 'International':
-        number = `+${number.slice(0, 3).trim()} ${number.slice(3, 13).trim()}`
-        if (props.extension) {
-          number += ` x${props.extension}`
-        }
-        break
+    case 'International':
+      number = `+${number.slice(0, 3).trim()} ${number.slice(3, 13).trim()}`
+      if (props.extension) {
+        number += ` x${props.extension}`
+      }
+      break
 
-      case 'Domestic':
-      default:
-        number = `(${number.slice(0, 3).trim()}) ${number.slice(3, 6).trim()}-${number.slice(6, 10).trim()}`
-        if (props.extension) {
-          number += ` x${props.extension}`
-        }
-        break
+    case 'Domestic':
+    default:
+      number = `(${number.slice(0, 3).trim()}) ${number.slice(3, 6).trim()}-${number.slice(6, 10).trim()}`
+      if (props.extension) {
+        number += ` x${props.extension}`
+      }
+      break
     }
   }
 

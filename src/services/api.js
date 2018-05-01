@@ -14,7 +14,7 @@ const getSplitValue = (key, raw, delim1, delim2) => {
 
   for (let i = 0; i < vars.length; i++) {
     const pair = vars[i].split(delim2)
-    if (pair.length != 2) {
+    if (pair.length !== 2) {
       continue
     }
 
@@ -29,7 +29,7 @@ const getSplitValue = (key, raw, delim1, delim2) => {
 }
 
 export const deleteCookie = (name) => {
-  document.cookie = `${name}=; domain=${window.location.hostname}; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
+  document.cookie = `${name}=; domain=${window.location.hostname}; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;`
 }
 
 class Api {
@@ -89,16 +89,12 @@ class Api {
   }
 
   get (endpoint, secure = true, headers = {}) {
-    const h = secure
-          ? { headers: { ...headers, ...this.bearerToken() } }
-          : headers
+    const h = secure ? { headers: { ...headers, ...this.bearerToken() } } : headers
     return this.proxy.get(endpoint, h)
   }
 
   post (endpoint, params = {}, secure = true, headers = {}) {
-    const h = secure
-          ? { headers: { ...headers, ...this.bearerToken() } }
-          : headers
+    const h = secure ? { headers: { ...headers, ...this.bearerToken() } } : headers
     return this.proxy.post(endpoint, params, h)
   }
 

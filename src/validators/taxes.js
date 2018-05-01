@@ -1,4 +1,3 @@
-import DateRangeValidator from './daterange'
 import { validAccordion, validNotApplicable, validDateField, validGenericTextfield } from './helpers'
 
 export default class TaxesValidator {

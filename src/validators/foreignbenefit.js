@@ -18,14 +18,14 @@ export default class ForeignBenefitValidator {
 
   validBenefitType () {
     switch (this.benefitType) {
-      case 'Educational':
-      case 'Medical':
-      case 'Retirement':
-        return true
-      case 'Other':
-        return validGenericTextfield(this.otherBenefitType)
-      default:
-        return false
+    case 'Educational':
+    case 'Medical':
+    case 'Retirement':
+      return true
+    case 'Other':
+      return validGenericTextfield(this.otherBenefitType)
+    default:
+      return false
     }
   }
 
@@ -36,16 +36,16 @@ export default class ForeignBenefitValidator {
 
   validBenefit () {
     switch (this.benefitFrequency) {
-      case 'OneTime':
-        return new OneTimeBenefitValidator(this.oneTimeBenefit).isValid()
-      case 'Future':
-        return new FutureBenefitValidator(this.futureBenefit).isValid()
-      case 'Continuing':
-        return new ContinuingBenefitValidator(this.continuingBenefit).isValid()
-      case 'Other':
-        return validGenericTextfield(this.otherBenefit)
-      default:
-        return false
+    case 'OneTime':
+      return new OneTimeBenefitValidator(this.oneTimeBenefit).isValid()
+    case 'Future':
+      return new FutureBenefitValidator(this.futureBenefit).isValid()
+    case 'Continuing':
+      return new ContinuingBenefitValidator(this.continuingBenefit).isValid()
+    case 'Other':
+      return validGenericTextfield(this.otherBenefit)
+    default:
+      return false
     }
   }
 
@@ -125,15 +125,15 @@ export class FutureBenefitValidator {
 
   validFrequency () {
     switch (this.frequency) {
-      case 'Annually':
-      case 'Quarterly':
-      case 'Monthly':
-      case 'Weekly':
-        return true
-      case 'Other':
-        return validGenericTextfield(this.otherFrequency)
-      default:
-        return false
+    case 'Annually':
+    case 'Quarterly':
+    case 'Monthly':
+    case 'Weekly':
+      return true
+    case 'Other':
+      return validGenericTextfield(this.otherFrequency)
+    default:
+      return false
     }
   }
 
@@ -197,15 +197,15 @@ export class ContinuingBenefitValidator {
 
   validFrequency () {
     switch (this.frequency) {
-      case 'Annually':
-      case 'Quarterly':
-      case 'Monthly':
-      case 'Weekly':
-        return true
-      case 'Other':
-        return validGenericTextfield(this.otherFrequency)
-      default:
-        return false
+    case 'Annually':
+    case 'Quarterly':
+    case 'Monthly':
+    case 'Weekly':
+      return true
+    case 'Other':
+      return validGenericTextfield(this.otherFrequency)
+    default:
+      return false
     }
   }
 

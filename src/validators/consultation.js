@@ -32,5 +32,4 @@ export default class ConsultationValidator {
 
     return this.validList()
   }
-
 }

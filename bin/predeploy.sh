@@ -27,6 +27,9 @@ elif [ "$SPACE" = "aws" ]; then
 		elif [ "$CIRCLE_BRANCH" = "develop" ]; then
 				ENV_FILE=".env.aws.dev"
 		fi
+
+		# Add the AWS base image to the dockerfile for packaging
+	  echo -e "FROM ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/nbis-ecr:base\n#$(cat Dockerfile.eapp_golang)" > Dockerfile.eapp_golang
 fi
 
 #

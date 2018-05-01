@@ -570,7 +570,7 @@ func Metadata(context DatabaseService, account int, locked bool) []byte {
 		Locked: locked,
 		Hash:   hex.EncodeToString(hash[:]),
 	}
-	js, _ := json.MarshalIndent(meta, "", "  ")
+	js, _ := json.Marshal(meta)
 	return js
 }
 
@@ -605,7 +605,7 @@ func Application(context DatabaseService, account int, hashable bool) []byte {
 		application[section.name][section.subsection] = entity.Marshal()
 	}
 
-	js, _ := json.MarshalIndent(application, "", "  ")
+	js, _ := json.Marshal(application)
 	return js
 }
 

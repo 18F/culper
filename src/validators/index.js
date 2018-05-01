@@ -88,8 +88,8 @@ import DrugPublicSafetyUsesValidator, { DrugPublicSafetyUseValidator } from './d
 import DrugPrescriptionUsesValidator, { DrugPrescriptionUseValidator } from './drugprescriptionuses'
 import DrugOrderedTreatmentsValidator, { DrugOrderedTreatmentValidator } from './drugorderedtreatments'
 import DrugVoluntaryTreatmentsValidator, { DrugVoluntaryTreatmentValidator } from './drugvoluntarytreatments'
-import LegalAssociationsOverthrowValidator from './legalassociationsoverthrow'
-import LegalAssociationsViolenceValidator from './legalassociationsviolence'
+import LegalAssociationsOverthrowValidator, { OverthrowValidator } from './legalassociationsoverthrow'
+import LegalAssociationsViolenceValidator, { ViolenceValidator } from './legalassociationsviolence'
 import LegalAssociationsEngagedValidator, { EngagedValidator } from './legalassociationsengaged'
 import LegalAssociationsAdvocatingValidator, { AdvocatingValidator } from './legalassociationsadvocating'
 import LegalAssociationsActivitiesValidator, { ActivitiesValidator } from './legalassociationsactivities'
@@ -251,7 +251,9 @@ export {
   LegalAssociationsTerroristValidator,
   TerroristValidator,
   LegalAssociationsOverthrowValidator,
+  OverthrowValidator,
   LegalAssociationsViolenceValidator,
+  ViolenceValidator,
   LegalAssociationsEngagedValidator,
   EngagedValidator,
   LegalAssociationsAdvocatingValidator,

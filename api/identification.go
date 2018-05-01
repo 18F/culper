@@ -1,6 +1,8 @@
 package api
 
-import "encoding/json"
+import (
+	"encoding/json"
+)
 
 // IdentificationName subsection of identification section.
 type IdentificationName struct {

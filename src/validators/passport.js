@@ -1,6 +1,5 @@
 import NameValidator from './name'
 import DateRangeValidator from './daterange'
-import DateControlValidator from './datecontrol'
 
 const reBook = '^[a-zA-Z]{1}[0-9]{6,9}$'
 const reCard = '^[cC]{1}[0-9]{8}$'

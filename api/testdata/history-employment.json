@@ -10,6 +10,12 @@
     "List": {
       "type": "collection",
       "props": {
+        "branch": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
         "items": [
           {
             "Item": {
@@ -87,9 +93,21 @@
               "Additional": {
                 "type": "collection",
                 "props": {
+                  "branch": {
+                    "type": "branch",
+                    "props": {
+                      "value": ""
+                    }
+                  },
                   "items": [
                     {
                       "Item": {
+                        "Has": {
+                          "type": "branch",
+                          "props": {
+                            "value": "Yes"
+                          }
+                        },
                         "Position": {
                           "type": "text",
                           "props": {
@@ -126,6 +144,16 @@
                               }
                             },
                             "present": false
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "Item": {
+                        "Has": {
+                          "type": "branch",
+                          "props": {
+                            "value": "No"
                           }
                         }
                       }
@@ -192,9 +220,21 @@
                   "Reasons": {
                     "type": "collection",
                     "props": {
+                      "branch": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
                       "items": [
                         {
                           "Item": {
+                            "Has": {
+                              "type": "branch",
+                              "props": {
+                                "value": "Yes"
+                              }
+                            },
                             "Reason": {
                               "type": "radio",
                               "props": {
@@ -218,6 +258,16 @@
                               }
                             }
                           }
+                        },
+                        {
+                          "Item": {
+                            "Has": {
+                              "type": "branch",
+                              "props": {
+                                "value": "No"
+                              }
+                            }
+                          }
                         }
                       ]
                     }
@@ -233,9 +283,21 @@
               "Reprimand": {
                 "type": "collection",
                 "props": {
+                  "branch": {
+                    "type": "branch",
+                    "props": {
+                      "value": ""
+                    }
+                  },
                   "items": [
                     {
                       "Item": {
+                        "Has": {
+                          "type": "branch",
+                          "props": {
+                            "value": "Yes"
+                          }
+                        },
                         "Text": {
                           "type": "textarea",
                           "props": {
@@ -250,6 +312,16 @@
                             "year": "2017",
                             "estimated": false,
                             "date": "2017-07-25T00:00:00Z"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "Item": {
+                        "Has": {
+                          "type": "branch",
+                          "props": {
+                            "value": "No"
                           }
                         }
                       }

@@ -1,12 +1,9 @@
-import React from 'react'
-import { mount } from 'enzyme'
-import { PUSH_STATE, historyMiddleware, push } from './history'
-import { env } from '../config'
+import { PUSH_STATE, historyMiddleware, push, findPosition } from './history'
 
 describe('history middleware', function () {
   const dispatch = () => {}
   const getState = () => {}
-  const nextHandler = historyMiddleware({dispatch: dispatch, getState, getState})
+  const nextHandler = historyMiddleware({dispatch: dispatch, getState: getState})
 
   it('should create an action to handle a history push', function () {
     const path = '/'
@@ -25,5 +22,16 @@ describe('history middleware', function () {
       expect(d).toEqual(dispatch)
       expect(s).toEqual(getState)
     })
+  })
+
+  it('should find the position', function () {
+    const el = {
+      offsetTop: 10,
+      offsetParent: {
+        offsetTop: 2
+      }
+    }
+    const top = findPosition(el)
+    expect(top).toEqual([12])
   })
 })
