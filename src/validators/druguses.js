@@ -1,4 +1,3 @@
-import DateRangeValidator from './daterange'
 import { validAccordion, validBranch, validGenericTextfield, validGenericMonthYear } from './helpers'
 
 export default class DrugUsesValidator {

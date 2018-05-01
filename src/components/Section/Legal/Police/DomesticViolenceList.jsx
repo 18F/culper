@@ -66,6 +66,7 @@ export default class DomesticViolenceList extends SubsectionElement {
                 scrollIntoView={this.props.scrollIntoView} />
         <Show when={(this.props.HasDomesticViolence || {}).value === 'Yes'}>
           <Accordion {...this.props.List}
+                     defaultState={this.props.defaultState}
                      label={i18n.t('legal.police.label.domesticViolence')}
                      labelSize="h2"
                      className="has-order"

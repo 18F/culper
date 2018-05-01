@@ -5,6 +5,7 @@ import (
 	"os"
 
 	"github.com/18F/e-QIP-prototype/api"
+	"github.com/18F/e-QIP-prototype/api/cloudfoundry"
 	"github.com/18F/e-QIP-prototype/api/env"
 	"github.com/18F/e-QIP-prototype/api/postgresql"
 )
@@ -14,6 +15,7 @@ var (
 )
 
 func Command(log api.LogService, action func(api.DatabaseService, *api.Account)) {
+	cloudfoundry.Configure()
 	settings := &env.Native{}
 	settings.Configure()
 	database := &postgresql.DatabaseService{Log: log, Env: settings}

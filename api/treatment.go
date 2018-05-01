@@ -51,6 +51,15 @@ func (entity *Treatment) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *Treatment) Marshal() Payload {
+	if entity.Name != nil {
+		entity.PayloadName = entity.Name.Marshal()
+	}
+	if entity.Phone != nil {
+		entity.PayloadPhone = entity.Phone.Marshal()
+	}
+	if entity.Address != nil {
+		entity.PayloadAddress = entity.Address.Marshal()
+	}
 	return MarshalPayloadEntity("psychological.treatment", entity)
 }
 
@@ -138,8 +147,6 @@ func (entity *Treatment) Delete(context DatabaseService, account int) (int, erro
 }
 
 func (entity *Treatment) Get(context DatabaseService, account int) (int, error) {
-	entity.ID = account
-
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}

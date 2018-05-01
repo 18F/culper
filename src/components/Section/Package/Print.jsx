@@ -119,7 +119,7 @@ class Print extends SectionElement {
     return (
       <div className="done">
         <span className="icon">
-          <Svg src="/img/checkmark.svg" />
+          <Svg src="/img/checkmark.svg" alt={i18n.t('review.completeSvg')} />
         </span>
         { i18n.m('application.print.done') }
       </div>

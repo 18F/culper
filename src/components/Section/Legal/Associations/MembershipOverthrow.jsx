@@ -71,6 +71,7 @@ export default class MembershipOverthrow extends SubsectionElement {
           <Accordion defaultState={this.props.defaultState}
                      {...this.props.List}
                      scrollToBottom={this.props.scrollToBottom}
+                     validator={OverthrowValidator}
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}

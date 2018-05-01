@@ -32,8 +32,30 @@ func (payload Payload) Entity() (Entity, error) {
 		return nil, errors.New("Empty payload")
 	}
 
-	entity := transform[payload.Type]()
+	entity, _ := transform[payload.Type]()
 	if entity == nil {
+		return nil, errors.New("Could not determine a suitable type")
+	}
+
+	// If there is a payload present we want to try and unmarshal it
+	if payload.Props != nil {
+		if err := entity.Unmarshal(payload.Props); err != nil {
+			return entity, err
+		}
+	}
+
+	return entity, nil
+}
+
+// Entity returns the appropriate entity as an interface
+// based on its type.
+func (payload Payload) SafeEntity() (Entity, error) {
+	if payload.Type == "" {
+		return nil, errors.New("Empty payload")
+	}
+
+	entity, safe := transform[payload.Type]()
+	if entity == nil || !safe {
 		return nil, errors.New("Could not determine a suitable type")
 	}
 

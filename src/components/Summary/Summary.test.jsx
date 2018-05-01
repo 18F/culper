@@ -1,5 +1,5 @@
-import React from 'react'
-import { mount } from 'enzyme'
+import React from 'react' // eslint-disable-line no-unused-vars
+import { mount } from 'enzyme' // eslint-disable-line no-unused-vars
 import { Summary } from './Summary'
 
 describe('The summary helper', () => {

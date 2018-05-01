@@ -37,11 +37,22 @@ describe('The substance use section', () => {
 
   it('can go to each subsection', () => {
     window.token = 'fake-token'
-    const sections = ['police', 'review']
+    const sections = [
+      'drugs/usage',
+      'drugs/purchase',
+      'drugs/clearance',
+      'drugs/misuse',
+      'drugs/ordered',
+      'drugs/voluntary',
+      'alcohol/negative',
+      'alcohol/voluntary',
+      'alcohol/ordered'
+    ]
     const store = mockStore({ authentication: { authenticated: true, twofactor: true } })
 
     sections.forEach((section) => {
       const component = mount(<Provider store={store}><SubstanceUse subsection={section} /></Provider>)
+      component.find('.no input').simulate('change')
       expect(component.find('div').length).toBeGreaterThan(0)
     })
   })

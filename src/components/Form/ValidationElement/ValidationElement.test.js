@@ -1,4 +1,3 @@
-import React from 'react'
 import { flattenObject, mergeError, triageErrors } from './ValidationElement'
 
 describe('The ValidationElement component', () => {

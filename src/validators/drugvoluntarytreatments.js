@@ -41,12 +41,12 @@ export class DrugVoluntaryTreatmentValidator {
 
   validTreatmentCompleted () {
     switch (this.treatmentCompleted) {
-      case 'Yes':
-        return true
-      case 'No':
-        return validGenericTextfield(this.noTreatmentExplanation)
-      default:
-        return false
+    case 'Yes':
+      return true
+    case 'No':
+      return validGenericTextfield(this.noTreatmentExplanation)
+    default:
+      return false
     }
   }
 

@@ -8,44 +8,46 @@ export function getApplicationState (done) {
   return function (dispatch, getState) {
     let locked = false
     let formData = {}
-    api.status().then(r => {
-      const statusData = (r || {}).data || {}
-      dispatch(updateApplication('Settings', 'locked', statusData.Locked))
-      dispatch(updateApplication('Settings', 'hash', statusData.Hash))
+    api
+      .status()
+      .then(r => {
+        const statusData = (r || {}).data || {}
+        dispatch(updateApplication('Settings', 'locked', statusData.Locked))
+        dispatch(updateApplication('Settings', 'hash', statusData.Hash))
 
-      if (statusData.Locked) {
-        locked = true
-        dispatch(push('/locked'))
-      }
-    })
-    .then(() => {
-      if (locked) {
-        return
-      }
-      return api.form().then(r => {
-        formData = r.data
-        for (const section in formData) {
-          for (const subsection in formData[section]) {
-            dispatch(updateApplication(section, subsection, unschema(formData[section][subsection])))
-          }
+        if (statusData.Locked) {
+          locked = true
+          dispatch(push('/locked'))
         }
       })
-    })
-    .then(() => {
-      if (locked) {
-        return
-      }
+      .then(() => {
+        if (locked) {
+          return
+        }
+        return api.form().then(r => {
+          formData = r.data
+          for (const section in formData) {
+            for (const subsection in formData[section]) {
+              dispatch(updateApplication(section, subsection, unschema(formData[section][subsection])))
+            }
+          }
+        })
+      })
+      .then(() => {
+        if (locked) {
+          return
+        }
 
-      validateApplication(dispatch, formData)
-      if (done) {
-        done()
-      }
-    })
-    .catch(() => {
-      if (console && console.warn) {
-        console.warn('Failed to retrieve form saved data')
-      }
-    })
+        validateApplication(dispatch, formData)
+        if (done) {
+          done()
+        }
+      })
+      .catch(() => {
+        if (console && console.warn) {
+          console.warn('Failed to retrieve form saved data')
+        }
+      })
   }
 }
 

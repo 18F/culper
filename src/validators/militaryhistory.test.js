@@ -176,7 +176,7 @@ describe('Military history validation', function () {
               {
                 Item: {
                   Service: { value: 'AirNationalGuard' },
-                  Status:  { value: 'ActiveDuty' },
+                  Status: { value: 'ActiveDuty' },
                   Officer: { value: 'Enlisted' },
                   ServiceNumber: {
                     value: '0123456789'
@@ -223,7 +223,7 @@ describe('Military history validation', function () {
               {
                 Item: {
                   Service: { value: 'AirNationalGuard' },
-                  Status:  { value: 'ActiveDuty' },
+                  Status: { value: 'ActiveDuty' },
                   Officer: { value: 'Enlisted' },
                   ServiceNumber: {
                     value: '0123456789'

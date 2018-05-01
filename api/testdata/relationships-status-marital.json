@@ -101,9 +101,21 @@
         "OtherNames": {
           "type": "collection",
           "props": {
+            "branch": {
+              "type": "branch",
+              "props": {
+                "value": "No"
+              }
+            },
             "items": [
               {
                 "Item": {
+                  "Has": {
+                    "type": "branch",
+                    "props": {
+                      "value": "Yes"
+                    }
+                  },
                   "Name": {
                     "type": "name",
                     "props": {
@@ -148,6 +160,16 @@
                         }
                       },
                       "present": false
+                    }
+                  }
+                }
+              },
+              {
+                "Item": {
+                  "Has": {
+                    "type": "branch",
+                    "props": {
+                      "value": "No"
                     }
                   }
                 }
@@ -269,6 +291,12 @@
     "DivorcedList": {
       "type": "collection",
       "props": {
+        "branch": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
         "items": [
           {
             "Item": {

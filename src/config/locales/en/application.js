@@ -86,7 +86,7 @@ export const application = {
     upload: {
       title: 'Upload file to e-QIP directly',
       para: [
-        'Certification, General Release and Medical Release forms must be attached separately as single page documents. Items such as a resume or OF 612 can be uploaded as multi-page documents.',
+        'Certification, General Release and Medical Release forms must be attached separately as single page documents. Items such as a resume or OF 612 can be uploaded as multi-page documents.'
       ],
       limits: '{types} files only. Maximum file size allowed is {max_size}.',
       description: 'Description',

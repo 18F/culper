@@ -30,7 +30,7 @@ coverage
 build/Release
 
 # Dependency directories
-node_modules
+# node_modules
 jspm_packages
 
 # Optional npm cache directory
@@ -45,7 +45,7 @@ __snapshots__/
 # Go vendoring
 # We will just track the vendor.json file to rehydrate packages during development
 # For release all vendored packages should be frozen
-/api/vendor
+# /api/vendor
 /api/.glide
 
 # Tools
@@ -54,7 +54,9 @@ __snapshots__/
 # Build artifacts
 .gitmessage
 .projectile
-bin
+/bin
+/api/bin
+/api/dist
 /api/checksum
 /api/api
 /api/eapp-seccomp.json
@@ -62,6 +64,11 @@ bin
 /api/cmd/flush/flush
 /api/cmd/reset/reset
 /api/cmd/unlock/unlock
+/api/cmd/fuzzer/fuzzer
+/api/cmd/load/load
+/api/cmd/transmit/transmit
+/api/cmd/compare/compare
+/api/cmd/form/form
 /build/
 /doc/
 /dist/

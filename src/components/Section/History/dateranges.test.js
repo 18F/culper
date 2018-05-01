@@ -44,7 +44,7 @@ describe('date ranges ', function () {
         ],
         expected: [
           { from: new Date('1/1/2009') },
-          { from: new Date('1/1/2010') },
+          { from: new Date('1/1/2010') }
         ]
       },
       {
@@ -101,12 +101,12 @@ describe('date ranges ', function () {
         ranges: [
           { from: daysAgo(today, 365 * 1), to: today },
           { from: daysAgo(today, 365 * 3), to: daysAgo(today, 365 * 1) },
-          { from: ten, to: daysAgo(today, 365 * 4) },
+          { from: ten, to: daysAgo(today, 365 * 4) }
         ],
         expected: [
           { from: daysAgo(today, 365 * 4), to: daysAgo(today, 365 * 3) }
         ]
-      },
+      }
     ]
 
     const equality = (expected, actual) => {
