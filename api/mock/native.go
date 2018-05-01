@@ -13,9 +13,9 @@ type Native struct{}
 
 // Configure the environment.
 func (env Native) Configure() {
-	if !env.Has(api.DATABASE_URI) {
-		connectionString := fmt.Sprintf("postgres://%s@%s/%s", os.Getenv(api.DATABASE_USER), os.Getenv(api.DATABASE_HOST), os.Getenv(api.DATABASE_NAME))
-		os.Setenv(api.DATABASE_URI, connectionString)
+	if !env.Has(api.DatabaseURI) {
+		connectionString := fmt.Sprintf("postgres://%s@%s/%s", os.Getenv(api.DatabaseUser), os.Getenv(api.DatabaseHost), os.Getenv(api.DatabaseName))
+		os.Setenv(api.DatabaseURI, connectionString)
 	}
 }
 

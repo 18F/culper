@@ -40,7 +40,7 @@ func (service Server) ListenAndServe(address string, router http.Handler) error 
 	var server *http.Server
 	var serverFunc serverFunc
 
-	if service.Env.Has(api.TLS_CERT) && service.Env.Has(api.TLS_KEY) {
+	if service.Env.Has(api.TLSCert) && service.Env.Has(api.TLSKey) {
 		message = api.StartingServerTLS
 		server = &http.Server{
 			Addr:         address,
@@ -49,7 +49,7 @@ func (service Server) ListenAndServe(address string, router http.Handler) error 
 			TLSNextProto: make(map[string]func(*http.Server, *tls.Conn, http.Handler), 0),
 		}
 		serverFunc = func(s *http.Server) error {
-			return s.ListenAndServeTLS(service.Env.String(api.TLS_CERT), service.Env.String(api.TLS_KEY))
+			return s.ListenAndServeTLS(service.Env.String(api.TLSCert), service.Env.String(api.TLSKey))
 		}
 	} else {
 		message = api.StartingServer

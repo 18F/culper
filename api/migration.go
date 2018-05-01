@@ -20,7 +20,7 @@ func (service Migration) Up(directory, environment, schema string) error {
 		return err
 	}
 
-	target, err := migration.NumericComponent(service.Env.String("DB_MIGRATION_TARGET"))
+	target, err := migration.NumericComponent(service.Env.String(DbMigrationTarget))
 	if err != nil {
 		target, err = migration.GetMostRecentDBVersion(conf.MigrationsDir)
 		if err != nil {
@@ -45,7 +45,7 @@ func (service Migration) CurrentVersion(directory, environment, schema string) (
 // instead of the YAML file. This is ideal to reduce the dependencies in production.
 func (service Migration) databaseConf(directory, environment, schema string) (*migration.DBConf, error) {
 	// Pull from database connection string from the environment
-	uri := service.Env.String(DATABASE_URI)
+	uri := service.Env.String(DatabaseURI)
 	return &migration.DBConf{
 		MigrationsDir: filepath.Join(directory, "migrations"),
 		Env:           environment,

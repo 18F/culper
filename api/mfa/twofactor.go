@@ -22,14 +22,14 @@ var (
 	templateEmail = template.Must(template.New("email").Parse(`# Passcode\n\n{{ . }}`))
 )
 
-// MFAService implements a multiple factor authentication.
-type MFAService struct {
+// Service implements a multiple factor authentication.
+type Service struct {
 	Log api.LogService
 	Env api.Settings
 }
 
 // Secret creates a random secret and then base32 encodes it.
-func (service MFAService) Secret() string {
+func (service Service) Secret() string {
 	secret := make([]byte, 6)
 	_, err := rand.Read(secret)
 	if err != nil {
@@ -42,7 +42,7 @@ func (service MFAService) Secret() string {
 
 // Generate will create a QR code in PNG format which will then
 // be base64 encoded so it can traverse the wire to the front end.
-func (service MFAService) Generate(account, secret string) (string, error) {
+func (service Service) Generate(account, secret string) (string, error) {
 	u, err := url.Parse("otpauth://" + auth)
 	if err != nil {
 		return "", err
@@ -69,11 +69,11 @@ func (service MFAService) Generate(account, secret string) (string, error) {
 
 // Authenticate validates the initial token generated when configuring two-factor
 // authentication for the first time.
-func (service MFAService) Authenticate(token, secret string) (ok bool, err error) {
+func (service Service) Authenticate(token, secret string) (ok bool, err error) {
 	// Get the adjustable window size
 	size := 3
-	if service.Env.Has(api.WINDOW_SIZE) {
-		i, e := strconv.Atoi(service.Env.String(api.WINDOW_SIZE))
+	if service.Env.Has(api.WindowSize) {
+		i, e := strconv.Atoi(service.Env.String(api.WindowSize))
 		if e == nil {
 			size = i
 			service.Log.Debug("Setting MFA window size", api.LogFields{"window": i})

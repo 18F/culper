@@ -54,7 +54,7 @@ func (service CORSHandler) Middleware(next http.Handler) http.Handler {
 
 // allowedOrigin checks the given origin is whitelisted as an acceptable address.
 func allowedOrigin(origin string, env api.Settings) bool {
-	addresses := strings.TrimSpace(env.String(api.CORS_ALLOWED))
+	addresses := strings.TrimSpace(env.String(api.CORSAllowed))
 	for _, addr := range strings.Split(addresses, ";") {
 		if addr == "" {
 			continue

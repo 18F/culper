@@ -10,8 +10,8 @@ import (
 	saml "github.com/RobotsAndPencils/go-saml"
 )
 
-// SamlService implements the handling of SAMl requests and responses.
-type SamlService struct {
+// Service implements the handling of SAMl requests and responses.
+type Service struct {
 	Log      api.LogService
 	Env      api.Settings
 	provider saml.ServiceProviderSettings
@@ -19,7 +19,7 @@ type SamlService struct {
 
 // CreateAuthenticationRequest creates a SAML 2.0 authentication request based on the service provider settings.
 // If configured to sign the request then the Base64 XML will be signed.
-func (service *SamlService) CreateAuthenticationRequest() (string, string, error) {
+func (service *Service) CreateAuthenticationRequest() (string, string, error) {
 	service.configure()
 	var encoded string
 	var url string
@@ -48,7 +48,7 @@ func (service *SamlService) CreateAuthenticationRequest() (string, string, error
 }
 
 // ValidateAuthenticationResponse validations a SAML authentication response.
-func (service *SamlService) ValidateAuthenticationResponse(encoded string) (string, error) {
+func (service *Service) ValidateAuthenticationResponse(encoded string) (string, error) {
 	service.configure()
 
 	authnResponseXML, _ := base64.StdEncoding.DecodeString(encoded)
@@ -84,25 +84,25 @@ func (service *SamlService) ValidateAuthenticationResponse(encoded string) (stri
 //  - IDPPublicCertPath:           "idpcert.crt",
 //  - SPSignRequest:               "true",
 //  - AssertionConsumerServiceURL: "http://localhost:8000/saml_consume",
-func (service *SamlService) configure() {
+func (service *Service) configure() {
 	service.provider = saml.ServiceProviderSettings{
-		PublicCertPath:              service.Env.String(api.SAML_PUBLIC_CERT),
-		PrivateKeyPath:              service.Env.String(api.SAML_PRIVATE_CERT),
-		IDPSSOURL:                   service.Env.String(api.SAML_IDP_SSO_URL),
-		IDPSSODescriptorURL:         service.Env.String(api.SAML_IDP_SSO_DESC_URL),
-		IDPPublicCertPath:           service.Env.String(api.SAML_IDP_PUBLIC_CERT),
-		SPSignRequest:               service.Env.True(api.SAML_SIGN_REQUEST),
-		AssertionConsumerServiceURL: service.Env.String(api.SAML_CONSUMER_SERVICE_URL),
+		PublicCertPath:              service.Env.String(api.SamlPublicCert),
+		PrivateKeyPath:              service.Env.String(api.SamlPrivateCert),
+		IDPSSOURL:                   service.Env.String(api.SamlIdpSsoURL),
+		IDPSSODescriptorURL:         service.Env.String(api.SamlIdpSsoDescURL),
+		IDPPublicCertPath:           service.Env.String(api.SamlIdpPublicCert),
+		SPSignRequest:               service.Env.True(api.SamlSignRequest),
+		AssertionConsumerServiceURL: service.Env.String(api.SamlConsumerServiceURL),
 	}
 
 	if service.provider.AssertionConsumerServiceURL == "" {
-		service.provider.AssertionConsumerServiceURL = service.Env.String(api.API_BASE_URL) + "/auth/saml/callback"
+		service.provider.AssertionConsumerServiceURL = service.Env.String(api.APIBaseURL) + "/auth/saml/callback"
 	}
 
 	service.provider.Init()
 }
 
-func (service *SamlService) validate(response *saml.Response, original string) error {
+func (service *Service) validate(response *saml.Response, original string) error {
 	if response.Version != "2.0" {
 		return errors.New("unsupported SAML Version")
 	}
@@ -143,7 +143,7 @@ func (service *SamlService) validate(response *saml.Response, original string) e
 
 	err := saml.VerifyResponseSignature(original, service.provider.IDPPublicCertPath)
 	if err != nil {
-		if service.Env.True(api.SAML_VERIFY_INSECURE) {
+		if service.Env.True(api.SamlVerifyInsecure) {
 			service.Log.WarnError(api.SamlVerificationError, err, api.LogFields{})
 		} else {
 			return err

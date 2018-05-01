@@ -11,13 +11,13 @@ import (
 	"github.com/18F/e-QIP-prototype/api"
 )
 
-// XMLService is an implementation of handling XML.
-type XMLService struct {
+// Service is an implementation of handling XML.
+type Service struct {
 	Log api.LogService
 }
 
 // DefaultTemplate returns a template given data.
-func (service XMLService) DefaultTemplate(templateName string, data map[string]interface{}) template.HTML {
+func (service Service) DefaultTemplate(templateName string, data map[string]interface{}) template.HTML {
 	// fmap is a mapping of functions to be used within the XML template execution.
 	// These can be helper functions for formatting or even to process complex structure
 	// types.

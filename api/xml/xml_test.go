@@ -109,7 +109,7 @@ func TestPackage(t *testing.T) {
 	}
 
 	logger := &mock.LogService{}
-	service := XMLService{Log: logger}
+	service := Service{Log: logger}
 
 	for _, test := range tests {
 		tmpl := service.DefaultTemplate(test.Schema, test.Data)

@@ -24,7 +24,7 @@ type AttachmentListHandler struct {
 
 // ServeHTTP serves the HTTP response.
 func (service AttachmentListHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	if !service.Env.True(api.ATTACHMENTS_ENABLED) {
+	if !service.Env.True(api.AttachmentsEnabled) {
 		service.Log.Warn(api.AttachmentDenied, api.LogFields{})
 		http.Error(w, "Attachments is not implemented", http.StatusInternalServerError)
 		return
@@ -75,7 +75,7 @@ type AttachmentSaveHandler struct {
 
 // ServeHTTP serves the HTTP response.
 func (service AttachmentSaveHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	if !service.Env.True(api.ATTACHMENTS_ENABLED) {
+	if !service.Env.True(api.AttachmentsEnabled) {
 		service.Log.Warn(api.AttachmentDenied, api.LogFields{})
 		http.Error(w, "Attachments is not implemented", http.StatusInternalServerError)
 		return
@@ -125,7 +125,7 @@ func (service AttachmentSaveHandler) ServeHTTP(w http.ResponseWriter, r *http.Re
 	}
 
 	// Check size contraints
-	maximumSize := service.Env.Int(api.FILE_MAXIMUM_SIZE)
+	maximumSize := service.Env.Int(api.FileMaximumSize)
 	bufferSize := buffer.Len()
 	headerSize := int(header.Size)
 	if headerSize != bufferSize {
@@ -140,7 +140,7 @@ func (service AttachmentSaveHandler) ServeHTTP(w http.ResponseWriter, r *http.Re
 	}
 
 	// Check file type constraints
-	allowedTypes := strings.Split(service.Env.String(api.FILE_TYPES), ";")
+	allowedTypes := strings.Split(service.Env.String(api.FileTypes), ";")
 	extension := filepath.Ext(header.Filename)
 	allowed := false
 	for _, ext := range allowedTypes {
@@ -183,7 +183,7 @@ type AttachmentUpdateHandler struct {
 
 // ServeHTTP serves the HTTP response.
 func (service AttachmentUpdateHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	if !service.Env.True(api.ATTACHMENTS_ENABLED) {
+	if !service.Env.True(api.AttachmentsEnabled) {
 		service.Log.Warn(api.AttachmentDenied, api.LogFields{})
 		http.Error(w, "Attachments is not implemented", http.StatusInternalServerError)
 		return
@@ -259,7 +259,7 @@ type AttachmentGetHandler struct {
 
 // ServeHTTP serves the HTTP response.
 func (service AttachmentGetHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	if !service.Env.True(api.ATTACHMENTS_ENABLED) {
+	if !service.Env.True(api.AttachmentsEnabled) {
 		service.Log.Warn(api.AttachmentDenied, api.LogFields{})
 		http.Error(w, "Attachments is not implemented", http.StatusInternalServerError)
 		return
@@ -319,7 +319,7 @@ type AttachmentDeleteHandler struct {
 
 // ServeHTTP serves the HTTP response.
 func (service AttachmentDeleteHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	if !service.Env.True(api.ATTACHMENTS_ENABLED) {
+	if !service.Env.True(api.AttachmentsEnabled) {
 		service.Log.Warn(api.AttachmentDenied, api.LogFields{})
 		http.Error(w, "Attachments is not implemented", http.StatusInternalServerError)
 		return

@@ -26,7 +26,7 @@ type SamlRequestHandler struct {
 
 // ServeHTTP is the initial entry point for authentication.
 func (service SamlRequestHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	if !service.Env.True(api.SAML_ENABLED) {
+	if !service.Env.True(api.SamlEnabled) {
 		service.Log.Warn(api.SamlAttemptDenied, api.LogFields{})
 		http.Error(w, "SAML is not implemented", http.StatusInternalServerError)
 		return
@@ -59,7 +59,7 @@ type SamlResponseHandler struct {
 
 // ServeHTTP is the returning entry point for authentication.
 func (service SamlResponseHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	if !service.Env.True(api.SAML_ENABLED) {
+	if !service.Env.True(api.SamlEnabled) {
 		service.Log.Warn(api.SamlAttemptDenied, api.LogFields{})
 		http.Error(w, "SAML is not implemented", http.StatusInternalServerError)
 		return

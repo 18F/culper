@@ -12,76 +12,76 @@ import (
 	logrus_syslog "github.com/sirupsen/logrus/hooks/syslog"
 )
 
-// LogService implementation of logging using `logrus`.
-type LogService struct {
+// Service implementation of logging using `logrus`.
+type Service struct {
 	Log    *logrus.Logger
 	fields api.LogFields
 }
 
 // AddField will add a field using the name and value to the logger.
-func (service *LogService) AddField(name string, value interface{}) {
+func (service *Service) AddField(name string, value interface{}) {
 	if _, ok := service.fields[name]; !ok {
 		service.fields = service.mergeFields(api.LogFields{name: value})
 	}
 }
 
 // Print outputs a message to the log.
-func (service *LogService) Print(message string, fields api.LogFields) {
+func (service *Service) Print(message string, fields api.LogFields) {
 	service.Log.WithFields(logrus.Fields(service.mergeFields(fields))).Print(message)
 }
 
 // PrintError outputs a message and error to the log.
-func (service *LogService) PrintError(message string, err error, fields api.LogFields) {
+func (service *Service) PrintError(message string, err error, fields api.LogFields) {
 	service.Log.WithFields(logrus.Fields(service.mergeFields(fields))).WithError(err).Print(message)
 }
 
 // Debug outputs a debug message to the log.
-func (service *LogService) Debug(message string, fields api.LogFields) {
+func (service *Service) Debug(message string, fields api.LogFields) {
 	service.Log.WithFields(logrus.Fields(service.mergeFields(fields))).Debug(message)
 }
 
 // DebugError outputs a debug message and error to the log.
-func (service *LogService) DebugError(message string, err error, fields api.LogFields) {
+func (service *Service) DebugError(message string, err error, fields api.LogFields) {
 	service.Log.WithFields(logrus.Fields(service.mergeFields(fields))).WithError(err).Debug(message)
 }
 
 // Warn outputs a warning message to the log.
-func (service *LogService) Warn(message string, fields api.LogFields) {
+func (service *Service) Warn(message string, fields api.LogFields) {
 	service.Log.WithFields(logrus.Fields(service.mergeFields(fields))).Warn(message)
 }
 
 // WarnError outputs a warning message and error to the log.
-func (service *LogService) WarnError(message string, err error, fields api.LogFields) {
+func (service *Service) WarnError(message string, err error, fields api.LogFields) {
 	service.Log.WithFields(logrus.Fields(service.mergeFields(fields))).WithError(err).Warn(message)
 }
 
 // Info outputs a informative message to the log.
-func (service *LogService) Info(message string, fields api.LogFields) {
+func (service *Service) Info(message string, fields api.LogFields) {
 	service.Log.WithFields(logrus.Fields(service.mergeFields(fields))).Info(message)
 }
 
 // InfoError outputs a informative message and error to the log.
-func (service *LogService) InfoError(message string, err error, fields api.LogFields) {
+func (service *Service) InfoError(message string, err error, fields api.LogFields) {
 	service.Log.WithFields(logrus.Fields(service.mergeFields(fields))).WithError(err).Info(message)
 }
 
 // Fatal outputs a fatal message to the log.
-func (service *LogService) Fatal(message string, fields api.LogFields) {
+func (service *Service) Fatal(message string, fields api.LogFields) {
 	service.Log.WithFields(logrus.Fields(service.mergeFields(fields))).Fatal(message)
 }
 
 // FatalError outputs a fatal message and error to the log.
-func (service *LogService) FatalError(message string, err error, fields api.LogFields) {
+func (service *Service) FatalError(message string, err error, fields api.LogFields) {
 	service.Log.WithFields(logrus.Fields(service.mergeFields(fields))).WithError(err).Fatal(message)
 }
 
 // Panic outputs a panic message to the log.
-func (service *LogService) Panic(message string, fields api.LogFields) {
+func (service *Service) Panic(message string, fields api.LogFields) {
 	service.Log.WithFields(logrus.Fields(service.mergeFields(fields))).Panic(message)
 }
 
 // PanicError outputs a panic message and error to the log.
-func (service *LogService) PanicError(message string, err error, fields api.LogFields) {
+func (service *Service) PanicError(message string, err error, fields api.LogFields) {
 	service.Log.WithFields(logrus.Fields(service.mergeFields(fields))).WithError(err).Panic(message)
 }
 
@@ -90,7 +90,7 @@ func NewLogger() *logrus.Logger {
 	log := logrus.New()
 
 	// Set log level
-	level, err := logrus.ParseLevel(os.Getenv("LOG_LEVEL"))
+	level, err := logrus.ParseLevel(os.Getenv(api.LogLevel))
 	if err == nil {
 		log.SetLevel(level)
 	}
@@ -104,7 +104,7 @@ func NewLogger() *logrus.Logger {
 	return log
 }
 
-func (service *LogService) mergeFields(fields api.LogFields) api.LogFields {
+func (service *Service) mergeFields(fields api.LogFields) api.LogFields {
 	merged := api.LogFields{}
 	for k, v := range service.fields {
 		if _, ok := merged[k]; !ok {
@@ -121,7 +121,7 @@ func (service *LogService) mergeFields(fields api.LogFields) api.LogFields {
 
 // Support for logging to an append only log file.
 func hookLocalFile(log *logrus.Logger) {
-	logFile := os.Getenv("LOG_FILE")
+	logFile := os.Getenv(api.LogFile)
 	if logFile == "" {
 		return
 	}
@@ -136,7 +136,7 @@ func hookLocalFile(log *logrus.Logger) {
 
 // Support for logging to multiple files within a given directory.
 func hookLocalDirectory(log *logrus.Logger) {
-	logDir := os.Getenv("LOG_DIRECTORY")
+	logDir := os.Getenv(api.LogDirectory)
 	if logDir == "" {
 		return
 	}
@@ -151,7 +151,7 @@ func hookLocalDirectory(log *logrus.Logger) {
 
 // Support for logging to a syslog server.
 func hookSyslog(log *logrus.Logger) {
-	connectionString := os.Getenv("LOG_SYSLOG")
+	connectionString := os.Getenv(api.LogSyslog)
 	if connectionString == "" {
 		return
 	}
@@ -164,7 +164,7 @@ func hookSyslog(log *logrus.Logger) {
 		host = uri.Host
 	}
 
-	connectionCert := os.Getenv("LOG_SYSLOG_CERT")
+	connectionCert := os.Getenv(api.LogSyslogCert)
 	if connectionCert == "" {
 		hook, err := logrus_syslog.NewSyslogHook(protocol, host, syslog.LOG_INFO, "")
 		if err == nil {

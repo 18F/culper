@@ -19,7 +19,7 @@ func Command(log api.LogService, action func(api.DatabaseService, *api.Account))
 	cloudfoundry.Configure()
 	settings := &env.Native{}
 	settings.Configure()
-	database := &postgresql.DatabaseService{Log: log, Env: settings}
+	database := &postgresql.Service{Log: log, Env: settings}
 	database.Configure()
 	flag.Parse()
 

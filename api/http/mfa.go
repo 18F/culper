@@ -19,7 +19,7 @@ type MFAGenerateHandler struct {
 // ServeHTTP is the initial entry and subscription for two-factor
 // authentication.
 func (handler MFAGenerateHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	if handler.Env.True(api.DISABLE_2FA) {
+	if handler.Env.True(api.Disable2FA) {
 		handler.Log.Warn(api.MFAAttemptDenied, api.LogFields{})
 		http.Error(w, "Multiple factor authentication is disabled", http.StatusInternalServerError)
 		return
@@ -75,7 +75,7 @@ type MFAVerifyHandler struct {
 
 // ServeHTTP verifies a token provided by the end user.
 func (handler MFAVerifyHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	if handler.Env.True(api.DISABLE_2FA) {
+	if handler.Env.True(api.Disable2FA) {
 		handler.Log.Warn(api.MFAAttemptDenied, api.LogFields{})
 		http.Error(w, "Multiple factor authentication is disabled", http.StatusInternalServerError)
 		return
@@ -156,13 +156,13 @@ type MFAResetHandler struct {
 // ServeHTTP allows for multiple factor authentication to be reset.
 // NOTE: This should not be enabled on production environments.
 func (handler MFAResetHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	if handler.Env.True(api.DISABLE_2FA) {
+	if handler.Env.True(api.Disable2FA) {
 		handler.Log.Warn(api.MFAAttemptDenied, api.LogFields{})
 		http.Error(w, "Multiple factor authentication is disabled", http.StatusInternalServerError)
 		return
 	}
 
-	if !handler.Env.True(api.ALLOW_2FA_RESET) {
+	if !handler.Env.True(api.Allow2FAReset) {
 		handler.Log.Warn(api.MFAResetAttempt, api.LogFields{})
 		http.Error(w, "Reset two-factor authentication not allowed on this server", http.StatusUnauthorized)
 		return
