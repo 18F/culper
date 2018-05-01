@@ -16,7 +16,7 @@ func (payload *Payload) Unmarshal(raw []byte) error {
 	return json.Unmarshal(raw, payload)
 }
 
-// MarshalPayload basic payload structure
+// MarshalPayloadEntity basic payload structure with an entity.
 func MarshalPayloadEntity(typeName string, entity Entity) Payload {
 	props, _ := json.Marshal(entity)
 	return Payload{
@@ -47,8 +47,8 @@ func (payload Payload) Entity() (Entity, error) {
 	return entity, nil
 }
 
-// Entity returns the appropriate entity as an interface
-// based on its type.
+// SafeEntity returns the appropriate entity as an interface
+// based on its type and is at the section level.
 func (payload Payload) SafeEntity() (Entity, error) {
 	if payload.Type == "" {
 		return nil, errors.New("Empty payload")
@@ -81,6 +81,7 @@ func (payload Payload) UnmarshalEntity(raw []byte) (Entity, error) {
 	return payload.Entity()
 }
 
+// Valid return whether the entity validates.
 func (payload Payload) Valid() (bool, error) {
 	entity, err := payload.Entity()
 	if err != nil {
@@ -94,14 +95,17 @@ func (payload Payload) Valid() (bool, error) {
 // of named properties which each value being that of a Payload.
 type PayloadProperties map[string]Payload
 
+// Save the entity to data storage.
 func (entity *PayloadProperties) Save(context DatabaseService, account int) (int, error) {
 	return 0, nil
 }
 
+// Delete the entity from data storage.
 func (entity *PayloadProperties) Delete(context DatabaseService, account int) (int, error) {
 	return 0, nil
 }
 
+// Get the entity from data storage.
 func (entity *PayloadProperties) Get(context DatabaseService, account int) (int, error) {
 	return 0, nil
 }

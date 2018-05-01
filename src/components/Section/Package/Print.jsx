@@ -117,7 +117,7 @@ class Print extends SectionElement {
 
   done () {
     return (
-      <div className="text-center done">
+      <div className="done">
         <span className="icon">
           <Svg src="/img/checkmark.svg" alt={i18n.t('review.completeSvg')} />
         </span>
@@ -129,7 +129,7 @@ class Print extends SectionElement {
   render () {
     return (
       <div className="pre-print-view">
-        <div className="text-center">
+        <div>
           { i18n.m('application.print.title') }
           <button className="print-btn" onClick={this.handlePrint}>
             { i18n.t('application.print.button') }

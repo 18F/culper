@@ -10,7 +10,7 @@
         <AnswerComment></AnswerComment>
         <Explanation>{{textarea $Item.CurrentExplanation}}</Explanation>
       </CurrentlyHoldCitizenship>
-      {{daterange $Item.Dates}}
+      {{monthYearDaterange $Item.Dates}}
       <HowAcquired>{{textarea $Item.How}}</HowAcquired>
       <TakenActionToRenounceCitizenship>
         <Answer>{{branch $Item.Renounced}}</Answer>

@@ -2,6 +2,7 @@ package api
 
 import "encoding/json"
 
+// SubstanceDrugUsage represents the payload for the substance drug usage section.
 type SubstanceDrugUsage struct {
 	PayloadUsedDrugs Payload `json:"UsedDrugs" sql:"-"`
 	PayloadList      Payload `json:"List" sql:"-"`
@@ -167,6 +168,7 @@ func (entity *SubstanceDrugUsage) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *SubstanceDrugUsage) Find(context DatabaseService) error {
 	context.Find(&SubstanceDrugUsage{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*SubstanceDrugUsage)
@@ -184,6 +186,7 @@ func (entity *SubstanceDrugUsage) Find(context DatabaseService) error {
 	return nil
 }
 
+// SubstanceDrugPurchase represents the payload for the substance drug purchase section.
 type SubstanceDrugPurchase struct {
 	PayloadInvolved Payload `json:"Involved" sql:"-"`
 	PayloadList     Payload `json:"List" sql:"-"`
@@ -349,6 +352,7 @@ func (entity *SubstanceDrugPurchase) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *SubstanceDrugPurchase) Find(context DatabaseService) error {
 	context.Find(&SubstanceDrugPurchase{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*SubstanceDrugPurchase)
@@ -366,6 +370,7 @@ func (entity *SubstanceDrugPurchase) Find(context DatabaseService) error {
 	return nil
 }
 
+// SubstanceDrugClearance represents the payload for the substance drug clearance section.
 type SubstanceDrugClearance struct {
 	PayloadUsedDrugs Payload `json:"UsedDrugs" sql:"-"`
 	PayloadList      Payload `json:"List" sql:"-"`
@@ -531,6 +536,7 @@ func (entity *SubstanceDrugClearance) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *SubstanceDrugClearance) Find(context DatabaseService) error {
 	context.Find(&SubstanceDrugClearance{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*SubstanceDrugClearance)
@@ -548,6 +554,7 @@ func (entity *SubstanceDrugClearance) Find(context DatabaseService) error {
 	return nil
 }
 
+// SubstanceDrugPublicSafety represents the payload for the substance drug public safety section.
 type SubstanceDrugPublicSafety struct {
 	PayloadUsedDrugs Payload `json:"UsedDrugs" sql:"-"`
 	PayloadList      Payload `json:"List" sql:"-"`
@@ -713,6 +720,7 @@ func (entity *SubstanceDrugPublicSafety) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *SubstanceDrugPublicSafety) Find(context DatabaseService) error {
 	context.Find(&SubstanceDrugPublicSafety{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*SubstanceDrugPublicSafety)
@@ -730,6 +738,7 @@ func (entity *SubstanceDrugPublicSafety) Find(context DatabaseService) error {
 	return nil
 }
 
+// SubstanceDrugMisuse represents the payload for the substance drug misuse section.
 type SubstanceDrugMisuse struct {
 	PayloadUsedDrugs Payload `json:"MisusedDrugs" sql:"-"`
 	PayloadList      Payload `json:"List" sql:"-"`
@@ -895,6 +904,7 @@ func (entity *SubstanceDrugMisuse) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *SubstanceDrugMisuse) Find(context DatabaseService) error {
 	context.Find(&SubstanceDrugMisuse{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*SubstanceDrugMisuse)
@@ -912,6 +922,7 @@ func (entity *SubstanceDrugMisuse) Find(context DatabaseService) error {
 	return nil
 }
 
+// SubstanceDrugOrdered represents the payload for the substance drug ordered section.
 type SubstanceDrugOrdered struct {
 	PayloadInvolved Payload `json:"TreatmentOrdered" sql:"-"`
 	PayloadList     Payload `json:"List" sql:"-"`
@@ -1077,6 +1088,7 @@ func (entity *SubstanceDrugOrdered) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *SubstanceDrugOrdered) Find(context DatabaseService) error {
 	context.Find(&SubstanceDrugOrdered{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*SubstanceDrugOrdered)
@@ -1094,6 +1106,7 @@ func (entity *SubstanceDrugOrdered) Find(context DatabaseService) error {
 	return nil
 }
 
+// SubstanceDrugVoluntary represents the payload for the substance drug voluntary section.
 type SubstanceDrugVoluntary struct {
 	PayloadInvolved Payload `json:"TreatmentVoluntary" sql:"-"`
 	PayloadList     Payload `json:"List" sql:"-"`
@@ -1259,6 +1272,7 @@ func (entity *SubstanceDrugVoluntary) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *SubstanceDrugVoluntary) Find(context DatabaseService) error {
 	context.Find(&SubstanceDrugVoluntary{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*SubstanceDrugVoluntary)
@@ -1276,6 +1290,7 @@ func (entity *SubstanceDrugVoluntary) Find(context DatabaseService) error {
 	return nil
 }
 
+// SubstanceAlcoholNegative represents the payload for the substance alcohol negative section.
 type SubstanceAlcoholNegative struct {
 	PayloadHasImpacts Payload `json:"HasImpacts" sql:"-"`
 	PayloadList       Payload `json:"List" sql:"-"`
@@ -1441,6 +1456,7 @@ func (entity *SubstanceAlcoholNegative) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *SubstanceAlcoholNegative) Find(context DatabaseService) error {
 	context.Find(&SubstanceAlcoholNegative{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*SubstanceAlcoholNegative)
@@ -1458,6 +1474,7 @@ func (entity *SubstanceAlcoholNegative) Find(context DatabaseService) error {
 	return nil
 }
 
+// SubstanceAlcoholOrdered represents the payload for the substance alcholo ordered section.
 type SubstanceAlcoholOrdered struct {
 	PayloadHasBeenOrdered Payload `json:"HasBeenOrdered" sql:"-"`
 	PayloadList           Payload `json:"List" sql:"-"`
@@ -1623,6 +1640,7 @@ func (entity *SubstanceAlcoholOrdered) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *SubstanceAlcoholOrdered) Find(context DatabaseService) error {
 	context.Find(&SubstanceAlcoholOrdered{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*SubstanceAlcoholOrdered)
@@ -1640,6 +1658,7 @@ func (entity *SubstanceAlcoholOrdered) Find(context DatabaseService) error {
 	return nil
 }
 
+// SubstanceAlcoholVoluntary represents the payload for the substance alcohol voluntary section.
 type SubstanceAlcoholVoluntary struct {
 	PayloadSoughtTreatment Payload `json:"SoughtTreatment" sql:"-"`
 	PayloadList            Payload `json:"List" sql:"-"`
@@ -1805,6 +1824,7 @@ func (entity *SubstanceAlcoholVoluntary) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *SubstanceAlcoholVoluntary) Find(context DatabaseService) error {
 	context.Find(&SubstanceAlcoholVoluntary{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*SubstanceAlcoholVoluntary)
@@ -1822,6 +1842,7 @@ func (entity *SubstanceAlcoholVoluntary) Find(context DatabaseService) error {
 	return nil
 }
 
+// SubstanceAlcoholAdditional represents the payload for the substance alcohol additional section.
 type SubstanceAlcoholAdditional struct {
 	PayloadReceivedTreatment Payload `json:"ReceivedTreatment" sql:"-"`
 	PayloadList              Payload `json:"List" sql:"-"`
@@ -1987,6 +2008,7 @@ func (entity *SubstanceAlcoholAdditional) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *SubstanceAlcoholAdditional) Find(context DatabaseService) error {
 	context.Find(&SubstanceAlcoholAdditional{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*SubstanceAlcoholAdditional)
@@ -2004,7 +2026,7 @@ func (entity *SubstanceAlcoholAdditional) Find(context DatabaseService) error {
 	return nil
 }
 
-// SubstanceComments subsection of identification section.
+// SubstanceComments represents the payload for the substance comments section.
 type SubstanceComments struct {
 	PayloadComments Payload `json:"Comments" sql:"-"`
 
@@ -2129,6 +2151,7 @@ func (entity *SubstanceComments) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *SubstanceComments) Find(context DatabaseService) error {
 	context.Find(&SubstanceComments{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*SubstanceComments)

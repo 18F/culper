@@ -327,6 +327,7 @@ func (entity *Sentence) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *Sentence) Find(context DatabaseService) error {
 	context.Find(&Sentence{ID: entity.ID, AccountID: entity.AccountID}, func(result interface{}) {
 		previous := result.(*Sentence)

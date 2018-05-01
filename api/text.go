@@ -32,6 +32,7 @@ func (entity *Text) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
+// Save the text to data storage.
 func (entity *Text) Save(context DatabaseService, account int) (int, error) {
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
@@ -44,6 +45,7 @@ func (entity *Text) Save(context DatabaseService, account int) (int, error) {
 	return entity.ID, nil
 }
 
+// Delete the text from data storage.
 func (entity *Text) Delete(context DatabaseService, account int) (int, error) {
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
@@ -58,6 +60,7 @@ func (entity *Text) Delete(context DatabaseService, account int) (int, error) {
 	return entity.ID, nil
 }
 
+// Get the text from data storage.
 func (entity *Text) Get(context DatabaseService, account int) (int, error) {
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
@@ -72,7 +75,7 @@ func (entity *Text) Get(context DatabaseService, account int) (int, error) {
 	return entity.ID, nil
 }
 
-// ID returns the entity identifier.
+// GetID returns the entity identifier.
 func (entity *Text) GetID() int {
 	return entity.ID
 }
@@ -82,6 +85,7 @@ func (entity *Text) SetID(id int) {
 	entity.ID = id
 }
 
+// Find is not used for text. Please use the `Get` method.
 func (entity *Text) Find(context DatabaseService) error {
 	return nil
 }

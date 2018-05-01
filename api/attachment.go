@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 )
 
-// Attachment is a basic yes/no input.
+// Attachment stores information in regards to a file associated with the application.
 type Attachment struct {
 	ID          int    `json:"id"`
 	AccountID   int    `json:"-"`
@@ -30,7 +30,7 @@ func (entity *Attachment) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
-// Save the Branch entity.
+// Save the attachment.
 func (entity *Attachment) Save(context DatabaseService, account int) (int, error) {
 	entity.AccountID = account
 
@@ -45,7 +45,7 @@ func (entity *Attachment) Save(context DatabaseService, account int) (int, error
 	return entity.ID, nil
 }
 
-// Delete the Branch entity.
+// Delete the attachment.
 func (entity *Attachment) Delete(context DatabaseService, account int) (int, error) {
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
@@ -60,7 +60,7 @@ func (entity *Attachment) Delete(context DatabaseService, account int) (int, err
 	return entity.ID, nil
 }
 
-// Get the Branch entity.
+// Get the attachment.
 func (entity *Attachment) Get(context DatabaseService, account int) (int, error) {
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
@@ -85,6 +85,7 @@ func (entity *Attachment) SetID(id int) {
 	entity.ID = id
 }
 
+// Find is not used for attachments. Please use the `Get` method.
 func (entity *Attachment) Find(context DatabaseService) error {
 	return nil
 }

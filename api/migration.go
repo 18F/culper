@@ -8,18 +8,19 @@ import (
 	"github.com/truetandem/plucked/migration"
 )
 
+// Migration is a service used for data storage migrations.
 type Migration struct {
 	Env Settings
 }
 
-// MigrateUp attempts to push any pending updates to the database
+// Up attempts to push any pending updates to the database
 func (service Migration) Up(directory, environment, schema string) error {
 	conf, err := service.databaseConf(directory, environment, schema)
 	if err != nil {
 		return err
 	}
 
-	target, err := migration.NumericComponent(service.Env.String("DB_MIGRATION_TARGET"))
+	target, err := migration.NumericComponent(service.Env.String(DbMigrationTarget))
 	if err != nil {
 		target, err = migration.GetMostRecentDBVersion(conf.MigrationsDir)
 		if err != nil {
@@ -44,7 +45,7 @@ func (service Migration) CurrentVersion(directory, environment, schema string) (
 // instead of the YAML file. This is ideal to reduce the dependencies in production.
 func (service Migration) databaseConf(directory, environment, schema string) (*migration.DBConf, error) {
 	// Pull from database connection string from the environment
-	uri := service.Env.String(DATABASE_URI)
+	uri := service.Env.String(DatabaseURI)
 	return &migration.DBConf{
 		MigrationsDir: filepath.Join(directory, "migrations"),
 		Env:           environment,
@@ -53,7 +54,7 @@ func (service Migration) databaseConf(directory, environment, schema string) (*m
 	}, nil
 }
 
-// databasDriver creates the structure required for migration database driver.
+// databaseDriver creates the structure required for migration database driver.
 func (service Migration) databaseDriver(uri string) migration.DBDriver {
 	return migration.DBDriver{
 		Name:    "postgres",

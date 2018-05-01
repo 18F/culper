@@ -17,7 +17,6 @@
   </SupportActivity>
   {{end}}
   {{end}}
-  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
 </SupportActivities>
 <SupportActivity>
 {{- if branch .props.HasForeignAdvice | eq "Yes"}}

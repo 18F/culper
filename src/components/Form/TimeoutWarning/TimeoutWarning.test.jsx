@@ -16,7 +16,6 @@ describe('The timeout warning component', () => {
   it('not displayed if outside threshold', () => {
     const store = mockStore({ application: { Settings: { lastRefresh: new Date() } }, authentication: { authenticated: true, twofactor: true } })
     const component = mount(<Provider store={store}><MemoryRouter><TimeoutWarning timeout="15" /></MemoryRouter></Provider>)
-    console.log(component.html())
     expect(component.find('.timeout-warning').length).toEqual(1)
     expect(component.find('.modal').length).toEqual(0)
   })
@@ -26,7 +25,6 @@ describe('The timeout warning component', () => {
     let lastRefresh = new Date(now.setMinutes(now.getMinutes() - 14))
     const store = mockStore({ application: { Settings: { lastRefresh: lastRefresh } }, authentication: { authenticated: true, twofactor: true } })
     const component = mount(<Provider store={store}><MemoryRouter><TimeoutWarning timeout="15" showWarning={true} /></MemoryRouter></Provider>)
-    console.log(component.html())
     expect(component.find('.timeout-warning').length).toEqual(1)
     expect(component.find('.modal').length).toEqual(1)
   })

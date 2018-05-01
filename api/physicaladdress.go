@@ -197,6 +197,7 @@ func (entity *PhysicalAddress) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *PhysicalAddress) Find(context DatabaseService) error {
 	context.Find(&PhysicalAddress{ID: entity.AccountID}, func(result interface{}) {
 		previous := result.(*PhysicalAddress)

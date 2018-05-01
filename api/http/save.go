@@ -7,6 +7,7 @@ import (
 	"github.com/18F/e-QIP-prototype/api"
 )
 
+// SaveHandler is the handler for saving the application.
 type SaveHandler struct {
 	Env      api.Settings
 	Log      api.LogService
@@ -14,7 +15,7 @@ type SaveHandler struct {
 	Database api.DatabaseService
 }
 
-// Save a payload of information for the provided account.
+// ServeHTTP saves a payload of information for the provided account.
 func (service SaveHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	account := &api.Account{}
 

@@ -1,20 +1,54 @@
 <RelativesAndAssociates>
-  <ApplicableRelativeTypes Mother01="{{hasRelativeType .props.List "Mother"}}"
-                           Father02="{{hasRelativeType .props.List "Father"}}"
-                           Stepmother03="{{hasRelativeType .props.List "Stepmother"}}"
-                           Stepfather04="{{hasRelativeType .props.List "Stepfather"}}"
-                           FosterParent05="{{hasRelativeType .props.List "Fosterparent"}}"
-                           Child06="{{hasRelativeType .props.List "Child"}}"
-                           Stepchild07="{{hasRelativeType .props.List "Stepchild"}}"
-                           Brother08="{{hasRelativeType .props.List "Brother"}}"
-                           Sister09="{{hasRelativeType .props.List "Sister"}}"
-                           Stepbrother10="{{hasRelativeType .props.List "Stepbrother"}}"
-                           Stepsister11="{{hasRelativeType .props.List "Stepsister"}}"
-                           HalfBrother12="{{hasRelativeType .props.List "Half-brother"}}"
-                           HalfSister13="{{hasRelativeType .props.List "Half-sister"}}"
-                           FatherInLaw14="{{hasRelativeType .props.List "Father-in-law"}}"
-                           MotherInLaw15="{{hasRelativeType .props.List "Mother-in-law"}}"
-                           Guardian16="{{hasRelativeType .props.List "Guardian"}}" />
+  <ApplicableRelativeTypes
+    {{- if (hasRelativeType .props.List "Mother") | eq "True"}}
+    Mother01="True"
+    {{end}}
+    {{- if (hasRelativeType .props.List "Father") | eq "True"}}
+    Father02="True"
+    {{end}}
+    {{- if (hasRelativeType .props.List "Stepmother") | eq "True"}}
+    Stepmother03="True"
+    {{end}}
+    {{- if (hasRelativeType .props.List "Stepfather") | eq "True"}}
+    Stepfather04="True"
+    {{end}}
+    {{- if (hasRelativeType .props.List "Fosterparent") | eq "True"}}
+    FosterParent05="True"
+    {{end}}
+    {{- if (hasRelativeType .props.List "Child") | eq "True"}}
+    Child06="True"
+    {{end}}
+    {{- if (hasRelativeType .props.List "Stepchild") | eq "True"}}
+    Stepchild07="True"
+    {{end}}
+    {{- if (hasRelativeType .props.List "Brother") | eq "True"}}
+    Brother08="True"
+    {{end}}
+    {{- if (hasRelativeType .props.List "Sister") | eq "True"}}
+    Sister09="True"
+    {{end}}
+    {{- if (hasRelativeType .props.List "Stepbrother") | eq "True"}}
+    Stepbrother10="True"
+    {{end}}
+    {{- if (hasRelativeType .props.List "Stepsister") | eq "True"}}
+    Stepsister11="{{hasRelativeType .props.List "Stepsister"}}"
+    {{end}}
+    {{- if (hasRelativeType .props.List "Half-brother") | eq "True"}}
+    HalfBrother12="True"
+    {{end}}
+    {{- if (hasRelativeType .props.List "Half-sister") | eq "True"}}
+    HalfSister13="True"
+    {{end}}
+    {{- if (hasRelativeType .props.List "Father-in-law") | eq "True"}}
+    FatherInLaw14="True"
+    {{end}}
+    {{- if (hasRelativeType .props.List "Mother-in-law") | eq "True"}}
+    MotherInLaw15="True"
+    {{end}}
+    {{- if (hasRelativeType .props.List "Guardian") | eq "True"}}
+    Guardian16="True"
+    {{end}}
+    />
   <ApplicableRelativeTypesComment></ApplicableRelativeTypesComment>
   <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
   <Relatives>
