@@ -15,17 +15,14 @@ all: clean setup lint test build
 .SILENT: all
 .PHONY: all
 
-clear:
-	@rm -rf ./errors
-
-reset-permissions: clear
+reset-permissions:
 	$(info Resetting permissions)
-	@docker-compose run --rm deps ./bin/permissions $(uid) $(gid) 2>errors
+	@docker-compose run --rm deps ./bin/permissions $(uid) $(gid)
 
 #
 # Cleaning
 #
-clean: stop reset-permissions clear
+clean: stop reset-permissions
 	-@rm -rf ./dist/*
 	-@rm -rf ./coverage/*
 	-@rm -rf ./jest/*
@@ -41,27 +38,27 @@ clean: stop reset-permissions clear
 # Setup
 #
 setup: stop setup-containers setup-certificates setup-dependencies reset-permissions
-setup-containers: clear
+setup-containers:
 	$(info Building containers)
-	@docker-compose build deps frontend web db api 2>errors
-setup-certificates: clear
+	@docker-compose build deps frontend web db api
+setup-certificates:
 	$(info Generating test certificates)
-	@docker-compose run --rm deps ./bin/test-certificates 2>errors
-setup-dependencies: clear
+	@docker-compose run --rm deps ./bin/test-certificates
+setup-dependencies:
 	$(info Installing dependencies)
-	@docker-compose run --rm deps ./bin/compile-xmlsec 2>errors
+	@docker-compose run --rm deps ./bin/compile-xmlsec
 
 #
 # Linters
 #
 lint: lint-js lint-css lint-go
-lint-js: clear
+lint-js:
 	$(info Running JavaScript linter)
 	@docker-compose run --rm frontend ./node_modules/.bin/eslint src/
-lint-css: clear
+lint-css:
 	$(info Running SCSS linter)
 	@docker-compose run --rm frontend yarn lint
-lint-go: clear
+lint-go:
 	$(info Running Go linter)
 	@docker-compose run --rm api ./bin/lint
 
@@ -69,37 +66,37 @@ lint-go: clear
 # Testing
 #
 test: test-react test-go
-test-react: clear
+test-react:
 	$(info Running React test suite)
-	@docker-compose run --rm frontend ./bin/test 2>errors
-test-go: clear
+	@docker-compose run --rm frontend ./bin/test
+test-go:
 	$(info Running Go test suite)
-	@docker-compose run --rm api make test 2>errors
+	@docker-compose run --rm api make test
 
 #
 # Integration testing
 #
-specs: clear
+specs:
 	$(info Running integration test suite)
-	@docker-compose -f nightwatch-compose.yml up 2>errors
+	@docker-compose -f nightwatch-compose.yml up
 
 #
 # Coverage
 #
-coverage: clear
+coverage:
 	$(info Running code coverage)
-	@docker-compose run --rm frontend ./bin/coverage 2>errors
+	@docker-compose run --rm frontend ./bin/coverage
 
 #
 # Building
 #
 build: build-react build-go reset-permissions
-build-react: clear
+build-react:
 	$(info Compiling React application)
-	@docker-compose run --rm frontend ./bin/build 2>errors
-build-go: clear
+	@docker-compose run --rm frontend ./bin/build
+build-go:
 	$(info Compiling Go application)
-	@docker-compose run --rm api make build 2>errors
+	@docker-compose run --rm api make build
 
 #
 # Packaging
@@ -166,10 +163,10 @@ go: test-go build-go reset-permissions
 #
 # Checksums
 #
-checksum: clear
-	@docker-compose run --rm deps ./bin/checksum 2>errors
-check: clear
-	@docker-compose run --rm deps ./bin/checksum "test" 2>errors
+checksum:
+	@docker-compose run --rm deps ./bin/checksum
+check:
+	@docker-compose run --rm deps ./bin/checksum "test"
 
 # seccomp
 #
