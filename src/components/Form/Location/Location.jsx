@@ -361,7 +361,6 @@ export default class Location extends ValidationElement {
 
   updateAddress (address, delay = null) {
     if (delay !== null) {
-      console.log(`delay: ${delay}`)
       if (delay === 0) {
         this.cancelAnimations()
       } else {

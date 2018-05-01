@@ -239,7 +239,7 @@ export default class Attachments extends SectionElement {
           </Field>
 
           <Show when={this.state.errorMessage}>
-            <div className="field">
+            <div className="field upload-error">
               <div className="table expand">
                 <span className="messages error-messages">
                   <div className="message error">
