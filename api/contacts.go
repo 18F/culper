@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 )
 
+// Contacts payload.
 type Contacts struct {
 	PayloadList Payload `json:"List" sql:"-"`
 
@@ -132,6 +133,7 @@ func (entity *Contacts) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *Contacts) Find(context DatabaseService) error {
 	context.Find(&Contacts{ID: entity.ID, AccountID: entity.AccountID}, func(result interface{}) {
 		previous := result.(*Contacts)

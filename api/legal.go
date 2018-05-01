@@ -2,7 +2,7 @@ package api
 
 import "encoding/json"
 
-// LegalCourt structure
+// LegalCourt represents the payload for the legal noncriminal court section.
 type LegalCourt struct {
 	PayloadHasCourtActions Payload `json:"HasCourtActions" sql:"-"`
 	PayloadList            Payload `json:"List" sql:"-"`
@@ -160,6 +160,7 @@ func (entity *LegalCourt) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *LegalCourt) Find(context DatabaseService) error {
 	context.Find(&LegalCourt{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*LegalCourt)
@@ -177,7 +178,7 @@ func (entity *LegalCourt) Find(context DatabaseService) error {
 	return nil
 }
 
-// LegalPoliceOffenses structure
+// LegalPoliceOffenses represents the payload for the legal police offenses section.
 type LegalPoliceOffenses struct {
 	PayloadHasOffenses Payload `json:"HasOffenses" sql:"-"`
 	PayloadList        Payload `json:"List" sql:"-"`
@@ -335,6 +336,7 @@ func (entity *LegalPoliceOffenses) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *LegalPoliceOffenses) Find(context DatabaseService) error {
 	context.Find(&LegalPoliceOffenses{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*LegalPoliceOffenses)
@@ -352,7 +354,7 @@ func (entity *LegalPoliceOffenses) Find(context DatabaseService) error {
 	return nil
 }
 
-// LegalPoliceAdditionalOffenses structure
+// LegalPoliceAdditionalOffenses represents the payload for the legal police additional offenses section.
 type LegalPoliceAdditionalOffenses struct {
 	PayloadHasOtherOffenses Payload `json:"HasOtherOffenses" sql:"-"`
 	PayloadList             Payload `json:"List" sql:"-"`
@@ -510,6 +512,7 @@ func (entity *LegalPoliceAdditionalOffenses) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *LegalPoliceAdditionalOffenses) Find(context DatabaseService) error {
 	context.Find(&LegalPoliceAdditionalOffenses{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*LegalPoliceAdditionalOffenses)
@@ -527,7 +530,7 @@ func (entity *LegalPoliceAdditionalOffenses) Find(context DatabaseService) error
 	return nil
 }
 
-// LegalPoliceDomesticViolence structure
+// LegalPoliceDomesticViolence represents the payload for the legal police domestic violence section.
 type LegalPoliceDomesticViolence struct {
 	PayloadHasDomesticViolence Payload `json:"HasDomesticViolence" sql:"-"`
 	PayloadList                Payload `json:"List" sql:"-"`
@@ -684,6 +687,7 @@ func (entity *LegalPoliceDomesticViolence) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *LegalPoliceDomesticViolence) Find(context DatabaseService) error {
 	context.Find(&LegalPoliceDomesticViolence{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*LegalPoliceDomesticViolence)
@@ -701,7 +705,7 @@ func (entity *LegalPoliceDomesticViolence) Find(context DatabaseService) error {
 	return nil
 }
 
-// LegalInvestigationsDebarred structure
+// LegalInvestigationsDebarred represents the payload for the legal investigations debarred section.
 type LegalInvestigationsDebarred struct {
 	PayloadHasDebarment Payload `json:"HasDebarment" sql:"-"`
 	PayloadList         Payload `json:"List" sql:"-"`
@@ -859,6 +863,7 @@ func (entity *LegalInvestigationsDebarred) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *LegalInvestigationsDebarred) Find(context DatabaseService) error {
 	context.Find(&LegalInvestigationsDebarred{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*LegalInvestigationsDebarred)
@@ -876,7 +881,7 @@ func (entity *LegalInvestigationsDebarred) Find(context DatabaseService) error {
 	return nil
 }
 
-// LegalInvestigationsHistory structure
+// LegalInvestigationsHistory represents the payload for the legal investigations history section.
 type LegalInvestigationsHistory struct {
 	PayloadHasHistory Payload `json:"HasHistory" sql:"-"`
 	PayloadList       Payload `json:"List" sql:"-"`
@@ -1034,6 +1039,7 @@ func (entity *LegalInvestigationsHistory) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *LegalInvestigationsHistory) Find(context DatabaseService) error {
 	context.Find(&LegalInvestigationsHistory{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*LegalInvestigationsHistory)
@@ -1051,7 +1057,7 @@ func (entity *LegalInvestigationsHistory) Find(context DatabaseService) error {
 	return nil
 }
 
-// LegalInvestigationsRevoked structure
+// LegalInvestigationsRevoked represents the payload for the legal investigatinos revoked section.
 type LegalInvestigationsRevoked struct {
 	PayloadHasRevocations Payload `json:"HasRevocations" sql:"-"`
 	PayloadList           Payload `json:"List" sql:"-"`
@@ -1209,6 +1215,7 @@ func (entity *LegalInvestigationsRevoked) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *LegalInvestigationsRevoked) Find(context DatabaseService) error {
 	context.Find(&LegalInvestigationsRevoked{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*LegalInvestigationsRevoked)
@@ -1226,7 +1233,7 @@ func (entity *LegalInvestigationsRevoked) Find(context DatabaseService) error {
 	return nil
 }
 
-// LegalTechnologyManipulating structure
+// LegalTechnologyManipulating represents the payload for the legal technology manipulating section.
 type LegalTechnologyManipulating struct {
 	PayloadHasManipulating Payload `json:"HasManipulating" sql:"-"`
 	PayloadList            Payload `json:"List" sql:"-"`
@@ -1384,6 +1391,7 @@ func (entity *LegalTechnologyManipulating) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *LegalTechnologyManipulating) Find(context DatabaseService) error {
 	context.Find(&LegalTechnologyManipulating{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*LegalTechnologyManipulating)
@@ -1401,7 +1409,7 @@ func (entity *LegalTechnologyManipulating) Find(context DatabaseService) error {
 	return nil
 }
 
-// LegalTechnologyUnauthorized structure
+// LegalTechnologyUnauthorized represents the payload for the legal technology unauthorized access section.
 type LegalTechnologyUnauthorized struct {
 	PayloadHasUnauthorized Payload `json:"HasUnauthorized" sql:"-"`
 	PayloadList            Payload `json:"List" sql:"-"`
@@ -1559,6 +1567,7 @@ func (entity *LegalTechnologyUnauthorized) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *LegalTechnologyUnauthorized) Find(context DatabaseService) error {
 	context.Find(&LegalTechnologyUnauthorized{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*LegalTechnologyUnauthorized)
@@ -1576,7 +1585,7 @@ func (entity *LegalTechnologyUnauthorized) Find(context DatabaseService) error {
 	return nil
 }
 
-// LegalTechnologyUnlawful structure
+// LegalTechnologyUnlawful represents the payload for the legal technology unlawful use section.
 type LegalTechnologyUnlawful struct {
 	PayloadHasUnlawful Payload `json:"HasUnlawful" sql:"-"`
 	PayloadList        Payload `json:"List" sql:"-"`
@@ -1734,6 +1743,7 @@ func (entity *LegalTechnologyUnlawful) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *LegalTechnologyUnlawful) Find(context DatabaseService) error {
 	context.Find(&LegalTechnologyUnlawful{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*LegalTechnologyUnlawful)
@@ -1751,7 +1761,7 @@ func (entity *LegalTechnologyUnlawful) Find(context DatabaseService) error {
 	return nil
 }
 
-// LegalAssociationsActivitiesToOverthrow structure
+// LegalAssociationsActivitiesToOverthrow represents the payload for the legal associations activities to overthrow section.
 type LegalAssociationsActivitiesToOverthrow struct {
 	PayloadHasActivities Payload `json:"HasActivities" sql:"-"`
 	PayloadList          Payload `json:"List" sql:"-"`
@@ -1909,6 +1919,7 @@ func (entity *LegalAssociationsActivitiesToOverthrow) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *LegalAssociationsActivitiesToOverthrow) Find(context DatabaseService) error {
 	context.Find(&LegalAssociationsActivitiesToOverthrow{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*LegalAssociationsActivitiesToOverthrow)
@@ -1926,7 +1937,7 @@ func (entity *LegalAssociationsActivitiesToOverthrow) Find(context DatabaseServi
 	return nil
 }
 
-// LegalAssociationsAdvocating structure
+// LegalAssociationsAdvocating represents the payload for the legal associations advocating section.
 type LegalAssociationsAdvocating struct {
 	PayloadHasAdvocated Payload `json:"HasAdvocated" sql:"-"`
 	PayloadList         Payload `json:"List" sql:"-"`
@@ -2084,6 +2095,7 @@ func (entity *LegalAssociationsAdvocating) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *LegalAssociationsAdvocating) Find(context DatabaseService) error {
 	context.Find(&LegalAssociationsAdvocating{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*LegalAssociationsAdvocating)
@@ -2101,7 +2113,7 @@ func (entity *LegalAssociationsAdvocating) Find(context DatabaseService) error {
 	return nil
 }
 
-// LegalAssociationsEngagedInTerrorism structure
+// LegalAssociationsEngagedInTerrorism represents the payload for the legal associations engaged in terrorism section.
 type LegalAssociationsEngagedInTerrorism struct {
 	PayloadHasEngaged Payload `json:"HasEngaged" sql:"-"`
 	PayloadList       Payload `json:"List" sql:"-"`
@@ -2259,6 +2271,7 @@ func (entity *LegalAssociationsEngagedInTerrorism) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *LegalAssociationsEngagedInTerrorism) Find(context DatabaseService) error {
 	context.Find(&LegalAssociationsEngagedInTerrorism{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*LegalAssociationsEngagedInTerrorism)
@@ -2276,7 +2289,7 @@ func (entity *LegalAssociationsEngagedInTerrorism) Find(context DatabaseService)
 	return nil
 }
 
-// LegalAssociationsMembershipOverthrow structure
+// LegalAssociationsMembershipOverthrow represents the payload for the legal associations membership to overthrow government section.
 type LegalAssociationsMembershipOverthrow struct {
 	PayloadHasOverthrow Payload `json:"HasOverthrow" sql:"-"`
 	PayloadList         Payload `json:"List" sql:"-"`
@@ -2434,6 +2447,7 @@ func (entity *LegalAssociationsMembershipOverthrow) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *LegalAssociationsMembershipOverthrow) Find(context DatabaseService) error {
 	context.Find(&LegalAssociationsMembershipOverthrow{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*LegalAssociationsMembershipOverthrow)
@@ -2451,7 +2465,7 @@ func (entity *LegalAssociationsMembershipOverthrow) Find(context DatabaseService
 	return nil
 }
 
-// LegalAssociationsMembershipViolence structure
+// LegalAssociationsMembershipViolence represents the payload for the legal associations memberhisp advocating violence section.
 type LegalAssociationsMembershipViolence struct {
 	PayloadHasViolence Payload `json:"HasViolence" sql:"-"`
 	PayloadList        Payload `json:"List" sql:"-"`
@@ -2609,6 +2623,7 @@ func (entity *LegalAssociationsMembershipViolence) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *LegalAssociationsMembershipViolence) Find(context DatabaseService) error {
 	context.Find(&LegalAssociationsMembershipViolence{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*LegalAssociationsMembershipViolence)
@@ -2626,7 +2641,7 @@ func (entity *LegalAssociationsMembershipViolence) Find(context DatabaseService)
 	return nil
 }
 
-// LegalAssociationsTerrorismAssociation structure
+// LegalAssociationsTerrorismAssociation represents the payload for the legal associations with terrorism section.
 type LegalAssociationsTerrorismAssociation struct {
 	PayloadHasTerrorism Payload `json:"HasTerrorism" sql:"-"`
 	PayloadExplanation  Payload `json:"Explanation" sql:"-"`
@@ -2784,6 +2799,7 @@ func (entity *LegalAssociationsTerrorismAssociation) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *LegalAssociationsTerrorismAssociation) Find(context DatabaseService) error {
 	context.Find(&LegalAssociationsTerrorismAssociation{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*LegalAssociationsTerrorismAssociation)
@@ -2801,7 +2817,7 @@ func (entity *LegalAssociationsTerrorismAssociation) Find(context DatabaseServic
 	return nil
 }
 
-// LegalAssociationsTerroristOrganization structure
+// LegalAssociationsTerroristOrganization represents the payload for the legal associations with terrorist organizations section.
 type LegalAssociationsTerroristOrganization struct {
 	PayloadHasTerrorist Payload `json:"HasTerrorist" sql:"-"`
 	PayloadList         Payload `json:"List" sql:"-"`
@@ -2959,6 +2975,7 @@ func (entity *LegalAssociationsTerroristOrganization) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *LegalAssociationsTerroristOrganization) Find(context DatabaseService) error {
 	context.Find(&LegalAssociationsTerroristOrganization{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*LegalAssociationsTerroristOrganization)
@@ -2976,7 +2993,7 @@ func (entity *LegalAssociationsTerroristOrganization) Find(context DatabaseServi
 	return nil
 }
 
-// LegalComments subsection of identification section.
+// LegalComments represents the payload for the legal comments section.
 type LegalComments struct {
 	PayloadComments Payload `json:"Comments" sql:"-"`
 
@@ -3101,6 +3118,7 @@ func (entity *LegalComments) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *LegalComments) Find(context DatabaseService) error {
 	context.Find(&LegalComments{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*LegalComments)

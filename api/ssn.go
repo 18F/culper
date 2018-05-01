@@ -85,6 +85,7 @@ func (entity *SSN) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
+// Save the SSN to data storage.
 func (entity *SSN) Save(context DatabaseService, account int) (int, error) {
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
@@ -97,6 +98,7 @@ func (entity *SSN) Save(context DatabaseService, account int) (int, error) {
 	return entity.ID, nil
 }
 
+// Delete the SSN from data storage.
 func (entity *SSN) Delete(context DatabaseService, account int) (int, error) {
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
@@ -111,6 +113,7 @@ func (entity *SSN) Delete(context DatabaseService, account int) (int, error) {
 	return entity.ID, nil
 }
 
+// Get the SSN from data storage.
 func (entity *SSN) Get(context DatabaseService, account int) (int, error) {
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
@@ -125,7 +128,7 @@ func (entity *SSN) Get(context DatabaseService, account int) (int, error) {
 	return entity.ID, nil
 }
 
-// ID returns the entity identifier.
+// GetID returns the entity identifier.
 func (entity *SSN) GetID() int {
 	return entity.ID
 }
@@ -135,6 +138,7 @@ func (entity *SSN) SetID(id int) {
 	entity.ID = id
 }
 
+// Find is not used for SSNs. Please use the `Get` method.
 func (entity *SSN) Find(context DatabaseService) error {
 	return nil
 }

@@ -293,6 +293,7 @@ func (entity *Supervisor) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *Supervisor) Find(context DatabaseService) error {
 	context.Find(&Supervisor{ID: entity.AccountID}, func(result interface{}) {
 		previous := result.(*Supervisor)

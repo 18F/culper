@@ -10,10 +10,6 @@ import (
 	"github.com/18F/e-QIP-prototype/api/cmd"
 )
 
-var (
-	Piped bool = false
-)
-
 func main() {
 	var payloads []json.RawMessage
 	var buffer []byte

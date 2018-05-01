@@ -11,6 +11,7 @@ var (
 	formatPassportCard = regexp.MustCompile(`^[cC]{1}[0-9]{8}$`)
 )
 
+// ForeignPassport represents the payload for the foreign passport section.
 type ForeignPassport struct {
 	PayloadHasPassports Payload `json:"HasPassports" sql:"-"`
 	PayloadName         Payload `json:"Name" sql:"-"`
@@ -335,6 +336,7 @@ func (entity *ForeignPassport) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *ForeignPassport) Find(context DatabaseService) error {
 	context.Find(&ForeignPassport{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*ForeignPassport)
@@ -377,6 +379,7 @@ func (entity *ForeignPassport) Find(context DatabaseService) error {
 	return nil
 }
 
+// ForeignContacts represents the payload for the foreign contacts section.
 type ForeignContacts struct {
 	PayloadHasForeignContacts Payload `json:"HasForeignContacts" sql:"-"`
 	PayloadList               Payload `json:"List" sql:"-"`
@@ -534,6 +537,7 @@ func (entity *ForeignContacts) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *ForeignContacts) Find(context DatabaseService) error {
 	context.Find(&ForeignContacts{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*ForeignContacts)
@@ -551,6 +555,7 @@ func (entity *ForeignContacts) Find(context DatabaseService) error {
 	return nil
 }
 
+// ForeignTravel represents the payload for the foreign travel section.
 type ForeignTravel struct {
 	PayloadHasForeignTravelOutside  Payload `json:"HasForeignTravelOutside" sql:"-"`
 	PayloadHasForeignTravelOfficial Payload `json:"HasForeignTravelOfficial" sql:"-"`
@@ -741,6 +746,7 @@ func (entity *ForeignTravel) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *ForeignTravel) Find(context DatabaseService) error {
 	context.Find(&ForeignTravel{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*ForeignTravel)
@@ -763,6 +769,7 @@ func (entity *ForeignTravel) Find(context DatabaseService) error {
 	return nil
 }
 
+// ForeignActivitiesBenefits represents the payload for the foreign activities benefits section.
 type ForeignActivitiesBenefits struct {
 	PayloadHasBenefits Payload `json:"HasBenefits" sql:"-"`
 	PayloadList        Payload `json:"List" sql:"-"`
@@ -920,6 +927,7 @@ func (entity *ForeignActivitiesBenefits) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *ForeignActivitiesBenefits) Find(context DatabaseService) error {
 	context.Find(&ForeignActivitiesBenefits{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*ForeignActivitiesBenefits)
@@ -937,6 +945,7 @@ func (entity *ForeignActivitiesBenefits) Find(context DatabaseService) error {
 	return nil
 }
 
+// ForeignActivitiesDirect represents the payload for the foreign activities direct section.
 type ForeignActivitiesDirect struct {
 	PayloadHasInterests Payload `json:"HasInterests" sql:"-"`
 	PayloadList         Payload `json:"List" sql:"-"`
@@ -1094,6 +1103,7 @@ func (entity *ForeignActivitiesDirect) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *ForeignActivitiesDirect) Find(context DatabaseService) error {
 	context.Find(&ForeignActivitiesDirect{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*ForeignActivitiesDirect)
@@ -1111,6 +1121,7 @@ func (entity *ForeignActivitiesDirect) Find(context DatabaseService) error {
 	return nil
 }
 
+// ForeignActivitiesIndirect represents the payload for the foreign activities indirect section.
 type ForeignActivitiesIndirect struct {
 	PayloadHasInterests Payload `json:"HasInterests" sql:"-"`
 	PayloadList         Payload `json:"List" sql:"-"`
@@ -1268,6 +1279,7 @@ func (entity *ForeignActivitiesIndirect) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *ForeignActivitiesIndirect) Find(context DatabaseService) error {
 	context.Find(&ForeignActivitiesIndirect{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*ForeignActivitiesIndirect)
@@ -1285,6 +1297,7 @@ func (entity *ForeignActivitiesIndirect) Find(context DatabaseService) error {
 	return nil
 }
 
+// ForeignActivitiesRealEstate represents the payload for the foreign activities real estate section.
 type ForeignActivitiesRealEstate struct {
 	PayloadHasInterests Payload `json:"HasInterests" sql:"-"`
 	PayloadList         Payload `json:"List" sql:"-"`
@@ -1442,6 +1455,7 @@ func (entity *ForeignActivitiesRealEstate) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *ForeignActivitiesRealEstate) Find(context DatabaseService) error {
 	context.Find(&ForeignActivitiesRealEstate{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*ForeignActivitiesRealEstate)
@@ -1459,6 +1473,7 @@ func (entity *ForeignActivitiesRealEstate) Find(context DatabaseService) error {
 	return nil
 }
 
+// ForeignActivitiesSupport represents the payload for the foreign activities support section.
 type ForeignActivitiesSupport struct {
 	PayloadHasForeignSupport Payload `json:"HasForeignSupport" sql:"-"`
 	PayloadList              Payload `json:"List" sql:"-"`
@@ -1616,6 +1631,7 @@ func (entity *ForeignActivitiesSupport) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *ForeignActivitiesSupport) Find(context DatabaseService) error {
 	context.Find(&ForeignActivitiesSupport{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*ForeignActivitiesSupport)
@@ -1633,6 +1649,7 @@ func (entity *ForeignActivitiesSupport) Find(context DatabaseService) error {
 	return nil
 }
 
+// ForeignBusinessAdvice represents the payload for the foreign business advice section.
 type ForeignBusinessAdvice struct {
 	PayloadHasForeignAdvice Payload `json:"HasForeignAdvice" sql:"-"`
 	PayloadList             Payload `json:"List" sql:"-"`
@@ -1790,6 +1807,7 @@ func (entity *ForeignBusinessAdvice) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *ForeignBusinessAdvice) Find(context DatabaseService) error {
 	context.Find(&ForeignBusinessAdvice{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*ForeignBusinessAdvice)
@@ -1807,6 +1825,7 @@ func (entity *ForeignBusinessAdvice) Find(context DatabaseService) error {
 	return nil
 }
 
+// ForeignBusinessConferences represents the payload for the foreign business conferences section.
 type ForeignBusinessConferences struct {
 	PayloadHasForeignConferences Payload `json:"HasForeignConferences" sql:"-"`
 	PayloadList                  Payload `json:"List" sql:"-"`
@@ -1964,6 +1983,7 @@ func (entity *ForeignBusinessConferences) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *ForeignBusinessConferences) Find(context DatabaseService) error {
 	context.Find(&ForeignBusinessConferences{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*ForeignBusinessConferences)
@@ -1981,6 +2001,7 @@ func (entity *ForeignBusinessConferences) Find(context DatabaseService) error {
 	return nil
 }
 
+// ForeignBusinessContact represents the payload for the foreign business contact section.
 type ForeignBusinessContact struct {
 	PayloadHasForeignContact Payload `json:"HasForeignContact" sql:"-"`
 	PayloadList              Payload `json:"List" sql:"-"`
@@ -2138,6 +2159,7 @@ func (entity *ForeignBusinessContact) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *ForeignBusinessContact) Find(context DatabaseService) error {
 	context.Find(&ForeignBusinessContact{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*ForeignBusinessContact)
@@ -2155,6 +2177,7 @@ func (entity *ForeignBusinessContact) Find(context DatabaseService) error {
 	return nil
 }
 
+// ForeignBusinessEmployment represents the payload for the foreign business employment section.
 type ForeignBusinessEmployment struct {
 	PayloadHasForeignEmployment Payload `json:"HasForeignEmployment" sql:"-"`
 	PayloadList                 Payload `json:"List" sql:"-"`
@@ -2312,6 +2335,7 @@ func (entity *ForeignBusinessEmployment) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *ForeignBusinessEmployment) Find(context DatabaseService) error {
 	context.Find(&ForeignBusinessEmployment{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*ForeignBusinessEmployment)
@@ -2329,6 +2353,7 @@ func (entity *ForeignBusinessEmployment) Find(context DatabaseService) error {
 	return nil
 }
 
+// ForeignBusinessFamily represents the payload for the foreign business family section.
 type ForeignBusinessFamily struct {
 	PayloadHasForeignFamily Payload `json:"HasForeignFamily" sql:"-"`
 	PayloadList             Payload `json:"List" sql:"-"`
@@ -2486,6 +2511,7 @@ func (entity *ForeignBusinessFamily) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *ForeignBusinessFamily) Find(context DatabaseService) error {
 	context.Find(&ForeignBusinessFamily{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*ForeignBusinessFamily)
@@ -2503,6 +2529,7 @@ func (entity *ForeignBusinessFamily) Find(context DatabaseService) error {
 	return nil
 }
 
+// ForeignBusinessPolitical represents the payload for the foreign business political section.
 type ForeignBusinessPolitical struct {
 	PayloadHasForeignPolitical Payload `json:"HasForeignPolitical" sql:"-"`
 	PayloadList                Payload `json:"List" sql:"-"`
@@ -2660,6 +2687,7 @@ func (entity *ForeignBusinessPolitical) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *ForeignBusinessPolitical) Find(context DatabaseService) error {
 	context.Find(&ForeignBusinessPolitical{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*ForeignBusinessPolitical)
@@ -2677,6 +2705,7 @@ func (entity *ForeignBusinessPolitical) Find(context DatabaseService) error {
 	return nil
 }
 
+// ForeignBusinessSponsorship represents the payload for the foreign business sponsorship section.
 type ForeignBusinessSponsorship struct {
 	PayloadHasForeignSponsorship Payload `json:"HasForeignSponsorship" sql:"-"`
 	PayloadList                  Payload `json:"List" sql:"-"`
@@ -2834,6 +2863,7 @@ func (entity *ForeignBusinessSponsorship) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *ForeignBusinessSponsorship) Find(context DatabaseService) error {
 	context.Find(&ForeignBusinessSponsorship{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*ForeignBusinessSponsorship)
@@ -2851,6 +2881,7 @@ func (entity *ForeignBusinessSponsorship) Find(context DatabaseService) error {
 	return nil
 }
 
+// ForeignBusinessVentures represents the payload for the foreign business ventures section.
 type ForeignBusinessVentures struct {
 	PayloadHasForeignVentures Payload `json:"HasForeignVentures" sql:"-"`
 	PayloadList               Payload `json:"List" sql:"-"`
@@ -3008,6 +3039,7 @@ func (entity *ForeignBusinessVentures) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *ForeignBusinessVentures) Find(context DatabaseService) error {
 	context.Find(&ForeignBusinessVentures{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*ForeignBusinessVentures)
@@ -3025,6 +3057,7 @@ func (entity *ForeignBusinessVentures) Find(context DatabaseService) error {
 	return nil
 }
 
+// ForeignBusinessVoting represents the payload for the foreign business voting section.
 type ForeignBusinessVoting struct {
 	PayloadHasForeignVoting Payload `json:"HasForeignVoting" sql:"-"`
 	PayloadList             Payload `json:"List" sql:"-"`
@@ -3182,6 +3215,7 @@ func (entity *ForeignBusinessVoting) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *ForeignBusinessVoting) Find(context DatabaseService) error {
 	context.Find(&ForeignBusinessVoting{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*ForeignBusinessVoting)
@@ -3199,7 +3233,7 @@ func (entity *ForeignBusinessVoting) Find(context DatabaseService) error {
 	return nil
 }
 
-// ForeignComments subsection of identification section.
+// ForeignComments represents the payload for the foreign comments section.
 type ForeignComments struct {
 	PayloadComments Payload `json:"Comments" sql:"-"`
 
@@ -3324,6 +3358,7 @@ func (entity *ForeignComments) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *ForeignComments) Find(context DatabaseService) error {
 	context.Find(&ForeignComments{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*ForeignComments)

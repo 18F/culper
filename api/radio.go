@@ -24,6 +24,7 @@ func (entity *Radio) Valid() (bool, error) {
 	return true, nil
 }
 
+// Save the radio to data storage.
 func (entity *Radio) Save(context DatabaseService, account int) (int, error) {
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
@@ -36,6 +37,7 @@ func (entity *Radio) Save(context DatabaseService, account int) (int, error) {
 	return entity.ID, nil
 }
 
+// Delete the radio from data storage.
 func (entity *Radio) Delete(context DatabaseService, account int) (int, error) {
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
@@ -50,6 +52,7 @@ func (entity *Radio) Delete(context DatabaseService, account int) (int, error) {
 	return entity.ID, nil
 }
 
+// Get the radio from data storage.
 func (entity *Radio) Get(context DatabaseService, account int) (int, error) {
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
@@ -64,7 +67,7 @@ func (entity *Radio) Get(context DatabaseService, account int) (int, error) {
 	return entity.ID, nil
 }
 
-// ID returns the entity identifier.
+// GetID returns the entity identifier.
 func (entity *Radio) GetID() int {
 	return entity.ID
 }
@@ -74,6 +77,7 @@ func (entity *Radio) SetID(id int) {
 	entity.ID = id
 }
 
+// Find is not used for radios. Please use the `Get` method.
 func (entity *Radio) Find(context DatabaseService) error {
 	return nil
 }

@@ -32,6 +32,7 @@ func (entity *Textarea) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
+// Save the textarea to data storage.
 func (entity *Textarea) Save(context DatabaseService, account int) (int, error) {
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
@@ -44,6 +45,7 @@ func (entity *Textarea) Save(context DatabaseService, account int) (int, error) 
 	return entity.ID, nil
 }
 
+// Delete the textarea from data storage.
 func (entity *Textarea) Delete(context DatabaseService, account int) (int, error) {
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
@@ -58,6 +60,7 @@ func (entity *Textarea) Delete(context DatabaseService, account int) (int, error
 	return entity.ID, nil
 }
 
+// Get the textarea from data storage.
 func (entity *Textarea) Get(context DatabaseService, account int) (int, error) {
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
@@ -72,7 +75,7 @@ func (entity *Textarea) Get(context DatabaseService, account int) (int, error) {
 	return entity.ID, nil
 }
 
-// ID returns the entity identifier.
+// GetID returns the entity identifier.
 func (entity *Textarea) GetID() int {
 	return entity.ID
 }
@@ -82,6 +85,7 @@ func (entity *Textarea) SetID(id int) {
 	entity.ID = id
 }
 
+// Find is not used for attachments. Please use the `Get` method.
 func (entity *Textarea) Find(context DatabaseService) error {
 	return nil
 }

@@ -14,6 +14,7 @@ import (
 	"unsafe"
 )
 
+// WebClient is a basic web client to be used with various utility functionality.
 type WebClient struct {
 	Client   *http.Client
 	Address  string
@@ -22,6 +23,7 @@ type WebClient struct {
 	token    string
 }
 
+// GetInformation will ask for more information if not already known.
 func (wc *WebClient) GetInformation() {
 	emptyline := false
 	if wc.Address == "" {
@@ -48,6 +50,7 @@ func (wc *WebClient) preflight() {
 	}
 }
 
+// Authenticate against the RESTful service with basic authentication.
 func (wc *WebClient) Authenticate() {
 	data := json.RawMessage(`{ "username": "` + wc.Username + `", "password": "` + wc.Password + `" }`)
 	req, err := http.NewRequest("POST", wc.Address+"/auth/basic", bytes.NewBuffer(data))
@@ -69,6 +72,7 @@ func (wc *WebClient) Authenticate() {
 	wc.token = strings.Trim(strings.TrimSpace(string(body)), "\"")
 }
 
+// Save a JSON structure to the RESTful service.
 func (wc *WebClient) Save(payload json.RawMessage) {
 	wc.preflight()
 	req, err := http.NewRequest("POST", wc.Address+"/me/save", bytes.NewBuffer(payload))
@@ -87,6 +91,7 @@ func (wc *WebClient) Save(payload json.RawMessage) {
 	defer resp.Body.Close()
 }
 
+// Form returns the entire application as a JSON structure.
 func (wc *WebClient) Form() json.RawMessage {
 	wc.preflight()
 	req, err := http.NewRequest("GET", wc.Address+"/me/form", nil)
@@ -110,6 +115,7 @@ func (wc *WebClient) Form() json.RawMessage {
 	return body
 }
 
+// Submit will submit an application through the RESTful service.
 func (wc *WebClient) Submit() {
 	wc.preflight()
 	req, err := http.NewRequest("GET", wc.Address+"/me/form/submit", nil)
@@ -127,6 +133,7 @@ func (wc *WebClient) Submit() {
 	defer resp.Body.Close()
 }
 
+// Logout will end a session.
 func (wc *WebClient) Logout() {
 	wc.preflight()
 	req, err := http.NewRequest("GET", wc.Address+"/me/logout", nil)
@@ -144,6 +151,7 @@ func (wc *WebClient) Logout() {
 	defer resp.Body.Close()
 }
 
+// IsPiped returns whether the command was started with piped input.
 func IsPiped() bool {
 	stat, _ := os.Stdin.Stat()
 	mode := stat.Mode()

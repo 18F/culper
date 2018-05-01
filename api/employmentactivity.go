@@ -40,6 +40,7 @@ func (entity *EmploymentActivity) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
+// Save the employment activity to data storage.
 func (entity *EmploymentActivity) Save(context DatabaseService, account int) (int, error) {
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
@@ -52,6 +53,7 @@ func (entity *EmploymentActivity) Save(context DatabaseService, account int) (in
 	return entity.ID, nil
 }
 
+// Delete the employment activity from data storage.
 func (entity *EmploymentActivity) Delete(context DatabaseService, account int) (int, error) {
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
@@ -66,6 +68,7 @@ func (entity *EmploymentActivity) Delete(context DatabaseService, account int) (
 	return entity.ID, nil
 }
 
+// Get the employment activity from data storage.
 func (entity *EmploymentActivity) Get(context DatabaseService, account int) (int, error) {
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
@@ -80,7 +83,7 @@ func (entity *EmploymentActivity) Get(context DatabaseService, account int) (int
 	return entity.ID, nil
 }
 
-// ID returns the entity identifier.
+// GetID returns the entity identifier.
 func (entity *EmploymentActivity) GetID() int {
 	return entity.ID
 }
@@ -90,6 +93,7 @@ func (entity *EmploymentActivity) SetID(id int) {
 	entity.ID = id
 }
 
+// Find is not used for employment activities. Please use the `Get` method.
 func (entity *EmploymentActivity) Find(context DatabaseService) error {
 	return nil
 }

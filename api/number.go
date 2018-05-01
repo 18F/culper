@@ -35,6 +35,7 @@ func (entity *Number) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
+// Save the number to data storage.
 func (entity *Number) Save(context DatabaseService, account int) (int, error) {
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
@@ -47,6 +48,7 @@ func (entity *Number) Save(context DatabaseService, account int) (int, error) {
 	return entity.ID, nil
 }
 
+// Delete the number from data storage.
 func (entity *Number) Delete(context DatabaseService, account int) (int, error) {
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
@@ -61,6 +63,7 @@ func (entity *Number) Delete(context DatabaseService, account int) (int, error) 
 	return entity.ID, nil
 }
 
+// Get the number from data storage.
 func (entity *Number) Get(context DatabaseService, account int) (int, error) {
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
@@ -75,7 +78,7 @@ func (entity *Number) Get(context DatabaseService, account int) (int, error) {
 	return entity.ID, nil
 }
 
-// ID returns the entity identifier.
+// GetID returns the entity identifier.
 func (entity *Number) GetID() int {
 	return entity.ID
 }
@@ -85,6 +88,7 @@ func (entity *Number) SetID(id int) {
 	entity.ID = id
 }
 
+// Find is not used for numbers. Please use the `Get` method.
 func (entity *Number) Find(context DatabaseService) error {
 	return nil
 }

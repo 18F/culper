@@ -79,6 +79,7 @@ func (entity *Account) SetID(id int) {
 	entity.ID = id
 }
 
+// Find will search for account by `username` if no identifier is present or by ID if it is.
 func (entity *Account) Find(context DatabaseService) error {
 	if entity.ID == 0 {
 		return context.Where(entity, "Account.username = ?", entity.Username)
@@ -87,25 +88,25 @@ func (entity *Account) Find(context DatabaseService) error {
 }
 
 // Lock will mark the account in a `locked` status.
-func (a *Account) Lock(context DatabaseService) error {
-	a.Locked = true
-	_, err := a.Save(context, a.ID)
+func (entity *Account) Lock(context DatabaseService) error {
+	entity.Locked = true
+	_, err := entity.Save(context, entity.ID)
 	return err
 }
 
 // Unlock will mark the account in an `unlocked` status.
-func (a *Account) Unlock(context DatabaseService) error {
-	a.Locked = false
-	_, err := a.Save(context, a.ID)
+func (entity *Account) Unlock(context DatabaseService) error {
+	entity.Locked = false
+	_, err := entity.Save(context, entity.ID)
 	return err
 }
 
 // BasicAuthentication checks if the username and password are valid and returns the users account
-func (a *Account) BasicAuthentication(context DatabaseService, password string) error {
+func (entity *Account) BasicAuthentication(context DatabaseService, password string) error {
 	var basicMembership BasicAuthMembership
 
 	// Find if basic auth record exists for given account username
-	err := context.ColumnsWhere(&basicMembership, []string{"basic_auth_membership.*", "Account"}, "Account.username = ?", a.Username)
+	err := context.ColumnsWhere(&basicMembership, []string{"basic_auth_membership.*", "Account"}, "Account.username = ?", entity.Username)
 	if err != nil {
 		fmt.Printf("Basic Authentication Error: [%v]\n", err)
 		return ErrAccoundDoesNotExist
@@ -116,6 +117,6 @@ func (a *Account) BasicAuthentication(context DatabaseService, password string) 
 		return ErrPasswordDoesNotMatch
 	}
 
-	a = basicMembership.Account
+	entity = basicMembership.Account
 	return nil
 }

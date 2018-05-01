@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 )
 
+// PsychologicalCompetence represents the payload for the psychological competence section.
 type PsychologicalCompetence struct {
 	PayloadIsIncompetent Payload `json:"IsIncompetent" sql:"-"`
 	PayloadList          Payload `json:"List" sql:"-"`
@@ -169,6 +170,7 @@ func (entity *PsychologicalCompetence) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *PsychologicalCompetence) Find(context DatabaseService) error {
 	context.Find(&PsychologicalCompetence{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*PsychologicalCompetence)
@@ -186,6 +188,7 @@ func (entity *PsychologicalCompetence) Find(context DatabaseService) error {
 	return nil
 }
 
+// PsychologicalConsultations represents the payload for the psychological consultations section.
 type PsychologicalConsultations struct {
 	PayloadConsulted Payload `json:"Consulted" sql:"-"`
 	PayloadList      Payload `json:"List" sql:"-"`
@@ -351,6 +354,7 @@ func (entity *PsychologicalConsultations) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *PsychologicalConsultations) Find(context DatabaseService) error {
 	context.Find(&PsychologicalConsultations{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*PsychologicalConsultations)
@@ -368,6 +372,7 @@ func (entity *PsychologicalConsultations) Find(context DatabaseService) error {
 	return nil
 }
 
+// PsychologicalDiagnoses represents the payload for the psychological diagnosis section.
 type PsychologicalDiagnoses struct {
 	PayloadDiagnosed     Payload `json:"Diagnosed" sql:"-"`
 	PayloadDidNotConsult Payload `json:"DidNotConsult" sql:"-"`
@@ -634,6 +639,7 @@ func (entity *PsychologicalDiagnoses) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *PsychologicalDiagnoses) Find(context DatabaseService) error {
 	context.Find(&PsychologicalDiagnoses{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*PsychologicalDiagnoses)
@@ -666,6 +672,7 @@ func (entity *PsychologicalDiagnoses) Find(context DatabaseService) error {
 	return nil
 }
 
+// PsychologicalHospitalizations represents the payload for the psychological hospitalizations section.
 type PsychologicalHospitalizations struct {
 	PayloadHospitalized Payload `json:"Hospitalized" sql:"-"`
 	PayloadList         Payload `json:"List" sql:"-"`
@@ -831,6 +838,7 @@ func (entity *PsychologicalHospitalizations) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *PsychologicalHospitalizations) Find(context DatabaseService) error {
 	context.Find(&PsychologicalHospitalizations{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*PsychologicalHospitalizations)
@@ -848,6 +856,7 @@ func (entity *PsychologicalHospitalizations) Find(context DatabaseService) error
 	return nil
 }
 
+// PsychologicalExisting represents the payload for the psychological existing conditions section.
 type PsychologicalExisting struct {
 	PayloadHasCondition            Payload `json:"HasCondition" sql:"-"`
 	PayloadReceivedTreatment       Payload `json:"ReceivedTreatment" sql:"-"`
@@ -1151,6 +1160,7 @@ func (entity *PsychologicalExisting) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *PsychologicalExisting) Find(context DatabaseService) error {
 	context.Find(&PsychologicalExisting{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*PsychologicalExisting)
@@ -1188,7 +1198,7 @@ func (entity *PsychologicalExisting) Find(context DatabaseService) error {
 	return nil
 }
 
-// PsychologicalComments subsection of identification section.
+// PsychologicalComments represents the payload for the psychological comments section.
 type PsychologicalComments struct {
 	PayloadComments Payload `json:"Comments" sql:"-"`
 
@@ -1313,6 +1323,7 @@ func (entity *PsychologicalComments) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *PsychologicalComments) Find(context DatabaseService) error {
 	context.Find(&PsychologicalComments{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*PsychologicalComments)

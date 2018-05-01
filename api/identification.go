@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 )
 
-// IdentificationName subsection of identification section.
+// IdentificationName represents the payload for the identification name section.
 type IdentificationName struct {
 	PayloadName Payload `json:"Name" sql:"-"`
 
@@ -129,6 +129,7 @@ func (entity *IdentificationName) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *IdentificationName) Find(context DatabaseService) error {
 	context.Find(&IdentificationName{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*IdentificationName)
@@ -141,7 +142,7 @@ func (entity *IdentificationName) Find(context DatabaseService) error {
 	return nil
 }
 
-// IdentificationBirthPlace subsection of identification section.
+// IdentificationBirthPlace represents the payload for the identification birth place section.
 type IdentificationBirthPlace struct {
 	Payload Payload `json:"Location" sql:"-"`
 
@@ -266,6 +267,7 @@ func (entity *IdentificationBirthPlace) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *IdentificationBirthPlace) Find(context DatabaseService) error {
 	context.Find(&IdentificationBirthPlace{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*IdentificationBirthPlace)
@@ -278,7 +280,7 @@ func (entity *IdentificationBirthPlace) Find(context DatabaseService) error {
 	return nil
 }
 
-// IdentificationBirthDate subsection of identification section.
+// IdentificationBirthDate represents the payload for the identification birth date section.
 type IdentificationBirthDate struct {
 	PayloadDate      Payload `json:"Date" sql:"-"`
 	PayloadConfirmed Payload `json:"Confirmed" sql:"-"`
@@ -432,6 +434,7 @@ func (entity *IdentificationBirthDate) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *IdentificationBirthDate) Find(context DatabaseService) error {
 	context.Find(&IdentificationBirthDate{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*IdentificationBirthDate)
@@ -449,7 +452,7 @@ func (entity *IdentificationBirthDate) Find(context DatabaseService) error {
 	return nil
 }
 
-// IdentificationSSN subsection of identification section.
+// IdentificationSSN represents the payload for the identification SSN section.
 type IdentificationSSN struct {
 	Payload Payload `json:"ssn" sql:"-"`
 
@@ -584,6 +587,7 @@ func (entity *IdentificationSSN) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *IdentificationSSN) Find(context DatabaseService) error {
 	context.Find(&IdentificationSSN{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*IdentificationSSN)
@@ -596,7 +600,7 @@ func (entity *IdentificationSSN) Find(context DatabaseService) error {
 	return nil
 }
 
-// IdentificationContacts subsection of identification section.
+// IdentificationContacts represents the payload for the identification contact information section.
 type IdentificationContacts struct {
 	PayloadEmails       Payload `json:"Emails" sql:"-"`
 	PayloadPhoneNumbers Payload `json:"PhoneNumbers" sql:"-"`
@@ -760,6 +764,7 @@ func (entity *IdentificationContacts) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *IdentificationContacts) Find(context DatabaseService) error {
 	context.Find(&IdentificationContacts{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*IdentificationContacts)
@@ -777,7 +782,7 @@ func (entity *IdentificationContacts) Find(context DatabaseService) error {
 	return nil
 }
 
-// IdentificationOtherNames subsection of identification section.
+// IdentificationOtherNames represents the payload for the identification other names section.
 type IdentificationOtherNames struct {
 	PayloadHasOtherNames Payload `json:"HasOtherNames" sql:"-"`
 	PayloadList          Payload `json:"List" sql:"-"`
@@ -947,6 +952,7 @@ func (entity *IdentificationOtherNames) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *IdentificationOtherNames) Find(context DatabaseService) error {
 	context.Find(&IdentificationOtherNames{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*IdentificationOtherNames)
@@ -964,7 +970,7 @@ func (entity *IdentificationOtherNames) Find(context DatabaseService) error {
 	return nil
 }
 
-// IdentificationPhysical subsection of identification section.
+// IdentificationPhysical represents the payload for the identification physical traits section.
 type IdentificationPhysical struct {
 	PayloadComments  Payload `json:"Comments" sql:"-"`
 	PayloadEyeColor  Payload `json:"EyeColor" sql:"-"`
@@ -1260,6 +1266,7 @@ func (entity *IdentificationPhysical) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *IdentificationPhysical) Find(context DatabaseService) error {
 	context.Find(&IdentificationPhysical{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*IdentificationPhysical)
@@ -1297,7 +1304,7 @@ func (entity *IdentificationPhysical) Find(context DatabaseService) error {
 	return nil
 }
 
-// IdentificationComments subsection of identification section.
+// IdentificationComments represents the payload for the identificaton comments section.
 type IdentificationComments struct {
 	PayloadComments Payload `json:"Comments" sql:"-"`
 
@@ -1422,6 +1429,7 @@ func (entity *IdentificationComments) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *IdentificationComments) Find(context DatabaseService) error {
 	context.Find(&IdentificationComments{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*IdentificationComments)

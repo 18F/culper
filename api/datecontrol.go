@@ -69,6 +69,7 @@ func (entity *DateControl) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
+// Save the date control to data storage.
 func (entity *DateControl) Save(context DatabaseService, account int) (int, error) {
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
@@ -81,6 +82,7 @@ func (entity *DateControl) Save(context DatabaseService, account int) (int, erro
 	return entity.ID, nil
 }
 
+// Delete the date control from data storage.
 func (entity *DateControl) Delete(context DatabaseService, account int) (int, error) {
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
@@ -95,6 +97,7 @@ func (entity *DateControl) Delete(context DatabaseService, account int) (int, er
 	return entity.ID, nil
 }
 
+// Get the date control from data storage.
 func (entity *DateControl) Get(context DatabaseService, account int) (int, error) {
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
@@ -109,7 +112,7 @@ func (entity *DateControl) Get(context DatabaseService, account int) (int, error
 	return entity.ID, nil
 }
 
-// ID returns the entity identifier.
+// GetID returns the entity identifier.
 func (entity *DateControl) GetID() int {
 	return entity.ID
 }
@@ -119,6 +122,7 @@ func (entity *DateControl) SetID(id int) {
 	entity.ID = id
 }
 
+// Find is not used for date controls. Please use the `Get` method.
 func (entity *DateControl) Find(context DatabaseService) error {
 	return nil
 }

@@ -22,13 +22,14 @@ var (
 	templateEmail = template.Must(template.New("email").Parse(`# Passcode\n\n{{ . }}`))
 )
 
-type MFAService struct {
+// Service implements a multiple factor authentication.
+type Service struct {
 	Log api.LogService
 	Env api.Settings
 }
 
 // Secret creates a random secret and then base32 encodes it.
-func (service MFAService) Secret() string {
+func (service Service) Secret() string {
 	secret := make([]byte, 6)
 	_, err := rand.Read(secret)
 	if err != nil {
@@ -41,7 +42,7 @@ func (service MFAService) Secret() string {
 
 // Generate will create a QR code in PNG format which will then
 // be base64 encoded so it can traverse the wire to the front end.
-func (service MFAService) Generate(account, secret string) (string, error) {
+func (service Service) Generate(account, secret string) (string, error) {
 	u, err := url.Parse("otpauth://" + auth)
 	if err != nil {
 		return "", err
@@ -68,11 +69,11 @@ func (service MFAService) Generate(account, secret string) (string, error) {
 
 // Authenticate validates the initial token generated when configuring two-factor
 // authentication for the first time.
-func (service MFAService) Authenticate(token, secret string) (ok bool, err error) {
+func (service Service) Authenticate(token, secret string) (ok bool, err error) {
 	// Get the adjustable window size
 	size := 3
-	if service.Env.Has(api.WINDOW_SIZE) {
-		i, e := strconv.Atoi(service.Env.String(api.WINDOW_SIZE))
+	if service.Env.Has(api.WindowSize) {
+		i, e := strconv.Atoi(service.Env.String(api.WindowSize))
 		if e == nil {
 			size = i
 			service.Log.Debug("Setting MFA window size", api.LogFields{"window": i})
@@ -88,42 +89,3 @@ func (service MFAService) Authenticate(token, secret string) (ok bool, err error
 	}
 	return otpc.Authenticate(token)
 }
-
-// // Email delivers code to the specified address.
-// func (service MFAService) Email(address, secret string) error {
-// 	// Get a valid token for two-factor authentication
-// 	code := dgoogauth.ComputeCode(secret, 0)
-// 	if code == -1 {
-// 		return errors.New("Failed to generate code")
-// 	}
-
-// 	// Pull the API key for the mail service
-// 	key := service.Env.String("EQIP_SMTP_API_KEY")
-// 	if key == "" {
-// 		return errors.New("Could not retrieve API key")
-// 	}
-
-// 	// Form the mail service
-// 	client := mandrill.ClientWithKey(key)
-// 	message := &mandrill.Message{
-// 		FromEmail: "noreply@mail.gov",
-// 		FromName:  "E-QIP",
-// 		Subject:   "E-QIP Passcode",
-// 	}
-// 	message.AddRecipient(address, address, "to")
-
-// 	// The template is stored in markdown format to easily
-// 	// transform something human readable to HTML as well
-// 	var plain bytes.Buffer
-// 	err := templateEmail.Execute(&plain, code)
-// 	if err != nil {
-// 		return err
-// 	}
-// 	message.Text = plain.String()
-// 	unsafe := blackfriday.MarkdownCommon(plain.Bytes())
-// 	message.HTML = string(bluemonday.UGCPolicy().SanitizeBytes(unsafe))
-
-// 	// Send the message and return any errors from the service
-// 	_, err = client.MessagesSend(message)
-// 	return err
-// }

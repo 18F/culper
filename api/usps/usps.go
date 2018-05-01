@@ -13,14 +13,14 @@ import (
 )
 
 var (
-	// USPSURI is that base address for the USPS API
-	USPSURI = "https://secure.shippingapis.com/ShippingAPI.dll"
+	// Endpoint is that base address for the USPS API
+	Endpoint = "https://secure.shippingapis.com/ShippingAPI.dll"
 
 	// VerifyAPI is the name of that API that handles address verifications
 	VerifyAPI = "Verify"
 
-	// USPSErrorCodes contains USPS code mapping to eApp error codes
-	USPSErrorCodes = map[string]string{
+	// ErrorCodes contains USPS code mapping to eApp error codes
+	ErrorCodes = map[string]string{
 		"-2147219400":     "error.geocode.city",
 		"-2147219401":     "error.geocode.notfound",
 		"-2147219403":     "error.geocode.multiple",
@@ -32,20 +32,20 @@ var (
 	}
 )
 
-// USPSGeocoder geocodes address information using the United States Post Office webservice
+// Geocoder geocodes address information using the United States Post Office webservice
 // API docs can be found https://www.usps.com/business/web-tools-apis/address-information-api.htm
-type USPSGeocoder struct {
+type Geocoder struct {
 	Env api.Settings
 	Log api.LogService
 }
 
 // Validate takes values to be geocoded and executes a web service call
-func (g USPSGeocoder) Validate(geoValues api.GeocodeValues) (api.GeocodeResults, error) {
+func (g Geocoder) Validate(geoValues api.GeocodeValues) (api.GeocodeResults, error) {
 	return g.query(geoValues)
 }
 
 // query creates and executes http requests and populates a Results object
-func (g USPSGeocoder) query(geoValues api.GeocodeValues) (results api.GeocodeResults, err error) {
+func (g Geocoder) query(geoValues api.GeocodeValues) (results api.GeocodeResults, err error) {
 	// Prepare uri used to query
 	uri := g.prepareQueryURI(geoValues)
 
@@ -57,7 +57,7 @@ func (g USPSGeocoder) query(geoValues api.GeocodeValues) (results api.GeocodeRes
 	}
 
 	// Decode the response to populate struct
-	var addressResp USPSAddressValidateResponse
+	var addressResp AddressValidateResponse
 	if err := g.decode(resp.Body, &addressResp); err != nil {
 		g.Log.WarnError(api.USPSDecodeError, err, api.LogFields{})
 		return results, err
@@ -68,18 +68,18 @@ func (g USPSGeocoder) query(geoValues api.GeocodeValues) (results api.GeocodeRes
 
 	// Check if we've encountered an error
 	if foundAddress.Error != nil {
-		if errCode, ok := USPSErrorCodes[foundAddress.Error.Number]; ok {
+		if errCode, ok := ErrorCodes[foundAddress.Error.Number]; ok {
 			g.Log.Warn(api.USPSKnownErrorCode, api.LogFields{"code": errCode})
 			return results, fmt.Errorf("%v", errCode)
 		}
-		errCode := USPSErrorCodes["Generic"]
+		errCode := ErrorCodes["Generic"]
 		g.Log.Warn(api.USPSUnknownErrorCode, api.LogFields{"code": errCode})
 		return results, fmt.Errorf("%v", errCode)
 
 	}
 
 	if strings.ContainsAny(foundAddress.ReturnText, "Default Address") {
-		errCode := USPSErrorCodes["Default Address"]
+		errCode := ErrorCodes["Default Address"]
 		g.Log.Warn(api.USPSKnownErrorCode, api.LogFields{"code": errCode})
 		return results, fmt.Errorf("%v", errCode)
 	}
@@ -90,7 +90,7 @@ func (g USPSGeocoder) query(geoValues api.GeocodeValues) (results api.GeocodeRes
 	// Check if any of values requested to be validate do not match up to what was
 	// returned by the validation response. If there is a mismatch, mark as partial
 	if results.HasPartial() {
-		errCode := USPSErrorCodes["Partial"]
+		errCode := ErrorCodes["Partial"]
 		g.Log.Warn(api.USPSKnownErrorCode, api.LogFields{"code": errCode})
 		return results, fmt.Errorf(errCode)
 	}
@@ -123,7 +123,7 @@ func (g USPSGeocoder) query(geoValues api.GeocodeValues) (results api.GeocodeRes
 //		  <Description>Authorization failure.  Perhaps username and/or password is incorrect.</Description>
 //		  <Source>USPSCOM::DoAuth</Source>
 //	  </Error>
-func (g USPSGeocoder) decode(r io.Reader, addressResp *USPSAddressValidateResponse) error {
+func (g Geocoder) decode(r io.Reader, addressResp *AddressValidateResponse) error {
 	body, _ := ioutil.ReadAll(r)
 
 	// First attempt to unmarshal to typical AddressValidateResponse element
@@ -134,7 +134,7 @@ func (g USPSGeocoder) decode(r io.Reader, addressResp *USPSAddressValidateRespon
 	g.Log.Debug("Error attempting to decode USPS Address Validation Response. Checking if returned xml is system error", api.LogFields{})
 
 	// Check if we've encountered a system error where only <Error> is returned as the root element
-	var errorResp USPSErrorResponse
+	var errorResp ErrorResponse
 	err = xml.Unmarshal(body, &errorResp)
 	if err != nil {
 		g.Log.DebugError("Error attempting to decode USPS Address validation", err, api.LogFields{})
@@ -142,29 +142,29 @@ func (g USPSGeocoder) decode(r io.Reader, addressResp *USPSAddressValidateRespon
 	}
 
 	// We have a system error so attempt to resolve error code
-	if errCode, ok := USPSErrorCodes[errorResp.Number]; ok {
+	if errCode, ok := ErrorCodes[errorResp.Number]; ok {
 		return ErrUSPSSystem{Message: errCode}
 	}
 
 	g.Log.Debug("Unable to resolve error code. Default to generic error message", api.LogFields{})
-	sysErr := ErrUSPSSystem{Message: USPSErrorCodes["System"]}
+	sysErr := ErrUSPSSystem{Message: ErrorCodes["System"]}
 	return sysErr
 }
 
 // prepareQueryURI creates the url used to execute a http validate address request
-func (g USPSGeocoder) prepareQueryURI(geoValues api.GeocodeValues) string {
+func (g Geocoder) prepareQueryURI(geoValues api.GeocodeValues) string {
 	// Set up query parameters
 	v := url.Values{}
 
-	userID := g.Env.String("USPS_API_API_KEY")
+	userID := g.Env.String(api.UspsAPIKey)
 	if userID == "" {
 		g.Log.Warn(api.USPSMissingKey, api.LogFields{})
 	}
 
 	// Populate USPS Address struct with generic geo values
-	address := USPSAddress{}
+	address := Address{}
 	address.FromGeoValues(geoValues)
-	addressRequest := USPSAddressValidateRequest{
+	addressRequest := AddressValidateRequest{
 		UserID:  userID,
 		Address: address,
 	}
@@ -175,38 +175,38 @@ func (g USPSGeocoder) prepareQueryURI(geoValues api.GeocodeValues) string {
 	// Set the xml containing information to verify
 	v.Set("XML", addressRequest.ToXMLString())
 
-	uri := fmt.Sprintf("%v?%v", USPSURI, v.Encode())
+	uri := fmt.Sprintf("%v?%v", Endpoint, v.Encode())
 	return uri
 }
 
-// USPSAddressValidateRequest contains the information necessary to execute an address validation webservice request
+// AddressValidateRequest contains the information necessary to execute an address validation webservice request
 // The USERID refers to the api key that must be sent with each request
-type USPSAddressValidateRequest struct {
+type AddressValidateRequest struct {
 	XMLName xml.Name `xml:"AddressValidateRequest"`
 	UserID  string   `xml:"USERID,attr"`
-	Address USPSAddress
+	Address Address
 }
 
-// USPSAddressValidateResponse contains the information returned from a successful webservice request
-type USPSAddressValidateResponse struct {
-	XMLName xml.Name    `xml:"AddressValidateResponse"`
-	Address USPSAddress `xml:"Address"`
+// AddressValidateResponse contains the information returned from a successful webservice request
+type AddressValidateResponse struct {
+	XMLName xml.Name `xml:"AddressValidateResponse"`
+	Address Address  `xml:"Address"`
 }
 
 // ToXMLString creates a string representation of the xml request
-func (r USPSAddressValidateRequest) ToXMLString() string {
+func (r AddressValidateRequest) ToXMLString() string {
 	output, _ := xml.Marshal(r)
 	return string(output)
 }
 
-// USPSErrorResponse stores a system level error
-type USPSErrorResponse struct {
+// ErrorResponse stores a system level error
+type ErrorResponse struct {
 	XMLName xml.Name `xml:"Error"`
-	USPSError
+	Error
 }
 
-// USPSError is the structure for responses resulting in an error
-type USPSError struct {
+// Error is the structure for responses resulting in an error
+type Error struct {
 	// The error number generated by the Web Tools server.
 	Number string `xml:"Number"`
 
@@ -223,7 +223,7 @@ type USPSError struct {
 	HelpContext string `xml:"HelpContext"`
 }
 
-// USPSAddress represents the structure for the <Address> element information in a USPS request and response.
+// Address represents the structure for the <Address> element information in a USPS request and response.
 // With a successful response, the following is returned
 //  <Address>
 //    <Address2></Address2>
@@ -249,7 +249,7 @@ type USPSError struct {
 //
 // Therefore, we include an Error field in the Address struct. We make it a pointer so that we can check for <nil>
 // if the value is not populated (no error has occurred).
-type USPSAddress struct {
+type Address struct {
 	// XMLName refers to the name to give the XML tag
 	XMLName xml.Name `xml:"Address"`
 	// Up to 5 address verifications can be included per transaction.
@@ -282,15 +282,15 @@ type USPSAddress struct {
 
 	// Stores error information for an address. USPS returns errors within the address block if they
 	// exist. We set this to a pointer so that we can check for <nil>
-	Error *USPSError `xml:"Error"`
+	Error *Error `xml:"Error"`
 
 	// Stores additional information that is not necessarily an error. Some instances may include where an apartment
 	// number used does not correspond to a valid base address
 	ReturnText string `xml:"ReturnText,omitempty"`
 }
 
-// FromGeoValues populates a USPSAddress using Values
-func (address *USPSAddress) FromGeoValues(geoValues api.GeocodeValues) {
+// FromGeoValues populates a Address using Values
+func (address *Address) FromGeoValues(geoValues api.GeocodeValues) {
 	// Don't get mad at me, USPS makes Address1 the apartment/suite field and Address2
 	// the mailing address field
 	if geoValues.Street != "" {
@@ -310,7 +310,7 @@ func (address *USPSAddress) FromGeoValues(geoValues api.GeocodeValues) {
 
 // ToResult generates a Result struct and determines whether it is a partial match. A partial
 // match occurs when there's a mismatch in values between each corresponding field
-func (address *USPSAddress) ToResult(geoValues api.GeocodeValues) (result api.GeocodeResult) {
+func (address *Address) ToResult(geoValues api.GeocodeValues) (result api.GeocodeResult) {
 	result.Street = address.Address2
 	result.Street2 = address.Address1
 	result.City = address.City
