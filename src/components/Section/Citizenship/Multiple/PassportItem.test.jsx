@@ -7,6 +7,8 @@ describe('The passport item component', () => {
     let updates = 0
     const expected = {
       name: 'passportItem',
+      Used: { value: 'Yes' },
+      Countries: { branch: { value: 'Yes' }, items: [{ Item: { Dates: {} } }] },
       onUpdate: () => { updates++ }
     }
     const component = mount(<PassportItem {...expected} />)
@@ -17,6 +19,6 @@ describe('The passport item component', () => {
     component.find('.passport-number input').first().simulate('change')
     component.find('.passport-expiration .day input').first().simulate('change', { target: { name: 'day', value: '1' } })
     component.find('.passport-used .yes input').simulate('change')
-    expect(updates).toBe(7)
+    expect(updates).toBe(8)
   })
 })
