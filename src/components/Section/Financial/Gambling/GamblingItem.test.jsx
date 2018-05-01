@@ -19,4 +19,9 @@ describe('The GamblingItem component', () => {
     component.find('.actions textarea').simulate('change')
     expect(updates).toBe(4)
   })
+
+  it('defaults behave as expected', () => {
+    expect(GamblingItem.defaultProps.onError(0, [])).toEqual([])
+    expect(GamblingItem.defaultProps.onUpdate()).toBe(undefined)
+  })
 })
