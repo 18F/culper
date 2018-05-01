@@ -43,10 +43,10 @@ export default class Address extends ValidationElement {
 
     this.focusStreet = this.focusStreet.bind(this)
     this.focusStreet2 = this.focusStreet2.bind(this)
-    this.focusCity = this.blurCity.bind(this)
-    this.focusState = this.blurState.bind(this)
+    this.focusCity = this.focusCity.bind(this)
+    this.focusState = this.focusState.bind(this)
     this.focusCountry = this.focusCountry.bind(this)
-    this.focusZipcode = this.blurZipcode.bind(this)
+    this.focusZipcode = this.focusZipcode.bind(this)
 
     this.blurStreet = this.blurStreet.bind(this)
     this.blurStreet2 = this.blurStreet2.bind(this)
@@ -451,7 +451,7 @@ export default class Address extends ValidationElement {
                       value={this.props.city}
                       onUpdate={this.updateCity}
                       onError={this.handleError}
-                      onFocus={this.props.onFocus}
+                      onFocus={this.focusCity}
                       onBlur={this.blurCity}
                       required={this.props.required}
                       disabled={this.props.disabled}
@@ -619,6 +619,7 @@ Address.defaultProps = {
   label: i18n.t('address.label'),
   tab: (input) => { input.focus() },
   country: { value: 'United States' },
+  onBlur: (event) => {},
   onFocus: (event) => {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
