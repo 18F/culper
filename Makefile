@@ -107,11 +107,11 @@ build-go: clear
 package: package-react package-go
 package-clean:
 	-@docker rmi -f eapp_golang:smallest
-	-@docker rmi -f eapp_react:base
+	-@docker rmi -f eapp_react:basedeb
 	-@docker rm -f eapp_react_container
 package-react:
-	@docker pull ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/nbis_eapp:base
-	@docker create --name=eapp_react_container ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/nbis_eapp:base
+	@docker pull ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/nbis_eapp:basedeb
+	@docker create --name=eapp_react_container ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/nbis_eapp:basedeb
 	@docker cp ./dist/. eapp_react_container:/var/www/html/
 	@docker commit eapp_react_container eapp_react
 package-go:
@@ -127,7 +127,7 @@ package-go:
 	-@cp ./api/bin/xmlsec1 ./api/dist/bin/
 	-@cp ./api/checksum ./api/dist/
 	-@cp ./api/cmd/server/server ./api/dist/eapp-backend
-	@docker pull ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/nbis-ecr:base
+	@docker pull ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/nbis-ecr:basedeb
 	@docker build -f Dockerfile.eapp_golang . -t eapp_golang:smallest
 
 #
