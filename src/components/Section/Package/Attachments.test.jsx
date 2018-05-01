@@ -37,7 +37,7 @@ describe('The attachments component', () => {
   })
 
   it('triggers updates', () => {
-    let updates = 0;
+    let updates = 0
     const props = {
       AttachmentType: { value: 'Upload' },
       onUpdate: () => { updates++ }

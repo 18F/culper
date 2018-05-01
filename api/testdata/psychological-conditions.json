@@ -23,6 +23,12 @@
     "TreatmentList": {
       "type": "collection",
       "props": {
+        "branch": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
         "items": [
           {
             "Item": {

@@ -10,6 +10,12 @@
     "List": {
       "type": "collection",
       "props": {
+        "branch": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
         "items": [
           {
             "Item": {
@@ -40,6 +46,36 @@
               "OneTimeBenefit": {
                 "type": "benefit",
                 "props": {
+                  "Began": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "",
+                      "day": "",
+                      "year": "",
+                      "estimated": false
+                    }
+                  },
+                  "End": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "",
+                      "day": "",
+                      "year": "",
+                      "estimated": false
+                    }
+                  },
+                  "Frequency": {
+                    "type": "radio",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "OtherFrequency": {
+                    "type": "textarea",
+                    "props": {
+                      "value": ""
+                    }
+                  },
                   "Received": {
                     "type": "datecontrol",
                     "props": {
@@ -102,6 +138,15 @@
                       "date": "2017-07-25T00:00:00Z"
                     }
                   },
+                  "End": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "",
+                      "day": "",
+                      "year": "",
+                      "estimated": false
+                    }
+                  },
                   "Frequency": {
                     "type": "radio",
                     "props": {
@@ -112,6 +157,15 @@
                     "type": "textarea",
                     "props": {
                       "value": "something else"
+                    }
+                  },
+                  "Received": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "1",
+                      "day": "1",
+                      "year": "2000",
+                      "estimated": true
                     }
                   },
                   "Country": {
@@ -188,6 +242,15 @@
                       "value": "something else"
                     }
                   },
+                  "Received": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "1",
+                      "day": "1",
+                      "year": "2000",
+                      "estimated": true
+                    }
+                  },
                   "Country": {
                     "type": "country",
                     "props": {
@@ -235,13 +298,7 @@
               }
             }
           }
-        ],
-        "branch": {
-          "type": "branch",
-          "props": {
-            "value": "No"
-          }
-        }
+        ]
       }
     }
   }

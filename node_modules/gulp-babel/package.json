@@ -1,0 +1,60 @@
+{
+  "name": "gulp-babel",
+  "version": "7.0.0",
+  "description": "Use next generation JavaScript, today",
+  "license": "MIT",
+  "repository": "babel/gulp-babel",
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "sindresorhus.com"
+  },
+  "engines": {
+    "node": ">=4"
+  },
+  "scripts": {
+    "test": "xo && mocha"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "gulpplugin",
+    "babel",
+    "transpiler",
+    "es2015",
+    "es2016",
+    "es2017",
+    "rewriting",
+    "transformation",
+    "syntax",
+    "codegen",
+    "desugaring",
+    "javascript",
+    "compiler"
+  ],
+  "dependencies": {
+    "gulp-util": "^3.0.0",
+    "replace-ext": "0.0.1",
+    "through2": "^2.0.0",
+    "vinyl-sourcemaps-apply": "^0.2.0"
+  },
+  "peerDependencies": {
+    "babel-core": "6 || 7 || ^7.0.0-alpha || ^7.0.0-beta || ^7.0.0-rc"
+  },
+  "devDependencies": {
+    "babel-core": "7.0.0-alpha.18",
+    "babel-plugin-transform-es2015-arrow-functions": "7.0.0-alpha.18",
+    "babel-plugin-transform-es2015-block-scoping": "7.0.0-alpha.18",
+    "babel-plugin-transform-es2015-classes": "7.0.0-alpha.18",
+    "gulp-sourcemaps": "^1.1.1",
+    "mocha": "*",
+    "xo": "*"
+  },
+  "xo": {
+    "envs": [
+      "node",
+      "mocha"
+    ]
+  }
+}

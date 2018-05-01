@@ -1,17 +1,40 @@
-engines:
+version: "2"
+checks:
+  similar-code:
+    enabled: false
+  file-lines:
+    config:
+      threshold: 750
+  method-count:
+    config:
+      threshold: 50
+  method-lines:
+    config:
+      threshold: 255
+  return-statements:
+    config:
+      threshold: 10
+plugins:
   eslint:
     enabled: true
+    channel: "eslint-4"
   csslint:
     enabled: true
-
-ratings:
-  paths:
-    - "src/**"
-
 exclude_paths:
   - "bin/"
   - "coverage/"
   - "doc/"
   - "hooks/"
   - "lib/"
+  - "src/**/*.test.jsx"
+  - "src/**/*.test.js"
+  - "src/config/locales/"
+  - "*.json"
+  - "**/*_test.go"
   - "**/vendor/"
+  - "**/node_modules/"
+  - "specs/"
+  - "dist/"
+  - "api/migrations/"
+  - "api/templates/"
+  - "api/testdata/"

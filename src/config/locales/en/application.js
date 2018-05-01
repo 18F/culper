@@ -54,7 +54,9 @@ export const application = {
     done: [
       '## You are done!',
       '### Thanks for submitting for your SF-86',
-      'If you need assistance contact the office who initiated your form.'
+      'If you need assistance contact the office who initiated your form.',
+      '## We would love your feedback!',
+      'Striving to provide the most enjoyable experience through the application process any feedback you would be willing to [provide in our survey](https://docs.google.com/forms/d/e/1FAIpQLSeRQj_m3Ot0ILFuLg2LtFKJPTEAqMATw3kc3MiFOkj3fxs3ug/viewform) is appreciated.'
     ]
   },
   attachments: {
@@ -84,7 +86,7 @@ export const application = {
     upload: {
       title: 'Upload file to e-QIP directly',
       para: [
-        'Certification, General Release and Medical Release forms must be attached separately as single page documents. Items such as a resume or OF 612 can be uploaded as multi-page documents.',
+        'Certification, General Release and Medical Release forms must be attached separately as single page documents. Items such as a resume or OF 612 can be uploaded as multi-page documents.'
       ],
       limits: '{types} files only. Maximum file size allowed is {max_size}.',
       description: 'Description',

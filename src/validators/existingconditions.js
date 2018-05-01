@@ -25,16 +25,16 @@ export default class ExistingConditionsValidator {
 
   validTreatmentList () {
     switch (this.receivedTreatment) {
-      case 'No':
-        return validGenericTextfield(this.explanation)
-      case 'Decline':
-        return true
-      case 'Yes':
-        return validAccordion(this.treatmentList, (item) => {
-          return new ExistingConditionsDiagnosisValidator(item).isValid()
-        })
-      default:
-        return false
+    case 'No':
+      return validGenericTextfield(this.explanation)
+    case 'Decline':
+      return true
+    case 'Yes':
+      return validAccordion(this.treatmentList, (item) => {
+        return new ExistingConditionsDiagnosisValidator(item).isValid()
+      })
+    default:
+      return false
     }
   }
 

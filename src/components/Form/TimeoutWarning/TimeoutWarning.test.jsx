@@ -5,7 +5,7 @@ import thunk from 'redux-thunk'
 import { MemoryRouter } from 'react-router'
 import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
-import TimeoutWarning from './TimeoutWarning'
+import TimeoutWarning, { roundUp, minutes, seconds } from './TimeoutWarning'
 
 describe('The timeout warning component', () => {
   // Setup
@@ -29,5 +29,45 @@ describe('The timeout warning component', () => {
     console.log(component.html())
     expect(component.find('.timeout-warning').length).toEqual(1)
     expect(component.find('.modal').length).toEqual(1)
+  })
+
+  it('rounds up', () => {
+    const tests = [
+      {
+        data: 1,
+        expect: 1
+      }
+    ]
+    tests.forEach(test => {
+      expect(roundUp(test.data, 1)).toEqual(test.expect)
+    })
+  })
+
+  it('convert ms to seconds', () => {
+    const tests = [
+      {
+        data: 1000,
+        expect: 1
+      },
+      {
+        data: 2500,
+        expect: 3
+      }
+    ]
+    tests.forEach(test => {
+      expect(seconds(test.data)).toEqual(test.expect)
+    })
+  })
+
+  it('convert ms to minutes', () => {
+    const tests = [
+      {
+        data: 2400,
+        expect: 1
+      }
+    ]
+    tests.forEach(test => {
+      expect(minutes(test.data)).toEqual(test.expect)
+    })
   })
 })

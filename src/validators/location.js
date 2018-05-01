@@ -227,7 +227,7 @@ export class Geocoder {
           resolve(r.data.Errors[0])
         })
         .catch(() => {
-          reject()
+          reject(new Error('Failed to validate address'))
         })
     })
   }

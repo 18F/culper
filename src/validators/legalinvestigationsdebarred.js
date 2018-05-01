@@ -1,4 +1,4 @@
-import { validAccordion, validGenericTextfield, validDateField, validNotApplicable } from './helpers'
+import { validAccordion, validGenericTextfield, validDateField } from './helpers'
 
 export default class LegalInvestigationsDebarredValidator {
   constructor (data = {}) {

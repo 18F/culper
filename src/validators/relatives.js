@@ -163,19 +163,19 @@ export class RelativeValidator {
     }
 
     switch (this.citizenshipDocumentation) {
-      case 'Other':
-        return validGenericTextfield(this.otherCitizenshipDocumentation)
-      case 'FS':
-      case 'DS':
-      case 'NaturalizedAlien':
-      case 'NaturalizedPermanent':
-      case 'NaturalizedCertificate':
-      case 'DerivedAlien':
-      case 'DerivedPermanent':
-      case 'DerivedCertificate':
-        return true
-      default:
-        return false
+    case 'Other':
+      return validGenericTextfield(this.otherCitizenshipDocumentation)
+    case 'FS':
+    case 'DS':
+    case 'NaturalizedAlien':
+    case 'NaturalizedPermanent':
+    case 'NaturalizedCertificate':
+    case 'DerivedAlien':
+    case 'DerivedPermanent':
+    case 'DerivedCertificate':
+      return true
+    default:
+      return false
     }
   }
 
@@ -209,17 +209,17 @@ export class RelativeValidator {
     }
 
     switch (this.document) {
-      case 'Other':
-        return validGenericTextfield(this.otherDocument)
-      case 'Permanent':
-      case 'Employment':
-      case 'Arrival':
-      case 'Visa':
-      case 'F1':
-      case 'J1':
-        return true
-      default:
-        return false
+    case 'Other':
+      return validGenericTextfield(this.otherDocument)
+    case 'Permanent':
+    case 'Employment':
+    case 'Arrival':
+    case 'Visa':
+    case 'F1':
+    case 'J1':
+      return true
+    default:
+      return false
     }
   }
 

@@ -1,6 +1,8 @@
 package api
 
-import "encoding/json"
+import (
+	"encoding/json"
+)
 
 type PsychologicalCompetence struct {
 	PayloadIsIncompetent Payload `json:"IsIncompetent" sql:"-"`
@@ -1219,7 +1221,7 @@ func (entity *PsychologicalComments) Marshal() Payload {
 	if entity.Comments != nil {
 		entity.PayloadComments = entity.Comments.Marshal()
 	}
-	return MarshalPayloadEntity("identification.comments", entity)
+	return MarshalPayloadEntity("psychological.comments", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.

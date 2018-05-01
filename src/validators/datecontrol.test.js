@@ -28,7 +28,7 @@ describe('date control validator', function () {
           hideDay: true
         },
         expected: true
-      },
+      }
     ]
 
     tests.forEach(test => {
@@ -158,7 +158,7 @@ describe('date control validator', function () {
     function age (i) {
       const date = daysAgo(today, 365 * i)
       return {
-        month: `${date.getMonth()+1}`,
+        month: `${date.getMonth() + 1}`,
         day: `${date.getDate()}`,
         year: `${date.getFullYear()}`
       }
@@ -352,7 +352,7 @@ describe('date control validator', function () {
         },
         min: false,
         max: true
-      },
+      }
     ]
 
     tests.forEach(test => {
@@ -366,7 +366,7 @@ describe('date control validator', function () {
     function age (i) {
       const date = daysAgo(today, 365 * i)
       return {
-        month: `${date.getMonth()+1}`,
+        month: `${date.getMonth() + 1}`,
         day: `${date.getDate()}`,
         year: `${date.getFullYear()}`
       }
@@ -417,7 +417,7 @@ describe('date control validator', function () {
         },
         min: true,
         max: false
-      },
+      }
     ]
 
     tests.forEach(test => {

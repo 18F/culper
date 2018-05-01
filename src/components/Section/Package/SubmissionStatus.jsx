@@ -115,13 +115,13 @@ export class AnimateReviewIcon extends React.Component {
     }
     let image = null
     if (this.props.valid) {
-      image = (<img src="/img/review-correct-all.svg" style={{zIndex: '100'}} className={reviewClass} />)
+      image = (<img src="/img/review-correct-all.svg" style={{zIndex: '100'}} className={reviewClass} alt={i18n.t('review.correctAllSvg')} />)
     } else {
-      image = (<img src="/img/review-error.svg" style={{zIndex: '100'}} className={reviewClass} />)
+      image = (<img src="/img/review-error.svg" style={{zIndex: '100'}} className={reviewClass} alt={i18n.t('review.reviewErrorSvg')} />)
     }
     return (
       <div>
-        <img src="/img/review-checking.svg" style={{zIndex: '10'}} />
+        <img src="/img/review-checking.svg" style={{zIndex: '10'}} alt={i18n.t('review.checkingSvg')} />
         {image}
       </div>
     )
