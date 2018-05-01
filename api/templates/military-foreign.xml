@@ -9,7 +9,7 @@
     <AssociationDescription>{{textarea $Item.Circumstances}}</AssociationDescription>
     <Branch>{{text $Item.Division}}</Branch>
     {{country $Item.Country}}
-    {{daterange $Item.Dates}}
+    {{monthYearDaterange $Item.Dates}}
     <EntryComment></EntryComment>
     <LeavingDescription>{{textarea $Item.ReasonLeft}}</LeavingDescription>
     <Name>{{text $Item.Name}}</Name>
@@ -23,22 +23,25 @@
       <Contact ID="{{$cindex}}">
         <Address>{{location $Contact.Address}}</Address>
         <Comment></Comment>
-        {{daterange $Contact.Dates}}
+        {{monthYearDaterange $Contact.Dates}}
         <FrequencyOfContact>{{text $Contact.Frequency}}</FrequencyOfContact>
         <LegalName>{{name $Contact.Name}}</LegalName>
         <Title>{{text $Contact.Title}}</Title>
       </Contact>
       {{end}}
       {{end}}
+      {{if branch $Item.MaintainsContact | eq "Yes"}}
       <HaveAdditionalEntryAnswer>{{branch $Item.List.props.branch}}</HaveAdditionalEntryAnswer>
+      {{end}}
       <SummaryComment></SummaryComment>
     </Contacts>
   </Service>
   {{end}}
   {{end}}
   {{end}}
-  {{- if branch .props.HasDisciplinary | eq "Yes"}}
-  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+
+  {{- if branchcollectionHas .props.List | eq "Yes"}}
+  <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
   <SummaryComment></SummaryComment>
   {{end}}
   <Comment></Comment>

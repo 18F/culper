@@ -190,39 +190,37 @@ export default class MilitaryService extends ValidationElement {
           </RadioGroup>
         </Field>
 
-        <Show when={(this.props.Service || {}).value === 'AirNationalGuard' || (this.props.Service || {}).value === 'ArmyNationalGuard'}>
-          <Field title={i18n.t('military.history.heading.status')}
-                 adjustFor="buttons"
-                 shrink={true}
-                 scrollIntoView={this.props.scrollIntoView}>
-            <RadioGroup className="status option-list"
-                        required={this.props.required}
-                        onError={this.props.onError}
-                        selectedValue={(this.props.Status || {}).value}>
-              <Radio name="status-activeduty"
-                     className="status-activeduty"
-                     label={i18n.t('military.history.label.activeduty')}
-                     value="ActiveDuty"
-                     onUpdate={this.updateStatus}
-                     onError={this.props.onError}
-                     />
-              <Radio name="status-activereserve"
-                     className="status-activereserve"
-                     label={i18n.t('military.history.label.activereserve')}
-                     value="ActiveReserve"
-                     onUpdate={this.updateStatus}
-                     onError={this.props.onError}
-                     />
-              <Radio name="status-inactivereserve"
-                     className="status-inactivereserve"
-                     label={i18n.t('military.history.label.inactivereserve')}
-                     value="InactiveReserve"
-                     onUpdate={this.updateStatus}
-                     onError={this.props.onError}
-                     />
-            </RadioGroup>
-          </Field>
-        </Show>
+        <Field title={i18n.t('military.history.heading.status')}
+          adjustFor="buttons"
+          shrink={true}
+          scrollIntoView={this.props.scrollIntoView}>
+          <RadioGroup className="status option-list"
+            required={this.props.required}
+            onError={this.props.onError}
+            selectedValue={(this.props.Status || {}).value}>
+            <Radio name="status-activeduty"
+              className="status-activeduty"
+              label={i18n.t('military.history.label.activeduty')}
+              value="ActiveDuty"
+              onUpdate={this.updateStatus}
+              onError={this.props.onError}
+            />
+            <Radio name="status-activereserve"
+              className="status-activereserve"
+              label={i18n.t('military.history.label.activereserve')}
+              value="ActiveReserve"
+              onUpdate={this.updateStatus}
+              onError={this.props.onError}
+            />
+            <Radio name="status-inactivereserve"
+              className="status-inactivereserve"
+              label={i18n.t('military.history.label.inactivereserve')}
+              value="InactiveReserve"
+              onUpdate={this.updateStatus}
+              onError={this.props.onError}
+            />
+          </RadioGroup>
+        </Field>
 
         <Field title={i18n.t('military.history.heading.officer')}
                adjustFor="buttons"

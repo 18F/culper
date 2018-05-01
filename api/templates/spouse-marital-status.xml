@@ -1,1 +1,1 @@
-<MaritalStatus>{{radio .}}</MaritalStatus>
+<MaritalStatus>{{radio . | maritalStatus}}</MaritalStatus>
