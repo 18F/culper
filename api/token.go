@@ -5,6 +5,7 @@ import (
 	"time"
 )
 
+// TokenService represents a service providing Javascript Web Tokens.
 type TokenService interface {
 	CheckToken(request *http.Request) (string, int, error)
 	ExtractToken(request *http.Request) string

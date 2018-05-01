@@ -63,14 +63,14 @@ func (c *Client) Send(action RequestBody, response Body) error {
 		return err
 	}
 	defer resp.Body.Close()
-	if bodyBytes, err := ioutil.ReadAll(resp.Body); err != nil {
+	bodyBytes, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
 		// If we can't read in the response body, set to error
 		response.SetResponseBody([]byte(err.Error()))
 		return err
-	} else {
-		response.SetResponseBody(bodyBytes)
-		return xml.Unmarshal(bodyBytes, response)
 	}
+	response.SetResponseBody(bodyBytes)
+	return xml.Unmarshal(bodyBytes, response)
 }
 
 // IsAlive checks if the webservice API is available

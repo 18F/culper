@@ -1,7 +1,10 @@
 package api
 
+// LogFields are named keys to hold additional information to be reported
+// in the log messages.
 type LogFields map[string]interface{}
 
+// LogService represents common methods for a logging service.
 type LogService interface {
 	AddField(name string, value interface{})
 	Print(message string, fields LogFields)
@@ -57,6 +60,7 @@ const (
 	SamlParseError                             = "Error parsing SAML response"
 	SamlRequestError                           = "Error creating SAML authentication request"
 	SamlRequestURLError                        = "Error creating SAML authentication request URL"
+	SamlVerificationError                      = "Error verifying SAML response"
 	USPSDecodeError                            = "Error decoding USPS geocoding response"
 	USPSKnownErrorCode                         = "USPS known error received"
 	USPSMissingKey                             = "USPS API key has not been set"

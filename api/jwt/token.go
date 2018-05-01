@@ -16,21 +16,28 @@ import (
 )
 
 const (
+	// Issuer is the JWT issuer.
 	Issuer = "eqip"
 )
 
 var (
-	JwtSecret        = ""
+	// JwtSecret is the secret used to generate tokens.
+	JwtSecret = ""
+
+	// JwtSigningMethod is the algorithm used for signing tokens.
 	JwtSigningMethod = jwt.SigningMethodHS256
+
+	// AuthBearerRegexp is a regular expression to extract the authorization token.
 	AuthBearerRegexp = regexp.MustCompile("Bearer\\s(.*)")
 )
 
-type TokenService struct {
+// Service is an implementation of JWT service handling.
+type Service struct {
 	Env api.Settings
 }
 
 // CheckToken tests if the token is valid and is of the correct audience.
-func (service TokenService) CheckToken(request *http.Request) (string, int, error) {
+func (service Service) CheckToken(request *http.Request) (string, int, error) {
 	id := 0
 	jwtToken := service.ExtractToken(request)
 	if jwtToken == "" {
@@ -53,7 +60,7 @@ func (service TokenService) CheckToken(request *http.Request) (string, int, erro
 }
 
 // ExtractToken returns the token from an HTTP request header.
-func (service TokenService) ExtractToken(request *http.Request) string {
+func (service Service) ExtractToken(request *http.Request) string {
 	authHeader := request.Header.Get("Authorization")
 	matches := AuthBearerRegexp.FindStringSubmatch(authHeader)
 	if len(matches) == 0 {
@@ -64,7 +71,7 @@ func (service TokenService) ExtractToken(request *http.Request) string {
 }
 
 // CurrentAudience is the currently valid audience from the token.
-func (service TokenService) CurrentAudience(request *http.Request) string {
+func (service Service) CurrentAudience(request *http.Request) string {
 	rawToken := service.ExtractToken(request)
 	token, err := service.ParseWithClaims(rawToken)
 	if err != nil {
@@ -80,7 +87,7 @@ func (service TokenService) CurrentAudience(request *http.Request) string {
 }
 
 // NewToken generates a new Jwt signed token using a users account information
-func (service TokenService) NewToken(id int, audience string) (string, time.Time, error) {
+func (service Service) NewToken(id int, audience string) (string, time.Time, error) {
 	expiresAt := time.Now().Add(service.Timeout())
 	token := jwt.NewWithClaims(JwtSigningMethod, jwt.StandardClaims{
 		Id:        strconv.FormatInt(int64(id), 10),
@@ -98,17 +105,17 @@ func (service TokenService) NewToken(id int, audience string) (string, time.Time
 }
 
 // TokenClaims return all standard token claims.
-func (service TokenService) TokenClaims(token *jwt.Token) *jwt.StandardClaims {
+func (service Service) TokenClaims(token *jwt.Token) *jwt.StandardClaims {
 	return token.Claims.(*jwt.StandardClaims)
 }
 
 // ParseWithClaims parses the token with standard claims..
-func (service TokenService) ParseWithClaims(tokenString string) (*jwt.Token, error) {
+func (service Service) ParseWithClaims(tokenString string) (*jwt.Token, error) {
 	return jwt.ParseWithClaims(tokenString, &jwt.StandardClaims{}, service.KeyFunc)
 }
 
 // KeyFunc ensures the signing method of the token.
-func (service TokenService) KeyFunc(token *jwt.Token) (interface{}, error) {
+func (service Service) KeyFunc(token *jwt.Token) (interface{}, error) {
 	if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
 		return nil, fmt.Errorf("Unexpected signing method: %v", token.Header["alg"])
 	}
@@ -117,10 +124,10 @@ func (service TokenService) KeyFunc(token *jwt.Token) (interface{}, error) {
 
 // Timeout returns the duration in time for how long a session is considered valid.
 // Per policy this defaults to 15 minutes.
-func (service TokenService) Timeout() time.Duration {
+func (service Service) Timeout() time.Duration {
 	timeout := 0
-	if service.Env.Has(api.SESSION_TIMEOUT) {
-		timeout = service.Env.Int(api.SESSION_TIMEOUT)
+	if service.Env.Has(api.SessionTimeout) {
+		timeout = service.Env.Int(api.SessionTimeout)
 	}
 
 	if timeout < 1 {
@@ -130,7 +137,7 @@ func (service TokenService) Timeout() time.Duration {
 }
 
 // Secret returns the secret to use with JWT tokens.
-func (service TokenService) Secret() []byte {
+func (service Service) Secret() []byte {
 	if JwtSecret == "" {
 		service.ConfigureEnvironment(256)
 	}
@@ -138,14 +145,14 @@ func (service TokenService) Secret() []byte {
 }
 
 // ConfigureEnvironment ensure the secret is set prior to use.
-func (service TokenService) ConfigureEnvironment(size int) error {
+func (service Service) ConfigureEnvironment(size int) error {
 	if size == 256 {
 		JwtSigningMethod = jwt.SigningMethodHS256
 	} else if size == 512 {
 		JwtSigningMethod = jwt.SigningMethodHS512
 	}
 
-	if service.Env.Has(api.JWT_SECRET) {
+	if service.Env.Has(api.JwtSecret) {
 		return nil
 	}
 
@@ -160,30 +167,30 @@ func (service TokenService) ConfigureEnvironment(size int) error {
 
 	secret := base64.StdEncoding.EncodeToString(b)
 	JwtSecret = secret
-	return os.Setenv(api.JWT_SECRET, secret)
+	return os.Setenv(api.JwtSecret, secret)
 }
 
 // TargetAudiences which are accepted based on the configured environment.
-func (service TokenService) TargetAudiences() []string {
+func (service Service) TargetAudiences() []string {
 	audiences := []string{}
 
-	if service.Env.True(api.BASIC_ENABLED) {
+	if service.Env.True(api.BasicEnabled) {
 		audiences = append(audiences, api.BasicAuthAudience)
 	}
 
-	if !service.Env.True(api.DISABLE_2FA) {
+	if !service.Env.True(api.Disable2FA) {
 		audiences = append(audiences, api.TwoFactorAudience)
 	}
 
-	if service.Env.True(api.SAML_ENABLED) {
+	if service.Env.True(api.SamlEnabled) {
 		audiences = append(audiences, api.SingleSignOnAudience)
 	}
 
 	return audiences
 }
 
-// ValidJwtToken parses a token and determines if the token is valid
-func (service TokenService) validateToken(rawToken, audience string) (bool, int, error) {
+// validJwtToken parses a token and determines if the token is valid
+func (service Service) validateToken(rawToken, audience string) (bool, int, error) {
 	id := 0
 	token, err := service.ParseWithClaims(rawToken)
 	if err != nil {

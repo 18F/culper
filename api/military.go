@@ -2,6 +2,7 @@ package api
 
 import "encoding/json"
 
+// MilitarySelective represents the payload for the military service section.
 type MilitarySelective struct {
 	PayloadWasBornAfter       Payload `json:"WasBornAfter" sql:"-"`
 	PayloadHasRegistered      Payload `json:"HasRegistered" sql:"-"`
@@ -235,6 +236,7 @@ func (entity *MilitarySelective) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *MilitarySelective) Find(context DatabaseService) error {
 	context.Find(&MilitarySelective{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*MilitarySelective)
@@ -262,6 +264,7 @@ func (entity *MilitarySelective) Find(context DatabaseService) error {
 	return nil
 }
 
+// MilitaryHistory represents the payload for the military history section.
 type MilitaryHistory struct {
 	PayloadHasServed Payload `json:"HasServed" sql:"-"`
 	PayloadList      Payload `json:"List" sql:"-"`
@@ -427,6 +430,7 @@ func (entity *MilitaryHistory) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *MilitaryHistory) Find(context DatabaseService) error {
 	context.Find(&MilitaryHistory{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*MilitaryHistory)
@@ -444,6 +448,7 @@ func (entity *MilitaryHistory) Find(context DatabaseService) error {
 	return nil
 }
 
+// MilitaryDisciplinary represents the payload for the military disposition section.
 type MilitaryDisciplinary struct {
 	PayloadHasDisciplinary Payload `json:"HasDisciplinary" sql:"-"`
 	PayloadList            Payload `json:"List" sql:"-"`
@@ -609,6 +614,7 @@ func (entity *MilitaryDisciplinary) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *MilitaryDisciplinary) Find(context DatabaseService) error {
 	context.Find(&MilitaryDisciplinary{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*MilitaryDisciplinary)
@@ -626,6 +632,7 @@ func (entity *MilitaryDisciplinary) Find(context DatabaseService) error {
 	return nil
 }
 
+// MilitaryForeign represents the payload for the military foreign section.
 type MilitaryForeign struct {
 	PayloadList Payload `json:"List" sql:"-"`
 
@@ -756,6 +763,7 @@ func (entity *MilitaryForeign) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *MilitaryForeign) Find(context DatabaseService) error {
 	context.Find(&MilitaryForeign{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*MilitaryForeign)
@@ -768,7 +776,7 @@ func (entity *MilitaryForeign) Find(context DatabaseService) error {
 	return nil
 }
 
-// MilitaryComments subsection of identification section.
+// MilitaryComments represents the payload for the military comments section.
 type MilitaryComments struct {
 	PayloadComments Payload `json:"Comments" sql:"-"`
 
@@ -893,6 +901,7 @@ func (entity *MilitaryComments) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *MilitaryComments) Find(context DatabaseService) error {
 	context.Find(&MilitaryComments{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*MilitaryComments)

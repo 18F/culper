@@ -8,12 +8,13 @@ import (
 	"github.com/18F/e-QIP-prototype/api"
 )
 
+// CORSHandler is the handler for CORS.
 type CORSHandler struct {
 	Log api.LogService
 	Env api.Settings
 }
 
-// CORS Wraps an http handler with logic to handle cors requests.
+// Middleware wraps an http handler with logic to handle cors requests.
 // Specifies the allowed origins, methods and headers.
 func (service CORSHandler) Middleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -51,9 +52,9 @@ func (service CORSHandler) Middleware(next http.Handler) http.Handler {
 	})
 }
 
-// AllowedOrigin checks the given origin is whitelisted as an acceptable address.
+// allowedOrigin checks the given origin is whitelisted as an acceptable address.
 func allowedOrigin(origin string, env api.Settings) bool {
-	addresses := strings.TrimSpace(env.String(api.CORS_ALLOWED))
+	addresses := strings.TrimSpace(env.String(api.CORSAllowed))
 	for _, addr := range strings.Split(addresses, ";") {
 		if addr == "" {
 			continue

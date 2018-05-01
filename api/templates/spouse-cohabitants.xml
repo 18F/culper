@@ -49,7 +49,7 @@
       {{- with $other := $othername.Item}}
       {{- if branch $other.Has | eq "Yes"}}
       <OtherName ID="{{$oindex}}">
-        {{daterange $other.DatesUsed}}
+        {{monthYearDaterange $other.DatesUsed}}
         <LegalName>
           {{name $other.OtherName}}
         </LegalName>

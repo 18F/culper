@@ -6,13 +6,13 @@
   <Service ID="{{$index}}">
     <Branch>{{radio $Item.Service}}</Branch>
     <Comment></Comment>
-    {{daterange $Item.Dates}}
+    {{monthYearDaterange $Item.Dates}}
     <!-- <GuardLocation> -->
     <!--   <State>DQ</State> -->
     <!-- </GuardLocation> -->
     <Rank NotApplicable="{{if radio $Item.Officer | eq "NotApplicable"}}True{{else}}False{{end}}">{{radio $Item.Officer}}</Rank>
     <ServiceNumber>{{text $Item.ServiceNumber}}</ServiceNumber>
-    <Status>{{radio $Item.Status}}</Status>
+    <Status>{{radio $Item.Status | militaryStatus}}</Status>
     <WasDischarged>
       <Answer>{{branch $Item.HasBeenDischarged}}</Answer>
     </WasDischarged>
@@ -35,6 +35,5 @@
   {{end}}
 </MilitaryService>
 <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
-<SummaryComment></SummaryComment>
 {{end}}
 <Comment></Comment>

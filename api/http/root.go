@@ -22,11 +22,12 @@ type endpoint struct {
 	Verbs       []string
 }
 
+// RootHandler is the handler for the root endpoint.
 type RootHandler struct {
 	Env api.Settings
 }
 
-// rootHandler accepts GET requests to get all endpoints that the API
+// ServeHTTP accepts GET requests to get all endpoints that the API
 // supports.
 func (service RootHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("X-Eqip-Media-Type", fmt.Sprintf("%s.%s", APIName, APIVersion))
@@ -81,7 +82,7 @@ func (service RootHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		},
 	}
 
-	if service.Env.True(api.ATTACHMENTS_ENABLED) {
+	if service.Env.True(api.AttachmentsEnabled) {
 		attachments := []endpoint{
 			endpoint{
 				Path:        "/me/attachment",
@@ -102,7 +103,7 @@ func (service RootHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		endpoints = append(endpoints, attachments...)
 	}
 
-	if !service.Env.True(api.DISABLE_2FA) {
+	if !service.Env.True(api.Disable2FA) {
 		mfa := []endpoint{
 			endpoint{
 				Path:        "/2fa/",
@@ -117,7 +118,7 @@ func (service RootHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		}
 		endpoints = append(endpoints, mfa...)
 
-		if service.Env.True(api.ALLOW_2FA_RESET) {
+		if service.Env.True(api.Allow2FAReset) {
 			endpoints = append(endpoints, endpoint{
 				Path:        "/2fa/reset",
 				Description: "two factor reset",
@@ -126,7 +127,7 @@ func (service RootHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	if service.Env.True(api.BASIC_ENABLED) {
+	if service.Env.True(api.BasicEnabled) {
 		basic := []endpoint{
 			endpoint{
 				Path:        "/auth/basic",
@@ -137,7 +138,7 @@ func (service RootHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		endpoints = append(endpoints, basic...)
 	}
 
-	if service.Env.True(api.SAML_ENABLED) {
+	if service.Env.True(api.SamlEnabled) {
 		saml := []endpoint{
 			endpoint{
 				Path:        "/auth/saml",

@@ -33,7 +33,7 @@ func readBinaryData(filepath string) ([]byte, error) {
 func TestCollections(t *testing.T) {
 	settings := mock.Native{}
 	settings.Configure()
-	service := &DatabaseService{Log: &mock.LogService{Off: true}, Env: settings}
+	service := &Service{Log: &mock.LogService{Off: true}, Env: settings}
 	service.Configure()
 	account := 1
 
@@ -281,7 +281,7 @@ func TestPayloadValidate(t *testing.T) {
 func TestPayloadPersistence(t *testing.T) {
 	settings := mock.Native{}
 	settings.Configure()
-	service := &DatabaseService{Log: &mock.LogService{Off: true}, Env: settings}
+	service := &Service{Log: &mock.LogService{Off: true}, Env: settings}
 	service.Configure()
 	api.Geocode = mock.Geocoder{}
 
@@ -437,7 +437,7 @@ func TestApplication(t *testing.T) {
 	account := 1
 	settings := mock.Native{}
 	settings.Configure()
-	service := &DatabaseService{Log: &mock.LogService{Off: true}, Env: settings}
+	service := &Service{Log: &mock.LogService{Off: true}, Env: settings}
 	service.Configure()
 
 	js := api.Application(service, account, false)
@@ -450,7 +450,7 @@ func TestHash(t *testing.T) {
 	account := 1
 	settings := mock.Native{}
 	settings.Configure()
-	service := &DatabaseService{Log: &mock.LogService{Off: true}, Env: settings}
+	service := &Service{Log: &mock.LogService{Off: true}, Env: settings}
 	service.Configure()
 
 	sig := api.Hash(service, account)

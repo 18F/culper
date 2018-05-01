@@ -30,6 +30,7 @@ func (entity *Country) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
+// Save the country to data storage.
 func (entity *Country) Save(context DatabaseService, account int) (int, error) {
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
@@ -42,6 +43,7 @@ func (entity *Country) Save(context DatabaseService, account int) (int, error) {
 	return entity.ID, nil
 }
 
+// Delete the country from data storage.
 func (entity *Country) Delete(context DatabaseService, account int) (int, error) {
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
@@ -56,6 +58,7 @@ func (entity *Country) Delete(context DatabaseService, account int) (int, error)
 	return entity.ID, nil
 }
 
+// Get the country from data storage.
 func (entity *Country) Get(context DatabaseService, account int) (int, error) {
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
@@ -70,7 +73,7 @@ func (entity *Country) Get(context DatabaseService, account int) (int, error) {
 	return entity.ID, nil
 }
 
-// ID returns the entity identifier.
+// GetID returns the entity identifier.
 func (entity *Country) GetID() int {
 	return entity.ID
 }
@@ -80,6 +83,7 @@ func (entity *Country) SetID(id int) {
 	entity.ID = id
 }
 
+// Find is not used for countries. Please use the `Get` method.
 func (entity *Country) Find(context DatabaseService) error {
 	return nil
 }

@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 )
 
+// Treatment is a basic structure.
 type Treatment struct {
 	PayloadName    Payload `json:"Name" sql:"-"`
 	PayloadPhone   Payload `json:"Phone" sql:"-"`
@@ -82,6 +83,7 @@ func (entity *Treatment) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
+// Save the treatment to data storage.
 func (entity *Treatment) Save(context DatabaseService, account int) (int, error) {
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
@@ -116,6 +118,7 @@ func (entity *Treatment) Save(context DatabaseService, account int) (int, error)
 	return entity.ID, nil
 }
 
+// Delete the treatment from data storage.
 func (entity *Treatment) Delete(context DatabaseService, account int) (int, error) {
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
@@ -146,6 +149,7 @@ func (entity *Treatment) Delete(context DatabaseService, account int) (int, erro
 	return entity.ID, nil
 }
 
+// Get the treatment from data storage.
 func (entity *Treatment) Get(context DatabaseService, account int) (int, error) {
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
@@ -181,7 +185,7 @@ func (entity *Treatment) Get(context DatabaseService, account int) (int, error) 
 	return entity.ID, nil
 }
 
-// ID returns the entity identifier.
+// GetID returns the entity identifier.
 func (entity *Treatment) GetID() int {
 	return entity.ID
 }
@@ -191,6 +195,7 @@ func (entity *Treatment) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *Treatment) Find(context DatabaseService) error {
 	context.Find(&Treatment{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*Treatment)

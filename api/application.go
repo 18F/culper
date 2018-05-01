@@ -7,6 +7,8 @@ import (
 	"html/template"
 )
 
+// sectionInformation represents a structure to quickly organize the different
+// sections and subsections with the payload type(s).
 type sectionInformation struct {
 	name       string
 	subsection string
@@ -559,11 +561,14 @@ var (
 	}
 )
 
+// FormMetadata represents extra information associated with the application
+// regarding its current state.
 type FormMetadata struct {
 	Locked bool
 	Hash   string
 }
 
+// Metadata returns the application metadata.
 func Metadata(context DatabaseService, account int, locked bool) []byte {
 	hash := Hash(context, account)
 	meta := &FormMetadata{
@@ -610,7 +615,7 @@ func Application(context DatabaseService, account int, hashable bool) []byte {
 }
 
 // Package an application for transmitting to cold storage
-func Package(context DatabaseService, xml XmlService, account int, hashable bool) template.HTML {
+func Package(context DatabaseService, xml XMLService, account int, hashable bool) template.HTML {
 	jsonBytes := Application(context, account, hashable)
 	var js map[string]interface{}
 	if err := json.Unmarshal(jsonBytes, &js); err != nil {
@@ -620,6 +625,7 @@ func Package(context DatabaseService, xml XmlService, account int, hashable bool
 	return xml.DefaultTemplate("application.xml", js)
 }
 
+// ApplicationData returns the entire application in a JSON structure.
 func ApplicationData(context DatabaseService, account int, hashable bool) (map[string]interface{}, error) {
 	jsonBytes := Application(context, account, hashable)
 	var js map[string]interface{}
@@ -652,6 +658,8 @@ func Hash(context DatabaseService, account int) [sha256.Size]byte {
 	return sha256.Sum256(Application(context, account, true))
 }
 
+// subsection is a helper function to transform a payload in to a type easily
+// converted to JSON.
 func subsection(name string, payload Payload) map[string]Payload {
 	simple := make(map[string]Payload)
 	simple[name] = payload

@@ -2,6 +2,7 @@ package api
 
 import "encoding/json"
 
+// Submission represents the payload for the submission section.
 type Submission struct {
 	PayloadAdditionalComments Payload `json:"AdditionalComments" sql:"-"`
 	PayloadGeneral            Payload `json:"General" sql:"-"`
@@ -260,6 +261,7 @@ func (entity *Submission) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *Submission) Find(context DatabaseService) error {
 	context.Find(&Submission{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*Submission)
@@ -292,6 +294,7 @@ func (entity *Submission) Find(context DatabaseService) error {
 	return nil
 }
 
+// SubmissionAdditionalComments represents the payload for the submission additional comments section.
 type SubmissionAdditionalComments struct {
 	PayloadSignature Payload `json:"Signature" sql:"-"`
 
@@ -422,6 +425,7 @@ func (entity *SubmissionAdditionalComments) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *SubmissionAdditionalComments) Find(context DatabaseService) error {
 	context.Find(&SubmissionAdditionalComments{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*SubmissionAdditionalComments)
@@ -434,6 +438,7 @@ func (entity *SubmissionAdditionalComments) Find(context DatabaseService) error 
 	return nil
 }
 
+// SubmissionGeneral represents the payload for the submission general release section.
 type SubmissionGeneral struct {
 	PayloadSignature Payload `json:"Signature" sql:"-"`
 
@@ -564,6 +569,7 @@ func (entity *SubmissionGeneral) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *SubmissionGeneral) Find(context DatabaseService) error {
 	context.Find(&SubmissionGeneral{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*SubmissionGeneral)
@@ -576,6 +582,7 @@ func (entity *SubmissionGeneral) Find(context DatabaseService) error {
 	return nil
 }
 
+// SubmissionMedical represents the payload for the submission medical release section.
 type SubmissionMedical struct {
 	PayloadSignature Payload `json:"Signature" sql:"-"`
 
@@ -706,6 +713,7 @@ func (entity *SubmissionMedical) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *SubmissionMedical) Find(context DatabaseService) error {
 	context.Find(&SubmissionMedical{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*SubmissionMedical)
@@ -718,6 +726,7 @@ func (entity *SubmissionMedical) Find(context DatabaseService) error {
 	return nil
 }
 
+// SubmissionCredit represents the payload for the submission credit release section.
 type SubmissionCredit struct {
 	PayloadSignature Payload `json:"Signature" sql:"-"`
 
@@ -848,6 +857,7 @@ func (entity *SubmissionCredit) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *SubmissionCredit) Find(context DatabaseService) error {
 	context.Find(&SubmissionCredit{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*SubmissionCredit)
@@ -860,6 +870,7 @@ func (entity *SubmissionCredit) Find(context DatabaseService) error {
 	return nil
 }
 
+// SubmissionAttachments represents the payload for the submission attachments section.
 type SubmissionAttachments struct {
 	PayloadMethod Payload `json:"Method" sql:"-"`
 
@@ -990,6 +1001,7 @@ func (entity *SubmissionAttachments) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *SubmissionAttachments) Find(context DatabaseService) error {
 	context.Find(&SubmissionAttachments{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*SubmissionAttachments)

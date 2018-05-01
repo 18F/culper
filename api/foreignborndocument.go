@@ -255,6 +255,7 @@ func (entity *ForeignBornDocument) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *ForeignBornDocument) Find(context DatabaseService) error {
 	context.Find(&ForeignBornDocument{ID: entity.ID, AccountID: entity.AccountID}, func(result interface{}) {
 		previous := result.(*ForeignBornDocument)
