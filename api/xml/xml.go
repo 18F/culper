@@ -11,11 +11,13 @@ import (
 	"github.com/18F/e-QIP-prototype/api"
 )
 
-type XmlService struct {
+// Service is an implementation of handling XML.
+type Service struct {
 	Log api.LogService
 }
 
-func (service XmlService) DefaultTemplate(templateName string, data map[string]interface{}) template.HTML {
+// DefaultTemplate returns a template given data.
+func (service Service) DefaultTemplate(templateName string, data map[string]interface{}) template.HTML {
 	// fmap is a mapping of functions to be used within the XML template execution.
 	// These can be helper functions for formatting or even to process complex structure
 	// types.
@@ -44,6 +46,8 @@ func (service XmlService) DefaultTemplate(templateName string, data map[string]i
 		"hasRelativeType":      hasRelativeType,
 		"location":             location,
 		"locationIsPostOffice": locationIsPostOffice,
+		"maritalStatus":        maritalStatus,
+		"militaryStatus":       militaryStatus,
 		"monthYear":            monthYear,
 		"name":                 name,
 		"nameLastFirst":        nameLastFirst,
@@ -340,6 +344,28 @@ func employmentType(empType string) string {
 		"Other":             "Other",
 	}
 	return alias[empType]
+}
+
+func militaryStatus(status string) string {
+	alias := map[string]string{
+		"ActiveDuty":      "Active",
+		"ActiveReserve":   "ActiveReserve",
+		"InactiveReserve": "InactiveReserve",
+	}
+	return alias[status]
+}
+
+func maritalStatus(status string) string {
+	alias := map[string]string{
+		"NeverMarried": "NeverMarried",
+		"Married":      "Married",
+		"InCivilUnion": "Married",
+		"Separated":    "Separated",
+		"Annulled":     "Annulled",
+		"Divorced":     "Divorced",
+		"Widowed":      "Widowed",
+	}
+	return alias[status]
 }
 
 func citizenshipHas(data map[string]interface{}, country string) bool {

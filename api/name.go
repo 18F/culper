@@ -66,6 +66,7 @@ func (entity *Name) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
+// Save the name to data storage.
 func (entity *Name) Save(context DatabaseService, account int) (int, error) {
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
@@ -78,6 +79,7 @@ func (entity *Name) Save(context DatabaseService, account int) (int, error) {
 	return entity.ID, nil
 }
 
+// Delete the name from data storage.
 func (entity *Name) Delete(context DatabaseService, account int) (int, error) {
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
@@ -92,6 +94,7 @@ func (entity *Name) Delete(context DatabaseService, account int) (int, error) {
 	return entity.ID, nil
 }
 
+// Get the name from data storage.
 func (entity *Name) Get(context DatabaseService, account int) (int, error) {
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
@@ -106,7 +109,7 @@ func (entity *Name) Get(context DatabaseService, account int) (int, error) {
 	return entity.ID, nil
 }
 
-// ID returns the entity identifier.
+// GetID returns the entity identifier.
 func (entity *Name) GetID() int {
 	return entity.ID
 }
@@ -116,6 +119,7 @@ func (entity *Name) SetID(id int) {
 	entity.ID = id
 }
 
+// Find is not used for names. Please use the `Get` method.
 func (entity *Name) Find(context DatabaseService) error {
 	return nil
 }

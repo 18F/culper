@@ -72,7 +72,10 @@ func signature(raw json.RawMessage) string {
 	return payload.Type
 }
 
+// Map is a map of JSON structures.
 type Map map[string]json.RawMessage
+
+// Array is an array of JSON structures.
 type Array []json.RawMessage
 
 func walkJSON(raw json.RawMessage, signature string) json.RawMessage {
@@ -82,11 +85,10 @@ func walkJSON(raw json.RawMessage, signature string) json.RawMessage {
 		for _, v := range content {
 			if match(v, signature) {
 				return v
-			} else {
-				v2 := walkJSON(v, signature)
-				if len(v2) > 0 {
-					return v2
-				}
+			}
+			v2 := walkJSON(v, signature)
+			if len(v2) > 0 {
+				return v2
 			}
 		}
 	} else if raw[0] == 91 {
@@ -95,11 +97,10 @@ func walkJSON(raw json.RawMessage, signature string) json.RawMessage {
 		for _, v := range content {
 			if match(v, signature) {
 				return v
-			} else {
-				v2 := walkJSON(v, signature)
-				if len(v2) > 0 {
-					return v2
-				}
+			}
+			v2 := walkJSON(v, signature)
+			if len(v2) > 0 {
+				return v2
 			}
 		}
 	}

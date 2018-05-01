@@ -90,6 +90,7 @@ func (entity *Branch) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *Branch) Find(context DatabaseService) error {
 	return nil
 }

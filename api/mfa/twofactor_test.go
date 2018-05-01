@@ -21,7 +21,7 @@ var tests = []struct {
 }
 
 func TestSecret(t *testing.T) {
-	service := MFAService{Log: &mock.LogService{}, Env: mock.Native{}}
+	service := Service{Log: &mock.LogService{}, Env: mock.Native{}}
 	first := service.Secret()
 	if first == "" {
 		t.Error("Secret should not be empty")
@@ -37,7 +37,7 @@ func TestSecret(t *testing.T) {
 }
 
 func TestGenerate(t *testing.T) {
-	service := MFAService{Log: &mock.LogService{}, Env: mock.Native{}}
+	service := Service{Log: &mock.LogService{}, Env: mock.Native{}}
 	for _, x := range tests {
 		if png, err := service.Generate(x.account, base32.StdEncoding.EncodeToString(x.secret)); err == nil {
 			if png != x.base64 {
@@ -48,7 +48,7 @@ func TestGenerate(t *testing.T) {
 }
 
 func TestAuthenticate(t *testing.T) {
-	service := MFAService{Log: &mock.LogService{}, Env: mock.Native{}}
+	service := Service{Log: &mock.LogService{}, Env: mock.Native{}}
 	for _, x := range tests {
 		if ok, err := service.Authenticate(x.token, base32.StdEncoding.EncodeToString(x.secret)); err == nil {
 			if ok {
@@ -60,7 +60,7 @@ func TestAuthenticate(t *testing.T) {
 
 // func TestEmailSuccess(t *testing.T) {
 // 	os.Clearenv()
-// 	service := MFAService{Log: mock.LogService{}, Env: mock.Native{}}
+// 	service := Service{Log: mock.LogService{}, Env: mock.Native{}}
 // 	if err := os.Setenv("EQIP_SMTP_API_KEY", "SANDBOX_SUCCESS"); err != nil {
 // 		t.Errorf("Failed to set EQIP_SMTP_API_KEY environment variable: %v", err)
 // 	}
@@ -71,7 +71,7 @@ func TestAuthenticate(t *testing.T) {
 
 // func TestEmailError(t *testing.T) {
 // 	os.Clearenv()
-// 	service := MFAService{Log: mock.LogService{}, Env: mock.Native{}}
+// 	service := Service{Log: mock.LogService{}, Env: mock.Native{}}
 // 	if err := os.Setenv("EQIP_SMTP_API_KEY", "SANDBOX_ERROR"); err != nil {
 // 		t.Errorf("Failed to set EQIP_SMTP_API_KEY environment variable: %v", err)
 // 	}
@@ -82,7 +82,7 @@ func TestAuthenticate(t *testing.T) {
 
 // func TestEmailCloudFoundry(t *testing.T) {
 // 	os.Clearenv()
-// 	service := MFAService{Log: mock.LogService{}, Env: cloudfoundry.CloudFoundry{}}
+// 	service := Service{Log: mock.LogService{}, Env: cloudfoundry.CloudFoundry{}}
 // 	if err := os.Setenv("VCAP_SERVICES", `{ "user-provided": [{ "credentials": { "api_key": "SANDBOX_SUCCESS" }, "label": "user-provided", "name": "eqip-smtp" }] }`); err != nil {
 // 		t.Errorf("Failed to set VCAP_SERVICES environment variable: %v", err)
 // 	}

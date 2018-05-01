@@ -8,6 +8,7 @@ import (
 	cfenv "github.com/cloudfoundry-community/go-cfenv"
 )
 
+// Configure the settings per the CloudFoundry environment.
 func Configure() {
 	current, err := cfenv.Current()
 	if err != nil {
@@ -17,23 +18,23 @@ func Configure() {
 	// Check for USPS API information
 	usps := vcap("usps-api", "api_key")
 	if usps != "" {
-		os.Setenv(api.USPS_API_API_KEY, usps)
+		os.Setenv(api.UspsAPIKey, usps)
 	}
 
 	// Check for database connection information
 	db := getDatabase(current, "eqip-postgres")
 	if db != "" {
-		os.Setenv(api.DATABASE_URI, db)
+		os.Setenv(api.DatabaseURI, db)
 	}
 
 	// Check for bindable HTTP/HTTPS information
 	uri := getURI(current)
 	if uri != "" {
-		os.Setenv(api.API_BASE_URL, uri)
+		os.Setenv(api.APIBaseURL, uri)
 	}
 	port := getPort(current)
 	if port != "" {
-		os.Setenv(api.PORT, port)
+		os.Setenv(api.Port, port)
 	}
 }
 

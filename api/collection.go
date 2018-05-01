@@ -4,8 +4,7 @@ import (
 	"encoding/json"
 )
 
-// Collection represents a structure composed of items in a structured
-// format.
+// Collection represents a structure composed of zero or more items.
 type Collection struct {
 	PayloadBranch Payload `json:"branch" sql:"-"`
 
@@ -203,6 +202,7 @@ func (entity *Collection) collectionItemIDs(context DatabaseService) {
 	}
 }
 
+// Find the previous entity stored if one is available.
 func (entity *Collection) Find(context DatabaseService) error {
 	context.Find(&Collection{ID: entity.ID, AccountID: entity.AccountID}, func(result interface{}) {
 		previous := result.(*Collection)
@@ -217,7 +217,7 @@ func (entity *Collection) Find(context DatabaseService) error {
 	return nil
 }
 
-// CollectionItem is an item of named payloads.
+// CollectionItem is an item of named payloads directly used in a `Collection`.
 type CollectionItem struct {
 	Item map[string]json.RawMessage `json:"Item" sql:"-"`
 
@@ -402,6 +402,8 @@ func getItemEntity(raw json.RawMessage) (string, Entity, error) {
 	return payload.Type, entity, err
 }
 
+// getItemPropertyNames retrieves the number of items in the collection item and assigns
+// property names so they may be filled.
 func (ci *CollectionItem) getItemPropertyNames(context DatabaseService) {
 	propertyNames := []string{}
 	context.Array(&CollectionItem{}, "array_agg(name)", &propertyNames, "id = ?", ci.ID)
@@ -411,6 +413,7 @@ func (ci *CollectionItem) getItemPropertyNames(context DatabaseService) {
 	}
 }
 
-func (entity *CollectionItem) Find(context DatabaseService) error {
+// Find is not used for collection items. Please use the `Get` method.
+func (ci *CollectionItem) Find(context DatabaseService) error {
 	return nil
 }

@@ -7,6 +7,7 @@ import (
 	"github.com/18F/e-QIP-prototype/api"
 )
 
+// RefreshHandler is the handler for refreshing JWTs.
 type RefreshHandler struct {
 	Env      api.Settings
 	Log      api.LogService
@@ -14,7 +15,7 @@ type RefreshHandler struct {
 	Database api.DatabaseService
 }
 
-// JwtTokenReferesh refreshes a given token.
+// ServeHTTP refreshes a given token.
 func (service RefreshHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	account := &api.Account{}
 

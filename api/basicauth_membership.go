@@ -15,7 +15,7 @@ type BasicAuthMembership struct {
 	Created      time.Time
 }
 
-// Save the Account entity.
+// Save the basic membership.
 func (entity *BasicAuthMembership) Save(context DatabaseService, account int) (int, error) {
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
@@ -28,7 +28,7 @@ func (entity *BasicAuthMembership) Save(context DatabaseService, account int) (i
 	return entity.ID, nil
 }
 
-// Delete the Account entity.
+// Delete the basic membership.
 func (entity *BasicAuthMembership) Delete(context DatabaseService, account int) (int, error) {
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
@@ -43,7 +43,7 @@ func (entity *BasicAuthMembership) Delete(context DatabaseService, account int) 
 	return entity.ID, nil
 }
 
-// Get the Account entity.
+// Get the basic membership.
 func (entity *BasicAuthMembership) Get(context DatabaseService, account int) (int, error) {
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
@@ -66,6 +66,7 @@ func (entity *BasicAuthMembership) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the basic membership.
 func (entity *BasicAuthMembership) Find(context DatabaseService) error {
 	// if entity.ID == 0 {
 	// 	return context.Where(entity, "Account.username = ?", entity.Username)
@@ -73,13 +74,13 @@ func (entity *BasicAuthMembership) Find(context DatabaseService) error {
 	return context.Select(entity)
 }
 
-// PasswordMatch determines if a plain text password matches its equivalent password hash
+// PasswordMatch determines if a plain text password matches its equivalent password hash.
 func (entity *BasicAuthMembership) PasswordMatch(password string) bool {
 	return bcrypt.CompareHashAndPassword([]byte(entity.PasswordHash), []byte(password)) == nil
 }
 
 // HashPassword converts a plaintext password and generates a hash and updates the
-// PasswordHash
+// `PasswordHash` value.
 func (entity *BasicAuthMembership) HashPassword(password string) error {
 	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
 	if err != nil {

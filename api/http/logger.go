@@ -7,11 +7,12 @@ import (
 	"github.com/18F/e-QIP-prototype/api"
 )
 
+// LoggingHandler is the handler for logging.
 type LoggingHandler struct {
 	Log api.LogService
 }
 
-// StandardLogging middleware for HTTP handling.
+// Middleware for standard logging.
 func (service LoggingHandler) Middleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		service.Log.AddField("ip", ipAddress(r))

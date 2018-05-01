@@ -2,6 +2,7 @@ package api
 
 import "encoding/json"
 
+// HistoryResidence represents the payload for the history residence section.
 type HistoryResidence struct {
 	PayloadList Payload `json:"List" sql:"-"`
 
@@ -126,6 +127,7 @@ func (entity *HistoryResidence) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *HistoryResidence) Find(context DatabaseService) error {
 	context.Find(&HistoryResidence{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*HistoryResidence)
@@ -138,6 +140,7 @@ func (entity *HistoryResidence) Find(context DatabaseService) error {
 	return nil
 }
 
+// HistoryEmployment represents the payload for the history employment section.
 type HistoryEmployment struct {
 	PayloadList             Payload `json:"List" sql:"-"`
 	PayloadEmploymentRecord Payload `json:"EmploymentRecord" sql:"-"`
@@ -297,6 +300,7 @@ func (entity *HistoryEmployment) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *HistoryEmployment) Find(context DatabaseService) error {
 	context.Find(&HistoryEmployment{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*HistoryEmployment)
@@ -314,6 +318,7 @@ func (entity *HistoryEmployment) Find(context DatabaseService) error {
 	return nil
 }
 
+// HistoryEducation represents the payload for the history education section.
 type HistoryEducation struct {
 	PayloadHasAttended Payload `json:"HasAttended" sql:"-"`
 	PayloadHasDegree10 Payload `json:"HasDegree10" sql:"-"`
@@ -500,6 +505,7 @@ func (entity *HistoryEducation) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *HistoryEducation) Find(context DatabaseService) error {
 	context.Find(&HistoryEducation{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*HistoryEducation)
@@ -522,6 +528,7 @@ func (entity *HistoryEducation) Find(context DatabaseService) error {
 	return nil
 }
 
+// HistoryFederal represents the payload for the history federal section.
 type HistoryFederal struct {
 	PayloadHasFederalService Payload `json:"HasFederalService" sql:"-"`
 	PayloadList              Payload `json:"List" sql:"-"`
@@ -679,6 +686,7 @@ func (entity *HistoryFederal) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *HistoryFederal) Find(context DatabaseService) error {
 	context.Find(&HistoryFederal{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*HistoryFederal)
@@ -696,7 +704,7 @@ func (entity *HistoryFederal) Find(context DatabaseService) error {
 	return nil
 }
 
-// HistoryComments subsection of identification section.
+// HistoryComments represents the payload for the history comments section.
 type HistoryComments struct {
 	PayloadComments Payload `json:"Comments" sql:"-"`
 
@@ -821,6 +829,7 @@ func (entity *HistoryComments) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *HistoryComments) Find(context DatabaseService) error {
 	context.Find(&HistoryComments{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*HistoryComments)

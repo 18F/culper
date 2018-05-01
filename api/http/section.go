@@ -6,6 +6,7 @@ import (
 	"github.com/18F/e-QIP-prototype/api"
 )
 
+// SectionHandler is the handler for returning section information.
 type SectionHandler struct {
 	Env      api.Settings
 	Log      api.LogService
@@ -13,7 +14,7 @@ type SectionHandler struct {
 	Database api.DatabaseService
 }
 
-// Section returns the data for one section of the application.
+// ServeHTTP returns data for one section of the application.
 func (service SectionHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	account := &api.Account{}
 

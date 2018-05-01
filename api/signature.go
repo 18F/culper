@@ -66,6 +66,7 @@ func (entity *Signature) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
+// Save the signature to data storage.
 func (entity *Signature) Save(context DatabaseService, account int) (int, error) {
 	entity.AccountID = account
 
@@ -96,6 +97,7 @@ func (entity *Signature) Save(context DatabaseService, account int) (int, error)
 	return entity.ID, nil
 }
 
+// Delete the signature from data storage.
 func (entity *Signature) Delete(context DatabaseService, account int) (int, error) {
 	entity.AccountID = account
 
@@ -124,6 +126,7 @@ func (entity *Signature) Delete(context DatabaseService, account int) (int, erro
 	return entity.ID, nil
 }
 
+// Get the signature from data storage.
 func (entity *Signature) Get(context DatabaseService, account int) (int, error) {
 	entity.AccountID = account
 
@@ -154,7 +157,7 @@ func (entity *Signature) Get(context DatabaseService, account int) (int, error) 
 	return entity.ID, nil
 }
 
-// ID returns the entity identifier.
+// GetID returns the entity identifier.
 func (entity *Signature) GetID() int {
 	return entity.ID
 }
@@ -164,6 +167,7 @@ func (entity *Signature) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *Signature) Find(context DatabaseService) error {
 	context.Find(&Signature{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*Signature)
