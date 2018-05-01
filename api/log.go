@@ -108,4 +108,5 @@ const (
 	AttachmentSaved      = "Attachment saved"
 	AttachmentDeleted    = "Attachment deleted"
 	AttachmentDownloaded = "Attachment downloaded"
+	CacheHeaders         = "Applying headers for caching"
 )
