@@ -90,4 +90,14 @@ describe('The gambling component', () => {
     const component = mount(<Gambling {...expected} />)
     expect(component.find('.losses').length).toEqual(0)
   })
+
+  it('can make fancy numbers', () => {
+    const expected = {
+      HasGamblingDebt: { value: 'No' },
+      List: { branch: {}, items: [{}] }
+    }
+    const component = mount(<Gambling {...expected} />)
+    expect(component.instance().fancyNumber(1000)).toEqual('1,000')
+    expect(component.instance().fancyNumber(10000)).toEqual('10,000')
+  })
 })
