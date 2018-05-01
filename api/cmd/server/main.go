@@ -98,9 +98,10 @@ func main() {
 	}
 
 	// Inject middleware
+	caching := http.CacheHandler{Log: logger}
 	cors := http.CORSHandler{Log: logger, Env: settings}
 	logging := http.LoggingHandler{Log: logger}
-	router := cors.Middleware(logging.Middleware(r))
+	router := caching.Middleware(cors.Middleware(logging.Middleware(r)))
 
 	// Get the public address
 	address := ":" + settings.String(api.Port)
