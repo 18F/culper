@@ -122,4 +122,10 @@ describe('The employment component', () => {
     const component = mount(<EmploymentItem {...props} />)
     expect(component.find('.reason-description').length).toBe(1)
   })
+
+  it('handles defaults', () => {
+    expect(EmploymentItem.defaultProps.dispatch()).toEqual(undefined)
+    expect(EmploymentItem.defaultProps.onUpdate()).toEqual(undefined)
+    expect(EmploymentItem.defaultProps.onError(null, [])).toEqual([])
+  })
 })

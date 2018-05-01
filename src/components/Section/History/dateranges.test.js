@@ -1,5 +1,6 @@
 import { validDate, rangeSorter, daysInMonth, gaps,
-         daysAgo, today, ten } from './dateranges'
+         daysAgo, today, ten, utc, julian, fromJulian, endOfMonth,
+         daysBetween, findPercentage } from './dateranges'
 
 describe('date ranges ', function () {
   it('validate valid date', () => {
@@ -136,5 +137,39 @@ describe('date ranges ', function () {
     tests.forEach(test => {
       expect(minitest(gaps(test.ranges), test.expected)).toBe(true)
     })
+  })
+
+  it('can utc', () => {
+    expect(utc(null)).toBe(null)
+    expect(utc('')).toBe(null)
+    expect(utc(new Date())).not.toBe(null)
+  })
+
+  it('can julian', () => {
+    expect(julian(null)).toBe(null)
+    expect(julian(new Date())).not.toBe(null)
+  })
+
+  it('can calc end of month', () => {
+    expect(endOfMonth(null)).toBe(null)
+    expect(endOfMonth(new Date('1/1/2010'))).not.toBe(null)
+  })
+
+  it('can calc days between', () => {
+    let start = new Date('1/1/2010')
+    let end = new Date('1/2/2010')
+    expect(daysBetween(null, null)).toBe(0)
+    expect(daysBetween(start, end)).toBe(1)
+  })
+
+  it('can find percentage/position within a date range', () => {
+    expect(findPercentage(10, 2, 2)).toBe(0)
+    expect(findPercentage(4, 10, 2)).toBe(0)
+    expect(findPercentage(170, 5, 40)).toBe(21.21)
+    expect(findPercentage(170, 5, 230)).toBe(100)
+  })
+
+  it('can go from juilian', () => {
+    expect(fromJulian(2458239)).not.toBe(null)
   })
 })

@@ -14,4 +14,9 @@ describe('The General Release component', () => {
     component.find('.signature button').simulate('click')
     expect(updates).toBe(1)
   })
+
+  it('handles defaults', () => {
+    expect(General.defaultProps.onUpdate()).toEqual(undefined)
+    expect(General.defaultProps.onError(null, [])).toEqual([])
+  })
 })

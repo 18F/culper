@@ -41,4 +41,10 @@ describe('The ReleaseOfGeneralAndMedical Release component', () => {
     const component = mount(<MemoryRouter><ReleaseOfGeneralAndMedical {...props} /></MemoryRouter>)
     expect(component.find('.medical-release').length).toBe(0)
   })
+
+  it('handles defaults', () => {
+    expect(ReleaseOfGeneralAndMedical.defaultProps.dispatch()).toEqual(undefined)
+    expect(ReleaseOfGeneralAndMedical.defaultProps.onUpdate()).toEqual(undefined)
+    expect(ReleaseOfGeneralAndMedical.defaultProps.onError(null, [])).toEqual([])
+  })
 })

@@ -15,4 +15,11 @@ describe('The ApoFpo component', () => {
     expect(component.find('input').length).toEqual(1)
     expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
+
+  it('handles defaults', () => {
+    expect(ApoFpo.defaultProps.tabBack()).toEqual(undefined)
+    expect(ApoFpo.defaultProps.tabNext()).toEqual(undefined)
+    expect(ApoFpo.defaultProps.onUpdate()).toEqual(undefined)
+    expect(ApoFpo.defaultProps.onError(null, [])).toEqual([])
+  })
 })

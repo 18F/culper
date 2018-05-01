@@ -13,4 +13,11 @@ describe('The Credit Release component', () => {
     component.find('.signature button').simulate('click')
     expect(updates).toBe(1)
   })
+
+  it('handles defaults', () => {
+    expect(Credit.defaultProps.dispatch()).toEqual(undefined)
+    expect(Credit.defaultProps.validator()).toEqual(false)
+    expect(Credit.defaultProps.onUpdate()).toEqual(undefined)
+    expect(Credit.defaultProps.onError(null, [])).toEqual([])
+  })
 })

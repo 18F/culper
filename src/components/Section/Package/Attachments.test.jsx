@@ -1,8 +1,15 @@
 import React from 'react'
+import MockAdapter from 'axios-mock-adapter'
 import { mount } from 'enzyme'
+import { api } from '../../../services'
 import Attachments from './Attachments'
 
 describe('The attachments component', () => {
+  beforeEach(() => {
+    const mock = new MockAdapter(api.proxy)
+    mock.onGet('/me/attachment').reply(200, {})
+  })
+
   it('displays for uploads', () => {
     const props = {
       AttachmentType: { value: 'Upload' }

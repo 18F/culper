@@ -37,4 +37,9 @@ describe('The Signature Release component', () => {
     expect(component.find('.name.wet').text()).toBe(`${name.first} ${name.middle} ${name.last}`)
     expect(component.find('.date.wet').text()).toBe(`${now.getMonth()+1}/${now.getDate()}/${now.getFullYear()}`)
   })
+
+  it('handles defaults', () => {
+    expect(Signature.defaultProps.onUpdate()).toEqual(undefined)
+    expect(Signature.defaultProps.onError(null, [])).toEqual([])
+  })
 })

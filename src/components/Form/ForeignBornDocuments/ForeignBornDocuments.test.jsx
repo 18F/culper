@@ -37,6 +37,7 @@ describe('The ForeignBornDocuments component', () => {
     component.find('.other-explanation textarea').simulate('change')
     component.find('.foreign-born-document-number input').simulate('change')
     component.find('.month input').simulate('change', { target: { value: '1' } })
-    expect(updates).toBe(5)
+    component.find('.not-applicable .button input').simulate('change')
+    expect(updates).toBe(6)
   })
 })

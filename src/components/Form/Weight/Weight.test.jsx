@@ -23,4 +23,17 @@ describe('The Weight component', () => {
     expect(component.find('.usa-input-error-label').length).toEqual(0)
     expect(hits).toBeGreaterThan(0)
   })
+
+  it('no error on empty with defaults', () => {
+    const expected = {
+      name: 'input-focus',
+      label: 'Pounds'
+    }
+    const component = mount(<Weight {...expected} />)
+
+    component.find('.pounds input').simulate('change')
+    expect(component.find('label').text()).toEqual(expected.label)
+    expect(component.find('.pounds input').length).toEqual(1)
+    expect(component.find('.usa-input-error-label').length).toEqual(0)
+  })
 })
