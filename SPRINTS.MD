@@ -249,12 +249,19 @@ Story Points Completed: 102
 ```
 View Sprint 35 [backlog items][69] completed and [burndown chart][72]
 
-## Sprint 36 (current sprint)
+## Sprint 36
 ```
 Duration: April 5, 2018 to Apr 18, 2018
-Story Points Planned: 110
+Story Points Completed: 84
 ```
-View Sprint 36 [backlog items][71] in progress
+View Sprint 36 [backlog items][71] completed and [burndown chart][73]
+
+## Sprint 37 (Transition/Closeout Sprint) 
+```
+Duration: April 19, 2018 to May 2, 2018
+Completed Transition Tasks
+```
+
 
 [1]: http://burndown.io/#truetandem/e-QIP-prototype/14
 [2]: https://github.com/truetandem/e-QIP-prototype/milestone/2?closed=1
@@ -326,5 +333,6 @@ View Sprint 36 [backlog items][71] in progress
 [68]: https://github.com/truetandem/e-QIP-prototype/issues/2710
 [69]: https://github.com/truetandem/e-QIP-prototype/milestone/36?closed=1
 [70]: https://github.com/truetandem/e-QIP-prototype/issues/2760
-[71]: https://github.com/truetandem/e-QIP-prototype/milestone/37
+[71]: https://github.com/truetandem/e-QIP-prototype/milestone/37?closed=1
 [72]: https://github.com/truetandem/e-QIP-prototype/issues/2833
+[73]: https://github.com/truetandem/e-QIP-prototype/issues/2938
