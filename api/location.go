@@ -48,6 +48,7 @@ func (entity *Location) Marshal() Payload {
 	return MarshalPayloadEntity("location", entity)
 }
 
+// Save the location to data storage.
 func (entity *Location) Save(context DatabaseService, account int) (int, error) {
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
@@ -60,6 +61,7 @@ func (entity *Location) Save(context DatabaseService, account int) (int, error) 
 	return entity.ID, nil
 }
 
+// Delete the location from data storage.
 func (entity *Location) Delete(context DatabaseService, account int) (int, error) {
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
@@ -74,6 +76,7 @@ func (entity *Location) Delete(context DatabaseService, account int) (int, error
 	return entity.ID, nil
 }
 
+// Get the location from data storage.
 func (entity *Location) Get(context DatabaseService, account int) (int, error) {
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
@@ -229,7 +232,7 @@ func has(target string, options ...string) bool {
 	return false
 }
 
-// ID returns the entity identifier.
+// GetID returns the entity identifier.
 func (entity *Location) GetID() int {
 	return entity.ID
 }
@@ -239,18 +242,22 @@ func (entity *Location) SetID(id int) {
 	entity.ID = id
 }
 
+// Find is not used for locations. Please use the `Get` method.
 func (entity *Location) Find(context DatabaseService) error {
 	return nil
 }
 
+// IsDomestic returns whether the location is in the United States.
 func (entity *Location) IsDomestic() bool {
 	return entity.Country == "United States" || entity.Layout == LayoutUSAddress
 }
 
+// IsPostOffice returns whether the location is APO, FPO, or DPO.
 func (entity *Location) IsPostOffice() bool {
 	return entity.Country == "POSTOFFICE"
 }
 
+// IsInternational returns whether the location is outside the United States and not a postal address.
 func (entity *Location) IsInternational() bool {
 	return !entity.IsDomestic() && !entity.IsPostOffice()
 }

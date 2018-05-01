@@ -2,8 +2,10 @@ package mock
 
 import "html/template"
 
-type XmlService struct{}
+// XMLService is a mock implementation of handling XML.
+type XMLService struct{}
 
-func (service *XmlService) DefaultTemplate(templateName string, data map[string]interface{}) template.HTML {
+// DefaultTemplate returns a template given data.
+func (service *XMLService) DefaultTemplate(templateName string, data map[string]interface{}) template.HTML {
 	return template.HTML("<span>test</span>")
 }

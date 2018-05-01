@@ -8,6 +8,7 @@ import (
 	"github.com/18F/e-QIP-prototype/api"
 )
 
+// HashHandler is the handler for the form hash.
 type HashHandler struct {
 	Env      api.Settings
 	Log      api.LogService
@@ -15,7 +16,7 @@ type HashHandler struct {
 	Database api.DatabaseService
 }
 
-// Hash of the application data used to verify data integrity.
+// ServeHTTP returns the hash of the application data used to verify data integrity.
 func (service HashHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	account := &api.Account{}
 

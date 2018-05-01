@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 )
 
+// CitizenshipStatus represents the payload for the citizenship status section.
 type CitizenshipStatus struct {
 	PayloadCitizenshipStatus           Payload `json:"CitizenshipStatus" sql:"-"`
 	PayloadAbroadDocumentation         Payload `json:"AbroadDocumentation" sql:"-"`
@@ -918,7 +919,7 @@ func (entity *CitizenshipStatus) Get(context DatabaseService, account int) (int,
 	return entity.ID, nil
 }
 
-// ID returns the entity identifier.
+// GetID returns the entity identifier.
 func (entity *CitizenshipStatus) GetID() int {
 	return entity.ID
 }
@@ -928,6 +929,7 @@ func (entity *CitizenshipStatus) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *CitizenshipStatus) Find(context DatabaseService) error {
 	context.Find(&CitizenshipStatus{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*CitizenshipStatus)
@@ -1060,6 +1062,7 @@ func (entity *CitizenshipStatus) Find(context DatabaseService) error {
 	return nil
 }
 
+// CitizenshipMultiple represents the payload for the citizenship multiple section.
 type CitizenshipMultiple struct {
 	PayloadHasMultiple Payload `json:"HasMultiple" sql:"-"`
 	PayloadList        Payload `json:"List" sql:"-"`
@@ -1215,7 +1218,7 @@ func (entity *CitizenshipMultiple) Get(context DatabaseService, account int) (in
 	return entity.ID, nil
 }
 
-// ID returns the entity identifier.
+// GetID returns the entity identifier.
 func (entity *CitizenshipMultiple) GetID() int {
 	return entity.ID
 }
@@ -1225,6 +1228,7 @@ func (entity *CitizenshipMultiple) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *CitizenshipMultiple) Find(context DatabaseService) error {
 	context.Find(&CitizenshipMultiple{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*CitizenshipMultiple)
@@ -1242,6 +1246,7 @@ func (entity *CitizenshipMultiple) Find(context DatabaseService) error {
 	return nil
 }
 
+// CitizenshipPassports represents the payload for the citizenship passports section.
 type CitizenshipPassports struct {
 	PayloadPassports Payload `json:"Passports" sql:"-"`
 
@@ -1353,7 +1358,7 @@ func (entity *CitizenshipPassports) Get(context DatabaseService, account int) (i
 	return entity.ID, nil
 }
 
-// ID returns the entity identifier.
+// GetID returns the entity identifier.
 func (entity *CitizenshipPassports) GetID() int {
 	return entity.ID
 }
@@ -1363,6 +1368,7 @@ func (entity *CitizenshipPassports) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *CitizenshipPassports) Find(context DatabaseService) error {
 	context.Find(&CitizenshipPassports{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*CitizenshipPassports)
@@ -1375,7 +1381,7 @@ func (entity *CitizenshipPassports) Find(context DatabaseService) error {
 	return nil
 }
 
-// CitizenshipComments subsection of identification section.
+// CitizenshipComments represents the payload for the citizenship comments section.
 type CitizenshipComments struct {
 	PayloadComments Payload `json:"Comments" sql:"-"`
 
@@ -1500,6 +1506,7 @@ func (entity *CitizenshipComments) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *CitizenshipComments) Find(context DatabaseService) error {
 	context.Find(&CitizenshipComments{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*CitizenshipComments)

@@ -7,6 +7,7 @@ import (
 	"github.com/18F/e-QIP-prototype/api"
 )
 
+// FormHandler is the handler for the form.
 type FormHandler struct {
 	Env      api.Settings
 	Log      api.LogService
@@ -14,7 +15,7 @@ type FormHandler struct {
 	Database api.DatabaseService
 }
 
-// AllSections handler will return a JSON object of all currently saved application
+// ServeHTTP will return a JSON object of all currently saved application
 // information specifict to the account.
 func (service FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	account := &api.Account{}

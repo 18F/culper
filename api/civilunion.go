@@ -632,6 +632,7 @@ func (entity *CivilUnion) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *CivilUnion) Find(context DatabaseService) error {
 	context.Find(&CivilUnion{ID: entity.ID, AccountID: entity.AccountID}, func(result interface{}) {
 		previous := result.(*CivilUnion)

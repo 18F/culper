@@ -22,7 +22,7 @@ func TestSamlResponse(t *testing.T) {
 	os.Setenv("SAML_CONSUMER_SERVICE_URL", "")
 
 	settings := mock.Native{}
-	service := &SamlService{Log: &mock.LogService{}, Env: settings}
+	service := &Service{Log: &mock.LogService{}, Env: settings}
 
 	// Create a request
 	_, _, err := service.CreateAuthenticationRequest()
@@ -31,7 +31,7 @@ func TestSamlResponse(t *testing.T) {
 	}
 
 	// Public signing cert
-	b, err := ioutil.ReadFile(settings.String(api.SAML_PUBLIC_CERT))
+	b, err := ioutil.ReadFile(settings.String(api.SamlPublicCert))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -42,26 +42,26 @@ func TestSamlResponse(t *testing.T) {
 	publickey = strings.Replace(publickey, " \n", "", -1)
 
 	// Find the right callback URI
-	callback := settings.String(api.SAML_CONSUMER_SERVICE_URL)
+	callback := settings.String(api.SamlConsumerServiceURL)
 	if callback == "" {
-		callback = settings.String(api.API_BASE_URL) + "/auth/saml/callback"
+		callback = settings.String(api.APIBaseURL) + "/auth/saml/callback"
 	}
 
 	// Create a response
 	signedResponse := saml.NewSignedResponse()
 	signedResponse.Destination = callback
-	signedResponse.Issuer.Url = settings.String(api.SAML_IDP_SSO_URL)
-	signedResponse.Assertion.Issuer.Url = settings.String(api.SAML_IDP_SSO_URL)
+	signedResponse.Issuer.Url = settings.String(api.SamlIdpSsoURL)
+	signedResponse.Assertion.Issuer.Url = settings.String(api.SamlIdpSsoURL)
 	signedResponse.Signature.KeyInfo.X509Data.X509Certificate.Cert = publickey
 	signedResponse.Assertion.Subject.NameID.Value = "test01"
 	signedResponse.AddAttribute("uid", "test01")
 	signedResponse.AddAttribute("email", "someone@domain")
 	signedResponse.Assertion.Subject.SubjectConfirmation.SubjectConfirmationData.InResponseTo = callback
-	signedResponse.InResponseTo = settings.String(api.SAML_IDP_SSO_DESC_URL)
+	signedResponse.InResponseTo = settings.String(api.SamlIdpSsoDescURL)
 	signedResponse.Assertion.Subject.SubjectConfirmation.SubjectConfirmationData.Recipient = callback
 
 	// Signed base64 encoded XML string
-	encodedResponse, err := signedResponse.EncodedSignedString(settings.String(api.SAML_PRIVATE_CERT))
+	encodedResponse, err := signedResponse.EncodedSignedString(settings.String(api.SamlPrivateCert))
 	if err != nil {
 		t.Fatal(err)
 	}

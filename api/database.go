@@ -1,5 +1,6 @@
 package api
 
+// DatabaseService represents a persisted data storage.
 type DatabaseService interface {
 	Configure()
 	CheckTable(entity interface{}) error

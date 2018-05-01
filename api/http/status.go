@@ -7,6 +7,7 @@ import (
 	"github.com/18F/e-QIP-prototype/api"
 )
 
+// StatusHandler is the handler for the application status.
 type StatusHandler struct {
 	Env      api.Settings
 	Log      api.LogService
@@ -14,7 +15,7 @@ type StatusHandler struct {
 	Database api.DatabaseService
 }
 
-// Status returns the accounts current state.
+// ServeHTTP returns the accounts current state.
 func (service StatusHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	account := &api.Account{}
 

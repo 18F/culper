@@ -90,6 +90,7 @@ type Body interface {
 // UserTemplate stores an applicants demographic information
 type UserTemplate string
 
+// Load will use the application data in the user template.
 func (t *UserTemplate) Load(app map[string]interface{}) error {
 	tmpl := template.Must(template.New("user.xml").Parse(userTemplate))
 	var output bytes.Buffer
@@ -103,6 +104,7 @@ func (t *UserTemplate) Load(app map[string]interface{}) error {
 // Base64Content is a string that can compress and convert itself to base64
 type Base64Content string
 
+// Compress the `Base64Content` using zlib.
 func (b *Base64Content) Compress(content string) error {
 	var zlibBytes bytes.Buffer
 	gw := zlib.NewWriter(&zlibBytes)
@@ -270,6 +272,7 @@ type IsAliveSOAPResponse struct {
 	ResponseBody []byte
 }
 
+// SetResponseBody sets the responses body value.
 func (r *IsAliveSOAPResponse) SetResponseBody(b []byte) {
 	r.ResponseBody = b
 }
@@ -281,6 +284,7 @@ type ImportSOAPResponse struct {
 	ResponseBody          []byte
 }
 
+// SetResponseBody sets the responses body value.
 func (r *ImportSOAPResponse) SetResponseBody(b []byte) {
 	r.ResponseBody = b
 }

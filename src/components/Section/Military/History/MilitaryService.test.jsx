@@ -9,7 +9,7 @@ describe('The military service component', () => {
     }
     const component = mount(<MilitaryService {...expected} />)
     expect(component.find('.service').length).toEqual(1)
-    expect(component.find('.status').length).toEqual(0)
+    expect(component.find('.status').length).toEqual(1)
     expect(component.find('.officer').length).toEqual(1)
     expect(component.find('.service-number').length).toEqual(1)
     expect(component.find('.daterange').length).toEqual(1)
@@ -18,15 +18,6 @@ describe('The military service component', () => {
     expect(component.find('.discharge-type-otherex').length).toEqual(0)
     expect(component.find('.discharge-reason').length).toEqual(0)
     expect(component.find('.discharge-date').length).toEqual(0)
-  })
-
-  it('selecting a national guard service provides the status', () => {
-    const expected = {
-      name: 'military-service',
-      Service: { value: 'AirNationalGuard' }
-    }
-    const component = mount(<MilitaryService {...expected} />)
-    expect(component.find('.status').length).toEqual(1)
   })
 
   it('select no for discharged and no new fields appear', () => {

@@ -34,6 +34,7 @@ func (transmission *Transmission) Save(context DatabaseService) error {
 	return err
 }
 
-func (entity *Transmission) Find(context DatabaseService) error {
+// Find is not used for transmissions. Please use the `Get` method.
+func (transmission *Transmission) Find(context DatabaseService) error {
 	return nil
 }

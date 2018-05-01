@@ -71,6 +71,7 @@ func (entity *Telephone) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
+// Save the telephone to data storage.
 func (entity *Telephone) Save(context DatabaseService, account int) (int, error) {
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
@@ -83,6 +84,7 @@ func (entity *Telephone) Save(context DatabaseService, account int) (int, error)
 	return entity.ID, nil
 }
 
+// Delete the telephone from data storage.
 func (entity *Telephone) Delete(context DatabaseService, account int) (int, error) {
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
@@ -97,6 +99,7 @@ func (entity *Telephone) Delete(context DatabaseService, account int) (int, erro
 	return entity.ID, nil
 }
 
+// Get the telephone from data storage.
 func (entity *Telephone) Get(context DatabaseService, account int) (int, error) {
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
@@ -111,7 +114,7 @@ func (entity *Telephone) Get(context DatabaseService, account int) (int, error) 
 	return entity.ID, nil
 }
 
-// ID returns the entity identifier.
+// GetID returns the entity identifier.
 func (entity *Telephone) GetID() int {
 	return entity.ID
 }
@@ -121,6 +124,7 @@ func (entity *Telephone) SetID(id int) {
 	entity.ID = id
 }
 
+// Find is not used for telephones. Please use the `Get` method.
 func (entity *Telephone) Find(context DatabaseService) error {
 	return nil
 }

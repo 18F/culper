@@ -41,7 +41,7 @@
   {{- end}}
 
   {{- if branchcollectionHas .props.Passports | eq "Yes"}}
-  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+  <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
   <SummaryComment></SummaryComment>
   {{end}}
 </ForeignPassports>

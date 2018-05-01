@@ -8,14 +8,19 @@ import (
 	"github.com/18F/e-QIP-prototype/api"
 )
 
+// Map is a map of JSON structures.
 type Map map[string]json.RawMessage
+
+// Array is an array of JSON structures.
 type Array []json.RawMessage
 
+// Fuzzer is a simple fuzzer implementation.
 type Fuzzer struct {
 	r         *rand.Rand
 	errorRate float64
 }
 
+// NewFuzzer returns a configured `Fuzzer`.
 func NewFuzzer() Fuzzer {
 	s := rand.NewSource(time.Now().UnixNano())
 	r := rand.New(s)
@@ -24,10 +29,12 @@ func NewFuzzer() Fuzzer {
 	}
 }
 
+// ErrorRate sets the rate of errors.
 func (fuzzer *Fuzzer) ErrorRate(rate float64) {
 	fuzzer.errorRate = rate
 }
 
+// WalkJSON will walk a JSON structure returning the potentially altered structure.
 func (fuzzer Fuzzer) WalkJSON(raw json.RawMessage) json.RawMessage {
 	if raw[0] == 123 {
 		var content Map
@@ -68,6 +75,7 @@ func (fuzzer Fuzzer) WalkJSON(raw json.RawMessage) json.RawMessage {
 	return raw
 }
 
+// Mutate will fuzz a JSON structure.
 func (fuzzer Fuzzer) Mutate(raw json.RawMessage) json.RawMessage {
 	payload := &api.Payload{}
 	if err := payload.Unmarshal(raw); err != nil {
