@@ -89,4 +89,32 @@ describe('The Address component', () => {
     const component = mount(<Address {...props} />)
     expect(component.find('.address-options .postoffice').length).toBe(1)
   })
+
+  it('simulate blurring', () => {
+    let blurred = 0
+    const props = {
+      onBlur: () => { blurred++ }
+    }
+    const component = mount(<Address {...props} />)
+    component.find('.street input').simulate('blur')
+    component.find('.street2 input').simulate('blur')
+    component.find('.city input').simulate('blur')
+    component.find('.state input').simulate('blur')
+    component.find('.zipcode input').simulate('blur')
+    expect(blurred).toBe(5)
+  })
+
+  it('simulate focus', () => {
+    let focused = 0
+    const props = {
+      onFocus: () => { focused++ }
+    }
+    const component = mount(<Address {...props} />)
+    component.find('.street input').simulate('focus')
+    component.find('.street2 input').simulate('focus')
+    component.find('.city input').simulate('focus')
+    component.find('.state input').simulate('focus')
+    component.find('.zipcode input').simulate('focus')
+    expect(focused).toBe(5)
+  })
 })
