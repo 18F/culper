@@ -1,0 +1,43 @@
+@import 'eqip-colors';
+
+.attachments {
+  .file-upload-label {
+    display: none;
+    border: solid 3px $eapp-blue;
+    border-radius: 5px;
+    color: $eapp-blue;
+    padding: 1rem;
+    display: inline-block;
+    width: fit-content;
+
+    i {
+      margin-left: 1rem;
+    }
+  }
+
+  button {
+    padding: 1.5rem 3rem;
+  }
+
+  table > tbody > tr > td {
+    max-width: 64rem;
+    width: 100%;
+    border-top: 2px solid $eapp-grey;
+    border-bottom: 2px solid $eapp-grey;
+    border-left: none;
+    border-right: none;
+
+    button {
+      background: #fff;
+      color: $eapp-grey-darker;
+      text-decoration: none;
+      padding: 0;
+      margin: 0;
+
+      i {
+        display: block;
+        margin-bottom: 1rem;
+      }
+    }
+  }
+}

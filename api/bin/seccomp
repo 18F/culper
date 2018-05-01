@@ -1,0 +1,2 @@
+#!/bin/sh
+strace -ff -o /tmp/strace/eapp.strace $@;

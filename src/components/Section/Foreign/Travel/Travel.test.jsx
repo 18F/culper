@@ -95,4 +95,29 @@ describe('The foreign travel component', () => {
     component.find('.foreign-travel-threatened-explanation textarea').simulate('change')
     expect(updates).toBe(18)
   })
+
+  it('deselect values', () => {
+    let updates = 0
+    const expected = {
+      name: 'foreign-travel',
+      HasForeignTravelOutside: { value: 'Yes' },
+      HasForeignTravelOfficial: { value: 'No' },
+      List: {
+        branch: { value: 'No' },
+        items: [
+          {
+            Item: {
+              Dates: {},
+              Days: { values: ['1-5'] }
+            }
+          }
+        ]
+      },
+      onUpdate: () => { updates++ }
+    }
+    const component = mount(<Travel {...expected} />)
+    expect(component.find('.accordion').length).toBe(1)
+    component.find('.foreign-travel-days .days-1-5 input').simulate('change')
+    expect(updates).toBe(2)
+  })
 })

@@ -9,11 +9,11 @@ const relationships = function (state = {}, action) {
   updated[action.property] = action.values
 
   switch (action.type) {
-    case 'Relationships.ClearSameSpouseConfirmed':
-      updated = clearCohabitantsSameSpouseConfirmed({...updated})
-      return updated
-    default:
-      return updated
+  case 'Relationships.ClearSameSpouseConfirmed':
+    updated = clearCohabitantsSameSpouseConfirmed({...updated})
+    return updated
+  default:
+    return updated
   }
 }
 

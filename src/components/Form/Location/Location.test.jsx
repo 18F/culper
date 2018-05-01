@@ -1,6 +1,6 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import Location, { timeout, countryValueResolver } from './Location'
+import Location, { timeout, countryValueResolver, country } from './Location'
 
 describe('The Address component', () => {
   it('Renders without errors', () => {
@@ -115,6 +115,10 @@ describe('The Address component', () => {
         selectors: ['.state', '.city']
       },
       {
+        props: { layout: Location.US_CITY_STATE_INTERNATIONAL_CITY_COUNTRY, country: { value: 'United States' } },
+        selectors: ['.state', '.city']
+      },
+      {
         props: { layout: Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY, country: { value: 'United States' } },
         selectors: ['.city', '.state', '.zipcode']
       },
@@ -166,6 +170,32 @@ describe('The Address component', () => {
         }
         expect(found).toBe(true)
       })
+    })
+  })
+
+  it('renders fields', () => {
+    const tests = [
+      {
+        fields: ['street']
+      },
+      {
+        fields: ['street2']
+      },
+      {
+        fields: ['city']
+      },
+      {
+        fields: ['state']
+      },
+      {
+        fields: ['stateZipcode']
+      }
+    ]
+
+    tests.forEach(test => {
+      const component = mount(<Location />)
+      let resolved = component.instance().renderFields(test.fields)
+      expect(resolved).not.toEqual(undefined)
     })
   })
 
@@ -239,6 +269,153 @@ describe('The Address component', () => {
 
     tests.forEach(test => {
       expect(countryValueResolver(test.props)).toEqual(test.expect)
+    })
+  })
+
+  it('can process extracting country', () => {
+    const tests = [
+      {
+        data: {
+          value: 'United States'
+        },
+        expect: 'United States'
+      },
+      {
+        data: null,
+        expect: null
+      },
+      {
+        data: 'United States',
+        expect: 'United States'
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(country(test.data)).toEqual(test.expect)
+    })
+  })
+
+  it('can append to address book', () => {
+    const tests = [
+      {
+        data: {
+          books: [],
+          name: 'default',
+          address: {
+            street: '123 Some Rd',
+            country: {
+              value: 'United States'
+            },
+            layout: Location.US_ADDRESS,
+            validated: false
+          }
+        },
+        expect: []
+      },
+      {
+        data: {
+          books: [],
+          name: 'default',
+          address: {
+            street: '123 Some Rd',
+            country: {
+              value: 'United States'
+            },
+            layout: Location.US_ADDRESS,
+            validated: true
+          }
+        },
+        expect: []
+      },
+      {
+        data: {
+          books: [],
+          name: 'default',
+          address: {
+            street: '123 Some Rd',
+            country: {
+              value: 'United States'
+            },
+            city: 'Arlington',
+            state: 'VA',
+            zipcode: '22202',
+            layout: Location.US_ADDRESS,
+            validated: true
+          }
+        },
+        expect: [{'city': 'Arlington', 'country': {'value': 'United States'}, 'layout': 'US Address', 'state': 'VA', 'street': '123 Some Rd', 'validated': true, 'zipcode': '22202'}]
+
+      },
+      {
+        data: {
+          books: [],
+          name: 'default',
+          address: {
+            country: {
+              value: 'United States'
+            },
+            layout: Location.US_ADDRESS,
+            validated: true
+          }
+        },
+        expect: []
+      },
+      {
+        data: {
+          books: [],
+          name: 'default',
+          address: {
+            street: '123 Some Rd',
+            country: {
+              value: 'Germany'
+            },
+            layout: Location.ADDRESS,
+            validated: true
+          }
+        },
+        expect: []
+      },
+      {
+        data: {
+          books: [],
+          name: 'default',
+          address: {
+            street: '123 Some Rd',
+            country: {
+              value: 'Germany'
+            },
+            city: 'Munich',
+            layout: Location.ADDRESS,
+            validated: true
+          }
+        },
+        expect: [{'city': 'Munich', 'country': {'value': 'Germany'}, 'layout': 'Address', 'street': '123 Some Rd', 'validated': true}]
+      },
+      {
+        data: {
+          books: [{
+            uid: 'abc-123'
+          }],
+          name: 'default',
+          address: {
+            uid: 'abc-123',
+            street: '123 Some Rd',
+            city: 'Munich',
+            country: {
+              value: 'Germany'
+            },
+            layout: Location.ADDRESS,
+            validated: true
+          }
+        },
+        expect: []
+      }
+    ]
+
+    tests.forEach(test => {
+      const loc = mount(<Location />)
+      const book = loc.instance().appendToAddressBook(test.data.books, test.data.name, test.data.address)
+      expect(book).toEqual(test.expect)
     })
   })
 })

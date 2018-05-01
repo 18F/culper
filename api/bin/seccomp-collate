@@ -1,0 +1,36 @@
+#!/bin/sh
+
+# Clean up previous artifacts
+rm -f eapp-seccomp.json;
+
+# Start the JSON body
+cat <<EOF > eapp-seccomp.json
+{
+		"defaultAction": "SCMP_ACT_ERRNO",
+		"syscalls": [
+				{
+						"action": "SCMP_ACT_ALLOW",
+						"name": "eApp API",
+						"names": [
+EOF
+
+# Add sorted syscalls to the JSON
+cat /tmp/strace/eapp.strace* \
+		| awk '/^[a-zA-Z0-9_]+\(/' \
+		| awk -F "(" '{print "\t" "\t" "\t" "\t" "\t" "\t" "\t" "\x22" $1 "\x22" ","}' \
+		| sort -u \
+		>> eapp-seccomp.json;
+
+# Close the JSON structure
+cat <<EOF >> eapp-seccomp.json
+						],
+						"args": []
+				}
+		],
+		"architectures": [
+				"SCMP_ARCH_X86_64",
+				"SCMP_ARCH_X86",
+				"SCMP_ARCH_X32"
+		]
+}
+EOF

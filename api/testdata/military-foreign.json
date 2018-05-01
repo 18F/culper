@@ -1,0 +1,196 @@
+{
+  "type": "military.foreign",
+  "props": {
+    "List": {
+      "type": "collection",
+      "props": {
+        "branch": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "items": [
+          {
+            "Item": {
+              "Organization": {
+                "type": "radio",
+                "props": {
+                  "value": "Militia",
+                  "checked": true
+                }
+              },
+              "Name": {
+                "type": "text",
+                "props": {
+                  "value": "the name of the organization"
+                }
+              },
+              "Dates": {
+                "type": "daterange",
+                "props": {
+                  "from": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "7",
+                      "day": "1",
+                      "year": "2017",
+                      "estimated": false,
+                      "date": "2017-07-01T00:00:00Z"
+                    }
+                  },
+                  "to": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "7",
+                      "day": "25",
+                      "year": "2017",
+                      "estimated": false,
+                      "date": "2017-07-25T00:00:00Z"
+                    }
+                  },
+                  "present": false
+                }
+              },
+              "Country": {
+                "type": "country",
+                "props": {
+                  "value": ["Germany"]
+                }
+              },
+              "Rank": {
+                "type": "text",
+                "props": {
+                  "value": "General"
+                }
+              },
+              "Division": {
+                "type": "text",
+                "props": {
+                  "value": "Luftwaffe"
+                }
+              },
+              "Circumstances": {
+                "type": "textarea",
+                "props": {
+                  "value": "the circumstances"
+                }
+              },
+              "ReasonLeft": {
+                "type": "textarea",
+                "props": {
+                  "value": "disbanded"
+                }
+              },
+              "MaintainsContact": {
+                "type": "branch",
+                "props": {
+                  "value": "Yes"
+                }
+              },
+              "List": {
+                "type": "collection",
+                "props": {
+                  "branch": {
+                    "type": "branch",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "items": [
+                    {
+                      "Item": {
+                        "Has": {
+                          "type": "branch",
+                          "props": {
+                            "value": "Yes"
+                          }
+                        },
+                        "Name": {
+                          "type": "name",
+                          "props": {
+                            "first": "John",
+                            "firstInitialOnly": false,
+                            "last": "Smith",
+                            "lastInitialOnly": false,
+                            "middle": "H",
+                            "middleInitialOnly": true,
+                            "noMiddleName": false,
+                            "suffix": "Other",
+                            "suffixOther": "XX"
+                          }
+                        },
+                        "Address": {
+                          "type": "location",
+                          "props": {
+                            "layout": "Address",
+                            "street": "123 Some Rd",
+                            "street2": "",
+                            "city": "Arlington",
+                            "state": "VA",
+                            "zipcode": "22202",
+                            "county": "",
+                            "country": "United States",
+                            "validated": false
+                          }
+                        },
+                        "Title": {
+                          "type": "text",
+                          "props": {
+                            "value": "Captain"
+                          }
+                        },
+                        "Dates": {
+                          "type": "daterange",
+                          "props": {
+                            "from": {
+                              "type": "datecontrol",
+                              "props": {
+                                "month": "7",
+                                "day": "1",
+                                "year": "2017",
+                                "estimated": false,
+                                "date": "2017-07-01T00:00:00Z"
+                              }
+                            },
+                            "to": {
+                              "type": "datecontrol",
+                              "props": {
+                                "month": "7",
+                                "day": "25",
+                                "year": "2017",
+                                "estimated": false,
+                                "date": "2017-07-25T00:00:00Z"
+                              }
+                            },
+                            "present": false
+                          }
+                        },
+                        "Frequency": {
+                          "type": "text",
+                          "props": {
+                            "value": "Weekly"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "Item": {
+                        "Has": {
+                          "type": "branch",
+                          "props": {
+                            "value": "No"
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

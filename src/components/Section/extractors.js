@@ -14,7 +14,7 @@ export const extractApplicantBirthdate = (app) => {
 
 export const extractOtherNames = (app) => {
   let names = []
-  let identification = app.Identification;
+  let identification = app.Identification
   if (!identification) {
     return names
   }

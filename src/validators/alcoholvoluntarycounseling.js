@@ -40,12 +40,12 @@ export class VoluntaryCounselingValidator {
 
   validCompletedTreatment () {
     switch (this.completedTreatment) {
-      case 'Yes':
-        return true
-      case 'No':
-        return validGenericTextfield(this.noCompletedTreatmentExplanation)
-      default:
-        return false
+    case 'Yes':
+      return true
+    case 'No':
+      return validGenericTextfield(this.noCompletedTreatmentExplanation)
+    default:
+      return false
     }
   }
 

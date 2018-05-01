@@ -75,14 +75,14 @@ export const validPhoneNumber = (phone) => {
 
   const trimmed = `${parseInt(phone.number, 10)}`
   switch (phone.type) {
-    case 'Domestic':
-      return trimmed.length === 10
-    case 'DSN':
-      return trimmed.length === 7
-    case 'International':
-      return trimmed.length > 10
-    default:
-      return false
+  case 'Domestic':
+    return trimmed.length === 10
+  case 'DSN':
+    return trimmed.length === 7
+  case 'International':
+    return trimmed.length > 10
+  default:
+    return false
   }
 }
 
@@ -136,9 +136,7 @@ export const withinSevenYears = (from, to) => {
 }
 
 export const validAccordion = (collection, valid, ignoreBranch = false) => {
-  const branch = ignoreBranch
-        ? { value: 'No' }
-        : (collection || {}).branch || {}
+  const branch = ignoreBranch ? { value: 'No' } : (collection || {}).branch || {}
   const items = (collection || {}).items || []
   if (branch.value !== 'No') {
     return false
@@ -252,6 +250,7 @@ export const battery = (tests, validator, fn) => {
       props.push(test[p])
     }
 
+    // eslint-disable-next-line new-cap
     expect(new validator(...props)[fn]()).toBe(test.expected)
   })
 }
@@ -274,11 +273,11 @@ export const validSSN = (ssn) => {
 
 export const nameIsEmpty = (name) => {
   switch (true) {
-    case !name:
-    case !name.first && !name.middle && !name.last:
-      return true
-    default:
-      return false
+  case !name:
+  case !name.first && !name.middle && !name.last:
+    return true
+  default:
+    return false
   }
 }
 export const buildDate = (date) => {

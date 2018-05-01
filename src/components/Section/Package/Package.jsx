@@ -9,6 +9,7 @@ import ValidForm from './ValidForm'
 import InvalidForm from './InvalidForm'
 import SubmissionStatus from './SubmissionStatus'
 import Print from './Print'
+import Attachments from './Attachments'
 import { push } from '../../../middleware/history'
 import { updateApplication } from '../../../actions/ApplicationActions'
 import { updateSection } from '../../../actions/SectionActions'
@@ -21,6 +22,7 @@ class Package extends SectionElement {
   constructor (props) {
     super(props)
 
+    this.updateAttachments = this.updateAttachments.bind(this)
     this.updateSubmission = this.updateSubmission.bind(this)
     this.onSubmit = this.onSubmit.bind(this)
     this.onTransitionEnd = this.onTransitionEnd.bind(this)
@@ -31,6 +33,10 @@ class Package extends SectionElement {
       submitting: false,
       submissionError: false
     }
+  }
+
+  updateAttachments (values) {
+    this.handleUpdate('Attachments', values)
   }
 
   updateSubmission (values) {
@@ -140,6 +146,14 @@ class Package extends SectionElement {
     const releases = (this.props.Submission || {}).Releases || {}
     return (
       <SectionViews current={this.props.subsection} dispatch={this.props.dispatch} update={this.props.update}>
+        <SectionView name="attachments"
+                     back="psychological/review"
+                     backLabel={i18n.t('psychological.destination.review')}
+                     next="package/review"
+                     nextLabel={i18n.t('application.destination.submit')}>
+          <Attachments {...this.props.Submission.Attachments}
+                       onUpdate={this.updateAttachments} />
+        </SectionView>
         <SectionView name="review">
           <SubmissionStatus transition={true} onTransitionEnd={this.onTransitionEnd}/>
         </SectionView>

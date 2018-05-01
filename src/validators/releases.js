@@ -31,9 +31,7 @@ export const hideHippa = (store = {}) => {
 
 export const formIsSigned = (store = {}) => {
   const releases = (store.Submission || {}).Releases || {}
-  const medical = !hideHippa(store)
-        ? new SignatureValidator(releases.Medical).isValid()
-        : true
+  const medical = !hideHippa(store) ? new SignatureValidator(releases.Medical).isValid() : true
 
   return (
     new SignatureValidator(releases.AdditionalComments).isValid() &&

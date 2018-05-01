@@ -1,4 +1,3 @@
-import DateRangeValidator from './daterange'
 import { validAccordion, validBranch, validGenericTextfield, validGenericMonthYear } from './helpers'
 
 export default class DrugInvolvementsValidator {
@@ -42,12 +41,12 @@ export class DrugInvolvementValidator {
 
   validFuture () {
     switch (this.involvementInFuture) {
-      case 'Yes':
-        return validGenericTextfield(this.explanation)
-      case 'No':
-        return true
-      default:
-        return false
+    case 'Yes':
+      return validGenericTextfield(this.explanation)
+    case 'No':
+      return true
+    default:
+      return false
     }
   }
 

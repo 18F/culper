@@ -1,5 +1,6 @@
 export const application = {
   destination: {
+    attachments: 'Attachments',
     submit: 'Submit'
   },
   header: [
@@ -55,6 +56,68 @@ export const application = {
       '### Thanks for submitting for your SF-86',
       'If you need assistance contact the office who initiated your form.'
     ]
+  },
+  attachments: {
+    method: {
+      title: 'Specify your attachment method',
+      para: 'Choose the method you will use to provide attachments for your Investigation Request.'
+    },
+    type: {
+      upload: 'Upload file',
+      fax: 'Direct fax',
+      other: 'Other'
+    },
+    help: {
+      title: 'Need help with the attachment methods?',
+      message: [
+        '**Upload file**',
+        'Upload to e-QIP directly - scan and electronically upload directly to your e-QIP request.',
+        '*Must be done prior to releasing the request*',
+        '**Direct fax**',
+        'Fax attachment to e-QIP directly, e-QIP offers an automated fax solution to attach a fax to your Investigation Request. Print a cover sheet and fax to the telephone number listed on the cover sheet.',
+        '*Must be done prior to releasing the request*',
+        '**Other**',
+        'Standard Fax, Mail, or Other - if not using one of the two methods above indicate how you plan to provide each attachment.'
+      ],
+      note: ''
+    },
+    upload: {
+      title: 'Upload file to e-QIP directly',
+      para: [
+        'Certification, General Release and Medical Release forms must be attached separately as single page documents. Items such as a resume or OF 612 can be uploaded as multi-page documents.'
+      ],
+      limits: '{types} files only. Maximum file size allowed is {max_size}.',
+      description: 'Description',
+      send: 'Upload attachment',
+      files: {
+        title: 'Uploaded files',
+        para: 'The following documents and/or files have been associated with your Investigation Request.',
+        remove: 'Remove'
+      },
+      error: {
+        title: 'We had a problem with your attachment!',
+        delete: 'Failed to delete attachment.',
+        download: 'Failed to download attachment.',
+        save: 'Failed to save attachment. Please check the size and type of attachment.',
+        update: 'Failed to save attachment description.'
+      }
+    },
+    fax: {
+      title: 'Direct fax',
+      para: [
+        'Fax attachment to e-QIP directly, e-QIP offers an automated fax solution to attach a fax to your Investigation Request. Print a cover sheet and fax to the telephone number listed on the cover sheet.',
+        '*Must be done prior to releasing the request.*'
+      ],
+      print: 'Print cover sheet'
+    },
+    other: {
+      title: 'Other',
+      para: [
+        'Standard Fax, Mail, or Other - if not using one of the two methods above indicate how you plan to provide each attachment.'
+      ],
+      method: 'Specify other attachment method',
+      address: 'Mailing address'
+    }
   },
   hashCode: {
     title: 'Data hash code'

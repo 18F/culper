@@ -1,0 +1,109 @@
+{
+  "type": "financial.nonpayment",
+  "props": {
+    "HasNonpayment": {
+      "type": "branch",
+      "props": {
+        "value": "Yes"
+      }
+    },
+    "List": {
+      "type": "collection",
+      "props": {
+        "branch": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "items": [
+          {
+            "Item": {
+              "Name": {
+                "type": "text",
+                "props": {
+                  "value": "Name of organization"
+                }
+              },
+              "Infractions": {
+                "type": "checkboxgroup",
+                "props": {
+                  "values": []
+                }
+              },
+              "AccountNumber": {
+                "type": "text",
+                "props": {
+                  "value": "account number"
+                }
+              },
+              "PropertyType": {
+                "type": "text",
+                "props": {
+                  "value": "property type"
+                }
+              },
+              "Amount": {
+                "type": "number",
+                "props": {
+                  "value": "1000"
+                }
+              },
+              "AmountEstimated": {
+                "type": "checkbox",
+                "props": {
+                  "value": "",
+                  "checked": false
+                }
+              },
+              "Reason": {
+                "type": "textarea",
+                "props": {
+                  "value": "some reason"
+                }
+              },
+              "Status": {
+                "type": "text",
+                "props": {
+                  "value": "none"
+                }
+              },
+              "Date": {
+                "type": "datecontrol",
+                "props": {
+                  "month": "7",
+                  "day": "25",
+                  "year": "2017",
+                  "estimated": false,
+                  "date": "2017-07-25T00:00:00Z"
+                }
+              },
+              "Resolved": {
+                "type": "datecontrol",
+                "props": {
+                  "month": "7",
+                  "day": "25",
+                  "year": "2017",
+                  "estimated": false,
+                  "date": "2017-07-25T00:00:00Z"
+                }
+              },
+              "ResolvedNotApplicable": {
+                "type": "notapplicable",
+                "props": {
+                  "applicable": true
+                }
+              },
+              "Description": {
+                "type": "textarea",
+                "props": {
+                  "value": "the description"
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

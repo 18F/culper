@@ -9,11 +9,11 @@ const history = function (state = {}, action) {
   updated[action.property] = action.values
 
   switch (action.type) {
-    case 'History.Residence':
-      updated = populateCurrentAddress({...updated})
-      return updated
-    default:
-      return updated
+  case 'History.Residence':
+    updated = populateCurrentAddress({...updated})
+    return updated
+  default:
+    return updated
   }
 }
 

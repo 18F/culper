@@ -45,4 +45,32 @@ describe('The legal section', () => {
       expect(component.find('div').length).toBeGreaterThan(0)
     })
   })
+
+  it('can go to each subsection and select yes to branch', () => {
+    const sections = [
+      'police/offenses',
+      'police/additionaloffenses',
+      'police/domesticviolence',
+      'investigations/history',
+      'investigations/revoked',
+      'investigations/debarred',
+      'technology/unauthorized',
+      'technology/manipulating',
+      'technology/unlawful',
+      'associations/terrorist-organization',
+      'associations/engaged-in-terrorism',
+      'associations/advocating',
+      'associations/membership-overthrow',
+      'associations/membership-violence-or-force',
+      'associations/activities-to-overthrow',
+      'associations/terrorism-association'
+    ]
+    const store = mockStore({ authentication: { authenticated: true, twofactor: true } })
+
+    sections.forEach((section) => {
+      const component = mount(<Provider store={store}><Legal subsection={section} /></Provider>)
+      component.find('.no input').simulate('change')
+      expect(component.find('div').length).toBeGreaterThan(0)
+    })
+  })
 })

@@ -1,10 +1,8 @@
-import React from 'react'
+import React from 'react' // eslint-disable-line no-unused-vars
 
 export const NameSummary = (props, unknown = '') => {
   const name = NameText(props, '')
-  return name.length > 0
-    ? <span className="title-case">{name}</span>
-    : unknown
+  return name.length > 0 ? <span className="title-case">{name}</span> : unknown
 }
 
 export const NameText = (props, unknown = '') => {

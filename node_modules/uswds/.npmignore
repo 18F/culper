@@ -1,0 +1,11 @@
+# Ensure that src and dist are published
+!dist/
+!src/
+
+build/
+coverage/
+spec/
+.github/
+.editorconfig
+.eslintrc.yml
+circle.yml
