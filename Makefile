@@ -107,8 +107,8 @@ package-clean:
 	-@docker rmi -f eapp_react:basedeb
 	-@docker rm -f eapp_react_container
 package-react:
-	@docker pull ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/nbis_eapp:basedeb
-	@docker create --name=eapp_react_container ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/nbis_eapp:basedeb
+	@docker pull ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/nbis_eapp:base
+	@docker create --name=eapp_react_container ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/nbis_eapp:base
 	@docker cp ./dist/. eapp_react_container:/var/www/html/
 	@docker commit eapp_react_container eapp_react
 package-go:
