@@ -70,6 +70,6 @@ describe('The OrderedTreatment component', () => {
     const orderedBy = ['Employer', 'Judge']
     const component = mount(<OrderedTreatment onUpdate={onUpdate} ActionTaken={{ value: 'No' }} OrderedBy={orderedBy} />)
     component.find('.ordered-by .none input').simulate('change')
-    expect(none).toEqual(['None'])
+    expect(none).toEqual({'values': ['None']})
   })
 })

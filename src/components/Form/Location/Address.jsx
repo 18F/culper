@@ -40,53 +40,83 @@ export default class Address extends ValidationElement {
     this.handleError = this.handleError.bind(this)
     this.storeErrors = this.storeErrors.bind(this)
     this.errors = []
+
+    this.focusStreet = this.focusStreet.bind(this)
+    this.focusStreet2 = this.focusStreet2.bind(this)
+    this.focusCity = this.blurCity.bind(this)
+    this.focusState = this.blurState.bind(this)
+    this.focusCountry = this.focusCountry.bind(this)
+    this.focusZipcode = this.blurZipcode.bind(this)
+
+    this.blurStreet = this.blurStreet.bind(this)
+    this.blurStreet2 = this.blurStreet2.bind(this)
+    this.blurCity = this.blurCity.bind(this)
+    this.blurState = this.blurState.bind(this)
+    this.blurCountry = this.blurCountry.bind(this)
+    this.blurZipcode = this.blurZipcode.bind(this)
+    this.blurred = {
+      street: true,
+      street2: true,
+      city: true,
+      state: true,
+      country: true,
+      zipcode: true
+    }
+  }
+
+  componentDidMount () {
+    // Turn on scroll detection
+    window.addEventListener('scroll', this.scroller.bind(this))
+  }
+
+  componentWillUnmount () {
+    // Turn off scroll detection
+    window.removeEventListener('scroll', this.scroller.bind(this))
+  }
+
+  scroller () {
+    const b = this.blurred
+    const blurry = b.street && b.street2 && b.city && b.state && b.country && b.zipcode
+    const modal = document.querySelector('.modal')
+    if (!blurry && !modal && !this.props.validated) {
+      this.update({}, 500, true)
+    }
   }
 
   updateStreet (values) {
-    const noChange = values.value === this.props.street
     this.update({
-      street: values.value,
-      validated: this.props.validated && noChange
-    }, noChange ? null : 6000)
+      street: values.value
+    }, 6000)
   }
 
   updateStreet2 (values) {
-    const noChange = values.value === this.props.street2
     this.update({
-      street2: values.value,
-      validated: this.props.validated && values.value === this.props.street2
-    }, noChange ? null : 6000)
+      street2: values.value
+    }, 6000)
   }
 
   updateCity (values) {
-    const noChange = values.value === this.props.city
     this.update({
-      city: values.value,
-      validated: this.props.validated && values.value === this.props.city
-    }, noChange ? null : 6000)
+      city: values.value
+    }, 6000)
   }
 
   updateState (values) {
-    const noChange = values.value === this.props.state
     this.update({
-      state: values.value,
-      validated: this.props.validated && values.value === this.props.state
-    }, noChange ? null : 6000)
+      state: values.value
+    }, 6000)
   }
 
   updateZipcode (values) {
-    const noChange = values.value === this.props.zipcode
     this.update({
-      zipcode: values.value,
-      validated: this.props.validated && values.value === this.props.zipcode
-    }, noChange ? null : 1000)
+      zipcode: values.value
+    }, 1000)
   }
 
   updateCountry (values) {
     this.update({
       country: values,
-      countryComments: values.comments,
-      validated: this.props.validated && countryString(values) === countryString(this.props.country)
+      countryComments: values.comments
     })
   }
 
@@ -108,6 +138,14 @@ export default class Address extends ValidationElement {
       case 'United States':
       case 'POSTOFFICE':
         country.value = values.value
+        this.blurred = {
+          street: true,
+          street2: true,
+          city: true,
+          state: true,
+          country: true,
+          zipcode: true
+        }
         break
     }
 
@@ -123,8 +161,9 @@ export default class Address extends ValidationElement {
     })
   }
 
-  update (updateValues, delay = null) {
-    this.props.onUpdate({
+  update (values, delay = null, blur = false) {
+    // Get the next values
+    let next = {
       street: this.props.street,
       street2: this.props.street2,
       city: this.props.city,
@@ -132,8 +171,106 @@ export default class Address extends ValidationElement {
       country: this.props.country,
       zipcode: this.props.zipcode,
       validated: this.props.validated,
-      ...updateValues
-    }, delay)
+      ...values
+    }
+
+    // Determine if previous values were the same
+    const same =
+          next.street === this.props.street &&
+          next.street2 === this.props.street2 &&
+          next.city === this.props.city &&
+          next.state === this.props.state &&
+          countryString(next.country) === countryString(this.props.country) &&
+          next.zipcode === this.props.zipcode
+
+    // If it is not the same then we need to force validation
+    next.validated = same && this.props.validated
+
+    // Update the properties
+    if (!same || blur) {
+      this.props.onUpdate(next, delay)
+    }
+  }
+
+  blurForceUpdate () {
+    const b = this.blurred
+    const blurry = b.street && b.street2 && b.city && b.state && b.country && b.zipcode
+    const modal = document.querySelector('.modal')
+    if (blurry && !modal && !this.props.validated) {
+      this.update({}, 500, true)
+    }
+  }
+
+  blurStreet (event) {
+    this.props.onBlur(event)
+    this.blurred.street = true
+    this.blurForceUpdate()
+  }
+
+  blurStreet2 (event) {
+    this.props.onBlur(event)
+    this.blurred.street2 = true
+    this.blurForceUpdate()
+  }
+
+  blurCity (event) {
+    this.props.onBlur(event)
+    this.blurred.city = true
+    this.blurForceUpdate()
+  }
+
+  blurState (event) {
+    this.props.onBlur(event)
+    this.blurred.state = true
+    this.blurForceUpdate()
+  }
+
+  blurCountry (event) {
+    this.props.onBlur(event)
+    this.blurred.country = true
+    this.blurForceUpdate()
+  }
+
+  blurZipcode (event) {
+    this.props.onBlur(event)
+    this.blurred.zipcode = true
+    this.blurForceUpdate()
+  }
+
+  focusStreet (event) {
+    this.props.onFocus(event)
+    this.blurred.street = false
+    this.update({}, 0, true)
+  }
+
+  focusStreet2 (event) {
+    this.props.onFocus(event)
+    this.blurred.street2 = false
+    this.update({}, 0, true)
+  }
+
+  focusCity (event) {
+    this.props.onFocus(event)
+    this.blurred.city = false
+    this.update({}, 0, true)
+  }
+
+  focusState (event) {
+    this.props.onFocus(event)
+    this.blurred.state = false
+    this.update({}, 0, true)
+  }
+
+  focusCountry (event) {
+    this.props.onFocus(event)
+    this.blurred.country = false
+    this.update({}, 0, true)
+  }
+
+  focusZipcode (event) {
+    this.props.onFocus(event)
+    this.blurred.zipcode = false
+    this.update({}, 0, true)
   }
 
   addressTypeFunc (props) {
@@ -292,8 +429,8 @@ export default class Address extends ValidationElement {
                         value={this.props.street}
                         onUpdate={this.updateStreet}
                         onError={this.handleError}
-                        onFocus={this.props.onFocus}
-                        onBlur={this.props.onBlur}
+                        onFocus={this.focusStreet}
+                        onBlur={this.blurStreet}
                         required={this.props.required}
                         disabled={this.props.disabled}
                         />
@@ -305,8 +442,8 @@ export default class Address extends ValidationElement {
                         disabled={this.props.disabled}
                         onUpdate={this.updateStreet2}
                         onError={this.handleError}
-                        onFocus={this.props.onFocus}
-                        onBlur={this.props.onBlur}
+                        onFocus={this.focusStreet2}
+                        onBlur={this.blurStreet2}
                         />
                 <City name="city"
                       className="city required"
@@ -315,7 +452,7 @@ export default class Address extends ValidationElement {
                       onUpdate={this.updateCity}
                       onError={this.handleError}
                       onFocus={this.props.onFocus}
-                      onBlur={this.props.onBlur}
+                      onBlur={this.blurCity}
                       required={this.props.required}
                       disabled={this.props.disabled}
                       />
@@ -327,8 +464,8 @@ export default class Address extends ValidationElement {
                                  includeStates="true"
                                  onUpdate={this.updateState}
                                  onError={this.handleError}
-                                 onFocus={this.props.onFocus}
-                                 onBlur={this.props.onBlur}
+                                 onFocus={this.focusState}
+                                 onBlur={this.blurState}
                                  required={this.props.required}
                                  disabled={this.props.disabled}
                                  />
@@ -340,8 +477,8 @@ export default class Address extends ValidationElement {
                            value={this.props.zipcode}
                            onUpdate={this.updateZipcode}
                            onError={this.handleError}
-                           onFocus={this.props.onFocus}
-                           onBlur={this.props.onBlur}
+                           onFocus={this.focusZipcode}
+                           onBlur={this.blurZipcode}
                            required={this.props.required}
                            disabled={this.props.disabled}
                            />
@@ -407,8 +544,8 @@ export default class Address extends ValidationElement {
                         value={this.props.street}
                         onUpdate={this.updateStreet}
                         onError={this.handleError}
-                        onFocus={this.props.onFocus}
-                        onBlur={this.props.onBlur}
+                        onFocus={this.focusStreet}
+                        onBlur={this.blurStreet}
                         required={this.props.required}
                         disabled={this.props.disabled}
                         />
@@ -420,8 +557,8 @@ export default class Address extends ValidationElement {
                          value="APO"
                          disabled={this.props.disabled}
                          onUpdate={this.updateCity}
-                         onBlur={this.props.onBlur}
-                         onFocus={this.props.onFocus}
+                         onBlur={this.blurCity}
+                         onFocus={this.focusCity}
                          />
                   <Radio name="addressType"
                          className="fpo"
@@ -429,8 +566,8 @@ export default class Address extends ValidationElement {
                          value="FPO"
                          disabled={this.props.disabled}
                          onUpdate={this.updateCity}
-                         onBlur={this.props.onBlur}
-                         onFocus={this.props.onFocus}
+                         onBlur={this.blurCity}
+                         onFocus={this.focusCity}
                          />
                   <Radio name="addressType"
                          className="dpo"
@@ -438,8 +575,8 @@ export default class Address extends ValidationElement {
                          value="DPO"
                          disabled={this.props.disabled}
                          onUpdate={this.updateCity}
-                         onBlur={this.props.onBlur}
-                         onFocus={this.props.onFocus}
+                         onBlur={this.blurCity}
+                         onFocus={this.focusCity}
                          />
                 </RadioGroup>
                 <div className="state-zip-wrap">
@@ -449,8 +586,8 @@ export default class Address extends ValidationElement {
                           value={this.props.state}
                           onUpdate={this.updateState}
                           onError={this.handleError}
-                          onFocus={this.props.onFocus}
-                          onBlur={this.props.onBlur}
+                          onFocus={this.focusState}
+                          onBlur={this.blurState}
                           required={this.props.required}
                           disabled={this.props.disabled}
                           tabNext={() => { this.props.tab(this.refs.apo_zipcode.refs.zipcode.refs.text.refs.input) }}
@@ -463,8 +600,8 @@ export default class Address extends ValidationElement {
                              value={this.props.zipcode}
                              onUpdate={this.updateZipcode}
                              onError={this.handleError}
-                             onFocus={this.props.onFocus}
-                             onBlur={this.props.onBlur}
+                             onFocus={this.focusZipcode}
+                             onBlur={this.blurZipcode}
                              required={this.props.required}
                              disabled={this.props.disabled}
                              />
@@ -482,6 +619,7 @@ Address.defaultProps = {
   label: i18n.t('address.label'),
   tab: (input) => { input.focus() },
   country: { value: 'United States' },
+  onFocus: (event) => {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   showPostOffice: true,
