@@ -5,7 +5,9 @@ import thunk from 'redux-thunk'
 import { MemoryRouter } from 'react-router'
 import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
+import { api } from '../../services'
 import Loading from './Loading'
+
 
 describe('The data loading view', () => {
   // Setup
@@ -13,6 +15,9 @@ describe('The data loading view', () => {
   const mockStore = configureMockStore(middlewares)
 
   it('is visible with context', () => {
+    const mock = new MockAdapter(api.proxy)
+    mock.onGet('/me/form').reply(200, {})
+
     const store = mockStore({ authentication: { authenticated: true } })
     const component = mount(<Provider store={store}><MemoryRouter><Loading /></MemoryRouter></Provider>)
     expect(component.find('.loading').length).toEqual(1)

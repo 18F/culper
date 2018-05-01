@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { i18n } from '../../config'
-import { api } from '../../services'
 import { push } from '../../middleware/history'
 import { getApplicationState } from '../../actions/ApplicationActions'
 import { Spinner, SpinnerAction } from '../../components/Form'
