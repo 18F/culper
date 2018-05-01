@@ -667,7 +667,8 @@ export const relationships = {
     },
     summaryProgress: {
       title: 'People who know you well 7 year coverage',
-      unit: 'Years covered'
+      unit: 'Years covered',
+      svgAlt: 'People who know you well 7 year coverage'
     },
     para: {
       intro: '### Provide three people who know you well and who preferably live in the U.S.\n\nThey should be friends, peers, colleagues, college roommates, associates, etc., who are collectively aware of your activities outside of your workplace, school, or neighborhood, and whose combined association with you **covers at least the last seven (7) years.**\n\n **Do not list your spouse, former spouse (s), other relatives, or anyone listed elsewhere on this form.**'

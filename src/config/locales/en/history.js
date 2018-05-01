@@ -51,7 +51,8 @@ export const history = {
     info3c: ' - **Do not list residences before your 18th birthday** unless to provide a minimum of 2 years residence history.',
     summary: {
       title: 'Where you have lived',
-      unit: 'Years covered'
+      unit: 'Years covered',
+      svgAlt: 'Years covered for locations you have lived'
     },
     collection: {
       caption: 'Where you have lived',
@@ -124,7 +125,8 @@ export const history = {
   employment: {
     summary: {
       title: 'Employment activities',
-      unit: 'Years covered'
+      unit: 'Years covered',
+      svgAlt: 'Years covered for your employment activities'
     },
     gap: {
       title: 'Employment gap',
@@ -1502,7 +1504,8 @@ export const history = {
     summary: {
       title: 'Where you went to school',
       schools: 'Schools attended',
-      diplomas: 'Degrees/Diplomas earned'
+      diplomas: 'Degrees/Diplomas earned',
+      svgAlt: 'Years covered for schools attended'
     },
     collection: {
       caption: 'Where you went to school',
