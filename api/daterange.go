@@ -172,6 +172,7 @@ func (entity *DateRange) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *DateRange) Find(context DatabaseService) error {
 	context.Find(&DateRange{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*DateRange)

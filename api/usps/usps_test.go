@@ -67,8 +67,8 @@ func TestQuerySuccess(t *testing.T) {
 			fmt.Fprintln(w, xml)
 		}))
 
-		USPSURI = ts.URL
-		geocoder := USPSGeocoder{
+		Endpoint = ts.URL
+		geocoder := Geocoder{
 			Env: mock.Native{},
 			Log: &mock.LogService{},
 		}
@@ -125,8 +125,8 @@ func TestQueryError(t *testing.T) {
 			fmt.Fprintln(w, xml)
 		}))
 
-		USPSURI = ts.URL
-		geocoder := USPSGeocoder{
+		Endpoint = ts.URL
+		geocoder := Geocoder{
 			Env: mock.Native{},
 			Log: &mock.LogService{},
 		}

@@ -171,6 +171,7 @@ func (entity *ClearanceLevel) SetID(id int) {
 	entity.ID = id
 }
 
+// Find the previous entity stored if one is available.
 func (entity *ClearanceLevel) Find(context DatabaseService) error {
 	context.Find(&ClearanceLevel{ID: entity.ID, AccountID: entity.AccountID}, func(result interface{}) {
 		previous := result.(*ClearanceLevel)

@@ -7,6 +7,7 @@ import (
 	"github.com/18F/e-QIP-prototype/api"
 )
 
+// BasicAuthHandler is the handler for basic authentication.
 type BasicAuthHandler struct {
 	Env      api.Settings
 	Log      api.LogService
@@ -14,9 +15,9 @@ type BasicAuthHandler struct {
 	Database api.DatabaseService
 }
 
-// BasicAuth processes a users request to login with a Username and Password
+// ServeHTTP processes a users request to login with a Username and Password
 func (service BasicAuthHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	if !service.Env.True(api.BASIC_ENABLED) {
+	if !service.Env.True(api.BasicEnabled) {
 		service.Log.Warn(api.BasicAuthAttemptDenied, api.LogFields{})
 		http.Error(w, "Basic authentication is not implemented", http.StatusInternalServerError)
 		return
@@ -72,7 +73,7 @@ func (service BasicAuthHandler) ServeHTTP(w http.ResponseWriter, r *http.Request
 	}
 
 	// If we need to flush the storage first then do so now.
-	if service.Env.True(api.FLUSH_STORAGE) {
+	if service.Env.True(api.FlushStorage) {
 		service.Log.Info(api.PurgeAccountData, api.LogFields{"account": account.ID})
 		api.PurgeAccountStorage(service.Database, account.ID)
 	}

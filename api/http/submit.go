@@ -11,15 +11,16 @@ import (
 	"github.com/18F/e-QIP-prototype/api/eqip"
 )
 
+// SubmitHandler is the handler for submitting the application.
 type SubmitHandler struct {
 	Env      api.Settings
 	Log      api.LogService
 	Token    api.TokenService
 	Database api.DatabaseService
-	Xml      api.XmlService
+	XML      api.XMLService
 }
 
-// Submit the application package to the external web service for further processing.
+// ServeHTTP submits the application package to the external web service for further processing.
 func (service SubmitHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	account := &api.Account{}
 
@@ -61,16 +62,16 @@ func (service SubmitHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 }
 
 func (service SubmitHandler) transmit(w http.ResponseWriter, r *http.Request, account *api.Account) error {
-	if !service.Env.True(api.WS_ENABLED) {
+	if !service.Env.True(api.WsEnabled) {
 		service.Log.Info("Skipping webservice call", nil)
 		return nil
 	}
-	url := service.Env.String(api.WS_URL)
+	url := service.Env.String(api.WsURL)
 	if url == "" {
 		service.Log.Warn(api.WebserviceMissingURL, api.LogFields{})
 		return errors.New(api.WebserviceMissingURL)
 	}
-	key := service.Env.String(api.WS_KEY)
+	key := service.Env.String(api.WsKey)
 	if key == "" {
 		service.Log.Warn(api.WebserviceMissingKey, api.LogFields{})
 		return errors.New(api.WebserviceMissingKey)
@@ -78,7 +79,7 @@ func (service SubmitHandler) transmit(w http.ResponseWriter, r *http.Request, ac
 
 	// Generate an XML package and send to the external webservice.
 	service.Log.Info(api.GeneratingPackage, api.LogFields{})
-	xml := api.Package(service.Database, service.Xml, account.ID, false)
+	xml := api.Package(service.Database, service.XML, account.ID, false)
 	data, err := api.ApplicationData(service.Database, account.ID, false)
 	if err != nil {
 		service.Log.WarnError(api.WebserviceCannotGetApplicationData, err, api.LogFields{})
@@ -141,28 +142,27 @@ func (service SubmitHandler) newImportRequest(application map[string]interface{}
 	var agencyID int
 	var agencyGroupID int
 
-	ciAgencyIDEnv := service.Env.String(api.WS_CALLERINFO_AGENCY_ID)
+	ciAgencyIDEnv := service.Env.String(api.WsCallerinfoAgencyID)
 	if ciAgencyIDEnv == "" {
 		return nil, fmt.Errorf(api.WebserviceMissingCallerInfoAgencyID)
 	}
-	ciAgencyUserSSNEnv := service.Env.String(api.WS_CALLERINFO_AGENCY_USER_SSN)
+	ciAgencyUserSSNEnv := service.Env.String(api.WsCallerinfoAgencyUserSSN)
 	if ciAgencyUserSSNEnv == "" {
 		return nil, fmt.Errorf(api.WebserviceMissingCallerInfoAgencySSN)
 	}
 	// Parse agency id
-	agencyIDEnv := service.Env.String(api.WS_AGENCY_ID)
+	agencyIDEnv := service.Env.String(api.WsAgencyID)
 	if agencyIDEnv == "" {
 		return nil, fmt.Errorf(api.WebserviceMissingAgencyID)
-	} else {
-		i, err := strconv.Atoi(agencyIDEnv)
-		if err != nil {
-			return nil, err
-		}
-		agencyID = i
 	}
+	i, err := strconv.Atoi(agencyIDEnv)
+	if err != nil {
+		return nil, err
+	}
+	agencyID = i
 
 	// Parse agency group id if necessary
-	agencyGroupIDEnv := service.Env.String(api.WS_AGENCY_GROUP_ID)
+	agencyGroupIDEnv := service.Env.String(api.WsAgencyGroupID)
 	if agencyGroupIDEnv != "" {
 		i, err := strconv.Atoi(agencyGroupIDEnv)
 		if err != nil {
@@ -171,7 +171,7 @@ func (service SubmitHandler) newImportRequest(application map[string]interface{}
 		agencyGroupID = i
 	}
 
-	ciAgencyUserPseudoSSNEnv := service.Env.String(api.WS_CALLERINFO_AGENCY_USER_PSEUDOSSN)
+	ciAgencyUserPseudoSSNEnv := service.Env.String(api.WsCallerinfoAgencyUserPseudossn)
 	if ciAgencyUserPseudoSSNEnv == "" {
 		return nil, fmt.Errorf(api.WebserviceMissingCallerInfoAgencyPseudoSSN)
 	}

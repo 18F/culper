@@ -24,6 +24,7 @@ func (entity *Checkbox) Valid() (bool, error) {
 	return true, nil
 }
 
+// Save the checkbox to data storage.
 func (entity *Checkbox) Save(context DatabaseService, account int) (int, error) {
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
@@ -36,6 +37,7 @@ func (entity *Checkbox) Save(context DatabaseService, account int) (int, error) 
 	return entity.ID, nil
 }
 
+// Delete the checkbox from data storage.
 func (entity *Checkbox) Delete(context DatabaseService, account int) (int, error) {
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
@@ -50,6 +52,7 @@ func (entity *Checkbox) Delete(context DatabaseService, account int) (int, error
 	return entity.ID, nil
 }
 
+// Get the checkbox from data storage.
 func (entity *Checkbox) Get(context DatabaseService, account int) (int, error) {
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
@@ -64,7 +67,7 @@ func (entity *Checkbox) Get(context DatabaseService, account int) (int, error) {
 	return entity.ID, nil
 }
 
-// ID returns the entity identifier.
+// GetID returns the entity identifier.
 func (entity *Checkbox) GetID() int {
 	return entity.ID
 }
@@ -74,6 +77,7 @@ func (entity *Checkbox) SetID(id int) {
 	entity.ID = id
 }
 
+// Find is not used for checkboxes. Please use the `Get` method.
 func (entity *Checkbox) Find(context DatabaseService) error {
 	return nil
 }

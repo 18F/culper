@@ -1,18 +1,26 @@
 version: "2"
 checks:
+  # this repository has multiple languages each with different common practices.
+  # at the moment if we need to adjust the defaults it occurs globally amongst all
+  # languages.
   similar-code:
+    # turned off due to false positives in regards to `defaultProps`, `constructor`, and several other use cases
     enabled: false
   file-lines:
     config:
+      # compromise between JSX and Go files
       threshold: 750
   method-count:
     config:
+      # several of our validation logic classes have methods per branch/property
       threshold: 50
   method-lines:
     config:
+      # some JSX render methods exceed this due to the nature of the form
       threshold: 255
   return-statements:
     config:
+      # some Go sections have ~10 error handling statements where the intent is to fail hard+fast
       threshold: 10
 plugins:
   eslint:

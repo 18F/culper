@@ -46,34 +46,34 @@ func TestDatabaseFromCloudfoundry(t *testing.T) {
 	env := mock.Native{}
 	os.Setenv("VCAP_APPLICATION", vcapApplication)
 	os.Setenv("VCAP_SERVICES", vcapServices)
-	old := env.String(api.DATABASE_URI)
-	os.Setenv(api.DATABASE_URI, "")
+	old := env.String(api.DatabaseURI)
+	os.Setenv(api.DatabaseURI, "")
 	Configure()
 
 	// Test agains the environment variables
 	expected := "postgres://[db-username]:[db-password]@[db-host]:5432/[db-name]"
-	uri := env.String(api.DATABASE_URI)
+	uri := env.String(api.DatabaseURI)
 	if uri != expected {
 		t.Errorf("Expected the database URI to be '%s' but received '%s'", expected, uri)
 	}
 
-	os.Setenv(api.DATABASE_URI, old)
+	os.Setenv(api.DatabaseURI, old)
 }
 
 func TestDatabaseDefaults(t *testing.T) {
 	env := mock.Native{}
 	os.Setenv("VCAP_APPLICATION", "")
 	os.Setenv("VCAP_SERVICES", "")
-	old := env.String(api.DATABASE_URI)
-	os.Setenv(api.DATABASE_URI, "")
+	old := env.String(api.DatabaseURI)
+	os.Setenv(api.DatabaseURI, "")
 	Configure()
 
 	// Test agains the environment variables
 	expected := ""
-	uri := env.String(api.DATABASE_URI)
+	uri := env.String(api.DatabaseURI)
 	if uri != expected {
 		t.Errorf("Expected the database URI to be empty but received '%s'", uri)
 	}
 
-	os.Setenv(api.DATABASE_URI, old)
+	os.Setenv(api.DatabaseURI, old)
 }

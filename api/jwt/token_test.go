@@ -11,8 +11,8 @@ import (
 )
 
 func TestKnownSecret(t *testing.T) {
-	service := TokenService{Env: mock.Native{}}
-	old := service.Env.String(api.JWT_SECRET)
+	service := Service{Env: mock.Native{}}
+	old := service.Env.String(api.JwtSecret)
 
 	expected := "too many secrets"
 	JwtSecret = expected
@@ -22,15 +22,15 @@ func TestKnownSecret(t *testing.T) {
 	}
 
 	JwtSecret = old
-	os.Setenv(api.JWT_SECRET, old)
+	os.Setenv(api.JwtSecret, old)
 }
 
 func TestRandomSecret(t *testing.T) {
-	service := TokenService{Env: mock.Native{}}
-	old := service.Env.String(api.JWT_SECRET)
+	service := Service{Env: mock.Native{}}
+	old := service.Env.String(api.JwtSecret)
 
 	expected := ""
-	os.Setenv(api.JWT_SECRET, expected)
+	os.Setenv(api.JwtSecret, expected)
 	service.ConfigureEnvironment(512)
 
 	secret := service.Secret()
@@ -38,7 +38,7 @@ func TestRandomSecret(t *testing.T) {
 		t.Fatal("The secret should not be empty")
 	}
 
-	os.Setenv(api.JWT_SECRET, old)
+	os.Setenv(api.JwtSecret, old)
 }
 
 // Store the last token from the 256 benchmark to not allow compiler optimizations.
@@ -47,12 +47,12 @@ var token256 string
 // BenchmarkRandomSecret256 performs benchmark tests for using 256 bits of randomness with
 // the signing method set to HS256.
 func BenchmarkRandomSecret256(b *testing.B) {
-	service := TokenService{Env: mock.Native{}}
-	old := service.Env.String(api.JWT_SECRET)
+	service := Service{Env: mock.Native{}}
+	old := service.Env.String(api.JwtSecret)
 	size := 256
 
 	expected := ""
-	os.Setenv(api.JWT_SECRET, expected)
+	os.Setenv(api.JwtSecret, expected)
 	service.ConfigureEnvironment(size)
 
 	var token string
@@ -62,7 +62,7 @@ func BenchmarkRandomSecret256(b *testing.B) {
 	}
 	token256 = token
 
-	os.Setenv(api.JWT_SECRET, old)
+	os.Setenv(api.JwtSecret, old)
 }
 
 // Store the last token from the 512 benchmark to not allow compiler optimizations.
@@ -71,12 +71,12 @@ var token512 string
 // BenchmarkRandomSecret512 performs benchmark tests for using 512 bits of randomness with
 // the signing method set to HS512.
 func BenchmarkRandomSecret512(b *testing.B) {
-	service := TokenService{Env: mock.Native{}}
-	old := service.Env.String(api.JWT_SECRET)
+	service := Service{Env: mock.Native{}}
+	old := service.Env.String(api.JwtSecret)
 	size := 512
 
 	expected := ""
-	os.Setenv(api.JWT_SECRET, expected)
+	os.Setenv(api.JwtSecret, expected)
 	service.ConfigureEnvironment(size)
 
 	var token string
@@ -86,15 +86,15 @@ func BenchmarkRandomSecret512(b *testing.B) {
 	}
 	token512 = token
 
-	os.Setenv(api.JWT_SECRET, old)
+	os.Setenv(api.JwtSecret, old)
 }
 
 func TestTimeout(t *testing.T) {
-	service := TokenService{Env: mock.Native{}}
-	old := service.Env.String(api.SESSION_TIMEOUT)
+	service := Service{Env: mock.Native{}}
+	old := service.Env.String(api.SessionTimeout)
 
 	// Test the default setting
-	os.Setenv(api.SESSION_TIMEOUT, "")
+	os.Setenv(api.SessionTimeout, "")
 	timeout := service.Timeout()
 	fifteen := time.Duration(15) * time.Minute
 	if timeout != fifteen {
@@ -102,18 +102,18 @@ func TestTimeout(t *testing.T) {
 	}
 
 	// Test setting a custom time in minutes
-	os.Setenv(api.SESSION_TIMEOUT, "2")
+	os.Setenv(api.SessionTimeout, "2")
 	timeout = service.Timeout()
 	two := time.Duration(2) * time.Minute
 	if timeout != two {
 		t.Fatalf("Session timeout %v is not %v", timeout, two)
 	}
 
-	os.Setenv(api.SESSION_TIMEOUT, old)
+	os.Setenv(api.SessionTimeout, old)
 }
 
 func TestValidateToken(t *testing.T) {
-	service := TokenService{Env: mock.Native{}}
+	service := Service{Env: mock.Native{}}
 	token, _, err := service.NewToken(1, api.BasicAuthAudience)
 	if err != nil {
 		t.Fatal(err)

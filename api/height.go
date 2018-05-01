@@ -34,6 +34,7 @@ func (entity *Height) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
+// Save the height to data storage.
 func (entity *Height) Save(context DatabaseService, account int) (int, error) {
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
@@ -46,6 +47,7 @@ func (entity *Height) Save(context DatabaseService, account int) (int, error) {
 	return entity.ID, nil
 }
 
+// Delete the height from data storage.
 func (entity *Height) Delete(context DatabaseService, account int) (int, error) {
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
@@ -60,6 +62,7 @@ func (entity *Height) Delete(context DatabaseService, account int) (int, error) 
 	return entity.ID, nil
 }
 
+// Get the height from data storage.
 func (entity *Height) Get(context DatabaseService, account int) (int, error) {
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
@@ -74,7 +77,7 @@ func (entity *Height) Get(context DatabaseService, account int) (int, error) {
 	return entity.ID, nil
 }
 
-// ID returns the entity identifier.
+// GetID returns the entity identifier.
 func (entity *Height) GetID() int {
 	return entity.ID
 }
@@ -84,6 +87,7 @@ func (entity *Height) SetID(id int) {
 	entity.ID = id
 }
 
+// Find is not used for heights. Please use the `Get` method.
 func (entity *Height) Find(context DatabaseService) error {
 	return nil
 }

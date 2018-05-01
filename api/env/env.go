@@ -9,27 +9,30 @@ import (
 	"github.com/18F/e-QIP-prototype/api"
 )
 
+// Native settings using environment variables.
 type Native struct{}
 
+// Configure the environment.
 func (env Native) Configure() {
-	env.ensure(api.GOLANG_ENV, "development")
-	env.ensure(api.LOG_LEVEL, "warning")
-	env.ensure(api.SESSION_TIMEOUT, "15")
-	env.ensure(api.DATABASE_URI, env.buildDatabaseURI())
-	env.ensure(api.PORT, "3000")
-	env.ensure(api.HASH_ROUTING, "0")
-	env.ensure(api.FLUSH_STORAGE, "0")
-	env.ensure(api.BASIC_ENABLED, "0")
-	env.ensure(api.SAML_ENABLED, "0")
-	env.ensure(api.DISABLE_2FA, "0")
-	env.ensure(api.ALLOW_2FA_RESET, "0")
-	env.ensure(api.WINDOW_SIZE, "3")
-	env.ensure(api.ATTACHMENTS_ENABLED, "1")
-	env.ensure(api.FILE_MAXIMUM_SIZE, "5000000")
-	env.ensure(api.FILE_TYPES, ".tiff;.png;.pdf")
-	env.ensure(api.WS_ENABLED, "1")
+	env.ensure(api.GolangEnv, "development")
+	env.ensure(api.LogLevel, "warning")
+	env.ensure(api.SessionTimeout, "15")
+	env.ensure(api.DatabaseURI, env.buildDatabaseURI())
+	env.ensure(api.Port, "3000")
+	env.ensure(api.HashRouting, "0")
+	env.ensure(api.FlushStorage, "0")
+	env.ensure(api.BasicEnabled, "0")
+	env.ensure(api.SamlEnabled, "0")
+	env.ensure(api.Disable2FA, "0")
+	env.ensure(api.Allow2FAReset, "0")
+	env.ensure(api.WindowSize, "3")
+	env.ensure(api.AttachmentsEnabled, "1")
+	env.ensure(api.FileMaximumSize, "5000000")
+	env.ensure(api.FileTypes, ".tiff;.png;.pdf")
+	env.ensure(api.WsEnabled, "1")
 }
 
+// Has returns if the environment has a value for the given environment variable.
 func (env Native) Has(name string) bool {
 	if os.Getenv(name) == "" {
 		return false
@@ -37,10 +40,12 @@ func (env Native) Has(name string) bool {
 	return true
 }
 
+// String returns the string value of the given environment variable.
 func (env Native) String(name string) string {
 	return os.Getenv(name)
 }
 
+// True returns the boolean value of the given environment variable.
 func (env Native) True(name string) bool {
 	b, err := strconv.ParseBool(os.Getenv(name))
 	if err != nil {
@@ -49,6 +54,7 @@ func (env Native) True(name string) bool {
 	return b
 }
 
+// Int returns the integer value of the given environment variable.
 func (env Native) Int(name string) int {
 	i, err := strconv.Atoi(os.Getenv(name))
 	if err != nil {
@@ -66,7 +72,7 @@ func (env Native) ensure(name, value string) {
 func (env Native) buildDatabaseURI() string {
 	// By user (+ password) + database + host
 	uri := &url.URL{Scheme: "postgres"}
-	username := env.String(api.DATABASE_USER)
+	username := env.String(api.DatabaseUser)
 	if username == "" {
 		username = "postgres"
 	}
@@ -74,7 +80,7 @@ func (env Native) buildDatabaseURI() string {
 	// Check if there is a password set. If not then we need to create
 	// the Userinfo structure in a different way so we don't include
 	// exta colons (:).
-	pw := env.String(api.DATABASE_PASSWORD)
+	pw := env.String(api.DatabasePassword)
 	if pw == "" {
 		uri.User = url.User(username)
 	} else {
@@ -83,14 +89,14 @@ func (env Native) buildDatabaseURI() string {
 
 	// The database name will be part of the URI path so it needs
 	// a prefix of "/"
-	database := env.String(api.DATABASE_NAME)
+	database := env.String(api.DatabaseName)
 	if database == "" {
 		database = "postgres"
 	}
 	uri.Path = fmt.Sprintf("/%s", database)
 
 	// Host can be either "address + port" or just "address"
-	host := env.String(api.DATABASE_HOST)
+	host := env.String(api.DatabaseHost)
 	if host == "" {
 		host = "localhost:5432"
 	}

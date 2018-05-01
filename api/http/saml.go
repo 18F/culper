@@ -15,6 +15,7 @@ var (
 	redirectTo = os.Getenv("API_REDIRECT")
 )
 
+// SamlRequestHandler is the handler for creating a SAML request.
 type SamlRequestHandler struct {
 	Env      api.Settings
 	Log      api.LogService
@@ -23,9 +24,9 @@ type SamlRequestHandler struct {
 	SAML     api.SamlService
 }
 
-// SamlRequestHandler is the initial entry point for authentication.
+// ServeHTTP is the initial entry point for authentication.
 func (service SamlRequestHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	if !service.Env.True(api.SAML_ENABLED) {
+	if !service.Env.True(api.SamlEnabled) {
 		service.Log.Warn(api.SamlAttemptDenied, api.LogFields{})
 		http.Error(w, "SAML is not implemented", http.StatusInternalServerError)
 		return
@@ -47,6 +48,7 @@ func (service SamlRequestHandler) ServeHTTP(w http.ResponseWriter, r *http.Reque
 	})
 }
 
+// SamlResponseHandler is the handler for handling a SAML response.
 type SamlResponseHandler struct {
 	Env      api.Settings
 	Log      api.LogService
@@ -55,9 +57,9 @@ type SamlResponseHandler struct {
 	SAML     api.SamlService
 }
 
-// SamlResponseHandler is the returning entry point for authentication.
+// ServeHTTP is the returning entry point for authentication.
 func (service SamlResponseHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	if !service.Env.True(api.SAML_ENABLED) {
+	if !service.Env.True(api.SamlEnabled) {
 		service.Log.Warn(api.SamlAttemptDenied, api.LogFields{})
 		http.Error(w, "SAML is not implemented", http.StatusInternalServerError)
 		return

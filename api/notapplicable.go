@@ -23,6 +23,7 @@ func (entity *NotApplicable) Valid() (bool, error) {
 	return true, nil
 }
 
+// Save the entity to data storage.
 func (entity *NotApplicable) Save(context DatabaseService, account int) (int, error) {
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
@@ -35,6 +36,7 @@ func (entity *NotApplicable) Save(context DatabaseService, account int) (int, er
 	return entity.ID, nil
 }
 
+// Delete the entity from data storage.
 func (entity *NotApplicable) Delete(context DatabaseService, account int) (int, error) {
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
@@ -49,6 +51,7 @@ func (entity *NotApplicable) Delete(context DatabaseService, account int) (int, 
 	return entity.ID, nil
 }
 
+// Get the entity from data storage.
 func (entity *NotApplicable) Get(context DatabaseService, account int) (int, error) {
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
@@ -63,7 +66,7 @@ func (entity *NotApplicable) Get(context DatabaseService, account int) (int, err
 	return entity.ID, nil
 }
 
-// ID returns the entity identifier.
+// GetID returns the entity identifier.
 func (entity *NotApplicable) GetID() int {
 	return entity.ID
 }
@@ -73,6 +76,7 @@ func (entity *NotApplicable) SetID(id int) {
 	entity.ID = id
 }
 
+// Find is not used for not applicable values. Please use the `Get` method.
 func (entity *NotApplicable) Find(context DatabaseService) error {
 	return nil
 }

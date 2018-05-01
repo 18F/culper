@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	logger := &log.LogService{Log: log.NewLogger()}
+	logger := &log.Service{Log: log.NewLogger()}
 	cmd.Command(logger, func(context api.DatabaseService, account *api.Account) {
 		account.Token = ""
 		account.TokenUsed = false
