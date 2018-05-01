@@ -25,4 +25,9 @@ describe('The reprimand component', () => {
     component.find({name: 'month'}).simulate('change', {target: { value: '1' }})
     expect(updates).toBe(2)
   })
+
+  it('handles defaults', () => {
+    expect(Reprimand.defaultProps.onUpdate()).toEqual(undefined)
+    expect(Reprimand.defaultProps.onError(null, [])).toEqual([])
+  })
 })

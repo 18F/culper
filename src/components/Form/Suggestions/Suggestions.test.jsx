@@ -112,4 +112,10 @@ describe('The suggestions component', () => {
     component.find('.suggestion .action button').first().simulate('click')
     expect(used).toBe(true)
   })
+
+  it('handles defaults', () => {
+    expect(Suggestions.defaultProps.renderSuggestion()).toEqual(undefined)
+    expect(Suggestions.defaultProps.onSuggestion()).toEqual(undefined)
+    expect(Suggestions.defaultProps.onDismiss()).toEqual(undefined)
+  })
 })

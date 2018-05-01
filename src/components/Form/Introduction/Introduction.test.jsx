@@ -84,4 +84,9 @@ describe('The Introduction component', () => {
     expect(component.find('.introduction-modal').length).toBe(0)
     window.token = 'fake-token'
   })
+
+  it('handles defaults', () => {
+    expect(Introduction.defaultProps.dispatch()).toEqual(undefined)
+    expect(Introduction.defaultProps.onDismiss()).toEqual(undefined)
+  })
 })
