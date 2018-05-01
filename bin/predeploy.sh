@@ -29,7 +29,7 @@ elif [ "$SPACE" = "aws" ]; then
 		fi
 
 		# Add the AWS base image to the dockerfile for packaging
-	  echo -e "FROM ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/nbis-ecr:base\n#$(cat Dockerfile.eapp_golang)" > Dockerfile.eapp_golang
+	  echo -e "FROM ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/nbis-ecr:basedeb\n#$(cat Dockerfile.eapp_golang)" > Dockerfile.eapp_golang
 fi
 
 #
