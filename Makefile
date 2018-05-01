@@ -85,7 +85,7 @@ specs:
 #
 coverage:
 	$(info Running code coverage)
-	@docker-compose run --rm frontend ./bin/coverage
+	@./bin/coverage
 
 #
 # Building
