@@ -64,7 +64,7 @@ const (
 	//
 	// Target: Back-end (api)
 	// Default: *not enabled*
-	// Values: `{protocal}://{host}:{port}`
+	// Values: `{protocol}://{host}:{port}`
 	LogSyslog = "LOG_SYSLOG"
 
 	// LogSyslogCert Providing a path to the PEM certificate will convert all `syslog` communication to use TLS. Only TCP + TLS is supported making the connection string `tcp://logserver:514`.

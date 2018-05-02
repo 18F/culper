@@ -1304,7 +1304,7 @@ func (entity *IdentificationPhysical) Find(context DatabaseService) error {
 	return nil
 }
 
-// IdentificationComments represents the payload for the identificaton comments section.
+// IdentificationComments represents the payload for the identification comments section.
 type IdentificationComments struct {
 	PayloadComments Payload `json:"Comments" sql:"-"`
 

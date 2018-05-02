@@ -12,7 +12,7 @@ import (
 func main() {
 	rand.Seed(time.Now().Unix())
 	var err error
-	schema := []byte{}
+	var schema []byte
 
 	fuzzies := []json.RawMessage{}
 	fuzzer := NewFuzzer()
