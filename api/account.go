@@ -117,6 +117,15 @@ func (entity *Account) BasicAuthentication(context DatabaseService, password str
 		return ErrPasswordDoesNotMatch
 	}
 
-	entity = basicMembership.Account
+	if basicMembership.Account != nil {
+		entity.ID = basicMembership.Account.ID
+		entity.Username = basicMembership.Account.Username
+		entity.Firstname = basicMembership.Account.Firstname
+		entity.Lastname = basicMembership.Account.Lastname
+		entity.Token = basicMembership.Account.Token
+		entity.TokenUsed = basicMembership.Account.TokenUsed
+		entity.Email = basicMembership.Account.Email
+		entity.Locked = basicMembership.Account.Locked
+	}
 	return nil
 }

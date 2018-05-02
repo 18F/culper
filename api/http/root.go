@@ -35,47 +35,47 @@ func (service RootHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 	// Core set of endpoints
 	endpoints := []endpoint{
-		endpoint{
+		{
 			Path:        "/",
 			Description: "root",
 			Verbs:       []string{"GET"},
 		},
-		endpoint{
+		{
 			Path:        "/refresh",
 			Description: "web token refresh",
 			Verbs:       []string{"POST"},
 		},
-		endpoint{
+		{
 			Path:        "/me",
 			Description: "me",
 			Verbs:       []string{"GET"},
 		},
-		endpoint{
+		{
 			Path:        "/me/logout",
 			Description: "end session for account",
 			Verbs:       []string{"GET"},
 		},
-		endpoint{
+		{
 			Path:        "/me/validate",
 			Description: "validation",
 			Verbs:       []string{"POST"},
 		},
-		endpoint{
+		{
 			Path:        "/me/save",
 			Description: "save",
 			Verbs:       []string{"POST", "PUT"},
 		},
-		endpoint{
+		{
 			Path:        "/me/form",
 			Description: "returns the form in its entirety",
 			Verbs:       []string{"GET"},
 		},
-		endpoint{
+		{
 			Path:        "/me/form/hash",
 			Description: "returns the form hash code",
 			Verbs:       []string{"GET"},
 		},
-		endpoint{
+		{
 			Path:        "/me/section?:id",
 			Description: "returns the form section",
 			Verbs:       []string{"GET"},
@@ -84,17 +84,17 @@ func (service RootHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 	if service.Env.True(api.AttachmentsEnabled) {
 		attachments := []endpoint{
-			endpoint{
+			{
 				Path:        "/me/attachment",
 				Description: "store attachment",
 				Verbs:       []string{"POST", "PUT"},
 			},
-			endpoint{
+			{
 				Path:        "/me/attachment/:id",
 				Description: "get attachment",
 				Verbs:       []string{"GET"},
 			},
-			endpoint{
+			{
 				Path:        "/me/attachment/:id/delete",
 				Description: "delete attachment",
 				Verbs:       []string{"POST", "DELETE"},
@@ -105,12 +105,12 @@ func (service RootHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 	if !service.Env.True(api.Disable2FA) {
 		mfa := []endpoint{
-			endpoint{
+			{
 				Path:        "/2fa/",
 				Description: "two factor authentication for an account",
 				Verbs:       []string{"GET"},
 			},
-			endpoint{
+			{
 				Path:        "/2fa/verify",
 				Description: "two factor verification",
 				Verbs:       []string{"POST"},
@@ -129,7 +129,7 @@ func (service RootHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 	if service.Env.True(api.BasicEnabled) {
 		basic := []endpoint{
-			endpoint{
+			{
 				Path:        "/auth/basic",
 				Description: "basic authentication",
 				Verbs:       []string{"POST"},
@@ -140,12 +140,12 @@ func (service RootHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 	if service.Env.True(api.SamlEnabled) {
 		saml := []endpoint{
-			endpoint{
+			{
 				Path:        "/auth/saml",
 				Description: "SAML entrypoint",
 				Verbs:       []string{"GET"},
 			},
-			endpoint{
+			{
 				Path:        "/auth/saml/callback",
 				Description: "SAML callback",
 				Verbs:       []string{"GET", "POST"},

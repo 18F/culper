@@ -112,7 +112,7 @@ Logging to `syslog` may be used in conjunction with other logging sources.
 
 **Target** - Back-end (api)<br>
 **Default** - *not enabled*<br>
-**Values** - `{protocal}://{host}:{port}`
+**Values** - `{protocol}://{host}:{port}`
 
 ## `LOG_SYSLOG_CERT`
 

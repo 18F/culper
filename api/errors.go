@@ -92,7 +92,7 @@ type ErrFieldRequired struct {
 	Message string
 }
 
-// Error is a basic represenation of a Require Field error.
+// Error is a basic representation of a Require Field error.
 func (e ErrFieldRequired) Error() string {
 	return e.Message
 }
