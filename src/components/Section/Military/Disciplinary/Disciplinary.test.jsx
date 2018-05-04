@@ -25,7 +25,7 @@ describe('The military disciplinary component', () => {
     const expected = {
       name: 'military-disciplinary',
       HasDisciplinary: { value: 'Yes' },
-      List: [{}]
+      List: { branch: {}, items: [{ Item: { Date: {} } }] }
     }
     const component = mount(<Disciplinary {...expected} />)
     expect(component.find('.accordion').length).toEqual(1)

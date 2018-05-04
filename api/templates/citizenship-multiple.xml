@@ -1,0 +1,33 @@
+<DualCitizenship Version="1" Type="Pooled">
+  <DualCitizenships>
+    {{range $index, $item := .props.List.props.items}}
+    {{with $Item := $item.Item}}
+    <Citizenship ID="{{$index}}">
+      {{country $Item.Country}}
+      <CountryOfCitizenshipDetailComment>{{countryComments $Item.Country}}</CountryOfCitizenshipDetailComment>
+      <CurrentlyHoldCitizenship>
+        <Answer>{{branch $Item.Current}}</Answer>
+        <AnswerComment></AnswerComment>
+        <Explanation>{{textarea $Item.CurrentExplanation}}</Explanation>
+      </CurrentlyHoldCitizenship>
+      {{monthYearDaterange $Item.Dates}}
+      <HowAcquired>{{textarea $Item.How}}</HowAcquired>
+      <TakenActionToRenounceCitizenship>
+        <Answer>{{branch $Item.Renounced}}</Answer>
+        <Explanation>{{textarea $Item.RenouncedExplanation}}</Explanation>
+      </TakenActionToRenounceCitizenship>
+    </Citizenship>
+    {{end}}
+    {{end}}
+  </DualCitizenships>
+  <HeldDualCitizenship>
+    <Answer>{{branch .props.HasMultiple}}</Answer>
+    {{- if branch .props.HasMultiple | eq "Yes"}}
+    <AnswerComment></AnswerComment>
+    <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+    {{end}}
+  </HeldDualCitizenship>
+  {{- if branch .props.HasMultiple | eq "Yes"}}
+  <SummaryComment></SummaryComment>
+  {{end}}
+</DualCitizenship>

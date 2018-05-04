@@ -11,15 +11,15 @@ import Modal from '../Modal'
 import Show from '../Show'
 import Svg from '../Svg'
 
-const roundUp = (num, precision) => {
+export const roundUp = (num, precision) => {
   return Math.ceil(num * precision) / precision
 }
 
-const minutes = (ms) => {
+export const minutes = (ms) => {
   return parseInt(roundUp(ms / (60*1000), 1), 10)
 }
 
-const seconds = (ms) => {
+export const seconds = (ms) => {
   return parseInt(roundUp(ms / 1000, 1), 10)
 }
 

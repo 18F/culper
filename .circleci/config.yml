@@ -17,11 +17,7 @@ jobs:
           command: make test
       - run:
           name: Code coverage
-          command: |
-            if [ "$CODECOV_TOKEN" != "" ]; then
-              echo CODECOV_TOKEN=$CODECOV_TOKEN >> .env
-              make coverage
-            fi
+          command: ./bin/coverage
 
   cloudgov:
     machine: true
@@ -37,6 +33,9 @@ jobs:
       - run:
           name: Build
           command: make build
+      - run:
+          name: Checksum
+          command: make checksum
       - deploy:
           command: ./bin/deploy-cloudgov
 
@@ -54,6 +53,9 @@ jobs:
       - run:
           name: Build
           command: make build
+      - run:
+          name: Checksum
+          command: make checksum
       - run:
           name: Package
           command: |

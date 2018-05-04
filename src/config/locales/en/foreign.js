@@ -99,8 +99,10 @@ export const foreign = {
         title: 'Have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children EVER had any foreign financial interests in which you or they have direct control or direct ownership?'
       },
       para: {
-        intro: ['Foreign financial interest examples:  stocks, property, investments, bank accounts, ownership of corporate entities, corporate interests or exchange traded funds (ETFs) held in specific geographical or economic sectors.',
-          '**Exclude financial interests in companies or diversified mutual funds or diversified ETFs that are publicly traded on a U.S. exchange.**'],
+        intro: [
+          'Foreign financial interest examples:  stocks, property, investments, bank accounts, ownership of corporate entities, corporate interests or exchange traded funds (ETFs) held in specific geographical or economic sectors.',
+          '**Exclude financial interests in companies or diversified mutual funds or diversified ETFs that are publicly traded on a U.S. exchange.**'
+        ],
         howAcquired: 'Such as purchase, gift, etc.'
       },
       collection: {
@@ -400,7 +402,7 @@ export const foreign = {
           },
           acquired: {
             title: 'Estimate the date if unsure',
-          message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
             note: ''
           },
           howAcquired: {
@@ -491,7 +493,7 @@ export const foreign = {
         },
         citizenship: {
           title: 'List all citizenships this person has',
-        message: 'You can provide multiple citizenships in this question.',
+          message: 'You can provide multiple citizenships in this question.',
           note: ''
         }
       },
@@ -1077,7 +1079,7 @@ export const foreign = {
         },
         citizenship: {
           title: 'List all citizenships this person has',
-        message: 'You can provide multiple citizenships in this question.',
+          message: 'You can provide multiple citizenships in this question.',
           note: ''
         },
         description: {
@@ -1362,7 +1364,7 @@ export const foreign = {
         },
         citizenship: {
           title: 'List all citizenships this person has',
-        message: 'You can provide multiple citizenships in this question.',
+          message: 'You can provide multiple citizenships in this question.',
           note: ''
         },
         organization: {

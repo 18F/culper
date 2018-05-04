@@ -126,7 +126,7 @@ export const military = {
       },
       dates: {
         title: 'Estimate the date if unsure',
-          message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
+        message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
         note: ''
       },
       discharged: {
@@ -187,7 +187,7 @@ export const military = {
       },
       date: {
         title: 'Estimate the date if unsure',
-          message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+        message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
         note: ''
       },
       offenses: {
@@ -279,7 +279,7 @@ export const military = {
       },
       dates: {
         title: 'Estimate the date if unsure',
-          message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
+        message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
         note: ''
       },
       country: {

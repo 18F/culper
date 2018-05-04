@@ -488,6 +488,7 @@ class Legal extends SectionElement {
                                   section="legal"
                                   subsection="police/domesticviolence"
                                   addressBooks={this.props.AddressBooks}
+                                  defaultState={false}
                                   dispatch={this.props.dispatch}
                                   onUpdate={this.updatePoliceDomesticViolence}
                                   onError={this.handleError}
@@ -595,6 +596,7 @@ class Legal extends SectionElement {
                                    section="legal"
                                    subsection="associations/terrorist-organization"
                                    addressBooks={this.props.AddressBooks}
+                                   defaultState={false}
                                    dispatch={this.props.dispatch}
                                    onUpdate={this.updateTerroristOrganization}
                                    onError={this.handleError}
@@ -607,6 +609,7 @@ class Legal extends SectionElement {
                                 {...this.props.EngagedInTerrorism}
                                 section="legal"
                                 subsection="associations/engaged-in-terrorism"
+                                defaultState={false}
                                 dispatch={this.props.dispatch}
                                 onUpdate={this.updateEngagedInTerrorism}
                                 onError={this.handleError}
@@ -619,6 +622,7 @@ class Legal extends SectionElement {
                         {...this.props.Advocating}
                         section="legal"
                         subsection="associations/advocating"
+                        defaultState={false}
                         dispatch={this.props.dispatch}
                         onUpdate={this.updateAdvocating}
                         onError={this.handleError}
@@ -631,6 +635,7 @@ class Legal extends SectionElement {
                                  {...this.props.MembershipOverthrow}
                                  section="legal"
                                  subsection="associations/membership-overthrow"
+                                 defaultState={false}
                                  addressBooks={this.props.AddressBooks}
                                  dispatch={this.props.dispatch}
                                  onUpdate={this.updateMembershipOverthrow}
@@ -645,6 +650,7 @@ class Legal extends SectionElement {
                                 section="legal"
                                 subsection="associations/membership-violence-or-force"
                                 addressBooks={this.props.AddressBooks}
+                                defaultState={false}
                                 dispatch={this.props.dispatch}
                                 onUpdate={this.updateMembershipViolence}
                                 onError={this.handleError}
@@ -657,6 +663,7 @@ class Legal extends SectionElement {
                                    {...this.props.ActivitiesToOverthrow}
                                    section="legal"
                                    subsection="associations/activities-to-overthrow"
+                                   defaultState={false}
                                    dispatch={this.props.dispatch}
                                    onUpdate={this.updateActivitiesToOverthrow}
                                    onError={this.handleError}

@@ -62,7 +62,6 @@ export class CompetenceOrderValidator extends OrderValidator {
     this.occurred = data.Occurred
     this.appeals = data.Appeals
   }
-
 }
 
 export class ConsultationOrderValidator extends OrderValidator {
@@ -74,5 +73,4 @@ export class ConsultationOrderValidator extends OrderValidator {
     this.occurred = data.Occurred
     this.appeals = data.Appeals
   }
-
 }

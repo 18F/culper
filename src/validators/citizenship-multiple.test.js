@@ -1,6 +1,5 @@
 import CitizenshipMultipleValidator, { CitizenshipItemValidator } from './citizenship-multiple'
 import { battery } from './helpers'
-import Location from '../components/Form/Location'
 
 describe('citizenship multiple component validation', function () {
   it('can validate citizenship country', () => {

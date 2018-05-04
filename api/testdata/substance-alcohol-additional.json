@@ -1,0 +1,106 @@
+{
+  "type": "substance.alcohol.additional",
+  "props": {
+    "ReceivedTreatment": {
+      "type": "branch",
+      "props": {
+        "value": "Yes"
+      }
+    },
+    "List": {
+      "type": "collection",
+      "props": {
+        "branch": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "items": [
+          {
+            "Item": {
+              "TreatmentProviderName": {
+                "type": "text",
+                "props": {
+                  "value": "provider name"
+                }
+              },
+              "TreatmentProviderAddress": {
+                "type": "location",
+                "props": {
+                  "layout": "Address",
+                  "street": "123 Some Rd",
+                  "street2": "",
+                  "city": "Arlington",
+                  "state": "VA",
+                  "zipcode": "22202",
+                  "county": "",
+                  "country": "United States",
+                  "validated": false
+                }
+              },
+              "AgencyName": {
+                "type": "text",
+                "props": {
+                  "value": "the agency name"
+                }
+              },
+              "AgencyAddress": {
+                "type": "location",
+                "props": {
+                  "layout": "Address",
+                  "street": "123 Some Rd",
+                  "street2": "",
+                  "city": "Arlington",
+                  "state": "VA",
+                  "zipcode": "22202",
+                  "county": "",
+                  "country": "United States",
+                  "validated": false
+                }
+              },
+              "UseSameAddress": {
+                "type": "branch",
+                "props": {
+                  "value": "No"
+                }
+              },
+              "TreatmentBeganDate": {
+                "type": "datecontrol",
+                "props": {
+                  "month": "7",
+                  "day": "25",
+                  "year": "2017",
+                  "estimated": false,
+                  "date": "2017-07-25T00:00:00Z"
+                }
+              },
+              "TreatmentEndDate": {
+                "type": "datecontrol",
+                "props": {
+                  "month": "7",
+                  "day": "25",
+                  "year": "2017",
+                  "estimated": false,
+                  "date": "2017-07-25T00:00:00Z"
+                }
+              },
+              "CompletedTreatment": {
+                "type": "branch",
+                "props": {
+                  "value": "No"
+                }
+              },
+              "NoCompletedTreatmentExplanation": {
+                "type": "textarea",
+                "props": {
+                  "value": "went on vacation for oktoberfest"
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

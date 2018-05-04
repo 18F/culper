@@ -54,6 +54,13 @@ describe('The saved indicator component', () => {
     expect(component.find('.time').text()).toContain('day')
   })
 
+  it('triggers save', () => {
+    const elapsed = 24 * 60 * 60 * 1000
+    const store = mockStore({ authentication: { authenticated: true, twofactor: true } })
+    const component = mount(<Provider store={store}><SavedIndicator elapsed={elapsed} /></Provider>)
+    component.find('button').simulate('click')
+  })
+
   it('mouse in and out', () => {
     const store = mockStore({ authentication: { authenticated: true, twofactor: true } })
     const component = mount(<Provider store={store}><SavedIndicator interval={1} /></Provider>)

@@ -1,20 +1,15 @@
 FROM scratch
 
-# Run in a non-privilege user scope
-COPY ./conf/passwd /etc/passwd
-USER runner
+# # Run in a non-privilege user scope
+# # NOTE: This is for scratch images only!
+# COPY ./conf/passwd /etc/passwd
+# COPY ./conf/group /etc/group
+# USER runner
 
-# Certificates
-COPY ./api/kx.crt /kx.crt
-COPY ./api/eapp.crt /eapp.crt
-COPY ./api/eapp.key /eapp.key
+# Copy over pre-staged directory
+# # NOTE: This is for scratch images only!
+# COPY --chown=runner:runner ./api/dist/ /
+COPY ./api/dist/ /
 
-# Database migrations
-COPY ./api/db /db
-
-# Third-party dependencies
-COPY ./api/bin/xmlsec1 /bin/xmlsec1
-
-# COPY ./eapp-backend /eapp-backend
-COPY ./api/api /eapp-backend
+# Set an entry point
 ENTRYPOINT ["/eapp-backend"]

@@ -1,3 +1,13 @@
 #!/bin/bash
-chown -f -R 1000:1000 ./{dist,coverage,jest,node_modules,lib}
+
+uid=$1
+gid=$2
+
+chown -f -R $uid:$gid ./{dist,coverage,jest,node_modules,lib}
+chown -f -R $uid:$gid ./specs/node_modules
+chown -f -R $uid:$gid ./api/vendor
+chown -f $uid:$uid ./api/webservice/testdata/test.{key,pkcs.key,cer}
+chown -f $uid:$uid ./api/eapp.{key,crt}
+chown -f $uid:$uid ./api/eapp-seccomp.json
+
 exit 0

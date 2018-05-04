@@ -1,0 +1,42 @@
+<DeclaredAsMentallyIncompetent>
+  <Answer>{{branch .props.IsIncompetent}}</Answer>
+  <AnswerComment></AnswerComment>
+  {{range $index, $item := .props.List.props.items}}
+  {{with $Item := $item.Item}}
+  <DeclaredAsMentallyIncompetentOccurrence ID="{{$index}}">
+    <Court>
+      <Name>{{text $Item.CourtName}}</Name>
+      <Address>{{location $Item.CourtAddress}}</Address>
+    </Court>
+    <Date Type="{{dateEstimated $Item.Occurred}}">{{monthYear $Item.Occurred}}</Date>
+    <Appealed>
+      <Answer>{{branchcollectionHas $Item.Appeals.props.List}}</Answer>
+      <AnswerComment></AnswerComment>
+      {{ if branchcollectionHas $Item.Appeals.props.List | eq "Yes"}}
+      {{range $aindex, $appeal := $Item.Appeals.props.items}}
+      {{with $Appeal := $appeal.Item}}
+      {{if branch $Appeal.Has | eq "Yes"}}
+      <Appeal ID="{{$aindex}}">
+        <Court>
+          <Name>{{text $Appeal.CourtName}}</Name>
+          <Address>{{location $Appeal.CourtAddress}}</Address>
+        </Court>
+        <FinalDisposition>{{textarea $Appeal.Disposition}}</FinalDisposition>
+        <Comment></Comment>
+      </Appeal>
+      {{end}}
+      <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+      <SummaryComment></SummaryComment>
+      {{end}}
+      {{end}}
+      {{end}}
+    </Appealed>
+    <Comment></Comment>
+  </DeclaredAsMentallyIncompetentOccurrence>
+  {{end}}
+  {{end}}
+  {{if branch .props.IsIncompetent | eq "Yes"}}
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+  <SummaryComment></SummaryComment>
+  {{end}}
+</DeclaredAsMentallyIncompetent>

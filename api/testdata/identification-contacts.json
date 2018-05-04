@@ -1,0 +1,56 @@
+{
+  "type": "identification.contacts",
+  "props": {
+    "Emails": {
+      "type": "collection",
+      "props": {
+        "items": [
+          {
+            "Item": {
+              "Email": {
+                "type": "email",
+                "props": {
+                  "value": "test@abc.com"
+                }
+              }
+            }
+          }
+        ],
+        "branch": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        }
+      }
+    },
+    "PhoneNumbers": {
+      "type": "collection",
+      "props": {
+        "items": [
+          {
+            "Item": {
+              "Telephone": {
+                "type": "telephone",
+                "props": {
+                  "timeOfDay": "Both",
+                  "type": "Domestic",
+                  "numberType": "Cell",
+                  "number": "2128675309",
+                  "extension": "",
+                  "noNumber": false
+                }
+              }
+            }
+          }
+        ],
+        "branch": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        }
+      }
+    }
+  }
+}

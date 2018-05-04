@@ -1,0 +1,16 @@
+<MedicalRecord2 Version="1" Type="Pooled">
+  {{tmpl "psychological-competence.xml" .Psychological.Competence}}
+  {{tmpl "psychological-consultations.xml" .Psychological.Consultations}}
+  {{tmpl "psychological-hospitalizations.xml" .Psychological.Hospitalizations}}
+  {{tmpl "psychological-diagnoses.xml" .Psychological.Diagnoses}}
+
+  {{ if branch .Psychological.Competence.props.IsIncompetent | eq "No" }}
+  {{ if branch .Psychological.Consultations.props.Consulted | eq "No" }}
+  {{ if branch .Psychological.Hospitalizations.props.Hospitalized | eq "No" }}
+  {{ if branch .Psychological.Diagnoses.props.Diagnosed | eq "No" }}
+    {{tmpl "psychological-conditions.xml" .Psychological.ExistingConditions}}
+  {{end}}
+  {{end}}
+  {{end}}
+  {{end}}
+</MedicalRecord2>

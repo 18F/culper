@@ -1,8 +1,20 @@
 import { createHashHistory, createBrowserHistory } from 'history'
 
+const parseBool = (val) => {
+  const str = `${val || ''}`
+  switch (str.toLowerCase()) {
+  case '1':
+  case 't':
+  case 'true':
+    return true
+  default:
+    return false
+  }
+}
+
 class Env {
   History () {
-    const useHashRouting = process.env.HASH_ROUTING || ''
+    const useHashRouting = parseBool(process.env.HASH_ROUTING)
     if (!this.history) {
       this.history = useHashRouting ? createHashHistory() : createBrowserHistory()
     }
@@ -40,30 +52,44 @@ class Env {
     }
 
     return {
-      resettable: (process.env.ALLOW_2FA_RESET || '') !== '',
-      enabled: (process.env.DISABLE_2FA || '') === ''
+      resettable: parseBool(process.env.ALLOW_2FA_RESET),
+      enabled: !parseBool(process.env.DISABLE_2FA)
     }
   }
 
   BasicAuthenticationEnabled () {
-    return (process.env.BASIC_ENABLED || '').length
+    return parseBool(process.env.BASIC_ENABLED)
   }
 
   SamlEnabled () {
-    return (process.env.SAML_ENABLED || '').length
+    return parseBool(process.env.SAML_ENABLED)
   }
 
   SessionTimeout () {
     return parseInt(process.env.SESSION_TIMEOUT || '15', 10)
   }
 
+  AttachmentsEnabled () {
+    return parseBool(process.env.ATTACHMENTS_ENABLED)
+  }
+
+  FileMaximumSize () {
+    return parseInt(process.env.FILE_MAXIMUM_SIZE || '5000000', 10)
+  }
+
+  FileTypes () {
+    return (process.env.FILE_TYPES || '.tiff;.png;.pdf').split(';').map(x => {
+      return x.replace('.', '').toUpperCase()
+    })
+  }
+
   EndpointBasicAuthentication () { return '/auth/basic' }
   EndpointLogout () { return '/me/logout' }
   EndpointRefresh () { return '/refresh' }
   EndpointSaml () { return `${this.ApiBaseURL()}/auth/saml` }
-  EndpointTwoFactor (account) { return `/2fa/${account}` }
-  EndpointTwoFactorVerify (account) { return `/2fa/${account}/verify` }
-  EndpointTwoFactorReset (account) { return `/2fa/${account}/reset` }
+  EndpointTwoFactor () { return '/2fa/' }
+  EndpointTwoFactorVerify () { return '/2fa/verify' }
+  EndpointTwoFactorReset () { return '/2fa/reset' }
   EndpointSave (payload) { return '/me/save' }
   EndpointSection (type) { return `/me/section?type=${type || ''}` }
   EndpointStatus () { return '/me/status' }
@@ -71,6 +97,10 @@ class Env {
   EndpointSubmit () { return '/me/form/submit' }
   EndpointFormHash () { return '/me/form/hash' }
   EndpointValidate (payload) { return '/me/validate' }
+  EndpointAttachment () { return '/me/attachment' }
+  EndpointAttachmentUpdate (id) { return `/me/attachment/${id}` }
+  EndpointAttachmentGet (id) { return `/me/attachment/${id}` }
+  EndpointAttachmentDelete (id) { return `/me/attachment/${id}/delete` }
 }
 
 const env = new Env()

@@ -1,0 +1,263 @@
+{
+  "type": "foreign.contacts",
+  "props": {
+    "HasForeignContacts": {
+      "type": "branch",
+      "props": {
+        "value": "Yes"
+      }
+    },
+    "List": {
+      "type": "collection",
+      "props": {
+        "items": [
+          {
+            "Item": {
+              "Name": {
+                "type": "name",
+                "props": {
+                  "first": "John",
+                  "firstInitialOnly": false,
+                  "last": "Smith",
+                  "lastInitialOnly": false,
+                  "middle": "H",
+                  "middleInitialOnly": true,
+                  "noMiddleName": false,
+                  "suffix": "Other",
+                  "suffixOther": "XX"
+                }
+              },
+              "NameNotApplicable": {
+                "type": "notapplicable",
+                "props": {
+                  "applicable": true
+                }
+              },
+              "NameExplanation": {
+                "type": "textarea",
+                "props": {
+                  "value": "my name explanation"
+                }
+              },
+              "FirstContact": {
+                "type": "datecontrol",
+                "props": {
+                  "month": "7",
+                  "day": "25",
+                  "year": "2017",
+                  "estimated": false,
+                  "date": "2017-07-25T00:00:00Z"
+                }
+              },
+              "LastContact": {
+                "type": "datecontrol",
+                "props": {
+                  "month": "7",
+                  "day": "25",
+                  "year": "2017",
+                  "estimated": false,
+                  "date": "2017-07-25T00:00:00Z"
+                }
+              },
+              "Methods": {
+                "type": "checkboxgroup",
+                "props": {
+                  "values": ["Telephone", "Other"]
+                }
+              },
+              "MethodsExplanation": {
+                "type": "textarea",
+                "props": {
+                  "value": "my methods explanation"
+                }
+              },
+              "Frequency": {
+                "type": "radio",
+                "props": {
+                  "value": "Other"
+                }
+              },
+              "FrequencyExplanation": {
+                "type": "textarea",
+                "props": {
+                  "value": "my freq explanation"
+                }
+              },
+              "Relationship": {
+                "type": "checkboxgroup",
+                "props": {
+                  "values": ["Other"]
+                }
+              },
+              "RelationshipExplanation": {
+                "type": "textarea",
+                "props": {
+                  "value": "my relationship explanation"
+                }
+              },
+              "Aliases": {
+                "type": "collection",
+                "props": {
+                  "branch": {
+                    "type": "branch",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "items": [
+                    {
+                      "Item": {
+                        "Has": {
+                          "type": "branch",
+                          "props": {
+                            "value": "Yes"
+                          }
+                        },
+                        "Alias": {
+                          "type": "name",
+                          "props": {
+                            "first": "John",
+                            "firstInitialOnly": false,
+                            "last": "Smith",
+                            "lastInitialOnly": false,
+                            "middle": "H",
+                            "middleInitialOnly": true,
+                            "noMiddleName": false,
+                            "suffix": "Other",
+                            "suffixOther": "XX"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "Item": {
+                        "Has": {
+                          "type": "branch",
+                          "props": {
+                            "value": "No"
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "Citizenship": {
+                "type": "country",
+                "props": {
+                  "value": ["Germany"]
+                }
+              },
+              "Birthdate": {
+                "type": "datecontrol",
+                "props": {
+                  "month": "7",
+                  "day": "25",
+                  "year": "2017",
+                  "estimated": false,
+                  "date": "2017-07-25T00:00:00Z"
+                }
+              },
+              "BirthdateNotApplicable": {
+                "type": "notapplicable",
+                "props": {
+                  "applicable": true
+                }
+              },
+              "Birthplace": {
+                "type": "location",
+                "props": {
+                  "layout": "City, Country",
+                  "street": "",
+                  "street2": "",
+                  "city": "Arlington",
+                  "state": "",
+                  "zipcode": "",
+                  "county": "",
+                  "country": "United States",
+                  "validated": false
+                }
+              },
+              "BirthplaceNotApplicable": {
+                "type": "notapplicable",
+                "props": {
+                  "applicable": true
+                }
+              },
+              "Address": {
+                "type": "location",
+                "props": {
+                  "layout": "Address",
+                  "street": "123 Some Rd",
+                  "street2": "",
+                  "city": "Arlington",
+                  "state": "VA",
+                  "zipcode": "22202",
+                  "county": "",
+                  "country": "United States",
+                  "validated": false
+                }
+              },
+              "AddressNotApplicable": {
+                "type": "notapplicable",
+                "props": {
+                  "applicable": true
+                }
+              },
+              "Employer": {
+                "type": "text",
+                "props": {
+                  "value": "my employer name"
+                }
+              },
+              "EmployerNotApplicable": {
+                "type": "notapplicable",
+                "props": {
+                  "applicable": true
+                }
+              },
+              "EmployerAddress": {
+                "type": "location",
+                "props": {
+                  "layout": "Address",
+                  "street": "123 Some Rd",
+                  "street2": "",
+                  "city": "Arlington",
+                  "state": "VA",
+                  "zipcode": "22202",
+                  "county": "",
+                  "country": "United States",
+                  "validated": false
+                }
+              },
+              "EmployerAddressNotApplicable": {
+                "type": "notapplicable",
+                "props": {
+                  "applicable": true
+                }
+              },
+              "HasAffiliations": {
+                "type": "radio",
+                "props": {
+                  "value": "Yes"
+                }
+              },
+              "Affiliations": {
+                "type": "textarea",
+                "props": {
+                  "value": "my affiliations explanation"
+                }
+              }
+            }
+          }
+        ],
+        "branch": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        }
+      }
+    }
+  }
+}

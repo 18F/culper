@@ -1,0 +1,48 @@
+<ForeignService>
+  <Answer>{{branchcollectionHas .props.List}}</Answer>
+</ForeignService>
+<ForeignMilitaryService>
+  {{- range $index, $item := .props.List.props.items}}
+  {{- with $Item := $item.Item}}
+  {{- if branch $Item.Has | eq "Yes"}}
+  <Service ID="{{$index}}">
+    <AssociationDescription>{{textarea $Item.Circumstances}}</AssociationDescription>
+    <Branch>{{text $Item.Division}}</Branch>
+    {{country $Item.Country}}
+    {{monthYearDaterange $Item.Dates}}
+    <EntryComment></EntryComment>
+    <LeavingDescription>{{textarea $Item.ReasonLeft}}</LeavingDescription>
+    <Name>{{text $Item.Name}}</Name>
+    <Organization>{{radio $Item.Organization}}</Organization>
+    <Position>{{text $Item.Rank}}</Position>
+    <Contacts>
+      <Answer>{{branch $Item.MaintainsContact}}</Answer>
+      <AnswerComment></AnswerComment>
+      {{range $cindex, $citem := $Item.List.props.items}}
+      {{with $Contact := $citem.Item}}
+      <Contact ID="{{$cindex}}">
+        <Address>{{location $Contact.Address}}</Address>
+        <Comment></Comment>
+        {{monthYearDaterange $Contact.Dates}}
+        <FrequencyOfContact>{{text $Contact.Frequency}}</FrequencyOfContact>
+        <LegalName>{{name $Contact.Name}}</LegalName>
+        <Title>{{text $Contact.Title}}</Title>
+      </Contact>
+      {{end}}
+      {{end}}
+      {{if branch $Item.MaintainsContact | eq "Yes"}}
+      <HaveAdditionalEntryAnswer>{{branch $Item.List.props.branch}}</HaveAdditionalEntryAnswer>
+      {{end}}
+      <SummaryComment></SummaryComment>
+    </Contacts>
+  </Service>
+  {{end}}
+  {{end}}
+  {{end}}
+
+  {{- if branchcollectionHas .props.List | eq "Yes"}}
+  <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+  <SummaryComment></SummaryComment>
+  {{end}}
+  <Comment></Comment>
+</ForeignMilitaryService>

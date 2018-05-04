@@ -210,9 +210,9 @@ export default class Field extends ValidationElement {
     if (this.state.helpActive && this.props.help) {
       return (
         <div className="message help">
-          <i className="fa fa-question"></i>
+          <i className="fa fa-question" aria-hidden="true"></i>
           {message(this.props.help)}
-          <a href="javascript:;;" className="close" onClick={this.toggleHelp}>
+          <a href="javascript:;;" className="close" onClick={this.toggleHelp} title={i18n.t('help.close')}>
             {i18n.t('help.close')}
           </a>
         </div>
@@ -245,8 +245,8 @@ export default class Field extends ValidationElement {
       })
 
       el.push(
-        <div className="message error" key={super.guid()}>
-          <i className="fa fa-exclamation"></i>
+        <div className="message error" key={super.guid()} role="alert" aria-live="polite">
+          <i className="fa fa-exclamation" aria-hidden="true"></i>
           {markup}
         </div>
       )
@@ -327,7 +327,7 @@ export default class Field extends ValidationElement {
           {this.icon()}
         </span>
         <div className="table expand">
-          <span className="messages help-messages" ref="helpMessage">
+          <span className="messages help-messages" ref="helpMessage" aria-live="polite">
             {this.helpMessage()}
           </span>
         </div>
@@ -341,7 +341,7 @@ export default class Field extends ValidationElement {
           </span>
         </div>
         <div className="table expand">
-          <span className="messages error-messages" ref="errorMessages">
+          <span className="messages error-messages" ref="errorMessages" role="alert" aria-live="polite">
             {this.errorMessages()}
           </span>
         </div>

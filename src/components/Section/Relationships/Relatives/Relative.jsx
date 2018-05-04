@@ -553,7 +553,7 @@ export default class Relative extends ValidationElement {
                 scrollIntoView={this.props.scrollIntoView}
                 onError={this.props.onError}>
         </Branch>
-        <Show when={this.props.IsDeceased.value === 'No'}>
+        <Show when={(this.props.IsDeceased || {}).value === 'No'}>
           <Field title={i18n.t('relationships.relatives.heading.deceased.address')}
                  optional={true}
                  help="relationships.relatives.help.address"

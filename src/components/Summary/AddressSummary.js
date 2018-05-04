@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react' // eslint-disable-line no-unused-vars
 import { countryString } from '../../validators/location'
 
 export const AddressSummary = (props, unknown = '') => {

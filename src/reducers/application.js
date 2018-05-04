@@ -39,11 +39,12 @@ export const errorReducer = function (sectionName) {
         sectionErrors = sectionErrors.filter(x => x.section === action.property && x.subsection !== action.subsection)
       } else {
         for (const value of action.values) {
-          const idx = sectionErrors.findIndex(x =>
-            x.section === value.section &&
-            x.subsection === value.subsection &&
-            x.uid === value.uid &&
-            x.code === value.code)
+          const idx = sectionErrors.findIndex(
+            x =>
+              x.section === value.section &&
+              x.subsection === value.subsection &&
+              x.uid === value.uid &&
+              x.code === value.code)
 
           if (idx === -1) {
             sectionErrors.push(value)
@@ -85,9 +86,9 @@ export default combineReducers({
 
 // Or alternative...
 // export const appReducer = function (state = defaultState, action) {
-  // return merge(state, {
-    // [action.section]: {
-      // [action.property]: action.values
-    // }
-  // })
+// return merge(state, {
+// [action.section]: {
+// [action.property]: action.values
+// }
+// })
 // }

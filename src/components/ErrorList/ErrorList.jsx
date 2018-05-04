@@ -196,7 +196,7 @@ const fieldId = (el) => {
  * @param {Node} el - The node to use as a reference point.
  * @returns {bool} True if found in an accordion, and false otherwise.
  */
-const inAccordion = (el) => {
+export const inAccordion = (el) => {
   return closest(el, '.accordion') !== null
 }
 
@@ -206,7 +206,7 @@ const inAccordion = (el) => {
  * @param {function} getter - A function to specify how to signify what is a key.
  * @returns {object} A hash grouped by the given getter.
  */
-const groupBy = (arr, getter) => {
+export const groupBy = (arr, getter) => {
   let map = {}
 
   if (!arr || arr.length === 0) {

@@ -1,0 +1,100 @@
+{
+  "type": "financial.taxes",
+  "props": {
+    "HasTaxes": {
+      "type": "branch",
+      "props": {
+        "value": "Yes"
+      }
+    },
+    "List": {
+      "type": "collection",
+      "props": {
+        "branch": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "items": [
+          {
+            "Item": {
+              "Failure": {
+                "type": "radio",
+                "props": {
+                  "value": "Both"
+                }
+              },
+              "Year": {
+                "type": "number",
+                "props": {
+                  "value": "2017"
+                }
+              },
+              "YearEstimated": {
+                "type": "checkbox",
+                "props": {
+                  "value": "",
+                  "checked": false
+                }
+              },
+              "Reason": {
+                "type": "textarea",
+                "props": {
+                  "value": "the reason"
+                }
+              },
+              "Agency": {
+                "type": "text",
+                "props": {
+                  "value": "the agency"
+                }
+              },
+              "TaxType": {
+                "type": "text",
+                "props": {
+                  "value": "the tax type"
+                }
+              },
+              "Amount": {
+                "type": "number",
+                "props": {
+                  "value": "1000"
+                }
+              },
+              "AmountEstimated": {
+                "type": "checkbox",
+                "props": {
+                  "value": "",
+                  "checked": false
+                }
+              },
+              "Date": {
+                "type": "datecontrol",
+                "props": {
+                  "month": "7",
+                  "day": "25",
+                  "year": "2017",
+                  "estimated": false,
+                  "date": "2017-07-25T00:00:00Z"
+                }
+              },
+              "DateNotApplicable": {
+                "type": "notapplicable",
+                "props": {
+                  "applicable": true
+                }
+              },
+              "Description": {
+                "type": "textarea",
+                "props": {
+                  "value": "the description"
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

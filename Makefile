@@ -7,19 +7,22 @@ release := $(shell git rev-list --tags --max-count=1)
 version := $(shell git describe --tags $(release))
 hash    := $(shell git rev-parse --short HEAD)
 tag     := "$(version)-$(hash)"
+uid     := $(shell id -u)
+gid     := $(shell id -g)
 
 
 all: clean setup lint test build
 .SILENT: all
 .PHONY: all
 
-clear:
-	@rm -rf ./errors
+reset-permissions:
+	$(info Resetting permissions)
+	@docker-compose run --rm deps ./bin/permissions $(uid) $(gid)
 
 #
 # Cleaning
 #
-clean: stop clear
+clean: stop reset-permissions
 	-@rm -rf ./dist/*
 	-@rm -rf ./coverage/*
 	-@rm -rf ./jest/*
@@ -34,27 +37,28 @@ clean: stop clear
 #
 # Setup
 #
-setup: stop setup-containers setup-certificates setup-dependencies
-setup-containers: clear
+setup: stop setup-containers setup-certificates setup-dependencies reset-permissions
+setup-containers:
 	$(info Building containers)
-	@docker-compose build deps frontend web db api 2>errors
-setup-certificates: clear
+	@docker-compose build deps frontend web db api
+setup-certificates:
 	$(info Generating test certificates)
-	@docker-compose run --rm deps ./bin/test-certificates 2>errors
-setup-dependencies: clear
+	@docker-compose run --rm deps ./bin/test-certificates
+setup-dependencies:
 	$(info Installing dependencies)
-	@docker-compose run --rm frontend yarn install 2>errors
-	@docker-compose run --rm api ./bin/install 2>errors
-	@docker-compose run --rm deps ./bin/compile-xmlsec 2>errors
+	@docker-compose run --rm deps ./bin/compile-xmlsec
 
 #
 # Linters
 #
-lint: lint-react lint-go
-lint-react: clear
-	$(info Running React linter)
+lint: lint-js lint-css lint-go
+lint-js:
+	$(info Running JavaScript linter)
+	@docker-compose run --rm frontend ./node_modules/.bin/eslint src/
+lint-css:
+	$(info Running SCSS linter)
 	@docker-compose run --rm frontend yarn lint
-lint-go: clear
+lint-go:
 	$(info Running Go linter)
 	@docker-compose run --rm api ./bin/lint
 
@@ -62,37 +66,37 @@ lint-go: clear
 # Testing
 #
 test: test-react test-go
-test-react: clear
+test-react:
 	$(info Running React test suite)
-	@docker-compose run --rm frontend ./bin/test 2>errors
-test-go: clear
+	@docker-compose run --rm frontend ./bin/test
+test-go:
 	$(info Running Go test suite)
-	@docker-compose run --rm api make test 2>errors
+	@docker-compose run --rm api make test
 
 #
 # Integration testing
 #
-specs: clear
+specs:
 	$(info Running integration test suite)
-	@docker-compose -f nightwatch-compose.yml up 2>errors
+	@docker-compose -f nightwatch-compose.yml up
 
 #
 # Coverage
 #
-coverage: clear
+coverage:
 	$(info Running code coverage)
-	@docker-compose run --rm frontend ./bin/coverage 2>errors
+	@./bin/coverage
 
 #
 # Building
 #
-build: build-react build-go
-build-react: clear
+build: build-react build-go reset-permissions
+build-react:
 	$(info Compiling React application)
-	@docker-compose run --rm frontend ./bin/build 2>errors
-build-go: clear
+	@docker-compose run --rm frontend ./bin/build
+build-go:
 	$(info Compiling Go application)
-	@docker-compose run --rm api make build 2>errors
+	@docker-compose run --rm api make build
 
 #
 # Packaging
@@ -100,19 +104,27 @@ build-go: clear
 package: package-react package-go
 package-clean:
 	-@docker rmi -f eapp_golang:smallest
-	-@docker rmi -f eapp_react:base
+	-@docker rmi -f eapp_react:basedeb
 	-@docker rm -f eapp_react_container
 package-react:
 	@docker pull ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/nbis_eapp:base
 	@docker create --name=eapp_react_container ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/nbis_eapp:base
-	@docker cp ./dist/ eapp_react_container:/var/www/html/
+	@docker cp ./dist/. eapp_react_container:/var/www/html/
 	@docker commit eapp_react_container eapp_react
 package-go:
 	@docker run --rm \
                -v ${PWD}:/go/src/github.com/18F/e-QIP-prototype \
-               -w /go/src/github.com/18F/e-QIP-prototype/api \
+               -w /go/src/github.com/18F/e-QIP-prototype/api/cmd/server \
                -e "CGO_ENABLED=0" \
-               golang:latest go build -ldflags '-w -extldflags "-static"' -o api
+               golang:latest go build -ldflags '-w -extldflags "-static"'
+	-@mkdir -p ./api/dist/tmp
+	-@mkdir -p ./api/dist/bin
+	-@cp -R ./api/migrations ./api/dist/
+	-@cp -R ./api/templates ./api/dist/
+	-@cp ./api/bin/xmlsec1 ./api/dist/bin/
+	-@cp ./api/checksum ./api/dist/
+	-@cp ./api/cmd/server/server ./api/dist/eapp-backend
+	@docker pull ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/nbis-ecr:basedeb
 	@docker build -f Dockerfile.eapp_golang . -t eapp_golang:smallest
 
 #
@@ -145,9 +157,53 @@ deploy-react:
 #
 # Suites
 #
-react: test-react build-react
-go: test-go build-go
+react: test-react build-react reset-permissions
+go: test-go build-go reset-permissions
 
+#
+# Checksums
+#
+checksum:
+	@docker-compose run --rm deps ./bin/checksum
+check:
+	@docker-compose run --rm deps ./bin/checksum "test"
+
+# seccomp
+#
+seccomp:
+seccomp-pre:
+	@docker run --name=eapp_strace \
+              --rm \
+              -v /tmp/strace:/tmp/strace \
+              -v /home/bryan/src/github.com/18F/e-QIP-prototype:/go/src/github.com/18F/e-QIP-prototype \
+              -w /go/src/github.com/18F/e-QIP-prototype/api \
+              eqipprototype_api ./bin/seccomp-setup
+seccomp-exec:
+	@docker run --name=eapp_strace \
+              --cap-drop ALL \
+              --cap-add SYS_ADMIN \
+              --cap-add NET_ADMIN \
+              --cap-add SYS_PTRACE \
+              --security-opt apparmor=docker-default \
+              --security-opt=no-new-privileges \
+              --rm \
+              --network=eqipprototype_eapp \
+              --expose=3000 \
+              -e "DATABASE_USER=postgres" \
+              -e "DATABASE_NAME=postgres" \
+              -e "DATABASE_HOST=db:5432" \
+              -v /tmp/strace:/tmp/strace \
+              -v /home/bryan/src/github.com/18F/e-QIP-prototype:/go/src/github.com/18F/e-QIP-prototype \
+              -w /go/src/github.com/18F/e-QIP-prototype/api \
+              eqipprototype_api ./bin/seccomp make test
+seccomp-post:
+	docker run --name=eapp_strace \
+              --rm \
+              -it \
+              -v /tmp/strace:/tmp/strace \
+              -v /home/bryan/src/github.com/18F/e-QIP-prototype:/go/src/github.com/18F/e-QIP-prototype \
+              -w /go/src/github.com/18F/e-QIP-prototype/api \
+              eqipprototype_api /bin/bash
 #
 # Operations
 #

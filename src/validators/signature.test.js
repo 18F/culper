@@ -22,7 +22,7 @@ describe('signature validation', () => {
           }
         },
         expected: false
-      },
+      }
     ]
 
     battery(tests, SignatureValidator, 'isValid')
@@ -57,7 +57,7 @@ describe('signature validation', () => {
           }
         },
         expected: true
-      },
+      }
     ]
 
     battery(tests, SignatureValidator, 'validSignatureName')
@@ -98,7 +98,7 @@ describe('signature validation', () => {
           }
         },
         expected: true
-      },
+      }
     ]
 
     battery(tests, SignatureValidator, 'validSignatureDate')

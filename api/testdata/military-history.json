@@ -1,0 +1,116 @@
+{
+  "type": "military.history",
+  "props": {
+    "HasServed": {
+      "type": "branch",
+      "props": {
+        "value": "Yes"
+      }
+    },
+    "List": {
+      "type": "collection",
+      "props": {
+        "branch": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "items": [
+          {
+            "Item": {
+              "Service": {
+                "type": "radio",
+                "props": {
+                  "value": "AirNationalGuard",
+                  "checked": true
+                }
+              },
+              "Status": {
+                "type": "radio",
+                "props": {
+                  "value": "ActiveDuty",
+                  "checked": true
+                }
+              },
+              "Officer": {
+                "type": "radio",
+                "props": {
+                  "value": "Officer",
+                  "checked": true
+                }
+              },
+              "ServiceNumber": {
+                "type": "text",
+                "props": {
+                  "value": "service number"
+                }
+              },
+              "Dates": {
+                "type": "daterange",
+                "props": {
+                  "from": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "7",
+                      "day": "1",
+                      "year": "2017",
+                      "estimated": false,
+                      "date": "2017-07-01T00:00:00Z"
+                    }
+                  },
+                  "to": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "7",
+                      "day": "25",
+                      "year": "2017",
+                      "estimated": false,
+                      "date": "2017-07-25T00:00:00Z"
+                    }
+                  },
+                  "present": false
+                }
+              },
+              "HasBeenDischarged": {
+                "type": "branch",
+                "props": {
+                  "value": "Yes"
+                }
+              },
+              "DischargeType": {
+                "type": "radio",
+                "props": {
+                  "value": "Other",
+                  "checked": true
+                }
+              },
+              "DischargeTypeOther": {
+                "type": "text",
+                "props": {
+                  "value": "rather not talk about it"
+                }
+              },
+              "DischargeReason": {
+                "type": "textarea",
+                "props": {
+                  "value": "the reason for discharge"
+                }
+              },
+              "DischargeDate": {
+                "type": "datecontrol",
+                "props": {
+                  "month": "7",
+                  "day": "25",
+                  "year": "2017",
+                  "estimated": false,
+                  "date": "2017-07-25T00:00:00Z"
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

@@ -98,7 +98,7 @@ export class EducationItemValidator {
 
     return branchValidator.each(item => {
       // If the diploma type is "Other" then they must give it a name
-      if  ((item.Diploma || {}).value === 'Other' && !validGenericTextfield(item.DiplomaOther)) {
+      if ((item.Diploma || {}).value === 'Other' && !validGenericTextfield(item.DiplomaOther)) {
         return false
       }
       return validGenericTextfield(item.Diploma) && validDateField(item.Date)

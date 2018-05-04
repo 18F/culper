@@ -1,0 +1,65 @@
+<Education>
+  <AttendedAnySchools>
+    <Answer>{{branch .props.HasAttended}}</Answer>
+    {{if branch .props.HasAttended | eq "Yes"}}
+    <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+    {{end}}
+  </AttendedAnySchools>
+  <AttendedAnySchoolsComment></AttendedAnySchoolsComment>
+
+  <ReceivedDegreeOrDiploma>
+    <Answer>{{branch .props.HasDegree10}}</Answer>
+    <Comment></Comment>
+  </ReceivedDegreeOrDiploma>
+
+  <SchoolsAttended>
+    {{range $index, $item := .props.List.props.items}}
+    {{with $Item := $item.Item}}
+    <SchoolAttended ID="{{$index}}">
+      {{monthYearDaterange $Item.Dates}}
+      <Type>{{radio $Item.Type | schoolType}}</Type>
+      <Name>{{text $Item.Name}}</Name>
+      <Address>{{location $Item.Address}}</Address>
+      <DegreeReceived>
+        <Answer>{{branchcollectionHas $Item.Diplomas}}</Answer>
+        <AnswerComment></AnswerComment>
+      </DegreeReceived>
+
+      {{if branchcollectionHas $Item.Diplomas | eq "Yes"}}
+      <DegreesAwarded>
+        {{- range $dindex, $diploma := $Item.Diplomas.props.items}}
+        {{- with $Diploma := $diploma.Item}}
+        {{- $Diploma}}
+        {{- if branch $Diploma.Has | eq "Yes"}}
+        <DegreeAwarded ID="{{$dindex}}">
+          <DateAwarded>
+            <Date Type="{{dateEstimated $Diploma.Date}}">{{monthYear $Diploma.Date}}</Date>
+          </DateAwarded>
+          <Degree>{{radio $Diploma.Diploma | degreeType}}</Degree>
+          <OtherDegree>{{text $Diploma.DiplomaOther}}</OtherDegree>
+        </DegreeAwarded>
+        {{- end}}
+        {{- end}}
+        {{- end}}
+        <DegreesAwardedComment></DegreesAwardedComment>
+        <EntryComment></EntryComment>
+      </DegreesAwarded>
+      {{end}}
+
+      {{if $Item.ReferenceName}}
+      {{if $Item.ReferenceName.props.first}}
+      <Verifier>
+        <Address>{{location $Item.ReferenceAddress}}</Address>
+        <Comment></Comment>
+        <Email DoNotKnow="{{notApplicable $Item.ReferenceEmailNotApplicable}}">{{email $Item.ReferenceEmail}}</Email>
+        <LegalName DoNotKnow="{{notApplicable $Item.ReferenceNameNotApplicable}}">{{nameLastFirst $Item.ReferenceName}}</LegalName>
+        <Telephone>{{telephone $Item.ReferencePhone}}</Telephone>
+      </Verifier>
+      {{end}}
+      {{end}}
+      <Comments>{{textarea $Item.Comments}}</Comments>
+    </SchoolAttended>
+    {{end}}
+    {{end}}
+  </SchoolsAttended>
+</Education>

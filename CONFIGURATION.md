@@ -49,6 +49,7 @@ When running the application using the provided [docker-compose.yml](docker-comp
 | [`WINDOW_SIZE`](#window_size)                         |                 |                        | X                     |
 | [`TLS_CERT`](#tls_cert)                            |                 |                        | X                     |
 | [`TLS_KEY`](#tls_key)                             |                 |                        | X                     |
+| [`WS_ENABLED`](#ws_enabled)                              | X               |                        | X                     |
 | [`WS_URL`](#ws_url)                              | X               |                        | X                     |
 | [`WS_KEY`](#ws_key)                              | X               |                        | X                     |
 | [`WS_CALLERINFO_AGENCY_ID`](#ws-callerinfo-agency-id)             | X               |                        | X                     |
@@ -56,6 +57,9 @@ When running the application using the provided [docker-compose.yml](docker-comp
 | [`WS_CALLERINFO_AGENCY_USER_PSEUDOSSN`](#ws-callerinfo-agency-user-pseudossn) | X               |                        | X                     |
 | [`WS_AGENCY_ID`](#ws-agency-id)                        | X               |                        | X                     |
 | [`WS_AGENCY_GROUP_ID`](#ws-agency-group-id)                  | X               |                        | X                     |
+| [`ATTACHMENTS_ENABLED`](#attachments-enabled)                          |                 | X                      | X                     |
+| [`FILE_MAXIMUM_SIZE`](#file-maximum-size)                   |                 | X                      | X                     |
+| [`FILE_TYPES`](#file-types)                          |                 | X                      | X                     |
 
 ## `NODE_ENV`
 
@@ -108,7 +112,7 @@ Logging to `syslog` may be used in conjunction with other logging sources.
 
 **Target** - Back-end (api)<br>
 **Default** - *not enabled*<br>
-**Values** - `{protocal}://{host}:{port}`
+**Values** - `{protocol}://{host}:{port}`
 
 ## `LOG_SYSLOG_CERT`
 
@@ -231,7 +235,7 @@ United States Postal Service (USPS) API key for address validation.
 
 ## `JWT_SECRET`
 
-The HS512 algorithm is used to sign each JavaScript Web Token using a secret random key of at least 512-bits. For example, `openssl rand 64 | base64 --wrap=0` generates an appropriate key. If this value is not specified, one will be automatically generated unique to the instance.
+The HS256 algorithm is used to sign each JavaScript Web Token using a secret random key of at least 256-bits. For example, `openssl rand -base64 32` generates an appropriate key. If this value is not specified, one will be automatically generated unique to the instance.
 
 **Target** - Back-end (api)<br>
 **Default** - *none*<br>
@@ -339,6 +343,14 @@ File path (absolute or relative) to TLS private key (X.509 PEM) for use the back
 **Target** - Back-end (api)<br>
 **Default** - *not enabled*<br>
 
+## `WS_ENABLED`
+
+Determines whether to enabled the submission to the eqip webservice
+
+**Target** - Back-end (api)<br>
+**Default** - True<br>
+**Values** - True: `1`, False: *empty*<br>
+
 ## `WS_URL`
 
 The endpoint for the OPM web service used to submit the package for investigation.
@@ -388,3 +400,25 @@ Provided by OPM representing the destination agency's group.
 
 **Target** - Back-end (api)<br>
 **Default** - *empty*<br>
+
+## `ATTACHMENTS_ENABLED`
+
+Flag to enable uploading and management of attachments within the application.
+
+**Target** - Front-end (web), Back-end (api)<br>
+**Default** - True: `1`<br>
+**Values** - True: `1`, False: *empty*<br>
+
+## `FILE_MAXIMUM_SIZE`
+
+Maximum file size allowed for attachment files. This also needs to be applied to any additional configurations such as proxies or web servers which are in front of the services.
+
+**Target** - Front-end (web), Back-end (api)<br>
+**Default** - `5000000`<br>
+
+## `FILE_TYPES`
+
+Allowed file extensions for attachments.
+
+**Target** - Front-end (web), Back-end (api)<br>
+**Default** - `.tiff;.png;.pdf`<br>

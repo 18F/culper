@@ -13,4 +13,9 @@ describe('The Medical Release component', () => {
     component.find('.signature button').simulate('click')
     expect(updates).toBe(1)
   })
+
+  it('handles defaults', () => {
+    expect(Medical.defaultProps.onUpdate()).toEqual(undefined)
+    expect(Medical.defaultProps.onError(null, [])).toEqual([])
+  })
 })
