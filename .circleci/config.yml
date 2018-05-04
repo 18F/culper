@@ -83,11 +83,3 @@ workflows:
               only:
                 - master
                 - develop
-      - aws:
-          requires:
-            - test
-          filters:
-            branches:
-              only:
-                - master
-                - develop
