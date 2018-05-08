@@ -31,6 +31,7 @@ const (
 	BasicAuthMissingPassword                   = "Basic authentication failed because missing a password"
 	BasicAuthMissingUsername                   = "Basic authentication failed because missing a username"
 	CORSDenied                                 = "CORS request denied"
+	CookieDomainNotSet                         = "Cookie Domain is not set"
 	EntityError                                = "Error getting entity data"
 	EntitySaveError                            = "Error getting entity data"
 	InvalidJWT                                 = "Invalid JSON web token"
