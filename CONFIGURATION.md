@@ -60,6 +60,7 @@ When running the application using the provided [docker-compose.yml](docker-comp
 | [`ATTACHMENTS_ENABLED`](#attachments-enabled)                          |                 | X                      | X                     |
 | [`FILE_MAXIMUM_SIZE`](#file-maximum-size)                   |                 | X                      | X                     |
 | [`FILE_TYPES`](#file-types)                          |                 | X                      | X                     |
+| [`COOKIE_DOMAIN`](#cookie-domain)                    |                 |                        | X                     |
 
 ## `NODE_ENV`
 
@@ -422,3 +423,10 @@ Allowed file extensions for attachments.
 
 **Target** - Front-end (web), Back-end (api)<br>
 **Default** - `.tiff;.png;.pdf`<br>
+
+## `COOKIE_DOMAIN`
+
+The domain to scope the SAML authentication cookie to. Must be setable by the backend and readable by the frontend. A leading `.` indicates that any subdomains are in scope. For example, `.eapp.example.com` would allow `backend.eapp.example.com` to set the cookie and `frontend.eapp.example.com` to read it.
+
+**Target** - Back-end (api)<br>
+**Default** - The host component of the `API_REDIRECT` value<br>

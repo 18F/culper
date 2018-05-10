@@ -13,6 +13,7 @@ import (
 
 var (
 	redirectTo = os.Getenv("API_REDIRECT")
+	cookieDomain = os.Getenv("COOKIE_DOMAIN")
 )
 
 // SamlRequestHandler is the handler for creating a SAML request.
@@ -108,11 +109,15 @@ func (service SamlResponseHandler) ServeHTTP(w http.ResponseWriter, r *http.Requ
 	}
 
 	service.Log.Info(api.SamlValid, api.LogFields{"account": account})
-	uri, _ := url.Parse(redirectTo)
-	domain := strings.Split(uri.Host, ":")[0]
+	if cookieDomain == "" {
+		service.Log.Warn(api.CookieDomainNotSet, api.LogFields{})
+		// Default to frontend host
+		uri, _ := url.Parse(redirectTo)
+		cookieDomain = strings.Split(uri.Host, ":")[0]
+        }
 	expiration := time.Now().Add(time.Duration(1) * time.Minute)
 	cookie := &http.Cookie{
-		Domain:   domain,
+		Domain:   cookieDomain,
 		Name:     "token",
 		Value:    signedToken,
 		HttpOnly: false,
