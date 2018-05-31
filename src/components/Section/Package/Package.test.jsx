@@ -11,6 +11,13 @@ const applicationState = {
     identification: [
       { code: 'identification/name', section: 'identification', subsection: 'name', valid: false }
     ]
+  },
+  Psychological: {
+    Competence: { IsIncompetent: { value: 'No' } },
+    Consultations: { Consulted: { value: 'No' } },
+    Diagnoses: { Diagnosed: { value: 'No' } },
+    Hospitalizations: { Hospitalized: { value: 'No' } },
+    ExistingConditions: { HasCondition: { value: 'No' } }
   }
 }
 
