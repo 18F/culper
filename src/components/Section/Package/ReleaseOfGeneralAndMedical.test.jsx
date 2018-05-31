@@ -9,11 +9,11 @@ describe('The ReleaseOfGeneralAndMedical Release component', () => {
     const props = {
       Application: {
         Psychological: {
-          Competence: { IsIncompetent: 'Yes' },
-          Consultation: { Consulted: 'Yes' },
-          Diagnoses: { Diagnosed: 'Yes' },
-          Hospitalization: { Hospitalized: 'Yes' },
-          ExistingConditions: { HasCondition: '' }
+          Competence: { IsIncompetent: { value: 'Yes' } },
+          Consultations: { Consulted: { value: 'Yes' } },
+          Diagnoses: { Diagnosed: { value: 'Yes' } },
+          Hospitalizations: { Hospitalized: { value: 'Yes' } },
+          ExistingConditions: { HasCondition: { value: 'Yes' } }
         }
       },
       onUpdate: () => { updates++ }
@@ -26,15 +26,15 @@ describe('The ReleaseOfGeneralAndMedical Release component', () => {
     expect(updates).toBe(2)
   })
 
-  it('does not display HIPPA release if no medical history', () => {
+  it('does not display HIPAA release if no medical history', () => {
     const props = {
       Application: {
         Psychological: {
-          Competence: { IsIncompetent: 'No' },
-          Consultation: { Consulted: 'No' },
-          Diagnoses: { Diagnosed: 'No' },
-          Hospitalization: { Hospitalized: 'No' },
-          ExistingConditions: { HasCondition: 'No' }
+          Competence: { IsIncompetent: { value: 'No' } },
+          Consultations: { Consulted: { value: 'No' } },
+          Diagnoses: { Diagnosed: { value: 'No' } },
+          Hospitalizations: { Hospitalized: { value: 'No' } },
+          ExistingConditions: { HasCondition: { value: 'No' } }
         }
       }
     }
