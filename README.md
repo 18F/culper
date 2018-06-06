@@ -169,13 +169,13 @@ All of the documentation may then be found in the respective directories under `
 
 #### Linters
 
-For Ninjas (Vim) just install `syntastic` and everything should be handled.
-For Pirates (Emacs) just install `flycheck` and everything should be handled.
+* Vim users: install `syntastic`
+* Emacs users: install `flycheck`
 
 For command-line alternatives there are the following:
+
  - For JavaScript, [JSHint][14] which may be installed with `yarn add jshint`
  - For HTML, [html-lint][15] which may be installed with `yarn add html-lint`
-
 
 ## Contributing
 
