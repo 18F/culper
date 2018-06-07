@@ -39,14 +39,14 @@ services:
       - api
 
   frontend:
-    image: node:8.5.0
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
     env_file:
       - .env
-    working_dir: /usr/src/app
     volumes:
       - .:/usr/src/app
-      # - /usr/src/app/node_modules
-    command: ./bin/watch
+      - /usr/src/app/node_modules
     networks:
       - eapp
 
