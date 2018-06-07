@@ -12,7 +12,8 @@
   "bugs": {
     "url": "https://github.com/18F/e-QIP-prototype/issues"
   },
-  "homepage": "https://github.com/18F/e-QIP-prototype",
+  "homepage": ".",
+  "private": true,
   "dependencies": {
     "@18f/stylelint-rules": "^2.0.0",
     "axios": "^0.18.0",
