@@ -31,18 +31,9 @@
     .introduction-content {
       width: 50%;
       min-width: 100rem;
-      height: 90vh;
-      margin-top: 5vh !important;
-      margin-bottom: 5vh !important;
       padding: 0;
       border: none;
       box-shadow: none;
-
-      @media only screen and (max-height: 800px) {
-        height: 100vh;
-        margin-top: 0 !important;
-        margin-bottom: 0 !important;
-      }
 
       .introduction-legal {
         overflow-y: scroll;
@@ -63,7 +54,6 @@
       }
 
       .introduction-acceptance {
-        max-height: 40vh;
         padding-top: 2rem;
         margin: 4rem 5rem 0 5rem;
         border-top: 1px solid $eapp-grey;
