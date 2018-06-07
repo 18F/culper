@@ -27,7 +27,7 @@ var paths = {
     ]
   },
   html: [
-    './src/**/*.html',
+    './public/**/*.html',
     './lib/**/*.js',
     './Staticfile'
   ],

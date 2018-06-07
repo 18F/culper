@@ -81,6 +81,7 @@ __snapshots__/
 TAGS
 *.cer
 *.crt
+*.css
 *.key
 
 # Test artifacts
