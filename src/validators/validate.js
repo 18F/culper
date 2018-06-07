@@ -1,11 +1,12 @@
-import * as logic from '.'
+import * as logic from '../validators'
 
-export const validate = (payload) => {
+const validate = (payload) => {
   if (payload && payload.type) {
     return validators[payload.type](payload.props)
   }
   return false
 }
+export default validate
 
 const validators = {
   'benefit': (data) => {
