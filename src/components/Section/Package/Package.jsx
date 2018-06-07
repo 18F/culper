@@ -50,7 +50,10 @@ class Package extends SectionElement {
     this.setState({ submitting: true })
 
     axios
-      .all([api.save(payload), api.submit()])
+      .all([api.save(payload)])
+      .then(() => {
+        return api.submit()
+      })
       .then(() => {
         return api.status()
       })
