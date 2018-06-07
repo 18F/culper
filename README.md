@@ -81,7 +81,7 @@ Then to develop locally, create a [`.env`](.env.example) file:
 cp .env.example .env
 ```
 
-For more information on the various settings, examples, and values please refer to the [configuration](CONFIGURATION.md) documentation.
+For more information on the various settings, examples, and values please refer to the [configuration](docs/CONFIGURATION.md) documentation.
 
 
 ## Running the application
@@ -218,5 +218,5 @@ Please refer to the [contributing documentation][18].
 [23]: https://goreportcard.com/report/github.com/truetandem/e-QIP-prototype
 [24]: https://codecov.io/gh/18F/e-QIP-prototype
 [25]: https://codecov.io/gh/truetandem/e-QIP-prototype
-[26]: SPRINTS.MD
-[27]: SPECTEST.MD
+[26]: docs/SPRINTS.md
+[27]: docs/SPECTEST.md
