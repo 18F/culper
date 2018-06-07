@@ -27,7 +27,7 @@ var paths = {
     ]
   },
   html: [
-    './src/**/*.html',
+    './public/**/*.html',
     './lib/**/*.js',
     './Staticfile'
   ],
@@ -55,9 +55,10 @@ gulp.task('copy', ['clean'], copy)
 gulp.task('fonts', ['clean'], fonts)
 gulp.task('images', ['clean'], images)
 gulp.task('lint', [], sasslint(paths.sass.local[0], paths.sass.rules))
-gulp.task('sass', ['clean'], convert)
+gulp.task('sass', ['clean', 'fonts', 'images'], convert)
 gulp.task('build', ['clean', 'copy', 'fonts', 'images', 'sass'], compile)
 gulp.task('watchdog', ['build'], watchdog)
+gulp.task('watchsass', ['sass'], watchsass)
 gulp.task('default', ['build'])
 
 function clean () {
@@ -110,4 +111,9 @@ function convert () {
 function watchdog () {
   'use strict'
   return gulp.watch([paths.js, paths.sass.local], ['build'])
+}
+
+function watchsass () {
+  'use strict'
+  return gulp.watch([paths.sass.local], ['sass'])
 }
