@@ -90,9 +90,9 @@ coverage:
 #
 # Building
 #
-build: build-react build-go reset-permissions
-build-react:
-	$(info Compiling React application)
+build: build-frontend build-go reset-permissions
+build-frontend:
+	$(info Compiling frontend)
 	@docker-compose run --rm frontend ./bin/build
 build-go:
 	$(info Compiling Go application)
@@ -157,7 +157,7 @@ deploy-react:
 #
 # Suites
 #
-react: test-react build-react reset-permissions
+react: test-react build-frontend reset-permissions
 go: test-go build-go reset-permissions
 
 #
