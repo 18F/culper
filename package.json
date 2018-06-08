@@ -87,11 +87,11 @@
     "clearMocks": true
   },
   "scripts": {
-    "test": "NODE_ENV='test' ./node_modules/.bin/jest -u --logHeapUsage --coverage --silent",
-    "lint": "./node_modules/.bin/gulp lint",
-    "coverage": "NODE_ENV=test npm install -g codecov && codecov",
-    "build": "./node_modules/.bin/gulp build",
-    "watch": "./node_modules/.bin/gulp watchdog",
-    "docs": "./node_modules/.bin/jsdoc ./src -r -d ./doc/frontend"
+    "test": "NODE_ENV=test jest -u --logHeapUsage --coverage --silent",
+    "lint": "gulp lint",
+    "coverage": "NODE_ENV=test codecov",
+    "build": "gulp build",
+    "watch": "gulp watchdog",
+    "docs": "jsdoc ./src -r -d ./doc/frontend"
   }
 }
