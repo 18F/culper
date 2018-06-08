@@ -210,11 +210,11 @@ seccomp-post:
 down:
 	docker-compose down
 start:
-	docker-compose start web api db
+	docker-compose start web frontend api db
 stop:
 	docker-compose stop
 run:
-	docker-compose up web api db
+	docker-compose up web frontend api db
 docs:
 	docker-compose up docs
 tag:
