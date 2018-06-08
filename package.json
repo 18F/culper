@@ -92,7 +92,7 @@
     "build-js": "webpack -p --progress",
     "build-css": "gulp build",
     "build": "npm run build-css && npm run build-js",
-    "watch-js": "echo \"Starting JS compilation - takes ~60 seconds until ready\" && webpack --watch --progress",
+    "watch-js": "echo \"Starting JS compilation... (Will be ready once you see 'eqip.js' message, after ~60 seconds.)\" && webpack --watch --progress",
     "watch-css": "gulp watchdog",
     "docs": "jsdoc ./src -r -d ./doc/frontend"
   }

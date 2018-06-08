@@ -9,4 +9,4 @@ RUN yarn install
 
 COPY . .
 
-CMD yarn watch
+CMD yarn build
