@@ -38,7 +38,7 @@ export const psychological = {
   },
   competence: {
     heading: {
-      occurred: 'Provide the date this occurred ok ok ',
+      occurred: 'Provide the date this occurred',
       courtName: 'Provide the name of the court or administrative agency that declared you mentally incompetent',
       courtAddress: 'Provide the address of the court or administrative agency',
       disposition: 'Provide the final disposition',
