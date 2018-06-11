@@ -52,7 +52,7 @@
               "Name": {
                 "type": "name",
                 "props": {
-                  "first": "John",
+                  "first": "Prince",
                   "firstInitialOnly": false,
                   "middle": "H",
                   "middleInitialOnly": true,
