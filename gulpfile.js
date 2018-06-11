@@ -57,7 +57,9 @@ gulp.task('default', ['build'])
 function clean () {
   'use strict'
   return del([
-    paths.destination.root + '/*'
+    paths.destination.root + '/*',
+    // don't delete JS files created by Webpack
+    '!' + paths.destination.root + '/eqip.js'
   ])
 }
 
