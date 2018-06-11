@@ -40,7 +40,7 @@ clean: stop reset-permissions
 setup: stop setup-containers setup-certificates setup-dependencies reset-permissions
 setup-containers:
 	$(info Building containers)
-	@docker-compose build deps frontend web db api
+	@docker-compose build deps js css web db api
 setup-certificates:
 	$(info Generating test certificates)
 	@docker-compose run --rm deps ./bin/test-certificates
@@ -54,10 +54,10 @@ setup-dependencies:
 lint: lint-js lint-css lint-go
 lint-js:
 	$(info Running JavaScript linter)
-	@docker-compose run --rm frontend ./node_modules/.bin/eslint src/
+	@docker-compose run --rm js ./node_modules/.bin/eslint src/
 lint-css:
 	$(info Running SCSS linter)
-	@docker-compose run --rm frontend yarn lint
+	@docker-compose run --rm css yarn lint
 lint-go:
 	$(info Running Go linter)
 	@docker-compose run --rm api ./bin/lint
@@ -68,7 +68,7 @@ lint-go:
 test: test-react test-go
 test-react:
 	$(info Running React test suite)
-	@docker-compose run --rm frontend yarn test
+	@docker-compose run --rm js yarn test
 test-go:
 	$(info Running Go test suite)
 	@docker-compose run --rm api make test
@@ -93,7 +93,8 @@ coverage:
 build: build-frontend build-go reset-permissions
 build-frontend:
 	$(info Compiling frontend)
-	@docker-compose run --rm frontend yarn build
+	@docker-compose run --rm css yarn build-css
+	@docker-compose run --rm js yarn build-js
 build-go:
 	$(info Compiling Go application)
 	@docker-compose run --rm api make build
@@ -210,11 +211,11 @@ seccomp-post:
 down:
 	docker-compose down
 start:
-	docker-compose start web frontend api db
+	docker-compose start web js css api db
 stop:
 	docker-compose stop
 run:
-	docker-compose up web frontend api db
+	docker-compose up web js css api db
 docs:
 	docker-compose up docs
 tag:
