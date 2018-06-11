@@ -1,3 +1,5 @@
+# intended for local development
+
 version: '2'
 
 services:

@@ -215,6 +215,7 @@ start:
 stop:
 	docker-compose stop
 run:
+	$(info Running local development server)
 	docker-compose up web js css api db
 docs:
 	docker-compose up docs

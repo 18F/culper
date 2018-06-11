@@ -51,18 +51,20 @@ GitHub commits can be traced back to their corresponding tasks through commit co
 
 To view the items completed during each development sprint and to view the burndown charts for each respective sprint, please visit the [Sprint Backlogs][26] page.
 
-## Getting to know the code
+## Development
 
-### Dependencies
+### Initial setup
+
+#### Dependencies
 
  - [git](https://git-scm.com)
  - [docker][21]
  - [docker-compose][20]
  - [make](https://www.gnu.org/software/make/)
 
-For more information on licenses and third-party source code please refer to the [dependencies](DEPENDENCIES.md) documentation.
+For more information on licenses and third-party source code please refer to the [dependencies](docs/DEPENDENCIES.md) documentation.
 
-### Clone all things
+#### Clone all things
 
 Clone the repository and `cd` into it:
 
@@ -81,22 +83,27 @@ cp .env.example .env
 
 For more information on the various settings, examples, and values please refer to the [configuration](docs/CONFIGURATION.md) documentation.
 
+#### Tests
 
-## Running the application
-
-To avoid manually running separate commands for [setup](#setup), [building](#building-the-application), and [testing](#executing-tests-and-coverage-reports) you can instead execute:
+To do the initial setup and ensure that all tests pass locally:
 
 ``` shell
 make
 ```
 
-### Setup
+### Running a local server
 
-Configure prerequisites using:
+To run a local server, we are using [docker][21] containers leveraging the [docker-compose][20] tool via the command:
 
 ```shell
-make setup
+make run
 ```
+
+Then direct your browser at [http://localhost:8080](http://localhost:8080). The access the site in development use the username `test01` and password `password01`. If you make changes to frontend files, the site will automatically rebuild after ~10 seconds.
+
+#### How it works
+
+The Make target calls Docker Compose, which then runs containers for various parts of the system. Frontend assets are built from their own containers into the `dist/` folder, which are then served by nginx. Nginx also proxies API requests to an API backend written in Go, which has a PostgreSQL container behind it.
 
 ### Building the application
 
@@ -106,6 +113,8 @@ Compiling all of the assets can be done simply using the command:
 make build
 ```
 
+This is generally only needed for deployment.
+
 ### Executing tests and coverage reports
 
 To make a single pass through the test suite use the command:
@@ -114,27 +123,6 @@ To make a single pass through the test suite use the command:
 make test
 make coverage
 ```
-
-### Running a local server
-
-To run a local server we are using [docker][21] containers leveraging the [docker-compose][20] tool via the command:
-
-```shell
-make run
-```
-
-Then direct your browser at [http://localhost:8080](http://localhost:8080). The access the site in development use the username `test01` and password `password01`.
-
-## Docker containers
-
-| Container | Image               |
-| --------  | ------------------- |
-| api       | [Dockerfile.api](Dockerfile.api) |
-| db        | postgres:9.6.5      |
-| web       | nginx:alpine        |
-| frontend  | node:8.5.0          |
-
-The IdAM solution **is not** part of this project.
 
 ## Architectural diagram
 
