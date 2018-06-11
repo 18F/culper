@@ -9,4 +9,4 @@ RUN yarn install
 
 COPY . .
 
-CMD ./bin/watch
+CMD yarn watch

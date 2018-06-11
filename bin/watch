@@ -1,4 +1,0 @@
-#!/bin/sh
-yarn install --production=false
-yarn watch
-./bin/permissions

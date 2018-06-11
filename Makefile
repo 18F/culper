@@ -68,7 +68,7 @@ lint-go:
 test: test-react test-go
 test-react:
 	$(info Running React test suite)
-	@docker-compose run --rm frontend ./bin/test
+	@docker-compose run --rm frontend yarn test
 test-go:
 	$(info Running Go test suite)
 	@docker-compose run --rm api make test
@@ -93,7 +93,7 @@ coverage:
 build: build-frontend build-go reset-permissions
 build-frontend:
 	$(info Compiling frontend)
-	@docker-compose run --rm frontend ./bin/build
+	@docker-compose run --rm frontend yarn build
 build-go:
 	$(info Compiling Go application)
 	@docker-compose run --rm api make build
