@@ -76,8 +76,7 @@
     "redux-thunk": "^2.1.0",
     "smoothscroll-polyfill": "^0.3.6",
     "uswds": "^1.4.0",
-    "webpack": "^3.6.0",
-    "webpack-stream": "^4.0.0"
+    "webpack": "^3.6.0"
   },
   "jest": {
     "coverageDirectory": "./coverage/",
@@ -90,8 +89,11 @@
     "test": "NODE_ENV=test jest -u --logHeapUsage --coverage --silent",
     "lint": "gulp lint",
     "coverage": "NODE_ENV=test codecov",
-    "build": "gulp build",
-    "watch": "gulp watchdog",
+    "build-js": "webpack -p --progress",
+    "build-css": "gulp build",
+    "build": "npm run build-css && npm run build-js",
+    "watch-js": "echo \"Starting JS compilation... (Will be ready once you see 'eqip.js' message, after ~60 seconds.)\" && webpack --watch --progress",
+    "watch-css": "gulp watchdog",
     "docs": "jsdoc ./src -r -d ./doc/frontend"
   }
 }

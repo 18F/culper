@@ -1,3 +1,5 @@
+# intended for local development
+
 version: '2'
 
 services:
@@ -38,12 +40,26 @@ services:
     depends_on:
       - api
 
-  frontend:
+  js:
     build:
       context: .
       dockerfile: Dockerfile.frontend
     env_file:
       - .env
+    command: yarn watch-js
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    networks:
+      - eapp
+
+  css:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    env_file:
+      - .env
+    command: yarn watch-css
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules

@@ -1,4 +1,3 @@
-var webpack = require('webpack-stream')
 var del = require('del')
 var gulp = require('gulp')
 var concat = require('gulp-concat')
@@ -7,10 +6,6 @@ var sasslint = require('@18f/stylelint-rules')
 require('dotenv').config()
 
 var paths = {
-  entry: ['./src/boot.jsx'],
-  js: [
-    './src/**/*.js*'
-  ],
   sassvars: './src/sass',
   sass: {
     rules: {
@@ -46,8 +41,7 @@ var paths = {
     css: './dist/css',
     fonts: './dist/fonts',
     images: './dist/img'
-  },
-  webpack: './webpack.config.js'
+  }
 }
 
 gulp.task('clean', clean)
@@ -56,14 +50,16 @@ gulp.task('fonts', ['clean'], fonts)
 gulp.task('images', ['clean'], images)
 gulp.task('lint', [], sasslint(paths.sass.local[0], paths.sass.rules))
 gulp.task('sass', ['clean'], convert)
-gulp.task('build', ['clean', 'copy', 'fonts', 'images', 'sass'], compile)
+gulp.task('build', ['clean', 'copy', 'fonts', 'images', 'sass'])
 gulp.task('watchdog', ['build'], watchdog)
 gulp.task('default', ['build'])
 
 function clean () {
   'use strict'
   return del([
-    paths.destination.root + '/*'
+    paths.destination.root + '/*',
+    // don't delete JS files created by Webpack
+    '!' + paths.destination.root + '/eqip.js'
   ])
 }
 
@@ -88,14 +84,6 @@ function images () {
     .pipe(gulp.dest(paths.destination.images))
 }
 
-function compile () {
-  'use strict'
-  return gulp
-    .src(paths.entry)
-    .pipe(webpack(require(paths.webpack)))
-    .pipe(gulp.dest(paths.destination.root))
-}
-
 function convert () {
   'use strict'
   return gulp
@@ -109,5 +97,5 @@ function convert () {
 
 function watchdog () {
   'use strict'
-  return gulp.watch([paths.js, paths.sass.local], ['build'])
+  return gulp.watch([paths.sass.local], ['build'])
 }
