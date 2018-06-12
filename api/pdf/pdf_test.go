@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"testing"
 
+	"github.com/18F/e-QIP-prototype/api"
 	"github.com/18F/e-QIP-prototype/api/mock"
 )
 
@@ -14,7 +15,7 @@ func TestPackage(t *testing.T) {
 	logger := &mock.LogService{}
 	service := Service{Log: logger}
 
-	templates := []ArchivalPdf{
+	templates := []api.ArchivalPdf{
 		Certification,
 		MedicalRelease,
 		GeneralRelease,
@@ -22,9 +23,13 @@ func TestPackage(t *testing.T) {
 	}
 
 	for _, pdf := range templates {
+		if !service.IsSignatureAvailable(application, pdf) {
+			continue
+		}
+
 		dat, err := service.CreatePdf(application, pdf)
 		if err != nil {
-			t.Fatalf(fmt.Sprintf("Error creating PDF from %s: %s", pdf.template, err.Error()))
+			t.Fatalf(fmt.Sprintf("Error creating PDF from %s: %s", pdf.Template, err.Error()))
 		}
 		_ = dat
 	}

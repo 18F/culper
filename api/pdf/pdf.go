@@ -13,18 +13,11 @@ import (
 	"github.com/Jeffail/gabs"
 )
 
-// An ArchivalPdf represents a PDF that needs to be retained and submitted to e-QIP.
-type ArchivalPdf struct {
-	template string // filename of PDF template that will be populated
-	section  string // eApp sub-section where signature information is stored
-	eqipType string // document type defined by e-QIP (e.g., CER, REL, etc.)
-}
-
 var (
-	Certification  = ArchivalPdf{"certification-SF86-November2016.template.pdf", "AdditionalComments", "CER"}
-	CreditRelease  = ArchivalPdf{"credit-SF86-November2016.template.pdf", "Credit", "FCR"}
-	MedicalRelease = ArchivalPdf{"medical-SF86-November2016.template.pdf", "Medical", "MEL"}
-	GeneralRelease = ArchivalPdf{"general-SF86-November2016.template.pdf", "General", "REL"}
+	Certification  = api.ArchivalPdf{"certification-SF86-November2016.template.pdf", "AdditionalComments", "CER"}
+	CreditRelease  = api.ArchivalPdf{"credit-SF86-November2016.template.pdf", "Credit", "FCR"}
+	MedicalRelease = api.ArchivalPdf{"medical-SF86-November2016.template.pdf", "Medical", "MEL"}
+	GeneralRelease = api.ArchivalPdf{"general-SF86-November2016.template.pdf", "General", "REL"}
 )
 
 // A PdfField represents the fixed-width placeholder in a ArchivalPdf template.
@@ -42,12 +35,12 @@ type Service struct {
 // CreatePdf populates a template PDF with values from the application, using basic text subsitution.
 // Field names (e.g., SSN) are replaced with application values, space padded to a fixed length to
 // ensure that PDF object/xref byte offsets do not need to be updated. Assumes values are ASCII.
-func (service Service) CreatePdf(application map[string]interface{}, pdfType ArchivalPdf) ([]byte, error) {
+func (service Service) CreatePdf(application map[string]interface{}, pdfType api.ArchivalPdf) ([]byte, error) {
 	// Get application data into easily queryable form
 	json, _ := gabs.Consume(application)
 
 	signedOn := func(json *gabs.Container) string {
-		return getSignedOn(json, pdfType.section)
+		return getSignedOn(json, pdfType.Section)
 	}
 
 	// Field widths are based on monospaced font and fixed point size
@@ -65,7 +58,7 @@ func (service Service) CreatePdf(application map[string]interface{}, pdfType Arc
 		{"STREET_ADDRESS", 40, getStreetAddress},
 	}
 
-	dat, err := ioutil.ReadFile(path.Join("templates", pdfType.template))
+	dat, err := ioutil.ReadFile(path.Join("templates", pdfType.Template))
 	if err != nil {
 		return nil, err
 	}
@@ -82,6 +75,11 @@ func (service Service) CreatePdf(application map[string]interface{}, pdfType Arc
 	}
 
 	return []byte(str), nil
+}
+
+func (service Service) IsSignatureAvailable(application map[string]interface{}, pdfType api.ArchivalPdf) bool {
+	json, _ := gabs.Consume(application)
+	return signatureAvailable(json, pdfType.Section)
 }
 
 func getPath(json *gabs.Container, path string) string {
@@ -210,11 +208,21 @@ func getOtherNames(json *gabs.Container) string {
 	return strings.Join(names, ", ")
 }
 
-func getSignedOn(json *gabs.Container, docSubsection string) string {
+func getSignedOnParts(json *gabs.Container, docSubsection string) []string {
 	prefix := "Submission.Releases.props." + docSubsection + ".props.Signature.props.Date.props"
 	keys := []string{"month", "day", "year"}
-	values := getPaths(json, prefix, keys)
+	return getPaths(json, prefix, keys)
+}
 
+func signatureAvailable(json *gabs.Container, docSubsection string) bool {
+	values := getSignedOnParts(json, docSubsection)
+	// Ensure all date parts are non-empty
+	return len(values) == 3 &&
+		values[0] != "" && values[1] != "" && values[2] != ""
+}
+
+func getSignedOn(json *gabs.Container, docSubsection string) string {
+	values := getSignedOnParts(json, docSubsection)
 	return strings.Join(values, "/")
 }
 
