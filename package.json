@@ -78,7 +78,10 @@
     "collectCoverage": true,
     "verbose": false,
     "bail": false,
-    "clearMocks": true
+    "clearMocks": true,
+    "roots": [
+      "<rootDir>/src"
+    ]
   },
   "scripts": {
     "test": "NODE_ENV=test jest -u --logHeapUsage --coverage --silent",
