@@ -19,7 +19,10 @@ module.exports = {
       {
         test: /\.jsx?$/,
         include: path.resolve(__dirname, 'src'),
-        loader: 'babel-loader'
+        use: [
+          'cache-loader',
+          'babel-loader'
+        ]
       }
     ]
   },

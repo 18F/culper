@@ -54,6 +54,7 @@ __snapshots__/
 # Build artifacts
 .gitmessage
 .projectile
+/.cache-loader/
 /bin
 /api/bin
 /api/dist
