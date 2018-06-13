@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 rm -rf ./doc/*;
 mkdir -p ./doc/{frontend,backend,database};
 

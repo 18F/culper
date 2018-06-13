@@ -1,4 +1,7 @@
 #!/bin/sh
+
+set -e
+
 glide update
 chown -f -R 1000:1000 ./.glide
 chown -f -R 1000:1000 ./vendor

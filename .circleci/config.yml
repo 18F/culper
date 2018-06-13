@@ -17,7 +17,7 @@ jobs:
           command: make test
       - run:
           name: Code coverage
-          command: ./bin/coverage
+          command: make coverage
 
   cloudgov:
     machine: true

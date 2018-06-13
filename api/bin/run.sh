@@ -1,3 +1,6 @@
 #! /bin/sh
 
-make build && ./api 2>&1
+set -e
+
+make build
+./api 2>&1
