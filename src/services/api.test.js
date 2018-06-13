@@ -74,24 +74,14 @@ describe('The API', () => {
   })
 
   it('can parse query parameters from url', () => {
-    const previousLocation = window.location
-    Object.defineProperty(window.location, 'search', {
-      writable: true,
-      value: '?foo=bar&test=1'
-    })
-
-    let foo = getQueryValue('foo')
+    let foo = getQueryValue('?foo=bar&test=1', 'foo')
     expect(foo).toEqual('bar')
 
-    window.location.search = ''
-    foo = getQueryValue('foo')
+    foo = getQueryValue('', 'foo')
     expect(foo).toEqual(null)
 
-    window.location.search = '?foo=bar&foo=meh'
-    foo = getQueryValue('foo')
+    foo = getQueryValue('?foo=bar&foo=meh', 'foo')
     expect(foo).toEqual('bar')
-
-    window.location = previousLocation
   })
 
   it('can issue refresh of token', () => {
