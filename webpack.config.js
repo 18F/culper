@@ -23,7 +23,7 @@ module.exports = {
       }
     ]
   },
-  devtool: debug ? 'inline-sourcemap' : false,
+  devtool: debug ? 'cheap-module-source-map' : false,
   plugins: [
     new webpack.EnvironmentPlugin([
       'API_BASE_URL', 'ALLOW_2FA_RESET', 'HASH_ROUTING', 'DISABLE_2FA',
