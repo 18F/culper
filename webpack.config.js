@@ -5,6 +5,7 @@ const webpack = require('webpack')
 const path = require('path')
 
 module.exports = {
+  mode: production ? 'production' : 'development',
   entry: ['babel-polyfill', './src/boot.jsx'],
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -14,7 +15,7 @@ module.exports = {
     extensions: ['*', '.js', '.jsx']
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.jsx?$/,
         include: [
