@@ -49,6 +49,8 @@ services:
     command: yarn watch-js
     volumes:
       - .:/usr/src/app
+      # ensure node_modules aren't shared with host system
+      # https://michalzalecki.com/docker-compose-for-nodejs-and-postresql/#docker-compose
       - /usr/src/app/node_modules
     networks:
       - eapp
@@ -62,6 +64,7 @@ services:
     command: yarn watch-css
     volumes:
       - .:/usr/src/app
+      # ditto above
       - /usr/src/app/node_modules
     networks:
       - eapp
