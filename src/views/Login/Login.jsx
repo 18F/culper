@@ -51,7 +51,7 @@ export class Login extends React.Component {
       return
     }
 
-    const err = getQueryValue('error')
+    const err = getQueryValue(window.location.search, 'error')
     if (err) {
       switch (err) {
       case 'token':
