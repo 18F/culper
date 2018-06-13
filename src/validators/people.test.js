@@ -1,4 +1,5 @@
 import PeopleValidator from './people'
+import PersonValidator from './person'
 import Location from '../components/Form/Location'
 
 describe('People validator', function () {
@@ -309,6 +310,10 @@ describe('People validator', function () {
     ]
 
     tests.forEach(test => {
+      // ensure each individual person is valid
+      test.data.List.items.forEach(person => {
+        expect(new PersonValidator(person.Item).isValid()).toBe(true)
+      })
       expect(new PeopleValidator(test.data).validCount()).toBe(test.expected)
     })
   })
