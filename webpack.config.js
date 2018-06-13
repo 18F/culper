@@ -32,10 +32,6 @@ module.exports = {
       'API_BASE_URL', 'ALLOW_2FA_RESET', 'HASH_ROUTING', 'DISABLE_2FA',
       'BASIC_ENABLED', 'SAML_ENABLED', 'SESSION_TIMEOUT',
       'ATTACHMENTS_ENABLED', 'FILE_MAXIMUM_SIZE', 'FILE_TYPES'
-    ]),
-    new webpack.ProvidePlugin({
-      'Promise': 'es6-promise',
-      'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
-    })
+    ])
   ]
 }
