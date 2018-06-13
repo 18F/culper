@@ -1,8 +1,8 @@
 import axios from 'axios'
 import env from '../config/environment'
 
-export const getQueryValue = (key) => {
-  return getSplitValue(key, window.location.search.substring(1), '&', '=')
+export const getQueryValue = (queryString, key) => {
+  return getSplitValue(key, queryString.substring(1), '&', '=')
 }
 
 export const getCookieValue = (key) => {
@@ -54,7 +54,7 @@ class Api {
 
     // Look for token in query string
     if (token === null) {
-      token = getQueryValue('token')
+      token = getQueryValue(window.location.search, 'token')
     }
 
     if (token === null && env && env.IsTest()) {

@@ -17,9 +17,9 @@
     "@18f/stylelint-rules": "^2.0.0",
     "axios": "^0.18.0",
     "axios-mock-adapter": "^1.15.0",
-    "babel-core": "^6.26.0",
-    "babel-jest": "^17.0.0",
-    "babel-loader": "^7.1.2",
+    "babel-core": "^6.26.3",
+    "babel-jest": "^23.0.1",
+    "babel-loader": "^7.1.4",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-react-html-attrs": "^2.0.0",
     "babel-plugin-transform-async-to-generator": "^6.16.0",
@@ -50,7 +50,7 @@
     "gulp-sass": "^3.1.0",
     "history": "^4.7.2",
     "http-server": "^0.10.0",
-    "jest": "^19.1.0-alpha.eed82034",
+    "jest": "^23.1.0",
     "jsdoc": "^3.5.5",
     "json-loader": "^0.5.7",
     "node-sass": "^4.5.3",
@@ -78,7 +78,10 @@
     "collectCoverage": true,
     "verbose": false,
     "bail": false,
-    "clearMocks": true
+    "clearMocks": true,
+    "roots": [
+      "<rootDir>/src"
+    ]
   },
   "scripts": {
     "test": "NODE_ENV=test jest -u --logHeapUsage --coverage --silent",
