@@ -124,6 +124,14 @@ make test
 make coverage
 ```
 
+### Adding/updating NPM packages
+
+Whenever the `dependencies` list in [`package.json`](package.json) is changed, make sure the [`yarn.lock`](yarn.lock) gets updated as well:
+
+```shell
+docker-compose run js yarn
+```
+
 ## Architectural diagram
 
 ![eapparchitecture](https://user-images.githubusercontent.com/12962390/37600234-1ecdb4ba-2b5d-11e8-99b3-a07f46aef611.png)
