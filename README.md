@@ -1,11 +1,8 @@
 # e-QIP Prototype
 
-[![Slack][badge_chat]][1]
+[![Slack][badge_chat]][1] (TTS only)
 
-|         | Builds                             | Coverage                        | GPA                                | Go                                              |
-| ------- | ---------------------------------- | ------------------------------- | ---------------------------------- | ----------------------------------------------- |
-| Release | [![Build Status][badge_ci_18f]][2] | [![codecov][badge_cov_18f]][24] | [![Code Climate][badge_cc_18f]][3] | [![Go Report Card][badge_goreportcard_18f]][22] |
-| Staging | [![Build Status][badge_ci_tt]][5]  | [![codecov][badge_cov_tt]][25]  | [![Code Climate][badge_cc_tt]][6]  | [![Go Report Card][badge_goreportcard_tt]][23]  |
+[![Build Status][badge_ci_18f]][2] [![codecov][badge_cov_18f]][24] [![Code Climate][badge_cc_18f]][3] [![Go Report Card][badge_goreportcard_18f]][22]
 
 To create the e-QIP questionnaire prototype, the project team is employing a user-centered design approach leveraging key principles from the [U.S. Digital Services Playbook][8]:
 
@@ -177,16 +174,11 @@ For command-line alternatives there are the following:
 
 Please refer to the [contributing documentation][18].
 
-
 [badge_chat]: https://img.shields.io/badge/chat-slack-green.svg
 [badge_ci_18f]: https://circleci.com/gh/18F/e-QIP-prototype.svg?style=shield
 [badge_cc_18f]: https://codeclimate.com/github/18F/e-QIP-prototype/badges/gpa.svg
 [badge_cov_18f]: https://codecov.io/gh/18F/e-QIP-prototype/branch/master/graph/badge.svg
 [badge_goreportcard_18f]: https://goreportcard.com/badge/github.com/18F/e-QIP-prototype
-[badge_ci_tt]: https://circleci.com/gh/18F/e-QIP-prototype.svg?style=shield
-[badge_cc_tt]: https://codeclimate.com/github/18F/e-QIP-prototype/badges/gpa.svg
-[badge_cov_tt]: https://codecov.io/gh/18F/e-QIP-prototype/branch/master/graph/badge.svg
-[badge_goreportcard_tt]: https://goreportcard.com/badge/github.com/18F/e-QIP-prototype
 [1]: https://gsa-tts.slack.com/messages/acq-e-qip-vendor
 [2]: https://circleci.com/gh/18F/e-QIP-prototype
 [3]: https://codeclimate.com/github/18F/e-QIP-prototype
