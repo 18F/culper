@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 SUBJ="/C=US/ST=Denial/L=Springfield/O=Dis/CN=www.example.com"
 WS_KEY=./api/eqip/testdata/test.key
 WS_PKCS=./api/eqip/testdata/test.pkcs.key

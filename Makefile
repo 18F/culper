@@ -85,7 +85,7 @@ specs:
 #
 coverage:
 	$(info Running code coverage)
-	@./bin/coverage
+	@docker-compose run --rm js codecov
 
 #
 # Building

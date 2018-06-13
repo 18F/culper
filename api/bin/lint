@@ -1,3 +1,5 @@
 #!/bin/bash
-go get -u golang.org/x/lint/golint;
-golint $(go list ./... | grep -v /vendor/);
+
+set -e
+
+golint $(go list ./... | grep -v /vendor/)

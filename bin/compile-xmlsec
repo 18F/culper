@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 # Check to see if the file already exists
 if [ ! -f ./bin/xmlsec1 ]
 then
