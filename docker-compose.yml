@@ -43,7 +43,7 @@ services:
   js:
     build:
       context: .
-      dockerfile: Dockerfile.frontend
+      dockerfile: docker/Dockerfile.frontend
     env_file:
       - .env
     command: yarn watch-js
@@ -58,7 +58,7 @@ services:
   css:
     build:
       context: .
-      dockerfile: Dockerfile.frontend
+      dockerfile: docker/Dockerfile.frontend
     env_file:
       - .env
     command: yarn watch-css
@@ -72,7 +72,7 @@ services:
   api:
     build:
       context: .
-      dockerfile: Dockerfile.api
+      dockerfile: docker/Dockerfile.api
     env_file:
       - .env
     working_dir: /go/src/github.com/18F/e-QIP-prototype/api
@@ -93,7 +93,7 @@ services:
   docs:
     build:
       context: .
-      dockerfile: Dockerfile.docs
+      dockerfile: docker/Dockerfile.docs
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
