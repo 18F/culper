@@ -49,7 +49,7 @@ gulp.task('copy', ['clean'], copy)
 gulp.task('fonts', ['clean'], fonts)
 gulp.task('images', ['clean'], images)
 gulp.task('lint', [], sasslint(paths.sass.local[0], paths.sass.rules))
-gulp.task('sass', ['clean'], convert)
+gulp.task('sass', [], convert)
 gulp.task('build', ['clean', 'copy', 'fonts', 'images', 'sass'])
 gulp.task('watchdog', ['build'], watchdog)
 gulp.task('default', ['build'])
@@ -97,5 +97,5 @@ function convert () {
 
 function watchdog () {
   'use strict'
-  return gulp.watch([paths.sass.local], ['build'])
+  return gulp.watch([paths.sass.local], ['sass'])
 }
