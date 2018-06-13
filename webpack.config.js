@@ -12,21 +12,13 @@ module.exports = {
     filename: 'eqip.js'
   },
   resolve: {
-    extensions: ['*', '.js', '.jsx']
+    extensions: ['.js', '.jsx']
   },
   module: {
     rules: [
       {
         test: /\.jsx?$/,
-        include: [
-          function (absPath) {
-            let re = /\.(production|staging|development)\./
-            return re.exec(absPath) === null
-          }
-        ],
-        exclude: [
-          /(node_modules|bower_components)/
-        ],
+        include: path.resolve(__dirname, 'src'),
         loader: 'babel-loader',
         query: {
           presets: ['react', 'es2015'],
