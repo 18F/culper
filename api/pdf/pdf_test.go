@@ -4,59 +4,61 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"os"
+	"path"
 	"testing"
 
-	"github.com/18F/e-QIP-prototype/api"
 	"github.com/18F/e-QIP-prototype/api/mock"
 )
 
 func TestPackage(t *testing.T) {
+	// Change working dir to parent so code under test is
+	// executed in same working directory as in production.
+	os.Chdir("..")
+
 	application := applicationData(t)
 	logger := &mock.LogService{}
 	service := Service{Log: logger}
 
-	templates := []api.ArchivalPdf{
-		Certification,
-		MedicalRelease,
-		GeneralRelease,
-		CreditRelease,
-	}
-
-	for _, pdf := range templates {
-		if !service.IsSignatureAvailable(application, pdf) {
+	for _, p := range DocumentTypes {
+		_, ok := service.SignatureAvailable(application, p)
+		if !ok {
 			continue
 		}
 
-		dat, err := service.CreatePdf(application, pdf)
+		dat, err := service.CreatePdf(application, p)
 		if err != nil {
-			t.Fatalf(fmt.Sprintf("Error creating PDF from %s: %s", pdf.Template, err.Error()))
+			t.Fatalf(fmt.Sprintf("Error creating PDF from %s: %s", p.Template, err.Error()))
 		}
 		_ = dat
 	}
+
+	// Restore working dir
+	os.Chdir("pdf")
 }
 
 func applicationData(t *testing.T) map[string]interface{} {
 	return map[string]interface{}{
 		"Identification": map[string]interface{}{
-			"ApplicantName":       readSectionData("testdata/identification-name.json", t),
-			"Contacts":            readSectionData("testdata/identification-contacts.json", t),
-			"OtherNames":          readSectionData("testdata/identification-othernames.json", t),
-			"ApplicantBirthDate":  readSectionData("testdata/identification-birthdate.json", t),
-			"ApplicantBirthPlace": readSectionData("testdata/identification-birthplace.json", t),
-			"ApplicantSSN":        readSectionData("testdata/identification-ssn.json", t),
-			"Physical":            readSectionData("testdata/identification-physical.json", t),
+			"ApplicantName":       readSectionData("identification-name.json", t),
+			"Contacts":            readSectionData("identification-contacts.json", t),
+			"OtherNames":          readSectionData("identification-othernames.json", t),
+			"ApplicantBirthDate":  readSectionData("identification-birthdate.json", t),
+			"ApplicantBirthPlace": readSectionData("identification-birthplace.json", t),
+			"ApplicantSSN":        readSectionData("identification-ssn.json", t),
+			"Physical":            readSectionData("identification-physical.json", t),
 		},
 		"Submission": map[string]interface{}{
-			"Releases": readSectionData("testdata/submission.json", t),
+			"Releases": readSectionData("submission.json", t),
 		},
 		"History": map[string]interface{}{
-			"Residence": readSectionData("testdata/history-residence.json", t),
+			"Residence": readSectionData("history-residence.json", t),
 		},
 	}
 }
 
-func readSectionData(file string, t *testing.T) map[string]interface{} {
-	b, err := ioutil.ReadFile(file)
+func readSectionData(basename string, t *testing.T) map[string]interface{} {
+	b, err := ioutil.ReadFile(path.Join("pdf/testdata", basename))
 	if err != nil {
 		t.Fatalf("Error message %s", err)
 		return map[string]interface{}{}

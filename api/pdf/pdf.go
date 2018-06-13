@@ -8,16 +8,19 @@ import (
 	"regexp"
 	"strconv"
 	"strings"
+	"time"
 
 	"github.com/18F/e-QIP-prototype/api"
 	"github.com/Jeffail/gabs"
 )
 
 var (
-	Certification  = api.ArchivalPdf{"certification-SF86-November2016.template.pdf", "AdditionalComments", "CER"}
-	CreditRelease  = api.ArchivalPdf{"credit-SF86-November2016.template.pdf", "Credit", "FCR"}
-	MedicalRelease = api.ArchivalPdf{"medical-SF86-November2016.template.pdf", "Medical", "MEL"}
-	GeneralRelease = api.ArchivalPdf{"general-SF86-November2016.template.pdf", "General", "REL"}
+	DocumentTypes = []api.ArchivalPdf{
+		{"Certification", "certification-SF86-November2016.template.pdf", "AdditionalComments", "CER"},
+		{"Fair Credit Reporting", "credit-SF86-November2016.template.pdf", "Credit", "FCR"},
+		{"Medical Release", "medical-SF86-November2016.template.pdf", "Medical", "MEL"},
+		{"General Release", "general-SF86-November2016.template.pdf", "General", "REL"},
+	}
 )
 
 // A PdfField represents the fixed-width placeholder in a ArchivalPdf template.
@@ -58,7 +61,7 @@ func (service Service) CreatePdf(application map[string]interface{}, pdfType api
 		{"STREET_ADDRESS", 40, getStreetAddress},
 	}
 
-	dat, err := ioutil.ReadFile(path.Join("templates", pdfType.Template))
+	dat, err := ioutil.ReadFile(path.Join("pdf/templates", pdfType.Template))
 	if err != nil {
 		return nil, err
 	}
@@ -77,9 +80,19 @@ func (service Service) CreatePdf(application map[string]interface{}, pdfType api
 	return []byte(str), nil
 }
 
-func (service Service) IsSignatureAvailable(application map[string]interface{}, pdfType api.ArchivalPdf) bool {
+func (service Service) SignatureAvailable(application map[string]interface{}, pdfType api.ArchivalPdf) (*time.Time, bool) {
 	json, _ := gabs.Consume(application)
-	return signatureAvailable(json, pdfType.Section)
+	d := getSignedOnParts(json, pdfType.Section)
+	// Ensure all date parts are non-empty
+	if len(d) == 3 && d[0] != "" && d[1] != "" && d[2] != "" {
+		year, _ := strconv.Atoi(d[2])
+		month, _ := strconv.Atoi(d[0])
+		day, _ := strconv.Atoi(d[1])
+
+		signedOn := time.Date(year, time.Month(month), day, 0, 0, 0, 0, time.UTC)
+		return &signedOn, true
+	}
+	return nil, false
 }
 
 func getPath(json *gabs.Container, path string) string {
@@ -212,13 +225,6 @@ func getSignedOnParts(json *gabs.Container, docSubsection string) []string {
 	prefix := "Submission.Releases.props." + docSubsection + ".props.Signature.props.Date.props"
 	keys := []string{"month", "day", "year"}
 	return getPaths(json, prefix, keys)
-}
-
-func signatureAvailable(json *gabs.Container, docSubsection string) bool {
-	values := getSignedOnParts(json, docSubsection)
-	// Ensure all date parts are non-empty
-	return len(values) == 3 &&
-		values[0] != "" && values[1] != "" && values[2] != ""
 }
 
 func getSignedOn(json *gabs.Container, docSubsection string) string {

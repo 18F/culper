@@ -52,6 +52,7 @@ const (
 	PayloadEntityError                         = "Error creating entity from the payload"
 	PayloadInvalid                             = "Payload is invalid"
 	PayloadMissingType                         = "Payload is missing a type"
+	PdfError                                   = "Error generating archival signature PDFs"
 	QRCodeError                                = "Failed to generate multiple factor authentication QR code"
 	RetrievingAccount                          = "Retrieving account"
 	SamlAttemptDenied                          = "An attempt for SAML authentication was denied"

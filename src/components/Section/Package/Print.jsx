@@ -1,9 +1,11 @@
 import React from 'react'
+import FileSaver from 'file-saver'
 import { connect } from 'react-redux'
-import { i18n, navigation } from '../../../config'
+import { i18n, env, navigation } from '../../../config'
+import { api } from '../../../services'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
-import { Show, Svg } from '../../Form'
+import { Show, Svg, Field, Text, RadioGroup, Radio } from '../../Form'
 
 import { IdentificationSections } from '../Identification'
 import { RelationshipSections } from '../Relationships'
@@ -23,8 +25,59 @@ class Print extends SectionElement {
     this.sections = this.sections.bind(this)
     this.handlePrint = this.handlePrint.bind(this)
     this.state = {
-      printed: false
+      printed: false,
+      attachments: []
     }
+
+    this.supportsBlobs = false
+    try {
+      this.supportsBlobs = !!new window.Blob
+    } catch (e) {
+      this.supportsBlobs = false
+    }
+
+    this.getStoredAttachments = this.getStoredAttachments.bind(this)
+    this.displayAttachments = this.displayAttachments.bind(this)
+
+  }
+
+  download (id) {
+    if (!this.supportsBlobs) {
+      return
+    }
+
+    const attachment = this.state.attachments.find(x => x.id === id)
+    api.getAttachment(id).then((response) => {
+      const blob = blobFromBase64(response.data, 'application/octet-stream')
+      FileSaver.saveAs(blob, attachment.filename)
+    }).catch(() => {
+      this.setState({ errorMessage: i18n.t('application.attachments.upload.error.download') })
+    })
+  }
+
+  getStoredAttachments () {
+    api.listAttachments().then((response) => {
+      this.setState({ attachments: response.data || [], errorMessage: '' })
+    })
+  }
+
+  displayAttachments (items) {
+    return items.map((x, i) => {
+      return (
+        <tr key={`attachment-${x.id}`}>
+          <td>
+            <Show when={this.supportsBlobs}>
+              <a href="javascript:;;" aria-label={`Download ${x.filename}`} onClick={this.download.bind(this, x.id)}>
+                <strong>{`${i+1}. `}{x.description ? `${x.description} - ` : ''}</strong>{x.filename}
+              </a>
+            </Show>
+            <Show when={!this.supportsBlobs}>
+              <strong>{`${i+1}. `}{x.description ? `${x.description} - ` : ''}</strong>{x.filename}
+            </Show>
+          </td>
+        </tr>
+      )
+    })
   }
 
   componentWillUnmount () {
@@ -44,6 +97,7 @@ class Print extends SectionElement {
     if (logout && logout.addEventListener) {
       logout.addEventListener('click', this.captureLogoutClick)
     }
+    this.getStoredAttachments()
   }
 
   captureNavigationClick (e) {
@@ -140,9 +194,19 @@ class Print extends SectionElement {
           <h4 className="hash">{i18n.t('application.hashCode.title')}</h4>
           <p className="hash">{this.props.Settings.hash}</p>
         </div>
+        <div>
+          <h4 className="attachments">{i18n.t('application.print.files.title')}</h4>
+          <p className="attachments">{i18n.m('application.print.files.para')}</p>
+          <table>
+            <tbody>
+              {this.displayAttachments(this.state.attachments)}
+            </tbody>
+          </table>
+        </div>
         <div className="print-view">
           { this.sections() }
         </div>
+
       </div>
     )
   }
@@ -193,7 +257,22 @@ function mapStateToProps (state) {
 Print.defaultProps = {
   section: 'print',
   subsection: 'intro',
-  store: 'Print'
+  store: 'Print',
 }
+
+const blobFromBase64 = (base64, contentType = '', size = 512) => {
+  const binary = window.atob(base64)
+  const buffer = []
+  for (let offset = 0; offset < binary.length; offset += size) {
+    let slice = binary.slice(offset, offset + size)
+    let numbers =  new Array(slice.length)
+    for (let i = 0; i < slice.length; i++) {
+      numbers[i] = slice.charCodeAt(i)
+    }
+    buffer.push(new Uint8Array(numbers))
+  }
+  return new window.Blob(buffer, { type: contentType })
+}
+
 
 export default connect(mapStateToProps)(AuthenticatedView(Print))

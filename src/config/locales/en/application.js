@@ -57,7 +57,11 @@ export const application = {
       'If you need assistance contact the office who initiated your form.',
       '## We would love your feedback!',
       'Striving to provide the most enjoyable experience through the application process any feedback you would be willing to [provide in our survey](https://docs.google.com/forms/d/e/1FAIpQLSeRQj_m3Ot0ILFuLg2LtFKJPTEAqMATw3kc3MiFOkj3fxs3ug/viewform) is appreciated.'
-    ]
+    ],
+    files: {
+      title: 'Certification and Releases',
+      para:  'The following are archival documents corresponding to your digitally signed certification and releases.'
+    }
   },
   attachments: {
     method: {
