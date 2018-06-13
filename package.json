@@ -56,6 +56,7 @@
     "history": "^4.7.2",
     "http-server": "^0.10.0",
     "jest": "^23.1.0",
+    "jest-junit": "^5.0.0",
     "jsdoc": "^3.5.5",
     "json-loader": "^0.5.7",
     "node-sass": "^4.5.3",
@@ -86,6 +87,10 @@
     "clearMocks": true,
     "roots": [
       "<rootDir>/src"
+    ],
+    "reporters": [
+      "default",
+      "jest-junit"
     ]
   },
   "scripts": {
