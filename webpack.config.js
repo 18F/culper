@@ -36,25 +36,7 @@ module.exports = {
     ]
   },
   devtool: debug ? 'inline-sourcemap' : false,
-  plugins: plugins()
-}
-
-/**
- * Creates an array of plugins to be used by all environments
- */
-function plugins () {
-  let plugins = []
-
-  if (!debug) {
-    // Add Prod level plugins
-    plugins = [
-      new webpack.optimize.OccurrenceOrderPlugin(),
-      new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false })
-    ]
-  }
-
-  // Plugins used by all environments
-  [
+  plugins: [
     new webpack.EnvironmentPlugin([
       'API_BASE_URL', 'ALLOW_2FA_RESET', 'HASH_ROUTING', 'DISABLE_2FA',
       'BASIC_ENABLED', 'SAML_ENABLED', 'SESSION_TIMEOUT',
@@ -64,9 +46,5 @@ function plugins () {
       'Promise': 'es6-promise',
       'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
     })
-  ].forEach((p) => {
-    plugins.push(p)
-  })
-
-  return plugins
+  ]
 }
