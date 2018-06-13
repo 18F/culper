@@ -4,6 +4,7 @@ import Location from '../components/Form/Location'
 
 describe('People validator', function () {
   it('should validate people', function () {
+    const currentYear = (new Date()).getFullYear().toString()
     const tests = [
       {
         data: {
@@ -53,8 +54,8 @@ describe('People validator', function () {
                     to: {
                       month: '1',
                       day: '1',
-                      year: '2017',
-                      date: new Date('1/1/2017')
+                      year: currentYear,
+                      date: new Date(`1/1/${currentYear}`)
                     },
                     present: false
                   },
