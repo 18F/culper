@@ -9,6 +9,7 @@ import (
 
 	"github.com/18F/e-QIP-prototype/api"
 	"github.com/18F/e-QIP-prototype/api/eqip"
+	"github.com/18F/e-QIP-prototype/api/pdf"
 )
 
 // SubmitHandler is the handler for submitting the application.
@@ -18,6 +19,7 @@ type SubmitHandler struct {
 	Token    api.TokenService
 	Database api.DatabaseService
 	XML      api.XMLService
+	Pdf      api.PdfService
 }
 
 // ServeHTTP submits the application package to the external web service for further processing.
@@ -47,6 +49,12 @@ func (service SubmitHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	if err := service.generatePdfs(account); err != nil {
+		service.Log.WarnError(api.PdfError, err, api.LogFields{})
+		EncodeErrJSON(w, errors.New(api.PdfError))
+		return
+	}
+
 	if err := service.transmit(w, r, account); err != nil {
 		w.WriteHeader(http.StatusConflict)
 		EncodeErrJSON(w, err)
@@ -59,6 +67,40 @@ func (service SubmitHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		EncodeErrJSON(w, err)
 		return
 	}
+}
+
+func (service SubmitHandler) generatePdfs(account *api.Account) error {
+	application, err := api.ApplicationData(service.Database, account.ID, false)
+	if err != nil {
+		return err
+	}
+
+	for _, p := range pdf.DocumentTypes {
+		signedOn, ok := service.Pdf.SignatureAvailable(application, p)
+		if !ok {
+			continue
+		}
+
+		dat, err := service.Pdf.CreatePdf(application, p)
+		if err != nil {
+			return err
+		}
+
+		// Create the attachment and store any metadata
+		attachment := &api.Attachment{
+			AccountID: account.ID,
+			Filename:  fmt.Sprintf("%s %s.pdf", p.Name, signedOn.Format("2006-01-02")),
+			Size:      int64(len(dat)),
+			Raw:       dat,
+			DocType:   p.DocType,
+		}
+		if _, err := attachment.Save(service.Database, account.ID); err != nil {
+			return err
+		}
+
+		service.Log.Info(api.AttachmentSaved, api.LogFields{"attachment": attachment.ID})
+	}
+	return nil
 }
 
 func (service SubmitHandler) transmit(w http.ResponseWriter, r *http.Request, account *api.Account) error {
