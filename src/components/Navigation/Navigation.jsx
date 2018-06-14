@@ -5,6 +5,7 @@ import AuthenticatedView from '../../views/AuthenticatedView'
 import { updateSection } from '../../actions/SectionActions'
 import { navigation, env } from '../../config'
 import { isActive, isValid, hasErrors } from './navigation-helpers'
+import SubSection from './SubSection'
 import { ToggleItem } from './ToggleItem'
 
 class Navigation extends React.Component {
@@ -89,17 +90,11 @@ class Navigation extends React.Component {
       // nothing else.
       const locked = subsection.locked && subsection.locked(this.props.application)
       if (locked) {
-        return (
-          <div key={subsection.name} className="subsection">
-            <a href="javascript:;;;" className={`${subClass} locked`}>
-              <span className="section-name">
-                {subsection.name}
-              </span>
-              <span className="mini eapp-status-icon-valid"></span>
-              <span className="mini eapp-status-icon-error"></span>
-            </a>
-          </div>
-        )
+        return <SubSection key={subsection.name}
+                           name={subsection.name}
+                           subUrl={subUrl}
+                           subClass={subClass}
+                           locked={true} />
       }
 
       // Collapsed state properties
@@ -115,17 +110,10 @@ class Navigation extends React.Component {
         )
       }
 
-      return (
-        <div key={subsection.name} className="subsection">
-          <Link to={subUrl} className={subClass} onClick={this.clicked.bind(this, subUrl)}>
-            <span className="section-name">
-              {subsection.name}
-            </span>
-            <span className="mini eapp-status-icon-valid"></span>
-            <span className="mini eapp-status-icon-error"></span>
-          </Link>
-        </div>
-      )
+      return <SubSection key={subsection.name}
+                         name={subsection.name}
+                         subUrl={subUrl}
+                         subClass={subClass} />
     })
 
     return (
