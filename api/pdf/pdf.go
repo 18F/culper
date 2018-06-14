@@ -1,6 +1,8 @@
 package pdf
 
 import (
+	"crypto/sha256"
+	"encoding/hex"
 	"errors"
 	"fmt"
 	"io/ioutil"
@@ -38,7 +40,7 @@ type Service struct {
 // CreatePdf populates a template PDF with values from the application, using basic text subsitution.
 // Field names (e.g., SSN) are replaced with application values, space padded to a fixed length to
 // ensure that PDF object/xref byte offsets do not need to be updated. Assumes values are ASCII.
-func (service Service) CreatePdf(application map[string]interface{}, pdfType api.ArchivalPdf) ([]byte, error) {
+func (service Service) CreatePdf(application map[string]interface{}, pdfType api.ArchivalPdf, hash [sha256.Size]byte) ([]byte, error) {
 	// Get application data into easily queryable form
 	json, _ := gabs.Consume(application)
 
@@ -46,8 +48,12 @@ func (service Service) CreatePdf(application map[string]interface{}, pdfType api
 		return getSignedOn(json, pdfType.Section)
 	}
 
+	hexHash := func(json *gabs.Container) string {
+		return hex.EncodeToString(hash[:])
+	}
+
 	// Field widths are based on monospaced font and fixed point size
-	// used in PDF templates and their layout
+	// used in PDF templates and their layout.
 	fields := []field{
 		{"SSN", 11, getSsn},
 		{"FIRST_MIDDLE_LAST", 64, getFullName},
@@ -59,6 +65,7 @@ func (service Service) CreatePdf(application map[string]interface{}, pdfType api
 		{"DOB", 10, getDob},
 		{"TELEPHONE", 20, getTelephone},
 		{"STREET_ADDRESS", 40, getStreetAddress},
+		{"APPLICATION_SHA256_HASH", 64, hexHash},
 	}
 
 	dat, err := ioutil.ReadFile(path.Join("pdf/templates", pdfType.Template))
