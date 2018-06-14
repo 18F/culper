@@ -60,7 +60,7 @@ export const application = {
     ],
     files: {
       title: 'Certification and Releases',
-      para:  'The following are archival documents corresponding to your digitally signed certification and releases.'
+      para: 'The following are archival documents corresponding to your digitally signed certification and releases.'
     }
   },
   attachments: {
