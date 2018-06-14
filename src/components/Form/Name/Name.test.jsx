@@ -216,7 +216,7 @@ describe('The Name component', () => {
 
     tests.forEach(test => {
       const component = mount(<Name {...test.props} />)
-      expect(component.find('.usa-input-error-label').length).toEqual(test.expected)
+      expect(component.find('.usa-input-error').length).toEqual(test.expected)
     })
   })
 
@@ -253,7 +253,7 @@ describe('The Name component', () => {
     expected.forEach((ex) => {
       const component = mount(<Name {...ex} />)
       component.find({ name: 'middle' }).simulate('change')
-      expect(component.find('.usa-input-error-label').length).toEqual(ex.errors)
+      expect(component.find('.usa-input-error').length).toEqual(ex.errors)
     })
   })
 })
