@@ -41,7 +41,7 @@ services:
   api:
     build:
       context: .
-      dockerfile: docker/Dockerfile.api
+      dockerfile: Dockerfile.api
     env_file:
       - .env
     working_dir: /go/src/github.com/18F/e-QIP-prototype/api
@@ -86,7 +86,7 @@ services:
   nightwatch:
     build:
       context: .
-      dockerfile: docker/Dockerfile.nightwatch
+      dockerfile: Dockerfile.nightwatch
     command: [npm, run, docker]
     volumes:
       - ./specs:/usr/src/app
