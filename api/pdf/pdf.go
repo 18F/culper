@@ -15,6 +15,7 @@ import (
 )
 
 var (
+	// The supported archival PDFs
 	DocumentTypes = []api.ArchivalPdf{
 		{"Certification", "certification-SF86-November2016.template.pdf", "AdditionalComments", "CER"},
 		{"Fair Credit Reporting", "credit-SF86-November2016.template.pdf", "Credit", "FCR"},
@@ -23,7 +24,7 @@ var (
 	}
 )
 
-// A PdfField represents the fixed-width placeholder in a ArchivalPdf template.
+// field represents the fixed-width placeholder in an ArchivalPdf template.
 type field struct {
 	name     string // field identifier as it appears in the template
 	length   int    // the fixed-width length of the field
@@ -35,9 +36,12 @@ type Service struct {
 	Log api.LogService
 }
 
-// CreatePdf populates a template PDF with values from the application, using basic text subsitution.
-// Field names (e.g., SSN) are replaced with application values, space padded to a fixed length to
-// ensure that PDF object/xref byte offsets do not need to be updated. Assumes values are ASCII.
+// CreatePdf creates an in-memory PDF from a template, populated with values from the application,
+// using basic text subsitution. Field names (e.g., SSN) are replaced with application values,
+// space padded to a fixed length to ensure that PDF object/xref byte offsets do not need to be
+// updated. Assumes field values are ASCII.
+// The type of PDF controls the template used. The SHA256 hash of the application, in hexadecimal,
+// may also be populated in the resulting PDF.
 func (service Service) CreatePdf(application map[string]interface{}, pdfType api.ArchivalPdf, hash string) ([]byte, error) {
 	// Get application data into easily queryable form
 	json, _ := gabs.Consume(application)
@@ -85,6 +89,8 @@ func (service Service) CreatePdf(application map[string]interface{}, pdfType api
 	return []byte(str), nil
 }
 
+// SignatureAvailable returns the date the eApp section corresponding to the PDF type was signed.
+// If the section was not signed (e.g., no responses requiring medical release), returns nil and false.
 func (service Service) SignatureAvailable(application map[string]interface{}, pdfType api.ArchivalPdf) (*time.Time, bool) {
 	json, _ := gabs.Consume(application)
 	d := getSignedOnParts(json, pdfType.Section)
