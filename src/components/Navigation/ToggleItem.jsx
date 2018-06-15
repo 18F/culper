@@ -1,5 +1,6 @@
 import React from 'react'
 import { Show } from '../Form'
+import SectionLink from './SectionLink'
 
 export class ToggleItem extends React.Component {
   constructor (props) {
@@ -63,22 +64,19 @@ export class ToggleItem extends React.Component {
     return (
       <div ref="item" className={`${this.props.section ? 'section' : 'subsection'} ${this.state.visible ? 'open' : 'closed'}`}>
         <span className="section-title">
-          <a href="javascript:;;;" title={this.props.title} className={this.props.className} onClick={this.toggle}>
-            <Show when={this.props.number}>
-              <span className="section-number">{this.props.number}</span>
+          <SectionLink
+            className={this.props.className}
+            name={this.props.title}
+            onClick={this.toggle}
+            sectionNum={this.props.number}
+            to="javascript:;;;">
+            <Show when={this.state.visible}>
+              <i className="fa fa-angle-up" aria-hidden="true"></i>
             </Show>
-            <span className="section-name">
-              {this.props.title}
-              <Show when={this.state.visible}>
-                <i className="fa fa-angle-up" aria-hidden="true"></i>
-              </Show>
-              <Show when={!this.state.visible}>
-                <i className="fa fa-angle-down" aria-hidden="true"></i>
-              </Show>
-            </span>
-            <span className="eapp-status-icon eapp-status-icon-valid"></span>
-            <span className="eapp-status-icon eapp-status-icon-error"></span>
-          </a>
+            <Show when={!this.state.visible}>
+              <i className="fa fa-angle-down" aria-hidden="true"></i>
+            </Show>
+          </SectionLink>
           <Show when={this.state.visible}>
             <div className="section-content">
               {this.props.children}

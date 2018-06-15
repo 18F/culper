@@ -1,8 +1,7 @@
 import AuthenticatedView from '../../views/AuthenticatedView'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 import React from 'react'
-import { Show } from '../Form'
+import SectionLink from './SectionLink'
 import { updateSection } from '../../actions/SectionActions'
 
 class Section extends React.Component {
@@ -30,16 +29,12 @@ class Section extends React.Component {
     return (
       <div className={topCls}>
         <span className="section-title">
-          <Link to={url} className={sectionClass} onClick={onClick}>
-            <Show when={this.props.sectionNum}>
-              <span className="section-number">{this.props.sectionNum}</span>
-            </Show>
-            <span className="section-name">
-              {this.props.name}
-            </span>
-            <span className="eapp-status-icon eapp-status-icon-valid"></span>
-            <span className="eapp-status-icon eapp-status-icon-error"></span>
-          </Link>
+          <SectionLink
+            className={sectionClass}
+            name={this.props.name}
+            onClick={onClick}
+            sectionNum={this.props.sectionNum}
+            to={url} />
         </span>
       </div>
     )
@@ -47,7 +42,6 @@ class Section extends React.Component {
 }
 
 Section.defaultProps = {
-  iconCls: '',
   isSubSection: false,
   locked: false,
   sectionNum: null
