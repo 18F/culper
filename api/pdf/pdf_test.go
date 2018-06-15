@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"crypto/sha256"
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"os"
 	"path"
