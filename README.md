@@ -100,7 +100,9 @@ Then direct your browser at [http://localhost:8080](http://localhost:8080). The 
 
 #### How it works
 
-The Make target calls Docker Compose, which then runs containers for various parts of the system. Frontend assets are built from their own containers into the `dist/` folder, which are then served by nginx. Nginx also proxies API requests to an API backend written in Go, which has a PostgreSQL container behind it.
+The Make target calls Docker Compose, which then runs containers for various parts of the system. Frontend assets are built from their own containers into the `dist/` folder, which are then served by nginx. Nginx also proxies API requests to an API backend written in Go, which has a PostgreSQL container behind it. See the [architecture diagram](#architectural-diagram) below.
+
+The frontend is built in [React](https://reactjs.org/), wired up with [React Router](https://reacttraining.com/react-router/) and [Redux](https://redux.js.org), compiled using [Webpack](https://webpack.js.org/) and [Babel](https://babeljs.io).
 
 ### Building the application
 
@@ -120,6 +122,8 @@ To make a single pass through the test suite use the command:
 make test
 make coverage
 ```
+
+Frontend tests are written in [Jest](https://facebook.github.io/jest/), while the API tests use [Go's `testing` package](https://golang.org/pkg/testing/).
 
 ### Adding/updating NPM packages
 
@@ -157,6 +161,11 @@ make docs
 ```
 
 All of the documentation may then be found in the respective directories under `doc/`.
+
+### Troubleshooting
+
+- Use of [React Developer Tools](https://github.com/facebook/react-devtools) is recommended for frontend work.
+- With that extension, the Redux store can be inspected by running `$r.store.getState();` in your browser's JavaScript console.
 
 ### Tooling
 
