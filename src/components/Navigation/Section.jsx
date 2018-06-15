@@ -6,8 +6,8 @@ import { Show } from '../Form'
 import { updateSection } from '../../actions/SectionActions'
 
 class Section extends React.Component {
-  clicked(url, event) {
-    const parts = (url || '').replace('/form/', '').split('/')
+  clicked() {
+    const parts = this.props.subUrl.replace('/form/', '').split('/')
     const section = parts.shift()
     const subsection = parts.join('/') || 'intro'
     this.props.dispatch(updateSection(section, subsection))
@@ -22,7 +22,7 @@ class Section extends React.Component {
       sectionClass += ' locked'
     } else {
       url = this.props.subUrl
-      onClick = this.clicked.bind(this, url)
+      onClick = this.clicked.bind(this)
     }
 
     const topCls = this.props.isSubSection ? 'subsection' : 'section'
