@@ -66,7 +66,7 @@ export class ToggleItem extends React.Component {
         <span className="section-title">
           <SectionLink
             className={this.props.className}
-            name={this.props.title}
+            title={this.props.title}
             onClick={this.toggle}
             sectionNum={this.props.number}
             to="javascript:;;;">

@@ -31,7 +31,7 @@ class Section extends React.Component {
         <span className="section-title">
           <SectionLink
             className={sectionClass}
-            name={this.props.name}
+            title={this.props.name}
             onClick={onClick}
             sectionNum={this.props.sectionNum}
             to={url} />
