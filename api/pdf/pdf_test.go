@@ -1,6 +1,7 @@
 package pdf
 
 import (
+	"bytes"
 	"crypto/sha256"
 	"encoding/json"
 	"fmt"
@@ -11,6 +12,11 @@ import (
 
 	"github.com/18F/e-QIP-prototype/api"
 	"github.com/18F/e-QIP-prototype/api/mock"
+)
+
+const (
+	packageDir  = "pdf"
+	testdataDir = packageDir + "/testdata"
 )
 
 func TestPackage(t *testing.T) {
@@ -29,15 +35,30 @@ func TestPackage(t *testing.T) {
 			continue
 		}
 
-		dat, err := service.CreatePdf(application, p, api.FormatShaSum(fauxHash))
+		created, err := service.CreatePdf(application, p, api.FormatShaSum(fauxHash))
 		if err != nil {
-			t.Fatalf(fmt.Sprintf("Error creating PDF from %s: %s", p.Template, err.Error()))
+			t.Fatalf("Error creating PDF from %s: %s", p.Template, err.Error())
 		}
-		_ = dat
+
+		rpath := path.Join(testdataDir, p.Name+".pdf")
+		reference, err := ioutil.ReadFile(rpath)
+		if err != nil {
+			t.Fatalf("Error reading reference PDF: %s", err.Error())
+		}
+
+		if !bytes.Equal(created, reference) {
+			tmpfile, err := ioutil.TempFile("", p.Name)
+			if err != nil {
+				t.Fatalf("Error saving generated PDF: %s", err.Error())
+			}
+
+			t.Errorf("Generated PDF (%s) does not match reference PDF (%s)",
+				tmpfile.Name(), rpath)
+		}
 	}
 
 	// Restore working dir
-	os.Chdir("pdf")
+	os.Chdir(packageDir)
 }
 
 func applicationData(t *testing.T) map[string]interface{} {
@@ -61,7 +82,7 @@ func applicationData(t *testing.T) map[string]interface{} {
 }
 
 func readSectionData(basename string, t *testing.T) map[string]interface{} {
-	b, err := ioutil.ReadFile(path.Join("pdf/testdata", basename))
+	b, err := ioutil.ReadFile(path.Join(testdataDir, basename))
 	if err != nil {
 		t.Fatalf("Error message %s", err)
 		return map[string]interface{}{}
