@@ -24,5 +24,6 @@ export default class SectionLink extends React.Component {
 }
 
 SectionLink.defaultProps = {
+  to: 'javascript:;;',
   sectionNum: null
 }

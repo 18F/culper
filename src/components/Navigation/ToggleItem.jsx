@@ -68,8 +68,7 @@ export class ToggleItem extends React.Component {
             className={this.props.className}
             title={this.props.title}
             onClick={this.toggle}
-            sectionNum={this.props.number}
-            to="javascript:;;;">
+            sectionNum={this.props.number}>
             <Show when={this.state.visible}>
               <i className="fa fa-angle-up" aria-hidden="true"></i>
             </Show>
