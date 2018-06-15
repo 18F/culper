@@ -133,17 +133,18 @@ class Navigation extends React.Component {
       // Increment the section number
       sectionNum++
 
+      const displayNum = section.showNumber ? sectionNum : null
+
       // If the section is locked then the navigation item is displayed but
       // nothing else.
       const locked = section.locked && section.locked(this.props.application)
       if (locked) {
         return (
           <Section key={section.name}
-                   name={section.name}
-                   sectionClass={sectionClass}
-                   sectionNum={sectionNum}
-                   showNumber={showNumber}
-                   locked={true}/>
+            name={section.name}
+            sectionClass={sectionClass}
+            sectionNum={displayNum}
+            locked={true}/>
         )
       }
 
@@ -156,7 +157,7 @@ class Navigation extends React.Component {
           <ToggleItem title={section.name}
                       key={url}
                       section={true}
-                      number={section.showNumber ? sectionNum : null}
+                      number={displayNum}
                       className={sectionClass}
                       visible={visible}
                       onToggle={this.onToggle}>
@@ -169,8 +170,7 @@ class Navigation extends React.Component {
         <Section key={section.name}
           name={section.name}
           sectionClass={sectionClass}
-          sectionNum={sectionNum}
-          showNumber={showNumber}/>
+          sectionNum={displayNum}/>
       )
     })
 
