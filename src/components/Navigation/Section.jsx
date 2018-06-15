@@ -24,14 +24,7 @@ class Section extends React.Component {
       onClick = this.clicked.bind(this, url)
     }
 
-    let topCls, iconCls
-    if (this.props.isSubSection) {
-      iconCls = 'mini'
-      topCls = 'subsection'
-    } else {
-      iconCls = ''
-      topCls = 'section'
-    }
+    const topCls = this.props.isSubSection ? 'subsection' : 'section'
 
     return (
       <div className={topCls}>
@@ -41,8 +34,8 @@ class Section extends React.Component {
             <span className="section-name">
               {this.props.name}
             </span>
-            <span className={`eapp-status-icon-valid ${iconCls}`}></span>
-            <span className={`eapp-status-icon-error ${iconCls}`}></span>
+            <span className="eapp-status-icon eapp-status-icon-valid"></span>
+            <span className="eapp-status-icon eapp-status-icon-error"></span>
           </Link>
         </span>
       </div>

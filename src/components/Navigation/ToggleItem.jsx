@@ -60,8 +60,6 @@ export class ToggleItem extends React.Component {
   }
 
   render () {
-    const validIcon = `${this.props.section ? '' : 'mini'} eapp-status-icon-valid`.trim()
-    const errorIcon = `${this.props.section ? '' : 'mini'} eapp-status-icon-error`.trim()
     return (
       <div ref="item" className={`${this.props.section ? 'section' : 'subsection'} ${this.state.visible ? 'open' : 'closed'}`}>
         <span className="section-title">
@@ -78,8 +76,8 @@ export class ToggleItem extends React.Component {
                 <i className="fa fa-angle-down" aria-hidden="true"></i>
               </Show>
             </span>
-            <span className={validIcon}></span>
-            <span className={errorIcon}></span>
+            <span className="eapp-status-icon eapp-status-icon-valid"></span>
+            <span className="eapp-status-icon eapp-status-icon-error"></span>
           </a>
           <Show when={this.state.visible}>
             <div className="section-content">
