@@ -570,10 +570,9 @@ type FormMetadata struct {
 
 // Metadata returns the application metadata.
 func Metadata(context DatabaseService, account int, locked bool) []byte {
-	hash := Hash(context, account)
 	meta := &FormMetadata{
 		Locked: locked,
-		Hash:   hex.EncodeToString(hash[:]),
+		Hash:   Hash(context, account),
 	}
 	js, _ := json.Marshal(meta)
 	return js
@@ -653,9 +652,10 @@ func PurgeAccountStorage(context DatabaseService, account int) {
 	}
 }
 
-// Hash returns the computed hash checksum of the application state
-func Hash(context DatabaseService, account int) [sha256.Size]byte {
-	return sha256.Sum256(Application(context, account, true))
+// Hash returns the SHA256 hash of the application state in hexadecimal
+func Hash(context DatabaseService, account int) string {
+	hash := sha256.Sum256(Application(context, account, true))
+	return hex.EncodeToString(hash[:])
 }
 
 // subsection is a helper function to transform a payload in to a type easily

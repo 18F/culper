@@ -1,9 +1,6 @@
 package api
 
-import (
-	"crypto/sha256"
-	"time"
-)
+import "time"
 
 // An ArchivalPdf represents a PDF that needs to be retained and submitted to e-QIP.
 type ArchivalPdf struct {
@@ -14,6 +11,6 @@ type ArchivalPdf struct {
 }
 
 type PdfService interface {
-	CreatePdf(application map[string]interface{}, pdfType ArchivalPdf, hash [sha256.Size]byte) ([]byte, error)
+	CreatePdf(application map[string]interface{}, pdfType ArchivalPdf, hash string) ([]byte, error)
 	SignatureAvailable(application map[string]interface{}, pdfType ArchivalPdf) (*time.Time, bool)
 }

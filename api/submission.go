@@ -1,6 +1,8 @@
 package api
 
-import "encoding/json"
+import (
+	"encoding/json"
+)
 
 // Submission represents the payload for the submission section.
 type Submission struct {
@@ -18,12 +20,13 @@ type Submission struct {
 	Attachments        *SubmissionAttachments        `json:"-" sql:"-"`
 
 	// Persister specific fields
-	ID                   int `json:"-"`
-	AdditionalCommentsID int `json:"-"`
-	GeneralID            int `json:"-"`
-	MedicalID            int `json:"-"`
-	CreditID             int `json:"-"`
-	AttachmentsID        int `json:"-"`
+	ID                   int    `json:"-"`
+	AdditionalCommentsID int    `json:"-"`
+	GeneralID            int    `json:"-"`
+	MedicalID            int    `json:"-"`
+	CreditID             int    `json:"-"`
+	AttachmentsID        int    `json:"-"`
+	Hash                 string `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -112,6 +115,7 @@ func (entity *Submission) Valid() (bool, error) {
 // Save will create or update the database.
 func (entity *Submission) Save(context DatabaseService, account int) (int, error) {
 	entity.ID = account
+	entity.Hash = Hash(context, account)
 
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
