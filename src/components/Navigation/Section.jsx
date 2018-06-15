@@ -24,16 +24,25 @@ class Section extends React.Component {
       onClick = this.clicked.bind(this, url)
     }
 
+    let topCls, iconCls
+    if (this.props.isSubSection) {
+      iconCls = 'mini'
+      topCls = 'subsection'
+    } else {
+      iconCls = ''
+      topCls = 'section'
+    }
+
     return (
-      <div className="section">
+      <div className={topCls}>
         <span className="section-title">
           <Link to={url} className={sectionClass} onClick={onClick}>
             <span className="section-number">{this.props.showNumber ? this.props.sectionNum : ''}</span>
             <span className="section-name">
               {this.props.name}
             </span>
-            <span className="eapp-status-icon-valid"></span>
-            <span className="eapp-status-icon-error"></span>
+            <span className={`eapp-status-icon-valid ${iconCls}`}></span>
+            <span className={`eapp-status-icon-error ${iconCls}`}></span>
           </Link>
         </span>
       </div>
@@ -42,7 +51,10 @@ class Section extends React.Component {
 }
 
 Section.defaultProps = {
-  locked: true
+  iconCls: '',
+  isSubSection: false,
+  locked: true,
+  showNumber: false
 }
 
 export default connect()(AuthenticatedView(Section))
