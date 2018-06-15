@@ -49,7 +49,7 @@ class Section extends React.Component {
 Section.defaultProps = {
   iconCls: '',
   isSubSection: false,
-  locked: true,
+  locked: false,
   sectionNum: null
 }
 

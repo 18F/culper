@@ -4,7 +4,6 @@ import AuthenticatedView from '../../views/AuthenticatedView'
 import { navigation, env } from '../../config'
 import { isActive, isValid, hasErrors } from './navigation-helpers'
 import Section from './Section'
-import SubSection from './SubSection'
 import { ToggleItem } from './ToggleItem'
 
 class Navigation extends React.Component {
@@ -81,11 +80,14 @@ class Navigation extends React.Component {
       // nothing else.
       const locked = subsection.locked && subsection.locked(this.props.application)
       if (locked) {
-        return <SubSection key={subsection.name}
-                           name={subsection.name}
-                           subUrl={subUrl}
-                           subClass={subClass}
-                           locked={true} />
+        return (
+          <Section key={subsection.name}
+            isSubSection={true}
+            locked={true}
+            name={subsection.name}
+            subUrl={subUrl}
+            sectionClass={subClass}/>
+        )
       }
 
       // Collapsed state properties
@@ -101,10 +103,13 @@ class Navigation extends React.Component {
         )
       }
 
-      return <SubSection key={subsection.name}
-                         name={subsection.name}
-                         subUrl={subUrl}
-                         subClass={subClass} />
+      return (
+        <Section key={subsection.name}
+          isSubSection={true}
+          name={subsection.name}
+          subUrl={subUrl}
+          sectionClass={subClass}/>
+      )
     })
 
     return (
