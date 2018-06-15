@@ -71,7 +71,6 @@
   },
   "jest": {
     "coverageDirectory": "./coverage/",
-    "collectCoverage": true,
     "verbose": false,
     "bail": false,
     "clearMocks": true,
