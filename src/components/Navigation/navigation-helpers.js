@@ -22,6 +22,14 @@ export const validations = (section, props = {}) => {
     }, 0)
 }
 
+export const parseFormUrl = (url) => {
+  const parts = url.replace('/form/', '').split('/')
+  return {
+    section: parts.shift(),
+    subsection: parts.join('/') || 'intro'
+  }
+}
+
 /**
  * Determine if the route has any errors
  *
@@ -30,23 +38,27 @@ export const validations = (section, props = {}) => {
  */
 export const hasErrors = (route, props = {}) => {
   const crumbs = route.replace('/form/', '').split('/')
+  const routeParts = parseFormUrl(route)
+  const routeSection = routeParts.section.toLowerCase()
 
   for (const section in props.errors) {
-    if (section.toLowerCase() !== crumbs[0].toLowerCase()) {
+    if (section.toLowerCase() !== routeSection) {
       continue
     }
 
     const se = props.errors[section]
-    if (crumbs.length === 1) {
+    if (routeParts.section) {
+      if (crumbs.length > 1) {
+        return se.some(
+          e =>
+            e.section.toLowerCase() === routeSection &&
+            e.subsection.toLowerCase().indexOf(routeParts.subsection) === 0 &&
+            e.valid === false)
+      }
+
       return se.some(
         e =>
-          e.section.toLowerCase() === crumbs[0].toLowerCase() &&
-          e.valid === false)
-    } else if (crumbs.length > 1) {
-      return se.some(
-        e =>
-          e.section.toLowerCase() === crumbs[0].toLowerCase() &&
-          e.subsection.toLowerCase().indexOf(crumbs.slice(1, crumbs.length).join('/').toLowerCase()) === 0 &&
+          e.section.toLowerCase() === routeSection &&
           e.valid === false)
     }
   }
@@ -59,6 +71,9 @@ export const hasErrors = (route, props = {}) => {
  */
 export const isValid = (route, props = {}) => {
   const crumbs = route.replace('/form/', '').split('/')
+  const routeParts = parseFormUrl(route)
+  const routeSection = routeParts.section.toLowerCase()
+  const routeSubSection = routeParts.subsection.toLowerCase()
 
   // Find which node we should be checking against
   let node = null
@@ -71,12 +86,12 @@ export const isValid = (route, props = {}) => {
   }
 
   for (const section in props.completed) {
-    if (section.toLowerCase() !== crumbs[0].toLowerCase()) {
+    if (section.toLowerCase() !== routeSection) {
       continue
     }
 
-    let completedSections = props.completed[section].filter(e => e.section.toLowerCase() === crumbs[0].toLowerCase())
-    if (crumbs.length > 1) {
+    let completedSections = props.completed[section].filter(e => e.section.toLowerCase() === routeSection)
+    if (routeSubSection) {
       completedSections = completedSections.filter(e => e.subsection.toLowerCase().indexOf(crumbs.slice(1, crumbs.length).join('/').toLowerCase()) === 0)
     }
 

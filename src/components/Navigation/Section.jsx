@@ -1,15 +1,14 @@
 import AuthenticatedView from '../../views/AuthenticatedView'
 import { connect } from 'react-redux'
+import { parseFormUrl } from './navigation-helpers'
 import React from 'react'
 import SectionLink from './SectionLink'
 import { updateSection } from '../../actions/SectionActions'
 
 class Section extends React.Component {
   clicked() {
-    const parts = this.props.subUrl.replace('/form/', '').split('/')
-    const section = parts.shift()
-    const subsection = parts.join('/') || 'intro'
-    this.props.dispatch(updateSection(section, subsection))
+    const parts = parseFormUrl(this.props.subUrl)
+    this.props.dispatch(updateSection(parts.section, parts.subsection))
   }
 
   render() {
