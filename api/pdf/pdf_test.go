@@ -1,6 +1,7 @@
 package pdf
 
 import (
+	"crypto/sha256"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
@@ -8,6 +9,7 @@ import (
 	"path"
 	"testing"
 
+	"github.com/18F/e-QIP-prototype/api"
 	"github.com/18F/e-QIP-prototype/api/mock"
 )
 
@@ -19,6 +21,7 @@ func TestPackage(t *testing.T) {
 	application := applicationData(t)
 	logger := &mock.LogService{}
 	service := Service{Log: logger}
+	var fauxHash [sha256.Size]byte
 
 	for _, p := range DocumentTypes {
 		_, ok := service.SignatureAvailable(application, p)
@@ -26,7 +29,7 @@ func TestPackage(t *testing.T) {
 			continue
 		}
 
-		dat, err := service.CreatePdf(application, p)
+		dat, err := service.CreatePdf(application, p, api.FormatShaSum(fauxHash))
 		if err != nil {
 			t.Fatalf(fmt.Sprintf("Error creating PDF from %s: %s", p.Template, err.Error()))
 		}
