@@ -1,10 +1,9 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import AuthenticatedView from '../../views/AuthenticatedView'
-import { updateSection } from '../../actions/SectionActions'
 import { navigation, env } from '../../config'
 import { isActive, isValid, hasErrors } from './navigation-helpers'
+import Section from './Section'
 import { ToggleItem } from './ToggleItem'
 
 class Navigation extends React.Component {
@@ -15,7 +14,6 @@ class Navigation extends React.Component {
       selected: navigation[0].name
     }
 
-    this.clicked = this.clicked.bind(this)
     this.onToggle = this.onToggle.bind(this)
     this.location = null
     this.uselocation = true
@@ -35,13 +33,6 @@ class Navigation extends React.Component {
   onToggle (item) {
     this.uselocation = false
     this.setState({ selected: item.visible ? item.title : '' })
-  }
-
-  clicked (url, event) {
-    const parts = (url || '').replace('/form/', '').split('/')
-    const section = parts.shift()
-    const subsection = parts.join('/') || 'intro'
-    this.props.dispatch(updateSection(section, subsection))
   }
 
   /**
@@ -90,15 +81,12 @@ class Navigation extends React.Component {
       const locked = subsection.locked && subsection.locked(this.props.application)
       if (locked) {
         return (
-          <div key={subsection.name} className="subsection">
-            <a href="javascript:;;;" className={`${subClass} locked`}>
-              <span className="section-name">
-                {subsection.name}
-              </span>
-              <span className="mini eapp-status-icon-valid"></span>
-              <span className="mini eapp-status-icon-error"></span>
-            </a>
-          </div>
+          <Section key={subsection.name}
+            isSubSection={true}
+            locked={true}
+            name={subsection.name}
+            subUrl={subUrl}
+            sectionClass={subClass}/>
         )
       }
 
@@ -116,15 +104,11 @@ class Navigation extends React.Component {
       }
 
       return (
-        <div key={subsection.name} className="subsection">
-          <Link to={subUrl} className={subClass} onClick={this.clicked.bind(this, subUrl)}>
-            <span className="section-name">
-              {subsection.name}
-            </span>
-            <span className="mini eapp-status-icon-valid"></span>
-            <span className="mini eapp-status-icon-error"></span>
-          </Link>
-        </div>
+        <Section key={subsection.name}
+          isSubSection={true}
+          name={subsection.name}
+          subUrl={subUrl}
+          sectionClass={subClass}/>
       )
     })
 
@@ -154,23 +138,18 @@ class Navigation extends React.Component {
       // Increment the section number
       sectionNum++
 
+      const displayNum = section.showNumber ? sectionNum : null
+
       // If the section is locked then the navigation item is displayed but
       // nothing else.
       const locked = section.locked && section.locked(this.props.application)
       if (locked) {
         return (
-          <div key={section.name} className="section">
-            <span className="section-title">
-              <a href="javascript:;;;" className={`${sectionClass} locked`}>
-                <span className="section-number">{section.showNumber ? sectionNum : ''}</span>
-                <span className="section-name">
-                  {section.name}
-                </span>
-                <span className="eapp-status-icon-valid"></span>
-                <span className="eapp-status-icon-error"></span>
-              </a>
-            </span>
-          </div>
+          <Section key={section.name}
+            name={section.name}
+            sectionClass={sectionClass}
+            sectionNum={displayNum}
+            locked={true}/>
         )
       }
 
@@ -183,7 +162,7 @@ class Navigation extends React.Component {
           <ToggleItem title={section.name}
                       key={url}
                       section={true}
-                      number={section.showNumber ? sectionNum : null}
+                      number={displayNum}
                       className={sectionClass}
                       visible={visible}
                       onToggle={this.onToggle}>
@@ -193,18 +172,10 @@ class Navigation extends React.Component {
       }
 
       return (
-        <div key={section.name} className="section">
-          <span className="section-title">
-            <Link to={url} className={sectionClass} onClick={this.clicked.bind(this, url)}>
-              <span className="section-number">{section.showNumber ? sectionNum : ''}</span>
-              <span className="section-name">
-                {section.name}
-              </span>
-              <span className="eapp-status-icon-valid"></span>
-              <span className="eapp-status-icon-error"></span>
-            </Link>
-          </span>
-        </div>
+        <Section key={section.name}
+          name={section.name}
+          sectionClass={sectionClass}
+          sectionNum={displayNum}/>
       )
     })
 
