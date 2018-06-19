@@ -30,7 +30,7 @@
                       "date": "2017-07-25T00:00:00Z"
                     }
                   },
-                  "present": false
+                  "present": true
                 }
               },
               "Address": {
@@ -38,7 +38,6 @@
                 "props": {
                   "layout": "Address",
                   "street": "123 Some Rd",
-                  "street2": "",
                   "city": "Arlington",
                   "state": "VA",
                   "zipcode": "22202",

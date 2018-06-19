@@ -40,17 +40,12 @@ func (service AttachmentListHandler) ServeHTTP(w http.ResponseWriter, r *http.Re
 		return
 	}
 
-	// Get the account information from the data store
+	// Get the account information from the data store.
+	// Proceed even if the account is locked, as files are presented
+	// after application submission, on the Print page.
 	account.ID = id
 	if _, err := account.Get(service.Database, id); err != nil {
 		service.Log.WarnError(api.NoAccount, err, api.LogFields{})
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-
-	// If the account is locked then we cannot proceed
-	if account.Locked {
-		service.Log.Warn(api.AccountLocked, api.LogFields{})
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
@@ -275,17 +270,12 @@ func (service AttachmentGetHandler) ServeHTTP(w http.ResponseWriter, r *http.Req
 		return
 	}
 
-	// Get the account information from the data store
+	// Get the account information from the data store.
+	// Proceed even if the account is locked, as files are presented
+	// after application submission, on the Print page.
 	account.ID = id
 	if _, err := account.Get(service.Database, id); err != nil {
 		service.Log.WarnError(api.NoAccount, err, api.LogFields{})
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-
-	// If the account is locked then we cannot proceed
-	if account.Locked {
-		service.Log.Warn(api.AccountLocked, api.LogFields{})
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}

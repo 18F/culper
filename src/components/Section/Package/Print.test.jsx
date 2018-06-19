@@ -1,8 +1,10 @@
 import React from 'react'
+import MockAdapter from 'axios-mock-adapter'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
+import { api } from '../../../services'
 import Print from './Print'
 
 const applicationState = {
@@ -14,6 +16,11 @@ describe('The print section', () => {
   window.token = 'fake-token'
   const middlewares = [ thunk ]
   const mockStore = configureMockStore(middlewares)
+
+  beforeEach(() => {
+    const mock = new MockAdapter(api.proxy)
+    mock.onGet('/me/attachment').reply(200, {})
+  })
 
   it('visible when authenticated', () => {
     const store = mockStore({ authentication: { authenticated: true, twofactor: true }, application: applicationState })
