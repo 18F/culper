@@ -44,7 +44,7 @@ export const CustomSummary = (validation, summary, more, item, index, initial, c
 /**
  * Renders a formatted summary information for a residence row
  */
-export const ResidenceSummary = (item, errors, open) => {
+export const ResidenceSummary = (item, index, errors, open) => {
   const address = AddressSummary(item.Address)
   const dates = DateSummary(item.Dates, i18n.t('history.employment.default.noDate.label'))
   const svg = errors && !open
@@ -53,6 +53,7 @@ export const ResidenceSummary = (item, errors, open) => {
 
   return Summary({
     icon: svg,
+    index,
     type: i18n.t('history.residence.collection.summary.item'),
     left: address,
     right: dates,
@@ -79,7 +80,7 @@ const PersonSummary = (item, errors) => {
 export const ResidenceCustomSummary = (item, index, initial, callback, toggle, openText, remove, byline) => {
   return CustomSummary(
     (x) => { return new ResidenceValidator(x, null).isValid() },
-    (x, e) => { return ResidenceSummary(x, e, item.open) },
+    (x, e) => { return ResidenceSummary(x, index, e, item.open) },
     (x, e) => {
       const ps = PersonSummary(x, e)
       if (ps === null) {
@@ -125,7 +126,7 @@ const employmentTitle = (activity, item, unk) => {
 /**
  * Renders a formatted summary information for an employment row
  */
-export const EmploymentSummary = (item, errors, open) => {
+export const EmploymentSummary = (item, index, errors, open) => {
   const activity = (item.EmploymentActivity || {}).value
   const employer = employmentTitle(activity, item)
   const dates = DateSummary(item.Dates, i18n.t('history.employment.default.noDate.label'))
@@ -135,6 +136,7 @@ export const EmploymentSummary = (item, errors, open) => {
 
   return Summary({
     icon: svg,
+    index,
     type: i18n.t('history.employment.default.collection.summary.employer'),
     left: employer,
     right: dates,
@@ -165,7 +167,7 @@ const ActivitySummary = (item, errors) => {
 export const EmploymentCustomSummary = (item, index, initial, callback, toggle, openText, remove, byline) => {
   return CustomSummary(
     (x) => { return new EmploymentValidator(x, null).isValid() },
-    (x, e) => { return EmploymentSummary(x, e, item.open) },
+    (x, e) => { return EmploymentSummary(x, index, e, item.open) },
     (x, e) => {
       return ActivitySummary(x, e)
         .filter(activity => activity !== null)
@@ -186,7 +188,7 @@ export const EmploymentCustomSummary = (item, index, initial, callback, toggle, 
 /**
  * Renders a formatted summary information for an education row
  */
-export const EducationSummary = (item, errors, open) => {
+export const EducationSummary = (item, index, errors, open) => {
   const school = (item.Name && item.Name.value ? item.Name.value : '')
   const dates = DateSummary(item.Dates, i18n.t('history.employment.default.noDate.label'))
   const svg = errors && !open
@@ -195,6 +197,7 @@ export const EducationSummary = (item, errors, open) => {
 
   return Summary({
     icon: svg,
+    index,
     type: i18n.t('history.education.collection.school.summary.item'),
     left: school,
     right: dates,
@@ -230,7 +233,7 @@ const DiplomaSummary = (item, errors) => {
 export const EducationCustomSummary = (item, index, initial, callback, toggle, openText, remove, byline) => {
   return CustomSummary(
     (x) => { return new EducationItemValidator(x).isValid() },
-    (x, e) => { return EducationSummary(x, e, item.open) },
+    (x, e) => { return EducationSummary(x, index, e, item.open) },
     (x, e) => {
       return DiplomaSummary(x, e)
         .filter(diploma => diploma !== null)
