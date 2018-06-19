@@ -90,20 +90,6 @@ services:
     depends_on:
       - db
 
-  docs:
-    build:
-      context: .
-      dockerfile: conf/docker/Dockerfile.docs
-    volumes:
-      - .:/usr/src/app
-      - /usr/src/app/node_modules
-    working_dir: /usr/src/app
-    command: ./bin/docs.sh
-    networks:
-      - eapp
-    depends_on:
-      - db
-
 networks:
   eapp:
     driver: bridge

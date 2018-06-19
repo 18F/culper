@@ -42,7 +42,7 @@ clean: stop reset-permissions
 setup: stop setup-containers setup-certificates setup-dependencies reset-permissions
 setup-containers:
 	$(info Building containers)
-	@docker-compose build js css web db api
+	@docker-compose build
 setup-certificates:
 	$(info Generating test certificates)
 	@docker-compose run --rm $(setup_container) ./bin/test-certificates
@@ -216,13 +216,13 @@ seccomp-post:
 down:
 	docker-compose down
 start:
-	docker-compose start web js css api db
+	docker-compose start
 stop:
 	docker-compose stop
 run:
 	$(info Running local development server)
-	docker-compose up web js css api db
+	docker-compose up
 docs:
-	docker-compose up docs
+	docker-compose -f docker-compose.yml -f docker-compose.docs.yml up docs
 tag:
 	echo $(tag)
