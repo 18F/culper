@@ -80,7 +80,9 @@
   },
   "scripts": {
     "test": "NODE_ENV=test jest -u --logHeapUsage --coverage --silent",
-    "lint": "gulp lint",
+    "lint-css": "gulp lint",
+    "lint-js": "eslint src/",
+    "lint": "npm run lint-css && npm run lint-js",
     "coverage": "NODE_ENV=test codecov",
     "build-js": "webpack -p --progress",
     "build-css": "gulp build",
