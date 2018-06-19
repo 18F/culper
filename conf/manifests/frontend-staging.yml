@@ -1,7 +1,7 @@
 ---
 applications:
 - name: eqip-prototype-staging
-  path: dist
+  path: ../../dist
   memory: 64M
   domain: fr.cloud.gov
   host: eqip-prototype-staging

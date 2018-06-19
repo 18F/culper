@@ -1,13 +1,13 @@
 ---
 applications:
-- name: eqip-prototype
-  path: dist
+- name: eqip-prototype-dev
+  path: ../../dist
   memory: 64M
   domain: fr.cloud.gov
-  host: eqip-prototype
+  host: eqip-prototype-dev
   buildpack: https://github.com/cloudfoundry/staticfile-buildpack.git
   env:
     FORCE_HTTPS: true
+    API_BASE_URL: https://eqip-prototype-api-dev.fr.cloud.gov
     DISABLE_2FA: 1
     BASIC_ENABLED: 1
-    API_BASE_URL: https://eqip-prototype-api.fr.cloud.gov

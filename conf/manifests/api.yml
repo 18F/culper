@@ -6,7 +6,7 @@ applications:
   domain: fr.cloud.gov
   host: eqip-prototype-api
   buildpack: https://github.com/cloudfoundry/go-buildpack
-  path: api
+  path: ../../api
   command: ./api
   services:
     - eqip-postgres
