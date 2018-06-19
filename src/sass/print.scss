@@ -99,6 +99,15 @@
         display: table-cell;
       }
     }
+
+    .eapp-structure-wrap .eapp-core {
+      width: auto;
+      padding: 0;
+    }
+    .section-view hr.section-divider {
+      margin-bottom: 1rem;
+    }
+
   }
 
   // The very last page needs the footer at the very bottom just like every

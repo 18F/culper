@@ -21,6 +21,7 @@ To create the e-QIP questionnaire prototype, the project team is employing a use
        - [Building the application](#building-the-application)
        - [Executing tests and coverage reports](#executing-tests-and-coverage-reports)
        - [Running a local server](#running-a-local-server)
+       - [Reset locked app submission](#reset-locked-submission)
  - [Docker containers](#docker-containers)
  - [Architectural diagram](#architectural-diagram)
  - [Additional](#additional)
@@ -97,6 +98,19 @@ make run
 ```
 
 Then direct your browser at [http://localhost:8080](http://localhost:8080). The access the site in development use the username `test01` and password `password01`. If you make changes to frontend files, the site will automatically rebuild after ~10 seconds.
+
+### Reset locked app submission
+In the terminal run the following:
+
+1. `docker ps -a | grep e-qip-prototype_db_1` and use the db value in the next command.
+1. `docker exec -it <DB HERE> /bin/bash`
+1. `su - postgres`
+1. `psql`
+1. `begin;`
+1. `update accounts set locked = false where username = 'test01';`
+1. `commit;`
+
+The submission will be unlocked and you can go back through the application.
 
 #### How it works
 
