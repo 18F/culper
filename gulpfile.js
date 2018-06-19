@@ -59,7 +59,7 @@ function clean () {
   return del([
     paths.destination.root + '/*',
     // don't delete JS files created by Webpack
-    '!' + paths.destination.root + '/eqip.js'
+    '!*.js'
   ])
 }
 

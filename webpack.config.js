@@ -6,10 +6,13 @@ const path = require('path')
 
 module.exports = {
   mode: production ? 'production' : 'development',
-  entry: ['babel-polyfill', './src/boot.jsx'],
+  entry: {
+    public: ['babel-polyfill', './src/public.jsx'],
+    form: ['babel-polyfill', './src/form.jsx'],
+  },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'eqip.js'
+    filename: '[name].js'
   },
   resolve: {
     extensions: ['.js', '.jsx']

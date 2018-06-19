@@ -1,9 +1,6 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import App from './App'
-import { Login, Loading, AccessDenied, Locked, TokenRefresh, Help, Form } from './views'
-import { Router, Switch, Route } from 'react-router'
-import { Provider } from 'react-redux'
+import { Form } from './views'
 import { env } from './config'
 import store from './store'
 import { api } from './services/api'
@@ -13,7 +10,7 @@ import { handleLoginSuccess, handleTwoFactorSuccess } from './actions/AuthAction
 import smoothscroll from 'smoothscroll-polyfill'
 smoothscroll.polyfill()
 
-const tabology = () => {
+export const tabology = () => {
   const tabable = !document.body.classList.contains('modal-open')
   const focusable = [
     'a[href]',
@@ -91,47 +88,19 @@ var callback = function (mutationList) {
 var observer = new MutationObserver(callback)
 observer.observe(targetNode, config)
 
-const app = document.getElementById('app')
+export const app = document.getElementById('app')
 
-class Main extends React.Component {
+export class Main extends React.Component {
   render () {
     return this.props.children
   }
 }
 
-class AppWithForm extends React.Component {
-  render () {
-    return (
-      <App {...this.props}>
-        <Form {...this.props} />
-      </App>
-    )
-  }
-}
-
-ReactDOM.render(
-  <Provider store={store}>
-    <Router history={env.History()}>
-      <Main>
-        <Switch>
-          <Route exact path="/" component={Login} onEnter={onEnter} />
-          <Route exact path="/loading" component={Loading} />
-          <Route exact path="/form/:section/:subsection*" component={AppWithForm} onEnter={onEnter} />
-          <Route exact path="/help" component={Help} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/accessdenied" component={AccessDenied} />
-          <Route exact path="/locked" component={Locked} />
-          <Route exact path="/token" component={TokenRefresh} />
-        </Switch>
-      </Main>
-    </Router>
-  </Provider>, app, tabology)
-
 /**
  * Check if we have a token in our base Route so that it gets called once
  * when a page renders.
  */
-function onEnter () {
+export function onEnter () {
   const token = api.getToken()
   if (token && token.length) {
     store.dispatch(handleLoginSuccess())
