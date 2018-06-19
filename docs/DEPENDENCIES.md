@@ -5819,14 +5819,6 @@ This is a collection of dependencies within the project and their associated lic
 
 [View license](node_modules/redux/LICENSE.md)
 
-### redux-logger
-
- - **License**: MIT
- - **Year**:    2016
- - **Author**:  Eugene Rodionov
-
-[View license](node_modules/redux-logger/LICENSE)
-
 ### redux-mock-store
 
  - **License**: MIT

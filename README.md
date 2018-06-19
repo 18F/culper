@@ -164,8 +164,8 @@ All of the documentation may then be found in the respective directories under `
 
 ### Troubleshooting
 
-- Use of [React Developer Tools](https://github.com/facebook/react-devtools) is recommended for frontend work.
-- With that extension, the Redux store can be inspected by running `$r.store.getState();` in your browser's JavaScript console.
+- Use of the [React Developer Tools](https://github.com/facebook/react-devtools) and [Redux DevTools Extension](http://extension.remotedev.io/) are recommended for frontend work.
+- With the React extension, the Redux store can be inspected by running `$r.store.getState();` in your browser's JavaScript console.
 
 ### Tooling
 
