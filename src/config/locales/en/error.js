@@ -65,13 +65,13 @@ export const error = {
     },
     suffix: {
       required: {
-        title: 'There is a problem with this field',
-        message: 'This field is required'
+        title: 'Your response is required',
+        message: ''
       }
     },
     required: {
-      title: 'There is a problem with this field',
-      message: 'This field is required'
+      title: 'Your response is required',
+      message: ''
     }
   },
   birthdate: {
@@ -113,8 +113,8 @@ export const error = {
       note: ''
     },
     required: {
-      title: 'There is a problem with this field',
-      message: 'This field is required'
+      title: 'Your response is required',
+      message: ''
     },
     invalid: {
       title: 'Invalid social security number',
@@ -177,7 +177,7 @@ export const error = {
       message: 'The date should be after your date of birth.'
     },
     required: {
-      title: 'There is a problem with this field',
+      title: 'Your response is required',
       message: 'All parts of the date are required even if it is **estimated**.'
     }
   },
@@ -237,7 +237,7 @@ export const error = {
       message: 'The date should be after this person\'s date of birth.'
     },
     required: {
-      title: 'There is a problem with this field',
+      title: 'Your response is required',
       message: 'All parts of the date are required even if it is **estimated**.'
     }
   },
@@ -472,7 +472,7 @@ export const error = {
       note: ''
     },
     required: {
-      title: 'There is a problem with this field',
+      title: 'Your response is required',
       message: 'All parts of the date(s) are required even if it is **estimated**.'
     }
   },
@@ -488,8 +488,8 @@ export const error = {
       note: ''
     },
     required: {
-      title: 'There is a problem with this field',
-      message: 'This field is required'
+      title: 'Your response is required',
+      message: ''
     }
   },
   height: {
@@ -518,25 +518,25 @@ export const error = {
       }
     },
     required: {
-      title: 'There is a problem with this field',
-      message: 'This field is required'
+      title: 'Your response is required',
+      message: ''
     }
   },
   location: {
     required: {
-      title: 'There is a problem with this field',
-      message: 'This field is required'
+      title: 'Your response is required',
+      message: ''
     },
     street: {
       required: {
-        title: 'There is a problem with this field',
-        message: 'This field is required'
+        title: 'Your response is required',
+        message: ''
       }
     },
     state: {
       required: {
-        title: 'There is a problem with this field',
-        message: 'This field is required'
+        title: 'Your response is required',
+        message: ''
       },
       notfound: {
         title: 'There is a problem with the State',
@@ -550,8 +550,8 @@ export const error = {
     },
     city: {
       required: {
-        title: 'There is a problem with this field',
-        message: 'This field is required'
+        title: 'Your response is required',
+        message: ''
       },
       length: {
         title: 'There is a problem with the City',
@@ -561,8 +561,8 @@ export const error = {
     },
     zipcode: {
       required: {
-        title: 'There is a problem with this field',
-        message: 'This field is required'
+        title: 'Your response is required',
+        message: ''
       },
       pattern: {
         title: 'There is a problem with the ZIP Code',
@@ -572,8 +572,8 @@ export const error = {
     },
     toggleablelocation: {
       required: {
-        title: 'There is a problem with this field',
-        message: 'This field is required'
+        title: 'Your response is required',
+        message: ''
       },
       city: {
         length: {
@@ -609,8 +609,8 @@ export const error = {
       },
       country: {
         required: {
-          title: 'There is a problem with this field',
-          message: 'This field is required'
+          title: 'Your response is required',
+          message: ''
         },
         notfound: {
           title: 'This country is not on our current list',
@@ -630,8 +630,8 @@ export const error = {
     },
     address: {
       required: {
-        title: 'There is a problem with this field',
-        message: 'This field is required'
+        title: 'Your response is required',
+        message: ''
       },
       city: {
         length: {
@@ -717,8 +717,8 @@ export const error = {
   },
   country: {
     required: {
-      title: 'There is a problem with this field',
-      message: 'This field is required'
+      title: 'Your response is required',
+      message: ''
     },
     notfound: {
       title: 'This Country is not on our current list',
@@ -730,8 +730,8 @@ export const error = {
   },
   passport: {
     required: {
-      title: 'There is a problem with this field',
-      message: 'This field is required'
+      title: 'Your response is required',
+      message: ''
     },
     pattern: {
       title: 'There is a problem with the passport number',
@@ -755,8 +755,8 @@ export const error = {
       note: ''
     },
     required: {
-      title: 'There is a problem with this field',
-      message: 'This field is required'
+      title: 'Your response is required',
+      message: ''
     }
   },
   telephone: {
@@ -773,8 +773,8 @@ export const error = {
           note: ''
         },
         required: {
-          title: 'There is a problem with this field',
-          message: 'This field is required'
+          title: 'Your response is required',
+          message: ''
         }
       },
       second: {
@@ -789,8 +789,8 @@ export const error = {
           note: ''
         },
         required: {
-          title: 'There is a problem with this field',
-          message: 'This field is required'
+          title: 'Your response is required',
+          message: ''
         }
       },
       third: {
@@ -805,8 +805,8 @@ export const error = {
           note: ''
         },
         required: {
-          title: 'There is a problem with this field',
-          message: 'This field is required'
+          title: 'Your response is required',
+          message: ''
         }
       },
       extension: {
@@ -835,8 +835,8 @@ export const error = {
           note: ''
         },
         required: {
-          title: 'There is a problem with this field',
-          message: 'This field is required'
+          title: 'Your response is required',
+          message: ''
         }
       },
       second: {
@@ -851,8 +851,8 @@ export const error = {
           note: ''
         },
         required: {
-          title: 'There is a problem with this field',
-          message: 'This field is required'
+          title: 'Your response is required',
+          message: ''
         }
       }
     },
@@ -869,8 +869,8 @@ export const error = {
           note: ''
         },
         required: {
-          title: 'There is a problem with this field',
-          message: 'This field is required'
+          title: 'Your response is required',
+          message: ''
         }
       },
       second: {
@@ -885,20 +885,20 @@ export const error = {
           note: ''
         },
         required: {
-          title: 'There is a problem with this field',
-          message: 'This field is required'
+          title: 'Your response is required',
+          message: ''
         }
       }
     },
     numberType: {
       required: {
-        title: 'There is a problem with this field',
-        message: 'This field is required'
+        title: 'Your response is required',
+        message: ''
       }
     },
     required: {
-      title: 'There is a problem with this field',
-      message: 'This field is required'
+      title: 'Your response is required',
+      message: ''
     }
   },
   geocode: {
@@ -938,8 +938,8 @@ export const error = {
       note: 'Example of valid email format: name@domain.com'
     },
     required: {
-      title: 'There is a problem with this field',
-      message: 'This field is required'
+      title: 'Your response is required',
+      message: ''
     }
   },
   treatment: {
@@ -989,8 +989,8 @@ export const error = {
     }
   },
   required: {
-    title: 'There is a problem with this field',
-    message: 'This field is required'
+    title: 'Your response is required',
+    message: ''
   },
   submission: {
     message: 'There was a problem submitting your SF-86. Please contact support for additional information.'
