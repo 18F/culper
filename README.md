@@ -81,6 +81,10 @@ cp .env.example .env
 
 For more information on the various settings, examples, and values please refer to the [configuration](docs/CONFIGURATION.md) documentation.
 
+#### Create the Identity Server image
+
+Follow [these instructions](https://github.com/wso2/docker-is/tree/master/dockerfiles/is).
+
 #### Tests
 
 To do the initial setup and ensure that all tests pass locally:

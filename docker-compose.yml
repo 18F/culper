@@ -91,6 +91,15 @@ services:
     depends_on:
       - db
 
+  identity:
+    image: wso2is:5.5.0
+    # https://github.com/wso2/docker-is/blob/7bb347f9e06ce0403ae50268474fbce969325535/docker-compose/IS-with-Analytics/docker-compose.yml#L35-L42
+    ports:
+      - 9763:9763
+      - 9443:9443
+    networks:
+      - eapp
+
 networks:
   eapp:
     driver: bridge
