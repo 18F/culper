@@ -105,9 +105,17 @@ Then direct your browser at [http://localhost:8080](http://localhost:8080). The 
 
 #### SAML
 
+1. Stop the `make run`, if running.
 1. In your `.env`, set `BASIC_ENABLED=` and `SAML_ENABLED=1`.
-1. Restart the server.
-1. [Log in to WSO2](https://localhost:9443/carbon) with username and password of `admin`.
+1. Launch the Identity Server.
+
+    ```shell
+    docker-compose up identity
+    ```
+
+1. [Visit WSO2 console.](https://localhost:9443/carbon)
+1. Click through the certificate warning in your browser.
+1. Log in with username and password of `admin`.
 1. [Add a Service Provider](https://localhost:9443/carbon/application/add-service-provider.jsp) with the Name `localhost`.
 1. Go into the `Inbound Authentication Configuration`->`SAML2 Web SSO Configuration` section, then click `Configure`.
 1. Fill out the form.
@@ -115,7 +123,10 @@ Then direct your browser at [http://localhost:8080](http://localhost:8080). The 
     - Assertion Consumer URLs: `http://localhost:3000/auth/saml/callback`, then `Add`  <!-- this should match SAML_CONSUMER_SERVICE_URL -->
     - Uncheck everything but `Enable Response Signing`
 
-When you `Log in with PIV/CAC`, use username and password of `admin`.
+1. Stop the `docker-compose up identity`.
+1. Run `make run`.
+1. Visit [http://localhost:8080](http://localhost:8080).
+1. `Log in with PIV/CAC`, with username and password of `admin`.
 
 ### Reset locked app submission
 In the terminal run the following:
