@@ -5,7 +5,7 @@ The eApp feature spec test suite is written using `cucumber` syntax and the test
 
 
 ## Instructions for running the eApp feature spec test suite
-Running the feature specification test suite is an on-demand process and is run through docker-compose by specifying a different [configuration file](https://github.com/truetandem/e-QIP-prototype/blob/master/nightwatch-compose.yml).
+Running the feature specification test suite is an on-demand process and is run through docker-compose by specifying a different [configuration file](https://github.com/truetandem/e-QIP-prototype/blob/master/docker-compose.specs.yml).
 
 To start the Selenium hub and run the automated feature tests, run:
 
@@ -16,7 +16,7 @@ make specs
 To start a particular feature test, run:
 
 ```shell
-docker-compose -f docker-compose.yml -f nightwatch-compose.yml --rm run npm test -t features/**.feature
+docker-compose -f docker-compose.yml -f docker-compose.specs.yml --rm run npm test -t features/**.feature
 ```
 
 where `**` is the spec name. E.g. to run the test cases related to the Foreign Activities section:
@@ -41,7 +41,7 @@ It is a good practice to clean up the docker containers after completing the tes
 ### **Down** - stops docker container and removes container image from cache
 `docker-compose down`
 
-`docker-compose -f nightwatch-compose.yml down`
+`docker-compose -f docker-compose.specs.yml down`
 
 ### **Prune** - Clean all cached containers (good for freeing up space)
 `docker system prune`
