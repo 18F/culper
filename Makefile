@@ -54,10 +54,10 @@ setup-dependencies:
 lint: lint-js lint-css lint-go
 lint-js:
 	$(info Running JavaScript linter)
-	@docker-compose run --rm js ./node_modules/.bin/eslint src/
+	@docker-compose run --rm js yarn lint-js
 lint-css:
 	$(info Running SCSS linter)
-	@docker-compose run --rm css yarn lint
+	@docker-compose run --rm css yarn lint-css
 lint-go:
 	$(info Running Go linter)
 	@docker-compose run --rm api ./bin/lint
@@ -85,7 +85,7 @@ specs:
 #
 coverage:
 	$(info Running code coverage)
-	@docker-compose run --rm js codecov
+	@docker-compose run --rm js yarn coverage
 
 #
 # Building
