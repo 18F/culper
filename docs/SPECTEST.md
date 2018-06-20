@@ -13,6 +13,12 @@ To start the Selenium hub and run the automated feature tests, run:
 make specs
 ```
 
+If you want to see the log output from the other containers, run this in another terminal first:
+
+```shell
+make run
+```
+
 To start a particular feature test, run:
 
 ```shell
@@ -38,10 +44,10 @@ If there is an error during the test run, you can find a screen capture of the b
 ## Cleanup
 It is a good practice to clean up the docker containers after completing the test case runs, or after a code refresh.
 
-### **Down** - stops docker container and removes container image from cache
+### Stop running containers
 
 ```shell
-docker-compose -f docker-compose.yml -f docker-compose.specs.yml down
+docker stop $(docker ps -aq)
 ```
 
 ### **Prune** - Clean all cached containers (good for freeing up space)
