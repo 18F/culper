@@ -102,6 +102,11 @@ services:
       interval: 5s
       timeout: 120s
       start_period: 120s
+    volumes:
+      # persist the embedded databases
+      # https://docs.wso2.com/display/ADMIN44x/Working+with+Databases
+      - /home/wso2carbon/wso2is-5.5.0/repository/data
+      - /home/wso2carbon/wso2is-5.5.0/repository/database
     networks:
       - eapp
 
