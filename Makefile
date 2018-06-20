@@ -81,7 +81,7 @@ test-go:
 .PHONY: specs
 specs:
 	$(info Running integration test suite)
-	docker-compose -f docker-compose.yml -f docker-compose.specs.yml up
+	docker-compose -f docker-compose.yml -f docker-compose.specs.yml up --abort-on-container-exit
 
 #
 # Coverage

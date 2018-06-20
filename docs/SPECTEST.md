@@ -39,9 +39,10 @@ If there is an error during the test run, you can find a screen capture of the b
 It is a good practice to clean up the docker containers after completing the test case runs, or after a code refresh.
 
 ### **Down** - stops docker container and removes container image from cache
-`docker-compose down`
 
-`docker-compose -f docker-compose.specs.yml down`
+```shell
+docker-compose -f docker-compose.yml -f docker-compose.specs.yml down
+```
 
 ### **Prune** - Clean all cached containers (good for freeing up space)
 `docker system prune`
