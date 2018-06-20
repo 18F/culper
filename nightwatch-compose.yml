@@ -1,64 +1,9 @@
+# extends docker-compose.yml
+# https://docs.docker.com/compose/extends/#multiple-compose-files
+
 version: '2'
 
 services:
-  db:
-    image: postgres:9.6.5
-    volumes:
-      - ./conf/postgres-configure.sh:/docker-entrypoint-initdb.d/postgres-configure.sh
-      - ./conf/postgres.conf:/srv/postgresql.conf
-      - ./api/eapp.crt:/srv/server.crt
-      - ./api/eapp.key:/srv/server.key
-    expose:
-      - '5432'
-    networks:
-      - eapp
-
-  # Within the docker world this is the main entrypoint in to
-  # this web application. This was done in order to have a
-  # combination of:
-  #  - development REPL
-  #  - automated unit tests
-  #  - spec testing
-  #
-  # Caddy will do the following:
-  #  - serve compiled static assets
-  #  - proxy /api requests to the backend API
-  web:
-    image: nginx:alpine
-    command: nginx
-    volumes:
-      - ./conf/ssl:/etc/ssl
-      - ./conf/nginx.conf:/etc/nginx/nginx.conf
-      - ./dist:/usr/share/nginx/html
-    ports:
-      - '8080:8080'
-      - '8443:8443'
-    networks:
-      - eapp
-    depends_on:
-      - api
-
-  api:
-    build:
-      context: .
-      dockerfile: conf/docker/Dockerfile.api
-    env_file:
-      - .env
-    working_dir: /go/src/github.com/18F/e-QIP-prototype/api
-    command: ./bin/run.sh
-    volumes:
-      - .:/go/src/github.com/18F/e-QIP-prototype
-    expose:
-      - '3000'
-    environment:
-      DATABASE_USER: postgres
-      DATABASE_NAME: postgres
-      DATABASE_HOST: db:5432
-    networks:
-      - eapp
-    depends_on:
-      - db
-
   hub:
     image: selenium/hub:latest
     expose:
@@ -95,7 +40,3 @@ services:
     depends_on:
       - chrome
       - web
-
-networks:
-  eapp:
-    driver: bridge
