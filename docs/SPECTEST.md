@@ -16,7 +16,7 @@ make specs
 To start a particular feature test, run:
 
 ```shell
-docker-compose -f docker-compose.yml -f docker-compose.specs.yml --rm run npm test -t features/**.feature
+docker-compose -f docker-compose.yml -f docker-compose.specs.yml run --rm nightwatch npm test -t features/**.feature
 ```
 
 where `**` is the spec name. E.g. to run the test cases related to the Foreign Activities section:
