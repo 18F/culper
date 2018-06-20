@@ -30,11 +30,14 @@ services:
 
   nightwatch:
     build:
-      context: .
-      dockerfile: conf/docker/Dockerfile.nightwatch
+      context: ./specs
+      dockerfile: ../conf/docker/Dockerfile.frontend
     command: [npm, run, docker]
     volumes:
       - ./specs:/usr/src/app
+      # ensure node_modules aren't shared with host system
+      # https://michalzalecki.com/docker-compose-for-nodejs-and-postresql/#docker-compose
+      - /usr/src/app/node_modules
     networks:
       - eapp
     depends_on:
