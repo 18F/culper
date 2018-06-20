@@ -9,6 +9,8 @@ hash    := $(shell git rev-parse --short HEAD)
 tag     := "$(version)-$(hash)"
 uid     := $(shell id -u)
 gid     := $(shell id -g)
+# use an arbitrary container
+setup_container := "js"
 
 
 all: clean setup lint test build
@@ -17,7 +19,7 @@ all: clean setup lint test build
 
 reset-permissions:
 	$(info Resetting permissions)
-	@docker-compose run --rm deps ./bin/permissions $(uid) $(gid)
+	@docker-compose run --rm $(setup_container) ./bin/permissions $(uid) $(gid)
 
 #
 # Cleaning
@@ -40,13 +42,13 @@ clean: stop reset-permissions
 setup: stop setup-containers setup-certificates setup-dependencies reset-permissions
 setup-containers:
 	$(info Building containers)
-	@docker-compose build deps js css web db api
+	@docker-compose build
 setup-certificates:
 	$(info Generating test certificates)
-	@docker-compose run --rm deps ./bin/test-certificates
+	@docker-compose run --rm $(setup_container) ./bin/test-certificates
 setup-dependencies:
 	$(info Installing dependencies)
-	@docker-compose run --rm deps ./bin/compile-xmlsec
+	@docker-compose run --rm $(setup_container) ./bin/compile-xmlsec
 
 #
 # Linters
@@ -76,9 +78,10 @@ test-go:
 #
 # Integration testing
 #
+.PHONY: specs
 specs:
 	$(info Running integration test suite)
-	@docker-compose -f nightwatch-compose.yml up
+	docker-compose -f docker-compose.yml -f docker-compose.specs.yml run --rm nightwatch
 
 #
 # Coverage
@@ -168,9 +171,9 @@ go: test-go build-go reset-permissions
 # Checksums
 #
 checksum:
-	@docker-compose run --rm deps ./bin/checksum
+	@docker-compose run --rm $(setup_container) ./bin/checksum
 check:
-	@docker-compose run --rm deps ./bin/checksum "test"
+	@docker-compose run --rm $(setup_container) ./bin/checksum "test"
 
 # seccomp
 #
@@ -214,13 +217,13 @@ seccomp-post:
 down:
 	docker-compose down
 start:
-	docker-compose start web js css api db
+	docker-compose start
 stop:
 	docker-compose stop
 run:
 	$(info Running local development server)
-	docker-compose up web js css api db
+	docker-compose up
 docs:
-	docker-compose up docs
+	docker-compose -f docker-compose.yml -f docker-compose.docs.yml up docs
 tag:
 	echo $(tag)

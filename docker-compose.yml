@@ -90,30 +90,6 @@ services:
     depends_on:
       - db
 
-  docs:
-    build:
-      context: .
-      dockerfile: conf/docker/Dockerfile.docs
-    volumes:
-      - .:/usr/src/app
-      - /usr/src/app/node_modules
-    working_dir: /usr/src/app
-    command: ./bin/docs.sh
-    networks:
-      - eapp
-    depends_on:
-      - db
-
-  deps:
-    image: buildpack-deps:stretch-scm
-    volumes:
-      - .:/usr/src/app
-    working_dir: /usr/src/app
-    environment:
-      DEBIAN_FRONTEND: noninteractive
-    networks:
-      - eapp
-
 networks:
   eapp:
     driver: bridge

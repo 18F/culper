@@ -1,0 +1,19 @@
+# extends docker-compose.yml
+# https://docs.docker.com/compose/extends/#multiple-compose-files
+
+version: '2'
+
+services:
+  docs:
+    build:
+      context: .
+      dockerfile: conf/docker/Dockerfile.docs
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    working_dir: /usr/src/app
+    command: ./bin/docs.sh
+    networks:
+      - eapp
+    depends_on:
+      - db
