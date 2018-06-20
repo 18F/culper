@@ -103,6 +103,20 @@ make run
 
 Then direct your browser at [http://localhost:8080](http://localhost:8080). The access the site in development use the username `test01` and password `password01`. If you make changes to frontend files, the site will automatically rebuild after ~10 seconds.
 
+#### SAML
+
+1. In your `.env`, set `SAML_ENABLED=1`.
+1. Restart the server.
+1. [Log in to WSO2](https://localhost:9443/carbon) with username and password of `admin`.
+1. [Add a Service Provider](https://localhost:9443/carbon/application/add-service-provider.jsp) with the Name `localhost`.
+1. Go into the `Inbound Authentication Configuration`->`SAML2 Web SSO Configuration` section, then click `Configure`.
+1. Fill out the form.
+    - Issuer: `localhost`
+    - Assertion Consumer URLs: `http://localhost:3000/auth/saml/callback`, then `Add`  <!-- this should match SAML_CONSUMER_SERVICE_URL -->
+    - Uncheck everything but `Enable Response Signing`
+
+When you `Log in with PIV/CAC`, use username and password of `admin`.
+
 ### Reset locked app submission
 In the terminal run the following:
 
