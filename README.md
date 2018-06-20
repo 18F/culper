@@ -105,7 +105,7 @@ Then direct your browser at [http://localhost:8080](http://localhost:8080). The 
 
 #### SAML
 
-1. In your `.env`, set `SAML_ENABLED=1`.
+1. In your `.env`, set `BASIC_ENABLED=` and `SAML_ENABLED=1`.
 1. Restart the server.
 1. [Log in to WSO2](https://localhost:9443/carbon) with username and password of `admin`.
 1. [Add a Service Provider](https://localhost:9443/carbon/application/add-service-provider.jsp) with the Name `localhost`.
