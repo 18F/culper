@@ -268,8 +268,8 @@ export const identification = {
         note: ''
       },
       sex: {
-        title: 'Add a comment if needed',
-        message: 'If additional information is appropriate please use "Add a comment" below to detail it.',
+        title: 'Provide more information',
+        message: 'To add more information regarding your gender, select “Add a comment” below.',
         note: ''
       }
     },
