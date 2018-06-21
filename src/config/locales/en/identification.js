@@ -25,16 +25,16 @@ export const identification = {
     title: 'Provide your full name',
     last: {
       help: {
-        title: 'Don\'t abbreviate this name',
-        message: '"Initial only" is for single letter names only, not for the first letter of this full name.',
-        note: 'Note: If this last name is a single letter only type that letter and check the "Initial only" checkbox.'
+        title: 'Enter a valid last name.',
+        message: 'Please enter your entire last name. If your last name if a single letter, select the "Initial only" checkbox and type the letter below.',
+        note: ''
       }
     },
     first: {
       help: {
-        title: 'Don\'t abbreviate this name',
-        message: '"Initial only" is for single letter names only, not for the first letter of this full name.',
-        note: 'Note: If this first name is a single letter only type that letter and check the "Initial only" checkbox.'
+        title: 'Enter a valid first name.',
+        message: 'Please enter your entire first name. If your first name is a single letter, select the "Initial only" checkbox and type the letter below.',
+        note: ''
       }
     },
     middle: {

@@ -23,44 +23,36 @@ export const error = {
     },
     first: {
       required: {
-        title: 'The first name is required',
-        message: 'The first name must be provided.',
+        title: 'Oops, there’s a problem.',
+        message: 'If your first name is a single letter, please select the "Initial only" checkbox and type the letter. 100 character limit.',
         note: ''
       },
       length: {
-        title: 'There is a problem with the first name',
-        message: [
-          'You are only allowed 100 characters.',
-          '*and/or*',
-          'If the first name is an initial then check the "Initial only" checkbox.'
-        ],
+        title: 'Oops, there’s a problem.',
+        message: 'If your first name is a single letter, please select the "Initial only" checkbox and type the letter. 100 character limit.',
         note: ''
       },
       pattern: {
-        title: 'There is a problem with the first name',
-        message: 'Some of these characters aren\'t allowed.',
-        note: 'Only use letters, hyphens (-), periods (.), apostrophes (\'), and spaces.'
+        title: 'Oops, there’s a problem.',
+        message: 'If your first name is a single letter, please select the "Initial only" checkbox and type the letter. 100 character limit.',
+        note: ''
       }
     },
     middle: {
       required: {
-        title: 'There is a problem with the middle name',
-        message: 'If there is no middle name then check the "No middle name" checkbox.',
+        title: 'Oops, there’s a problem.',
+        message: 'If your middle name is a single letter, please select the "Initial only" checkbox and type the letter. 100 character limit.',
         note: ''
       },
       length: {
-        title: 'There is a problem with the middle name',
-        message: [
-          'If the middle name is an initial then check the "Initial only" checkbox.',
-          '*and/or*',
-          'You are only allowed 100 characters.'
-        ],
+        title: 'Oops, there’s a problem.',
+        message: 'If your middle name is a single letter, please select the "Initial only" checkbox and type the letter. 100 character limit.',
         note: ''
       },
       pattern: {
-        title: 'There is a problem with the middle name',
-        message: 'Some of these characters aren\'t allowed.',
-        note: 'Only use letters, hyphens (-), periods (.), apostrophes (\'), and spaces.'
+        title: 'Oops, there’s a problem.',
+        message: 'If your middle name is a single letter, please select the "Initial only" checkbox and type the letter. 100 character limit.',
+        note: ''
       }
     },
     suffix: {
