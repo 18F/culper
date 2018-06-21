@@ -40,8 +40,6 @@ services:
       - '8443:8443'
     networks:
       - eapp
-    depends_on:
-      - api
 
   js:
     build:
@@ -82,8 +80,8 @@ services:
     command: ./bin/run.sh
     volumes:
       - .:/go/src/github.com/18F/e-QIP-prototype
-    expose:
-      - '3000'
+    ports:
+      - 3000:3000
     environment:
       DATABASE_USER: postgres
       DATABASE_NAME: postgres
