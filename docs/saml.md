@@ -19,6 +19,19 @@ To authenticate with SAML rather than the basic auth:
         - Issuer: `localhost`
         - Assertion Consumer URLs: `http://localhost:3000/auth/saml/callback`, then click `Add` <!-- this should match SAML_CONSUMER_SERVICE_URL -->
         - Uncheck everything but `Enable Response Signing`
+1. Copy the certificate.
+    1. [Go to `Identity Providers`->`Resident`.](https://localhost:9443/carbon/idpmgt/idp-mgt-edit-local.jsp)
+    1. Expand `Inbound Authentication Configuration`, then `SAML2 Web SSO Configuration`.
+    1. Click `Download SAML Metadata`.
+    1. Open up the resulting SAML Metadata XML file that gets downloaded, and copy the contents of the `<X509Certificate>` element.
+    1. Save that in `api/wso2.crt`.
+
+        ```
+        -----BEGIN CERTIFICATE-----
+        <contents>
+        -----END CERTIFICATE-----
+        ```
+
 1. Enable SAML on the "client" side.
     1. In your `.env`, set `BASIC_ENABLED=` and `SAML_ENABLED=1`.
 1. In another terminal, start the server (or restart, if already running).
