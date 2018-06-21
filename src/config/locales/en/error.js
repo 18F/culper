@@ -2,17 +2,13 @@ export const error = {
   name: {
     last: {
       required: {
-        title: 'The last name is required',
+        title: 'Oops, there’s a problem.',
         message: 'The last name must be provided.',
         note: ''
       },
       length: {
-        title: 'There is a problem with the last name',
-        message: [
-          'You are only allowed 100 characters.',
-          '*and/or*',
-          'If the last name is an initial then check the "Initial only" checkbox.'
-        ],
+        title: 'Oops, there’s a problem.',
+        message: '',
         note: ''
       },
       pattern: {
