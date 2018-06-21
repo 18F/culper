@@ -104,12 +104,10 @@ Then direct your browser at [http://localhost:8080](http://localhost:8080). The 
 To authenticate with SAML rather than the basic auth:
 
 1. [Create the Identity Server image.](https://github.com/wso2/docker-is/tree/master/dockerfiles/is)
-1. Enable SAML on the "client" side.
-    1. In your `.env`, set `BASIC_ENABLED=` and `SAML_ENABLED=1`.
-1. Start the server (or restart, if already running).
+1. Start the Identity Server.
 
     ```shell
-    make run
+    make identity
     ```
 
 1. Set up SAML Provider.
@@ -122,6 +120,14 @@ To authenticate with SAML rather than the basic auth:
         - Issuer: `localhost`
         - Assertion Consumer URLs: `http://localhost:3000/auth/saml/callback`, then click `Add` <!-- this should match SAML_CONSUMER_SERVICE_URL -->
         - Uncheck everything but `Enable Response Signing`
+1. Enable SAML on the "client" side.
+    1. In your `.env`, set `BASIC_ENABLED=` and `SAML_ENABLED=1`.
+1. In another terminal, start the server (or restart, if already running).
+
+    ```shell
+    make run
+    ```
+
 1. Visit [http://localhost:8080](http://localhost:8080).
 1. `Log in with PIV/CAC`, with username and password of `admin`.
 

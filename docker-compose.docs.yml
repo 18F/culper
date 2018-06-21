@@ -1,7 +1,7 @@
 # extends docker-compose.yml
 # https://docs.docker.com/compose/extends/#multiple-compose-files
 
-version: '2'
+version: '2.4'
 
 services:
   docs:

@@ -91,25 +91,6 @@ services:
     depends_on:
       - db
 
-  identity:
-    image: wso2is:5.5.0
-    # https://github.com/wso2/docker-is/blob/7bb347f9e06ce0403ae50268474fbce969325535/docker-compose/IS-with-Analytics/docker-compose.yml#L35-L42
-    ports:
-      - 9763:9763
-      - 9443:9443
-    healthcheck:
-      test: ["CMD", "curl", "-k", "-f", "https://localhost:9443/carbon/admin/login.jsp"]
-      interval: 5s
-      timeout: 120s
-      start_period: 120s
-    volumes:
-      # persist the embedded databases
-      # https://docs.wso2.com/display/ADMIN44x/Working+with+Databases
-      - /home/wso2carbon/wso2is-5.5.0/repository/data
-      - /home/wso2carbon/wso2is-5.5.0/repository/database
-    networks:
-      - eapp
-
 networks:
   eapp:
     driver: bridge
