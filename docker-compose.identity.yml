@@ -1,11 +1,12 @@
 # extends docker-compose.yml
 # https://docs.docker.com/compose/extends/#multiple-compose-files
 
-version: '2.4'
+version: '2'
 
 services:
   identity:
     image: wso2is:5.5.0
+    # based on
     # https://github.com/wso2/docker-is/blob/7bb347f9e06ce0403ae50268474fbce969325535/docker-compose/IS-with-Analytics/docker-compose.yml#L35-L42
     ports:
       - 9763:9763
@@ -13,8 +14,7 @@ services:
     healthcheck:
       test: ["CMD", "curl", "-k", "-f", "https://localhost:9443/carbon/admin/login.jsp"]
       interval: 5s
-      timeout: 120s
-      start_period: 120s
+      timeout: 240s
     volumes:
       # persist the embedded databases
       # https://docs.wso2.com/display/ADMIN44x/Working+with+Databases
