@@ -27,18 +27,19 @@ services:
   #  - proxy /api requests to the backend API
   web:
     image: nginx:alpine
-    command: nginx
+    env_file:
+      - .env
+    command: /usr/src/nginx.sh
     volumes:
+      - ./bin/nginx.sh:/usr/src/nginx.sh
       - ./conf/ssl:/etc/ssl
-      - ./conf/nginx.conf:/etc/nginx/nginx.conf
+      - ./conf/nginx.template.conf:/tmp/nginx.template.conf
       - ./dist:/usr/share/nginx/html
     ports:
       - '8080:8080'
       - '8443:8443'
     networks:
       - eapp
-    depends_on:
-      - api
 
   js:
     build:
@@ -79,8 +80,8 @@ services:
     command: ./bin/run.sh
     volumes:
       - .:/go/src/github.com/18F/e-QIP-prototype
-    expose:
-      - '3000'
+    ports:
+      - 3000:3000
     environment:
       DATABASE_USER: postgres
       DATABASE_NAME: postgres
