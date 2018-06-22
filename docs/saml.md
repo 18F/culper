@@ -52,3 +52,12 @@ To authenticate with SAML rather than the basic auth:
 
 1. Visit [http://localhost:8080](http://localhost:8080).
 1. `Log in with PIV/CAC`, with username and password of `admin`.
+
+## Caveats
+
+Note this is using an off-the shelf WSO2 server, which won't match production in that:
+
+* It's not hardened
+* Using an embedded database rather than an external one
+* The WSO2 verison may not match
+* etc.
