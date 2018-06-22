@@ -2,7 +2,17 @@
 
 To authenticate with SAML rather than the basic auth:
 
-1. [Create the Identity Server image.](https://github.com/wso2/docker-is/tree/master/dockerfiles/is)
+1. Create the Identity Server image. Options:
+    * [Build from scratch](https://github.com/wso2/docker-is/tree/master/dockerfiles/is)
+    * Download the existing image (GSA only) <!-- because we don't have a registry -->
+        1. [Download the image](https://drive.google.com/file/d/1o7aP98rhoGPL5PEZALnXNnQfWxqfRyJi/view?usp=sharing)
+        1. Unarchive and load the image.
+
+            ```shell
+            gunzip wso2-image.tar.gz
+            docker load -i wso2-image.tar
+            ```
+
 1. Start the Identity Server.
 
     ```shell
