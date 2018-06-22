@@ -222,7 +222,7 @@ stop:
 	docker-compose stop
 run:
 	$(info Running local development server)
-	docker-compose up
+	docker-compose up --abort-on-container-exit --build
 docs:
 	docker-compose -f docker-compose.yml -f docker-compose.docs.yml up docs
 tag:
