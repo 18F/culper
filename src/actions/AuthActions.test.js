@@ -50,6 +50,20 @@ describe('Auth actions', function () {
     })
   })
 
+  it('should include the error message in the logout URL', function () {
+    const mock = new MockAdapter(api.proxy)
+    mock.onGet('/me/logout').reply(500)
+
+    const store = mockStore({ authentication: [] })
+    const expectedAction = [
+      { type: AuthConstants.LOGOUT },
+      { type: 'PUSH', to: '/login?error=Request failed with status code 500', scrollTo: 'scrollTo' }
+    ]
+    store.dispatch(logout()).then(() => {
+      expect(store.getActions()).toEqual(expectedAction)
+    })
+  })
+
   it('should create an action to handle qrcode', function () {
     const mock = new MockAdapter(api.proxy)
     mock.onGet('/2fa/').reply(200, 'aernstiaenstieanstieansitenaiestnaientsi')
