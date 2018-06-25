@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { i18n } from '../../../config'
-import { push } from '../../../middleware/history'
+import { withRouter } from 'react-router'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
 import SectionComments from '../SectionComments'
@@ -40,7 +40,7 @@ class Foreign extends SectionElement {
   componentWillReceiveProps (next) {
     // Redirect to direct control
     if (next.subsection === 'activities') {
-      this.props.dispatch(push(`/form/foreign/activities/direct`))
+      this.props.history.push('/form/foreign/activities/direct')
     }
   }
 
@@ -853,4 +853,5 @@ export class ForeignSections extends React.Component {
   }
 }
 
-export default connect(mapStateToProps)(AuthenticatedView(Foreign))
+// https://github.com/ReactTraining/react-router/blob/master/packages/react-router/docs/guides/blocked-updates.md#quick-solution
+export default withRouter(connect(mapStateToProps)(AuthenticatedView(Foreign)))

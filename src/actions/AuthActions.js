@@ -1,7 +1,7 @@
 import { env } from '../config'
 import { api } from '../services/api'
 import AuthConstants from './AuthConstants'
-import { push } from '../middleware/history'
+import { push } from './NavActions'
 
 /**
  * Executes a request to log in the user and then

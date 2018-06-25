@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { i18n } from '../../../config'
-import { push } from '../../../middleware/history'
+import { withRouter } from 'react-router'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
@@ -40,10 +40,10 @@ class SubstanceUse extends SectionElement {
     // Redirect to first alcohol subsection if root subsection is accessed
     switch (next.subsection) {
     case 'alcohol':
-      this.props.dispatch(push(`/form/substance/alcohol/negative`))
+      this.props.history.push('/form/substance/alcohol/negative')
       break
     case 'drugs':
-      this.props.dispatch(push(`/form/substance/drugs/usage`))
+      this.props.history.push('/form/substance/drugs/usage')
       break
     }
   }
@@ -594,4 +594,5 @@ export class SubstanceUseSections extends React.Component {
   }
 }
 
-export default connect(mapStateToProps)(AuthenticatedView(SubstanceUse))
+// https://github.com/ReactTraining/react-router/blob/master/packages/react-router/docs/guides/blocked-updates.md#quick-solution
+export default withRouter(connect(mapStateToProps)(AuthenticatedView(SubstanceUse)))

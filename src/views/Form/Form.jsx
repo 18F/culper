@@ -1,6 +1,5 @@
 import React from 'react'
-import { push } from '../../middleware/history'
-import { getApplicationState } from '../../actions/ApplicationActions'
+import { withRouter } from 'react-router'
 import AuthenticatedView from '../AuthenticatedView'
 import { Section, SavedIndicator, TimeoutWarning } from '../../components'
 import { env } from '../../config'
@@ -23,7 +22,7 @@ class Form extends React.Component {
   defaultRedirect () {
     const params = this.props.params || this.props.match.params
     if (!params.section) {
-      this.props.dispatch(push('form/identification/intro'))
+      this.props.history.push('form/identification/intro')
     }
   }
 
@@ -48,4 +47,4 @@ class Form extends React.Component {
   }
 }
 
-export default AuthenticatedView(Form)
+export default withRouter(AuthenticatedView(Form))

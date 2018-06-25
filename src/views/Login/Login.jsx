@@ -1,10 +1,10 @@
 import React from 'react'
 import { TwoFactor } from '../../components'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
 import { i18n, env } from '../../config'
 import { api, getQueryValue, getCookieValue, deleteCookie } from '../../services'
 import { login, handleLoginSuccess } from '../../actions/AuthActions'
-import { push } from '../../middleware/history'
 import { Consent, Show } from '../../components/Form'
 
 export class Login extends React.Component {
@@ -38,7 +38,7 @@ export class Login extends React.Component {
   redirect () {
     // If user is authenticated, redirect to home page
     if (this.props.authenticated && this.props.twofactor) {
-      this.props.dispatch(push('/loading'))
+      this.props.history.push('/loading')
       return
     }
 
@@ -47,7 +47,7 @@ export class Login extends React.Component {
       deleteCookie('token')
       api.setToken(token)
       this.props.dispatch(handleLoginSuccess())
-      this.props.dispatch(push('/loading'))
+      this.props.history.push('/loading')
       return
     }
 
@@ -55,10 +55,10 @@ export class Login extends React.Component {
     if (err) {
       switch (err) {
       case 'token':
-        this.props.dispatch(push('/token'))
+        this.props.history.push('/token')
         return
       case 'access_denied':
-        this.props.dispatch(push('/accessdenied'))
+        this.props.history.push('/accessdenied')
         return
       }
     }
@@ -284,6 +284,5 @@ function mapStateToProps (state) {
   }
 }
 
-// Wraps the the App component with connect() which adds the dispatch()
-// function to the props property for this component
-export default connect(mapStateToProps)(Login)
+// https://github.com/ReactTraining/react-router/blob/master/packages/react-router/docs/guides/blocked-updates.md#quick-solution
+export default withRouter(connect(mapStateToProps)(Login))
