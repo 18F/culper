@@ -4,7 +4,6 @@ import { i18n } from '../../../config'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
 import SectionComments from '../SectionComments'
-import AuthenticatedView from '../../../views/AuthenticatedView'
 import { Field } from '../../Form'
 import Gambling from './Gambling'
 import Bankruptcies from './Bankruptcy'
@@ -364,4 +363,4 @@ export class FinancialSections extends React.Component {
     )
   }
 }
-export default connect(mapStateToProps)(AuthenticatedView(Financial))
+export default connect(mapStateToProps)(Financial)
