@@ -1,12 +1,10 @@
 import React from 'react'
-import { i18n } from './config'
-import { SectionTitle, ProgressBar, Sticky, ScoreCard, Navigation, NavigationToggle } from './components'
-import { Introduction } from './components/Form'
-import StickyHeader from './components/Sticky/StickyHeader'
+import { i18n } from '../../config'
+import { SectionTitle, ProgressBar, Sticky, ScoreCard, Navigation, NavigationToggle } from '..'
+import { Introduction } from '../Form'
+import StickyHeader from '../Sticky/StickyHeader'
 import { connect } from 'react-redux'
-import { env } from './config'
-import { api } from './services/api'
-import { logout } from './actions/AuthActions'
+import { logout } from '../../actions/AuthActions'
 
 /*
            1/6-ish                                 2/3-ish                               1/6-ish

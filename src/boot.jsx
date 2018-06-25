@@ -1,7 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './App'
-import { Login, Loading, AccessDenied, Locked, TokenRefresh, Help, Form } from './views'
+import Main from './components/Main/Main'
+import AppWithForm from './components/Main/AppWithForm'
+import { Login, Loading, AccessDenied, Locked, TokenRefresh, Help } from './views'
 import { Router, Switch, Route } from 'react-router'
 import { Provider } from 'react-redux'
 import { env } from './config'
@@ -92,22 +93,6 @@ var observer = new MutationObserver(callback)
 observer.observe(targetNode, config)
 
 const app = document.getElementById('app')
-
-class Main extends React.Component {
-  render () {
-    return this.props.children
-  }
-}
-
-class AppWithForm extends React.Component {
-  render () {
-    return (
-      <App {...this.props}>
-        <Form {...this.props} />
-      </App>
-    )
-  }
-}
 
 ReactDOM.render(
   <Provider store={store}>
