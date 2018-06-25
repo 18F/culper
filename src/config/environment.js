@@ -14,8 +14,8 @@ const parseBool = (val) => {
 
 class Env {
   History () {
-    const useHashRouting = parseBool(process.env.HASH_ROUTING)
     if (!this.history) {
+      const useHashRouting = parseBool(process.env.HASH_ROUTING)
       this.history = useHashRouting ? createHashHistory() : createBrowserHistory()
     }
     return this.history
