@@ -43,6 +43,7 @@ const AuthenticatedView = (WrappedComponent) => {
 function mapStateToProps (state) {
   const auth = state.authentication
   return {
+    application: state.application,
     authenticated: auth.authenticated,
     twofactor: auth.twofactor
   }

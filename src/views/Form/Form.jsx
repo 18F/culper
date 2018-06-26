@@ -1,13 +1,14 @@
 import React from 'react'
 import { withRouter } from 'react-router'
 import { api } from '../../services'
-import { push } from '../../middleware/history'
+import { findPosition, push, saveSection } from '../../middleware/history'
 import { clearErrors, updateApplication } from '../../actions/ApplicationActions'
 import AuthenticatedView from '../AuthenticatedView'
 import { Section, SavedIndicator, TimeoutWarning } from '../../components'
 import { env } from '../../config'
 import { parseFormUrl } from '../../components/Navigation/navigation-helpers'
 import { tokenError } from '../../actions/AuthActions'
+import { unstickAll } from '../../components/Sticky/sidebar'
 
 // The concept is that we have three different inputs:
 //  1. The index which just brings up the first entry of the form.
@@ -30,7 +31,7 @@ class Form extends React.Component {
 
     // https://stackoverflow.com/a/44410281/358804
     if (this.props.location !== prevProps.location) {
-      this.onRouteChanged();
+      this.onRouteChanged(prevProps.location);
     }
   }
 
@@ -56,6 +57,13 @@ class Form extends React.Component {
 
   updateSettings() {
     this.props.dispatch(updateApplication('Settings', 'mobileNavigation', false))
+  }
+
+  save (section, subsection) {
+    window.scroll(0, findPosition(document.getElementById('scrollTo')))
+    unstickAll()
+
+    saveSection(this.props.application, section, subsection, this.props.dispatch)
   }
 
   fetchSectionAnswers() {
@@ -89,10 +97,13 @@ class Form extends React.Component {
     })
   }
 
-  onRouteChanged() {
+  onRouteChanged(prevLocation) {
     this.clearErrors()
     this.updateSettings()
     this.fetchSectionAnswers()
+
+    const prevLoc = parseFormUrl(prevLocation.pathname)
+    this.save(prevLoc.section, prevLoc.subsection)
   }
 
   render () {

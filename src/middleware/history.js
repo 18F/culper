@@ -1,11 +1,9 @@
 import axios from 'axios'
 import { env } from '../config'
-import SectionConstants from '../actions/SectionConstants'
 import { updateApplication } from '../actions/ApplicationActions'
 import { sectionData } from '../components/Section/sectionData'
 import schema from '../schema'
 import { api } from '../services'
-import { unstickAll } from '../components/Sticky/sidebar'
 
 export const findPosition = (el) => {
   let currentTop = 0
@@ -40,24 +38,6 @@ export const historyMiddleware = store => next => action => {
   // If we get a PUSH_STATE type, modify hisory
   if (action.type === PUSH_STATE) {
     env.History().push(action.to)
-  }
-
-  // Allow redux to continue the flow and executing the next middleware
-  next(action)
-}
-
-// Save the previous section's answers
-export const saveMiddleware = store => next => action => {
-  if (action.type === SectionConstants.SECTION_UPDATE || action.type === SectionConstants.SUBSECTION_UPDATE) {
-    window.scroll(0, findPosition(document.getElementById('scrollTo')))
-    unstickAll()
-
-    if (action.previous && action.previous.section && action.previous.application) {
-      const application = action.previous.application
-      const section = action.previous.section.section
-      const subsection = action.previous.section.subsection
-      saveSection(application, section, subsection, store.dispatch)
-    }
   }
 
   // Allow redux to continue the flow and executing the next middleware
