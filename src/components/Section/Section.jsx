@@ -1,6 +1,5 @@
 import React from 'react'
-import { push } from '../../middleware/history'
-import { updateSection } from '../../actions/SectionActions'
+import { withRouter } from 'react-router'
 import AuthenticatedView from '../../views/AuthenticatedView'
 import Identification from './Identification'
 import Financial from './Financial'
@@ -37,8 +36,8 @@ class Section extends React.Component {
   }
 
   update (props) {
-    this.props.dispatch(updateSection(props.section, props.subsection))
-    this.props.dispatch(push(`/form/${props.section}/${props.subsection || 'intro'}`))
+    const path = `/form/${props.section}/${props.subsection || 'intro'}`
+    this.props.history.push(path)
   }
 
   render () {
@@ -82,4 +81,4 @@ class Section extends React.Component {
   }
 }
 
-export default AuthenticatedView(Section)
+export default AuthenticatedView(withRouter(Section))

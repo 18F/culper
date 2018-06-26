@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
 import { i18n } from '../../config'
-import { push } from '../../middleware/history'
 import { getApplicationState } from '../../actions/ApplicationActions'
 import { Spinner, SpinnerAction } from '../../components/Form'
 import { timeout } from '../../components/Form/Location/Location'
@@ -23,7 +23,7 @@ class Loading extends React.Component {
 
   componentWillMount () {
     if (!this.props.authenticated) {
-      this.props.dispatch(push('/login'))
+      this.props.history.push('/login')
     }
   }
 
@@ -44,7 +44,7 @@ class Loading extends React.Component {
         // Grow the green arrow
         this.setState({spinner: true, spinnerAction: SpinnerAction.Grow}, () => {
           timeout(() => {
-            this.props.dispatch(push('/form/identification/intro'))
+            this.props.history.push('/form/identification/intro')
           }, 1000)
         })
       })
@@ -87,6 +87,5 @@ function mapStateToProps (state) {
   }
 }
 
-// Wraps the the App component with connect() which adds the dispatch()
-// function to the props property for this component
-export default connect(mapStateToProps)(Loading)
+// https://github.com/ReactTraining/react-router/blob/master/packages/react-router/docs/guides/blocked-updates.md#quick-solution
+export default withRouter(connect(mapStateToProps)(Loading))

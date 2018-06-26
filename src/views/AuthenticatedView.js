@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { env } from '../config'
 import { api } from '../services/api'
-import { push } from '../middleware/history'
+import { push } from '../actions/NavActions'
 
 /**
  * AuthenticatedView is a higher-order component that wraps a component

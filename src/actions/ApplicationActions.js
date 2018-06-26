@@ -2,7 +2,7 @@ import { navigationWalker } from '../config'
 import { api } from '../services'
 import schema, { unschema } from '../schema'
 import validate from '../validators'
-import { push } from '../middleware/history'
+import { push } from './NavActions'
 
 export function getApplicationState (done) {
   return function (dispatch, getState) {

@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { env } from '../config'
-import SectionConstants from '../actions/SectionConstants'
+import SectionConstants, { PUSH_STATE } from '../actions/SectionConstants'
 import { updateApplication, clearErrors } from '../actions/ApplicationActions'
 import { tokenError } from '../actions/AuthActions'
 import { sectionData } from '../components/Section/sectionData'
@@ -19,19 +19,6 @@ export const findPosition = (el) => {
   }
 
   return [currentTop]
-}
-
-export const PUSH_STATE = 'PUSH'
-
-/**
- * Action requesting a history push state
- */
-export const push = (path, scrollTo = 'scrollTo') => {
-  return {
-    type: PUSH_STATE,
-    to: path,
-    scrollTo: scrollTo
-  }
 }
 
 /**
