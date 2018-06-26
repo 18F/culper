@@ -1,5 +1,5 @@
 import React from 'react'
-import App from '../src/App'
+import App from './App'
 import renderer from 'react-test-renderer'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
