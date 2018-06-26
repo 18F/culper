@@ -43,7 +43,6 @@ export default class ReprimandItem extends ValidationElement {
                     onUpdate={this.updateText}
                     onError={this.props.onError}
                     maxlength="100"
-                    onError={this.props.onError}
                     required={this.props.required}
                     />
         </Field>
@@ -58,7 +57,6 @@ export default class ReprimandItem extends ValidationElement {
                        onUpdate={this.updateDate}
                        onError={this.props.onError}
                        hideDay={true}
-                       onError={this.props.onError}
                        required={this.props.required}
                        />
         </Field>

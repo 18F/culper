@@ -139,7 +139,7 @@ export default class Passport extends SubsectionElement {
           {i18n.t('foreign.passport.info.text')}
         </p>
         <p>
-          <a href="https://travel.state.gov/content/travel/en.html" target="_blank" title="U.S. State Department Help">
+          <a href="https://travel.state.gov/content/travel/en.html" target="_blank" rel="noopener noreferrer" title="U.S. State Department Help">
             {i18n.t('foreign.passport.info.link')}
           </a>
         </p>

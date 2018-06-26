@@ -115,7 +115,7 @@ export default class Selective extends SubsectionElement {
                         {i18n.m('military.selective.help.remember.message')}
                         <div>
                           <p>
-                            <a href="https://www.sss.gov/Registration/Check-a-Registration/Verification-Form" target="_blank">
+                            <a href="https://www.sss.gov/Registration/Check-a-Registration/Verification-Form" target="_blank" rel="noopener noreferrer">
                               https://www.sss.gov/Registration/Check-a-Registration/Verification-Form
                             </a>
                           </p>

@@ -63,14 +63,13 @@ export default class Email extends ValidationElement {
                onFocus={this.props.Focus}
                onBlur={this.props.Blur}
                onError={this.handleError}
-               required={this.props.required}
                />
     )
   }
 }
 
 Email.defaultProps = {
-  pattern: /^([A-z0-9_\.-]+)@([A-z0-9\.-]+)\.+([A-z\.]{2,63})$/,
+  pattern: /^([A-z0-9_.-]+)@([A-z0-9.-]+)\.+([A-z.]{2,63})$/,
   value: '',
   spellcheck: false,
   autocapitalize: false,

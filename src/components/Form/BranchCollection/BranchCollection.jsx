@@ -24,7 +24,7 @@ export default class BranchCollection extends React.Component {
           [this.props.valueKey]: values
         }
         break
-      default:
+      default: {
         const isLastItem = index + 1 >= this.props.items.length
         if (!isLastItem && this.props.removable) {
           // If it's not the last item being marked as No, then remove it. This addresses the issue
@@ -43,6 +43,7 @@ export default class BranchCollection extends React.Component {
           // If this is the last item then we still need to remove it.
           items.splice(index, 1)
         }
+      }
     }
 
     this.props.onUpdate({ items: items })

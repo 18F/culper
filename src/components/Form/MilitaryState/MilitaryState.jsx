@@ -18,7 +18,6 @@ export default class MilitaryState extends ValidationElement {
                onFocus={this.props.onFocus}
                value={this.props.value}
                required={this.props.required}
-               onUpdate={this.props.onUpdate}
                tabBack={this.props.tabBack}
                tabNext={this.props.tabNext}
                >
@@ -39,7 +38,6 @@ export default class MilitaryState extends ValidationElement {
                   onBlur={this.props.onBlur}
                   onFocus={this.props.onFocus}
                   required={this.props.required}
-                  onUpdate={this.props.onUpdate}
                   tabBack={this.props.tabBack}
                   tabNext={this.props.tabNext}
                   >

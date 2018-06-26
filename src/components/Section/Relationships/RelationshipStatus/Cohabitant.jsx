@@ -145,7 +145,6 @@ export default class Cohabitant extends ValidationElement {
         <Suggestions className="spouse-suggestion"
                      suggestionTitle={i18n.t('relationships.cohabitant.suggestion.title')}
                      suggestionParagraph={i18n.m('relationships.cohabitant.suggestion.paragraph')}
-                     suggestionLabel={i18n.t('relationships.cohabitant.suggestion.label')}
                      suggestionDismissLabel={i18n.t('relationships.cohabitant.suggestion.dismissLabel')}
                      suggestionLabel={i18n.t('relationships.cohabitant.suggestion.label')}
                      suggestionUseLabel={i18n.t('relationships.cohabitant.suggestion.useLabel')}
