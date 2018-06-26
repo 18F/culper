@@ -675,7 +675,6 @@ export default class ForeignNational extends ValidationElement {
 }
 
 ForeignNational.defaultProps = {
-  AddressNotApplicable: { applicable: true },
   Name: {},
   NameNotApplicable: {
     applicable: true

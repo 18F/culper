@@ -93,7 +93,6 @@ export default class Taxes extends SubsectionElement {
                        bind={true}
                        required={this.props.required}
                        scrollIntoView={this.props.scrollIntoView}
-                       required={this.props.required}
                        />
           </Accordion>
         </Show>

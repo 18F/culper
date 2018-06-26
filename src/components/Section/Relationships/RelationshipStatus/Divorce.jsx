@@ -255,16 +255,14 @@ export default class Divorce extends React.Component {
                 <Radio
                   className="yes"
                   label={i18n.t('relationships.civilUnion.divorce.deceased.label.yes')}
-                  label="Yes"
                   value="Yes"
                   onUpdate={this.updateDeceased}
                   onError={this.props.onError}
                   />
                 <Radio
-                  className="no"
+                  className="no widowed"
                   label={i18n.t('relationships.civilUnion.divorce.deceased.label.no')}
                   value="No"
-                  className="widowed"
                   onUpdate={this.updateDeceased}
                   onError={this.props.onError}
                   />

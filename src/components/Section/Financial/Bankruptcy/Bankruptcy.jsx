@@ -174,7 +174,6 @@ export default class Bankruptcy extends ValidationElement {
                 className="courtnumber"
                 placeholder={i18n.t('financial.bankruptcy.courtNumber.placeholder')}
                 title={i18n.t('financial.bankruptcy.courtNumber.title')}
-                placeholder={i18n.t('financial.bankruptcy.courtNumber.placeholder')}
                 required={this.props.required}
                 />
         </Field>

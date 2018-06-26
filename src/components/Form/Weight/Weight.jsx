@@ -74,7 +74,6 @@ export default class Weight extends ValidationElement {
                   value={this.state.value}
                   onChange={this.handleChange}
                   onError={this.handleError}
-                  required={this.props.required}
                   />
         </div>
       </div>
