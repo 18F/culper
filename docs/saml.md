@@ -43,6 +43,7 @@ To authenticate with SAML rather than the basic auth:
         ```
 
 1. Enable SAML on the "client" side.
+    1. Make sure your `.env` has the `SAML_*` defaults from `.env.example`.
     1. In your `.env`, set `BASIC_ENABLED=` and `SAML_ENABLED=1`.
 1. In another terminal, start the server (or restart, if already running).
 
