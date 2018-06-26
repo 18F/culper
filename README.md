@@ -99,6 +99,10 @@ make run
 
 Then direct your browser at [http://localhost:8080](http://localhost:8080). The access the site in development use the username `test01` and password `password01`. If you make changes to frontend files, the site will automatically rebuild after ~10 seconds.
 
+#### SAML
+
+See [documentation](docs/saml.md).
+
 ### Reset locked app submission
 In the terminal run the following:
 
