@@ -1,9 +1,13 @@
 import React from 'react'
+import { withRouter } from 'react-router'
+import { api } from '../../services'
 import { push } from '../../middleware/history'
-import { getApplicationState } from '../../actions/ApplicationActions'
+import { clearErrors, updateApplication } from '../../actions/ApplicationActions'
 import AuthenticatedView from '../AuthenticatedView'
 import { Section, SavedIndicator, TimeoutWarning } from '../../components'
 import { env } from '../../config'
+import { parseFormUrl } from '../../components/Navigation/navigation-helpers'
+import { tokenError } from '../../actions/AuthActions'
 
 // The concept is that we have three different inputs:
 //  1. The index which just brings up the first entry of the form.
@@ -12,23 +16,87 @@ import { env } from '../../config'
 //  3. The section and subsection are known so the section will
 //     display the subsection only.
 class Form extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { refreshPending: false };
+  }
+
   componentWillMount () {
     this.defaultRedirect()
   }
 
-  componentDidUpdate () {
+  componentDidUpdate(prevProps) {
     this.defaultRedirect()
+
+    // https://stackoverflow.com/a/44410281/358804
+    if (this.props.location !== prevProps.location) {
+      this.onRouteChanged();
+    }
+  }
+
+  getParams () {
+    return this.props.params || this.props.match.params
   }
 
   defaultRedirect () {
-    const params = this.props.params || this.props.match.params
+    const params = this.getParams()
     if (!params.section) {
       this.props.dispatch(push('form/identification/intro'))
     }
   }
 
+  getLocation() {
+    return parseFormUrl(this.props.location.pathname)
+  }
+
+  clearErrors() {
+    const loc = this.getLocation()
+    this.props.dispatch(clearErrors(loc.section, loc.subsection))
+  }
+
+  updateSettings() {
+    this.props.dispatch(updateApplication('Settings', 'mobileNavigation', false))
+  }
+
+  fetchSectionAnswers() {
+    if (env.IsTest()) {
+      return
+    }
+
+    const token = api.getToken()
+    if (!token) {
+      return
+    }
+
+    // If a refresh is currently pending then wait for it
+    if (this.state.refreshPending) {
+      return
+    }
+
+    this.setState({ refreshPending: true })
+    api.refresh().then(r => {
+      this.setState({ refreshPending: false })
+      api.setToken(r.data)
+      if (r.data === '') {
+        this.props.dispatch(tokenError())
+      } else {
+        this.props.dispatch(updateApplication('Settings', 'lastRefresh', new Date().getTime()))
+      }
+    }).catch(() => {
+      this.setState({ refreshPending: false })
+      api.setToken('')
+      this.props.dispatch(tokenError())
+    })
+  }
+
+  onRouteChanged() {
+    this.clearErrors()
+    this.updateSettings()
+    this.fetchSectionAnswers()
+  }
+
   render () {
-    const params = this.props.params || this.props.match.params
+    const params = this.getParams()
     if (!params.section) {
       return null
     }
@@ -48,4 +116,4 @@ class Form extends React.Component {
   }
 }
 
-export default AuthenticatedView(Form)
+export default withRouter(AuthenticatedView(Form))
