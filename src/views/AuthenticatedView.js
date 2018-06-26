@@ -20,16 +20,19 @@ const AuthenticatedView = (WrappedComponent) => {
       this.checkAuthentication()
     }
 
-    checkAuthentication () {
+    isAuthenticated() {
       const token = api.getToken()
-      if (!token || !this.props.authenticated) {
+      return token && this.props.authenticated
+    }
+
+    checkAuthentication () {
+      if (!this.isAuthenticated()) {
         env.History().push('/login')
       }
     }
 
     render () {
-      const token = api.getToken()
-      if (token && this.props.authenticated) {
+      if (this.isAuthenticated()) {
         return (<WrappedComponent {...this.props} />)
       }
       return null
