@@ -1,4 +1,4 @@
-FROM node:8.5.0
+FROM node:8
 
 WORKDIR /usr/src/app
 ENV PATH /usr/src/app/node_modules/.bin:$PATH
