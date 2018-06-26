@@ -21,13 +21,7 @@
   ],
   "rules": {
     "no-console": "off",
-    "no-unused-vars": [
-      "error",
-      {
-        "args": "none",
-        "ignoreRestSiblings": true
-      }
-    ],
+    "no-unused-vars": "off",
     "react/no-deprecated": "off",
     "react/no-string-refs": "off",
     "react/display-name": "off",
