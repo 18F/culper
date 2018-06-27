@@ -43,7 +43,7 @@ class Form extends React.Component {
   defaultRedirect () {
     const params = this.getParams()
     if (!params.section) {
-      this.props.dispatch(push('form/identification/intro'))
+      this.props.history.push('form/identification/intro')
     }
   }
 
