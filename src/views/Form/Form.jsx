@@ -9,6 +9,7 @@ import { env } from '../../config'
 import { parseFormUrl } from '../../components/Navigation/navigation-helpers'
 import { tokenError } from '../../actions/AuthActions'
 import { unstickAll } from '../../components/Sticky/sidebar'
+import { updateSection } from '../../actions/SectionActions'
 
 // The concept is that we have three different inputs:
 //  1. The index which just brings up the first entry of the form.
@@ -98,6 +99,10 @@ class Form extends React.Component {
   }
 
   onRouteChanged(prevLocation) {
+    // update the Redux store with the React Router state
+    const params = this.getParams()
+    this.props.dispatch(updateSection(params.section, params.subsection))
+
     this.clearErrors()
     this.updateSettings()
     this.fetchSectionAnswers()
