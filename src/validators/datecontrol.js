@@ -1,4 +1,4 @@
-import store from '../store'
+import store from '../services/store'
 import { extractApplicantBirthdate } from '../components/Section/extractors'
 import { extractDate, today, daysAgo } from '../components/Section/History/dateranges'
 

@@ -1,5 +1,5 @@
 import env from './environment'
-import * as validators from '../validators'
+import * as validators from '../validators/index'
 
 const navigation = [
   {
