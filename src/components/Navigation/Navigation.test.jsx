@@ -1,5 +1,4 @@
 import React from 'react'
-import MockAdapter from 'axios-mock-adapter'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import { MemoryRouter } from 'react-router'
@@ -22,13 +21,13 @@ describe('The navigation component', () => {
   })
 
   it('visible when authenticated', () => {
-    const store = mockStore({ authentication: { authenticated: true, twofactor: true } })
+    const store = mockStore({ application: { Identification: {} }, authentication: { authenticated: true, twofactor: true } })
     const component = mount(<Provider store={store}><MemoryRouter><Navigation /></MemoryRouter></Provider>)
     expect(component.find('div').length).toBeGreaterThan(0)
   })
 
   it('displays proper arrows on subsections', () => {
-    const store = mockStore({ authentication: { authenticated: true, twofactor: true } })
+    const store = mockStore({ application: { Identification: {} }, authentication: { authenticated: true, twofactor: true } })
     const location = () => { return { pathname: '/form/legal/associations/engaged-in-terrorism' } }
     const component = mount(<Provider store={store}><MemoryRouter><Navigation location={location} /></MemoryRouter></Provider>)
     component.find('a[title="Investigative and criminal history"]').simulate('click')
