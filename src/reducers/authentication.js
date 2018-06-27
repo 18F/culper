@@ -49,15 +49,6 @@ const authentication = function (state = defaultState, action) {
       error: action.error
     }
 
-  case AuthConstants.LOGOUT:
-    return {
-      ...state,
-      authenticated: false,
-      twofactor: false,
-      token: null,
-      qrcode: null
-    }
-
   default:
     return state
   }

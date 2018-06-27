@@ -26,21 +26,6 @@ describe('Authentication Reducer', function () {
     expect(authentication(defaultState, action)).toEqual(expectedState)
   })
 
-  it('should handle logout', function () {
-    const expectedState = {
-      authenticated: false,
-      token: null,
-      twofactor: false,
-      qrcode: null
-    }
-
-    const action = {
-      type: AuthConstants.LOGOUT
-    }
-
-    expect(authentication(defaultState, action)).toEqual(expectedState)
-  })
-
   it('should handle login error', function () {
     const expectedState = {
       authenticated: false,
