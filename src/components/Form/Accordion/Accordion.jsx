@@ -5,7 +5,7 @@ import Branch from '../Branch'
 import Show from '../Show'
 import Svg from '../Svg'
 import StickyAccordionSummary from '../../Sticky/StickyAccordionSummary'
-import { findPosition } from '../../../middleware/history'
+import { findPosition } from '../../Navigation/navigation-helpers'
 
 export const openState = (item = {}, initial = false) => {
   return `${item.open ? 'open' : 'close'} ${initial ? 'static' : 'animate'}`.trim()

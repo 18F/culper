@@ -1,4 +1,4 @@
-import { validations, isActive, hasErrors, isValid, sectionsTotal, sectionsCompleted } from './navigation-helpers'
+import { validations, isActive, hasErrors, isValid, sectionsTotal, sectionsCompleted, findPosition } from './navigation-helpers'
 
 describe('Navigation component validation', function () {
   it('can count number of validations', () => {
@@ -96,5 +96,18 @@ describe('Navigation component validation', function () {
     }
 
     expect(sectionsCompleted(store.completed, { application: store })).toBe(1)
+  })
+})
+
+describe('UI helpers', () => {
+  it('should find the position', function () {
+    const el = {
+      offsetTop: 10,
+      offsetParent: {
+        offsetTop: 2
+      }
+    }
+    const top = findPosition(el)
+    expect(top).toEqual([12])
   })
 })

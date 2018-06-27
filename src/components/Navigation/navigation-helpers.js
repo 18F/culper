@@ -127,3 +127,16 @@ export const sectionsCompleted = (store, props) => {
 
   return sections
 }
+
+export const findPosition = (el) => {
+  let currentTop = 0
+
+  if (el && el.offsetParent) {
+    do {
+      currentTop += el.offsetTop
+      el = el.offsetParent
+    } while (el)
+  }
+
+  return [currentTop]
+}
