@@ -10,12 +10,11 @@ export function updateSection (section, subsection) {
   }
 }
 
-export function handleSectionUpdate (section, subsection, previous = {}, scrollTo = 'scrollTo') {
+export function handleSectionUpdate (section, subsection, previous = {}) {
   return {
     type: SectionConstants.SECTION_UPDATE,
     section: section,
     subsection: subsection,
-    previous: previous,
-    scrollTo: scrollTo
+    previous: previous
   }
 }

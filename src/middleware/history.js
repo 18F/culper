@@ -26,11 +26,10 @@ export const PUSH_STATE = 'PUSH'
 /**
  * Action requesting a history push state
  */
-export const push = (path, scrollTo = 'scrollTo') => {
+export const push = (path) => {
   return {
     type: PUSH_STATE,
-    to: path,
-    scrollTo: scrollTo
+    to: path
   }
 }
 
@@ -94,7 +93,7 @@ export const sectionMiddleware = store => next => action => {
 // Save the previous section's answers
 export const saveMiddleware = store => next => action => {
   if (action.type === SectionConstants.SECTION_UPDATE || action.type === SectionConstants.SUBSECTION_UPDATE) {
-    window.scroll(0, findPosition(document.getElementById(action.scrollTo || 'scrollTo')))
+    window.scroll(0, findPosition(document.getElementById('scrollTo')))
     unstickAll()
 
     if (action.previous && action.previous.section && action.previous.application) {
