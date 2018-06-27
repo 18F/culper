@@ -1,21 +1,8 @@
 import axios from 'axios'
-import { updateApplication } from '../actions/ApplicationActions'
-import { sectionData } from '../components/Section/sectionData'
-import schema from '../schema'
-import { api } from '../services'
-
-export const findPosition = (el) => {
-  let currentTop = 0
-
-  if (el && el.offsetParent) {
-    do {
-      currentTop += el.offsetTop
-      el = el.offsetParent
-    } while (el)
-  }
-
-  return [currentTop]
-}
+import { updateApplication } from '../../actions/ApplicationActions'
+import { sectionData } from '../Section/sectionData'
+import schema from '../../schema'
+import { api } from '../../services'
 
 export const saveSection = (application, section, subsection, dispatch, done) => {
   const pending = sectionData(section, subsection, application) || []

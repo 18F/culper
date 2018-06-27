@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { i18n } from '../../config'
 import AuthenticatedView from '../../views/AuthenticatedView'
 import { Show } from '../Form'
-import { saveSection } from '../../middleware/history'
+import { saveSection } from './persistence-helpers'
 import { formIsLocked } from '../../validators'
 
 class SavedIndicator extends React.Component {
