@@ -2,9 +2,9 @@ import React from 'react'
 import { i18n } from '../../config'
 import { SectionTitle, ProgressBar, Sticky, ScoreCard, Navigation, NavigationToggle } from '..'
 import { Introduction } from '../Form'
+import Logout from '../Navigation/Logout'
 import StickyHeader from '../Sticky/StickyHeader'
 import { connect } from 'react-redux'
-import { logout } from '../../actions/AuthActions'
 
 /*
            1/6-ish                                 2/3-ish                               1/6-ish
@@ -36,13 +36,8 @@ class App extends React.Component {
     this.state = {
       instructions: false
     }
-    this.logout = this.logout.bind(this)
     this.showInstructions = this.showInstructions.bind(this)
     this.dismissInstructions = this.dismissInstructions.bind(this)
-  }
-
-  logout () {
-    this.props.dispatch(logout())
   }
 
   showInstructions (event) {
@@ -66,9 +61,7 @@ class App extends React.Component {
   }
 
   render () {
-    const logoutButton = this.props.authenticated || this.props.twofactor
-        ? (<a href="#" onClick={this.logout} className="logout">{i18n.t('app.logout')}</a>)
-        : null
+    const logoutButton = (this.props.authenticated || this.props.twofactor) ? (<Logout/>) : null
     const klassApp = `${this.designClass()} ${this.props.settings.modalOpen ? 'modal-open' : ''}`.trim()
     const mobileNavigation = this.props.settings.mobileNavigation || false
     const klassTitle = 'eapp-structure-right eapp-title'

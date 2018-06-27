@@ -33,14 +33,19 @@ export function login (username, password) {
 /**
  * Logs out a user
  */
-export function logout (error = '') {
+export function logout () {
   return function (dispatch, getState) {
-    const clear = () => {
+    const clear = (path) => {
       api.setToken('')
       dispatch({ type: AuthConstants.LOGOUT })
-      dispatch(push(`/login${error ? '?error=' : ''}${error || ''}`))
+      dispatch(push(path))
     }
-    return api.logout().then(clear).catch(clear)
+    return api.logout()
+      .then(() => clear('/login'))
+      .catch((e) => {
+        console.log("Error logging out:", e)
+        clear(`/login?error=${e.message}`)
+      })
   }
 }
 
