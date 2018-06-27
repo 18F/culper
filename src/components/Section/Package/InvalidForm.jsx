@@ -3,6 +3,7 @@ import { i18n, env } from '../../../config'
 import { updateSection } from '../../../actions/SectionActions'
 import { Link } from 'react-router-dom'
 import { Show } from '../../Form'
+import InvalidSection from './InvalidSection'
 
 export default class InvalidForm extends React.Component {
   constructor (props) {
@@ -38,31 +39,6 @@ export default class InvalidForm extends React.Component {
         <Show when={!env.IsProduction()}>
           <Link to={`/form/package/submit`} onClick={this.clicked.bind(this, 'package', 'submit')}>Simulate valid form</Link>
         </Show>
-      </div>
-    )
-  }
-}
-
-export class InvalidSection extends React.Component {
-  render () {
-    const incompleteSubsections = this.props.mark.subsections.map((subsection, i) => {
-      return (<li key={`${subsection.url}-${i}`}>{ subsection.name }</li>)
-    })
-
-    return (
-      <div className="field">
-        <div className="table expand">
-          <span className="messages error-messages">
-            <div className="message error">
-              <i className="fa fa-exclamation"></i>
-              <h3>{ this.props.mark.section.title }</h3>
-              <ul>{ incompleteSubsections }</ul>
-              <Link to={`/form/${this.props.mark.section.url}/review`} onClick={this.props.onClick.bind(this, this.props.mark.section.url, 'review')}>
-                <button className="back usa-button-outline">Back to section</button>
-              </Link>
-            </div>
-          </span>
-        </div>
       </div>
     )
   }
