@@ -1,4 +1,4 @@
-import { createHashHistory, createBrowserHistory } from 'history'
+import { createHashHistory, createBrowserHistory, createMemoryHistory } from 'history'
 
 const parseBool = (val) => {
   const str = `${val || ''}`
@@ -16,7 +16,13 @@ class Env {
   History () {
     if (!this.history) {
       const useHashRouting = parseBool(process.env.HASH_ROUTING)
-      this.history = useHashRouting ? createHashHistory() : createBrowserHistory()
+      if (useHashRouting) {
+        this.history = createHashHistory()
+      } else if (this.IsTest()) {
+        this.history = createMemoryHistory()
+      } else {
+        this.history = createBrowserHistory()
+      }
     }
     return this.history
   }

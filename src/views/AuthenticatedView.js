@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { env } from '../config'
 import { api } from '../services/api'
-import { push } from '../middleware/history'
 
 /**
  * AuthenticatedView is a higher-order component that wraps a component
@@ -25,7 +24,7 @@ const AuthenticatedView = (WrappedComponent) => {
       const token = api.getToken()
       const mfa = this.props.mfa || env.MultipleFactorAuthentication()
       if (!token || !this.props.authenticated || !(mfa.enabled ? this.props.twofactor : true)) {
-        this.props.dispatch(push('/login'))
+        env.History().push('/login')
       }
     }
 

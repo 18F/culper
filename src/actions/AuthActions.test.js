@@ -42,8 +42,7 @@ describe('Auth actions', function () {
 
     const store = mockStore({ authentication: [] })
     const expectedAction = [
-      { type: AuthConstants.LOGOUT },
-      { type: 'PUSH', to: '/login' }
+      { type: AuthConstants.LOGOUT }
     ]
     store.dispatch(logout()).then(() => {
       expect(store.getActions()).toEqual(expectedAction)
@@ -98,10 +97,6 @@ describe('Auth actions', function () {
     const expectedActions = [
       {
         type: AuthConstants.TWOFACTOR_SUCCESS
-      },
-      {
-        type: 'PUSH',
-        to: '/loading'
       }
     ]
 
