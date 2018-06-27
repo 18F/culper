@@ -1,8 +1,8 @@
 import thunk from 'redux-thunk'
-import rootReducer from './reducers'
+import rootReducer from '../reducers'
 import { createStore, applyMiddleware } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
-import { historyMiddleware, sectionMiddleware, saveMiddleware, settingsMiddleware, clearErrorsMiddleware } from './middleware/history'
+import { historyMiddleware, sectionMiddleware, saveMiddleware, settingsMiddleware, clearErrorsMiddleware } from '../middleware/history'
 
 const middleware = [thunk, historyMiddleware, sectionMiddleware, saveMiddleware, settingsMiddleware, clearErrorsMiddleware]
 

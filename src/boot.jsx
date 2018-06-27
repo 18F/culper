@@ -6,7 +6,7 @@ import { Login, Loading, AccessDenied, Locked, TokenRefresh, Help } from './view
 import { Router, Switch, Route } from 'react-router'
 import { Provider } from 'react-redux'
 import { env } from './config'
-import store from './store'
+import store from './services/store'
 import { api } from './services/api'
 import { handleLoginSuccess, handleTwoFactorSuccess } from './actions/AuthActions'
 
