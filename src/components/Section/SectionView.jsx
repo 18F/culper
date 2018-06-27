@@ -1,5 +1,4 @@
 import React from 'react'
-import { push } from '../../middleware/history'
 import { ErrorList } from '../ErrorList'
 
 export class SectionViews extends React.Component {

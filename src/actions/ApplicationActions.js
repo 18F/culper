@@ -1,8 +1,7 @@
-import { navigationWalker } from '../config'
+import { env, navigationWalker } from '../config'
 import { api } from '../services'
 import schema, { unschema } from '../schema'
 import validate from '../validators'
-import { push } from '../middleware/history'
 
 export function getApplicationState (done) {
   return function (dispatch, getState) {
@@ -17,7 +16,7 @@ export function getApplicationState (done) {
 
         if (statusData.Locked) {
           locked = true
-          dispatch(push('/locked'))
+          env.History().push('/locked')
         }
       })
       .then(() => {

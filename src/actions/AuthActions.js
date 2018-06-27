@@ -1,7 +1,6 @@
 import { env } from '../config'
 import { api } from '../services/api'
 import AuthConstants from './AuthConstants'
-import { push } from '../middleware/history'
 
 /**
  * Executes a request to log in the user and then
@@ -18,7 +17,7 @@ export function login (username, password) {
         dispatch(handleLoginSuccess(response.data))
 
         if (!mfa.enabled) {
-          dispatch(push('/loading'))
+          env.History().push('/loading')
         }
       })
       .catch(error => {
@@ -38,7 +37,7 @@ export function logout (error = '') {
     const clear = () => {
       api.setToken('')
       dispatch({ type: AuthConstants.LOGOUT })
-      dispatch(push(`/login${error ? '?error=' : ''}${error || ''}`))
+      env.History().push(`/login${error ? '?error=' : ''}${error || ''}`)
     }
     return api.logout().then(clear).catch(clear)
   }
@@ -49,7 +48,7 @@ export function tokenError () {
     const clear = () => {
       api.setToken('')
       dispatch({ type: AuthConstants.LOGOUT })
-      dispatch(push('/token'))
+      env.History().push('/token')
     }
     return api.logout().then(clear).catch(clear)
   }
@@ -72,7 +71,7 @@ export function twofactor (token) {
       .then(response => {
         api.setToken(response.data)
         dispatch(handleTwoFactorSuccess())
-        dispatch(push('/loading'))
+        env.History().push('/loading')
       })
       .catch(error => {
         api.setToken('')

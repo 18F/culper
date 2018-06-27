@@ -1,4 +1,5 @@
 import React from 'react'
+import { MemoryRouter } from 'react-router'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
@@ -32,7 +33,7 @@ describe('The Package form component', () => {
       authentication: { authenticated: true, twofactor: true },
       application: applicationState
     })
-    const component = mount(<Provider store={store}><Package Application={applicationState} /></Provider>)
+    const component = mount(<Provider store={store}><MemoryRouter><Package Application={applicationState} /></MemoryRouter></Provider>)
     expect(component.find('div').length).toBeGreaterThan(0)
   })
 

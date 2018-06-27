@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
 import { i18n, navigationWalker } from '../../../config'
 import { hideHippa } from '../../../validators/releases'
 import { SectionViews, SectionView } from '../SectionView'
@@ -10,7 +11,6 @@ import InvalidForm from './InvalidForm'
 import SubmissionStatus from './SubmissionStatus'
 import Print from './Print'
 import Attachments from './Attachments'
-import { push } from '../../../middleware/history'
 import { updateApplication } from '../../../actions/ApplicationActions'
 import axios from 'axios'
 import { api } from '../../../services'
@@ -86,7 +86,7 @@ class Package extends SectionElement {
         // route to `package/errors`. By only pushing the new location we keep
         // the navigation element marking `/review` as active but allow us to
         // display a different internal route.
-        this.props.dispatch(push('/form/package/errors'))
+        this.props.history.push('/form/package/errors')
         return
       }
     }
@@ -273,4 +273,4 @@ Package.defaultProps = {
   store: 'Submission'
 }
 
-export default connect(mapStateToProps)(AuthenticatedView(Package))
+export default withRouter(connect(mapStateToProps)(AuthenticatedView(Package)))
