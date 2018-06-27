@@ -15,7 +15,7 @@ export default class InvalidSection extends React.Component {
               <i className="fa fa-exclamation"></i>
               <h3>{this.props.mark.section.title}</h3>
               <ul>{incompleteSubsections}</ul>
-              <Link to={`/form/${this.props.mark.section.url}/review`} onClick={this.props.onClick.bind(this, this.props.mark.section.url, 'review')}>
+              <Link to={`/form/${this.props.mark.section.url}/review`}>
                 <button className="back usa-button-outline">Back to section</button>
               </Link>
             </div>
