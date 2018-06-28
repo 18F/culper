@@ -22,8 +22,15 @@ class Section extends React.Component {
     let url = this.url()
 
     const subsections = this.props.section.subsections
-    let sectionList
+    let accordionControls, sectionList
     if (subsections) {
+      // wrap in a span because React <16 needs a parent element
+      accordionControls = (
+        <span>
+          <i className="fa fa-angle-up" aria-hidden="true"></i>
+          <i className="fa fa-angle-down" aria-hidden="true"></i>
+        </span>
+      )
       sectionList = <SectionList className="usa-sidenav-sub_list" baseUrl={url} sections={subsections}/>
       // link to the first subsection
       url += `/${subsections[0].url}`
@@ -31,7 +38,10 @@ class Section extends React.Component {
 
     return (
       <li key={url}>
-        <NavLink to={url} activeClassName="usa-current" isActive={this.isActive}>{this.props.section.name}</NavLink>
+        <NavLink to={url} activeClassName="usa-current" isActive={this.isActive}>
+          {this.props.section.name}
+          {accordionControls}
+        </NavLink>
         {sectionList}
       </li>
     )

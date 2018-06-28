@@ -1,7 +1,26 @@
+// default state (collapsed)
+.usa-sidenav-list {
+  .fa-angle-up {
+    display: none;
+  }
+}
 .usa-sidenav-sub_list {
   display: none;
+}
 
-  .usa-current + & {
-    display: block;
+// expanded
+.usa-current + .usa-sidenav-sub_list {
+  display: block;
+}
+.usa-sidenav-list,
+.usa-sidenav-sub_list {
+  & > li > .usa-current {
+    .fa-angle-down {
+      display: none;
+    }
+
+    .fa-angle-up {
+      display: inline-block;
+    }
   }
 }
