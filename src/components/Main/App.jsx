@@ -1,6 +1,7 @@
 import React from 'react'
 import { i18n } from '../../config'
-import { SectionTitle, ProgressBar, Sticky, ScoreCard, Navigation, NavigationToggle } from '..'
+import { SectionTitle, ProgressBar, Sticky, ScoreCard, NavigationToggle } from '..'
+import Navigation from '../NewNavigation/Navigation'
 import { Introduction } from '../Form'
 import StickyHeader from '../Sticky/StickyHeader'
 import { connect } from 'react-redux'
