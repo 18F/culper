@@ -34,20 +34,18 @@ describe('Navigation component validation', function () {
   })
 
   it('can determine a section has errors', () => {
-    const props = {
-      errors: {
-        foreign: [
-          { section: 'foreign', subsection: 'activities/direct', valid: false, code: 'date.month.notfound' },
-          { section: 'foreign', subsection: 'activities/direct', valid: true, code: 'acquired.length' },
-          { section: 'foreign', subsection: 'activities/indirect', valid: false, code: 'date.month.notfound' }
-        ],
-        identification: []
-      }
+    const errors = {
+      foreign: [
+        { section: 'foreign', subsection: 'activities/direct', valid: false, code: 'date.month.notfound' },
+        { section: 'foreign', subsection: 'activities/direct', valid: true, code: 'acquired.length' },
+        { section: 'foreign', subsection: 'activities/indirect', valid: false, code: 'date.month.notfound' }
+      ],
+      identification: []
     }
 
-    expect(hasErrors('/form/foreign', props)).toBe(true)
-    expect(hasErrors('/form/foreign/activities/direct', props)).toBe(true)
-    expect(hasErrors('/form/identification', props)).toBe(false)
+    expect(hasErrors('/form/foreign', errors)).toBe(true)
+    expect(hasErrors('/form/foreign/activities/direct', errors)).toBe(true)
+    expect(hasErrors('/form/identification', errors)).toBe(false)
   })
 
   it('can determine if a section is valid', () => {

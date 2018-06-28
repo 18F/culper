@@ -48,7 +48,7 @@ class Navigation extends React.Component {
       klass += ' active'
     }
 
-    if (hasErrors(route, this.props)) {
+    if (hasErrors(route, this.props.errors)) {
       klass += ' has-errors'
     } else if (isValid(route, this.props)) {
       klass += ' is-valid'
@@ -198,15 +198,15 @@ Navigation.defaultProps = {
 
 function mapStateToProps (state) {
   const section = state.section || {}
-  const app = state.application || {}
-  const errors = app.Errors || {}
-  const completed = app.Completed || {}
+  const application = state.application || {}
+  const errors = application.Errors || {}
+  const completed = application.Completed || {}
 
   return {
-    application: app,
-    section: section,
-    errors: errors,
-    completed: completed
+    application,
+    section,
+    errors,
+    completed
   }
 }
 
