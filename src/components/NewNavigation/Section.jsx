@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import PropTypes from 'prop-types'
 import AuthenticatedView from '../../views/AuthenticatedView'
 
 class Section extends React.Component {
@@ -11,6 +12,13 @@ class Section extends React.Component {
       </li>
     )
   }
+}
+
+Section.propTypes = {
+  section: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired
+  }).isRequired
 }
 
 export default AuthenticatedView(Section)
