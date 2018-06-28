@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import Main from './components/Main/Main'
 import AppWithForm from './components/Main/AppWithForm'
 import { Login, Loading, AccessDenied, Locked, TokenRefresh, Help } from './views'
-import { Router, Switch, Route } from 'react-router'
+import { Router, Switch, Redirect, Route } from 'react-router'
 import { Provider } from 'react-redux'
 import { env } from './config'
 import store from './services/store'
@@ -32,7 +32,8 @@ ReactDOM.render(
         <Switch>
           <Route exact path="/" component={Login} onEnter={onEnter} />
           <Route exact path="/loading" component={Loading} />
-          <Route exact path="/form/:section/:subsection*" component={AppWithForm} onEnter={onEnter} />
+          <Route exact path="/form/:section/:subsection+" component={AppWithForm} onEnter={onEnter} />
+          <Redirect from="/form/:section" to="/form/:section/intro"/>
           <Route exact path="/help" component={Help} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/accessdenied" component={AccessDenied} />
