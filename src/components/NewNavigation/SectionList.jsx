@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import AuthenticatedView from '../../views/AuthenticatedView'
 import Section from './Section'
 
 class SectionList extends React.Component {
@@ -27,4 +26,4 @@ SectionList.defaultProps = {
   className: 'usa-sidenav-list'
 }
 
-export default AuthenticatedView(SectionList)
+export default SectionList

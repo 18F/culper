@@ -1,7 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import AuthenticatedView from '../../views/AuthenticatedView'
 
 class Section extends React.Component {
   render () {
@@ -21,4 +20,4 @@ Section.propTypes = {
   }).isRequired
 }
 
-export default AuthenticatedView(Section)
+export default Section
