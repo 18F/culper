@@ -1,0 +1,7 @@
+.usa-sidenav-sub_list {
+  display: none;
+
+  .usa-current + & {
+    display: block;
+  }
+}

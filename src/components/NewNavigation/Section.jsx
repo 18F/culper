@@ -5,17 +5,20 @@ import SectionList from './SectionList'
 
 class Section extends React.Component {
   render () {
-    const url = `${this.props.baseUrl}/${this.props.section.url}`
+    let url = `${this.props.baseUrl}/${this.props.section.url}`
 
-    let subsections
-    if (this.props.section.subsections) {
-      subsections = <SectionList className="usa-sidenav-sub_list" baseUrl={url} sections={this.props.section.subsections}/>
+    const subsections = this.props.section.subsections
+    let sectionList
+    if (subsections) {
+      sectionList = <SectionList className="usa-sidenav-sub_list" baseUrl={url} sections={subsections}/>
+      // the section heading should link to the first subsection
+      url += `/${subsections[0].url}`
     }
 
     return (
       <li key={url}>
         <NavLink to={url} activeClassName="usa-current">{this.props.section.name}</NavLink>
-        {subsections}
+        {sectionList}
       </li>
     )
   }
