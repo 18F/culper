@@ -2,6 +2,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import SectionList from './SectionList'
+import Show from '../Form/Show'
 
 class Section extends React.Component {
   constructor (props) {
@@ -19,30 +20,26 @@ class Section extends React.Component {
   }
 
   render () {
-    let url = this.url()
-
     const subsections = this.props.section.subsections
-    let accordionControls, sectionList
+    let sectionBaseUrl = this.url()
+    let navUrl = sectionBaseUrl
     if (subsections) {
-      // wrap in a span because React <16 needs a parent element
-      accordionControls = (
-        <span>
-          <i className="fa fa-angle-up" aria-hidden="true"></i>
-          <i className="fa fa-angle-down" aria-hidden="true"></i>
-        </span>
-      )
-      sectionList = <SectionList className="usa-sidenav-sub_list" baseUrl={url} sections={subsections}/>
       // link to the first subsection
-      url += `/${subsections[0].url}`
+      navUrl += `/${subsections[0].url}`
     }
 
     return (
-      <li key={url}>
-        <NavLink to={url} activeClassName="usa-current" isActive={this.isActive}>
+      <li>
+        <NavLink to={navUrl} activeClassName="usa-current" isActive={this.isActive}>
           {this.props.section.name}
-          {accordionControls}
+          <Show when={subsections}>
+            <i className="fa fa-angle-up" aria-hidden="true"></i>
+            <i className="fa fa-angle-down" aria-hidden="true"></i>
+          </Show>
         </NavLink>
-        {sectionList}
+        <Show when={subsections}>
+          <SectionList className="usa-sidenav-sub_list" baseUrl={sectionBaseUrl} sections={subsections || []} />
+        </Show>
       </li>
     )
   }
