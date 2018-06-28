@@ -11,7 +11,7 @@ describe("The Section component", () => {
     }
     const component = mount(<MemoryRouter><Section section={section}/></MemoryRouter>)
     expect(component.find('a').length).toBe(1)
-    expect(component.find('.fa-angle-down,.fa-angle-up').length).toBe(0)
+    expect(component.find('.fa-angle-down').length).toBe(0)
   })
 
   it("renders a Section with subsections", () => {
@@ -45,10 +45,8 @@ describe("The Section component", () => {
     expect(component.find('a').length).toBe(4)
     expect(component.find('a[href="/form/foo"]').length).toBe(0)
     expect(component.find('a[href="/form/foo/bar"]').length).toBe(2)
-    expect(component.find('a[href="/form/foo/bar"] .fa-angle-up').length).toBe(1)
     expect(component.find('a[href="/form/foo/baz"]').length).toBe(0)
     expect(component.find('a[href="/form/foo/baz/blip"]').length).toBe(2)
-    expect(component.find('a[href="/form/foo/baz/blip"] .fa-angle-up').length).toBe(1)
 
     expect(component.find('.fa-angle-down').length).toBe(0)
 
@@ -69,7 +67,6 @@ describe("The Section component", () => {
 
     const component = mount(<MemoryRouter><Section section={section} /></MemoryRouter>)
     expect(component.find('.fa-angle-down').length).toBe(1)
-    expect(component.find('.fa-angle-up').length).toBe(0)
     expect(component.find('.usa-sidenav-sub_list').length).toBe(0)
   })
 

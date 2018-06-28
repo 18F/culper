@@ -36,9 +36,6 @@ class Section extends React.Component {
       <li>
         <NavLink to={navUrl} activeClassName="usa-current" isActive={this.isActive}>
           {this.props.section.name}
-          <Show when={subsections && isActive}>
-            <i className="fa fa-angle-up" aria-hidden="true"></i>
-          </Show>
           <Show when={subsections && !isActive}>
             <i className="fa fa-angle-down" aria-hidden="true"></i>
           </Show>
