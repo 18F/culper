@@ -43,4 +43,50 @@
     margin-left: 0.5rem;
     color: $eapp-grey-darker;
   }
+
+  .has-errors {
+    color: $eapp-red;
+
+    .section-number {
+      color: inherit;
+    }
+  }
+
+  .section-link {
+    position: relative;
+  }
+
+  // error/valid icons
+  .eapp-status-icon {
+    background-size: auto;
+    background: center center no-repeat;
+    display: block;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: opacity 0.5s;
+    width: 1.7rem;
+  }
+  .eapp-status-icon-valid {
+    background-image: url('../img/checkmark.svg');
+  }
+  .eapp-status-icon-error {
+    background-image: url('../img/exclamation-point-white-bg.svg');
+  }
+  .usa-sidenav-sub_list .eapp-status-icon {
+    background-image: none;
+    border-radius: 50%;
+    height: 0.5rem;
+    right: 0.6rem;
+    top: 2.3rem;
+    width: 0.5rem;
+
+    &.eapp-status-icon-valid {
+      background-color: $eapp-green;
+    }
+    &.eapp-status-icon-error {
+      background-color: $eapp-red;
+    }
+  }
 }

@@ -1,14 +1,23 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import { Provider } from 'react-redux'
 import { MemoryRouter } from 'react-router'
+import configureMockStore from 'redux-mock-store'
+import thunk from 'redux-thunk'
 import Section from './Section'
 
 describe("The Section component", () => {
-  const mountSection = (section, initialPath = '/') => {
+  const middlewares = [thunk]
+  const mockStore = configureMockStore(middlewares)
+
+  const mountSection = (section, initialPath = '/', state = {}) => {
+    const store = mockStore(state)
     return mount(
-      <MemoryRouter initialEntries={[initialPath]}>
-        <Section section={section} />
-      </MemoryRouter>
+      <Provider store={store}>
+        <MemoryRouter initialEntries={[initialPath]}>
+          <Section section={section} />
+        </MemoryRouter>
+      </Provider>
     )
   }
 
@@ -90,5 +99,24 @@ describe("The Section component", () => {
     }
     const component = mountSection(section, '/form/bar')
     expect(component.find('a.usa-current').length).toBe(0)
+  })
+
+  it("shows errors", () => {
+    const section = {
+      name: 'Foreign activity',
+      url: 'foreign'
+    }
+    const state = {
+      application: {
+        Errors: {
+          foreign: [
+            { section: 'foreign', subsection: 'activities/direct', valid: false, code: 'date.month.notfound' }
+          ]
+        }
+      }
+    }
+
+    const component = mountSection(section, '/form/foreign', state)
+    expect(component.find('.has-errors').length).toBe(1)
   })
 })

@@ -1,9 +1,12 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { NavLink } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import SectionList from './SectionList'
 import Show from '../Form/Show'
+import { hasErrors } from '../Navigation/navigation-helpers'
+import { legalTechnologyManipulating } from '../../schema/section';
 
 class Section extends React.Component {
   constructor (props) {
@@ -31,18 +34,35 @@ class Section extends React.Component {
     return this.props.location.pathname.startsWith(this.url())
   }
 
+  hasErrors () {
+    return hasErrors(this.url(), this.props.errors)
+  }
+
   render () {
+    const hasErrors = this.hasErrors()
     const subsections = this.props.section.subsections
     const isActive = this.isActive()
+    let className = 'section-link'
+
+    if (hasErrors) {
+      className += ' has-errors'
+    }
+
     return (
       <li>
-        <NavLink to={this.href()} activeClassName="usa-current" isActive={this.isActive}>
+        <NavLink to={this.href()} activeClassName="usa-current" className={className} isActive={this.isActive}>
           <span className="section-name">
             {this.props.section.name}
             <Show when={subsections && !isActive}>
               <i className="fa fa-angle-down" aria-hidden="true"></i>
             </Show>
           </span>
+          <Show when={!hasErrors}>
+            <span className="eapp-status-icon eapp-status-icon-valid"></span>
+          </Show>
+          <Show when={hasErrors}>
+            <span className="eapp-status-icon eapp-status-icon-error"></span>
+          </Show>
         </NavLink>
         <Show when={subsections && isActive}>
           <SectionList className="usa-sidenav-sub_list" baseUrl={this.url()} sections={subsections || []} />
@@ -59,6 +79,7 @@ Section.propTypes = {
   match: PropTypes.object.isRequired,
 
   baseUrl: PropTypes.string,
+  errors: PropTypes.object.isRequired,
   section: PropTypes.shape({
     name: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,
@@ -67,7 +88,14 @@ Section.propTypes = {
 }
 
 Section.defaultProps = {
-  baseUrl: '/form'
+  baseUrl: '/form',
+  errors: {}
 }
 
-export default withRouter(Section)
+function mapStateToProps(state) {
+  const app = state.application || {}
+  const errors = app.Errors || {}
+  return { errors }
+}
+
+export default withRouter(connect(mapStateToProps)(Section))
