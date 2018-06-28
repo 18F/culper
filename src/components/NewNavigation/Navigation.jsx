@@ -1,16 +1,12 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import AuthenticatedView from '../../views/AuthenticatedView'
 import { navigation } from '../../config'
+import Section from './Section'
 
-export default class Navigation extends React.Component {
+class Navigation extends React.Component {
   render () {
     const navItems = navigation.map((section) => {
-      const url = `/form/${section.url}/intro`
-      return (
-        <li key={url}>
-          <NavLink to={url} activeClassName="usa-current">{section.name}</NavLink>
-        </li>
-      )
+      return <Section section={section}/>
     })
 
     return <nav>
@@ -20,3 +16,5 @@ export default class Navigation extends React.Component {
     </nav>
   }
 }
+
+export default AuthenticatedView(Navigation)
