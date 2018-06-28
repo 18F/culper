@@ -9,13 +9,12 @@ class SectionList extends React.Component {
     })
 
     return (
-      <ul className={this.props.className}>
+      <ol className={this.props.className}>
         {navItems}
-      </ul>
+      </ol>
     )
   }
 }
-
 
 SectionList.propTypes = {
   baseUrl: PropTypes.string,

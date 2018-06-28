@@ -1,0 +1,18 @@
+@import 'eqip-fonts';
+
+.usa-sidenav-list {
+  // show numbers on the top-level nav
+  // http://blog.teamtreehouse.com/customize-ordered-lists-pseudo-element
+  > li {
+    counter-increment: step-counter;
+
+    & > a::before {
+      content: counter(step-counter);
+      font-weight: $eapp-bold;
+      padding: 3px 8px;
+      text-align: right;
+      width: 2.5rem;
+      // color: #6c7178;
+    }
+  }
+}
