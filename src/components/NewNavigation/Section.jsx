@@ -15,6 +15,16 @@ class Section extends React.Component {
     return `${this.props.baseUrl}/${this.props.section.url}`
   }
 
+  href () {
+    const subsections = this.props.section.subsections
+    let href = this.url()
+    if (subsections) {
+      // link to the first subsection
+      href += `/${subsections[0].url}`
+    }
+    return href
+  }
+
   // Return `true` when at this exact section or one under it, `false` otherwise.
   isActive () {
     // Using `location` from `withRouter()` rather than the `NavLink` callback parameter because we want to be able to use this function in other contexts.
@@ -23,18 +33,10 @@ class Section extends React.Component {
 
   render () {
     const subsections = this.props.section.subsections
-    let sectionBaseUrl = this.url()
     const isActive = this.isActive()
-
-    let navUrl = sectionBaseUrl
-    if (subsections) {
-      // link to the first subsection
-      navUrl += `/${subsections[0].url}`
-    }
-
     return (
       <li>
-        <NavLink to={navUrl} activeClassName="usa-current" isActive={this.isActive}>
+        <NavLink to={this.href()} activeClassName="usa-current" isActive={this.isActive}>
           <span className="section-name">
             {this.props.section.name}
             <Show when={subsections && !isActive}>
@@ -43,7 +45,7 @@ class Section extends React.Component {
           </span>
         </NavLink>
         <Show when={subsections && isActive}>
-          <SectionList className="usa-sidenav-sub_list" baseUrl={sectionBaseUrl} sections={subsections || []} />
+          <SectionList className="usa-sidenav-sub_list" baseUrl={this.url()} sections={subsections || []} />
         </Show>
       </li>
     )
