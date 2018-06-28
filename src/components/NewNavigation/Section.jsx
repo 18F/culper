@@ -35,10 +35,12 @@ class Section extends React.Component {
     return (
       <li>
         <NavLink to={navUrl} activeClassName="usa-current" isActive={this.isActive}>
-          {this.props.section.name}
-          <Show when={subsections && !isActive}>
-            <i className="fa fa-angle-down" aria-hidden="true"></i>
-          </Show>
+          <span className="section-name">
+            {this.props.section.name}
+            <Show when={subsections && !isActive}>
+              <i className="fa fa-angle-down" aria-hidden="true"></i>
+            </Show>
+          </span>
         </NavLink>
         <Show when={subsections && isActive}>
           <SectionList className="usa-sidenav-sub_list" baseUrl={sectionBaseUrl} sections={subsections || []} />

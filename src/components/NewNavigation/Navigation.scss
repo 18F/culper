@@ -1,18 +1,46 @@
+@import 'eqip-colors';
 @import 'eqip-fonts';
 
 .usa-sidenav-list {
-  // show numbers on the top-level nav
-  // http://blog.teamtreehouse.com/customize-ordered-lists-pseudo-element
+  // top-level nav
   > li {
+    // show numbers
+    // http://blog.teamtreehouse.com/customize-ordered-lists-pseudo-element
     counter-increment: step-counter;
 
-    & > a::before {
-      content: counter(step-counter);
-      font-weight: $eapp-bold;
-      padding: 3px 8px;
-      text-align: right;
-      width: 2.5rem;
-      // color: #6c7178;
+    & > a {
+      &::before {
+        color: #6c7178;
+        content: counter(step-counter);
+        display: inline-block;
+        font-weight: $eapp-bold;
+        margin-right: 8px;
+        text-align: right;
+        vertical-align: top;
+        width: 2rem;
+      }
+      &.usa-current {
+        border-bottom: 1px solid #5b616b;
+
+        &::before {
+          color: inherit;
+        }
+      }
     }
+
+    // hide the number for "Review & submit"
+    &:last-child > a::before {
+      content: '';
+    }
+  }
+
+  .section-name {
+    display: inline-block;
+    max-width: 87.6%;
+  }
+
+  .fa-angle-down {
+    margin-left: 0.5rem;
+    color: $eapp-grey-darker;
   }
 }
