@@ -4,12 +4,20 @@ import { MemoryRouter } from 'react-router'
 import Section from './Section'
 
 describe("The Section component", () => {
+  const mountSection = (section, initialPath = '/') => {
+    return mount(
+      <MemoryRouter initialEntries={[initialPath]}>
+        <Section section={section} />
+      </MemoryRouter>
+    )
+  }
+
   it("renders a basic Section", () => {
     const section = {
       name: 'Foo',
       url: 'foo'
     }
-    const component = mount(<MemoryRouter><Section section={section}/></MemoryRouter>)
+    const component = mountSection(section)
     expect(component.find('a').length).toBe(1)
     expect(component.find('.fa-angle-down').length).toBe(0)
   })
@@ -36,11 +44,7 @@ describe("The Section component", () => {
       ]
     }
 
-    const component = mount(
-      <MemoryRouter initialEntries={['/form/foo/baz/blip']}>
-        <Section section={section} />
-      </MemoryRouter>
-    )
+    const component = mountSection(section, '/form/foo/baz/blip')
 
     expect(component.find('a').length).toBe(4)
     expect(component.find('a[href="/form/foo"]').length).toBe(0)
@@ -64,8 +68,8 @@ describe("The Section component", () => {
         }
       ]
     }
+    const component = mountSection(section)
 
-    const component = mount(<MemoryRouter><Section section={section} /></MemoryRouter>)
     expect(component.find('.fa-angle-down').length).toBe(1)
     expect(component.find('.usa-sidenav-sub_list').length).toBe(0)
   })
@@ -75,11 +79,7 @@ describe("The Section component", () => {
       name: 'Foo',
       url: 'foo'
     }
-    const component = mount(
-      <MemoryRouter initialEntries={['/form/foo']}>
-        <Section section={section}/>
-      </MemoryRouter>
-    )
+    const component = mountSection(section, '/form/foo')
     expect(component.find('a.usa-current').length).toBe(1)
   })
 
@@ -88,11 +88,7 @@ describe("The Section component", () => {
       name: 'Foo',
       url: 'foo'
     }
-    const component = mount(
-      <MemoryRouter initialEntries={['/form/bar']}>
-        <Section section={section}/>
-      </MemoryRouter>
-    )
+    const component = mountSection(section, '/form/bar')
     expect(component.find('a.usa-current').length).toBe(0)
   })
 })
