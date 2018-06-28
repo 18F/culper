@@ -2,6 +2,7 @@ var del = require('del')
 var gulp = require('gulp')
 var concat = require('gulp-concat')
 var sass = require('gulp-sass')
+var sourcemaps = require('gulp-sourcemaps')
 var sasslint = require('@18f/stylelint-rules')
 require('dotenv').config()
 
@@ -88,10 +89,12 @@ function convert () {
   'use strict'
   return gulp
     .src(paths.sass.global.concat(paths.sass.local))
+    .pipe(sourcemaps.init())
     .pipe(sass({
       includePaths: [ paths.sass.vars ]
-    }))
+    }).on('error', sass.logError))
     .pipe(concat(paths.css))
+    .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(paths.destination.css))
 }
 

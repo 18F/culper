@@ -38,6 +38,7 @@
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.1",
     "gulp-sass": "^4.0.1",
+    "gulp-sourcemaps": "^2.6.4",
     "history": "^4.7.2",
     "http-server": "^0.10.0",
     "jest": "^23.1.0",
