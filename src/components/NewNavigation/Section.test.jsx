@@ -24,16 +24,23 @@ describe("The Section component", () => {
         },
         {
           name: 'Baz',
-          url: 'baz'
+          url: 'baz',
+          subsections: [
+            {
+              name: 'Blip',
+              url: 'blip'
+            }
+          ]
         }
       ]
     }
 
     const component = mount(<MemoryRouter><Section section={section}/></MemoryRouter>)
 
-    expect(component.find('a').length).toBe(3)
+    expect(component.find('a').length).toBe(4)
     expect(component.find('a[href="/form/foo"]').length).toBe(1)
     expect(component.find('a[href="/form/foo/bar"]').length).toBe(1)
-    expect(component.find('a[href="/form/foo/bar"]').length).toBe(1)
+    expect(component.find('a[href="/form/foo/baz"]').length).toBe(1)
+    expect(component.find('a[href="/form/foo/baz/blip"]').length).toBe(1)
   })
 })
