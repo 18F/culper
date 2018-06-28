@@ -4,20 +4,34 @@ import PropTypes from 'prop-types'
 import SectionList from './SectionList'
 
 class Section extends React.Component {
+  constructor (props) {
+    super(props)
+    this.isActive = this.isActive.bind(this)
+  }
+
+  url () {
+    return `${this.props.baseUrl}/${this.props.section.url}`
+  }
+
+  isActive (match, location) {
+    // match exact or child paths
+    return !!match || location.pathname.startsWith(this.url())
+  }
+
   render () {
-    let url = `${this.props.baseUrl}/${this.props.section.url}`
+    let url = this.url()
 
     const subsections = this.props.section.subsections
     let sectionList
     if (subsections) {
       sectionList = <SectionList className="usa-sidenav-sub_list" baseUrl={url} sections={subsections}/>
-      // the section heading should link to the first subsection
+      // link to the first subsection
       url += `/${subsections[0].url}`
     }
 
     return (
       <li key={url}>
-        <NavLink to={url} activeClassName="usa-current">{this.props.section.name}</NavLink>
+        <NavLink to={url} activeClassName="usa-current" isActive={this.isActive}>{this.props.section.name}</NavLink>
         {sectionList}
       </li>
     )
