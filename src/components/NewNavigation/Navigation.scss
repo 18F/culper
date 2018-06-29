@@ -8,13 +8,13 @@
     // http://blog.teamtreehouse.com/customize-ordered-lists-pseudo-element
     counter-increment: step-counter;
 
-    & > a {
+    & > .section-link {
       &::before {
         color: #6c7178;
         content: counter(step-counter);
         display: inline-block;
         font-weight: $eapp-bold;
-        margin-right: 8px;
+        margin-right: 0.8rem;
         text-align: right;
         vertical-align: top;
         width: 2rem;
@@ -77,6 +77,10 @@
 
   // subnav
   .usa-sidenav-sub_list {
+    .section-link {
+      padding-left: 4.3rem;
+    }
+
     // error/valid indicators
     .eapp-status-icon {
       border-radius: 50%;
