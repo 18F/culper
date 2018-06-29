@@ -35,8 +35,9 @@
 
     // error/valid icons
     .eapp-status-icon {
+      background-position: center;
+      background-repeat: no-repeat;
       background-size: auto;
-      background: center center no-repeat;
       display: block;
       height: 100%;
       position: absolute;
