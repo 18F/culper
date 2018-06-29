@@ -5,8 +5,7 @@ import { NavLink } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import SectionList from './SectionList'
 import Show from '../Form/Show'
-import { hasErrors } from '../Navigation/navigation-helpers'
-import { legalTechnologyManipulating } from '../../schema/section';
+import { hasErrors, isValid } from '../Navigation/navigation-helpers'
 
 class Section extends React.Component {
   constructor (props) {
@@ -38,14 +37,19 @@ class Section extends React.Component {
     return hasErrors(this.url(), this.props.errors)
   }
 
+  isValid () {
+    return isValid(this.url(), this.props)
+  }
+
   render () {
-    const hasErrors = this.hasErrors()
     const subsections = this.props.section.subsections
     const isActive = this.isActive()
-    let className = 'section-link'
 
-    if (hasErrors) {
+    let className = 'section-link'
+    if (this.hasErrors()) {
       className += ' has-errors'
+    } else if (this.isValid()) {
+      className += ' is-valid'
     }
 
     return (
@@ -57,12 +61,7 @@ class Section extends React.Component {
               <i className="fa fa-angle-down" aria-hidden="true"></i>
             </Show>
           </span>
-          <Show when={!hasErrors}>
-            <span className="eapp-status-icon eapp-status-icon-valid"></span>
-          </Show>
-          <Show when={hasErrors}>
-            <span className="eapp-status-icon eapp-status-icon-error"></span>
-          </Show>
+          <span className="eapp-status-icon"></span>
         </NavLink>
         <Show when={subsections && isActive}>
           <SectionList className="usa-sidenav-sub_list" baseUrl={this.url()} sections={subsections || []} />
@@ -73,12 +72,13 @@ class Section extends React.Component {
 }
 
 Section.propTypes = {
-  // from withRouter
+  // from withRouter()
   history: PropTypes.object.isRequired,
   location: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired,
 
   baseUrl: PropTypes.string,
+  completed: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
   section: PropTypes.shape({
     name: PropTypes.string.isRequired,
@@ -89,13 +89,18 @@ Section.propTypes = {
 
 Section.defaultProps = {
   baseUrl: '/form',
+  completed: {},
   errors: {}
 }
 
 function mapStateToProps(state) {
   const app = state.application || {}
+  const completed = app.Completed || {}
   const errors = app.Errors || {}
-  return { errors }
+  return {
+    completed,
+    errors
+  }
 }
 
 export default withRouter(connect(mapStateToProps)(Section))

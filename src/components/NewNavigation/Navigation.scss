@@ -32,6 +32,25 @@
     &:last-child > a::before {
       content: '';
     }
+
+    // error/valid icons
+    .eapp-status-icon {
+      background-size: auto;
+      background: center center no-repeat;
+      display: block;
+      height: 100%;
+      position: absolute;
+      right: 0;
+      top: 0;
+      transition: opacity 0.5s;
+      width: 1.7rem;
+    }
+    .is-valid .eapp-status-icon {
+      background-image: url('../img/checkmark.svg');
+    }
+    .has-errors .eapp-status-icon {
+      background-image: url('../img/exclamation-point-white-bg.svg');
+    }
   }
 
   .section-name {
@@ -56,36 +75,20 @@
     position: relative;
   }
 
-  // error/valid icons
-  .eapp-status-icon {
-    background-size: auto;
-    background: center center no-repeat;
-    display: block;
-    height: 100%;
-    position: absolute;
-    right: 0;
-    top: 0;
-    transition: opacity 0.5s;
-    width: 1.7rem;
-  }
-  .eapp-status-icon-valid {
-    background-image: url('../img/checkmark.svg');
-  }
-  .eapp-status-icon-error {
-    background-image: url('../img/exclamation-point-white-bg.svg');
-  }
-  .usa-sidenav-sub_list .eapp-status-icon {
-    background-image: none;
-    border-radius: 50%;
-    height: 0.5rem;
-    right: 0.6rem;
-    top: 2.3rem;
-    width: 0.5rem;
-
-    &.eapp-status-icon-valid {
+  // subnav
+  .usa-sidenav-sub_list {
+    // error/valid indicators
+    .eapp-status-icon {
+      border-radius: 50%;
+      height: 0.5rem;
+      right: 0.6rem;
+      top: 1.6rem;
+      width: 0.5rem;
+    }
+    .is-valid .eapp-status-icon {
       background-color: $eapp-green;
     }
-    &.eapp-status-icon-error {
+    .has-errors .eapp-status-icon {
       background-color: $eapp-red;
     }
   }
