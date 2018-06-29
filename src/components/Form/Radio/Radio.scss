@@ -2,7 +2,7 @@
 // more like checkboxes as per the design. These styles were taken
 // from the USWDS source.
 [type='radio'] + label::before {
-  box-shadow: 0 0 0 2px #fff, 0 0 0 3px #757575;
+  box-shadow: 0 0 0 2px #fff, 0 0 0 3px $color-gray-medium;
   height: 1.6rem;
   line-height: 1.6rem;
   width: 1.6rem;
@@ -17,9 +17,9 @@
 }
 
 [type='radio']:focus + label::before {
-  box-shadow: 0 0 0 1px #fff, 0 0 0 3px #0071bc;
+  box-shadow: 0 0 0 1px #fff, 0 0 0 3px $eapp-blue;
 }
 
 [type='radio']:disabled + label {
-  color: #5b616b;
+  color: $color-gray;
 }

@@ -122,7 +122,7 @@ input[type='checkbox'], input[type='radio'] {
   }
 
   .block > label {
-    border: 2px solid #cd2026;
+    border: 2px solid $color-red-dark;
   }
 }
 
@@ -210,7 +210,7 @@ select {
     }
 
     &.usa-input-focus {
-      outline: 2px dotted #aeb0b5;
+      outline: 2px dotted $color-gray-light;
       outline-offset: 3px;
     }
 
@@ -228,7 +228,7 @@ select {
     &.checked:focus,
     input [type='checkbox'].usa-input-focus,
     input [type='checkbox']:focus {
-      outline: 2px dotted #aeb0b5;
+      outline: 2px dotted $color-gray-light;
       outline-offset: 3px;
     }
 
@@ -411,7 +411,7 @@ select {
     font-weight: normal;
     vertical-align: text-top;
     margin-left: 0.4rem;
-    color: #981b1e;
+    color: $color-red-darkest;
     content: '*';
   }
 
@@ -425,7 +425,7 @@ select {
         font-weight: normal;
         vertical-align: text-top;
         margin-left: 0.4rem;
-        color: #981b1e;
+        color: $color-red-darkest;
         content: '*';
       }
     }
