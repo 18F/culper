@@ -26,8 +26,8 @@ describe('Root Reducer', function () {
       token: null
     },
     section: {
-      section: "identification",
-      subsection: ""
+      section: 'identification',
+      subsection: ''
     }
   }
 
@@ -47,8 +47,8 @@ describe('Root Reducer', function () {
         token: 'dummytoken'
       },
       section: {
-        section: "identification",
-        subsection: ""
+        section: 'identification',
+        subsection: ''
       }
     }
 
