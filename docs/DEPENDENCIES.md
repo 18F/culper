@@ -4986,14 +4986,6 @@ This is a collection of dependencies within the project and their associated lic
 
 [View license](node_modules/node-libs-browser/node_modules/timers-browserify/LICENSE.md)
 
-### node-sass
-
- - **License**: MIT
- - **Year**:    2016
- - **Author**:  Andrew Nesbitt
-
-[View license](node_modules/node-sass/LICENSE)
-
 ### cross-spawn
 
  - **License**: MIT
