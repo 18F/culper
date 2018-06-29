@@ -20,7 +20,7 @@
         width: 2rem;
       }
       &.usa-current {
-        border-bottom: 1px solid #5b616b;
+        border-bottom: 1px solid $color-gray;
 
         &::before {
           color: inherit;
