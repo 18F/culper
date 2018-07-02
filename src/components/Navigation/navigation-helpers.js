@@ -36,17 +36,17 @@ export const parseFormUrl = (url) => {
  * example:
  *  route => /form/identification/name
  */
-export const hasErrors = (route, props = {}) => {
+export const hasErrors = (route, errors = {}) => {
   const crumbs = route.replace('/form/', '').split('/')
   const routeParts = parseFormUrl(route)
   const routeSection = routeParts.section.toLowerCase()
 
-  for (const section in props.errors) {
+  for (const section in errors) {
     if (section.toLowerCase() !== routeSection) {
       continue
     }
 
-    const se = props.errors[section]
+    const se = errors[section]
     if (routeParts.section) {
       if (crumbs.length > 1) {
         return se.some(
