@@ -97,4 +97,11 @@
       background-color: $eapp-red;
     }
   }
+
+  // sub-subnav
+  .usa-sidenav-sub_list .usa-sidenav-sub_list {
+    .section-link {
+      padding-left: 5.8rem;
+    }
+  }
 }
