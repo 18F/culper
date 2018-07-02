@@ -52,14 +52,14 @@ When running the application using the provided [docker-compose.yml](docker-comp
 | [`WS_ENABLED`](#ws_enabled)                              | X               |                        | X                     |
 | [`WS_URL`](#ws_url)                              | X               |                        | X                     |
 | [`WS_KEY`](#ws_key)                              | X               |                        | X                     |
-| [`WS_CALLERINFO_AGENCY_ID`](#ws-callerinfo-agency-id)             | X               |                        | X                     |
-| [`WS_CALLERINFO_AGENCY_USER_SSN`](#ws-callerinfo-agency-user-ssn)       | X               |                        | X                     |
-| [`WS_CALLERINFO_AGENCY_USER_PSEUDOSSN`](#ws-callerinfo-agency-user-pseudossn) | X               |                        | X                     |
-| [`WS_AGENCY_ID`](#ws-agency-id)                        | X               |                        | X                     |
-| [`WS_AGENCY_GROUP_ID`](#ws-agency-group-id)                  | X               |                        | X                     |
-| [`ATTACHMENTS_ENABLED`](#attachments-enabled)                          |                 | X                      | X                     |
-| [`FILE_MAXIMUM_SIZE`](#file-maximum-size)                   |                 | X                      | X                     |
-| [`FILE_TYPES`](#file-types)                          |                 | X                      | X                     |
+| [`WS_CALLERINFO_AGENCY_ID`](#ws_callerinfo_agency_id)             | X               |                        | X                     |
+| [`WS_CALLERINFO_AGENCY_USER_SSN`](#ws_callerinfo_agency_user_ssn)       | X               |                        | X                     |
+| [`WS_CALLERINFO_AGENCY_USER_PSEUDOSSN`](#ws_callerinfo_agency_user_pseudossn) | X               |                        | X                     |
+| [`WS_AGENCY_ID`](#ws_agency_id)                        | X               |                        | X                     |
+| [`WS_AGENCY_GROUP_ID`](#ws_agency_group_id)                  | X               |                        | X                     |
+| [`ATTACHMENTS_ENABLED`](#attachments_enabled)                          |                 | X                      | X                     |
+| [`FILE_MAXIMUM_SIZE`](#file_maximum_size)                   |                 | X                      | X                     |
+| [`FILE_TYPES`](#file_types)                          |                 | X                      | X                     |
 | [`COOKIE_DOMAIN`](#cookie-domain)                    |                 |                        | X                     |
 
 ## `NODE_ENV`
