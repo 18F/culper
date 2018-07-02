@@ -25,6 +25,11 @@
     "react/no-deprecated": "off",
     "react/no-string-refs": "off",
     "react/display-name": "off",
-    "react/prop-types": "off"
+    "react/prop-types": [
+      "error",
+      {
+        "skipUndeclared": true
+      }
+    ]
   }
 }
