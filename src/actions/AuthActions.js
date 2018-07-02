@@ -32,12 +32,12 @@ export function login (username, password) {
 /**
  * Logs out a user
  */
-export function logout (error = '') {
+export function logout () {
   return function (dispatch, getState) {
     const clear = () => {
       api.setToken('')
       dispatch({ type: AuthConstants.LOGOUT })
-      env.History().push(`/login${error ? '?error=' : ''}${error || ''}`)
+      env.History().push('/login')
     }
     return api.logout().then(clear).catch(clear)
   }
