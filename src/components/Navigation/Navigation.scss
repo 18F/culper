@@ -2,6 +2,11 @@
 @import 'eqip-fonts';
 
 .usa-sidenav-list {
+  $num_width: 2rem;
+  $num_right_margin: 0.8rem;
+  // compute subnav offset using built-in USWDS value
+  $subnav_padding_left: $site-margins-mobile + $num_width + $num_right_margin;
+
   // top-level nav
   > li {
     // show numbers
@@ -14,12 +19,13 @@
         content: counter(step-counter);
         display: inline-block;
         font-weight: $eapp-bold;
-        margin-right: 0.8rem;
+        margin-right: $num_right_margin;
         text-align: right;
         vertical-align: top;
-        width: 2rem;
+        width: $num_width;
       }
       &.usa-current {
+        // match https://github.com/uswds/uswds/blob/v1.6.6/src/stylesheets/core/_utilities.scss#L180
         border-bottom: 1px solid $color-gray;
 
         &::before {
@@ -76,19 +82,21 @@
     position: relative;
   }
 
-  // subnav
+  // subnavs
   .usa-sidenav-sub_list {
     .section-link {
-      padding-left: 4.3rem;
+      padding-left: $subnav_padding_left;
     }
 
     // error/valid indicators
     .eapp-status-icon {
+      $size: 0.5rem;
+
       border-radius: 50%;
-      height: 0.5rem;
+      height: $size;
       right: 0.6rem;
       top: 1.6rem;
-      width: 0.5rem;
+      width: $size;
     }
     .is-valid .eapp-status-icon {
       background-color: $eapp-green;
@@ -101,7 +109,7 @@
   // sub-subnav
   .usa-sidenav-sub_list .usa-sidenav-sub_list {
     .section-link {
-      padding-left: 5.8rem;
+      padding-left: $subnav_padding_left + 1.3rem;
     }
   }
 }
