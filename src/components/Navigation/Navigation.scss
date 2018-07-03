@@ -4,8 +4,7 @@
 .usa-sidenav-list {
   $num_width: 2rem;
   $num_right_margin: 0.8rem;
-  // compute subnav offset using built-in USWDS values
-  $subnav_offset: $site-margins-mobile - $sidenav-current-border-width + $num_width + $num_right_margin;
+  $status_icon_width: 1.7rem;
 
   // top-level nav
   > li {
@@ -50,7 +49,7 @@
       right: 0;
       top: 0;
       transition: opacity 0.5s;
-      width: 1.7rem;
+      width: $status_icon_width;
     }
     .is-valid .eapp-status-icon {
       background-image: url('../img/checkmark.svg');
@@ -86,7 +85,8 @@
   .usa-sidenav-sub_list {
     .section-link {
       border-left: $sidenav-current-border-width solid transparent;
-      margin-left: $subnav_offset - $site-margins-mobile;
+      // compute offset using built-in USWDS values
+      margin-left: $num_width + $num_right_margin - $sidenav-current-border-width;
       padding-left: $site-margins-mobile;
 
       &.has-errors {
@@ -103,7 +103,8 @@
 
       border-radius: 50%;
       height: $size;
-      right: 0.6rem;
+      // center-align with status icon image
+      right: ($status_icon_width - $size) / 2;
       top: 1.6rem;
       width: $size;
     }
