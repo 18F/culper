@@ -4,8 +4,8 @@
 .usa-sidenav-list {
   $num_width: 2rem;
   $num_right_margin: 0.8rem;
-  // compute subnav offset using built-in USWDS value
-  $subnav_padding_left: $site-margins-mobile + $num_width + $num_right_margin;
+  // compute subnav offset using built-in USWDS values
+  $subnav_offset: $site-margins-mobile - $sidenav-current-border-width + $num_width + $num_right_margin;
 
   // top-level nav
   > li {
@@ -85,7 +85,16 @@
   // subnavs
   .usa-sidenav-sub_list {
     .section-link {
-      padding-left: $subnav_padding_left;
+      border-left: $sidenav-current-border-width solid transparent;
+      margin-left: $subnav_offset - $site-margins-mobile;
+      padding-left: $site-margins-mobile;
+
+      &.has-errors {
+        border-left-color: $eapp-red;
+      }
+      &.usa-current {
+        border-left-color: $color-primary;
+      }
     }
 
     // error/valid indicators
@@ -109,7 +118,7 @@
   // sub-subnav
   .usa-sidenav-sub_list .usa-sidenav-sub_list {
     .section-link {
-      padding-left: $subnav_padding_left + 1.3rem;
+      padding-left: $site-margins-mobile * 2;
     }
   }
 }
