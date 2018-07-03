@@ -2,9 +2,9 @@
 @import 'eqip-fonts';
 
 .usa-sidenav-list {
-  $num_width: 2rem;
-  $num_right_margin: 0.8rem;
-  $status_icon_width: 1.7rem;
+  $num-width: 2rem;
+  $num-right-margin: 0.8rem;
+  $status-icon-width: 1.7rem;
 
   // top-level nav
   > li {
@@ -18,10 +18,10 @@
         content: counter(step-counter);
         display: inline-block;
         font-weight: $eapp-bold;
-        margin-right: $num_right_margin;
+        margin-right: $num-right-margin;
         text-align: right;
         vertical-align: top;
-        width: $num_width;
+        width: $num-width;
       }
       &.usa-current {
         // match https://github.com/uswds/uswds/blob/v1.6.6/src/stylesheets/core/_utilities.scss#L180
@@ -49,7 +49,7 @@
       right: 0;
       top: 0;
       transition: opacity 0.5s;
-      width: $status_icon_width;
+      width: $status-icon-width;
     }
     .is-valid .eapp-status-icon {
       background-image: url('../img/checkmark.svg');
@@ -86,7 +86,7 @@
     .section-link {
       border-left: $sidenav-current-border-width solid transparent;
       // compute offset using built-in USWDS values
-      margin-left: $num_width + $num_right_margin - $sidenav-current-border-width;
+      margin-left: $num-width + $num-right-margin - $sidenav-current-border-width;
       padding-left: $site-margins-mobile;
 
       &.has-errors {
@@ -104,7 +104,7 @@
       border-radius: 50%;
       height: $size;
       // center-align with status icon image
-      right: ($status_icon_width - $size) / 2;
+      right: ($status-icon-width - $size) / 2;
       top: 1.6rem;
       width: $size;
     }
