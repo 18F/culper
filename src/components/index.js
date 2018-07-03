@@ -5,7 +5,6 @@ import { SectionTitle } from './SectionTitle'
 import Section from './Section'
 import { SavedIndicator } from './SavedIndicator'
 import { ProgressBar } from './ProgressBar'
-import Sticky from './Sticky'
 import { TimeoutWarning } from './Form'
 
 export {
@@ -17,6 +16,5 @@ export {
   Section,
   SavedIndicator,
   ProgressBar,
-  Sticky,
   TimeoutWarning
 }
