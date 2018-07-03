@@ -41,20 +41,23 @@ class Section extends React.Component {
     return isValid(this.url(), this.props)
   }
 
-  render () {
-    const subsections = this.props.section.subsections
-    const isActive = this.isActive()
-
+  getClassName () {
     let className = 'section-link'
     if (this.hasErrors()) {
       className += ' has-errors'
     } else if (this.isValid()) {
       className += ' is-valid'
     }
+    return className
+  }
+
+  render () {
+    const subsections = this.props.section.subsections
+    const isActive = this.isActive()
 
     return (
       <li>
-        <NavLink to={this.href()} activeClassName="usa-current" className={className} isActive={this.isActive}>
+        <NavLink to={this.href()} activeClassName="usa-current" className={this.getClassName()} isActive={this.isActive}>
           <span className="section-name">
             {this.props.section.name}
             <Show when={subsections && !isActive}>
