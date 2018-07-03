@@ -1,7 +1,6 @@
 import React from 'react'
 import { i18n } from '../../config'
-import { SectionTitle, ProgressBar, Sticky, ScoreCard, NavigationToggle } from '..'
-import Navigation from '../Navigation/Navigation'
+import { SectionTitle, ProgressBar, Sticky, ScoreCard, Navigation, NavigationToggle } from '..'
 import { Introduction, Show } from '../Form'
 import Logout from '../Navigation/Logout'
 import StickyHeader from '../Sticky/StickyHeader'
