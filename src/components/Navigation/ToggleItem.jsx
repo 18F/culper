@@ -31,7 +31,7 @@ export class ToggleItem extends React.Component {
     }
   }
 
-  toggle () {
+  toggle (event) {
     const visible = !this.state.visible
     this.setState({ scroll: true, visible: visible }, () => {
       this.props.onToggle({
@@ -39,6 +39,7 @@ export class ToggleItem extends React.Component {
         visible: visible
       })
     })
+    event.preventDefault()
   }
 
   scrollIntoView () {
