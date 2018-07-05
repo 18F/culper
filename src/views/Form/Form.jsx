@@ -8,7 +8,6 @@ import { Section, SavedIndicator, TimeoutWarning } from '../../components'
 import { env } from '../../config'
 import { findPosition, parseFormUrl } from '../../components/Navigation/navigation-helpers'
 import { tokenError } from '../../actions/AuthActions'
-import { unstickAll } from '../../components/Sticky/sidebar'
 import { updateSection } from '../../actions/SectionActions'
 
 // The concept is that we have three different inputs:
@@ -62,8 +61,6 @@ class Form extends React.Component {
 
   save (section, subsection) {
     window.scroll(0, findPosition(document.getElementById('scrollTo')))
-    unstickAll()
-
     saveSection(this.props.application, section, subsection, this.props.dispatch)
   }
 
