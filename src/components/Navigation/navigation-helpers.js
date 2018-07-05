@@ -101,12 +101,9 @@ export const isValid = (route, props = {}) => {
   return false
 }
 
-/**
- * There is a bug in the react router which does not add the active
- * class to items in the route hiearchy
- */
+// Return `true` when at this exact section or one under it, `false` otherwise.
 export const isActive = (route, pathname) => {
-  return pathname.indexOf(route) !== -1
+  return pathname.startsWith(route)
 }
 
 export const sectionsTotal = () => {

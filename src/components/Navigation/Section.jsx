@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import SectionList from './SectionList'
 import Show from '../Form/Show'
-import { hasErrors, isValid } from '../Navigation/navigation-helpers'
+import { hasErrors, isActive, isValid } from '../Navigation/navigation-helpers'
 
 class Section extends React.Component {
   constructor (props) {
@@ -27,10 +27,9 @@ class Section extends React.Component {
     return href
   }
 
-  // Return `true` when at this exact section or one under it, `false` otherwise.
   isActive () {
     // Using `location` from `withRouter()` rather than the `NavLink` callback parameter because we want to be able to use this function in other contexts.
-    return this.props.location.pathname.startsWith(this.url())
+    return isActive(this.url(), this.props.location.pathname)
   }
 
   hasErrors () {
@@ -53,20 +52,20 @@ class Section extends React.Component {
 
   render () {
     const subsections = this.props.section.subsections
-    const isActive = this.isActive()
+    const active = this.isActive()
 
     return (
       <li>
         <NavLink to={this.href()} activeClassName="usa-current" className={this.getClassName()} isActive={this.isActive}>
           <span className="section-name">
             {this.props.section.name}
-            <Show when={subsections && !isActive}>
+            <Show when={subsections && !active}>
               <i className="fa fa-angle-down" aria-hidden="true"></i>
             </Show>
           </span>
           <span className="eapp-status-icon"></span>
         </NavLink>
-        <Show when={subsections && isActive}>
+        <Show when={subsections && active}>
           <SectionList className="usa-sidenav-sub_list" baseUrl={this.url()} sections={subsections || []} />
         </Show>
       </li>
