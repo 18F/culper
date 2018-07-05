@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../config'
-import { SectionTitle, ProgressBar, Sticky, ScoreCard, Navigation, NavigationToggle } from '..'
+import { SectionTitle, ProgressBar, ScoreCard, Navigation, NavigationToggle } from '..'
 import { Introduction, Show } from '../Form'
 import Logout from '../Navigation/Logout'
 import StickyHeader from '../Sticky/StickyHeader'
@@ -141,20 +141,14 @@ class App extends React.Component {
         <main className={klassMain}>
           <div className="eapp-structure-row">
             <div className={klassNavigation}>
-              <Sticky options={{tolerance: 400, ignoreWindowComparison: true}}>
-                <ScoreCard />
-                <Navigation />
-                <button onClick={this.showInstructions} className="instructions mobile-visible"><span>{i18n.t('app.instructions')}</span></button>
-              </Sticky>
+              <ScoreCard />
+              <Navigation />
+              <button onClick={this.showInstructions} className="instructions mobile-visible"><span>{i18n.t('app.instructions')}</span></button>
               &nbsp;
             </div>
             <a href="javascript:;;;" className="eapp-section-focus" title="Main content. Please press TAB to go to the next question"></a>
             <div id="main-content" className={klassCore}>
-              <Sticky container=".eapp-navigation .sticky > .contents"
-                      content=".eapp-core .sticky > .contents"
-                      options={{tolerance: 400, ignoreWindowComparison: true}}>
-                {this.props.children}
-              </Sticky>
+              {this.props.children}
               &nbsp;
             </div>
           </div>
