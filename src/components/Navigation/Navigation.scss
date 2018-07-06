@@ -64,12 +64,6 @@
     max-width: 87.6%;
   }
 
-  .fa-angle-down,
-  .fa-angle-up {
-    margin-left: 0.5rem;
-    color: $eapp-grey-darker;
-  }
-
   .has-errors {
     color: $eapp-red;
 
@@ -84,19 +78,6 @@
     font-weight: normal;
 
     position: relative;
-
-    // expand/collapse indicators
-    .fa-angle-up {
-      display: none;
-    }
-    &[aria-expanded="true"] {
-      .fa-angle-down {
-        display: none;
-      }
-      .fa-angle-up {
-        display: inline-block;
-      }
-    }
   }
 
   // override USWDS

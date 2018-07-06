@@ -1,0 +1,22 @@
+.toggle-item {
+  // expand/collapse indicators
+
+  .fa-angle-down,
+  .fa-angle-up {
+    margin-left: 0.5rem;
+    color: $eapp-grey-darker;
+  }
+
+  .fa-angle-up {
+    display: none;
+  }
+
+  &[aria-expanded="true"] {
+    .fa-angle-down {
+      display: none;
+    }
+    .fa-angle-up {
+      display: inline-block;
+    }
+  }
+}

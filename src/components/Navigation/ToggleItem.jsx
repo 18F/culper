@@ -42,7 +42,7 @@ class ToggleItem extends React.Component {
     const active = this.isActive()
 
     return (
-      <li>
+      <li className="toggle-item">
         <a className={this.getClassName()} aria-controls={url} aria-expanded={active}>
           <span className="section-name">
             {this.props.section.name}
