@@ -43,7 +43,7 @@ class ToggleItem extends React.Component {
 
     return (
       <li>
-        <button className={this.getClassName()} aria-controls={this.url()} aria-expanded="false" onClick={this.toggle}>
+        <a className={this.getClassName()} aria-controls={this.url()} aria-expanded="false" onClick={this.toggle}>
           <span className="section-name">
             {this.props.section.name}
             <Show when={!active}>
@@ -51,7 +51,7 @@ class ToggleItem extends React.Component {
             </Show>
           </span>
           <span className="eapp-status-icon"></span>
-        </button>
+        </a>
         <div id={this.url()} className="usa-accordion-content">
           <SectionList className="usa-sidenav-sub_list" baseUrl={this.url()} sections={this.props.section.subsections}/>
         </div>
