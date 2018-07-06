@@ -46,9 +46,8 @@ class ToggleItem extends React.Component {
         <a className={this.getClassName()} aria-controls={this.url()} aria-expanded="false" onClick={this.toggle}>
           <span className="section-name">
             {this.props.section.name}
-            <Show when={!active}>
-              <i className="fa fa-angle-down" aria-hidden="true"></i>
-            </Show>
+            <i className="fa fa-angle-up"></i>
+            <i className="fa fa-angle-down"></i>
           </span>
           <span className="eapp-status-icon"></span>
         </a>
