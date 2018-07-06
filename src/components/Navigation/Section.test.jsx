@@ -57,30 +57,11 @@ describe("The Section component", () => {
 
     expect(component.find('a').length).toBe(4)
     expect(component.find('a[href="/form/foo"]').length).toBe(0)
-    expect(component.find('a[href="/form/foo/bar"]').length).toBe(2)
+    expect(component.find('a[href="/form/foo/bar"]').length).toBe(1)
     expect(component.find('a[href="/form/foo/baz"]').length).toBe(0)
-    expect(component.find('a[href="/form/foo/baz/blip"]').length).toBe(2)
-
-    expect(component.find('.fa-angle-down').length).toBe(0)
+    expect(component.find('a[href="/form/foo/baz/blip"]').length).toBe(1)
 
     expect(component.find('a.usa-current').length).toBe(3)
-  })
-
-  it("doesn't render a subsection when not at that path", () => {
-    const section = {
-      name: 'Foo',
-      url: 'foo',
-      subsections: [
-        {
-          name: 'Bar',
-          url: 'bar'
-        }
-      ]
-    }
-    const component = mountSection(section)
-
-    expect(component.find('.fa-angle-down').length).toBe(1)
-    expect(component.find('.usa-sidenav-sub_list').length).toBe(0)
   })
 
   it("shows the section as 'active' when at the path", () => {
