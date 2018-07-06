@@ -4,12 +4,13 @@ import Section from './Section'
 
 class SectionList extends React.Component {
   render () {
+    const className = `usa-accordion ${this.props.className}`
     const navItems = this.props.sections.map((section) => {
       return <Section key={section.url} baseUrl={this.props.baseUrl} section={section}/>
     })
 
     return (
-      <ol className={this.props.className}>
+      <ol className={className}>
         {navItems}
       </ol>
     )

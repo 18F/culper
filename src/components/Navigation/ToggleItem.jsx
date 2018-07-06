@@ -1,30 +1,17 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
-import { NavLink } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import SectionList from './SectionList'
 import Show from '../Form/Show'
 import { hasErrors, isActive, isValid } from '../Navigation/navigation-helpers'
 
 class ToggleItem extends React.Component {
-  constructor(props) {
-    super(props)
-    this.isActive = this.isActive.bind(this)
-  }
-
   url() {
     return `${this.props.baseUrl}/${this.props.section.url}`
   }
 
-  href() {
-    const subsection = this.props.section.subsections[0]
-    // link to the first subsection
-    return `${this.url()}/${ subsection.url }`
-  }
-
   isActive() {
-    // Using `location` from `withRouter()` rather than the `NavLink` callback parameter because we want to be able to use this function in other contexts.
     return isActive(this.url(), this.props.location.pathname)
   }
 
@@ -37,7 +24,12 @@ class ToggleItem extends React.Component {
   }
 
   getClassName() {
-    let className = 'section-link'
+    let className = 'section-link usa-accordion-button'
+
+    if (this.isActive()) {
+      className += ' usa-current'
+    }
+
     if (this.hasErrors()) {
       className += ' has-errors'
     } else if (this.isValid()) {
@@ -51,7 +43,7 @@ class ToggleItem extends React.Component {
 
     return (
       <li>
-        <NavLink to={this.href()} activeClassName="usa-current" className={this.getClassName()} isActive={this.isActive}>
+        <button className={this.getClassName()} aria-controls={this.url()} aria-expanded="false" onClick={this.toggle}>
           <span className="section-name">
             {this.props.section.name}
             <Show when={!active}>
@@ -59,10 +51,10 @@ class ToggleItem extends React.Component {
             </Show>
           </span>
           <span className="eapp-status-icon"></span>
-        </NavLink>
-        <Show when={active}>
+        </button>
+        <div id={this.url()} className="usa-accordion-content">
           <SectionList className="usa-sidenav-sub_list" baseUrl={this.url()} sections={this.props.section.subsections}/>
-        </Show>
+        </div>
       </li>
     )
   }
