@@ -11,7 +11,7 @@
     display: none;
   }
 
-  &[aria-expanded="true"] {
+  &[aria-expanded='true'] {
     .fa-angle-down {
       display: none;
     }
