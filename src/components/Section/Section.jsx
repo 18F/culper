@@ -25,12 +25,18 @@ class Section extends React.Component {
     this.update(this.props)
   }
 
-  componentDidUpdate () {
-    // Once a section updates then attempt to focus on the first form element
+  focusOnMainSection () {
     const el = window.document.querySelector('.eapp-section-focus')
     if (el) {
+      el.focus()
+    }
+  }
+
+  componentDidUpdate (prevProps) {
+    // for keyboard navigation accessbility, focus on the main content area after a new section is navigated to
+    if (this.props.location.pathname !== prevProps.location.pathname) {
       window.setTimeout(() => {
-        el.focus()
+        this.focusOnMainSection()
       }, 200)
     }
   }
