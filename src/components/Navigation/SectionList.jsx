@@ -1,12 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Section from './Section'
+import SectionLink from './SectionLink'
+import ToggleItem from './ToggleItem'
 
 class SectionList extends React.Component {
   render () {
     const className = `usa-accordion ${this.props.className}`
     const navItems = this.props.sections.map((section) => {
-      return <Section key={section.url} baseUrl={this.props.baseUrl} section={section}/>
+      if (section.subsections) {
+        return <ToggleItem key={section.url} baseUrl={this.props.baseUrl} section={section} />
+      }
+      return <SectionLink key={section.url} baseUrl={this.props.baseUrl} section={section} />
     })
 
     return (

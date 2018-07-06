@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import PropTypes from 'prop-types'
 import SectionList from './SectionList'
-import Show from '../Form/Show'
 import { hasErrors, isActive, isValid } from '../Navigation/navigation-helpers'
 
 class ToggleItem extends React.Component {
@@ -39,11 +38,12 @@ class ToggleItem extends React.Component {
   }
 
   render() {
+    const url = this.url()
     const active = this.isActive()
 
     return (
       <li>
-        <a className={this.getClassName()} aria-controls={this.url()} aria-expanded={active}>
+        <a className={this.getClassName()} aria-controls={url} aria-expanded={active}>
           <span className="section-name">
             {this.props.section.name}
             <i className="fa fa-angle-up"></i>
@@ -51,8 +51,8 @@ class ToggleItem extends React.Component {
           </span>
           <span className="eapp-status-icon"></span>
         </a>
-        <div id={this.url()} className="usa-accordion-content" aria-hidden={!active}>
-          <SectionList className="usa-sidenav-sub_list" baseUrl={this.url()} sections={this.props.section.subsections}/>
+        <div id={url} className="usa-accordion-content" aria-hidden={!active}>
+          <SectionList className="usa-sidenav-sub_list" baseUrl={url} sections={this.props.section.subsections}/>
         </div>
       </li>
     )

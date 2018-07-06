@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { hasErrors, isValid } from '../Navigation/navigation-helpers'
 
-class Section extends React.Component {
+class SectionLink extends React.Component {
   url () {
     return `${this.props.baseUrl}/${this.props.section.url}`
   }
@@ -41,7 +41,7 @@ class Section extends React.Component {
   }
 }
 
-Section.propTypes = {
+SectionLink.propTypes = {
   baseUrl: PropTypes.string,
   completed: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
@@ -51,7 +51,7 @@ Section.propTypes = {
   }).isRequired
 }
 
-Section.defaultProps = {
+SectionLink.defaultProps = {
   baseUrl: '/form',
   completed: {},
   errors: {}
@@ -67,4 +67,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(Section)
+export default connect(mapStateToProps)(SectionLink)

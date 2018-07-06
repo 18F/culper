@@ -4,9 +4,9 @@ import { Provider } from 'react-redux'
 import { MemoryRouter } from 'react-router'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
-import Section from './Section'
+import SectionLink from './SectionLink'
 
-describe("The Section component", () => {
+describe("The SectionLink component", () => {
   const middlewares = [thunk]
   const mockStore = configureMockStore(middlewares)
 
@@ -15,13 +15,13 @@ describe("The Section component", () => {
     return mount(
       <Provider store={store}>
         <MemoryRouter initialEntries={[initialPath]}>
-          <Section section={section} />
+          <SectionLink section={section} />
         </MemoryRouter>
       </Provider>
     )
   }
 
-  it("renders a basic Section", () => {
+  it("renders a basic SectionLink", () => {
     const section = {
       name: 'Foo',
       url: 'foo'
@@ -29,39 +29,6 @@ describe("The Section component", () => {
     const component = mountSection(section)
     expect(component.find('a').length).toBe(1)
     expect(component.find('.fa-angle-down').length).toBe(0)
-  })
-
-  it("renders a Section with subsections", () => {
-    const section = {
-      name: 'Foo',
-      url: 'foo',
-      subsections: [
-        {
-          name: 'Bar',
-          url: 'bar'
-        },
-        {
-          name: 'Baz',
-          url: 'baz',
-          subsections: [
-            {
-              name: 'Blip',
-              url: 'blip'
-            }
-          ]
-        }
-      ]
-    }
-
-    const component = mountSection(section, '/form/foo/baz/blip')
-
-    expect(component.find('a').length).toBe(4)
-    expect(component.find('a[href="/form/foo"]').length).toBe(0)
-    expect(component.find('a[href="/form/foo/bar"]').length).toBe(1)
-    expect(component.find('a[href="/form/foo/baz"]').length).toBe(0)
-    expect(component.find('a[href="/form/foo/baz/blip"]').length).toBe(1)
-
-    expect(component.find('a.usa-current').length).toBe(3)
   })
 
   it("shows the section as 'active' when at the path", () => {
