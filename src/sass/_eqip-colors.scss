@@ -3,8 +3,8 @@
 /* blues */
 $eapp-blue-darkest: #194b88;
 $eapp-blue-dark: #205493;
-$eapp-blue: #0071bc;
-$eapp-blue-light: #00a6d2;
+$eapp-blue: $color-blue;
+$eapp-blue-light: $color-aqua-dark;
 $eapp-blue-lighter: #9bdaf0;
 $eapp-blue-lightest: #e0f3f8;
 
@@ -14,7 +14,7 @@ $eapp-green: #47a362;
 $eapp-selected: #2b8746;
 
 /* reds */
-$eapp-red-lightest: #f9dede;
+$eapp-red-lightest: $color-red-lightest;
 $eapp-red-light: #e3b3b3;
 $eapp-red: #e21c3c;
 
@@ -22,7 +22,7 @@ $eapp-red: #e21c3c;
 $eapp-grey-placeholder: #5c5c5c;
 $eapp-grey-lightest: #dce3ee;
 $eapp-grey-light: #f7f7f7;
-$eapp-grey: #d6d7d9;
-$eapp-grey-dark: #212121;
+$eapp-grey: $color-gray-lighter;
+$eapp-grey-dark: $color-black-light;
 $eapp-grey-darker: #5b606b;
-$eapp-grey-disabled: #757575;
+$eapp-grey-disabled: $color-gray-medium;
