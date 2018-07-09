@@ -25,16 +25,6 @@ class Section extends React.Component {
     this.update(this.props)
   }
 
-  componentDidUpdate () {
-    // Once a section updates then attempt to focus on the first form element
-    const el = window.document.querySelector('.eapp-section-focus')
-    if (el) {
-      window.setTimeout(() => {
-        el.focus()
-      }, 200)
-    }
-  }
-
   update (props) {
     const subsection = props.subsection || 'intro'
     const path = `/form/${props.section}/${subsection}`

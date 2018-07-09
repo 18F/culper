@@ -1,4 +1,5 @@
 import React from 'react'
+import { withRouter } from 'react-router'
 import { i18n } from '../../config'
 import { SectionTitle, ProgressBar, ScoreCard, Navigation, NavigationToggle } from '..'
 import { Introduction, Show } from '../Form'
@@ -38,6 +39,20 @@ class App extends React.Component {
     }
     this.showInstructions = this.showInstructions.bind(this)
     this.dismissInstructions = this.dismissInstructions.bind(this)
+
+    // workaround for not having React.createRef(), introduced in React 16.3
+    // https://reactjs.org/docs/refs-and-the-dom.html#dont-overuse-refs
+    this.sectionFocusEl = null
+    this.setSectionFocusEl = (el) => {
+      this.sectionFocusEl = el
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    // for keyboard navigation accessbility, focus on the main content area after a new section is navigated to
+    if (this.props.location.pathname !== prevProps.location.pathname) {
+      this.sectionFocusEl.focus()
+    }
   }
 
   showInstructions (event) {
@@ -146,7 +161,7 @@ class App extends React.Component {
               <button onClick={this.showInstructions} className="instructions mobile-visible"><span>{i18n.t('app.instructions')}</span></button>
               &nbsp;
             </div>
-            <a href="javascript:;;;" className="eapp-section-focus" title="Main content. Please press TAB to go to the next question"></a>
+            <a href="javascript:;;;" className="eapp-section-focus" title="Main content. Please press TAB to go to the next question" ref={this.setSectionFocusEl}></a>
             <div id="main-content" className={klassCore}>
               {this.props.children}
               &nbsp;
@@ -179,4 +194,4 @@ function mapStateToProps (state) {
 
 // Wraps the the App component with connect() which adds the dispatch()
 // function to the props property for this component
-export default connect(mapStateToProps)(App)
+export default withRouter(connect(mapStateToProps)(App))

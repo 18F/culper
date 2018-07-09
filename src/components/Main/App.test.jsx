@@ -1,4 +1,5 @@
 import React from 'react'
+import { MemoryRouter } from 'react-router'
 import App from './App'
 import renderer from 'react-test-renderer'
 import configureMockStore from 'redux-mock-store'
@@ -19,9 +20,11 @@ test('Renders homepage', () => {
   })
 
   const component = renderer.create(
-    <Provider store={store}>
-      <App/>
-    </Provider>
+    <MemoryRouter>
+      <Provider store={store}>
+        <App/>
+      </Provider>
+    </MemoryRouter>
   )
 
   let tree = component.toJSON()
