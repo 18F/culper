@@ -1,6 +1,7 @@
 @import 'eqip-colors';
 
 .consent-modal .modal {
+  overflow-y: hidden;
 
   .modal-wrap {
     // Originally this is a `table-cell` but the consent form is not embed within
@@ -13,19 +14,19 @@
     min-width: 100rem;
     margin-top: 5vh !important;
     margin-bottom: 5vh !important;
-    padding: 0;
+    padding: 1rem;
     border: none;
     box-shadow: none;
 
     @media only screen and (max-height: 800px) {
-      margin-top: 0 !important;
-      margin-bottom: 0 !important;
+      // margin-top: 0 !important;
+      // margin-bottom: 0 !important;
     }
 
     .consent-legal {
       overflow-y: scroll;
       max-height: 84vh;
-      padding: 0 5rem;
+      padding: 0 3rem;
       border: 2px solid $eapp-grey;
 
       hr {
@@ -35,7 +36,7 @@
 
     .consent-acceptance {
       display: block;
-      margin: 2rem auto;
+      margin: 1rem auto 0;
       padding: 2rem;
     }
 
