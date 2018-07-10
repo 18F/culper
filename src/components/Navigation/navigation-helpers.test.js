@@ -30,6 +30,7 @@ describe('Navigation component validation', function () {
     expect(isActive('/form/identification', '/form/foreign/activities/direct')).toBe(false)
     expect(isActive('/form/foreign', '/form/foreign/activities/direct')).toBe(true)
     expect(isActive('/form/foreign/activities', '/form/foreign/activities/direct')).toBe(true)
+    expect(isActive('/form/foreign/activities', '/my/form/foreign/activities/direct')).toBe(false)
     expect(isActive('/form/foreign/activities/direct', '/form/foreign/activities/direct')).toBe(true)
   })
 
