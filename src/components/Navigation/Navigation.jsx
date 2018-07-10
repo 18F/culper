@@ -6,7 +6,7 @@ import SectionList from './SectionList'
 class Navigation extends React.Component {
   render () {
     return (
-      <nav>
+      <nav className="form-navigation" role="navigation">
         <SectionList sections={navigation}/>
       </nav>
     )
