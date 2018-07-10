@@ -186,7 +186,6 @@ export default class TaxesItem extends ValidationElement {
             <Currency name="Amount"
                       {...this.props.Amount}
                       className="taxes-amount"
-                      placeholder={i18n.t('financial.taxes.placeholder.amount')}
                       min="1"
                       required={this.props.required}
                       onUpdate={this.updateAmount}
