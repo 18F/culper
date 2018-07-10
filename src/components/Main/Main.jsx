@@ -1,4 +1,5 @@
 import React from 'react'
+import { hot } from 'react-hot-loader'
 import { Provider } from 'react-redux'
 import { Router, Switch, Route } from 'react-router'
 import AppWithForm from './AppWithForm'
@@ -47,4 +48,4 @@ class Main extends React.Component {
   }
 }
 
-export default Main
+export default hot(module)(Main)

@@ -47,6 +47,7 @@
     "react-addons-test-utils": "^15.6.0",
     "react-autosuggest": "^9.3.2",
     "react-dom": "^15.6.1",
+    "react-hot-loader": "^4.3.3",
     "react-markdown": "^2.4.4",
     "react-redux": "^5.0.6",
     "react-router": "^4.2.0",

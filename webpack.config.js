@@ -32,7 +32,6 @@ module.exports = {
     historyApiFallback: true,
     // expose within Docker
     host: '0.0.0.0',
-    hot: true,
     port: 9000
   },
   plugins: [
@@ -40,7 +39,6 @@ module.exports = {
       'API_BASE_URL', 'ALLOW_2FA_RESET', 'COOKIE_DOMAIN', 'HASH_ROUTING', 'DISABLE_2FA',
       'BASIC_ENABLED', 'SAML_ENABLED', 'SESSION_TIMEOUT',
       'ATTACHMENTS_ENABLED', 'FILE_MAXIMUM_SIZE', 'FILE_TYPES'
-    ]),
-    new webpack.HotModuleReplacementPlugin()
+    ])
   ]
 }
