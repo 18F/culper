@@ -26,7 +26,7 @@ module.exports = {
       }
     ]
   },
-  devtool: debug ? 'cheap-module-source-map' : false,
+  devtool: debug ? 'cheap-module-source-map' : 'source-map',
   plugins: [
     new webpack.EnvironmentPlugin([
       'API_BASE_URL', 'ALLOW_2FA_RESET', 'COOKIE_DOMAIN', 'HASH_ROUTING', 'DISABLE_2FA',

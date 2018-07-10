@@ -60,7 +60,7 @@ When running the application using the provided [docker-compose.yml](docker-comp
 | [`ATTACHMENTS_ENABLED`](#attachments_enabled)                          |                 | X                      | X                     |
 | [`FILE_MAXIMUM_SIZE`](#file_maximum_size)                   |                 | X                      | X                     |
 | [`FILE_TYPES`](#file_types)                          |                 | X                      | X                     |
-| [`COOKIE_DOMAIN`](#cookie-domain)                    |                 |                        | X                     |
+| [`COOKIE_DOMAIN`](#cookie_domain)                    |                 |                        | X                     |
 
 ## `NODE_ENV`
 

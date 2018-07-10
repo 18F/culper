@@ -15,7 +15,7 @@
     .token {
       display: inline-block;
       width: initial;
-      border: 3px solid #4aa564;
+      border: 3px solid $color-green-light;
       border-radius: 3px;
       margin-top: 1rem;
       margin-bottom: 0.1rem;
@@ -29,7 +29,7 @@
         &:focus,
         &:hover {
           outline: none;
-          color: #cd2026;
+          color: $color-red-dark;
         }
       }
 

@@ -89,6 +89,10 @@ To do the initial setup and ensure that all tests pass locally:
 make
 ```
 
+#### Multi-host setup
+
+See [documentation](docs/multi-host.md).
+
 ### Running a local server
 
 To run a local server, we are using [docker][21] containers leveraging the [docker-compose][20] tool via the command:

@@ -29,16 +29,17 @@
 
   .modal {
     .introduction-content {
-      width: 50%;
-      min-width: 100rem;
-      padding: 0;
+      max-width: 100rem;
+      padding: 1rem;
       border: none;
       box-shadow: none;
+      margin-bottom: 2rem;
+      margin-top: 5vh !important;
 
       .introduction-legal {
         overflow-y: scroll;
         max-height: 55vh;
-        padding: 0 5rem;
+        padding: 0 3rem;
         border: 2px solid $eapp-grey;
 
         hr {
@@ -54,9 +55,7 @@
       }
 
       .introduction-acceptance {
-        padding-top: 2rem;
-        margin: 4rem 5rem 0 5rem;
-        border-top: 1px solid $eapp-grey;
+        padding: 3rem 3rem 0;
       }
 
       .field {
