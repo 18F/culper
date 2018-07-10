@@ -18,3 +18,10 @@ observer.observe(targetNode, config)
 const app = document.getElementById('app')
 
 ReactDOM.render(<Main/>, app, tabology)
+
+if (module.hot) {
+  module.hot.accept('./components/Main/Main', () => {
+    const NextMain = require('./components/Main/Main').default;
+    render(<NextMain/>, app, tabology);
+  })
+}
