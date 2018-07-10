@@ -48,6 +48,8 @@ services:
     env_file:
       - .env
     command: yarn watch-js
+    ports:
+      - '9000:9000'
     volumes:
       - .:/usr/src/app
       # ensure node_modules aren't shared with host system

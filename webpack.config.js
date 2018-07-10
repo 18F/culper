@@ -27,6 +27,13 @@ module.exports = {
     ]
   },
   devtool: debug ? 'cheap-module-source-map' : 'source-map',
+  devServer: {
+    contentBase: path.join(__dirname, 'dist'),
+    // expose within Docker
+    host: '0.0.0.0',
+    historyApiFallback: true,
+    port: 9000
+  },
   plugins: [
     new webpack.EnvironmentPlugin([
       'API_BASE_URL', 'ALLOW_2FA_RESET', 'COOKIE_DOMAIN', 'HASH_ROUTING', 'DISABLE_2FA',
