@@ -45,16 +45,13 @@ export default class OrderedTreatment extends ValidationElement {
   updateOrderedBy (cb) {
     let selected = cb.value
     let list = [...((this.props.OrderedBy || {}).values || [])]
-
-    if (selected === 'None') {
-      list = [selected]
+  
+    if (list.includes(selected)) {
+      list.splice(list.indexOf(selected), 1)
     } else {
-      if (list.includes(selected)) {
-        list.splice(list.indexOf(selected), 1)
-      } else {
-        list.push(selected)
-      }
+      list.push(selected)
     }
+
 
     this.update({OrderedBy: { values: list }})
   }
