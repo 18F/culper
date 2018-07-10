@@ -24,9 +24,13 @@ export const validations = (section, props = {}) => {
 
 export const parseFormUrl = (url) => {
   const parts = url.replace('/form/', '').split('/')
+  const section = parts.shift()
+  const subsectionRaw = parts.join('/')
+
   return {
-    section: parts.shift(),
-    subsection: parts.join('/') || 'intro'
+    section,
+    subsectionRaw,
+    subsection: subsectionRaw || 'intro'
   }
 }
 
@@ -37,33 +41,20 @@ export const parseFormUrl = (url) => {
  *  route => /form/identification/name
  */
 export const hasErrors = (route, errors = {}) => {
-  const crumbs = route.replace('/form/', '').split('/')
   const routeParts = parseFormUrl(route)
-  const routeSection = routeParts.section.toLowerCase()
-
-  for (const section in errors) {
-    if (section.toLowerCase() !== routeSection) {
-      continue
-    }
-
-    const se = errors[section]
-    if (routeParts.section) {
-      if (crumbs.length > 1) {
-        return se.some(
-          e =>
-            e.section.toLowerCase() === routeSection &&
-            e.subsection.toLowerCase().indexOf(routeParts.subsection) === 0 &&
-            e.valid === false)
-      }
-
-      return se.some(
-        e =>
-          e.section.toLowerCase() === routeSection &&
-          e.valid === false)
-    }
+  if (!routeParts.section) {
+    return false
   }
+  const routeSection = routeParts.section.toLowerCase()
+  const sectionErrors = errors[routeSection] || []
 
-  return false
+  return sectionErrors.some(
+    e =>
+      e.section.toLowerCase() === routeSection &&
+      // either we're not within a subsection, or the subsection matches
+      (!routeParts.subsectionRaw || e.subsection.toLowerCase().startsWith(routeParts.subsectionRaw)) &&
+      e.valid === false
+  )
 }
 
 /**
