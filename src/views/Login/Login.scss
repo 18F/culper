@@ -27,12 +27,12 @@
   }
 
   .table {
-      .auth {
-        display: block;
-        max-width: 43rem;
-        margin-right: auto;
-        margin-left: auto;
-      }
+    .auth {
+      display: block;
+      max-width: 43rem;
+      margin-right: auto;
+      margin-left: auto;
+    }
 
     &.two {
       .auth {
@@ -53,7 +53,7 @@
 
   .auth {
     button {
-    display: inline-block;
+      display: inline-block;
     }
 
     &.basic {
