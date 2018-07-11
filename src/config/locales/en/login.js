@@ -15,16 +15,12 @@ export const login = {
     button: 'Log in with CAC/PIV'
   },
   basic: {
-    title: 'Log in with username',
-    para: 'Enter your username and password, then click the "Submit" button to continue. If you do not remember your password click "Forgot Password". If you do not remember your username contact your sponsoring agency.',
-    button: 'Submit',
+    button: 'Log In',
     username: {
-      label: 'Username',
-      placeholder: 'Enter your username'
+      label: 'Username'
     },
     password: {
-      label: 'Password',
-      placeholder: 'Enter your password'
+      label: 'Password'
     },
     show: {
       title: 'Show password',
