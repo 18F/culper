@@ -7,16 +7,6 @@
 }
 
 .login {
-  h2 {
-    margin-top: 1rem;
-    font-size: 3rem;
-  }
-
-  input {
-    width: 100%;
-    max-width: 100%;
-  }
-
   .seal-header {
     background-color: $eapp-blue-darkest;
 
@@ -32,32 +22,17 @@
     }
   }
 
-  a {
-    color: $eapp-blue;
-    text-decoration: none;
-    border-bottom: 1px dotted $eapp-blue;
-  }
-
   .content {
-    width: 80%;
-    margin: 0 auto;
     padding: 3rem 0 2rem;
   }
 
   .table {
-    display: table;
-
-    &.zero,
-    &.one {
-      display: block;
-
       .auth {
         display: block;
         max-width: 43rem;
         margin-right: auto;
         margin-left: auto;
       }
-    }
 
     &.two {
       .auth {
@@ -77,24 +52,8 @@
   }
 
   .auth {
-    display: inline-block;
-    vertical-align: top;
-    max-width: 43rem;
-    height: 50vh;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    margin-right: 2rem;
-    border-right: 1px #eee solid;
-
     button {
-      text-align: center;
-      width: 15rem;
-      height: 5rem;
-    }
-
-    &:last-of-type {
-      border-right: none;
-      margin-right: 0;
+    display: inline-block;
     }
 
     &.basic {
@@ -117,13 +76,6 @@
 
       button {
         width: 100%;
-      }
-    }
-
-    &.denied {
-      .usa-button-primary {
-        width: 20rem;
-        padding: 1.5rem 0;
       }
     }
   }
