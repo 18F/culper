@@ -16,7 +16,7 @@ class TokenRefresh extends React.Component {
               <h2>{i18n.t('login.token.title')}</h2>
               <strong>{i18n.t('login.token.saved').replace('{time}', this.props.saved.toLocaleTimeString())}</strong>
               {i18n.m('login.token.para')}
-              <a href="/login" className="usa-button-primary">
+              <a href="/login" className="usa-button-primary usa-button-big">
                 {i18n.t('login.token.button')}
               </a>
             </div>
