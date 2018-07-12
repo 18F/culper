@@ -149,6 +149,9 @@ $breakpoints: (
       border-radius: 6px;
       max-width: 64rem;
       line-height: 2.5rem;
+      p {
+        margin-bottom: 0;
+      }
     }
   }
 
