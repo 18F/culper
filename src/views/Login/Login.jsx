@@ -124,7 +124,7 @@ export class Login extends React.Component {
           <input type="hidden" name="SAMLRequest" value={this.state.saml.Base64XML} />
           <h2>{i18n.t('login.saml.title')}</h2>
           {i18n.m('login.saml.para')}
-          <button type="submit">
+          <button type="submit" className="usa-button-big">
             <span>{i18n.t('login.saml.button')}</span>
           </button>
         </form>

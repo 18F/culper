@@ -34,14 +34,6 @@
       margin-left: auto;
     }
 
-    &.two {
-      .auth {
-        display: table-cell;
-        width: 50%;
-        padding-left: 2.6rem;
-      }
-    }
-
     &.three {
       .auth {
         display: table-cell;
@@ -60,12 +52,6 @@
       .peek {
         width: 100%;
         text-align: right;
-      }
-    }
-
-    &.saml {
-      button {
-        width: 21rem;
       }
     }
 
