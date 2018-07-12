@@ -39,12 +39,12 @@ export const identification = {
     },
     middle: {
       help: {
-        title: 'Don\'t abbreviate this name',
+        title: 'Enter a valid middle name.',
         message: [
-          '"Initial only" is for single letter names only, not for the first letter of this full name.',
-          'If no middle name leave this field empty and check the "No middle name" checkbox.'
+          'Please enter your entire middle name.',
+          'If your middle name is a single letter, select the "initial only" checkbox and type the letter below. If you don\'t have a middle name, select the "No middle name" checkbox and leave the field below blank.'
         ],
-        note: 'Note: If this middle name is a single letter only type that letter and check the "Initial only" checkbox.'
+        note: ''
       }
     },
     suffix: {
