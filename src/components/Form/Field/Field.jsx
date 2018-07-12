@@ -13,10 +13,18 @@ const message = (id) => {
     note = <em>{note}</em>
   }
 
+  const messageId = `${id}.message`
+  let message = i18n.m(messageId)
+  if (Object.prototype.toString.call(message) === '[object String]' && message.indexOf(messageId) > -1) {
+    message = ''
+  } else {
+    message = <span>{message}</span>
+  }
+
   return (
     <div key={newGuid()} data-i18n={id}>
       <h5>{i18n.t(`${id}.title`)}</h5>
-      {i18n.m(`${id}.message`)}
+      {message}
       {note}
     </div>
   )
