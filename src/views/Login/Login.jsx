@@ -124,7 +124,7 @@ export class Login extends React.Component {
           <input type="hidden" name="SAMLRequest" value={this.state.saml.Base64XML} />
           <h2>{i18n.t('login.saml.title')}</h2>
           {i18n.m('login.saml.para')}
-          <button type="submit">
+          <button type="submit" className="usa-button-big">
             <span>{i18n.t('login.saml.button')}</span>
           </button>
         </form>
@@ -145,8 +145,6 @@ export class Login extends React.Component {
 
     return (
       <div id="basic" className="auth basic">
-        <h2>{i18n.t('login.basic.title')}</h2>
-        <p>{i18n.t('login.basic.para')}</p>
         <form onSubmit={this.login}>
           <div>
             <label htmlFor="user">
@@ -155,7 +153,6 @@ export class Login extends React.Component {
             <input id="user"
                    name="user"
                    type="text"
-                   placeholder={i18n.t('login.basic.username.placeholder')}
                    value={this.state.username}
                    onChange={this.onUsernameChange} />
           </div>
@@ -166,7 +163,6 @@ export class Login extends React.Component {
             <input id="password"
                    name="password"
                    type={this.state.showPassword ? 'text' : 'password'}
-                   placeholder={i18n.t('login.basic.password.placeholder')}
                    value={this.state.password}
                    onChange={this.onPasswordChange} />
             <div className="peek">
@@ -180,7 +176,7 @@ export class Login extends React.Component {
             {this.errorMessage()}
           </div>
           <div>
-            <button type="submit">{i18n.t('login.basic.button')}</button>
+            <button type="submit" className="usa-button-big">{i18n.t('login.basic.button')}</button>
             <a id="forgot-password"
                href="javascript:;;"
                title={i18n.t('login.basic.forgot.title')}>
