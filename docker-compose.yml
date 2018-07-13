@@ -76,10 +76,9 @@ services:
       dockerfile: conf/docker/Dockerfile.api
     env_file:
       - .env
-    working_dir: /go/src/github.com/18F/e-QIP-prototype/api
-    command: ./bin/run.sh
     volumes:
       - .:/go/src/github.com/18F/e-QIP-prototype
+      - /go/src/github.com/18F/e-QIP-prototype/api/vendor
     ports:
       - 3000:3000
     environment:
