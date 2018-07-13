@@ -25,13 +25,13 @@ describe('The military section', () => {
   })
 
   it('visible when authenticated', () => {
-    const store = mockStore({ authentication: { authenticated: true, twofactor: true }, application: applicationState })
+    const store = mockStore({ authentication: { authenticated: true }, application: applicationState })
     const component = mount(<Provider store={store}><Military /></Provider>)
     expect(component.find('div').length).toBeGreaterThan(0)
   })
 
   it('can review all subsections', () => {
-    const store = mockStore({ authentication: { authenticated: true, twofactor: true } })
+    const store = mockStore({ authentication: { authenticated: true } })
     const component = mount(<Provider store={store}><Military subsection="review" /></Provider>)
     expect(component.find('div').length).toBeGreaterThan(0)
   })
@@ -39,7 +39,7 @@ describe('The military section', () => {
   it('can go to each subsection', () => {
     const sections = ['selective', 'history', 'disciplinary', 'foreign', 'review']
     const store = mockStore({
-      authentication: { authenticated: true, twofactor: true },
+      authentication: { authenticated: true },
       application: { Military: {} }
     })
 
@@ -74,7 +74,7 @@ describe('The military section', () => {
       Identification: { ApplicantBirthDate: { Date: { date: new Date(1900, 1, 1) } } },
       Military: {}
     }
-    const store = mockStore({ authentication: { authenticated: true, twofactor: true }, application: modifiedState })
+    const store = mockStore({ authentication: { authenticated: true }, application: modifiedState })
     const component = mount(<Provider store={store}><Military subsection="intro" /></Provider>)
     expect(component.find('.actions.next .text .label').text()).not.toBe('Selective service record')
   })
@@ -84,7 +84,7 @@ describe('The military section', () => {
       Identification: { ApplicantBirthDate: { Date: { date: new Date(1980, 1, 1) } } },
       Military: {}
     }
-    const store = mockStore({ authentication: { authenticated: true, twofactor: true }, application: modifiedState })
+    const store = mockStore({ authentication: { authenticated: true }, application: modifiedState })
     const component = mount(<Provider store={store}><Military subsection="intro" /></Provider>)
     expect(component.find('.actions.next .text .label').text()).toBe('Selective service record')
   })
@@ -93,7 +93,7 @@ describe('The military section', () => {
     const modifiedState = {
       Military: { History: { HasServed: { value: 'No' } } }
     }
-    const store = mockStore({ authentication: { authenticated: true, twofactor: true }, application: modifiedState })
+    const store = mockStore({ authentication: { authenticated: true }, application: modifiedState })
     const component = mount(<Provider store={store}><Military subsection="history" /></Provider>)
     expect(component.find('.actions.next .text .label').text()).not.toBe('Disciplinary procedures')
   })
@@ -102,7 +102,7 @@ describe('The military section', () => {
     const modifiedState = {
       Military: { History: { HasServed: { value: 'Yes' } } }
     }
-    const store = mockStore({ authentication: { authenticated: true, twofactor: true }, application: modifiedState })
+    const store = mockStore({ authentication: { authenticated: true }, application: modifiedState })
     const component = mount(<Provider store={store}><Military subsection="history" /></Provider>)
     expect(component.find('.actions.next .text .label').text()).toBe('Disciplinary procedures')
   })

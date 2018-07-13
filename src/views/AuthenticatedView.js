@@ -22,16 +22,14 @@ const AuthenticatedView = (WrappedComponent) => {
 
     checkAuthentication () {
       const token = api.getToken()
-      const mfa = this.props.mfa || env.MultipleFactorAuthentication()
-      if (!token || !this.props.authenticated || !(mfa.enabled ? this.props.twofactor : true)) {
+      if (!token || !this.props.authenticated) {
         env.History().push('/login')
       }
     }
 
     render () {
       const token = api.getToken()
-      const mfa = this.props.mfa || env.MultipleFactorAuthentication()
-      if (token && this.props.authenticated && (mfa.enabled ? this.props.twofactor : true)) {
+      if (token && this.props.authenticated) {
         return (<WrappedComponent {...this.props} />)
       }
       return null
@@ -43,8 +41,7 @@ function mapStateToProps (state) {
   const auth = state.authentication
   return {
     application: state.application,
-    authenticated: auth.authenticated,
-    twofactor: auth.twofactor
+    authenticated: auth.authenticated
   }
 }
 

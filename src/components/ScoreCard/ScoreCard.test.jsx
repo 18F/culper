@@ -23,8 +23,7 @@ describe('The score card component', () => {
     const mockStore = configureMockStore(middlewares)
     const store = mockStore({
       authentication: {
-        authenticated: true,
-        twofactor: true
+        authenticated: true
       },
       application: {
         Settings: {

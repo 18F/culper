@@ -156,14 +156,6 @@ This is a collection of dependencies within the project and their associated lic
 
 [View license](api/vendor/github.com/sirupsen/logrus/LICENSE)
 
-### go-qrcode
-
- - **License**: MIT
- - **Year**:    2014
- - **Author**:  Tom Harwood
-
-[View license](api/vendor/github.com/skip2/go-qrcode/LICENSE)
-
 ### plucked
 
  - **License**: MIT

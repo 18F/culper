@@ -21,7 +21,7 @@ describe('The progress bar component', () => {
   })
 
   it('visible when authenticated', () => {
-    const store = mockStore({ authentication: { authenticated: true, twofactor: true } })
+    const store = mockStore({ authentication: { authenticated: true } })
     const component = mount(<Provider store={store}><ProgressBar /></Provider>)
     expect(component.find('div').length).toEqual(2)
     expect(component.find('#progress-bar').props().style.width).toBe('0%')
@@ -45,8 +45,7 @@ describe('The progress bar component', () => {
         subsection: 'competence'
       },
       authentication: {
-        authenticated: true,
-        twofactor: true
+        authenticated: true
       }
     })
 

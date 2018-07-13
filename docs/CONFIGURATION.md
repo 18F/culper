@@ -44,9 +44,6 @@ When running the application using the provided [docker-compose.yml](docker-comp
 | [`SAML_IDP_PUBLIC_CERT`](#saml_idp_public_cert)                |                 |                        | X                     |
 | [`SAML_SIGN_REQUEST`](#saml_sign_request)                   |                 |                        | X                     |
 | [`SAML_CONSUMER_SERVICE_URL`](#saml_consumer_service_url)           |                 |                        | X                     |
-| [`DISABLE_2FA`](#disable_2fa)                         |                 | X                      | X                     |
-| [`ALLOW_2FA_RESET`](#allow_2fa_reset)                     |                 |                        | X                     |
-| [`WINDOW_SIZE`](#window_size)                         |                 |                        | X                     |
 | [`TLS_CERT`](#tls_cert)                            |                 |                        | X                     |
 | [`TLS_KEY`](#tls_key)                             |                 |                        | X                     |
 | [`WS_ENABLED`](#ws_enabled)                              | X               |                        | X                     |
@@ -306,29 +303,6 @@ Endpoint for assertion consumer service. After authentication is completed the c
 
 **Target** - Back-end (api)<br>
 **Default** - `{API_BASE_URL}/auth/saml/callback`<br>
-
-## `DISABLE_2FA`
-
-Flag to disable multiple factor authentication (MFA) authentication.
-
-**Target** - Front-end (web), Back-end (api)<br>
-**Default** - False: *empty*<br>
-**Values** - True: `1`, False: *empty*<br>
-
-## `ALLOW_2FA_RESET`
-
-Flag to allow resetting multiple factor authentication (MFA) association to an account.
-
-**Target** - Front-end (web), Back-end (api)<br>
-**Default** - False: *empty*<br>
-**Values** - True: `1`, False: *empty*<br>
-
-## `WINDOW_SIZE`
-
-Window size used in multiple factor authentication (MFA) authentication. Valid range from 0 to 100 but values beyond 3 through 5 are considered bad security practices.
-
-**Target** - Back-end (api)<br>
-**Default** - `3`<br>
 
 ## `TLS_CERT`
 

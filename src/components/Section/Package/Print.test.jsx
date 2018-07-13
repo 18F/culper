@@ -23,7 +23,7 @@ describe('The print section', () => {
   })
 
   it('visible when authenticated', () => {
-    const store = mockStore({ authentication: { authenticated: true, twofactor: true }, application: applicationState })
+    const store = mockStore({ authentication: { authenticated: true }, application: applicationState })
     const component = mount(<Provider store={store}><Print subsection="intro" /></Provider>)
     expect(component.find('.section-print-container').length).toBe(10)
   })
@@ -33,7 +33,7 @@ describe('The print section', () => {
     window.print = function () {
       printed = true
     }
-    const store = mockStore({ authentication: { authenticated: true, twofactor: true }, application: applicationState })
+    const store = mockStore({ authentication: { authenticated: true }, application: applicationState })
     const component = mount(<Provider store={store}><Print subsection="intro" /></Provider>)
     component.find('.print-btn').simulate('click')
     expect(printed).toBe(true)

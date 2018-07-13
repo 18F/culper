@@ -25,13 +25,13 @@ describe('The psych section', () => {
   })
 
   it('visible when authenticated', () => {
-    const store = mockStore({ authentication: { authenticated: true, twofactor: true, application: applicationState } })
+    const store = mockStore({ authentication: { authenticated: true, application: applicationState } })
     const component = mount(<Provider store={store}><Psychological /></Provider>)
     expect(component.find('div').length).toBeGreaterThan(0)
   })
 
   it('can review all subsections', () => {
-    const store = mockStore({ authentication: { authenticated: true, twofactor: true } })
+    const store = mockStore({ authentication: { authenticated: true } })
     const component = mount(<Provider store={store}><Psychological subsection="review" /></Provider>)
     expect(component.find('div').length).toBeGreaterThan(0)
   })
@@ -44,7 +44,7 @@ describe('The psych section', () => {
         }
       }
     }
-    const store = mockStore({ application: appState, authentication: { authenticated: true, twofactor: true } })
+    const store = mockStore({ application: appState, authentication: { authenticated: true } })
     const component = mount(<Provider store={store}><Psychological subsection="review" /></Provider>)
     expect(component.find('.competence .accordion').length).toBe(1)
   })
@@ -72,7 +72,7 @@ describe('The psych section', () => {
         }
       }
     }
-    const store = mockStore({ application: appState, authentication: { authenticated: true, twofactor: true } })
+    const store = mockStore({ application: appState, authentication: { authenticated: true } })
     const component = mount(<Provider store={store}><Psychological subsection="review" /></Provider>)
     expect(component.find('div').length).toBeGreaterThan(0)
     expect(component.find('.competence .accordion').length).toBe(0)
@@ -103,7 +103,7 @@ describe('The psych section', () => {
         }
       }
     }
-    const store = mockStore({ application: appState, authentication: { authenticated: true, twofactor: true } })
+    const store = mockStore({ application: appState, authentication: { authenticated: true } })
     const component = mount(<Provider store={store}><Psychological subsection="review" /></Provider>)
     expect(component.find('div').length).toBeGreaterThan(0)
     expect(component.find('.existingconditions').length).toBe(1)
