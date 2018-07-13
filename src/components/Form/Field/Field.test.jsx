@@ -32,17 +32,6 @@ describe('The field component', () => {
     expect(component.find('.message').length).toEqual(0)
   })
 
-  it('help does not error when given an invalid identification', () => {
-    const expected = {
-      help: 'this.should.not.exist'
-    }
-    const component = mount(<Field {...expected} />)
-    component.find('.icon .toggle').simulate('click')
-    expect(component.find('.message').length).toEqual(1)
-    expect(component.find('.message').text()).toContain('en.this.should.not.exist.title')
-    expect(component.find('.message').text()).toContain('en.this.should.not.exist.message')
-  })
-
   it('help can display an error', () => {
     const expected = {
       errors: [
