@@ -241,12 +241,6 @@ const (
 	// Default: `{API_BASE_URL}/auth/saml/callback`
 	SamlConsumerServiceURL = "SAML_CONSUMER_SERVICE_URL"
 
-	// WindowSize Window size used in multiple factor authentication (MFA) authentication. Valid range from 0 to 100 but values beyond 3 through 5 are considered bad security practices.
-	//
-	// Target: Back-end (api)
-	// Default: `3`
-	WindowSize = "WINDOW_SIZE"
-
 	// TLSCert File path (absolute or relative) to TLS public certificate (X.509 PEM) certificate for use with the back-end API.
 	//
 	// Target: Back-end (api)
