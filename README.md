@@ -225,7 +225,6 @@ Please refer to the [contributing documentation][18].
 [14]: http://jshint.com
 [15]: https://github.com/curtisj44/HTML-Lint
 [16]: https://www.npmjs.com
-[17]: https://github.com/Masterminds/glide
 [18]: CONTRIBUTING.md
 [19]: https://yarnpkg.com
 [20]: https://docs.docker.com/compose

@@ -1,8 +1,3 @@
 FROM golang:1.10
 ENV PATH="${PATH}:${GOPATH}/src/github.com/18F/e-QIP-prototype/api/bin"
 RUN DEBIAN_FRONTEND=noninteractive apt-get -q -y update && apt-get -q -y install xmlsec1 strace;
-RUN go get -u github.com/Masterminds/glide golang.org/x/lint/golint; \
-    cd $GOPATH/src/github.com/Masterminds/glide; \
-    git checkout tags/$(git describe --tags $(git rev-list --tags --max-count=1)); \
-    go install; \
-    cd $GOPATH/src
