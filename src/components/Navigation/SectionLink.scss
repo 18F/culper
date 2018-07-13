@@ -1,0 +1,9 @@
+.section-link {
+  &.usa-accordion-button {
+    // override USWDS
+    background: none;
+    font-weight: normal;
+  }
+
+  position: relative;
+}
