@@ -1,0 +1,40 @@
+.section-link {
+  position: relative;
+
+  // override USWDS to add to all section links, not just top-level
+  border-left: $sidenav-current-border-width solid transparent !important;
+  &.usa-current {
+    border-left-color: $color-primary !important;
+  }
+  &.has-errors {
+    border-left-color: $eapp-red !important;
+  }
+
+  &.usa-accordion-button {
+    // override USWDS
+    background: none;
+    font-weight: normal;
+  }
+
+  &.locked {
+    color: $eapp-grey-disabled;
+    cursor: not-allowed;
+
+    > .section-name {
+      color: $eapp-grey-disabled;
+    }
+  }
+
+  .section-name {
+    display: inline-block;
+    max-width: 87.6%;
+  }
+
+  .has-errors {
+    color: $eapp-red;
+
+    .section-number {
+      color: inherit;
+    }
+  }
+}

@@ -1,99 +1,94 @@
 import React from 'react'
-import { Show } from '../Form'
-import SectionLink from './SectionLink'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
+import PropTypes from 'prop-types'
+import SectionList from './SectionList'
+import { hasErrors, isActive, isValid } from '../Navigation/navigation-helpers'
 
-export class ToggleItem extends React.Component {
-  constructor (props) {
-    super(props)
-
-    this.state = {
-      visible: props.visible,
-      scroll: false
-    }
-
-    this.toggle = this.toggle.bind(this)
+class ToggleItem extends React.Component {
+  url() {
+    return `${this.props.baseUrl}/${this.props.section.url}`
   }
 
-  componentWillReceiveProps (next) {
-    if (next && next.visible !== this.state.visible) {
-      this.setState({ scroll: false, visible: next.visible })
-    }
+  isActive() {
+    return isActive(this.url(), this.props.location.pathname)
   }
 
-  componentDidUpdate () {
-    if (this.state.scroll) {
-      const timeout = this.props.timeout + (this.props.timeout * 0.3142)
-      this.setState({ scroll: false }, () => {
-        window.setTimeout(() => {
-          this.scrollIntoView()
-        }, timeout)
-      })
-    }
+  hasErrors() {
+    return hasErrors(this.url(), this.props.errors)
   }
 
-  toggle (event) {
-    const visible = !this.state.visible
-    this.setState({ scroll: true, visible: visible }, () => {
-      this.props.onToggle({
-        ...this.props,
-        visible: visible
-      })
-    })
-    event.preventDefault()
+  isValid() {
+    return isValid(this.url(), this.props)
   }
 
-  scrollIntoView () {
-    if (!this.state.visible) {
-      return
+  getClassName() {
+    let className = 'section-link usa-accordion-button'
+
+    if (this.isActive()) {
+      className += ' usa-current'
     }
 
-    // Grab the bottom position of the item
-    const bottom = this.refs.item.getBoundingClientRect().bottom
-
-    // Grab the current window height
-    const winHeight = window.innerHeight
-
-    // Flag if tiem is within current viewport
-    const notInView = (winHeight < bottom)
-
-    if (notInView) {
-      window.scrollBy({ top: (bottom - winHeight), left: 0, behavior: 'smooth' })
+    if (this.hasErrors()) {
+      className += ' has-errors'
+    } else if (this.isValid()) {
+      className += ' is-valid'
     }
+    return className
   }
 
-  render () {
+  render() {
+    const url = this.url()
+    const active = this.isActive()
+
     return (
-      <div ref="item" className={`${this.props.section ? 'section' : 'subsection'} ${this.state.visible ? 'open' : 'closed'}`}>
-        <span className="section-title">
-          <SectionLink
-            className={this.props.className}
-            title={this.props.title}
-            onClick={this.toggle}
-            sectionNum={this.props.number}>
-            <Show when={this.state.visible}>
-              <i className="fa fa-angle-up" aria-hidden="true"></i>
-            </Show>
-            <Show when={!this.state.visible}>
-              <i className="fa fa-angle-down" aria-hidden="true"></i>
-            </Show>
-          </SectionLink>
-          <Show when={this.state.visible}>
-            <div className="section-content">
-              {this.props.children}
-            </div>
-          </Show>
-        </span>
-      </div>
+      <li className="toggle-item">
+        <a className={this.getClassName()} aria-controls={url} aria-expanded={active} role="button">
+          <span className="section-name">
+            {this.props.section.name}
+            <i className="fa fa-angle-up"></i>
+            <i className="fa fa-angle-down"></i>
+          </span>
+          <span className="eapp-status-icon"></span>
+        </a>
+        <div id={url} className="usa-accordion-content" aria-hidden={!active}>
+          <SectionList className="usa-sidenav-sub_list" baseUrl={url} sections={this.props.section.subsections}/>
+        </div>
+      </li>
     )
   }
 }
 
-ToggleItem.defaultProps = {
-  visible: false,
-  title: '',
-  section: false,
-  number: 0,
-  className: '',
-  timeout: 450,
-  onToggle: () => {}
+ToggleItem.propTypes = {
+  // from withRouter()
+  history: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired,
+
+  baseUrl: PropTypes.string,
+  completed: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired,
+  section: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+    subsections: PropTypes.array.isRequired
+  }).isRequired
 }
+
+ToggleItem.defaultProps = {
+  baseUrl: '/form',
+  completed: {},
+  errors: {}
+}
+
+function mapStateToProps(state) {
+  const app = state.application || {}
+  const completed = app.Completed || {}
+  const errors = app.Errors || {}
+  return {
+    completed,
+    errors
+  }
+}
+
+export default withRouter(connect(mapStateToProps)(ToggleItem))

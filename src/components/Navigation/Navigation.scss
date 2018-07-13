@@ -1,233 +1,105 @@
 @import 'eqip-colors';
 @import 'eqip-fonts';
 
-@keyframes section-openbox {
-  0% {
-    max-height: 0;
-  }
+.usa-sidenav-list {
+  $num-width: 2rem;
+  $num-right-margin: 0.8rem;
+  $status-icon-width: 1.7rem;
 
-  99% {
-    max-height: 50vh;
-  }
+  // top-level nav
+  > li {
+    // show numbers
+    // http://blog.teamtreehouse.com/customize-ordered-lists-pseudo-element
+    counter-increment: step-counter;
 
-  100% {
-    max-height: none;
-  }
-}
+    & > .section-link {
+      &::before {
+        color: #6c7178;
+        content: counter(step-counter);
+        display: inline-block;
+        font-weight: $eapp-bold;
+        margin-right: $num-right-margin;
+        text-align: right;
+        vertical-align: top;
+        width: $num-width;
+      }
+      &.usa-current::before {
+        color: inherit;
+      }
+      &.has-errors::before {
+        color: $eapp-red;
+      }
 
-@keyframes section-closebox {
-  0% {
-    max-height: 50vh;
-  }
-
-  100% {
-    max-height: 0;
-    padding-top: 0;
-  }
-}
-
-/* handle inner-application navigation */
-.eapp-navigation {
-  padding: 1rem 0 2.5rem 0;
-}
-
-.form-navigation {
-  margin-top: 1.9rem;
-  margin-bottom: 1.9rem;
-
-  a {
-    color: $eapp-grey-dark;
-    transition: border-left-color 0.3s, color 0.3s, background-color 0.3s;
-
-    &:hover {
-      background: $eapp-grey;
+      &[aria-expanded='true'] {
+        // match https://github.com/uswds/uswds/blob/v1.6.6/src/stylesheets/core/_utilities.scss#L180
+        border-bottom: 1px solid $color-gray;
+      }
     }
 
-    .fa-angle-up, .fa-angle-down {
-      margin-left: 0.5rem;
-      color: $eapp-grey-darker;
+    // hide the number for "Review & submit"
+    &:last-child > a::before {
+      content: '';
     }
 
-    .fa-check-circle, .fa-exclamation-circle {
-      display: none;
-    }
-
-    .eapp-status-icon-valid, .eapp-status-icon-error {
-      position: absolute;
-      top: 0;
-      right: 0;
+    // error/valid icons
+    .eapp-status-icon {
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: auto;
       display: block;
       height: 100%;
-      width: 1.7rem;
-      background: center center no-repeat;
-      background-size: auto;
-      opacity: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
       transition: opacity 0.5s;
+      width: $status-icon-width;
     }
-
-    .eapp-status-icon-valid {
+    .is-valid .eapp-status-icon {
       background-image: url('../img/checkmark.svg');
     }
-
-    .eapp-status-icon-error {
+    .has-errors .eapp-status-icon {
       background-image: url('../img/exclamation-point-white-bg.svg');
     }
   }
 
-  .active {
-    color: $eapp-blue;
-    font-weight: $eapp-bold;
-
-    > .section-name {
-      color: $eapp-blue;
-    }
-
-    .section-number {
-      color: inherit;
-    }
+  // override USWDS
+  .usa-accordion > li {
+    background: none;
+  }
+  .usa-accordion-content {
+    padding: 0;
   }
 
-  .locked {
-    color: $eapp-grey-disabled;
-    cursor: not-allowed;
-
-    > .section-name {
-      color: $eapp-grey-disabled;
-    }
-  }
-
-  .has-errors {
-    color: $eapp-red;
-
-    .section-number {
-      color: inherit;
+  // subnavs + sub-subnavs
+  .usa-sidenav-sub_list {
+    .section-link {
+      // compute offset using built-in USWDS values
+      margin-left: $num-width + $num-right-margin - $sidenav-current-border-width;
+      padding-left: $site-margins-mobile;
     }
 
-    .eapp-status-icon-error {
-      opacity: 1;
+    // error/valid indicators
+    .eapp-status-icon {
+      $size: 0.5rem;
+
+      border-radius: 50%;
+      height: $size;
+      // center-align with status icon image
+      right: ($status-icon-width - $size) / 2;
+      top: 1.6rem;
+      width: $size;
     }
-  }
-
-  .is-valid {
-    .section-number {
-      color: $eapp-green !important;
+    .is-valid .eapp-status-icon {
+      background-color: $eapp-green;
     }
-
-    .eapp-status-icon-valid {
-      opacity: 1;
-    }
-  }
-
-  .section-name {
-    display: inline-block;
-    max-width: 87.6%;
-    color: $eapp-grey-dark;
-  }
-
-  .section-number {
-    position: absolute;
-    left: 0.4rem;
-    display: block;
-    width: 2.5rem;
-    font-weight: $eapp-bold;
-    text-align: right;
-    color: #6c7178;
-  }
-
-  // Animations
-  .section,
-  .subsection {
-    .section-content {
-      animation-duration: 0.5s;
-      animation-fill-mode: forwards;
-      animation-iteration-count: 1;
-      overflow: hidden;
+    .has-errors .eapp-status-icon {
+      background-color: $eapp-red;
     }
 
-    &.open .section-content {
-      animation-name: section-openbox;
-      opacity: 1;
-      transition: opacity 300ms ease-out;
-    }
-
-    &.closed .section-content {
-      animation-name: section-closebox;
-      opacity: 0;
-      transition: opacity 300ms ease-out;
-    }
-  }
-
-  .section {
-    font-size: 1.9rem;
-
-    > span > a {
-      position: relative;
-      border-left: 4px solid transparent;
-      padding-left: 3.7rem;
-      border-bottom: 1px solid $eapp-grey-dark;
-    }
-
-    &.open {
-      border-bottom: 1px solid $eapp-grey-dark;
-    }
-
-    &:last-of-type {
-      border-bottom: transparent;
-    }
-
-    a {
-      position: relative;
-      display: block;
-      min-height: 5.1rem;
-      padding: 1.7rem 2rem 1.7rem 0;
-      line-height: 1.2;
-      text-decoration: none;
-    }
-
-    .section-title {
-      .active {
-        border-left-color: $eapp-blue;
-      }
-
-      .has-errors {
-        border-left-color: $eapp-red;
-      }
-    }
-
-    .subsection {
-      font-size: 1.6rem;
-
-      a {
-        border: none;
-        padding: 1.2rem 1rem 1.2rem 1rem;
-        margin-left: 2.8rem;
-        line-height: 1.3;
-        border-left: 4px solid transparent;
-
-        &.has-errors {
-          border-left-color: $eapp-red;
-        }
-
-        .eapp-status-icon {
-          background-image: none;
-          width: 0.5rem;
-          height: 0.5rem;
-          border-radius: 50%;
-          top: 2.3rem;
-          right: 0.6rem;
-        }
-
-        .eapp-status-icon-valid {
-          background-color: $eapp-green;
-        }
-
-        .eapp-status-icon-error {
-          background-color: $eapp-red;
-        }
-      }
-
-      .subsection > * {
-        padding-left: 2.8rem;
+    // sub-subnav
+    .usa-sidenav-sub_list {
+      .section-link {
+        padding-left: $site-margins-mobile * 2;
       }
     }
   }
