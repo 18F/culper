@@ -103,30 +103,6 @@ func (service RootHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		endpoints = append(endpoints, attachments...)
 	}
 
-	if !service.Env.True(api.Disable2FA) {
-		mfa := []endpoint{
-			{
-				Path:        "/2fa/",
-				Description: "two factor authentication for an account",
-				Verbs:       []string{"GET"},
-			},
-			{
-				Path:        "/2fa/verify",
-				Description: "two factor verification",
-				Verbs:       []string{"POST"},
-			},
-		}
-		endpoints = append(endpoints, mfa...)
-
-		if service.Env.True(api.Allow2FAReset) {
-			endpoints = append(endpoints, endpoint{
-				Path:        "/2fa/reset",
-				Description: "two factor reset",
-				Verbs:       []string{"GET"},
-			})
-		}
-	}
-
 	if service.Env.True(api.BasicEnabled) {
 		basic := []endpoint{
 			{

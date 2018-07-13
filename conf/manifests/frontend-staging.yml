@@ -9,6 +9,5 @@ applications:
   env:
     FORCE_HTTPS: true
     API_BASE_URL: https://eqip-prototype-api-staging.fr.cloud.gov
-    ALLOW_2FA_RESET: 1
     BASIC_ENABLED: 1
     SAML_ENABLED: 1

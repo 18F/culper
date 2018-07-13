@@ -241,20 +241,6 @@ const (
 	// Default: `{API_BASE_URL}/auth/saml/callback`
 	SamlConsumerServiceURL = "SAML_CONSUMER_SERVICE_URL"
 
-	// Disable2FA Flag to disable multiple factor authentication (MFA) authentication.
-	//
-	// Target: Front-end (web), Back-end (api)
-	// Default: False: *empty*
-	// Values: True: `1`, False: *empty*
-	Disable2FA = "DISABLE_2FA"
-
-	// Allow2FAReset Flag to allow resetting multiple factor authentication (MFA) association to an account.
-	//
-	// Target: Front-end (web), Back-end (api)
-	// Default: False: *empty*
-	// Values: True: `1`, False: *empty*
-	Allow2FAReset = "ALLOW_2FA_RESET"
-
 	// WindowSize Window size used in multiple factor authentication (MFA) authentication. Valid range from 0 to 100 but values beyond 3 through 5 are considered bad security practices.
 	//
 	// Target: Back-end (api)

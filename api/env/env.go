@@ -23,8 +23,6 @@ func (env Native) Configure() {
 	env.ensure(api.FlushStorage, "0")
 	env.ensure(api.BasicEnabled, "0")
 	env.ensure(api.SamlEnabled, "0")
-	env.ensure(api.Disable2FA, "0")
-	env.ensure(api.Allow2FAReset, "0")
 	env.ensure(api.WindowSize, "3")
 	env.ensure(api.AttachmentsEnabled, "1")
 	env.ensure(api.FileMaximumSize, "5000000")
