@@ -1,11 +1,11 @@
 .section-link {
+  position: relative;
+
   &.usa-accordion-button {
     // override USWDS
     background: none;
     font-weight: normal;
   }
-
-  position: relative;
 
   &.locked {
     color: $eapp-grey-disabled;
@@ -13,6 +13,19 @@
 
     > .section-name {
       color: $eapp-grey-disabled;
+    }
+  }
+
+  .section-name {
+    display: inline-block;
+    max-width: 87.6%;
+  }
+
+  .has-errors {
+    color: $eapp-red;
+
+    .section-number {
+      color: inherit;
     }
   }
 }

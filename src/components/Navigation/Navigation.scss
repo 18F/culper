@@ -59,19 +59,6 @@
     }
   }
 
-  .section-name {
-    display: inline-block;
-    max-width: 87.6%;
-  }
-
-  .has-errors {
-    color: $eapp-red;
-
-    .section-number {
-      color: inherit;
-    }
-  }
-
   // override USWDS
   .usa-accordion > li {
     background: none;
@@ -113,12 +100,12 @@
     .has-errors .eapp-status-icon {
       background-color: $eapp-red;
     }
-  }
 
-  // sub-subnav
-  .usa-sidenav-sub_list .usa-sidenav-sub_list {
-    .section-link {
-      padding-left: $site-margins-mobile * 2;
+    // sub-subnav
+    .usa-sidenav-sub_list {
+      .section-link {
+        padding-left: $site-margins-mobile * 2;
+      }
     }
   }
 }
