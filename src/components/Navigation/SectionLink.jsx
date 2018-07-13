@@ -56,9 +56,11 @@ class SectionLink extends React.Component {
 
 SectionLink.propTypes = {
   baseUrl: PropTypes.string,
+  application: PropTypes.object.isRequired,
   completed: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
   section: PropTypes.shape({
+    locked: PropTypes.func,
     name: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired
   }).isRequired
