@@ -15,7 +15,6 @@ clean:
 	rm -f ./cmd/form/form
 	rm -f ./cmd/fuzzer/fuzzer
 	rm -f ./cmd/load/load
-	rm -f ./cmd/reset/reset
 	rm -f ./cmd/server/server
 	rm -f ./cmd/transmit/transmit
 	rm -f ./cmd/unlock/unlock
