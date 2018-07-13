@@ -10,7 +10,6 @@ import (
 	"path"
 	"testing"
 
-	"github.com/18F/e-QIP-prototype/api"
 	"github.com/18F/e-QIP-prototype/api/mock"
 )
 
