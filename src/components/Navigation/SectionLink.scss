@@ -1,6 +1,15 @@
 .section-link {
   position: relative;
 
+  // override USWDS to add to all section links, not just top-level
+  border-left: $sidenav-current-border-width solid transparent !important;
+  &.usa-current {
+    border-left-color: $color-primary !important;
+  }
+  &.has-errors {
+    border-left-color: $eapp-red !important;
+  }
+
   &.usa-accordion-button {
     // override USWDS
     background: none;

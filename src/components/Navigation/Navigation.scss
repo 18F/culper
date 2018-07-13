@@ -70,20 +70,12 @@
     padding: 0;
   }
 
-  // subnavs
+  // subnavs + sub-subnavs
   .usa-sidenav-sub_list {
     .section-link {
-      border-left: $sidenav-current-border-width solid transparent;
       // compute offset using built-in USWDS values
       margin-left: $num-width + $num-right-margin - $sidenav-current-border-width;
       padding-left: $site-margins-mobile;
-
-      &.has-errors {
-        border-left-color: $eapp-red;
-      }
-      &.usa-current {
-        border-left-color: $color-primary;
-      }
     }
 
     // error/valid indicators
