@@ -652,14 +652,10 @@ func PurgeAccountStorage(context DatabaseService, account int) {
 	}
 }
 
-func FormatShaSum(hash [sha256.Size]byte) string {
-	return hex.EncodeToString(hash[:])
-}
-
 // Hash returns the SHA256 hash of the application state in hexadecimal
 func Hash(context DatabaseService, account int) string {
 	hash := sha256.Sum256(Application(context, account, true))
-	return FormatShaSum(hash)
+	return hex.EncodeToString(hash[:])
 }
 
 // subsection is a helper function to transform a payload in to a type easily
