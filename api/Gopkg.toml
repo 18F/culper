@@ -42,10 +42,6 @@
   version = "3.0.0"
 
 [[constraint]]
-  branch = "master"
-  name = "github.com/dgryski/dgoogauth"
-
-[[constraint]]
   name = "github.com/go-pg/pg"
   version = "6.4.9"
 
@@ -64,10 +60,6 @@
 [[constraint]]
   name = "github.com/sirupsen/logrus"
   version = "1.0.4"
-
-[[constraint]]
-  branch = "master"
-  name = "github.com/skip2/go-qrcode"
 
 [[constraint]]
   branch = "master"

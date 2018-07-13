@@ -29,12 +29,6 @@
   version = "v3.0.0"
 
 [[projects]]
-  branch = "master"
-  name = "github.com/dgryski/dgoogauth"
-  packages = ["."]
-  revision = "fd153d5969d30bd701e10f3530228f001213047c"
-
-[[projects]]
   name = "github.com/go-pg/pg"
   packages = [
     ".",
@@ -120,16 +114,6 @@
 
 [[projects]]
   branch = "master"
-  name = "github.com/skip2/go-qrcode"
-  packages = [
-    ".",
-    "bitset",
-    "reedsolomon"
-  ]
-  revision = "cf5f9fa2f0d847edb8e038db7ed975e239095e1a"
-
-[[projects]]
-  branch = "master"
   name = "github.com/truetandem/plucked"
   packages = ["migration"]
   revision = "0f6081814ce7f59da72e48a6748bf9b5c444e813"
@@ -154,6 +138,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "f6ffdd27c69ca097b51d690a900d0bd258119ae4c766b062f4ed1ac7d286e8b3"
+  inputs-digest = "93f5e5afcea43cc6f15ef86fd3c873a71f2300ef50b3cc666388a82331a65386"
   solver-name = "gps-cdcl"
   solver-version = 1
