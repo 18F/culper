@@ -1,4 +1,3 @@
-import { TwoFactor } from './TwoFactor'
 import { ScoreCard } from './ScoreCard'
 import { Navigation, NavigationToggle } from './Navigation'
 import { SectionTitle } from './SectionTitle'
@@ -8,7 +7,6 @@ import { ProgressBar } from './ProgressBar'
 import { TimeoutWarning } from './Form'
 
 export {
-  TwoFactor,
   ScoreCard,
   Navigation,
   NavigationToggle,

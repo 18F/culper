@@ -36,8 +36,7 @@ describe('The Introduction component', () => {
     const mockStore = configureMockStore(middlewares)
     const store = mockStore({
       authentication: {
-        authenticated: true,
-        twofactor: true
+        authenticated: true
       },
       application: {
         Settings: {
@@ -54,8 +53,7 @@ describe('The Introduction component', () => {
     const mockStore = configureMockStore(middlewares)
     const store = mockStore({
       authentication: {
-        authenticated: true,
-        twofactor: true
+        authenticated: true
       },
       application: {
         Settings: {

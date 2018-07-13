@@ -30,7 +30,7 @@ describe('The Package form component', () => {
   it('visible when authenticated', () => {
     window.token = 'fake-token'
     const store = mockStore({
-      authentication: { authenticated: true, twofactor: true },
+      authentication: { authenticated: true },
       application: applicationState
     })
     const component = mount(<Provider store={store}><MemoryRouter><Package Application={applicationState} /></MemoryRouter></Provider>)

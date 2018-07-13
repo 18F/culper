@@ -11,7 +11,7 @@ describe('The  SectionView component', () => {
   const mockStore = configureMockStore(middlewares)
 
   it('renders contents based on current param', () => {
-    const store = mockStore({ authentication: { authenticated: true, twofactor: true } })
+    const store = mockStore({ authentication: { authenticated: true } })
     const component = mount(
       <Provider store={store}>
         <SectionViews current="foo">
@@ -28,7 +28,7 @@ describe('The  SectionView component', () => {
   })
 
   it('handles when current param does not match', () => {
-    const store = mockStore({ authentication: { authenticated: true, twofactor: true } })
+    const store = mockStore({ authentication: { authenticated: true } })
     const component = mount(
       <Provider store={store}>
         <SectionViews current="doesNotExist">
@@ -49,7 +49,7 @@ describe('The  SectionView component', () => {
     const update = (p) => {
       props = p
     }
-    const store = mockStore({ authentication: { authenticated: true, twofactor: true } })
+    const store = mockStore({ authentication: { authenticated: true } })
     const component = mount(
       <Provider store={store}>
         <SectionViews current="foo" dispatch={store.dispatch} update={update}>
@@ -69,7 +69,7 @@ describe('The  SectionView component', () => {
     const update = (p) => {
       props = p
     }
-    const store = mockStore({ authentication: { authenticated: true, twofactor: true } })
+    const store = mockStore({ authentication: { authenticated: true } })
     const component = mount(
       <Provider store={store}>
         <SectionViews current="foo" dispatch={store.dispatch} update={update}>
@@ -89,7 +89,7 @@ describe('The  SectionView component', () => {
     const update = (p) => {
       props = p
     }
-    const store = mockStore({ authentication: { authenticated: true, twofactor: true } })
+    const store = mockStore({ authentication: { authenticated: true } })
     const component = mount(
       <Provider store={store}>
         <SectionViews current="foo" dispatch={store.dispatch} update={update}>

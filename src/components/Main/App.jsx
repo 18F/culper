@@ -138,7 +138,7 @@ class App extends React.Component {
                     <div className={klassTitle}>
                       <div className="eapp-logout">
                         <button onClick={this.showInstructions} className="instructions mobile-hidden">{i18n.t('app.instructions')}</button>
-                        <Show when={this.props.authenticated || this.props.twofactor}>
+                        <Show when={this.props.authenticated}>
                           <Logout/>
                         </Show>
                       </div>
@@ -187,8 +187,7 @@ function mapStateToProps (state) {
 
   return {
     settings: settings,
-    authenticated: auth.authenticated,
-    twofactor: auth.twofactor
+    authenticated: auth.authenticated
   }
 }
 

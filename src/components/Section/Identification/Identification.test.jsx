@@ -29,20 +29,20 @@ describe('The identification section', () => {
   })
 
   it('visible when authenticated', () => {
-    const store = mockStore({ authentication: { authenticated: true, twofactor: true }, application: applicationState })
+    const store = mockStore({ authentication: { authenticated: true }, application: applicationState })
     const component = mount(<Provider store={store}><Identification /></Provider>)
     expect(component.find('div').length).toBeGreaterThan(0)
   })
 
   it('can review all subsections', () => {
-    const store = mockStore({ authentication: { authenticated: true, twofactor: true }, application: applicationState })
+    const store = mockStore({ authentication: { authenticated: true }, application: applicationState })
     const component = mount(<Provider store={store}><Identification subsection="review" /></Provider>)
     expect(component.find('div').length).toBeGreaterThan(0)
   })
 
   it('can go to each subsection', () => {
     const sections = ['name', 'birthdate', 'birthplace', 'ssn']
-    const store = mockStore({ authentication: { authenticated: true, twofactor: true } })
+    const store = mockStore({ authentication: { authenticated: true } })
 
     sections.forEach((section) => {
       const component = mount(<Provider store={store}><Identification subsection={section} /></Provider>)

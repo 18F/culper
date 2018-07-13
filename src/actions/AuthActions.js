@@ -12,13 +12,9 @@ export function login (username, password) {
     return api
       .login(username, password)
       .then(response => {
-        const mfa = env.MultipleFactorAuthentication()
         api.setToken(response.data)
         dispatch(handleLoginSuccess(response.data))
-
-        if (!mfa.enabled) {
-          env.History().push('/loading')
-        }
+        env.History().push('/loading')
       })
       .catch(error => {
         switch (error.response.status) {
@@ -54,48 +50,6 @@ export function tokenError () {
   }
 }
 
-export function qrcode () {
-  return function (dispatch) {
-    return api
-      .twoFactor()
-      .then(response => {
-        dispatch(handleTwoFactorQrCode(response.data))
-      })
-  }
-}
-
-export function twofactor (token) {
-  return function (dispatch, getState) {
-    return api
-      .twoFactor(token)
-      .then(response => {
-        api.setToken(response.data)
-        dispatch(handleTwoFactorSuccess())
-        env.History().push('/loading')
-      })
-      .catch(error => {
-        api.setToken('')
-        dispatch(handleTwoFactorError(error.response.data))
-      })
-  }
-}
-
-export function twofactorreset () {
-  return function (dispatch, getState) {
-    return api
-      .twoFactorReset()
-      .then(response => {
-        api.setToken(response.data)
-        dispatch(handleTwoFactorError('Two factor authentication reset'))
-        dispatch(qrcode())
-      })
-      .catch(error => {
-        api.setToken('')
-        dispatch(handleTwoFactorError(error.response.data))
-      })
-  }
-}
-
 export function handleLoginSuccess (token) {
   return {
     type: AuthConstants.LOGIN_SUCCESS,
@@ -106,26 +60,6 @@ export function handleLoginSuccess (token) {
 export function handleLoginError (error) {
   return {
     type: AuthConstants.LOGIN_ERROR,
-    error: error
-  }
-}
-
-export function handleTwoFactorQrCode (png) {
-  return {
-    type: AuthConstants.TWOFACTOR_QRCODE,
-    qrcode: png
-  }
-}
-
-export function handleTwoFactorSuccess () {
-  return {
-    type: AuthConstants.TWOFACTOR_SUCCESS
-  }
-}
-
-export function handleTwoFactorError (error) {
-  return {
-    type: AuthConstants.TWOFACTOR_ERROR,
     error: error
   }
 }

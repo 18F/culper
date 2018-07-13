@@ -25,20 +25,20 @@ describe('The legal section', () => {
   })
 
   it('visible when authenticated', () => {
-    const store = mockStore({ authentication: { authenticated: true, twofactor: true, application: applicationState } })
+    const store = mockStore({ authentication: { authenticated: true, application: applicationState } })
     const component = mount(<Provider store={store}><Legal /></Provider>)
     expect(component.find('div').length).toBeGreaterThan(0)
   })
 
   it('can review all subsections', () => {
-    const store = mockStore({ authentication: { authenticated: true, twofactor: true } })
+    const store = mockStore({ authentication: { authenticated: true } })
     const component = mount(<Provider store={store}><Legal subsection="review" /></Provider>)
     expect(component.find('div').length).toBeGreaterThan(0)
   })
 
   it('can go to each subsection', () => {
     const sections = ['police', 'review']
-    const store = mockStore({ authentication: { authenticated: true, twofactor: true } })
+    const store = mockStore({ authentication: { authenticated: true } })
 
     sections.forEach((section) => {
       const component = mount(<Provider store={store}><Legal subsection={section} /></Provider>)
@@ -65,7 +65,7 @@ describe('The legal section', () => {
       'associations/activities-to-overthrow',
       'associations/terrorism-association'
     ]
-    const store = mockStore({ authentication: { authenticated: true, twofactor: true } })
+    const store = mockStore({ authentication: { authenticated: true } })
 
     sections.forEach((section) => {
       const component = mount(<Provider store={store}><Legal subsection={section} /></Provider>)

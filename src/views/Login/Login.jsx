@@ -1,6 +1,5 @@
 import React from 'react'
 import { withRouter } from 'react-router'
-import { TwoFactor } from '../../components'
 import { connect } from 'react-redux'
 import { i18n, env } from '../../config'
 import { api, getQueryValue, getCookieValue, deleteCookie } from '../../services'
@@ -12,7 +11,6 @@ export class Login extends React.Component {
     super(props)
     this.state = {
       authenticated: this.props.authenticated,
-      twofactor: this.props.twofactor,
       username: this.props.username,
       password: this.props.password,
       showPassword: this.props.showPassword,
@@ -23,7 +21,6 @@ export class Login extends React.Component {
     this.onPasswordChange = this.onPasswordChange.bind(this)
     this.togglePassword = this.togglePassword.bind(this)
     this.login = this.login.bind(this)
-    this.mfa = env.MultipleFactorAuthentication()
   }
 
   componentWillMount () {
@@ -37,7 +34,7 @@ export class Login extends React.Component {
 
   redirect () {
     // If user is authenticated, redirect to home page
-    if (this.props.authenticated && this.props.twofactor) {
+    if (this.props.authenticated) {
       this.props.history.push('/loading')
       return
     }
@@ -220,22 +217,6 @@ export class Login extends React.Component {
     )
   }
 
-  twofactorForm () {
-    return (
-      <div className="table one">
-        <div id="info" className="auth two-factor">
-          <h2>{i18n.t('login.twofactor.title')}</h2>
-          {i18n.m('login.twofactor.para')}
-          <ul>
-            <li><a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en">Download Google authenticator for Android</a></li>
-            <li><a href="https://itunes.apple.com/us/app/google-authenticator/id388497605?mt=8">Download Google authenticator for iOS</a></li>
-          </ul>
-          <TwoFactor />
-        </div>
-      </div>
-    )
-  }
-
   render () {
     const modalOpen = document.body.classList.contains('modal-open')
     return (
@@ -248,7 +229,6 @@ export class Login extends React.Component {
           </div>
         </div>
         <div className="content" aria-hidden={modalOpen} aria-disabled={modalOpen}>
-          {this.props.authenticated && this.mfa.enabled && !this.props.twofactor && this.twofactorForm()}
           {!this.props.authenticated && this.loginForm()}
         </div>
       </div>
@@ -258,7 +238,6 @@ export class Login extends React.Component {
 
 Login.defaultProps = {
   authenticated: false,
-  twofactor: false,
   username: '',
   password: '',
   showPassword: false
@@ -274,7 +253,6 @@ function mapStateToProps (state) {
   const auth = state.authentication
   return {
     authenticated: auth.authenticated,
-    twofactor: auth.twofactor,
     token: auth.token,
     error: auth.error
   }

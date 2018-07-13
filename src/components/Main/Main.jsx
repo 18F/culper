@@ -6,7 +6,7 @@ import { Login, Loading, AccessDenied, Locked, TokenRefresh, Help } from '../../
 import { env } from '../../config'
 import store from '../../services/store'
 import { api } from '../../services/api'
-import { handleLoginSuccess, handleTwoFactorSuccess } from '../../actions/AuthActions'
+import { handleLoginSuccess } from '../../actions/AuthActions'
 
 class Main extends React.Component {
   constructor (props) {
@@ -19,11 +19,6 @@ class Main extends React.Component {
     const token = api.getToken()
     if (token && token.length) {
       store.dispatch(handleLoginSuccess())
-
-      const mfa = env.MultipleFactorAuthentication()
-      if (mfa.enabled) {
-        store.dispatch(handleTwoFactorSuccess())
-      }
     }
   }
 

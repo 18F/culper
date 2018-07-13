@@ -29,7 +29,7 @@ module.exports = {
   devtool: debug ? 'cheap-module-source-map' : 'source-map',
   plugins: [
     new webpack.EnvironmentPlugin([
-      'API_BASE_URL', 'ALLOW_2FA_RESET', 'COOKIE_DOMAIN', 'HASH_ROUTING', 'DISABLE_2FA',
+      'API_BASE_URL', 'COOKIE_DOMAIN', 'HASH_ROUTING',
       'BASIC_ENABLED', 'SAML_ENABLED', 'SESSION_TIMEOUT',
       'ATTACHMENTS_ENABLED', 'FILE_MAXIMUM_SIZE', 'FILE_TYPES'
     ])

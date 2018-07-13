@@ -24,14 +24,14 @@ describe('The substance use section', () => {
 
   it('visible when authenticated', () => {
     window.token = 'fake-token'
-    const store = mockStore({ authentication: { authenticated: true, twofactor: true, application: applicationState } })
+    const store = mockStore({ authentication: { authenticated: true, application: applicationState } })
     const component = mount(<Provider store={store}><MemoryRouter><SubstanceUse /></MemoryRouter></Provider>)
     expect(component.find('div').length).toBeGreaterThan(0)
   })
 
   it('can review all subsections', () => {
     window.token = 'fake-token'
-    const store = mockStore({ authentication: { authenticated: true, twofactor: true } })
+    const store = mockStore({ authentication: { authenticated: true } })
     const component = mount(<Provider store={store}><MemoryRouter><SubstanceUse subsection="review" /></MemoryRouter></Provider>)
     expect(component.find('div').length).toBeGreaterThan(0)
   })
@@ -49,7 +49,7 @@ describe('The substance use section', () => {
       'alcohol/voluntary',
       'alcohol/ordered'
     ]
-    const store = mockStore({ authentication: { authenticated: true, twofactor: true } })
+    const store = mockStore({ authentication: { authenticated: true } })
 
     sections.forEach((section) => {
       const component = mount(<Provider store={store}><MemoryRouter><SubstanceUse subsection={section} /></MemoryRouter></Provider>)
