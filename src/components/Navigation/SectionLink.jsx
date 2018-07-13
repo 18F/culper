@@ -9,6 +9,14 @@ class SectionLink extends React.Component {
     return `${this.props.baseUrl}/${this.props.section.url}`
   }
 
+  href () {
+    return this.isLocked() ? 'javascript:;;;' : this.url()
+  }
+
+  isLocked () {
+    return this.props.section.locked && this.props.section.locked(this.props.application)
+  }
+
   hasErrors () {
     return hasErrors(this.url(), this.props.errors)
   }
@@ -19,6 +27,11 @@ class SectionLink extends React.Component {
 
   getClassName () {
     let className = 'section-link'
+
+    if (this.isLocked()) {
+      className += ' locked'
+    }
+
     if (this.hasErrors()) {
       className += ' has-errors'
     } else if (this.isValid()) {
@@ -30,7 +43,7 @@ class SectionLink extends React.Component {
   render () {
     return (
       <li>
-        <NavLink to={this.url()} activeClassName="usa-current" className={this.getClassName()}>
+        <NavLink to={this.href()} activeClassName="usa-current" className={this.getClassName()}>
           <span className="section-name">
             {this.props.section.name}
           </span>
@@ -58,10 +71,11 @@ SectionLink.defaultProps = {
 }
 
 function mapStateToProps(state) {
-  const app = state.application || {}
-  const completed = app.Completed || {}
-  const errors = app.Errors || {}
+  const application = state.application || {}
+  const completed = application.Completed || {}
+  const errors = application.Errors || {}
   return {
+    application,
     completed,
     errors
   }
