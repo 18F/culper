@@ -2,6 +2,8 @@ FROM golang:1.10
 
 # install Dep
 RUN curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
+# install Golint
+RUN go get -u golang.org/x/lint/golint
 
 WORKDIR /go/src/github.com/18F/e-QIP-prototype/api
 ENV PATH="${PATH}:${GOPATH}/src/github.com/18F/e-QIP-prototype/api/bin"
