@@ -57,8 +57,6 @@ __snapshots__/
 .gitmessage
 .projectile
 /.cache-loader/
-/bin
-/api/bin
 /api/dist
 /api/checksum
 /api/api
@@ -84,6 +82,7 @@ TAGS
 *.cer
 *.crt
 *.key
+xmlsec1
 
 # Test artifacts
 /jest*
