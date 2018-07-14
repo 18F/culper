@@ -3,13 +3,13 @@ package pdf
 import (
 	"bytes"
 	"crypto/sha256"
+	"encoding/hex"
 	"encoding/json"
 	"io/ioutil"
 	"os"
 	"path"
 	"testing"
 
-	"github.com/18F/e-QIP-prototype/api"
 	"github.com/18F/e-QIP-prototype/api/mock"
 )
 
@@ -34,7 +34,7 @@ func TestPackage(t *testing.T) {
 			continue
 		}
 
-		created, err := service.CreatePdf(application, p, api.FormatShaSum(fauxHash))
+		created, err := service.CreatePdf(application, p, hex.EncodeToString(fauxHash[:]))
 		if err != nil {
 			t.Fatalf("Error creating PDF from %s: %s", p.Template, err.Error())
 		}

@@ -15,7 +15,7 @@ import (
 )
 
 var (
-	// The supported archival PDFs
+	// DocumentTypes lists the supported archival PDFs.
 	DocumentTypes = []api.ArchivalPdf{
 		{"Certification", "certification-SF86-November2016.template.pdf", "AdditionalComments", "CER"},
 		{"Fair Credit Reporting", "credit-SF86-November2016.template.pdf", "Credit", "FCR"},
@@ -31,6 +31,7 @@ type field struct {
 	getValue func(*gabs.Container) string
 }
 
+// Service implements operations to create and query archival PDFs
 type Service struct {
 	Env api.Settings
 	Log api.LogService
