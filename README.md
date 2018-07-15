@@ -152,8 +152,20 @@ Frontend tests are written in [Jest](https://facebook.github.io/jest/), while th
 Whenever the `dependencies` list in [`package.json`](package.json) is changed, make sure the [`yarn.lock`](yarn.lock) gets updated as well:
 
 ```shell
-docker-compose run js yarn
+docker-compose run --rm js yarn
 ```
+
+then restart the server.
+
+### Adding/updating Go packages
+
+Whenever the packages used by the API change, update the [Dep](https://golang.github.io/dep/) files:
+
+```shell
+docker-compose run --rm api dep ensure -no-vendor
+```
+
+then restart the server.
 
 ## Architectural diagram
 
