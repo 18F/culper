@@ -67,16 +67,8 @@ export const hasErrors = (route, errors = {}) => {
   )
 }
 
-/**
- * Determine if the route is considered complete and valid
- */
-export const isValid = (route, props = {}) => {
-  const crumbs = route.replace('/form/', '').split('/')
-  const routeParts = parseFormUrl(route)
-  const routeSection = routeParts.section.toLowerCase()
-  const routeSubSection = routeParts.subsection.toLowerCase()
-
-  // Find which node we should be checking against
+// Find the navigation object that corresponds to this route
+const findNode = (crumbs) => {
   let node = null
   for (const crumb of crumbs) {
     if (!node) {
@@ -85,6 +77,18 @@ export const isValid = (route, props = {}) => {
       node = node.subsections.find(x => x.url.toLowerCase() === crumb.toLowerCase())
     }
   }
+  return node
+}
+
+/**
+ * Determine if the route is considered complete and valid
+ */
+export const isValid = (route, props = {}) => {
+  const crumbs = route.replace('/form/', '').split('/')
+  const routeParts = parseFormUrl(route)
+  const routeSection = routeParts.section.toLowerCase()
+  const routeSubSection = routeParts.subsection.toLowerCase()
+  const node = findNode(crumbs)
 
   for (const section in props.completed) {
     if (section.toLowerCase() !== routeSection) {
@@ -96,7 +100,7 @@ export const isValid = (route, props = {}) => {
       completedSections = completedSections.filter(e => e.subsection.toLowerCase().indexOf(crumbs.slice(1, crumbs.length).join('/').toLowerCase()) === 0)
     }
 
-    return completedSections.filter(e => e.valid === true).length >= validations(node, props)
+    return completedSections.filter(e => e.valid).length >= validations(node, props)
   }
 
   return false
