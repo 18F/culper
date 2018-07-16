@@ -34,6 +34,19 @@ export const parseFormUrl = (url) => {
   }
 }
 
+const errorMatches = (err, routeParts) => {
+  const routeSection = routeParts.section.toLowerCase()
+  return (
+    err.section.toLowerCase() === routeSection &&
+    (
+      // either we're not within a subsection...
+      !routeParts.subsectionRaw ||
+      // ...or the subsection matches
+      err.subsection.toLowerCase().startsWith(routeParts.subsectionRaw)
+    )
+  )
+}
+
 /**
  * Determine if the route has any errors
  *
@@ -48,12 +61,9 @@ export const hasErrors = (route, errors = {}) => {
   const routeSection = routeParts.section.toLowerCase()
   const sectionErrors = errors[routeSection] || []
 
-  return sectionErrors.some(
-    e =>
-      e.section.toLowerCase() === routeSection &&
-      // either we're not within a subsection, or the subsection matches
-      (!routeParts.subsectionRaw || e.subsection.toLowerCase().startsWith(routeParts.subsectionRaw)) &&
-      e.valid === false
+  return sectionErrors.some(e =>
+    errorMatches(e, routeParts) &&
+    e.valid === false
   )
 }
 
