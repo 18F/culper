@@ -23,7 +23,7 @@ export const validations = (section, props = {}) => {
 }
 
 export const parseFormUrl = (url) => {
-  const crumbs = url.replace('/form/', '').split('/')
+  const crumbs = url.toLowerCase().replace('/form/', '').split('/')
   const subsectionRaw = crumbs.slice(1).join('/')
 
   return {
@@ -35,7 +35,7 @@ export const parseFormUrl = (url) => {
 }
 
 const errorMatches = (err, routeParts) => {
-  const routeSection = routeParts.section.toLowerCase()
+  const routeSection = routeParts.section
   return (
     err.section.toLowerCase() === routeSection &&
     (
@@ -58,8 +58,7 @@ export const hasErrors = (route, errors = {}) => {
   if (!routeParts.section) {
     return false
   }
-  const routeSection = routeParts.section.toLowerCase()
-  const sectionErrors = errors[routeSection] || []
+  const sectionErrors = errors[routeParts.section] || []
 
   return sectionErrors.some(e =>
     errorMatches(e, routeParts) &&
@@ -72,18 +71,18 @@ const findNode = (crumbs) => {
   let node = null
   for (const crumb of crumbs) {
     if (!node) {
-      node = navigation.find(x => x.url.toLowerCase() === crumb.toLowerCase())
+      node = navigation.find(x => x.url.toLowerCase() === crumb)
     } else if (node.subsections) {
-      node = node.subsections.find(x => x.url.toLowerCase() === crumb.toLowerCase())
+      node = node.subsections.find(x => x.url.toLowerCase() === crumb)
     }
   }
   return node
 }
 
 const getCompletedSections = (sections, routeParts) => {
-  const routeSection = routeParts.section.toLowerCase()
-  const routeSubSection = routeParts.subsection.toLowerCase()
-  const routeSubSectionRaw = routeParts.subsectionRaw.toLowerCase()
+  const routeSection = routeParts.section
+  const routeSubSection = routeParts.subsection
+  const routeSubSectionRaw = routeParts.subsectionRaw
 
   let completedSections = sections.filter(e => e.section.toLowerCase() === routeSection)
   if (routeSubSection) {
@@ -99,7 +98,7 @@ const getCompletedSections = (sections, routeParts) => {
 export const isValid = (route, props = {}) => {
   const routeParts = parseFormUrl(route)
   const crumbs = routeParts.crumbs
-  const routeSection = routeParts.section.toLowerCase()
+  const routeSection = routeParts.section
   const node = findNode(crumbs)
 
   for (const section in props.completed) {
