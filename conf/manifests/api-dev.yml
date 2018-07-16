@@ -14,6 +14,7 @@ applications:
   env:
     PATH: /bin:/usr/bin:$HOME/bin
     GOVERSION: go1.10
+    GOPACKAGENAME: github.com/18F/e-QIP-prototype
     GOLANG_ENV: development
     CORS_ALLOWED: https://eqip-prototype-dev.fr.cloud.gov
     API_REDIRECT: https://eqip-prototype-dev.fr.cloud.gov
