@@ -119,11 +119,10 @@ package-react:
 	@docker cp ./dist/. eapp_react_container:/var/www/html/
 	@docker commit eapp_react_container eapp_react
 package-go:
-	@docker run --rm \
-               -v ${PWD}:/go/src/github.com/18F/e-QIP-prototype \
+	@docker-compose run --rm \
                -w /go/src/github.com/18F/e-QIP-prototype/api/cmd/server \
                -e "CGO_ENABLED=0" \
-               golang:latest go build -ldflags '-w -extldflags "-static"'
+               api go build -ldflags '-w -extldflags "-static"'
 	-@mkdir -p ./api/dist/tmp
 	-@mkdir -p ./api/dist/bin
 	-@cp -R ./api/migrations ./api/dist/
