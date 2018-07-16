@@ -23,12 +23,12 @@ export const validations = (section, props = {}) => {
 }
 
 export const parseFormUrl = (url) => {
-  const parts = url.replace('/form/', '').split('/')
-  const section = parts.shift()
-  const subsectionRaw = parts.join('/')
+  const crumbs = url.replace('/form/', '').split('/')
+  const subsectionRaw = crumbs.slice(1).join('/')
 
   return {
-    section,
+    crumbs,
+    section: crumbs[0],
     subsectionRaw,
     subsection: subsectionRaw || 'intro'
   }
@@ -84,10 +84,11 @@ const findNode = (crumbs) => {
  * Determine if the route is considered complete and valid
  */
 export const isValid = (route, props = {}) => {
-  const crumbs = route.replace('/form/', '').split('/')
   const routeParts = parseFormUrl(route)
+  const crumbs = routeParts.crumbs
   const routeSection = routeParts.section.toLowerCase()
   const routeSubSection = routeParts.subsection.toLowerCase()
+  const routeSubSectionRaw = routeParts.subsectionRaw.toLowerCase()
   const node = findNode(crumbs)
 
   for (const section in props.completed) {
@@ -97,7 +98,7 @@ export const isValid = (route, props = {}) => {
 
     let completedSections = props.completed[section].filter(e => e.section.toLowerCase() === routeSection)
     if (routeSubSection) {
-      completedSections = completedSections.filter(e => e.subsection.toLowerCase().indexOf(crumbs.slice(1, crumbs.length).join('/').toLowerCase()) === 0)
+      completedSections = completedSections.filter(e => e.subsection.toLowerCase().indexOf(routeSubSectionRaw) === 0)
     }
 
     return completedSections.filter(e => e.valid).length >= validations(node, props)
