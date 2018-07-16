@@ -80,6 +80,19 @@ const findNode = (crumbs) => {
   return node
 }
 
+const getCompletedSections = (sections, routeParts) => {
+  const routeSection = routeParts.section.toLowerCase()
+  const routeSubSection = routeParts.subsection.toLowerCase()
+  const routeSubSectionRaw = routeParts.subsectionRaw.toLowerCase()
+
+  let completedSections = sections.filter(e => e.section.toLowerCase() === routeSection)
+  if (routeSubSection) {
+    completedSections = completedSections.filter(e => e.subsection.toLowerCase().indexOf(routeSubSectionRaw) === 0)
+  }
+
+  return completedSections.filter(e => e.valid)
+}
+
 /**
  * Determine if the route is considered complete and valid
  */
@@ -87,8 +100,6 @@ export const isValid = (route, props = {}) => {
   const routeParts = parseFormUrl(route)
   const crumbs = routeParts.crumbs
   const routeSection = routeParts.section.toLowerCase()
-  const routeSubSection = routeParts.subsection.toLowerCase()
-  const routeSubSectionRaw = routeParts.subsectionRaw.toLowerCase()
   const node = findNode(crumbs)
 
   for (const section in props.completed) {
@@ -96,12 +107,10 @@ export const isValid = (route, props = {}) => {
       continue
     }
 
-    let completedSections = props.completed[section].filter(e => e.section.toLowerCase() === routeSection)
-    if (routeSubSection) {
-      completedSections = completedSections.filter(e => e.subsection.toLowerCase().indexOf(routeSubSectionRaw) === 0)
-    }
+    const sections = props.completed[section]
+    const completedSections = getCompletedSections(sections, routeParts)
 
-    return completedSections.filter(e => e.valid).length >= validations(node, props)
+    return completedSections.length >= validations(node, props)
   }
 
   return false
