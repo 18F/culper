@@ -173,7 +173,7 @@ export const history = {
         title: 'Government employment',
         help: {
           title: 'Specifics:',
-          message: 'State Government = Non-Federal employment. Non-government employment excludes self-employment, if you were self employed choose "Self-employment". ',
+          message: 'Non-government employment represents all employment outside of the government excluding self-employment. If you were self employed, please choose self-employment. ',
           note: ''
         },
         other: {

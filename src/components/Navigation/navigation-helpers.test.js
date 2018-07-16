@@ -1,4 +1,4 @@
-import { validations, isActive, hasErrors, isValid, sectionsTotal, sectionsCompleted } from './navigation-helpers'
+import { validations, isActive, hasErrors, isValid, sectionsTotal, sectionsCompleted, findPosition } from './navigation-helpers'
 
 describe('Navigation component validation', function () {
   it('can count number of validations', () => {
@@ -30,24 +30,23 @@ describe('Navigation component validation', function () {
     expect(isActive('/form/identification', '/form/foreign/activities/direct')).toBe(false)
     expect(isActive('/form/foreign', '/form/foreign/activities/direct')).toBe(true)
     expect(isActive('/form/foreign/activities', '/form/foreign/activities/direct')).toBe(true)
+    expect(isActive('/form/foreign/activities', '/my/form/foreign/activities/direct')).toBe(false)
     expect(isActive('/form/foreign/activities/direct', '/form/foreign/activities/direct')).toBe(true)
   })
 
   it('can determine a section has errors', () => {
-    const props = {
-      errors: {
-        foreign: [
-          { section: 'foreign', subsection: 'activities/direct', valid: false, code: 'date.month.notfound' },
-          { section: 'foreign', subsection: 'activities/direct', valid: true, code: 'acquired.length' },
-          { section: 'foreign', subsection: 'activities/indirect', valid: false, code: 'date.month.notfound' }
-        ],
-        identification: []
-      }
+    const errors = {
+      foreign: [
+        { section: 'foreign', subsection: 'activities/direct', valid: false, code: 'date.month.notfound' },
+        { section: 'foreign', subsection: 'activities/direct', valid: true, code: 'acquired.length' },
+        { section: 'foreign', subsection: 'activities/indirect', valid: false, code: 'date.month.notfound' }
+      ],
+      identification: []
     }
 
-    expect(hasErrors('/form/foreign', props)).toBe(true)
-    expect(hasErrors('/form/foreign/activities/direct', props)).toBe(true)
-    expect(hasErrors('/form/identification', props)).toBe(false)
+    expect(hasErrors('/form/foreign', errors)).toBe(true)
+    expect(hasErrors('/form/foreign/activities/direct', errors)).toBe(true)
+    expect(hasErrors('/form/identification', errors)).toBe(false)
   })
 
   it('can determine if a section is valid', () => {
@@ -96,5 +95,18 @@ describe('Navigation component validation', function () {
     }
 
     expect(sectionsCompleted(store.completed, { application: store })).toBe(1)
+  })
+})
+
+describe('UI helpers', () => {
+  it('should find the position', function () {
+    const el = {
+      offsetTop: 10,
+      offsetParent: {
+        offsetTop: 2
+      }
+    }
+    const top = findPosition(el)
+    expect(top).toEqual([12])
   })
 })

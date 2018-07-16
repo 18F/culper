@@ -2,18 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { navigation } from '../../config'
 
-/**
- * Provides the section title.
- *
- * Want to update the section title?
- * Using `react-redux` and the `dispatch()` function use the following snippet:
- *
- * ```js
- * this.props.dispatch(updateSection('section', 'subsection', 'Chunky Monkey'))
- * ```
- *
- * `updateSection()` can be found in `SectionActions`
- */
 class SectionTitle extends React.Component {
   render () {
     if (this.props.hidden) {

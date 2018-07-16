@@ -331,7 +331,6 @@ export default class DateControl extends ValidationElement {
                     onUpdate={this.updateMonth}
                     onError={this.handleErrorMonth}
                     tabNext={() => { this.props.tab(this.refs.day.refs.number.refs.input) }}
-                    required={this.props.required}
                     />
           </div>
           <div className={`usa-form-group day ${this.props.hideDay === true ? 'hidden' : ''}`}>
@@ -345,7 +344,6 @@ export default class DateControl extends ValidationElement {
                     maxlength="2"
                     min="1"
                     readonly={this.props.readonly}
-                    required={this.props.required}
                     step="1"
                     receiveProps="true"
                     value={this.state.day}

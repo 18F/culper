@@ -13,9 +13,7 @@ const authentication = function (state = defaultState, action) {
     return {
       ...state,
       authenticated: true,
-      twofactor: false,
       token: action.token,
-      qrcode: action.qrcode,
       error: ''
     }
 
@@ -23,28 +21,6 @@ const authentication = function (state = defaultState, action) {
     return {
       ...state,
       authenticated: false,
-      twofactor: false,
-      token: null,
-      error: action.error
-    }
-
-  case AuthConstants.TWOFACTOR_QRCODE:
-    return {
-      ...state,
-      qrcode: action.qrcode
-    }
-
-  case AuthConstants.TWOFACTOR_SUCCESS:
-    return {
-      ...state,
-      authenticated: true,
-      twofactor: true
-    }
-
-  case AuthConstants.TWOFACTOR_ERROR:
-    return {
-      ...state,
-      twofactor: false,
       token: null,
       error: action.error
     }

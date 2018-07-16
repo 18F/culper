@@ -1,10 +1,9 @@
 import React from 'react'
-import { TwoFactor } from '../../components'
+import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
 import { i18n, env } from '../../config'
 import { api, getQueryValue, getCookieValue, deleteCookie } from '../../services'
 import { login, handleLoginSuccess } from '../../actions/AuthActions'
-import { push } from '../../middleware/history'
 import { Consent, Show } from '../../components/Form'
 
 export class Login extends React.Component {
@@ -12,7 +11,6 @@ export class Login extends React.Component {
     super(props)
     this.state = {
       authenticated: this.props.authenticated,
-      twofactor: this.props.twofactor,
       username: this.props.username,
       password: this.props.password,
       showPassword: this.props.showPassword,
@@ -23,7 +21,6 @@ export class Login extends React.Component {
     this.onPasswordChange = this.onPasswordChange.bind(this)
     this.togglePassword = this.togglePassword.bind(this)
     this.login = this.login.bind(this)
-    this.mfa = env.MultipleFactorAuthentication()
   }
 
   componentWillMount () {
@@ -37,8 +34,8 @@ export class Login extends React.Component {
 
   redirect () {
     // If user is authenticated, redirect to home page
-    if (this.props.authenticated && this.props.twofactor) {
-      this.props.dispatch(push('/loading'))
+    if (this.props.authenticated) {
+      this.props.history.push('/loading')
       return
     }
 
@@ -47,18 +44,18 @@ export class Login extends React.Component {
       deleteCookie('token')
       api.setToken(token)
       this.props.dispatch(handleLoginSuccess())
-      this.props.dispatch(push('/loading'))
+      this.props.history.push('/loading')
       return
     }
 
-    const err = getQueryValue('error')
+    const err = getQueryValue(window.location.search, 'error')
     if (err) {
       switch (err) {
       case 'token':
-        this.props.dispatch(push('/token'))
+        this.props.history.push('/token')
         return
       case 'access_denied':
-        this.props.dispatch(push('/accessdenied'))
+        this.props.history.push('/accessdenied')
         return
       }
     }
@@ -124,7 +121,7 @@ export class Login extends React.Component {
           <input type="hidden" name="SAMLRequest" value={this.state.saml.Base64XML} />
           <h2>{i18n.t('login.saml.title')}</h2>
           {i18n.m('login.saml.para')}
-          <button type="submit">
+          <button type="submit" className="usa-button-big">
             <span>{i18n.t('login.saml.button')}</span>
           </button>
         </form>
@@ -145,8 +142,6 @@ export class Login extends React.Component {
 
     return (
       <div id="basic" className="auth basic">
-        <h2>{i18n.t('login.basic.title')}</h2>
-        <p>{i18n.t('login.basic.para')}</p>
         <form onSubmit={this.login}>
           <div>
             <label htmlFor="user">
@@ -155,7 +150,6 @@ export class Login extends React.Component {
             <input id="user"
                    name="user"
                    type="text"
-                   placeholder={i18n.t('login.basic.username.placeholder')}
                    value={this.state.username}
                    onChange={this.onUsernameChange} />
           </div>
@@ -166,7 +160,6 @@ export class Login extends React.Component {
             <input id="password"
                    name="password"
                    type={this.state.showPassword ? 'text' : 'password'}
-                   placeholder={i18n.t('login.basic.password.placeholder')}
                    value={this.state.password}
                    onChange={this.onPasswordChange} />
             <div className="peek">
@@ -180,7 +173,7 @@ export class Login extends React.Component {
             {this.errorMessage()}
           </div>
           <div>
-            <button type="submit">{i18n.t('login.basic.button')}</button>
+            <button type="submit" className="usa-button-big">{i18n.t('login.basic.button')}</button>
             <a id="forgot-password"
                href="javascript:;;"
                title={i18n.t('login.basic.forgot.title')}>
@@ -224,22 +217,6 @@ export class Login extends React.Component {
     )
   }
 
-  twofactorForm () {
-    return (
-      <div className="table one">
-        <div id="info" className="auth two-factor">
-          <h2>{i18n.t('login.twofactor.title')}</h2>
-          {i18n.m('login.twofactor.para')}
-          <ul>
-            <li><a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en">Download Google authenticator for Android</a></li>
-            <li><a href="https://itunes.apple.com/us/app/google-authenticator/id388497605?mt=8">Download Google authenticator for iOS</a></li>
-          </ul>
-          <TwoFactor />
-        </div>
-      </div>
-    )
-  }
-
   render () {
     const modalOpen = document.body.classList.contains('modal-open')
     return (
@@ -252,7 +229,6 @@ export class Login extends React.Component {
           </div>
         </div>
         <div className="content" aria-hidden={modalOpen} aria-disabled={modalOpen}>
-          {this.props.authenticated && this.mfa.enabled && !this.props.twofactor && this.twofactorForm()}
           {!this.props.authenticated && this.loginForm()}
         </div>
       </div>
@@ -262,7 +238,6 @@ export class Login extends React.Component {
 
 Login.defaultProps = {
   authenticated: false,
-  twofactor: false,
   username: '',
   password: '',
   showPassword: false
@@ -278,7 +253,6 @@ function mapStateToProps (state) {
   const auth = state.authentication
   return {
     authenticated: auth.authenticated,
-    twofactor: auth.twofactor,
     token: auth.token,
     error: auth.error
   }
@@ -286,4 +260,4 @@ function mapStateToProps (state) {
 
 // Wraps the the App component with connect() which adds the dispatch()
 // function to the props property for this component
-export default connect(mapStateToProps)(Login)
+export default withRouter(connect(mapStateToProps)(Login))

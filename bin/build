@@ -1,5 +1,0 @@
-#!/bin/sh
-curl "https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js" -o ./lib/dap.min.js
-yarn install --silent --no-progress --non-interactive --production=false
-yarn build
-./bin/permissions

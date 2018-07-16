@@ -202,13 +202,18 @@ export default class Generic extends ValidationElement {
   }
 
   render () {
+    const labelText = this.props.label;
+    let label;
+    if (labelText) {
+      label = <label className={this.labelClass()}
+             htmlFor={this.state.uid}
+             ref="label">
+        {this.props.label}
+      </label>
+    }
     return (
       <div className={this.divClass()}>
-        <label className={this.labelClass()}
-               htmlFor={this.state.uid}
-               ref="label">
-          {this.props.label}
-        </label>
+        {label}
         <input className={this.inputClass()}
                id={this.state.uid}
                name={this.props.name}

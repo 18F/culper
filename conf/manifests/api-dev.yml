@@ -1,0 +1,22 @@
+---
+applications:
+- name: eqip-prototype-api-dev
+  memory: 64M
+  instances: 2
+  domain: fr.cloud.gov
+  host: eqip-prototype-api-dev
+  buildpack: https://github.com/cloudfoundry/go-buildpack
+  path: ../../api
+  command: ./api
+  services:
+    - eqip-postgres
+    - usps-api
+  env:
+    PATH: /bin:/usr/bin:$HOME/bin
+    GOVERSION: go1.10
+    GOPACKAGENAME: github.com/18F/e-QIP-prototype
+    GOLANG_ENV: development
+    CORS_ALLOWED: https://eqip-prototype-dev.fr.cloud.gov
+    API_REDIRECT: https://eqip-prototype-dev.fr.cloud.gov
+    API_BASE_URL: https://eqip-prototype-api-dev.fr.cloud.gov
+    BASIC_ENABLED: 1

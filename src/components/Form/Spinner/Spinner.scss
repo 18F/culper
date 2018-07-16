@@ -23,7 +23,7 @@ $border-size: 0.75rem;
     border-top: $border-size solid rgba(71, 163, 98, 0.2);
     border-right: $border-size solid rgba(71, 163, 98, 0.2);
     border-bottom: $border-size solid rgba(71, 163, 98, 0.2);
-    border-left: $border-size solid #47a362;
+    border-left: $border-size solid $eapp-green;
   }
 
   .spin {
@@ -54,7 +54,7 @@ $border-size: 0.75rem;
     display: block;
     width: 100%;
     text-align: center;
-    color: #47a362;
+    color: $eapp-green;
     font-size: 11rem;
   }
 

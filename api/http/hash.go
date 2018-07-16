@@ -1,7 +1,6 @@
 package http
 
 import (
-	"encoding/hex"
 	"fmt"
 	"net/http"
 
@@ -37,6 +36,5 @@ func (service HashHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.Header().Set("Content-Type", "application/json")
-	hash := api.Hash(service.Database, account.ID)
-	fmt.Fprint(w, hex.EncodeToString(hash[:]))
+	fmt.Fprint(w, api.Hash(service.Database, account.ID))
 }

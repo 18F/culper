@@ -1,0 +1,16 @@
+FROM golang:1.10
+
+# install Dep
+RUN curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
+# install Golint
+RUN go get -u golang.org/x/lint/golint
+
+WORKDIR /go/src/github.com/18F/e-QIP-prototype/api
+ENV PATH="${PATH}:${GOPATH}/src/github.com/18F/e-QIP-prototype/api/bin"
+RUN DEBIAN_FRONTEND=noninteractive apt-get -q -y update && apt-get -q -y install xmlsec1 strace;
+
+# install dependencies
+COPY api/Gopkg.toml api/Gopkg.lock ./
+RUN dep ensure -vendor-only
+
+CMD ./bin/run.sh

@@ -38,7 +38,6 @@ import { substance } from './substance'
 import { suggestions } from './suggestions'
 import { telephone } from './telephone'
 import { temp } from './temp'
-import { twofactor } from './twofactor'
 
 const en = {
   // Application
@@ -53,7 +52,6 @@ const en = {
   saved,
   scorecard,
   section,
-  twofactor,
 
   // Components
   address,

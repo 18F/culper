@@ -22,36 +22,39 @@ export const validations = (section, props = {}) => {
     }, 0)
 }
 
+export const parseFormUrl = (url) => {
+  const parts = url.replace('/form/', '').split('/')
+  const section = parts.shift()
+  const subsectionRaw = parts.join('/')
+
+  return {
+    section,
+    subsectionRaw,
+    subsection: subsectionRaw || 'intro'
+  }
+}
+
 /**
  * Determine if the route has any errors
  *
  * example:
  *  route => /form/identification/name
  */
-export const hasErrors = (route, props = {}) => {
-  const crumbs = route.replace('/form/', '').split('/')
-
-  for (const section in props.errors) {
-    if (section.toLowerCase() !== crumbs[0].toLowerCase()) {
-      continue
-    }
-
-    const se = props.errors[section]
-    if (crumbs.length === 1) {
-      return se.some(
-        e =>
-          e.section.toLowerCase() === crumbs[0].toLowerCase() &&
-          e.valid === false)
-    } else if (crumbs.length > 1) {
-      return se.some(
-        e =>
-          e.section.toLowerCase() === crumbs[0].toLowerCase() &&
-          e.subsection.toLowerCase().indexOf(crumbs.slice(1, crumbs.length).join('/').toLowerCase()) === 0 &&
-          e.valid === false)
-    }
+export const hasErrors = (route, errors = {}) => {
+  const routeParts = parseFormUrl(route)
+  if (!routeParts.section) {
+    return false
   }
+  const routeSection = routeParts.section.toLowerCase()
+  const sectionErrors = errors[routeSection] || []
 
-  return false
+  return sectionErrors.some(
+    e =>
+      e.section.toLowerCase() === routeSection &&
+      // either we're not within a subsection, or the subsection matches
+      (!routeParts.subsectionRaw || e.subsection.toLowerCase().startsWith(routeParts.subsectionRaw)) &&
+      e.valid === false
+  )
 }
 
 /**
@@ -59,6 +62,9 @@ export const hasErrors = (route, props = {}) => {
  */
 export const isValid = (route, props = {}) => {
   const crumbs = route.replace('/form/', '').split('/')
+  const routeParts = parseFormUrl(route)
+  const routeSection = routeParts.section.toLowerCase()
+  const routeSubSection = routeParts.subsection.toLowerCase()
 
   // Find which node we should be checking against
   let node = null
@@ -71,12 +77,12 @@ export const isValid = (route, props = {}) => {
   }
 
   for (const section in props.completed) {
-    if (section.toLowerCase() !== crumbs[0].toLowerCase()) {
+    if (section.toLowerCase() !== routeSection) {
       continue
     }
 
-    let completedSections = props.completed[section].filter(e => e.section.toLowerCase() === crumbs[0].toLowerCase())
-    if (crumbs.length > 1) {
+    let completedSections = props.completed[section].filter(e => e.section.toLowerCase() === routeSection)
+    if (routeSubSection) {
       completedSections = completedSections.filter(e => e.subsection.toLowerCase().indexOf(crumbs.slice(1, crumbs.length).join('/').toLowerCase()) === 0)
     }
 
@@ -86,12 +92,9 @@ export const isValid = (route, props = {}) => {
   return false
 }
 
-/**
- * There is a bug in the react router which does not add the active
- * class to items in the route hiearchy
- */
+// Return `true` when at this exact section or one under it, `false` otherwise.
 export const isActive = (route, pathname) => {
-  return pathname.indexOf(route) !== -1
+  return pathname.startsWith(route)
 }
 
 export const sectionsTotal = () => {
@@ -111,4 +114,17 @@ export const sectionsCompleted = (store, props) => {
   }
 
   return sections
+}
+
+export const findPosition = (el) => {
+  let currentTop = 0
+
+  if (el && el.offsetParent) {
+    do {
+      currentTop += el.offsetTop
+      el = el.offsetParent
+    } while (el)
+  }
+
+  return [currentTop]
 }

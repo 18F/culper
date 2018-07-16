@@ -17,12 +17,6 @@
   .eapp-structure-wrap .eapp-structure-row .eapp-structure-right {
     padding: 0;
 
-    .sticky {
-      .contents {
-        width: 100%;
-      }
-    }
-
     > .title,
     .eapp-form {
       width: 62%;
@@ -59,8 +53,7 @@
     }
   }
 
-  .eapp-status-icon-valid,
-  .eapp-status-icon-error {
+  .eapp-status-icon {
     margin-right: 1rem;
   }
 
@@ -72,24 +65,6 @@
       margin-right: 0;
       padding-left: 1rem;
       padding-right: 1rem;
-    }
-
-    .sidebar-top-fixed,
-    .sidebar-bottom-fixed {
-      .eapp-form {
-        width: 73%;
-        min-width: unset;
-        max-width: unset;
-      }
-    }
-
-    .sidebar-top-fixed {
-      bottom: unset;
-    }
-
-    .sidebar-bottom-fixed {
-      top: unset;
-      bottom: 0;
     }
   }
 }

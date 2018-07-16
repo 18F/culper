@@ -1,3 +1,5 @@
+# intended for local development
+
 version: '2'
 
 services:
@@ -25,43 +27,60 @@ services:
   #  - proxy /api requests to the backend API
   web:
     image: nginx:alpine
-    command: nginx
+    env_file:
+      - .env
+    command: /usr/src/nginx.sh
     volumes:
+      - ./bin/nginx.sh:/usr/src/nginx.sh
       - ./conf/ssl:/etc/ssl
-      - ./conf/nginx.conf:/etc/nginx/nginx.conf
+      - ./conf/nginx.template.conf:/tmp/nginx.template.conf
       - ./dist:/usr/share/nginx/html
     ports:
       - '8080:8080'
       - '8443:8443'
     networks:
       - eapp
-    depends_on:
-      - api
 
-  frontend:
-    image: node:8.5.0
+  js:
+    build:
+      context: .
+      dockerfile: conf/docker/Dockerfile.frontend
     env_file:
       - .env
-    working_dir: /usr/src/app
+    command: yarn watch-js
     volumes:
       - .:/usr/src/app
-      # - /usr/src/app/node_modules
-    command: ./bin/watch
+      # ensure node_modules aren't shared with host system
+      # https://michalzalecki.com/docker-compose-for-nodejs-and-postresql/#docker-compose
+      - /usr/src/app/node_modules
+    networks:
+      - eapp
+
+  css:
+    build:
+      context: .
+      dockerfile: conf/docker/Dockerfile.frontend
+    env_file:
+      - .env
+    command: yarn watch-css
+    volumes:
+      - .:/usr/src/app
+      # ditto above
+      - /usr/src/app/node_modules
     networks:
       - eapp
 
   api:
     build:
       context: .
-      dockerfile: Dockerfile.api
+      dockerfile: conf/docker/Dockerfile.api
     env_file:
       - .env
-    working_dir: /go/src/github.com/18F/e-QIP-prototype/api
-    command: ./bin/run.sh
     volumes:
       - .:/go/src/github.com/18F/e-QIP-prototype
-    expose:
-      - '3000'
+      - /go/src/github.com/18F/e-QIP-prototype/api/vendor
+    ports:
+      - 3000:3000
     environment:
       DATABASE_USER: postgres
       DATABASE_NAME: postgres
@@ -70,30 +89,6 @@ services:
       - eapp
     depends_on:
       - db
-
-  docs:
-    build:
-      context: .
-      dockerfile: Dockerfile.docs
-    volumes:
-      - .:/usr/src/app
-      - /usr/src/app/node_modules
-    working_dir: /usr/src/app
-    command: ./bin/docs.sh
-    networks:
-      - eapp
-    depends_on:
-      - db
-
-  deps:
-    image: buildpack-deps:stretch-scm
-    volumes:
-      - .:/usr/src/app
-    working_dir: /usr/src/app
-    environment:
-      DEBIAN_FRONTEND: noninteractive
-    networks:
-      - eapp
 
 networks:
   eapp:

@@ -30,8 +30,10 @@ coverage
 build/Release
 
 # Dependency directories
-# node_modules
+node_modules
 jspm_packages
+vendor
+package-lock.json
 
 # Optional npm cache directory
 .npm
@@ -54,15 +56,13 @@ __snapshots__/
 # Build artifacts
 .gitmessage
 .projectile
-/bin
-/api/bin
+/.cache-loader/
 /api/dist
 /api/checksum
 /api/api
 /api/eapp-seccomp.json
 /api/cmd/server/server
 /api/cmd/flush/flush
-/api/cmd/reset/reset
 /api/cmd/unlock/unlock
 /api/cmd/fuzzer/fuzzer
 /api/cmd/load/load
@@ -82,11 +82,13 @@ TAGS
 *.cer
 *.crt
 *.key
+xmlsec1
 
 # Test artifacts
 /jest*
 /specs/reports
 /specs/screenshots
+/specs/tmp-*/
 
 # Ignore Mac DS_Store files
 .DS_Store

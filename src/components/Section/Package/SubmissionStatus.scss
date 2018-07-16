@@ -55,7 +55,7 @@
       .progress {
         height: 2rem;
         width: 0;
-        background-color: #5b606b;
+        background-color: $eapp-grey-darker;
         border-radius: 4px;
       }
 
@@ -93,7 +93,7 @@
       }
 
       .icon svg {
-        fill: #5b606b;
+        fill: $eapp-grey-darker;
         position: absolute;
       }
     }
@@ -103,11 +103,11 @@
 .submission-status.valid {
   .progress-container {
     .progress-outline .progress-default .progress {
-      background-color: #47a362;
+      background-color: $eapp-green;
     }
 
     .icon-container .icon svg {
-      fill: #47a362;
+      fill: $eapp-green;
     }
   }
 }
@@ -115,11 +115,11 @@
 .submission-status.invalid {
   .progress-container {
     .progress-outline .progress-default .progress {
-      background-color: #e21c3c;
+      background-color: $eapp-red;
     }
 
     .icon-container .icon svg {
-      fill: #e21c3c;
+      fill: $eapp-red;
     }
   }
 }

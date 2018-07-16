@@ -2,7 +2,7 @@ import { api } from '../services/api'
 import MockAdapter from 'axios-mock-adapter'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
-import { login, logout, handleLoginSuccess, twofactor, qrcode, handleLoginError, twofactorreset } from './AuthActions'
+import { login, logout, handleLoginSuccess, handleLoginError } from './AuthActions'
 import AuthConstants from './AuthConstants'
 
 const middlewares = [ thunk ]
@@ -42,29 +42,11 @@ describe('Auth actions', function () {
 
     const store = mockStore({ authentication: [] })
     const expectedAction = [
-      { type: AuthConstants.LOGOUT },
-      { type: 'PUSH', to: '/login', scrollTo: 'scrollTo' }
+      { type: AuthConstants.LOGOUT }
     ]
     store.dispatch(logout()).then(() => {
       expect(store.getActions()).toEqual(expectedAction)
     })
-  })
-
-  it('should create an action to handle qrcode', function () {
-    const mock = new MockAdapter(api.proxy)
-    mock.onGet('/2fa/').reply(200, 'aernstiaenstieanstieansitenaiestnaientsi')
-    const store = mockStore({ authentication: [] })
-    const expectedAction = [
-      {
-        qrcode: 'aernstiaenstieanstieansitenaiestnaientsi',
-        type: AuthConstants.TWOFACTOR_QRCODE
-      }
-    ]
-    return store
-      .dispatch(qrcode())
-      .then(() => {
-        expect(store.getActions()).toEqual(expectedAction)
-      })
   })
 
   it('should create an action an unsuccessful login action', function () {
@@ -87,91 +69,6 @@ describe('Auth actions', function () {
       .dispatch(login('john', 'doe'))
       .then(() => {
         expect(store.getActions()).toEqual(expectedAction)
-      })
-  })
-
-  it('should create an action to handle twofactor auth', function () {
-    // Mock POST response
-    const mock = new MockAdapter(api.proxy)
-    mock.onPost('/2fa/verify').reply(200, '')
-
-    const expectedActions = [
-      {
-        type: AuthConstants.TWOFACTOR_SUCCESS
-      },
-      {
-        type: 'PUSH',
-        to: '/loading',
-        scrollTo: 'scrollTo'
-      }
-    ]
-
-    const store = mockStore({ authentication: [] })
-
-    return store
-      .dispatch(twofactor('123456'))
-      .then(function () {
-        expect(store.getActions()).toEqual(expectedActions)
-      })
-  })
-
-  it('should create an action to handle twofactor auth and error out', function () {
-    // Mock POST response
-    const mock = new MockAdapter(api.proxy)
-    mock.onPost('/2fa/verify').reply(500, '')
-
-    const expectedActions = [
-      {
-        type: AuthConstants.TWOFACTOR_ERROR,
-        error: ''
-      }
-    ]
-    const store = mockStore({ authentication: [] })
-
-    return store
-      .dispatch(twofactor('123456'))
-      .then(function () {
-        expect(store.getActions()).toEqual(expectedActions)
-      })
-  })
-
-  it('should create an action to handle twofactor reset', function () {
-    // Mock POST response
-    const mock = new MockAdapter(api.proxy)
-    mock.onGet('/2fa/reset').reply(200, '')
-
-    const expectedActions = [
-      {
-        type: AuthConstants.TWOFACTOR_ERROR,
-        error: 'Two factor authentication reset'
-      }
-    ]
-    const store = mockStore({ authentication: [] })
-
-    return store
-      .dispatch(twofactorreset())
-      .then(function () {
-        expect(store.getActions()).toEqual(expectedActions)
-      })
-  })
-
-  it('should create an action to handle twofactor reset with error', function () {
-    // Mock POST response
-    const mock = new MockAdapter(api.proxy)
-    mock.onGet('/2fa/reset').reply(500, '')
-
-    const expectedActions = [
-      {
-        type: AuthConstants.TWOFACTOR_ERROR,
-        error: ''
-      }
-    ]
-    const store = mockStore({ authentication: [] })
-
-    return store
-      .dispatch(twofactorreset())
-      .then(function () {
-        expect(store.getActions()).toEqual(expectedActions)
       })
   })
 })

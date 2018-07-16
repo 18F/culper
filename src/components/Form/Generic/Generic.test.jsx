@@ -32,6 +32,19 @@ describe('The generic component', () => {
     expect(component.find('input').hasClass('usa-input-focus')).toEqual(true)
   })
 
+  it ('excludes the label if the text is not specified', () => {
+    const expected = {
+      name: 'input-success',
+      type: 'text',
+      value: 'test',
+      error: false,
+      focus: false,
+      valid: true
+    }
+    const component = mount(<Generic {...expected} />)
+    expect(component.find('label').length).toEqual(0)
+  })
+
   it('renders appropriately with validity checks', () => {
     const expected = {
       name: 'input-success',

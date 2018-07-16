@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { i18n } from '../../../config'
-import { updateSection } from '../../../actions/SectionActions'
 import { SSN } from './helpers'
 import { Field } from '../../Form'
 import { sort } from '../History/History'
@@ -56,8 +55,8 @@ export default class Verify extends React.Component {
       return (item.Telephone && (item.Telephone.number || '').trim()) || item.noNumber
     })
     return filtered.length
-      ? filtered.map(n => {
-        return <div>{ TelephoneSummary(n.Item.Telephone, i18n.t('releases.verify.label.none')) }</div>
+      ? filtered.map((n, i) => {
+        return <div key={i}>{ TelephoneSummary(n.Item.Telephone, i18n.t('releases.verify.label.none')) }</div>
       })
       : i18n.t('releases.verify.label.none')
   }
@@ -74,10 +73,6 @@ export default class Verify extends React.Component {
     return residences.length === 0
       ? <span>{i18n.t('releases.verify.label.none')}</span>
       : residences[0]
-  }
-
-  clicked (section, subsection, event) {
-    this.props.dispatch(updateSection(section, subsection))
   }
 
   render () {
@@ -133,7 +128,7 @@ export default class Verify extends React.Component {
 
         <Field optional={true}
                className="release-fix-information">
-          <Link to="/form/identification" className="usa-button" onClick={this.clicked.bind(this, 'identification', 'intro')}>
+          <Link to="/form/identification/intro" className="usa-button">
             <span>{i18n.t('releases.verify.label.changeInformation')}</span>
             <i className="fa fa-arrow-circle-right" aria-hidden="true"></i>
           </Link>
@@ -147,7 +142,7 @@ export default class Verify extends React.Component {
 
         <Field optional={true}
                className="release-fix-current-address">
-          <Link to="/form/history/residence" className="usa-button" onClick={this.clicked.bind(this, 'history', 'residence')}>
+          <Link to="/form/history/residence" className="usa-button">
             <span>{i18n.t('releases.verify.label.changeAddress')}</span>
             <i className="fa fa-arrow-circle-right" aria-hidden="true"></i>
           </Link>

@@ -1,3 +1,5 @@
+@import 'eqip-colors';
+
 .pre-print-view {
   padding: 0 10%;
 
@@ -28,7 +30,16 @@
     vertical-align: top;
 
     svg {
-      fill: #47a362;
+      fill: $eapp-green;
     }
+  }
+
+  table > tbody > tr > td {
+    max-width: 64rem;
+    width: 100%;
+    border-top: 2px solid $eapp-grey;
+    border-bottom: 2px solid $eapp-grey;
+    border-left: none;
+    border-right: none;
   }
 }

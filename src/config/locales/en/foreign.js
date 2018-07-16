@@ -1567,9 +1567,9 @@ export const foreign = {
         note: ''
       },
       official: {
-        title: 'You will need to enter an item for each trip',
-        message: 'Respond for the time frame of the last seven (7) years, beginning with the most recent and working backwards.',
-        note: 'Do not list trips that ONLY involved travel on official U.S. Government business on official government orders, but you must include any personal trips made in conjunction with the official U.S. Government travel.'
+        title: 'Please enter each trip over the past seven (7) years.',
+        message: 'List the places you’ve travel to over the past seven (7) years, starting with your most recent trip and working backwards.',
+        note: 'Be sure to include any personal trips made in conjunction with the official federal government travel. Do not list trips that ONLY involved travel on official federal government business on official government orders.'
       },
       country: {
         title: 'Need help with the country?',

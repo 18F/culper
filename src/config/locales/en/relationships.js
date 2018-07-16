@@ -650,8 +650,8 @@ export const relationships = {
         note: ''
       },
       hasCohabitant: {
-        title: 'The reason you live with this person',
-        message: 'If you live with your cohabitant for reasons of convenience (e.g. a roommate) your answer would be "No". If you share any type of bonds of affection, obligation, or other commitment your answer would be "Yes".',
+        title: 'Cohabitation',
+        message: 'If you live with an individual for reasons of convenience (e.g. a roommate), please select no below. If you share any bonds of affection, obligation, or other commitment with an individual you cohabitate with, please select “yes” below.',
         note: ''
       },
       citizenship: {

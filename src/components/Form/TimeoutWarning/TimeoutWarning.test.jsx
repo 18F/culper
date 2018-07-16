@@ -14,7 +14,7 @@ describe('The timeout warning component', () => {
   const mockStore = configureMockStore(middlewares)
 
   it('not displayed if outside threshold', () => {
-    const store = mockStore({ application: { Settings: { lastRefresh: new Date() } }, authentication: { authenticated: true, twofactor: true } })
+    const store = mockStore({ application: { Settings: { lastRefresh: new Date() } }, authentication: { authenticated: true } })
     const component = mount(<Provider store={store}><MemoryRouter><TimeoutWarning timeout="15" /></MemoryRouter></Provider>)
     expect(component.find('.timeout-warning').length).toEqual(1)
     expect(component.find('.modal').length).toEqual(0)
@@ -23,7 +23,7 @@ describe('The timeout warning component', () => {
   it('displayed when inside threshold', () => {
     const now = new Date()
     let lastRefresh = new Date(now.setMinutes(now.getMinutes() - 14))
-    const store = mockStore({ application: { Settings: { lastRefresh: lastRefresh } }, authentication: { authenticated: true, twofactor: true } })
+    const store = mockStore({ application: { Settings: { lastRefresh: lastRefresh } }, authentication: { authenticated: true } })
     const component = mount(<Provider store={store}><MemoryRouter><TimeoutWarning timeout="15" showWarning={true} /></MemoryRouter></Provider>)
     expect(component.find('.timeout-warning').length).toEqual(1)
     expect(component.find('.modal').length).toEqual(1)

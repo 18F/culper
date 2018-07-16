@@ -1,6 +1,6 @@
 import React from 'react'
-import MockAdapter from 'axios-mock-adapter'
 import configureMockStore from 'redux-mock-store'
+import { MemoryRouter } from 'react-router'
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 import Foreign from './Foreign'
@@ -9,12 +9,6 @@ import { mount } from 'enzyme'
 
 const applicationState = {
   Foreign: {}
-}
-
-const applicationState2 = {
-  Foreign: {
-    Passport: {}
-  }
 }
 
 describe('The foreign section', () => {
@@ -26,26 +20,26 @@ describe('The foreign section', () => {
   it('hidden when not authenticated', () => {
     window.token = ''
     const store = mockStore({ authentication: [], application: applicationState })
-    const component = mount(<Provider store={store}><Foreign /></Provider>)
+    const component = mount(<Provider store={store}><MemoryRouter><Foreign /></MemoryRouter></Provider>)
     expect(component.find('div').length).toEqual(0)
     window.token = 'fake-token'
   })
 
   it('visible when authenticated', () => {
-    const store = mockStore({ authentication: { authenticated: true, twofactor: true, application: applicationState } })
-    const component = mount(<Provider store={store}><Foreign /></Provider>)
+    const store = mockStore({ authentication: { authenticated: true, application: applicationState } })
+    const component = mount(<Provider store={store}><MemoryRouter><Foreign /></MemoryRouter></Provider>)
     expect(component.find('div').length).toBeGreaterThan(0)
   })
 
   it('can review all subsections', () => {
-    const store = mockStore({ authentication: { authenticated: true, twofactor: true } })
-    const component = mount(<Provider store={store}><Foreign subsection="review" /></Provider>)
+    const store = mockStore({ authentication: { authenticated: true } })
+    const component = mount(<Provider store={store}><MemoryRouter><Foreign subsection="review" /></MemoryRouter></Provider>)
     expect(component.find('div').length).toBeGreaterThan(0)
   })
 
   it('can go to each subsection', () => {
     const store = mockStore({
-      authentication: { authenticated: true, twofactor: true },
+      authentication: { authenticated: true },
       application: applicationState
     })
 
@@ -125,7 +119,7 @@ describe('The foreign section', () => {
     ]
 
     tests.forEach((test) => {
-      const component = mount(<Provider store={store}><Foreign section="foreign" subsection={test.section} /></Provider>)
+      const component = mount(<Provider store={store}><MemoryRouter><Foreign section="foreign" subsection={test.section} /></MemoryRouter></Provider>)
       test.action(component)
       expect(component.find('div').length).toBeGreaterThan(0)
     })
@@ -133,7 +127,7 @@ describe('The foreign section', () => {
 
   it('can parse previous names', () => {
     const store = mockStore({
-      authentication: { authenticated: true, twofactor: true },
+      authentication: { authenticated: true },
       application: {
         Identification: {
           ApplicantName: {
@@ -158,7 +152,7 @@ describe('The foreign section', () => {
         }
       }
     })
-    const component = mount(<Provider store={store}><Foreign subsection="passport" /></Provider>)
+    const component = mount(<Provider store={store}><MemoryRouter><Foreign subsection="passport" /></MemoryRouter></Provider>)
     expect(component.find(Passport).props().suggestedNames.length).toBe(1)
   })
 })

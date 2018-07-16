@@ -9,16 +9,20 @@
     "url": "https://github.com/18F/e-QIP-prototype/issues"
   },
   "homepage": "https://github.com/18F/e-QIP-prototype",
-  "dependencies": {},
-  "devDependencies": {
+  "dependencies": {
+    "cucumber": "4.0.0",
+    "curl": "^0.1.4",
+    "dotenv": "^6.0.0",
+    "nightwatch": "0.9.20",
+    "nightwatch-cucumber": "^9.1.2",
     "notp": "^2.0.3",
-    "thirty-two": "^1.0.2",
-    "qrcode-reader": "^0.2.2",
     "png-js": "^0.1.1",
+    "python": "^0.0.4",
+    "thirty-two": "^1.0.2",
     "url": "^0.11.0"
   },
   "scripts": {
-    "test": "rm -rf ./screenshots && rm -rf ./tmp-* && npm install && nightwatch",
+    "test": "rm -rf ./screenshots && rm -rf ./tmp-* && nightwatch",
     "docker": "sleep 1m; npm test",
     "gif": "convert -delay 100 -loop 0"
   }

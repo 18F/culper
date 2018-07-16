@@ -1,4 +1,4 @@
-import { createHashHistory, createBrowserHistory } from 'history'
+import { createHashHistory, createBrowserHistory, createMemoryHistory } from 'history'
 
 const parseBool = (val) => {
   const str = `${val || ''}`
@@ -14,9 +14,15 @@ const parseBool = (val) => {
 
 class Env {
   History () {
-    const useHashRouting = parseBool(process.env.HASH_ROUTING)
     if (!this.history) {
-      this.history = useHashRouting ? createHashHistory() : createBrowserHistory()
+      const useHashRouting = parseBool(process.env.HASH_ROUTING)
+      if (useHashRouting) {
+        this.history = createHashHistory()
+      } else if (this.IsTest()) {
+        this.history = createMemoryHistory()
+      } else {
+        this.history = createBrowserHistory()
+      }
     }
     return this.history
   }
@@ -41,20 +47,6 @@ class Env {
 
   IsTest () {
     return process.env.NODE_ENV === 'test'
-  }
-
-  MultipleFactorAuthentication () {
-    if (this.IsTest()) {
-      return {
-        resettable: false,
-        enabled: true
-      }
-    }
-
-    return {
-      resettable: parseBool(process.env.ALLOW_2FA_RESET),
-      enabled: !parseBool(process.env.DISABLE_2FA)
-    }
   }
 
   BasicAuthenticationEnabled () {
@@ -87,9 +79,6 @@ class Env {
   EndpointLogout () { return '/me/logout' }
   EndpointRefresh () { return '/refresh' }
   EndpointSaml () { return `${this.ApiBaseURL()}/auth/saml` }
-  EndpointTwoFactor () { return '/2fa/' }
-  EndpointTwoFactorVerify () { return '/2fa/verify' }
-  EndpointTwoFactorReset () { return '/2fa/reset' }
   EndpointSave (payload) { return '/me/save' }
   EndpointSection (type) { return `/me/section?type=${type || ''}` }
   EndpointStatus () { return '/me/status' }

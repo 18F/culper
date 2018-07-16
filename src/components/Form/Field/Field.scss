@@ -213,7 +213,7 @@
         width: 100%;
         max-width: 64rem;
         margin: 1.3rem 0 1.3rem;
-        padding: 2rem 3rem 1.3rem 3rem;
+        padding: .5rem 3rem 1.3rem 3rem;
         background: $eapp-blue-lightest;
         border: 2px solid $eapp-blue-lighter;
         border-radius: 6px;
@@ -244,7 +244,7 @@
         > i {
           display: block;
           position: relative;
-          top: -2.9rem;
+          top: -1.3rem;
           left: -3.9rem;
           height: 1.6rem;
           width: 1.6rem;
@@ -254,7 +254,6 @@
           text-align: center;
           background: $eapp-blue-light;
           border-radius: 50%;
-          padding-right: 0.1rem;
         }
 
         em {

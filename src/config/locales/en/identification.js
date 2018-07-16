@@ -25,26 +25,26 @@ export const identification = {
     title: 'Provide your full name',
     last: {
       help: {
-        title: 'Don\'t abbreviate this name',
-        message: '"Initial only" is for single letter names only, not for the first letter of this full name.',
-        note: 'Note: If this last name is a single letter only type that letter and check the "Initial only" checkbox.'
+        title: 'Enter a valid last name.',
+        message: 'Please enter your entire last name. If your last name if a single letter, select the "Initial only" checkbox and type the letter below.',
+        note: ''
       }
     },
     first: {
       help: {
-        title: 'Don\'t abbreviate this name',
-        message: '"Initial only" is for single letter names only, not for the first letter of this full name.',
-        note: 'Note: If this first name is a single letter only type that letter and check the "Initial only" checkbox.'
+        title: 'Enter a valid first name.',
+        message: 'Please enter your entire first name. If your first name is a single letter, select the "Initial only" checkbox and type the letter below.',
+        note: ''
       }
     },
     middle: {
       help: {
-        title: 'Don\'t abbreviate this name',
+        title: 'Enter a valid middle name.',
         message: [
-          '"Initial only" is for single letter names only, not for the first letter of this full name.',
-          'If no middle name leave this field empty and check the "No middle name" checkbox.'
+          'Please enter your entire middle name.',
+          'If your middle name is a single letter, select the "initial only" checkbox and type the letter below. If you don\'t have a middle name, select the "No middle name" checkbox and leave the field below blank.'
         ],
-        note: 'Note: If this middle name is a single letter only type that letter and check the "Initial only" checkbox.'
+        note: ''
       }
     },
     suffix: {
@@ -268,8 +268,8 @@ export const identification = {
         note: ''
       },
       sex: {
-        title: 'Add a comment if needed',
-        message: 'If additional information is appropriate please use "Add a comment" below to detail it.',
+        title: 'Provide more information',
+        message: 'To add more information regarding your gender, select “Add a comment” below.',
         note: ''
       }
     },

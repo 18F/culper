@@ -76,7 +76,6 @@ export default class Text extends ValidationElement {
                clipboard={this.props.clipboard}
                tabBack={this.props.tabBack}
                tabNext={this.props.tabNext}
-               required={this.props.required}
                ref="text"
                />
     )

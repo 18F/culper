@@ -20,7 +20,7 @@ describe('The number component', () => {
     }
     const component = mount(<Number {...expected} />)
     component.find('input').simulate('blur')
-    expect(component.find('label').hasClass('usa-input-error-label')).toEqual(true)
+    expect(component.find('.usa-input-error').length).toEqual(1)
   })
 
   it('validates maximum value', () => {
@@ -31,7 +31,7 @@ describe('The number component', () => {
     }
     const component = mount(<Number {...expected} />)
     component.find('input').simulate('blur')
-    expect(component.find('label').hasClass('usa-input-error-label')).toEqual(true)
+    expect(component.find('.usa-input-error').length).toEqual(1)
   })
 
   it('skips local validation if already false', () => {
@@ -42,7 +42,7 @@ describe('The number component', () => {
     }
     const component = mount(<Number {...expected} />)
     component.find('input').simulate('blur')
-    expect(component.find('label').hasClass('usa-input-error-label')).toEqual(true)
+    expect(component.find('.usa-input-error').length).toEqual(1)
   })
 
   it('only allows numerical values', () => {

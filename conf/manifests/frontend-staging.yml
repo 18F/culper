@@ -1,0 +1,13 @@
+---
+applications:
+- name: eqip-prototype-staging
+  path: ../../dist
+  memory: 64M
+  domain: fr.cloud.gov
+  host: eqip-prototype-staging
+  buildpack: https://github.com/cloudfoundry/staticfile-buildpack.git
+  env:
+    FORCE_HTTPS: true
+    API_BASE_URL: https://eqip-prototype-api-staging.fr.cloud.gov
+    BASIC_ENABLED: 1
+    SAML_ENABLED: 1

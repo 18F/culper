@@ -1,8 +1,8 @@
 import axios from 'axios'
 import env from '../config/environment'
 
-export const getQueryValue = (key) => {
-  return getSplitValue(key, window.location.search.substring(1), '&', '=')
+export const getQueryValue = (queryString, key) => {
+  return getSplitValue(key, queryString.substring(1), '&', '=')
 }
 
 export const getCookieValue = (key) => {
@@ -29,7 +29,9 @@ const getSplitValue = (key, raw, delim1, delim2) => {
 }
 
 export const deleteCookie = (name) => {
-  document.cookie = `${name}=; domain=${window.location.hostname}; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;`
+  const domain = process.env.COOKIE_DOMAIN || window.location.hostname
+  // TODO complain if cookie not present
+  document.cookie = `${name}=; domain=${domain}; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;`
 }
 
 class Api {
@@ -54,7 +56,7 @@ class Api {
 
     // Look for token in query string
     if (token === null) {
-      token = getQueryValue('token')
+      token = getQueryValue(window.location.search, 'token')
     }
 
     if (token === null && env && env.IsTest()) {
@@ -100,18 +102,6 @@ class Api {
 
   saml () {
     return this.get(env.EndpointSaml(), false)
-  }
-
-  twoFactor (token) {
-    if (token) {
-      return this.post(env.EndpointTwoFactorVerify(), { token: token })
-    }
-
-    return this.get(env.EndpointTwoFactor())
-  }
-
-  twoFactorReset () {
-    return this.get(env.EndpointTwoFactorReset())
   }
 
   login (username, password) {

@@ -155,7 +155,7 @@ describe('The Name component', () => {
           last: 'abc',
           lastInitialOnly: false
         },
-        expected: false
+        expected: 1
       },
       {
         props: {
@@ -166,7 +166,7 @@ describe('The Name component', () => {
           last: 'abc',
           lastInitialOnly: false
         },
-        expected: false
+        expected: 1
       },
       {
         props: {
@@ -177,7 +177,7 @@ describe('The Name component', () => {
           last: 'a',
           lastInitialOnly: false
         },
-        expected: false
+        expected: 1
       },
       {
         props: {
@@ -188,7 +188,7 @@ describe('The Name component', () => {
           last: 'abc',
           lastInitialOnly: false
         },
-        expected: true
+        expected: 0
       },
       {
         props: {
@@ -199,7 +199,7 @@ describe('The Name component', () => {
           last: 'abc',
           lastInitialOnly: false
         },
-        expected: true
+        expected: 0
       },
       {
         props: {
@@ -210,13 +210,13 @@ describe('The Name component', () => {
           last: 'a',
           lastInitialOnly: true
         },
-        expected: true
+        expected: 0
       }
     ]
 
     tests.forEach(test => {
       const component = mount(<Name {...test.props} />)
-      expect(component.find('.usa-input-error-label').length === 0).toEqual(test.expected)
+      expect(component.find('.usa-input-error').length).toEqual(test.expected)
     })
   })
 
@@ -253,7 +253,7 @@ describe('The Name component', () => {
     expected.forEach((ex) => {
       const component = mount(<Name {...ex} />)
       component.find({ name: 'middle' }).simulate('change')
-      expect(component.find('.usa-input-error-label').length).toEqual(ex.errors)
+      expect(component.find('.usa-input-error').length).toEqual(ex.errors)
     })
   })
 })

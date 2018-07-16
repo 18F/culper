@@ -64,7 +64,7 @@ $breakpoints: (
     background-color: #fff;
     border-bottom: solid 1px #e5e5e5;
     font-weight: 600;
-    color: #5b606b;
+    color: $eapp-grey-darker;
 
     .svg {
       height: 2.5rem !important;
@@ -148,6 +148,10 @@ $breakpoints: (
       border: 2px solid $eapp-red-light;
       border-radius: 6px;
       max-width: 64rem;
+      line-height: 2.5rem;
+      p {
+        margin-bottom: 0;
+      }
     }
   }
 
@@ -406,7 +410,7 @@ button.usa-button-outline {
 
             span.toggle {
               width: 4rem;
-              border-bottom: 1px dashed #0071bc;
+              border-bottom: 1px dashed $eapp-blue;
             }
           }
 

@@ -4,27 +4,18 @@ export const login = {
     title: 'Sorry, but we couldn\'t log you in!',
     generic: 'The username or password was incorrect.'
   },
-  twofactor: {
-    title: 'Two-factor authentication',
-    para: 'Two-factor authentication (also known as 2FA) is a method of confirming a user\'s claimed identity by utilizing a combination of two different components.',
-    disabled: 'Multiple factor authentication is currently disabled.'
-  },
   saml: {
     title: 'Log in with CAC/PIV',
     para: 'This option is for users with a computer configured for CAC or PIV use.\nWhen prompted for a certificate, select the one with "EMAIL" in the name.',
     button: 'Log in with CAC/PIV'
   },
   basic: {
-    title: 'Log in with username',
-    para: 'Enter your username and password, then click the "Submit" button to continue. If you do not remember your password click "Forgot Password". If you do not remember your username contact your sponsoring agency.',
-    button: 'Submit',
+    button: 'Log In',
     username: {
-      label: 'Username',
-      placeholder: 'Enter your username'
+      label: 'Username'
     },
     password: {
-      label: 'Password',
-      placeholder: 'Enter your password'
+      label: 'Password'
     },
     show: {
       title: 'Show password',

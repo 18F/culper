@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
 import { i18n } from '../../../config'
-import { push } from '../../../middleware/history'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
 import SectionComments from '../SectionComments'
@@ -40,7 +40,7 @@ class Foreign extends SectionElement {
   componentWillReceiveProps (next) {
     // Redirect to direct control
     if (next.subsection === 'activities') {
-      this.props.dispatch(push(`/form/foreign/activities/direct`))
+      this.props.history.push('/form/foreign/activities/direct')
     }
   }
 
@@ -853,4 +853,4 @@ export class ForeignSections extends React.Component {
   }
 }
 
-export default connect(mapStateToProps)(AuthenticatedView(Foreign))
+export default withRouter(connect(mapStateToProps)(AuthenticatedView(Foreign)))

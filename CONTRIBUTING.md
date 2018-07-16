@@ -17,16 +17,16 @@ If you have any questions or want to read more, check out the
 
 ## Where to contribute?
 
-During the development process the development fork of the project will be hosted at [truetandem/e-QIP-prototype](https://github.com/truetandem/e-QIP-prototype).
+During the development process the development fork of the project will be hosted at [18F/e-QIP-prototype](https://github.com/18F/e-QIP-prototype).
 This may cause some confusion so we have outlined some basic steps for contributing:
 
- 1. Clone the repository `git clone https://github.com/truetandem/e-QIP-prototype $GOPATH/src/18F/e-QIP-prototype`
+ 1. Clone the repository `git clone https://github.com/18F/e-QIP-prototype $GOPATH/src/18F/e-QIP-prototype`
  2. Change in to the new directory `cd $GOPATH/src/18F/e-QIP-prototype`
  3. Fork the code on Github
  4. Add a **git remote** with `git remote add fork <path/to/forked/repository>`
  5. Make changes and commit them locally
  6. Push to **fork** using `git push fork`
- 7. Create a **pull request** from the forked repository to the [truetandem/e-QIP-prototype](https://github.com/truetandem/e-QIP-prototype) repository
+ 7. Create a **pull request** from the forked repository to the [18F/e-QIP-prototype](https://github.com/18F/e-QIP-prototype) repository
 
 ## Public domain
 

@@ -89,7 +89,7 @@ export const psychological = {
   consultation: {
     heading: {
       occurred: 'Provide the date this occurred',
-      courtName: 'Provide the name of the court or administrative agency that declared you mentally incompetent',
+      courtName: 'Provide the name of the court or administrative agency that ordered you to consult with a mental health professional',
       courtAddress: 'Provide the address of the court or administrative agency',
       disposition: 'Provide the final disposition',
       appealCourtName: 'Name of court or administrative agency',

@@ -5,7 +5,7 @@ import Branch from '../Branch'
 import Show from '../Show'
 import Svg from '../Svg'
 import StickyAccordionSummary from '../../Sticky/StickyAccordionSummary'
-import { findPosition } from '../../../middleware/history'
+import { findPosition } from '../../Navigation/navigation-helpers'
 
 export const openState = (item = {}, initial = false) => {
   return `${item.open ? 'open' : 'close'} ${initial ? 'static' : 'animate'}`.trim()
@@ -382,6 +382,15 @@ export default class Accordion extends ValidationElement {
       // Bind for each item so we get a handle to it when we set the sticky status
       const onScroll = this.onStickyScroll.bind(this, item)
 
+      const summary = this.props.customSummary(item, index, initial,
+        () => { return this.summary(item, index, initial) },
+        () => { return this.toggle.bind(this, item) },
+        () => { return this.openText(item) },
+        () => { return this.remove.bind(this, item) },
+        () => { return this.props.byline(item, index, initial) })
+
+      const details = this.props.customDetails(item, index, initial, () => { return this.details(item, index, initial) })
+
       return (
         <StickyAccordionSummary id={item.uuid}
           key={item.uuid}
@@ -389,15 +398,8 @@ export default class Accordion extends ValidationElement {
           stickyClass="sticky-accordion"
           onScroll={onScroll}
           preventStick={!item.open}>
-          {
-            this.props.customSummary(item, index, initial,
-              () => { return this.summary(item, index, initial) },
-              () => { return this.toggle.bind(this, item) },
-              () => { return this.openText(item) },
-              () => { return this.remove.bind(this, item) },
-              () => { return this.props.byline(item, index, initial) })
-          }
-          {this.props.customDetails(item, index, initial, () => { return this.details(item, index, initial) })}
+          {summary}
+          {details}
         </StickyAccordionSummary>
       )
     })

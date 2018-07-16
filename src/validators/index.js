@@ -1,5 +1,6 @@
-import { validate, walkValidationTree } from './validate'
+import validate, { walkValidationTree } from './validate'
 import DateControlValidator from './datecontrol'
+import DateRangeValidator from './daterange'
 import BankruptcyValidator, { BankruptcyItemValidator } from './bankruptcy'
 import BirthPlaceValidator from './birthplace'
 import IdentificationContactInformationValidator, { ContactEmailValidator, ContactPhoneNumberValidator } from './identificationcontacts'
@@ -48,7 +49,8 @@ import MaritalValidator from './marital'
 import CohabitantsValidator, { CohabitantValidator } from './cohabitant'
 import RelationshipsValidator from './relationships'
 import DivorceValidator from './divorce'
-import PeopleValidator, { PersonValidator } from './people'
+import PeopleValidator from './people'
+import PersonValidator from './person'
 import ForeignContactsValidator, { ForeignNationalValidator } from './foreigncontacts'
 import ForeignDirectActivityValidator from './foreigndirectactivity'
 import ForeignDirectInterestValidator from './foreigndirectinterest'
@@ -67,6 +69,7 @@ import LegalTechnologyUnlawfulValidator, { UnlawfulValidator } from './legaltech
 import LegalAssociationsTerroristValidator, { TerroristValidator } from './legalassociationsterrorist'
 import ForeignBenefitValidator from './foreignbenefit'
 import ForeignActivitiesSupportValidator, { SupportValidator } from './foreignsupport'
+import ForeignBornDocumentValidator from './foreignborndocument'
 import ForeignBusinessAdviceValidator, { AdviceValidator } from './foreignbusinessadvice'
 import ForeignBusinessFamilyValidator, { FamilyValidator } from './foreignbusinessfamily'
 import ForeignBusinessEmploymentValidator, { ForeignBusinessEmploymentItemValidator } from './foreignbusinessemployment'
@@ -96,7 +99,8 @@ import LegalAssociationsActivitiesValidator, { ActivitiesValidator } from './leg
 import LegalAssociationsTerrorismValidator from './legalassociationsterrorism'
 import LocationValidator from './location'
 import SignatureValidator from './signature'
-import { nameIsEmpty, validSSN } from './helpers'
+import SentenceValidator from './sentence'
+import { nameIsEmpty, validBranch, validGenericTextfield, validPhoneNumber, validSSN } from './helpers'
 import OrderValidator, { CompetenceOrderValidator, ConsultationOrderValidator } from './order'
 import { hideReleases, hideHippa, formIsSigned, formIsLocked } from './releases'
 
@@ -104,6 +108,7 @@ export default validate
 export {
   walkValidationTree,
   DateControlValidator,
+  DateRangeValidator,
   IdentificationNameValidator,
   IdentificationBirthDateValidator,
   IdentificationBirthPlaceValidator,
@@ -180,6 +185,7 @@ export {
   DivorceValidator,
   PeopleValidator,
   PersonValidator,
+  ForeignBornDocumentValidator,
   ForeignContactsValidator,
   ForeignNationalValidator,
   ForeignDirectActivityValidator,
@@ -263,7 +269,11 @@ export {
   LegalAssociationsTerrorismValidator,
   LocationValidator,
   SignatureValidator,
+  SentenceValidator,
   nameIsEmpty,
+  validBranch,
+  validGenericTextfield,
+  validPhoneNumber,
   validSSN,
   OrderValidator,
   CompetenceOrderValidator,

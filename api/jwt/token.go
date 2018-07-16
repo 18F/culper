@@ -178,10 +178,6 @@ func (service Service) TargetAudiences() []string {
 		audiences = append(audiences, api.BasicAuthAudience)
 	}
 
-	if !service.Env.True(api.Disable2FA) {
-		audiences = append(audiences, api.TwoFactorAudience)
-	}
-
 	if service.Env.True(api.SamlEnabled) {
 		audiences = append(audiences, api.SingleSignOnAudience)
 	}

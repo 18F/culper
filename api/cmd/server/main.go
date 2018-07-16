@@ -11,7 +11,7 @@ import (
 	"github.com/18F/e-QIP-prototype/api/http"
 	"github.com/18F/e-QIP-prototype/api/jwt"
 	"github.com/18F/e-QIP-prototype/api/log"
-	"github.com/18F/e-QIP-prototype/api/mfa"
+	"github.com/18F/e-QIP-prototype/api/pdf"
 	"github.com/18F/e-QIP-prototype/api/postgresql"
 	"github.com/18F/e-QIP-prototype/api/saml"
 	"github.com/18F/e-QIP-prototype/api/usps"
@@ -32,7 +32,7 @@ func main() {
 	database.Configure()
 	token := jwt.Service{Env: settings}
 	xmlsvc := xml.Service{Log: logger}
-	mfasvc := mfa.Service{Log: logger, Env: settings}
+	pdfsvc := pdf.Service{Log: logger, Env: settings}
 	samlsvc := &saml.Service{Log: logger, Env: settings}
 	api.Geocode = usps.Geocoder{Log: logger, Env: settings}
 
@@ -57,17 +57,6 @@ func main() {
 	r.HandleFunc("/", http.RootHandler{Env: settings}.ServeHTTP).Methods("GET")
 	r.HandleFunc("/refresh", http.RefreshHandler{Env: settings, Log: logger, Token: token, Database: database}.ServeHTTP).Methods("POST")
 
-	// Two-factor authentication
-	if !settings.True(api.Disable2FA) {
-		s := r.PathPrefix("/2fa").Subrouter()
-		s.HandleFunc("/", http.MFAGenerateHandler{Env: settings, Log: logger, Token: token, Database: database, MFA: mfasvc}.ServeHTTP).Methods("GET")
-		s.HandleFunc("/verify", http.MFAVerifyHandler{Env: settings, Log: logger, Token: token, Database: database, MFA: mfasvc}.ServeHTTP).Methods("POST")
-
-		if settings.True(api.Allow2FAReset) {
-			s.HandleFunc("/reset", http.MFAResetHandler{Env: settings, Log: logger, Token: token, Database: database, MFA: mfasvc}.ServeHTTP).Methods("GET")
-		}
-	}
-
 	// Authentication schemes
 	o := r.PathPrefix("/auth").Subrouter()
 	if settings.True(api.BasicEnabled) {
@@ -87,12 +76,12 @@ func main() {
 	a.Handle("/status", sec.Middleware(http.StatusHandler{Env: settings, Log: logger, Token: token, Database: database})).Methods("GET")
 	a.Handle("/form", sec.Middleware(http.FormHandler{Env: settings, Log: logger, Token: token, Database: database})).Methods("GET")
 	a.Handle("/form/hash", sec.Middleware(http.HashHandler{Env: settings, Log: logger, Token: token, Database: database})).Methods("GET")
-	a.Handle("/form/submit", sec.Middleware(http.SubmitHandler{Env: settings, Log: logger, Token: token, Database: database, XML: xmlsvc})).Methods("POST")
+	a.Handle("/form/submit", sec.Middleware(http.SubmitHandler{Env: settings, Log: logger, Token: token, Database: database, XML: xmlsvc, Pdf: pdfsvc})).Methods("POST")
 	a.Handle("/form/section", sec.Middleware(http.SectionHandler{Env: settings, Log: logger, Token: token, Database: database})).Methods("GET")
+	a.Handle("/attachment", sec.Middleware(http.AttachmentListHandler{Env: settings, Log: logger, Token: token, Database: database})).Methods("GET")
+	a.Handle("/attachment/{id}", sec.Middleware(http.AttachmentGetHandler{Env: settings, Log: logger, Token: token, Database: database})).Methods("GET")
 	if settings.True(api.AttachmentsEnabled) {
-		a.Handle("/attachment", sec.Middleware(http.AttachmentListHandler{Env: settings, Log: logger, Token: token, Database: database})).Methods("GET")
 		a.Handle("/attachment", sec.Middleware(http.AttachmentSaveHandler{Env: settings, Log: logger, Token: token, Database: database})).Methods("POST", "PUT")
-		a.Handle("/attachment/{id}", sec.Middleware(http.AttachmentGetHandler{Env: settings, Log: logger, Token: token, Database: database})).Methods("GET")
 		a.Handle("/attachment/{id}", sec.Middleware(http.AttachmentUpdateHandler{Env: settings, Log: logger, Token: token, Database: database})).Methods("POST", "PUT")
 		a.Handle("/attachment/{id}/delete", sec.Middleware(http.AttachmentDeleteHandler{Env: settings, Log: logger, Token: token, Database: database})).Methods("POST", "DELETE")
 	}
