@@ -4,11 +4,7 @@ import section from './section'
 import application from './application'
 import AuthConstants from '../actions/AuthConstants'
 
-const appReducer = combineReducers({
-  authentication: authentication,
-  section: section,
-  application: application
-})
+const appReducer = combineReducers({ application, authentication, section })
 
 const rootReducer = (state, action) => {
   // clear data on logout
