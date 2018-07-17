@@ -92,9 +92,9 @@ export function clearErrors (property, subsection) {
   const section = 'Errors'
   return {
     type: `${section}.${property}`,
-    section: section,
-    property: property,
-    subsection: subsection,
+    section,
+    property,
+    subsection,
     clear: true
   }
 }
