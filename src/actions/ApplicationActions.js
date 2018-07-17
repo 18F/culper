@@ -87,7 +87,7 @@ export function validateApplication (dispatch, application = {}) {
   })
 }
 
-// Special action which should only be called from the clearErrorsMiddleware. It provides a way to flush all errors for a section+subsection upon entry so it may be stored with the re-validated data.
+// Special action that provides a way to flush all errors for a section+subsection upon entry so it may be stored with the re-validated data.
 export function clearErrors (property, subsection) {
   const section = 'Errors'
   return {
