@@ -1,10 +1,9 @@
 import React from 'react'
-import { Provider } from 'react-redux'
+import { connect } from 'react-redux'
 import { Router, Switch, Route } from 'react-router'
 import AppWithForm from './AppWithForm'
 import { Login, Loading, AccessDenied, Locked, TokenRefresh, Help } from '../../views'
 import { env } from '../../config'
-import store from '../../services/store'
 import { api } from '../../services/api'
 import { handleLoginSuccess } from '../../actions/AuthActions'
 
@@ -18,28 +17,26 @@ class Main extends React.Component {
   onEnter () {
     const token = api.getToken()
     if (token && token.length) {
-      store.dispatch(handleLoginSuccess())
+      this.props.dispatch(handleLoginSuccess())
     }
   }
 
   render () {
     return (
-      <Provider store={store}>
-        <Router history={env.History()}>
-          <Switch>
-            <Route exact path="/" component={Login} onEnter={this.onEnter} />
-            <Route exact path="/loading" component={Loading} />
-            <Route exact path="/form/:section/:subsection*" component={AppWithForm} onEnter={this.onEnter} />
-            <Route exact path="/help" component={Help} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/accessdenied" component={AccessDenied} />
-            <Route exact path="/locked" component={Locked} />
-            <Route exact path="/token" component={TokenRefresh} />
-          </Switch>
-        </Router>
-      </Provider>
+      <Router history={env.History()}>
+        <Switch>
+          <Route exact path="/" component={Login} onEnter={this.onEnter} />
+          <Route exact path="/loading" component={Loading} />
+          <Route exact path="/form/:section/:subsection*" component={AppWithForm} onEnter={this.onEnter} />
+          <Route exact path="/help" component={Help} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/accessdenied" component={AccessDenied} />
+          <Route exact path="/locked" component={Locked} />
+          <Route exact path="/token" component={TokenRefresh} />
+        </Switch>
+      </Router>
     )
   }
 }
 
-export default Main
+export default connect()(Main)
