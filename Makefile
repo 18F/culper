@@ -86,6 +86,7 @@ specs:
 #
 # Coverage
 #
+.PHONY: coverage
 coverage:
 	$(info Running code coverage)
 	@docker-compose run --rm js yarn coverage
