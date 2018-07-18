@@ -1,4 +1,5 @@
 import { reducer } from './application'
+import { updateApplication } from '../actions/ApplicationActions'
 
 describe('Application reducers', () => {
   it('reducer should return default state', () => {
@@ -8,11 +9,7 @@ describe('Application reducers', () => {
   it('can update new property', () => {
     const sectionName = 'test'
     const defaultState = {}
-    const action = {
-      section: sectionName,
-      property: 'value',
-      values: 42
-    }
+    const action = updateApplication(sectionName, 'value', 42)
     expect(reducer(sectionName)(defaultState, action)[action.property]).toEqual(action.values)
   })
 
@@ -21,11 +18,7 @@ describe('Application reducers', () => {
     const defaultState = {
       value: 42
     }
-    const action = {
-      section: sectionName,
-      property: 'value',
-      values: 3.14159
-    }
+    const action = updateApplication(sectionName, 'value', 3.14159)
     expect(reducer(sectionName)(defaultState, action)[action.property]).toEqual(action.values)
   })
 })

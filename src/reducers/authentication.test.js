@@ -1,5 +1,5 @@
 import authentication from './authentication'
-import AuthConstants from '../actions/AuthConstants'
+import { handleLoginError, handleLoginSuccess } from '../actions/AuthActions'
 
 describe('Authentication Reducer', function () {
   const defaultState = {
@@ -18,10 +18,7 @@ describe('Authentication Reducer', function () {
       error: ''
     }
 
-    const action = {
-      type: AuthConstants.LOGIN_SUCCESS,
-      token: 'faketoken'
-    }
+    const action = handleLoginSuccess('faketoken')
     expect(authentication(defaultState, action)).toEqual(expectedState)
   })
 
@@ -32,9 +29,7 @@ describe('Authentication Reducer', function () {
       error: undefined
     }
 
-    const action = {
-      type: AuthConstants.LOGIN_ERROR
-    }
+    const action = handleLoginError()
     expect(authentication(defaultState, action)).toEqual(expectedState)
   })
 })
