@@ -30,7 +30,7 @@ class Form extends React.Component {
     this.defaultRedirect()
 
     // https://stackoverflow.com/a/44410281/358804
-    if (this.props.location !== prevProps.location) {
+    if (this.props.location.pathname !== prevProps.location.pathname) {
       this.onRouteChanged(prevProps.location);
     }
   }
