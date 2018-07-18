@@ -89,7 +89,9 @@ specs:
 .PHONY: coverage
 coverage:
 	$(info Running code coverage)
-	@docker-compose run --rm js yarn coverage
+	@docker-compose run --rm \
+        -e "CODECOV_TOKEN=${CODECOV_TOKEN}" \
+        js yarn coverage
 
 #
 # Building
