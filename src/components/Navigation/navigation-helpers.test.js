@@ -1,4 +1,4 @@
-import { validations, isActive, hasErrors, isValid, sectionsTotal, sectionsCompleted, findPosition } from './navigation-helpers'
+import { validations, isActive, hasErrors, isValid, sectionsTotal, sectionsCompleted, findPosition, didRouteChange } from './navigation-helpers'
 
 describe('Navigation component validation', function () {
   it('can count number of validations', () => {
@@ -108,5 +108,31 @@ describe('UI helpers', () => {
     }
     const top = findPosition(el)
     expect(top).toEqual([12])
+  })
+})
+
+describe("didRouteChange()", () => {
+  it("considers locations with the same pathname the same", function () {
+    const loc = {
+      pathname: '/foo',
+      otherprop: 'bar'
+    }
+    const prevLoc = {
+      pathname: '/foo',
+      otherprop: 'baz'
+    }
+    expect(didRouteChange(loc, prevLoc)).toEqual(false)
+  })
+
+  it("considers locations with different pathnames to be different", function () {
+    const loc = {
+      pathname: '/foo',
+      otherprop: 'bar'
+    }
+    const prevLoc = {
+      pathname: '/baz',
+      otherprop: 'bar'
+    }
+    expect(didRouteChange(loc, prevLoc)).toEqual(true)
   })
 })

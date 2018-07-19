@@ -6,7 +6,7 @@ import { clearErrors, updateApplication } from '../../actions/ApplicationActions
 import AuthenticatedView from '../AuthenticatedView'
 import { Section, SavedIndicator, TimeoutWarning } from '../../components'
 import { env } from '../../config'
-import { findPosition, parseFormUrl } from '../../components/Navigation/navigation-helpers'
+import { didRouteChange, findPosition, parseFormUrl } from '../../components/Navigation/navigation-helpers'
 import { tokenError } from '../../actions/AuthActions'
 import { updateSection } from '../../actions/SectionActions'
 
@@ -29,8 +29,7 @@ class Form extends React.Component {
   componentDidUpdate(prevProps) {
     this.defaultRedirect()
 
-    // https://stackoverflow.com/a/44410281/358804
-    if (this.props.location !== prevProps.location) {
+    if (didRouteChange(this.props.location, prevProps.location)) {
       this.onRouteChanged(prevProps.location);
     }
   }
