@@ -223,6 +223,7 @@ start:
 stop:
 	docker-compose stop
 run:
+	docker-compose rm -f api css js
 	$(info Running local development server)
 	docker-compose up --abort-on-container-exit --build
 identity:
