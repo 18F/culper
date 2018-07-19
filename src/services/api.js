@@ -1,5 +1,9 @@
 import axios from 'axios'
 import env from '../config/environment'
+import store from 'store'
+import expirePlugin from 'store/plugins/expire'
+
+store.addPlugin(expirePlugin)
 
 export const getQueryValue = (queryString, key) => {
   return getSplitValue(key, queryString.substring(1), '&', '=')
@@ -43,16 +47,7 @@ class Api {
   }
 
   getToken () {
-    // Look for token in session storage
-    let token = null
-    if (this.supportForSessionStorage()) {
-      token = window.sessionStorage.getItem('token')
-    }
-
-    // Look for token as cookie
-    if (token === null) {
-      token = getCookieValue('token')
-    }
+    let token = store.get('token')
 
     // Look for token in query string
     if (token === null) {
@@ -67,23 +62,11 @@ class Api {
   }
 
   setToken (token) {
-    if (this.supportForSessionStorage()) {
-      window.sessionStorage.setItem('token', token)
-    } else {
-      document.cookie = 'token=' + token
-    }
+    store.set('token', token)
   }
 
   bearerToken () {
     return { 'Authorization': `Bearer ${this.getToken()}` }
-  }
-
-  supportForSessionStorage () {
-    try {
-      return 'sessionStorage' in window && window['sessionStorage'] !== null
-    } catch (e) {
-      return false
-    }
   }
 
   information () {
