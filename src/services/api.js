@@ -43,10 +43,10 @@ class Api {
   }
 
   getToken () {
-    // Look for token in local storage
+    // Look for token in session storage
     let token = null
-    if (this.supportForLocalStorage()) {
-      token = window.localStorage.getItem('token')
+    if (this.supportForSessionStorage()) {
+      token = window.sessionStorage.getItem('token')
     }
 
     // Look for token as cookie
@@ -67,8 +67,8 @@ class Api {
   }
 
   setToken (token) {
-    if (this.supportForLocalStorage()) {
-      window.localStorage.setItem('token', token)
+    if (this.supportForSessionStorage()) {
+      window.sessionStorage.setItem('token', token)
     } else {
       document.cookie = 'token=' + token
     }
@@ -78,9 +78,9 @@ class Api {
     return { 'Authorization': `Bearer ${this.getToken()}` }
   }
 
-  supportForLocalStorage () {
+  supportForSessionStorage () {
     try {
-      return 'localStorage' in window && window['localStorage'] !== null
+      return 'sessionStorage' in window && window['sessionStorage'] !== null
     } catch (e) {
       return false
     }
