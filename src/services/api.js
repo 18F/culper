@@ -1,11 +1,14 @@
 import axios from 'axios'
 import env from '../config/environment'
-import store from 'store'
+import storeLib from 'store'
+import cookieStorage from 'store/storages/cookieStorage'
+import sessionStorage from 'store/storages/sessionStorage'
 import expirePlugin from 'store/plugins/expire'
 
 // 15 minutes
 const TOKEN_EXPIRATION_MS = 15 * 60 * 1000
 
+const store = storeLib.createStore([ sessionStorage, cookieStorage ])
 store.addPlugin(expirePlugin)
 
 export const getQueryValue = (queryString, key) => {
