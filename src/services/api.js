@@ -3,6 +3,9 @@ import env from '../config/environment'
 import store from 'store'
 import expirePlugin from 'store/plugins/expire'
 
+// 15 minutes
+const TOKEN_EXPIRATION_MS = 15 * 60 * 1000
+
 store.addPlugin(expirePlugin)
 
 export const getQueryValue = (queryString, key) => {
@@ -62,7 +65,8 @@ class Api {
   }
 
   setToken (token) {
-    store.set('token', token)
+    const expiration = new Date().getTime() + TOKEN_EXPIRATION_MS
+    store.set('token', token, expiration)
   }
 
   bearerToken () {
