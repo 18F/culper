@@ -1,5 +1,15 @@
 import axios from 'axios'
 import env from '../config/environment'
+import storeLib from 'store'
+import cookieStorage from 'store/storages/cookieStorage'
+import sessionStorage from 'store/storages/sessionStorage'
+import expirePlugin from 'store/plugins/expire'
+
+// 15 minutes
+const TOKEN_EXPIRATION_MS = 15 * 60 * 1000
+
+const store = storeLib.createStore([ sessionStorage, cookieStorage ])
+store.addPlugin(expirePlugin)
 
 export const getQueryValue = (queryString, key) => {
   return getSplitValue(key, queryString.substring(1), '&', '=')
@@ -43,16 +53,7 @@ class Api {
   }
 
   getToken () {
-    // Look for token in local storage
-    let token = null
-    if (this.supportForLocalStorage()) {
-      token = window.localStorage.getItem('token')
-    }
-
-    // Look for token as cookie
-    if (token === null) {
-      token = getCookieValue('token')
-    }
+    let token = store.get('token')
 
     // Look for token in query string
     if (token === null) {
@@ -67,23 +68,16 @@ class Api {
   }
 
   setToken (token) {
-    if (this.supportForLocalStorage()) {
-      window.localStorage.setItem('token', token)
-    } else {
-      document.cookie = 'token=' + token
-    }
+    const expiration = new Date().getTime() + TOKEN_EXPIRATION_MS
+    store.set('token', token, expiration)
+  }
+
+  clearBrowserState () {
+    store.clearAll()
   }
 
   bearerToken () {
     return { 'Authorization': `Bearer ${this.getToken()}` }
-  }
-
-  supportForLocalStorage () {
-    try {
-      return 'localStorage' in window && window['localStorage'] !== null
-    } catch (e) {
-      return false
-    }
   }
 
   information () {

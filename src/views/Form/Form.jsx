@@ -63,7 +63,7 @@ class Form extends React.Component {
     saveSection(this.props.application, section, subsection, this.props.dispatch)
   }
 
-  fetchSectionAnswers() {
+  refreshToken() {
     if (env.IsTest()) {
       return
     }
@@ -101,7 +101,7 @@ class Form extends React.Component {
 
     this.clearErrors()
     this.updateSettings()
-    this.fetchSectionAnswers()
+    this.refreshToken()
 
     const prevLoc = parseFormUrl(prevLocation.pathname)
     this.save(prevLoc.section, prevLoc.subsection)
