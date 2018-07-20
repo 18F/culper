@@ -72,6 +72,10 @@ class Api {
     store.set('token', token, expiration)
   }
 
+  clearBrowserState () {
+    store.clearAll()
+  }
+
   bearerToken () {
     return { 'Authorization': `Bearer ${this.getToken()}` }
   }

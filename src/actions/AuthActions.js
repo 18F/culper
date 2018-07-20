@@ -31,7 +31,7 @@ export function login (username, password) {
 export function logout () {
   return function (dispatch, getState) {
     const clear = () => {
-      api.setToken('')
+      api.clearBrowserState()
       dispatch({ type: AuthConstants.LOGOUT })
       env.History().push('/login')
     }
