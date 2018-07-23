@@ -40,6 +40,7 @@ export class Login extends React.Component {
       return
     }
 
+    // transfer the token from the cookie to the window - SAML only
     const token = Cookies.get('token')
     if (token) {
       deleteCookie('token')

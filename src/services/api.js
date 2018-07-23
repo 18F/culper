@@ -27,8 +27,10 @@ const getSplitValue = (key, raw, delim1, delim2) => {
 
 export const deleteCookie = (name) => {
   const domain = process.env.COOKIE_DOMAIN || window.location.hostname
-  // TODO complain if cookie not present
   Cookies.remove(name, { domain })
+  if (Cookies.get(name)) {
+    console.warn(`${name} cookie couldn't be removed - check that domain matches, etc.`)
+  }
 }
 
 class Api {
