@@ -52,25 +52,26 @@ class Identification extends SectionElement {
 
   // Returns an array of SectionViews with their corresponding child component, based on the navigation
   createSectionViews () {
-    const sectionNav = navigation.find(n => n.url === 'identification')
+    const section = 'identification'
+    const sectionNav = navigation.find(n => n.url === section)
     const subsections = sectionNav.subsections
 
-    const views = subsections.map((ss, i) => {
-      if (ss.exclude) {
+    const views = subsections.map((subsection, i) => {
+      if (subsection.exclude) {
         return null
       }
 
       const prev = subsections[i-1]
       const next = subsections[i+1]
-      const ssComponent = this.createSubsection(ss)
+      const ssComponent = this.createSubsection(subsection)
 
       return (
-        <SectionView key={`identification/${ss.url}`}
-          name={ss.url}
-          back={`identification/${prev.url}`}
-          backLabel={i18n.t(`identification.destination.${prev.url}`)}
-          next={`identification/${next.url}`}
-          nextLabel={i18n.t(`identification.destination.${next.url}`)}>
+        <SectionView key={`${section}/${subsection.url}`}
+          name={subsection.url}
+          back={`${section}/${prev.url}`}
+          backLabel={i18n.t(`${section}.destination.${prev.url}`)}
+          next={`${section}/${next.url}`}
+          nextLabel={i18n.t(`${section}.destination.${next.url}`)}>
           {ssComponent}
         </SectionView>
       )
