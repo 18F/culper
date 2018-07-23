@@ -54,12 +54,14 @@ class Identification extends SectionElement {
   createSectionViews () {
     const sectionNav = navigation.find(n => n.url === 'identification')
     const subsections = sectionNav.subsections
-    // exclude the intro and review sections
-    const renderedSubsections = subsections.slice(1, subsections.length - 2)
 
-    return renderedSubsections.map((ss, i) => {
-      const prev = subsections[i]
-      const next = subsections[i+2]
+    const views = subsections.map((ss, i) => {
+      if (ss.exclude) {
+        return null
+      }
+
+      const prev = subsections[i-1]
+      const next = subsections[i+1]
       const ssComponent = this.createSubsection(ss)
 
       return (
@@ -73,6 +75,9 @@ class Identification extends SectionElement {
         </SectionView>
       )
     })
+
+    // exclude nulls
+    return views.filter(v => !!v)
   }
 
   render () {
