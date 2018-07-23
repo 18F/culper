@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { i18n, env } from '../../config'
 import { api, getQueryValue, getCookieValue, deleteCookie } from '../../services'
 import { login, handleLoginSuccess } from '../../actions/AuthActions'
-import { Consent, Show } from '../../components/Form'
+import { Consent } from '../../components/Form'
 
 export class Login extends React.Component {
   constructor (props) {

@@ -43,23 +43,7 @@ class Api {
   }
 
   getToken () {
-    let token = null
-
-    // Look for token as cookie
-    if (!token) {
-      token = getCookieValue('token')
-    }
-
-    // Look for token in query string
-    if (!token) {
-      token = getQueryValue(window.location.search, 'token')
-    }
-
-    if (!token) {
-      token = window.token
-    }
-
-    return token
+    return getCookieValue('token') || window.token
   }
 
   setToken (token) {
