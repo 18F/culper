@@ -1,12 +1,9 @@
 import axios from 'axios'
+import Cookies from 'js-cookie'
 import env from '../config/environment'
 
 export const getQueryValue = (queryString, key) => {
   return getSplitValue(key, queryString.substring(1), '&', '=')
-}
-
-export const getCookieValue = (key) => {
-  return getSplitValue(key, document.cookie, ';', '=')
 }
 
 const getSplitValue = (key, raw, delim1, delim2) => {
@@ -31,7 +28,7 @@ const getSplitValue = (key, raw, delim1, delim2) => {
 export const deleteCookie = (name) => {
   const domain = process.env.COOKIE_DOMAIN || window.location.hostname
   // TODO complain if cookie not present
-  document.cookie = `${name}=; domain=${domain}; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;`
+  Cookies.remove(name, { domain })
 }
 
 class Api {
@@ -43,7 +40,7 @@ class Api {
   }
 
   getToken () {
-    return getCookieValue('token') || window.token
+    return window.token
   }
 
   setToken (token) {

@@ -1,8 +1,9 @@
 import React from 'react'
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
+import Cookies from 'js-cookie'
 import { i18n, env } from '../../config'
-import { api, getQueryValue, getCookieValue, deleteCookie } from '../../services'
+import { api, getQueryValue, deleteCookie } from '../../services'
 import { login, handleLoginSuccess } from '../../actions/AuthActions'
 import { Consent } from '../../components/Form'
 
@@ -39,7 +40,7 @@ export class Login extends React.Component {
       return
     }
 
-    const token = getCookieValue('token')
+    const token = Cookies.get('token')
     if (token) {
       deleteCookie('token')
       api.setToken(token)
