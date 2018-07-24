@@ -15,8 +15,6 @@ import OtherNames from './OtherNames'
 import Physical from './Physical'
 import ContactInformation from './ContactInformation'
 
-const section = 'identification'
-
 const storeToComponentMap = {
   ApplicantBirthDate,
   ApplicantBirthPlace,
@@ -40,7 +38,7 @@ class Identification extends SectionElement {
   }
 
   createReviewGroups () {
-    const subsections = getSectionConfig(section).subsections
+    const subsections = getSectionConfig(this.props.section).subsections
 
     let components = subsections.map((subsection) => {
       if (subsection.exclude) {
@@ -48,7 +46,7 @@ class Identification extends SectionElement {
       }
 
       const extraProps = {
-        section,
+        section: this.props.section,
         subsection: subsection.url,
         required: true,
         scrollIntoView: false
@@ -70,7 +68,7 @@ class Identification extends SectionElement {
 
   // Returns an array of SectionViews with their corresponding child component, based on the navigation
   createSectionViews () {
-    const subsections = getSectionConfig(section).subsections
+    const subsections = getSectionConfig(this.props.section).subsections
 
     const views = subsections.map((subsection, i) => {
       if (subsection.exclude) {
@@ -82,12 +80,12 @@ class Identification extends SectionElement {
       const ssComponent = this.createSubsection(subsection)
 
       return (
-        <SectionView key={`${section}/${subsection.url}`}
+        <SectionView key={`${this.props.section}/${subsection.url}`}
           name={subsection.url}
-          back={`${section}/${prev.url}`}
-          backLabel={i18n.t(`${section}.destination.${prev.url}`)}
-          next={`${section}/${next.url}`}
-          nextLabel={i18n.t(`${section}.destination.${next.url}`)}>
+          back={`${this.props.section}/${prev.url}`}
+          backLabel={i18n.t(`${this.props.section}.destination.${prev.url}`)}
+          next={`${this.props.section}/${next.url}`}
+          nextLabel={i18n.t(`${this.props.section}.destination.${next.url}`)}>
           {ssComponent}
         </SectionView>
       )
