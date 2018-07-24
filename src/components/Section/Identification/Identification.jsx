@@ -42,18 +42,52 @@ class Identification extends SectionElement {
   }
 
   // Returns the component corresponding to the provided subsection object
-  createSubsection (subsection) {
+  createSubsection (subsection, extraProps = {}) {
     const SubsectionComponent = this.getSubsectionComponent(subsection.store)
 
     const props = {
       ...this.props[subsection.store],
+      key: subsection.url,
       name: subsection.url,
       dispatch: this.props.dispatch,
       onUpdate: this.handleUpdate.bind(this, subsection.store),
-      onError: this.handleError
+      onError: this.handleError,
+      ...extraProps
     }
 
     return React.createElement(SubsectionComponent, props)
+  }
+
+  createReviewGroups () {
+    const subsections = this.getSectionConfig().subsections
+
+    const components = subsections.map((subsection, i) => {
+      if (subsection.exclude) {
+        return null
+      }
+
+      return this.createSubsection(subsection, {
+        section,
+        subsection: subsection.url,
+        required: true,
+        scrollIntoView: false
+      })
+    })
+
+    // insert section dividers after each
+    const componentsWithDividers = []
+    components.forEach((component) => {
+      // exclude nulls
+      if (!component) {
+        return
+      }
+      componentsWithDividers.push(component)
+
+      const divider = <hr key={`${component.key}-divider`} className="section-divider" />
+      componentsWithDividers.push(divider)
+    })
+
+    return componentsWithDividers
   }
 
   // Returns an array of SectionViews with their corresponding child component, based on the navigation
@@ -86,7 +120,9 @@ class Identification extends SectionElement {
   }
 
   render () {
+    const reviewComponents = this.createReviewGroups()
     const sectionViews = this.createSectionViews()
+
     return (
       <div>
         <SectionViews current={this.props.subsection} dispatch={this.props.dispatch} update={this.props.update}>
@@ -109,88 +145,7 @@ class Identification extends SectionElement {
                        backLabel={i18n.t('identification.destination.physical')}
                        next="history/intro"
                        nextLabel={i18n.t('history.destination.intro')}>
-            <ApplicantName name="name"
-                           {...this.props.ApplicantName}
-                           section="identification"
-                           subsection="name"
-                           dispatch={this.props.dispatch}
-                           onUpdate={this.handleUpdate.bind(this, 'ApplicantName')}
-                           onError={this.handleError}
-                           required={true}
-                           scrollIntoView={false}
-                           />
-            <hr className="section-divider" />
-            <OtherNames name="othernames"
-                        {...this.props.OtherNames}
-                        section="identification"
-                        subsection="othernames"
-                        defaultState={false}
-                        dispatch={this.props.dispatch}
-                        onUpdate={this.handleUpdate.bind(this, 'OtherNames')}
-                        onError={this.handleError}
-                        required={true}
-                        scrollIntoView={false}
-                        />
-            <hr className="section-divider" />
-            <ContactInformation name="contacts"
-                                {...this.props.Contacts}
-                                section="identification"
-                                subsection="contacts"
-                                minimumPhoneNumbers={1}
-                                minimumEmails={1}
-                                shouldFilterEmptyItems={true}
-                                defaultState={false}
-                                dispatch={this.props.dispatch}
-                                onUpdate={this.handleUpdate.bind(this, 'Contacts')}
-                                onError={this.handleError}
-                                required={true}
-                                scrollIntoView={false}
-                                />
-            <hr className="section-divider" />
-            <ApplicantBirthDate name="birthdate"
-                                {...this.props.ApplicantBirthDate}
-                                section="identification"
-                                subsection="birthdate"
-                                dispatch={this.props.dispatch}
-                                onUpdate={this.handleUpdate.bind(this, 'ApplicantBirthDate')}
-                                onError={this.handleError}
-                                required={true}
-                                scrollIntoView={false}
-                                />
-            <hr className="section-divider" />
-            <ApplicantBirthPlace name="birthplace"
-                                 {...this.props.ApplicantBirthPlace}
-                                 section="identification"
-                                 subsection="birthplace"
-                                 dispatch={this.props.dispatch}
-                                 onUpdate={this.handleUpdate.bind(this, 'ApplicantBirthPlace')}
-                                 onError={this.handleError}
-                                 required={true}
-                                 scrollIntoView={false}
-                                 />
-            <hr className="section-divider" />
-            <ApplicantSSN name="ssn"
-                          {...this.props.ApplicantSSN}
-                          section="identification"
-                          subsection="ssn"
-                          dispatch={this.props.dispatch}
-                          onUpdate={this.handleUpdate.bind(this, 'ApplicantSSN')}
-                          onError={this.handleError}
-                          required={true}
-                          scrollIntoView={false}
-                          />
-            <hr className="section-divider" />
-            <Physical name="physical"
-                      {...this.props.Physical}
-                      section="identification"
-                      subsection="physical"
-                      dispatch={this.props.dispatch}
-                      onUpdate={this.handleUpdate.bind(this, 'Physical')}
-                      onError={this.handleError}
-                      required={true}
-                      scrollIntoView={false}
-                      />
-            <hr className="section-divider" />
+            {reviewComponents}
             <SectionComments name="comments"
                              {...this.props.Comments}
                              section="identification"
