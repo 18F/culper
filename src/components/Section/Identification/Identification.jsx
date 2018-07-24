@@ -58,15 +58,29 @@ class Identification extends SectionElement {
     return React.createElement(SubsectionComponent, props)
   }
 
+  // Returns a new array with section dividers after each component
+  addDividers (components) {
+    // essentially this is a flatMap()
+    const componentsWithDividers = []
+    components.forEach((component) => {
+      componentsWithDividers.push(component)
+
+      const divider = <hr key={`${component.key}-divider`} className="section-divider" />
+      componentsWithDividers.push(divider)
+    })
+
+    return componentsWithDividers
+  }
+
   createReviewGroups () {
     const subsections = this.getSectionConfig().subsections
 
-    const components = subsections.map((subsection) => {
+    let components = subsections.map((subsection) => {
       if (subsection.exclude) {
         return null
       }
 
-      const props = {
+      const extraProps = {
         section,
         subsection: subsection.url,
         required: true,
@@ -75,26 +89,16 @@ class Identification extends SectionElement {
 
       // TODO figure out a better way to handle these special properties
       if (subsection.url === 'contacts') {
-        props.shouldFilterEmptyItems = true
+        extraProps.shouldFilterEmptyItems = true
       }
 
-      return this.createSubsection(subsection, props)
+      return this.createSubsection(subsection, extraProps)
     })
 
-    // insert section dividers after each
-    const componentsWithDividers = []
-    components.forEach((component) => {
-      // exclude nulls
-      if (!component) {
-        return
-      }
-      componentsWithDividers.push(component)
+    // exclude nulls
+    components = components.filter(c => !!c)
 
-      const divider = <hr key={`${component.key}-divider`} className="section-divider" />
-      componentsWithDividers.push(divider)
-    })
-
-    return componentsWithDividers
+    return this.addDividers(components)
   }
 
   // Returns an array of SectionViews with their corresponding child component, based on the navigation
