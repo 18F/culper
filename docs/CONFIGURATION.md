@@ -324,7 +324,7 @@ Determines whether to enabled the submission to the eqip webservice
 
 **Target** - Back-end (api)<br>
 **Default** - True<br>
-**Values** - True: `1`, False: 0<br>
+**Values** - True: `1`, False: `0`<br>
 
 ## `WS_URL`
 
