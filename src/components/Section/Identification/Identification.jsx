@@ -15,6 +15,8 @@ import OtherNames from './OtherNames'
 import Physical from './Physical'
 import ContactInformation from './ContactInformation'
 
+const section = 'identification'
+
 const storeToComponentMap = {
   ApplicantBirthDate,
   ApplicantBirthPlace,
@@ -26,6 +28,10 @@ const storeToComponentMap = {
 }
 
 class Identification extends SectionElement {
+  getSectionConfig () {
+    return navigation.find(n => n.url === section)
+  }
+
   getSubsectionComponent (name) {
     // https://reactjs.org/docs/jsx-in-depth.html#choosing-the-type-at-runtime
     const SubsectionComponent = storeToComponentMap[name]
@@ -52,9 +58,7 @@ class Identification extends SectionElement {
 
   // Returns an array of SectionViews with their corresponding child component, based on the navigation
   createSectionViews () {
-    const section = 'identification'
-    const sectionNav = navigation.find(n => n.url === section)
-    const subsections = sectionNav.subsections
+    const subsections = this.getSectionConfig().subsections
 
     const views = subsections.map((subsection, i) => {
       if (subsection.exclude) {
