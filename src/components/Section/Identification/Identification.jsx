@@ -61,17 +61,24 @@ class Identification extends SectionElement {
   createReviewGroups () {
     const subsections = this.getSectionConfig().subsections
 
-    const components = subsections.map((subsection, i) => {
+    const components = subsections.map((subsection) => {
       if (subsection.exclude) {
         return null
       }
 
-      return this.createSubsection(subsection, {
+      const props = {
         section,
         subsection: subsection.url,
         required: true,
         scrollIntoView: false
-      })
+      }
+
+      // TODO figure out a better way to handle these special properties
+      if (subsection.url === 'contacts') {
+        props.shouldFilterEmptyItems = true
+      }
+
+      return this.createSubsection(subsection, props)
     })
 
     // insert section dividers after each
