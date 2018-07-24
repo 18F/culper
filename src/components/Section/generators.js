@@ -1,9 +1,4 @@
 import React from 'react'
-import navigation from '../../config/navigation'
-
-export const getSectionConfig = (section) => {
-  return navigation.find(n => n.url === section)
-}
 
 export const getSubsectionComponent = (storeToComponentMap, name) => {
   // https://reactjs.org/docs/jsx-in-depth.html#choosing-the-type-at-runtime

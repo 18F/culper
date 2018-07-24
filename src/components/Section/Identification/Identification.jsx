@@ -6,7 +6,8 @@ import SectionElement from '../SectionElement'
 import SectionComments from '../SectionComments'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import { Field } from '../../Form'
-import { addDividers, createSubsection, getSectionConfig } from '../generators'
+import { addDividers, createSubsection } from '../generators'
+import navigation from './navigation'
 import ApplicantName from './ApplicantName'
 import ApplicantSSN from './ApplicantSSN'
 import ApplicantBirthPlace from './ApplicantBirthPlace'
@@ -38,7 +39,7 @@ class Identification extends SectionElement {
   }
 
   createReviewGroups () {
-    const subsections = getSectionConfig(this.props.section).subsections
+    const subsections = navigation.subsections
 
     let components = subsections.map((subsection) => {
       if (subsection.exclude) {
@@ -68,7 +69,7 @@ class Identification extends SectionElement {
 
   // Returns an array of SectionViews with their corresponding child component, based on the navigation
   createSectionViews () {
-    const subsections = getSectionConfig(this.props.section).subsections
+    const subsections = navigation.subsections
 
     const views = subsections.map((subsection, i) => {
       if (subsection.exclude) {
@@ -191,7 +192,7 @@ export class IdentificationSections extends React.Component {
   }
 
   createSubsections () {
-    const subsections = getSectionConfig('identification').subsections
+    const subsections = navigation.subsections
 
     const components = subsections.map((subsection, i) => {
       if (subsection.exclude) {
