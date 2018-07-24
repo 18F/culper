@@ -168,70 +168,49 @@ Identification.defaultProps = {
 }
 
 export class IdentificationSections extends React.Component {
+  createSubsection(subsection) {
+    const extraProps = {
+      ...this.props[subsection.store],
+      dispatch: this.props.dispatch,
+      onError: this.props.onError,
+      required: true,
+      scrollIntoView: false
+    }
+
+    // TODO figure out a better way to handle these special properties
+    switch (subsection.url) {
+      case 'contacts':
+        extraProps.defaultState = false
+        extraProps.shouldFilterEmptyItems = true
+        break
+      case 'othernames':
+        extraProps.defaultState = false
+    }
+
+    return createSubsection(storeToComponentMap, subsection, extraProps)
+  }
+
+  createSubsections () {
+    const subsections = getSectionConfig('identification').subsections
+
+    const components = subsections.map((subsection, i) => {
+      if (subsection.exclude) {
+        return null
+      }
+
+      return this.createSubsection(subsection)
+    })
+
+    // exclude nulls
+    return components.filter(v => !!v)
+  }
+
   render () {
+    const components = addDividers(this.createSubsections())
+
     return (
       <div>
-        <ApplicantName name="name"
-                       {...this.props.ApplicantName}
-                       dispatch={this.props.dispatch}
-                       onError={this.props.onError}
-                       required={true}
-                       scrollIntoView={false}
-                       />
-        <hr className="section-divider" />
-        <OtherNames name="othernames"
-                    {...this.props.OtherNames}
-                    defaultState={false}
-                    dispatch={this.props.dispatch}
-                    onError={this.props.onError}
-                    required={true}
-                    scrollIntoView={false}
-                    />
-        <hr className="section-divider" />
-        <ContactInformation name="contacts"
-                            {...this.props.Contacts}
-                            minimumPhoneNumbers={1}
-                            minimumEmails={1}
-                            shouldFilterEmptyItems={true}
-                            defaultState={false}
-                            dispatch={this.props.dispatch}
-                            onError={this.props.onError}
-                            required={true}
-                            scrollIntoView={false}
-                            />
-        <hr className="section-divider" />
-        <ApplicantBirthDate name="birthdate"
-                            {...this.props.ApplicantBirthDate}
-                            dispatch={this.props.dispatch}
-                            onError={this.props.onError}
-                            required={true}
-                            scrollIntoView={false}
-                            />
-        <hr className="section-divider" />
-        <ApplicantBirthPlace name="birthplace"
-                             {...this.props.ApplicantBirthPlace}
-                             dispatch={this.props.dispatch}
-                             onError={this.props.onError}
-                             required={true}
-                             scrollIntoView={false}
-                             />
-        <hr className="section-divider" />
-        <ApplicantSSN name="ssn"
-                      {...this.props.ApplicantSSN}
-                      dispatch={this.props.dispatch}
-                      onError={this.props.onError}
-                      required={true}
-                      scrollIntoView={false}
-                      />
-        <hr className="section-divider" />
-        <Physical name="physical"
-                  {...this.props.Physical}
-                  dispatch={this.props.dispatch}
-                  onError={this.props.onError}
-                  required={true}
-                  scrollIntoView={false}
-                  />
-        <hr className="section-divider" />
+        {components}
         <SectionComments name="comments"
                          {...this.props.Comments}
                          title={i18n.t('identification.review.comments')}
