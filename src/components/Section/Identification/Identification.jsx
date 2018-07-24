@@ -6,7 +6,7 @@ import SectionElement from '../SectionElement'
 import SectionComments from '../SectionComments'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import { Field } from '../../Form'
-import navigation from '../../../config/navigation'
+import { addDividers, createSubsection, getSectionConfig } from '../generators'
 import ApplicantName from './ApplicantName'
 import ApplicantSSN from './ApplicantSSN'
 import ApplicantBirthPlace from './ApplicantBirthPlace'
@@ -28,52 +28,19 @@ const storeToComponentMap = {
 }
 
 class Identification extends SectionElement {
-  getSectionConfig () {
-    return navigation.find(n => n.url === section)
-  }
-
-  getSubsectionComponent (name) {
-    // https://reactjs.org/docs/jsx-in-depth.html#choosing-the-type-at-runtime
-    const SubsectionComponent = storeToComponentMap[name]
-    if (!SubsectionComponent) {
-      console.error(`${name} component not found`)
-    }
-    return SubsectionComponent
-  }
-
-  // Returns the component corresponding to the provided subsection object
-  createSubsection (subsection, extraProps = {}) {
-    const SubsectionComponent = this.getSubsectionComponent(subsection.store)
-
-    const props = {
+  createSubsection (subsection, extraExtraProps = {}) {
+    const extraProps = {
       ...this.props[subsection.store],
-      key: subsection.url,
-      name: subsection.url,
       dispatch: this.props.dispatch,
       onUpdate: this.handleUpdate.bind(this, subsection.store),
       onError: this.handleError,
-      ...extraProps
+      ...extraExtraProps
     }
-
-    return React.createElement(SubsectionComponent, props)
-  }
-
-  // Returns a new array with section dividers after each component
-  addDividers (components) {
-    // essentially this is a flatMap()
-    const componentsWithDividers = []
-    components.forEach((component) => {
-      componentsWithDividers.push(component)
-
-      const divider = <hr key={`${component.key}-divider`} className="section-divider" />
-      componentsWithDividers.push(divider)
-    })
-
-    return componentsWithDividers
+    return createSubsection(storeToComponentMap, subsection, extraProps)
   }
 
   createReviewGroups () {
-    const subsections = this.getSectionConfig().subsections
+    const subsections = getSectionConfig(section).subsections
 
     let components = subsections.map((subsection) => {
       if (subsection.exclude) {
@@ -98,12 +65,12 @@ class Identification extends SectionElement {
     // exclude nulls
     components = components.filter(c => !!c)
 
-    return this.addDividers(components)
+    return addDividers(components)
   }
 
   // Returns an array of SectionViews with their corresponding child component, based on the navigation
   createSectionViews () {
-    const subsections = this.getSectionConfig().subsections
+    const subsections = getSectionConfig(section).subsections
 
     const views = subsections.map((subsection, i) => {
       if (subsection.exclude) {
