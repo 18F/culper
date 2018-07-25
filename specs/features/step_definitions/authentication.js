@@ -86,6 +86,7 @@ defineSupportCode(({Given, Then, When}) => {
     return client
       .isVisible('a.logout', (result) => {
         client.click('a.logout')
+        .waitForElementVisible('.consent-acceptance', 5000)
       })
       .end()
   }
