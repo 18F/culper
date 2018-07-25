@@ -119,7 +119,7 @@ const completeCitizenshipForeignPassports = (promise) => {
 }
 
 const navigateToSection = (section) => {
-  const selector = '.usa-sidenav-list a[aria-controls="/form/' + 'citizenship' + '"]'
+  const selector = '.usa-sidenav-list a[aria-controls="/form/' + section + '"]'
   return client
     .assert.visible(selector)
     .click(selector)
