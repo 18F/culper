@@ -65,7 +65,7 @@ defineSupportCode(({Given, Then, When}) => {
       .setValue('input[type="password"]', password)
       .saveScreenshot('./screenshots/Authentication/02-credentials.png')
       .click('.auth.basic button[type="submit"]')
-      .pause(5000)
+      .waitForElementVisible('.introduction-modal', 5000)
       .saveScreenshot('./screenshots/Authentication/03-submitted.png')
   }
 
