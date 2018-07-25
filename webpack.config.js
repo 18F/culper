@@ -3,6 +3,7 @@ const staging = process.env.NODE_ENV === 'staging'
 const debug = !production && !staging
 const webpack = require('webpack')
 const path = require('path')
+const CircularDependencyPlugin = require('circular-dependency-plugin')
 
 module.exports = {
   mode: production ? 'production' : 'development',
@@ -32,6 +33,12 @@ module.exports = {
       'API_BASE_URL', 'COOKIE_DOMAIN', 'HASH_ROUTING',
       'BASIC_ENABLED', 'SAML_ENABLED', 'SESSION_TIMEOUT',
       'ATTACHMENTS_ENABLED', 'FILE_MAXIMUM_SIZE', 'FILE_TYPES'
-    ])
+    ]),
+    new CircularDependencyPlugin({
+      exclude: /node_modules/,
+      failOnError: true,
+      // set the current working directory for displaying module paths
+      cwd: process.cwd(),
+    })
   ]
 }
