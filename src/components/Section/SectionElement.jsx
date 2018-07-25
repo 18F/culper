@@ -1,5 +1,5 @@
 import React from 'react'
-import { updateApplication, reportErrors, save } from '../../actions/ApplicationActions'
+import { updateApplication, reportErrors } from '../../actions/ApplicationActions'
 
 export default class SectionElement extends React.Component {
   constructor (props) {

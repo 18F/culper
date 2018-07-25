@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { reportCompletion } from '../../../actions/ApplicationActions'
-import { ResidenceValidator, EmploymentValidator, HistoryEducationValidator, EducationValidator, EducationItemValidator } from '../../../validators'
+import { ResidenceValidator, EmploymentValidator, HistoryEducationValidator, EducationItemValidator } from '../../../validators'
 import { i18n } from '../../../config'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
