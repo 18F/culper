@@ -13,7 +13,7 @@ import Show from '../Show'
 import Suggestions from '../Suggestions'
 import { AddressSuggestion } from './AddressSuggestion'
 import { countryString } from '../../../validators/location'
-import { countryValueResolver } from './Location'
+import { countryValueResolver } from './location-helpers'
 
 export default class Address extends ValidationElement {
   constructor (props) {

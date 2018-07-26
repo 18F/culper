@@ -1,6 +1,6 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import Location, { timeout, countryValueResolver, country } from './Location'
+import Location from './Location'
 
 describe('The Address component', () => {
   it('Renders without errors', () => {
@@ -214,85 +214,6 @@ describe('The Address component', () => {
     }
     const component = mount(<Location {...props} />)
     expect(component.find('.suggestions').length).toBe(1)
-  })
-
-  it('can set timeout function', () => {
-    let called = false
-    const w = {
-      setTimeout: (fn, ms) => { called = true }
-    }
-    timeout(null, 0, w)
-    expect(called).toBe(true)
-  })
-
-  it('timeout does nothing if window does not exist', () => {
-    let called = false
-    const w = null
-    timeout(null, 0, w)
-    expect(called).toBe(false)
-  })
-
-  it('can handle various country inputs', () => {
-    const tests = [
-      {
-        props: {
-          country: {
-            value: ['Germany'],
-            comments: 'My comment'
-          }
-        },
-        expect: {
-          value: ['Germany'],
-          comments: 'My comment'
-        }
-      },
-      {
-        props: {
-          country: 'Germany',
-          countryComments: 'My comment'
-        },
-        expect: {
-          value: ['Germany'],
-          comments: 'My comment'
-        }
-      },
-      {
-        props: {
-          country: ''
-        },
-        expect: {
-          value: [],
-          comments: ''
-        }
-      }
-    ]
-
-    tests.forEach(test => {
-      expect(countryValueResolver(test.props)).toEqual(test.expect)
-    })
-  })
-
-  it('can process extracting country', () => {
-    const tests = [
-      {
-        data: {
-          value: 'United States'
-        },
-        expect: 'United States'
-      },
-      {
-        data: null,
-        expect: null
-      },
-      {
-        data: 'United States',
-        expect: 'United States'
-      }
-    ]
-
-    tests.forEach(test => {
-      expect(country(test.data)).toEqual(test.expect)
-    })
   })
 
   it('can append to address book', () => {

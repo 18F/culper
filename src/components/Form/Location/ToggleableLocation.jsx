@@ -10,7 +10,7 @@ import ZipCode from '../ZipCode'
 import Show from '../Show'
 import Radio from '../Radio'
 import RadioGroup from '../RadioGroup'
-import { country, countryValueResolver } from './Location'
+import { country, countryValueResolver } from './location-helpers'
 import { countryString } from '../../../validators/location'
 
 const mappingWarning = (property) => {
