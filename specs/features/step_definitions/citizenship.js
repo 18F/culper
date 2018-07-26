@@ -26,8 +26,7 @@ defineSupportCode(({Given, Then, When}) => {
   When(/^I navigate to the citizenship (.*?) section$/, (subsection) => {
     subcontext = subsection
     const section = 'citizenship'
-    const sectionTitle = 'Citizenship'
-    navigateToSection(sectionTitle)
+    navigateToSection(section)
     return navigateToSubsection(section, subsection)
   })
 
