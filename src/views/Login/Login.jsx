@@ -5,7 +5,7 @@ import Cookies from 'js-cookie'
 import { i18n, env } from '../../config'
 import { api, getQueryValue, deleteCookie } from '../../services'
 import { login, handleLoginSuccess } from '../../actions/AuthActions'
-import { Consent } from '../../components/Form'
+import Consent from '../../components/Form/Consent/Consent'
 
 export class Login extends React.Component {
   constructor (props) {

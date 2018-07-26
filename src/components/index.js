@@ -4,7 +4,7 @@ import { SectionTitle } from './SectionTitle'
 import Section from './Section'
 import { SavedIndicator } from './SavedIndicator'
 import { ProgressBar } from './ProgressBar'
-import { TimeoutWarning } from './Form'
+import TimeoutWarning from './Form/TimeoutWarning/TimeoutWarning'
 
 export {
   ScoreCard,

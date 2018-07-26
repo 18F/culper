@@ -4,6 +4,6 @@ import { AccessDenied } from './AccessDenied'
 import { Locked } from './Locked'
 import { TokenRefresh } from './TokenRefresh'
 import { Help } from './Help'
-import { Form } from './Form'
+import Form from './Form/Form'
 
 export { Login, Loading, AccessDenied, Locked, TokenRefresh, Help, Form }

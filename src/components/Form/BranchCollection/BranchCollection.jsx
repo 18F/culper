@@ -1,5 +1,5 @@
 import React from 'react'
-import { Branch } from '../../Form'
+import Branch from '../../Form/Branch/Branch'
 import { newGuid } from '../ValidationElement/ValidationElement'
 import { scrollToBottom } from '../Accordion/Accordion'
 
