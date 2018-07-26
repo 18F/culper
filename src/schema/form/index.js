@@ -15,7 +15,6 @@ import { employmentactivity } from './employmentactivity'
 import { foreignborndocument } from './foreignborndocument'
 import { general } from './general'
 import { height } from './height'
-import { index } from './index'
 import { location } from './location'
 import { name } from './name'
 import { notapplicable } from './notapplicable'
@@ -50,7 +49,6 @@ export {
   foreignborndocument,
   general,
   height,
-  index,
   location,
   name,
   notapplicable,

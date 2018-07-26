@@ -1,4 +1,4 @@
-import { navigation } from '../../config'
+import { navigation } from '../../config/navigation'
 
 export const validations = (section, props = {}) => {
   if (!section || !section.subsections) {
