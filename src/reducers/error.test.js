@@ -26,7 +26,8 @@ describe('Error reducer', () => {
         valid: false
       }
     ])
-    expect(errorReducer(sectionName)(defaultState, action)[action.property].length).toBe(2)
+    const resultState = errorReducer(sectionName)(defaultState, action)
+    expect(resultState[action.property].length).toBe(2)
   })
 
   it('can update error', () => {
@@ -50,8 +51,9 @@ describe('Error reducer', () => {
         valid: true
       }
     ])
-    expect(errorReducer(sectionName)(defaultState, action)[action.property].length).toBe(1)
-    expect(errorReducer(sectionName)(defaultState, action)[action.property][0].valid).toBe(true)
+    const resultState = errorReducer(sectionName)(defaultState, action)
+    expect(resultState[action.property].length).toBe(1)
+    expect(resultState[action.property][0].valid).toBe(true)
   })
 
   it('can clear errors for a section', () => {
@@ -76,8 +78,9 @@ describe('Error reducer', () => {
       ]
     }
     const action = clearErrors('identification', 'othernames')
-    expect(errorReducer('Errors')(defaultState, action)[action.property].length).toBe(0)
-    expect(errorReducer('Errors')(defaultState, action)['foreign'].length).toBe(1)
+    const resultState = errorReducer('Errors')(defaultState, action)
+    expect(resultState[action.property].length).toBe(0)
+    expect(resultState['foreign'].length).toBe(1)
   })
 
   it('matches errors from a different subsection', () => {
