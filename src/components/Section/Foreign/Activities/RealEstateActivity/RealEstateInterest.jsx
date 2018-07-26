@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../../config'
-import { Address, ValidationElement, Currency, Field, Text, DateControl, Textarea, NotApplicable, Checkbox, CheckboxGroup, Location } from '../../../../Form'
+import { ValidationElement, Currency, Field, Text, DateControl, Textarea, NotApplicable, Checkbox, CheckboxGroup, Location } from '../../../../Form'
 import CoOwners from '../CoOwners'
 
 export default class RealEstateInterest extends ValidationElement {

@@ -1,7 +1,9 @@
 {
   "extends": [
     "eslint:recommended",
-    "plugin:react/recommended"
+    "plugin:react/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings"
   ],
   "env": {
     "browser": true,
@@ -20,6 +22,7 @@
     "react"
   ],
   "rules": {
+    "import/no-duplicates": "off",
     "no-console": "off",
     "no-unused-vars": "off",
     "react/no-deprecated": "off",
@@ -31,5 +34,8 @@
         "skipUndeclared": true
       }
     ]
+  },
+  "settings": {
+    "import/resolver": "webpack"
   }
 }
