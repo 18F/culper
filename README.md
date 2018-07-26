@@ -203,6 +203,10 @@ All of the documentation may then be found in the respective directories under `
 
 ### Tooling
 
+#### Formatting
+
+JavaScript files are formatted using [Prettier](https://prettier.io/), though note this should only be done when a file is new or heavily modified. You should install Prettier for whatever editor you use.
+
 #### Linters
 
 * Vim users: install `syntastic`
@@ -210,7 +214,8 @@ All of the documentation may then be found in the respective directories under `
 
 For command-line alternatives there are the following:
 
- - For JavaScript, [JSHint][14] which may be installed with `yarn add jshint`
+ - For CSS, run `make lint-css`
+ - For JavaScript, run `make lint-js`
  - For HTML, [html-lint][15] which may be installed with `yarn add html-lint`
 
 ## Contributing
