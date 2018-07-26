@@ -1,4 +1,3 @@
-import validate, { walkValidationTree } from './validate'
 import DateControlValidator from './datecontrol'
 import DateRangeValidator from './daterange'
 import BankruptcyValidator, { BankruptcyItemValidator } from './bankruptcy'
@@ -104,9 +103,7 @@ import { nameIsEmpty, validBranch, validGenericTextfield, validPhoneNumber, vali
 import OrderValidator, { CompetenceOrderValidator, ConsultationOrderValidator } from './order'
 import { hideReleases, hideHippa, formIsSigned, formIsLocked } from './releases'
 
-export default validate
 export {
-  walkValidationTree,
   DateControlValidator,
   DateRangeValidator,
   IdentificationNameValidator,
