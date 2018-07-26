@@ -74,7 +74,7 @@
     "lint": "npm run lint-css && npm run lint-js",
     "coverage": "NODE_ENV=test codecov",
     "build-assets": "gulp build",
-    "build-js": "webpack -p --progress",
+    "build-js": "webpack -p",
     "build-css": "npm run build-assets && node-sass-chokidar --include-path src/sass --output-style compressed --source-map true src/eqip.scss dist/css/eqip.css",
     "build": "npm run build-assets && npm run build-css && npm run build-js",
     "watch-js": "echo \"Starting JS compilation... (Will be ready once you see 'eqip.js' message, after ~60 seconds.)\" && webpack --watch --progress",
