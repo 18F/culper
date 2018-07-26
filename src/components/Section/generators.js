@@ -10,8 +10,15 @@ export const getSubsectionComponent = (storeToComponentMap, name) => {
 }
 
 // Returns the component corresponding to the provided subsection object
-export const createSubsection = (storeToComponentMap,subsection, extraProps = {}) => {
-  const SubsectionComponent = getSubsectionComponent(storeToComponentMap, subsection.store)
+export const createSubsection = (
+  storeToComponentMap,
+  subsection,
+  extraProps = {}
+) => {
+  const SubsectionComponent = getSubsectionComponent(
+    storeToComponentMap,
+    subsection.store
+  )
 
   const props = {
     key: subsection.url,
@@ -23,13 +30,15 @@ export const createSubsection = (storeToComponentMap,subsection, extraProps = {}
 }
 
 // Returns a new array with section dividers after each component
-export const addDividers = (components) => {
+export const addDividers = components => {
   // essentially this is a flatMap()
   const componentsWithDividers = []
-  components.forEach((component) => {
+  components.forEach(component => {
     componentsWithDividers.push(component)
 
-    const divider = <hr key={`${component.key}-divider`} className="section-divider" />
+    const divider = (
+      <hr key={`${component.key}-divider`} className="section-divider" />
+    )
     componentsWithDividers.push(divider)
   })
 

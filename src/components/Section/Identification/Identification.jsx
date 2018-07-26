@@ -27,7 +27,7 @@ const storeToComponentMap = {
 }
 
 class Identification extends SectionElement {
-  createSubsection (subsection, extraExtraProps = {}) {
+  createSubsection(subsection, extraExtraProps = {}) {
     const extraProps = {
       ...this.props[subsection.store],
       dispatch: this.props.dispatch,
@@ -38,10 +38,10 @@ class Identification extends SectionElement {
     return createSubsection(storeToComponentMap, subsection, extraProps)
   }
 
-  createReviewGroups () {
+  createReviewGroups() {
     const subsections = navigation.subsections
 
-    let components = subsections.map((subsection) => {
+    let components = subsections.map(subsection => {
       if (subsection.exclude) {
         return null
       }
@@ -68,7 +68,7 @@ class Identification extends SectionElement {
   }
 
   // Returns an array of SectionViews with their corresponding child component, based on the navigation
-  createSectionViews () {
+  createSectionViews() {
     const subsections = navigation.subsections
 
     const views = subsections.map((subsection, i) => {
@@ -76,12 +76,13 @@ class Identification extends SectionElement {
         return null
       }
 
-      const prev = subsections[i-1]
-      const next = subsections[i+1]
+      const prev = subsections[i - 1]
+      const next = subsections[i + 1]
       const ssComponent = this.createSubsection(subsection)
 
       return (
-        <SectionView key={`${this.props.section}/${subsection.url}`}
+        <SectionView
+          key={`${this.props.section}/${subsection.url}`}
           name={subsection.url}
           back={`${this.props.section}/${prev.url}`}
           backLabel={i18n.t(`${this.props.section}.destination.${prev.url}`)}
@@ -96,44 +97,51 @@ class Identification extends SectionElement {
     return views.filter(v => !!v)
   }
 
-  render () {
+  render() {
     const reviewComponents = this.createReviewGroups()
     const sectionViews = this.createSectionViews()
 
     return (
       <div>
-        <SectionViews current={this.props.subsection} dispatch={this.props.dispatch} update={this.props.update}>
-          <SectionView name="intro"
-                       next="identification/name"
-                       nextLabel={i18n.t('identification.destination.name')}>
-            <Field title={i18n.t('identification.intro.title')}
-                   titleSize="h2"
-                   optional={true}
-                   className="no-margin-bottom">
+        <SectionViews
+          current={this.props.subsection}
+          dispatch={this.props.dispatch}
+          update={this.props.update}>
+          <SectionView
+            name="intro"
+            next="identification/name"
+            nextLabel={i18n.t('identification.destination.name')}>
+            <Field
+              title={i18n.t('identification.intro.title')}
+              titleSize="h2"
+              optional={true}
+              className="no-margin-bottom">
               {i18n.m('identification.intro.body')}
             </Field>
           </SectionView>
 
-          <SectionView name="review"
-                       title={i18n.t('review.title')}
-                       para={i18n.m('review.para')}
-                       showTop={true}
-                       back="identification/physical"
-                       backLabel={i18n.t('identification.destination.physical')}
-                       next="history/intro"
-                       nextLabel={i18n.t('history.destination.intro')}>
+          <SectionView
+            name="review"
+            title={i18n.t('review.title')}
+            para={i18n.m('review.para')}
+            showTop={true}
+            back="identification/physical"
+            backLabel={i18n.t('identification.destination.physical')}
+            next="history/intro"
+            nextLabel={i18n.t('history.destination.intro')}>
             {reviewComponents}
-            <SectionComments name="comments"
-                             {...this.props.Comments}
-                             section="identification"
-                             subsection="name"
-                             title={i18n.t('identification.review.comments')}
-                             dispatch={this.props.dispatch}
-                             onUpdate={this.handleUpdate.bind(this, 'Comments')}
-                             onError={this.handleError}
-                             required={false}
-                             scrollIntoView={false}
-                             />
+            <SectionComments
+              name="comments"
+              {...this.props.Comments}
+              section="identification"
+              subsection="name"
+              title={i18n.t('identification.review.comments')}
+              dispatch={this.props.dispatch}
+              onUpdate={this.handleUpdate.bind(this, 'Comments')}
+              onError={this.handleError}
+              required={false}
+              scrollIntoView={false}
+            />
           </SectionView>
 
           {sectionViews}
@@ -143,7 +151,7 @@ class Identification extends SectionElement {
   }
 }
 
-function mapStateToProps (state) {
+function mapStateToProps(state) {
   const app = state.application || {}
   const identification = app.Identification || {}
   const errors = app.Errors || {}
@@ -191,7 +199,7 @@ export class IdentificationSections extends React.Component {
     return createSubsection(storeToComponentMap, subsection, extraProps)
   }
 
-  createSubsections () {
+  createSubsections() {
     const subsections = navigation.subsections
 
     const components = subsections.map((subsection, i) => {
@@ -206,20 +214,21 @@ export class IdentificationSections extends React.Component {
     return components.filter(v => !!v)
   }
 
-  render () {
+  render() {
     const components = addDividers(this.createSubsections())
 
     return (
       <div>
         {components}
-        <SectionComments name="comments"
-                         {...this.props.Comments}
-                         title={i18n.t('identification.review.comments')}
-                         dispatch={this.props.dispatch}
-                         onError={this.props.onError}
-                         required={false}
-                         scrollIntoView={false}
-                         />
+        <SectionComments
+          name="comments"
+          {...this.props.Comments}
+          title={i18n.t('identification.review.comments')}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          required={false}
+          scrollIntoView={false}
+        />
       </div>
     )
   }
