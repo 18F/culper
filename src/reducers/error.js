@@ -6,10 +6,7 @@ const clearErrors = (sectionErrors, action) => {
 }
 
 const errorMatches = (err1, err2) => {
-  return err1.section === err2.section &&
-    err1.subsection === err2.subsection &&
-    err1.uid === err2.uid &&
-    err1.code === err2.code
+  return err1.section === err2.section && err1.code === err2.code
 }
 
 const getErrorIndex = (sectionErrors, err) => {

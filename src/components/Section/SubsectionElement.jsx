@@ -20,6 +20,14 @@ export default class SubsectionElement extends React.Component {
 
   handleError (value, arr) {
     this.handleCompletion()
+    arr = arr.map(err => {
+      return {
+        ...err,
+        // note the original subsection the field is associated with, as it could be appearing under 'review'
+        section: this.props.section,
+        subsection: this.props.subsection
+      }
+    })
     return this.props.onError(value, arr)
   }
 

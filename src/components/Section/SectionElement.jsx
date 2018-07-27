@@ -1,30 +1,23 @@
 import React from 'react'
-import { updateApplication, reportErrors } from '../../actions/ApplicationActions'
+import {
+  updateApplication,
+  reportErrors
+} from '../../actions/ApplicationActions'
 
 export default class SectionElement extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.handleError = this.handleError.bind(this)
     this.handleUpdate = this.handleUpdate.bind(this)
   }
 
-  handleError (value, arr) {
-    arr = arr.map(err => {
-      return {
-        section: this.props.section,
-        subsection: this.props.subsection,
-        code: err.code,
-        valid: err.valid,
-        uid: err.uid
-      }
-    })
-
+  handleError(value, arr) {
     this.props.dispatch(reportErrors(this.props.section, '', arr))
     return arr
   }
 
-  handleUpdate (field, values) {
+  handleUpdate(field, values) {
     // const id = `${this.props.section}/${this.props.subsection}`.replace(/\//g, '.')
     // this.props.dispatch(updateApplication(this.props.store, field, schema(id, values, false)))
     this.props.dispatch(updateApplication(this.props.store, field, values))
