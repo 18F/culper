@@ -1,0 +1,191 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders homepage 1`] = `
+<div
+  className=""
+>
+  <div
+    id="scrollTo"
+  />
+  <a
+    className="usa-skipnav"
+    href="#main-content"
+  >
+    Skip to form questions
+  </a>
+  <div
+    className="sticky-header "
+  >
+    <div
+      className="header-container"
+    >
+      <div
+        className="header"
+      >
+        <header
+          className="usa-header usa-header-basic"
+          role="banner"
+        >
+          <div
+            className="usa-banner mobile-hidden"
+          >
+            <div
+              className="usa-accordion"
+            >
+              <div
+                className="usa-banner-header"
+              >
+                <div
+                  className="usa-grid usa-banner-inner"
+                >
+                  <img
+                    alt="U.S. flag"
+                    src="/img/favicons/favicon-57.png"
+                  />
+                  <p>
+                    An official website of the United States government
+                  </p>
+                  <button
+                    aria-controls="gov-banner"
+                    aria-expanded="false"
+                    className="usa-accordion-button usa-banner-button"
+                  >
+                    <span
+                      className="usa-banner-button-text"
+                    >
+                      Here's how you know
+                    </span>
+                  </button>
+                </div>
+              </div>
+              <div
+                className="usa-banner-content usa-grid usa-accordion-content"
+                id="gov-banner"
+              >
+                <div
+                  className="usa-banner-guidance-gov usa-width-one-half"
+                >
+                  <img
+                    alt="Dot gov"
+                    className="usa-banner-icon usa-media_block-img"
+                    src="/img/icon-dot-gov.svg"
+                  />
+                  <div
+                    className="usa-media_block-body"
+                  >
+                    <p>
+                      <strong>
+                        The .gov means it's official.
+                      </strong>
+                      <br />
+                      Federal government websites always use a .gov or .mil domain. Before sharing sensitive information online, make sure you're on a .gov or .mil site by inspecting your browser's address (or "location") bar.
+                    </p>
+                  </div>
+                </div>
+                <div
+                  className="usa-banner-guidance-ssl usa-width-one-half"
+                >
+                  <img
+                    alt="SSL"
+                    className="usa-banner-icon usa-media_block-img"
+                    src="/img/icon-https.svg"
+                  />
+                  <div
+                    className="usa-media_block-body"
+                  >
+                    <p>
+                      This site is also protected by an SSL (Secure Sockets Layer) certificate that's been signed by the U.S. government. The &lt;strong&gt;https://&lt;/strong&gt; means all transmitted data is encrypted  — in other words, any information or browsing history that you provide is transmitted securely.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="eapp-structure-wrap eapp-header"
+          >
+            <div
+              className="eapp-structure-row"
+            >
+              <div
+                className="eapp-structure-left eapp-logo"
+                id="logo"
+              >
+                <div
+                  className="text-center"
+                >
+                  <img
+                    alt="Office of Personnet Management"
+                    className="eapp-logo-icon"
+                    src="/img/US-OfficeOfPersonnelManagement-Seal.svg"
+                  />
+                  <span
+                    className="eapp-logo-text"
+                  >
+                    SF86
+                  </span>
+                </div>
+              </div>
+              <div
+                className="eapp-structure-right eapp-title"
+              >
+                <div
+                  className="eapp-logout"
+                >
+                  <button
+                    className="instructions mobile-hidden"
+                    onClick={[Function]}
+                  >
+                    Instructions
+                  </button>
+                </div>
+                <h1
+                  className="title"
+                />
+              </div>
+            </div>
+          </div>
+        </header>
+        <div
+          id="scrollToProgress"
+        />
+        <div
+          className="usa-overlay"
+        />
+      </div>
+    </div>
+  </div>
+  <main
+    className="eapp-structure-wrap eapp-main"
+  >
+    <div
+      className="eapp-structure-row"
+    >
+      <div
+        className="eapp-structure-left eapp-navigation mobile-hidden"
+      >
+        <button
+          className="instructions mobile-visible"
+          onClick={[Function]}
+        >
+          <span>
+            Instructions
+          </span>
+        </button>
+         
+      </div>
+      <a
+        className="eapp-section-focus"
+        href="javascript:;;;"
+        title="Main content. Please press TAB to go to the next question"
+      />
+      <div
+        className="eapp-structure-right eapp-core visible"
+        id="main-content"
+      >
+         
+      </div>
+    </div>
+  </main>
+</div>
+`;
