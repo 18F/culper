@@ -16,13 +16,13 @@ exports[`The identification section renders the IdentificationSections component
     <div
       aria-label="Provide your full name"
       className="field"
-      data-uuid="field-3c2f40b3-3652-cac4-1b79-0d1941378221"
+      data-uuid="field-MOCK-GUID"
     >
       <a
         aria-hidden="true"
         className="anchor"
-        id="field-3c2f40b3-3652-cac4-1b79-0d1941378221"
-        name="field-3c2f40b3-3652-cac4-1b79-0d1941378221"
+        id="field-MOCK-GUID"
+        name="field-MOCK-GUID"
       />
       <h2
         className="title h2"
@@ -55,13 +55,13 @@ exports[`The identification section renders the IdentificationSections component
               <div
                 aria-label="First name"
                 className="field required"
-                data-uuid="field-8a84c6dd-5d3b-501e-d107-77c5da349824"
+                data-uuid="field-MOCK-GUID"
               >
                 <a
                   aria-hidden="true"
                   className="anchor"
-                  id="field-8a84c6dd-5d3b-501e-d107-77c5da349824"
-                  name="field-8a84c6dd-5d3b-501e-d107-77c5da349824"
+                  id="field-MOCK-GUID"
+                  name="field-MOCK-GUID"
                 />
                 <label
                   className="title label"
@@ -122,7 +122,7 @@ exports[`The identification section renders the IdentificationSections component
                           autoComplete={true}
                           autoCorrect={true}
                           className=""
-                          id="first-cca0deef-588c-1782-d54d-e8c385166578"
+                          id="first-MOCK-GUID"
                           maxLength="100"
                           name="first"
                           onBlur={[Function]}
@@ -145,7 +145,7 @@ exports[`The identification section renders the IdentificationSections component
                             aria-label="Initial only for null"
                             checked={false}
                             className="usa-input-success"
-                            id="firstInitialOnly-d3858e08-e211-da3a-324c-db0bbfa060ac"
+                            id="firstInitialOnly-MOCK-GUID"
                             name="firstInitialOnly"
                             onBlur={[Function]}
                             onChange={[Function]}
@@ -156,7 +156,7 @@ exports[`The identification section renders the IdentificationSections component
                           />
                           <label
                             className="checkbox no-toggle"
-                            htmlFor="firstInitialOnly-d3858e08-e211-da3a-324c-db0bbfa060ac"
+                            htmlFor="firstInitialOnly-MOCK-GUID"
                           >
                             <span>
                               Initial only
@@ -180,13 +180,13 @@ exports[`The identification section renders the IdentificationSections component
               <div
                 aria-label="Middle name"
                 className="field required"
-                data-uuid="field-2af17d9e-7432-e03a-646e-438bd9e27eeb"
+                data-uuid="field-MOCK-GUID"
               >
                 <a
                   aria-hidden="true"
                   className="anchor"
-                  id="field-2af17d9e-7432-e03a-646e-438bd9e27eeb"
-                  name="field-2af17d9e-7432-e03a-646e-438bd9e27eeb"
+                  id="field-MOCK-GUID"
+                  name="field-MOCK-GUID"
                 />
                 <label
                   className="title label"
@@ -247,7 +247,7 @@ exports[`The identification section renders the IdentificationSections component
                           autoComplete={true}
                           autoCorrect={true}
                           className=""
-                          id="middle-e6e2273b-963e-6508-7e58-02b8f63f241f"
+                          id="middle-MOCK-GUID"
                           maxLength="100"
                           name="middle"
                           onBlur={[Function]}
@@ -270,7 +270,7 @@ exports[`The identification section renders the IdentificationSections component
                             aria-label="No middle name for null"
                             checked={false}
                             className="usa-input-success"
-                            id="noMiddleName-a337cc34-13aa-e78f-d00d-dd8f7ec23139"
+                            id="noMiddleName-MOCK-GUID"
                             name="noMiddleName"
                             onBlur={[Function]}
                             onChange={[Function]}
@@ -281,7 +281,7 @@ exports[`The identification section renders the IdentificationSections component
                           />
                           <label
                             className="checkbox no-toggle"
-                            htmlFor="noMiddleName-a337cc34-13aa-e78f-d00d-dd8f7ec23139"
+                            htmlFor="noMiddleName-MOCK-GUID"
                           >
                             <span>
                               No middle name
@@ -295,7 +295,7 @@ exports[`The identification section renders the IdentificationSections component
                             aria-label="Initial only for null"
                             checked={false}
                             className="usa-input-success"
-                            id="middleInitialOnly-32ebcfc4-e3c7-052e-6cae-d9e9d528550c"
+                            id="middleInitialOnly-MOCK-GUID"
                             name="middleInitialOnly"
                             onBlur={[Function]}
                             onChange={[Function]}
@@ -306,7 +306,7 @@ exports[`The identification section renders the IdentificationSections component
                           />
                           <label
                             className="checkbox no-toggle"
-                            htmlFor="middleInitialOnly-32ebcfc4-e3c7-052e-6cae-d9e9d528550c"
+                            htmlFor="middleInitialOnly-MOCK-GUID"
                           >
                             <span>
                               Initial only
@@ -330,13 +330,13 @@ exports[`The identification section renders the IdentificationSections component
               <div
                 aria-label="Last name"
                 className="field required"
-                data-uuid="field-2a95422d-bc27-4229-59f7-baa85a1ec415"
+                data-uuid="field-MOCK-GUID"
               >
                 <a
                   aria-hidden="true"
                   className="anchor"
-                  id="field-2a95422d-bc27-4229-59f7-baa85a1ec415"
-                  name="field-2a95422d-bc27-4229-59f7-baa85a1ec415"
+                  id="field-MOCK-GUID"
+                  name="field-MOCK-GUID"
                 />
                 <label
                   className="title label"
@@ -397,7 +397,7 @@ exports[`The identification section renders the IdentificationSections component
                           autoComplete={true}
                           autoCorrect={true}
                           className=""
-                          id="last-23c6a252-c90d-0e93-548d-d61df4bf4cc7"
+                          id="last-MOCK-GUID"
                           maxLength="100"
                           name="last"
                           onBlur={[Function]}
@@ -420,7 +420,7 @@ exports[`The identification section renders the IdentificationSections component
                             aria-label="Initial only for null"
                             checked={false}
                             className="usa-input-success"
-                            id="lastInitialOnly-b3a1c262-83a8-c19d-e2be-80f373020bfa"
+                            id="lastInitialOnly-MOCK-GUID"
                             name="lastInitialOnly"
                             onBlur={[Function]}
                             onChange={[Function]}
@@ -431,7 +431,7 @@ exports[`The identification section renders the IdentificationSections component
                           />
                           <label
                             className="checkbox no-toggle"
-                            htmlFor="lastInitialOnly-b3a1c262-83a8-c19d-e2be-80f373020bfa"
+                            htmlFor="lastInitialOnly-MOCK-GUID"
                           >
                             <span>
                               Initial only
@@ -455,13 +455,13 @@ exports[`The identification section renders the IdentificationSections component
               <div
                 aria-label="Suffix"
                 className="field"
-                data-uuid="field-5d40596a-b25b-772b-1b16-eafc7ae87078"
+                data-uuid="field-MOCK-GUID"
               >
                 <a
                   aria-hidden="true"
                   className="anchor"
-                  id="field-5d40596a-b25b-772b-1b16-eafc7ae87078"
-                  name="field-5d40596a-b25b-772b-1b16-eafc7ae87078"
+                  id="field-MOCK-GUID"
+                  name="field-MOCK-GUID"
                 />
                 <label
                   className="title label"
@@ -525,15 +525,15 @@ exports[`The identification section renders the IdentificationSections component
                         >
                           <label
                             className=""
-                            htmlFor="suffix-02bbe7a3-7915-5121-6381-64931c6d64af"
+                            htmlFor="suffix-MOCK-GUID"
                           >
                             <input
                               aria-label="Jr for null"
                               checked={false}
                               className="usa-input-success"
                               disabled={false}
-                              id="suffix-02bbe7a3-7915-5121-6381-64931c6d64af"
-                              name="suffix-02bbe7a3-7915-5121-6381-64931c6d64af"
+                              id="suffix-MOCK-GUID"
+                              name="suffix-MOCK-GUID"
                               onBlur={[Function]}
                               onChange={[Function]}
                               onClick={[Function]}
@@ -552,15 +552,15 @@ exports[`The identification section renders the IdentificationSections component
                         >
                           <label
                             className=""
-                            htmlFor="suffix-273adbdd-a85c-6401-fbed-669d246f82e2"
+                            htmlFor="suffix-MOCK-GUID"
                           >
                             <input
                               aria-label="Sr for null"
                               checked={false}
                               className="usa-input-success"
                               disabled={false}
-                              id="suffix-273adbdd-a85c-6401-fbed-669d246f82e2"
-                              name="suffix-273adbdd-a85c-6401-fbed-669d246f82e2"
+                              id="suffix-MOCK-GUID"
+                              name="suffix-MOCK-GUID"
                               onBlur={[Function]}
                               onChange={[Function]}
                               onClick={[Function]}
@@ -579,15 +579,15 @@ exports[`The identification section renders the IdentificationSections component
                         >
                           <label
                             className=""
-                            htmlFor="suffix-d4e2417b-0bf8-dffe-92b1-4c3ff71bbaf5"
+                            htmlFor="suffix-MOCK-GUID"
                           >
                             <input
                               aria-label="I for null"
                               checked={false}
                               className="usa-input-success"
                               disabled={false}
-                              id="suffix-d4e2417b-0bf8-dffe-92b1-4c3ff71bbaf5"
-                              name="suffix-d4e2417b-0bf8-dffe-92b1-4c3ff71bbaf5"
+                              id="suffix-MOCK-GUID"
+                              name="suffix-MOCK-GUID"
                               onBlur={[Function]}
                               onChange={[Function]}
                               onClick={[Function]}
@@ -606,15 +606,15 @@ exports[`The identification section renders the IdentificationSections component
                         >
                           <label
                             className=""
-                            htmlFor="suffix-7ef2b979-e762-6331-bcc3-bdec8e6af7ad"
+                            htmlFor="suffix-MOCK-GUID"
                           >
                             <input
                               aria-label="II for null"
                               checked={false}
                               className="usa-input-success"
                               disabled={false}
-                              id="suffix-7ef2b979-e762-6331-bcc3-bdec8e6af7ad"
-                              name="suffix-7ef2b979-e762-6331-bcc3-bdec8e6af7ad"
+                              id="suffix-MOCK-GUID"
+                              name="suffix-MOCK-GUID"
                               onBlur={[Function]}
                               onChange={[Function]}
                               onClick={[Function]}
@@ -633,15 +633,15 @@ exports[`The identification section renders the IdentificationSections component
                         >
                           <label
                             className=""
-                            htmlFor="suffix-d7065c6b-f9b1-c6de-a45e-0545a82dda0c"
+                            htmlFor="suffix-MOCK-GUID"
                           >
                             <input
                               aria-label="III for null"
                               checked={false}
                               className="usa-input-success"
                               disabled={false}
-                              id="suffix-d7065c6b-f9b1-c6de-a45e-0545a82dda0c"
-                              name="suffix-d7065c6b-f9b1-c6de-a45e-0545a82dda0c"
+                              id="suffix-MOCK-GUID"
+                              name="suffix-MOCK-GUID"
                               onBlur={[Function]}
                               onChange={[Function]}
                               onClick={[Function]}
@@ -660,15 +660,15 @@ exports[`The identification section renders the IdentificationSections component
                         >
                           <label
                             className=""
-                            htmlFor="suffix-34709925-79df-22d3-2fdd-5a6be886d293"
+                            htmlFor="suffix-MOCK-GUID"
                           >
                             <input
                               aria-label="IV for null"
                               checked={false}
                               className="usa-input-success"
                               disabled={false}
-                              id="suffix-34709925-79df-22d3-2fdd-5a6be886d293"
-                              name="suffix-34709925-79df-22d3-2fdd-5a6be886d293"
+                              id="suffix-MOCK-GUID"
+                              name="suffix-MOCK-GUID"
                               onBlur={[Function]}
                               onChange={[Function]}
                               onClick={[Function]}
@@ -687,15 +687,15 @@ exports[`The identification section renders the IdentificationSections component
                         >
                           <label
                             className=""
-                            htmlFor="suffix-4f459903-0ace-9b3c-aa1d-0c5c34d2adc7"
+                            htmlFor="suffix-MOCK-GUID"
                           >
                             <input
                               aria-label="V for null"
                               checked={false}
                               className="usa-input-success"
                               disabled={false}
-                              id="suffix-4f459903-0ace-9b3c-aa1d-0c5c34d2adc7"
-                              name="suffix-4f459903-0ace-9b3c-aa1d-0c5c34d2adc7"
+                              id="suffix-MOCK-GUID"
+                              name="suffix-MOCK-GUID"
                               onBlur={[Function]}
                               onChange={[Function]}
                               onClick={[Function]}
@@ -714,15 +714,15 @@ exports[`The identification section renders the IdentificationSections component
                         >
                           <label
                             className=""
-                            htmlFor="suffix-29de6bb3-587d-9cbd-1d28-23b2e86717f2"
+                            htmlFor="suffix-MOCK-GUID"
                           >
                             <input
                               aria-label="VI for null"
                               checked={false}
                               className="usa-input-success"
                               disabled={false}
-                              id="suffix-29de6bb3-587d-9cbd-1d28-23b2e86717f2"
-                              name="suffix-29de6bb3-587d-9cbd-1d28-23b2e86717f2"
+                              id="suffix-MOCK-GUID"
+                              name="suffix-MOCK-GUID"
                               onBlur={[Function]}
                               onChange={[Function]}
                               onClick={[Function]}
@@ -741,15 +741,15 @@ exports[`The identification section renders the IdentificationSections component
                         >
                           <label
                             className=""
-                            htmlFor="suffix-a15b83d6-5bac-3e90-fab7-0b8bfe518494"
+                            htmlFor="suffix-MOCK-GUID"
                           >
                             <input
                               aria-label="VII for null"
                               checked={false}
                               className="usa-input-success"
                               disabled={false}
-                              id="suffix-a15b83d6-5bac-3e90-fab7-0b8bfe518494"
-                              name="suffix-a15b83d6-5bac-3e90-fab7-0b8bfe518494"
+                              id="suffix-MOCK-GUID"
+                              name="suffix-MOCK-GUID"
                               onBlur={[Function]}
                               onChange={[Function]}
                               onClick={[Function]}
@@ -768,15 +768,15 @@ exports[`The identification section renders the IdentificationSections component
                         >
                           <label
                             className=""
-                            htmlFor="suffix-a03b3670-bee8-87c4-9e7e-167a7e88b9f2"
+                            htmlFor="suffix-MOCK-GUID"
                           >
                             <input
                               aria-label="VIII for null"
                               checked={false}
                               className="usa-input-success"
                               disabled={false}
-                              id="suffix-a03b3670-bee8-87c4-9e7e-167a7e88b9f2"
-                              name="suffix-a03b3670-bee8-87c4-9e7e-167a7e88b9f2"
+                              id="suffix-MOCK-GUID"
+                              name="suffix-MOCK-GUID"
                               onBlur={[Function]}
                               onChange={[Function]}
                               onClick={[Function]}
@@ -795,15 +795,15 @@ exports[`The identification section renders the IdentificationSections component
                         >
                           <label
                             className=""
-                            htmlFor="suffix-b522afbb-4412-8e31-aed3-9fe4851ddf7d"
+                            htmlFor="suffix-MOCK-GUID"
                           >
                             <input
                               aria-label="IX for null"
                               checked={false}
                               className="usa-input-success"
                               disabled={false}
-                              id="suffix-b522afbb-4412-8e31-aed3-9fe4851ddf7d"
-                              name="suffix-b522afbb-4412-8e31-aed3-9fe4851ddf7d"
+                              id="suffix-MOCK-GUID"
+                              name="suffix-MOCK-GUID"
                               onBlur={[Function]}
                               onChange={[Function]}
                               onClick={[Function]}
@@ -822,15 +822,15 @@ exports[`The identification section renders the IdentificationSections component
                         >
                           <label
                             className=""
-                            htmlFor="suffix-25aa9ad1-9521-bcee-81f5-b24c52e75fc3"
+                            htmlFor="suffix-MOCK-GUID"
                           >
                             <input
                               aria-label="X for null"
                               checked={false}
                               className="usa-input-success"
                               disabled={false}
-                              id="suffix-25aa9ad1-9521-bcee-81f5-b24c52e75fc3"
-                              name="suffix-25aa9ad1-9521-bcee-81f5-b24c52e75fc3"
+                              id="suffix-MOCK-GUID"
+                              name="suffix-MOCK-GUID"
                               onBlur={[Function]}
                               onChange={[Function]}
                               onClick={[Function]}
@@ -849,15 +849,15 @@ exports[`The identification section renders the IdentificationSections component
                         >
                           <label
                             className=""
-                            htmlFor="suffix-ae2adaa3-41bf-74ec-6afc-6cf79bd20b2c"
+                            htmlFor="suffix-MOCK-GUID"
                           >
                             <input
                               aria-label="Other for null"
                               checked={false}
                               className="usa-input-success"
                               disabled={false}
-                              id="suffix-ae2adaa3-41bf-74ec-6afc-6cf79bd20b2c"
-                              name="suffix-ae2adaa3-41bf-74ec-6afc-6cf79bd20b2c"
+                              id="suffix-MOCK-GUID"
+                              name="suffix-MOCK-GUID"
                               onBlur={[Function]}
                               onChange={[Function]}
                               onClick={[Function]}
@@ -937,13 +937,13 @@ exports[`The identification section renders the IdentificationSections component
     <div
       aria-label="Provide your other names used and the period of time you used them"
       className="field   no-margin-bottom"
-      data-uuid="field-686477be-609c-4562-b2df-b191d36cd20c"
+      data-uuid="field-MOCK-GUID"
     >
       <a
         aria-hidden="true"
         className="anchor"
-        id="field-686477be-609c-4562-b2df-b191d36cd20c"
-        name="field-686477be-609c-4562-b2df-b191d36cd20c"
+        id="field-MOCK-GUID"
+        name="field-MOCK-GUID"
       />
       <h2
         className="title h2"
@@ -1015,13 +1015,13 @@ exports[`The identification section renders the IdentificationSections component
     <div
       aria-label="Have you used any other names?"
       className="field required  branch"
-      data-uuid="field-ac3f2a46-eb1e-6320-d1ec-2389b3ce6162"
+      data-uuid="field-MOCK-GUID"
     >
       <a
         aria-hidden="true"
         className="anchor"
-        id="field-ac3f2a46-eb1e-6320-d1ec-2389b3ce6162"
-        name="field-ac3f2a46-eb1e-6320-d1ec-2389b3ce6162"
+        id="field-MOCK-GUID"
+        name="field-MOCK-GUID"
       />
       <h3
         className="title h3"
@@ -1059,15 +1059,15 @@ exports[`The identification section renders the IdentificationSections component
               >
                 <label
                   className=""
-                  htmlFor="has_othernames-ccd9d479-7c07-fe8a-f836-afb0cf699a87"
+                  htmlFor="has_othernames-MOCK-GUID"
                 >
                   <input
                     aria-label="Yes for null"
                     checked={false}
                     className="usa-input-success"
                     disabled={false}
-                    id="has_othernames-ccd9d479-7c07-fe8a-f836-afb0cf699a87"
-                    name="has_othernames-ccd9d479-7c07-fe8a-f836-afb0cf699a87"
+                    id="has_othernames-MOCK-GUID"
+                    name="has_othernames-MOCK-GUID"
                     onBlur={[Function]}
                     onChange={[Function]}
                     onClick={[Function]}
@@ -1086,15 +1086,15 @@ exports[`The identification section renders the IdentificationSections component
               >
                 <label
                   className=""
-                  htmlFor="has_othernames-38f0ff7d-2157-790d-e7c5-6c4d181c9ca0"
+                  htmlFor="has_othernames-MOCK-GUID"
                 >
                   <input
                     aria-label="No for null"
                     checked={false}
                     className="usa-input-success"
                     disabled={false}
-                    id="has_othernames-38f0ff7d-2157-790d-e7c5-6c4d181c9ca0"
-                    name="has_othernames-38f0ff7d-2157-790d-e7c5-6c4d181c9ca0"
+                    id="has_othernames-MOCK-GUID"
+                    name="has_othernames-MOCK-GUID"
                     onBlur={[Function]}
                     onChange={[Function]}
                     onClick={[Function]}
@@ -1154,13 +1154,13 @@ exports[`The identification section renders the IdentificationSections component
     <div
       aria-label="Provide your contact information"
       className="field   no-margin-bottom"
-      data-uuid="field-56d66d23-3de8-33eb-e165-2c8d5cb8f76c"
+      data-uuid="field-MOCK-GUID"
     >
       <a
         aria-hidden="true"
         className="anchor"
-        id="field-56d66d23-3de8-33eb-e165-2c8d5cb8f76c"
-        name="field-56d66d23-3de8-33eb-e165-2c8d5cb8f76c"
+        id="field-MOCK-GUID"
+        name="field-MOCK-GUID"
       />
       <h2
         className="title h2"
@@ -1202,13 +1202,13 @@ exports[`The identification section renders the IdentificationSections component
     <div
       aria-label="Your email addresses"
       className="field   no-margin-bottom"
-      data-uuid="field-33e49949-bdfe-2474-04eb-800fc9c47987"
+      data-uuid="field-MOCK-GUID"
     >
       <a
         aria-hidden="true"
         className="anchor"
-        id="field-33e49949-bdfe-2474-04eb-800fc9c47987"
-        name="field-33e49949-bdfe-2474-04eb-800fc9c47987"
+        id="field-MOCK-GUID"
+        name="field-MOCK-GUID"
       />
       <h3
         className="title h3"
@@ -1311,13 +1311,13 @@ exports[`The identification section renders the IdentificationSections component
     <div
       aria-label="Your phone numbers"
       className="field   no-margin-bottom"
-      data-uuid="field-e3f0acb9-94ba-da49-4c32-26c4337c16ec"
+      data-uuid="field-MOCK-GUID"
     >
       <a
         aria-hidden="true"
         className="anchor"
-        id="field-e3f0acb9-94ba-da49-4c32-26c4337c16ec"
-        name="field-e3f0acb9-94ba-da49-4c32-26c4337c16ec"
+        id="field-MOCK-GUID"
+        name="field-MOCK-GUID"
       />
       <h3
         className="title h3"
@@ -1433,13 +1433,13 @@ exports[`The identification section renders the IdentificationSections component
     <div
       aria-label="Provide your date of birth"
       className="field required"
-      data-uuid="field-17322a69-b023-2667-66d6-96ab5fba21ec"
+      data-uuid="field-MOCK-GUID"
     >
       <a
         aria-hidden="true"
         className="anchor"
-        id="field-17322a69-b023-2667-66d6-96ab5fba21ec"
-        name="field-17322a69-b023-2667-66d6-96ab5fba21ec"
+        id="field-MOCK-GUID"
+        name="field-MOCK-GUID"
       />
       <h2
         className="title h2"
@@ -1502,7 +1502,7 @@ exports[`The identification section renders the IdentificationSections component
                   >
                     <label
                       className="usa-input-error-label"
-                      htmlFor="month-ca35d542-6fac-6fa2-c7e4-3649193ae4eb"
+                      htmlFor="month-MOCK-GUID"
                     >
                       Month
                     </label>
@@ -1514,7 +1514,7 @@ exports[`The identification section renders the IdentificationSections component
                       autoCorrect={true}
                       className=""
                       disabled={false}
-                      id="month-ca35d542-6fac-6fa2-c7e4-3649193ae4eb"
+                      id="month-MOCK-GUID"
                       maxLength="2"
                       name="month"
                       onBlur={[Function]}
@@ -1537,7 +1537,7 @@ exports[`The identification section renders the IdentificationSections component
                   >
                     <label
                       className="usa-input-error-label"
-                      htmlFor="day-98d38d86-f8bd-6af7-d2c6-9f7cc14cf465"
+                      htmlFor="day-MOCK-GUID"
                     >
                       Day
                     </label>
@@ -1549,7 +1549,7 @@ exports[`The identification section renders the IdentificationSections component
                       autoCorrect={true}
                       className=""
                       disabled={false}
-                      id="day-98d38d86-f8bd-6af7-d2c6-9f7cc14cf465"
+                      id="day-MOCK-GUID"
                       maxLength="2"
                       name="day"
                       onBlur={[Function]}
@@ -1572,7 +1572,7 @@ exports[`The identification section renders the IdentificationSections component
                   >
                     <label
                       className="usa-input-error-label"
-                      htmlFor="year-69d31213-beae-4010-c686-66682f240de2"
+                      htmlFor="year-MOCK-GUID"
                     >
                       Year
                     </label>
@@ -1584,7 +1584,7 @@ exports[`The identification section renders the IdentificationSections component
                       autoCorrect={true}
                       className=""
                       disabled={false}
-                      id="year-69d31213-beae-4010-c686-66682f240de2"
+                      id="year-MOCK-GUID"
                       maxLength="4"
                       name="year"
                       onBlur={[Function]}
@@ -1611,7 +1611,7 @@ exports[`The identification section renders the IdentificationSections component
                     checked={false}
                     className="usa-input-success"
                     disabled={false}
-                    id="estimated-aef1e7a8-e6a4-d973-127b-94cee9ed835c"
+                    id="estimated-MOCK-GUID"
                     name="estimated"
                     onBlur={[Function]}
                     onChange={[Function]}
@@ -1622,7 +1622,7 @@ exports[`The identification section renders the IdentificationSections component
                   />
                   <label
                     className="checkbox no-toggle"
-                    htmlFor="estimated-aef1e7a8-e6a4-d973-127b-94cee9ed835c"
+                    htmlFor="estimated-MOCK-GUID"
                   >
                     <span>
                       Estimated
@@ -1686,13 +1686,13 @@ exports[`The identification section renders the IdentificationSections component
     <div
       aria-label="Provide your place of birth"
       className="field required"
-      data-uuid="field-0dee195b-9024-1543-d179-c1d03c92f2ba"
+      data-uuid="field-MOCK-GUID"
     >
       <a
         aria-hidden="true"
         className="anchor"
-        id="field-0dee195b-9024-1543-d179-c1d03c92f2ba"
-        name="field-0dee195b-9024-1543-d179-c1d03c92f2ba"
+        id="field-MOCK-GUID"
+        name="field-MOCK-GUID"
       />
       <h2
         className="title h2"
@@ -1739,15 +1739,15 @@ exports[`The identification section renders the IdentificationSections component
                     >
                       <label
                         className=""
-                        htmlFor="birthplace-620932e0-0374-f2ce-5d5d-766f5f5673b7"
+                        htmlFor="birthplace-MOCK-GUID"
                       >
                         <input
                           aria-label="Yes for null"
                           checked={false}
                           className="usa-input-success"
                           disabled={false}
-                          id="birthplace-620932e0-0374-f2ce-5d5d-766f5f5673b7"
-                          name="birthplace-620932e0-0374-f2ce-5d5d-766f5f5673b7"
+                          id="birthplace-MOCK-GUID"
+                          name="birthplace-MOCK-GUID"
                           onBlur={[Function]}
                           onChange={[Function]}
                           onClick={[Function]}
@@ -1766,15 +1766,15 @@ exports[`The identification section renders the IdentificationSections component
                     >
                       <label
                         className=""
-                        htmlFor="birthplace-2aa4688b-44b1-4051-171b-e4a9eb2fd840"
+                        htmlFor="birthplace-MOCK-GUID"
                       >
                         <input
                           aria-label="No for null"
                           checked={false}
                           className="usa-input-success"
                           disabled={false}
-                          id="birthplace-2aa4688b-44b1-4051-171b-e4a9eb2fd840"
-                          name="birthplace-2aa4688b-44b1-4051-171b-e4a9eb2fd840"
+                          id="birthplace-MOCK-GUID"
+                          name="birthplace-MOCK-GUID"
                           onBlur={[Function]}
                           onChange={[Function]}
                           onClick={[Function]}
@@ -1837,13 +1837,13 @@ exports[`The identification section renders the IdentificationSections component
     <div
       aria-label="Provide your U.S. Social Security Number"
       className="field required"
-      data-uuid="field-f311f590-283b-8833-2a53-37eae29aeb13"
+      data-uuid="field-MOCK-GUID"
     >
       <a
         aria-hidden="true"
         className="anchor"
-        id="field-f311f590-283b-8833-2a53-37eae29aeb13"
-        name="field-f311f590-283b-8833-2a53-37eae29aeb13"
+        id="field-MOCK-GUID"
+        name="field-MOCK-GUID"
       />
       <h2
         className="title h2"
@@ -1908,7 +1908,7 @@ exports[`The identification section renders the IdentificationSections component
                   autoCorrect={true}
                   className=""
                   disabled={false}
-                  id="first-522086b6-9ae4-6216-75af-26668c297a3d"
+                  id="first-MOCK-GUID"
                   maxLength="3"
                   name="first"
                   onBlur={[Function]}
@@ -1936,7 +1936,7 @@ exports[`The identification section renders the IdentificationSections component
                   autoCorrect={true}
                   className=""
                   disabled={false}
-                  id="middle-8be7bafd-508a-9f68-fd3b-70c3890d1207"
+                  id="middle-MOCK-GUID"
                   maxLength="2"
                   name="middle"
                   onBlur={[Function]}
@@ -1964,7 +1964,7 @@ exports[`The identification section renders the IdentificationSections component
                   autoCorrect={true}
                   className=""
                   disabled={false}
-                  id="last-d34507e7-c366-c3dc-8d94-dac3ece55cd2"
+                  id="last-MOCK-GUID"
                   maxLength="4"
                   name="last"
                   onBlur={[Function]}
@@ -1991,7 +1991,7 @@ exports[`The identification section renders the IdentificationSections component
                     aria-label="Not applicable for null"
                     checked={false}
                     className="usa-input-success"
-                    id="notApplicable-ac19fdc2-4489-1890-0a62-cf4d1234e07f"
+                    id="notApplicable-MOCK-GUID"
                     name="notApplicable"
                     onBlur={[Function]}
                     onChange={[Function]}
@@ -2002,7 +2002,7 @@ exports[`The identification section renders the IdentificationSections component
                   />
                   <label
                     className="checkbox no-toggle"
-                    htmlFor="notApplicable-ac19fdc2-4489-1890-0a62-cf4d1234e07f"
+                    htmlFor="notApplicable-MOCK-GUID"
                   >
                     <span>
                       Not applicable
@@ -2056,13 +2056,13 @@ exports[`The identification section renders the IdentificationSections component
     <div
       aria-label="Provide your identifying information"
       className="field   no-margin-bottom"
-      data-uuid="field-e392d3b0-fa75-b219-7ea9-c08822b1bbc7"
+      data-uuid="field-MOCK-GUID"
     >
       <a
         aria-hidden="true"
         className="anchor"
-        id="field-e392d3b0-fa75-b219-7ea9-c08822b1bbc7"
-        name="field-e392d3b0-fa75-b219-7ea9-c08822b1bbc7"
+        id="field-MOCK-GUID"
+        name="field-MOCK-GUID"
       />
       <h2
         className="title h2"
@@ -2104,13 +2104,13 @@ exports[`The identification section renders the IdentificationSections component
     <div
       aria-label="Height"
       className="field required"
-      data-uuid="field-3bcda601-1d10-5809-d5bc-1f829d7fa490"
+      data-uuid="field-MOCK-GUID"
     >
       <a
         aria-hidden="true"
         className="anchor"
-        id="field-3bcda601-1d10-5809-d5bc-1f829d7fa490"
-        name="field-3bcda601-1d10-5809-d5bc-1f829d7fa490"
+        id="field-MOCK-GUID"
+        name="field-MOCK-GUID"
       />
       <h3
         className="title h3"
@@ -2172,7 +2172,7 @@ exports[`The identification section renders the IdentificationSections component
                 >
                   <label
                     className="usa-input-error-label"
-                    htmlFor="feet-3e633e2d-4583-ed68-183a-43c239870d80"
+                    htmlFor="feet-MOCK-GUID"
                   >
                     Feet
                   </label>
@@ -2184,7 +2184,7 @@ exports[`The identification section renders the IdentificationSections component
                     autoCorrect={true}
                     className=""
                     disabled={false}
-                    id="feet-3e633e2d-4583-ed68-183a-43c239870d80"
+                    id="feet-MOCK-GUID"
                     maxLength="1"
                     name="feet"
                     onBlur={[Function]}
@@ -2207,7 +2207,7 @@ exports[`The identification section renders the IdentificationSections component
                 >
                   <label
                     className="usa-input-error-label"
-                    htmlFor="inches-8d4d5ec7-3659-a42d-d1ff-1bbec0a36b12"
+                    htmlFor="inches-MOCK-GUID"
                   >
                     Inches
                   </label>
@@ -2219,7 +2219,7 @@ exports[`The identification section renders the IdentificationSections component
                     autoCorrect={true}
                     className=""
                     disabled={false}
-                    id="inches-8d4d5ec7-3659-a42d-d1ff-1bbec0a36b12"
+                    id="inches-MOCK-GUID"
                     maxLength="2"
                     name="inches"
                     onBlur={[Function]}
@@ -2271,13 +2271,13 @@ exports[`The identification section renders the IdentificationSections component
     <div
       aria-label="Weight"
       className="field required"
-      data-uuid="field-0fe2e5ef-cacf-987d-bc61-1f2d878ce509"
+      data-uuid="field-MOCK-GUID"
     >
       <a
         aria-hidden="true"
         className="anchor"
-        id="field-0fe2e5ef-cacf-987d-bc61-1f2d878ce509"
-        name="field-0fe2e5ef-cacf-987d-bc61-1f2d878ce509"
+        id="field-MOCK-GUID"
+        name="field-MOCK-GUID"
       />
       <h3
         className="title h3"
@@ -2339,7 +2339,7 @@ exports[`The identification section renders the IdentificationSections component
                 >
                   <label
                     className="usa-input-error-label"
-                    htmlFor="pounds-04461680-21db-98a1-3403-ddd579cf0676"
+                    htmlFor="pounds-MOCK-GUID"
                   >
                     Pounds
                   </label>
@@ -2351,7 +2351,7 @@ exports[`The identification section renders the IdentificationSections component
                     autoCorrect={true}
                     className=""
                     disabled={false}
-                    id="pounds-04461680-21db-98a1-3403-ddd579cf0676"
+                    id="pounds-MOCK-GUID"
                     maxLength="3"
                     name="pounds"
                     onBlur={[Function]}
@@ -2403,13 +2403,13 @@ exports[`The identification section renders the IdentificationSections component
     <div
       aria-label="Hair color"
       className="field required"
-      data-uuid="field-98a063d9-0d1d-8516-7fa7-b7c04e7e7838"
+      data-uuid="field-MOCK-GUID"
     >
       <a
         aria-hidden="true"
         className="anchor"
-        id="field-98a063d9-0d1d-8516-7fa7-b7c04e7e7838"
-        name="field-98a063d9-0d1d-8516-7fa7-b7c04e7e7838"
+        id="field-MOCK-GUID"
+        name="field-MOCK-GUID"
       />
       <h3
         className="title h3"
@@ -2472,15 +2472,15 @@ exports[`The identification section renders the IdentificationSections component
                 >
                   <label
                     className=""
-                    htmlFor="hair-black-14545dbf-8df8-5791-77dc-f77df54b500f"
+                    htmlFor="hair-black-MOCK-GUID"
                   >
                     <input
                       aria-label="Black for null"
                       checked={false}
                       className="usa-input-success"
                       disabled={false}
-                      id="hair-black-14545dbf-8df8-5791-77dc-f77df54b500f"
-                      name="hair-black-14545dbf-8df8-5791-77dc-f77df54b500f"
+                      id="hair-black-MOCK-GUID"
+                      name="hair-black-MOCK-GUID"
                       onBlur={[Function]}
                       onChange={[Function]}
                       onClick={[Function]}
@@ -2514,15 +2514,15 @@ exports[`The identification section renders the IdentificationSections component
                 >
                   <label
                     className=""
-                    htmlFor="hair-brown-7e808598-da63-9740-524f-14cba5dd8dd0"
+                    htmlFor="hair-brown-MOCK-GUID"
                   >
                     <input
                       aria-label="Brown for null"
                       checked={false}
                       className="usa-input-success"
                       disabled={false}
-                      id="hair-brown-7e808598-da63-9740-524f-14cba5dd8dd0"
-                      name="hair-brown-7e808598-da63-9740-524f-14cba5dd8dd0"
+                      id="hair-brown-MOCK-GUID"
+                      name="hair-brown-MOCK-GUID"
                       onBlur={[Function]}
                       onChange={[Function]}
                       onClick={[Function]}
@@ -2556,15 +2556,15 @@ exports[`The identification section renders the IdentificationSections component
                 >
                   <label
                     className=""
-                    htmlFor="hair-red-668901ba-cfe5-689c-86ae-800012020ecd"
+                    htmlFor="hair-red-MOCK-GUID"
                   >
                     <input
                       aria-label="Red or auburn for null"
                       checked={false}
                       className="usa-input-success"
                       disabled={false}
-                      id="hair-red-668901ba-cfe5-689c-86ae-800012020ecd"
-                      name="hair-red-668901ba-cfe5-689c-86ae-800012020ecd"
+                      id="hair-red-MOCK-GUID"
+                      name="hair-red-MOCK-GUID"
                       onBlur={[Function]}
                       onChange={[Function]}
                       onClick={[Function]}
@@ -2598,15 +2598,15 @@ exports[`The identification section renders the IdentificationSections component
                 >
                   <label
                     className=""
-                    htmlFor="hair-blonde-c0b244d9-ba2b-bbdf-1f62-e0de3c2be4a0"
+                    htmlFor="hair-blonde-MOCK-GUID"
                   >
                     <input
                       aria-label="Blonde or strawberry for null"
                       checked={false}
                       className="usa-input-success"
                       disabled={false}
-                      id="hair-blonde-c0b244d9-ba2b-bbdf-1f62-e0de3c2be4a0"
-                      name="hair-blonde-c0b244d9-ba2b-bbdf-1f62-e0de3c2be4a0"
+                      id="hair-blonde-MOCK-GUID"
+                      name="hair-blonde-MOCK-GUID"
                       onBlur={[Function]}
                       onChange={[Function]}
                       onClick={[Function]}
@@ -2640,15 +2640,15 @@ exports[`The identification section renders the IdentificationSections component
                 >
                   <label
                     className=""
-                    htmlFor="hair-sandy-abab06ef-c7d8-cc12-3a7c-61915b6c1166"
+                    htmlFor="hair-sandy-MOCK-GUID"
                   >
                     <input
                       aria-label="Sandy for null"
                       checked={false}
                       className="usa-input-success"
                       disabled={false}
-                      id="hair-sandy-abab06ef-c7d8-cc12-3a7c-61915b6c1166"
-                      name="hair-sandy-abab06ef-c7d8-cc12-3a7c-61915b6c1166"
+                      id="hair-sandy-MOCK-GUID"
+                      name="hair-sandy-MOCK-GUID"
                       onBlur={[Function]}
                       onChange={[Function]}
                       onClick={[Function]}
@@ -2682,15 +2682,15 @@ exports[`The identification section renders the IdentificationSections component
                 >
                   <label
                     className=""
-                    htmlFor="hair-gray-e42a72e4-8b60-8ab5-5034-7bf9e709f17e"
+                    htmlFor="hair-gray-MOCK-GUID"
                   >
                     <input
                       aria-label="Gray or partially gray for null"
                       checked={false}
                       className="usa-input-success"
                       disabled={false}
-                      id="hair-gray-e42a72e4-8b60-8ab5-5034-7bf9e709f17e"
-                      name="hair-gray-e42a72e4-8b60-8ab5-5034-7bf9e709f17e"
+                      id="hair-gray-MOCK-GUID"
+                      name="hair-gray-MOCK-GUID"
                       onBlur={[Function]}
                       onChange={[Function]}
                       onClick={[Function]}
@@ -2724,15 +2724,15 @@ exports[`The identification section renders the IdentificationSections component
                 >
                   <label
                     className=""
-                    htmlFor="hair-white-a30c47c7-7b4f-8e1c-392d-a8f0b95f3e33"
+                    htmlFor="hair-white-MOCK-GUID"
                   >
                     <input
                       aria-label="White for null"
                       checked={false}
                       className="usa-input-success"
                       disabled={false}
-                      id="hair-white-a30c47c7-7b4f-8e1c-392d-a8f0b95f3e33"
-                      name="hair-white-a30c47c7-7b4f-8e1c-392d-a8f0b95f3e33"
+                      id="hair-white-MOCK-GUID"
+                      name="hair-white-MOCK-GUID"
                       onBlur={[Function]}
                       onChange={[Function]}
                       onClick={[Function]}
@@ -2766,15 +2766,15 @@ exports[`The identification section renders the IdentificationSections component
                 >
                   <label
                     className=""
-                    htmlFor="hair-bald-23a49db7-9356-1fe1-ee48-bc7541774056"
+                    htmlFor="hair-bald-MOCK-GUID"
                   >
                     <input
                       aria-label="Bald for null"
                       checked={false}
                       className="usa-input-success"
                       disabled={false}
-                      id="hair-bald-23a49db7-9356-1fe1-ee48-bc7541774056"
-                      name="hair-bald-23a49db7-9356-1fe1-ee48-bc7541774056"
+                      id="hair-bald-MOCK-GUID"
+                      name="hair-bald-MOCK-GUID"
                       onBlur={[Function]}
                       onChange={[Function]}
                       onClick={[Function]}
@@ -2816,15 +2816,15 @@ exports[`The identification section renders the IdentificationSections component
                 >
                   <label
                     className=""
-                    htmlFor="hair-blue-410d7595-0d37-f63b-d051-aeae458ac3ce"
+                    htmlFor="hair-blue-MOCK-GUID"
                   >
                     <input
                       aria-label="Blue for null"
                       checked={false}
                       className="usa-input-success"
                       disabled={false}
-                      id="hair-blue-410d7595-0d37-f63b-d051-aeae458ac3ce"
-                      name="hair-blue-410d7595-0d37-f63b-d051-aeae458ac3ce"
+                      id="hair-blue-MOCK-GUID"
+                      name="hair-blue-MOCK-GUID"
                       onBlur={[Function]}
                       onChange={[Function]}
                       onClick={[Function]}
@@ -2858,15 +2858,15 @@ exports[`The identification section renders the IdentificationSections component
                 >
                   <label
                     className=""
-                    htmlFor="hair-green-4f299c2f-0ef1-4c68-e5d8-c0e9a8d8110f"
+                    htmlFor="hair-green-MOCK-GUID"
                   >
                     <input
                       aria-label="Green for null"
                       checked={false}
                       className="usa-input-success"
                       disabled={false}
-                      id="hair-green-4f299c2f-0ef1-4c68-e5d8-c0e9a8d8110f"
-                      name="hair-green-4f299c2f-0ef1-4c68-e5d8-c0e9a8d8110f"
+                      id="hair-green-MOCK-GUID"
+                      name="hair-green-MOCK-GUID"
                       onBlur={[Function]}
                       onChange={[Function]}
                       onClick={[Function]}
@@ -2900,15 +2900,15 @@ exports[`The identification section renders the IdentificationSections component
                 >
                   <label
                     className=""
-                    htmlFor="hair-orange-33154e4c-24bb-bd3f-2659-c9ce425463e0"
+                    htmlFor="hair-orange-MOCK-GUID"
                   >
                     <input
                       aria-label="Orange for null"
                       checked={false}
                       className="usa-input-success"
                       disabled={false}
-                      id="hair-orange-33154e4c-24bb-bd3f-2659-c9ce425463e0"
-                      name="hair-orange-33154e4c-24bb-bd3f-2659-c9ce425463e0"
+                      id="hair-orange-MOCK-GUID"
+                      name="hair-orange-MOCK-GUID"
                       onBlur={[Function]}
                       onChange={[Function]}
                       onClick={[Function]}
@@ -2942,15 +2942,15 @@ exports[`The identification section renders the IdentificationSections component
                 >
                   <label
                     className=""
-                    htmlFor="hair-pink-ded662a9-a406-2593-b3d7-551dc1db9dcc"
+                    htmlFor="hair-pink-MOCK-GUID"
                   >
                     <input
                       aria-label="Pink for null"
                       checked={false}
                       className="usa-input-success"
                       disabled={false}
-                      id="hair-pink-ded662a9-a406-2593-b3d7-551dc1db9dcc"
-                      name="hair-pink-ded662a9-a406-2593-b3d7-551dc1db9dcc"
+                      id="hair-pink-MOCK-GUID"
+                      name="hair-pink-MOCK-GUID"
                       onBlur={[Function]}
                       onChange={[Function]}
                       onClick={[Function]}
@@ -2984,15 +2984,15 @@ exports[`The identification section renders the IdentificationSections component
                 >
                   <label
                     className=""
-                    htmlFor="hair-purple-81184543-eeb3-2131-e3a1-6dfec555f9c3"
+                    htmlFor="hair-purple-MOCK-GUID"
                   >
                     <input
                       aria-label="Purple for null"
                       checked={false}
                       className="usa-input-success"
                       disabled={false}
-                      id="hair-purple-81184543-eeb3-2131-e3a1-6dfec555f9c3"
-                      name="hair-purple-81184543-eeb3-2131-e3a1-6dfec555f9c3"
+                      id="hair-purple-MOCK-GUID"
+                      name="hair-purple-MOCK-GUID"
                       onBlur={[Function]}
                       onChange={[Function]}
                       onClick={[Function]}
@@ -3026,15 +3026,15 @@ exports[`The identification section renders the IdentificationSections component
                 >
                   <label
                     className=""
-                    htmlFor="hair-unknown-d4e1d88e-4e42-a050-88e5-2994b404c6af"
+                    htmlFor="hair-unknown-MOCK-GUID"
                   >
                     <input
                       aria-label="Unspecified or unknown for null"
                       checked={false}
                       className="usa-input-success"
                       disabled={false}
-                      id="hair-unknown-d4e1d88e-4e42-a050-88e5-2994b404c6af"
-                      name="hair-unknown-d4e1d88e-4e42-a050-88e5-2994b404c6af"
+                      id="hair-unknown-MOCK-GUID"
+                      name="hair-unknown-MOCK-GUID"
                       onBlur={[Function]}
                       onChange={[Function]}
                       onClick={[Function]}
@@ -3100,13 +3100,13 @@ exports[`The identification section renders the IdentificationSections component
     <div
       aria-label="Eye color"
       className="field required"
-      data-uuid="field-7c21c9e0-2513-52eb-3ded-066b9c3b3a09"
+      data-uuid="field-MOCK-GUID"
     >
       <a
         aria-hidden="true"
         className="anchor"
-        id="field-7c21c9e0-2513-52eb-3ded-066b9c3b3a09"
-        name="field-7c21c9e0-2513-52eb-3ded-066b9c3b3a09"
+        id="field-MOCK-GUID"
+        name="field-MOCK-GUID"
       />
       <h3
         className="title h3"
@@ -3169,15 +3169,15 @@ exports[`The identification section renders the IdentificationSections component
                 >
                   <label
                     className=""
-                    htmlFor="eye-brown-b5740c30-eea1-3b9d-7822-9b31de1040a4"
+                    htmlFor="eye-brown-MOCK-GUID"
                   >
                     <input
                       aria-label="Brown for null"
                       checked={false}
                       className="usa-input-success"
                       disabled={false}
-                      id="eye-brown-b5740c30-eea1-3b9d-7822-9b31de1040a4"
-                      name="eye-brown-b5740c30-eea1-3b9d-7822-9b31de1040a4"
+                      id="eye-brown-MOCK-GUID"
+                      name="eye-brown-MOCK-GUID"
                       onBlur={[Function]}
                       onChange={[Function]}
                       onClick={[Function]}
@@ -3211,15 +3211,15 @@ exports[`The identification section renders the IdentificationSections component
                 >
                   <label
                     className=""
-                    htmlFor="eye-hazel-92b5d3d0-488d-b0dd-4af9-f2bb8f0e0f5f"
+                    htmlFor="eye-hazel-MOCK-GUID"
                   >
                     <input
                       aria-label="Hazel for null"
                       checked={false}
                       className="usa-input-success"
                       disabled={false}
-                      id="eye-hazel-92b5d3d0-488d-b0dd-4af9-f2bb8f0e0f5f"
-                      name="eye-hazel-92b5d3d0-488d-b0dd-4af9-f2bb8f0e0f5f"
+                      id="eye-hazel-MOCK-GUID"
+                      name="eye-hazel-MOCK-GUID"
                       onBlur={[Function]}
                       onChange={[Function]}
                       onClick={[Function]}
@@ -3253,15 +3253,15 @@ exports[`The identification section renders the IdentificationSections component
                 >
                   <label
                     className=""
-                    htmlFor="eye-blue-22d3b2a1-665c-64e3-e0d0-5919a59d9f86"
+                    htmlFor="eye-blue-MOCK-GUID"
                   >
                     <input
                       aria-label="Blue for null"
                       checked={false}
                       className="usa-input-success"
                       disabled={false}
-                      id="eye-blue-22d3b2a1-665c-64e3-e0d0-5919a59d9f86"
-                      name="eye-blue-22d3b2a1-665c-64e3-e0d0-5919a59d9f86"
+                      id="eye-blue-MOCK-GUID"
+                      name="eye-blue-MOCK-GUID"
                       onBlur={[Function]}
                       onChange={[Function]}
                       onClick={[Function]}
@@ -3295,15 +3295,15 @@ exports[`The identification section renders the IdentificationSections component
                 >
                   <label
                     className=""
-                    htmlFor="eye-green-21ca03ea-a91c-490b-6b61-d35cd639613f"
+                    htmlFor="eye-green-MOCK-GUID"
                   >
                     <input
                       aria-label="Green for null"
                       checked={false}
                       className="usa-input-success"
                       disabled={false}
-                      id="eye-green-21ca03ea-a91c-490b-6b61-d35cd639613f"
-                      name="eye-green-21ca03ea-a91c-490b-6b61-d35cd639613f"
+                      id="eye-green-MOCK-GUID"
+                      name="eye-green-MOCK-GUID"
                       onBlur={[Function]}
                       onChange={[Function]}
                       onClick={[Function]}
@@ -3337,15 +3337,15 @@ exports[`The identification section renders the IdentificationSections component
                 >
                   <label
                     className=""
-                    htmlFor="eye-gray-1764ef80-4398-0283-84bb-8fcf802fd357"
+                    htmlFor="eye-gray-MOCK-GUID"
                   >
                     <input
                       aria-label="Gray for null"
                       checked={false}
                       className="usa-input-success"
                       disabled={false}
-                      id="eye-gray-1764ef80-4398-0283-84bb-8fcf802fd357"
-                      name="eye-gray-1764ef80-4398-0283-84bb-8fcf802fd357"
+                      id="eye-gray-MOCK-GUID"
+                      name="eye-gray-MOCK-GUID"
                       onBlur={[Function]}
                       onChange={[Function]}
                       onClick={[Function]}
@@ -3379,15 +3379,15 @@ exports[`The identification section renders the IdentificationSections component
                 >
                   <label
                     className=""
-                    htmlFor="eye-maroon-a1ee3100-f2dd-46a3-bfb8-4ccb95dce801"
+                    htmlFor="eye-maroon-MOCK-GUID"
                   >
                     <input
                       aria-label="Maroon for null"
                       checked={false}
                       className="usa-input-success"
                       disabled={false}
-                      id="eye-maroon-a1ee3100-f2dd-46a3-bfb8-4ccb95dce801"
-                      name="eye-maroon-a1ee3100-f2dd-46a3-bfb8-4ccb95dce801"
+                      id="eye-maroon-MOCK-GUID"
+                      name="eye-maroon-MOCK-GUID"
                       onBlur={[Function]}
                       onChange={[Function]}
                       onClick={[Function]}
@@ -3421,15 +3421,15 @@ exports[`The identification section renders the IdentificationSections component
                 >
                   <label
                     className=""
-                    htmlFor="eye-black-9095c0ca-b173-78da-9400-3438dead244f"
+                    htmlFor="eye-black-MOCK-GUID"
                   >
                     <input
                       aria-label="Black for null"
                       checked={false}
                       className="usa-input-success"
                       disabled={false}
-                      id="eye-black-9095c0ca-b173-78da-9400-3438dead244f"
-                      name="eye-black-9095c0ca-b173-78da-9400-3438dead244f"
+                      id="eye-black-MOCK-GUID"
+                      name="eye-black-MOCK-GUID"
                       onBlur={[Function]}
                       onChange={[Function]}
                       onClick={[Function]}
@@ -3463,15 +3463,15 @@ exports[`The identification section renders the IdentificationSections component
                 >
                   <label
                     className=""
-                    htmlFor="eye-multi-fdbd4de1-c125-5905-1cbc-b6c3113dc045"
+                    htmlFor="eye-multi-MOCK-GUID"
                   >
                     <input
                       aria-label="Multicolored for null"
                       checked={false}
                       className="usa-input-success"
                       disabled={false}
-                      id="eye-multi-fdbd4de1-c125-5905-1cbc-b6c3113dc045"
-                      name="eye-multi-fdbd4de1-c125-5905-1cbc-b6c3113dc045"
+                      id="eye-multi-MOCK-GUID"
+                      name="eye-multi-MOCK-GUID"
                       onBlur={[Function]}
                       onChange={[Function]}
                       onClick={[Function]}
@@ -3499,15 +3499,15 @@ exports[`The identification section renders the IdentificationSections component
                 >
                   <label
                     className=""
-                    htmlFor="eye-pink-f13e46eb-7c6e-34a8-0239-1ab292b5c451"
+                    htmlFor="eye-pink-MOCK-GUID"
                   >
                     <input
                       aria-label="Pink for null"
                       checked={false}
                       className="usa-input-success"
                       disabled={false}
-                      id="eye-pink-f13e46eb-7c6e-34a8-0239-1ab292b5c451"
-                      name="eye-pink-f13e46eb-7c6e-34a8-0239-1ab292b5c451"
+                      id="eye-pink-MOCK-GUID"
+                      name="eye-pink-MOCK-GUID"
                       onBlur={[Function]}
                       onChange={[Function]}
                       onClick={[Function]}
@@ -3541,15 +3541,15 @@ exports[`The identification section renders the IdentificationSections component
                 >
                   <label
                     className=""
-                    htmlFor="eye-unknown-70fdd296-0bc4-56ee-34e4-762fadd5c453"
+                    htmlFor="eye-unknown-MOCK-GUID"
                   >
                     <input
                       aria-label="Unknown for null"
                       checked={false}
                       className="usa-input-success"
                       disabled={false}
-                      id="eye-unknown-70fdd296-0bc4-56ee-34e4-762fadd5c453"
-                      name="eye-unknown-70fdd296-0bc4-56ee-34e4-762fadd5c453"
+                      id="eye-unknown-MOCK-GUID"
+                      name="eye-unknown-MOCK-GUID"
                       onBlur={[Function]}
                       onChange={[Function]}
                       onClick={[Function]}
@@ -3615,13 +3615,13 @@ exports[`The identification section renders the IdentificationSections component
     <div
       aria-label="Select your sex"
       className="field required"
-      data-uuid="field-69439bbc-b5cc-ed91-65bc-cd685736c325"
+      data-uuid="field-MOCK-GUID"
     >
       <a
         aria-hidden="true"
         className="anchor"
-        id="field-69439bbc-b5cc-ed91-65bc-cd685736c325"
-        name="field-69439bbc-b5cc-ed91-65bc-cd685736c325"
+        id="field-MOCK-GUID"
+        name="field-MOCK-GUID"
       />
       <h3
         className="title h3"
@@ -3684,15 +3684,15 @@ exports[`The identification section renders the IdentificationSections component
                 >
                   <label
                     className=""
-                    htmlFor="sex-7c209c18-6504-9c0f-8c3b-a7ccc19acbcd"
+                    htmlFor="sex-MOCK-GUID"
                   >
                     <input
                       aria-label="Female for null"
                       checked={false}
                       className="usa-input-success"
                       disabled={false}
-                      id="sex-7c209c18-6504-9c0f-8c3b-a7ccc19acbcd"
-                      name="sex-7c209c18-6504-9c0f-8c3b-a7ccc19acbcd"
+                      id="sex-MOCK-GUID"
+                      name="sex-MOCK-GUID"
                       onBlur={[Function]}
                       onChange={[Function]}
                       onClick={[Function]}
@@ -3725,15 +3725,15 @@ exports[`The identification section renders the IdentificationSections component
                 >
                   <label
                     className=""
-                    htmlFor="sex-e6b1e02e-961d-b892-17ba-84cb6eb4a341"
+                    htmlFor="sex-MOCK-GUID"
                   >
                     <input
                       aria-label="Male for null"
                       checked={false}
                       className="usa-input-success"
                       disabled={false}
-                      id="sex-e6b1e02e-961d-b892-17ba-84cb6eb4a341"
-                      name="sex-e6b1e02e-961d-b892-17ba-84cb6eb4a341"
+                      id="sex-MOCK-GUID"
+                      name="sex-MOCK-GUID"
                       onBlur={[Function]}
                       onChange={[Function]}
                       onClick={[Function]}
@@ -3815,13 +3815,13 @@ exports[`The identification section renders the IdentificationSections component
   <div
     aria-label="Add a comment to clarify any of your responses in the information about you section"
     className="field   section-comment"
-    data-uuid="field-502615de-d385-f400-9894-b69987d5ea01"
+    data-uuid="field-MOCK-GUID"
   >
     <a
       aria-hidden="true"
       className="anchor"
-      id="field-502615de-d385-f400-9894-b69987d5ea01"
-      name="field-502615de-d385-f400-9894-b69987d5ea01"
+      id="field-MOCK-GUID"
+      name="field-MOCK-GUID"
     />
     <h4
       className="title h4"
@@ -3863,7 +3863,7 @@ exports[`The identification section renders the IdentificationSections component
               autoComplete={true}
               autoCorrect={true}
               className=""
-              id="Comments-567dae66-fcfe-3a38-2f49-f9e979ebe380"
+              id="Comments-MOCK-GUID"
               maxLength={255}
               name="Comments"
               onBlur={[Function]}
