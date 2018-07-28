@@ -1,0 +1,1205 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The financial section renders the FinancialSections component 1`] = `
+<div>
+  <div
+    className="section-content bankruptcies"
+    data-section="financial"
+    data-subsection="bankruptcy"
+  >
+    <div
+      aria-label="In the last seven (7) years have you filed a petition under any chapter of the bankruptcy code?"
+      className="field required  branch bankruptcy-branch"
+      data-uuid="field-MOCK-GUID"
+    >
+      <a
+        aria-hidden="true"
+        className="anchor"
+        id="field-MOCK-GUID"
+        name="field-MOCK-GUID"
+      />
+      <h2
+        className="title h2"
+      >
+        In the last seven (7) years have you filed a petition under any chapter of the bankruptcy code?
+      </h2>
+      <span
+        className="icon"
+      >
+        <a
+          aria-label="Show help for In the last seven (7) years have you filed a petition under any chapter of the bankruptcy code?"
+          className="toggle h2  adjust-for-buttons"
+          href="javascript:;"
+          onClick={[Function]}
+          title="Show help for In the last seven (7) years have you filed a petition under any chapter of the bankruptcy code?"
+        >
+          <svg
+            alt="Scalable vector graphic"
+            focusable="false"
+            height="14.57px"
+            tabIndex="-1"
+            viewBox="0 0 14.57 14.57"
+            width="14.57px"
+          >
+            <g>
+              <path
+                className="eapp-help-icon"
+                d="M13.59,3.63c0.65,1.12,0.98,2.34,0.98,3.66s-0.33,2.54-0.98,3.66c-0.65,1.12-1.54,2-2.65,2.65 s-2.33,0.98-3.66,0.98c-1.32,0-2.54-0.33-3.66-0.98s-2-1.54-2.65-2.65C0.33,9.83,0,8.61,0,7.29s0.33-2.54,0.98-3.66 c0.65-1.12,1.54-2,2.65-2.65S5.96,0,7.29,0c1.32,0,2.54,0.33,3.66,0.98S12.94,2.51,13.59,3.63z M10.93,5.46 c0-0.56-0.18-1.07-0.53-1.55c-0.35-0.47-0.79-0.84-1.31-1.1C8.56,2.56,8.03,2.43,7.48,2.43c-1.54,0-2.71,0.67-3.52,2.02 C3.86,4.6,3.89,4.73,4.03,4.85L5.28,5.8c0.04,0.04,0.1,0.06,0.18,0.06c0.1,0,0.18-0.04,0.24-0.11c0.33-0.43,0.61-0.72,0.82-0.87 C6.73,4.71,7,4.64,7.33,4.64c0.3,0,0.57,0.08,0.81,0.25C8.38,5.05,8.5,5.24,8.5,5.45c0,0.24-0.06,0.43-0.19,0.58 C8.18,6.17,7.97,6.31,7.67,6.45C7.27,6.63,6.9,6.9,6.57,7.27c-0.33,0.37-0.5,0.77-0.5,1.19V8.8c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.09,0.22,0.09H8.2c0.09,0,0.16-0.03,0.22-0.09C8.47,8.96,8.5,8.89,8.5,8.8c0-0.12,0.07-0.28,0.2-0.47 c0.14-0.19,0.31-0.35,0.52-0.47c0.2-0.11,0.36-0.21,0.46-0.27s0.25-0.18,0.44-0.33c0.18-0.15,0.32-0.31,0.42-0.46 c0.1-0.15,0.19-0.34,0.27-0.57C10.89,6,10.93,5.74,10.93,5.46z M8.5,11.84v-1.82c0-0.09-0.03-0.16-0.08-0.22 C8.36,9.74,8.29,9.71,8.2,9.71H6.38c-0.09,0-0.16,0.03-0.22,0.08C6.1,9.86,6.07,9.93,6.07,10.02v1.82c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.08,0.22,0.08H8.2c0.09,0,0.16-0.03,0.22-0.08C8.47,12,8.5,11.93,8.5,11.84z"
+              />
+            </g>
+          </svg>
+        </a>
+      </span>
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages help-messages"
+        />
+      </div>
+      <div
+        className="table"
+      >
+        <span
+          className="content"
+        >
+          <span
+            className="component shrink"
+          >
+            <div
+              className="content"
+            />
+            <div
+              className="blocks option-list branch usa-input-error"
+            >
+              <div
+                className="yes block"
+              >
+                <label
+                  className=""
+                  htmlFor="has_bankruptcydebt-MOCK-GUID"
+                >
+                  <input
+                    aria-label="Yes for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="has_bankruptcydebt-MOCK-GUID"
+                    name="has_bankruptcydebt-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="Yes"
+                  />
+                  <span>
+                    Yes
+                  </span>
+                </label>
+              </div>
+              <div
+                className="no block"
+              >
+                <label
+                  className=""
+                  htmlFor="has_bankruptcydebt-MOCK-GUID"
+                >
+                  <input
+                    aria-label="No for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="has_bankruptcydebt-MOCK-GUID"
+                    name="has_bankruptcydebt-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="No"
+                  />
+                  <span>
+                    No
+                  </span>
+                </label>
+              </div>
+            </div>
+          </span>
+        </span>
+      </div>
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages error-messages"
+          role="alert"
+        >
+          <div
+            aria-live="polite"
+            className="message error"
+            role="alert"
+          >
+            <i
+              aria-hidden="true"
+              className="fa fa-exclamation"
+            />
+            <div
+              data-i18n="error.required"
+            >
+              <h5>
+                Your response is required
+              </h5>
+              
+              
+            </div>
+          </div>
+        </span>
+      </div>
+    </div>
+  </div>
+  <hr
+    className="section-divider"
+  />
+  <div
+    className="section-content gambling"
+    data-section="financial"
+    data-subsection="gambling"
+  >
+    <div
+      aria-label="Have you ever experienced financial problems due to gambling?"
+      className="field required  branch has-gambling-debt"
+      data-uuid="field-MOCK-GUID"
+    >
+      <a
+        aria-hidden="true"
+        className="anchor"
+        id="field-MOCK-GUID"
+        name="field-MOCK-GUID"
+      />
+      <h2
+        className="title h2"
+      >
+        Have you ever experienced financial problems due to gambling?
+      </h2>
+      <span
+        className="icon"
+      />
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages help-messages"
+        />
+      </div>
+      <div
+        className="table"
+      >
+        <span
+          className="content"
+        >
+          <span
+            className="component shrink"
+          >
+            <div
+              className="content"
+            />
+            <div
+              className="blocks option-list branch usa-input-error"
+            >
+              <div
+                className="yes block"
+              >
+                <label
+                  className=""
+                  htmlFor="has_gamblingdebt-MOCK-GUID"
+                >
+                  <input
+                    aria-label="Yes for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="has_gamblingdebt-MOCK-GUID"
+                    name="has_gamblingdebt-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="Yes"
+                  />
+                  <span>
+                    Yes
+                  </span>
+                </label>
+              </div>
+              <div
+                className="no block"
+              >
+                <label
+                  className=""
+                  htmlFor="has_gamblingdebt-MOCK-GUID"
+                >
+                  <input
+                    aria-label="No for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="has_gamblingdebt-MOCK-GUID"
+                    name="has_gamblingdebt-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="No"
+                  />
+                  <span>
+                    No
+                  </span>
+                </label>
+              </div>
+            </div>
+          </span>
+        </span>
+      </div>
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages error-messages"
+          role="alert"
+        >
+          <div
+            aria-live="polite"
+            className="message error"
+            role="alert"
+          >
+            <i
+              aria-hidden="true"
+              className="fa fa-exclamation"
+            />
+            <div
+              data-i18n="error.required"
+            >
+              <h5>
+                Your response is required
+              </h5>
+              
+              
+            </div>
+          </div>
+        </span>
+      </div>
+    </div>
+  </div>
+  <hr
+    className="section-divider"
+  />
+  <div
+    className="section-content taxes"
+    data-section="financial"
+    data-subsection="taxes"
+  >
+    <div
+      aria-label="In the last seven (7) years have you failed to file or pay Federal, state, or other taxes when required by law or ordinance?"
+      className="field required  branch taxes-branch"
+      data-uuid="field-MOCK-GUID"
+    >
+      <a
+        aria-hidden="true"
+        className="anchor"
+        id="field-MOCK-GUID"
+        name="field-MOCK-GUID"
+      />
+      <h2
+        className="title h2"
+      >
+        In the last seven (7) years have you failed to file or pay Federal, state, or other taxes when required by law or ordinance?
+      </h2>
+      <span
+        className="icon"
+      />
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages help-messages"
+        />
+      </div>
+      <div
+        className="table"
+      >
+        <span
+          className="content"
+        >
+          <span
+            className="component shrink"
+          >
+            <div
+              className="content"
+            />
+            <div
+              className="blocks option-list branch usa-input-error"
+            >
+              <div
+                className="yes block"
+              >
+                <label
+                  className=""
+                  htmlFor="has_taxes-MOCK-GUID"
+                >
+                  <input
+                    aria-label="Yes for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="has_taxes-MOCK-GUID"
+                    name="has_taxes-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="Yes"
+                  />
+                  <span>
+                    Yes
+                  </span>
+                </label>
+              </div>
+              <div
+                className="no block"
+              >
+                <label
+                  className=""
+                  htmlFor="has_taxes-MOCK-GUID"
+                >
+                  <input
+                    aria-label="No for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="has_taxes-MOCK-GUID"
+                    name="has_taxes-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="No"
+                  />
+                  <span>
+                    No
+                  </span>
+                </label>
+              </div>
+            </div>
+          </span>
+        </span>
+      </div>
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages error-messages"
+          role="alert"
+        >
+          <div
+            aria-live="polite"
+            className="message error"
+            role="alert"
+          >
+            <i
+              aria-hidden="true"
+              className="fa fa-exclamation"
+            />
+            <div
+              data-i18n="error.required"
+            >
+              <h5>
+                Your response is required
+              </h5>
+              
+              
+            </div>
+          </div>
+        </span>
+      </div>
+    </div>
+  </div>
+  <hr
+    className="section-divider"
+  />
+  <div
+    className="section-content card-abuse"
+    data-section="financial"
+    data-subsection="card"
+  >
+    <div
+      aria-label="In the last seven (7) years have you been counseled, warned, or disciplined for violating the terms of agreement for your travel or credit card provided by your employer?"
+      className="field required  branch card-branch"
+      data-uuid="field-MOCK-GUID"
+    >
+      <a
+        aria-hidden="true"
+        className="anchor"
+        id="field-MOCK-GUID"
+        name="field-MOCK-GUID"
+      />
+      <h2
+        className="title h2"
+      >
+        In the last seven (7) years have you been counseled, warned, or disciplined for violating the terms of agreement for your travel or credit card provided by your employer?
+      </h2>
+      <span
+        className="icon"
+      />
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages help-messages"
+        />
+      </div>
+      <div
+        className="table"
+      >
+        <span
+          className="content"
+        >
+          <span
+            className="component shrink"
+          >
+            <div
+              className="content"
+            />
+            <div
+              className="blocks option-list branch usa-input-error"
+            >
+              <div
+                className="yes block"
+              >
+                <label
+                  className=""
+                  htmlFor="has_cardabuse-MOCK-GUID"
+                >
+                  <input
+                    aria-label="Yes for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="has_cardabuse-MOCK-GUID"
+                    name="has_cardabuse-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="Yes"
+                  />
+                  <span>
+                    Yes
+                  </span>
+                </label>
+              </div>
+              <div
+                className="no block"
+              >
+                <label
+                  className=""
+                  htmlFor="has_cardabuse-MOCK-GUID"
+                >
+                  <input
+                    aria-label="No for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="has_cardabuse-MOCK-GUID"
+                    name="has_cardabuse-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="No"
+                  />
+                  <span>
+                    No
+                  </span>
+                </label>
+              </div>
+            </div>
+          </span>
+        </span>
+      </div>
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages error-messages"
+          role="alert"
+        >
+          <div
+            aria-live="polite"
+            className="message error"
+            role="alert"
+          >
+            <i
+              aria-hidden="true"
+              className="fa fa-exclamation"
+            />
+            <div
+              data-i18n="error.required"
+            >
+              <h5>
+                Your response is required
+              </h5>
+              
+              
+            </div>
+          </div>
+        </span>
+      </div>
+    </div>
+  </div>
+  <hr
+    className="section-divider"
+  />
+  <div
+    className="section-content credit-counseling"
+    data-section="financial"
+    data-subsection="credit"
+  >
+    <div
+      aria-label="Are you currently utilizing, or seeking assistance from, a credit counseling service or other similar resource to resolve your financial difficulties?"
+      className="field required  branch credit-branch"
+      data-uuid="field-MOCK-GUID"
+    >
+      <a
+        aria-hidden="true"
+        className="anchor"
+        id="field-MOCK-GUID"
+        name="field-MOCK-GUID"
+      />
+      <h2
+        className="title h2"
+      >
+        Are you currently utilizing, or seeking assistance from, a credit counseling service or other similar resource to resolve your financial difficulties?
+      </h2>
+      <span
+        className="icon"
+      />
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages help-messages"
+        />
+      </div>
+      <div
+        className="table"
+      >
+        <span
+          className="content"
+        >
+          <span
+            className="component shrink"
+          >
+            <div
+              className="content"
+            />
+            <div
+              className="blocks option-list branch usa-input-error"
+            >
+              <div
+                className="yes block"
+              >
+                <label
+                  className=""
+                  htmlFor="has_credit-MOCK-GUID"
+                >
+                  <input
+                    aria-label="Yes for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="has_credit-MOCK-GUID"
+                    name="has_credit-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="Yes"
+                  />
+                  <span>
+                    Yes
+                  </span>
+                </label>
+              </div>
+              <div
+                className="no block"
+              >
+                <label
+                  className=""
+                  htmlFor="has_credit-MOCK-GUID"
+                >
+                  <input
+                    aria-label="No for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="has_credit-MOCK-GUID"
+                    name="has_credit-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="No"
+                  />
+                  <span>
+                    No
+                  </span>
+                </label>
+              </div>
+            </div>
+          </span>
+        </span>
+      </div>
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages error-messages"
+          role="alert"
+        >
+          <div
+            aria-live="polite"
+            className="message error"
+            role="alert"
+          >
+            <i
+              aria-hidden="true"
+              className="fa fa-exclamation"
+            />
+            <div
+              data-i18n="error.required"
+            >
+              <h5>
+                Your response is required
+              </h5>
+              
+              
+            </div>
+          </div>
+        </span>
+      </div>
+    </div>
+  </div>
+  <hr
+    className="section-divider"
+  />
+  <div
+    className="section-content delinquent"
+    data-section="financial"
+    data-subsection="delinquent"
+  >
+    <div
+      aria-label="Other than previously listed, have any of the following happened to you?"
+      className="field required  branch delinquent-branch eapp-field-wrap"
+      data-uuid="field-MOCK-GUID"
+    >
+      <a
+        aria-hidden="true"
+        className="anchor"
+        id="field-MOCK-GUID"
+        name="field-MOCK-GUID"
+      />
+      <h2
+        className="title h2"
+      >
+        Other than previously listed, have any of the following happened to you?
+      </h2>
+      <span
+        className="icon"
+      />
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages help-messages"
+        />
+      </div>
+      <div
+        className="table"
+      >
+        <span
+          className="content"
+        >
+          <span
+            className="component shrink"
+          >
+            <div
+              className="content"
+            >
+              <div>
+                <p>
+                  You will be asked to provide details about each financial obligation that pertains to the items identified below.
+                </p>
+              </div>
+              <ul>
+                <li>
+                  <div>
+                    <p>
+                      <strong>
+                        In the last seven (7) years,
+                      </strong>
+                       you have been delinquent on alimony or child support payments.
+                    </p>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <p>
+                      <strong>
+                        In the last seven (7) years,
+                      </strong>
+                       you had a judgement entered against you. (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).
+                    </p>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <p>
+                      <strong>
+                        In the last seven (7) years,
+                      </strong>
+                       you had a lien placed against your property for failing to pay taxes or other debts. (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).
+                    </p>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <p>
+                      You are currently delinquent on any Federal debt. (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).
+                    </p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div
+              className="blocks option-list branch usa-input-error"
+            >
+              <div
+                className="yes block"
+              >
+                <label
+                  className=""
+                  htmlFor="has_delinquent-MOCK-GUID"
+                >
+                  <input
+                    aria-label="Yes for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="has_delinquent-MOCK-GUID"
+                    name="has_delinquent-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="Yes"
+                  />
+                  <span>
+                    Yes
+                  </span>
+                </label>
+              </div>
+              <div
+                className="no block"
+              >
+                <label
+                  className=""
+                  htmlFor="has_delinquent-MOCK-GUID"
+                >
+                  <input
+                    aria-label="No for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="has_delinquent-MOCK-GUID"
+                    name="has_delinquent-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="No"
+                  />
+                  <span>
+                    No
+                  </span>
+                </label>
+              </div>
+            </div>
+          </span>
+        </span>
+      </div>
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages error-messages"
+          role="alert"
+        >
+          <div
+            aria-live="polite"
+            className="message error"
+            role="alert"
+          >
+            <i
+              aria-hidden="true"
+              className="fa fa-exclamation"
+            />
+            <div
+              data-i18n="error.required"
+            >
+              <h5>
+                Your response is required
+              </h5>
+              
+              
+            </div>
+          </div>
+        </span>
+      </div>
+    </div>
+  </div>
+  <hr
+    className="section-divider"
+  />
+  <div
+    className="section-content nonpayment"
+    data-section="financial"
+    data-subsection="nonpayment"
+  >
+    <div
+      aria-label="Other than previously listed, have any of the following happened?"
+      className="field required  branch nonpayment-branch"
+      data-uuid="field-MOCK-GUID"
+    >
+      <a
+        aria-hidden="true"
+        className="anchor"
+        id="field-MOCK-GUID"
+        name="field-MOCK-GUID"
+      />
+      <h2
+        className="title h2"
+      >
+        Other than previously listed, have any of the following happened?
+      </h2>
+      <span
+        className="icon"
+      />
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages help-messages"
+        />
+      </div>
+      <div
+        className="table"
+      >
+        <span
+          className="content"
+        >
+          <span
+            className="component shrink"
+          >
+            <div
+              className="content"
+            >
+              <ul>
+                <li>
+                  <div>
+                    <p>
+                      <strong>
+                        In the last seven (7) years,
+                      </strong>
+                       you had any possessions or property voluntarily or involuntarily repossessed or foreclosed? (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).
+                    </p>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <p>
+                      <strong>
+                        In the last seven (7) years,
+                      </strong>
+                       you defaulted on any type of loan? (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).
+                    </p>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <p>
+                      <strong>
+                        In the last seven (7) years,
+                      </strong>
+                       you had bills or debts turned over to a collection agency? (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).
+                    </p>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <p>
+                      <strong>
+                        In the last seven (7) years,
+                      </strong>
+                       you had any account or credit card suspended, charged off, or cancelled for failing to pay as agreed? (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).
+                    </p>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <p>
+                      <strong>
+                        In the last seven (7) years,
+                      </strong>
+                       you were evicted for non-payment?
+                    </p>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <p>
+                      <strong>
+                        In the last seven (7) years,
+                      </strong>
+                       you had your wages, benefits, or assets garnished or attached for any reason?
+                    </p>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <p>
+                      <strong>
+                        In the last seven (7) years,
+                      </strong>
+                       you have been over 120 days delinquent on any debt not previously entered? (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).
+                    </p>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <p>
+                      You are currently over 120 days delinquent on any debt? (Include financial obligations for which you were the sole debtor, as well as those for which you were a cosigner or guarantor).
+                    </p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div
+              className="blocks option-list branch usa-input-error"
+            >
+              <div
+                className="yes block"
+              >
+                <label
+                  className=""
+                  htmlFor="has_nonpayment-MOCK-GUID"
+                >
+                  <input
+                    aria-label="Yes for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="has_nonpayment-MOCK-GUID"
+                    name="has_nonpayment-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="Yes"
+                  />
+                  <span>
+                    Yes
+                  </span>
+                </label>
+              </div>
+              <div
+                className="no block"
+              >
+                <label
+                  className=""
+                  htmlFor="has_nonpayment-MOCK-GUID"
+                >
+                  <input
+                    aria-label="No for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="has_nonpayment-MOCK-GUID"
+                    name="has_nonpayment-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="No"
+                  />
+                  <span>
+                    No
+                  </span>
+                </label>
+              </div>
+            </div>
+          </span>
+        </span>
+      </div>
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages error-messages"
+          role="alert"
+        >
+          <div
+            aria-live="polite"
+            className="message error"
+            role="alert"
+          >
+            <i
+              aria-hidden="true"
+              className="fa fa-exclamation"
+            />
+            <div
+              data-i18n="error.required"
+            >
+              <h5>
+                Your response is required
+              </h5>
+              
+              
+            </div>
+          </div>
+        </span>
+      </div>
+    </div>
+  </div>
+  <hr
+    className="section-divider"
+  />
+  <div
+    aria-label="Add a comment to clarify any of your responses in the financial record section"
+    className="field   section-comment"
+    data-uuid="field-MOCK-GUID"
+  >
+    <a
+      aria-hidden="true"
+      className="anchor"
+      id="field-MOCK-GUID"
+      name="field-MOCK-GUID"
+    />
+    <h4
+      className="title h4"
+    >
+      Add a comment to clarify any of your responses in the financial record section
+      <span
+        className="optional"
+      >
+        (Optional)
+      </span>
+    </h4>
+    <span
+      className="icon"
+    />
+    <div
+      className="table expand"
+    >
+      <span
+        aria-live="polite"
+        className="messages help-messages"
+      />
+    </div>
+    <div
+      className="table"
+    >
+      <span
+        className="content"
+      >
+        <span
+          className="component"
+        >
+          <div
+            className=""
+          >
+            <input
+              aria-describedby="Comments-error"
+              aria-label={null}
+              autoCapitalize={true}
+              autoComplete={true}
+              autoCorrect={true}
+              className=""
+              id="Comments-MOCK-GUID"
+              maxLength={255}
+              name="Comments"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              pattern=".*"
+              spellCheck={true}
+              type="text"
+              value=""
+            />
+          </div>
+        </span>
+      </span>
+    </div>
+    <div
+      className="table expand"
+    >
+      <span
+        aria-live="polite"
+        className="messages error-messages"
+        role="alert"
+      />
+    </div>
+  </div>
+</div>
+`;
