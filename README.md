@@ -145,7 +145,7 @@ make test
 make coverage
 ```
 
-Frontend tests are written in [Jest](https://facebook.github.io/jest/), while the API tests use [Go's `testing` package](https://golang.org/pkg/testing/).
+Frontend tests are written in [Jest](https://facebook.github.io/jest/), with [snapshot tests](https://jestjs.io/docs/en/snapshot-testing) for ensuring components don't inadvertently change. API tests use [Go's `testing` package](https://golang.org/pkg/testing/).
 
 ### Adding/updating NPM packages
 

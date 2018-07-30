@@ -1,6 +1,6 @@
 import React from 'react'
 import { Branch } from '../../Form'
-import { newGuid } from '../ValidationElement/ValidationElement'
+import { newGuid } from '../ValidationElement'
 import { scrollToBottom } from '../Accordion/Accordion'
 
 export default class BranchCollection extends React.Component {
