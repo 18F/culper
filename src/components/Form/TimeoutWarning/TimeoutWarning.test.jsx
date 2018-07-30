@@ -1,4 +1,5 @@
 import React from 'react'
+import renderer from 'react-test-renderer'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import { MemoryRouter } from 'react-router'
@@ -84,5 +85,23 @@ describe('The timeout warning component', () => {
     tests.forEach(test => {
       expect(minutes(test.data)).toEqual(test.expect)
     })
+  })
+
+  it('matches the snapshot', () => {
+    const now = new Date()
+    let lastRefresh = new Date(now.setMinutes(now.getMinutes() - 14))
+    const store = mockStore({
+      application: { Settings: { lastRefresh: lastRefresh } },
+      authentication: { authenticated: true }
+    })
+    const component = renderer.create(
+      <Provider store={store}>
+        <MemoryRouter>
+          <TimeoutWarning timeout="15" showWarning={true} />
+        </MemoryRouter>
+      </Provider>
+    )
+    let tree = component.toJSON()
+    expect(tree).toMatchSnapshot()
   })
 })

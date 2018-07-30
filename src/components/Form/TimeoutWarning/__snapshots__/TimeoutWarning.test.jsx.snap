@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The timeout warning component matches the snapshot 1`] = `
+<div
+  className="timeout-warning"
+>
+  <div
+    aria-hidden="false"
+    className="modal"
+    onClick={[Function]}
+    role="dialog"
+  >
+    <div
+      className="modal-wrap"
+    >
+      <div
+        className="modal-content"
+        onClick={[Function]}
+      >
+        <img
+          alt="Scalable vector graphic"
+          className="svg"
+          src="/img/timeout-icon.svg"
+        />
+        <h2>
+          Are you still working?
+        </h2>
+        <p>
+          Let us know below or you will be logged out in 60 seconds.
+        </p>
+        <button
+          aria-label="Yes I'm still working"
+          onClick={[Function]}
+          title="Yes I'm still working"
+        >
+          <div>
+            <span>
+              Yes I'm still working
+            </span>
+            <i
+              aria-hidden="true"
+              className="fa fa-arrow-circle-right"
+            />
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
