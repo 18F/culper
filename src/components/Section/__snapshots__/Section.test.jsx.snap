@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The section component renders the Section component 1`] = `
+<div>
+  <div
+    className="section-view"
+  >
+    <div
+      className="view view-identification"
+    >
+      <div>
+        <div>
+          <div />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
