@@ -4,10 +4,12 @@ import { Field } from '../Form'
 import { SectionView } from './SectionView'
 
 import identification from './Identification/subsections'
+import financial from './Financial/subsections'
 
 // section name (lower case) -> subsection store name -> subsection component
 const componentsBySectionAndStore = {
-  identification
+  identification,
+  financial
 }
 
 export const getComponentByName = (storeToComponentMap, name) => {
@@ -76,11 +78,23 @@ export const addDividers = components => {
   return componentsWithDividers
 }
 
-export const createIntroSubsection = section => {
+export const createIntroSubsection = (section, prevSection = undefined) => {
   const nextSubsection = section.subsections[1]
+
+  const backProps = {}
+  if (prevSection) {
+    const numPrevSubsections = prevSection.subsections.length
+    const prevSubsection = prevSection.subsections[numPrevSubsections - 1]
+    backProps.back = `${prevSection.url}/${prevSubsection.url}`
+    backProps.backLabel = i18n.t(
+      `${prevSection.url}.destination.${prevSubsection.url}`
+    )
+  }
+
   return (
     <SectionView
       name="intro"
+      {...backProps}
       next={`${section.url}/${nextSubsection.url}`}
       nextLabel={i18n.t(`${section.url}.destination.${nextSubsection.url}`)}>
       <Field
