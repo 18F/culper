@@ -9,14 +9,12 @@ import TimeoutWarning, { roundUp, minutes, seconds } from './TimeoutWarning'
 
 describe('The timeout warning component', () => {
   // Setup
-  window.token = 'fake-token'
   const middlewares = [thunk]
   const mockStore = configureMockStore(middlewares)
 
   it('not displayed if outside threshold', () => {
     const store = mockStore({
-      application: { Settings: { lastRefresh: new Date() } },
-      authentication: { authenticated: true }
+      application: { Settings: { lastRefresh: new Date() } }
     })
     const component = mount(
       <Provider store={store}>
@@ -33,8 +31,7 @@ describe('The timeout warning component', () => {
     const now = new Date()
     let lastRefresh = new Date(now.setMinutes(now.getMinutes() - 14))
     const store = mockStore({
-      application: { Settings: { lastRefresh: lastRefresh } },
-      authentication: { authenticated: true }
+      application: { Settings: { lastRefresh: lastRefresh } }
     })
     const component = mount(
       <Provider store={store}>
@@ -91,8 +88,7 @@ describe('The timeout warning component', () => {
     const now = new Date()
     let lastRefresh = new Date(now.setMinutes(now.getMinutes() - 14))
     const store = mockStore({
-      application: { Settings: { lastRefresh: lastRefresh } },
-      authentication: { authenticated: true }
+      application: { Settings: { lastRefresh: lastRefresh } }
     })
     const component = renderer.create(
       <Provider store={store}>
