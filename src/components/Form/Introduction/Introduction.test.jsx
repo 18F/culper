@@ -1,5 +1,4 @@
 import React from 'react'
-import MockAdapter from 'axios-mock-adapter'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
@@ -12,7 +11,9 @@ describe('The Introduction component', () => {
   it('logout if "No" is selected', () => {
     let dispatched = 0
     const props = {
-      dispatch: () => { dispatched++ }
+      dispatch: () => {
+        dispatched++
+      }
     }
     const component = mount(<Introduction {...props} />)
     expect(component.find('.branch .no').length).toBe(1)
@@ -23,7 +24,9 @@ describe('The Introduction component', () => {
   it('dispatch fired on "Yes"', () => {
     let dispatched = 0
     const props = {
-      dispatch: () => { dispatched++ }
+      dispatch: () => {
+        dispatched++
+      }
     }
     const component = mount(<Introduction {...props} />)
     expect(component.find('.branch .yes').length).toBe(1)
@@ -44,7 +47,11 @@ describe('The Introduction component', () => {
         }
       }
     })
-    const component = mount(<Provider store={store}><AuthenticatedIntroduction /></Provider>)
+    const component = mount(
+      <Provider store={store}>
+        <AuthenticatedIntroduction />
+      </Provider>
+    )
     expect(component.find('.introduction-modal').length).toBe(1)
   })
 
@@ -61,7 +68,11 @@ describe('The Introduction component', () => {
         }
       }
     })
-    const component = mount(<Provider store={store}><AuthenticatedIntroduction /></Provider>)
+    const component = mount(
+      <Provider store={store}>
+        <AuthenticatedIntroduction />
+      </Provider>
+    )
     expect(component.find('.introduction-modal').length).toBe(1)
     expect(component.find('.modal').length).toBe(0)
   })
@@ -78,7 +89,11 @@ describe('The Introduction component', () => {
         }
       }
     })
-    const component = mount(<Provider store={store}><AuthenticatedIntroduction /></Provider>)
+    const component = mount(
+      <Provider store={store}>
+        <AuthenticatedIntroduction />
+      </Provider>
+    )
     expect(component.find('.introduction-modal').length).toBe(0)
     window.token = 'fake-token'
   })
