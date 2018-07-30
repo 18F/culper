@@ -7,6 +7,8 @@ import AuthenticatedIntroduction, { Introduction } from './Introduction'
 
 describe('The Introduction component', () => {
   window.token = 'fake-token'
+  const middlewares = [thunk]
+  const mockStore = configureMockStore(middlewares)
 
   it('logout if "No" is selected', () => {
     let dispatched = 0
@@ -35,8 +37,6 @@ describe('The Introduction component', () => {
   })
 
   it('display on authentication', () => {
-    const middlewares = [thunk]
-    const mockStore = configureMockStore(middlewares)
     const store = mockStore({
       authentication: {
         authenticated: true
@@ -56,8 +56,6 @@ describe('The Introduction component', () => {
   })
 
   it('hidden if previously accepted', () => {
-    const middlewares = [thunk]
-    const mockStore = configureMockStore(middlewares)
     const store = mockStore({
       authentication: {
         authenticated: true
@@ -79,8 +77,6 @@ describe('The Introduction component', () => {
 
   it('hidden if not authenticated', () => {
     window.token = ''
-    const middlewares = [thunk]
-    const mockStore = configureMockStore(middlewares)
     const store = mockStore({
       authentication: {},
       application: {
