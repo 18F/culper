@@ -147,6 +147,7 @@ export default class Employment extends SubsectionElement {
         </Accordion>
         <hr className="section-divider" />
         <Branch label={i18n.t('history.employment.default.employmentRecord.title')}
+                className="employment-record"
                 labelSize="h3"
                 {...this.props.EmploymentRecord}
                 onUpdate={this.updateEmploymentRecord}
