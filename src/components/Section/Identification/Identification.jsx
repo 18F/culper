@@ -4,7 +4,6 @@ import { i18n } from '../../../config'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
 import SectionComments from '../SectionComments'
-import AuthenticatedView from '../../../views/AuthenticatedView'
 import { Field } from '../../Form'
 import { addDividers, createSubsection } from '../generators'
 import navigation from './navigation'
@@ -234,4 +233,4 @@ export class IdentificationSections extends React.Component {
   }
 }
 
-export default connect(mapStateToProps)(AuthenticatedView(Identification))
+export default connect(mapStateToProps)(Identification)

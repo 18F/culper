@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import AuthenticatedView from '../../views/AuthenticatedView'
 import { sectionsTotal, sectionsCompleted } from '../Navigation/navigation-helpers'
 
 class ProgressBar extends React.Component {
@@ -28,4 +27,4 @@ function mapStateToProps (state) {
   }
 }
 
-export default connect(mapStateToProps)(AuthenticatedView(ProgressBar))
+export default connect(mapStateToProps)(ProgressBar)

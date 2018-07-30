@@ -4,7 +4,6 @@ import { i18n } from '../../../config'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
 import SectionComments from '../SectionComments'
-import AuthenticatedView from '../../../views/AuthenticatedView'
 import { hideDisciplinaryProcedures } from '../../../validators/militarydisciplinary'
 import { hideSelectiveService } from '../../../validators/selectiveservice'
 import { Show, Field } from '../../Form'
@@ -284,4 +283,4 @@ export class MilitarySections extends React.Component {
   }
 }
 
-export default connect(mapStateToProps)(AuthenticatedView(Military))
+export default connect(mapStateToProps)(Military)

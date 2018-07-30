@@ -5,7 +5,6 @@ import { api } from '../../../services'
 import { updateApplication } from '../../../actions/ApplicationActions'
 import { tokenError } from '../../../actions/AuthActions'
 import { saveSection } from '../../SavedIndicator/persistence-helpers'
-import AuthenticatedView from '../../../views/AuthenticatedView'
 import Modal from '../Modal'
 import Svg from '../Svg'
 
@@ -148,4 +147,4 @@ function mapStateToProps (state) {
   }
 }
 
-export default connect(mapStateToProps)(AuthenticatedView(TimeoutWarning))
+export default connect(mapStateToProps)(TimeoutWarning)

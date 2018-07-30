@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { i18n } from '../../../config'
-import AuthenticatedView from '../../../views/AuthenticatedView'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
 import SectionComments from '../SectionComments'
@@ -594,4 +593,4 @@ export class SubstanceUseSections extends React.Component {
   }
 }
 
-export default withRouter(connect(mapStateToProps)(AuthenticatedView(SubstanceUse)))
+export default withRouter(connect(mapStateToProps)(SubstanceUse))

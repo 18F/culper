@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { i18n } from '../../config'
-import AuthenticatedView from '../../views/AuthenticatedView'
 import { sectionsTotal, sectionsCompleted } from '../Navigation/navigation-helpers'
 
 class ScoreCard extends React.Component {
@@ -31,4 +30,4 @@ function mapStateToProps (state) {
   }
 }
 
-export default connect(mapStateToProps)(AuthenticatedView(ScoreCard))
+export default connect(mapStateToProps)(ScoreCard)

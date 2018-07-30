@@ -1,6 +1,6 @@
 import React from 'react'
 import { withRouter } from 'react-router'
-import AuthenticatedView from '../../views/AuthenticatedView'
+import { connect } from 'react-redux'
 import Identification from './Identification'
 import Financial from './Financial'
 import Relationships from './Relationships'
@@ -72,4 +72,4 @@ class Section extends React.Component {
   }
 }
 
-export default withRouter(AuthenticatedView(Section))
+export default withRouter(connect()(Section))

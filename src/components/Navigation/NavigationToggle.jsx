@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { updateApplication } from '../../actions/ApplicationActions'
-import AuthenticatedView from '../../views/AuthenticatedView'
 
 export class NavigationToggle extends React.Component {
   constructor (props) {
@@ -49,4 +48,4 @@ function mapStateToProps (state) {
   }
 }
 
-export default connect(mapStateToProps)(AuthenticatedView(NavigationToggle))
+export default connect(mapStateToProps)(NavigationToggle)

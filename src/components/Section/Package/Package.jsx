@@ -5,7 +5,6 @@ import { i18n, navigationWalker } from '../../../config'
 import { hideHippa } from '../../../validators/releases'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
-import AuthenticatedView from '../../../views/AuthenticatedView'
 import ValidForm from './ValidForm'
 import InvalidForm from './InvalidForm'
 import SubmissionStatus from './SubmissionStatus'
@@ -273,4 +272,4 @@ Package.defaultProps = {
   store: 'Submission'
 }
 
-export default withRouter(connect(mapStateToProps)(AuthenticatedView(Package)))
+export default withRouter(connect(mapStateToProps)(Package))

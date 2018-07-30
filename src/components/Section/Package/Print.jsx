@@ -17,7 +17,6 @@ import { ForeignSections } from '../Foreign'
 import { SubstanceUseSections } from '../SubstanceUse'
 import { LegalSections } from '../Legal'
 import { PsychologicalSections } from '../Psychological'
-import AuthenticatedView from '../../../views/AuthenticatedView'
 
 class Print extends SectionElement {
   constructor (props) {
@@ -275,4 +274,4 @@ const blobFromBase64 = (base64, contentType = '', size = 512) => {
 }
 
 
-export default connect(mapStateToProps)(AuthenticatedView(Print))
+export default connect(mapStateToProps)(Print)
