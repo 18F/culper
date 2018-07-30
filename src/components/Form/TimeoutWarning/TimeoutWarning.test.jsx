@@ -1,5 +1,5 @@
 import React from 'react'
-import MockAdapter from 'axios-mock-adapter'
+import renderer from 'react-test-renderer'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import { MemoryRouter } from 'react-router'
@@ -9,13 +9,20 @@ import TimeoutWarning, { roundUp, minutes, seconds } from './TimeoutWarning'
 
 describe('The timeout warning component', () => {
   // Setup
-  window.token = 'fake-token'
-  const middlewares = [ thunk ]
+  const middlewares = [thunk]
   const mockStore = configureMockStore(middlewares)
 
   it('not displayed if outside threshold', () => {
-    const store = mockStore({ application: { Settings: { lastRefresh: new Date() } }, authentication: { authenticated: true } })
-    const component = mount(<Provider store={store}><MemoryRouter><TimeoutWarning timeout="15" /></MemoryRouter></Provider>)
+    const store = mockStore({
+      application: { Settings: { lastRefresh: new Date() } }
+    })
+    const component = mount(
+      <Provider store={store}>
+        <MemoryRouter>
+          <TimeoutWarning timeout="15" />
+        </MemoryRouter>
+      </Provider>
+    )
     expect(component.find('.timeout-warning').length).toEqual(1)
     expect(component.find('.modal').length).toEqual(0)
   })
@@ -23,8 +30,16 @@ describe('The timeout warning component', () => {
   it('displayed when inside threshold', () => {
     const now = new Date()
     let lastRefresh = new Date(now.setMinutes(now.getMinutes() - 14))
-    const store = mockStore({ application: { Settings: { lastRefresh: lastRefresh } }, authentication: { authenticated: true } })
-    const component = mount(<Provider store={store}><MemoryRouter><TimeoutWarning timeout="15" showWarning={true} /></MemoryRouter></Provider>)
+    const store = mockStore({
+      application: { Settings: { lastRefresh: lastRefresh } }
+    })
+    const component = mount(
+      <Provider store={store}>
+        <MemoryRouter>
+          <TimeoutWarning timeout="15" showWarning={true} />
+        </MemoryRouter>
+      </Provider>
+    )
     expect(component.find('.timeout-warning').length).toEqual(1)
     expect(component.find('.modal').length).toEqual(1)
   })
@@ -67,5 +82,22 @@ describe('The timeout warning component', () => {
     tests.forEach(test => {
       expect(minutes(test.data)).toEqual(test.expect)
     })
+  })
+
+  it('matches the snapshot', () => {
+    const now = new Date()
+    let lastRefresh = new Date(now.setMinutes(now.getMinutes() - 14))
+    const store = mockStore({
+      application: { Settings: { lastRefresh: lastRefresh } }
+    })
+    const component = renderer.create(
+      <Provider store={store}>
+        <MemoryRouter>
+          <TimeoutWarning timeout="15" showWarning={true} />
+        </MemoryRouter>
+      </Provider>
+    )
+    let tree = component.toJSON()
+    expect(tree).toMatchSnapshot()
   })
 })
