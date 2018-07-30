@@ -1,6 +1,5 @@
 import React from 'react'
 import { withRouter } from 'react-router'
-import AuthenticatedView from '../../views/AuthenticatedView'
 import Identification from './Identification'
 import Financial from './Financial'
 import Relationships from './Relationships'
@@ -33,7 +32,7 @@ class Section extends React.Component {
 
   render () {
     return (
-      <SectionViews current={this.props.section} dispatch={this.props.dispatch}>
+      <SectionViews current={this.props.section}>
         <SectionView name="identification">
           <Identification subsection={this.props.subsection} update={this.update} />
         </SectionView>
@@ -72,4 +71,4 @@ class Section extends React.Component {
   }
 }
 
-export default withRouter(AuthenticatedView(Section))
+export default withRouter(Section)

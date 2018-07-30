@@ -1,0 +1,389 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The section component renders the Section component 1`] = `<div />`;
+
+exports[`The section component renders the Section component at a particular subsection 1`] = `
+<div>
+  <div
+    className="section-view"
+  >
+    <div
+      className="view view-identification"
+    >
+      <div>
+        <div>
+          <div>
+            <div
+              className="section-view"
+            >
+              <div
+                className="view view-contacts"
+              >
+                <div>
+                  <div
+                    className="section-content contact"
+                    data-section="identification"
+                    data-subsection="contacts"
+                  >
+                    <div
+                      aria-label="Provide your contact information"
+                      className="field   no-margin-bottom"
+                      data-uuid="field-MOCK-GUID"
+                    >
+                      <a
+                        aria-hidden="true"
+                        className="anchor"
+                        id="field-MOCK-GUID"
+                        name="field-MOCK-GUID"
+                      />
+                      <h2
+                        className="title h2"
+                      >
+                        Provide your contact information
+                      </h2>
+                      <span
+                        className="icon"
+                      />
+                      <div
+                        className="table expand"
+                      >
+                        <span
+                          aria-live="polite"
+                          className="messages help-messages"
+                        />
+                      </div>
+                      <div
+                        className="table"
+                      >
+                        <span
+                          className="content"
+                        >
+                          <span
+                            className="component"
+                          />
+                        </span>
+                      </div>
+                      <div
+                        className="table expand"
+                      >
+                        <span
+                          aria-live="polite"
+                          className="messages error-messages"
+                          role="alert"
+                        />
+                      </div>
+                    </div>
+                    <div
+                      aria-label="Your email addresses"
+                      className="field   no-margin-bottom"
+                      data-uuid="field-MOCK-GUID"
+                    >
+                      <a
+                        aria-hidden="true"
+                        className="anchor"
+                        id="field-MOCK-GUID"
+                        name="field-MOCK-GUID"
+                      />
+                      <h3
+                        className="title h3"
+                      >
+                        Your email addresses
+                      </h3>
+                      <span
+                        className="icon"
+                      >
+                        <a
+                          aria-label="Show help for Your email addresses"
+                          className="toggle h3"
+                          href="javascript:;"
+                          onClick={[Function]}
+                          title="Show help for Your email addresses"
+                        >
+                          <svg
+                            alt="Scalable vector graphic"
+                            focusable="false"
+                            height="14.57px"
+                            tabIndex="-1"
+                            viewBox="0 0 14.57 14.57"
+                            width="14.57px"
+                          >
+                            <g>
+                              <path
+                                className="eapp-help-icon"
+                                d="M13.59,3.63c0.65,1.12,0.98,2.34,0.98,3.66s-0.33,2.54-0.98,3.66c-0.65,1.12-1.54,2-2.65,2.65 s-2.33,0.98-3.66,0.98c-1.32,0-2.54-0.33-3.66-0.98s-2-1.54-2.65-2.65C0.33,9.83,0,8.61,0,7.29s0.33-2.54,0.98-3.66 c0.65-1.12,1.54-2,2.65-2.65S5.96,0,7.29,0c1.32,0,2.54,0.33,3.66,0.98S12.94,2.51,13.59,3.63z M10.93,5.46 c0-0.56-0.18-1.07-0.53-1.55c-0.35-0.47-0.79-0.84-1.31-1.1C8.56,2.56,8.03,2.43,7.48,2.43c-1.54,0-2.71,0.67-3.52,2.02 C3.86,4.6,3.89,4.73,4.03,4.85L5.28,5.8c0.04,0.04,0.1,0.06,0.18,0.06c0.1,0,0.18-0.04,0.24-0.11c0.33-0.43,0.61-0.72,0.82-0.87 C6.73,4.71,7,4.64,7.33,4.64c0.3,0,0.57,0.08,0.81,0.25C8.38,5.05,8.5,5.24,8.5,5.45c0,0.24-0.06,0.43-0.19,0.58 C8.18,6.17,7.97,6.31,7.67,6.45C7.27,6.63,6.9,6.9,6.57,7.27c-0.33,0.37-0.5,0.77-0.5,1.19V8.8c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.09,0.22,0.09H8.2c0.09,0,0.16-0.03,0.22-0.09C8.47,8.96,8.5,8.89,8.5,8.8c0-0.12,0.07-0.28,0.2-0.47 c0.14-0.19,0.31-0.35,0.52-0.47c0.2-0.11,0.36-0.21,0.46-0.27s0.25-0.18,0.44-0.33c0.18-0.15,0.32-0.31,0.42-0.46 c0.1-0.15,0.19-0.34,0.27-0.57C10.89,6,10.93,5.74,10.93,5.46z M8.5,11.84v-1.82c0-0.09-0.03-0.16-0.08-0.22 C8.36,9.74,8.29,9.71,8.2,9.71H6.38c-0.09,0-0.16,0.03-0.22,0.08C6.1,9.86,6.07,9.93,6.07,10.02v1.82c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.08,0.22,0.08H8.2c0.09,0,0.16-0.03,0.22-0.08C8.47,12,8.5,11.93,8.5,11.84z"
+                              />
+                            </g>
+                          </svg>
+                        </a>
+                      </span>
+                      <div
+                        className="table expand"
+                      >
+                        <span
+                          aria-live="polite"
+                          className="messages help-messages"
+                        />
+                      </div>
+                      <div
+                        className="table"
+                      >
+                        <span
+                          className="content"
+                        >
+                          <span
+                            className="component"
+                          >
+                            <div>
+                              <p>
+                                Providing email addresses may assist in the completion of your background investigation. Email addresses may be used as contact method, and identify subject in records.
+                              </p>
+                            </div>
+                          </span>
+                        </span>
+                      </div>
+                      <div
+                        className="table expand"
+                      >
+                        <span
+                          aria-live="polite"
+                          className="messages error-messages"
+                          role="alert"
+                        />
+                      </div>
+                    </div>
+                    <div
+                      className=" email-collection"
+                    >
+                      <div>
+                        <div
+                          className="accordion"
+                        >
+                          <strong
+                            className="aria-description"
+                          >
+                            Summary of email addresses
+                          </strong>
+                          <div
+                            className="items"
+                          />
+                          <div
+                            className="append-button"
+                          >
+                            <button
+                              className="add usa-button-outline"
+                              onClick={[Function]}
+                            >
+                              Add another email
+                              <i
+                                className="fa fa-plus-circle"
+                              />
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      aria-label="Your phone numbers"
+                      className="field   no-margin-bottom"
+                      data-uuid="field-MOCK-GUID"
+                    >
+                      <a
+                        aria-hidden="true"
+                        className="anchor"
+                        id="field-MOCK-GUID"
+                        name="field-MOCK-GUID"
+                      />
+                      <h3
+                        className="title h3"
+                      >
+                        Your phone numbers
+                      </h3>
+                      <span
+                        className="icon"
+                      >
+                        <a
+                          aria-label="Show help for Your phone numbers"
+                          className="toggle h3"
+                          href="javascript:;"
+                          onClick={[Function]}
+                          title="Show help for Your phone numbers"
+                        >
+                          <svg
+                            alt="Scalable vector graphic"
+                            focusable="false"
+                            height="14.57px"
+                            tabIndex="-1"
+                            viewBox="0 0 14.57 14.57"
+                            width="14.57px"
+                          >
+                            <g>
+                              <path
+                                className="eapp-help-icon"
+                                d="M13.59,3.63c0.65,1.12,0.98,2.34,0.98,3.66s-0.33,2.54-0.98,3.66c-0.65,1.12-1.54,2-2.65,2.65 s-2.33,0.98-3.66,0.98c-1.32,0-2.54-0.33-3.66-0.98s-2-1.54-2.65-2.65C0.33,9.83,0,8.61,0,7.29s0.33-2.54,0.98-3.66 c0.65-1.12,1.54-2,2.65-2.65S5.96,0,7.29,0c1.32,0,2.54,0.33,3.66,0.98S12.94,2.51,13.59,3.63z M10.93,5.46 c0-0.56-0.18-1.07-0.53-1.55c-0.35-0.47-0.79-0.84-1.31-1.1C8.56,2.56,8.03,2.43,7.48,2.43c-1.54,0-2.71,0.67-3.52,2.02 C3.86,4.6,3.89,4.73,4.03,4.85L5.28,5.8c0.04,0.04,0.1,0.06,0.18,0.06c0.1,0,0.18-0.04,0.24-0.11c0.33-0.43,0.61-0.72,0.82-0.87 C6.73,4.71,7,4.64,7.33,4.64c0.3,0,0.57,0.08,0.81,0.25C8.38,5.05,8.5,5.24,8.5,5.45c0,0.24-0.06,0.43-0.19,0.58 C8.18,6.17,7.97,6.31,7.67,6.45C7.27,6.63,6.9,6.9,6.57,7.27c-0.33,0.37-0.5,0.77-0.5,1.19V8.8c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.09,0.22,0.09H8.2c0.09,0,0.16-0.03,0.22-0.09C8.47,8.96,8.5,8.89,8.5,8.8c0-0.12,0.07-0.28,0.2-0.47 c0.14-0.19,0.31-0.35,0.52-0.47c0.2-0.11,0.36-0.21,0.46-0.27s0.25-0.18,0.44-0.33c0.18-0.15,0.32-0.31,0.42-0.46 c0.1-0.15,0.19-0.34,0.27-0.57C10.89,6,10.93,5.74,10.93,5.46z M8.5,11.84v-1.82c0-0.09-0.03-0.16-0.08-0.22 C8.36,9.74,8.29,9.71,8.2,9.71H6.38c-0.09,0-0.16,0.03-0.22,0.08C6.1,9.86,6.07,9.93,6.07,10.02v1.82c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.08,0.22,0.08H8.2c0.09,0,0.16-0.03,0.22-0.08C8.47,12,8.5,11.93,8.5,11.84z"
+                              />
+                            </g>
+                          </svg>
+                        </a>
+                      </span>
+                      <div
+                        className="table expand"
+                      >
+                        <span
+                          aria-live="polite"
+                          className="messages help-messages"
+                        />
+                      </div>
+                      <div
+                        className="table"
+                      >
+                        <span
+                          className="content"
+                        >
+                          <span
+                            className="component"
+                          >
+                            <div>
+                              <p>
+                                Provide three contact numbers. 
+                                <strong>
+                                  At least one number is required
+                                </strong>
+                                . Additional numbers may assist in the completion of your background investigation.
+                              </p>
+                            </div>
+                          </span>
+                        </span>
+                      </div>
+                      <div
+                        className="table expand"
+                      >
+                        <span
+                          aria-live="polite"
+                          className="messages error-messages"
+                          role="alert"
+                        />
+                      </div>
+                    </div>
+                    <div
+                      className=" telephone-collection"
+                    >
+                      <div>
+                        <div
+                          className="accordion"
+                        >
+                          <strong
+                            className="aria-description"
+                          >
+                            Summary of phone numbers
+                          </strong>
+                          <div
+                            className="items"
+                          />
+                          <div
+                            className="append-button"
+                          >
+                            <button
+                              className="add usa-button-outline"
+                              onClick={[Function]}
+                            >
+                              Add another phone number
+                              <i
+                                className="fa fa-plus-circle"
+                              />
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="bottom-btns"
+                >
+                  <div
+                    className="btn-wrap"
+                  >
+                    <div
+                      className="btn-container"
+                    >
+                      <button
+                        aria-label="Go to previous section Other names used"
+                        className="btn-cell back"
+                        onClick={[Function]}
+                        title="Go to previous section Other names used"
+                      >
+                        <div
+                          className="actions back"
+                        >
+                          <div
+                            className="icon"
+                          >
+                            <i
+                              aria-hidden="true"
+                              className="fa fa-arrow-circle-left"
+                            />
+                          </div>
+                          <div
+                            className="text"
+                          >
+                            <div
+                              className="direction"
+                            >
+                              Back
+                            </div>
+                            <div
+                              className="label"
+                            >
+                              Other names used
+                            </div>
+                          </div>
+                        </div>
+                      </button>
+                      <div
+                        className="btn-spacer"
+                      />
+                      <button
+                        aria-label="Go to next section Date of birth"
+                        className="btn-cell next"
+                        onClick={[Function]}
+                        title="Go to next section Date of birth"
+                      >
+                        <div
+                          className="actions next"
+                        >
+                          <div
+                            className="text"
+                          >
+                            <div
+                              className="direction"
+                            >
+                              Next
+                            </div>
+                            <div
+                              className="label"
+                            >
+                              Date of birth
+                            </div>
+                          </div>
+                          <div
+                            className="icon"
+                          >
+                            <i
+                              aria-hidden="true"
+                              className="fa fa-arrow-circle-right"
+                            />
+                          </div>
+                        </div>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
