@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { i18n } from '../../../config'
 import { updateApplication } from '../../../actions/ApplicationActions'
 import { logout } from '../../../actions/AuthActions'
-import AuthenticatedView from '../../../views/AuthenticatedView'
 import Branch from '../Branch'
 import Modal from '../Modal'
 import Show from '../Show'
@@ -86,4 +85,4 @@ function mapStateToProps (state) {
   }
 }
 
-export default connect(mapStateToProps)(AuthenticatedView(Introduction))
+export default connect(mapStateToProps)(Introduction)
