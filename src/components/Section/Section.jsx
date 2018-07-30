@@ -14,36 +14,45 @@ import Package from './Package'
 import { SectionViews, SectionView } from './SectionView'
 
 class Section extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.update = this.update.bind(this)
   }
 
   // TODO: See if this is necessary. Removing this makes the first section not expand in navigation ATM.
-  componentDidMount () {
+  componentDidMount() {
     this.update(this.props)
   }
 
-  update (props) {
+  update(props) {
     const subsection = props.subsection || 'intro'
     const path = `/form/${props.section}/${subsection}`
     this.props.history.push(path)
   }
 
-  render () {
+  render() {
     return (
       <SectionViews current={this.props.section}>
         <SectionView name="identification">
-          <Identification subsection={this.props.subsection} update={this.update} />
+          <Identification
+            subsection={this.props.subsection}
+            update={this.update}
+          />
         </SectionView>
         <SectionView name="financial">
           <Financial subsection={this.props.subsection} update={this.update} />
         </SectionView>
         <SectionView name="relationships">
-          <Relationships subsection={this.props.subsection} update={this.update} />
+          <Relationships
+            subsection={this.props.subsection}
+            update={this.update}
+          />
         </SectionView>
         <SectionView name="citizenship">
-          <Citizenship subsection={this.props.subsection} update={this.update} />
+          <Citizenship
+            subsection={this.props.subsection}
+            update={this.update}
+          />
         </SectionView>
         <SectionView name="military">
           <Military subsection={this.props.subsection} update={this.update} />
@@ -58,10 +67,16 @@ class Section extends React.Component {
           <Legal subsection={this.props.subsection} update={this.update} />
         </SectionView>
         <SectionView name="psychological">
-          <Psychological subsection={this.props.subsection} update={this.update} />
+          <Psychological
+            subsection={this.props.subsection}
+            update={this.update}
+          />
         </SectionView>
         <SectionView name="substance">
-          <SubstanceUse subsection={this.props.subsection} update={this.update} />
+          <SubstanceUse
+            subsection={this.props.subsection}
+            update={this.update}
+          />
         </SectionView>
         <SectionView name="package">
           <Package subsection={this.props.subsection} update={this.update} />
