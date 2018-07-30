@@ -10,37 +10,39 @@ import { api } from '../services/api'
  *
  * Note that we wrap with connect to include access to dispatcher.
  */
-const AuthenticatedView = (WrappedComponent) => {
-  return connect(mapStateToProps)(class RequiresAuth extends React.Component {
-    componentWillReceiveProps (nextProps) {
-      this.checkAuthentication()
-    }
+const AuthenticatedView = WrappedComponent => {
+  return connect(mapStateToProps)(
+    class RequiresAuth extends React.Component {
+      componentWillReceiveProps(nextProps) {
+        this.checkAuthentication()
+      }
 
-    componentWillMount () {
-      this.checkAuthentication()
-    }
+      componentWillMount() {
+        this.checkAuthentication()
+      }
 
-    isAuthenticated() {
-      const token = api.getToken()
-      return token && this.props.authenticated
-    }
+      isAuthenticated() {
+        const token = api.getToken()
+        return token && this.props.authenticated
+      }
 
-    checkAuthentication () {
-      if (!this.isAuthenticated()) {
-        env.History().push('/login')
+      checkAuthentication() {
+        if (!this.isAuthenticated()) {
+          env.History().push('/login')
+        }
+      }
+
+      render() {
+        if (this.isAuthenticated()) {
+          return <WrappedComponent {...this.props} />
+        }
+        return null
       }
     }
-
-    render () {
-      if (this.isAuthenticated()) {
-        return (<WrappedComponent {...this.props} />)
-      }
-      return null
-    }
-  })
+  )
 }
 
-function mapStateToProps (state) {
+function mapStateToProps(state) {
   const auth = state.authentication
   return {
     application: state.application,
