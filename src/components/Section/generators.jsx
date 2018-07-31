@@ -1,4 +1,6 @@
 import React from 'react'
+import { i18n } from '../../config'
+import { SectionView } from './SectionView'
 
 export const getComponentByName = (storeToComponentMap, name) => {
   // https://reactjs.org/docs/jsx-in-depth.html#choosing-the-type-at-runtime
@@ -27,6 +29,26 @@ export const createSubsection = (
   }
 
   return <SubsectionComponent {...props} />
+}
+
+export const createSectionView = (
+  section,
+  subsection,
+  prevUrl,
+  nextUrl,
+  subsectionComponent
+) => {
+  return (
+    <SectionView
+      key={`${section}/${subsection.url}`}
+      name={subsection.url}
+      back={`${section}/${prevUrl}`}
+      backLabel={i18n.t(`${section}.destination.${prevUrl}`)}
+      next={`${section}/${nextUrl}`}
+      nextLabel={i18n.t(`${section}.destination.${nextUrl}`)}>
+      {subsectionComponent}
+    </SectionView>
+  )
 }
 
 // Returns a new array with section dividers after each component

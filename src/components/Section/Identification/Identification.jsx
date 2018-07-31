@@ -6,7 +6,7 @@ import SectionElement from '../SectionElement'
 import SectionComments from '../SectionComments'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import { Field } from '../../Form'
-import { addDividers, createSubsection } from '../generators'
+import { addDividers, createSubsection, createSectionView } from '../generators'
 import navigation from './navigation'
 import ApplicantName from './ApplicantName'
 import ApplicantSSN from './ApplicantSSN'
@@ -80,17 +80,7 @@ class Identification extends SectionElement {
       const next = subsections[i + 1]
       const ssComponent = this.createSubsection(subsection)
 
-      return (
-        <SectionView
-          key={`${this.props.section}/${subsection.url}`}
-          name={subsection.url}
-          back={`${this.props.section}/${prev.url}`}
-          backLabel={i18n.t(`${this.props.section}.destination.${prev.url}`)}
-          next={`${this.props.section}/${next.url}`}
-          nextLabel={i18n.t(`${this.props.section}.destination.${next.url}`)}>
-          {ssComponent}
-        </SectionView>
-      )
+      return createSectionView(this.props.section, subsection, prev.url, next.url, ssComponent)
     })
 
     // exclude nulls
