@@ -1,12 +1,12 @@
 import React from 'react'
 
-export const getSubsectionComponent = (storeToComponentMap, name) => {
+export const getComponentByName = (storeToComponentMap, name) => {
   // https://reactjs.org/docs/jsx-in-depth.html#choosing-the-type-at-runtime
-  const SubsectionComponent = storeToComponentMap[name]
-  if (!SubsectionComponent) {
+  const NamedComponent = storeToComponentMap[name]
+  if (!NamedComponent) {
     console.error(`${name} component not found`)
   }
-  return SubsectionComponent
+  return NamedComponent
 }
 
 // Returns the component corresponding to the provided subsection object
@@ -15,7 +15,7 @@ export const createSubsection = (
   subsection,
   extraProps = {}
 ) => {
-  const SubsectionComponent = getSubsectionComponent(
+  const SubsectionComponent = getComponentByName(
     storeToComponentMap,
     subsection.store
   )
