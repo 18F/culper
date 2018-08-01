@@ -24,8 +24,7 @@ defineSupportCode(({Given, Then, When}) => {
   When(/^I navigate to the legal (.*?) section$/, (subsection) => {
     subcontext = subsection
     const section = 'legal'
-    const sectionTitle = 'Investigative and criminal history'
-    navigateToSection(sectionTitle)
+    navigateToSection(section)
     return navigateToSubsection(section, subsection)
     })
 
@@ -266,7 +265,7 @@ const completeAssociationsTerrorism = (promise) => {
 }
 
 const navigateToSection = (section) => {
-  const selector = '.section a[title="' + section + '"]'
+  const selector = '.usa-sidenav-list a[aria-controls="/form/' + section + '"]'
   return client
     .assert.visible(selector)
     .click(selector)
@@ -274,17 +273,8 @@ const navigateToSection = (section) => {
     .saveScreenshot('./screenshots/Legal/' + filenum() + '-navigate-section.png')
 }
 
-const navigateToSectionTitle = (section) => {
-  const selector = '.subsection a[title="' + section + '"]'
-  return client
-    .assert.visible(selector)
-    .click(selector)
-    .pause(1000)
-    .saveScreenshot('./screenshots/Legal/' + filenum() + '-navigate-sectiontitle.png')
-}
-
 const navigateToSubsection = (section, subsection) => {
-  const selector = '.subsection a[href="/form/' + section + '/' + subsection + '"]'
+  const selector = '.usa-sidenav-sub_list a[href="/form/' + section + '/' + subsection + '"]'
   return client
     .assert.visible(selector)
     .click(selector)

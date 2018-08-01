@@ -50,7 +50,7 @@ defineSupportCode(({Given, Then, When}) => {
 
   const goToLoginPage = () => {
     return client
-      .url(client.launch_url + '/#/login')
+      .url(client.launch_url)
       .waitForElementVisible('body', 1000)
       .assert.visible('.consent-legal')
       .saveScreenshot('./screenshots/Authentication/00-consent.png')
@@ -60,7 +60,6 @@ defineSupportCode(({Given, Then, When}) => {
 
   const signIn = (username, password) => {
     return client
-      .assert.urlContains('/login')
       .setValue('input[type="text"]', username)
       .setValue('input[type="password"]', password)
       .saveScreenshot('./screenshots/Authentication/02-credentials.png')
