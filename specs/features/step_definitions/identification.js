@@ -82,10 +82,7 @@ const completeOtherNamesUsed = (promise) => {
 
 const completeContacts = (promise) => {
   return promise
-      // .then(() => { return click('.contact .email-collection .accordion .item .toggle.fa.fa-chevron-down') })
       .then(() => { return setText('input[name="Email"]', 'professor@xmen.org')})
-      // .then(() => { return scrollToItem('.telephone-collection .items .summary-container .summary .button-with-icon') })
-      // .then(() => { return click('.contact .telephone-collection .items .summary-container .summary .button-with-icon') })
       .then(() => { return scrollToItem('input[name="domestic_first"]') })
       .then(() => { return setText('input[name="domestic_first"]', '202') })
       .then(() => { return setText('input[name="domestic_second"]', '867') })
@@ -135,7 +132,7 @@ const navigateToSection = (section) => {
     .assert.visible(selector)
     .click(selector)
     .pause(500)
-  //  .saveScreenshot('./screenshots/Identification/' + filenum() + '-navigate-section.png')
+    .saveScreenshot('./screenshots/Identification/' + filenum() + '-navigate-section.png')
 }
 
 const navigateToSubsection = (section, subsection) => {
@@ -145,7 +142,7 @@ const navigateToSubsection = (section, subsection) => {
     .click(selector)
     .click(selector)
     .pause(500)
-  //  .saveScreenshot('./screenshots/Foreign/' + filenum() + '-navigate-subsection.png')
+    .saveScreenshot('./screenshots/Foreign/' + filenum() + '-navigate-subsection.png')
 }
 
 const navigateToNext = () => {
@@ -153,7 +150,7 @@ const navigateToNext = () => {
     .assert.visible('button.next')
     .click('button.next')
     .pause(500)
-  //  .saveScreenshot('./screenshots/Identification/' + filenum() + '-navigate-next.png')
+    .saveScreenshot('./screenshots/Identification/' + filenum() + '-navigate-next.png')
 }
 
 const shouldBeInSubsection = (section, subsection) => {
@@ -165,7 +162,7 @@ const click = (selector) => {
   return client
     .click(selector)
     .pause(500)
-    //.saveScreenshot('./screenshots/Identification/' + filenum() + '-click.png')
+    .saveScreenshot('./screenshots/Identification/' + filenum() + '-click.png')
 }
 
 const setOption = (selector) => {
@@ -173,14 +170,14 @@ const setOption = (selector) => {
     .assert.visible(selector)
     .click(selector)
     .pause(500)
-    //.saveScreenshot('./screenshots/Identification/' + filenum() + '-set-option.png')
+    .saveScreenshot('./screenshots/Identification/' + filenum() + '-set-option.png')
 }
 
 const setText = (selector, text) => {
   return client
     .assert.visible(selector)
     .setValue(selector, text)
-    //.saveScreenshot('./screenshots/Identification/' + filenum() + '-set-text.png')
+    .saveScreenshot('./screenshots/Identification/' + filenum() + '-set-text.png')
 }
 
 const setName = (selector, first, middle, last) => {
@@ -189,10 +186,10 @@ const setName = (selector, first, middle, last) => {
     .setValue(selector + ' .first input', first)
     .setValue(selector + ' .middle input', middle)
     .setValue(selector + ' .last input', last)
-    //.saveScreenshot('./screenshots/Identification/' + filenum() + '-set-name.png')
+    .saveScreenshot('./screenshots/Identification/' + filenum() + '-set-name.png')
 }
 
 const scrollToItem = (selector) => {
   return client.getLocationInView(selector)
-  //.saveScreenshot('./screenshots/Identification/' + filenum() + '-scrolltoview.png')
+  .saveScreenshot('./screenshots/Identification/' + filenum() + '-scrolltoview.png')
 }
