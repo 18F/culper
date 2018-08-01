@@ -24,8 +24,7 @@ defineSupportCode(({Given, Then, When}) => {
   When(/^I navigate to the military (.*?) section$/, (subsection) => {
     subcontext = subsection
     const section = 'military'
-    const sectionTitle = 'Military history'
-    navigateToSection(sectionTitle)
+    navigateToSection(section)
     return navigateToSubsection(section, subsection)
   })
 
@@ -123,7 +122,7 @@ const completeForeignMilitary = (promise) => {
 }
 
 const navigateToSection = (section) => {
-  const selector = '.section a[title="' + section + '"]'
+  const selector = '.usa-sidenav-list a[aria-controls="/form/' + section + '"]'
   return client
     .assert.visible(selector)
     .click(selector)
@@ -132,7 +131,7 @@ const navigateToSection = (section) => {
 }
 
 const navigateToSubsection = (section, subsection) => {
-  const selector = '.subsection a[href="/form/' + section + '/' + subsection + '"]'
+  const selector = '.usa-sidenav-sub_list a[href="/form/' + section + '/' + subsection + '"]'
   return client
     .assert.visible(selector)
     .click(selector)
