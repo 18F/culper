@@ -77,15 +77,15 @@ const completeOtherNamesUsed = (promise) => {
       .then(() => { return setText('.datecontrol.to .day input', '1') })
       .then(() => { return setText('.datecontrol.to .year input', '2011') })
       .then(() => { return setText('textarea[name="Reason"]', 'Just a nickname I go by') })
-      .then(() => { return setOption('.other-names .branch.addendum .no') })
+      .then(() => { return setOption('.other-names .branch.addendum .no')})
 }
 
 const completeContacts = (promise) => {
   return promise
-      .then(() => { return click('.contact .email-collection .accordion .item .toggle.fa.fa-chevron-down') })
-      .then(() => { return setText('input[name="Email"]', 'professor@xmen.org') })
-      .then(() => { return scrollToItem('.contact .telephone-collection .items .summary-container .summary .button-with-icon') })
-      .then(() => { return click('.contact .telephone-collection .items .summary-container .summary .button-with-icon') })
+      // .then(() => { return click('.contact .email-collection .accordion .item .toggle.fa.fa-chevron-down') })
+      .then(() => { return setText('input[name="Email"]', 'professor@xmen.org')})
+      // .then(() => { return scrollToItem('.telephone-collection .items .summary-container .summary .button-with-icon') })
+      // .then(() => { return click('.contact .telephone-collection .items .summary-container .summary .button-with-icon') })
       .then(() => { return scrollToItem('input[name="domestic_first"]') })
       .then(() => { return setText('input[name="domestic_first"]', '202') })
       .then(() => { return setText('input[name="domestic_second"]', '867') })
@@ -96,7 +96,7 @@ const completeContacts = (promise) => {
 
 const completeBirthDate = (promise) => {
   return promise
-      .then(() => { return setText('input[name="month"]', '11') })
+      .then(() => { return setText('input[name="month"]', '11')})
       .then(() => { return setText('input[name="day"]', '10') })
       .then(() => { return setText('input[name="year"]', '1990') })
 }
@@ -112,11 +112,11 @@ const completeBirthPlace = (promise) => {
 const completeSocialSecurityNumber = (promise) => {
   return promise
       .then(() => { return setText('.applicant-ssn-initial input[name="first"]', '123') })
-      .then(() => { return setText('.applicant-ssn-initial input[name="middle"]', '45') })
-      .then(() => { return setText('.applicant-ssn-initial input[name="last"]', '6789') })
+      .then(() => { return setText('.applicant-ssn-initial input[name="middle"]', '12') })
+      .then(() => { return setText('.applicant-ssn-initial input[name="last"]', '1234') })
       .then(() => { return setText('.applicant-ssn-verification input[name="first"]', '123') })
-      .then(() => { return setText('.applicant-ssn-verification input[name="middle"]', '45') })
-      .then(() => { return setText('.applicant-ssn-verification input[name="last"]', '6789') })
+      .then(() => { return setText('.applicant-ssn-verification input[name="middle"]', '12') })
+      .then(() => { return setText('.applicant-ssn-verification input[name="last"]', '1234') })
 }
 
 const completePhysicalAttributes = (promise) => {
