@@ -16,8 +16,8 @@
     <TreatmentOccurrence ID="{{$index}}">
       <Condition>{{radio $Item.Condition}}</Condition>
       {{daterange $Item.Diagnosed}}
-      <HealthCareProfessional>{{treatment $Item.Treatment}}</HealthCareProfessional>
-      <TreatmentFacility>{{treatment $Item.Facility}}</TreatmentFacility>
+      <HealthCareProfessional>{{treatment $Item.Treatment.props}}</HealthCareProfessional>
+      <TreatmentFacility>{{treatment $Item.TreatmentFacility.props}}</TreatmentFacility>
       <Comment></Comment>
     </TreatmentOccurrence>
     <HaveAdditionalEntryAnswer>{{branch .props.TreatmentList.props.branch}}</HaveAdditionalEntryAnswer>
