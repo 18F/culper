@@ -614,12 +614,11 @@ func Application(context DatabaseService, account int, hashable bool) []byte {
 }
 
 // Package an application for transmitting to cold storage
-func Package(context DatabaseService, xml XMLService, account int, hashable bool) template.HTML {
+func Package(context DatabaseService, xml XMLService, account int, hashable bool) (template.HTML, error) {
 	jsonBytes := Application(context, account, hashable)
 	var js map[string]interface{}
 	if err := json.Unmarshal(jsonBytes, &js); err != nil {
-		// NOTE: Maybe do something else here.
-		return template.HTML("")
+		return template.HTML(""), err
 	}
 	return xml.DefaultTemplate("application.xml", js)
 }

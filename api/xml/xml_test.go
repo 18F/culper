@@ -112,7 +112,10 @@ func TestPackage(t *testing.T) {
 	service := Service{Log: logger}
 
 	for _, test := range tests {
-		tmpl := service.DefaultTemplate(test.Schema, test.Data)
+		tmpl, err := service.DefaultTemplate(test.Schema, test.Data)
+		if err != nil {
+			t.Fatal(err)
+		}
 		if tmpl == "" {
 			t.Fatalf("XML template (%s) should not be empty", test.Schema)
 		}

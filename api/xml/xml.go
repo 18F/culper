@@ -17,7 +17,7 @@ type Service struct {
 }
 
 // DefaultTemplate returns a template given data.
-func (service Service) DefaultTemplate(templateName string, data map[string]interface{}) template.HTML {
+func (service Service) DefaultTemplate(templateName string, data map[string]interface{}) (template.HTML, error) {
 	// fmap is a mapping of functions to be used within the XML template execution.
 	// These can be helper functions for formatting or even to process complex structure
 	// types.
@@ -67,28 +67,26 @@ func (service Service) DefaultTemplate(templateName string, data map[string]inte
 	return xmlTemplateWithFuncs(templateName, data, fmap)
 }
 
-func xmlTemplate(name string, data map[string]interface{}) template.HTML {
+func xmlTemplate(name string, data map[string]interface{}) (template.HTML, error) {
 	path := path.Join("templates", name)
 	tmpl := template.Must(template.New(name).ParseFiles(path))
 	var output bytes.Buffer
 	if err := tmpl.Execute(&output, data); err != nil {
-		// service.Log.WarnError("Failed to execute XML template", err, api.LogFields{"name": name})
-		return template.HTML("")
+		return template.HTML(""), err
 	}
-	return template.HTML(output.String())
+	return template.HTML(output.String()), nil
 }
 
 // xmlTemplateWithFuncs executes an XML template with mapped functions to be used with the
 // given entity.
-func xmlTemplateWithFuncs(name string, data map[string]interface{}, fmap template.FuncMap) template.HTML {
+func xmlTemplateWithFuncs(name string, data map[string]interface{}, fmap template.FuncMap) (template.HTML, error) {
 	path := path.Join("templates", name)
 	tmpl := template.Must(template.New(name).Funcs(fmap).ParseFiles(path))
 	var output bytes.Buffer
 	if err := tmpl.Execute(&output, data); err != nil {
-		// service.Log.WarnError("Failed to execute XML template", err, api.LogFields{"name": name})
-		return template.HTML("")
+		return template.HTML(""), err
 	}
-	return template.HTML(output.String())
+	return template.HTML(output.String()), nil
 }
 
 func getInterfaceAsBytes(anon interface{}) []byte {
@@ -489,7 +487,6 @@ func checkboxTrueFalse(data map[string]interface{}) string {
 func locationIsPostOffice(data map[string]interface{}) string {
 	// Deserialize the initial payload from a JSON structure
 	payload := &api.Payload{}
-	// entity, err := payload.UnmarshalEntity(getInterfaceAsBytes(data))
 	entity, err := payload.UnmarshalEntity(getInterfaceAsBytes(data))
 	if err != nil {
 		return ""
@@ -523,19 +520,19 @@ func countryComments(data map[string]interface{}) string {
 
 // Put "complex" XML structures here where they output from another template
 
-func telephone(data map[string]interface{}) template.HTML {
+func telephone(data map[string]interface{}) (template.HTML, error) {
 	return xmlTemplate("telephone.xml", data)
 }
 
-func name(data map[string]interface{}) template.HTML {
+func name(data map[string]interface{}) (template.HTML, error) {
 	return xmlTemplate("name.xml", data)
 }
 
-func nameLastFirst(data map[string]interface{}) template.HTML {
+func nameLastFirst(data map[string]interface{}) (template.HTML, error) {
 	return xmlTemplate("name-last-first.xml", data)
 }
 
-func daterange(data map[string]interface{}) template.HTML {
+func daterange(data map[string]interface{}) (template.HTML, error) {
 	fmap := template.FuncMap{
 		"date":          date,
 		"dateEstimated": dateEstimated,
@@ -543,7 +540,7 @@ func daterange(data map[string]interface{}) template.HTML {
 	return xmlTemplateWithFuncs("date-range.xml", data, fmap)
 }
 
-func monthYearDaterange(data map[string]interface{}) template.HTML {
+func monthYearDaterange(data map[string]interface{}) (template.HTML, error) {
 	fmap := template.FuncMap{
 		"date":          monthYear,
 		"dateEstimated": dateEstimated,
@@ -551,22 +548,22 @@ func monthYearDaterange(data map[string]interface{}) template.HTML {
 	return xmlTemplateWithFuncs("date-range.xml", data, fmap)
 }
 
-func date(data map[string]interface{}) template.HTML {
+func date(data map[string]interface{}) (template.HTML, error) {
 	return xmlTemplate("date-month-day-year.xml", data)
 }
 
-func monthYear(data map[string]interface{}) template.HTML {
+func monthYear(data map[string]interface{}) (template.HTML, error) {
 	return xmlTemplate("date-month-year.xml", data)
 }
 
 // location assumes the data comes in as the props
-func location(data map[string]interface{}) template.HTML {
+func location(data map[string]interface{}) (template.HTML, error) {
 	// Deserialize the initial payload from a JSON structure
 	payload := &api.Payload{}
 	// entity, err := payload.UnmarshalEntity(getInterfaceAsBytes(data))
 	entity, err := payload.UnmarshalEntity(getInterfaceAsBytes(data))
 	if err != nil {
-		return template.HTML("")
+		return template.HTML(""), err
 	}
 
 	location := entity.(*api.Location)
@@ -621,11 +618,11 @@ func location(data map[string]interface{}) template.HTML {
 	}
 }
 
-func countryValue(data map[string]interface{}) template.HTML {
+func countryValue(data map[string]interface{}) (template.HTML, error) {
 	return xmlTemplate("country.xml", data)
 }
 
-func treatment(data map[string]interface{}) template.HTML {
+func treatment(data map[string]interface{}) (template.HTML, error) {
 	fmap := template.FuncMap{
 		"text":      text,
 		"telephone": telephone,
