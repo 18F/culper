@@ -76,9 +76,9 @@
       {{- $foreignPOB := ne $birthCountry "United States" }}
       {{- $usCitizen := citizenshipHas $Item.Citizenship "United States" }}
       {{- $deceased := eq (branch $Item.IsDeceased) "Yes" }}
-      {{- $usAddress := eq $Item.Address.props.country "United States" }}
+      {{- $usAddress := addressIn $Item.Address "United States" }}
 
-      {{- if or (and $usCitizen $foreignPOB $deceased) (and $usAddress $foreignPOB $usAddress) (and $foreignPOB $usCitizen) }}
+      {{- if or (and $usCitizen $foreignPOB $deceased) (and $usCitizen $foreignPOB $usAddress) }}
       <Citizenship>
         <ProofOfStatus>
           <Comment></Comment>

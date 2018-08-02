@@ -119,6 +119,25 @@ func TestPackage(t *testing.T) {
 	}
 }
 
+func TestAddressIn(t *testing.T) {
+	country := "United States"
+
+	us := "testdata/us-address.json"
+	if !addressIn(readSectionData(us), country) {
+		t.Fatalf("%s should be in %s", us, country)
+	}
+
+	nonus := "testdata/nonus-address.json"
+	if addressIn(readSectionData(nonus), country) {
+		t.Fatalf("%s should not be in %s", nonus, country)
+	}
+
+	bad := "testdata/bad-address.json"
+	if addressIn(readSectionData(bad), country) {
+		t.Fatalf("%s should not be in %s", bad, country)
+	}
+}
+
 func applicationData() map[string]interface{} {
 	return map[string]interface{}{
 		"Identification": map[string]interface{}{

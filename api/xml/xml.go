@@ -22,6 +22,7 @@ func (service Service) DefaultTemplate(templateName string, data map[string]inte
 	// These can be helper functions for formatting or even to process complex structure
 	// types.
 	fmap := template.FuncMap{
+		"addressIn":            addressIn,
 		"branch":               branch,
 		"branchToBool":         branchToBool,
 		"branchcollectionHas":  branchcollectionHas,
@@ -366,6 +367,25 @@ func maritalStatus(status string) string {
 		"Widowed":      "Widowed",
 	}
 	return alias[status]
+}
+
+// addressIn returns true if Location entity (Address) is in the specified country
+func addressIn(location map[string]interface{}, country string) bool {
+	props, ok := location["props"]
+	if !ok {
+		return false
+	}
+
+	c, ok := (props.(map[string]interface{}))["country"]
+	if !ok {
+		return false
+	}
+
+	if c == country {
+		return true
+	}
+
+	return false
 }
 
 func citizenshipHas(data map[string]interface{}, country string) bool {
