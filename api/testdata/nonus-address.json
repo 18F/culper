@@ -1,0 +1,9 @@
+{
+  "type": "location",
+  "props": {
+    "layout": "Address",
+    "street": "10 Drury St.",
+    "city": "Stanley",
+    "country": "Falkland Islands Islas Malvinas"
+  }
+}
