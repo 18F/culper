@@ -112,7 +112,6 @@ const completeRelationshipStatusCohabitant = (promise) => {
     .then(() => { return setOption('.cohabitants .birthplace .blocks.option-list .yes.block') })
     .then(() => { return setText('.cohabitants .birthplace .fields .state input', 'VA')})
     .then(() => { return setText('.cohabitants .birthplace .fields .city input', 'Fairfax') })
-    // .then(() => { return setText('.cohabitants .birthplace .fields .county input', 'Fairfax') })
     .then(() => { return setText('.cohabitants .ssn .first input', '323') })
     .then(() => { return setText('.cohabitants .ssn .middle input', '42') })
     .then(() => { return setText('.cohabitants .ssn .last input', '5252') })
