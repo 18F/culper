@@ -27,7 +27,7 @@ defineSupportCode(({Given, Then, When}) => {
 
   When(/^I navigate to the relationships (.*?) section$/, (subsection) => {
     subcontext = subsection
-    const section = 'Relationships'
+    const section = 'relationships'
     const ssheader = 'Marital & relationship status'
     navigateToSection(section)
     if (subsection.includes("/")) {
@@ -65,7 +65,7 @@ const completeRelationshipStatusMarital = (promise) => {
     .then(() => { return setText('.marital .name.civil .field .last input', 'SpouseLast') })
     .then(() => { return setText('.marital .datecontrol.birthdate .month input', '1') })
     .then(() => { return setText('.marital .datecontrol.birthdate .day input', '1') })
-    .then(() => { return setText('.marital .datecontrol.birthdate .year input', '1980') })
+    .then(() => { return setText('.marital .datecontrol.birthdate .year input', '1979') })
     .then(() => { return setOption('.marital .location.birthplace .option-list.branch .yes.block') })
     .then(() => { return setText('.marital .location.birthplace .state input', 'VA') })
     .then(() => { return setText('.marital .location.birthplace .city input', 'Fairfax') })
@@ -73,7 +73,7 @@ const completeRelationshipStatusMarital = (promise) => {
     .then(() => { return setText('.marital .ssn .first input', '323') })
     .then(() => { return setText('.marital .ssn .middle input', '42') })
     .then(() => { return setText('.marital .ssn .last input', '5252') })
-    .then(() => { return setOption('.marital .othername .blocks.option-list .yes.block') })
+    .then(() => { return setOption('.marital .othername .blocks.option-list .yes.block')})
     .then(() => { return setText('.marital .othername .field .first input', 'SpouseFirst') })
     .then(() => { return setText('.marital .othername .field .middle input', 'SpouseMiddle') })
     .then(() => { return setText('.marital .othername .field .last input', 'SpouseLastMaiden') })
@@ -85,7 +85,7 @@ const completeRelationshipStatusMarital = (promise) => {
     .then(() => { return setText('.marital .daterange.datesused .datecontrol.to .day input', '2') })
     .then(() => { return setText('.marital .daterange.datesused .datecontrol.to .year input', '2000') })
     .then(() => { return setOption('.marital .othername .last-branch .blocks.option-list .no.block') })
-    .then(() => { return setCountry('.marital .country.relationships-civilUnion-citizenship input', 'United States') })
+    .then(() => { return setCountry('.marital .country.relationships-civilUnion-citizenship input', 'United States')})
     .then(() => { return setText('.marital .datecontrol.entered .month input', '2') })
     .then(() => { return setText('.marital .datecontrol.entered .day input', '2') })
     .then(() => { return setText('.marital .datecontrol.entered .year input', '2000') })
@@ -96,7 +96,7 @@ const completeRelationshipStatusMarital = (promise) => {
     .then(() => { return setDomesticAddress('.marital .address', '13709 Walsingham Rd', 'Largo', 'FL', '33774') })
     .then(() => { return setDomesticTelephone('.marital .telephone', '703', '333', '4444', 'Cell') })
     .then(() => { return setText('.marital .field .component .email input', 'test@test.com') })
-    .then(() => { return setOption('.marital .branch.separated .blocks.option-list .no.block') })
+    .then(() => { return setOption('.marital .branch.separated .blocks.option-list .no.block')})
     .then(() => { return setOption('.marital .branch.divorced .blocks.option-list .no.block') })
 }
 
@@ -110,9 +110,9 @@ const completeRelationshipStatusCohabitant = (promise) => {
     .then(() => { return setText('.cohabitants .datecontrol.birthdate .day input', '3') })
     .then(() => { return setText('.cohabitants .datecontrol.birthdate .year input', '1980') })
     .then(() => { return setOption('.cohabitants .birthplace .blocks.option-list .yes.block') })
-    .then(() => { return setText('.cohabitants .birthplace .fields .state input', 'VA') })
+    .then(() => { return setText('.cohabitants .birthplace .fields .state input', 'VA')})
     .then(() => { return setText('.cohabitants .birthplace .fields .city input', 'Fairfax') })
-    .then(() => { return setText('.cohabitants .birthplace .fields .county input', 'Fairfax') })
+    // .then(() => { return setText('.cohabitants .birthplace .fields .county input', 'Fairfax') })
     .then(() => { return setText('.cohabitants .ssn .first input', '323') })
     .then(() => { return setText('.cohabitants .ssn .middle input', '42') })
     .then(() => { return setText('.cohabitants .ssn .last input', '5252') })
@@ -177,7 +177,7 @@ const completeRelationshipRelatives = (promise) => {
 }
 
 const navigateToSection = (section) => {
-  const selector = '.section a[title="' + section + '"]'
+  const selector = '.usa-sidenav-list a[aria-controls="/form/' + section + '"]'
   return client
     .assert.visible(selector)
     .click(selector)
@@ -186,7 +186,7 @@ const navigateToSection = (section) => {
 }
 
 const navigateToSubsection = (section, subsection) => {
-  const selector = '.subsection a[href="/form/' + section + '/' + subsection + '"]'
+  const selector = '.usa-sidenav-sub_list a[href="/form/' + section + '/' + subsection + '"]'
   return client
     .assert.visible(selector)
     .click(selector)
