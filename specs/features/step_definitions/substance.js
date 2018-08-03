@@ -24,8 +24,7 @@ defineSupportCode(({Given, Then, When}) => {
   When(/^I navigate to the substance (.*?) section$/, (subsection) => {
     subcontext = subsection
     const section = 'substance'
-    const sectionTitle = 'Substance use'
-    navigateToSection(sectionTitle)
+    navigateToSection(section)
     return navigateToSubsection(section, subsection)
   })
 
@@ -110,7 +109,6 @@ const completeAlcoholAdditional = (promise) => {
     .then(() => { return setOption('.received-counselings .use-same-address .yes') })
     .then(() => { return setDate('.received-counselings .treatment-began-date', '1', '1', '2010') })
     .then(() => { return setDate('.received-counselings .treatment-end-date', '1', '1', '2011') })
-
     .then(() => { return setOption('.received-counselings .completed-treatment .yes') })
     .then(() => { return setText('.received-counselings .no-completed-treatment textarea', 'Stuff') })
 }
@@ -201,7 +199,7 @@ const completeDrugsVoluntaryTreatment = (promise) => {
 }
 
 const navigateToSection = (section) => {
-  const selector = '.section a[title="' + section + '"]'
+  const selector = '.usa-sidenav-list a[aria-controls="/form/' + section + '"]'
   return client
     .assert.visible(selector)
     .click(selector)
@@ -209,17 +207,8 @@ const navigateToSection = (section) => {
     .saveScreenshot('./screenshots/Substance/' + filenum() + '-navigate-section.png')
 }
 
-const navigateToSectionTitle = (section) => {
-  const selector = '.subsection a[title="' + section + '"]'
-  return client
-    .assert.visible(selector)
-    .click(selector)
-    .pause(1000)
-    .saveScreenshot('./screenshots/Substance/' + filenum() + '-navigate-sectiontitle.png')
-}
-
 const navigateToSubsection = (section, subsection) => {
-  const selector = '.subsection a[href="/form/' + section + '/' + subsection + '"]'
+  const selector = '.usa-sidenav-sub_list a[href="/form/' + section + '/' + subsection + '"]'
   return client
     .assert.visible(selector)
     .click(selector)
