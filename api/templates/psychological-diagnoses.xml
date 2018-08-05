@@ -6,8 +6,8 @@
   <DiagnosedOccurrence ID="{{$index}}">
     <Diagnosis>{{radio $Item.Condition | diagnosisType }}</Diagnosis>
     {{monthYearDaterange $Item.Diagnosed}}
-    <HealthCareProfessional>{{treatment $Item.Treatment}}</HealthCareProfessional>
-    <TreatmentFacility>{{treatment $Item.TreatmentFacility}}</TreatmentFacility>
+    <HealthCareProfessional>{{treatment $Item.Treatment.props}}</HealthCareProfessional>
+    <TreatmentFacility>{{treatment $Item.TreatmentFacility.props}}</TreatmentFacility>
     <TreatmentEffective>
       <Effective>{{branch $Item.Effective}}</Effective>
       <Explanation>{{textarea $Item.Explanation}}</Explanation>

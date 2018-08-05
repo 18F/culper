@@ -43,7 +43,7 @@
           <Last>{{text $Item.TreatmentProvider}}</Last>
           <First Type="NFN"><!-- eApp only captures a sigle text entry --></First>
         </Name>
-        <Address>{{location $Item.TreatmentAddress}}</Address>
+        <Address>{{location $Item.TreatmentProviderAddress}}</Address>
         <Telephone>{{telephone $Item.TreatmentProviderTelephone}}</Telephone>
       </Doctor>
       {{daterange $Item.TreatmentDates}}
