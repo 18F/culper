@@ -13,7 +13,6 @@ import {
   createPrintSubsectionViews
 } from '../generators'
 import navigation from './navigation'
-import storeToComponentMap from './subsections'
 
 class Identification extends SectionElement {
   getSubsectionProps(subsection) {
@@ -26,7 +25,7 @@ class Identification extends SectionElement {
   }
 
   createReviewGroups() {
-    return createReviewGroups(storeToComponentMap, navigation, subsection => {
+    return createReviewGroups(navigation, subsection => {
       const props = this.getSubsectionProps(subsection)
       if (subsection.url === 'contacts') {
         props.shouldFilterEmptyItems = true
@@ -36,7 +35,7 @@ class Identification extends SectionElement {
   }
 
   createSectionViews() {
-    return createSectionViews(storeToComponentMap, navigation, subsection => {
+    return createSectionViews(navigation, subsection => {
       return this.getSubsectionProps(subsection)
     })
   }
@@ -141,13 +140,9 @@ export class IdentificationSections extends React.Component {
   }
 
   createSubsections() {
-    return createPrintSubsectionViews(
-      storeToComponentMap,
-      navigation,
-      subsection => {
-        return this.getSubsectionProps(subsection)
-      }
-    )
+    return createPrintSubsectionViews(navigation, subsection => {
+      return this.getSubsectionProps(subsection)
+    })
   }
 
   render() {

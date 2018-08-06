@@ -2,6 +2,12 @@ import React from 'react'
 import { i18n } from '../../config'
 import { SectionView } from './SectionView'
 
+import identification from './Identification/subsections'
+
+const componentsBySectionAndStore = {
+  identification
+}
+
 export const getComponentByName = (storeToComponentMap, name) => {
   // https://reactjs.org/docs/jsx-in-depth.html#choosing-the-type-at-runtime
   const NamedComponent = storeToComponentMap[name]
@@ -11,16 +17,17 @@ export const getComponentByName = (storeToComponentMap, name) => {
   return NamedComponent
 }
 
+const getSubsectionByName = (sectionName, subsectionName) => {
+  const storeToComponentMap = componentsBySectionAndStore[sectionName]
+  if (!storeToComponentMap) {
+    console.error(`${sectionName} not included in componentsBySectionAndStore`)
+  }
+  return getComponentByName(storeToComponentMap, subsectionName)
+}
+
 // Returns the component corresponding to the provided subsection object
-export const createSubsection = (
-  storeToComponentMap,
-  subsection,
-  extraProps = {}
-) => {
-  const SubsectionComponent = getComponentByName(
-    storeToComponentMap,
-    subsection.store
-  )
+export const createSubsection = (sectionName, subsection, extraProps = {}) => {
+  const SubsectionComponent = getSubsectionByName(sectionName, subsection.store)
 
   const props = {
     key: subsection.url,
@@ -68,7 +75,6 @@ export const addDividers = components => {
 }
 
 export const createReviewGroups = (
-  storeToComponentMap,
   sectionNavigation,
   subsectionPropsCallback = null
 ) => {
@@ -87,7 +93,7 @@ export const createReviewGroups = (
     extraProps.required = true
     extraProps.scrollIntoView = false
 
-    return createSubsection(storeToComponentMap, subsection, extraProps)
+    return createSubsection(sectionNavigation.url, subsection, extraProps)
   })
 
   // exclude nulls
@@ -98,7 +104,6 @@ export const createReviewGroups = (
 
 // Returns an array of SectionViews with their corresponding child component, based on the navigation. The `subsectionPropsCallback` is an optional function that accepts the `subsection` navigation config and gives back the corresponding properties to be passed to the subsection's component.
 export const createSectionViews = (
-  storeToComponentMap,
   sectionNavigation,
   subsectionPropsCallback = null
 ) => {
@@ -116,7 +121,7 @@ export const createSectionViews = (
       ? subsectionPropsCallback(subsection)
       : {}
     const ssComponent = createSubsection(
-      storeToComponentMap,
+      sectionNavigation.url,
       subsection,
       extraProps
     )
@@ -135,7 +140,6 @@ export const createSectionViews = (
 }
 
 export const createPrintSubsectionViews = (
-  storeToComponentMap,
   sectionNavigation,
   subsectionPropsCallback = null
 ) => {
@@ -152,7 +156,7 @@ export const createPrintSubsectionViews = (
     extraProps.required = true
     extraProps.scrollIntoView = false
 
-    return createSubsection(storeToComponentMap, subsection, extraProps)
+    return createSubsection(sectionNavigation.url, subsection, extraProps)
   })
 
   // exclude nulls
