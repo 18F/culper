@@ -4,6 +4,7 @@ import { SectionView } from './SectionView'
 
 import identification from './Identification/subsections'
 
+// section name (lower case) -> subsection store name -> subsection component
 const componentsBySectionAndStore = {
   identification
 }

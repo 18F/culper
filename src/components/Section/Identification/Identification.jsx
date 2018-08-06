@@ -6,43 +6,21 @@ import SectionElement from '../SectionElement'
 import SectionComments from '../SectionComments'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import { Field } from '../../Form'
-import {
-  addDividers,
-  createSectionViews,
-  createReviewGroups,
-  createPrintSubsectionViews
-} from '../generators'
+import { addDividers, createPrintSubsectionViews } from '../generators'
 import navigation from './navigation'
 
 class Identification extends SectionElement {
-  getSubsectionProps(subsection) {
-    return {
-      ...this.props[subsection.store],
-      dispatch: this.props.dispatch,
-      onUpdate: this.handleUpdate.bind(this, subsection.store),
-      onError: this.handleError
+  getReviewGroupProps(subsection) {
+    const props = super.getReviewGroupProps(subsection)
+    if (subsection.url === 'contacts') {
+      props.shouldFilterEmptyItems = true
     }
-  }
-
-  createReviewGroups() {
-    return createReviewGroups(navigation, subsection => {
-      const props = this.getSubsectionProps(subsection)
-      if (subsection.url === 'contacts') {
-        props.shouldFilterEmptyItems = true
-      }
-      return props
-    })
-  }
-
-  createSectionViews() {
-    return createSectionViews(navigation, subsection => {
-      return this.getSubsectionProps(subsection)
-    })
+    return props
   }
 
   render() {
-    const reviewComponents = this.createReviewGroups()
-    const sectionViews = this.createSectionViews()
+    const reviewComponents = this.createReviewGroups(navigation)
+    const sectionViews = this.createSectionViews(navigation)
 
     return (
       <div>
