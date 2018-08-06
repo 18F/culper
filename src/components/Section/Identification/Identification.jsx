@@ -27,12 +27,19 @@ const storeToComponentMap = {
 }
 
 class Identification extends SectionElement {
-  createSubsection(subsection, extraExtraProps = {}) {
-    const extraProps = {
+  getSubsectionProps(subsection) {
+    return {
       ...this.props[subsection.store],
       dispatch: this.props.dispatch,
       onUpdate: this.handleUpdate.bind(this, subsection.store),
-      onError: this.handleError,
+      onError: this.handleError
+    }
+  }
+
+  createSubsection(subsection, extraExtraProps = {}) {
+    const subsectionProps = this.getSubsectionProps(subsection)
+    const extraProps = {
+      ...subsectionProps,
       ...extraExtraProps
     }
     return createSubsection(storeToComponentMap, subsection, extraProps)
