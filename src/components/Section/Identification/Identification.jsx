@@ -9,7 +9,8 @@ import { Field } from '../../Form'
 import {
   addDividers,
   createSubsection,
-  createSectionViews
+  createSectionViews,
+  createReviewGroups
 } from '../generators'
 import navigation from './navigation'
 import ApplicantName from './ApplicantName'
@@ -40,42 +41,14 @@ class Identification extends SectionElement {
     }
   }
 
-  createSubsection(subsection, extraExtraProps = {}) {
-    const subsectionProps = this.getSubsectionProps(subsection)
-    const extraProps = {
-      ...subsectionProps,
-      ...extraExtraProps
-    }
-    return createSubsection(storeToComponentMap, subsection, extraProps)
-  }
-
   createReviewGroups() {
-    const subsections = navigation.subsections
-
-    let components = subsections.map(subsection => {
-      if (subsection.exclude) {
-        return null
-      }
-
-      const extraProps = {
-        section: this.props.section,
-        subsection: subsection.url,
-        required: true,
-        scrollIntoView: false
-      }
-
-      // TODO figure out a better way to handle these special properties
+    return createReviewGroups(storeToComponentMap, navigation, subsection => {
+      const props = this.getSubsectionProps(subsection)
       if (subsection.url === 'contacts') {
-        extraProps.shouldFilterEmptyItems = true
+        props.shouldFilterEmptyItems = true
       }
-
-      return this.createSubsection(subsection, extraProps)
+      return props
     })
-
-    // exclude nulls
-    components = components.filter(c => !!c)
-
-    return addDividers(components)
   }
 
   createSectionViews() {

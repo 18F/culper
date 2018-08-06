@@ -67,6 +67,35 @@ export const addDividers = components => {
   return componentsWithDividers
 }
 
+export const createReviewGroups = (
+  storeToComponentMap,
+  sectionNavigation,
+  subsectionPropsCallback = null
+) => {
+  const subsections = sectionNavigation.subsections
+
+  let components = subsections.map(subsection => {
+    if (subsection.exclude) {
+      return null
+    }
+
+    const extraProps = subsectionPropsCallback
+      ? subsectionPropsCallback(subsection)
+      : {}
+    extraProps.section = sectionNavigation.url
+    extraProps.subsection = subsection.url
+    extraProps.required = true
+    extraProps.scrollIntoView = false
+
+    return createSubsection(storeToComponentMap, subsection, extraProps)
+  })
+
+  // exclude nulls
+  components = components.filter(c => !!c)
+
+  return addDividers(components)
+}
+
 // Returns an array of SectionViews with their corresponding child component, based on the navigation. The `subsectionPropsCallback` is an optional function that accepts the `subsection` navigation config and gives back the corresponding properties to be passed to the subsection's component.
 export const createSectionViews = (
   storeToComponentMap,
