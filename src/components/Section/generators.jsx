@@ -133,3 +133,28 @@ export const createSectionViews = (
   // exclude nulls
   return views.filter(v => !!v)
 }
+
+export const createPrintSubsectionViews = (
+  storeToComponentMap,
+  sectionNavigation,
+  subsectionPropsCallback = null
+) => {
+  const subsections = sectionNavigation.subsections
+
+  const components = subsections.map((subsection, i) => {
+    if (subsection.exclude) {
+      return null
+    }
+
+    const extraProps = subsectionPropsCallback
+      ? subsectionPropsCallback(subsection)
+      : {}
+    extraProps.required = true
+    extraProps.scrollIntoView = false
+
+    return createSubsection(storeToComponentMap, subsection, extraProps)
+  })
+
+  // exclude nulls
+  return components.filter(v => !!v)
+}

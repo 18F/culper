@@ -8,9 +8,9 @@ import AuthenticatedView from '../../../views/AuthenticatedView'
 import { Field } from '../../Form'
 import {
   addDividers,
-  createSubsection,
   createSectionViews,
-  createReviewGroups
+  createReviewGroups,
+  createPrintSubsectionViews
 } from '../generators'
 import navigation from './navigation'
 import ApplicantName from './ApplicantName'
@@ -137,16 +137,13 @@ Identification.defaultProps = {
 }
 
 export class IdentificationSections extends React.Component {
-  createSubsection(subsection) {
+  getSubsectionProps(subsection) {
     const extraProps = {
       ...this.props[subsection.store],
       dispatch: this.props.dispatch,
-      onError: this.props.onError,
-      required: true,
-      scrollIntoView: false
+      onError: this.props.onError
     }
 
-    // TODO figure out a better way to handle these special properties
     switch (subsection.url) {
       case 'contacts':
         extraProps.defaultState = false
@@ -156,22 +153,17 @@ export class IdentificationSections extends React.Component {
         extraProps.defaultState = false
     }
 
-    return createSubsection(storeToComponentMap, subsection, extraProps)
+    return extraProps
   }
 
   createSubsections() {
-    const subsections = navigation.subsections
-
-    const components = subsections.map((subsection, i) => {
-      if (subsection.exclude) {
-        return null
+    return createPrintSubsectionViews(
+      storeToComponentMap,
+      navigation,
+      subsection => {
+        return this.getSubsectionProps(subsection)
       }
-
-      return this.createSubsection(subsection)
-    })
-
-    // exclude nulls
-    return components.filter(v => !!v)
+    )
   }
 
   render() {
