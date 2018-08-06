@@ -31,7 +31,7 @@ export const createSubsection = (
   return <SubsectionComponent {...props} />
 }
 
-export const createSectionView = (
+const createSectionView = (
   section,
   subsection,
   prevUrl,
@@ -65,4 +65,42 @@ export const addDividers = components => {
   })
 
   return componentsWithDividers
+}
+
+// Returns an array of SectionViews with their corresponding child component, based on the navigation. The `subsectionPropsCallback` is an optional function that accepts the `subsection` navigation config and gives back the corresponding properties to be passed to the subsection's component.
+export const createSectionViews = (
+  storeToComponentMap,
+  sectionNavigation,
+  subsectionPropsCallback = null
+) => {
+  const subsections = sectionNavigation.subsections
+
+  const views = subsections.map((subsection, i) => {
+    if (subsection.exclude) {
+      return null
+    }
+
+    const prev = subsections[i - 1]
+    const next = subsections[i + 1]
+
+    const extraProps = subsectionPropsCallback
+      ? subsectionPropsCallback(subsection)
+      : {}
+    const ssComponent = createSubsection(
+      storeToComponentMap,
+      subsection,
+      extraProps
+    )
+
+    return createSectionView(
+      sectionNavigation.url,
+      subsection,
+      prev.url,
+      next.url,
+      ssComponent
+    )
+  })
+
+  // exclude nulls
+  return views.filter(v => !!v)
 }

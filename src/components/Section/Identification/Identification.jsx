@@ -6,7 +6,11 @@ import SectionElement from '../SectionElement'
 import SectionComments from '../SectionComments'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import { Field } from '../../Form'
-import { addDividers, createSubsection, createSectionView } from '../generators'
+import {
+  addDividers,
+  createSubsection,
+  createSectionViews
+} from '../generators'
 import navigation from './navigation'
 import ApplicantName from './ApplicantName'
 import ApplicantSSN from './ApplicantSSN'
@@ -74,24 +78,10 @@ class Identification extends SectionElement {
     return addDividers(components)
   }
 
-  // Returns an array of SectionViews with their corresponding child component, based on the navigation
   createSectionViews() {
-    const subsections = navigation.subsections
-
-    const views = subsections.map((subsection, i) => {
-      if (subsection.exclude) {
-        return null
-      }
-
-      const prev = subsections[i - 1]
-      const next = subsections[i + 1]
-      const ssComponent = this.createSubsection(subsection)
-
-      return createSectionView(this.props.section, subsection, prev.url, next.url, ssComponent)
+    return createSectionViews(storeToComponentMap, navigation, subsection => {
+      return this.getSubsectionProps(subsection)
     })
-
-    // exclude nulls
-    return views.filter(v => !!v)
   }
 
   render() {
