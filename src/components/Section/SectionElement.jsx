@@ -13,7 +13,8 @@ export default class SectionElement extends React.Component {
   }
 
   handleError(value, arr) {
-    this.props.dispatch(reportErrors(this.props.section, '', arr))
+    const action = reportErrors(this.props.section, this.props.subsection, arr)
+    this.props.dispatch(action)
     return arr
   }
 

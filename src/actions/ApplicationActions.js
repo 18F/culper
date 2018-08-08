@@ -116,6 +116,14 @@ export function clearErrors(property, subsection) {
  * section.
  */
 export function reportErrors(section, subsection, codes) {
+  // set the section and subsection, in case not otherwise set
+  codes = codes.map(err => {
+    return {
+      ...err,
+      section: err.section || section,
+      subsection: err.subsection || subsection
+    }
+  })
   return updateApplication('Errors', section, codes)
 }
 

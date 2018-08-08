@@ -60,15 +60,38 @@ describe('Application actions', function() {
       {
         name: 'ApplicantNameReportError',
         callback: function() {
-          return reportErrors('Identification', 'ApplicantName', [
-            { code: 'minlength', valid: false }
-          ])
+          const errors = [
+            {
+              code: 'minlength',
+              valid: false
+            },
+            {
+              code: 'empty',
+              section: 'Identification',
+              subsection: 'Elsewhere',
+              valid: false
+            }
+          ]
+          return reportErrors('Identification', 'ApplicantName', errors)
         },
         expected: {
           type: 'Errors.Identification',
           section: 'Errors',
           property: 'Identification',
-          values: [{ code: 'minlength', valid: false }]
+          values: [
+            {
+              code: 'minlength',
+              section: 'Identification',
+              subsection: 'ApplicantName',
+              valid: false
+            },
+            {
+              code: 'empty',
+              section: 'Identification',
+              subsection: 'Elsewhere',
+              valid: false
+            }
+          ]
         }
       }
     ]
@@ -77,6 +100,7 @@ describe('Application actions', function() {
       let actual = t.callback()
       expect(actual.type).toEqual(t.expected.type)
       expect(actual.section).toEqual(t.expected.section)
+      expect(actual.subsection).toEqual(t.expected.subsection)
       expect(actual.property).toEqual(t.expected.property)
       expect(actual.values).toEqual(t.expected.values)
     })
