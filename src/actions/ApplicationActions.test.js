@@ -1,11 +1,17 @@
-import { updateIdentificationApplicantName, updateIdentificationBirthPlace, updateIdentificationBirthDate, updateIdentificationSSN, reportErrors } from './ApplicationActions'
+import {
+  updateIdentificationApplicantName,
+  updateIdentificationBirthPlace,
+  updateIdentificationBirthDate,
+  updateIdentificationSSN,
+  reportErrors
+} from './ApplicationActions'
 
-describe('Application actions', function () {
-  it('should create an action for updating identification properties', function () {
+describe('Application actions', function() {
+  it('should create an action for updating identification properties', function() {
     const tests = [
       {
         name: 'ApplicantName',
-        callback: function () {
+        callback: function() {
           return updateIdentificationApplicantName('charles xavier')
         },
         expected: {
@@ -17,7 +23,7 @@ describe('Application actions', function () {
       },
       {
         name: 'ApplicantBirthPlace',
-        callback: function () {
+        callback: function() {
           return updateIdentificationBirthPlace('Earth')
         },
         expected: {
@@ -29,7 +35,7 @@ describe('Application actions', function () {
       },
       {
         name: 'ApplicantBirthDate',
-        callback: function () {
+        callback: function() {
           return updateIdentificationBirthDate('6/21/1982')
         },
         expected: {
@@ -41,7 +47,7 @@ describe('Application actions', function () {
       },
       {
         name: 'ApplicantSSN',
-        callback: function () {
+        callback: function() {
           return updateIdentificationSSN('123456789')
         },
         expected: {
@@ -53,22 +59,48 @@ describe('Application actions', function () {
       },
       {
         name: 'ApplicantNameReportError',
-        callback: function () {
-          return reportErrors('Identification', 'ApplicantName', [{ code: 'minlength', valid: false }])
+        callback: function() {
+          const errors = [
+            {
+              code: 'minlength',
+              valid: false
+            },
+            {
+              code: 'empty',
+              section: 'Identification',
+              subsection: 'Elsewhere',
+              valid: false
+            }
+          ]
+          return reportErrors('Identification', 'ApplicantName', errors)
         },
         expected: {
           type: 'Errors.Identification',
           section: 'Errors',
           property: 'Identification',
-          values: [{ code: 'minlength', valid: false }]
+          values: [
+            {
+              code: 'minlength',
+              section: 'Identification',
+              subsection: 'ApplicantName',
+              valid: false
+            },
+            {
+              code: 'empty',
+              section: 'Identification',
+              subsection: 'Elsewhere',
+              valid: false
+            }
+          ]
         }
       }
     ]
 
-    tests.forEach((t) => {
+    tests.forEach(t => {
       let actual = t.callback()
       expect(actual.type).toEqual(t.expected.type)
       expect(actual.section).toEqual(t.expected.section)
+      expect(actual.subsection).toEqual(t.expected.subsection)
       expect(actual.property).toEqual(t.expected.property)
       expect(actual.values).toEqual(t.expected.values)
     })
