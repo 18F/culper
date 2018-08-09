@@ -173,7 +173,7 @@ Running the feature specifications is an on-demand process and can be ran using:
 make specs
 ```
 
-For additional information on how to perform the feature specification automated UI test suite, visit [Spec Test][27].
+For additional information on how to perform the feature specification automated UI test suite, see [the specs documentation][27].
 
 ### Generating Documentation
 
@@ -236,4 +236,4 @@ Please refer to the [contributing documentation][18].
 [23]: https://goreportcard.com/report/github.com/18F/e-QIP-prototype
 [24]: https://codecov.io/gh/18F/e-QIP-prototype
 [25]: https://codecov.io/gh/truetandem/e-QIP-prototype
-[27]: docs/SPECTEST.md
+[27]: specs/README.md
