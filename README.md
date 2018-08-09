@@ -111,13 +111,17 @@ See [documentation](docs/saml.md).
 
 In the terminal run the following:
 
-1. `docker ps -a | grep e-qip-prototype_db_1` and use the db value in the next command.
-1. `docker exec -it <DB HERE> /bin/bash`
-1. `su - postgres`
-1. `psql`
-1. `begin;`
-1. `update accounts set locked = false where username = 'test01';`
-1. `commit;`
+```shell
+docker-compose exec db psql -U postgres
+```
+
+Then execute the SQL:
+
+```sql
+begin;
+update accounts set locked = false where username = 'test01';
+commit;
+```
 
 The submission will be unlocked and you can go back through the application.
 
