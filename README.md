@@ -13,21 +13,9 @@ To create the e-QIP questionnaire prototype, the project team is employing a use
 ## Table of contents
 
 - [Project Management](#project-management)
-- [Getting to know the code](#getting-to-know-the-code)
-  - [Dependencies](#dependencies)
-  - [Clone all things](#clone-all-things)
-  - [Running the application](#running-the-application)
-    - [Setup](#setup)
-    - [Building the application](#building-the-application)
-    - [Executing tests and coverage reports](#executing-tests-and-coverage-reports)
-    - [Running a local server](#running-a-local-server)
-    - [Reset locked app submission](#reset-locked-submission)
-- [Docker containers](#docker-containers)
+- [Development](#development)
 - [Architectural diagram](#architectural-diagram)
 - [Additional](#additional)
-  - [Feature specifications](#feature-specifications)
-  - [Generating documentation](#generating-documentation)
-  - [Tooling](#tooling)
 - [Contributing](#contributing)
 
 ## Project Management
