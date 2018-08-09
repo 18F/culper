@@ -52,8 +52,6 @@ For more information on licenses and third-party source code please refer to the
 Clone the repository and `cd` into it:
 
 ```shell
-mkdir -p $GOPATH/src/github.com/18F
-cd $GOPATH/src/github.com/18F
 git clone https://github.com/18F/e-QIP-prototype
 cd e-QIP-prototype
 ```
