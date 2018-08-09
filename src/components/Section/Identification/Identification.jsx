@@ -1,12 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { i18n } from '../../../config'
-import { SectionViews, SectionView } from '../SectionView'
+import { SectionViews } from '../SectionView'
 import SectionElement from '../SectionElement'
 import SectionComments from '../SectionComments'
 import AuthenticatedView from '../../../views/AuthenticatedView'
-import { Field } from '../../Form'
-import { addDividers, createPrintSubsectionViews } from '../generators'
+import {
+  addDividers,
+  createIntroSubsection,
+  createPrintSubsectionViews
+} from '../generators'
 import navigation from './navigation'
 
 class Identification extends SectionElement {
@@ -19,8 +22,9 @@ class Identification extends SectionElement {
   }
 
   render() {
-    const reviewSubsection = this.createReviewSubsection(navigation, 'history')
+    const introSubsection = createIntroSubsection(this.props.section)
     const sectionViews = this.createSectionViews(navigation)
+    const reviewSubsection = this.createReviewSubsection(navigation, 'history')
 
     return (
       <div>
@@ -28,20 +32,9 @@ class Identification extends SectionElement {
           current={this.props.subsection}
           dispatch={this.props.dispatch}
           update={this.props.update}>
-          <SectionView
-            name="intro"
-            next="identification/name"
-            nextLabel={i18n.t('identification.destination.name')}>
-            <Field
-              title={i18n.t('identification.intro.title')}
-              titleSize="h2"
-              optional={true}
-              className="no-margin-bottom">
-              {i18n.m('identification.intro.body')}
-            </Field>
-          </SectionView>
-          {reviewSubsection}
+          {introSubsection}
           {sectionViews}
+          {reviewSubsection}
         </SectionViews>
       </div>
     )

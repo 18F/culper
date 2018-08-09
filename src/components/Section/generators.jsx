@@ -1,5 +1,6 @@
 import React from 'react'
 import { i18n } from '../../config'
+import { Field } from '../Form'
 import { SectionView } from './SectionView'
 
 import identification from './Identification/subsections'
@@ -73,6 +74,23 @@ export const addDividers = components => {
   })
 
   return componentsWithDividers
+}
+
+export const createIntroSubsection = section => {
+  return (
+    <SectionView
+      name="intro"
+      next={`${section}/name`}
+      nextLabel={i18n.t(`${section}.destination.name`)}>
+      <Field
+        title={i18n.t(`${section}.intro.title`)}
+        titleSize="h2"
+        optional={true}
+        className="no-margin-bottom">
+        {i18n.m(`${section}.intro.body`)}
+      </Field>
+    </SectionView>
+  )
 }
 
 export const createReviewGroups = (
