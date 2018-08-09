@@ -12,8 +12,7 @@ If you have any questions or want to read more, check out the [18F Open Source P
 
 During the development process the development fork of the project will be hosted at [18F/e-QIP-prototype](https://github.com/18F/e-QIP-prototype). This may cause some confusion so we have outlined some basic steps for contributing:
 
-1. Clone the repository `git clone https://github.com/18F/e-QIP-prototype $GOPATH/src/18F/e-QIP-prototype`
-1. Change in to the new directory `cd $GOPATH/src/18F/e-QIP-prototype`
+1. Go through the [development setup](../README.md#development)
 1. Fork the code on Github
 1. Add a **git remote** with `git remote add fork <path/to/forked/repository>`
 1. Make changes and commit them locally
