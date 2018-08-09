@@ -32,22 +32,7 @@ To create the e-QIP questionnaire prototype, the project team is employing a use
 
 ## Project Management
 
-The project team utilizes [GitHub Issues][9] to administer User Stories and Tasks.
-
-- [Milestones/Sprints][11] - Sprint durations are defined using GitHub Milestones, and backlog items (issues) worked on in a given sprint are tagged with a Milestone.
-- [Epics/User Stories][12] - GitHub issues are tagged with the "Epic" tag to denote the issue as a User Story
-
-GitHub commits can be traced back to their corresponding tasks through commit comments. Commits directly related to a task will be prefixed with the task ID:
-
-```
-18F/e-QIP-prototype#issue_number Commit description
-```
-
-[Keywords][13] can be used to change the status of the associated issue
-
-## Sprint Backlogs
-
-To view the items completed during each development sprint and to view the burndown charts for each respective sprint, please visit the [Sprint Backlogs][26] page.
+The project team utilizes [GitHub Issues][9] to administer User Stories and Tasks, prioritized and tracked in [a Kanban board](https://github.com/18F/e-QIP-prototype/projects/1). Higher-level and non-development tasks are tracked in [a Trello board](https://trello.com/b/xexcFZ81/eapp-internal).
 
 ## Development
 
@@ -240,9 +225,6 @@ Please refer to the [contributing documentation][18].
 [7]: https://continua11y.18f.gov/truetandem/e-QIP-prototype
 [8]: https://playbook.cio.gov/#plays_index_anchor
 [9]: https://help.github.com/articles/tracking-the-progress-of-your-work-with-projects
-[11]: https://github.com/18F/e-QIP-prototype/milestones
-[12]: https://github.com/18F/e-QIP-prototype/labels/Epic
-[13]: https://help.github.com/articles/closing-issues-via-commit-messages/
 [14]: http://jshint.com
 [15]: https://github.com/curtisj44/HTML-Lint
 [16]: https://www.npmjs.com
@@ -254,5 +236,4 @@ Please refer to the [contributing documentation][18].
 [23]: https://goreportcard.com/report/github.com/18F/e-QIP-prototype
 [24]: https://codecov.io/gh/18F/e-QIP-prototype
 [25]: https://codecov.io/gh/truetandem/e-QIP-prototype
-[26]: docs/SPRINTS.md
 [27]: docs/SPECTEST.md
