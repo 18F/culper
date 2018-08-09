@@ -14,3 +14,9 @@ Here are some of the major directories:
   * [`sass/`](../src/sass): Handful of shared SASS files
   * [`validators/`](../src/validators): The validation logic
   * [`views/`](../src/views): Higher-level React components that correspond to different pages/routes
+
+## Tests
+
+Unit tests are written in [Jest](https://facebook.github.io/jest/), with [snapshot tests](https://jestjs.io/docs/en/snapshot-testing) for ensuring components don't inadvertently change.
+
+[Information about integration tests.](../specs/README.md)
