@@ -192,7 +192,7 @@ All of the documentation may then be found in the respective directories under `
 
 #### Formatting
 
-JavaScript files are formatted using [Prettier](https://prettier.io/), though note this should only be done when a file is new or heavily modified. You should install Prettier for whatever editor you use.
+Supported files are formatted using [Prettier](https://prettier.io/), though note this should only be done when a file is new or heavily modified. You should install Prettier for whatever editor you use.
 
 #### Linters
 
