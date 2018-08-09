@@ -15,8 +15,23 @@ Here are some of the major directories:
   * [`validators/`](../src/validators): The validation logic
   * [`views/`](../src/views): Higher-level React components that correspond to different pages/routes
 
+## Troubleshooting
+
+* Use of the [React Developer Tools](https://github.com/facebook/react-devtools) and [Redux DevTools Extension](http://extension.remotedev.io/) are recommended for frontend work.
+* With the React extension, the Redux store can be inspected by running `$r.store.getState();` in your browser's JavaScript console.
+
 ## Tests
 
 Unit tests are written in [Jest](https://facebook.github.io/jest/), with [snapshot tests](https://jestjs.io/docs/en/snapshot-testing) for ensuring components don't inadvertently change.
 
 [Information about integration tests.](../specs/README.md)
+
+## Adding/updating NPM packages
+
+Whenever the `dependencies` list in [`package.json`](../package.json) is changed, make sure the [`yarn.lock`](../yarn.lock) gets updated as well:
+
+```shell
+docker-compose run --rm js yarn
+```
+
+then restart the server.
