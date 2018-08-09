@@ -4,7 +4,10 @@ import {
   updateApplication,
   reportErrors
 } from '../../actions/ApplicationActions'
+import { i18n } from '../../config'
 import { createSectionViews, createReviewGroups } from './generators'
+import SectionComments from './SectionComments'
+import { SectionView } from './SectionView'
 
 export default class SectionElement extends React.Component {
   constructor(props) {
@@ -44,6 +47,39 @@ export default class SectionElement extends React.Component {
     return createReviewGroups(navigation, subsection => {
       return this.getReviewGroupProps(subsection)
     })
+  }
+
+  createReviewSubsection(navigation, nextSection) {
+    const section = navigation.url
+    const numSubsections = navigation.subsections.length - 1
+    const prevSubsection = navigation.subsections[numSubsections - 1].url
+    const reviewComponents = this.createReviewGroups(navigation)
+
+    return (
+      <SectionView
+        name="review"
+        title={i18n.t('review.title')}
+        para={i18n.m('review.para')}
+        showTop={true}
+        back={`${section}/${prevSubsection}`}
+        backLabel={i18n.t(`${section}.destination.${prevSubsection}`)}
+        next={`${nextSection}/intro`}
+        nextLabel={i18n.t(`${nextSection}.destination.intro`)}>
+        {reviewComponents}
+        <SectionComments
+          name="comments"
+          {...this.props.Comments}
+          section={section}
+          subsection="name"
+          title={i18n.t(`${section}.review.comments`)}
+          dispatch={this.props.dispatch}
+          onUpdate={this.handleUpdate.bind(this, 'Comments')}
+          onError={this.handleError}
+          required={false}
+          scrollIntoView={false}
+        />
+      </SectionView>
+    )
   }
 
   createSectionViews(navigation) {

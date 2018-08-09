@@ -19,7 +19,7 @@ class Identification extends SectionElement {
   }
 
   render() {
-    const reviewComponents = this.createReviewGroups(navigation)
+    const reviewSubsection = this.createReviewSubsection(navigation, 'history')
     const sectionViews = this.createSectionViews(navigation)
 
     return (
@@ -40,31 +40,7 @@ class Identification extends SectionElement {
               {i18n.m('identification.intro.body')}
             </Field>
           </SectionView>
-
-          <SectionView
-            name="review"
-            title={i18n.t('review.title')}
-            para={i18n.m('review.para')}
-            showTop={true}
-            back="identification/physical"
-            backLabel={i18n.t('identification.destination.physical')}
-            next="history/intro"
-            nextLabel={i18n.t('history.destination.intro')}>
-            {reviewComponents}
-            <SectionComments
-              name="comments"
-              {...this.props.Comments}
-              section="identification"
-              subsection="name"
-              title={i18n.t('identification.review.comments')}
-              dispatch={this.props.dispatch}
-              onUpdate={this.handleUpdate.bind(this, 'Comments')}
-              onError={this.handleError}
-              required={false}
-              scrollIntoView={false}
-            />
-          </SectionView>
-
+          {reviewSubsection}
           {sectionViews}
         </SectionViews>
       </div>
