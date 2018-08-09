@@ -51,8 +51,10 @@ export default class SectionElement extends React.Component {
 
   createReviewSubsection(navigation, nextSection) {
     const section = navigation.url
-    const numSubsections = navigation.subsections.length - 1
-    const prevSubsection = navigation.subsections[numSubsections - 1].url
+    const subsections = navigation.subsections
+    // should be the last in the array, but just in case
+    const reviewIndex = subsections.findIndex(ss => ss.url === 'review')
+    const prevSubsection = subsections[reviewIndex - 1].url
     const reviewComponents = this.createReviewGroups(navigation)
 
     return (
