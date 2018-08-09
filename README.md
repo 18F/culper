@@ -33,7 +33,7 @@ The project team utilizes [GitHub Issues][9] to administer User Stories and Task
 - [docker-compose][20]
 - [make](https://www.gnu.org/software/make/)
 
-For more information on licenses and third-party source code please refer to the [dependencies](docs/DEPENDENCIES.md) documentation.
+For more information on licenses and third-party source code, use a tool like [this one](https://github.com/bmallred/licenses).
 
 #### Clone all things
 
