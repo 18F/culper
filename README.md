@@ -98,9 +98,9 @@ The submission will be unlocked and you can go back through the application.
 
 #### How it works
 
-The Make target calls Docker Compose, which then runs containers for various parts of the system. Frontend assets are built from their own containers into the `dist/` folder, which are then served by nginx. Nginx also proxies API requests to an API backend written in Go, which has a PostgreSQL container behind it. See the [architecture diagram](#architectural-diagram) below.
+The Make target calls Docker Compose, which then runs containers for various parts of the system. Frontend assets are built from their own containers into the `dist/` folder, which are then served by nginx. There is also an API backend (under [`api/`](api)) written in Go, which has a PostgreSQL database behind it. See the [architecture diagram](#architectural-diagram) below.
 
-The frontend is built in [React](https://reactjs.org/), wired up with [React Router](https://reacttraining.com/react-router/) and [Redux](https://redux.js.org), compiled using [Webpack](https://webpack.js.org/) and [Babel](https://babeljs.io).
+See also: [frontend docs](docs/frontend.md).
 
 ### Building the application
 
