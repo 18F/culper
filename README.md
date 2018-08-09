@@ -7,47 +7,20 @@
 To create the e-QIP questionnaire prototype, the project team is employing a user-centered design approach leveraging key principles from the [U.S. Digital Services Playbook][8]:
 
 1. Understand what people need
-2. Address the whole experience, from start to finish
-3. Make it simple and intuitive
+1. Address the whole experience, from start to finish
+1. Make it simple and intuitive
 
 ## Table of contents
 
- - [Project Management](#project-management)
- - [Getting to know the code](#getting-to-know-the-code)
-    - [Dependencies](#dependencies)
-    - [Clone all things](#clone-all-things)
-    - [Running the application](#running-the-application)
-       - [Setup](#setup)
-       - [Building the application](#building-the-application)
-       - [Executing tests and coverage reports](#executing-tests-and-coverage-reports)
-       - [Running a local server](#running-a-local-server)
-       - [Reset locked app submission](#reset-locked-submission)
- - [Docker containers](#docker-containers)
- - [Architectural diagram](#architectural-diagram)
- - [Additional](#additional)
-    - [Feature specifications](#feature-specifications)
-    - [Generating documentation](#generating-documentation)
-    - [Tooling](#tooling)
- - [Contributing](#contributing)
+- [Project Management](#project-management)
+- [Development](#development)
+- [Architectural diagram](#architectural-diagram)
+- [Additional](#additional)
+- [Contributing](#contributing)
 
 ## Project Management
 
-The project team utilizes [GitHub Issues][9] to administer User Stories and Tasks.
-
- - [Milestones/Sprints][11] - Sprint durations are defined using GitHub Milestones, and backlog items (issues) worked on in a given sprint are tagged with a Milestone.
- - [Epics/User Stories][12] - GitHub issues are tagged with the "Epic" tag to denote the issue as a User Story
-
-GitHub commits can be traced back to their corresponding tasks through commit comments.  Commits directly related to a task will be prefixed with the task ID:
-
-```
-18F/e-QIP-prototype#issue_number Commit description
-```
-
-[Keywords][13] can be used to change the status of the associated issue
-
-## Sprint Backlogs
-
-To view the items completed during each development sprint and to view the burndown charts for each respective sprint, please visit the [Sprint Backlogs][26] page.
+The project team utilizes [GitHub Issues][9] to administer User Stories and Tasks, prioritized and tracked in [a Kanban board](https://github.com/18F/e-QIP-prototype/projects/1). Higher-level and non-development tasks are tracked in [a Trello board](https://trello.com/b/xexcFZ81/eapp-internal).
 
 ## Development
 
@@ -55,20 +28,18 @@ To view the items completed during each development sprint and to view the burnd
 
 #### Dependencies
 
- - [git](https://git-scm.com)
- - [docker][21]
- - [docker-compose][20]
- - [make](https://www.gnu.org/software/make/)
+- [git](https://git-scm.com)
+- [docker][21]
+- [docker-compose][20]
+- [make](https://www.gnu.org/software/make/)
 
-For more information on licenses and third-party source code please refer to the [dependencies](docs/DEPENDENCIES.md) documentation.
+For more information on licenses and third-party source code, use a tool like [this one](https://github.com/bmallred/licenses).
 
 #### Clone all things
 
 Clone the repository and `cd` into it:
 
 ```shell
-mkdir -p $GOPATH/src/github.com/18F
-cd $GOPATH/src/github.com/18F
 git clone https://github.com/18F/e-QIP-prototype
 cd e-QIP-prototype
 ```
@@ -85,7 +56,7 @@ For more information on the various settings, examples, and values please refer 
 
 To do the initial setup and ensure that all tests pass locally:
 
-``` shell
+```shell
 make
 ```
 
@@ -108,15 +79,20 @@ Then direct your browser at [http://localhost:8080](http://localhost:8080). The 
 See [documentation](docs/saml.md).
 
 ### Reset locked app submission
+
 In the terminal run the following:
 
-1. `docker ps -a | grep e-qip-prototype_db_1` and use the db value in the next command.
-1. `docker exec -it <DB HERE> /bin/bash`
-1. `su - postgres`
-1. `psql`
-1. `begin;`
-1. `update accounts set locked = false where username = 'test01';`
-1. `commit;`
+```shell
+docker-compose exec db psql -U postgres
+```
+
+Then execute the SQL:
+
+```sql
+begin;
+update accounts set locked = false where username = 'test01';
+commit;
+```
 
 The submission will be unlocked and you can go back through the application.
 
@@ -173,7 +149,6 @@ then restart the server.
 
 There are several possible architectures which may be implemented. The diagram references one of those possible solutions and highlights the basic flow of data within the system. It also demonstrates integration with external systems (e.g. identity services) which are not part of this project but may be part of the overall system.
 
-
 ## Additional
 
 ### Feature specifications
@@ -184,7 +159,7 @@ Running the feature specifications is an on-demand process and can be ran using:
 make specs
 ```
 
-For additional information on how to perform the feature specification automated UI test suite, visit [Spec Test][27].
+For additional information on how to perform the feature specification automated UI test suite, see [the specs documentation][27].
 
 ### Generating Documentation
 
@@ -205,18 +180,18 @@ All of the documentation may then be found in the respective directories under `
 
 #### Formatting
 
-JavaScript files are formatted using [Prettier](https://prettier.io/), though note this should only be done when a file is new or heavily modified. You should install Prettier for whatever editor you use.
+Supported files are formatted using [Prettier](https://prettier.io/), though note this should only be done when a file is new or heavily modified. You should install Prettier for whatever editor you use.
 
 #### Linters
 
-* Vim users: install `syntastic`
-* Emacs users: install `flycheck`
+- Vim users: install `syntastic`
+- Emacs users: install `flycheck`
 
 For command-line alternatives there are the following:
 
- - For CSS, run `make lint-css`
- - For JavaScript, run `make lint-js`
- - For HTML, [html-lint][15] which may be installed with `yarn add html-lint`
+- For CSS, run `make lint-css`
+- For JavaScript, run `make lint-js`
+- For HTML, [html-lint][15] which may be installed with `yarn add html-lint`
 
 ## Contributing
 
@@ -236,9 +211,6 @@ Please refer to the [contributing documentation][18].
 [7]: https://continua11y.18f.gov/truetandem/e-QIP-prototype
 [8]: https://playbook.cio.gov/#plays_index_anchor
 [9]: https://help.github.com/articles/tracking-the-progress-of-your-work-with-projects
-[11]: https://github.com/18F/e-QIP-prototype/milestones
-[12]: https://github.com/18F/e-QIP-prototype/labels/Epic
-[13]: https://help.github.com/articles/closing-issues-via-commit-messages/
 [14]: http://jshint.com
 [15]: https://github.com/curtisj44/HTML-Lint
 [16]: https://www.npmjs.com
@@ -250,5 +222,4 @@ Please refer to the [contributing documentation][18].
 [23]: https://goreportcard.com/report/github.com/18F/e-QIP-prototype
 [24]: https://codecov.io/gh/18F/e-QIP-prototype
 [25]: https://codecov.io/gh/truetandem/e-QIP-prototype
-[26]: docs/SPRINTS.md
-[27]: docs/SPECTEST.md
+[27]: specs/README.md
