@@ -657,7 +657,7 @@ func Hash(context DatabaseService, account int) string {
 	return hex.EncodeToString(hash[:])
 }
 
-// Returns an array of the sub-sections of the form
+// Catalogue eturns an array of the sub-sections of the form
 func Catalogue() []SectionInformation {
 	c := make([]SectionInformation, len(catalogue))
 	copy(c, catalogue)
