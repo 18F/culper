@@ -1,15 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { i18n } from '../../../config'
-import { SectionViews } from '../SectionView'
 import SectionElement from '../SectionElement'
 import SectionComments from '../SectionComments'
 import AuthenticatedView from '../../../views/AuthenticatedView'
-import {
-  addDividers,
-  createIntroSubsection,
-  createPrintSubsectionViews
-} from '../generators'
+import { addDividers, createPrintSubsectionViews } from '../generators'
 import navigation from './navigation'
 
 class Identification extends SectionElement {
@@ -22,22 +17,7 @@ class Identification extends SectionElement {
   }
 
   render() {
-    const introSubsection = createIntroSubsection(this.props.section)
-    const sectionViews = this.createSectionViews(navigation)
-    const reviewSubsection = this.createReviewSubsection(navigation, 'history')
-
-    return (
-      <div>
-        <SectionViews
-          current={this.props.subsection}
-          dispatch={this.props.dispatch}
-          update={this.props.update}>
-          {introSubsection}
-          {sectionViews}
-          {reviewSubsection}
-        </SectionViews>
-      </div>
-    )
+    return this.createSection(navigation, 'history')
   }
 }
 

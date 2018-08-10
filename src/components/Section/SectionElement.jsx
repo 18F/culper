@@ -5,9 +5,13 @@ import {
   reportErrors
 } from '../../actions/ApplicationActions'
 import { i18n } from '../../config'
-import { createSectionViews, createReviewGroups } from './generators'
+import {
+  createIntroSubsection,
+  createReviewGroups,
+  createSectionViews
+} from './generators'
 import SectionComments from './SectionComments'
-import { SectionView } from './SectionView'
+import { SectionView, SectionViews } from './SectionView'
 
 export default class SectionElement extends React.Component {
   constructor(props) {
@@ -88,6 +92,28 @@ export default class SectionElement extends React.Component {
     return createSectionViews(navigation, subsection => {
       return this.getSubsectionProps(subsection)
     })
+  }
+
+  createSection(navigation, nextSection) {
+    const introSubsection = createIntroSubsection(this.props.section)
+    const sectionViews = this.createSectionViews(navigation)
+    const reviewSubsection = this.createReviewSubsection(
+      navigation,
+      nextSection
+    )
+
+    return (
+      <div>
+        <SectionViews
+          current={this.props.subsection}
+          dispatch={this.props.dispatch}
+          update={this.props.update}>
+          {introSubsection}
+          {sectionViews}
+          {reviewSubsection}
+        </SectionViews>
+      </div>
+    )
   }
 }
 
