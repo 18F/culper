@@ -60,10 +60,6 @@ To do the initial setup and ensure that all tests pass locally:
 make
 ```
 
-#### Multi-host setup
-
-See [documentation](docs/multi-host.md).
-
 ### Running a local server
 
 To run a local server, we are using [docker][21] containers leveraging the [docker-compose][20] tool via the command:
@@ -74,74 +70,11 @@ make run
 
 Then direct your browser at [http://localhost:8080](http://localhost:8080). The access the site in development use the username `test01` and password `password01`. If you make changes to frontend files, the site will automatically rebuild after ~10 seconds.
 
-#### SAML
-
-See [documentation](docs/saml.md).
-
-### Reset locked app submission
-
-In the terminal run the following:
-
-```shell
-docker-compose exec db psql -U postgres
-```
-
-Then execute the SQL:
-
-```sql
-begin;
-update accounts set locked = false where username = 'test01';
-commit;
-```
-
-The submission will be unlocked and you can go back through the application.
-
 #### How it works
 
-The Make target calls Docker Compose, which then runs containers for various parts of the system. Frontend assets are built from their own containers into the `dist/` folder, which are then served by nginx. Nginx also proxies API requests to an API backend written in Go, which has a PostgreSQL container behind it. See the [architecture diagram](#architectural-diagram) below.
+The Make target calls Docker Compose, which then runs containers for various parts of the system. Frontend assets are built from their own containers into the `dist/` folder, which are then served by nginx. There is also an API backend (under [`api/`](api)) written in Go, which has a PostgreSQL database behind it. See the [architecture diagram](#architectural-diagram) below.
 
-The frontend is built in [React](https://reactjs.org/), wired up with [React Router](https://reacttraining.com/react-router/) and [Redux](https://redux.js.org), compiled using [Webpack](https://webpack.js.org/) and [Babel](https://babeljs.io).
-
-### Building the application
-
-Compiling all of the assets can be done simply using the command:
-
-```shell
-make build
-```
-
-This is generally only needed for deployment.
-
-### Executing tests and coverage reports
-
-To make a single pass through the test suite use the command:
-
-```shell
-make test
-make coverage
-```
-
-Frontend tests are written in [Jest](https://facebook.github.io/jest/), with [snapshot tests](https://jestjs.io/docs/en/snapshot-testing) for ensuring components don't inadvertently change. API tests use [Go's `testing` package](https://golang.org/pkg/testing/).
-
-### Adding/updating NPM packages
-
-Whenever the `dependencies` list in [`package.json`](package.json) is changed, make sure the [`yarn.lock`](yarn.lock) gets updated as well:
-
-```shell
-docker-compose run --rm js yarn
-```
-
-then restart the server.
-
-### Adding/updating Go packages
-
-Whenever the packages used by the API change, update the [Dep](https://golang.github.io/dep/) files:
-
-```shell
-docker-compose run --rm api dep ensure -no-vendor
-```
-
-then restart the server.
+See also: [frontend docs](docs/frontend.md).
 
 ## Architectural diagram
 
@@ -151,30 +84,7 @@ There are several possible architectures which may be implemented. The diagram r
 
 ## Additional
 
-### Feature specifications
-
-Running the feature specifications is an on-demand process and can be ran using:
-
-```shell
-make specs
-```
-
-For additional information on how to perform the feature specification automated UI test suite, see [the specs documentation][27].
-
-### Generating Documentation
-
-To generate documentation from the source code and database schema type:
-
-```shell
-make docs
-```
-
-All of the documentation may then be found in the respective directories under `doc/`.
-
-### Troubleshooting
-
-- Use of the [React Developer Tools](https://github.com/facebook/react-devtools) and [Redux DevTools Extension](http://extension.remotedev.io/) are recommended for frontend work.
-- With the React extension, the Redux store can be inspected by running `$r.store.getState();` in your browser's JavaScript console.
+See [advanced docs](docs/advanced.md) for more.
 
 ### Tooling
 
@@ -222,4 +132,3 @@ Please refer to the [contributing documentation][18].
 [23]: https://goreportcard.com/report/github.com/18F/e-QIP-prototype
 [24]: https://codecov.io/gh/18F/e-QIP-prototype
 [25]: https://codecov.io/gh/truetandem/e-QIP-prototype
-[27]: specs/README.md
