@@ -5,6 +5,7 @@ import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 import Identification, { IdentificationSections } from './Identification'
 import { mount } from 'enzyme'
+import navigation from './navigation'
 
 const applicationState = {
   Identification: {
@@ -84,18 +85,22 @@ describe('The identification section', () => {
     })
   })
 
-  it('renders the Identification component', () => {
-    const store = mockStore({
-      authentication: { authenticated: true },
-      application: applicationState
+  navigation.subsections.forEach(subsection => {
+    it(`renders the Identification component for the ${
+      subsection.url
+    } subsection`, () => {
+      const store = mockStore({
+        authentication: { authenticated: true },
+        application: applicationState
+      })
+      const component = renderer.create(
+        <Provider store={store}>
+          <Identification subsection={subsection.url} />
+        </Provider>
+      )
+      let tree = component.toJSON()
+      expect(tree).toMatchSnapshot()
     })
-    const component = renderer.create(
-      <Provider store={store}>
-        <Identification />
-      </Provider>
-    )
-    let tree = component.toJSON()
-    expect(tree).toMatchSnapshot()
   })
 
   it('renders the IdentificationSections component', () => {
