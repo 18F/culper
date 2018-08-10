@@ -65,6 +65,10 @@
   branch = "master"
   name = "github.com/truetandem/plucked"
 
+[[constraint]]
+ branch = "master"
+ name = "github.com/antchfx/xmlquery"
+
 [prune]
   go-tests = true
   unused-packages = true

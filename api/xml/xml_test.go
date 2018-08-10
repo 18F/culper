@@ -1,11 +1,19 @@
 package xml
 
 import (
+	"bufio"
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
+	"os"
+	"path"
+	"regexp"
+	"strings"
 	"testing"
 
+	"github.com/18F/e-QIP-prototype/api"
 	"github.com/18F/e-QIP-prototype/api/mock"
+	"github.com/antchfx/xmlquery"
 )
 
 func TestPackage(t *testing.T) {
@@ -141,6 +149,37 @@ func TestAddressIn(t *testing.T) {
 	}
 }
 
+func TestCitizenStatus(t *testing.T) {
+	template := "citizenship-status.xml"
+	xpath := "Citizenship/USCitizen/ProofOfUSCitizenship/USPassport"
+
+	// Born in US with passport
+	form := newForm(t,
+		"citizenship-status.json",
+		"foreign-passport.json",
+	)
+	snippet := applyForm(template, form, t)
+	doc := xmlDoc(snippet, t)
+
+	list := xmlquery.Find(doc, xpath)
+	if len(list) != 1 {
+		t.Fatalf("XML derived from `%s` should have `%s`: %s", template, xpath, snippet)
+	}
+
+	// Born in US without passport
+	form = newForm(t,
+		"citizenship-status.json",
+		"no-passport.json",
+	)
+	snippet = applyForm(template, form, t)
+	doc = xmlDoc(snippet, t)
+	list = xmlquery.Find(doc, xpath)
+	if len(list) != 0 {
+		t.Fatalf("XML derived from `%s` should not have `%s`: %s", template, xpath, snippet)
+	}
+}
+
+// Load a fully-populated, valid SF-86 form with test data
 func applicationData() map[string]interface{} {
 	return map[string]interface{}{
 		"Identification": map[string]interface{}{
@@ -236,6 +275,7 @@ func applicationData() map[string]interface{} {
 	}
 }
 
+// readSectionData reads in a sub-section of test data, returning a partial form.
 func readSectionData(file string) map[string]interface{} {
 	b, err := ioutil.ReadFile(file)
 	if err != nil {
@@ -247,4 +287,96 @@ func readSectionData(file string) map[string]interface{} {
 		return map[string]interface{}{}
 	}
 	return js
+}
+
+// loadFormData reads in a sub-section of test data from the JSON filepath, populating the provided form.
+// Form data will automatically get populated into the correct section/sub-section.
+func loadFormData(form map[string]interface{}, filepath string) error {
+	b, err := ioutil.ReadFile(path.Join("testdata", filepath))
+	if err != nil {
+		return err
+	}
+
+	var js map[string]interface{}
+	if err := json.Unmarshal(b, &js); err != nil {
+		return err
+	}
+
+	t, ok := js["type"].(string)
+	if !ok {
+		return fmt.Errorf("Could not identify sub-section in %s via `type`", filepath)
+	}
+	for _, v := range api.Catalogue() {
+		if v.Payload == t {
+			val, ok := form[v.Name].(map[string]interface{})
+			if !ok {
+				form[v.Name] = map[string]interface{}{}
+				val = form[v.Name].(map[string]interface{})
+			}
+			val[v.Subsection] = js
+			return nil
+		}
+	}
+
+	return fmt.Errorf("No payload entry for `%s` in catalogue, from `%s`", t, filepath)
+}
+
+// applyForm generates an XML snippet given the path to an XML template and form data.
+func applyForm(template string, data map[string]interface{}, t *testing.T) string {
+	logger := &mock.LogService{}
+	service := Service{Log: logger}
+
+	snippet, err := service.DefaultTemplate(template, data)
+	if err != nil {
+		t.Fatal(err)
+	}
+	return string(snippet)
+}
+
+// newForm returns a form populated with data from the list of JSON filepaths.
+func newForm(t *testing.T, filepaths ...string) map[string]interface{} {
+	form := map[string]interface{}{}
+	for _, v := range filepaths {
+		err := loadFormData(form, v)
+		if err != nil {
+			t.Fatal(err)
+		}
+	}
+	return form
+}
+
+// xmlDoc parses the XML snippet, returning a queryable XML object
+func xmlDoc(snippet string, t *testing.T) *xmlquery.Node {
+	doc, err := xmlquery.Parse(strings.NewReader(snippet))
+	if err != nil {
+		t.Fatal(err)
+	}
+	return doc
+}
+
+// templateContext returns the JSON path that a parent XML template file calls with a child template.
+func templateContext(parent string, template string, t *testing.T) string {
+	file, err := os.Open(path.Join("templates", parent))
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer file.Close()
+
+	scanner := bufio.NewScanner(file)
+	re := regexp.MustCompile("\\{\\{tmpl.*\"" + template + "\" *([a-zA-Z.]+) *\\}\\}")
+	for scanner.Scan() {
+		match := re.FindStringSubmatch(scanner.Text())
+		if match != nil {
+			return match[1]
+		}
+	}
+
+	if err := scanner.Err(); err != nil {
+		t.Fatal(err)
+	}
+
+	t.Fatalf("Could not find reference to `%s` in `%s`", template, parent)
+
+	// Can't get here, but keeps compiler happy
+	return ""
 }
