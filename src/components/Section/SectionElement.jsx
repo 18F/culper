@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import {
   updateApplication,
   reportErrors
@@ -25,8 +26,10 @@ export default class SectionElement extends React.Component {
   }
 }
 
-SectionElement.defaultProps = {
-  section: '',
-  subsection: '',
-  store: ''
+SectionElement.propTypes = {
+  dispatch: PropTypes.func,
+  section: PropTypes.string.isRequired,
+  store: PropTypes.string.isRequired,
+  // required if you want anything to be displayed
+  subsection: PropTypes.string
 }
