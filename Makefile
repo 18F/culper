@@ -87,11 +87,18 @@ specs:
 # Coverage
 #
 .PHONY: coverage
-coverage:
-	$(info Running code coverage)
+coverage: coverage-js coverage-go
+coverage-js:
+	$(info Running code coverage for JS)
 	@docker-compose run --rm \
         -e "CODECOV_TOKEN=${CODECOV_TOKEN}" \
         js yarn coverage
+
+coverage-go:
+	$(info Running code coverage for Go)
+	@docker-compose run --rm \
+        -e "CODECOV_TOKEN=${CODECOV_TOKEN}" \
+        api make coverage
 
 #
 # Building
