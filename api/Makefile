@@ -6,7 +6,7 @@ test:
 	GOLANG_ENV=test go test -coverprofile=coverage.txt -covermode=atomic -cover $(shell go list ./... | grep -v /vendor/)
 
 coverage:
-	codecov -F backend
+	codecov -F backend -f coverage.txt
 
 build:
 	go build -o api ./cmd/server
