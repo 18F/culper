@@ -118,9 +118,11 @@ export default class SectionElement extends React.Component {
 }
 
 SectionElement.propTypes = {
+  Comments: PropTypes.object,
   dispatch: PropTypes.func,
   section: PropTypes.string.isRequired,
   store: PropTypes.string.isRequired,
   // required if you want anything to be displayed
-  subsection: PropTypes.string
+  subsection: PropTypes.string,
+  update: PropTypes.func
 }
