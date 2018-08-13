@@ -1,4 +1,5 @@
 import React from 'react'
+import renderer from 'react-test-renderer'
 import MockAdapter from 'axios-mock-adapter'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
@@ -10,6 +11,14 @@ import Print from './Print'
 const applicationState = {
   Application: {}
 }
+
+// give a fake GUID so the field IDs don't differ between snapshots
+// https://github.com/facebook/jest/issues/936#issuecomment-404246102
+jest.mock('../../Form/ValidationElement/helpers', () =>
+  Object.assign(require.requireActual('../../Form/ValidationElement/helpers'), {
+    newGuid: jest.fn().mockReturnValue('MOCK-GUID')
+  })
+)
 
 describe('The print section', () => {
   // Setup
@@ -51,5 +60,19 @@ describe('The print section', () => {
     )
     component.find('.print-btn').simulate('click')
     expect(printed).toBe(true)
+  })
+
+  it('renders properly', () => {
+    const store = mockStore({
+      authentication: { authenticated: true },
+      application: applicationState
+    })
+    const component = renderer.create(
+      <Provider store={store}>
+        <Print subsection="intro" />
+      </Provider>
+    )
+    let tree = component.toJSON()
+    expect(tree).toMatchSnapshot()
   })
 })

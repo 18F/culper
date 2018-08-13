@@ -1,8 +1,17 @@
 import React from 'react'
+import renderer from 'react-test-renderer'
 import MockAdapter from 'axios-mock-adapter'
 import { mount } from 'enzyme'
 import { api } from '../../../services'
 import Attachments from './Attachments'
+
+// give a fake GUID so the field IDs don't differ between snapshots
+// https://github.com/facebook/jest/issues/936#issuecomment-404246102
+jest.mock('../../Form/ValidationElement/helpers', () =>
+  Object.assign(require.requireActual('../../Form/ValidationElement/helpers'), {
+    newGuid: jest.fn().mockReturnValue('MOCK-GUID')
+  })
+)
 
 describe('The attachments component', () => {
   beforeEach(() => {
@@ -56,5 +65,12 @@ describe('The attachments component', () => {
     expect(component.find('.upload-area').length).toBe(1)
     component.find('input[type="radio"][value="Upload"]').simulate('click')
     expect(updates).toBe(1)
+  })
+
+  it('renders properly', () => {
+    const props = { AttachmentType: { value: 'Upload' } }
+    const component = renderer.create(<Attachments {...props} />)
+    let tree = component.toJSON()
+    expect(tree).toMatchSnapshot()
   })
 })
