@@ -14,7 +14,7 @@ const applicationState = {
 describe('The print section', () => {
   // Setup
   window.token = 'fake-token'
-  const middlewares = [ thunk ]
+  const middlewares = [thunk]
   const mockStore = configureMockStore(middlewares)
 
   beforeEach(() => {
@@ -23,18 +23,32 @@ describe('The print section', () => {
   })
 
   it('visible when authenticated', () => {
-    const store = mockStore({ authentication: { authenticated: true }, application: applicationState })
-    const component = mount(<Provider store={store}><Print subsection="intro" /></Provider>)
+    const store = mockStore({
+      authentication: { authenticated: true },
+      application: applicationState
+    })
+    const component = mount(
+      <Provider store={store}>
+        <Print subsection="intro" />
+      </Provider>
+    )
     expect(component.find('.section-print-container').length).toBe(10)
   })
 
   it('launches print dialog', () => {
     let printed = false
-    window.print = function () {
+    window.print = function() {
       printed = true
     }
-    const store = mockStore({ authentication: { authenticated: true }, application: applicationState })
-    const component = mount(<Provider store={store}><Print subsection="intro" /></Provider>)
+    const store = mockStore({
+      authentication: { authenticated: true },
+      application: applicationState
+    })
+    const component = mount(
+      <Provider store={store}>
+        <Print subsection="intro" />
+      </Provider>
+    )
     component.find('.print-btn').simulate('click')
     expect(printed).toBe(true)
   })

@@ -24,7 +24,8 @@ describe('The attachments component', () => {
       errorMessage: 'This is a test'
     }
     const component = mount(<Attachments {...props} />)
-    expect(component.find('.upload-error .message.error p').text()).toBe(props.errorMessage)
+    const msg = component.find('.upload-error .message.error p').text()
+    expect(msg).toBe(props.errorMessage)
   })
 
   it('displays for fax', () => {
@@ -47,7 +48,9 @@ describe('The attachments component', () => {
     let updates = 0
     const props = {
       AttachmentType: { value: 'Upload' },
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
     const component = mount(<Attachments {...props} />)
     expect(component.find('.upload-area').length).toBe(1)

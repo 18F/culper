@@ -20,7 +20,7 @@ import { PsychologicalSections } from '../Psychological'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 
 class Print extends SectionElement {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.sections = this.sections.bind(this)
     this.handlePrint = this.handlePrint.bind(this)
@@ -31,48 +31,63 @@ class Print extends SectionElement {
 
     this.supportsBlobs = false
     try {
-      this.supportsBlobs = !!new window.Blob
+      this.supportsBlobs = !!new window.Blob()
     } catch (e) {
       this.supportsBlobs = false
     }
 
     this.getStoredAttachments = this.getStoredAttachments.bind(this)
     this.displayAttachments = this.displayAttachments.bind(this)
-
   }
 
-  download (id) {
+  download(id) {
     if (!this.supportsBlobs) {
       return
     }
 
     const attachment = this.state.attachments.find(x => x.id === id)
-    api.getAttachment(id).then((response) => {
-      const blob = blobFromBase64(response.data, 'application/octet-stream')
-      FileSaver.saveAs(blob, attachment.filename)
-    }).catch(() => {
-      this.setState({ errorMessage: i18n.t('application.attachments.upload.error.download') })
-    })
+    api
+      .getAttachment(id)
+      .then(response => {
+        const blob = blobFromBase64(response.data, 'application/octet-stream')
+        FileSaver.saveAs(blob, attachment.filename)
+      })
+      .catch(() => {
+        this.setState({
+          errorMessage: i18n.t('application.attachments.upload.error.download')
+        })
+      })
   }
 
-  getStoredAttachments () {
-    api.listAttachments().then((response) => {
+  getStoredAttachments() {
+    api.listAttachments().then(response => {
       this.setState({ attachments: response.data || [], errorMessage: '' })
     })
   }
 
-  displayAttachments (items) {
+  displayAttachments(items) {
     return items.map((x, i) => {
       return (
         <tr key={`attachment-${x.id}`}>
           <td>
             <Show when={this.supportsBlobs}>
-              <a href="javascript:;;" aria-label={`Download ${x.filename}`} onClick={this.download.bind(this, x.id)}>
-                <strong>{`${i+1}. `}{x.description ? `${x.description} - ` : ''}</strong>{x.filename}
+              <a
+                href="javascript:;;"
+                aria-label={`Download ${x.filename}`}
+                onClick={this.download.bind(this, x.id)}>
+                <strong>
+                  {`${i + 1}. `}
+                  {x.description ? `${x.description} - ` : ''}
+                </strong>
+                {x.filename}
               </a>
             </Show>
             <Show when={!this.supportsBlobs}>
-              <strong>{`${i+1}. `}{x.description ? `${x.description} - ` : ''}</strong>{x.filename}
+              <strong>
+                {`${i + 1}. `}
+                {x.description ? `${x.description} - ` : ''}
+              </strong>
+              {x.filename}
             </Show>
           </td>
         </tr>
@@ -80,14 +95,14 @@ class Print extends SectionElement {
     })
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     let nav = document.getElementsByClassName('form-navigation')[0]
     nav.removeEventListener('click', this.captureNavigationClick)
     let logout = document.getElementsByClassName('eapp-logout')[0]
     logout.removeEventListener('click', this.captureLogoutClick)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     let nav = document.getElementsByClassName('form-navigation')[0]
     if (nav && nav.addEventListener) {
       nav.addEventListener('click', this.captureNavigationClick)
@@ -100,27 +115,31 @@ class Print extends SectionElement {
     this.getStoredAttachments()
   }
 
-  captureNavigationClick (e) {
+  captureNavigationClick(e) {
     if (!window.alert(i18n.t('application.alert.navigation'))) {
       e.stopPropagation()
     }
   }
 
-  captureLogoutClick (e) {
+  captureLogoutClick(e) {
     if (!window.confirm(i18n.t('application.alert.logout'))) {
       e.stopPropagation()
     }
   }
 
-  sections () {
+  sections() {
     return navigation.map((section, index, arr) => {
       let sectionComponent = null
       switch (section.url) {
         case 'identification':
-          sectionComponent = <IdentificationSections {...this.props.Identification} />
+          sectionComponent = (
+            <IdentificationSections {...this.props.Identification} />
+          )
           break
         case 'relationships':
-          sectionComponent = <RelationshipSections {...this.props.Relationships} />
+          sectionComponent = (
+            <RelationshipSections {...this.props.Relationships} />
+          )
           break
         case 'history':
           sectionComponent = <HistorySections {...this.props.History} />
@@ -129,7 +148,12 @@ class Print extends SectionElement {
           sectionComponent = <CitizenshipSections {...this.props.Citizenship} />
           break
         case 'military':
-          sectionComponent = <MilitarySections {...this.props.Military} application={this.props.Application} />
+          sectionComponent = (
+            <MilitarySections
+              {...this.props.Military}
+              application={this.props.Application}
+            />
+          )
           break
         case 'foreign':
           sectionComponent = <ForeignSections {...this.props.Foreign} />
@@ -138,13 +162,17 @@ class Print extends SectionElement {
           sectionComponent = <FinancialSections {...this.props.Financial} />
           break
         case 'substance':
-          sectionComponent = <SubstanceUseSections {...this.props.SubstanceUse} />
+          sectionComponent = (
+            <SubstanceUseSections {...this.props.SubstanceUse} />
+          )
           break
         case 'legal':
           sectionComponent = <LegalSections {...this.props.Legal} />
           break
         case 'psychological':
-          sectionComponent = <PsychologicalSections {...this.props.Psychological} />
+          sectionComponent = (
+            <PsychologicalSections {...this.props.Psychological} />
+          )
           break
         default:
           return null
@@ -153,13 +181,13 @@ class Print extends SectionElement {
       return (
         <div className="section-print-container" key={index}>
           <h3 className="section-print-header">{section.title}</h3>
-          { sectionComponent }
+          {sectionComponent}
         </div>
       )
     })
   }
 
-  handlePrint () {
+  handlePrint() {
     let interval = setInterval(() => {
       if (document.hasFocus()) {
         clearInterval(interval)
@@ -169,57 +197,58 @@ class Print extends SectionElement {
     window.print()
   }
 
-  done () {
+  done() {
     return (
       <div className="done">
         <span className="icon">
           <Svg src="/img/checkmark.svg" alt={i18n.t('review.completeSvg')} />
         </span>
-        { i18n.m('application.print.done') }
+        {i18n.m('application.print.done')}
       </div>
     )
   }
 
-  render () {
+  render() {
     return (
       <div className="pre-print-view">
         <div>
-          { i18n.m('application.print.title') }
+          {i18n.m('application.print.title')}
           <button className="print-btn" onClick={this.handlePrint}>
-            { i18n.t('application.print.button') }
+            {i18n.t('application.print.button')}
           </button>
-          <Show when={this.state.printed}>
-            { this.done() }
-          </Show>
+          <Show when={this.state.printed}>{this.done()}</Show>
           <h4 className="hash">{i18n.t('application.hashCode.title')}</h4>
           <p className="hash">{this.props.Settings.hash}</p>
         </div>
         <div>
-          <h4 className="attachments">{i18n.t('application.print.files.title')}</h4>
-          <p className="attachments">{i18n.m('application.print.files.para')}</p>
+          <h4 className="attachments">
+            {i18n.t('application.print.files.title')}
+          </h4>
+          <p className="attachments">
+            {i18n.m('application.print.files.para')}
+          </p>
           <table>
-            <tbody>
-              {this.displayAttachments(this.state.attachments)}
-            </tbody>
+            <tbody>{this.displayAttachments(this.state.attachments)}</tbody>
           </table>
         </div>
-        <div className="print-view">
-          { this.sections() }
-        </div>
-
+        <div className="print-view">{this.sections()}</div>
       </div>
     )
   }
 }
 
-function mapStateToProps (state) {
+function mapStateToProps(state) {
   const app = state.application || {}
   const identification = app.Identification || {}
   const relationships = app.Relationships || {}
   const history = app.History || {}
   const historyResidence = history.Residence || {}
   const historyEmployment = history.Employment || { List: {} }
-  const historyEducation = history.Education || { HasAttended: '', HasDegree10: '', List: {} }
+  const historyEducation = history.Education || {
+    HasAttended: '',
+    HasDegree10: '',
+    List: {}
+  }
   const citizenship = app.Citizenship || {}
   const military = app.Military || {}
   const foreign = app.Foreign || {}
@@ -257,7 +286,7 @@ function mapStateToProps (state) {
 Print.defaultProps = {
   section: 'print',
   subsection: 'intro',
-  store: 'Print',
+  store: 'Print'
 }
 
 const blobFromBase64 = (base64, contentType = '', size = 512) => {
@@ -265,7 +294,7 @@ const blobFromBase64 = (base64, contentType = '', size = 512) => {
   const buffer = []
   for (let offset = 0; offset < binary.length; offset += size) {
     let slice = binary.slice(offset, offset + size)
-    let numbers =  new Array(slice.length)
+    let numbers = new Array(slice.length)
     for (let i = 0; i < slice.length; i++) {
       numbers[i] = slice.charCodeAt(i)
     }
@@ -273,6 +302,5 @@ const blobFromBase64 = (base64, contentType = '', size = 512) => {
   }
   return new window.Blob(buffer, { type: contentType })
 }
-
 
 export default connect(mapStateToProps)(AuthenticatedView(Print))
