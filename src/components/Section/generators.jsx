@@ -26,7 +26,7 @@ export const createSubsection = (
     ...extraProps
   }
 
-  return React.createElement(SubsectionComponent, props)
+  return <SubsectionComponent {...props} />
 }
 
 // Returns a new array with section dividers after each component
