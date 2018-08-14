@@ -12,6 +12,7 @@ import (
 
 	"github.com/18F/e-QIP-prototype/api"
 	"github.com/18F/e-QIP-prototype/api/mock"
+	"github.com/Jeffail/gabs"
 	"github.com/antchfx/xmlquery"
 )
 
@@ -162,12 +163,7 @@ func TestCitizenStatus(t *testing.T) {
 		"foreign-passport.json",
 	)
 	snippet := applyForm(t, template, form)
-	doc := xmlDoc(t, snippet)
-
-	list := xmlquery.Find(doc, xpath)
-	if len(list) != 1 {
-		t.Fatalf("XML derived from `%s` should have `%s`: %s", template, xpath, snippet)
-	}
+	assertHas1(t, template, xpath, snippet)
 
 	// Born in US without passport
 	form = newForm(t,
@@ -175,11 +171,29 @@ func TestCitizenStatus(t *testing.T) {
 		"no-passport.json",
 	)
 	snippet = applyForm(t, template, form)
-	doc = xmlDoc(t, snippet)
-	list = xmlquery.Find(doc, xpath)
-	if len(list) != 0 {
-		t.Fatalf("XML derived from `%s` should not have `%s`: %s", template, xpath, snippet)
-	}
+	assertHasNone(t, template, xpath, snippet)
+}
+
+func TestRelativeAddress(t *testing.T) {
+	parent := "relationships.xml"
+	template := "relatives-and-associates.xml"
+	xpath := "RelativesAndAssociates/Relatives/Relative[1]/Address"
+
+	// Relative is alive
+	form := newForm(t,
+		"relationships-relatives.json",
+	)
+	form = extractPart(t, form, templateContext(t, parent, template))
+	snippet := applyForm(t, template, form)
+	assertHas1(t, template, xpath, snippet)
+
+	// Relative is deceased
+	form = newForm(t,
+		"relative-deceased.json",
+	)
+	form = extractPart(t, form, templateContext(t, parent, template))
+	snippet = applyForm(t, template, form)
+	assertHasNone(t, template, xpath, snippet)
 }
 
 // applicationData loads a fully-populated, valid SF-86 form with test data
@@ -353,4 +367,41 @@ func templateContext(t *testing.T, parent string, template string) string {
 
 	// Can't get here, but keeps compiler happy
 	return ""
+}
+
+// extractPart extracts a sub-form, given a form and a JSON path
+func extractPart(t *testing.T, form map[string]interface{}, context string) map[string]interface{} {
+	if context == "." {
+		return form
+	}
+
+	jsonParsed, err := gabs.Consume(form)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	// gabs does not use `.` for tree root
+	c := strings.TrimLeft(context, ".")
+	value := jsonParsed.Path(c).Data()
+	if value == nil {
+		t.Fatalf("Could not extract `%s` from form", context)
+	}
+
+	return value.(map[string]interface{})
+}
+
+func assertHas1(t *testing.T, template string, xpath string, snippet string) {
+	doc := xmlDoc(t, snippet)
+	list := xmlquery.Find(doc, xpath)
+	if len(list) != 1 {
+		t.Fatalf("XML derived from `%s` should have `%s`: %s", template, xpath, snippet)
+	}
+}
+
+func assertHasNone(t *testing.T, template string, xpath string, snippet string) {
+	doc := xmlDoc(t, snippet)
+	list := xmlquery.Find(doc, xpath)
+	if len(list) != 0 {
+		t.Fatalf("XML derived from `%s` should not have `%s`: %s", template, xpath, snippet)
+	}
 }
