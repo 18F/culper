@@ -43,14 +43,10 @@ class SectionLink extends React.Component {
     return className
   }
 
-  getActiveClassName () {
-    return this.hasErrors() ? '' : 'usa-current'
-  }
-
   render () {
     return (
       <li>
-        <NavLink to={this.href()} activeClassName={this.getActiveClassName()} className={this.getClassName()}>
+        <NavLink to={this.href()} activeClassName="usa-current" className={this.getClassName()}>
           <span className="section-name">
             {this.props.section.name}
           </span>
