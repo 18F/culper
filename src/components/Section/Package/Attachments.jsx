@@ -1,12 +1,10 @@
 import React from 'react'
 import FileSaver from 'file-saver'
-import { connect } from 'react-redux'
 import { i18n, env } from '../../../config'
 import { api } from '../../../services'
-import SectionElement from '../SectionElement'
 import { Show, Field, Text, RadioGroup, Radio, Svg } from '../../Form'
 
-export default class Attachments extends SectionElement {
+export default class Attachments extends React.Component {
   constructor(props) {
     super(props)
     this.state = {

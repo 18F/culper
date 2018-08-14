@@ -1,11 +1,9 @@
 import React from 'react'
 import FileSaver from 'file-saver'
 import { connect } from 'react-redux'
-import { i18n, env, navigation } from '../../../config'
+import { i18n, navigation } from '../../../config'
 import { api } from '../../../services'
-import { SectionViews, SectionView } from '../SectionView'
-import SectionElement from '../SectionElement'
-import { Show, Svg, Field, Text, RadioGroup, Radio } from '../../Form'
+import { Show, Svg } from '../../Form'
 
 import { IdentificationSections } from '../Identification'
 import { RelationshipSections } from '../Relationships'
@@ -19,7 +17,7 @@ import { LegalSections } from '../Legal'
 import { PsychologicalSections } from '../Psychological'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 
-class Print extends SectionElement {
+class Print extends React.Component {
   constructor(props) {
     super(props)
     this.sections = this.sections.bind(this)
