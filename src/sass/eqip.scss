@@ -332,6 +332,10 @@ a:focus {
   text-transform: capitalize;
 }
 
+.no-wrap {
+  white-space: nowrap;
+}
+
 .no-gutter {
   margin-left: initial;
   margin-right: initial;
