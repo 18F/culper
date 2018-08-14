@@ -466,6 +466,7 @@ CivilUnion.defaultProps = {
   Citizenship: {},
   EnteredCivilUnion: {},
   Address: {},
+  Location: {},
   Telephone: {},
   Email: {},
   Separated: {},
