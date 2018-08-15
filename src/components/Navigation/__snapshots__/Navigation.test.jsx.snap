@@ -20,19 +20,7 @@ exports[`Navigation component renders correctly 1`] = `
         <span
           className="section-name"
         >
-          Information about
-           
-          <span
-            className="no-wrap"
-          >
-            you
-            <i
-              className="fa fa-angle-up"
-            />
-            <i
-              className="fa fa-angle-down"
-            />
-          </span>
+          Information about you
         </span>
         <span
           className="eapp-status-icon"
@@ -214,19 +202,7 @@ exports[`Navigation component renders correctly 1`] = `
         <span
           className="section-name"
         >
-          Your
-           
-          <span
-            className="no-wrap"
-          >
-            history
-            <i
-              className="fa fa-angle-up"
-            />
-            <i
-              className="fa fa-angle-down"
-            />
-          </span>
+          Your history
         </span>
         <span
           className="eapp-status-icon"
@@ -357,19 +333,7 @@ exports[`Navigation component renders correctly 1`] = `
         <span
           className="section-name"
         >
-          
-           
-          <span
-            className="no-wrap"
-          >
-            Relationships
-            <i
-              className="fa fa-angle-up"
-            />
-            <i
-              className="fa fa-angle-down"
-            />
-          </span>
+          Relationships
         </span>
         <span
           className="eapp-status-icon"
@@ -412,19 +376,7 @@ exports[`Navigation component renders correctly 1`] = `
               <span
                 className="section-name"
               >
-                Marital & relationship
-                 
-                <span
-                  className="no-wrap"
-                >
-                  status
-                  <i
-                    className="fa fa-angle-up"
-                  />
-                  <i
-                    className="fa fa-angle-down"
-                  />
-                </span>
+                Marital & relationship status
               </span>
               <span
                 className="eapp-status-icon"
@@ -541,19 +493,7 @@ exports[`Navigation component renders correctly 1`] = `
         <span
           className="section-name"
         >
-          
-           
-          <span
-            className="no-wrap"
-          >
-            Citizenship
-            <i
-              className="fa fa-angle-up"
-            />
-            <i
-              className="fa fa-angle-down"
-            />
-          </span>
+          Citizenship
         </span>
         <span
           className="eapp-status-icon"
@@ -667,19 +607,7 @@ exports[`Navigation component renders correctly 1`] = `
         <span
           className="section-name"
         >
-          Military
-           
-          <span
-            className="no-wrap"
-          >
-            history
-            <i
-              className="fa fa-angle-up"
-            />
-            <i
-              className="fa fa-angle-down"
-            />
-          </span>
+          Military history
         </span>
         <span
           className="eapp-status-icon"
@@ -810,19 +738,7 @@ exports[`Navigation component renders correctly 1`] = `
         <span
           className="section-name"
         >
-          Foreign
-           
-          <span
-            className="no-wrap"
-          >
-            associations
-            <i
-              className="fa fa-angle-up"
-            />
-            <i
-              className="fa fa-angle-down"
-            />
-          </span>
+          Foreign associations
         </span>
         <span
           className="eapp-status-icon"
@@ -899,19 +815,7 @@ exports[`Navigation component renders correctly 1`] = `
               <span
                 className="section-name"
               >
-                Foreign
-                 
-                <span
-                  className="no-wrap"
-                >
-                  activities
-                  <i
-                    className="fa fa-angle-up"
-                  />
-                  <i
-                    className="fa fa-angle-down"
-                  />
-                </span>
+                Foreign activities
               </span>
               <span
                 className="eapp-status-icon"
@@ -1025,19 +929,7 @@ exports[`Navigation component renders correctly 1`] = `
               <span
                 className="section-name"
               >
-                Foreign business, professional activities, and government
-                 
-                <span
-                  className="no-wrap"
-                >
-                  contacts
-                  <i
-                    className="fa fa-angle-up"
-                  />
-                  <i
-                    className="fa fa-angle-down"
-                  />
-                </span>
+                Foreign business, professional activities, and government contacts
               </span>
               <span
                 className="eapp-status-icon"
@@ -1256,19 +1148,7 @@ exports[`Navigation component renders correctly 1`] = `
         <span
           className="section-name"
         >
-          Financial
-           
-          <span
-            className="no-wrap"
-          >
-            record
-            <i
-              className="fa fa-angle-up"
-            />
-            <i
-              className="fa fa-angle-down"
-            />
-          </span>
+          Financial record
         </span>
         <span
           className="eapp-status-icon"
@@ -1450,19 +1330,7 @@ exports[`Navigation component renders correctly 1`] = `
         <span
           className="section-name"
         >
-          Substance
-           
-          <span
-            className="no-wrap"
-          >
-            use
-            <i
-              className="fa fa-angle-up"
-            />
-            <i
-              className="fa fa-angle-down"
-            />
-          </span>
+          Substance use
         </span>
         <span
           className="eapp-status-icon"
@@ -1505,19 +1373,7 @@ exports[`Navigation component renders correctly 1`] = `
               <span
                 className="section-name"
               >
-                Illegal use of drugs and drug
-                 
-                <span
-                  className="no-wrap"
-                >
-                  activity
-                  <i
-                    className="fa fa-angle-up"
-                  />
-                  <i
-                    className="fa fa-angle-down"
-                  />
-                </span>
+                Illegal use of drugs and drug activity
               </span>
               <span
                 className="eapp-status-icon"
@@ -1665,19 +1521,7 @@ exports[`Navigation component renders correctly 1`] = `
               <span
                 className="section-name"
               >
-                Use of
-                 
-                <span
-                  className="no-wrap"
-                >
-                  alcohol
-                  <i
-                    className="fa fa-angle-up"
-                  />
-                  <i
-                    className="fa fa-angle-down"
-                  />
-                </span>
+                Use of alcohol
               </span>
               <span
                 className="eapp-status-icon"
@@ -1794,19 +1638,7 @@ exports[`Navigation component renders correctly 1`] = `
         <span
           className="section-name"
         >
-          Investigative and criminal
-           
-          <span
-            className="no-wrap"
-          >
-            history
-            <i
-              className="fa fa-angle-up"
-            />
-            <i
-              className="fa fa-angle-down"
-            />
-          </span>
+          Investigative and criminal history
         </span>
         <span
           className="eapp-status-icon"
@@ -1849,19 +1681,7 @@ exports[`Navigation component renders correctly 1`] = `
               <span
                 className="section-name"
               >
-                Police
-                 
-                <span
-                  className="no-wrap"
-                >
-                  record
-                  <i
-                    className="fa fa-angle-up"
-                  />
-                  <i
-                    className="fa fa-angle-down"
-                  />
-                </span>
+                Police record
               </span>
               <span
                 className="eapp-status-icon"
@@ -1958,19 +1778,7 @@ exports[`Navigation component renders correctly 1`] = `
               <span
                 className="section-name"
               >
-                Investigations and clearance
-                 
-                <span
-                  className="no-wrap"
-                >
-                  record
-                  <i
-                    className="fa fa-angle-up"
-                  />
-                  <i
-                    className="fa fa-angle-down"
-                  />
-                </span>
+                Investigations and clearance record
               </span>
               <span
                 className="eapp-status-icon"
@@ -2067,19 +1875,7 @@ exports[`Navigation component renders correctly 1`] = `
               <span
                 className="section-name"
               >
-                Use of information technology
-                 
-                <span
-                  className="no-wrap"
-                >
-                  systems
-                  <i
-                    className="fa fa-angle-up"
-                  />
-                  <i
-                    className="fa fa-angle-down"
-                  />
-                </span>
+                Use of information technology systems
               </span>
               <span
                 className="eapp-status-icon"
@@ -2159,19 +1955,7 @@ exports[`Navigation component renders correctly 1`] = `
               <span
                 className="section-name"
               >
-                Association
-                 
-                <span
-                  className="no-wrap"
-                >
-                  record
-                  <i
-                    className="fa fa-angle-up"
-                  />
-                  <i
-                    className="fa fa-angle-down"
-                  />
-                </span>
+                Association record
               </span>
               <span
                 className="eapp-status-icon"
@@ -2339,19 +2123,7 @@ exports[`Navigation component renders correctly 1`] = `
         <span
           className="section-name"
         >
-          Psychological and emotional
-           
-          <span
-            className="no-wrap"
-          >
-            health
-            <i
-              className="fa fa-angle-up"
-            />
-            <i
-              className="fa fa-angle-down"
-            />
-          </span>
+          Psychological and emotional health
         </span>
         <span
           className="eapp-status-icon"
@@ -2499,19 +2271,7 @@ exports[`Navigation component renders correctly 1`] = `
         <span
           className="section-name"
         >
-          Review and
-           
-          <span
-            className="no-wrap"
-          >
-            submit
-            <i
-              className="fa fa-angle-up"
-            />
-            <i
-              className="fa fa-angle-down"
-            />
-          </span>
+          Review and submit
         </span>
         <span
           className="eapp-status-icon"

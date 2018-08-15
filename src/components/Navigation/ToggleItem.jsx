@@ -40,19 +40,12 @@ class ToggleItem extends React.Component {
   render() {
     const url = this.url()
     const active = this.isActive()
-    const sectionName = this.props.section.name.split(' ')
-    const lastWord = sectionName.pop()
 
     return (
       <li className="toggle-item">
         <a className={this.getClassName()} aria-controls={url} aria-expanded={active} role="button">
           <span className="section-name">
-            {sectionName.join(' ')}{' '}
-            <span className="no-wrap">
-              {lastWord}
-              <i className="fa fa-angle-up"></i>
-              <i className="fa fa-angle-down"></i>
-            </span>
+            {this.props.section.name}
           </span>
           <span className="eapp-status-icon"></span>
         </a>
