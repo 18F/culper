@@ -98,7 +98,7 @@
       </NaturalizationCertificate>
       <NaturalizationCertificateComment></NaturalizationCertificateComment>
       {{end}}
-      {{if radio $citizenship.CitizenshipStatus | eq "Citizen"}}
+      {{if branch $passport.HasPassports | eq "Yes"}}
       <USPassport>
         <Comment>{{textarea $passport.Comments}}</Comment>
         <DateExpired>

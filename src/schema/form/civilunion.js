@@ -25,6 +25,7 @@ export const civilunion = (data = {}) => {
     Email: email(data.Email),
     EnteredCivilUnion: datecontrol(data.EnteredCivilUnion),
     ForeignBornDocument: foreignborndocument(data.ForeignBornDocument),
+    Location: location(data.Location),
     Name: name(data.Name),
     OtherNames: collection(((data.OtherNames || {}).items || []).map(y => {
       const yitem = y.Item || {}

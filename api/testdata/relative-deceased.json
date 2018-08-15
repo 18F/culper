@@ -1,0 +1,300 @@
+{
+  "type": "relationships.relatives",
+  "props": {
+    "List": {
+      "type": "collection",
+      "props": {
+        "branch": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "items": [
+          {
+            "Item": {
+              "Address": {
+                "type": "location",
+                "props": {
+                  "layout": ""
+                }
+              },
+              "Aliases": {
+                "type": "collection",
+                "props": {
+                  "branch": {
+                    "type": ""
+                  },
+                  "items": [
+                    {
+                      "Item": {
+                        "Dates": {
+                          "type": "daterange",
+                          "props": {
+                            "from": {
+                              "type": "datecontrol",
+                              "props": {
+                                "month": "",
+                                "day": "",
+                                "year": "",
+                                "estimated": false
+                              }
+                            },
+                            "to": {
+                              "type": "datecontrol",
+                              "props": {
+                                "month": "",
+                                "day": "",
+                                "year": "",
+                                "estimated": false
+                              }
+                            },
+                            "present": false
+                          }
+                        },
+                        "Has": {
+                          "type": "branch",
+                          "props": {
+                            "value": "No"
+                          }
+                        },
+                        "MaidenName": {
+                          "type": "branch",
+                          "props": {
+                            "value": ""
+                          }
+                        },
+                        "Name": {
+                          "type": "name",
+                          "props": {
+                            "first": "",
+                            "firstInitialOnly": false,
+                            "middle": "",
+                            "middleInitialOnly": false,
+                            "noMiddleName": false,
+                            "last": "",
+                            "lastInitialOnly": false,
+                            "suffix": "",
+                            "suffixOther": ""
+                          }
+                        },
+                        "Reason": {
+                          "type": "textarea",
+                          "props": {
+                            "value": ""
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "Birthdate": {
+                "type": "datecontrol",
+                "props": {
+                  "month": "01",
+                  "day": "01",
+                  "year": "1950",
+                  "estimated": true
+                }
+              },
+              "Birthplace": {
+                "type": "location",
+                "props": {
+                  "layout": "Birthplace without County",
+                  "city": "san francisco",
+                  "state": "CA",
+                  "country": "United States"
+                }
+              },
+              "Citizenship": {
+                "type": "country",
+                "props": {
+                  "value": [
+                    "United States"
+                  ]
+                }
+              },
+              "CitizenshipDocumentation": {
+                "type": "radio",
+                "props": {
+                  "value": ""
+                }
+              },
+              "CourtAddress": {
+                "type": "location",
+                "props": {
+                  "layout": ""
+                }
+              },
+              "CourtName": {
+                "type": "text",
+                "props": {
+                  "value": ""
+                }
+              },
+              "Document": {
+                "type": "radio",
+                "props": {
+                  "value": ""
+                }
+              },
+              "DocumentComments": {
+                "type": "textarea",
+                "props": {
+                  "value": ""
+                }
+              },
+              "DocumentNumber": {
+                "type": "text",
+                "props": {
+                  "value": ""
+                }
+              },
+              "Employer": {
+                "type": "text",
+                "props": {
+                  "value": ""
+                }
+              },
+              "EmployerAddress": {
+                "type": "location",
+                "props": {
+                  "layout": ""
+                }
+              },
+              "EmployerAddressNotApplicable": {
+                "type": "notapplicable",
+                "props": {
+                  "applicable": true
+                }
+              },
+              "EmployerNotApplicable": {
+                "type": "notapplicable",
+                "props": {
+                  "applicable": false
+                }
+              },
+              "EmployerRelationship": {
+                "type": "textarea",
+                "props": {
+                  "value": ""
+                }
+              },
+              "EmployerRelationshipNotApplicable": {
+                "type": "notapplicable",
+                "props": {
+                  "applicable": true
+                }
+              },
+              "Expiration": {
+                "type": "datecontrol",
+                "props": {
+                  "month": "",
+                  "day": "",
+                  "year": "",
+                  "estimated": false
+                }
+              },
+              "FirstContact": {
+                "type": "datecontrol",
+                "props": {
+                  "month": "",
+                  "day": "",
+                  "year": "",
+                  "estimated": false
+                }
+              },
+              "Frequency": {
+                "type": "radio",
+                "props": {
+                  "value": ""
+                }
+              },
+              "HasAffiliation": {
+                "type": "branch",
+                "props": {
+                  "value": ""
+                }
+              },
+              "IsDeceased": {
+                "type": "branch",
+                "props": {
+                  "value": "Yes"
+                }
+              },
+              "LastContact": {
+                "type": "datecontrol",
+                "props": {
+                  "month": "",
+                  "day": "",
+                  "year": "",
+                  "estimated": false
+                }
+              },
+              "MaidenName": {
+                "type": "name",
+                "props": {
+                  "first": "",
+                  "firstInitialOnly": false,
+                  "middle": "",
+                  "middleInitialOnly": false,
+                  "noMiddleName": false,
+                  "last": "",
+                  "lastInitialOnly": false,
+                  "suffix": "",
+                  "suffixOther": ""
+                }
+              },
+              "MaidenSameAsListed": {
+                "type": "branch",
+                "props": {
+                  "value": "Yes"
+                }
+              },
+              "Methods": {
+                "type": "checkboxgroup",
+                "props": {
+                  "values": null
+                }
+              },
+              "MethodsComments": {
+                "type": "textarea",
+                "props": {
+                  "value": ""
+                }
+              },
+              "Name": {
+                "type": "name",
+                "props": {
+                  "first": "Momma",
+                  "firstInitialOnly": false,
+                  "middle": "",
+                  "middleInitialOnly": false,
+                  "noMiddleName": true,
+                  "last": "Smith",
+                  "lastInitialOnly": false,
+                  "suffix": "",
+                  "suffixOther": ""
+                }
+              },
+              "Relation": {
+                "type": "radio",
+                "props": {
+                  "value": "Mother",
+                  "checked": true
+                }
+              },
+              "ResidenceDocumentNumber": {
+                "type": "text",
+                "props": {
+                  "value": ""
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

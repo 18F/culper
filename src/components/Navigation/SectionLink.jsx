@@ -18,6 +18,9 @@ class SectionLink extends React.Component {
   }
 
   hasErrors () {
+    if (this.props.section.name === 'Review') {
+      return hasErrors(this.props.baseUrl, this.props.errors)
+    }
     return hasErrors(this.url(), this.props.errors)
   }
 

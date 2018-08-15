@@ -17,7 +17,7 @@ plugins:
   - react
 rules:
   # the following rules are disabled for legacy reasons, and most should be removed over time
-  import/no-duplicates": 'off'
+  import/no-duplicates: 'off'
   no-console: 'off'
   no-unused-vars: 'off'
   react/no-deprecated: 'off'

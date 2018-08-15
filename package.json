@@ -71,7 +71,7 @@
     "lint-css": "gulp lint",
     "lint-js": "eslint --ext .js,.jsx src/",
     "lint": "npm run lint-css && npm run lint-js",
-    "coverage": "NODE_ENV=test codecov",
+    "coverage": "NODE_ENV=test codecov -F frontend --disable=gcov",
     "build-assets": "gulp build",
     "build-js": "webpack -p --progress",
     "build-css": "npm run build-assets && node-sass-chokidar --include-path src/sass --output-style compressed --source-map true src/eqip.scss dist/css/eqip.css",

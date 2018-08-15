@@ -17,6 +17,18 @@
   revision = "fb13cb52a46b55a9f20e6d497658dd494c7c1ef1"
 
 [[projects]]
+  branch = "master"
+  name = "github.com/antchfx/xmlquery"
+  packages = ["."]
+  revision = "2805f22c26c4982685be4ae0f80bf3a5b34791e5"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/antchfx/xpath"
+  packages = ["."]
+  revision = "077bca4d2caaf391ee780136adae00f59153dcd2"
+
+[[projects]]
   name = "github.com/cloudfoundry-community/go-cfenv"
   packages = ["."]
   revision = "f920e9562d5f951cbf11785728f67258c38a10d0"
@@ -128,6 +140,16 @@
   revision = "ae8bce0030810cf999bb2b9868ae5c7c58e6343b"
 
 [[projects]]
+  branch = "master"
+  name = "golang.org/x/net"
+  packages = [
+    "html",
+    "html/atom",
+    "html/charset"
+  ]
+  revision = "f4c29de78a2a91c00474a2e689954305c350adf9"
+
+[[projects]]
   name = "golang.org/x/sys"
   packages = [
     "unix",
@@ -135,9 +157,33 @@
   ]
   revision = "4adea008a5e5f820b6028611ae0b6b3fbcec534b"
 
+[[projects]]
+  name = "golang.org/x/text"
+  packages = [
+    "encoding",
+    "encoding/charmap",
+    "encoding/htmlindex",
+    "encoding/internal",
+    "encoding/internal/identifier",
+    "encoding/japanese",
+    "encoding/korean",
+    "encoding/simplifiedchinese",
+    "encoding/traditionalchinese",
+    "encoding/unicode",
+    "internal/gen",
+    "internal/tag",
+    "internal/utf8internal",
+    "language",
+    "runes",
+    "transform",
+    "unicode/cldr"
+  ]
+  revision = "f21a4dfb5e38f5895301dc265a8def02365cc3d0"
+  version = "v0.3.0"
+
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "93f5e5afcea43cc6f15ef86fd3c873a71f2300ef50b3cc666388a82331a65386"
+  inputs-digest = "bc249c5c15cec503ae3a3cbdfba74ed9fc94f7fd922b07344b0d2fe58bfad4ac"
   solver-name = "gps-cdcl"
   solver-version = 1

@@ -4,7 +4,7 @@
     "CitizenshipStatus": {
       "type": "radio",
       "props": {
-        "value": "Citizen",
+        "value": "Naturalized",
         "checked": true
       }
     },
@@ -73,27 +73,27 @@
     "CertificateNumber": {
       "type": "text",
       "props": {
-        "value": ""
+        "value": "12345"
       }
     },
     "CertificateIssued": {
       "type": "datecontrol",
       "props": {
-        "month": "",
-        "day": "",
-        "year": "",
+        "month": "01",
+        "day": "05",
+        "year": "2008",
         "estimated": false
       }
     },
     "CertificateName": {
       "type": "name",
       "props": {
-        "first": "",
+        "first": "John",
         "firstInitialOnly": false,
         "middle": "",
         "middleInitialOnly": false,
-        "noMiddleName": false,
-        "last": "",
+        "noMiddleName": true,
+        "last": "Smith",
         "lastInitialOnly": false,
         "suffix": "",
         "suffixOther": ""
@@ -102,13 +102,18 @@
     "CertificateCourtName": {
       "type": "text",
       "props": {
-        "value": ""
+        "value": "Judge Judy Court"
       }
     },
     "CertificateCourtAddress": {
       "type": "location",
       "props": {
-        "layout": ""
+        "layout": "US Address",
+        "street": "3431 Court St.",
+        "city": "Los Angeles",
+        "state": "CA",
+        "zipcode": "94088",
+        "country": "United States"
       }
     },
     "BornOnMilitaryInstallation": {
@@ -126,16 +131,18 @@
     "EntryDate": {
       "type": "datecontrol",
       "props": {
-        "month": "",
-        "day": "",
-        "year": "",
+        "month": "05",
+        "day": "01",
+        "year": "2007",
         "estimated": false
       }
     },
     "EntryLocation": {
       "type": "location",
       "props": {
-        "layout": ""
+        "layout": "City, State",
+        "city": "Los Angeles",
+        "state": "CA"
       }
     },
     "PriorCitizenship": {
@@ -147,7 +154,7 @@
     "HasAlienRegistration": {
       "type": "branch",
       "props": {
-        "value": ""
+        "value": "No"
       }
     },
     "AlienRegistrationNumber": {
@@ -168,7 +175,8 @@
     "Basis": {
       "type": "radio",
       "props": {
-        "value": ""
+        "value": "Individual",
+        "checked": true
       }
     },
     "PermanentResidentCardNumber": {

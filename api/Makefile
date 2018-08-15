@@ -3,7 +3,11 @@ MAKEFLAGS += --silent
 all: clean test build
 
 test:
-	GOLANG_ENV=test go test -cover $(shell go list ./... | grep -v /vendor/)
+	GOLANG_ENV=test go test -coverprofile=coverage.txt -covermode=atomic -cover $(shell go list ./... | grep -v /vendor/)
+
+coverage:
+	# Use -c to remove processed reports so coverage-js won't find it
+	codecov -c -F backend -f coverage.txt -X gcov
 
 build:
 	go build -o api ./cmd/server

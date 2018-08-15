@@ -29,6 +29,9 @@ describe('Schema for financial taxes', () => {
           DocumentExpiration: {},
           DocumentExpirationNotApplicable: {}
         },
+        Location: {
+          country: null
+        },
         Name: {},
         OtherNames: {
           branch: null,
