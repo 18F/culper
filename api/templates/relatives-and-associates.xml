@@ -81,11 +81,13 @@
       {{- $usCitizen := citizenshipHas $Item.Citizenship "United States" }}
       {{- $usAddress := addressIn $Item.Address "United States" }}
 
-      {{- if or (and $usCitizen $foreignPOB $deceased) (and $usCitizen $foreignPOB $usAddress) }}
+      {{- if or (and $usCitizen $foreignPOB $deceased) (and $usCitizen $foreignPOB $usAddress) (and $usAddress (not $usCitizen) (not $deceased)) }}
       <Citizenship>
         <ProofOfStatus>
           <Comment></Comment>
-          <DocumentExpiration Type="{{dateEstimated $Item.Expiration}}">{{date $Item.Explanation}}</DocumentExpiration>
+          {{- if $Item.Expiration.props.month }}
+          <DocumentExpiration Type="{{dateEstimated $Item.Expiration}}">{{date $Item.Expiration}}</DocumentExpiration>
+          {{end}}
           <DocumentNumber>{{text $Item.DocumentNumber}}</DocumentNumber>
           <NaturalizedCertificate>
             <Court>
