@@ -1,0 +1,195 @@
+{
+  "type": "citizenship.status",
+  "props": {
+    "CitizenshipStatus": {
+      "type": "radio",
+      "props": {
+        "value": "Naturalized",
+        "checked": true
+      }
+    },
+    "AbroadDocumentation": {
+      "type": "radio",
+      "props": {
+        "value": ""
+      }
+    },
+    "Explanation": {
+      "type": "textarea",
+      "props": {
+        "value": ""
+      }
+    },
+    "DocumentNumber": {
+      "type": "text",
+      "props": {
+        "value": ""
+      }
+    },
+    "DocumentIssued": {
+      "type": "datecontrol",
+      "props": {
+        "month": "",
+        "day": "",
+        "year": "",
+        "estimated": false
+      }
+    },
+    "DocumentName": {
+      "type": "name",
+      "props": {
+        "first": "",
+        "firstInitialOnly": false,
+        "middle": "",
+        "middleInitialOnly": false,
+        "noMiddleName": false,
+        "last": "",
+        "lastInitialOnly": false,
+        "suffix": "",
+        "suffixOther": ""
+      }
+    },
+    "DocumentExpiration": {
+      "type": "datecontrol",
+      "props": {
+        "month": "",
+        "day": "",
+        "year": "",
+        "estimated": false
+      }
+    },
+    "DocumentType": {
+      "type": "radio",
+      "props": {
+        "value": ""
+      }
+    },
+    "PlaceIssued": {
+      "type": "location",
+      "props": {
+        "layout": ""
+      }
+    },
+    "CertificateNumber": {
+      "type": "text",
+      "props": {
+        "value": "12345"
+      }
+    },
+    "CertificateIssued": {
+      "type": "datecontrol",
+      "props": {
+        "month": "01",
+        "day": "05",
+        "year": "2008",
+        "estimated": false
+      }
+    },
+    "CertificateName": {
+      "type": "name",
+      "props": {
+        "first": "John",
+        "firstInitialOnly": false,
+        "middle": "",
+        "middleInitialOnly": false,
+        "noMiddleName": true,
+        "last": "Smith",
+        "lastInitialOnly": false,
+        "suffix": "",
+        "suffixOther": ""
+      }
+    },
+    "CertificateCourtName": {
+      "type": "text",
+      "props": {
+        "value": "Judge Judy Court"
+      }
+    },
+    "CertificateCourtAddress": {
+      "type": "location",
+      "props": {
+        "layout": "US Address",
+        "street": "3431 Court St.",
+        "city": "Los Angeles",
+        "state": "CA",
+        "zipcode": "94088",
+        "country": "United States"
+      }
+    },
+    "BornOnMilitaryInstallation": {
+      "type": "branch",
+      "props": {
+        "value": ""
+      }
+    },
+    "MilitaryBase": {
+      "type": "text",
+      "props": {
+        "value": ""
+      }
+    },
+    "EntryDate": {
+      "type": "datecontrol",
+      "props": {
+        "month": "05",
+        "day": "01",
+        "year": "2007",
+        "estimated": false
+      }
+    },
+    "EntryLocation": {
+      "type": "location",
+      "props": {
+        "layout": "City, State",
+        "city": "Los Angeles",
+        "state": "CA"
+      }
+    },
+    "PriorCitizenship": {
+      "type": "country",
+      "props": {
+        "value": null
+      }
+    },
+    "HasAlienRegistration": {
+      "type": "branch",
+      "props": {
+        "value": "No"
+      }
+    },
+    "AlienRegistrationNumber": {
+      "type": "text",
+      "props": {
+        "value": ""
+      }
+    },
+    "AlienRegistrationExpiration": {
+      "type": "datecontrol",
+      "props": {
+        "month": "",
+        "day": "",
+        "year": "",
+        "estimated": false
+      }
+    },
+    "Basis": {
+      "type": "radio",
+      "props": {
+        "value": "Individual",
+        "checked": true
+      }
+    },
+    "PermanentResidentCardNumber": {
+      "type": "text",
+      "props": {
+        "value": ""
+      }
+    },
+    "ResidenceStatus": {
+      "type": "text",
+      "props": {
+        "value": ""
+      }
+    }
+  }
+}
