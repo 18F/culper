@@ -14,15 +14,16 @@ export class Gap extends React.Component {
     const dates = DateSummary(this.props.dates)
     return (
       <div className="gap details open">
-        <div className="message error">
-          <i className="fa fa-exclamation"></i>
-          <span className="dates"><strong>{dates}</strong></span>
-          <h3>{this.props.title}</h3>
-          <p>{this.props.para}</p>
-          <button className="usa-button-outline" onClick={this.props.onClick}>
-            <span>{this.props.btnText}</span>
-            <i className="fa fa-plus-circle"></i>
-          </button>
+        <div className="usa-alert usa-alert-error">
+          <div className="usa-alert-body">
+            <h5 className="usa-alert-heading">{this.props.title} - <span className="dates">{dates}</span></h5>
+
+            <p>{this.props.para}</p>
+            <button className="usa-button-outline" onClick={this.props.onClick}>
+              <span>{this.props.btnText}</span>
+              <i className="fa fa-plus-circle"></i>
+            </button>
+          </div>
         </div>
       </div>
     )

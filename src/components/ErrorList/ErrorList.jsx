@@ -32,7 +32,7 @@ export class ErrorList extends React.Component {
       })
       sectionErrors.push(
         <span key={title}>
-          <h3>{title}</h3>
+          <h4>{title}</h4>
           <ul>{bullets}</ul>
         </span>
       )
@@ -47,17 +47,12 @@ export class ErrorList extends React.Component {
     // additional context of how many issues were found.
     return (
       <div className="error-list">
-        <div className="field">
-          <h3 className="title h3">{`Here is a list of the ${issues} ${issues > 1 ? 'questions' : 'question'} with issues`}</h3>
-          <div className="table expand">
-            <span className="messages error-messages">
-              <div className="message error">
-                <i className="fa fa-exclamation"></i>
+            <div className="usa-alert usa-alert-error" role="alert">
+              <div className="usa-alert-body">
+                <h3 className="usa-alert-heading">{`Here is a list of the ${issues} ${issues > 1 ? 'questions' : 'question'} with issues`}</h3>
                 {sectionErrors}
               </div>
-            </span>
-          </div>
-        </div>
+            </div>
       </div>
     )
   }

@@ -23,7 +23,7 @@ const message = (id) => {
 
   return (
     <div key={newGuid()} data-i18n={id}>
-      <h5>{i18n.t(`${id}.title`)}</h5>
+      <h5 className="usa-alert-heading">{i18n.t(`${id}.title`)}</h5>
       {message}
       {note}
     </div>
@@ -217,12 +217,13 @@ export default class Field extends ValidationElement {
   helpMessage () {
     if (this.state.helpActive && this.props.help) {
       return (
-        <div className="message help">
-          <i className="fa fa-question" aria-hidden="true"></i>
-          {message(this.props.help)}
-          <a href="javascript:;;" className="close" onClick={this.toggleHelp} title={i18n.t('help.close')}>
-            {i18n.t('help.close')}
-          </a>
+        <div className="usa-alert usa-alert-info">
+          <div className="usa-alert-body">
+            {message(this.props.help)}
+            <a href="javascript:;;" className="close" onClick={this.toggleHelp} title={i18n.t('help.close')}>
+              {i18n.t('help.close')}
+            </a>
+          </div>
         </div>
       )
     }
@@ -253,9 +254,10 @@ export default class Field extends ValidationElement {
       })
 
       el.push(
-        <div className="message error" key={super.guid()} role="alert" aria-live="polite">
-          <i className="fa fa-exclamation" aria-hidden="true"></i>
-          {markup}
+        <div className="message error usa-alert usa-alert-error" key={super.guid()} role="alert" aria-live="polite">
+          <div className="usa-alert-body">
+            {markup}
+          </div>
         </div>
       )
     }
@@ -339,6 +341,11 @@ export default class Field extends ValidationElement {
             {this.helpMessage()}
           </span>
         </div>
+        <div className="table expand">
+          <span className="messages error-messages" ref="errorMessages" role="alert" aria-live="polite">
+            {this.errorMessages()}
+          </span>
+        </div>
         <div className="table">
           <span className="content">
             <span className={klassComponent}>
@@ -346,11 +353,6 @@ export default class Field extends ValidationElement {
               {this.comments()}
               {this.commentsButton()}
             </span>
-          </span>
-        </div>
-        <div className="table expand">
-          <span className="messages error-messages" ref="errorMessages" role="alert" aria-live="polite">
-            {this.errorMessages()}
           </span>
         </div>
       </div>

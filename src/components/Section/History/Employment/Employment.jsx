@@ -18,7 +18,11 @@ const byline = (item, index, initial, translation, required, validator) => {
   case !item.open && !initial && item.Item && !validator(item.Item):
     return (
       <div className={`byline ${openState(item, initial)} fade in`.trim()}>
-        <div className="incomplete">{i18n.m(translation)}</div>
+        <div className="usa-alert usa-alert-error">
+          <div className="usa-alert-body">
+            <h5 className="usa-alert-heading">{i18n.m(translation)}</h5>
+          </div>
+        </div>
       </div>
     )
   default:
