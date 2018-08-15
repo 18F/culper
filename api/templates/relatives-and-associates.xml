@@ -93,7 +93,7 @@
               <Name>{{text $Item.CourtName}}</Name>
             </Court>
           </NaturalizedCertificate>
-          <Type>{{text $Item.Document}}</Type>
+          <Type>{{text $Item.Document | relativeForeignDocType}}</Type>
           <TypeOtherExplanation>{{text $Item.DocumentComments}}</TypeOtherExplanation>
         </ProofOfStatus>
       </Citizenship>

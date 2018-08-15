@@ -27,17 +27,20 @@
         {{ location $Item.BirthPlace }}
       </Place>
     </Birth>
-    {{with $foreignBornDocument := $Item.ForeignBornDocument.props}}
+    {{- with $doc := $Item.ForeignBornDocument.props}}
+    {{- if text $doc.DocumentType | ne ""}}
     <Citizenship>
       <ProofOfStatus>
         <Comment></Comment>
-        <DocumentExpiration Type="{{dateEstimated $foreignBornDocument.DocumentExpiration}}">{{date $foreignBornDocument.DocumentExpiration}}</DocumentExpiration>
-        <DocumentNumber>{{text $foreignBornDocument.DocumentNumber}}</DocumentNumber>
-        <Type>{{text $foreignBornDocument.DocumentType}}</Type>
-        <TypeOtherExplanation>{{text $foreignBornDocument.OtherExplanation}}</TypeOtherExplanation>
+        <DocumentExpiration Type="{{dateEstimated $doc.DocumentExpiration}}">{{date $doc.DocumentExpiration}}</DocumentExpiration>
+        <DocumentNumber>{{text $doc.DocumentNumber}}</DocumentNumber>
+        <Type>{{text $doc.DocumentType | foreignDocType}}</Type>
+        <TypeOtherExplanation>{{text $doc.OtherExplanation}}</TypeOtherExplanation>
       </ProofOfStatus>
     </Citizenship>
-    {{end}}
+    {{- end}}
+    {{- end}}
+
     <ContinueComment></ContinueComment>
     <CountriesOfCitizenship>
       {{range $cindex, $country := $Item.Citizenship.props.value}}
