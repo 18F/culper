@@ -21,12 +21,6 @@ exports[`Navigation component renders correctly 1`] = `
           className="section-name"
         >
           Information about you
-          <i
-            className="fa fa-angle-up"
-          />
-          <i
-            className="fa fa-angle-down"
-          />
         </span>
         <span
           className="eapp-status-icon"
@@ -209,12 +203,6 @@ exports[`Navigation component renders correctly 1`] = `
           className="section-name"
         >
           Your history
-          <i
-            className="fa fa-angle-up"
-          />
-          <i
-            className="fa fa-angle-down"
-          />
         </span>
         <span
           className="eapp-status-icon"
@@ -346,12 +334,6 @@ exports[`Navigation component renders correctly 1`] = `
           className="section-name"
         >
           Relationships
-          <i
-            className="fa fa-angle-up"
-          />
-          <i
-            className="fa fa-angle-down"
-          />
         </span>
         <span
           className="eapp-status-icon"
@@ -395,12 +377,6 @@ exports[`Navigation component renders correctly 1`] = `
                 className="section-name"
               >
                 Marital & relationship status
-                <i
-                  className="fa fa-angle-up"
-                />
-                <i
-                  className="fa fa-angle-down"
-                />
               </span>
               <span
                 className="eapp-status-icon"
@@ -518,12 +494,6 @@ exports[`Navigation component renders correctly 1`] = `
           className="section-name"
         >
           Citizenship
-          <i
-            className="fa fa-angle-up"
-          />
-          <i
-            className="fa fa-angle-down"
-          />
         </span>
         <span
           className="eapp-status-icon"
@@ -638,12 +608,6 @@ exports[`Navigation component renders correctly 1`] = `
           className="section-name"
         >
           Military history
-          <i
-            className="fa fa-angle-up"
-          />
-          <i
-            className="fa fa-angle-down"
-          />
         </span>
         <span
           className="eapp-status-icon"
@@ -775,12 +739,6 @@ exports[`Navigation component renders correctly 1`] = `
           className="section-name"
         >
           Foreign associations
-          <i
-            className="fa fa-angle-up"
-          />
-          <i
-            className="fa fa-angle-down"
-          />
         </span>
         <span
           className="eapp-status-icon"
@@ -858,12 +816,6 @@ exports[`Navigation component renders correctly 1`] = `
                 className="section-name"
               >
                 Foreign activities
-                <i
-                  className="fa fa-angle-up"
-                />
-                <i
-                  className="fa fa-angle-down"
-                />
               </span>
               <span
                 className="eapp-status-icon"
@@ -978,12 +930,6 @@ exports[`Navigation component renders correctly 1`] = `
                 className="section-name"
               >
                 Foreign business, professional activities, and government contacts
-                <i
-                  className="fa fa-angle-up"
-                />
-                <i
-                  className="fa fa-angle-down"
-                />
               </span>
               <span
                 className="eapp-status-icon"
@@ -1203,12 +1149,6 @@ exports[`Navigation component renders correctly 1`] = `
           className="section-name"
         >
           Financial record
-          <i
-            className="fa fa-angle-up"
-          />
-          <i
-            className="fa fa-angle-down"
-          />
         </span>
         <span
           className="eapp-status-icon"
@@ -1391,12 +1331,6 @@ exports[`Navigation component renders correctly 1`] = `
           className="section-name"
         >
           Substance use
-          <i
-            className="fa fa-angle-up"
-          />
-          <i
-            className="fa fa-angle-down"
-          />
         </span>
         <span
           className="eapp-status-icon"
@@ -1440,12 +1374,6 @@ exports[`Navigation component renders correctly 1`] = `
                 className="section-name"
               >
                 Illegal use of drugs and drug activity
-                <i
-                  className="fa fa-angle-up"
-                />
-                <i
-                  className="fa fa-angle-down"
-                />
               </span>
               <span
                 className="eapp-status-icon"
@@ -1594,12 +1522,6 @@ exports[`Navigation component renders correctly 1`] = `
                 className="section-name"
               >
                 Use of alcohol
-                <i
-                  className="fa fa-angle-up"
-                />
-                <i
-                  className="fa fa-angle-down"
-                />
               </span>
               <span
                 className="eapp-status-icon"
@@ -1717,12 +1639,6 @@ exports[`Navigation component renders correctly 1`] = `
           className="section-name"
         >
           Investigative and criminal history
-          <i
-            className="fa fa-angle-up"
-          />
-          <i
-            className="fa fa-angle-down"
-          />
         </span>
         <span
           className="eapp-status-icon"
@@ -1766,12 +1682,6 @@ exports[`Navigation component renders correctly 1`] = `
                 className="section-name"
               >
                 Police record
-                <i
-                  className="fa fa-angle-up"
-                />
-                <i
-                  className="fa fa-angle-down"
-                />
               </span>
               <span
                 className="eapp-status-icon"
@@ -1869,12 +1779,6 @@ exports[`Navigation component renders correctly 1`] = `
                 className="section-name"
               >
                 Investigations and clearance record
-                <i
-                  className="fa fa-angle-up"
-                />
-                <i
-                  className="fa fa-angle-down"
-                />
               </span>
               <span
                 className="eapp-status-icon"
@@ -1972,12 +1876,6 @@ exports[`Navigation component renders correctly 1`] = `
                 className="section-name"
               >
                 Use of information technology systems
-                <i
-                  className="fa fa-angle-up"
-                />
-                <i
-                  className="fa fa-angle-down"
-                />
               </span>
               <span
                 className="eapp-status-icon"
@@ -2058,12 +1956,6 @@ exports[`Navigation component renders correctly 1`] = `
                 className="section-name"
               >
                 Association record
-                <i
-                  className="fa fa-angle-up"
-                />
-                <i
-                  className="fa fa-angle-down"
-                />
               </span>
               <span
                 className="eapp-status-icon"
@@ -2232,12 +2124,6 @@ exports[`Navigation component renders correctly 1`] = `
           className="section-name"
         >
           Psychological and emotional health
-          <i
-            className="fa fa-angle-up"
-          />
-          <i
-            className="fa fa-angle-down"
-          />
         </span>
         <span
           className="eapp-status-icon"
@@ -2386,12 +2272,6 @@ exports[`Navigation component renders correctly 1`] = `
           className="section-name"
         >
           Review and submit
-          <i
-            className="fa fa-angle-up"
-          />
-          <i
-            className="fa fa-angle-down"
-          />
         </span>
         <span
           className="eapp-status-icon"
