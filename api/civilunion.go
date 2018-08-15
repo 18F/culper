@@ -15,6 +15,7 @@ type CivilUnion struct {
 	PayloadEmail                         Payload `json:"Email" sql:"-"`
 	PayloadEnteredCivilUnion             Payload `json:"EnteredCivilUnion" sql:"-"`
 	PayloadForeignBornDocument           Payload `json:"ForeignBornDocument" sql:"-"`
+	PayloadLocation                      Payload `json:"Location" sql:"-"`
 	PayloadName                          Payload `json:"Name" sql:"-"`
 	PayloadOtherNames                    Payload `json:"OtherNames" sql:"-"`
 	PayloadSSN                           Payload `json:"SSN" sql:"-"`
@@ -34,6 +35,7 @@ type CivilUnion struct {
 	Email                         *Email               `json:"-"`
 	EnteredCivilUnion             *DateControl         `json:"-"`
 	ForeignBornDocument           *ForeignBornDocument `json:"-"`
+	Location                      *Location            `json:"-"`
 	Name                          *Name                `json:"-"`
 	OtherNames                    *Collection          `json:"-"`
 	SSN                           *SSN                 `json:"-" sql:"-"`
@@ -55,6 +57,7 @@ type CivilUnion struct {
 	EmailID                         int `json:"-"`
 	EnteredCivilUnionID             int `json:"-"`
 	ForeignBornDocumentID           int `json:"-"`
+	LocationID                      int `json:"-"`
 	NameID                          int `json:"-"`
 	OtherNamesID                    int `json:"-"`
 	SSNID                           int `json:"-"`
@@ -136,6 +139,12 @@ func (entity *CivilUnion) Unmarshal(raw []byte) error {
 	}
 	entity.ForeignBornDocument = foreignBornDocument.(*ForeignBornDocument)
 
+	location, err := entity.PayloadLocation.Entity()
+	if err != nil {
+		return err
+	}
+	entity.Location = location.(*Location)
+
 	name, err := entity.PayloadName.Entity()
 	if err != nil {
 		return err
@@ -209,6 +218,9 @@ func (entity *CivilUnion) Marshal() Payload {
 	}
 	if entity.ForeignBornDocument != nil {
 		entity.PayloadForeignBornDocument = entity.ForeignBornDocument.Marshal()
+	}
+	if entity.Location != nil {
+		entity.PayloadLocation = entity.Location.Marshal()
 	}
 	if entity.Name != nil {
 		entity.PayloadName = entity.Name.Marshal()
@@ -285,6 +297,11 @@ func (entity *CivilUnion) Valid() (bool, error) {
 	}
 	if entity.ForeignBornDocument != nil {
 		if ok, err := entity.ForeignBornDocument.Valid(); !ok {
+			return false, err
+		}
+	}
+	if entity.Location != nil {
+		if ok, err := entity.Location.Valid(); !ok {
 			return false, err
 		}
 	}
@@ -399,6 +416,12 @@ func (entity *CivilUnion) Save(context DatabaseService, account int) (int, error
 	}
 	entity.ForeignBornDocumentID = foreignBornDocumentID
 
+	locationID, err := entity.Location.Save(context, account)
+	if err != nil {
+		return locationID, err
+	}
+	entity.LocationID = locationID
+
 	nameID, err := entity.Name.Save(context, account)
 	if err != nil {
 		return nameID, err
@@ -493,6 +516,9 @@ func (entity *CivilUnion) Delete(context DatabaseService, account int) (int, err
 	if _, err := entity.ForeignBornDocument.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
+	if _, err := entity.Location.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
 	if _, err := entity.Name.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
@@ -585,6 +611,11 @@ func (entity *CivilUnion) Get(context DatabaseService, account int) (int, error)
 	}
 	if entity.ForeignBornDocumentID != 0 {
 		if _, err := entity.ForeignBornDocument.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+	if entity.LocationID != 0 {
+		if _, err := entity.Location.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
@@ -691,6 +722,11 @@ func (entity *CivilUnion) Find(context DatabaseService) error {
 		}
 		entity.ForeignBornDocument.ID = previous.ForeignBornDocumentID
 		entity.ForeignBornDocumentID = previous.ForeignBornDocumentID
+		if entity.Location == nil {
+			entity.Location = &Location{}
+		}
+		entity.Location.ID = previous.LocationID
+		entity.LocationID = previous.LocationID
 		if entity.Name == nil {
 			entity.Name = &Name{}
 		}
