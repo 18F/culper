@@ -543,14 +543,12 @@ exports[`Renders homepage 1`] = `
             </div>
             <div
               aria-label="Persons completing this form should begin after carefully reading the preceding instructions"
-              className="field   branch introduction-acceptance"
-              data-uuid="field-693180b5-974d-ff02-cda4-0c01a11f6100"
-            >
+              className="field   branch introduction-acceptance" data-uuid="field-f5e7bff5-7ac0-49ce-a5dd-6e16bef4c99e">
               <a
                 aria-hidden="true"
                 className="anchor"
-                id="field-693180b5-974d-ff02-cda4-0c01a11f6100"
-                name="field-693180b5-974d-ff02-cda4-0c01a11f6100"
+                id="field-f5e7bff5-7ac0-49ce-a5dd-6e16bef4c99e"
+                name="field-f5e7bff5-7ac0-49ce-a5dd-6e16bef4c99e"
               />
               <h3
                 className="title h3"
@@ -594,15 +592,15 @@ exports[`Renders homepage 1`] = `
                       >
                         <label
                           className=""
-                          htmlFor="acceptance_of_terms-13a43677-1f0f-654e-2a7f-15bd6b044bb0"
+                          htmlFor="acceptance_of_terms-b12b81e3-6145-8b9c-1a43-98d89f3f165d"
                         >
                           <input
                             aria-label="Yes, I agree to this agreement"
                             checked={false}
                             className="usa-input-success"
                             disabled={false}
-                            id="acceptance_of_terms-13a43677-1f0f-654e-2a7f-15bd6b044bb0"
-                            name="acceptance_of_terms-13a43677-1f0f-654e-2a7f-15bd6b044bb0"
+                            id="acceptance_of_terms-b12b81e3-6145-8b9c-1a43-98d89f3f165d"
+                            name="acceptance_of_terms-b12b81e3-6145-8b9c-1a43-98d89f3f165d"
                             onBlur={[Function]}
                             onChange={[Function]}
                             onClick={[Function]}
@@ -621,15 +619,15 @@ exports[`Renders homepage 1`] = `
                       >
                         <label
                           className=""
-                          htmlFor="acceptance_of_terms-58d39075-bb06-40b3-5265-55088aa0184f"
+                          htmlFor="acceptance_of_terms-41f39eca-5162-1c7e-5336-6b27c8a61c58"
                         >
                           <input
                             aria-label="No, I do not agree to this agreement"
                             checked={false}
                             className="usa-input-success"
                             disabled={false}
-                            id="acceptance_of_terms-58d39075-bb06-40b3-5265-55088aa0184f"
-                            name="acceptance_of_terms-58d39075-bb06-40b3-5265-55088aa0184f"
+                            id="acceptance_of_terms-41f39eca-5162-1c7e-5336-6b27c8a61c58"
+                            name="acceptance_of_terms-41f39eca-5162-1c7e-5336-6b27c8a61c58"
                             onBlur={[Function]}
                             onChange={[Function]}
                             onClick={[Function]}
