@@ -215,6 +215,28 @@ func TestRelativeAddress(t *testing.T) {
 	assertHasNone(t, template, xpath, snippet)
 }
 
+func TestDocumentExpiration(t *testing.T) {
+	parent := "relationships.xml"
+	template := "relatives-and-associates.xml"
+	xpath := "RelativesAndAssociates/Relatives/Relative[1]/Citizenship/ProofOfStatus/DocumentExpiration"
+
+	// Document has expiration
+	form := newForm(t,
+		"relative-greencard.json",
+	)
+	form = extractPart(t, form, templateContext(t, parent, template))
+	snippet := applyForm(t, template, form)
+	assertHas1(t, template, xpath, snippet)
+
+	// Document has no expiration
+	form = newForm(t,
+		"relative-naturalized.json",
+	)
+	form = extractPart(t, form, templateContext(t, parent, template))
+	snippet = applyForm(t, template, form)
+	assertHasNone(t, template, xpath, snippet)
+}
+
 // applicationData loads a fully-populated, valid SF-86 form with test data
 func applicationData(t *testing.T) map[string]interface{} {
 	return newForm(t,
