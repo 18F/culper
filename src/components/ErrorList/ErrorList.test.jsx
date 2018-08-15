@@ -26,8 +26,8 @@ describe('The error list component', () => {
     const store = mockStore({})
     const component = mount(<Provider store={store}><ErrorList errorMessages={errorMessages} /></Provider>)
     expect(component.find('.error-list').length).toBe(1)
-    expect(component.find('.error-list .field .title').length).toBe(1)
-    expect(component.find('.error-list .field .error-messages').length).toBe(1)
+    expect(component.find('.error-list .usa-alert-error .usa-alert-heading').length).toBe(1)
+    expect(component.find('.error-list .usa-alert-error').length).toBe(1)
   })
 
   it('groups stuff', () => {
