@@ -12,14 +12,6 @@ const applicationState = {
   Application: {}
 }
 
-// give a fake GUID so the field IDs don't differ between snapshots
-// https://github.com/facebook/jest/issues/936#issuecomment-404246102
-jest.mock('../../Form/ValidationElement/helpers', () =>
-  Object.assign(require.requireActual('../../Form/ValidationElement/helpers'), {
-    newGuid: jest.fn().mockReturnValue('MOCK-GUID')
-  })
-)
-
 describe('The print section', () => {
   // Setup
   window.token = 'fake-token'
