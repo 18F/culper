@@ -172,6 +172,14 @@ func TestCitizenStatus(t *testing.T) {
 	)
 	snippet = applyForm(t, template, form)
 	assertHasNone(t, template, xpath, snippet)
+
+	// Foreign-born, but naturalized, with passport
+	form = newForm(t,
+		"naturalized.json",
+		"foreign-passport.json",
+	)
+	snippet = applyForm(t, template, form)
+	assertHas1(t, template, xpath, snippet)
 }
 
 func TestRelativeAddress(t *testing.T) {
