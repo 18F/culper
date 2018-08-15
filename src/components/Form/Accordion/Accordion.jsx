@@ -543,7 +543,7 @@ Accordion.defaultProps = {
   byline: (item, index, initial = false, message = '') => {
     return (
       <div className={`byline ${openState(item, initial)} fade in`.trim()}>
-        <div className="usa-alert usa-alert-error">
+        <div className="usa-alert usa-alert-error" role="alert">
           <div className="usa-alert-body">
             <h5 className="usa-alert-heading">{message}</h5>
           </div>

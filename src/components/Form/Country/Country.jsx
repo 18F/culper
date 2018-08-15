@@ -192,7 +192,7 @@ export default class Country extends ValidationElement {
         <Show when={this.state.showComments}>
           <div className="field no-margin-bottom">
             <div className="table">
-              <div className="usa-alert usa-alert-error">
+              <div className="usa-alert usa-alert-error" role="alert">
                 <div className="usa-alert-body">
                   <h5 className="usa-alert-heading">{i18n.t('error.country.notfound.title')}</h5>
                   <p>{i18n.m('error.country.notfound.message')}</p>

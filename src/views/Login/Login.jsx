@@ -100,7 +100,7 @@ export class Login extends React.Component {
     return (
       <div className="field no-margin-bottom">
         <div className="table">
-          <div className="usa-alert usa-alert-error">
+          <div className="usa-alert usa-alert-error" role="alert">
             <div className="usa-alert-body">
               <h5 className="usa-alert-heading">{i18n.t('login.error.title')}</h5>
               <p>{msg}</p>

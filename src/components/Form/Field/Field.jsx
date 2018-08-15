@@ -217,7 +217,7 @@ export default class Field extends ValidationElement {
   helpMessage () {
     if (this.state.helpActive && this.props.help) {
       return (
-        <div className="usa-alert usa-alert-info">
+        <div className="usa-alert usa-alert-info" role="alert">
           <div className="usa-alert-body">
             {message(this.props.help)}
             <a href="javascript:;;" className="close" onClick={this.toggleHelp} title={i18n.t('help.close')}>

@@ -10,7 +10,7 @@ export default class InvalidSection extends React.Component {
     return (
       <div className="field">
         <div className="table expand">
-          <div className="usa-alert usa-alert-error">
+          <div className="usa-alert usa-alert-error" role="alert">
             <div className="usa-alert-body">
               <h5 className="usa-alert-heading">{this.props.mark.section.title}</h5>
               <ul>{incompleteSubsections}</ul>

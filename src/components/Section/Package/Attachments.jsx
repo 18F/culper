@@ -241,7 +241,7 @@ export default class Attachments extends SectionElement {
           <Show when={this.state.errorMessage}>
             <div className="field upload-error">
               <div className="table expand">
-                <div className="usa-alert usa-alert-error">
+                <div className="usa-alert usa-alert-error" role="alert">
                   <div className="usa-alert-body">
                     <h5 className="usa-alert-heading">{i18n.t('application.attachments.upload.error.title')}</h5>
                     <p>{this.state.errorMessage}</p>

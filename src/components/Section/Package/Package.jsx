@@ -184,7 +184,7 @@ class Package extends SectionElement {
             <div className="field">
               <div className="table">
                 <div className="messages">
-                  <div className="usa-alert usa-alert-error">
+                  <div className="usa-alert usa-alert-error" role="alert">
                     <div className="usa-alert-body">
                       {i18n.m('error.submission.message')}
                     </div>

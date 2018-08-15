@@ -14,7 +14,7 @@ export class Gap extends React.Component {
     const dates = DateSummary(this.props.dates)
     return (
       <div className="gap details open">
-        <div className="usa-alert usa-alert-error">
+        <div className="usa-alert usa-alert-error" role="alert">
           <div className="usa-alert-body">
             <h5 className="usa-alert-heading">{this.props.title} - <span className="dates">{dates}</span></h5>
 
