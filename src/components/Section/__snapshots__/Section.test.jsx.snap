@@ -28,13 +28,13 @@ exports[`The section component renders the Section component at a particular sub
                     <div
                       aria-label="Provide your contact information"
                       className="field   no-margin-bottom"
-                      data-uuid="field-MOCK-GUID"
+                      data-uuid="field-MOCK-GUID-0"
                     >
                       <a
                         aria-hidden="true"
                         className="anchor"
-                        id="field-MOCK-GUID"
-                        name="field-MOCK-GUID"
+                        id="field-MOCK-GUID-0"
+                        name="field-MOCK-GUID-0"
                       />
                       <h2
                         className="title h2"
@@ -76,13 +76,13 @@ exports[`The section component renders the Section component at a particular sub
                     <div
                       aria-label="Your email addresses"
                       className="field   no-margin-bottom"
-                      data-uuid="field-MOCK-GUID"
+                      data-uuid="field-MOCK-GUID-1"
                     >
                       <a
                         aria-hidden="true"
                         className="anchor"
-                        id="field-MOCK-GUID"
-                        name="field-MOCK-GUID"
+                        id="field-MOCK-GUID-1"
+                        name="field-MOCK-GUID-1"
                       />
                       <h3
                         className="title h3"
@@ -185,13 +185,13 @@ exports[`The section component renders the Section component at a particular sub
                     <div
                       aria-label="Your phone numbers"
                       className="field   no-margin-bottom"
-                      data-uuid="field-MOCK-GUID"
+                      data-uuid="field-MOCK-GUID-4"
                     >
                       <a
                         aria-hidden="true"
                         className="anchor"
-                        id="field-MOCK-GUID"
-                        name="field-MOCK-GUID"
+                        id="field-MOCK-GUID-4"
+                        name="field-MOCK-GUID-4"
                       />
                       <h3
                         className="title h3"

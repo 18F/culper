@@ -1,6 +1,6 @@
 import React from 'react'
 import env from '../../../config/environment'
-import { newGuid, flattenObject, mergeError, triageErrors } from './helpers'
+import { newGuid, newMockGuid, flattenObject, mergeError, triageErrors } from './helpers'
 
 export default class ValidationElement extends React.Component {
   constructor(props) {
@@ -89,9 +89,8 @@ export default class ValidationElement extends React.Component {
 
   guid() {
     // give a fake GUID so the field IDs don't differ between snapshots
-    // https://github.com/facebook/jest/issues/936#issuecomment-404246102
     if (env.IsTest()) {
-      return 'MOCK-GUID'
+      return newMockGuid()
     } else {
       return newGuid()
     }

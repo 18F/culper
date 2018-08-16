@@ -82,6 +82,7 @@ TAGS
 xmlsec1
 
 # Test artifacts
+/api/coverage.txt
 /jest*
 /specs/reports
 /specs/screenshots
