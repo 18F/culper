@@ -7,13 +7,13 @@ exports[`The attachments component renders properly 1`] = `
   <div
     aria-label="Specify your attachment method"
     className="field   attachment-type"
-    data-uuid="field-MOCK-GUID-34"
+    data-uuid="field-MOCK-GUID"
   >
     <a
       aria-hidden="true"
       className="anchor"
-      id="field-MOCK-GUID-34"
-      name="field-MOCK-GUID-34"
+      id="field-MOCK-GUID"
+      name="field-MOCK-GUID"
     />
     <h3
       className="title h3"
@@ -77,15 +77,15 @@ exports[`The attachments component renders properly 1`] = `
             >
               <label
                 className="checked"
-                htmlFor="attachment-type-upload-MOCK-GUID-36"
+                htmlFor="attachment-type-upload-MOCK-GUID"
               >
                 <input
                   aria-label="[object Object] for null"
                   checked={true}
                   className="usa-input-success selected"
                   disabled={false}
-                  id="attachment-type-upload-MOCK-GUID-36"
-                  name="attachment-type-upload-MOCK-GUID-36"
+                  id="attachment-type-upload-MOCK-GUID"
+                  name="attachment-type-upload-MOCK-GUID"
                   onBlur={[Function]}
                   onChange={[Function]}
                   onClick={[Function]}
@@ -117,15 +117,15 @@ exports[`The attachments component renders properly 1`] = `
             >
               <label
                 className=""
-                htmlFor="attachment-type-fax-MOCK-GUID-37"
+                htmlFor="attachment-type-fax-MOCK-GUID"
               >
                 <input
                   aria-label="[object Object] for null"
                   checked={false}
                   className="usa-input-success"
                   disabled={false}
-                  id="attachment-type-fax-MOCK-GUID-37"
-                  name="attachment-type-fax-MOCK-GUID-37"
+                  id="attachment-type-fax-MOCK-GUID"
+                  name="attachment-type-fax-MOCK-GUID"
                   onBlur={[Function]}
                   onChange={[Function]}
                   onClick={[Function]}
@@ -157,15 +157,15 @@ exports[`The attachments component renders properly 1`] = `
             >
               <label
                 className=""
-                htmlFor="attachment-type-other-MOCK-GUID-38"
+                htmlFor="attachment-type-other-MOCK-GUID"
               >
                 <input
                   aria-label="[object Object] for null"
                   checked={false}
                   className="usa-input-success"
                   disabled={false}
-                  id="attachment-type-other-MOCK-GUID-38"
-                  name="attachment-type-other-MOCK-GUID-38"
+                  id="attachment-type-other-MOCK-GUID"
+                  name="attachment-type-other-MOCK-GUID"
                   onBlur={[Function]}
                   onChange={[Function]}
                   onClick={[Function]}
@@ -210,13 +210,13 @@ exports[`The attachments component renders properly 1`] = `
     <div
       aria-label="Upload file to e-QIP directly"
       className="field   upload-area"
-      data-uuid="field-MOCK-GUID-39"
+      data-uuid="field-MOCK-GUID"
     >
       <a
         aria-hidden="true"
         className="anchor"
-        id="field-MOCK-GUID-39"
-        name="field-MOCK-GUID-39"
+        id="field-MOCK-GUID"
+        name="field-MOCK-GUID"
       />
       <h3
         className="title h3"
@@ -264,7 +264,7 @@ exports[`The attachments component renders properly 1`] = `
             >
               <label
                 className=""
-                htmlFor="UploadDescription-MOCK-GUID-40"
+                htmlFor="UploadDescription-MOCK-GUID"
               >
                 Description
               </label>
@@ -275,7 +275,7 @@ exports[`The attachments component renders properly 1`] = `
                 autoComplete={true}
                 autoCorrect={true}
                 className=""
-                id="UploadDescription-MOCK-GUID-40"
+                id="UploadDescription-MOCK-GUID"
                 maxLength={255}
                 name="UploadDescription"
                 onBlur={[Function]}
