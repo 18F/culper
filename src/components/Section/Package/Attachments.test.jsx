@@ -5,14 +5,6 @@ import { mount } from 'enzyme'
 import { api } from '../../../services'
 import Attachments from './Attachments'
 
-// give a fake GUID so the field IDs don't differ between snapshots
-// https://github.com/facebook/jest/issues/936#issuecomment-404246102
-jest.mock('../../Form/ValidationElement/helpers', () =>
-  Object.assign(require.requireActual('../../Form/ValidationElement/helpers'), {
-    newGuid: jest.fn().mockReturnValue('MOCK-GUID')
-  })
-)
-
 describe('The attachments component', () => {
   beforeEach(() => {
     const mock = new MockAdapter(api.proxy)
