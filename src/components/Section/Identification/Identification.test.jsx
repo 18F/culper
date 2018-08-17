@@ -5,7 +5,7 @@ import { Provider } from 'react-redux'
 import Identification, { IdentificationSections } from './Identification'
 import { mount } from 'enzyme'
 import navigation from './navigation'
-import { testSnapshot } from '../../test-helpers'
+import { testSectionSnapshots, testSnapshot } from '../../test-helpers'
 
 const applicationState = {
   Identification: {
@@ -85,21 +85,13 @@ describe('The identification section', () => {
     })
   })
 
-  navigation.subsections.forEach(subsection => {
-    it(`renders the Identification component for the ${
-      subsection.url
-    } subsection`, () => {
-      const store = mockStore({
-        authentication: { authenticated: true },
-        application: applicationState
-      })
-      testSnapshot(
-        <Provider store={store}>
-          <Identification subsection={subsection.url} />
-        </Provider>
-      )
+  {
+    const store = mockStore({
+      authentication: { authenticated: true },
+      application: applicationState
     })
-  })
+    testSectionSnapshots(navigation, store, Identification)
+  }
 
   it('renders the IdentificationSections component', () => {
     testSnapshot(<IdentificationSections />)
