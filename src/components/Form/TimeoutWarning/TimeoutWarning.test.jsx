@@ -1,11 +1,11 @@
 import React from 'react'
-import renderer from 'react-test-renderer'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import { MemoryRouter } from 'react-router'
 import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
 import TimeoutWarning, { roundUp, minutes, seconds } from './TimeoutWarning'
+import { testSnapshot } from '../../test-helpers'
 
 describe('The timeout warning component', () => {
   // Setup
@@ -90,14 +90,12 @@ describe('The timeout warning component', () => {
     const store = mockStore({
       application: { Settings: { lastRefresh: lastRefresh } }
     })
-    const component = renderer.create(
+    testSnapshot(
       <Provider store={store}>
         <MemoryRouter>
           <TimeoutWarning timeout="15" showWarning={true} />
         </MemoryRouter>
       </Provider>
     )
-    let tree = component.toJSON()
-    expect(tree).toMatchSnapshot()
   })
 })

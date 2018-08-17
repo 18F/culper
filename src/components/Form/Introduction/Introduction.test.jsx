@@ -1,10 +1,10 @@
 import React from 'react'
-import renderer from 'react-test-renderer'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
 import ConnectedIntroduction, { Introduction } from './Introduction'
+import { testSnapshot } from '../../test-helpers'
 
 describe('The Introduction component', () => {
   const middlewares = [thunk]
@@ -70,12 +70,10 @@ describe('The Introduction component', () => {
 
   it('renders properly', () => {
     const store = mockStore()
-    const component = renderer.create(
+    testSnapshot(
       <Provider store={store}>
         <ConnectedIntroduction forceOpen={true} />
       </Provider>
     )
-    let tree = component.toJSON()
-    expect(tree).toMatchSnapshot()
   })
 })

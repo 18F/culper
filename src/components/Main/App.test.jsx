@@ -1,14 +1,14 @@
 import React from 'react'
 import { MemoryRouter } from 'react-router'
 import App from './App'
-import renderer from 'react-test-renderer'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
+import { testSnapshot } from '../test-helpers'
 
 test('Renders homepage', () => {
   // Setup
-  const middlewares = [ thunk ]
+  const middlewares = [thunk]
   const mockStore = configureMockStore(middlewares)
   const store = mockStore({
     authentication: [],
@@ -19,14 +19,11 @@ test('Renders homepage', () => {
     }
   })
 
-  const component = renderer.create(
+  testSnapshot(
     <MemoryRouter>
       <Provider store={store}>
-        <App/>
+        <App />
       </Provider>
     </MemoryRouter>
   )
-
-  let tree = component.toJSON()
-  expect(tree).toMatchSnapshot()
 })
