@@ -77,17 +77,18 @@ export const addDividers = components => {
 }
 
 export const createIntroSubsection = section => {
+  const nextSubsection = section.subsections[1]
   return (
     <SectionView
       name="intro"
-      next={`${section}/name`}
-      nextLabel={i18n.t(`${section}.destination.name`)}>
+      next={`${section.url}/${nextSubsection.url}`}
+      nextLabel={i18n.t(`${section.url}.destination.${nextSubsection.url}`)}>
       <Field
-        title={i18n.t(`${section}.intro.title`)}
+        title={i18n.t(`${section.url}.intro.title`)}
         titleSize="h2"
         optional={true}
         className="no-margin-bottom">
-        {i18n.m(`${section}.intro.body`)}
+        {i18n.m(`${section.url}.intro.body`)}
       </Field>
     </SectionView>
   )

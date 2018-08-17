@@ -95,7 +95,7 @@ export default class SectionElement extends React.Component {
   }
 
   createSection(navigation, nextSection) {
-    const introSubsection = createIntroSubsection(this.props.section)
+    const introSubsection = createIntroSubsection(navigation)
     const sectionViews = this.createSectionViews(navigation)
     const reviewSubsection = this.createReviewSubsection(
       navigation,
