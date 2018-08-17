@@ -1,9 +1,9 @@
 import React from 'react'
-import renderer from 'react-test-renderer'
 import MockAdapter from 'axios-mock-adapter'
 import { mount } from 'enzyme'
 import { api } from '../../../services'
 import Attachments from './Attachments'
+import { testSnapshot } from '../../test-helpers'
 
 // give a fake GUID so the field IDs don't differ between snapshots
 // https://github.com/facebook/jest/issues/936#issuecomment-404246102
@@ -69,8 +69,6 @@ describe('The attachments component', () => {
 
   it('renders properly', () => {
     const props = { AttachmentType: { value: 'Upload' } }
-    const component = renderer.create(<Attachments {...props} />)
-    let tree = component.toJSON()
-    expect(tree).toMatchSnapshot()
+    testSnapshot(<Attachments {...props} />)
   })
 })

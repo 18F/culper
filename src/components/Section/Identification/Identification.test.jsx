@@ -1,11 +1,11 @@
 import React from 'react'
-import renderer from 'react-test-renderer'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 import Identification, { IdentificationSections } from './Identification'
 import { mount } from 'enzyme'
 import navigation from './navigation'
+import { testSnapshot } from '../../test-helpers'
 
 const applicationState = {
   Identification: {
@@ -93,19 +93,15 @@ describe('The identification section', () => {
         authentication: { authenticated: true },
         application: applicationState
       })
-      const component = renderer.create(
+      testSnapshot(
         <Provider store={store}>
           <Identification subsection={subsection.url} />
         </Provider>
       )
-      let tree = component.toJSON()
-      expect(tree).toMatchSnapshot()
     })
   })
 
   it('renders the IdentificationSections component', () => {
-    const component = renderer.create(<IdentificationSections />)
-    let tree = component.toJSON()
-    expect(tree).toMatchSnapshot()
+    testSnapshot(<IdentificationSections />)
   })
 })

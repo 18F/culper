@@ -1,10 +1,10 @@
 import React from 'react'
 import { MemoryRouter } from 'react-router'
 import App from './App'
-import renderer from 'react-test-renderer'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
+import { testSnapshot } from '../test-helpers'
 
 // give a fake GUID so the field IDs don't differ between snapshots
 // https://github.com/facebook/jest/issues/936#issuecomment-404246102
@@ -27,14 +27,11 @@ test('Renders homepage', () => {
     }
   })
 
-  const component = renderer.create(
+  testSnapshot(
     <MemoryRouter>
       <Provider store={store}>
         <App />
       </Provider>
     </MemoryRouter>
   )
-
-  let tree = component.toJSON()
-  expect(tree).toMatchSnapshot()
 })
