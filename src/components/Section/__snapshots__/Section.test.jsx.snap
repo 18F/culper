@@ -1,7 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`The section component renders the Section component 1`] = `<div />`;
-
 exports[`The section component renders the Section component at a particular subsection 1`] = `
 <div>
   <div

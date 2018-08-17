@@ -26,14 +26,6 @@ describe('The section component', () => {
     expect(component.find('div').length > 0).toBe(true)
   })
 
-  it('renders the Section component', () => {
-    testSnapshot(
-      <MemoryRouter>
-        <Section />
-      </MemoryRouter>
-    )
-  })
-
   it('renders the Section component at a particular subsection', () => {
     window.token = 'fake-token'
     const store = mockStore({
