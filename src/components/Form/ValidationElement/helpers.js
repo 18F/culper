@@ -8,11 +8,6 @@ export const newGuid = () => {
   return `${s4()}${s4()}-${s4()}-${s4()}-${s4()}-${s4()}${s4()}${s4()}`
 }
 
-let mockGuid = 0;
-export const newMockGuid = () => {
-  return `MOCK-GUID-${mockGuid++}`
-}
-
 export const flattenObject = obj => {
   let s = ''
   let what = Object.prototype.toString.call(obj)
