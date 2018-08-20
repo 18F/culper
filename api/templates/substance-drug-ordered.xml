@@ -46,7 +46,7 @@
         <Address>{{location $Item.TreatmentProviderAddress}}</Address>
         <Telephone>{{telephone $Item.TreatmentProviderTelephone}}</Telephone>
       </Doctor>
-      {{daterange $Item.TreatmentDates}}
+      {{monthYearDaterange $Item.TreatmentDates}}
       <SuccessfullyCompletedTreatmentProgram>
         <Answer>{{branch $Item.TreatmentCompleted}}</Answer>
       </SuccessfullyCompletedTreatmentProgram>

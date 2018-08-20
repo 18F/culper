@@ -25,7 +25,7 @@
         <Comment></Comment>
         <Explanation>{{text $Item.OtherSeeker}}</Explanation>
       </CounselingOrderedBy>
-      {{daterange $Item.CounselingDates}}
+      {{monthYearDaterange $Item.CounselingDates}}
       <Doctor>
         <Name>{{text $Item.TreatmentProviderName}}</Name>
         <Address>{{location $Item.TreatmentProviderAddress}}</Address>
