@@ -9,7 +9,7 @@
     <HealthCareProfessional>{{treatment $Item.Treatment.props}}</HealthCareProfessional>
     <TreatmentFacility>{{treatment $Item.TreatmentFacility.props}}</TreatmentFacility>
     <TreatmentEffective>
-      <Effective>{{branch $Item.Effective}}</Effective>
+      <Answer>{{branch $Item.Effective}}</Answer>
       <Explanation>{{textarea $Item.Explanation}}</Explanation>
     </TreatmentEffective>
     <Comment></Comment>
