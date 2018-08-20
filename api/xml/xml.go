@@ -3,7 +3,6 @@ package xml
 import (
 	"bytes"
 	"encoding/json"
-	"fmt"
 	"html/template"
 	"path"
 	"strings"
@@ -239,24 +238,24 @@ func hasRelativeType(data map[string]interface{}, target string) string {
 // relationshipType translates our enums to eqip specific enums
 func relationshipType(str string) string {
 	types := map[string]string{
-		"Mother":       "01",
-		"Father":       "02",
-		"Stepmother":   "03",
-		"Stepfather":   "04",
-		"FosterParent": "05",
-		"Child":        "06",
-		"Stepchild":    "07",
-		"Brother":      "08",
-		"Sister":       "09",
-		"Stepbrother":  "10",
-		"Stepsister":   "11",
-		"HalfBrother":  "12",
-		"HalfSister":   "13",
-		"FatherInLaw":  "14",
-		"MotherInLaw":  "15",
-		"Guardian":     "16",
+		"Mother":        "01Mother",
+		"Father":        "02Father",
+		"Stepmother":    "03Stepmother",
+		"Stepfather":    "04Stepfather",
+		"FosterParent":  "05FosterParent",
+		"Child":         "06Child",
+		"Stepchild":     "07Stepchild",
+		"Brother":       "08Brother",
+		"Sister":        "09Sister",
+		"Stepbrother":   "10Stepbrother",
+		"Stepsister":    "11Stepsister",
+		"Half-brother":  "12HalfBrother",
+		"Half-sister":   "13HalfSister",
+		"Father-in-law": "14FatherInLaw",
+		"Mother-in-law": "15MotherInLaw",
+		"Guardian":      "16Guardian",
 	}
-	return fmt.Sprintf("%s%s", types[str], str)
+	return types[str]
 }
 
 // citizenshipStatus translates our enums to eqip specific enums
