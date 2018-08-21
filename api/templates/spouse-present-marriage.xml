@@ -59,7 +59,6 @@
         {{date $Item.EnteredCivilUnion}}
       </Date>
       <Place>
-        {{$Item.Location}}
         {{location $Item.Location}}
       </Place>
     </Marriage>
