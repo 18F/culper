@@ -44,6 +44,7 @@ func (service Service) DefaultTemplate(templateName string, data map[string]inte
 		"doctorFirstName":        doctorFirstName,
 		"doctorLastName":         doctorLastName,
 		"foreignDocType":         foreignDocType,
+		"foreignAffiliation":     foreignAffiliation,
 		"monthYearDaterange":     monthYearDaterange,
 		"email":                  email,
 		"employmentType":         employmentType,
@@ -78,9 +79,14 @@ func (service Service) DefaultTemplate(templateName string, data map[string]inte
 // are generated in scenarios where no element is applicable.
 // For example, UnemployedComment when not unemployed. See:
 // https://github.com/18F/e-QIP-prototype/issues/717
-func removeEmptyElements(xml string) string {
-	re := regexp.MustCompile("<[a-zA-Z]+></[a-zA-Z]+>")
-	return re.ReplaceAllString(xml, "")
+func applyBulkFixes(xml string) string {
+	re := regexp.MustCompile("<[a-zA-Z_]+></[a-zA-Z_]+>")
+	s1 := re.ReplaceAllString(xml, "")
+
+	re = regexp.MustCompile(" DoNotKnow=\"False\"")
+	s2 := re.ReplaceAllString(s1, "")
+
+	return s2
 }
 
 func xmlTemplate(name string, data map[string]interface{}) (template.HTML, error) {
@@ -90,7 +96,7 @@ func xmlTemplate(name string, data map[string]interface{}) (template.HTML, error
 	if err := tmpl.Execute(&output, data); err != nil {
 		return template.HTML(""), err
 	}
-	return template.HTML(removeEmptyElements(output.String())), nil
+	return template.HTML(applyBulkFixes(output.String())), nil
 }
 
 // xmlTemplateWithFuncs executes an XML template with mapped functions to be used with the
@@ -102,7 +108,7 @@ func xmlTemplateWithFuncs(name string, data map[string]interface{}, fmap templat
 	if err := tmpl.Execute(&output, data); err != nil {
 		return template.HTML(""), err
 	}
-	return template.HTML(removeEmptyElements(output.String())), nil
+	return template.HTML(applyBulkFixes(output.String())), nil
 }
 
 func getInterfaceAsBytes(anon interface{}) []byte {
@@ -307,6 +313,15 @@ func relationshipType(str string) string {
 		"Father-in-law": "14FatherInLaw",
 		"Mother-in-law": "15MotherInLaw",
 		"Guardian":      "16Guardian",
+	}
+	return types[str]
+}
+
+func foreignAffiliation(str string) string {
+	types := map[string]string{
+		"Yes":          "Yes",
+		"No":           "No",
+		"I don't know": "IDontKnow",
 	}
 	return types[str]
 }

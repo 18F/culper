@@ -49,11 +49,21 @@
           />
         <NatureOtherExplanation>{{text $Item.RelationshipExplanation}}</NatureOtherExplanation>
         <Type
-          InPerson="{{checkboxHas $Item.Methods "In person"}}"
-          Telephone="{{checkboxHas $Item.Methods "Telephone"}}"
-          ElectronicCorrespondence="{{checkboxHas $Item.Methods "Electronic"}}"
-          WrittenCorrespondence="{{checkboxHas $Item.Methods "Written"}}"
-          Other="{{checkboxHas $Item.Methods "Other"}}"
+          {{if (checkboxHas $Item.Methods "In person") | eq "True"}}
+          InPerson="True"
+          {{end}}
+          {{if (checkboxHas $Item.Methods "Telephone") | eq "True"}}
+          Telephone="True"
+          {{end}}
+          {{if (checkboxHas $Item.Methods "Electronic") | eq "True"}}
+          Electronic="True"
+          {{end}}
+          {{if (checkboxHas $Item.Methods "Written") | eq "True"}}
+          Written="True"
+          {{end}}
+          {{if (checkboxHas $Item.Methods "Other") | eq "True"}}
+          Other="True"
+          {{end}}
           />
         <TypeOtherExplanation>{{text $Item.MethodsExplanation}}</TypeOtherExplanation>
       </Contact>
@@ -79,7 +89,7 @@
       </Employer>
       <EntryComment></EntryComment>
       <ForeignAffiliation>
-        <Answer>{{branch $Item.HasAffiliation}}</Answer>
+        <Answer>{{branch $Item.HasAffiliations | foreignAffiliation}}</Answer>
         <AnswerComment></AnswerComment>
         <Comment></Comment>
         <Relationship>{{text $Item.Affiliations}}</Relationship>
@@ -89,6 +99,7 @@
           {{name $Item.Name}}
         </LegalName>
       </FullName>
+      {{- if $Item.Aliases.props.branch.type}}
       <OtherNamesUsed>
         {{range $oindex, $othername := $Item.Aliases.props.items}}
         {{with $Alias := $othername.Item}}
@@ -100,6 +111,7 @@
         {{end}}
         {{end}}
       </OtherNamesUsed>
+      {{end}}
     </Contact>
     {{end}}
     {{end}}
