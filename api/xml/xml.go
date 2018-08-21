@@ -3,6 +3,7 @@ package xml
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"html/template"
 	"path"
 	"strings"
@@ -55,6 +56,7 @@ func (service Service) DefaultTemplate(templateName string, data map[string]inte
 		"nameLastFirst":          nameLastFirst,
 		"notApplicable":          notApplicable,
 		"number":                 number,
+		"padDigits":              padDigits,
 		"radio":                  radio,
 		"schoolType":             schoolType,
 		"relationshipType":       relationshipType,
@@ -611,11 +613,17 @@ func monthYearDaterange(data map[string]interface{}) (template.HTML, error) {
 }
 
 func date(data map[string]interface{}) (template.HTML, error) {
-	return xmlTemplate("date-month-day-year.xml", data)
+	fmap := template.FuncMap{
+		"padDigits": padDigits,
+	}
+	return xmlTemplateWithFuncs("date-month-day-year.xml", data, fmap)
 }
 
 func monthYear(data map[string]interface{}) (template.HTML, error) {
-	return xmlTemplate("date-month-year.xml", data)
+	fmap := template.FuncMap{
+		"padDigits": padDigits,
+	}
+	return xmlTemplateWithFuncs("date-month-year.xml", data, fmap)
 }
 
 // location assumes the data comes in as the props
@@ -691,4 +699,8 @@ func treatment(data map[string]interface{}) (template.HTML, error) {
 		"location":  location,
 	}
 	return xmlTemplateWithFuncs("treatment.xml", data, fmap)
+}
+
+func padDigits(digits string) string {
+	return fmt.Sprintf("%02s", digits)
 }
