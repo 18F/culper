@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"html/template"
 	"path"
+	"regexp"
 	"strings"
 
 	"github.com/18F/e-QIP-prototype/api"
@@ -72,6 +73,16 @@ func (service Service) DefaultTemplate(templateName string, data map[string]inte
 	return xmlTemplateWithFuncs(templateName, data, fmap)
 }
 
+// XXX
+// Work-around for sloppy template logic where empty elements
+// are generated in scenarios where no element is applicable.
+// For example, UnemployedComment when not unemployed. See:
+// https://github.com/18F/e-QIP-prototype/issues/717
+func removeEmptyElements(xml string) string {
+	re := regexp.MustCompile("<[a-zA-Z]+></[a-zA-Z]+>")
+	return re.ReplaceAllString(xml, "")
+}
+
 func xmlTemplate(name string, data map[string]interface{}) (template.HTML, error) {
 	path := path.Join("templates", name)
 	tmpl := template.Must(template.New(name).ParseFiles(path))
@@ -79,7 +90,7 @@ func xmlTemplate(name string, data map[string]interface{}) (template.HTML, error
 	if err := tmpl.Execute(&output, data); err != nil {
 		return template.HTML(""), err
 	}
-	return template.HTML(output.String()), nil
+	return template.HTML(removeEmptyElements(output.String())), nil
 }
 
 // xmlTemplateWithFuncs executes an XML template with mapped functions to be used with the
@@ -91,7 +102,7 @@ func xmlTemplateWithFuncs(name string, data map[string]interface{}, fmap templat
 	if err := tmpl.Execute(&output, data); err != nil {
 		return template.HTML(""), err
 	}
-	return template.HTML(output.String()), nil
+	return template.HTML(removeEmptyElements(output.String())), nil
 }
 
 func getInterfaceAsBytes(anon interface{}) []byte {
