@@ -4,7 +4,7 @@
 .field {
   border-left: 0.75rem solid transparent;
   margin-left: -0.75rem;
-  margin-bottom: 7rem;
+  margin-bottom: 3rem;
 
   &.with-comments {
     border-left: 0.75rem solid $eapp-grey-light;
@@ -127,7 +127,6 @@
   > .table {
     display: table;
     width: 100%;
-    margin-top: 0.5rem;
 
     &.expand {
       width: 100%;
