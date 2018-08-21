@@ -711,6 +711,10 @@ func treatment(data map[string]interface{}) (template.HTML, error) {
 }
 
 func padDigits(digits string) string {
+	if digits == "" {
+		return ""
+	}
+
 	return fmt.Sprintf("%02s", digits)
 }
 
