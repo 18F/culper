@@ -65,6 +65,7 @@ func (service Service) DefaultTemplate(templateName string, data map[string]inte
 		"telephoneNoNumber":      telephoneNoNumber,
 		"text":                   text,
 		"textarea":               textarea,
+		"toUpper":                toUpper,
 		"treatment":              treatment,
 		"tmpl":                   service.DefaultTemplate,
 	}
@@ -640,49 +641,57 @@ func location(data map[string]interface{}) (template.HTML, error) {
 	domestic := location.IsDomestic()
 	postoffice := location.IsPostOffice()
 
+	// XXX
+	// Work-around issue in UI where it does not
+	// normalize case of state abbrevations. See:
+	// https://github.com/18F/e-QIP-prototype/issues/716
+	fmap := template.FuncMap{
+		"toUpper": toUpper,
+	}
+
 	switch location.Layout {
 	case api.LayoutBirthPlace:
 		if domestic {
-			return xmlTemplate("location-city-state-county.xml", data)
+			return xmlTemplateWithFuncs("location-city-state-county.xml", data, fmap)
 		}
 		return xmlTemplate("location-city-county.xml", data)
 	case api.LayoutBirthPlaceWithoutCounty:
 		if domestic {
-			return xmlTemplate("location-city-state.xml", data)
+			return xmlTemplateWithFuncs("location-city-state.xml", data, fmap)
 		}
 		return xmlTemplate("location-city-country.xml", data)
 	case api.LayoutCountry:
 		return xmlTemplate("location-country.xml", data)
 	case api.LayoutUSCityStateInternationalCity:
 		if domestic {
-			return xmlTemplate("location-city-state.xml", data)
+			return xmlTemplateWithFuncs("location-city-state.xml", data, fmap)
 		}
 		return xmlTemplate("location-city-country.xml", data)
 	case api.LayoutUSCityStateInternationalCityCountry:
 		if domestic {
-			return xmlTemplate("location-city-state.xml", data)
+			return xmlTemplateWithFuncs("location-city-state.xml", data, fmap)
 		}
 		return xmlTemplate("location-city-country.xml", data)
 	case api.LayoutCityState:
-		return xmlTemplate("location-city-state.xml", data)
+		return xmlTemplateWithFuncs("location-city-state.xml", data, fmap)
 	case api.LayoutStreetCityCountry:
 		return xmlTemplate("location-street-city-country.xml", data)
 	case api.LayoutCityCountry:
 		return xmlTemplate("location-city-country.xml", data)
 	case api.LayoutUSCityStateZipcodeInternationalCity:
 		if domestic {
-			return xmlTemplate("location-city-state-zipcode.xml", data)
+			return xmlTemplateWithFuncs("location-city-state-zipcode.xml", data, fmap)
 		}
 		return xmlTemplate("location-city-country.xml", data)
 	case api.LayoutCityStateCountry:
-		return xmlTemplate("location-city-state-country.xml", data)
+		return xmlTemplateWithFuncs("location-city-state-country.xml", data, fmap)
 	case api.LayoutUSAddress:
-		return xmlTemplate("location-street-city-state-zipcode.xml", data)
+		return xmlTemplateWithFuncs("location-street-city-state-zipcode.xml", data, fmap)
 	case api.LayoutStreetCity:
 		return xmlTemplate("location-street-city.xml", data)
 	default:
 		if domestic || postoffice {
-			return xmlTemplate("location-street-city-state-zipcode.xml", data)
+			return xmlTemplateWithFuncs("location-street-city-state-zipcode.xml", data, fmap)
 		}
 		return xmlTemplate("location-street-city-country.xml", data)
 	}
@@ -703,4 +712,8 @@ func treatment(data map[string]interface{}) (template.HTML, error) {
 
 func padDigits(digits string) string {
 	return fmt.Sprintf("%02s", digits)
+}
+
+func toUpper(state string) string {
+	return strings.ToUpper(state)
 }
