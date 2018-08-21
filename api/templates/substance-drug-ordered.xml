@@ -13,7 +13,6 @@
         <Explanation>{{textarea $Item.NoActionTakenExplanation}}</Explanation>
       </DidNotReceiveTreatment>
       <CounselingOrderedBy>
-        {{$Item.OrderedBy}}
         <Answer
           {{if (checkboxHas $Item.OrderedBy "Employer") | eq "True"}}
           Employer="True"
