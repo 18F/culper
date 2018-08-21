@@ -39,6 +39,8 @@ func (service Service) DefaultTemplate(templateName string, data map[string]inte
 		"daysInRange":            daysInRange,
 		"degreeType":             degreeType,
 		"diagnosisType":          diagnosisType,
+		"doctorFirstName":        doctorFirstName,
+		"doctorLastName":         doctorLastName,
 		"foreignDocType":         foreignDocType,
 		"monthYearDaterange":     monthYearDaterange,
 		"email":                  email,
@@ -105,6 +107,43 @@ func simpleValue(data map[string]interface{}) string {
 	if ok {
 		return (props.(map[string]interface{}))["value"].(string)
 	}
+	return ""
+}
+
+// XXX
+// Temporary measure to work-around issue where eApp has one field
+// where user is prompted to enter as "Last name, First name" but
+// e-QIP has two separate XML elements.
+// See: https://github.com/18F/e-QIP-prototype/issues/715
+func doctorLastName(data map[string]interface{}) string {
+	fullName := simpleValue(data)
+	if fullName == "" {
+		// Shouldn't get here as UI should enforce non-empty field
+		return ""
+	}
+
+	commaDelim := strings.SplitN(fullName, ",", 2)
+	if len(commaDelim) == 2 {
+		return strings.TrimSpace(commaDelim[0])
+	}
+
+	return fullName
+}
+
+// XXX
+// See comment on doctorLastName()
+func doctorFirstName(data map[string]interface{}) string {
+	fullName := simpleValue(data)
+	if fullName == "" {
+		// Shouldn't get here as UI should enforce non-empty field
+		return ""
+	}
+
+	commaDelim := strings.SplitN(fullName, ",", 2)
+	if len(commaDelim) == 2 {
+		return strings.TrimSpace(commaDelim[1])
+	}
+
 	return ""
 }
 
