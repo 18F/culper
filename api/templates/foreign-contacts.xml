@@ -103,11 +103,13 @@
       <OtherNamesUsed>
         {{range $oindex, $othername := $Item.Aliases.props.items}}
         {{with $Alias := $othername.Item}}
+        {{- if branch $Alias.Has | eq "Yes"}}
         <OtherName ID="{{$oindex}}">
           <Name>
             {{name $Alias.Alias}}
           </Name>
         </OtherName>
+        {{end}}
         {{end}}
         {{end}}
       </OtherNamesUsed>
