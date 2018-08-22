@@ -60,12 +60,12 @@
             <DateRange NotApplicable="{{notApplicable $sentence.ProbationDatesNA}}">
               <From>
                 <Date Type="{{dateEstimated $sentence.ProbationDates.props.from}}">
-                  {{monthYear $sentence.ProbationDatesNA.props.from}}
+                  {{monthYear $sentence.ProbationDates.props.from}}
                 </Date>
               </From>
               <To>
                 <Date Type="{{dateEstimated $sentence.ProbationDates.props.to}}">
-                  {{monthYear $sentence.ProbationDatesNA.props.to}}
+                  {{monthYear $sentence.ProbationDates.props.to}}
                 </Date>
               </To>
             </DateRange>

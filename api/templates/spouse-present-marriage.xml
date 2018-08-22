@@ -68,6 +68,7 @@
     <OtherNamesUsed>
       {{range $oindex, $othername := $Item.OtherNames.props.items}}
       {{with $other := $othername.Item}}
+      {{- if branch $other.Has | eq "Yes"}}
       <OtherName ID="{{$oindex}}">
         {{daterange $other.DatesUsed}}
         <LegalName>
@@ -75,6 +76,7 @@
         </LegalName>
         <Maiden>{{if branch $other.MaidenName | eq "Yes"}}True{{else}}False{{end}}</Maiden>
       </OtherName>
+      {{end}}
       {{end}}
       {{end}}
     </OtherNamesUsed>

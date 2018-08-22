@@ -55,15 +55,16 @@
         {{ if eq (branchcollectionHas $Item.Additional) "No" }}
         <PreviousEmployments NotApplicable="True" />
         {{ else }}
-        <PreviousEmployments
-          NotApplicable="{{branchcollectionHas $Item.Additional}}">
+        <PreviousEmployments>
           {{range $eindex, $additional := $Item.Additional.props.items}}
           {{with $Previous := $additional.Item}}
+          {{- if branch $Previous.Has | eq "Yes"}}
           <PreviousEmployment ID="{{$eindex}}">
             {{daterange $Previous.DatesEmployed}}
             <PositionTitle>{{text $Previous.Position}}</PositionTitle>
             <Supervisor>{{text $Previous.Supervisor}}</Supervisor>
           </PreviousEmployment>
+          {{end}}
           {{end}}
           {{end}}
         </PreviousEmployments>
