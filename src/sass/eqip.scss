@@ -72,19 +72,10 @@ a:focus {
     }
 
     .eapp-structure-right {
-      width: 79%;
-      padding: 0 17.5%;
+      padding: 0 0 0 5rem;
 
       &.eapp-title {
         vertical-align: bottom;
-      }
-
-      .eapp-form,
-      > .title {
-        width: 100%;
-        max-width: 106rem;
-        min-width: 70rem;
-        margin: 0 auto 2rem auto;
       }
 
       .eapp-form {

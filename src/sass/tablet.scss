@@ -15,20 +15,10 @@
   }
 
   .eapp-structure-wrap .eapp-structure-row .eapp-structure-right {
-    padding: 0;
-
-    > .title,
-    .eapp-form {
-      width: 62%;
-      margin-left: 18rem;
-      margin-right: 18rem;
-    }
-
     // Saved indicator
     .saved-indicator {
       position: static;
       width: 100%;
-      z-index: -1;
     }
   }
 }

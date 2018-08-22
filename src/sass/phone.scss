@@ -4,6 +4,7 @@
 }
 
 @media only screen and (max-width: 1000px) {
+
   .mobile-visible {
     display: block !important;
     visibility: visible;
@@ -290,9 +291,6 @@
     }
 
     .accordion {
-      padding: 0 1.5rem 5rem 1.5rem;
-      margin: 0 -1rem;
-
       .summary .left,
       .details {
         padding-left: 4%;
