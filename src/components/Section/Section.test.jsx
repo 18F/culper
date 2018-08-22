@@ -21,7 +21,8 @@ const shouldSkip = (section, subsection) => {
     // these need special handling, which we will come back to
     (section.url === 'foreign' && subsection.url === 'activities') ||
     (section.url === 'substance' && subsection.url === 'drugs') ||
-    (section.url === 'substance' && subsection.url === 'alcohol')
+    (section.url === 'substance' && subsection.url === 'alcohol') ||
+    (section.url === 'psychological' && subsection.url === 'review')
   )
 }
 
