@@ -40,6 +40,8 @@ func (service Service) DefaultTemplate(templateName string, data map[string]inte
 		"daterange":              daterange,
 		"daysInRange":            daysInRange,
 		"degreeType":             degreeType,
+		"derivedBasis":           derivedBasis,
+		"naturalizedBasis":       naturalizedBasis,
 		"diagnosisType":          diagnosisType,
 		"doctorFirstName":        doctorFirstName,
 		"doctorLastName":         doctorLastName,
@@ -746,4 +748,20 @@ func padDigits(digits string) string {
 
 func toUpper(state string) string {
 	return strings.ToUpper(state)
+}
+
+func derivedBasis(v string) string {
+	basis := map[string]string{
+		"Individual": "ByOperationofLaw",
+		"Other":      "Other",
+	}
+	return basis[v]
+}
+
+func naturalizedBasis(v string) string {
+	basis := map[string]string{
+		"Individual": "BasedOnMyOwnIndividualNaturalizationApplication",
+		"Other":      "Other",
+	}
+	return basis[v]
 }
