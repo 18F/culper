@@ -2,10 +2,6 @@
 
 $border-size: 5px;
 
-.saved-indicator-container {
-  text-align: center;
-}
-
 .saved-indicator {
   position: fixed;
   right: 0;
@@ -124,10 +120,4 @@ $border-size: 5px;
 .modal-open .saved-indicator {
   display: none;
   visibility: hidden;
-}
-
-@media only screen and (min-width: 1250px) {
-  .saved-indicator-container {
-    max-width: 80rem;
-  }
 }

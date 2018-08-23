@@ -143,33 +143,31 @@ class SavedIndicator extends React.Component {
     }
 
     return (
-      <div className="saved-indicator-container">
-          <button className={klass}
-                aria-label={talkback}
-                title={talkback}
-                onClick={this.save}
-                onMouseEnter={this.mouseEnter}
-                onMouseLeave={this.mouseLeave}>
+      <button className={klass}
+              aria-label={talkback}
+              title={talkback}
+              onClick={this.save}
+              onMouseEnter={this.mouseEnter}
+              onMouseLeave={this.mouseLeave}>
 
-            <div className="spinner">
-              <div className={klassCircle}></div>
-              <i className={klassIcon} aria-hidden="true"></i>
-            </div>
-
-            <span className="spinner-label">
-              <Show when={this.state.animate}>
-                <strong className="one-line">{i18n.t('saved.saving')}</strong>
-              </Show>
-              <Show when={!this.state.animate && this.state.hover}>
-                <strong className="one-line">{i18n.t('saved.action')}</strong>
-              </Show>
-              <Show when={!this.state.animate && !this.state.hover}>
-                <strong>{i18n.t('saved.saved')}</strong>
-                <span className="time">{this.calculateTime()}</span>
-              </Show>
-            </span>
-          </button>
+        <div className="spinner">
+          <div className={klassCircle}></div>
+          <i className={klassIcon} aria-hidden="true"></i>
         </div>
+
+        <span className="spinner-label">
+          <Show when={this.state.animate}>
+            <strong className="one-line">{i18n.t('saved.saving')}</strong>
+          </Show>
+          <Show when={!this.state.animate && this.state.hover}>
+            <strong className="one-line">{i18n.t('saved.action')}</strong>
+          </Show>
+          <Show when={!this.state.animate && !this.state.hover}>
+            <strong>{i18n.t('saved.saved')}</strong>
+            <span className="time">{this.calculateTime()}</span>
+          </Show>
+        </span>
+      </button>
     )
   }
 }
