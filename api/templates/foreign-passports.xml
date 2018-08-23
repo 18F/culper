@@ -7,7 +7,7 @@
   <ForeignPassport ID="{{$index}}">
     {{if branch $Item.Used | eq "Yes"}}
     <CountriesTraveled>
-      {{range $tindex, $travel := .props.Passports.props.items}}
+      {{range $tindex, $travel := $Item.Countries.props.items}}
       {{with $Travel := $travel.Item}}
       <CountryTraveled ID="{{$tindex}}">
         {{country $Travel.Country}}
