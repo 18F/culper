@@ -43,7 +43,7 @@
     {{if radio $citizenship.CitizenshipStatus | eq "Derived"}}
     <Derived>
       <AlienRegistrationNumber>{{text $citizenship.AlienRegistrationNumber}}</AlienRegistrationNumber>
-      <Basis>{{radio $citizenship.Basis}}</Basis>
+      <Basis>{{radio $citizenship.Basis | derivedBasis}}</Basis>
       <CitizenshipCertificateNumber>{{text $citizenship.CertificateNumber}}</CitizenshipCertificateNumber>
       <Comment></Comment>
       <DocumentIssued>
@@ -88,7 +88,7 @@
           <Court>{{text $citizenship.CertificateCourtName}}</Court>
           <Place>{{location $citizenship.CertificateCourtAddress}}</Place>
         </Authority>
-        <Basis>{{radio $citizenship.Basis}}</Basis>
+        <Basis>{{radio $citizenship.Basis | naturalizedBasis}}</Basis>
         <BasisExplanation>{{textarea $citizenship.Explanation}}</BasisExplanation>
         <CertificateNumber>{{text $citizenship.CertificateNumber}}</CertificateNumber>
         <DateIssued>
