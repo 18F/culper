@@ -1,5 +1,6 @@
 package eqip
 
+// Due to optional location fields, do not execute template with "missingkey=error"
 const userTemplate = `
 {{- $ssn := .Identification.ApplicantSSN.props.ssn.props}}
 {{- $name := .Identification.ApplicantName.props.Name.props }}
@@ -19,8 +20,12 @@ const userTemplate = `
     <place>
       <city>{{$location.city}}</city>
       <country>{{$location.country}}</country>
-      <county>{{$location.county}}</county>
+      {{with $location.state}}
       <state>{{$location.state}}</state>
+      {{end}}
+      {{with $location.county}}
+      <county>{{$location.county}}</county>
+      {{end}}
     </place>
   </birth>
   <fullName>

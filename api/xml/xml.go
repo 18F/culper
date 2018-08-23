@@ -680,7 +680,7 @@ func location(data map[string]interface{}) (template.HTML, error) {
 		if domestic {
 			return xmlTemplateWithFuncs("location-city-state-county.xml", data, fmap)
 		}
-		return xmlTemplate("location-city-county.xml", data)
+		return xmlTemplate("location-city-country.xml", data)
 	case api.LayoutBirthPlaceWithoutCounty:
 		if domestic {
 			return xmlTemplateWithFuncs("location-city-state.xml", data, fmap)
