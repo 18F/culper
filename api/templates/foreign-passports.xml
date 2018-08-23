@@ -11,7 +11,7 @@
       {{with $Travel := $travel.Item}}
       <CountryTraveled ID="{{$tindex}}">
         {{country $Travel.Country}}
-        {{daterange $Travel.Dates}}
+        {{monthYearDaterange $Travel.Dates}}
       </CountryTraveled>
       {{end}}
       {{end}}
