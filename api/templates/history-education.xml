@@ -29,7 +29,6 @@
       <DegreesAwarded>
         {{- range $dindex, $diploma := $Item.Diplomas.props.items}}
         {{- with $Diploma := $diploma.Item}}
-        {{- $Diploma}}
         {{- if branch $Diploma.Has | eq "Yes"}}
         <DegreeAwarded ID="{{$dindex}}">
           <DateAwarded>
