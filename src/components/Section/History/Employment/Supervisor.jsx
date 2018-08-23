@@ -17,7 +17,6 @@ export default class Supervisor extends ValidationElement {
 
   update (queue) {
     this.props.onUpdate({
-      name: this.props.name,
       SupervisorName: this.props.SupervisorName,
       Title: this.props.Title,
       Email: this.props.Email,

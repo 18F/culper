@@ -199,7 +199,7 @@ func (entity *PhysicalAddress) SetID(id int) {
 
 // Find the previous entity stored if one is available.
 func (entity *PhysicalAddress) Find(context DatabaseService) error {
-	context.Find(&PhysicalAddress{ID: entity.AccountID}, func(result interface{}) {
+	context.Find(&PhysicalAddress{ID: entity.ID, AccountID: entity.AccountID}, func(result interface{}) {
 		previous := result.(*PhysicalAddress)
 		if entity.HasDifferentAddress == nil {
 			entity.HasDifferentAddress = &Branch{}
