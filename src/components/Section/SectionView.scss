@@ -1,18 +1,22 @@
 @import 'eqip-colors';
 
 .section-view {
-  max-width: 80rem;
+  max-width: 70rem;
 
   hr.section-divider {
+    border-bottom: 2px solid #e2e7ef;
     height: 2px;
+    color: #e2e7ef;
     background: #e2e7ef;
     font-size: 0;
     border: 0;
-    margin-top: 3rem;
-    margin-bottom: 3rem;
+    margin-top: -3rem;
+    margin-bottom: 12rem;
   }
 
   .btn-wrap {
+    display: block;
+    width: 100%;
 
     .btn-container {
       display: flex;
@@ -83,7 +87,8 @@
   }
 
   .top-btns {
-    margin: 6rem 0;
+    margin: 4.6rem -17.5%;
+    padding: 0 17.5%;
     border-bottom: 2px solid #e2e7ef;
 
     .btn-wrap {
@@ -92,11 +97,12 @@
   }
 
   .bottom-btns {
-    margin: 12rem 0 6rem;
+    margin: 4.6rem -17.5%;
+    padding: 0 17.5%;
     border-top: 2px solid #e2e7ef;
 
     .btn-wrap {
-      padding-top: 3rem;
+      padding-top: 7rem;
     }
   }
 }
