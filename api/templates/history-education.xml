@@ -1,7 +1,7 @@
 <Education>
   <AttendedAnySchools>
     <Answer>{{branch .props.HasAttended}}</Answer>
-    {{if branch .props.HasAttended | eq "Yes"}}
+    {{if or (branch .props.HasAttended | eq "Yes") (branch .props.HasDegree10 | eq "Yes")}}
     <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
     {{end}}
   </AttendedAnySchools>
