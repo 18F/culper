@@ -10,6 +10,10 @@
       <DateEnteredUS>
         <Date Type="{{dateEstimated $citizenship.EntryDate}}">{{date $citizenship.EntryDate}}</Date>
       </DateEnteredUS>
+      <Place>{{location $citizenship.EntryLocation}}</Place>
+      <RegistrationNumber>{{text $citizenship.AlienRegistrationNumber}}</RegistrationNumber>
+      <RegistrationNumberComment></RegistrationNumberComment>
+      {{if radio $citizenship.CitizenshipStatus | eq "NotCitizen"}}
       <DocumentExpiration Type="{{dateEstimated $citizenship.DocumentExpiration}}">{{date $citizenship.DocumentExpiration}}</DocumentExpiration>
       <DocumentIssued>
         <Date Type="{{dateEstimated $citizenship.DocumentIssued}}">{{date $citizenship.DocumentIssued}}</Date>
@@ -18,13 +22,11 @@
       <DocumentNumber>{{text $citizenship.DocumentNumber}}</DocumentNumber>
       <DocumentType>{{radio $citizenship.DocumentType}}</DocumentType>
       <DocumentTypeExplanation>{{textarea $citizenship.Explanation}}</DocumentTypeExplanation>
-      <Place>{{location $citizenship.EntryLocation}}</Place>
-      <RegistrationNumber>{{text $citizenship.AlienRegistrationNumber}}</RegistrationNumber>
-      <RegistrationNumberComment></RegistrationNumberComment>
       <ResidenceStatus>{{text $citizenship.ResidenceStatus}}</ResidenceStatus>
       <VisaExpiration>
         <Date Type="{{dateEstimated $citizenship.AlienRegistrationExpiration}}">{{date $citizenship.AlienRegistrationExpiration}}</Date>
       </VisaExpiration>
+      {{end}}
     </AlienRegistration>
     <Citizenships>
       {{range $cindex, $country := $citizenship.PriorCitizenship.props.value}}
