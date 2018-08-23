@@ -43,6 +43,7 @@ func (service Service) DefaultTemplate(templateName string, data map[string]inte
 		"derivedBasis":           derivedBasis,
 		"naturalizedBasis":       naturalizedBasis,
 		"diagnosisType":          diagnosisType,
+		"dischargeType":          dischargeType,
 		"doctorFirstName":        doctorFirstName,
 		"doctorLastName":         doctorLastName,
 		"foreignDocType":         foreignDocType,
@@ -762,6 +763,18 @@ func naturalizedBasis(v string) string {
 	basis := map[string]string{
 		"Individual": "BasedOnMyOwnIndividualNaturalizationApplication",
 		"Other":      "Other",
+	}
+	return basis[v]
+}
+
+func dischargeType(v string) string {
+	basis := map[string]string{
+		"Honorable":    "Honorable",
+		"Dishonorable": "Dishonorable",
+		"LessThan":     "OtherThanHonorable",
+		"General":      "General",
+		"BadConduct":   "BadConduct",
+		"Other":        "Other",
 	}
 	return basis[v]
 }
