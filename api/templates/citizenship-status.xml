@@ -3,7 +3,7 @@
 <Citizenship Version="1" Type="Pooled">
   <Status>{{radio $citizenship.CitizenshipStatus | citizenshipStatus}}</Status>
   <StatusComment></StatusComment>
-  {{if radio $citizenship.CitizenshipStatus | eq "NotCitizen"}}
+  {{if or (radio $citizenship.CitizenshipStatus | eq "NotCitizen") (radio $citizenship.CitizenshipStatus | eq "Naturalized")}}
   <Alien>
     <AlienRegistration>
       <Comment></Comment>
