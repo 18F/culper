@@ -2,6 +2,7 @@ import thunk from 'redux-thunk'
 import rootReducer from '../reducers'
 import { createStore, applyMiddleware } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
+import { createLogger } from 'redux-logger';
 
 const middleware = [thunk]
 
@@ -16,6 +17,7 @@ case 'production':
   store = createStore(rootReducer, applyMiddleware(...middleware))
   break
 default:
+  middleware.push(createLogger())
   store = createStore(rootReducer, composeWithDevTools(applyMiddleware(...middleware)))
 }
 
