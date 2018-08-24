@@ -159,6 +159,7 @@
       </LeftJob>
       {{end}}
 
+      {{- if and (not (radio $Item.EmploymentActivity | eq "SelfEmployment")) (not (radio $Item.EmploymentActivity | eq "Unemployment"))}}
       {{with $supervisor := $Item.Supervisor.props}}
       <Supervisor>
         <Name>{{text $supervisor.SupervisorName}}</Name>
@@ -175,6 +176,7 @@
         <Email DoNotKnow="{{notApplicable $supervisor.EmailNotApplicable}}">{{email $supervisor.Email}}</Email>
         <Telephone>{{telephone $supervisor.Telephone}}</Telephone>
       </Supervisor>
+      {{end}}
       {{end}}
 
       {{- if or (radio $Item.EmploymentActivity | eq "SelfEmployment") (radio $Item.EmploymentActivity | eq "Unemployment")}}
