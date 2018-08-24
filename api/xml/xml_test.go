@@ -2,9 +2,11 @@ package xml
 
 import (
 	"bufio"
+	"bytes"
 	"encoding/json"
 	"io/ioutil"
 	"os"
+	"os/exec"
 	"path"
 	"regexp"
 	"strings"
@@ -15,6 +17,9 @@ import (
 	"github.com/Jeffail/gabs"
 	"github.com/antchfx/xmlquery"
 )
+
+const dataDir = "testdata"
+const scenarioDir = "complete-scenarios"
 
 func TestPackage(t *testing.T) {
 	application := applicationData(t)
@@ -237,6 +242,73 @@ func TestDocumentExpiration(t *testing.T) {
 	assertHasNone(t, template, xpath, snippet)
 }
 
+func TestScenario1(t *testing.T) {
+	executeScenario(t, "test1")
+}
+
+func TestScenario2(t *testing.T) {
+	executeScenario(t, "test2")
+}
+
+func TestScenario4(t *testing.T) {
+	executeScenario(t, "test4")
+}
+
+func TestScenario6(t *testing.T) {
+	executeScenario(t, "test6")
+}
+
+// executeScenario generates XML from JSON test fixtures for a complete
+// applicant scenario and compares the result with XML reference files.
+// It is a coarse and unforgiving test; anything less than an exact match,
+// including formatting whitespace, will result in a test failure.
+func executeScenario(t *testing.T, name string) {
+	form := readSectionData(t, path.Join(scenarioDir, name+".json"))
+	snippet := applyForm(t, "application.xml", form)
+	formatted := formatXml(t, snippet)
+	reference := readReference(t, name+".xml")
+
+	if !bytes.Equal(formatted, reference) {
+		outfile := writeXml(t, name, formatted)
+		t.Fatalf("Generated XML `%s` does not match reference XML for `%s`",
+			outfile, name)
+	}
+}
+
+func writeXml(t *testing.T, name string, snippet []byte) string {
+	tmpfile, err := ioutil.TempFile(path.Join(dataDir, scenarioDir), name+".xml.")
+	if err != nil {
+		t.Fatalf("Error saving generated XML: %s", err.Error())
+	}
+	defer tmpfile.Close()
+	_, err = tmpfile.Write(snippet)
+	if err != nil {
+		t.Fatalf("Error saving generated XML: %s", err.Error())
+	}
+
+	return tmpfile.Name()
+}
+
+func readReference(t *testing.T, name string) []byte {
+	reference, err := ioutil.ReadFile(path.Join(dataDir, scenarioDir, name))
+	if err != nil {
+		t.Fatalf("Error reading reference XML `%s`: %s", name, err.Error())
+	}
+	return reference
+}
+
+func formatXml(t *testing.T, snippet string) []byte {
+	cmd := exec.Command("xmllint", "--format", "-")
+	cmd.Stdin = strings.NewReader(snippet)
+	var out bytes.Buffer
+	cmd.Stdout = &out
+	err := cmd.Run()
+	if err != nil {
+		t.Fatal(err)
+	}
+	return out.Bytes()
+}
+
 // applicationData loads a fully-populated, valid SF-86 form with test data
 func applicationData(t *testing.T) map[string]interface{} {
 	return newForm(t,
@@ -317,7 +389,7 @@ func applicationData(t *testing.T) map[string]interface{} {
 
 // readSectionData reads in a sub-section of test data, returning a partial form.
 func readSectionData(t *testing.T, filepath string) map[string]interface{} {
-	b, err := ioutil.ReadFile(path.Join("testdata", filepath))
+	b, err := ioutil.ReadFile(path.Join(dataDir, filepath))
 	if err != nil {
 		t.Fatal(err)
 	}
