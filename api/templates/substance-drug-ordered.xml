@@ -39,13 +39,13 @@
       </Drug>
       <Doctor>
         <Name>
-          <Last>{{text $Item.TreatmentProvider}}</Last>
-          <First Type="NFN"><!-- eApp only captures a sigle text entry --></First>
+          <Last>{{doctorLastName $Item.TreatmentProvider}}</Last>
+          <First Type="">{{doctorFirstName $Item.TreatmentProvider}}</First>
         </Name>
         <Address>{{location $Item.TreatmentProviderAddress}}</Address>
         <Telephone>{{telephone $Item.TreatmentProviderTelephone}}</Telephone>
       </Doctor>
-      {{daterange $Item.TreatmentDates}}
+      {{monthYearDaterange $Item.TreatmentDates}}
       <SuccessfullyCompletedTreatmentProgram>
         <Answer>{{branch $Item.TreatmentCompleted}}</Answer>
       </SuccessfullyCompletedTreatmentProgram>

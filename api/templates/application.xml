@@ -28,7 +28,7 @@
               </UserOptedToESig>
             </ESigCertificationResponses>
             <UserPreferences Version="1" Type="Pooled" LastSummaryID="201" LastDynamicListID="201">
-              <DisplayNavigation></DisplayNavigation>
+              <DisplayNavigation/>
             </UserPreferences>
           </FormInstanceSpecific>
           <Pooled>

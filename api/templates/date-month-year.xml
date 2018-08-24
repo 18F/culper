@@ -1,2 +1,2 @@
-<Month>{{.props.month}}</Month>
+<Month>{{padDigits .props.month}}</Month>
 <Year>{{.props.year}}</Year>

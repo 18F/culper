@@ -16,16 +16,27 @@
         <Explanation>{{textarea $Item.NoCompletedTreatmentExplanation}}</Explanation>
       </CompletedTreatmentProgram>
       <CounselingOrderedBy>
-        <Answer Employer="{{checkboxHas $Item.Seekers "Employer"}}"
-                MedicalProfessional="{{checkboxHas $Item.Seekers "MedicalProfessional"}}"
-                MentalHealthProfessional="{{checkboxHas $Item.Seekers "MentalHealthProfessional"}}"
-                Court="{{checkboxHas $Item.Seekers "CourtOfficial"}}"
-                None="{{checkboxHas $Item.Seekers "NotOrdered"}}"
-                Other="{{checkboxHas $Item.Seekers "Other"}}"/>
+        <Answer
+          {{if (checkboxHas $Item.Seekers "Employer") | eq "True"}}
+          Employer="True"
+          {{end}}
+          {{if (checkboxHas $Item.Seekers "MedicalProfessional") | eq "True"}}
+          MedicalProfessional="True"
+          {{end}}
+          {{if (checkboxHas $Item.Seekers "MentalHealthProfessional") | eq "True"}}
+          MentalHealthProfessional="True"
+          {{end}}
+          {{if (checkboxHas $Item.Seekers "Judge") | eq "True"}}
+          Court="True"
+          {{end}}
+          {{if (checkboxHas $Item.Seekers "None") | eq "True"}}
+          None="True"
+          {{end}}
+          />
         <Comment></Comment>
         <Explanation>{{text $Item.OtherSeeker}}</Explanation>
       </CounselingOrderedBy>
-      {{daterange $Item.CounselingDates}}
+      {{monthYearDaterange $Item.CounselingDates}}
       <Doctor>
         <Name>{{text $Item.TreatmentProviderName}}</Name>
         <Address>{{location $Item.TreatmentProviderAddress}}</Address>

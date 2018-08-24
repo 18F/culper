@@ -12,7 +12,15 @@
       <Amount Estimated="{{checkboxTrueFalse $Item.AmountEstimated}}">{{number $Item.Amount}}</Amount>
       <Comment></Comment>
       <DateBegan Type="{{dateEstimated $Item.Date}}">{{monthYear $Item.Date}}</DateBegan>
-      <DateResolved Type="{{dateEstimated $Item.Resolved}}" NotResolved="{{notApplicable $Item.ResolvedNotApplicable}}">{{monthYear $Item.Resolved}}</DateResolved>
+      <DateResolved Type="{{dateEstimated $Item.Resolved}}" 
+        {{ if (notApplicable $Item.ResolvedNotApplicable) | eq "True" }}
+        NotResolved="True"
+        {{end}}
+        >
+        {{ if (notApplicable $Item.ResolvedNotApplicable) | eq "False" }}
+        {{monthYear $Item.Resolved}}
+        {{end}}
+      </DateResolved>
       <Description>{{textarea $Item.Description}}</Description>
       <IssueType>
         <Answer>{{if checkbox $Item.Infractions}}Yes{{else}}No{{end}}</Answer>
