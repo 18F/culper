@@ -242,18 +242,30 @@ func TestDocumentExpiration(t *testing.T) {
 	assertHasNone(t, template, xpath, snippet)
 }
 
+// `test1` is a basic smoke test, a bare bones application
 func TestScenario1(t *testing.T) {
 	executeScenario(t, "test1")
 }
 
+// `test2` is a "blow out" of these SF-86 questions:
+// #21 Psychological/Emotional
+// #23 Illegal Use of Drugs/Activity
+// #24 Use of Alcohol
+// #26 Financial Record
 func TestScenario2(t *testing.T) {
 	executeScenario(t, "test2")
 }
 
+// `test4` is a "blow out" of these SF-86 questions:
+// #10 Dual/Multiple Citizenship
+// #15 Military history
+// #27 Use of information technology systems
+// #28 Involvement in non-criminal court actions
 func TestScenario4(t *testing.T) {
 	executeScenario(t, "test4")
 }
 
+// `test6` is a basic smoke test, a bare bones application
 func TestScenario6(t *testing.T) {
 	executeScenario(t, "test6")
 }
@@ -265,17 +277,17 @@ func TestScenario6(t *testing.T) {
 func executeScenario(t *testing.T, name string) {
 	form := readSectionData(t, path.Join(scenarioDir, name+".json"))
 	snippet := applyForm(t, "application.xml", form)
-	formatted := formatXml(t, snippet)
+	formatted := formatXML(t, snippet)
 	reference := readReference(t, name+".xml")
 
 	if !bytes.Equal(formatted, reference) {
-		outfile := writeXml(t, name, formatted)
+		outfile := writeXML(t, name, formatted)
 		t.Fatalf("Generated XML `%s` does not match reference XML for `%s`",
 			outfile, name)
 	}
 }
 
-func writeXml(t *testing.T, name string, snippet []byte) string {
+func writeXML(t *testing.T, name string, snippet []byte) string {
 	tmpfile, err := ioutil.TempFile(path.Join(dataDir, scenarioDir), name+".xml.")
 	if err != nil {
 		t.Fatalf("Error saving generated XML: %s", err.Error())
@@ -297,7 +309,7 @@ func readReference(t *testing.T, name string) []byte {
 	return reference
 }
 
-func formatXml(t *testing.T, snippet string) []byte {
+func formatXML(t *testing.T, snippet string) []byte {
 	cmd := exec.Command("xmllint", "--format", "-")
 	cmd.Stdin = strings.NewReader(snippet)
 	var out bytes.Buffer
