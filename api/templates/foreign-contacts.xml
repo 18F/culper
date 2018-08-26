@@ -56,10 +56,10 @@
           Telephone="True"
           {{end}}
           {{if (checkboxHas $Item.Methods "Electronic") | eq "True"}}
-          Electronic="True"
+          ElectronicCorrespondence="True"
           {{end}}
           {{if (checkboxHas $Item.Methods "Written") | eq "True"}}
-          Written="True"
+          WrittenCorrespondence="True"
           {{end}}
           {{if (checkboxHas $Item.Methods "Other") | eq "True"}}
           Other="True"
