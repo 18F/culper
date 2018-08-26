@@ -28,7 +28,7 @@
           <Pooled>
             <IdentifyingInformation Type="Pooled" Version="1">
               <Birth>
-                <Date Type="">
+                <Date>
                   <Month>10</Month>
                   <Day>29</Day>
                   <Year>1983</Year>
@@ -106,13 +106,13 @@
                   </LegalName>
                   <RelationshipType Neighbor="True" Friend="True" Schoolmate="True"/>
                   <Telephone>
-                    <Home DoNotKnow="">
+                    <Home>
             
 
 
 
           </Home>
-                    <Mobile DoNotKnow="">
+                    <Mobile>
                       <Number>7245555553</Number>
                       <Time>Both</Time>
                     </Mobile>
@@ -145,13 +145,13 @@
                   </LegalName>
                   <RelationshipType Neighbor="True" Friend="True"/>
                   <Telephone>
-                    <Home DoNotKnow="">
+                    <Home>
             
 
 
 
           </Home>
-                    <Mobile DoNotKnow="">
+                    <Mobile>
                       <Number>7245555554</Number>
                       <Time>Both</Time>
                     </Mobile>
@@ -185,13 +185,13 @@
                   </LegalName>
                   <RelationshipType Friend="True"/>
                   <Telephone>
-                    <Home DoNotKnow="">
+                    <Home>
             
 
 
 
           </Home>
-                    <Mobile DoNotKnow="">
+                    <Mobile>
                       <Number>7245555555</Number>
                       <Time>Both</Time>
                     </Mobile>
@@ -206,7 +206,7 @@
               <Relatives>
                 <Relative ID="0">
                   <Birth>
-                    <Date Type="">
+                    <Date>
                       <Month>09</Month>
                       <Day>30</Day>
                       <Year>1950</Year>
@@ -246,7 +246,7 @@
                 </Relative>
                 <Relative ID="1">
                   <Birth>
-                    <Date Type="">
+                    <Date>
                       <Month>04</Month>
                       <Day>05</Day>
                       <Year>1957</Year>
@@ -294,7 +294,7 @@
                   </Address>
                   <DateRange>
                     <From>
-                      <Date Type="">
+                      <Date>
                         <Month>12</Month>
                         <Year>1990</Year>
                       </Date>
@@ -313,7 +313,7 @@
                     </Address>
                     <Email DoNotKnow="True"/>
                     <LastContact>
-                      <Date Type="">
+                      <Date>
                         <Month>08</Month>
                         <Year>2018</Year>
                       </Date>
@@ -348,7 +348,7 @@
                 <Employment ID="0">
                   <DateRange>
                     <From>
-                      <Date Type="">
+                      <Date>
                         <Month>06</Month>
                         <Year>2006</Year>
                       </Date>
@@ -419,13 +419,13 @@
                 <SchoolAttended ID="0">
                   <DateRange>
                     <From>
-                      <Date Type="">
+                      <Date>
                         <Month>08</Month>
                         <Year>2002</Year>
                       </Date>
                     </From>
                     <To>
-                      <Date Type="">
+                      <Date>
                         <Month>05</Month>
                         <Year>2006</Year>
                       </Date>
@@ -445,7 +445,7 @@
                   <DegreesAwarded>
                     <DegreeAwarded ID="0">
                       <DateAwarded>
-                        <Date Type="">
+                        <Date>
                           <Month>05</Month>
                           <Year>2006</Year>
                         </Date>
@@ -457,13 +457,13 @@
                 <SchoolAttended ID="1">
                   <DateRange>
                     <From>
-                      <Date Type="">
+                      <Date>
                         <Month>08</Month>
                         <Year>1998</Year>
                       </Date>
                     </From>
                     <To>
-                      <Date Type="">
+                      <Date>
                         <Month>05</Month>
                         <Year>2002</Year>
                       </Date>
@@ -483,7 +483,7 @@
                   <DegreesAwarded>
                     <DegreeAwarded ID="0">
                       <DateAwarded>
-                        <Date Type="">
+                        <Date>
                           <Month>05</Month>
                           <Year>2002</Year>
                         </Date>

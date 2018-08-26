@@ -83,13 +83,21 @@ func (service Service) DefaultTemplate(templateName string, data map[string]inte
 // For example, UnemployedComment when not unemployed. See:
 // https://github.com/18F/e-QIP-prototype/issues/717
 func applyBulkFixes(xml string) string {
-	re := regexp.MustCompile("<[a-zA-Z_]+></[a-zA-Z_]+>")
-	s1 := re.ReplaceAllString(xml, "")
+	replaceWithEmpty := []string{
+		"<[a-zA-Z_]+></[a-zA-Z_]+>", // empty elements
+		" DoNotKnow=\"False\"",
+		" DoNotKnow=\"\"",
+		" Type=\"\"",
+		" Estimated=\"\"",
+	}
 
-	re = regexp.MustCompile(" DoNotKnow=\"False\"")
-	s2 := re.ReplaceAllString(s1, "")
+	x := xml
+	for _, n := range replaceWithEmpty {
+		re := regexp.MustCompile(n)
+		x = re.ReplaceAllString(x, "")
+	}
 
-	return s2
+	return x
 }
 
 func xmlTemplate(name string, data map[string]interface{}) (template.HTML, error) {
