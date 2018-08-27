@@ -2,7 +2,7 @@
  * Take one of the many schemas of a date and always output a valid
  * Date object or null.
  */
-export const extractDate = (dateObj) => {
+export const extractDate = dateObj => {
   if (dateObj instanceof Date) {
     return dateObj
   }
@@ -39,11 +39,11 @@ export const decimalAdjust = (type, value, exp) => {
 
   // Shift
   value = value.toString().split('e')
-  value = Math[type](+(value[0] + 'e' + (value[1] ? (+value[1] - exp) : -exp)))
+  value = Math[type](+(value[0] + 'e' + (value[1] ? +value[1] - exp : -exp)))
 
   // Shift back
   value = value.toString().split('e')
-  return +(value[0] + 'e' + (value[1] ? (+value[1] + exp) : exp))
+  return +(value[0] + 'e' + (value[1] ? +value[1] + exp : exp))
 }
 
 /**
@@ -73,13 +73,13 @@ export const rangeSorter = (a, b) => {
  * Calculate a date in the past
  */
 export const daysAgo = (from, days) => {
-  return new Date(from - (1000 * 60 * 60 * 24 * days))
+  return new Date(from - 1000 * 60 * 60 * 24 * days)
 }
 
 /**
  * Convert date to UTC
  */
-export const utc = (date) => {
+export const utc = date => {
   if (!date) {
     return null
   }
@@ -93,17 +93,17 @@ export const utc = (date) => {
 /**
  * Get the Julian date
  */
-export const julian = (date) => {
+export const julian = date => {
   if (!date) {
     return null
   }
-  return (((+utc(date)) / 86400000) + 2440587.5).toFixed(6)
+  return (+utc(date) / 86400000 + 2440587.5).toFixed(6)
 }
 
 /**
  * Convert a Julian date to a normal date
  */
-export const fromJulian = (julian) => {
+export const fromJulian = julian => {
   return new Date((Number(julian) - 2440587.5) * 86400000)
 }
 
@@ -143,8 +143,8 @@ export const daysBetween = (from, to) => {
 /**
  * Determine if a specified year is considered a leap year
  */
-export const leapYear = (year) => {
-  return ((year % 4 === 0) && (year % 100 !== 0)) || (year % 400 === 0)
+export const leapYear = year => {
+  return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0
 }
 
 /**
@@ -180,10 +180,15 @@ export const validDate = (month, day, year) => {
   const d = parseInt(day || 0)
   const y = parseInt(year || 0)
 
-  return (y > 1000 && y < 10000) && (m > 0 && m < 13) && (d > 0 && d <= daysInMonth(m, y))
+  return (
+    y > 1000 &&
+    y < 10000 &&
+    (m > 0 && m < 13) &&
+    (d > 0 && d <= daysInMonth(m, y))
+  )
 }
 
-export const endOfMonth = (date) => {
+export const endOfMonth = date => {
   if (!date) {
     return null
   }
@@ -199,7 +204,10 @@ export const endOfMonth = (date) => {
 export const gaps = (ranges = [], start = ten, buffer = 30) => {
   // If any of the ranges covers the entire timeline then return no gaps
   for (const range of ranges) {
-    if (daysAgo(range.from, -1 * buffer) <= start && range.to >= daysAgo(start, buffer)) {
+    if (
+      daysAgo(range.from, -1 * buffer) <= start &&
+      range.to >= daysAgo(today, buffer)
+    ) {
       return []
     }
   }
@@ -223,7 +231,11 @@ export const gaps = (ranges = [], start = ten, buffer = 30) => {
     start = range.to
 
     // If this is the last date range check for gaps in the future
-    if (i === length && start < fullStop && daysBetween(start, fullStop) > buffer) {
+    if (
+      i === length &&
+      start < fullStop &&
+      daysBetween(start, fullStop) > buffer
+    ) {
       holes.push({ from: range.to, to: fullStop })
     }
   })
