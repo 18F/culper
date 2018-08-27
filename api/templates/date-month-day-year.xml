@@ -1,3 +1,1 @@
-<Month>{{padDigits .props.month}}</Month>
-<Day>{{padDigits .props.day}}</Day>
-<Year>{{.props.year}}</Year>
+<Month>{{padDigits .props.month}}</Month><Day>{{padDigits .props.day}}</Day><Year>{{.props.year}}</Year>
