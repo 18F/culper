@@ -10,7 +10,9 @@ describe('The OrderedTreatments component', () => {
 
   it('Performs update', () => {
     let updates = 0
-    const onUpdate = () => { updates++ }
+    const onUpdate = () => {
+      updates++
+    }
     const component = mount(<OrderedTreatments onUpdate={onUpdate} />)
     expect(component.find('.ordered-treatments').length).toBe(1)
     component.find('.treatment-ordered .yes input').simulate('change')
@@ -19,7 +21,9 @@ describe('The OrderedTreatments component', () => {
 
   it('Performs updates to accordion', () => {
     let updates = 0
-    const onUpdate = () => { updates++ }
+    const onUpdate = () => {
+      updates++
+    }
     const list = {
       items: [
         {
@@ -61,7 +65,13 @@ describe('The OrderedTreatments component', () => {
         }
       ]
     }
-    const component = mount(<OrderedTreatments onUpdate={onUpdate} TreatmentOrdered={{ value: 'Yes' }} List={list} />)
+    const component = mount(
+      <OrderedTreatments
+        onUpdate={onUpdate}
+        TreatmentOrdered={{ value: 'Yes' }}
+        List={list}
+      />
+    )
     expect(component.find('.ordered-treatments').length).toBe(1)
     component.find('.explanation textarea').simulate('change')
     expect(updates).toBe(2)

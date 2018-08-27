@@ -1,8 +1,8 @@
 import FederalServiceValidator from './federalservice'
 import Location from '../components/Form/Location'
 
-describe('Federal service component validation', function () {
-  it('should validate employment entry', function () {
+describe('Federal service component validation', function() {
+  it('should validate employment entry', function() {
     const tests = [
       {
         state: {
@@ -90,7 +90,9 @@ describe('Federal service component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new FederalServiceValidator(test.state).isValid()).toBe(test.expected)
+      expect(new FederalServiceValidator(test.state).isValid()).toBe(
+        test.expected
+      )
     })
   })
 })

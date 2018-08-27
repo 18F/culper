@@ -2,17 +2,21 @@ import { EmploymentValidator } from './employment'
 import { validAccordion } from './helpers'
 
 export default class HistoryValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.list = data.List || { items: [] }
   }
 
-  validEmployment () {
-    return validAccordion(this.list, item => {
-      return new EmploymentValidator(item).isValid()
-    }, true)
+  validEmployment() {
+    return validAccordion(
+      this.list,
+      item => {
+        return new EmploymentValidator(item).isValid()
+      },
+      true
+    )
   }
 
-  isValid () {
+  isValid() {
     return this.validEmployment()
   }
 }

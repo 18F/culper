@@ -1,8 +1,10 @@
-import LegalAssociationsOverthrowValidator, { OverthrowValidator } from './legalassociationsoverthrow'
+import LegalAssociationsOverthrowValidator, {
+  OverthrowValidator
+} from './legalassociationsoverthrow'
 import { battery } from './helpers'
 import Location from '../components/Form/Location'
 
-describe('Legal associations overthrow component validation', function () {
+describe('Legal associations overthrow component validation', function() {
   it('validate organization', () => {
     const tests = [
       {

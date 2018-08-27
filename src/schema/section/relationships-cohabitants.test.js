@@ -7,40 +7,44 @@ describe('Schema for financial taxes', () => {
       HasCohabitant: { value: 'Yes' },
       CohabitantList: {
         branch: { value: 'No' },
-        items: [{
-          Item: {
-            Name: {},
-            Birthdate: {},
-            BirthPlace: {
-              country: null
-            },
-            ForeignBornDocument: {
-              DocumentType: {},
-              OtherExplanation: {},
-              DocumentNumber: {},
-              DocumentExpiration: {},
-              DocumentExpirationNotApplicable: {}
-            },
-            SSN: {},
-            OtherNames: {
-              branch: null,
-              items: [{
-                Item: {
-                  Has: {},
-                  OtherName: {},
-                  MaidenName: {},
-                  DatesUsed: {
-                    from: {},
-                    to: {},
-                    present: null
+        items: [
+          {
+            Item: {
+              Name: {},
+              Birthdate: {},
+              BirthPlace: {
+                country: null
+              },
+              ForeignBornDocument: {
+                DocumentType: {},
+                OtherExplanation: {},
+                DocumentNumber: {},
+                DocumentExpiration: {},
+                DocumentExpirationNotApplicable: {}
+              },
+              SSN: {},
+              OtherNames: {
+                branch: null,
+                items: [
+                  {
+                    Item: {
+                      Has: {},
+                      OtherName: {},
+                      MaidenName: {},
+                      DatesUsed: {
+                        from: {},
+                        to: {},
+                        present: null
+                      }
+                    }
                   }
-                }
-              }]
-            },
-            Citizenship: {},
-            CohabitationBegan: {}
+                ]
+              },
+              Citizenship: {},
+              CohabitationBegan: {}
+            }
           }
-        }]
+        ]
       }
     }
 

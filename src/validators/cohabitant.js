@@ -2,15 +2,21 @@ import NameValidator from './name'
 import LocationValidator, { countryString } from './location'
 import DateRangeValidator from './daterange'
 import ForeignBornDocument from './foreignborndocument'
-import { validAccordion, validSSN, validDateField, validBranch, BranchCollection } from './helpers'
+import {
+  validAccordion,
+  validSSN,
+  validDateField,
+  validBranch,
+  BranchCollection
+} from './helpers'
 
 export default class CohabitantsValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.hasCohabitant = (data.HasCohabitant || {}).value
     this.list = data.CohabitantList || {}
   }
 
-  isValid () {
+  isValid() {
     if (!validBranch(this.hasCohabitant)) {
       return false
     }
@@ -19,14 +25,14 @@ export default class CohabitantsValidator {
       return true
     }
 
-    return validAccordion(this.list, (item) => {
+    return validAccordion(this.list, item => {
       return new CohabitantValidator(item).isValid()
     })
   }
 }
 
 export class CohabitantValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.name = data.Name
     this.birthdate = data.Birthdate
     this.birthPlace = data.BirthPlace || {}
@@ -36,27 +42,34 @@ export class CohabitantValidator {
     this.citizenship = data.Citizenship
   }
 
-  similarSpouse (spouse) {
+  similarSpouse(spouse) {
     if (!this.name || !spouse) {
       return false
     }
 
-    if (this.name.first === spouse.first && this.name.last === spouse.last && this.name.middle === spouse.middle) {
+    if (
+      this.name.first === spouse.first &&
+      this.name.last === spouse.last &&
+      this.name.middle === spouse.middle
+    ) {
       return true
     }
 
     return false
   }
 
-  validForeignBornDocument () {
+  validForeignBornDocument() {
     const country = countryString(this.birthPlace.country)
-    if (new LocationValidator(this.birthPlace).isValid() && country !== 'United States') {
+    if (
+      new LocationValidator(this.birthPlace).isValid() &&
+      country !== 'United States'
+    ) {
       return new ForeignBornDocument(this.foreignBornDocument).isValid()
     }
     return true
   }
 
-  validOtherNames () {
+  validOtherNames() {
     const branchValidator = new BranchCollection(this.otherNames)
     if (!branchValidator.validKeyValues()) {
       return false
@@ -68,23 +81,31 @@ export class CohabitantValidator {
 
     return branchValidator.each(row => {
       const item = row.Item || {}
-      return new NameValidator(item.OtherName).isValid() &&
+      return (
+        new NameValidator(item.OtherName).isValid() &&
         new DateRangeValidator(item.DatesUsed) &&
         validBranch((item.MaidenName || {}).value)
+      )
     })
   }
 
-  validCitizenship () {
-    return !!this.citizenship && !!this.citizenship.value && this.citizenship.value.length > 0
+  validCitizenship() {
+    return (
+      !!this.citizenship &&
+      !!this.citizenship.value &&
+      this.citizenship.value.length > 0
+    )
   }
 
-  isValid () {
-    return new NameValidator(this.name).isValid() &&
+  isValid() {
+    return (
+      new NameValidator(this.name).isValid() &&
       validDateField(this.birthdate) &&
       new LocationValidator(this.birthPlace).isValid() &&
       this.validForeignBornDocument() &&
       validSSN(this.ssn) &&
       this.validCitizenship() &&
       this.validOtherNames()
+    )
   }
 }

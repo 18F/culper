@@ -10,12 +10,20 @@ export const NameText = (props, unknown = '') => {
     return unknown
   }
 
-  const suffix = props.suffix && props.suffix === 'Other' ? titleCase(props.suffixOther) : props.suffix
-  const name = titleCase(`${props.first || ''} ${props.middle || ''} ${props.last || ''}`.trim())
+  const suffix =
+    props.suffix && props.suffix === 'Other'
+      ? titleCase(props.suffixOther)
+      : props.suffix
+  const name = titleCase(
+    `${props.first || ''} ${props.middle || ''} ${props.last || ''}`.trim()
+  )
   const nameAndSuffix = `${name} ${suffix || ''}`.trim()
   return nameAndSuffix || unknown
 }
 
-const titleCase = (str) => {
-  return str.split(' ').map(c => c.slice(0, 1).toUpperCase() + c.slice(1).toLowerCase()).join(' ')
+const titleCase = str => {
+  return str
+    .split(' ')
+    .map(c => c.slice(0, 1).toUpperCase() + c.slice(1).toLowerCase())
+    .join(' ')
 }

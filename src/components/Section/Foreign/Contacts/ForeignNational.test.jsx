@@ -1,4 +1,3 @@
-
 import React from 'react'
 import { mount } from 'enzyme'
 import ForeignNational from './ForeignNational'
@@ -72,7 +71,9 @@ describe('The foreign national component', () => {
         items: [{ Item: { Has: { value: 'No' } } }]
       },
       HasAffiliations: { value: 'Yes' },
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
     const component = mount(<ForeignNational {...expected} />)
     component.find('.na-name .name .first input').simulate('change')

@@ -68,11 +68,7 @@ class Section extends React.Component {
 
   render() {
     const sections = this.createSections()
-    return (
-      <SectionViews current={this.props.section}>
-        {sections}
-      </SectionViews>
-    )
+    return <SectionViews current={this.props.section}>{sections}</SectionViews>
   }
 }
 

@@ -1,7 +1,7 @@
 import GamblingValidator from './gambling'
 
-describe('gambling debt component validation', function () {
-  it('should validate has gambling debt', function () {
+describe('gambling debt component validation', function() {
+  it('should validate has gambling debt', function() {
     const tests = [
       {
         state: {
@@ -36,11 +36,13 @@ describe('gambling debt component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new GamblingValidator(test.state, null).validHasGamblingDebt()).toBe(test.expected)
+      expect(
+        new GamblingValidator(test.state, null).validHasGamblingDebt()
+      ).toBe(test.expected)
     })
   })
 
-  it('should validate gambling debt fields', function () {
+  it('should validate gambling debt fields', function() {
     const tests = [
       {
         state: {
@@ -254,11 +256,13 @@ describe('gambling debt component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new GamblingValidator(test.state, null).validGamblingDebt()).toBe(test.expected)
+      expect(new GamblingValidator(test.state, null).validGamblingDebt()).toBe(
+        test.expected
+      )
     })
   })
 
-  it('should validate gambling debt', function () {
+  it('should validate gambling debt', function() {
     const tests = [
       {
         state: {
@@ -311,7 +315,9 @@ describe('gambling debt component validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new GamblingValidator(test.state, null).isValid()).toBe(test.expected)
+      expect(new GamblingValidator(test.state, null).isValid()).toBe(
+        test.expected
+      )
     })
   })
 })

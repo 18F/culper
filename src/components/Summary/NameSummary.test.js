@@ -36,18 +36,30 @@ describe('The name summary', () => {
   it('suffix should be value from selection', () => {
     const item = { first: 'Bob', middle: 'Joe', last: 'Smith', suffix: 'Sr' }
     const summary = NameSummary(item, 'Unknown')
-    expect(summary).toEqual(<span className="title-case">Bob Joe Smith Sr</span>)
+    expect(summary).toEqual(
+      <span className="title-case">Bob Joe Smith Sr</span>
+    )
   })
 
   it('suffix should be capitalized', () => {
     const item = { first: 'Bob', middle: 'Joe', last: 'Smith', suffix: 'IV' }
     const summary = NameSummary(item, 'Unknown')
-    expect(summary).toEqual(<span className="title-case">Bob Joe Smith IV</span>)
+    expect(summary).toEqual(
+      <span className="title-case">Bob Joe Smith IV</span>
+    )
   })
 
   it('suffix should be capitalized', () => {
-    const item = { first: 'Bob', middle: 'Joe', last: 'Smith', suffix: 'Other', suffixOther: 'princess of power' }
+    const item = {
+      first: 'Bob',
+      middle: 'Joe',
+      last: 'Smith',
+      suffix: 'Other',
+      suffixOther: 'princess of power'
+    }
     const summary = NameSummary(item, 'Unknown')
-    expect(summary).toEqual(<span className="title-case">Bob Joe Smith Princess Of Power</span>)
+    expect(summary).toEqual(
+      <span className="title-case">Bob Joe Smith Princess Of Power</span>
+    )
   })
 })

@@ -1,21 +1,23 @@
 export const reference = {
   heading: {
-    name: 'Provide this person\'s full name',
+    name: "Provide this person's full name",
     contact: 'Provide date of last contact',
     relationship: 'Relationship',
     phone: {
-      default: 'Provide this person\'s phone number',
-      evening: 'Provide this person\'s evening phone number',
-      day: 'Provide this person\'s daytime phone number',
-      mobile: 'Provide this person\'s cell/mobile phone number'
+      default: "Provide this person's phone number",
+      evening: "Provide this person's evening phone number",
+      day: "Provide this person's daytime phone number",
+      mobile: "Provide this person's cell/mobile phone number"
     },
-    email: 'Provide this person\'s email address',
+    email: "Provide this person's email address",
     correspondence: 'Their contact information',
-    address: 'Provide this person\'s street address'
+    address: "Provide this person's street address"
   },
   para: {
-    correspondence: 'Provide the following contact information for this person.',
-    address: 'Provide street address for this person (including apartment number).',
+    correspondence:
+      'Provide the following contact information for this person.',
+    address:
+      'Provide street address for this person (including apartment number).',
     or: 'or'
   },
   label: {
@@ -65,12 +67,14 @@ export const reference = {
   help: {
     contact: {
       title: 'Estimate the date if unsure',
-      message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+      message:
+        'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
       note: ''
     },
     relationship: {
       title: 'Need help defining your relationship?',
-      message: 'Please define your relationship with the person during this period.',
+      message:
+        'Please define your relationship with the person during this period.',
       note: ''
     },
     email: {
@@ -85,7 +89,8 @@ export const reference = {
     },
     address: {
       title: 'Acronyms:',
-      message: 'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
+      message:
+        'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
       note: ''
     }
   }

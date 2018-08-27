@@ -7,7 +7,7 @@ import SubsectionElement from '../../SubsectionElement'
 import { Field, SSN, Show } from '../../../Form'
 
 export default class ApplicantSSN extends SubsectionElement {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
@@ -21,7 +21,7 @@ export default class ApplicantSSN extends SubsectionElement {
     this.verificationError = this.verificationError.bind(this)
   }
 
-  update (queue) {
+  update(queue) {
     this.props.onUpdate({
       ssn: this.props.ssn,
       verified: this.props.verified,
@@ -29,7 +29,7 @@ export default class ApplicantSSN extends SubsectionElement {
     })
   }
 
-  updateSSN (values) {
+  updateSSN(values) {
     this.update({
       ssn: values,
       verified: false,
@@ -37,42 +37,52 @@ export default class ApplicantSSN extends SubsectionElement {
     })
   }
 
-  updateVerification (values) {
-    const verified = this.props.ssn.first === values.first &&
-          this.props.ssn.middle === values.middle &&
-          this.props.ssn.last === values.last &&
-          validSSN(values)
+  updateVerification(values) {
+    const verified =
+      this.props.ssn.first === values.first &&
+      this.props.ssn.middle === values.middle &&
+      this.props.ssn.last === values.last &&
+      validSSN(values)
 
-    this.setState({
-      verification: verified ? {} : values,
-      error: verified ? false : this.state.error
-    }, () => {
-      // Update the properties so they can be reflected
-      // within this component.
-      this.update({ verified: verified })
+    this.setState(
+      {
+        verification: verified ? {} : values,
+        error: verified ? false : this.state.error
+      },
+      () => {
+        // Update the properties so they can be reflected
+        // within this component.
+        this.update({ verified: verified })
 
-      // If everything checks out there are no errors and
-      // we are going to forcefully flush them.
-      if (verified) {
-        this.handleError(values, [])
-        this.verificationError(values, [])
+        // If everything checks out there are no errors and
+        // we are going to forcefully flush them.
+        if (verified) {
+          this.handleError(values, [])
+          this.verificationError(values, [])
+        }
       }
-    })
+    )
   }
 
-  verificationError (value, arr) {
+  verificationError(value, arr) {
     // If the verification SSN is valid then we run our validation
     // function(s). However, if it is not then we set the `valid` property
     // to a neutral state. This allows the error notifications to be properly
     // toggled within the various subscribing components.
     const verification = this.state.verification
-    const local = this.props.onError(value, this.constructor.errors.map(err => {
-      return {
-        code: err.code,
-        valid: validSSN(verification) ? err.func(verification, this.props) : null,
-        uid: this.state.uid
-      }
-    })) || []
+    const local =
+      this.props.onError(
+        value,
+        this.constructor.errors.map(err => {
+          return {
+            code: err.code,
+            valid: validSSN(verification)
+              ? err.func(verification, this.props)
+              : null,
+            uid: this.state.uid
+          }
+        })
+      ) || []
 
     // Set the error state value so we can apply a CSS class to
     // the entire SSN.
@@ -80,46 +90,57 @@ export default class ApplicantSSN extends SubsectionElement {
     return this.handleError(value, arr.concat(local))
   }
 
-  render () {
-    const klass = `section-content applicant-ssn ${this.props.className || ''}`.trim()
-    const klassVerify = `applicant-ssn-verification ${this.state.error ? 'usa-input-error' : ''}`.trim()
-    const verify = validSSN(this.props.ssn) && !this.props.verified && !this.props.ssn.notApplicable
+  render() {
+    const klass = `section-content applicant-ssn ${this.props.className ||
+      ''}`.trim()
+    const klassVerify = `applicant-ssn-verification ${
+      this.state.error ? 'usa-input-error' : ''
+    }`.trim()
+    const verify =
+      validSSN(this.props.ssn) &&
+      !this.props.verified &&
+      !this.props.ssn.notApplicable
 
     return (
       <div className={klass} {...super.dataAttributes(this.props)}>
-        <Field title={i18n.t('identification.ssn.title')}
-               titleSize="h2"
-               help="identification.ssn.help"
-               scrollIntoView={this.props.scrollIntoView}>
-          <SSN name="ssn"
-               {...this.props.ssn}
-               className="applicant-ssn-initial"
-               onUpdate={this.updateSSN}
-               onError={this.handleError}
-               required={!this.props.ssn.notApplicable && this.props.required}
-               />
+        <Field
+          title={i18n.t('identification.ssn.title')}
+          titleSize="h2"
+          help="identification.ssn.help"
+          scrollIntoView={this.props.scrollIntoView}>
+          <SSN
+            name="ssn"
+            {...this.props.ssn}
+            className="applicant-ssn-initial"
+            onUpdate={this.updateSSN}
+            onError={this.handleError}
+            required={!this.props.ssn.notApplicable && this.props.required}
+          />
         </Field>
 
         <Show when={verify}>
-          <Field title={i18n.t('identification.ssn.heading.verify')}
-                 scrollIntoView={this.props.scrollIntoView}
-                 titleSize="h4">
-            <SSN name="verification"
-                 {...this.state.verification}
-                 hideNotApplicable={true}
-                 className={klassVerify}
-                 onUpdate={this.updateVerification}
-                 onError={this.verificationError}
-                 required={verify && this.props.required}
-                 />
+          <Field
+            title={i18n.t('identification.ssn.heading.verify')}
+            scrollIntoView={this.props.scrollIntoView}
+            titleSize="h4">
+            <SSN
+              name="verification"
+              {...this.state.verification}
+              hideNotApplicable={true}
+              className={klassVerify}
+              onUpdate={this.updateVerification}
+              onError={this.verificationError}
+              required={verify && this.props.required}
+            />
           </Field>
         </Show>
         <Show when={this.props.verified}>
-          <Field title={i18n.t('identification.ssn.heading.verified')}
-                 optional={true}
-                 scrollIntoView={this.props.scrollIntoView}
-                 titleSize="h4">
-          </Field>
+          <Field
+            title={i18n.t('identification.ssn.heading.verified')}
+            optional={true}
+            scrollIntoView={this.props.scrollIntoView}
+            titleSize="h4"
+          />
         </Show>
       </div>
     )
@@ -130,13 +151,15 @@ ApplicantSSN.defaultProps = {
   name: 'applicant-ssn',
   ssn: {},
   verified: false,
-  onUpdate: (queue) => {},
-  onError: (value, arr) => { return arr },
+  onUpdate: queue => {},
+  onError: (value, arr) => {
+    return arr
+  },
   section: 'identification',
   subsection: 'ssn',
   dispatch: () => {},
   required: false,
-  validator: (data) => {
+  validator: data => {
     return validate(schema('identification.ssn', data))
   }
 }
@@ -148,10 +171,12 @@ ApplicantSSN.errors = [
       if (!value) {
         return null
       }
-      return validate(schema('ssn', value)) &&
+      return (
+        validate(schema('ssn', value)) &&
         props.ssn.first === value.first &&
         props.ssn.middle === value.middle &&
         props.ssn.last === value.last
+      )
     }
   }
 ]

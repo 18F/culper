@@ -1,14 +1,14 @@
 import { schema, unschema } from './schema'
 
-describe('Schema', function () {
-  it('wraps top layer', function () {
+describe('Schema', function() {
+  it('wraps top layer', function() {
     const data = { value: 'test' }
     const actual = schema('my.payload', data)
     expect(actual.type).toEqual('my.payload')
     expect(actual.props).toEqual(data)
   })
 
-  it('wraps deep properties', function () {
+  it('wraps deep properties', function() {
     const data = { HasOtherNames: { value: 'Yes' }, List: [] }
     const actual = schema('identification.othernames', data, false)
     expect(actual.type).toEqual('identification.othernames')
@@ -18,7 +18,7 @@ describe('Schema', function () {
     expect(actual.props.List.props.items).toEqual(data.List)
   })
 
-  it('can unwrap schema structure', function () {
+  it('can unwrap schema structure', function() {
     const tests = [
       {
         given: {
@@ -361,7 +361,7 @@ describe('Schema', function () {
     })
   })
 
-  it('valid payload types', function () {
+  it('valid payload types', function() {
     const tests = [
       {
         type: 'benefit',

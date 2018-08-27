@@ -3,7 +3,7 @@ import LocationValidator from './location'
 import { validGenericTextfield, validDateField } from './helpers'
 
 export default class CitizenshipValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.citizenshipStatus = (data.CitizenshipStatus || {}).value
     this.abroadDocumentation = (data.AbroadDocumentation || {}).value
     this.explanation = data.Explanation || {}
@@ -18,8 +18,10 @@ export default class CitizenshipValidator {
     this.certificateName = data.CertificateName
     this.certificateCourtName = data.CertificateCourtName || {}
     this.certificateCourtAddress = data.CertificateCourtAddress
-    this.bornOnMilitaryInstallation = (data.BornOnMilitaryInstallation || {}).value
-    this.militaryBase = (data.MilitaryBase || {})
+    this.bornOnMilitaryInstallation = (
+      data.BornOnMilitaryInstallation || {}
+    ).value
+    this.militaryBase = data.MilitaryBase || {}
     this.entryDate = data.EntryDate
     this.entryLocation = data.EntryLocation
     this.priorCitizenship = (data.PriorCitizenship || {}).value
@@ -31,16 +33,26 @@ export default class CitizenshipValidator {
     this.residenceStatus = data.ResidenceStatus
   }
 
-  validCitizenshipStatus () {
-    return !!this.citizenshipStatus && ['Citizen', 'ForeignBorn', 'Naturalized', 'Derived', 'NotCitizen'].includes(this.citizenshipStatus)
+  validCitizenshipStatus() {
+    return (
+      !!this.citizenshipStatus &&
+      [
+        'Citizen',
+        'ForeignBorn',
+        'Naturalized',
+        'Derived',
+        'NotCitizen'
+      ].includes(this.citizenshipStatus)
+    )
   }
 
-  validForeignBorn () {
+  validForeignBorn() {
     if (this.citizenshipStatus !== 'ForeignBorn') {
       return true
     }
 
-    return this.validAbroadDocumentation() &&
+    return (
+      this.validAbroadDocumentation() &&
       validGenericTextfield(this.documentNumber) &&
       validDateField(this.documentIssued) &&
       new LocationValidator(this.placeIssued).isValid() &&
@@ -49,14 +61,16 @@ export default class CitizenshipValidator {
       validDateField(this.certificateIssued) &&
       new NameValidator(this.certificateName).isValid() &&
       this.validBornOnMilitaryInstallation()
+    )
   }
 
-  validNaturalized () {
+  validNaturalized() {
     if (this.citizenshipStatus !== 'Naturalized') {
       return true
     }
 
-    return validDateField(this.entryDate) &&
+    return (
+      validDateField(this.entryDate) &&
       new LocationValidator(this.entryLocation).isValid() &&
       this.validCitizenships(this.priorCitizenship) &&
       this.validAlienRegistration() &&
@@ -66,27 +80,31 @@ export default class CitizenshipValidator {
       validDateField(this.certificateIssued) &&
       new NameValidator(this.certificateName).isValid() &&
       this.validBasis()
+    )
   }
 
-  validDerived () {
+  validDerived() {
     if (this.citizenshipStatus !== 'Derived') {
       return true
     }
 
-    return validGenericTextfield(this.alienRegistrationNumber) &&
+    return (
+      validGenericTextfield(this.alienRegistrationNumber) &&
       validGenericTextfield(this.permanentResidentCardNumber) &&
       validGenericTextfield(this.certificateNumber) &&
       new NameValidator(this.certificateName).isValid() &&
       validDateField(this.certificateIssued) &&
       this.validBasis()
+    )
   }
 
-  validNotCitizen () {
+  validNotCitizen() {
     if (this.citizenshipStatus !== 'NotCitizen') {
       return true
     }
 
-    return validGenericTextfield(this.residenceStatus) &&
+    return (
+      validGenericTextfield(this.residenceStatus) &&
       validDateField(this.entryDate) &&
       new LocationValidator(this.entryLocation).isValid() &&
       this.validCitizenships(this.priorCitizenship) &&
@@ -97,44 +115,70 @@ export default class CitizenshipValidator {
       new NameValidator(this.documentName).isValid() &&
       validDateField(this.documentIssued) &&
       validDateField(this.documentExpiration)
+    )
   }
 
-  validAbroadDocumentation () {
-    return !!this.abroadDocumentation &&
-      ['FS-240', 'DS-1350', 'FS-545', 'Other'].includes(this.abroadDocumentation) &&
-      (this.abroadDocumentation !== 'Other' || (this.abroadDocumentation === 'Other' && validGenericTextfield(this.explanation)))
+  validAbroadDocumentation() {
+    return (
+      !!this.abroadDocumentation &&
+      ['FS-240', 'DS-1350', 'FS-545', 'Other'].includes(
+        this.abroadDocumentation
+      ) &&
+      (this.abroadDocumentation !== 'Other' ||
+        (this.abroadDocumentation === 'Other' &&
+          validGenericTextfield(this.explanation)))
+    )
   }
 
-  validBornOnMilitaryInstallation () {
-    return !!this.bornOnMilitaryInstallation &&
-      (this.bornOnMilitaryInstallation === 'No' || (this.bornOnMilitaryInstallation === 'Yes' && validGenericTextfield(this.militaryBase)))
+  validBornOnMilitaryInstallation() {
+    return (
+      !!this.bornOnMilitaryInstallation &&
+      (this.bornOnMilitaryInstallation === 'No' ||
+        (this.bornOnMilitaryInstallation === 'Yes' &&
+          validGenericTextfield(this.militaryBase)))
+    )
   }
 
-  validCitizenships (arr) {
+  validCitizenships(arr) {
     return !!arr && arr.length > 0
   }
 
-  validAlienRegistration () {
-    return !!this.hasAlienRegistration &&
-      (this.hasAlienRegistration === 'No' || (this.hasAlienRegistration === 'Yes' && validGenericTextfield(this.alienRegistrationNumber)))
+  validAlienRegistration() {
+    return (
+      !!this.hasAlienRegistration &&
+      (this.hasAlienRegistration === 'No' ||
+        (this.hasAlienRegistration === 'Yes' &&
+          validGenericTextfield(this.alienRegistrationNumber)))
+    )
   }
 
-  validBasis () {
-    return !!this.basis &&
-      (this.basis !== 'Other' || (this.basis === 'Other' && validGenericTextfield(this.explanation)))
+  validBasis() {
+    return (
+      !!this.basis &&
+      (this.basis !== 'Other' ||
+        (this.basis === 'Other' && validGenericTextfield(this.explanation)))
+    )
   }
 
-  validDocumentType () {
-    return !!this.documentType &&
-      ['I-94', 'U.S. Visa', 'I-20', 'DS-2019', 'Other'].includes(this.documentType) &&
-      (this.documentType !== 'Other' || (this.documentType === 'Other' && validGenericTextfield(this.explanation)))
+  validDocumentType() {
+    return (
+      !!this.documentType &&
+      ['I-94', 'U.S. Visa', 'I-20', 'DS-2019', 'Other'].includes(
+        this.documentType
+      ) &&
+      (this.documentType !== 'Other' ||
+        (this.documentType === 'Other' &&
+          validGenericTextfield(this.explanation)))
+    )
   }
 
-  isValid () {
-    return this.validCitizenshipStatus() &&
+  isValid() {
+    return (
+      this.validCitizenshipStatus() &&
       this.validForeignBorn() &&
       this.validNaturalized() &&
       this.validDerived() &&
       this.validNotCitizen()
+    )
   }
 }

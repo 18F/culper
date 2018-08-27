@@ -7,53 +7,55 @@ describe('Schema for financial taxes', () => {
       HasOffenses: { value: 'Yes' },
       List: {
         branch: { value: 'No' },
-        items: [{
-          Item: {
-            Date: {},
-            Description: {},
-            InvolvedViolence: {},
-            InvolvedFirearms: {},
-            InvolvedSubstances: {},
-            Address: {
-              country: null
-            },
-            WasCited: {},
-            CitedBy: {},
-            AgencyAddress: {
-              country: null
-            },
-            WasCharged: {},
-            Explanation: {},
-            CourtName: {},
-            CourtAddress: {
-              country: null
-            },
-            CourtCharge: {},
-            CourtOutcome: {},
-            CourtDate: {},
-            ChargeType: {},
-            WasSentenced: {},
-            Sentence: {
+        items: [
+          {
+            Item: {
+              Date: {},
               Description: {},
-              ExceedsYear: {},
-              Incarcerated: {},
-              IncarcerationDates: {
-                from: {},
-                to: {},
-                present: null
+              InvolvedViolence: {},
+              InvolvedFirearms: {},
+              InvolvedSubstances: {},
+              Address: {
+                country: null
               },
-              IncarcerationDatesNA: {},
-              ProbationDates: {
-                from: {},
-                to: {},
-                present: null
+              WasCited: {},
+              CitedBy: {},
+              AgencyAddress: {
+                country: null
               },
-              ProbationDatesNA: {}
-            },
-            AwaitingTrial: {},
-            AwaitingTrialExplanation: {}
+              WasCharged: {},
+              Explanation: {},
+              CourtName: {},
+              CourtAddress: {
+                country: null
+              },
+              CourtCharge: {},
+              CourtOutcome: {},
+              CourtDate: {},
+              ChargeType: {},
+              WasSentenced: {},
+              Sentence: {
+                Description: {},
+                ExceedsYear: {},
+                Incarcerated: {},
+                IncarcerationDates: {
+                  from: {},
+                  to: {},
+                  present: null
+                },
+                IncarcerationDatesNA: {},
+                ProbationDates: {
+                  from: {},
+                  to: {},
+                  present: null
+                },
+                ProbationDatesNA: {}
+              },
+              AwaitingTrial: {},
+              AwaitingTrialExplanation: {}
+            }
           }
-        }]
+        ]
       }
     }
 

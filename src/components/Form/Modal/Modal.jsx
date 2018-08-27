@@ -22,7 +22,7 @@ export const applyFixedModal = (open = false) => {
 }
 
 export default class Modal extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.update = this.update.bind(this)
@@ -30,7 +30,7 @@ export default class Modal extends React.Component {
     this.dismiss = this.dismiss.bind(this)
   }
 
-  update (queue) {
+  update(queue) {
     this.props.onUpdate({
       show: this.props.show,
       ...queue
@@ -43,7 +43,7 @@ export default class Modal extends React.Component {
    * However, we need to stop propagation of the click event so the modal itself does not
    * dismiss it in this use case.
    */
-  doNothing (event) {
+  doNothing(event) {
     event.stopPropagation()
 
     if (event.nativeElement) {
@@ -55,7 +55,7 @@ export default class Modal extends React.Component {
    * This allows the user to bypass the suggestions and add something else
    * we have never seen before.
    */
-  dismiss () {
+  dismiss() {
     if (this.props.closeable) {
       this.update({
         show: false
@@ -65,10 +65,15 @@ export default class Modal extends React.Component {
     }
   }
 
-  closer () {
+  closer() {
     if (this.props.closeable) {
       return (
-        <a role="button" className="modal-close" href="javascript:;;" title="Click to close" onClick={this.dismiss}>
+        <a
+          role="button"
+          className="modal-close"
+          href="javascript:;;"
+          title="Click to close"
+          onClick={this.dismiss}>
           <Svg src="/img/close-icon.svg" />
         </a>
       )
@@ -77,7 +82,7 @@ export default class Modal extends React.Component {
     return null
   }
 
-  render () {
+  render() {
     applyFixedModal(this.props.show)
 
     if (!this.props.show) {
@@ -89,7 +94,11 @@ export default class Modal extends React.Component {
 
     // When there is nothing special do the status quo
     return (
-      <div className="modal" role="dialog" aria-hidden="false" onClick={this.dismiss}>
+      <div
+        className="modal"
+        role="dialog"
+        aria-hidden="false"
+        onClick={this.dismiss}>
         <div className="modal-wrap">
           <div className={klass} onClick={this.doNothing}>
             {this.closer()}
@@ -105,6 +114,6 @@ Modal.defaultProps = {
   className: '',
   show: false,
   closeable: false,
-  onUpdate: (queue) => {},
+  onUpdate: queue => {},
   onDismiss: () => {}
 }

@@ -1,7 +1,7 @@
 import ForeignTravelValidator, { TravelValidator } from './foreigntravel'
 import { battery } from './helpers'
 
-describe('Foreign travel component validation', function () {
+describe('Foreign travel component validation', function() {
   it('validate foreign travel country', () => {
     const tests = [
       {

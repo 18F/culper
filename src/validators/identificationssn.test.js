@@ -1,7 +1,7 @@
 import IdentificationSSNValidator from './identificationssn'
 
-describe('SSN validation', function () {
-  it('should validate SSN', function () {
+describe('SSN validation', function() {
+  it('should validate SSN', function() {
     const tests = [
       {
         data: {
@@ -54,7 +54,9 @@ describe('SSN validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new IdentificationSSNValidator(test.data).isValid()).toBe(test.expected)
+      expect(new IdentificationSSNValidator(test.data).isValid()).toBe(
+        test.expected
+      )
     })
   })
 })

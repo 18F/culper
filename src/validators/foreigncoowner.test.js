@@ -1,8 +1,10 @@
-import ForeignCoOwnersValidator, { ForeignCoOwnerValidator } from './foreigncoowner'
+import ForeignCoOwnersValidator, {
+  ForeignCoOwnerValidator
+} from './foreigncoowner'
 import Location from '../components/Form/Location'
 
-describe('CoOwner validation', function () {
-  it('should validate countries', function () {
+describe('CoOwner validation', function() {
+  it('should validate countries', function() {
     const tests = [
       {
         data: {
@@ -30,11 +32,13 @@ describe('CoOwner validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new ForeignCoOwnerValidator(test.data).validCountries()).toBe(test.expected)
+      expect(new ForeignCoOwnerValidator(test.data).validCountries()).toBe(
+        test.expected
+      )
     })
   })
 
-  it('should validate co-owner', function () {
+  it('should validate co-owner', function() {
     const tests = [
       {
         data: {
@@ -57,7 +61,7 @@ describe('CoOwner validation', function () {
             layout: Location.ADDRESS
           },
           Countries: {
-            value: [{value: 'Germany'}]
+            value: [{ value: 'Germany' }]
           },
           RelationshipNature: {
             value: 'Some stuff'
@@ -67,11 +71,13 @@ describe('CoOwner validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new ForeignCoOwnerValidator(test.data).isValid()).toBe(test.expected)
+      expect(new ForeignCoOwnerValidator(test.data).isValid()).toBe(
+        test.expected
+      )
     })
   })
 
-  it('should validate list of co-owners', function () {
+  it('should validate list of co-owners', function() {
     const tests = [
       {
         data: {
@@ -138,7 +144,9 @@ describe('CoOwner validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new ForeignCoOwnersValidator(test.data).isValid()).toBe(test.expected)
+      expect(new ForeignCoOwnersValidator(test.data).isValid()).toBe(
+        test.expected
+      )
     })
   })
 })

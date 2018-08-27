@@ -1,9 +1,16 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Branch, Textarea, DateRange, Field, NotApplicable } from '../../../Form'
+import {
+  ValidationElement,
+  Branch,
+  Textarea,
+  DateRange,
+  Field,
+  NotApplicable
+} from '../../../Form'
 
 export default class Sentence extends ValidationElement {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.update = this.update.bind(this)
@@ -16,7 +23,7 @@ export default class Sentence extends ValidationElement {
     this.updateProbationDatesNA = this.updateProbationDatesNA.bind(this)
   }
 
-  update (queue) {
+  update(queue) {
     this.props.onUpdate({
       Description: this.props.Description,
       ExceedsYear: this.props.ExceedsYear,
@@ -29,128 +36,139 @@ export default class Sentence extends ValidationElement {
     })
   }
 
-  updateDescription (values) {
+  updateDescription(values) {
     this.update({
       Description: values
     })
   }
 
-  updateExceedsYear (values) {
+  updateExceedsYear(values) {
     this.update({
       ExceedsYear: values
     })
   }
 
-  updateIncarcerated (values) {
+  updateIncarcerated(values) {
     this.update({
       Incarcerated: values
     })
   }
 
-  updateIncarcerationDates (values) {
+  updateIncarcerationDates(values) {
     this.update({
       IncarcerationDates: values
     })
   }
 
-  updateProbationDates (values) {
+  updateProbationDates(values) {
     this.update({
       ProbationDates: values
     })
   }
 
-  updateIncarcerationDatesNA (values) {
+  updateIncarcerationDatesNA(values) {
     this.update({
       IncarcerationDatesNA: values
     })
   }
 
-  updateProbationDatesNA (values) {
+  updateProbationDatesNA(values) {
     this.update({
       ProbationDatesNA: values
     })
   }
 
-  render () {
+  render() {
     return (
       <div className="sentence">
-        <Field title={i18n.t('legal.police.heading.sentenceDescription')}
-               titleSize="h4"
-               adjustFor="labels"
-               scrollIntoView={this.props.scrollIntoView}>
-          <Textarea {...this.props.Description}
-                    className="description"
-                    name="description"
-                    onError={this.props.onError}
-                    required={this.props.required}
-                    onUpdate={this.updateDescription} />
+        <Field
+          title={i18n.t('legal.police.heading.sentenceDescription')}
+          titleSize="h4"
+          adjustFor="labels"
+          scrollIntoView={this.props.scrollIntoView}>
+          <Textarea
+            {...this.props.Description}
+            className="description"
+            name="description"
+            onError={this.props.onError}
+            required={this.props.required}
+            onUpdate={this.updateDescription}
+          />
         </Field>
 
-        <Branch name="exceeding_year"
-                label={i18n.t('legal.police.heading.exceedsYear')}
-                labelSize="h4"
-                className="exceeds-year"
-                {...this.props.ExceedsYear}
-                onError={this.props.onError}
-                required={this.props.required}
-                onUpdate={this.updateExceedsYear}
-                scrollIntoView={this.props.scrollIntoView}>
-        </Branch>
+        <Branch
+          name="exceeding_year"
+          label={i18n.t('legal.police.heading.exceedsYear')}
+          labelSize="h4"
+          className="exceeds-year"
+          {...this.props.ExceedsYear}
+          onError={this.props.onError}
+          required={this.props.required}
+          onUpdate={this.updateExceedsYear}
+          scrollIntoView={this.props.scrollIntoView}
+        />
 
-        <Branch name="incarcerated"
-                label={i18n.t('legal.police.heading.incarcerated')}
-                labelSize="h4"
-                className="incarcerated"
-                {...this.props.Incarcerated}
-                onError={this.props.onError}
-                required={this.props.required}
-                onUpdate={this.updateIncarcerated}
-                scrollIntoView={this.props.scrollIntoView}>
-        </Branch>
+        <Branch
+          name="incarcerated"
+          label={i18n.t('legal.police.heading.incarcerated')}
+          labelSize="h4"
+          className="incarcerated"
+          {...this.props.Incarcerated}
+          onError={this.props.onError}
+          required={this.props.required}
+          onUpdate={this.updateIncarcerated}
+          scrollIntoView={this.props.scrollIntoView}
+        />
 
-        <Field title={i18n.t('legal.police.heading.incarcerationDates')}
-               titleSize="h4"
-               adjustFor="daterange"
-               shrink={true}
-               scrollIntoView={this.props.scrollIntoView}>
-          <NotApplicable name="IncarcerationDatesNA"
-                         {...this.props.IncarcerationDatesNA}
-                         label={i18n.t('legal.police.label.notApplicable')}
-                         or={i18n.m('legal.police.para.or')}
-                         className="incarceration-dates-na"
-                         onError={this.props.onError}
-                         required={this.props.required}
-                         onUpdate={this.updateIncarcerationDatesNA}>
-            <DateRange name="IncarcerationDates"
-                       className="incarceration-dates"
-                       {...this.props.IncarcerationDates}
-                       onUpdate={this.updateIncarcerationDates}
-                       onError={this.props.onError}
-                       required={this.props.required}
-                       />
+        <Field
+          title={i18n.t('legal.police.heading.incarcerationDates')}
+          titleSize="h4"
+          adjustFor="daterange"
+          shrink={true}
+          scrollIntoView={this.props.scrollIntoView}>
+          <NotApplicable
+            name="IncarcerationDatesNA"
+            {...this.props.IncarcerationDatesNA}
+            label={i18n.t('legal.police.label.notApplicable')}
+            or={i18n.m('legal.police.para.or')}
+            className="incarceration-dates-na"
+            onError={this.props.onError}
+            required={this.props.required}
+            onUpdate={this.updateIncarcerationDatesNA}>
+            <DateRange
+              name="IncarcerationDates"
+              className="incarceration-dates"
+              {...this.props.IncarcerationDates}
+              onUpdate={this.updateIncarcerationDates}
+              onError={this.props.onError}
+              required={this.props.required}
+            />
           </NotApplicable>
         </Field>
 
-        <Field title={i18n.t('legal.police.heading.probationDates')}
-               titleSize="h4"
-               adjustFor="daterange"
-               shrink={true}
-               scrollIntoView={this.props.scrollIntoView}>
-          <NotApplicable name="ProbationDatesNA"
-                         {...this.props.ProbationDatesNA}
-                         label={i18n.t('legal.police.label.notApplicable')}
-                         or={i18n.m('legal.police.para.or')}
-                         className="probation-dates-na"
-                         onError={this.props.onError}
-                         required={this.props.required}
-                         onUpdate={this.updateProbationDatesNA}>
-            <DateRange name="ProbationDates"
-                       className="probation-dates"
-                       {...this.props.ProbationDates}
-                       onUpdate={this.updateProbationDates}
-                       onError={this.props.onError}
-                       required={this.props.required}
-                       />
+        <Field
+          title={i18n.t('legal.police.heading.probationDates')}
+          titleSize="h4"
+          adjustFor="daterange"
+          shrink={true}
+          scrollIntoView={this.props.scrollIntoView}>
+          <NotApplicable
+            name="ProbationDatesNA"
+            {...this.props.ProbationDatesNA}
+            label={i18n.t('legal.police.label.notApplicable')}
+            or={i18n.m('legal.police.para.or')}
+            className="probation-dates-na"
+            onError={this.props.onError}
+            required={this.props.required}
+            onUpdate={this.updateProbationDatesNA}>
+            <DateRange
+              name="ProbationDates"
+              className="probation-dates"
+              {...this.props.ProbationDates}
+              onUpdate={this.updateProbationDates}
+              onError={this.props.onError}
+              required={this.props.required}
+            />
           </NotApplicable>
         </Field>
       </div>
@@ -165,7 +183,9 @@ Sentence.defaultProps = {
   IncarcerationDates: {},
   ProbationDates: {},
   IncarcerationDatesNA: { applicable: true },
-  ProbationDatesNA: { applicable: true},
-  onUpdate: (queue) => {},
-  onError: (value, arr) => { return arr }
+  ProbationDatesNA: { applicable: true },
+  onUpdate: queue => {},
+  onError: (value, arr) => {
+    return arr
+  }
 }

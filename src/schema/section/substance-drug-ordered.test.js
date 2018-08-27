@@ -7,27 +7,29 @@ describe('Schema for financial taxes', () => {
       TreatmentOrdered: { value: 'Yes' },
       List: {
         branch: { value: 'No' },
-        items: [{
-          Item: {
-            OrderedBy: {},
-            Explanation: {},
-            ActionTaken: {},
-            NoActionTakenExplanation: {},
-            DrugType: { value: null },
-            TreatmentProvider: {},
-            TreatmentProviderAddress: {
-              country: null
-            },
-            TreatmentProviderTelephone: {},
-            TreatmentDates: {
-              from: {},
-              to: {},
-              present: null
-            },
-            TreatmentCompleted: {},
-            NoTreatmentExplanation: {}
+        items: [
+          {
+            Item: {
+              OrderedBy: {},
+              Explanation: {},
+              ActionTaken: {},
+              NoActionTakenExplanation: {},
+              DrugType: { value: null },
+              TreatmentProvider: {},
+              TreatmentProviderAddress: {
+                country: null
+              },
+              TreatmentProviderTelephone: {},
+              TreatmentDates: {
+                from: {},
+                to: {},
+                present: null
+              },
+              TreatmentCompleted: {},
+              NoTreatmentExplanation: {}
+            }
           }
-        }]
+        ]
       }
     }
 

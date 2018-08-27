@@ -2,13 +2,13 @@ import ForeignBenefitValidator from './foreignbenefit'
 import { validAccordion, validBranch } from './helpers'
 
 export default class ForeignBenefitActivityValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     data = data || {}
     this.hasBenefits = (data.HasBenefits || {}).value
     this.list = data.List || {}
   }
 
-  isValid () {
+  isValid() {
     if (!validBranch(this.hasBenefits)) {
       return false
     }
@@ -16,7 +16,7 @@ export default class ForeignBenefitActivityValidator {
       return true
     }
 
-    return validAccordion(this.list, (item) => {
+    return validAccordion(this.list, item => {
       return new ForeignBenefitValidator(item).isValid()
     })
   }

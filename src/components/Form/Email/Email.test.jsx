@@ -12,12 +12,17 @@ describe('The Email component', () => {
       error: true,
       focus: false,
       valid: false,
-      handleValidation: function (event) {
+      handleValidation: function(event) {
         validations++
       }
     }
-    const component = mount(<Email name={expected.name} onValidate={expected.handleValidation} />)
-    component.find('input').first().simulate('change')
+    const component = mount(
+      <Email name={expected.name} onValidate={expected.handleValidation} />
+    )
+    component
+      .find('input')
+      .first()
+      .simulate('change')
     expect(validations > 0).toEqual(true)
   })
 
@@ -30,15 +35,24 @@ describe('The Email component', () => {
       error: true,
       focus: false,
       valid: false,
-      handleChange: function (event) {
+      handleChange: function(event) {
         changes++
       },
-      onUpdate: function () {
+      onUpdate: function() {
         changes++
       }
     }
-    const component = mount(<Email name={expected.name} onChange={expected.handleChange} onUpdate={expected.onUpdate} />)
-    component.find('input').first().simulate('change')
+    const component = mount(
+      <Email
+        name={expected.name}
+        onChange={expected.handleChange}
+        onUpdate={expected.onUpdate}
+      />
+    )
+    component
+      .find('input')
+      .first()
+      .simulate('change')
     expect(changes).toEqual(2)
   })
 
@@ -78,9 +92,13 @@ describe('The Email component', () => {
       }
     ]
 
-    tests.forEach((t) => {
-      const component = mount(<Email name="test-emails" label="Email" value={t.address} />)
-      expect(component.find('.usa-input-error-label').length).toEqual(t.valid ? 0 : 1)
+    tests.forEach(t => {
+      const component = mount(
+        <Email name="test-emails" label="Email" value={t.address} />
+      )
+      expect(component.find('.usa-input-error-label').length).toEqual(
+        t.valid ? 0 : 1
+      )
     })
   })
 })

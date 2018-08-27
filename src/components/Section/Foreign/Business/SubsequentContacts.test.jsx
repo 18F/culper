@@ -8,12 +8,20 @@ describe('The foreign business contact subsequent contacts component', () => {
     const expected = {
       name: 'foreign-business-contact-subsequentcontacts',
       items: [{ Item: { Has: { value: 'Yes' } } }],
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
     const component = mount(<SubsequentContacts {...expected} />)
-    component.find('.foreign-business-contact-subsequent textarea').simulate('change')
-    component.find('.foreign-business-contact-recent .day input').simulate('change')
-    component.find('.foreign-business-contact-future textarea').simulate('change')
+    component
+      .find('.foreign-business-contact-subsequent textarea')
+      .simulate('change')
+    component
+      .find('.foreign-business-contact-recent .day input')
+      .simulate('change')
+    component
+      .find('.foreign-business-contact-future textarea')
+      .simulate('change')
     expect(updates).toBe(3)
   })
 })

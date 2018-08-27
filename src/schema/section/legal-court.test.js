@@ -7,18 +7,20 @@ describe('Schema for financial taxes', () => {
       HasCourtActions: { value: 'Yes' },
       List: {
         branch: { value: 'No' },
-        items: [{
-          Item: {
-            CivilActionDate: {},
-            CourtName: {},
-            CourtAddress: {
-              country: null
-            },
-            NatureOfAction: {},
-            ResultsOfAction: {},
-            PrincipalPartyNames: {}
+        items: [
+          {
+            Item: {
+              CivilActionDate: {},
+              CourtName: {},
+              CourtAddress: {
+                country: null
+              },
+              NatureOfAction: {},
+              ResultsOfAction: {},
+              PrincipalPartyNames: {}
+            }
           }
-        }]
+        ]
       }
     }
 

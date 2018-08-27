@@ -1,9 +1,17 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Name, Field, Text, Textarea, Country, DateControl } from '../../../Form'
+import {
+  ValidationElement,
+  Name,
+  Field,
+  Text,
+  Textarea,
+  Country,
+  DateControl
+} from '../../../Form'
 
 export default class FamilyItem extends ValidationElement {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.update = this.update.bind(this)
@@ -14,7 +22,7 @@ export default class FamilyItem extends ValidationElement {
     this.updateCircumstances = this.updateCircumstances.bind(this)
   }
 
-  update (queue) {
+  update(queue) {
     this.props.onUpdate({
       Name: this.props.Name,
       Agency: this.props.Agency,
@@ -25,97 +33,107 @@ export default class FamilyItem extends ValidationElement {
     })
   }
 
-  updateName (values) {
+  updateName(values) {
     this.update({
       Name: values
     })
   }
 
-  updateAgency (values) {
+  updateAgency(values) {
     this.update({
       Agency: values
     })
   }
 
-  updateCountry (values) {
+  updateCountry(values) {
     this.update({
       Country: values
     })
   }
 
-  updateDate (values) {
+  updateDate(values) {
     this.update({
       Date: values
     })
   }
 
-  updateCircumstances (values) {
+  updateCircumstances(values) {
     this.update({
       Circumstances: values
     })
   }
 
-  render () {
+  render() {
     return (
       <div className="family-item">
-        <Field title={i18n.t('foreign.business.family.heading.name')}
-               optional={true}
-               filterErrors={Name.requiredErrorsOnly}
-               scrollIntoView={this.props.scrollIntoView}>
-          <Name name="Name"
-                {...this.props.Name}
-                onUpdate={this.updateName}
-                onError={this.props.onError}
-                className="family-name"
-                required={this.props.required}
-                scrollIntoView={this.props.scrollIntoView}
-                />
+        <Field
+          title={i18n.t('foreign.business.family.heading.name')}
+          optional={true}
+          filterErrors={Name.requiredErrorsOnly}
+          scrollIntoView={this.props.scrollIntoView}>
+          <Name
+            name="Name"
+            {...this.props.Name}
+            onUpdate={this.updateName}
+            onError={this.props.onError}
+            className="family-name"
+            required={this.props.required}
+            scrollIntoView={this.props.scrollIntoView}
+          />
         </Field>
 
-        <Field title={i18n.t('foreign.business.family.heading.agency')}
-               scrollIntoView={this.props.scrollIntoView}>
-          <Text name="Agency"
-                {...this.props.Agency}
-                onUpdate={this.updateAgency}
-                onError={this.props.onError}
-                className="family-agency"
-                required={this.props.required}
-                />
+        <Field
+          title={i18n.t('foreign.business.family.heading.agency')}
+          scrollIntoView={this.props.scrollIntoView}>
+          <Text
+            name="Agency"
+            {...this.props.Agency}
+            onUpdate={this.updateAgency}
+            onError={this.props.onError}
+            className="family-agency"
+            required={this.props.required}
+          />
         </Field>
 
-        <Field title={i18n.t('foreign.business.family.heading.country')}
-               scrollIntoView={this.props.scrollIntoView}>
-          <Country name="Country"
-                   {...this.props.Country}
-                   onUpdate={this.updateCountry}
-                   onError={this.props.onError}
-                   className="family-country"
-                   required={this.props.required}
-                   />
+        <Field
+          title={i18n.t('foreign.business.family.heading.country')}
+          scrollIntoView={this.props.scrollIntoView}>
+          <Country
+            name="Country"
+            {...this.props.Country}
+            onUpdate={this.updateCountry}
+            onError={this.props.onError}
+            className="family-country"
+            required={this.props.required}
+          />
         </Field>
 
-        <Field title={i18n.t('foreign.business.family.heading.date')}
-               help="foreign.business.family.help.date"
-               adjustFor="datecontrol"
-               scrollIntoView={this.props.scrollIntoView}>
-          <DateControl name="Date"
-                       {...this.props.Date}
-                       onUpdate={this.updateDate}
-                       onError={this.props.onError}
-                       className="family-date"
-                       required={this.props.required}
-                       />
+        <Field
+          title={i18n.t('foreign.business.family.heading.date')}
+          help="foreign.business.family.help.date"
+          adjustFor="datecontrol"
+          scrollIntoView={this.props.scrollIntoView}>
+          <DateControl
+            name="Date"
+            {...this.props.Date}
+            onUpdate={this.updateDate}
+            onError={this.props.onError}
+            className="family-date"
+            required={this.props.required}
+          />
         </Field>
 
-        <Field title={i18n.t('foreign.business.family.heading.circumstances')}
-               scrollIntoView={this.props.scrollIntoView}>
-          <Textarea name="Circumstances"
-                    {...this.props.Circumstances}
-                    onUpdate={this.updateCircumstances}
-                    onError={this.props.onError}
-                    className="family-circumstances"
-                    required={this.props.required}
-                    />
+        <Field
+          title={i18n.t('foreign.business.family.heading.circumstances')}
+          scrollIntoView={this.props.scrollIntoView}>
+          <Textarea
+            name="Circumstances"
+            {...this.props.Circumstances}
+            onUpdate={this.updateCircumstances}
+            onError={this.props.onError}
+            className="family-circumstances"
+            required={this.props.required}
+          />
         </Field>
       </div>
     )
@@ -123,6 +141,8 @@ export default class FamilyItem extends ValidationElement {
 }
 
 FamilyItem.defaultProps = {
-  onUpdate: (queue) => {},
-  onError: (value, arr) => { return arr }
+  onUpdate: queue => {},
+  onError: (value, arr) => {
+    return arr
+  }
 }

@@ -25,10 +25,24 @@ describe('The checkbox component', () => {
       focus: true,
       valid: false
     }
-    const component = mount(<Checkbox name={expected.name} label={expected.label} error={expected.error} focus={expected.focus} valid={expected.valid} />)
+    const component = mount(
+      <Checkbox
+        name={expected.name}
+        label={expected.label}
+        error={expected.error}
+        focus={expected.focus}
+        valid={expected.valid}
+      />
+    )
     expect(component.find('label').text()).toEqual(expected.label)
-    expect(component.find('input[name="' + expected.name + '"]').length).toEqual(1)
-    expect(component.find('input[name="' + expected.name + '"]').hasClass('usa-input-focus')).toEqual(false)
+    expect(
+      component.find('input[name="' + expected.name + '"]').length
+    ).toEqual(1)
+    expect(
+      component
+        .find('input[name="' + expected.name + '"]')
+        .hasClass('usa-input-focus')
+    ).toEqual(false)
     expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
 
@@ -40,10 +54,24 @@ describe('The checkbox component', () => {
       focus: false,
       valid: true
     }
-    const component = mount(<Checkbox name={expected.name} label={expected.label} error={expected.error} focus={expected.focus} valid={expected.valid} />)
+    const component = mount(
+      <Checkbox
+        name={expected.name}
+        label={expected.label}
+        error={expected.error}
+        focus={expected.focus}
+        valid={expected.valid}
+      />
+    )
     expect(component.find('label').text()).toEqual(expected.label)
-    expect(component.find('input[name="' + expected.name + '"]').length).toEqual(1)
-    expect(component.find('input[name="' + expected.name + '"]').hasClass('usa-input-success')).toEqual(true)
+    expect(
+      component.find('input[name="' + expected.name + '"]').length
+    ).toEqual(1)
+    expect(
+      component
+        .find('input[name="' + expected.name + '"]')
+        .hasClass('usa-input-success')
+    ).toEqual(true)
     expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
 
@@ -55,9 +83,19 @@ describe('The checkbox component', () => {
       focus: false,
       valid: false
     }
-    const component = mount(<Checkbox name={expected.name} label={expected.label} error={expected.error} focus={expected.focus} valid={expected.valid} />)
+    const component = mount(
+      <Checkbox
+        name={expected.name}
+        label={expected.label}
+        error={expected.error}
+        focus={expected.focus}
+        valid={expected.valid}
+      />
+    )
     expect(component.find('label').text()).toEqual(expected.label)
-    expect(component.find('input[name="' + expected.name + '"]').length).toEqual(1)
+    expect(
+      component.find('input[name="' + expected.name + '"]').length
+    ).toEqual(1)
     expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
 
@@ -69,7 +107,7 @@ describe('The checkbox component', () => {
       error: true,
       focus: false,
       valid: false,
-      onUpdate: function (values) {
+      onUpdate: function(values) {
         changes++
       }
     }
@@ -86,11 +124,13 @@ describe('The checkbox component', () => {
       error: true,
       focus: false,
       valid: false,
-      handleFocus: function (event) {
+      handleFocus: function(event) {
         foci++
       }
     }
-    const component = mount(<Checkbox name={expected.name} onFocus={expected.handleFocus} />)
+    const component = mount(
+      <Checkbox name={expected.name} onFocus={expected.handleFocus} />
+    )
     component.find('input').simulate('focus')
     expect(foci).toEqual(1)
   })
@@ -103,11 +143,13 @@ describe('The checkbox component', () => {
       error: true,
       focus: false,
       valid: false,
-      handleBlur: function (event) {
+      handleBlur: function(event) {
         blurs++
       }
     }
-    const component = mount(<Checkbox name={expected.name} onBlur={expected.handleBlur} />)
+    const component = mount(
+      <Checkbox name={expected.name} onBlur={expected.handleBlur} />
+    )
     component.find('input').simulate('blur')
     expect(blurs).toEqual(1)
   })

@@ -29,7 +29,7 @@ const hairColors = [
 ]
 
 export default class PhysicalValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.height = data.Height
     this.weight = (data.Weight || {}).value
     this.hairColor = (data.HairColor || {}).value
@@ -40,23 +40,29 @@ export default class PhysicalValidator {
   /**
    * Validates all physical attributes
    */
-  isValid () {
-    return this.validHeight() &&
+  isValid() {
+    return (
+      this.validHeight() &&
       this.validWeight() &&
       this.validHairColor() &&
       this.validEyeColor() &&
       this.validSex()
+    )
   }
 
   /**
    * Validates a users height
    */
-  validHeight () {
+  validHeight() {
     if (!this.height) {
       return false
     }
 
-    if (this.height.feet < 1 || this.height.inches < 0 || this.height.inches > 11) {
+    if (
+      this.height.feet < 1 ||
+      this.height.inches < 0 ||
+      this.height.inches > 11
+    ) {
       return false
     }
 
@@ -66,7 +72,7 @@ export default class PhysicalValidator {
   /**
    * Validats a users weight
    */
-  validWeight () {
+  validWeight() {
     if (!this.weight) {
       return false
     }
@@ -80,7 +86,7 @@ export default class PhysicalValidator {
   /**
    * Validates a users hair color
    */
-  validHairColor () {
+  validHairColor() {
     if (!this.hairColor) {
       return false
     }
@@ -95,7 +101,7 @@ export default class PhysicalValidator {
     return found
   }
 
-  validEyeColor () {
+  validEyeColor() {
     if (!this.eyeColor) {
       return false
     }
@@ -110,7 +116,7 @@ export default class PhysicalValidator {
     return found
   }
 
-  validSex () {
+  validSex() {
     if (!this.sex || !this.sex.length) {
       return false
     }

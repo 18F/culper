@@ -1,7 +1,7 @@
 import historyReducer, { populateCurrentAddress } from './history'
 
-describe('History Reducer', function () {
-  it('should handle default history update', function () {
+describe('History Reducer', function() {
+  it('should handle default history update', function() {
     const tests = [
       {
         state: {},
@@ -29,7 +29,7 @@ describe('History Reducer', function () {
     })
   })
 
-  it('should handle HistoryResidence updates', function () {
+  it('should handle HistoryResidence updates', function() {
     const tests = [
       {
         state: {
@@ -171,7 +171,7 @@ describe('History Reducer', function () {
     })
   })
 
-  it('should populate current address', function () {
+  it('should populate current address', function() {
     const tests = [
       {
         state: {
@@ -193,7 +193,7 @@ describe('History Reducer', function () {
     })
   })
 
-  it('should populate current address', function () {
+  it('should populate current address', function() {
     const tests = [
       {
         state: {

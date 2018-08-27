@@ -36,22 +36,43 @@ describe('The taxes component', () => {
       name: 'taxes',
       HasTaxes: { value: 'Yes' },
       List: { branch: { value: 'Yes' }, items: [{}] },
-      onUpdate: (obj) => {
+      onUpdate: obj => {
         updates++
       }
     }
     const component = mount(<Taxes {...expected} />)
-    component.find('.branch .yes input').first().simulate('change')
+    component
+      .find('.branch .yes input')
+      .first()
+      .simulate('change')
     component.find('.failure-file input').simulate('change')
-    component.find('.taxes-year input[type="text"]').simulate('change', { target: { value: '2000' } })
-    component.find('.taxes-reason textarea').simulate('change', { target: { value: 'Reason for not filing' } })
-    component.find('.taxes-agency input').simulate('change', { target: { value: 'IRS' } })
-    component.find('.taxes-taxtype input').simulate('change', { target: { value: 'Income' } })
-    component.find('.taxes-amount input[type="text"]').simulate('change', { target: { value: '10000' } })
-    component.find('.taxes-date .day input').simulate('change', { target: { name: 'day', value: '1' } })
-    component.find('.taxes-date .month input').simulate('change', { target: { name: 'month', value: '1' } })
-    component.find('.taxes-date .year input').simulate('change', { target: { name: 'year', value: '2005' } })
-    component.find('.taxes-description textarea').simulate('change', { target: { value: 'Description for not filing' } })
+    component
+      .find('.taxes-year input[type="text"]')
+      .simulate('change', { target: { value: '2000' } })
+    component
+      .find('.taxes-reason textarea')
+      .simulate('change', { target: { value: 'Reason for not filing' } })
+    component
+      .find('.taxes-agency input')
+      .simulate('change', { target: { value: 'IRS' } })
+    component
+      .find('.taxes-taxtype input')
+      .simulate('change', { target: { value: 'Income' } })
+    component
+      .find('.taxes-amount input[type="text"]')
+      .simulate('change', { target: { value: '10000' } })
+    component
+      .find('.taxes-date .day input')
+      .simulate('change', { target: { name: 'day', value: '1' } })
+    component
+      .find('.taxes-date .month input')
+      .simulate('change', { target: { name: 'month', value: '1' } })
+    component
+      .find('.taxes-date .year input')
+      .simulate('change', { target: { name: 'year', value: '2005' } })
+    component
+      .find('.taxes-description textarea')
+      .simulate('change', { target: { value: 'Description for not filing' } })
     expect(updates).toBeGreaterThan(7)
   })
 })

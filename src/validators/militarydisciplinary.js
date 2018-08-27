@@ -1,5 +1,9 @@
 import MilitaryHistoryValidator from './militaryhistory'
-import { validAccordion, validGenericTextfield, validDateField } from './helpers'
+import {
+  validAccordion,
+  validGenericTextfield,
+  validDateField
+} from './helpers'
 
 export const hideDisciplinaryProcedures = (store = {}) => {
   const history = (store.Military || {}).History
@@ -7,33 +11,32 @@ export const hideDisciplinaryProcedures = (store = {}) => {
 }
 
 export default class MilitaryDisciplinaryValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.hasDisciplinary = (data.HasDisciplinary || {}).value
     this.list = data.List || {}
   }
 
-  validDisciplinary () {
+  validDisciplinary() {
     return this.hasDisciplinary === 'Yes' || this.hasDisciplinary === 'No'
   }
 
-  validItems () {
+  validItems() {
     if (this.validDisciplinary() && this.hasDisciplinary === 'No') {
       return true
     }
 
-    return validAccordion(this.list, (item) => {
+    return validAccordion(this.list, item => {
       return new ProcedureValidator(item).isValid()
     })
   }
 
-  isValid () {
-    return this.validDisciplinary() &&
-      this.validItems()
+  isValid() {
+    return this.validDisciplinary() && this.validItems()
   }
 }
 
 export class ProcedureValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.date = data.Date
     this.offenses = data.Offenses
     this.name = data.Name
@@ -41,31 +44,33 @@ export class ProcedureValidator {
     this.outcome = data.Outcome
   }
 
-  validDate () {
+  validDate() {
     return validDateField(this.date)
   }
 
-  validOffenses () {
+  validOffenses() {
     return validGenericTextfield(this.offenses)
   }
 
-  validName () {
+  validName() {
     return validGenericTextfield(this.name)
   }
 
-  validCourt () {
+  validCourt() {
     return validGenericTextfield(this.court)
   }
 
-  validOutcome () {
+  validOutcome() {
     return validGenericTextfield(this.outcome)
   }
 
-  isValid () {
-    return this.validDate() &&
+  isValid() {
+    return (
+      this.validDate() &&
       this.validOffenses() &&
       this.validName() &&
       this.validCourt() &&
       this.validOutcome()
+    )
   }
 }

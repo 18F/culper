@@ -53,6 +53,8 @@ describe('The number component', () => {
     }
     const component = mount(<Number {...expected} />)
     component.find('input').simulate('change', { target: { value: '100a' } })
-    expect(component.find({ type: 'text', value: expected.value }).length).toEqual(1)
+    expect(
+      component.find({ type: 'text', value: expected.value }).length
+    ).toEqual(1)
   })
 })

@@ -6,7 +6,9 @@ describe('The Signature Release component', () => {
   it('trigger updates', () => {
     let updates = 0
     const expected = {
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
     const component = mount(<Signature {...expected} />)
     expect(component.find('.signature').length).toBe(1)
@@ -28,14 +30,18 @@ describe('The Signature Release component', () => {
       },
       Date: {
         date: now,
-        month: `${now.getMonth()+1}`,
+        month: `${now.getMonth() + 1}`,
         day: `${now.getDate()}`,
         year: `${now.getFullYear()}`
       }
     }
     const component = mount(<Signature {...expected} />)
-    expect(component.find('.name.wet').text()).toBe(`${name.first} ${name.middle} ${name.last}`)
-    expect(component.find('.date.wet').text()).toBe(`${now.getMonth()+1}/${now.getDate()}/${now.getFullYear()}`)
+    expect(component.find('.name.wet').text()).toBe(
+      `${name.first} ${name.middle} ${name.last}`
+    )
+    expect(component.find('.date.wet').text()).toBe(
+      `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}`
+    )
   })
 
   it('handles defaults', () => {

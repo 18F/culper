@@ -32,7 +32,9 @@ describe('The foreign business conference contacts component', () => {
       List: {
         items: [{ Item: { Has: { value: 'Yes' } } }]
       },
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
     const component = mount(<ConferenceContacts {...expected} />)
     component.find('.conferences-explanation textarea').simulate('change')

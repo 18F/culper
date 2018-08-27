@@ -3,7 +3,7 @@ import SentenceValidator from './sentence'
 import { validGenericTextfield, validDateField, validBranch } from './helpers'
 
 export default class OtherOffenseValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.date = data.Date
     this.description = data.Description
     this.involvedViolence = (data.InvolvedViolence || {}).value
@@ -23,51 +23,56 @@ export default class OtherOffenseValidator {
     this.awaitingTrialExplanation = data.AwaitingTrialExplanation
   }
 
-  validDate () {
+  validDate() {
     return !!this.date && validDateField(this.date)
   }
 
-  validDescription () {
+  validDescription() {
     return !!this.description && validGenericTextfield(this.description)
   }
 
-  validViolence () {
+  validViolence() {
     return this.involvedViolence === 'Yes' || this.involvedViolence === 'No'
   }
 
-  validFirearms () {
+  validFirearms() {
     return this.involvedFirearms === 'Yes' || this.involvedFirearms === 'No'
   }
 
-  validSubstances () {
+  validSubstances() {
     return this.involvedSubstances === 'Yes' || this.involvedSubstances === 'No'
   }
 
-  validCourtName () {
+  validCourtName() {
     return !!this.courtName && validGenericTextfield(this.courtName)
   }
 
-  validCourtAddress () {
-    return !!this.courtAddress && new LocationValidator(this.courtAddress).isValid()
+  validCourtAddress() {
+    return (
+      !!this.courtAddress && new LocationValidator(this.courtAddress).isValid()
+    )
   }
 
-  validChargeType () {
-    return !!this.chargeType && ['Felony', 'Misdemeanor', 'Other'].includes(this.chargeType)
+  validChargeType() {
+    return (
+      !!this.chargeType &&
+      ['Felony', 'Misdemeanor', 'Other'].includes(this.chargeType)
+    )
   }
 
-  validCourtCharge () {
+  validCourtCharge() {
     return !!this.courtCharge && validGenericTextfield(this.courtCharge)
   }
 
-  validCourtOutcome () {
+  validCourtOutcome() {
     return !!this.courtOutcome && validGenericTextfield(this.courtOutcome)
   }
 
-  validCourtDate () {
+  validCourtDate() {
     return !!this.courtDate && validDateField(this.courtDate)
   }
 
-  validSentenced () {
+  validSentenced() {
     if (this.wasSentenced === 'No') {
       return true
     }
@@ -79,16 +84,19 @@ export default class OtherOffenseValidator {
     return false
   }
 
-  validAwaitingTrial () {
+  validAwaitingTrial() {
     if (this.wasSentenced === 'No') {
-      return validBranch(this.awaitingTrial) &&
+      return (
+        validBranch(this.awaitingTrial) &&
         validGenericTextfield(this.awaitingTrialExplanation)
+      )
     }
     return true
   }
 
-  isValid () {
-    return this.validDate() &&
+  isValid() {
+    return (
+      this.validDate() &&
       this.validDescription() &&
       this.validViolence() &&
       this.validFirearms() &&
@@ -100,5 +108,6 @@ export default class OtherOffenseValidator {
       this.validCourtDate() &&
       this.validSentenced() &&
       this.validAwaitingTrial()
+    )
   }
 }

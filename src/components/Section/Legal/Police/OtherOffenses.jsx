@@ -8,7 +8,7 @@ import { Summary, DateSummary } from '../../../Summary'
 import OtherOffense from './OtherOffense'
 
 export default class OtherOffenses extends SubsectionElement {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.update = this.update.bind(this)
@@ -16,7 +16,7 @@ export default class OtherOffenses extends SubsectionElement {
     this.updateHasOtherOffenses = this.updateHasOtherOffenses.bind(this)
   }
 
-  update (queue) {
+  update(queue) {
     this.props.onUpdate({
       List: this.props.List,
       HasOtherOffenses: this.props.HasOtherOffenses,
@@ -24,13 +24,13 @@ export default class OtherOffenses extends SubsectionElement {
     })
   }
 
-  updateList (values) {
+  updateList(values) {
     this.update({
       List: values
     })
   }
 
-  updateHasOtherOffenses (values) {
+  updateHasOtherOffenses(values) {
     this.update({
       HasOtherOffenses: values,
       List: values.value === 'Yes' ? this.props.List : []
@@ -40,10 +40,11 @@ export default class OtherOffenses extends SubsectionElement {
   /**
    * Assists in rendering the summary section.
    */
-  summary (item, index) {
+  summary(item, index) {
     const o = (item || {}).Item || {}
     const dates = DateSummary(o.Date)
-    const description = o.Description && o.Description.value ? o.Description.value : ''
+    const description =
+      o.Description && o.Description.value ? o.Description.value : ''
 
     return Summary({
       type: i18n.t('legal.police.collection.summary.item'),
@@ -54,7 +55,7 @@ export default class OtherOffenses extends SubsectionElement {
     })
   }
 
-  otherOffenseBranch () {
+  otherOffenseBranch() {
     return (
       <div>
         <ul className="other-offenses">
@@ -68,19 +69,22 @@ export default class OtherOffenses extends SubsectionElement {
     )
   }
 
-  render () {
+  render() {
     return (
-      <div className="section-content police-other-offenses" {...super.dataAttributes(this.props)}>
-        <Branch name="has_otheroffenses"
-                label={i18n.t('legal.police.para.otherOffense.intro')}
-                labelSize="h2"
-                className="has-otheroffenses"
-                {...this.props.HasOtherOffenses}
-                warning={true}
-                onUpdate={this.updateHasOtherOffenses}
-                required={this.props.required}
-                onError={this.handleError}
-                scrollIntoView={this.props.scrollIntoView}>
+      <div
+        className="section-content police-other-offenses"
+        {...super.dataAttributes(this.props)}>
+        <Branch
+          name="has_otheroffenses"
+          label={i18n.t('legal.police.para.otherOffense.intro')}
+          labelSize="h2"
+          className="has-otheroffenses"
+          {...this.props.HasOtherOffenses}
+          warning={true}
+          onUpdate={this.updateHasOtherOffenses}
+          required={this.props.required}
+          onError={this.handleError}
+          scrollIntoView={this.props.scrollIntoView}>
           <ul>
             <li>{i18n.m('legal.police.para.otherOffense.first')}</li>
             <li>{i18n.m('legal.police.para.otherOffense.second')}</li>
@@ -91,26 +95,28 @@ export default class OtherOffenses extends SubsectionElement {
         </Branch>
 
         <Show when={this.props.HasOtherOffenses.value === 'Yes'}>
-          <Accordion {...this.props.List}
-                     defaultState={this.props.defaultState}
-                     scrollToBottom={this.props.scrollToBottom}
-                     onUpdate={this.updateList}
-                     onError={this.handleError}
-                     validator={OtherOffenseValidator}
-                     summary={this.summary}
-                     description={i18n.t('legal.police.collection.summary.title')}
-                     appendTitle={i18n.t('legal.police.collection.appendTitle')}
-                     appendMessage={this.otherOffenseBranch()}
-                     appendLabel={i18n.t('legal.police.collection.append')}
-                     required={this.props.required}
-                     scrollIntoView={this.props.scrollIntoView}>
-            <OtherOffense name="Item"
-                          addressBooks={this.props.addressBooks}
-                          dispatch={this.props.dispatch}
-                          bind={true}
-                          required={this.props.required}
-                          scrollIntoView={this.props.scrollIntoView}
-                          />
+          <Accordion
+            {...this.props.List}
+            defaultState={this.props.defaultState}
+            scrollToBottom={this.props.scrollToBottom}
+            onUpdate={this.updateList}
+            onError={this.handleError}
+            validator={OtherOffenseValidator}
+            summary={this.summary}
+            description={i18n.t('legal.police.collection.summary.title')}
+            appendTitle={i18n.t('legal.police.collection.appendTitle')}
+            appendMessage={this.otherOffenseBranch()}
+            appendLabel={i18n.t('legal.police.collection.append')}
+            required={this.props.required}
+            scrollIntoView={this.props.scrollIntoView}>
+            <OtherOffense
+              name="Item"
+              addressBooks={this.props.addressBooks}
+              dispatch={this.props.dispatch}
+              bind={true}
+              required={this.props.required}
+              scrollIntoView={this.props.scrollIntoView}
+            />
           </Accordion>
         </Show>
       </div>
@@ -121,13 +127,15 @@ export default class OtherOffenses extends SubsectionElement {
 OtherOffenses.defaultProps = {
   List: Accordion.defaultList,
   HasOtherOffenses: {},
-  onUpdate: (queue) => {},
-  onError: (value, arr) => { return arr },
+  onUpdate: queue => {},
+  onError: (value, arr) => {
+    return arr
+  },
   section: 'legal',
   subsection: 'police/additionaloffenses',
   addressBooks: {},
-  dispatch: (action) => {},
-  validator: (data) => {
+  dispatch: action => {},
+  validator: data => {
     return validate(schema('legal.police.additionaloffenses', data))
   },
   defaultState: true,

@@ -4,28 +4,28 @@ import LocationValidator from './location'
 import { validAccordion, validGenericTextfield } from './helpers'
 
 export default class ForeignBusinessVenturesValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.hasForeignVentures = (data.HasForeignVentures || {}).value
     this.list = data.List || {}
   }
 
-  validList () {
+  validList() {
     if (this.hasForeignVentures === 'No') {
       return true
     }
 
-    return validAccordion(this.list, (item) => {
+    return validAccordion(this.list, item => {
       return new VenturesValidator(item).isValid()
     })
   }
 
-  isValid () {
+  isValid() {
     return this.validList()
   }
 }
 
 export class VenturesValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.name = data.Name
     this.address = data.Address
     this.citizenship = data.Citizenship
@@ -39,52 +39,57 @@ export class VenturesValidator {
     this.compensation = data.Compensation
   }
 
-  validName () {
+  validName() {
     return !!this.name && new NameValidator(this.name).isValid()
   }
 
-  validAddress () {
+  validAddress() {
     return !!this.address && new LocationValidator(this.address).isValid()
   }
 
-  validCitizenship () {
-    return !!this.citizenship && !!this.citizenship.value && this.citizenship.value.length > 0
+  validCitizenship() {
+    return (
+      !!this.citizenship &&
+      !!this.citizenship.value &&
+      this.citizenship.value.length > 0
+    )
   }
 
-  validDescription () {
+  validDescription() {
     return !!this.description && validGenericTextfield(this.description)
   }
 
-  validRelationship () {
+  validRelationship() {
     return !!this.relationship && validGenericTextfield(this.relationship)
   }
 
-  validDates () {
+  validDates() {
     return !!this.dates && new DateRangeValidator(this.dates, null).isValid()
   }
 
-  validAssociation () {
+  validAssociation() {
     return !!this.association && validGenericTextfield(this.association)
   }
 
-  validPosition () {
+  validPosition() {
     return !!this.position && validGenericTextfield(this.position)
   }
 
-  validService () {
+  validService() {
     return !!this.service && validGenericTextfield(this.service)
   }
 
-  validSupport () {
+  validSupport() {
     return !!this.support && validGenericTextfield(this.support)
   }
 
-  validCompensation () {
+  validCompensation() {
     return !!this.compensation && validGenericTextfield(this.compensation)
   }
 
-  isValid () {
-    return this.validName() &&
+  isValid() {
+    return (
+      this.validName() &&
       this.validAddress() &&
       this.validCitizenship() &&
       this.validDescription() &&
@@ -95,5 +100,6 @@ export class VenturesValidator {
       this.validService() &&
       this.validSupport() &&
       this.validCompensation()
+    )
   }
 }

@@ -1,18 +1,27 @@
 export const countries = {
   unitedStates: { value: 'United States', text: 'USA' },
   afghanistan: { value: 'Afghanistan', text: 'Afghanistan' },
-  akrotiriSovereignBaseArea: { value: 'Akrotiri Sovereign Base Area', text: 'Akrotiri Sovereign Base Area' },
+  akrotiriSovereignBaseArea: {
+    value: 'Akrotiri Sovereign Base Area',
+    text: 'Akrotiri Sovereign Base Area'
+  },
   albania: { value: 'Albania', text: 'Albania' },
   algeria: { value: 'Algeria', text: 'Algeria' },
   andorra: { value: 'Andorra', text: 'Andorra' },
   angola: { value: 'Angola', text: 'Angola' },
   anguilla: { value: 'Anguilla', text: 'Anguilla' },
   antarctica: { value: 'Antarctica', text: 'Antarctica' },
-  antiguaAndBarbuda: { value: 'Antigua and Barbuda', text: 'Antigua and Barbuda' },
+  antiguaAndBarbuda: {
+    value: 'Antigua and Barbuda',
+    text: 'Antigua and Barbuda'
+  },
   argentina: { value: 'Argentina', text: 'Argentina' },
   armenia: { value: 'Armenia', text: 'Armenia' },
   aruba: { value: 'Aruba', text: 'Aruba' },
-  ashmoreAndCartierIslands: { value: 'Ashmore and Cartier Islands', text: 'Ashmore and Cartier Islands' },
+  ashmoreAndCartierIslands: {
+    value: 'Ashmore and Cartier Islands',
+    text: 'Ashmore and Cartier Islands'
+  },
   australia: { value: 'Australia', text: 'Australia' },
   austria: { value: 'Austria', text: 'Austria' },
   azerbaijan: { value: 'Azerbaijan', text: 'Azerbaijan' },
@@ -28,12 +37,21 @@ export const countries = {
   bermuda: { value: 'Bermuda', text: 'Bermuda' },
   bhutan: { value: 'Bhutan', text: 'Bhutan' },
   bolivia: { value: 'Bolivia', text: 'Bolivia' },
-  bosniaAndHerzegovina: { value: 'Bosnia and Herzegovina', text: 'Bosnia and Herzegovina' },
+  bosniaAndHerzegovina: {
+    value: 'Bosnia and Herzegovina',
+    text: 'Bosnia and Herzegovina'
+  },
   botswana: { value: 'Botswana', text: 'Botswana' },
   bouvetIsland: { value: 'Bouvet Island', text: 'Bouvet Island' },
   brazil: { value: 'Brazil', text: 'Brazil' },
-  britishIndianOceanTerritory: { value: 'British Indian Ocean Territory', text: 'British Indian Ocean Territory' },
-  britishVirginIslands: { value: 'British Virgin Islands', text: 'British Virgin Islands' },
+  britishIndianOceanTerritory: {
+    value: 'British Indian Ocean Territory',
+    text: 'British Indian Ocean Territory'
+  },
+  britishVirginIslands: {
+    value: 'British Virgin Islands',
+    text: 'British Virgin Islands'
+  },
   brunei: { value: 'Brunei', text: 'Brunei' },
   bulgaria: { value: 'Bulgaria', text: 'Bulgaria' },
   burkinaFaso: { value: 'Burkina Faso', text: 'Burkina Faso' },
@@ -44,30 +62,45 @@ export const countries = {
   canada: { value: 'Canada', text: 'Canada' },
   capeVerde: { value: 'Cape Verde', text: 'Cape Verde' },
   caymanIslands: { value: 'Cayman Islands', text: 'Cayman Islands' },
-  centralAfricanRepublic: { value: 'Central African Republic', text: 'Central African Republic' },
+  centralAfricanRepublic: {
+    value: 'Central African Republic',
+    text: 'Central African Republic'
+  },
   chad: { value: 'Chad', text: 'Chad' },
   chile: { value: 'Chile', text: 'Chile' },
   china: { value: 'China', text: 'China' },
   christmasIsland: { value: 'Christmas Island', text: 'Christmas Island' },
   clippertonIsland: { value: 'Clipperton Island', text: 'Clipperton Island' },
-  cocosKeelingIslands: { value: 'Cocos Keeling Islands', text: 'Cocos Keeling Islands' },
+  cocosKeelingIslands: {
+    value: 'Cocos Keeling Islands',
+    text: 'Cocos Keeling Islands'
+  },
   colombia: { value: 'Colombia', text: 'Colombia' },
   comoros: { value: 'Comoros', text: 'Comoros' },
   congo: { value: 'Congo', text: 'Congo' },
-  congoDemocraticRepublic: { value: 'Congo, Democratic Republic of the', text: 'Congo, Democratic Republic of the' },
+  congoDemocraticRepublic: {
+    value: 'Congo, Democratic Republic of the',
+    text: 'Congo, Democratic Republic of the'
+  },
   cookIslands: { value: 'Cook Islands', text: 'Cook Islands' },
   coralSeaIslands: { value: 'Coral Sea Islands', text: 'Coral Sea Islands' },
   costaRica: { value: 'Costa Rica', text: 'Costa Rica' },
-  coteIvoire: { value: 'Cote d\'Ivoire', text: 'Cote d\'Ivoire' },
+  coteIvoire: { value: "Cote d'Ivoire", text: "Cote d'Ivoire" },
   croatia: { value: 'Croatia', text: 'Croatia' },
   cuba: { value: 'Cuba', text: 'Cuba' },
   cyprus: { value: 'Cyprus', text: 'Cyprus' },
   czechRepublic: { value: 'Czech Republic', text: 'Czech Republic' },
   denmark: { value: 'Denmark', text: 'Denmark' },
-  dhekeliaSovereignBaseArea: { value: 'Dhekelia Sovereign Base Area', text: 'Dhekelia Sovereign Base Area' },
+  dhekeliaSovereignBaseArea: {
+    value: 'Dhekelia Sovereign Base Area',
+    text: 'Dhekelia Sovereign Base Area'
+  },
   djibouti: { value: 'Djibouti', text: 'Djibouti' },
   dominica: { value: 'Dominica', text: 'Dominica' },
-  dominicanRepublic: { value: 'Dominican Republic', text: 'Dominican Republic' },
+  dominicanRepublic: {
+    value: 'Dominican Republic',
+    text: 'Dominican Republic'
+  },
   eastTimor: { value: 'East Timor', text: 'East Timor' },
   ecuador: { value: 'Ecuador', text: 'Ecuador' },
   egypt: { value: 'Egypt', text: 'Egypt' },
@@ -76,16 +109,25 @@ export const countries = {
   eritrea: { value: 'Eritrea', text: 'Eritrea' },
   estonia: { value: 'Estonia', text: 'Estonia' },
   ethiopia: { value: 'Ethiopia', text: 'Ethiopia' },
-  etorofuHabomaiKunashiriAndShikotanIslands: { value: 'Etorofu, Habomai, Kunashiri And Shikotan Islands', text: 'Etorofu, Habomai, Kunashiri And Shikotan Islands' },
+  etorofuHabomaiKunashiriAndShikotanIslands: {
+    value: 'Etorofu, Habomai, Kunashiri And Shikotan Islands',
+    text: 'Etorofu, Habomai, Kunashiri And Shikotan Islands'
+  },
   europaIsland: { value: 'Europa Island', text: 'Europa Island' },
-  falklandIslandsIslasMalvinas: { value: 'Falkland Islands Islas Malvinas', text: 'Falkland Islands Islas Malvinas' },
+  falklandIslandsIslasMalvinas: {
+    value: 'Falkland Islands Islas Malvinas',
+    text: 'Falkland Islands Islas Malvinas'
+  },
   faroeIslands: { value: 'Faroe Islands', text: 'Faroe Islands' },
   fiji: { value: 'Fiji', text: 'Fiji' },
   finland: { value: 'Finland', text: 'Finland' },
   france: { value: 'France', text: 'France' },
   frenchGuiana: { value: 'French Guiana', text: 'French Guiana' },
   frenchPolynesia: { value: 'French Polynesia', text: 'French Polynesia' },
-  frenchSouthernAndAntarcticLands: { value: 'French Southern and Antarctic Lands', text: 'French Southern and Antarctic Lands' },
+  frenchSouthernAndAntarcticLands: {
+    value: 'French Southern and Antarctic Lands',
+    text: 'French Southern and Antarctic Lands'
+  },
   gabon: { value: 'Gabon', text: 'Gabon' },
   gambia: { value: 'Gambia, The', text: 'Gambia, The' },
   gazaStrip: { value: 'Gaza Strip', text: 'Gaza Strip' },
@@ -104,7 +146,10 @@ export const countries = {
   guineaBissau: { value: 'Guinea-Bissau', text: 'Guinea-Bissau' },
   guyana: { value: 'Guyana', text: 'Guyana' },
   haiti: { value: 'Haiti', text: 'Haiti' },
-  heardIslandAndMcDonaldIslands: { value: 'Heard Island and McDonald Islands', text: 'Heard Island and McDonald Islands' },
+  heardIslandAndMcDonaldIslands: {
+    value: 'Heard Island and McDonald Islands',
+    text: 'Heard Island and McDonald Islands'
+  },
   honduras: { value: 'Honduras', text: 'Honduras' },
   hongKong: { value: 'Hong Kong', text: 'Hong Kong' },
   hungary: { value: 'Hungary', text: 'Hungary' },
@@ -122,7 +167,10 @@ export const countries = {
   japan: { value: 'Japan', text: 'Japan' },
   jersey: { value: 'Jersey', text: 'Jersey' },
   jordan: { value: 'Jordan', text: 'Jordan' },
-  juanDeNovaIsland: { value: 'Juan de Nova Island', text: 'Juan de Nova Island' },
+  juanDeNovaIsland: {
+    value: 'Juan de Nova Island',
+    text: 'Juan de Nova Island'
+  },
   kazakhstan: { value: 'Kazakhstan', text: 'Kazakhstan' },
   kenya: { value: 'Kenya', text: 'Kenya' },
   kiribati: { value: 'Kiribati', text: 'Kiribati' },
@@ -152,7 +200,10 @@ export const countries = {
   mauritius: { value: 'Mauritius', text: 'Mauritius' },
   mayotte: { value: 'Mayotte', text: 'Mayotte' },
   mexico: { value: 'Mexico', text: 'Mexico' },
-  micronesiaFederatedStates: { value: 'Micronesia, Federated States of', text: 'Micronesia, Federated States of' },
+  micronesiaFederatedStates: {
+    value: 'Micronesia, Federated States of',
+    text: 'Micronesia, Federated States of'
+  },
   moldova: { value: 'Moldova', text: 'Moldova' },
   monaco: { value: 'Monaco', text: 'Monaco' },
   mongolia: { value: 'Mongolia', text: 'Mongolia' },
@@ -164,7 +215,10 @@ export const countries = {
   nauru: { value: 'Nauru', text: 'Nauru' },
   nepal: { value: 'Nepal', text: 'Nepal' },
   netherlands: { value: 'Netherlands', text: 'Netherlands' },
-  netherlandsAntilles: { value: 'Netherlands Antilles', text: 'Netherlands Antilles' },
+  netherlandsAntilles: {
+    value: 'Netherlands Antilles',
+    text: 'Netherlands Antilles'
+  },
   newCaledonia: { value: 'New Caledonia', text: 'New Caledonia' },
   newZealand: { value: 'New Zealand', text: 'New Zealand' },
   nicaragua: { value: 'Nicaragua', text: 'Nicaragua' },
@@ -193,14 +247,26 @@ export const countries = {
   rwanda: { value: 'Rwanda', text: 'Rwanda' },
   saintBarthelemy: { value: 'Saint Barthelemy', text: 'Saint Barthelemy' },
   saintHelena: { value: 'Saint Helena', text: 'Saint Helena' },
-  saintKittsAndNevis: { value: 'Saint Kitts and Nevis', text: 'Saint Kitts and Nevis' },
+  saintKittsAndNevis: {
+    value: 'Saint Kitts and Nevis',
+    text: 'Saint Kitts and Nevis'
+  },
   saintLucia: { value: 'Saint Lucia', text: 'Saint Lucia' },
   saintMartin: { value: 'Saint Martin', text: 'Saint Martin' },
-  saintPierreAndMiquelon: { value: 'Saint Pierre and Miquelon', text: 'Saint Pierre and Miquelon' },
-  saintVincentAndTheGrenadines: { value: 'Saint Vincent and the Grenadines', text: 'Saint Vincent and the Grenadines' },
+  saintPierreAndMiquelon: {
+    value: 'Saint Pierre and Miquelon',
+    text: 'Saint Pierre and Miquelon'
+  },
+  saintVincentAndTheGrenadines: {
+    value: 'Saint Vincent and the Grenadines',
+    text: 'Saint Vincent and the Grenadines'
+  },
   samoa: { value: 'Samoa', text: 'Samoa' },
   sanMarino: { value: 'San Marino', text: 'San Marino' },
-  saoTomeAndPrincipe: { value: 'Sao Tome and Principe', text: 'Sao Tome and Principe' },
+  saoTomeAndPrincipe: {
+    value: 'Sao Tome and Principe',
+    text: 'Sao Tome and Principe'
+  },
   saudiArabia: { value: 'Saudi Arabia', text: 'Saudi Arabia' },
   senegal: { value: 'Senegal', text: 'Senegal' },
   serbia: { value: 'Serbia', text: 'Serbia' },
@@ -212,7 +278,10 @@ export const countries = {
   solomonIslands: { value: 'Solomon Islands', text: 'Solomon Islands' },
   somalia: { value: 'Somalia', text: 'Somalia' },
   southAfrica: { value: 'South Africa', text: 'South Africa' },
-  southGeorgiaAndTheSouthSandwichIslands: { value: 'South Georgia and the South Sandwich Islands', text: 'South Georgia and the South Sandwich Islands' },
+  southGeorgiaAndTheSouthSandwichIslands: {
+    value: 'South Georgia and the South Sandwich Islands',
+    text: 'South Georgia and the South Sandwich Islands'
+  },
   southKorea: { value: 'South Korea', text: 'South Korea' },
   southSudan: { value: 'South Sudan', text: 'South Sudan' },
   spain: { value: 'Spain', text: 'Spain' },
@@ -232,12 +301,18 @@ export const countries = {
   togo: { value: 'Togo', text: 'Togo' },
   tokelau: { value: 'Tokelau', text: 'Tokelau' },
   tonga: { value: 'Tonga', text: 'Tonga' },
-  trinidadAndTobago: { value: 'Trinidad and Tobago', text: 'Trinidad and Tobago' },
+  trinidadAndTobago: {
+    value: 'Trinidad and Tobago',
+    text: 'Trinidad and Tobago'
+  },
   tromelinIsland: { value: 'Tromelin Island', text: 'Tromelin Island' },
   tunisia: { value: 'Tunisia', text: 'Tunisia' },
   turkey: { value: 'Turkey', text: 'Turkey' },
   turkmenistan: { value: 'Turkmenistan', text: 'Turkmenistan' },
-  turksAndCaicosIslands: { value: 'Turks and Caicos Islands', text: 'Turks and Caicos Islands' },
+  turksAndCaicosIslands: {
+    value: 'Turks and Caicos Islands',
+    text: 'Turks and Caicos Islands'
+  },
   tuvalu: { value: 'Tuvalu', text: 'Tuvalu' },
   uganda: { value: 'Uganda', text: 'Uganda' },
   ukraine: { value: 'Ukraine', text: 'Ukraine' },

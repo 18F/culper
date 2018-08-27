@@ -7,24 +7,26 @@ describe('Schema for financial nonpayment', () => {
       HasNonpayment: { value: 'Yes' },
       List: {
         branch: { value: 'No' },
-        items: [{
-          Item: {
-            Name: {},
-            Infractions: {},
-            AccountNumber: {},
-            PropertyType: {},
-            Amount: {
-              value: ''
-            },
-            AmountEstimated: {},
-            Reason: {},
-            Status: {},
-            Date: {},
-            Resolved: {},
-            ResolvedNotApplicable: {},
-            Description: {}
+        items: [
+          {
+            Item: {
+              Name: {},
+              Infractions: {},
+              AccountNumber: {},
+              PropertyType: {},
+              Amount: {
+                value: ''
+              },
+              AmountEstimated: {},
+              Reason: {},
+              Status: {},
+              Date: {},
+              Resolved: {},
+              ResolvedNotApplicable: {},
+              Description: {}
+            }
           }
-        }]
+        ]
       }
     }
 

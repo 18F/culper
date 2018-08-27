@@ -3,11 +3,20 @@ import { i18n } from '../../../../config'
 import schema from '../../../../schema'
 import validate from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
-import { Field, Show, Text, Suggestions, Name,
-         DateControl, Branch, Radio, RadioGroup } from '../../../Form'
+import {
+  Field,
+  Show,
+  Text,
+  Suggestions,
+  Name,
+  DateControl,
+  Branch,
+  Radio,
+  RadioGroup
+} from '../../../Form'
 
 export default class Passport extends SubsectionElement {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.update = this.update.bind(this)
@@ -22,7 +31,7 @@ export default class Passport extends SubsectionElement {
     this.onDismiss = this.onDismiss.bind(this)
   }
 
-  update (queue, fn) {
+  update(queue, fn) {
     this.props.onUpdate({
       Name: this.props.Name,
       Number: this.props.Number,
@@ -43,21 +52,24 @@ export default class Passport extends SubsectionElement {
   /**
    * Handle the change event.
    */
-  updateCard (values) {
-    this.update({
-      Card: values
-    }, () => {
-      // This allows us to force a blur/validation using
-      // the new regular expression
-      this.refs.number.refs.text.refs.input.focus()
-      this.refs.number.refs.text.refs.input.blur()
-    })
+  updateCard(values) {
+    this.update(
+      {
+        Card: values
+      },
+      () => {
+        // This allows us to force a blur/validation using
+        // the new regular expression
+        this.refs.number.refs.text.refs.input.focus()
+        this.refs.number.refs.text.refs.input.blur()
+      }
+    )
   }
 
   /**
    * Handle when the yes/no option has been changed
    */
-  updateBranch (values) {
+  updateBranch(values) {
     this.update({
       HasPassports: values,
       Name: values.value === 'Yes' ? this.props.Name : {},
@@ -67,50 +79,51 @@ export default class Passport extends SubsectionElement {
     })
   }
 
-  updateName (values) {
+  updateName(values) {
     this.update({
       Name: values
     })
   }
 
-  updateNumber (values) {
+  updateNumber(values) {
     this.update({
       Number: values
     })
   }
 
-  updateIssued (values) {
+  updateIssued(values) {
     this.update({
       Issued: values
     })
   }
 
-  updateExpiration (values) {
+  updateExpiration(values) {
     this.update({
       Expiration: values
     })
   }
 
-  renderSuggestion (suggestion) {
+  renderSuggestion(suggestion) {
     suggestion = suggestion || {}
-    const name = `${suggestion.first || ''} ${suggestion.middle || ''} ${suggestion.last || ''} ${suggestion.suffix || ''}`.trim()
-    return (<span>{name}</span>)
+    const name = `${suggestion.first || ''} ${suggestion.middle ||
+      ''} ${suggestion.last || ''} ${suggestion.suffix || ''}`.trim()
+    return <span>{name}</span>
   }
 
-  onSuggestion (suggestion) {
+  onSuggestion(suggestion) {
     this.update({
       Name: suggestion,
       suggestedNames: []
     })
   }
 
-  onDismiss (suggestion) {
+  onDismiss(suggestion) {
     this.update({
       suggestedNames: []
     })
   }
 
-  showSuggestions () {
+  showSuggestions() {
     // If we have a name already, don't show
     if (this.props.Name && this.props.Name.first && this.props.Name.last) {
       return false
@@ -120,7 +133,7 @@ export default class Passport extends SubsectionElement {
     return this.props.suggestedNames.length
   }
 
-  render () {
+  render() {
     const passportType = (this.props.Card || {}).value || 'Book'
     let re = this.props.reBook
     if (passportType === 'Card') {
@@ -128,132 +141,154 @@ export default class Passport extends SubsectionElement {
     }
 
     return (
-      <div className="section-content passport" {...super.dataAttributes(this.props)}>
-        <Field title={i18n.t('foreign.passport.title')}
-               titleSize="h2"
-               optional={true}
-               className="no-margin-bottom"
-               />
+      <div
+        className="section-content passport"
+        {...super.dataAttributes(this.props)}>
+        <Field
+          title={i18n.t('foreign.passport.title')}
+          titleSize="h2"
+          optional={true}
+          className="no-margin-bottom"
+        />
 
+        <p>{i18n.t('foreign.passport.info.text')}</p>
         <p>
-          {i18n.t('foreign.passport.info.text')}
-        </p>
-        <p>
-          <a href="https://travel.state.gov/content/travel/en.html" target="_blank" rel="noopener noreferrer" title="U.S. State Department Help">
+          <a
+            href="https://travel.state.gov/content/travel/en.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="U.S. State Department Help">
             {i18n.t('foreign.passport.info.link')}
           </a>
         </p>
-        <Branch name="has_passport"
-                label={i18n.t('foreign.passport.question.title')}
-                labelSize="h3"
-                {...this.props.HasPassports}
-                warning={true}
-                onUpdate={this.updateBranch}
+        <Branch
+          name="has_passport"
+          label={i18n.t('foreign.passport.question.title')}
+          labelSize="h3"
+          {...this.props.HasPassports}
+          warning={true}
+          onUpdate={this.updateBranch}
+          onError={this.handleError}
+          required={this.props.required}
+          scrollIntoView={this.props.scrollIntoView}
+        />
+        <Show when={this.props.HasPassports.value === 'Yes'}>
+          <div>
+            <Field
+              title={i18n.t('foreign.passport.name')}
+              titleSize="h3"
+              optional={true}
+              className="no-margin-bottom"
+            />
+            <Suggestions
+              show={this.showSuggestions()}
+              suggestions={this.props.suggestedNames}
+              renderSuggestion={this.renderSuggestion}
+              withSuggestions={true}
+              suggestionTitle={i18n.t('suggestions.name.title')}
+              suggestionParagraph={i18n.m('suggestions.name.para')}
+              suggestionLabel={i18n.t('suggestions.name.label')}
+              suggestionDismissLabel={i18n.t('suggestions.name.dismiss')}
+              suggestionUseLabel={i18n.t('suggestions.name.use')}
+              onSuggestion={this.onSuggestion}
+              onDismiss={this.onDismiss}
+            />
+            <Field
+              optional={true}
+              filterErrors={Name.requiredErrorsOnly}
+              scrollIntoView={this.props.scrollIntoView}>
+              <Name
+                name="name"
+                {...this.props.Name}
+                onUpdate={this.updateName}
                 onError={this.handleError}
                 required={this.props.required}
                 scrollIntoView={this.props.scrollIntoView}
-                >
-        </Branch>
-        <Show when={this.props.HasPassports.value === 'Yes'}>
-          <div>
-            <Field title={i18n.t('foreign.passport.name')}
-                   titleSize="h3"
-                   optional={true}
-                   className="no-margin-bottom"
-                   />
-            <Suggestions show={this.showSuggestions()}
-                         suggestions={this.props.suggestedNames}
-                         renderSuggestion={this.renderSuggestion}
-                         withSuggestions={true}
-                         suggestionTitle={i18n.t('suggestions.name.title')}
-                         suggestionParagraph={i18n.m('suggestions.name.para')}
-                         suggestionLabel={i18n.t('suggestions.name.label')}
-                         suggestionDismissLabel={i18n.t('suggestions.name.dismiss')}
-                         suggestionUseLabel={i18n.t('suggestions.name.use')}
-                         onSuggestion={this.onSuggestion}
-                         onDismiss={this.onDismiss}
-                         />
-            <Field optional={true}
-                   filterErrors={Name.requiredErrorsOnly}
-                   scrollIntoView={this.props.scrollIntoView}>
-              <Name name="name"
-                    {...this.props.Name}
-                    onUpdate={this.updateName}
-                    onError={this.handleError}
-                    required={this.props.required}
-                    scrollIntoView={this.props.scrollIntoView}
-                    />
+              />
             </Field>
 
-            <Field title={i18n.t('foreign.passport.number')}
-                   help="foreign.passport.help.number"
-                   errorPrefix="passport"
-                   adjustFor="buttons"
-                   shrink={true}
-                   scrollIntoView={this.props.scrollIntoView}>
+            <Field
+              title={i18n.t('foreign.passport.number')}
+              help="foreign.passport.help.number"
+              errorPrefix="passport"
+              adjustFor="buttons"
+              shrink={true}
+              scrollIntoView={this.props.scrollIntoView}>
               <div>
-                <RadioGroup className="option-list"
-                            onError={this.handleError}
-                            required={this.props.required}
-                            selectedValue={(this.props.Card || {}).value}>
-                  <Radio name="passport-book"
-                         className="passport-book"
-                         label={i18n.t('foreign.passport.label.book')}
-                         value="Book"
-                         onUpdate={this.updateCard}
-                         onError={this.handleError}
-                         />
-                  <Radio name="passport-card"
-                         className="passport-card"
-                         label={i18n.t('foreign.passport.label.card')}
-                         value="Card"
-                         onUpdate={this.updateCard}
-                         onError={this.handleError}
-                         />
+                <RadioGroup
+                  className="option-list"
+                  onError={this.handleError}
+                  required={this.props.required}
+                  selectedValue={(this.props.Card || {}).value}>
+                  <Radio
+                    name="passport-book"
+                    className="passport-book"
+                    label={i18n.t('foreign.passport.label.book')}
+                    value="Book"
+                    onUpdate={this.updateCard}
+                    onError={this.handleError}
+                  />
+                  <Radio
+                    name="passport-card"
+                    className="passport-card"
+                    label={i18n.t('foreign.passport.label.card')}
+                    value="Card"
+                    onUpdate={this.updateCard}
+                    onError={this.handleError}
+                  />
                 </RadioGroup>
-                <Text name="number"
-                      {...this.props.Number}
-                      label={i18n.t(`foreign.passport.label.${passportType.toLowerCase()}Number`)}
-                      placeholder={i18n.t(`foreign.passport.placeholder.${passportType.toLowerCase()}Number`)}
-                      pattern={re}
-                      maxlength="9"
-                      className="number passport-number"
-                      ref="number"
-                      prefix="passport"
-                      onUpdate={this.updateNumber}
-                      onError={this.handleError}
-                      required={this.props.required}
-                      />
+                <Text
+                  name="number"
+                  {...this.props.Number}
+                  label={i18n.t(
+                    `foreign.passport.label.${passportType.toLowerCase()}Number`
+                  )}
+                  placeholder={i18n.t(
+                    `foreign.passport.placeholder.${passportType.toLowerCase()}Number`
+                  )}
+                  pattern={re}
+                  maxlength="9"
+                  className="number passport-number"
+                  ref="number"
+                  prefix="passport"
+                  onUpdate={this.updateNumber}
+                  onError={this.handleError}
+                  required={this.props.required}
+                />
               </div>
             </Field>
 
-            <Field title={i18n.t('foreign.passport.issued')}
-                   help="foreign.passport.help.issued"
-                   adjustFor="labels"
-                   shrink={true}
-                   scrollIntoView={this.props.scrollIntoView}>
-              <DateControl name="issued"
-                           className="passport-issued"
-                           {...this.props.Issued}
-                           onUpdate={this.updateIssued}
-                           onError={this.handleError}
-                           required={this.props.required}
-                           />
+            <Field
+              title={i18n.t('foreign.passport.issued')}
+              help="foreign.passport.help.issued"
+              adjustFor="labels"
+              shrink={true}
+              scrollIntoView={this.props.scrollIntoView}>
+              <DateControl
+                name="issued"
+                className="passport-issued"
+                {...this.props.Issued}
+                onUpdate={this.updateIssued}
+                onError={this.handleError}
+                required={this.props.required}
+              />
             </Field>
 
-            <Field title={i18n.t('foreign.passport.expiration')}
-                   help="foreign.passport.help.expiration"
-                   adjustFor="labels"
-                   shrink={true}
-                   scrollIntoView={this.props.scrollIntoView}>
-              <DateControl name="expiration"
-                           className="passport-expiration"
-                           {...this.props.Expiration}
-                           noMaxDate={true}
-                           onUpdate={this.updateExpiration}
-                           onError={this.handleError}
-                           required={this.props.required}
-                           />
+            <Field
+              title={i18n.t('foreign.passport.expiration')}
+              help="foreign.passport.help.expiration"
+              adjustFor="labels"
+              shrink={true}
+              scrollIntoView={this.props.scrollIntoView}>
+              <DateControl
+                name="expiration"
+                className="passport-expiration"
+                {...this.props.Expiration}
+                noMaxDate={true}
+                onUpdate={this.updateExpiration}
+                onError={this.handleError}
+                required={this.props.required}
+              />
             </Field>
           </div>
         </Show>
@@ -277,12 +312,14 @@ Passport.defaultProps = {
   suggestedNames: [],
   reBook: '^[a-zA-Z]{1}[0-9]{6,9}$',
   reCard: '^[cC]{1}[0-9]{8}$',
-  onUpdate: (queue) => {},
-  onError: (value, arr) => { return arr },
+  onUpdate: queue => {},
+  onError: (value, arr) => {
+    return arr
+  },
   section: 'foreign',
   subsection: 'passport',
   dispatch: () => {},
-  validator: (data) => {
+  validator: data => {
     return validate(schema('foreign.passport', data))
   }
 }

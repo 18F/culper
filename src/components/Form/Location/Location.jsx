@@ -24,7 +24,7 @@ export const timeout = (fn, milliseconds = 400, w = window) => {
   w.setTimeout(fn, milliseconds)
 }
 
-export const country = (obj) => {
+export const country = obj => {
   if (obj === null) {
     return null
   }
@@ -38,7 +38,7 @@ export const country = (obj) => {
   return obj
 }
 
-export const countryValueResolver = (props) => {
+export const countryValueResolver = props => {
   if (typeof props.country === 'string') {
     let valueArr = props.country ? [props.country] : []
     let comments = props.countryComments || ''
@@ -51,7 +51,7 @@ export const countryValueResolver = (props) => {
 }
 
 export default class Location extends ValidationElement {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.update = this.update.bind(this)
@@ -88,7 +88,7 @@ export default class Location extends ValidationElement {
     }
   }
 
-  update (queue) {
+  update(queue) {
     const values = {
       uid: this.state.uid,
       street: this.props.street,
@@ -109,41 +109,62 @@ export default class Location extends ValidationElement {
 
     // If there is an associated address book then push the updates there
     if (this.props.addressBook && values.validated) {
-      const updatedBook = this.appendToAddressBook(this.props.addressBooks, this.props.addressBook, values)
-      this.props.dispatch(updateApplication('AddressBooks', this.props.addressBook, updatedBook))
+      const updatedBook = this.appendToAddressBook(
+        this.props.addressBooks,
+        this.props.addressBook,
+        values
+      )
+      this.props.dispatch(
+        updateApplication('AddressBooks', this.props.addressBook, updatedBook)
+      )
     } else {
-      const updatedBook = this.removeFromAddressBook(this.props.addressBooks, this.props.addressBook, values)
-      this.props.dispatch(updateApplication('AddressBooks', this.props.addressBook, updatedBook))
+      const updatedBook = this.removeFromAddressBook(
+        this.props.addressBooks,
+        this.props.addressBook,
+        values
+      )
+      this.props.dispatch(
+        updateApplication('AddressBooks', this.props.addressBook, updatedBook)
+      )
     }
   }
 
-  removeFromAddressBook (books, name, address) {
+  removeFromAddressBook(books, name, address) {
     return (books[name] || []).filter(a => a.uid !== address.uid)
   }
 
-  appendToAddressBook (books, name, address) {
+  appendToAddressBook(books, name, address) {
     const addressCountry = (address.country || {}).value
     let book = books[name] || []
 
     // If this is a full address and domestic then it must be validate
-    if (address.layout === Layouts.US_ADDRESS && addressCountry === 'United States' && !address.validated) {
+    if (
+      address.layout === Layouts.US_ADDRESS &&
+      addressCountry === 'United States' &&
+      !address.validated
+    ) {
       return book
     }
 
     // Make sure there are **some values** at least
     switch (addressCountry) {
-    case 'United States':
-    case 'POSTOFFICE':
-      if (!address.street || !address.city || !address.state || !address.zipcode) {
-        return book
-      }
-      break
+      case 'United States':
+      case 'POSTOFFICE':
+        if (
+          !address.street ||
+          !address.city ||
+          !address.state ||
+          !address.zipcode
+        ) {
+          return book
+        }
+        break
 
-    default:
-      if (!address.street || !address.city | !addressCountry) {
-        return book
-      }
-      break
+      default:
+        if (!address.street || !address.city | !addressCountry) {
+          return book
+        }
+        break
     }
 
     // Look to see if we can just update it first.
@@ -162,33 +183,37 @@ export default class Location extends ValidationElement {
     book = book.filter(a => {
       const country = (a.country || {}).value
       switch (addressCountry) {
-      case 'United States':
-      case 'POSTOFFICE':
-        if (a.street.toLowerCase() === address.street.toLowerCase() &&
+        case 'United States':
+        case 'POSTOFFICE':
+          if (
+            a.street.toLowerCase() === address.street.toLowerCase() &&
             a.city.toLowerCase() === address.city.toLowerCase() &&
             a.state.toLowerCase() === address.state.toLowerCase() &&
-            a.zipcode.toLowerCase() === address.zipcode.toLowerCase()) {
-          updated = true
-          if (skip) {
-            skip = false
-            return true
+            a.zipcode.toLowerCase() === address.zipcode.toLowerCase()
+          ) {
+            updated = true
+            if (skip) {
+              skip = false
+              return true
+            }
+            return false
           }
-          return false
-        }
-        break
+          break
 
-      default:
-        if (a.street.toLowerCase() === address.street.toLowerCase() &&
+        default:
+          if (
+            a.street.toLowerCase() === address.street.toLowerCase() &&
             a.city.toLowerCase() === address.city.toLowerCase() &&
-            country.toLowerCase() === addressCountry.toLowerCase()) {
-          updated = true
-          if (skip) {
-            skip = false
-            return true
+            country.toLowerCase() === addressCountry.toLowerCase()
+          ) {
+            updated = true
+            if (skip) {
+              skip = false
+              return true
+            }
+            return false
           }
-          return false
-        }
-        break
+          break
       }
 
       return true
@@ -202,7 +227,7 @@ export default class Location extends ValidationElement {
     return book
   }
 
-  animateCloseWithSuggestions () {
+  animateCloseWithSuggestions() {
     timeout(() => {
       // There were errors/suggestions so show them
       this.setState({
@@ -213,7 +238,7 @@ export default class Location extends ValidationElement {
     }, 1000)
   }
 
-  animateCloseTimeout () {
+  animateCloseTimeout() {
     timeout(() => {
       this.setState({
         spinner: true,
@@ -231,7 +256,7 @@ export default class Location extends ValidationElement {
     })
   }
 
-  animateCloseValid () {
+  animateCloseValid() {
     timeout(() => {
       this.setState({
         spinner: true,
@@ -247,37 +272,44 @@ export default class Location extends ValidationElement {
 
         // Reset back for next usage
         timeout(() => {
-          this.setState({
-            spinner: false,
-            spinnerAction: SpinnerAction.Spin,
-            suggestions: false
-          }, () => {
-            this.update({ validated: true })
-          })
+          this.setState(
+            {
+              spinner: false,
+              spinnerAction: SpinnerAction.Spin,
+              suggestions: false
+            },
+            () => {
+              this.update({ validated: true })
+            }
+          )
         }, 1000)
       })
     }, 1000)
   }
 
-  handleBlur (event) {
+  handleBlur(event) {
     super.handleBlur(event)
   }
 
-  cancelAnimations (w = window) {
+  cancelAnimations(w = window) {
     if (this.animationDelay) {
       w.clearTimeout(this.animationDelay)
     }
   }
 
-  delayAnimations (ms, w = window) {
+  delayAnimations(ms, w = window) {
     this.cancelAnimations()
     this.animationDelay = w.setTimeout(this.triggerAnimations, ms)
   }
 
-  triggerAnimations () {
+  triggerAnimations() {
     // If we can't geocode or it is already validated we skip validation.
     const validator = new LocationValidator(this.props)
-    if (!this.props.geocode || this.props.validated || !validator.canGeocode()) {
+    if (
+      !this.props.geocode ||
+      this.props.validated ||
+      !validator.canGeocode()
+    ) {
       return
     }
 
@@ -312,54 +344,56 @@ export default class Location extends ValidationElement {
     })
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     this.geocodeCancel = true
   }
 
-  updateStreet (values) {
+  updateStreet(values) {
     this.update({
       street: values.value,
       validated: this.props.validated && values.value === this.props.street
     })
   }
 
-  updateStreet2 (values) {
+  updateStreet2(values) {
     this.update({
       street2: values.value,
       validated: this.props.validated && values.value === this.props.street2
     })
   }
 
-  updateCity (values) {
+  updateCity(values) {
     this.update({
       city: values.value,
       validated: this.props.validated && values.value === this.props.city
     })
   }
 
-  updateState (values) {
+  updateState(values) {
     this.update({
       state: values.value,
       validated: this.props.validated && values.value === this.props.state
     })
   }
 
-  updateCountry (values) {
+  updateCountry(values) {
     this.update({
       country: values,
       countryComments: values.comments,
-      validated: this.props.validated && countryString(values) === countryString(this.props.country)
+      validated:
+        this.props.validated &&
+        countryString(values) === countryString(this.props.country)
     })
   }
 
-  updateZipcode (values) {
+  updateZipcode(values) {
     this.update({
       zipcode: values.value,
       validated: this.props.validated && values.value === this.props.zipcode
     })
   }
 
-  updateAddress (address, delay = null) {
+  updateAddress(address, delay = null) {
     if (delay !== null) {
       if (delay === 0) {
         this.cancelAnimations()
@@ -374,7 +408,7 @@ export default class Location extends ValidationElement {
     })
   }
 
-  updateToggleableLocation (location) {
+  updateToggleableLocation(location) {
     this.update({
       city: location.city,
       state: location.state,
@@ -386,133 +420,141 @@ export default class Location extends ValidationElement {
     })
   }
 
-  handleError (value, arr) {
-    arr = arr.map(err => {
-      return {
-        code: `location.${err.code}`,
-        valid: err.valid,
-        uid: err.uid
-      }
-    }) || []
+  handleError(value, arr) {
+    arr =
+      arr.map(err => {
+        return {
+          code: `location.${err.code}`,
+          valid: err.valid,
+          uid: err.uid
+        }
+      }) || []
 
     this.props.onError(value, arr)
     return arr
   }
 
-  renderFields (fields) {
+  renderFields(fields) {
     return fields.map(field => {
       switch (field) {
-      case 'street':
-        return (
-          <Street name="street"
-                  key={field}
-                  className="street"
-                  label={this.props.streetLabel}
-                  placeholder={this.props.streetPlaceholder}
-                  value={this.props.street}
-                  disabled={this.props.disabled}
-                  onUpdate={this.updateStreet}
-                  onError={this.handleError}
-                  onFocus={this.props.onFocus}
-                  onBlur={this.handleBlur}
-                  required={this.props.required}
-                  />
-        )
-      case 'street2':
-        return (
-          <Street name="street2"
-                  key={field}
-                  className="street2"
-                  label={this.props.street2Label}
-                  optional={true}
-                  value={this.props.street2}
-                  disabled={this.props.disabled}
-                  onUpdate={this.updateStreet2}
-                  onError={this.handleError}
-                  onFocus={this.props.onFocus}
-                  onBlur={this.props.onBlur}
-                  />
-        )
-      case 'city':
-        return (
-          <City name="city"
-                className="city"
-                key={field}
-                label={this.props.cityLabel}
-                placeholder={this.props.cityPlaceholder}
-                value={this.props.city}
+        case 'street':
+          return (
+            <Street
+              name="street"
+              key={field}
+              className="street"
+              label={this.props.streetLabel}
+              placeholder={this.props.streetPlaceholder}
+              value={this.props.street}
+              disabled={this.props.disabled}
+              onUpdate={this.updateStreet}
+              onError={this.handleError}
+              onFocus={this.props.onFocus}
+              onBlur={this.handleBlur}
+              required={this.props.required}
+            />
+          )
+        case 'street2':
+          return (
+            <Street
+              name="street2"
+              key={field}
+              className="street2"
+              label={this.props.street2Label}
+              optional={true}
+              value={this.props.street2}
+              disabled={this.props.disabled}
+              onUpdate={this.updateStreet2}
+              onError={this.handleError}
+              onFocus={this.props.onFocus}
+              onBlur={this.props.onBlur}
+            />
+          )
+        case 'city':
+          return (
+            <City
+              name="city"
+              className="city"
+              key={field}
+              label={this.props.cityLabel}
+              placeholder={this.props.cityPlaceholder}
+              value={this.props.city}
+              disabled={this.props.disabled}
+              onUpdate={this.updateCity}
+              onError={this.handleError}
+              onFocus={this.props.onFocus}
+              onBlur={this.handleBlur}
+              required={this.props.required}
+            />
+          )
+        case 'state':
+          return (
+            <MilitaryState
+              name="state"
+              key={field}
+              className="state"
+              label={this.props.stateLabel}
+              placeholder={this.props.statePlaceholder}
+              value={this.props.state}
+              includeStates="true"
+              disabled={this.props.disabled}
+              onUpdate={this.updateState}
+              onError={this.handleError}
+              onFocus={this.props.onFocus}
+              onBlur={this.handleBlur}
+              required={this.props.required}
+            />
+          )
+        case 'stateZipcode':
+          return (
+            <div className="state-zip-wrap" key={`state-zip-${field}`}>
+              <MilitaryState
+                name="state"
+                className="state"
+                label={this.props.stateLabel}
+                placeholder={this.props.statePlaceholder}
+                value={this.props.state}
+                includeStates="true"
                 disabled={this.props.disabled}
-                onUpdate={this.updateCity}
+                onUpdate={this.updateState}
                 onError={this.handleError}
                 onFocus={this.props.onFocus}
                 onBlur={this.handleBlur}
                 required={this.props.required}
-                />
-        )
-      case 'state':
-        return (
-          <MilitaryState name="state"
-                         key={field}
-                         className="state"
-                         label={this.props.stateLabel}
-                         placeholder={this.props.statePlaceholder}
-                         value={this.props.state}
-                         includeStates="true"
-                         disabled={this.props.disabled}
-                         onUpdate={this.updateState}
-                         onError={this.handleError}
-                         onFocus={this.props.onFocus}
-                         onBlur={this.handleBlur}
-                         required={this.props.required}
-                         />
-        )
-      case 'stateZipcode':
-        return (
-          <div className="state-zip-wrap" key={`state-zip-${field}`}>
-            <MilitaryState name="state"
-                           className="state"
-                           label={this.props.stateLabel}
-                           placeholder={this.props.statePlaceholder}
-                           value={this.props.state}
-                           includeStates="true"
-                           disabled={this.props.disabled}
-                           onUpdate={this.updateState}
-                           onError={this.handleError}
-                           onFocus={this.props.onFocus}
-                           onBlur={this.handleBlur}
-                           required={this.props.required}
-                           />
-            <ZipCode name="zipcode"
-                     className="zipcode"
-                     label={this.props.zipcodeLabel}
-                     placeholder={this.props.zipcodePlaceholder}
-                     value={this.props.zipcode}
-                     disabled={this.props.disabled}
-                     onUpdate={this.updateZipcode}
-                     onError={this.handleError}
-                     onFocus={this.props.onFocus}
-                     onBlur={this.handleBlur}
-                     required={this.props.required}
-                     />
-          </div>
-        )
-      case 'country':
-        return (
-          <Country name="country"
-                   {...countryValueResolver(this.props)}
-                   className="country"
-                   key={field}
-                   label={this.props.countryLabel}
-                   placeholder={this.props.countryPlaceholder}
-                   disabled={this.props.disabled}
-                   excludeUnitedStates="true"
-                   onUpdate={this.updateCountry}
-                   onError={this.handleError}
-                   onFocus={this.props.onFocus}
-                   onBlur={this.handleBlur}
-                   required={this.props.required}
-                   />
-        )
+              />
+              <ZipCode
+                name="zipcode"
+                className="zipcode"
+                label={this.props.zipcodeLabel}
+                placeholder={this.props.zipcodePlaceholder}
+                value={this.props.zipcode}
+                disabled={this.props.disabled}
+                onUpdate={this.updateZipcode}
+                onError={this.handleError}
+                onFocus={this.props.onFocus}
+                onBlur={this.handleBlur}
+                required={this.props.required}
+              />
+            </div>
+          )
+        case 'country':
+          return (
+            <Country
+              name="country"
+              {...countryValueResolver(this.props)}
+              className="country"
+              key={field}
+              label={this.props.countryLabel}
+              placeholder={this.props.countryPlaceholder}
+              disabled={this.props.disabled}
+              excludeUnitedStates="true"
+              onUpdate={this.updateCountry}
+              onError={this.handleError}
+              onFocus={this.props.onFocus}
+              onBlur={this.handleBlur}
+              required={this.props.required}
+            />
+          )
       }
     })
   }
@@ -520,113 +562,115 @@ export default class Location extends ValidationElement {
   /**
    * Maps fields to Location constant to determine layout
    */
-  fieldMappings () {
+  fieldMappings() {
     switch (this.props.layout) {
-    case Location.BIRTHPLACE:
-      return (
-        <ToggleableLocation
-          {...this.props}
-          domesticFields={['city', 'state', 'county']}
-          internationalFields={['city', 'country']}
-          onBlur={this.handleBlur}
-          onUpdate={this.updateToggleableLocation}
-          onError={this.handleError}
-          required={this.props.required}
+      case Location.BIRTHPLACE:
+        return (
+          <ToggleableLocation
+            {...this.props}
+            domesticFields={['city', 'state', 'county']}
+            internationalFields={['city', 'country']}
+            onBlur={this.handleBlur}
+            onUpdate={this.updateToggleableLocation}
+            onError={this.handleError}
+            required={this.props.required}
           />
-      )
-    case Location.US_CITY_STATE_INTERNATIONAL_CITY_COUNTRY:
-    case Location.BIRTHPLACE_WITHOUT_COUNTY:
-      return (
-        <ToggleableLocation
-          {...this.props}
-          domesticFields={['city', 'state']}
-          internationalFields={['city', 'country']}
-          onBlur={this.handleBlur}
-          onUpdate={this.updateToggleableLocation}
-          onError={this.handleError}
-          required={this.props.required}
+        )
+      case Location.US_CITY_STATE_INTERNATIONAL_CITY_COUNTRY:
+      case Location.BIRTHPLACE_WITHOUT_COUNTY:
+        return (
+          <ToggleableLocation
+            {...this.props}
+            domesticFields={['city', 'state']}
+            internationalFields={['city', 'country']}
+            onBlur={this.handleBlur}
+            onUpdate={this.updateToggleableLocation}
+            onError={this.handleError}
+            required={this.props.required}
           />
-      )
-    case Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY:
-      return (
-        <ToggleableLocation
-          {...this.props}
-          domesticFields={['city', 'stateZipcode']}
-          internationalFields={['city', 'country']}
-          onBlur={this.handleBlur}
-          onUpdate={this.updateToggleableLocation}
-          onError={this.handleError}
-          required={this.props.required}
+        )
+      case Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY:
+        return (
+          <ToggleableLocation
+            {...this.props}
+            domesticFields={['city', 'stateZipcode']}
+            internationalFields={['city', 'country']}
+            onBlur={this.handleBlur}
+            onUpdate={this.updateToggleableLocation}
+            onError={this.handleError}
+            required={this.props.required}
           />
-      )
-    case Location.ADDRESS:
-    case Location.US_ADDRESS:
-      return (
-        <Address
-          {...this.props}
-          disableToggle={this.props.layout === Location.US_ADDRESS}
-          onBlur={this.handleBlur}
-          onUpdate={this.updateAddress}
-          onError={this.handleError}
-          required={this.props.required}
+        )
+      case Location.ADDRESS:
+      case Location.US_ADDRESS:
+        return (
+          <Address
+            {...this.props}
+            disableToggle={this.props.layout === Location.US_ADDRESS}
+            onBlur={this.handleBlur}
+            onUpdate={this.updateAddress}
+            onError={this.handleError}
+            required={this.props.required}
           />
-      )
-    case Location.CITY_STATE:
-      return this.renderFields(['city', 'state'])
-    case Location.STREET_CITY_COUNTRY:
-      return this.renderFields(['street', 'city', 'country'])
-    case Location.CITY_COUNTRY:
-      return this.renderFields(['city', 'country'])
-    case Location.CITY_STATE_COUNTRY:
-      return this.renderFields(['city', 'state', 'country'])
-    case Location.STREET_CITY:
-      return this.renderFields(['street', 'city'])
-    case Location.COUNTRY:
-      return this.renderFields(['country'])
-    case null:
-    case undefined:
-    default:
-      if (!env.IsTest()) {
-        console.warn('Location layout not specified. Add one please')
-      }
-      return null
+        )
+      case Location.CITY_STATE:
+        return this.renderFields(['city', 'state'])
+      case Location.STREET_CITY_COUNTRY:
+        return this.renderFields(['street', 'city', 'country'])
+      case Location.CITY_COUNTRY:
+        return this.renderFields(['city', 'country'])
+      case Location.CITY_STATE_COUNTRY:
+        return this.renderFields(['city', 'state', 'country'])
+      case Location.STREET_CITY:
+        return this.renderFields(['street', 'city'])
+      case Location.COUNTRY:
+        return this.renderFields(['country'])
+      case null:
+      case undefined:
+      default:
+        if (!env.IsTest()) {
+          console.warn('Location layout not specified. Add one please')
+        }
+        return null
     }
   }
 
-  spinner () {
+  spinner() {
     if (this.state.spinner) {
       return (
-        <Spinner show={this.state.spinner}
-                 action={this.state.spinnerAction}
-                 label={i18n.t('address.spinner')}
-                 />
+        <Spinner
+          show={this.state.spinner}
+          action={this.state.spinnerAction}
+          label={i18n.t('address.spinner')}
+        />
       )
     }
 
     return null
   }
 
-  suggestions () {
+  suggestions() {
     const show = this.state.suggestions && this.showSuggestions()
     const suggestions = this.state.geocodeResult.Suggestions || []
     return (
-      <Suggestions show={show}
-                   suggestions={suggestions}
-                   renderSuggestion={this.renderSuggestion}
-                   suggestionTitle={this.suggestionTitle()}
-                   suggestionLabel={this.suggestionLabel()}
-                   suggestionParagraph={this.suggestionParagraph()}
-                   suggestionDismissLabel={i18n.t('suggestions.address.dismiss')}
-                   suggestionDismissContent={this.suggestionDismissContent()}
-                   suggestionDismissAlternate={this.dismissAlternative()}
-                   suggestionUseLabel={i18n.t('suggestions.address.use')}
-                   onSuggestion={this.onSuggestion}
-                   onDismiss={this.onSuggestionDismiss}
-                   />
+      <Suggestions
+        show={show}
+        suggestions={suggestions}
+        renderSuggestion={this.renderSuggestion}
+        suggestionTitle={this.suggestionTitle()}
+        suggestionLabel={this.suggestionLabel()}
+        suggestionParagraph={this.suggestionParagraph()}
+        suggestionDismissLabel={i18n.t('suggestions.address.dismiss')}
+        suggestionDismissContent={this.suggestionDismissContent()}
+        suggestionDismissAlternate={this.dismissAlternative()}
+        suggestionUseLabel={i18n.t('suggestions.address.use')}
+        onSuggestion={this.onSuggestion}
+        onDismiss={this.onSuggestionDismiss}
+      />
     )
   }
 
-  render () {
+  render() {
     const klass = `location ${this.props.className || ''}`.trim()
     return (
       <div className={klass}>
@@ -642,7 +686,7 @@ export default class Location extends ValidationElement {
   /**
    * Determines what conditions render the address suggestion modal
    */
-  showSuggestions () {
+  showSuggestions() {
     if (this.state.geocodeResult.Error) {
       return true
     }
@@ -655,23 +699,25 @@ export default class Location extends ValidationElement {
     return false
   }
 
-  suggestionTitle () {
+  suggestionTitle() {
     return i18n.t(`${this.state.geocodeResult.Error}.title`)
   }
 
-  suggestionLabel () {
+  suggestionLabel() {
     return i18n.t(`${this.state.geocodeResult.Error}.label`)
   }
 
-  suggestionParagraph () {
+  suggestionParagraph() {
     const e = this.state.geocodeResult.Error
     if (e === 'error.geocode.defaultAddress') {
       return (
         <span>
           <p>{i18n.t(`${e}.para`)}</p>
-          <button className="suggestion-btn" onClick={this.onSuggestionDismiss.bind(this, 'alternate')}>
+          <button
+            className="suggestion-btn"
+            onClick={this.onSuggestionDismiss.bind(this, 'alternate')}>
             <span>{i18n.t('suggestions.address.more')}</span>
-            <i className="fa fa-arrow-circle-right"></i>
+            <i className="fa fa-arrow-circle-right" />
           </button>
         </span>
       )
@@ -679,70 +725,81 @@ export default class Location extends ValidationElement {
     return i18n.m(`${e}.para`)
   }
 
-  dismissAlternative () {
+  dismissAlternative() {
     const e = this.state.geocodeResult.Error
     if (e === 'error.geocode.defaultAddress') {
       return null
     }
 
-    if (!this.state.geocodeResult.Suggestions || this.state.geocodeResult.Suggestions.length === 0) {
+    if (
+      !this.state.geocodeResult.Suggestions ||
+      this.state.geocodeResult.Suggestions.length === 0
+    ) {
       return i18n.t('suggestions.address.alternate')
     }
 
     return null
   }
 
-  onSuggestionDismiss (action) {
-    this.setState({ spinner: false, suggestions: false, geocodeResult: {} }, () => {
-      this.update({
-        validated: action === 'dismiss'
-      })
-    })
+  onSuggestionDismiss(action) {
+    this.setState(
+      { spinner: false, suggestions: false, geocodeResult: {} },
+      () => {
+        this.update({
+          validated: action === 'dismiss'
+        })
+      }
+    )
   }
 
-  onSuggestion (suggestion) {
-    this.setState({ spinner: false, suggestions: false, geocodeResult: {} }, () => {
-      this.update({
-        street: suggestion.Street,
-        street2: suggestion.Street2,
-        city: suggestion.City,
-        state: suggestion.State,
-        zipcode: suggestion.Zipcode,
-        validated: true
-      })
-    })
+  onSuggestion(suggestion) {
+    this.setState(
+      { spinner: false, suggestions: false, geocodeResult: {} },
+      () => {
+        this.update({
+          street: suggestion.Street,
+          street2: suggestion.Street2,
+          city: suggestion.City,
+          state: suggestion.State,
+          zipcode: suggestion.Zipcode,
+          validated: true
+        })
+      }
+    )
   }
 
-  suggestionDismissContent () {
+  suggestionDismissContent() {
     const { street, street2, city, state, zipcode } = this.props
     return (
       <div>
         <h5>{i18n.t('error.geocode.original.title')}</h5>
         <div className="address-suggestion">
-          <div>{ street }</div>
-          <div>{ street2 }</div>
-          <div>{ city }, { state } { zipcode }</div>
+          <div>{street}</div>
+          <div>{street2}</div>
+          <div>
+            {city}, {state} {zipcode}
+          </div>
         </div>
       </div>
     )
   }
 
-  renderSuggestion (suggestion) {
-    return (
-      <AddressSuggestion suggestion={suggestion} current={this.props} />
-    )
+  renderSuggestion(suggestion) {
+    return <AddressSuggestion suggestion={suggestion} current={this.props} />
   }
 }
 
 // Define all possible layouts for location fields
 Location.BIRTHPLACE = Layouts.BIRTHPLACE
 Location.COUNTRY = Layouts.COUNTRY
-Location.US_CITY_STATE_INTERNATIONAL_CITY_COUNTRY = Layouts.US_CITY_STATE_INTERNATIONAL_CITY_COUNTRY
+Location.US_CITY_STATE_INTERNATIONAL_CITY_COUNTRY =
+  Layouts.US_CITY_STATE_INTERNATIONAL_CITY_COUNTRY
 Location.BIRTHPLACE_WITHOUT_COUNTY = Layouts.BIRTHPLACE_WITHOUT_COUNTY
 Location.CITY_STATE = Layouts.CITY_STATE
 Location.STREET_CITY_COUNTRY = Layouts.STREET_CITY_COUNTRY
 Location.CITY_COUNTRY = Layouts.CITY_COUNTRY
-Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY = Layouts.US_CITY_STATE_ZIP_INTERNATIONAL_CITY
+Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY =
+  Layouts.US_CITY_STATE_ZIP_INTERNATIONAL_CITY
 Location.ADDRESS = Layouts.ADDRESS
 Location.CITY_STATE_COUNTRY = Layouts.CITY_STATE_COUNTRY
 Location.US_ADDRESS = Layouts.US_ADDRESS
@@ -772,9 +829,11 @@ Location.defaultProps = {
   required: false,
   addressBooks: {},
   addressBook: '',
-  onUpdate: (queue) => {},
-  dispatch: (action) => {},
-  onError: (value, arr) => { return arr }
+  onUpdate: queue => {},
+  dispatch: action => {},
+  onError: (value, arr) => {
+    return arr
+  }
 }
 
 Location.errors = []

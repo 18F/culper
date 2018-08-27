@@ -1,6 +1,8 @@
-import NegativeImpactsValidator, { NegativeImpactValidator } from './alcoholnegativeimpact'
+import NegativeImpactsValidator, {
+  NegativeImpactValidator
+} from './alcoholnegativeimpact'
 
-describe('negative impact component validation', function () {
+describe('negative impact component validation', function() {
   it('can validate negative impact', () => {
     const tests = [
       {
@@ -36,7 +38,9 @@ describe('negative impact component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new NegativeImpactValidator(test.state).isValid()).toBe(test.expected)
+      expect(new NegativeImpactValidator(test.state).isValid()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -73,35 +77,37 @@ describe('negative impact component validation', function () {
           HasImpacts: { value: 'Yes' },
           List: {
             branch: { value: 'No' },
-            items: [{
-              Item: {
-                Occurred: {
-                  month: '1',
-                  year: '2010'
-                },
-                Circumstances: {
-                  value: 'Foo'
-                },
-                NegativeImpact: {
-                  value: 'Bar'
-                },
-                Used: {
-                  from: {
+            items: [
+              {
+                Item: {
+                  Occurred: {
                     month: '1',
-                    day: '1',
-                    year: '2010',
-                    date: new Date('1/1/2010')
+                    year: '2010'
                   },
-                  to: {
-                    month: '1',
-                    day: '1',
-                    year: '2012',
-                    date: new Date('1/1/2012')
+                  Circumstances: {
+                    value: 'Foo'
                   },
-                  present: false
+                  NegativeImpact: {
+                    value: 'Bar'
+                  },
+                  Used: {
+                    from: {
+                      month: '1',
+                      day: '1',
+                      year: '2010',
+                      date: new Date('1/1/2010')
+                    },
+                    to: {
+                      month: '1',
+                      day: '1',
+                      year: '2012',
+                      date: new Date('1/1/2012')
+                    },
+                    present: false
+                  }
                 }
               }
-            }]
+            ]
           }
         },
         expected: true
@@ -111,33 +117,35 @@ describe('negative impact component validation', function () {
           HasImpacts: { value: 'Yes' },
           List: {
             branch: { value: 'No' },
-            items: [{
-              Item: {
-                Occurred: {
-                  month: '1',
-                  year: '2010'
-                },
-                Circumstances: {},
-                NegativeImpact: {
-                  value: 'Bar'
-                },
-                Used: {
-                  from: {
+            items: [
+              {
+                Item: {
+                  Occurred: {
                     month: '1',
-                    day: '1',
-                    year: '2010',
-                    date: new Date('1/1/2010')
+                    year: '2010'
                   },
-                  to: {
-                    month: '1',
-                    day: '1',
-                    year: '2012',
-                    date: new Date('1/1/2012')
+                  Circumstances: {},
+                  NegativeImpact: {
+                    value: 'Bar'
                   },
-                  present: false
+                  Used: {
+                    from: {
+                      month: '1',
+                      day: '1',
+                      year: '2010',
+                      date: new Date('1/1/2010')
+                    },
+                    to: {
+                      month: '1',
+                      day: '1',
+                      year: '2012',
+                      date: new Date('1/1/2012')
+                    },
+                    present: false
+                  }
                 }
               }
-            }]
+            ]
           }
         },
         expected: false
@@ -145,7 +153,9 @@ describe('negative impact component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new NegativeImpactsValidator(test.state).isValid()).toBe(test.expected)
+      expect(new NegativeImpactsValidator(test.state).isValid()).toBe(
+        test.expected
+      )
     })
   })
 })

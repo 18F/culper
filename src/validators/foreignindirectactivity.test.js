@@ -1,7 +1,7 @@
 import ForeignIndirectActivityValidator from './foreignindirectactivity'
 
-describe('Foreign Indirect Activity validation', function () {
-  it('should validate list of indirect interests', function () {
+describe('Foreign Indirect Activity validation', function() {
+  it('should validate list of indirect interests', function() {
     const tests = [
       // {
       //   props: {
@@ -85,7 +85,9 @@ describe('Foreign Indirect Activity validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new ForeignIndirectActivityValidator(test.props).isValid()).toBe(test.expected)
+      expect(new ForeignIndirectActivityValidator(test.props).isValid()).toBe(
+        test.expected
+      )
     })
   })
 })

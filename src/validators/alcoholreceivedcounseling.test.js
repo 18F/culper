@@ -1,7 +1,9 @@
-import ReceivedCounselingsValidator, { ReceivedCounselingValidator } from './alcoholreceivedcounseling'
+import ReceivedCounselingsValidator, {
+  ReceivedCounselingValidator
+} from './alcoholreceivedcounseling'
 import Location from '../components/Form/Location'
 
-describe('received counseling component validation', function () {
+describe('received counseling component validation', function() {
   it('can validate received counseling', () => {
     const tests = [
       {
@@ -34,7 +36,9 @@ describe('received counseling component validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new ReceivedCounselingValidator(test.state).validAddress()).toBe(test.expected)
+      expect(new ReceivedCounselingValidator(test.state).validAddress()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -93,7 +97,9 @@ describe('received counseling component validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new ReceivedCounselingValidator(test.state).isValid()).toBe(test.expected)
+      expect(new ReceivedCounselingValidator(test.state).isValid()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -125,7 +131,9 @@ describe('received counseling component validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new ReceivedCounselingValidator(test.state).validCompletedTreatment()).toBe(test.expected)
+      expect(
+        new ReceivedCounselingValidator(test.state).validCompletedTreatment()
+      ).toBe(test.expected)
     })
   })
 
@@ -271,7 +279,9 @@ describe('received counseling component validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new ReceivedCounselingsValidator(test.state, null).isValid()).toBe(test.expected)
+      expect(new ReceivedCounselingsValidator(test.state, null).isValid()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -354,14 +364,16 @@ describe('received counseling component validation', function () {
           ReceivedTreatment: { value: 'Yes' },
           List: {
             branch: { value: 'No' },
-            items: [{Item: {}}]
+            items: [{ Item: {} }]
           }
         },
         expected: false
       }
     ]
     tests.forEach(test => {
-      expect(new ReceivedCounselingsValidator(test.state).isValid()).toBe(test.expected)
+      expect(new ReceivedCounselingsValidator(test.state).isValid()).toBe(
+        test.expected
+      )
     })
   })
 })

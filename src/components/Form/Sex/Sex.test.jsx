@@ -12,12 +12,15 @@ describe('The Sex component', () => {
       error: true,
       focus: false,
       valid: false,
-      onValidate: function (event) {
+      onValidate: function(event) {
         validations++
       }
     }
     const component = mount(<Sex {...expected} />)
-    component.find('input').first().simulate('change')
+    component
+      .find('input')
+      .first()
+      .simulate('change')
     expect(validations > 0).toEqual(true)
   })
 
@@ -31,10 +34,15 @@ describe('The Sex component', () => {
       error: true,
       focus: false,
       valid: false,
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
     const component = mount(<Sex {...expected} />)
-    component.find('input').first().simulate('change')
+    component
+      .find('input')
+      .first()
+      .simulate('change')
     expect(updates).toEqual(updates)
   })
 })

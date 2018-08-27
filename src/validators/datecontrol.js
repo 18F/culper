@@ -1,6 +1,10 @@
 import store from '../services/store'
 import { extractApplicantBirthdate } from '../components/Section/extractors'
-import { extractDate, today, daysAgo } from '../components/Section/History/dateranges'
+import {
+  extractDate,
+  today,
+  daysAgo
+} from '../components/Section/History/dateranges'
 
 export const getContext = () => {
   const state = store.getState()
@@ -11,7 +15,7 @@ export const getContext = () => {
 }
 
 export default class DateControlValidator {
-  constructor (data = {}, context = null) {
+  constructor(data = {}, context = null) {
     this.month = data.month
     this.day = data.day
     this.year = data.year
@@ -33,12 +37,16 @@ export default class DateControlValidator {
 
     // For month/year fields, we compare from the start of the month
     if (this.hideDay) {
-      this.maxDate = new Date(`${this.maxDate.getMonth() + 1}/1/${this.maxDate.getFullYear()}`)
-      this.minDate = new Date(`${this.minDate.getMonth() + 1}/1/${this.minDate.getFullYear()}`)
+      this.maxDate = new Date(
+        `${this.maxDate.getMonth() + 1}/1/${this.maxDate.getFullYear()}`
+      )
+      this.minDate = new Date(
+        `${this.minDate.getMonth() + 1}/1/${this.minDate.getFullYear()}`
+      )
     }
   }
 
-  validMaxDate () {
+  validMaxDate() {
     // If no max day present, we return true to continue as we have nothing
     // to compare against
     if (!this.maxDate || this.noMaxDate) {
@@ -53,7 +61,7 @@ export default class DateControlValidator {
     return date < this.maxDate
   }
 
-  validMinDate () {
+  validMinDate() {
     // If no max day present, we return true to continue as we have nothing
     // to compare against
     if (!this.minDate) {
@@ -68,7 +76,7 @@ export default class DateControlValidator {
     return date > this.minDate
   }
 
-  isValid () {
+  isValid() {
     if ((!this.day && !this.hideDay) || !this.month || !this.year) {
       return false
     }
@@ -82,38 +90,38 @@ export const dateLimits = (relationship, birthdate) => {
   let min = extractDate(birthdate)
 
   switch (relationship) {
-  case 'Self':
-    max = daysAgo(today, 365 * 16)
-    min = daysAgo(today, (365 * 130) + 1)
-    break
-  case 'Mother':
-  case 'Father':
-    max = min
-    min = daysAgo(today, (365 * 200) + 1)
-    break
-  case 'Child':
-    break
-  case 'Stepmother':
-  case 'Stepfather':
-  case 'Fosterparent':
-  case 'Stepchild':
-  case 'Brother':
-  case 'Sister':
-  case 'Stepbrother':
-  case 'Stepsister':
-  case 'Half-brother':
-  case 'Half-sister':
-  case 'Father-in-law':
-  case 'Mother-in-law':
-  case 'Guardian':
-  case 'Other':
-    min = daysAgo(today, (365 * 200) + 1)
-    break
-  default:
-    // Everything else just uses the defaults
-    if (!min) {
-      min = daysAgo(today, (365 * 200) + 1)
-    }
+    case 'Self':
+      max = daysAgo(today, 365 * 16)
+      min = daysAgo(today, 365 * 130 + 1)
+      break
+    case 'Mother':
+    case 'Father':
+      max = min
+      min = daysAgo(today, 365 * 200 + 1)
+      break
+    case 'Child':
+      break
+    case 'Stepmother':
+    case 'Stepfather':
+    case 'Fosterparent':
+    case 'Stepchild':
+    case 'Brother':
+    case 'Sister':
+    case 'Stepbrother':
+    case 'Stepsister':
+    case 'Half-brother':
+    case 'Half-sister':
+    case 'Father-in-law':
+    case 'Mother-in-law':
+    case 'Guardian':
+    case 'Other':
+      min = daysAgo(today, 365 * 200 + 1)
+      break
+    default:
+      // Everything else just uses the defaults
+      if (!min) {
+        min = daysAgo(today, 365 * 200 + 1)
+      }
   }
 
   return { minDate: min, maxDate: max }

@@ -14,7 +14,9 @@ export const foreignActivitiesDirect = (data = {}) => {
         Value: form.number(xitem.Value),
         ValueEstimated: form.checkbox(xitem.ValueEstimated),
         Relinquished: form.datecontrol(xitem.Relinquished),
-        RelinquishedNotApplicable: form.notapplicable(xitem.RelinquishedNotApplicable),
+        RelinquishedNotApplicable: form.notapplicable(
+          xitem.RelinquishedNotApplicable
+        ),
         Explanation: form.textarea(xitem.Explanation),
         CoOwners: form.coowners(xitem.CoOwners)
       }

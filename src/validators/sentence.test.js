@@ -1,6 +1,6 @@
 import SentenceValidator from './sentence'
 
-describe('Sentence record validation', function () {
+describe('Sentence record validation', function() {
   it('can validate basic branch checks', () => {
     const tests = [
       {
@@ -64,7 +64,9 @@ describe('Sentence record validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new SentenceValidator(test.data).validIncarcerationDates()).toBe(test.expected)
+      expect(new SentenceValidator(test.data).validIncarcerationDates()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -101,7 +103,9 @@ describe('Sentence record validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new SentenceValidator(test.data).validProbationDates()).toBe(test.expected)
+      expect(new SentenceValidator(test.data).validProbationDates()).toBe(
+        test.expected
+      )
     })
   })
 

@@ -8,10 +8,9 @@ import { mount } from 'enzyme'
 import { api } from '../../services'
 import Loading from './Loading'
 
-
 describe('The data loading view', () => {
   // Setup
-  const middlewares = [ thunk ]
+  const middlewares = [thunk]
   const mockStore = configureMockStore(middlewares)
 
   it('is visible with context', () => {
@@ -19,7 +18,13 @@ describe('The data loading view', () => {
     mock.onGet('/me/form').reply(200, {})
 
     const store = mockStore({ authentication: { authenticated: true } })
-    const component = mount(<Provider store={store}><MemoryRouter><Loading /></MemoryRouter></Provider>)
+    const component = mount(
+      <Provider store={store}>
+        <MemoryRouter>
+          <Loading />
+        </MemoryRouter>
+      </Provider>
+    )
     expect(component.find('.loading').length).toEqual(1)
     expect(component.find('.spinner').length).toEqual(1)
   })

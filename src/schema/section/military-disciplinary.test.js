@@ -7,15 +7,17 @@ describe('Schema for financial taxes', () => {
       HasDisciplinary: { value: 'Yes' },
       List: {
         branch: { value: 'No' },
-        items: [{
-          Item: {
-            Date: {},
-            Offenses: {},
-            Name: {},
-            Court: {},
-            Outcome: {}
+        items: [
+          {
+            Item: {
+              Date: {},
+              Offenses: {},
+              Name: {},
+              Court: {},
+              Outcome: {}
+            }
           }
-        }]
+        ]
       }
     }
 

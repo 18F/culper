@@ -10,7 +10,9 @@ describe('The DrugUse component', () => {
 
   it('Performs update', () => {
     let updates = 0
-    const onUpdate = () => { updates++ }
+    const onUpdate = () => {
+      updates++
+    }
     const component = mount(<DrugUse onUpdate={onUpdate} />)
     expect(component.find('.drug-use').length).toBe(1)
     component.find('.drug-type-use .cocaine input').simulate('change')

@@ -11,6 +11,8 @@ export const foreignborndocument = (data = {}) => {
     OtherExplanation: textarea(data.OtherExplanation),
     DocumentNumber: text(data.DocumentNumber),
     DocumentExpiration: datecontrol(data.DocumentExpiration),
-    DocumentExpirationNotApplicable: notapplicable(data.DocumentExpirationNotApplicable)
+    DocumentExpirationNotApplicable: notapplicable(
+      data.DocumentExpirationNotApplicable
+    )
   })
 }

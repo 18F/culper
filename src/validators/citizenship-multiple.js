@@ -2,33 +2,35 @@ import DateRangeValidator from './daterange'
 import { validAccordion, validGenericTextfield } from './helpers'
 
 export default class CitizenshipMultipleValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.hasMultiple = (data.HasMultiple || {}).value
     this.list = data.List || {}
   }
 
-  validHasMultiple () {
-    return !!this.hasMultiple && (this.hasMultiple === 'Yes' || this.hasMultiple === 'No')
+  validHasMultiple() {
+    return (
+      !!this.hasMultiple &&
+      (this.hasMultiple === 'Yes' || this.hasMultiple === 'No')
+    )
   }
 
-  validCitizenships () {
+  validCitizenships() {
     if (this.hasMultiple !== 'Yes') {
       return true
     }
 
-    return validAccordion(this.list, (item) => {
+    return validAccordion(this.list, item => {
       return new CitizenshipItemValidator(item).isValid()
     })
   }
 
-  isValid () {
-    return this.validHasMultiple() &&
-      this.validCitizenships()
+  isValid() {
+    return this.validHasMultiple() && this.validCitizenships()
   }
 }
 
 export class CitizenshipItemValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.country = data.Country
     this.dates = data.Dates
     this.how = data.How
@@ -38,39 +40,45 @@ export class CitizenshipItemValidator {
     this.currentExplanation = data.CurrentExplanation
   }
 
-  validCountry () {
+  validCountry() {
     return validGenericTextfield(this.country)
   }
 
-  validDates () {
+  validDates() {
     return !!this.dates && new DateRangeValidator(this.dates).isValid()
   }
 
-  validHow () {
+  validHow() {
     return !!this.how && validGenericTextfield(this.how)
   }
 
-  validRenounced () {
-    return !!this.renounced &&
+  validRenounced() {
+    return (
+      !!this.renounced &&
       (this.renounced === 'No' || this.renounced === 'Yes') &&
       validGenericTextfield(this.renouncedExplanation)
+    )
   }
 
-  validCurrent () {
+  validCurrent() {
     if (!this.dates || this.dates.present) {
       return true
     }
 
-    return !!this.current &&
+    return (
+      !!this.current &&
       (this.current === 'No' || this.current === 'Yes') &&
       validGenericTextfield(this.currentExplanation)
+    )
   }
 
-  isValid () {
-    return this.validCountry() &&
+  isValid() {
+    return (
+      this.validCountry() &&
       this.validDates() &&
       this.validHow() &&
       this.validRenounced() &&
       this.validCurrent()
+    )
   }
 }

@@ -1,7 +1,7 @@
 import IdentificationValidator from './identification'
 
-describe('Identification validations', function () {
-  it('should set completion status', function () {
+describe('Identification validations', function() {
+  it('should set completion status', function() {
     const tests = [
       {
         data: {
@@ -63,7 +63,9 @@ describe('Identification validations', function () {
     ]
 
     tests.forEach(test => {
-      expect(new IdentificationValidator(test.data).completionStatus(test.status)).toBe(test.expected)
+      expect(
+        new IdentificationValidator(test.data).completionStatus(test.status)
+      ).toBe(test.expected)
     })
   })
 })

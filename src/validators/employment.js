@@ -1,28 +1,36 @@
 import DateRangeValidator from './daterange'
 import LocationValidator from './location'
 import NameValidator from './name'
-import { validNotApplicable, validGenericTextfield, validPhoneNumber, validGenericMonthYear,
-         validDateField, withinSevenYears, BranchCollection, validAccordion } from './helpers'
+import {
+  validNotApplicable,
+  validGenericTextfield,
+  validPhoneNumber,
+  validGenericMonthYear,
+  validDateField,
+  withinSevenYears,
+  BranchCollection,
+  validAccordion
+} from './helpers'
 
 export default class HistoryEmploymentValidator {
-  constructor (data = {}) {
-    this.list = (data.List || { items: [] })
+  constructor(data = {}) {
+    this.list = data.List || { items: [] }
     this.employmentRecord = data.EmploymentRecord || {}
   }
 
-  isValid () {
+  isValid() {
     if (this.employmentRecord.value !== 'No') {
       return false
     }
 
-    return validAccordion(this.list, (item) => {
+    return validAccordion(this.list, item => {
       return new EmploymentValidator(item).isValid()
     })
   }
 }
 
 export class EmploymentValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.employmentActivity = data.EmploymentActivity || { value: null }
     this.dates = data.Dates || {}
     this.employment = data.Employment || {}
@@ -41,27 +49,27 @@ export class EmploymentValidator {
     this.referenceAddress = data.ReferenceAddress || {}
   }
 
-  validDates () {
+  validDates() {
     return new DateRangeValidator(this.dates, null).isValid()
   }
 
-  validEmployment () {
+  validEmployment() {
     return validGenericTextfield(this.employment)
   }
 
-  validStatus () {
+  validStatus() {
     return validGenericTextfield(this.status)
   }
 
-  validTitle () {
+  validTitle() {
     return validGenericTextfield(this.title)
   }
 
-  validAddress () {
+  validAddress() {
     return new LocationValidator(this.address).isValid()
   }
 
-  validAdditionalActivity () {
+  validAdditionalActivity() {
     if (!this.additional) {
       return false
     }
@@ -76,31 +84,40 @@ export class EmploymentValidator {
     }
 
     return branchValidator.each(item => {
-      return validGenericTextfield(item.Position) &&
+      return (
+        validGenericTextfield(item.Position) &&
         validGenericTextfield(item.Supervisor) &&
         new DateRangeValidator(item.DatesEmployed).isValid()
+      )
     })
   }
 
-  validTelephone () {
+  validTelephone() {
     return validPhoneNumber(this.telephone)
   }
 
-  validPhysicalAddress () {
-    const differentAddress = ((this.physicalAddress || {}).HasDifferentAddress || {}).value
-    if (!this.physicalAddress || !(differentAddress === 'No' || differentAddress === 'Yes')) {
+  validPhysicalAddress() {
+    const differentAddress = (
+      (this.physicalAddress || {}).HasDifferentAddress || {}
+    ).value
+    if (
+      !this.physicalAddress ||
+      !(differentAddress === 'No' || differentAddress === 'Yes')
+    ) {
       return false
     }
 
     if (differentAddress === 'Yes') {
-      return this.physicalAddress.Address &&
+      return (
+        this.physicalAddress.Address &&
         new LocationValidator(this.physicalAddress.Address).isValid()
+      )
     }
 
     return true
   }
 
-  validReasonLeft () {
+  validReasonLeft() {
     if (this.withinSevenYears()) {
       if (!this.reasonLeft) {
         return false
@@ -120,31 +137,39 @@ export class EmploymentValidator {
       }
 
       return branchValidator.each(item => {
-        return validGenericTextfield(item.Reason) &&
+        return (
+          validGenericTextfield(item.Reason) &&
           validDateField(item.Date) &&
           validGenericTextfield(item.Text)
+        )
       })
     }
 
     return true
   }
 
-  validSupervisor () {
-    return this.supervisor &&
+  validSupervisor() {
+    return (
+      this.supervisor &&
       validGenericTextfield(this.supervisor.SupervisorName) &&
       validGenericTextfield(this.supervisor.Title) &&
-      validNotApplicable(this.supervisor.EmailNotApplicable, () => { return validGenericTextfield(this.supervisor.Email) }) &&
+      validNotApplicable(this.supervisor.EmailNotApplicable, () => {
+        return validGenericTextfield(this.supervisor.Email)
+      }) &&
       new LocationValidator(this.supervisor.Address).isValid() &&
       validPhoneNumber(this.supervisor.Telephone)
+    )
   }
 
-  validReference () {
-    return new NameValidator(this.referenceName).isValid() &&
+  validReference() {
+    return (
+      new NameValidator(this.referenceName).isValid() &&
       validPhoneNumber(this.referencePhone) &&
       new LocationValidator(this.referenceAddress).isValid()
+    )
   }
 
-  validReprimand () {
+  validReprimand() {
     if (this.withinSevenYears()) {
       const branchValidator = new BranchCollection(this.reprimand)
       if (!branchValidator.validKeyValues()) {
@@ -156,76 +181,84 @@ export class EmploymentValidator {
       }
 
       return branchValidator.each(item => {
-        return validGenericTextfield(item.Text) && validGenericMonthYear(item.Date)
+        return (
+          validGenericTextfield(item.Text) && validGenericMonthYear(item.Date)
+        )
       })
     }
 
     return true
   }
 
-  withinSevenYears () {
+  withinSevenYears() {
     return withinSevenYears(this.dates.from, this.dates.to)
   }
 
-  validAssignedDuty () {
+  validAssignedDuty() {
     return validGenericTextfield(this.dutyStation)
   }
 
-  isValid () {
+  isValid() {
     switch (this.employmentActivity.value) {
-    case 'ActiveMilitary':
-    case 'NationalGuard':
-    case 'USPHS':
-      // Active Duty, National Guard/Reserve, or USPHS Commissioned Corps
-      return this.validDates() &&
-        this.validTitle() &&
-        this.validAssignedDuty() &&
-        this.validStatus() &&
-        this.validAddress() &&
-        this.validTelephone() &&
-        this.validSupervisor() &&
-        this.validReasonLeft() &&
-        this.validReprimand()
+      case 'ActiveMilitary':
+      case 'NationalGuard':
+      case 'USPHS':
+        // Active Duty, National Guard/Reserve, or USPHS Commissioned Corps
+        return (
+          this.validDates() &&
+          this.validTitle() &&
+          this.validAssignedDuty() &&
+          this.validStatus() &&
+          this.validAddress() &&
+          this.validTelephone() &&
+          this.validSupervisor() &&
+          this.validReasonLeft() &&
+          this.validReprimand()
+        )
 
-    case 'OtherFederal':
-    case 'StateGovernment':
-    case 'FederalContractor':
-    case 'NonGovernment':
-    case 'Other':
-      // Other Federal employment, State Government, Federal Contractor, Non-government employment, or Other
-      return this.validDates() &&
-        this.validTitle() &&
-        this.validEmployment() &&
-        this.validStatus() &&
-        this.validAddress() &&
-        this.validPhysicalAddress() &&
-        this.validTelephone() &&
-        this.validSupervisor() &&
-        this.validAdditionalActivity() &&
-        this.validReasonLeft() &&
-        this.validReprimand()
+      case 'OtherFederal':
+      case 'StateGovernment':
+      case 'FederalContractor':
+      case 'NonGovernment':
+      case 'Other':
+        // Other Federal employment, State Government, Federal Contractor, Non-government employment, or Other
+        return (
+          this.validDates() &&
+          this.validTitle() &&
+          this.validEmployment() &&
+          this.validStatus() &&
+          this.validAddress() &&
+          this.validPhysicalAddress() &&
+          this.validTelephone() &&
+          this.validSupervisor() &&
+          this.validAdditionalActivity() &&
+          this.validReasonLeft() &&
+          this.validReprimand()
+        )
 
-    case 'SelfEmployment':
-      // Self employment
-      return this.validDates() &&
-        this.validTitle() &&
-        this.validEmployment() &&
-        this.validStatus() &&
-        this.validAddress() &&
-        this.validPhysicalAddress() &&
-        this.validTelephone() &&
-        this.validReference() &&
-        this.validReasonLeft() &&
-        this.validReprimand()
+      case 'SelfEmployment':
+        // Self employment
+        return (
+          this.validDates() &&
+          this.validTitle() &&
+          this.validEmployment() &&
+          this.validStatus() &&
+          this.validAddress() &&
+          this.validPhysicalAddress() &&
+          this.validTelephone() &&
+          this.validReference() &&
+          this.validReasonLeft() &&
+          this.validReprimand()
+        )
 
-    case 'Unemployment':
-      // Unemployment
-      return this.validDates() &&
-        this.validReference() &&
-        this.validReasonLeft()
+      case 'Unemployment':
+        // Unemployment
+        return (
+          this.validDates() && this.validReference() && this.validReasonLeft()
+        )
 
-    default:
-      return false
+      default:
+        return false
     }
   }
 }

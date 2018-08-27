@@ -10,9 +10,13 @@ describe('The legal associations violence component', () => {
 
   it('can select "yes"', () => {
     let updates = 0
-    const onUpdate = () => { updates++ }
+    const onUpdate = () => {
+      updates++
+    }
     const component = mount(<MembershipViolence onUpdate={onUpdate} />)
-    component.find('.legal-associations-violence-has-violence .yes input').simulate('change')
+    component
+      .find('.legal-associations-violence-has-violence .yes input')
+      .simulate('change')
     expect(updates).toBe(1)
   })
 

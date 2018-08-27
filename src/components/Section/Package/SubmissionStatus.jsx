@@ -11,7 +11,7 @@ import { Show, Svg } from '../../Form'
  * 3. Pass in valid = false and the bar is rendered red
  */
 export default class SubmissionStatus extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       width: this.props.transition ? 0 : 100
@@ -19,7 +19,7 @@ export default class SubmissionStatus extends React.Component {
     this.transitionEnd = this.transitionEnd.bind(this)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     if (this.props.transition) {
       window.setTimeout(() => {
         this.setState({
@@ -29,26 +29,26 @@ export default class SubmissionStatus extends React.Component {
     }
   }
 
-  transitionEnd () {
+  transitionEnd() {
     if (this.props.transition) {
       this.props.onTransitionEnd()
     }
   }
 
-  render () {
+  render() {
     let text = i18n.m(`application.submissionStatus.validating`)
     let classes = ['submission-status']
 
     if (!this.props.transition) {
       switch (this.props.valid) {
-      case true:
-        text = i18n.m(`application.submissionStatus.valid`)
-        classes.push('valid')
-        break
-      case false:
-        text = i18n.m(`application.submissionStatus.invalid`)
-        classes.push('invalid')
-        break
+        case true:
+          text = i18n.m(`application.submissionStatus.valid`)
+          classes.push('valid')
+          break
+        case false:
+          text = i18n.m(`application.submissionStatus.invalid`)
+          classes.push('invalid')
+          break
       }
     }
 
@@ -57,10 +57,13 @@ export default class SubmissionStatus extends React.Component {
     }
 
     // When transition class is applied, css3 transition is triggered
-    const progressClass = [ 'progress', this.props.transition ? 'transition' : '' ]
+    const progressClass = [
+      'progress',
+      this.props.transition ? 'transition' : ''
+    ]
     return (
       <div className={classes.join(' ')}>
-        { text }
+        {text}
         <div className="progress-container">
           <div className="review-icon">
             <Show when={this.props.transition}>
@@ -72,7 +75,11 @@ export default class SubmissionStatus extends React.Component {
           </div>
           <div className="progress-outline">
             <div className="progress-default">
-              <div className={progressClass.join(' ')} style={style} onTransitionEnd={this.transitionEnd}></div>
+              <div
+                className={progressClass.join(' ')}
+                style={style}
+                onTransitionEnd={this.transitionEnd}
+              />
             </div>
           </div>
           <div className="icon-container">
@@ -86,27 +93,27 @@ export default class SubmissionStatus extends React.Component {
             </span>
           </div>
         </div>
-        { this.props.children }
+        {this.props.children}
       </div>
     )
   }
 }
 
 export class AnimateReviewIcon extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       initial: true
     }
   }
 
-  componentDidMount () {
+  componentDidMount() {
     window.setTimeout(() => {
       this.setState({ initial: false })
     })
   }
 
-  render () {
+  render() {
     let reviewClass = ''
     if (this.state.initial) {
       reviewClass = 'opacity-0'
@@ -115,13 +122,31 @@ export class AnimateReviewIcon extends React.Component {
     }
     let image = null
     if (this.props.valid) {
-      image = (<img src="/img/review-correct-all.svg" style={{zIndex: '100'}} className={reviewClass} alt={i18n.t('review.correctAllSvg')} />)
+      image = (
+        <img
+          src="/img/review-correct-all.svg"
+          style={{ zIndex: '100' }}
+          className={reviewClass}
+          alt={i18n.t('review.correctAllSvg')}
+        />
+      )
     } else {
-      image = (<img src="/img/review-error.svg" style={{zIndex: '100'}} className={reviewClass} alt={i18n.t('review.reviewErrorSvg')} />)
+      image = (
+        <img
+          src="/img/review-error.svg"
+          style={{ zIndex: '100' }}
+          className={reviewClass}
+          alt={i18n.t('review.reviewErrorSvg')}
+        />
+      )
     }
     return (
       <div>
-        <img src="/img/review-checking.svg" style={{zIndex: '10'}} alt={i18n.t('review.checkingSvg')} />
+        <img
+          src="/img/review-checking.svg"
+          style={{ zIndex: '10' }}
+          alt={i18n.t('review.checkingSvg')}
+        />
         {image}
       </div>
     )
@@ -129,7 +154,7 @@ export class AnimateReviewIcon extends React.Component {
 }
 
 export class AnimateCheckmarkIcon extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       initial: true,
@@ -139,17 +164,17 @@ export class AnimateCheckmarkIcon extends React.Component {
     this.onInitialTransitionEnd = this.onInitialTransitionEnd.bind(this)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     window.setTimeout(() => {
       this.setState({ initial: false })
     })
   }
 
-  onInitialTransitionEnd () {
+  onInitialTransitionEnd() {
     this.setState({ initial: false, done: true })
   }
 
-  render () {
+  render() {
     let defaultClass = {}
     let reviewClass = {}
     let image = null
@@ -170,12 +195,12 @@ export class AnimateCheckmarkIcon extends React.Component {
 
     return (
       <span>
-        <span className={defaultClass} onTransitionEnd={this.onInitialTransitionEnd}>
+        <span
+          className={defaultClass}
+          onTransitionEnd={this.onInitialTransitionEnd}>
           <Svg className="checkmark" src="/img/checkmark.svg" />
         </span>
-        <span className={reviewClass}>
-          {image}
-        </span>
+        <span className={reviewClass}>{image}</span>
       </span>
     )
   }

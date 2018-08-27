@@ -1,34 +1,38 @@
 import LocationValidator from './location'
-import { validAccordion, validBranch, validGenericTextfield, validDateField } from './helpers'
+import {
+  validAccordion,
+  validBranch,
+  validGenericTextfield,
+  validDateField
+} from './helpers'
 
 export default class ReceivedCounselingsValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.receivedTreatment = (data.ReceivedTreatment || {}).value
     this.list = data.List || {}
   }
 
-  validReceivedTreatment () {
+  validReceivedTreatment() {
     return validBranch(this.receivedTreatment)
   }
 
-  validReceivedCounselings () {
+  validReceivedCounselings() {
     if (this.validReceivedTreatment() && this.receivedTreatment === 'No') {
       return true
     }
 
-    return validAccordion(this.list, (item) => {
+    return validAccordion(this.list, item => {
       return new ReceivedCounselingValidator(item).isValid()
     })
   }
 
-  isValid () {
-    return this.validReceivedTreatment() &&
-      this.validReceivedCounselings()
+  isValid() {
+    return this.validReceivedTreatment() && this.validReceivedCounselings()
   }
 }
 
 export class ReceivedCounselingValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.treatmentProviderName = data.TreatmentProviderName
     this.treatmentProviderAddress = data.TreatmentProviderAddress
     this.agencyName = data.AgencyName
@@ -40,32 +44,41 @@ export class ReceivedCounselingValidator {
     this.noCompletedTreatmentExplanation = data.NoCompletedTreatmentExplanation
   }
 
-  validCompletedTreatment () {
+  validCompletedTreatment() {
     switch (this.completedTreatment) {
-    case 'Yes':
-    case 'No':
-      return validGenericTextfield(this.noCompletedTreatmentExplanation)
-    default:
-      return false
+      case 'Yes':
+      case 'No':
+        return validGenericTextfield(this.noCompletedTreatmentExplanation)
+      default:
+        return false
     }
   }
 
-  validAddress () {
+  validAddress() {
     if (this.useSameAddress === 'Yes') {
       return new LocationValidator(this.treatmentProviderAddress).isValid()
     }
-    return new LocationValidator(this.treatmentProviderAddress).isValid() &&
+    return (
+      new LocationValidator(this.treatmentProviderAddress).isValid() &&
       new LocationValidator(this.agencyAddress).isValid()
+    )
   }
 
-  daterange () {
-    const start = new Date(`${this.treatmentBeganDate.month || '1'}/${this.treatmentBeganDate.day || '1'}/${this.treatmentBeganDate.year || '1900'}`)
-    const stop = new Date(`${this.treatmentEndDate.month || '1'}/${this.treatmentEndDate.day || '1'}/${this.treatmentEndDate.year || '1900'}`)
+  daterange() {
+    const start = new Date(
+      `${this.treatmentBeganDate.month || '1'}/${this.treatmentBeganDate.day ||
+        '1'}/${this.treatmentBeganDate.year || '1900'}`
+    )
+    const stop = new Date(
+      `${this.treatmentEndDate.month || '1'}/${this.treatmentEndDate.day ||
+        '1'}/${this.treatmentEndDate.year || '1900'}`
+    )
     return start <= stop
   }
 
-  isValid () {
-    return validGenericTextfield(this.treatmentProviderName) &&
+  isValid() {
+    return (
+      validGenericTextfield(this.treatmentProviderName) &&
       validBranch(this.useSameAddress) &&
       this.validAddress() &&
       validGenericTextfield(this.agencyName) &&
@@ -73,5 +86,6 @@ export class ReceivedCounselingValidator {
       validDateField(this.treatmentBeganDate) &&
       validDateField(this.treatmentEndDate) &&
       this.daterange()
+    )
   }
 }

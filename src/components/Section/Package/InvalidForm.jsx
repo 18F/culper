@@ -5,7 +5,7 @@ import { Show } from '../../Form'
 import InvalidSection from './InvalidSection'
 
 export default class InvalidForm extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       valid: null,
@@ -14,22 +14,22 @@ export default class InvalidForm extends React.Component {
     this.errors = this.errors.bind(this)
   }
 
-  errors () {
+  errors() {
     let errors = []
     for (const sectionName in this.props.tally) {
       const mark = this.props.tally[sectionName]
       if (mark.errors) {
-        errors.push(<InvalidSection key={mark.section.url} mark={mark}/>)
+        errors.push(<InvalidSection key={mark.section.url} mark={mark} />)
       }
     }
     return errors
   }
 
-  render () {
+  render() {
     return (
       <div className="invalid-form">
-        { i18n.m(`application.invalidForm`) }
-        { this.errors() }
+        {i18n.m(`application.invalidForm`)}
+        {this.errors()}
         <Show when={!env.IsProduction()}>
           <Link to="/form/package/submit">Simulate valid form</Link>
         </Show>
@@ -40,5 +40,5 @@ export default class InvalidForm extends React.Component {
 
 InvalidForm.defaultProps = {
   tally: {},
-  dispatch: (action) => {}
+  dispatch: action => {}
 }

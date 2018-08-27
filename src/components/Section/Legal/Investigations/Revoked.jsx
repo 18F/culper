@@ -8,7 +8,7 @@ import { Accordion, Branch, Show } from '../../../Form'
 import RevokedItem from './RevokedItem'
 
 export default class Revoked extends SubsectionElement {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.update = this.update.bind(this)
@@ -16,7 +16,7 @@ export default class Revoked extends SubsectionElement {
     this.updateList = this.updateList.bind(this)
   }
 
-  update (queue) {
+  update(queue) {
     this.props.onUpdate({
       List: this.props.List,
       HasRevocations: this.props.HasRevocations,
@@ -24,21 +24,21 @@ export default class Revoked extends SubsectionElement {
     })
   }
 
-  updateList (values) {
+  updateList(values) {
     this.update({
       List: values
     })
   }
 
-  updateBranch (values) {
+  updateBranch(values) {
     this.update({
       HasRevocations: values,
       List: values.value === 'Yes' ? this.props.List : []
     })
   }
 
-  summary (item, index) {
-    const o = ((item && item.Item) || {})
+  summary(item, index) {
+    const o = (item && item.Item) || {}
     const dates = DateSummary(o.Date)
     const agency = (o.Agency || {}).value || ''
 
@@ -51,40 +51,51 @@ export default class Revoked extends SubsectionElement {
     })
   }
 
-  render () {
+  render() {
     return (
-      <div className="section-content investigations-revoked" {...super.dataAttributes(this.props)}>
-        <Branch name="has_revoked"
-                label={i18n.t('legal.investigations.revoked.heading.title')}
-                labelSize="h2"
-                className="legal-investigations-revoked-has-revocations"
-                {...this.props.HasRevocations}
-                warning={true}
-                onError={this.handleError}
-                required={this.props.required}
-                onUpdate={this.updateBranch}
-                scrollIntoView={this.props.scrollIntoView}>
+      <div
+        className="section-content investigations-revoked"
+        {...super.dataAttributes(this.props)}>
+        <Branch
+          name="has_revoked"
+          label={i18n.t('legal.investigations.revoked.heading.title')}
+          labelSize="h2"
+          className="legal-investigations-revoked-has-revocations"
+          {...this.props.HasRevocations}
+          warning={true}
+          onError={this.handleError}
+          required={this.props.required}
+          onUpdate={this.updateBranch}
+          scrollIntoView={this.props.scrollIntoView}>
           {i18n.m('legal.investigations.revoked.para.downgrade')}
         </Branch>
 
         <Show when={this.props.HasRevocations.value === 'Yes'}>
-          <Accordion defaultState={this.props.defaultState}
-                     {...this.props.List}
-                     scrollToBottom={this.props.scrollToBottom}
-                     summary={this.summary}
-                     onUpdate={this.updateList}
-                     onError={this.handleError}
-                     validator={RevokedValidator}
-                     description={i18n.t('legal.investigations.revoked.collection.description')}
-                     appendTitle={i18n.t('legal.investigations.revoked.collection.appendTitle')}
-                     appendLabel={i18n.t('legal.investigations.revoked.collection.appendLabel')}
-                     required={this.props.required}
-                     scrollIntoView={this.props.scrollIntoView}>
-            <RevokedItem name="Item"
-                         bind={true}
-                         required={this.props.required}
-                         scrollIntoView={this.props.scrollIntoView}
-                         />
+          <Accordion
+            defaultState={this.props.defaultState}
+            {...this.props.List}
+            scrollToBottom={this.props.scrollToBottom}
+            summary={this.summary}
+            onUpdate={this.updateList}
+            onError={this.handleError}
+            validator={RevokedValidator}
+            description={i18n.t(
+              'legal.investigations.revoked.collection.description'
+            )}
+            appendTitle={i18n.t(
+              'legal.investigations.revoked.collection.appendTitle'
+            )}
+            appendLabel={i18n.t(
+              'legal.investigations.revoked.collection.appendLabel'
+            )}
+            required={this.props.required}
+            scrollIntoView={this.props.scrollIntoView}>
+            <RevokedItem
+              name="Item"
+              bind={true}
+              required={this.props.required}
+              scrollIntoView={this.props.scrollIntoView}
+            />
           </Accordion>
         </Show>
       </div>
@@ -97,12 +108,14 @@ Revoked.defaultProps = {
   HasRevocations: {},
   List: Accordion.defaultList,
   defaultState: true,
-  onUpdate: (queue) => {},
-  onError: (value, arr) => { return arr },
+  onUpdate: queue => {},
+  onError: (value, arr) => {
+    return arr
+  },
   section: 'legal',
   subsection: 'investigations/revoked',
   dispatch: () => {},
-  validator: (data) => {
+  validator: data => {
     return validate(schema('legal.investigations.revoked', data))
   },
   scrollToBottom: ''

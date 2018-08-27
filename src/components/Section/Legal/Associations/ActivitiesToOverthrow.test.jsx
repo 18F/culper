@@ -10,9 +10,13 @@ describe('The legal associations activities component', () => {
 
   it('can select "yes"', () => {
     let updates = 0
-    const onUpdate = () => { updates++ }
+    const onUpdate = () => {
+      updates++
+    }
     const component = mount(<ActivitiesToOverthrow onUpdate={onUpdate} />)
-    component.find('.legal-associations-activities-has-activities .yes input').simulate('change')
+    component
+      .find('.legal-associations-activities-has-activities .yes input')
+      .simulate('change')
     expect(updates).toBe(1)
   })
 

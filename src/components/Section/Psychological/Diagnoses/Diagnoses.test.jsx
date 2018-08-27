@@ -16,7 +16,9 @@ describe('The Diagnoses component', () => {
       InTreatment: { value: 'Yes' },
       DiagnosisList: { items: [{}], branch: {} },
       TreatmentList: { items: [{}], branch: {} },
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
     const component = mount(<Diagnoses {...props} />)
     expect(updates).toBeGreaterThan(1)

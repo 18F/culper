@@ -1,7 +1,7 @@
 import TreatmentValidator from './treatment'
 import Location from '../components/Form/Location'
 
-describe('Treatment validation', function () {
+describe('Treatment validation', function() {
   it('validates treatment', () => {
     const tests = [
       {

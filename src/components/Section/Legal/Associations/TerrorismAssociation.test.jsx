@@ -10,9 +10,13 @@ describe('The legal associations terrorism component', () => {
 
   it('can select "yes"', () => {
     let updates = 0
-    const onUpdate = () => { updates++ }
+    const onUpdate = () => {
+      updates++
+    }
     const component = mount(<TerrorismAssociation onUpdate={onUpdate} />)
-    component.find('.legal-associations-terrorism-has-terrorism .yes input').simulate('change')
+    component
+      .find('.legal-associations-terrorism-has-terrorism .yes input')
+      .simulate('change')
     expect(updates).toBe(1)
   })
 
@@ -20,11 +24,17 @@ describe('The legal associations terrorism component', () => {
     let updates = 0
     const props = {
       HasTerrorism: { value: 'Yes' },
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
     const component = mount(<TerrorismAssociation {...props} />)
-    expect(component.find('.legal-associations-terrorism-explanation').length).toBe(1)
-    component.find('.legal-associations-terrorism-explanation textarea').simulate('change')
+    expect(
+      component.find('.legal-associations-terrorism-explanation').length
+    ).toBe(1)
+    component
+      .find('.legal-associations-terrorism-explanation textarea')
+      .simulate('change')
     expect(updates).toBe(1)
   })
 })

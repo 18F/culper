@@ -13,17 +13,21 @@ export const SpinnerAction = {
 }
 
 export default class Spinner extends React.Component {
-  render () {
+  render() {
     // Append on any classes passed down
     const klass = `spinner ${this.props.className}`.trim()
-    const klassIcon = `spinner-icon ${this.props.action === ACTION_GROW ? 'hidden' : this.props.action}`
-    const klassCheck = `fa ${this.props.icon} ${this.props.action === ACTION_GROW ? 'grow' : 'hidden'}`
+    const klassIcon = `spinner-icon ${
+      this.props.action === ACTION_GROW ? 'hidden' : this.props.action
+    }`
+    const klassCheck = `fa ${this.props.icon} ${
+      this.props.action === ACTION_GROW ? 'grow' : 'hidden'
+    }`
 
     // When there is nothing special do the status quo
     return (
       <Modal show={this.props.show} className={klass}>
         <div className={klassIcon}>{this.props.label}</div>
-        <i className={klassCheck} aria-hidden="false"></i>
+        <i className={klassCheck} aria-hidden="false" />
         <span className="spinner-label">{this.props.label}</span>
       </Modal>
     )

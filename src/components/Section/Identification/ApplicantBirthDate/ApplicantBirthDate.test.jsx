@@ -25,7 +25,9 @@ describe('The applicant birth date component', () => {
         year: '1700',
         date: new Date('01/01/1700')
       },
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
     const component = mount(<ApplicantBirthDate {...expected} />)
     component.find('.month input').simulate('change')

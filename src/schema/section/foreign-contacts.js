@@ -16,26 +16,34 @@ export const foreignContacts = (data = {}) => {
         FrequencyExplanation: form.textarea(xitem.FrequencyExplanation),
         Relationship: form.checkboxgroup(xitem.Relationship),
         RelationshipExplanation: form.textarea(xitem.RelationshipExplanation),
-        Aliases: form.collection(((xitem.Aliases || {}).items || []).map(y => {
-          const yitem = y.Item || {}
-          return {
-            Item: {
-              Has: form.branch(yitem.Has),
-              Alias: form.name(yitem.Alias)
+        Aliases: form.collection(
+          ((xitem.Aliases || {}).items || []).map(y => {
+            const yitem = y.Item || {}
+            return {
+              Item: {
+                Has: form.branch(yitem.Has),
+                Alias: form.name(yitem.Alias)
+              }
             }
-          }
-        })),
+          })
+        ),
         Citizenship: form.country(xitem.Citizenship),
         Birthdate: form.datecontrol(xitem.Birthdate),
-        BirthdateNotApplicable: form.notapplicable(xitem.BirthdateNotApplicable),
+        BirthdateNotApplicable: form.notapplicable(
+          xitem.BirthdateNotApplicable
+        ),
         Birthplace: form.location(xitem.Birthplace),
-        BirthplaceNotApplicable: form.notapplicable(xitem.BirthplaceNotApplicable),
+        BirthplaceNotApplicable: form.notapplicable(
+          xitem.BirthplaceNotApplicable
+        ),
         Address: form.location(xitem.Address),
         AddressNotApplicable: form.notapplicable(xitem.AddressNotApplicable),
         Employer: form.text(xitem.Employer),
         EmployerNotApplicable: form.notapplicable(xitem.EmployerNotApplicable),
         EmployerAddress: form.location(xitem.EmployerAddress),
-        EmployerAddressNotApplicable: form.notapplicable(xitem.EmployerAddressNotApplicable),
+        EmployerAddressNotApplicable: form.notapplicable(
+          xitem.EmployerAddressNotApplicable
+        ),
         HasAffiliations: form.branch(xitem.HasAffiliations),
         Affiliations: form.textarea(xitem.Affiliations)
       }

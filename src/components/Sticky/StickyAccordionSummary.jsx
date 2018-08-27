@@ -4,7 +4,7 @@ const SUMMARY_CLASS = '.summary'
 const MOBILE_BREAKPOINT = 850
 
 export default class StickyAccordionSummary extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
@@ -13,7 +13,7 @@ export default class StickyAccordionSummary extends React.Component {
     this.onScroll = this.onScroll.bind(this)
   }
 
-  componentDidUpdate (prevProps, prevState) {
+  componentDidUpdate(prevProps, prevState) {
     if (!this.state.stick) {
       this.updateRelativeSummaryRowWidth()
     } else {
@@ -21,27 +21,34 @@ export default class StickyAccordionSummary extends React.Component {
     }
   }
 
-  componentWillReceiveProps () {
+  componentWillReceiveProps() {
     // Ah yes, the timeout hack
-    setTimeout(() => { this.onScroll() }, 200)
+    setTimeout(() => {
+      this.onScroll()
+    }, 200)
   }
 
-  componentDidMount () {
-    this.props.events.forEach(e => this.props.window().addEventListener(e, this.onScroll))
+  componentDidMount() {
+    this.props.events.forEach(e =>
+      this.props.window().addEventListener(e, this.onScroll)
+    )
     this.onScroll()
   }
 
-  componentWillUnmount () {
-    this.props.events.forEach(e => this.props.window().removeEventListener(e, this.onScroll))
+  componentWillUnmount() {
+    this.props.events.forEach(e =>
+      this.props.window().removeEventListener(e, this.onScroll)
+    )
   }
 
-  documentScrollTop () {
+  documentScrollTop() {
     const doc = this.props.document().documentElement
-    let st = (this.props.window().pageYOffset || doc.scrollTop) - (doc.clientTop || 0)
+    let st =
+      (this.props.window().pageYOffset || doc.scrollTop) - (doc.clientTop || 0)
     return st + this.props.offset
   }
 
-  elementOffset () {
+  elementOffset() {
     if (!this.refs.content) {
       return 0
     }
@@ -51,23 +58,23 @@ export default class StickyAccordionSummary extends React.Component {
     return elOffset
   }
 
-  elementBottomOffset () {
+  elementBottomOffset() {
     if (!this.refs.content) {
       return 0
     }
     const elementOffset = this.elementOffset()
     const elementHeight = this.refs.content.clientHeight
-    return (elementOffset + elementHeight) - this.props.offset
+    return elementOffset + elementHeight - this.props.offset
   }
 
-  summaryElement () {
+  summaryElement() {
     if (!this.refs.content) {
       return null
     }
     return this.refs.content.querySelector(SUMMARY_CLASS)
   }
 
-  doStick () {
+  doStick() {
     if (this.props.preventStick) {
       return false
     }
@@ -77,7 +84,7 @@ export default class StickyAccordionSummary extends React.Component {
     return true
   }
 
-  onScroll (event) {
+  onScroll(event) {
     // Do not perform any sticky behavior. Set to false and run away
     if (!this.doStick()) {
       this.setState({
@@ -102,7 +109,10 @@ export default class StickyAccordionSummary extends React.Component {
     // of the accordion. The top and bottom of the accordion content region are
     // represented by elementOffset and elementBottomOffset respectively.
     let stick = this.state.stick
-    if (documentScrollTop >= elementOffset && documentScrollTop <= elementBottomOffset) {
+    if (
+      documentScrollTop >= elementOffset &&
+      documentScrollTop <= elementBottomOffset
+    ) {
       stick = true
     } else {
       stick = false
@@ -130,7 +140,7 @@ export default class StickyAccordionSummary extends React.Component {
    * inconsistent results where fixed summaries were not matching up exactly with the accordion content
    * area.
    */
-  updateFixedSummaryRowWidth () {
+  updateFixedSummaryRowWidth() {
     let fixedSummary = this.summaryElement()
     if (!fixedSummary) {
       return
@@ -142,7 +152,7 @@ export default class StickyAccordionSummary extends React.Component {
   /**
    * When not fixed, removes the fixed summary width since it can follow the natural width set
    */
-  updateRelativeSummaryRowWidth () {
+  updateRelativeSummaryRowWidth() {
     let fixedSummary = this.summaryElement()
     if (!fixedSummary) {
       return
@@ -150,28 +160,27 @@ export default class StickyAccordionSummary extends React.Component {
     fixedSummary.style.width = ''
   }
 
-  render () {
+  render() {
     const stickyClass = this.state.stick ? this.props.stickyClass : ''
     const classes = [stickyClass, this.props.className].join(' ')
     return (
       <div id={this.props.id} className={classes} ref="content">
-        { this.props.children }
+        {this.props.children}
       </div>
     )
   }
 }
 
 StickyAccordionSummary.defaultProps = {
-  window: () => { return window },
-  document: () => { return document },
+  window: () => {
+    return window
+  },
+  document: () => {
+    return document
+  },
   stickyClass: '',
   preventStick: false,
   offset: 52,
-  onScroll: (stick) => {},
-  events: [
-    'scroll',
-    'resize',
-    'pageshow',
-    'load'
-  ]
+  onScroll: stick => {},
+  events: ['scroll', 'resize', 'pageshow', 'load']
 }

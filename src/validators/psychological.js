@@ -1,13 +1,18 @@
 import { allHaveStatus, anyHasStatus } from './helpers'
 
 export default class PsychologicalValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.completed = data.Completed
     this.psychological = data.Psychological
   }
 
-  completionStatus (status) {
-    let toCheck = ['Competence', 'Consultations', 'Hospitalizations', 'Diagnoses']
+  completionStatus(status) {
+    let toCheck = [
+      'Competence',
+      'Consultations',
+      'Hospitalizations',
+      'Diagnoses'
+    ]
 
     if (showQuestion21E(this.psychological)) {
       toCheck.push('ExistingConditions')
@@ -37,7 +42,12 @@ const defaultPsychologicalState = {
  *   - Diagnoses
  */
 export const showQuestion21E = (psychological = defaultPsychologicalState) => {
-  const { Competence, Consultations, Diagnoses, Hospitalizations } = psychological
+  const {
+    Competence,
+    Consultations,
+    Diagnoses,
+    Hospitalizations
+  } = psychological
 
   // We need values for everything before we can do anything
   if (!Competence || !Consultations || !Diagnoses || !Hospitalizations) {
@@ -45,10 +55,12 @@ export const showQuestion21E = (psychological = defaultPsychologicalState) => {
   }
 
   // We show question 21 if all other subsections have been marked with No
-  return (Competence.IsIncompetent.value === 'No' &&
+  return (
+    Competence.IsIncompetent.value === 'No' &&
     Consultations.Consulted.value === 'No' &&
     Diagnoses.Diagnosed.value === 'No' &&
-    Hospitalizations.Hospitalized.value === 'No')
+    Hospitalizations.Hospitalized.value === 'No'
+  )
 }
 
 export const hideExistingConditions = (application = {}) => {

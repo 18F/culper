@@ -7,19 +7,21 @@ describe('Schema for financial taxes', () => {
       MisusedDrugs: { value: 'Yes' },
       List: {
         branch: { value: 'No' },
-        items: [{
-          Item: {
-            PrescriptionName: {},
-            InvolvementDates: {
-              from: {},
-              to: {},
-              present: null
-            },
-            Reason: {},
-            UseWhileEmployed: {},
-            UseWithClearance: {}
+        items: [
+          {
+            Item: {
+              PrescriptionName: {},
+              InvolvementDates: {
+                from: {},
+                to: {},
+                present: null
+              },
+              Reason: {},
+              UseWhileEmployed: {},
+              UseWithClearance: {}
+            }
           }
-        }]
+        ]
       }
     }
 

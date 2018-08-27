@@ -87,25 +87,51 @@ describe('The military service component', () => {
       Service: { value: 'AirNationalGuard' },
       HasBeenDischarged: { value: 'Yes' },
       DischargeType: { value: 'Other' },
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
     const component = mount(<MilitaryService {...expected} />)
     component.find('.service-airnationalguard input').simulate('change')
     component.find('.status .status-activeduty input').simulate('change')
     component.find('.officer .officer-enlisted input').simulate('change')
-    component.find('.service-number input').simulate('change', { target: { value: '1234567890' } })
-    component.find('.dates .datecontrol.from .month input').simulate('change', { target: { name: 'month', value: '1' } })
-    component.find('.dates .datecontrol.from .day input').simulate('change', { target: { name: 'day', value: '1' } })
-    component.find('.dates .datecontrol.from .year input').simulate('change', { target: { name: 'year', value: '2001' } })
-    component.find('.dates .datecontrol.to .month input').simulate('change', { target: { name: 'month', value: '1' } })
-    component.find('.dates .datecontrol.to .day input').simulate('change', { target: { name: 'day', value: '1' } })
-    component.find('.dates .datecontrol.to .year input').simulate('change', { target: { name: 'year', value: '2005' } })
+    component
+      .find('.service-number input')
+      .simulate('change', { target: { value: '1234567890' } })
+    component
+      .find('.dates .datecontrol.from .month input')
+      .simulate('change', { target: { name: 'month', value: '1' } })
+    component
+      .find('.dates .datecontrol.from .day input')
+      .simulate('change', { target: { name: 'day', value: '1' } })
+    component
+      .find('.dates .datecontrol.from .year input')
+      .simulate('change', { target: { name: 'year', value: '2001' } })
+    component
+      .find('.dates .datecontrol.to .month input')
+      .simulate('change', { target: { name: 'month', value: '1' } })
+    component
+      .find('.dates .datecontrol.to .day input')
+      .simulate('change', { target: { name: 'day', value: '1' } })
+    component
+      .find('.dates .datecontrol.to .year input')
+      .simulate('change', { target: { name: 'year', value: '2005' } })
     component.find('.discharged .yes input').simulate('change')
     component.find('.discharge-type-other input').simulate('change')
-    component.find('.discharge-type-otherex input').simulate('change', { target: { value: 'Something I have not heard of' } })
-    component.find('.discharge-reason textarea').simulate('change', { target: { value: 'Some reason' } })
-    component.find('.discharge-date .month input').simulate('change', { target: { name: 'month', value: '1' } })
-    component.find('.discharge-date .year input').simulate('change', { target: { name: 'year', value: '2005' } })
+    component
+      .find('.discharge-type-otherex input')
+      .simulate('change', {
+        target: { value: 'Something I have not heard of' }
+      })
+    component
+      .find('.discharge-reason textarea')
+      .simulate('change', { target: { value: 'Some reason' } })
+    component
+      .find('.discharge-date .month input')
+      .simulate('change', { target: { name: 'month', value: '1' } })
+    component
+      .find('.discharge-date .year input')
+      .simulate('change', { target: { name: 'year', value: '2005' } })
     expect(updates).toBeGreaterThan(10)
   })
 })

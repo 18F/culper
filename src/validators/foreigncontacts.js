@@ -1,32 +1,37 @@
 import LocationValidator from './location'
 import NameValidator from './name'
 import BirthPlaceValidator from './birthplace'
-import { validAccordion, validNotApplicable, validGenericTextfield, validDateField,
-         BranchCollection } from './helpers'
+import {
+  validAccordion,
+  validNotApplicable,
+  validGenericTextfield,
+  validDateField,
+  BranchCollection
+} from './helpers'
 
 export default class ForeignContactsValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.hasForeignContacts = (data.HasForeignContacts || {}).value
     this.list = data.List || {}
   }
 
-  validList () {
+  validList() {
     if (this.hasForeignContacts === 'No') {
       return true
     }
 
-    return validAccordion(this.list, (item) => {
+    return validAccordion(this.list, item => {
       return new ForeignNationalValidator(item).isValid()
     })
   }
 
-  isValid () {
+  isValid() {
     return this.validList()
   }
 }
 
 export class ForeignNationalValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.name = data.Name
     this.nameNotApplicable = data.NameNotApplicable
     this.nameExplanation = data.NameExplanation
@@ -54,45 +59,72 @@ export class ForeignNationalValidator {
     this.affiliations = data.Affiliations
   }
 
-  validName () {
-    return validNotApplicable(this.nameNotApplicable, () => {
-      return new NameValidator(this.name).isValid()
-    }, () => {
-      return validGenericTextfield(this.nameExplanation)
-    })
+  validName() {
+    return validNotApplicable(
+      this.nameNotApplicable,
+      () => {
+        return new NameValidator(this.name).isValid()
+      },
+      () => {
+        return validGenericTextfield(this.nameExplanation)
+      }
+    )
   }
 
-  validFirstContact () {
+  validFirstContact() {
     return validDateField(this.firstContact)
   }
 
-  validLastContact () {
+  validLastContact() {
     return validDateField(this.lastContact)
   }
 
-  validMethods () {
+  validMethods() {
     const choices = ['In person', 'Telephone', 'Electronic', 'Written']
     const wanting = ['Other']
-    return this.methods && this.methods.length > 0 &&
+    return (
+      this.methods &&
+      this.methods.length > 0 &&
       this.methods.every(x => choices.includes(x) || wanting.includes(x)) &&
-      (this.methods.some(x => wanting.includes(x)) ? validGenericTextfield(this.methodsExplanation) : true)
+      (this.methods.some(x => wanting.includes(x))
+        ? validGenericTextfield(this.methodsExplanation)
+        : true)
+    )
   }
 
-  validFrequency () {
-    const choices = ['Daily', 'Weekly', 'Monthly', 'Quarterly', 'Annually', 'Other']
-    return choices.includes(this.frequency) &&
-      (this.frequency === 'Other' ? validGenericTextfield(this.frequencyExplanation) : true)
+  validFrequency() {
+    const choices = [
+      'Daily',
+      'Weekly',
+      'Monthly',
+      'Quarterly',
+      'Annually',
+      'Other'
+    ]
+    return (
+      choices.includes(this.frequency) &&
+      (this.frequency === 'Other'
+        ? validGenericTextfield(this.frequencyExplanation)
+        : true)
+    )
   }
 
-  validRelationship () {
+  validRelationship() {
     const choices = ['Professional', 'Personal', 'Obligation', 'Other']
     const wanting = ['Obligation', 'Other']
-    return !!this.relationship && this.relationship.length > 0 &&
-      this.relationship.every(x => choices.includes(x) || wanting.includes(x)) &&
-      (this.relationship.some(x => wanting.includes(x)) ? validGenericTextfield(this.relationshipExplanation) : true)
+    return (
+      !!this.relationship &&
+      this.relationship.length > 0 &&
+      this.relationship.every(
+        x => choices.includes(x) || wanting.includes(x)
+      ) &&
+      (this.relationship.some(x => wanting.includes(x))
+        ? validGenericTextfield(this.relationshipExplanation)
+        : true)
+    )
   }
 
-  validAliases () {
+  validAliases() {
     const branchValidator = new BranchCollection(this.aliases)
     if (!branchValidator.validKeyValues()) {
       return false
@@ -107,54 +139,64 @@ export class ForeignNationalValidator {
     })
   }
 
-  validCitizenship () {
-    return !!this.citizenship && !!this.citizenship.value && this.citizenship.value.length > 0
+  validCitizenship() {
+    return (
+      !!this.citizenship &&
+      !!this.citizenship.value &&
+      this.citizenship.value.length > 0
+    )
   }
 
-  validBirthdate () {
+  validBirthdate() {
     return validNotApplicable(this.birthdateNotApplicable, () => {
       return validDateField(this.birthdate)
     })
   }
 
-  validBirthplace () {
+  validBirthplace() {
     return validNotApplicable(this.birthplaceNotApplicable, () => {
-      return !!this.birthplace && new BirthPlaceValidator(this.birthplace).isValid()
+      return (
+        !!this.birthplace && new BirthPlaceValidator(this.birthplace).isValid()
+      )
     })
   }
 
-  validAddress () {
+  validAddress() {
     return validNotApplicable(this.addressNotApplicable, () => {
       return new LocationValidator(this.address).isValid()
     })
   }
 
-  validEmployer () {
+  validEmployer() {
     return validNotApplicable(this.employerNotApplicable, () => {
       return validGenericTextfield(this.employer)
     })
   }
 
-  validEmployerAddress () {
+  validEmployerAddress() {
     return validNotApplicable(this.employerAddressNotApplicable, () => {
       return new LocationValidator(this.employerAddress).isValid()
     })
   }
 
-  validAffiliations () {
+  validAffiliations() {
     if (!this.hasAffiliations) {
       return false
     }
 
-    if (this.hasAffiliations === 'No' || this.hasAffiliations === 'I don\'t know') {
+    if (
+      this.hasAffiliations === 'No' ||
+      this.hasAffiliations === "I don't know"
+    ) {
       return true
     }
 
     return validGenericTextfield(this.affiliations)
   }
 
-  isValid () {
-    return this.validName() &&
+  isValid() {
+    return (
+      this.validName() &&
       this.validFirstContact() &&
       this.validLastContact() &&
       this.validMethods() &&
@@ -168,5 +210,6 @@ export class ForeignNationalValidator {
       this.validEmployer() &&
       this.validEmployerAddress() &&
       this.validAffiliations()
+    )
   }
 }

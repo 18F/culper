@@ -21,8 +21,14 @@ describe('The employment physical address component', () => {
 
     const component = mount(<PhysicalAddress {...expected} />)
     component.find('.has-different-address .yes input').simulate('change')
-    component.find('.physical-address-address .street input').at(0).simulate('change')
-    component.find('.physical-address-telephone .number input').at(0).simulate('change')
+    component
+      .find('.physical-address-address .street input')
+      .at(0)
+      .simulate('change')
+    component
+      .find('.physical-address-telephone .number input')
+      .at(0)
+      .simulate('change')
     expect(updates).toBe(3)
   })
 })

@@ -3,7 +3,7 @@ import App from './App'
 import { Form } from '../../views'
 
 class AppWithForm extends React.Component {
-  render () {
+  render() {
     return (
       <App {...this.props}>
         <Form {...this.props} />

@@ -1,6 +1,6 @@
 import React from 'react'
 
-export function SSN (obj, unknown) {
+export function SSN(obj, unknown) {
   let formattedSSN = unknown
   const ssn = obj.ssn || obj || {}
 

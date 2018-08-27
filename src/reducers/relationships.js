@@ -1,19 +1,19 @@
-const relationships = function (state = {}, action) {
+const relationships = function(state = {}, action) {
   if (action.section !== 'Relationships') {
     return state
   }
   // copy current state
-  let updated = {...state}
+  let updated = { ...state }
 
   // Override all values for the particular reducer key
   updated[action.property] = action.values
 
   switch (action.type) {
-  case 'Relationships.ClearSameSpouseConfirmed':
-    updated = clearCohabitantsSameSpouseConfirmed({...updated})
-    return updated
-  default:
-    return updated
+    case 'Relationships.ClearSameSpouseConfirmed':
+      updated = clearCohabitantsSameSpouseConfirmed({ ...updated })
+      return updated
+    default:
+      return updated
   }
 }
 

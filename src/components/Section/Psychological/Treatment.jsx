@@ -3,7 +3,7 @@ import { i18n } from '../../../config'
 import { Location, ValidationElement, Field, Text, Telephone } from '../../Form'
 
 export default class Treatment extends ValidationElement {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.updateName = this.updateName.bind(this)
@@ -11,7 +11,7 @@ export default class Treatment extends ValidationElement {
     this.updateAddress = this.updateAddress.bind(this)
   }
 
-  update (queue) {
+  update(queue) {
     this.props.onUpdate({
       Name: this.props.Name,
       Phone: this.props.Phone,
@@ -20,69 +20,75 @@ export default class Treatment extends ValidationElement {
     })
   }
 
-  updateName (values) {
+  updateName(values) {
     this.update({
       Name: values
     })
   }
 
-  updatePhone (values) {
+  updatePhone(values) {
     this.update({
       Phone: values
     })
   }
 
-  updateAddress (values) {
+  updateAddress(values) {
     this.update({
       Address: values
     })
   }
 
-  render () {
+  render() {
     const prefix = this.props.prefix
     return (
       <div className="treatment">
-        <Field title={i18n.t(`psychological.${prefix}.heading.name`)}
-               adjustFor="labels"
-               scrollIntoView={this.props.scrollIntoView}>
-          <Text name="Name"
-                label={i18n.t(`psychological.${prefix}.label.name`)}
-                className="treatment-name"
-                {...this.props.Name}
-                onUpdate={this.updateName}
-                onError={this.props.onError}
-                required={this.props.required}
-                />
+        <Field
+          title={i18n.t(`psychological.${prefix}.heading.name`)}
+          adjustFor="labels"
+          scrollIntoView={this.props.scrollIntoView}>
+          <Text
+            name="Name"
+            label={i18n.t(`psychological.${prefix}.label.name`)}
+            className="treatment-name"
+            {...this.props.Name}
+            onUpdate={this.updateName}
+            onError={this.props.onError}
+            required={this.props.required}
+          />
         </Field>
 
-        <Field className="override-required"
-               adjustFor="telephone"
-               scrollIntoView={this.props.scrollIntoView}>
-          <Telephone name="Phone"
-                     label={i18n.t(`psychological.${prefix}.label.phone`)}
-                     {...this.props.Phone}
-                     onUpdate={this.updatePhone}
-                     onError={this.props.onError}
-                     required={this.props.required}
-                     />
+        <Field
+          className="override-required"
+          adjustFor="telephone"
+          scrollIntoView={this.props.scrollIntoView}>
+          <Telephone
+            name="Phone"
+            label={i18n.t(`psychological.${prefix}.label.phone`)}
+            {...this.props.Phone}
+            onUpdate={this.updatePhone}
+            onError={this.props.onError}
+            required={this.props.required}
+          />
         </Field>
 
-        <Field title={i18n.t(`psychological.${prefix}.heading.address`)}
-               help={`psychological.${prefix}.help.address`}
-               adjustFor="address"
-               scrollIntoView={this.props.scrollIntoView}>
-          <Location name="Address"
-                    {...this.props.Address}
-                    label={i18n.t(`psychological.${prefix}.label.address`)}
-                    layout={Location.ADDRESS}
-                    geocode={true}
-                    addressBooks={this.props.addressBooks}
-                    addressBook="Facility"
-                    dispatch={this.props.dispatch}
-                    onUpdate={this.updateAddress}
-                    onError={this.props.onError}
-                    required={this.props.required}
-                    />
+        <Field
+          title={i18n.t(`psychological.${prefix}.heading.address`)}
+          help={`psychological.${prefix}.help.address`}
+          adjustFor="address"
+          scrollIntoView={this.props.scrollIntoView}>
+          <Location
+            name="Address"
+            {...this.props.Address}
+            label={i18n.t(`psychological.${prefix}.label.address`)}
+            layout={Location.ADDRESS}
+            geocode={true}
+            addressBooks={this.props.addressBooks}
+            addressBook="Facility"
+            dispatch={this.props.dispatch}
+            onUpdate={this.updateAddress}
+            onError={this.props.onError}
+            required={this.props.required}
+          />
         </Field>
       </div>
     )
@@ -92,7 +98,9 @@ export default class Treatment extends ValidationElement {
 Treatment.defaultProps = {
   prefix: 'treatment',
   addressBooks: {},
-  dispatch: (action) => {},
-  onUpdate: (queue) => {},
-  onError: (value, arr) => { return arr }
+  dispatch: action => {},
+  onUpdate: queue => {},
+  onError: (value, arr) => {
+    return arr
+  }
 }

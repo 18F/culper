@@ -1,7 +1,7 @@
 import DiagnosesValidator from './diagnoses'
 import Location from '../components/Form/Location'
 
-describe('Diagnoses validation', function () {
+describe('Diagnoses validation', function() {
   it('validates treatment list', () => {
     const tests = [
       {
@@ -9,29 +9,31 @@ describe('Diagnoses validation', function () {
           InTreatment: { value: 'Yes' },
           TreatmentList: {
             branch: { value: 'No' },
-            items: [{
-              Item: {
-                Name: {
-                  value: 'Circuit Court'
-                },
-                Address: {
-                  country: { value: 'United States' },
-                  street: '1234 Some Rd',
-                  city: 'Arlington',
-                  state: 'VA',
-                  zipcode: '22202',
-                  layout: Location.ADDRESS
-                },
-                Phone: {
-                  noNumber: '',
-                  number: '7031112222',
-                  numberType: 'Home',
-                  timeOfDay: 'Both',
-                  type: 'Domestic',
-                  extension: ''
+            items: [
+              {
+                Item: {
+                  Name: {
+                    value: 'Circuit Court'
+                  },
+                  Address: {
+                    country: { value: 'United States' },
+                    street: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'VA',
+                    zipcode: '22202',
+                    layout: Location.ADDRESS
+                  },
+                  Phone: {
+                    noNumber: '',
+                    number: '7031112222',
+                    numberType: 'Home',
+                    timeOfDay: 'Both',
+                    type: 'Domestic',
+                    extension: ''
+                  }
                 }
               }
-            }]
+            ]
           }
         },
         expected: true
@@ -68,7 +70,9 @@ describe('Diagnoses validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new DiagnosesValidator(test.state, null).validTreatmentList()).toBe(test.expected)
+      expect(
+        new DiagnosesValidator(test.state, null).validTreatmentList()
+      ).toBe(test.expected)
     })
   })
 
@@ -79,74 +83,76 @@ describe('Diagnoses validation', function () {
           Diagnosed: { value: 'Yes' },
           DiagnosisList: {
             branch: { value: 'No' },
-            items: [{
-              Item: {
-                Condition: {
-                  value: 'Test'
-                },
-                Effective: { value: 'Yes' },
-                Explanation: {
-                  value: null
-                },
-                Diagnosed: {
-                  from: {
-                    month: '1',
-                    day: '1',
-                    year: '2010',
-                    date: new Date('1/1/2010')
+            items: [
+              {
+                Item: {
+                  Condition: {
+                    value: 'Test'
                   },
-                  to: {
-                    month: '1',
-                    day: '1',
-                    year: '2012',
-                    date: new Date('1/1/2012')
+                  Effective: { value: 'Yes' },
+                  Explanation: {
+                    value: null
                   },
-                  present: false
-                },
-                Treatment: {
-                  Name: {
-                    value: 'Circuit Court'
+                  Diagnosed: {
+                    from: {
+                      month: '1',
+                      day: '1',
+                      year: '2010',
+                      date: new Date('1/1/2010')
+                    },
+                    to: {
+                      month: '1',
+                      day: '1',
+                      year: '2012',
+                      date: new Date('1/1/2012')
+                    },
+                    present: false
                   },
-                  Address: {
-                    country: { value: 'United States' },
-                    street: '1234 Some Rd',
-                    city: 'Arlington',
-                    state: 'VA',
-                    zipcode: '22202',
-                    layout: Location.ADDRESS
+                  Treatment: {
+                    Name: {
+                      value: 'Circuit Court'
+                    },
+                    Address: {
+                      country: { value: 'United States' },
+                      street: '1234 Some Rd',
+                      city: 'Arlington',
+                      state: 'VA',
+                      zipcode: '22202',
+                      layout: Location.ADDRESS
+                    },
+                    Phone: {
+                      noNumber: '',
+                      number: '7031112222',
+                      numberType: 'Home',
+                      timeOfDay: 'Both',
+                      type: 'Domestic',
+                      extension: ''
+                    }
                   },
-                  Phone: {
-                    noNumber: '',
-                    number: '7031112222',
-                    numberType: 'Home',
-                    timeOfDay: 'Both',
-                    type: 'Domestic',
-                    extension: ''
-                  }
-                },
-                TreatmentFacility: {
-                  Name: {
-                    value: 'Circuit Court'
-                  },
-                  Address: {
-                    country: { value: 'United States' },
-                    street: '1234 Some Rd',
-                    city: 'Arlington',
-                    state: 'VA',
-                    zipcode: '22202',
-                    layout: Location.ADDRESS
-                  },
-                  Phone: {
-                    noNumber: '',
-                    number: '7031112222',
-                    numberType: 'Home',
-                    timeOfDay: 'Both',
-                    type: 'Domestic',
-                    extension: ''
+                  TreatmentFacility: {
+                    Name: {
+                      value: 'Circuit Court'
+                    },
+                    Address: {
+                      country: { value: 'United States' },
+                      street: '1234 Some Rd',
+                      city: 'Arlington',
+                      state: 'VA',
+                      zipcode: '22202',
+                      layout: Location.ADDRESS
+                    },
+                    Phone: {
+                      noNumber: '',
+                      number: '7031112222',
+                      numberType: 'Home',
+                      timeOfDay: 'Both',
+                      type: 'Domestic',
+                      extension: ''
+                    }
                   }
                 }
               }
-            }]
+            ]
           }
         },
         expected: true
@@ -183,7 +189,9 @@ describe('Diagnoses validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new DiagnosesValidator(test.state, null).validDiagnosisList()).toBe(test.expected)
+      expect(
+        new DiagnosesValidator(test.state, null).validDiagnosisList()
+      ).toBe(test.expected)
     })
   })
 
@@ -204,10 +212,13 @@ describe('Diagnoses validation', function () {
           }
         },
         expected: true
-      }]
+      }
+    ]
 
     tests.forEach(test => {
-      expect(new DiagnosesValidator(test.state, null).isValid()).toBe(test.expected)
+      expect(new DiagnosesValidator(test.state, null).isValid()).toBe(
+        test.expected
+      )
     })
   })
 })

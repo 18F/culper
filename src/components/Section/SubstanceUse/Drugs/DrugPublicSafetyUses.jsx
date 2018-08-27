@@ -8,7 +8,7 @@ import { Summary, DateSummary } from '../../../Summary'
 import DrugPublicSafetyUse from './DrugPublicSafetyUse'
 
 export default class DrugPublicSafetyUses extends SubsectionElement {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.update = this.update.bind(this)
@@ -16,7 +16,7 @@ export default class DrugPublicSafetyUses extends SubsectionElement {
     this.updateList = this.updateList.bind(this)
   }
 
-  update (updateValues) {
+  update(updateValues) {
     if (this.props.onUpdate) {
       this.props.onUpdate({
         UsedDrugs: this.props.UsedDrugs,
@@ -26,20 +26,20 @@ export default class DrugPublicSafetyUses extends SubsectionElement {
     }
   }
 
-  updateList (values) {
+  updateList(values) {
     this.update({
       List: values
     })
   }
 
-  updateUsedDrugs (values) {
+  updateUsedDrugs(values) {
     this.update({
       UsedDrugs: values,
       List: values.value === 'Yes' ? this.props.List : []
     })
   }
 
-  summary (item, index) {
+  summary(item, index) {
     const o = (item || {}).Item || {}
     const range = DateSummary(o.InvolvementDates)
     const description = (o.Description || {}).value
@@ -53,38 +53,50 @@ export default class DrugPublicSafetyUses extends SubsectionElement {
     })
   }
 
-  render () {
+  render() {
     return (
-      <div className="section-content drug-public-safety-uses" {...super.dataAttributes(this.props)}>
-        <Branch name="UsedDrugs"
-                label={i18n.t('substance.drugs.heading.drugPublicSafetyUses')}
-                labelSize="h2"
-                className="used-drugs"
-                {...this.props.UsedDrugs}
-                warning={true}
-                onError={this.handleError}
-                required={this.props.required}
-                onUpdate={this.updateUsedDrugs}
-                scrollIntoView={this.props.scrollIntoView}>
-        </Branch>
+      <div
+        className="section-content drug-public-safety-uses"
+        {...super.dataAttributes(this.props)}>
+        <Branch
+          name="UsedDrugs"
+          label={i18n.t('substance.drugs.heading.drugPublicSafetyUses')}
+          labelSize="h2"
+          className="used-drugs"
+          {...this.props.UsedDrugs}
+          warning={true}
+          onError={this.handleError}
+          required={this.props.required}
+          onUpdate={this.updateUsedDrugs}
+          scrollIntoView={this.props.scrollIntoView}
+        />
 
         <Show when={this.props.UsedDrugs.value === 'Yes'}>
-          <Accordion defaultState={this.props.defaultState}
-                     {...this.props.List}
-                     scrollToBottom={this.props.scrollToBottom}
-                     summary={this.summary}
-                     onUpdate={this.updateList}
-                     onError={this.handleError}
-                     validator={DrugPublicSafetyUseValidator}
-                     description={i18n.t('substance.drugs.publicSafety.collection.description')}
-                     appendTitle={i18n.t('substance.drugs.publicSafety.collection.appendTitle')}
-                     appendLabel={i18n.t('substance.drugs.publicSafety.collection.appendLabel')}
-                     required={this.props.required}
-                     scrollIntoView={this.props.scrollIntoView}>
-            <DrugPublicSafetyUse name="Item"
-                                 bind={true}
-                                 required={this.props.required}
-                                 scrollIntoView={this.props.scrollIntoView} />
+          <Accordion
+            defaultState={this.props.defaultState}
+            {...this.props.List}
+            scrollToBottom={this.props.scrollToBottom}
+            summary={this.summary}
+            onUpdate={this.updateList}
+            onError={this.handleError}
+            validator={DrugPublicSafetyUseValidator}
+            description={i18n.t(
+              'substance.drugs.publicSafety.collection.description'
+            )}
+            appendTitle={i18n.t(
+              'substance.drugs.publicSafety.collection.appendTitle'
+            )}
+            appendLabel={i18n.t(
+              'substance.drugs.publicSafety.collection.appendLabel'
+            )}
+            required={this.props.required}
+            scrollIntoView={this.props.scrollIntoView}>
+            <DrugPublicSafetyUse
+              name="Item"
+              bind={true}
+              required={this.props.required}
+              scrollIntoView={this.props.scrollIntoView}
+            />
           </Accordion>
         </Show>
       </div>
@@ -95,11 +107,13 @@ export default class DrugPublicSafetyUses extends SubsectionElement {
 DrugPublicSafetyUses.defaultProps = {
   UsedDrugs: {},
   List: { items: [], branch: {} },
-  onError: (value, arr) => { return arr },
+  onError: (value, arr) => {
+    return arr
+  },
   section: 'substance',
   subsection: 'drugs/publicsafety',
   dispatch: () => {},
-  validator: (data) => {
+  validator: data => {
     return validate(schema('substance.drugs.publicsafety', data))
   },
   scrollToBottom: ''

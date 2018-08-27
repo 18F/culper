@@ -46,16 +46,26 @@ describe('The citizenship item component', () => {
         present: false
       },
       Current: { value: 'Yes' },
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
     const component = mount(<CitizenshipItem {...expected} />)
-    component.find('.citizenship-country .country input').simulate('change', { target: { name: 'Country', value: 'United States' } })
+    component
+      .find('.citizenship-country .country input')
+      .simulate('change', {
+        target: { name: 'Country', value: 'United States' }
+      })
     component.find('.citizenship-dates .to .year input').simulate('change')
     component.find('.citizenship-how textarea').simulate('change')
     component.find('.citizenship-renounced .yes input').simulate('change')
-    component.find('.citizenship-renounced-explanation textarea').simulate('change')
+    component
+      .find('.citizenship-renounced-explanation textarea')
+      .simulate('change')
     component.find('.citizenship-current .yes input').simulate('change')
-    component.find('.citizenship-current-explanation textarea').simulate('change')
+    component
+      .find('.citizenship-current-explanation textarea')
+      .simulate('change')
     expect(updates).toBe(7)
   })
 })

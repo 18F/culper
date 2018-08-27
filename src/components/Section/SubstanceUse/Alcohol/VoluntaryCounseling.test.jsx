@@ -11,14 +11,21 @@ describe('The VoluntaryCounseling component', () => {
   it('Renders with action taken marked as yes', () => {
     let updates = 0
     const expected = {
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
     const component = mount(<VoluntaryCounseling {...expected} />)
     expect(component.find('.voluntary-counseling').length).toBe(1)
     component.find('.provider-address input[name="address"]').simulate('change')
-    component.find('.counseling-dates .datecontrol .year input').first().simulate('change', { target: { value: '2010' } })
+    component
+      .find('.counseling-dates .datecontrol .year input')
+      .first()
+      .simulate('change', { target: { value: '2010' } })
     component.find('input[name="TreatmentProviderName"]').simulate('change')
-    component.find('input[name="domestic_first"]').simulate('change', { target: { value: '111' } })
+    component
+      .find('input[name="domestic_first"]')
+      .simulate('change', { target: { value: '111' } })
     component.find('.completed-treatment .yes input').simulate('change')
     expect(updates).toBe(5)
   })
@@ -26,12 +33,16 @@ describe('The VoluntaryCounseling component', () => {
   it('Renders with treatment completed marked as no', () => {
     let updates = 0
     const expected = {
-      onUpdate: () => { updates++ },
+      onUpdate: () => {
+        updates++
+      },
       CompletedTreatment: { value: 'No' }
     }
     const component = mount(<VoluntaryCounseling {...expected} />)
     expect(component.find('.voluntary-counseling').length).toBe(1)
-    component.find('textarea[name="NoCompletedTreatmentExplanation"]').simulate('change')
+    component
+      .find('textarea[name="NoCompletedTreatmentExplanation"]')
+      .simulate('change')
     expect(updates).toBe(1)
   })
 })

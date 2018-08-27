@@ -12,7 +12,9 @@ describe('The generic component', () => {
       value: 'asinetaeirsnteansti'
     }
     const component = mount(<Generic {...expected} />)
-    expect(component.find('label.usa-input-error-label').text()).toEqual(expected.label)
+    expect(component.find('label.usa-input-error-label').text()).toEqual(
+      expected.label
+    )
     expect(component.find('input').length).toEqual(1)
     expect(component.find('.usa-input-error-label').length).toEqual(1)
   })
@@ -32,7 +34,7 @@ describe('The generic component', () => {
     expect(component.find('input').hasClass('usa-input-focus')).toEqual(true)
   })
 
-  it ('excludes the label if the text is not specified', () => {
+  it('excludes the label if the text is not specified', () => {
     const expected = {
       name: 'input-success',
       type: 'text',
@@ -95,12 +97,18 @@ describe('The generic component', () => {
     const expected = {
       name: 'input-type-text',
       maxlength: '1',
-      tabNext: () => { tabbed = true }
+      tabNext: () => {
+        tabbed = true
+      }
     }
     const component = mount(<Generic {...expected} />)
-    component.find('input').simulate('keydown', { keyCode: 8, target: { value: '' } })
+    component
+      .find('input')
+      .simulate('keydown', { keyCode: 8, target: { value: '' } })
     expect(tabbed).toBe(false)
-    component.find('input').simulate('keydown', { keyCode: 48, target: { value: '1' } })
+    component
+      .find('input')
+      .simulate('keydown', { keyCode: 48, target: { value: '1' } })
     expect(tabbed).toBe(true)
   })
 
@@ -109,12 +117,18 @@ describe('The generic component', () => {
     const expected = {
       name: 'input-type-text',
       maxlength: '1',
-      tabBack: () => { tabbed = true }
+      tabBack: () => {
+        tabbed = true
+      }
     }
     const component = mount(<Generic {...expected} />)
-    component.find('input').simulate('keydown', { keyCode: 48, target: { value: '1' } })
+    component
+      .find('input')
+      .simulate('keydown', { keyCode: 48, target: { value: '1' } })
     expect(tabbed).toBe(false)
-    component.find('input').simulate('keydown', { keyCode: 8, target: { value: '' } })
+    component
+      .find('input')
+      .simulate('keydown', { keyCode: 8, target: { value: '' } })
     expect(tabbed).toBe(true)
   })
 
@@ -124,10 +138,22 @@ describe('The generic component', () => {
       name: 'input-type-text',
       value: '11',
       maxlength: '2',
-      tabNext: () => { tabbed = true }
+      tabNext: () => {
+        tabbed = true
+      }
     }
     const component = mount(<Generic {...expected} />)
-    component.find('input').simulate('keydown', { keyCode: 48, target: { value: '1', selectionDirection: 'forward', selectionStart: 0, selectionEnd: 2 } })
+    component
+      .find('input')
+      .simulate('keydown', {
+        keyCode: 48,
+        target: {
+          value: '1',
+          selectionDirection: 'forward',
+          selectionStart: 0,
+          selectionEnd: 2
+        }
+      })
     expect(tabbed).toBe(false)
   })
 
@@ -139,7 +165,12 @@ describe('The generic component', () => {
       value: ' 12  '
     }
     const component = mount(<Generic {...expected} />)
-    component.find('input').simulate('blur', { persist: () => { persisted = true }, target: { name: expected.name } })
+    component.find('input').simulate('blur', {
+      persist: () => {
+        persisted = true
+      },
+      target: { name: expected.name }
+    })
     expect(persisted).toBe(true)
     expect(component.find('input').hasClass('usa-input-success')).toEqual(true)
   })

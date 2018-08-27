@@ -1,7 +1,7 @@
 import PsychologicalValidator, { showQuestion21E } from './psychological'
 
-describe('Psychologicalvalidation', function () {
-  it('Should validate completion status', function () {
+describe('Psychologicalvalidation', function() {
+  it('Should validate completion status', function() {
     const tests = [
       {
         data: {
@@ -104,11 +104,13 @@ describe('Psychologicalvalidation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new PsychologicalValidator(test.data).completionStatus(test.Status)).toBe(test.expected)
+      expect(
+        new PsychologicalValidator(test.data).completionStatus(test.Status)
+      ).toBe(test.expected)
     })
   })
 
-  it('Should determine when to show question 21E', function () {
+  it('Should determine when to show question 21E', function() {
     const tests = [
       {
         props: {

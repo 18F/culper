@@ -21,7 +21,11 @@ describe('The reason left component', () => {
       name: 'peace_i_am_out',
       Dates: {
         present: true,
-        from: { month: `${past.getMonth()+1}`, day: `${past.getDate()}`, year: `${past.getFullYear()}` },
+        from: {
+          month: `${past.getMonth() + 1}`,
+          day: `${past.getDate()}`,
+          year: `${past.getFullYear()}`
+        },
         to: {}
       },
       Comments: { value: 'Hello' },
@@ -38,7 +42,11 @@ describe('The reason left component', () => {
       name: 'peace_i_am_out',
       Dates: {
         present: false,
-        from: { month: `${past.getMonth()+1}`, day: `${past.getDate()}`, year: `${past.getFullYear()}` },
+        from: {
+          month: `${past.getMonth() + 1}`,
+          day: `${past.getDate()}`,
+          year: `${past.getFullYear()}`
+        },
         to: {}
       },
       Comments: { value: '' },
@@ -48,9 +56,9 @@ describe('The reason left component', () => {
       }
     }
     const component = mount(<ReasonLeft {...expected} />)
-    component.find({name: 'reason_description'}).simulate('change')
+    component.find({ name: 'reason_description' }).simulate('change')
     component.find('.comments-button.add').simulate('click')
-    let comment = component.find({name: 'comments'})
+    let comment = component.find({ name: 'comments' })
     expect(comment.length).toBe(1)
     comment.simulate('change')
     expect(updates).toBe(1)
@@ -63,10 +71,18 @@ describe('The reason left component', () => {
         name: 'peace_i_am_out',
         Dates: {
           present: true,
-          from: { month: `${past.getMonth()+1}`, day: `${past.getDate()}`, year: `${past.getFullYear()}` },
+          from: {
+            month: `${past.getMonth() + 1}`,
+            day: `${past.getDate()}`,
+            year: `${past.getFullYear()}`
+          },
           to: {}
         },
-        Reasons: { items: [{ Item: { Has: { value: 'Yes' }, Reason: { value: 'Fired' } } }] },
+        Reasons: {
+          items: [
+            { Item: { Has: { value: 'Yes' }, Reason: { value: 'Fired' } } }
+          ]
+        },
         explanationText: i18n.t('history.employment.default.left.fired.text'),
         dateText: i18n.t('history.employment.default.left.fired.date')
       },
@@ -74,10 +90,18 @@ describe('The reason left component', () => {
         name: 'peace_i_am_out',
         Dates: {
           present: true,
-          from: { month: `${past.getMonth()+1}`, day: `${past.getDate()}`, year: `${past.getFullYear()}` },
+          from: {
+            month: `${past.getMonth() + 1}`,
+            day: `${past.getDate()}`,
+            year: `${past.getFullYear()}`
+          },
           to: {}
         },
-        Reasons: { items: [{ Item: { Has: { value: 'Yes' }, Reason: { value: 'Quit' } } }] },
+        Reasons: {
+          items: [
+            { Item: { Has: { value: 'Yes' }, Reason: { value: 'Quit' } } }
+          ]
+        },
         explanationText: i18n.t('history.employment.default.left.quit.text'),
         dateText: i18n.t('history.employment.default.left.quit.date')
       },
@@ -85,10 +109,18 @@ describe('The reason left component', () => {
         name: 'peace_i_am_out',
         Dates: {
           present: true,
-          from: { month: `${past.getMonth()+1}`, day: `${past.getDate()}`, year: `${past.getFullYear()}` },
+          from: {
+            month: `${past.getMonth() + 1}`,
+            day: `${past.getDate()}`,
+            year: `${past.getFullYear()}`
+          },
           to: {}
         },
-        Reasons: { items: [{ Item: { Has: { value: 'Yes' }, Reason: { value: 'Charges' } } }] },
+        Reasons: {
+          items: [
+            { Item: { Has: { value: 'Yes' }, Reason: { value: 'Charges' } } }
+          ]
+        },
         explanationText: i18n.t('history.employment.default.left.charges.text'),
         dateText: i18n.t('history.employment.default.left.charges.date')
       },
@@ -96,20 +128,46 @@ describe('The reason left component', () => {
         name: 'peace_i_am_out',
         Dates: {
           present: true,
-          from: { month: `${past.getMonth()+1}`, day: `${past.getDate()}`, year: `${past.getFullYear()}` },
+          from: {
+            month: `${past.getMonth() + 1}`,
+            day: `${past.getDate()}`,
+            year: `${past.getFullYear()}`
+          },
           to: {}
         },
-        Reasons: { items: [{ Item: { Has: { value: 'Yes' }, Reason: { value: 'Performance' } } }] },
-        explanationText: i18n.t('history.employment.default.left.performance.text'),
+        Reasons: {
+          items: [
+            {
+              Item: { Has: { value: 'Yes' }, Reason: { value: 'Performance' } }
+            }
+          ]
+        },
+        explanationText: i18n.t(
+          'history.employment.default.left.performance.text'
+        ),
         dateText: i18n.t('history.employment.default.left.performance.date')
       }
     ]
     for (const dreams of expectations) {
       let updates = 0
-      const component = mount(<ReasonLeft {...dreams} onUpdate={() => { updates++ }} />)
-      expect(component.find('.explanation-left label').text()).toEqual(dreams.explanationText)
-      expect(component.find('.date-left > label').text()).toEqual(dreams.dateText)
-      component.find({type: 'radio'}).first().simulate('change')
+      const component = mount(
+        <ReasonLeft
+          {...dreams}
+          onUpdate={() => {
+            updates++
+          }}
+        />
+      )
+      expect(component.find('.explanation-left label').text()).toEqual(
+        dreams.explanationText
+      )
+      expect(component.find('.date-left > label').text()).toEqual(
+        dreams.dateText
+      )
+      component
+        .find({ type: 'radio' })
+        .first()
+        .simulate('change')
       expect(updates).toBe(1)
     }
   })

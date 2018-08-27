@@ -1,9 +1,11 @@
-import ForeignContactsValidator, { ForeignNationalValidator } from './foreigncontacts'
+import ForeignContactsValidator, {
+  ForeignNationalValidator
+} from './foreigncontacts'
 import { battery } from './helpers'
 import Location from '../components/Form/Location'
 
-describe('Foreign contacts component validation', function () {
-  it('validate foreign national name', function () {
+describe('Foreign contacts component validation', function() {
+  it('validate foreign national name', function() {
     const tests = [
       {
         data: {},
@@ -60,7 +62,7 @@ describe('Foreign contacts component validation', function () {
     battery(tests, ForeignNationalValidator, 'validName')
   })
 
-  it('validate foreign nation date of first contact', function () {
+  it('validate foreign nation date of first contact', function() {
     const tests = [
       {
         data: {},
@@ -82,7 +84,7 @@ describe('Foreign contacts component validation', function () {
     battery(tests, ForeignNationalValidator, 'validFirstContact')
   })
 
-  it('validate foreign nation date of last contact', function () {
+  it('validate foreign nation date of last contact', function() {
     const tests = [
       {
         data: {},
@@ -104,7 +106,7 @@ describe('Foreign contacts component validation', function () {
     battery(tests, ForeignNationalValidator, 'validLastContact')
   })
 
-  it('validate foreign national methods of contact', function () {
+  it('validate foreign national methods of contact', function() {
     const tests = [
       {
         data: {},
@@ -148,7 +150,7 @@ describe('Foreign contacts component validation', function () {
     battery(tests, ForeignNationalValidator, 'validMethods')
   })
 
-  it('validate foreign national frequency of contact', function () {
+  it('validate foreign national frequency of contact', function() {
     const tests = [
       {
         data: {},
@@ -186,7 +188,7 @@ describe('Foreign contacts component validation', function () {
     battery(tests, ForeignNationalValidator, 'validFrequency')
   })
 
-  it('validate foreign national nature of the relationship', function () {
+  it('validate foreign national nature of the relationship', function() {
     const tests = [
       {
         data: {},
@@ -239,7 +241,7 @@ describe('Foreign contacts component validation', function () {
     battery(tests, ForeignNationalValidator, 'validRelationship')
   })
 
-  it('validate foreign national aliases', function () {
+  it('validate foreign national aliases', function() {
     const tests = [
       {
         data: {},
@@ -303,11 +305,10 @@ describe('Foreign contacts component validation', function () {
     battery(tests, ForeignNationalValidator, 'validAliases')
   })
 
-  it('validate foreign national citizenship', function () {
+  it('validate foreign national citizenship', function() {
     const tests = [
       {
-        data: {
-        },
+        data: {},
         expected: false
       },
       {
@@ -337,7 +338,7 @@ describe('Foreign contacts component validation', function () {
     battery(tests, ForeignNationalValidator, 'validCitizenship')
   })
 
-  it('validate foreign national date of birth', function () {
+  it('validate foreign national date of birth', function() {
     const tests = [
       {
         data: {},
@@ -379,7 +380,7 @@ describe('Foreign contacts component validation', function () {
     battery(tests, ForeignNationalValidator, 'validBirthdate')
   })
 
-  it('validate foreign national place of birth', function () {
+  it('validate foreign national place of birth', function() {
     const tests = [
       {
         data: {},
@@ -422,7 +423,7 @@ describe('Foreign contacts component validation', function () {
     battery(tests, ForeignNationalValidator, 'validBirthplace')
   })
 
-  it('validate foreign national current address', function () {
+  it('validate foreign national current address', function() {
     const tests = [
       {
         data: {},
@@ -466,7 +467,7 @@ describe('Foreign contacts component validation', function () {
     battery(tests, ForeignNationalValidator, 'validAddress')
   })
 
-  it('validate foreign national employer', function () {
+  it('validate foreign national employer', function() {
     const tests = [
       {
         data: {},
@@ -505,7 +506,7 @@ describe('Foreign contacts component validation', function () {
     battery(tests, ForeignNationalValidator, 'validEmployer')
   })
 
-  it('validate foreign national employer address', function () {
+  it('validate foreign national employer address', function() {
     const tests = [
       {
         data: {},
@@ -549,7 +550,7 @@ describe('Foreign contacts component validation', function () {
     battery(tests, ForeignNationalValidator, 'validEmployerAddress')
   })
 
-  it('validate foreign national affiliations', function () {
+  it('validate foreign national affiliations', function() {
     const tests = [
       {
         data: {},
@@ -563,7 +564,7 @@ describe('Foreign contacts component validation', function () {
       },
       {
         data: {
-          HasAffiliations: { value: 'I don\'t know' }
+          HasAffiliations: { value: "I don't know" }
         },
         expected: true
       },
@@ -588,7 +589,7 @@ describe('Foreign contacts component validation', function () {
     battery(tests, ForeignNationalValidator, 'validAffiliations')
   })
 
-  it('validate foreign contacts', function () {
+  it('validate foreign contacts', function() {
     const tests = [
       {
         data: {},

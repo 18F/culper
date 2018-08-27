@@ -7,21 +7,23 @@ describe('Schema for financial card', () => {
       HasCardAbuse: { value: 'Yes' },
       List: {
         branch: { value: 'No' },
-        items: [{
-          Item: {
-            Agency: {},
-            Address: {
-              country: null
-            },
-            Date: {},
-            Reason: {},
-            Amount: {
-              value: ''
-            },
-            AmountEstimated: {},
-            Description: {}
+        items: [
+          {
+            Item: {
+              Agency: {},
+              Address: {
+                country: null
+              },
+              Date: {},
+              Reason: {},
+              Amount: {
+                value: ''
+              },
+              AmountEstimated: {},
+              Description: {}
+            }
           }
-        }]
+        ]
       }
     }
 

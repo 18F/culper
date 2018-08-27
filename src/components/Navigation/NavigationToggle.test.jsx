@@ -4,7 +4,9 @@ import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
-import AuthenticatedNavigationToggle, { NavigationToggle } from './NavigationToggle'
+import AuthenticatedNavigationToggle, {
+  NavigationToggle
+} from './NavigationToggle'
 
 describe('The navigation toggle component', () => {
   window.token = 'fake-token'
@@ -12,7 +14,9 @@ describe('The navigation toggle component', () => {
   it('can toggle', () => {
     let dispatched = 0
     const props = {
-      dispatch: () => { dispatched++ },
+      dispatch: () => {
+        dispatched++
+      },
       settings: {
         mobileNavigation: true
       }
@@ -33,7 +37,7 @@ describe('The navigation toggle component', () => {
   })
 
   it('visible when authenticated', () => {
-    const middlewares = [ thunk ]
+    const middlewares = [thunk]
     const mockStore = configureMockStore(middlewares)
     const store = mockStore({
       authentication: {
@@ -45,13 +49,17 @@ describe('The navigation toggle component', () => {
         }
       }
     })
-    const component = mount(<Provider store={store}><AuthenticatedNavigationToggle /></Provider>)
+    const component = mount(
+      <Provider store={store}>
+        <AuthenticatedNavigationToggle />
+      </Provider>
+    )
     expect(component.find('.navigation-toggle').length).toBe(1)
   })
 
   it('hidden when not authenticated', () => {
     window.token = ''
-    const middlewares = [ thunk ]
+    const middlewares = [thunk]
     const mockStore = configureMockStore(middlewares)
     const store = mockStore({
       authentication: {},
@@ -61,7 +69,11 @@ describe('The navigation toggle component', () => {
         }
       }
     })
-    const component = mount(<Provider store={store}><AuthenticatedNavigationToggle /></Provider>)
+    const component = mount(
+      <Provider store={store}>
+        <AuthenticatedNavigationToggle />
+      </Provider>
+    )
     expect(component.find('.navigation-toggle').length).toBe(0)
     window.token = 'fake-token'
   })

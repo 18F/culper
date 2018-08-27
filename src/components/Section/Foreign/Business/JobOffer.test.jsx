@@ -9,7 +9,9 @@ describe('The foreign business job offer component', () => {
       name: 'foreign-business-employment',
       Address: { country: { value: 'United States' } },
       Accepted: { value: 'Yes' },
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
     const component = mount(<JobOffer {...expected} />)
     updates = 0

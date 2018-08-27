@@ -28,7 +28,9 @@ describe('The State component', () => {
       }
     })
     component.find('.state input').simulate('focus')
-    expect(component.find('.react-autosuggest__suggestions-list').length).toBeGreaterThan(0)
+    expect(
+      component.find('.react-autosuggest__suggestions-list').length
+    ).toBeGreaterThan(0)
     component.find('.state input').simulate('blur')
     expect(component.find('div').length).toBeGreaterThan(0)
   })
@@ -48,7 +50,9 @@ describe('The State component', () => {
       }
     })
     component.find('.state input').simulate('focus')
-    expect(component.find('.react-autosuggest__suggestions-list').length).toBeGreaterThan(0)
+    expect(
+      component.find('.react-autosuggest__suggestions-list').length
+    ).toBeGreaterThan(0)
     component.find('.state input').simulate('blur')
     expect(component.find('div').length).toBeGreaterThan(0)
   })

@@ -8,7 +8,7 @@ import { Accordion, Branch, Show } from '../../../Form'
 import ManipulatingItem from './ManipulatingItem'
 
 export default class Manipulating extends SubsectionElement {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.update = this.update.bind(this)
@@ -16,7 +16,7 @@ export default class Manipulating extends SubsectionElement {
     this.updateList = this.updateList.bind(this)
   }
 
-  update (queue) {
+  update(queue) {
     this.props.onUpdate({
       List: this.props.List,
       HasManipulating: this.props.HasManipulating,
@@ -24,21 +24,21 @@ export default class Manipulating extends SubsectionElement {
     })
   }
 
-  updateList (values) {
+  updateList(values) {
     this.update({
       List: values
     })
   }
 
-  updateBranch (values) {
+  updateBranch(values) {
     this.update({
       HasManipulating: values,
       List: values.value === 'Yes' ? this.props.List : []
     })
   }
 
-  summary (item, index) {
-    const o = ((item && item.Item) || {})
+  summary(item, index) {
+    const o = (item && item.Item) || {}
     const dates = DateSummary(o.Date)
     const incident = (o.Incident || {}).value ? o.Incident.value : ''
 
@@ -51,41 +51,52 @@ export default class Manipulating extends SubsectionElement {
     })
   }
 
-  render () {
+  render() {
     return (
-      <div className="section-content legal-technology-manipulating" {...super.dataAttributes(this.props)}>
-        <Branch name="has_manipulating"
-                label={i18n.t('legal.technology.manipulating.heading.title')}
-                labelSize="h2"
-                className="legal-technology-manipulating-has-manipulating"
-                {...this.props.HasManipulating}
-                warning={true}
-                onError={this.handleError}
-                required={this.props.required}
-                onUpdate={this.updateBranch}
-                scrollIntoView={this.props.scrollIntoView}>
-        </Branch>
+      <div
+        className="section-content legal-technology-manipulating"
+        {...super.dataAttributes(this.props)}>
+        <Branch
+          name="has_manipulating"
+          label={i18n.t('legal.technology.manipulating.heading.title')}
+          labelSize="h2"
+          className="legal-technology-manipulating-has-manipulating"
+          {...this.props.HasManipulating}
+          warning={true}
+          onError={this.handleError}
+          required={this.props.required}
+          onUpdate={this.updateBranch}
+          scrollIntoView={this.props.scrollIntoView}
+        />
 
         <Show when={this.props.HasManipulating.value === 'Yes'}>
-          <Accordion defaultState={this.props.defaultState}
-                     {...this.props.List}
-                     scrollToBottom={this.props.scrollToBottom}
-                     summary={this.summary}
-                     onUpdate={this.updateList}
-                     onError={this.handleError}
-                     validator={ManipulatingValidator}
-                     description={i18n.t('legal.technology.manipulating.collection.description')}
-                     appendTitle={i18n.t('legal.technology.manipulating.collection.appendTitle')}
-                     appendLabel={i18n.t('legal.technology.manipulating.collection.appendLabel')}
-                     required={this.props.required}
-                     scrollIntoView={this.props.scrollIntoView}>
-            <ManipulatingItem name="Item"
-                              bind={true}
-                              addressBooks={this.props.addressBooks}
-                              dispatch={this.props.dispatch}
-                              required={this.props.required}
-                              scrollIntoView={this.props.scrollIntoView}
-                              />
+          <Accordion
+            defaultState={this.props.defaultState}
+            {...this.props.List}
+            scrollToBottom={this.props.scrollToBottom}
+            summary={this.summary}
+            onUpdate={this.updateList}
+            onError={this.handleError}
+            validator={ManipulatingValidator}
+            description={i18n.t(
+              'legal.technology.manipulating.collection.description'
+            )}
+            appendTitle={i18n.t(
+              'legal.technology.manipulating.collection.appendTitle'
+            )}
+            appendLabel={i18n.t(
+              'legal.technology.manipulating.collection.appendLabel'
+            )}
+            required={this.props.required}
+            scrollIntoView={this.props.scrollIntoView}>
+            <ManipulatingItem
+              name="Item"
+              bind={true}
+              addressBooks={this.props.addressBooks}
+              dispatch={this.props.dispatch}
+              required={this.props.required}
+              scrollIntoView={this.props.scrollIntoView}
+            />
           </Accordion>
         </Show>
       </div>
@@ -98,13 +109,15 @@ Manipulating.defaultProps = {
   HasManipulating: {},
   List: Accordion.defaultList,
   defaultState: true,
-  onUpdate: (queue) => {},
-  onError: (value, arr) => { return arr },
+  onUpdate: queue => {},
+  onError: (value, arr) => {
+    return arr
+  },
   section: 'legal',
   subsection: 'technology/manipulating',
   addressBooks: {},
-  dispatch: (action) => {},
-  validator: (data) => {
+  dispatch: action => {},
+  validator: data => {
     return validate(schema('legal.technology.manipulating', data))
   },
   scrollToBottom: ''

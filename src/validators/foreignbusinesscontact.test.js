@@ -1,8 +1,10 @@
-import ForeignBusinessContactValidator, { ContactValidator } from './foreignbusinesscontact'
+import ForeignBusinessContactValidator, {
+  ContactValidator
+} from './foreignbusinesscontact'
 import { battery } from './helpers'
 import Location from '../components/Form/Location'
 
-describe('Foreign business contact component validation', function () {
+describe('Foreign business contact component validation', function() {
   it('validate foreign business contact name', () => {
     const tests = [
       {
@@ -91,9 +93,7 @@ describe('Foreign business contact component validation', function () {
       {
         state: {
           Governments: {
-            value: [
-              { name: 'Germany', value: 'Germany' }
-            ]
+            value: [{ name: 'Germany', value: 'Germany' }]
           }
         },
         expected: true

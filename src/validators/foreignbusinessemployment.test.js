@@ -1,8 +1,10 @@
-import ForeignBusinessEmploymentValidator, { ForeignBusinessEmploymentItemValidator } from './foreignbusinessemployment'
+import ForeignBusinessEmploymentValidator, {
+  ForeignBusinessEmploymentItemValidator
+} from './foreignbusinessemployment'
 import { battery } from './helpers'
 import Location from '../components/Form/Location'
 
-describe('Foreign business employment component validation', function () {
+describe('Foreign business employment component validation', function() {
   it('validate foreign business employment name', () => {
     const tests = [
       {

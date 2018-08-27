@@ -10,9 +10,13 @@ describe('The legal associations terrorist organizations component', () => {
 
   it('can select "yes"', () => {
     let updates = 0
-    const onUpdate = () => { updates++ }
+    const onUpdate = () => {
+      updates++
+    }
     const component = mount(<TerroristOrganization onUpdate={onUpdate} />)
-    component.find('.legal-associations-terrorist-has-terrorist .yes input').simulate('change')
+    component
+      .find('.legal-associations-terrorist-has-terrorist .yes input')
+      .simulate('change')
     expect(updates).toBe(1)
   })
 

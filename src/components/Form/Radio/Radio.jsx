@@ -3,7 +3,7 @@ import ValidationElement from '../ValidationElement'
 import { ariaLabel } from '../Generic'
 
 export default class Radio extends ValidationElement {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
@@ -22,7 +22,7 @@ export default class Radio extends ValidationElement {
     this.skipNext = false
   }
 
-  componentWillReceiveProps (newProps) {
+  componentWillReceiveProps(newProps) {
     if (!this.refs.radio) {
       // The component has not mounted yet
       return
@@ -89,21 +89,21 @@ export default class Radio extends ValidationElement {
   /**
    * Handle the change event.
    */
-  handleChange (event) {
+  handleChange(event) {
     this.update()
   }
 
   /**
    * Handle the click event.
    */
-  handleClick (event) {
+  handleClick(event) {
     this.update(true)
   }
 
   /**
    * Handle the key press event.
    */
-  handleKeyPress (event) {
+  handleKeyPress(event) {
     const allowedKeys = [' ', 'Enter']
     if (allowedKeys.includes(event.key)) {
       event.preventDefault()
@@ -115,7 +115,7 @@ export default class Radio extends ValidationElement {
   /**
    * Handle the focus event.
    */
-  handleFocus (event) {
+  handleFocus(event) {
     event.persist()
     this.setState({ focus: true }, () => {
       super.handleFocus(event)
@@ -125,7 +125,7 @@ export default class Radio extends ValidationElement {
   /**
    * Handle the blur event.
    */
-  handleBlur (event) {
+  handleBlur(event) {
     event.persist()
     this.setState({ focus: false }, () => {
       super.handleBlur(event)
@@ -135,23 +135,30 @@ export default class Radio extends ValidationElement {
   /**
    * Execute validation checks on the value.
    */
-  handleValidation (event) {
+  handleValidation(event) {
     const value = this.state.value
-    const errors = this.props.onError(value, this.constructor.errors.map(err => {
-      return {
-        code: err.code,
-        valid: value ? err.func(value, this.props) : null,
-        uid: this.state.uid
-      }
-    })) || []
+    const errors =
+      this.props.onError(
+        value,
+        this.constructor.errors.map(err => {
+          return {
+            code: err.code,
+            valid: value ? err.func(value, this.props) : null,
+            uid: this.state.uid
+          }
+        })
+      ) || []
 
-    this.setState({ error: errors.some(x => !x.valid), valid: errors.every(x => x.valid) })
+    this.setState({
+      error: errors.some(x => !x.valid),
+      valid: errors.every(x => x.valid)
+    })
   }
 
   /**
    * Style classes applied to the wrapper.
    */
-  divClass () {
+  divClass() {
     let klass = `${this.props.className || ''}`
 
     if (!this.props.native) {
@@ -176,7 +183,7 @@ export default class Radio extends ValidationElement {
   /**
    * Style classes applied to the label element.
    */
-  labelClass () {
+  labelClass() {
     let klass = ''
 
     if (this.state.error) {
@@ -197,7 +204,7 @@ export default class Radio extends ValidationElement {
   /**
    * Style classes applied to the input element.
    */
-  inputClass () {
+  inputClass() {
     let klass = ''
 
     if (this.state.focus) {
@@ -215,26 +222,29 @@ export default class Radio extends ValidationElement {
     return klass.trim()
   }
 
-  render () {
-    const speech = this.props.ariaLabel ? this.props.ariaLabel : `${this.props.label} for ${ariaLabel(this.refs.radio)}`
+  render() {
+    const speech = this.props.ariaLabel
+      ? this.props.ariaLabel
+      : `${this.props.label} for ${ariaLabel(this.refs.radio)}`
     if (this.props.native) {
       return (
         <div className={this.divClass()}>
-          <input className={this.inputClass()}
-                 id={this.state.uid}
-                 name={this.state.uid}
-                 type="radio"
-                 ref="radio"
-                 disabled={this.props.disabled}
-                 readOnly={this.props.readonly}
-                 value={this.state.value}
-                 onChange={this.handleChange}
-                 onKeyDown={this.handleKeyPress}
-                 onFocus={this.handleFocus}
-                 onBlur={this.handleBlur}
-                 checked={this.state.checked}
-                 aria-label={speech}
-                 />
+          <input
+            className={this.inputClass()}
+            id={this.state.uid}
+            name={this.state.uid}
+            type="radio"
+            ref="radio"
+            disabled={this.props.disabled}
+            readOnly={this.props.readonly}
+            value={this.state.value}
+            onChange={this.handleChange}
+            onKeyDown={this.handleKeyPress}
+            onFocus={this.handleFocus}
+            onBlur={this.handleBlur}
+            checked={this.state.checked}
+            aria-label={speech}
+          />
           <label htmlFor={this.state.uid}>
             {this.props.label}
             {this.props.children}
@@ -245,24 +255,24 @@ export default class Radio extends ValidationElement {
 
     return (
       <div className={this.divClass()}>
-        <label className={this.labelClass()}
-               htmlFor={this.state.uid}>
-          <input className={this.inputClass()}
-                 id={this.state.uid}
-                 name={this.state.uid}
-                 type="radio"
-                 ref="radio"
-                 disabled={this.props.disabled}
-                 readOnly={this.props.readonly}
-                 value={this.state.value}
-                 onChange={this.handleChange}
-                 onClick={this.handleClick}
-                 onKeyDown={this.handleKeyPress}
-                 onFocus={this.handleFocus}
-                 onBlur={this.handleBlur}
-                 checked={this.state.checked}
-                 aria-label={speech}
-                 />
+        <label className={this.labelClass()} htmlFor={this.state.uid}>
+          <input
+            className={this.inputClass()}
+            id={this.state.uid}
+            name={this.state.uid}
+            type="radio"
+            ref="radio"
+            disabled={this.props.disabled}
+            readOnly={this.props.readonly}
+            value={this.state.value}
+            onChange={this.handleChange}
+            onClick={this.handleClick}
+            onKeyDown={this.handleKeyPress}
+            onFocus={this.handleFocus}
+            onBlur={this.handleBlur}
+            checked={this.state.checked}
+            aria-label={speech}
+          />
           {this.props.children}
           <span>{this.props.label}</span>
         </label>
@@ -281,8 +291,10 @@ Radio.defaultProps = {
   valid: false,
   native: false,
   ariaLabel: '',
-  onUpdate: (queue) => {},
-  onError: (value, arr) => { return arr }
+  onUpdate: queue => {},
+  onError: (value, arr) => {
+    return arr
+  }
 }
 
 Radio.errors = []

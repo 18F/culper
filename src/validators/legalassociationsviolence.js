@@ -1,30 +1,34 @@
 import DateRangeValidator from './daterange'
 import LocationValidator from './location'
-import { validAccordion, validGenericTextfield, validNotApplicable } from './helpers'
+import {
+  validAccordion,
+  validGenericTextfield,
+  validNotApplicable
+} from './helpers'
 
 export default class LegalAssociationViolenceValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.hasViolence = (data.HasViolence || {}).value
     this.list = data.List || {}
   }
 
-  validList () {
+  validList() {
     if (this.hasViolence === 'No') {
       return true
     }
 
-    return validAccordion(this.list, (item) => {
+    return validAccordion(this.list, item => {
       return new ViolenceValidator(item).isValid()
     })
   }
 
-  isValid () {
+  isValid() {
     return this.validList()
   }
 }
 
 export class ViolenceValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.organization = data.Organization
     this.address = data.Address
     this.dates = data.Dates
@@ -35,40 +39,42 @@ export class ViolenceValidator {
     this.reasons = data.Reasons
   }
 
-  validOrganization () {
+  validOrganization() {
     return !!this.organization && validGenericTextfield(this.organization)
   }
 
-  validAddress () {
+  validAddress() {
     return !!this.address && new LocationValidator(this.address).isValid()
   }
 
-  validDates () {
+  validDates() {
     return !!this.dates && new DateRangeValidator(this.dates, null).isValid()
   }
 
-  validPositions () {
+  validPositions() {
     return validNotApplicable(this.positionsNotApplicable, () => {
       return !!this.positions && validGenericTextfield(this.positions)
     })
   }
 
-  validContributions () {
+  validContributions() {
     return validNotApplicable(this.contributionsNotApplicable, () => {
       return !!this.contributions && validGenericTextfield(this.contributions)
     })
   }
 
-  validReasons () {
+  validReasons() {
     return !!this.reasons && validGenericTextfield(this.reasons)
   }
 
-  isValid () {
-    return this.validOrganization() &&
+  isValid() {
+    return (
+      this.validOrganization() &&
       this.validAddress() &&
       this.validDates() &&
       this.validPositions() &&
       this.validContributions() &&
       this.validReasons()
+    )
   }
 }

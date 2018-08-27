@@ -1,8 +1,10 @@
-import LegalAssociationsViolenceValidator, { ViolenceValidator } from './legalassociationsviolence'
+import LegalAssociationsViolenceValidator, {
+  ViolenceValidator
+} from './legalassociationsviolence'
 import { battery } from './helpers'
 import Location from '../components/Form/Location'
 
-describe('Legal associations violence component validation', function () {
+describe('Legal associations violence component validation', function() {
   it('validate organization', () => {
     const tests = [
       {

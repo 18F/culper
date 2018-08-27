@@ -9,7 +9,7 @@ import SubsectionElement from '../../../SubsectionElement'
 import Benefit from './Benefit'
 
 export default class BenefitActivity extends SubsectionElement {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.update = this.update.bind(this)
@@ -17,7 +17,7 @@ export default class BenefitActivity extends SubsectionElement {
     this.updateList = this.updateList.bind(this)
   }
 
-  update (queue) {
+  update(queue) {
     this.props.onUpdate({
       List: this.props.List,
       HasBenefits: this.props.HasBenefits,
@@ -25,20 +25,20 @@ export default class BenefitActivity extends SubsectionElement {
     })
   }
 
-  updateList (values) {
+  updateList(values) {
     this.update({
       List: values
     })
   }
 
-  updateHasBenefits (values) {
+  updateHasBenefits(values) {
     this.update({
       HasBenefits: values,
       List: values.value === 'Yes' ? this.props.List : []
     })
   }
 
-  summary (item, index) {
+  summary(item, index) {
     const o = (item || {}).Item || {}
     const benefit = {}
     const who = ((o.InterestTypes || {}).values || []).join(', ')
@@ -46,17 +46,17 @@ export default class BenefitActivity extends SubsectionElement {
     let b = null
     switch (o.BenefitFrequency) {
       case 'OneTime':
-        b = (o.OneTimeBenefit || {})
+        b = o.OneTimeBenefit || {}
         benefit.Country = (b.Country || {}).value
         benefit.Date = DateSummary(b.Received)
         break
       case 'Future':
-        b = (o.FutureBenefit || {})
+        b = o.FutureBenefit || {}
         benefit.Country = (b.Country || {}).value
         benefit.Date = DateSummary(b.Begin)
         break
       case 'Continuing':
-        b = (o.ContinuingBenefit || {})
+        b = o.ContinuingBenefit || {}
         benefit.Country = (b.Country || {}).value
         benefit.Date = DateSummary(b.Began)
         break
@@ -78,39 +78,50 @@ export default class BenefitActivity extends SubsectionElement {
     })
   }
 
-  render () {
+  render() {
     return (
-      <div className="section-content benefit-activity" {...super.dataAttributes(this.props)}>
-        <Branch name="has_benefit"
-                className="has-benefits"
-                label={i18n.t('foreign.activities.benefit.heading.title')}
-                labelSize="h2"
-                {...this.props.HasBenefits}
-                warning={true}
-                onError={this.handleError}
-                required={this.props.required}
-                onUpdate={this.updateHasBenefits}
-                scrollIntoView={this.props.scrollIntoView}>
-        </Branch>
+      <div
+        className="section-content benefit-activity"
+        {...super.dataAttributes(this.props)}>
+        <Branch
+          name="has_benefit"
+          className="has-benefits"
+          label={i18n.t('foreign.activities.benefit.heading.title')}
+          labelSize="h2"
+          {...this.props.HasBenefits}
+          warning={true}
+          onError={this.handleError}
+          required={this.props.required}
+          onUpdate={this.updateHasBenefits}
+          scrollIntoView={this.props.scrollIntoView}
+        />
 
         <Show when={this.props.HasBenefits.value === 'Yes'}>
-          <Accordion defaultState={this.props.defaultState}
-                     {...this.props.List}
-                     scrollToBottom={this.props.scrollToBottom}
-                     summary={this.summary}
-                     onUpdate={this.updateList}
-                     onError={this.handleError}
-                     validator={ForeignBenefitValidator}
-                     description={i18n.t('foreign.activities.benefit.collection.description')}
-                     appendTitle={i18n.t('foreign.activities.benefit.collection.appendTitle')}
-                     appendLabel={i18n.t('foreign.activities.benefit.collection.appendLabel')}
-                     required={this.props.required}
-                     scrollIntoView={this.props.scrollIntoView}>
-            <Benefit name="Item"
-                     bind={true}
-                     required={this.props.required}
-                     scrollIntoView={this.props.scrollIntoView}
-                     />
+          <Accordion
+            defaultState={this.props.defaultState}
+            {...this.props.List}
+            scrollToBottom={this.props.scrollToBottom}
+            summary={this.summary}
+            onUpdate={this.updateList}
+            onError={this.handleError}
+            validator={ForeignBenefitValidator}
+            description={i18n.t(
+              'foreign.activities.benefit.collection.description'
+            )}
+            appendTitle={i18n.t(
+              'foreign.activities.benefit.collection.appendTitle'
+            )}
+            appendLabel={i18n.t(
+              'foreign.activities.benefit.collection.appendLabel'
+            )}
+            required={this.props.required}
+            scrollIntoView={this.props.scrollIntoView}>
+            <Benefit
+              name="Item"
+              bind={true}
+              required={this.props.required}
+              scrollIntoView={this.props.scrollIntoView}
+            />
           </Accordion>
         </Show>
       </div>
@@ -123,12 +134,14 @@ BenefitActivity.defaultProps = {
   HasBenefits: {},
   List: {},
   defaultState: true,
-  onUpdate: (queue) => {},
-  onError: (value, arr) => { return arr },
+  onUpdate: queue => {},
+  onError: (value, arr) => {
+    return arr
+  },
   section: 'foreign',
   subsection: 'activities/benefits',
   dispatch: () => {},
-  validator: (data) => {
+  validator: data => {
     return validate(schema('foreign.activities.benefits', data))
   },
   scrollToBottom: ''

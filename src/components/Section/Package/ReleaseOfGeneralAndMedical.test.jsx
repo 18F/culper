@@ -16,9 +16,15 @@ describe('The ReleaseOfGeneralAndMedical Release component', () => {
           ExistingConditions: { HasCondition: { value: 'Yes' } }
         }
       },
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
-    const component = mount(<MemoryRouter><ReleaseOfGeneralAndMedical {...props} /></MemoryRouter>)
+    const component = mount(
+      <MemoryRouter>
+        <ReleaseOfGeneralAndMedical {...props} />
+      </MemoryRouter>
+    )
     expect(component.find('.general-release').length).toBe(1)
     expect(component.find('.medical-release').length).toBe(1)
     component.find('.general-release .signature button').simulate('click')
@@ -38,13 +44,23 @@ describe('The ReleaseOfGeneralAndMedical Release component', () => {
         }
       }
     }
-    const component = mount(<MemoryRouter><ReleaseOfGeneralAndMedical {...props} /></MemoryRouter>)
+    const component = mount(
+      <MemoryRouter>
+        <ReleaseOfGeneralAndMedical {...props} />
+      </MemoryRouter>
+    )
     expect(component.find('.medical-release').length).toBe(0)
   })
 
   it('handles defaults', () => {
-    expect(ReleaseOfGeneralAndMedical.defaultProps.dispatch()).toEqual(undefined)
-    expect(ReleaseOfGeneralAndMedical.defaultProps.onUpdate()).toEqual(undefined)
-    expect(ReleaseOfGeneralAndMedical.defaultProps.onError(null, [])).toEqual([])
+    expect(ReleaseOfGeneralAndMedical.defaultProps.dispatch()).toEqual(
+      undefined
+    )
+    expect(ReleaseOfGeneralAndMedical.defaultProps.onUpdate()).toEqual(
+      undefined
+    )
+    expect(ReleaseOfGeneralAndMedical.defaultProps.onError(null, [])).toEqual(
+      []
+    )
   })
 })

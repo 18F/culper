@@ -7,7 +7,10 @@ export const validations = (section, props = {}) => {
 
   return section.subsections
     .filter(subsection => {
-      if (subsection.hidden || (subsection.hiddenFunc && subsection.hiddenFunc(props.application))) {
+      if (
+        subsection.hidden ||
+        (subsection.hiddenFunc && subsection.hiddenFunc(props.application))
+      ) {
         return false
       }
 
@@ -22,8 +25,11 @@ export const validations = (section, props = {}) => {
     }, 0)
 }
 
-export const parseFormUrl = (url) => {
-  const crumbs = url.toLowerCase().replace('/form/', '').split('/')
+export const parseFormUrl = url => {
+  const crumbs = url
+    .toLowerCase()
+    .replace('/form/', '')
+    .split('/')
   const subsectionRaw = crumbs.slice(1).join('/')
 
   return {
@@ -38,12 +44,10 @@ const errorMatches = (err, routeParts) => {
   const routeSection = routeParts.section
   return (
     err.section.toLowerCase() === routeSection &&
-    (
-      // either we're not within a subsection...
-      !routeParts.subsectionRaw ||
+    // either we're not within a subsection...
+    (!routeParts.subsectionRaw ||
       // ...or the subsection matches
-      err.subsection.toLowerCase().startsWith(routeParts.subsectionRaw)
-    )
+      err.subsection.toLowerCase().startsWith(routeParts.subsectionRaw))
   )
 }
 
@@ -60,14 +64,13 @@ export const hasErrors = (route, errors = {}) => {
   }
   const sectionErrors = errors[routeParts.section] || []
 
-  return sectionErrors.some(e =>
-    errorMatches(e, routeParts) &&
-    e.valid === false
+  return sectionErrors.some(
+    e => errorMatches(e, routeParts) && e.valid === false
   )
 }
 
 // Find the navigation object that corresponds to this route
-const findNode = (crumbs) => {
+const findNode = crumbs => {
   let node = null
   for (const crumb of crumbs) {
     if (!node) {
@@ -84,9 +87,13 @@ const getCompletedSections = (sections, routeParts) => {
   const routeSubSection = routeParts.subsection
   const routeSubSectionRaw = routeParts.subsectionRaw
 
-  let completedSections = sections.filter(e => e.section.toLowerCase() === routeSection)
+  let completedSections = sections.filter(
+    e => e.section.toLowerCase() === routeSection
+  )
   if (routeSubSection) {
-    completedSections = completedSections.filter(e => e.subsection.toLowerCase().indexOf(routeSubSectionRaw) === 0)
+    completedSections = completedSections.filter(
+      e => e.subsection.toLowerCase().indexOf(routeSubSectionRaw) === 0
+    )
   }
 
   return completedSections.filter(e => e.valid)
@@ -128,9 +135,9 @@ export const sectionsCompleted = (store, props) => {
   let sections = 0
 
   for (const section in store) {
-    const valid = store[section]
-      .filter(e => e.section.toLowerCase() === section.toLowerCase() && e.valid === true)
-      .length
+    const valid = store[section].filter(
+      e => e.section.toLowerCase() === section.toLowerCase() && e.valid === true
+    ).length
     if (valid >= validations(navigation.find(n => n.url === section), props)) {
       sections++
     }
@@ -139,7 +146,7 @@ export const sectionsCompleted = (store, props) => {
   return sections
 }
 
-export const findPosition = (el) => {
+export const findPosition = el => {
   let currentTop = 0
 
   if (el && el.offsetParent) {

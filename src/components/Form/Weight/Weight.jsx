@@ -4,7 +4,7 @@ import ValidationElement from '../ValidationElement'
 import Number from '../Number'
 
 export default class Weight extends ValidationElement {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
@@ -17,7 +17,7 @@ export default class Weight extends ValidationElement {
   /**
    * Handle the change event.
    */
-  handleChange (event) {
+  handleChange(event) {
     this.setState({ value: event.target.value }, () => {
       super.handleChange(event)
       if (this.props.onUpdate) {
@@ -28,7 +28,7 @@ export default class Weight extends ValidationElement {
     })
   }
 
-  handleError (value, arr) {
+  handleError(value, arr) {
     arr = arr.map(err => {
       return {
         code: `weight.${err.code}`,
@@ -44,37 +44,38 @@ export default class Weight extends ValidationElement {
   /**
    * Generated name for the error message.
    */
-  errorName (part) {
+  errorName(part) {
     return '' + this.props.name + '-' + part + '-error'
   }
 
   /**
    * Generated name for the part of the address elements.
    */
-  partName (part) {
+  partName(part) {
     return '' + this.props.name + '-' + part
   }
 
-  render () {
+  render() {
     return (
       <div className="weight">
         <div className="pounds">
-          <Number id={this.partName('pounds')}
-                  name="pounds"
-                  label={i18n.t('identification.traits.label.pounds')}
-                  placeholder={i18n.t('identification.traits.placeholder.pounds')}
-                  aria-describedby={this.errorName('weight')}
-                  disabled={this.props.disabled}
-                  max="999"
-                  maxlength="3"
-                  min="10"
-                  readonly={this.props.readonly}
-                  required={this.props.required}
-                  step="1"
-                  value={this.state.value}
-                  onChange={this.handleChange}
-                  onError={this.handleError}
-                  />
+          <Number
+            id={this.partName('pounds')}
+            name="pounds"
+            label={i18n.t('identification.traits.label.pounds')}
+            placeholder={i18n.t('identification.traits.placeholder.pounds')}
+            aria-describedby={this.errorName('weight')}
+            disabled={this.props.disabled}
+            max="999"
+            maxlength="3"
+            min="10"
+            readonly={this.props.readonly}
+            required={this.props.required}
+            step="1"
+            value={this.state.value}
+            onChange={this.handleChange}
+            onError={this.handleError}
+          />
         </div>
       </div>
     )
@@ -84,7 +85,9 @@ export default class Weight extends ValidationElement {
 Weight.defaultProps = {
   name: 'weight',
   value: '',
-  onError: (value, arr) => { return arr },
+  onError: (value, arr) => {
+    return arr
+  },
   required: false
 }
 

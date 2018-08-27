@@ -17,7 +17,9 @@ describe('The employment component', () => {
     const expected = {
       name: 'employment',
       EmploymentActivity: { value: 'ActiveMilitary' },
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
     const selectors = [
       '.employment-title',
@@ -35,7 +37,9 @@ describe('The employment component', () => {
       expect(len).toBeGreaterThan(0)
     })
 
-    component.find({type: 'radio', value: 'ActiveMilitary'}).simulate('change')
+    component
+      .find({ type: 'radio', value: 'ActiveMilitary' })
+      .simulate('change')
     expect(updates).toBe(1)
   })
 
@@ -45,7 +49,11 @@ describe('The employment component', () => {
       EmploymentActivity: { value: 'ActiveMilitary' },
       Dates: {
         present: true,
-        from: { month: `${sevenYearsAgo.getMonth()+1}`, day: `${sevenYearsAgo.getDate()}`, year: `${sevenYearsAgo.getFullYear()}` },
+        from: {
+          month: `${sevenYearsAgo.getMonth() + 1}`,
+          day: `${sevenYearsAgo.getDate()}`,
+          year: `${sevenYearsAgo.getFullYear()}`
+        },
         to: {}
       }
     }
@@ -59,7 +67,11 @@ describe('The employment component', () => {
       EmploymentActivity: { value: 'ActiveMilitary' },
       Dates: {
         present: false,
-        from: { month: `${past.getMonth()+1}`, day: `${past.getDate()}`, year: `${past.getFullYear()}` },
+        from: {
+          month: `${past.getMonth() + 1}`,
+          day: `${past.getDate()}`,
+          year: `${past.getFullYear()}`
+        },
         to: {}
       }
     }
@@ -73,7 +85,11 @@ describe('The employment component', () => {
       EmploymentActivity: { value: 'ActiveMilitary' },
       Dates: {
         present: true,
-        from: { month: `${sevenYearsAgo.getMonth()+1}`, day: `${sevenYearsAgo.getDate()}`, year: `${sevenYearsAgo.getFullYear()}` },
+        from: {
+          month: `${sevenYearsAgo.getMonth() + 1}`,
+          day: `${sevenYearsAgo.getDate()}`,
+          year: `${sevenYearsAgo.getFullYear()}`
+        },
         to: {}
       }
     }
@@ -87,7 +103,11 @@ describe('The employment component', () => {
       EmploymentActivity: { value: 'ActiveMilitary' },
       Dates: {
         present: false,
-        from: { month: `${past.getMonth()+1}`, day: `${past.getDate()}`, year: `${past.getFullYear()}` },
+        from: {
+          month: `${past.getMonth() + 1}`,
+          day: `${past.getDate()}`,
+          year: `${past.getFullYear()}`
+        },
         to: {}
       }
     }
@@ -101,7 +121,11 @@ describe('The employment component', () => {
       EmploymentActivity: { value: 'ActiveMilitary' },
       Dates: {
         present: true,
-        from: { month: `${past.getMonth()+1}`, day: `${past.getDate()}`, year: `${past.getFullYear()}` },
+        from: {
+          month: `${past.getMonth() + 1}`,
+          day: `${past.getDate()}`,
+          year: `${past.getFullYear()}`
+        },
         to: {}
       }
     }
@@ -115,7 +139,11 @@ describe('The employment component', () => {
       EmploymentActivity: { value: 'ActiveMilitary' },
       Dates: {
         present: false,
-        from: { month: `${past.getMonth()+1}`, day: `${past.getDate()}`, year: `${past.getFullYear()}` },
+        from: {
+          month: `${past.getMonth() + 1}`,
+          day: `${past.getDate()}`,
+          year: `${past.getFullYear()}`
+        },
         to: {}
       }
     }

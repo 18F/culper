@@ -18,16 +18,20 @@ export const foreignBornDocuments = {
   },
   naturalized: {
     label: {
-      alien: 'Alien Registration (on Certificate of Naturalization—utilize USCIS, CIS, or INS Registration number)',
+      alien:
+        'Alien Registration (on Certificate of Naturalization—utilize USCIS, CIS, or INS Registration number)',
       permanentResident: 'Permanent Resident Card (I-551)',
-      certificateOfNaturalization: 'Certificate of Naturalization (N550 or N570)'
+      certificateOfNaturalization:
+        'Certificate of Naturalization (N550 or N570)'
     }
   },
   derived: {
     label: {
-      alien: 'Alien Registration (on Certificate of Naturalization—utilize USCIS, CIS, or INS Registration number)',
+      alien:
+        'Alien Registration (on Certificate of Naturalization—utilize USCIS, CIS, or INS Registration number)',
       permanentResident: 'Permanent Resident Card (I-551)',
-      certificateOfNaturalization: 'Certificate of Naturalization (N560 or N561)'
+      certificateOfNaturalization:
+        'Certificate of Naturalization (N560 or N561)'
     }
   },
   notCitizen: {
@@ -36,8 +40,10 @@ export const foreignBornDocuments = {
       employmentAuthorization: 'I-766 Employment Authorization',
       arrivalDepartureRecord: 'I-94 Arrival-Departure Record',
       visa: 'U.S. Visa (red foil number)',
-      nonImmigrantStudent: 'I-20 Certificate of Eligibility for Non-Immigrant-F1-Student',
-      exchangeVisitor: 'DS-2019 Certificate of Eligibility of Exchange Visitor-J1-Status'
+      nonImmigrantStudent:
+        'I-20 Certificate of Eligibility for Non-Immigrant-F1-Student',
+      exchangeVisitor:
+        'DS-2019 Certificate of Eligibility of Exchange Visitor-J1-Status'
     }
   },
   other: {

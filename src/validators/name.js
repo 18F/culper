@@ -1,7 +1,21 @@
-const suffixOptions = ['', 'Jr', 'Sr', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'Other']
+const suffixOptions = [
+  '',
+  'Jr',
+  'Sr',
+  'II',
+  'III',
+  'IV',
+  'V',
+  'VI',
+  'VII',
+  'VIII',
+  'IX',
+  'X',
+  'Other'
+]
 
 export default class NameValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.first = data.first
     this.firstInitialOnly = data.firstInitialOnly
     this.last = data.last
@@ -16,7 +30,7 @@ export default class NameValidator {
   /**
    * Validates a persons first name
    */
-  validFirst () {
+  validFirst() {
     if (!this.first) {
       return false
     }
@@ -31,7 +45,7 @@ export default class NameValidator {
   /**
    * Validates a persons last name
    */
-  validLast () {
+  validLast() {
     if (!this.last) {
       return false
     }
@@ -46,25 +60,25 @@ export default class NameValidator {
   /**
    * Validates a persons middle name
    */
-  validMiddle () {
+  validMiddle() {
     switch (this.noMiddleName) {
-    case true:
-      // If user does not have a middle name, make sure middle name is not entered
-      if (this.middle) {
+      case true:
+        // If user does not have a middle name, make sure middle name is not entered
+        if (this.middle) {
+          return false
+        }
+        break
+      case false:
+        // User should have a middle name or initial
+        if (!this.middle) {
+          return false
+        }
+        if (this.middleInitialOnly && this.middle.length > 1) {
+          return false
+        }
+        break
+      default:
         return false
-      }
-      break
-    case false:
-      // User should have a middle name or initial
-      if (!this.middle) {
-        return false
-      }
-      if (this.middleInitialOnly && this.middle.length > 1) {
-        return false
-      }
-      break
-    default:
-      return false
     }
     return true
   }
@@ -72,7 +86,7 @@ export default class NameValidator {
   /**
    * Validates a users suffix
    */
-  validSuffix () {
+  validSuffix() {
     // Suffix is optional
     if (!this.suffix) {
       return true
@@ -99,9 +113,7 @@ export default class NameValidator {
   /**
    * Validates all portions of a persons name
    */
-  isValid () {
-    return this.validFirst() &&
-      this.validLast() &&
-      this.validMiddle()
+  isValid() {
+    return this.validFirst() && this.validLast() && this.validMiddle()
   }
 }

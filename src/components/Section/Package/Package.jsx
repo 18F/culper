@@ -18,7 +18,7 @@ import schema from '../../../schema'
 import { Show } from '../../Form'
 
 class Package extends SectionElement {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.updateAttachments = this.updateAttachments.bind(this)
@@ -34,15 +34,15 @@ class Package extends SectionElement {
     }
   }
 
-  updateAttachments (values) {
+  updateAttachments(values) {
     this.handleUpdate('Attachments', values)
   }
 
-  updateSubmission (values) {
+  updateSubmission(values) {
     this.handleUpdate('Releases', values)
   }
 
-  onSubmit (success, error) {
+  onSubmit(success, error) {
     const releases = (this.props.Submission || {}).Releases || {}
     let data = { ...releases }
     const payload = schema(`package.submit`, data, false)
@@ -57,9 +57,13 @@ class Package extends SectionElement {
         return api.status()
       })
       .then(response => {
-        const statusData = ((response || {}).data || {})
-        this.props.dispatch(updateApplication('Settings', 'locked', statusData.Locked || false))
-        this.props.dispatch(updateApplication('Settings', 'hash', statusData.Hash || false))
+        const statusData = (response || {}).data || {}
+        this.props.dispatch(
+          updateApplication('Settings', 'locked', statusData.Locked || false)
+        )
+        this.props.dispatch(
+          updateApplication('Settings', 'hash', statusData.Hash || false)
+        )
         this.props.update({ section: 'package', subsection: 'print' })
         this.handleUpdate('Releases', releases)
       })
@@ -77,7 +81,7 @@ class Package extends SectionElement {
    * When the progress bar transition ends, redirect to page containing
    * releases or errors based on whether the form is valid
    */
-  onTransitionEnd () {
+  onTransitionEnd() {
     const tally = this.errorCheck()
     for (const sectionName in tally) {
       const mark = tally[sectionName]
@@ -98,21 +102,26 @@ class Package extends SectionElement {
   /**
    * TODO: Remove after testing. Hook to get to releases form
    */
-  goToReleases () {
+  goToReleases() {
     this.props.update({ section: 'package', subsection: 'submit' })
   }
 
-  errorCheck () {
+  errorCheck() {
     let tally = {}
 
     navigationWalker((path, child) => {
       if (path.length && path[0].store && child.store && child.validator) {
-        if (child.excluded || child.hidden || (child.hiddenFunc && child.hiddenFunc(this.props.Application))) {
+        if (
+          child.excluded ||
+          child.hidden ||
+          (child.hiddenFunc && child.hiddenFunc(this.props.Application))
+        ) {
           return
         }
 
         const sectionName = path[0].url
-        const data = (this.props.Application[path[0].store] || {})[child.store] || {}
+        const data =
+          (this.props.Application[path[0].store] || {})[child.store] || {}
 
         let subsectionName = child.url
         if (path.length > 1) {
@@ -134,8 +143,12 @@ class Package extends SectionElement {
 
         tally[sectionName].section = path[0]
         if (valid === false) {
-          tally[sectionName].errors = (tally[sectionName].errors || 0) + (valid === false ? 1 : 0)
-          tally[sectionName].subsections = [...(tally[sectionName].subsections || []), child]
+          tally[sectionName].errors =
+            (tally[sectionName].errors || 0) + (valid === false ? 1 : 0)
+          tally[sectionName].subsections = [
+            ...(tally[sectionName].subsections || []),
+            child
+          ]
         }
       }
     })
@@ -143,24 +156,36 @@ class Package extends SectionElement {
     return tally
   }
 
-  render () {
+  render() {
     const tally = this.errorCheck()
     const releases = (this.props.Submission || {}).Releases || {}
     return (
-      <SectionViews current={this.props.subsection} dispatch={this.props.dispatch} update={this.props.update}>
-        <SectionView name="attachments"
-                     back="psychological/review"
-                     backLabel={i18n.t('psychological.destination.review')}
-                     next="package/review"
-                     nextLabel={i18n.t('application.destination.submit')}>
-          <Attachments {...this.props.Submission.Attachments}
-                       onUpdate={this.updateAttachments} />
+      <SectionViews
+        current={this.props.subsection}
+        dispatch={this.props.dispatch}
+        update={this.props.update}>
+        <SectionView
+          name="attachments"
+          back="psychological/review"
+          backLabel={i18n.t('psychological.destination.review')}
+          next="package/review"
+          nextLabel={i18n.t('application.destination.submit')}>
+          <Attachments
+            {...this.props.Submission.Attachments}
+            onUpdate={this.updateAttachments}
+          />
         </SectionView>
         <SectionView name="review">
-          <SubmissionStatus transition={true} onTransitionEnd={this.onTransitionEnd}/>
+          <SubmissionStatus
+            transition={true}
+            onTransitionEnd={this.onTransitionEnd}
+          />
         </SectionView>
         <SectionView name="valid">
-          <SubmissionStatus transition={true} onTransitionEnd={this.goToReleases}/>
+          <SubmissionStatus
+            transition={true}
+            onTransitionEnd={this.goToReleases}
+          />
         </SectionView>
         <SectionView name="errors">
           <SubmissionStatus valid={false} transition={false}>
@@ -169,16 +194,17 @@ class Package extends SectionElement {
         </SectionView>
         <SectionView name="submit">
           <SubmissionStatus valid={true} transition={false}>
-            <ValidForm {...releases}
-                       dispatch={this.props.dispatch}
-                       onUpdate={this.updateSubmission}
-                       hideHippa={hideHippa(this.props.Application)}
-                       submitting={this.state.submitting}
-                       LegalName={this.props.LegalName}
-                       onSubmit={this.onSubmit}
-                       Identification={this.props.Identification}
-                       History={this.props.History}
-                       />
+            <ValidForm
+              {...releases}
+              dispatch={this.props.dispatch}
+              onUpdate={this.updateSubmission}
+              hideHippa={hideHippa(this.props.Application)}
+              submitting={this.state.submitting}
+              LegalName={this.props.LegalName}
+              onSubmit={this.onSubmit}
+              Identification={this.props.Identification}
+              History={this.props.History}
+            />
           </SubmissionStatus>
           <Show when={this.state.submissionError}>
             <div className="field">
@@ -203,24 +229,32 @@ class Package extends SectionElement {
 /**
  * Checks if all sections are complete
  */
-export const allSectionsValid = (sections) => {
+export const allSectionsValid = sections => {
   for (let section of sections) {
     const topLevel = section.subsections
-    if (!topLevel.every(s => { return s.complete === true })) {
+    if (
+      !topLevel.every(s => {
+        return s.complete === true
+      })
+    ) {
       return false
     }
   }
   return true
 }
 
-function mapStateToProps (state) {
+function mapStateToProps(state) {
   const app = state.application || {}
   const identification = app.Identification || {}
   const relationships = app.Relationships || {}
   const history = app.History || {}
   const historyResidence = history.Residence || {}
   const historyEmployment = history.Employment || { List: {} }
-  const historyEducation = history.Education || { HasAttended: {}, HasDegree10: {}, List: {} }
+  const historyEducation = history.Education || {
+    HasAttended: {},
+    HasDegree10: {},
+    List: {}
+  }
   const citizenship = app.Citizenship || {}
   const military = app.Military || {}
   const foreign = app.Foreign || {}

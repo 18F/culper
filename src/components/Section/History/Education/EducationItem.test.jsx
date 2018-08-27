@@ -85,12 +85,14 @@ describe('The education component', () => {
       HasAttended: { value: 'Yes' },
       HasDegree: { value: 'Yes' },
       Diplomas: {
-        items: [{
-          Item: {
-            Has: { value: 'Yes' },
-            Diploma: { value: 'Other' }
+        items: [
+          {
+            Item: {
+              Has: { value: 'Yes' },
+              Diploma: { value: 'Other' }
+            }
           }
-        }]
+        ]
       },
       Dates: {
         from: {
@@ -108,17 +110,38 @@ describe('The education component', () => {
           date: today
         }
       },
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
     const component = mount(<EducationItem {...expected} />)
-    component.find('.school-name input').simulate('change', { target: { name: 'Name', value: 'some text' } })
-    component.find('.daterange .from .month input').simulate('change', { target: { name: 'month', value: '0' } })
-    component.find('.mailing input').first().simulate('change', { target: { name: 'address', value: '123 Some Rd' } })
-    component.find('.type input').first().simulate('change')
-    component.find('.name .first input').first().simulate('change', { target: { name: 'first', value: 'John' } })
-    component.find('.branch .yes input').first().simulate('change')
+    component
+      .find('.school-name input')
+      .simulate('change', { target: { name: 'Name', value: 'some text' } })
+    component
+      .find('.daterange .from .month input')
+      .simulate('change', { target: { name: 'month', value: '0' } })
+    component
+      .find('.mailing input')
+      .first()
+      .simulate('change', { target: { name: 'address', value: '123 Some Rd' } })
+    component
+      .find('.type input')
+      .first()
+      .simulate('change')
+    component
+      .find('.name .first input')
+      .first()
+      .simulate('change', { target: { name: 'first', value: 'John' } })
+    component
+      .find('.branch .yes input')
+      .first()
+      .simulate('change')
     component.find('.diploma-other input').simulate('change')
-    component.find('.other input').at(0).simulate('change', { target: { name: 'DiplomaOther', value: 'Other' } })
+    component
+      .find('.other input')
+      .at(0)
+      .simulate('change', { target: { name: 'DiplomaOther', value: 'Other' } })
     expect(updates).toEqual(8)
   })
 })

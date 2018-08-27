@@ -10,7 +10,9 @@ describe('The DirectActivity component', () => {
 
   it('Updates with yes', () => {
     let updates = 0
-    const onUpdate = () => { updates++ }
+    const onUpdate = () => {
+      updates++
+    }
     const component = mount(<DirectActivity onUpdate={onUpdate} />)
     expect(component.find('.direct').length).toBe(1)
     component.find('.branch .no input').simulate('change')
@@ -21,17 +23,19 @@ describe('The DirectActivity component', () => {
     const expected = {
       HasInterests: { value: 'Yes' },
       List: {
-        items: [{
-          Item: {
-            InterestType: {
-              value: 'Foo'
+        items: [
+          {
+            Item: {
+              InterestType: {
+                value: 'Foo'
+              },
+              InterestTypes: {
+                values: ['Yourself']
+              }
             },
-            InterestTypes: {
-              values: ['Yourself']
-            }
-          },
-          open: true
-        }]
+            open: true
+          }
+        ]
       }
     }
     const component = mount(<DirectActivity {...expected} />)
@@ -43,14 +47,16 @@ describe('The DirectActivity component', () => {
     const expected = {
       HasInterests: { value: 'Yes' },
       List: {
-        items: [{
-          Item: {
-            InterestTypes: {
-              values: ['Yourself']
-            }
-          },
-          open: true
-        }]
+        items: [
+          {
+            Item: {
+              InterestTypes: {
+                values: ['Yourself']
+              }
+            },
+            open: true
+          }
+        ]
       }
     }
     const component = mount(<DirectActivity {...expected} />)

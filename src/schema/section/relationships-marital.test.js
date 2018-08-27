@@ -35,18 +35,20 @@ describe('Schema for financial taxes', () => {
         Name: {},
         OtherNames: {
           branch: null,
-          items: [{
-            Item: {
-              Has: {},
-              Name: {},
-              MaidenName: {},
-              DatesUsed: {
-                from: {},
-                to: {},
-                present: null
+          items: [
+            {
+              Item: {
+                Has: {},
+                Name: {},
+                MaidenName: {},
+                DatesUsed: {
+                  from: {},
+                  to: {},
+                  present: null
+                }
               }
             }
-          }]
+          ]
         },
         SSN: {},
         Separated: {},
@@ -55,28 +57,30 @@ describe('Schema for financial taxes', () => {
       },
       DivorcedList: {
         branch: { value: 'No' },
-        items: [{
-          Item: {
-            Name: {},
-            Birthdate: {},
-            BirthPlace: {
-              country: null
-            },
-            Citizenship: {},
-            Telephone: {},
-            Recognized: {},
-            Address: {
-              country: null
-            },
-            DateDivorced: {},
-            Status: {},
-            Deceased: {},
-            DeceasedAddress: {
-              country: null
-            },
-            DeceasedAddressNotApplicable: {}
+        items: [
+          {
+            Item: {
+              Name: {},
+              Birthdate: {},
+              BirthPlace: {
+                country: null
+              },
+              Citizenship: {},
+              Telephone: {},
+              Recognized: {},
+              Address: {
+                country: null
+              },
+              DateDivorced: {},
+              Status: {},
+              Deceased: {},
+              DeceasedAddress: {
+                country: null
+              },
+              DeceasedAddressNotApplicable: {}
+            }
           }
-        }]
+        ]
       }
     }
 

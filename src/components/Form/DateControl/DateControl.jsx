@@ -4,7 +4,12 @@ import ValidationElement from '../ValidationElement'
 import Number from '../Number'
 import Checkbox from '../Checkbox'
 import Show from '../Show'
-import { today, daysAgo, daysInMonth, validDate } from '../../Section/History/dateranges'
+import {
+  today,
+  daysAgo,
+  daysInMonth,
+  validDate
+} from '../../Section/History/dateranges'
 import DateControlValidator from '../../../validators/datecontrol'
 
 export const datePart = (part, date) => {
@@ -52,7 +57,7 @@ export const buildDate = (year = '', month = '', day = '') => {
 }
 
 export default class DateControl extends ValidationElement {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
@@ -64,7 +69,7 @@ export default class DateControl extends ValidationElement {
       valid: props.valid,
       maxDate: props.maxDate,
       month: props.month || datePart('m', props.value),
-      day: props.hideDay ? '1' : (props.day || datePart('d', props.value)),
+      day: props.hideDay ? '1' : props.day || datePart('d', props.value),
       year: props.year || datePart('y', props.value),
       errors: []
     }
@@ -84,7 +89,7 @@ export default class DateControl extends ValidationElement {
     this.errors = []
   }
 
-  componentWillReceiveProps (next) {
+  componentWillReceiveProps(next) {
     if (next.receiveProps) {
       let month = ''
       let day = ''
@@ -108,7 +113,7 @@ export default class DateControl extends ValidationElement {
     }
   }
 
-  handleDisable (nextProps) {
+  handleDisable(nextProps) {
     let updates = {}
     let errors = [...this.errors] || []
     // If disabling component, set all errors to null
@@ -130,7 +135,7 @@ export default class DateControl extends ValidationElement {
     this.setState(updates)
   }
 
-  update (el, year, month, day, estimated) {
+  update(el, year, month, day, estimated) {
     const date = buildDate(year, month, day)
     const changed = {
       year: year !== this.state.year,
@@ -149,7 +154,8 @@ export default class DateControl extends ValidationElement {
         const toggleForDay = date && (changed.year || changed.month)
 
         // Any external influence (i.e. clicking `Present` in a date range)
-        const toggleForExternal = el === null && changed.year && changed.month && changed.day
+        const toggleForExternal =
+          el === null && changed.year && changed.month && changed.day
 
         // This will force a blur/validation
         if (toggleForEstimation || toggleForDay || toggleForExternal) {
@@ -158,7 +164,8 @@ export default class DateControl extends ValidationElement {
             changed,
             el,
             this.refs.day.refs.number.refs.input,
-            this.refs.month.refs.number.refs.input)
+            this.refs.month.refs.number.refs.input
+          )
         }
 
         this.props.onUpdate({
@@ -169,58 +176,63 @@ export default class DateControl extends ValidationElement {
           estimated: estimated,
           date: date
         })
-      })
+      }
+    )
   }
 
-  updateMonth (values) {
+  updateMonth(values) {
     this.update(
       this.refs.month.refs.number.refs.input,
       this.state.year,
       values.value,
       this.state.day,
-      this.state.estimated)
+      this.state.estimated
+    )
   }
 
-  updateDay (values) {
+  updateDay(values) {
     this.update(
       this.refs.day.refs.number.refs.input,
       this.state.year,
       this.state.month,
       values.value,
-      this.state.estimated)
+      this.state.estimated
+    )
   }
 
-  updateYear (values) {
+  updateYear(values) {
     this.update(
       this.refs.year.refs.number.refs.input,
       values.value,
       this.state.month,
       this.state.day,
-      this.state.estimated)
+      this.state.estimated
+    )
   }
 
-  updateEstimated (values) {
+  updateEstimated(values) {
     this.update(
       this.refs.estimated.refs.checkbox,
       this.state.year,
       this.state.month,
       this.state.day,
-      values.checked)
+      values.checked
+    )
   }
 
-  handleErrorMonth (value, arr) {
+  handleErrorMonth(value, arr) {
     return this.handleError('month', value, arr)
   }
 
-  handleErrorDay (value, arr) {
+  handleErrorDay(value, arr) {
     return this.handleError('day', value, arr)
   }
 
-  handleErrorYear (value, arr) {
+  handleErrorYear(value, arr) {
     return this.handleError('year', value, arr)
   }
 
-  handleError (code, value, arr) {
+  handleError(code, value, arr) {
     let original = arr.map(err => {
       return {
         code: `date.${code}.${err.code}`,
@@ -230,24 +242,26 @@ export default class DateControl extends ValidationElement {
     })
 
     // Handle required
-    arr = original.concat(this.constructor.errors
-      .filter(err => err.code === 'required')
-      .map(err => {
-        const props = {...this.props, ...this.state}
-        return {
-          code: `date.${err.code}`,
-          valid: err.func(null, props),
-          uid: this.state.uid
-        }
-      }))
+    arr = original.concat(
+      this.constructor.errors
+        .filter(err => err.code === 'required')
+        .map(err => {
+          const props = { ...this.props, ...this.state }
+          return {
+            code: `date.${err.code}`,
+            valid: err.func(null, props),
+            uid: this.state.uid
+          }
+        })
+    )
 
     // Introducing local state to the DateControl so it can determine
     // if there were **any** errors found in other child components.
     this.storeErrors(arr, () => {
       // Get the full date if we can
       const date = validDate(this.state.month, this.state.day, this.state.year)
-          ? new Date(this.state.year, this.state.month, this.state.day)
-          : null
+        ? new Date(this.state.year, this.state.month, this.state.day)
+        : null
 
       const existingErr = this.errors.some(e => e.valid === false)
 
@@ -262,10 +276,11 @@ export default class DateControl extends ValidationElement {
         }
       }
 
-
       // Call any `onError` binding with error checking specific to the `DateControl`
       let local = []
-      const noneRequiredErrors = this.constructor.errors.filter(err => err.code !== 'required')
+      const noneRequiredErrors = this.constructor.errors.filter(
+        err => err.code !== 'required'
+      )
       local = noneRequiredErrors.map(err => {
         return {
           code: `${this.props.prefix ? this.props.prefix : 'date'}.${err.code}`,
@@ -284,9 +299,11 @@ export default class DateControl extends ValidationElement {
     return original
   }
 
-  storeErrors (arr = [], callback) {
+  storeErrors(arr = [], callback) {
     for (const e of arr) {
-      const idx = this.errors.findIndex(x => x.uid === e.uid && x.code === e.code)
+      const idx = this.errors.findIndex(
+        x => x.uid === e.uid && x.code === e.code
+      )
       if (idx !== -1) {
         this.errors[idx] = { ...e }
       } else {
@@ -299,97 +316,116 @@ export default class DateControl extends ValidationElement {
     })
   }
 
-  beforeChange (value) {
+  beforeChange(value) {
     return value.replace(/\D/g, '')
   }
 
-  monthDisplayText (value, text) {
+  monthDisplayText(value, text) {
     return `${value} (${text})`.trim()
   }
 
-  render () {
-    let klass = `datecontrol ${this.state.error && !this.props.overrideError ? 'usa-input-error' : ''} ${this.props.className || ''} ${this.props.hideDay ? 'day-hidden' : ''}`.trim()
+  render() {
+    let klass = `datecontrol ${
+      this.state.error && !this.props.overrideError ? 'usa-input-error' : ''
+    } ${this.props.className || ''} ${
+      this.props.hideDay ? 'day-hidden' : ''
+    }`.trim()
     return (
       <div className={klass}>
         <div>
           <div className="usa-form-group month">
-            <Number id="month"
-                    name="month"
-                    ref="month"
-                    label="Month"
-                    placeholder={i18n.t('date.placeholder.day')}
-                    disabled={this.state.disabled}
-                    max="12"
-                    maxlength="2"
-                    min="1"
-                    readonly={this.props.readonly}
-                    required={this.props.required}
-                    step="1"
-                    receiveProps="true"
-                    value={this.state.month}
-                    error={this.state.error}
-                    onUpdate={this.updateMonth}
-                    onError={this.handleErrorMonth}
-                    tabNext={() => { this.props.tab(this.refs.day.refs.number.refs.input) }}
-                    />
+            <Number
+              id="month"
+              name="month"
+              ref="month"
+              label="Month"
+              placeholder={i18n.t('date.placeholder.day')}
+              disabled={this.state.disabled}
+              max="12"
+              maxlength="2"
+              min="1"
+              readonly={this.props.readonly}
+              required={this.props.required}
+              step="1"
+              receiveProps="true"
+              value={this.state.month}
+              error={this.state.error}
+              onUpdate={this.updateMonth}
+              onError={this.handleErrorMonth}
+              tabNext={() => {
+                this.props.tab(this.refs.day.refs.number.refs.input)
+              }}
+            />
           </div>
-          <div className={`usa-form-group day ${this.props.hideDay === true ? 'hidden' : ''}`}>
-            <Number id="day"
-                    name="day"
-                    ref="day"
-                    label="Day"
-                    placeholder={i18n.t('date.placeholder.day')}
-                    disabled={this.state.disabled}
-                    max={daysInMonth(this.state.month, this.state.year)}
-                    maxlength="2"
-                    min="1"
-                    readonly={this.props.readonly}
-                    step="1"
-                    receiveProps="true"
-                    value={this.state.day}
-                    error={this.state.error}
-                    onUpdate={this.updateDay}
-                    onError={this.handleErrorDay}
-                    tabBack={() => { this.props.tab(this.refs.month.refs.number.refs.input) }}
-                    tabNext={() => { this.props.tab(this.refs.year.refs.number.refs.input) }}
-                    required={!this.props.hideDay && this.props.required}
-                    />
+          <div
+            className={`usa-form-group day ${
+              this.props.hideDay === true ? 'hidden' : ''
+            }`}>
+            <Number
+              id="day"
+              name="day"
+              ref="day"
+              label="Day"
+              placeholder={i18n.t('date.placeholder.day')}
+              disabled={this.state.disabled}
+              max={daysInMonth(this.state.month, this.state.year)}
+              maxlength="2"
+              min="1"
+              readonly={this.props.readonly}
+              step="1"
+              receiveProps="true"
+              value={this.state.day}
+              error={this.state.error}
+              onUpdate={this.updateDay}
+              onError={this.handleErrorDay}
+              tabBack={() => {
+                this.props.tab(this.refs.month.refs.number.refs.input)
+              }}
+              tabNext={() => {
+                this.props.tab(this.refs.year.refs.number.refs.input)
+              }}
+              required={!this.props.hideDay && this.props.required}
+            />
           </div>
           <div className="usa-form-group year">
-            <Number id="year"
-                    name="year"
-                    ref="year"
-                    label="Year"
-                    placeholder={i18n.t('date.placeholder.year')}
-                    disabled={this.state.disabled}
-                    min="1000"
-                    max={this.props.maxDate && this.props.maxDate.getFullYear()}
-                    maxlength="4"
-                    pattern={this.props.pattern}
-                    readonly={this.props.readonly}
-                    step="1"
-                    receiveProps="true"
-                    value={this.state.year}
-                    error={this.state.error}
-                    onUpdate={this.updateYear}
-                    onError={this.handleErrorYear}
-                    tabBack={() => { this.props.tab(this.refs.day.refs.number.refs.input) }}
-                    required={this.props.required}
-                    />
+            <Number
+              id="year"
+              name="year"
+              ref="year"
+              label="Year"
+              placeholder={i18n.t('date.placeholder.year')}
+              disabled={this.state.disabled}
+              min="1000"
+              max={this.props.maxDate && this.props.maxDate.getFullYear()}
+              maxlength="4"
+              pattern={this.props.pattern}
+              readonly={this.props.readonly}
+              step="1"
+              receiveProps="true"
+              value={this.state.year}
+              error={this.state.error}
+              onUpdate={this.updateYear}
+              onError={this.handleErrorYear}
+              tabBack={() => {
+                this.props.tab(this.refs.day.refs.number.refs.input)
+              }}
+              required={this.props.required}
+            />
           </div>
         </div>
         <Show when={this.props.showEstimated}>
           <div className="flags">
-            <Checkbox name="estimated"
-                      ref="estimated"
-                      label="Estimated"
-                      toggle="false"
-                      className="estimated"
-                      value={this.state.estimated}
-                      checked={this.state.estimated}
-                      disabled={this.state.disabled}
-                      onUpdate={this.updateEstimated}
-                      />
+            <Checkbox
+              name="estimated"
+              ref="estimated"
+              label="Estimated"
+              toggle="false"
+              className="estimated"
+              value={this.state.estimated}
+              checked={this.state.estimated}
+              disabled={this.state.disabled}
+              onUpdate={this.updateEstimated}
+            />
           </div>
         </Show>
       </div>
@@ -427,9 +463,13 @@ DateControl.defaultProps = {
       }
     }
   },
-  onUpdate: (values) => {},
-  onError: (value, arr) => { return arr },
-  tab: (el) => { el.focus() },
+  onUpdate: values => {},
+  onError: (value, arr) => {
+    return arr
+  },
+  tab: el => {
+    el.focus()
+  },
   notApplicable: false
 }
 
@@ -442,7 +482,6 @@ DateControl.errors = [
       }
       return true
     }
-
   },
   {
     code: 'max',

@@ -1,7 +1,7 @@
 import BirthPlaceValidator from './birthplace'
 
-describe('Birthplace component validation', function () {
-  it('should validate domestic information', function () {
+describe('Birthplace component validation', function() {
+  it('should validate domestic information', function() {
     const tests = [
       {
         data: {
@@ -51,11 +51,13 @@ describe('Birthplace component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new BirthPlaceValidator(test.data).validDomestic()).toBe(test.expected)
+      expect(new BirthPlaceValidator(test.data).validDomestic()).toBe(
+        test.expected
+      )
     })
   })
 
-  it('should validate international information', function () {
+  it('should validate international information', function() {
     const tests = [
       {
         data: {
@@ -80,11 +82,13 @@ describe('Birthplace component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new BirthPlaceValidator(test.data).validInternational()).toBe(test.expected)
+      expect(new BirthPlaceValidator(test.data).validInternational()).toBe(
+        test.expected
+      )
     })
   })
 
-  it('should validate birth place information', function () {
+  it('should validate birth place information', function() {
     const tests = [
       {
         data: {

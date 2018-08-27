@@ -8,23 +8,19 @@ describe('The API', () => {
     mock.onGet('/').reply(200, {})
 
     let actual = null
-    api
-      .information()
-      .then(function (response) {
-        actual = response.data
-        expect(actual).toEqual(expected)
-      })
+    api.information().then(function(response) {
+      actual = response.data
+      expect(actual).toEqual(expected)
+    })
   })
 
   it('can login user', () => {
     const expected = 'faketoken'
     const mock = new MockAdapter(api.proxy)
     mock.onPost('/basic/auth').reply(200, expected)
-    api
-      .login('john', 'admin')
-      .then(function (response) {
-        expect(response.data).toEqual(expected)
-      })
+    api.login('john', 'admin').then(function(response) {
+      expect(response.data).toEqual(expected)
+    })
   })
 
   it('can save via API calls', () => {

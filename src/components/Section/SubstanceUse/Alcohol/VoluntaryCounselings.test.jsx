@@ -11,7 +11,9 @@ describe('The VoluntaryCounselings component', () => {
 
   it('Updates branch', () => {
     let updates = 0
-    const onUpdate = () => { updates++ }
+    const onUpdate = () => {
+      updates++
+    }
     const component = mount(<VoluntaryCounselings onUpdate={onUpdate} />)
     expect(component.find('.voluntary-counselings').length).toBe(1)
     component.find('.sought-treatment .no input').simulate('change')
@@ -21,44 +23,48 @@ describe('The VoluntaryCounselings component', () => {
   it('Updates item in accordion', () => {
     let updates = 0
     const expected = {
-      onUpdate: () => { updates++ },
+      onUpdate: () => {
+        updates++
+      },
       SoughtTreatment: { value: 'Yes' },
       List: {
         branch: {
           value: 'No'
         },
-        items: [{
-          Item: {
-            CounselingDates: {
-              from: {
-                date: new Date('1/1/2010')
+        items: [
+          {
+            Item: {
+              CounselingDates: {
+                from: {
+                  date: new Date('1/1/2010')
+                },
+                to: {
+                  date: new Date('1/1/2012')
+                },
+                present: false
               },
-              to: {
-                date: new Date('1/1/2012')
+              TreatmentProviderName: {
+                value: 'The name'
               },
-              present: false
-            },
-            TreatmentProviderName: {
-              value: 'The name'
-            },
-            TreatmentProviderAddress: {
-              country: 'United States',
-              street: '1234 Some Rd',
-              city: 'Arlington',
-              state: 'Virginia',
-              zipcode: '22202',
-              layout: Location.ADDRESS
-            },
-            TreatmentProviderTelephone: {
-              noNumber: '',
-              number: '7031112222',
-              numberType: 'Home',
-              timeOfDay: 'Both',
-              extension: ''
-            },
-            CompletedTreatment: { value: 'Yes' }
+              TreatmentProviderAddress: {
+                country: 'United States',
+                street: '1234 Some Rd',
+                city: 'Arlington',
+                state: 'Virginia',
+                zipcode: '22202',
+                layout: Location.ADDRESS
+              },
+              TreatmentProviderTelephone: {
+                noNumber: '',
+                number: '7031112222',
+                numberType: 'Home',
+                timeOfDay: 'Both',
+                extension: ''
+              },
+              CompletedTreatment: { value: 'Yes' }
+            }
           }
-        }]
+        ]
       }
     }
     const component = mount(<VoluntaryCounselings {...expected} />)

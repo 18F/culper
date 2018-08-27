@@ -1,7 +1,7 @@
 import IdentificationPhysicalValidator from './identificationphysical'
 
-describe('Physical attributes validation', function () {
-  it('should validate height', function () {
+describe('Physical attributes validation', function() {
+  it('should validate height', function() {
     const tests = [
       {
         data: {
@@ -39,11 +39,13 @@ describe('Physical attributes validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new IdentificationPhysicalValidator(test.data).validHeight()).toBe(test.expected)
+      expect(new IdentificationPhysicalValidator(test.data).validHeight()).toBe(
+        test.expected
+      )
     })
   })
 
-  it('should validate weight', function () {
+  it('should validate weight', function() {
     const tests = [
       {
         data: {
@@ -66,11 +68,13 @@ describe('Physical attributes validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new IdentificationPhysicalValidator(test.data).validWeight()).toBe(test.expected)
+      expect(new IdentificationPhysicalValidator(test.data).validWeight()).toBe(
+        test.expected
+      )
     })
   })
 
-  it('should validate hair color', function () {
+  it('should validate hair color', function() {
     const tests = [
       {
         data: {
@@ -99,11 +103,13 @@ describe('Physical attributes validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new IdentificationPhysicalValidator(test.data).validHairColor()).toBe(test.expected)
+      expect(
+        new IdentificationPhysicalValidator(test.data).validHairColor()
+      ).toBe(test.expected)
     })
   })
 
-  it('should validate eye color', function () {
+  it('should validate eye color', function() {
     const tests = [
       {
         data: {
@@ -132,11 +138,13 @@ describe('Physical attributes validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new IdentificationPhysicalValidator(test.data).validEyeColor()).toBe(test.expected)
+      expect(
+        new IdentificationPhysicalValidator(test.data).validEyeColor()
+      ).toBe(test.expected)
     })
   })
 
-  it('should validate sex', function () {
+  it('should validate sex', function() {
     const tests = [
       {
         data: {
@@ -159,11 +167,13 @@ describe('Physical attributes validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new IdentificationPhysicalValidator(test.data).validSex()).toBe(test.expected)
+      expect(new IdentificationPhysicalValidator(test.data).validSex()).toBe(
+        test.expected
+      )
     })
   })
 
-  it('should validate physical attributes', function () {
+  it('should validate physical attributes', function() {
     const tests = [
       {
         data: {
@@ -194,7 +204,9 @@ describe('Physical attributes validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new IdentificationPhysicalValidator(test.data).isValid()).toBe(test.expected)
+      expect(new IdentificationPhysicalValidator(test.data).isValid()).toBe(
+        test.expected
+      )
     })
   })
 })

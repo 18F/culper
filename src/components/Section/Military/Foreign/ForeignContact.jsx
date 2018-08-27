@@ -3,7 +3,7 @@ import { i18n } from '../../../../config'
 import { Name, Location, DateRange, Text, Field } from '../../../Form'
 
 export default class ForeignContact extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.update = this.update.bind(this)
@@ -14,7 +14,7 @@ export default class ForeignContact extends React.Component {
     this.updateFrequency = this.updateFrequency.bind(this)
   }
 
-  update (queue) {
+  update(queue) {
     this.props.onUpdate({
       Name: this.props.Name,
       Address: this.props.Address,
@@ -25,110 +25,120 @@ export default class ForeignContact extends React.Component {
     })
   }
 
-  updateName (value) {
+  updateName(value) {
     this.update({
       Name: value
     })
   }
 
-  updateAddress (value) {
+  updateAddress(value) {
     this.update({
       Address: value
     })
   }
 
-  updateTitle (value) {
+  updateTitle(value) {
     this.update({
       Title: value
     })
   }
 
-  updateDates (value) {
+  updateDates(value) {
     this.update({
       Dates: value
     })
   }
 
-  updateFrequency (value) {
+  updateFrequency(value) {
     this.update({
       Frequency: value
     })
   }
 
-  render () {
+  render() {
     return (
       <div className="foreign-contact">
-        <Field title={i18n.t('military.foreign.heading.contact.name')}
-               optional={true}
-               filterErrors={Name.requiredErrorsOnly}
-               scrollIntoView={this.props.scrollIntoView}>
-          <Name name="Name"
-                className="foreign-contact-name"
-                {...this.props.Name}
-                onUpdate={this.updateName}
-                onError={this.props.onError}
-                required={this.props.required}
-                scrollIntoView={this.props.scrollIntoView}
-                />
+        <Field
+          title={i18n.t('military.foreign.heading.contact.name')}
+          optional={true}
+          filterErrors={Name.requiredErrorsOnly}
+          scrollIntoView={this.props.scrollIntoView}>
+          <Name
+            name="Name"
+            className="foreign-contact-name"
+            {...this.props.Name}
+            onUpdate={this.updateName}
+            onError={this.props.onError}
+            required={this.props.required}
+            scrollIntoView={this.props.scrollIntoView}
+          />
         </Field>
 
-        <Field title={i18n.t('military.foreign.heading.contact.address')}
-               optional={true}
-               help="military.foreign.help.contact.address"
-               adjustFor="address"
-               shrink={true}
-               scrollIntoView={this.props.scrollIntoView}>
-          <Location name="Address"
-                    className="foreign-contact-address"
-                    {...this.props.Address}
-                    addressBooks={this.props.addressBooks}
-                    addressBook="ForeignNational"
-                    dispatch={this.props.dispatch}
-                    layout={Location.ADDRESS}
-                    geocode={true}
-                    onUpdate={this.updateAddress}
-                    onError={this.props.onError}
-                    required={this.props.required}
-                    />
+        <Field
+          title={i18n.t('military.foreign.heading.contact.address')}
+          optional={true}
+          help="military.foreign.help.contact.address"
+          adjustFor="address"
+          shrink={true}
+          scrollIntoView={this.props.scrollIntoView}>
+          <Location
+            name="Address"
+            className="foreign-contact-address"
+            {...this.props.Address}
+            addressBooks={this.props.addressBooks}
+            addressBook="ForeignNational"
+            dispatch={this.props.dispatch}
+            layout={Location.ADDRESS}
+            geocode={true}
+            onUpdate={this.updateAddress}
+            onError={this.props.onError}
+            required={this.props.required}
+          />
         </Field>
 
-        <Field title={i18n.t('military.foreign.heading.contact.title')}
-               scrollIntoView={this.props.scrollIntoView}>
-          <Text name="Title"
-                {...this.props.Title}
-                className="foreign-contact-title"
-                maxlength="100"
-                onUpdate={this.updateTitle}
-                onError={this.props.onError}
-                required={this.props.required}
-                />
+        <Field
+          title={i18n.t('military.foreign.heading.contact.title')}
+          scrollIntoView={this.props.scrollIntoView}>
+          <Text
+            name="Title"
+            {...this.props.Title}
+            className="foreign-contact-title"
+            maxlength="100"
+            onUpdate={this.updateTitle}
+            onError={this.props.onError}
+            required={this.props.required}
+          />
         </Field>
 
-        <Field title={i18n.t('military.foreign.heading.contact.dates')}
-               help="military.foreign.help.contact.dates"
-               adjustFor="daterange"
-               shrink={true}
-               scrollIntoView={this.props.scrollIntoView}>
-          <DateRange name="Dates"
-                     className="foreign-contact-dates"
-                     {...this.props.Dates}
-                     onUpdate={this.updateDates}
-                     onError={this.props.onError}
-                     required={this.props.required}
-                     />
+        <Field
+          title={i18n.t('military.foreign.heading.contact.dates')}
+          help="military.foreign.help.contact.dates"
+          adjustFor="daterange"
+          shrink={true}
+          scrollIntoView={this.props.scrollIntoView}>
+          <DateRange
+            name="Dates"
+            className="foreign-contact-dates"
+            {...this.props.Dates}
+            onUpdate={this.updateDates}
+            onError={this.props.onError}
+            required={this.props.required}
+          />
         </Field>
 
-        <Field title={i18n.t('military.foreign.heading.contact.frequency')}
-               help="military.foreign.help.contact.frequency"
-               scrollIntoView={this.props.scrollIntoView}>
-          <Text name="Frequency"
-                {...this.props.Frequency}
-                className="foreign-contact-frequency"
-                maxlength="100"
-                onUpdate={this.updateFrequency}
-                onError={this.props.onError}
-                required={this.props.required}
-                />
+        <Field
+          title={i18n.t('military.foreign.heading.contact.frequency')}
+          help="military.foreign.help.contact.frequency"
+          scrollIntoView={this.props.scrollIntoView}>
+          <Text
+            name="Frequency"
+            {...this.props.Frequency}
+            className="foreign-contact-frequency"
+            maxlength="100"
+            onUpdate={this.updateFrequency}
+            onError={this.props.onError}
+            required={this.props.required}
+          />
         </Field>
       </div>
     )
@@ -142,7 +152,9 @@ ForeignContact.defaultProps = {
   Dates: {},
   Frequency: {},
   addressBooks: {},
-  dispatch: (action) => {},
-  onUpdate: (queue) => {},
-  onError: (value, arr) => { return arr }
+  dispatch: action => {},
+  onUpdate: queue => {},
+  onError: (value, arr) => {
+    return arr
+  }
 }

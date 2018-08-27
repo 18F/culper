@@ -11,13 +11,17 @@ describe('The Address component', () => {
   it('Performs US updates', () => {
     let updates = 0
     const props = {
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
     const component = mount(<Address {...props} />)
     component.find('.street input').simulate('change')
     component.find('.street2 input').simulate('change')
     component.find('.city input').simulate('change')
-    component.find('.state input').simulate('change', { target: { value: 'Virginia' } })
+    component
+      .find('.state input')
+      .simulate('change', { target: { value: 'Virginia' } })
     component.find('.zipcode input').simulate('change')
     expect(updates).toBe(5)
   })
@@ -26,12 +30,16 @@ describe('The Address component', () => {
     let updates = 0
     const props = {
       country: { value: 'POSTOFFICE' },
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
     const component = mount(<Address {...props} />)
     component.find('.mailing input').simulate('change')
     component.find('.apofpo .apo input').simulate('change')
-    component.find('.state input').simulate('change', { target: { value: 'AA' } })
+    component
+      .find('.state input')
+      .simulate('change', { target: { value: 'AA' } })
     component.find('.zipcode input').simulate('change')
     expect(updates).toBe(4)
   })
@@ -40,19 +48,25 @@ describe('The Address component', () => {
     let updates = 0
     const props = {
       country: { value: '' },
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
     const component = mount(<Address {...props} />)
     component.find('.mailing input').simulate('change')
     component.find('.city input').simulate('change')
-    component.find('.country input').simulate('change', { target: { value: 'Germany' } })
+    component
+      .find('.country input')
+      .simulate('change', { target: { value: 'Germany' } })
     expect(updates).toBe(3)
   })
 
   it('Performs address type update', () => {
     let updates = 0
     const props = {
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
     const component = mount(<Address {...props} />)
     component.find('.address-options .domestic input').simulate('change')
@@ -75,7 +89,9 @@ describe('The Address component', () => {
     const props = {
       city: 'APO',
       country: { value: 'POSTOFFICE' },
-      onUpdate: (values) => { city = values.city }
+      onUpdate: values => {
+        city = values.city
+      }
     }
     const component = mount(<Address {...props} />)
     component.find('.address-options .domestic input').simulate('change')
@@ -93,7 +109,9 @@ describe('The Address component', () => {
   it('simulate blurring', () => {
     let blurred = 0
     const props = {
-      onBlur: () => { blurred++ }
+      onBlur: () => {
+        blurred++
+      }
     }
     const component = mount(<Address {...props} />)
     component.find('.street input').simulate('blur')
@@ -107,7 +125,9 @@ describe('The Address component', () => {
   it('simulate focus', () => {
     let focused = 0
     const props = {
-      onFocus: () => { focused++ }
+      onFocus: () => {
+        focused++
+      }
     }
     const component = mount(<Address {...props} />)
     component.find('.street input').simulate('focus')

@@ -212,7 +212,11 @@ describe('The summary components', () => {
     expect(residence.filter(item => item.type === 'Residence').length).toEqual(
       2
     )
+<<<<<<< HEAD
     expect(residence.filter(item => item.type === 'Gap').length).toEqual(1)
+=======
+    expect(residence.filter(item => item.type === 'Gap').length).toEqual(0)
+>>>>>>> Run prettier on src
     expect(
       employment.filter(item => item.type === 'Employment').length
     ).toEqual(1)

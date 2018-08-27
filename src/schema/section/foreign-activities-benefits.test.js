@@ -7,60 +7,62 @@ describe('Schema for financial taxes', () => {
       HasBenefits: { value: 'Yes' },
       List: {
         branch: { value: 'No' },
-        items: [{
-          Item: {
-            InterestTypes: {},
-            BenefitType: {},
-            OtherBenefitType: {},
-            BenefitFrequency: {},
-            OneTimeBenefit: {
-              Began: {},
-              End: {},
-              Frequency: {},
-              OtherFrequency: {},
-              Received: {},
-              Country: {},
-              Value: {
-                value: ''
+        items: [
+          {
+            Item: {
+              InterestTypes: {},
+              BenefitType: {},
+              OtherBenefitType: {},
+              BenefitFrequency: {},
+              OneTimeBenefit: {
+                Began: {},
+                End: {},
+                Frequency: {},
+                OtherFrequency: {},
+                Received: {},
+                Country: {},
+                Value: {
+                  value: ''
+                },
+                ValueEstimated: {},
+                Reason: {},
+                Obligated: {},
+                ObligatedExplanation: {}
               },
-              ValueEstimated: {},
-              Reason: {},
-              Obligated: {},
-              ObligatedExplanation: {}
-            },
-            FutureBenefit: {
-              Began: {},
-              End: {},
-              Frequency: {},
-              OtherFrequency: {},
-              Received: {},
-              Country: {},
-              Value: {
-                value: ''
+              FutureBenefit: {
+                Began: {},
+                End: {},
+                Frequency: {},
+                OtherFrequency: {},
+                Received: {},
+                Country: {},
+                Value: {
+                  value: ''
+                },
+                ValueEstimated: {},
+                Reason: {},
+                Obligated: {},
+                ObligatedExplanation: {}
               },
-              ValueEstimated: {},
-              Reason: {},
-              Obligated: {},
-              ObligatedExplanation: {}
-            },
-            ContinuingBenefit: {
-              Began: {},
-              End: {},
-              Frequency: {},
-              OtherFrequency: {},
-              Received: {},
-              Country: {},
-              Value: {
-                value: ''
+              ContinuingBenefit: {
+                Began: {},
+                End: {},
+                Frequency: {},
+                OtherFrequency: {},
+                Received: {},
+                Country: {},
+                Value: {
+                  value: ''
+                },
+                ValueEstimated: {},
+                Reason: {},
+                Obligated: {},
+                ObligatedExplanation: {}
               },
-              ValueEstimated: {},
-              Reason: {},
-              Obligated: {},
-              ObligatedExplanation: {}
-            },
-            OtherBenefit: {}
+              OtherBenefit: {}
+            }
           }
-        }]
+        ]
       }
     }
 

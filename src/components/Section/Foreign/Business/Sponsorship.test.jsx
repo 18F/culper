@@ -32,8 +32,14 @@ describe('The foreign business sponsorship component', () => {
       }
     }
     const component = mount(<Sponsorship {...expected} />)
-    component.find('.branch .yes input').at(0).simulate('change')
-    component.find('.branch .yes input').at(0).simulate('blur')
+    component
+      .find('.branch .yes input')
+      .at(0)
+      .simulate('change')
+    component
+      .find('.branch .yes input')
+      .at(0)
+      .simulate('blur')
     expect(validated).toBe(true)
   })
 
@@ -58,19 +64,39 @@ describe('The foreign business sponsorship component', () => {
           }
         ]
       },
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
     const component = mount(<Sponsorship {...expected} />)
     expect(component.find('.accordion').length).toBe(1)
-    component.find('.foreign-business-sponsorship-name .first input').simulate('change')
-    component.find('.foreign-business-sponsorship-birthdate .day input').simulate('change')
-    component.find('.foreign-business-sponsorship-address .city input').simulate('change')
-    component.find('.foreign-business-sponsorship-citizenship input').simulate('change')
-    component.find('.foreign-business-sponsorship-organization input').simulate('change')
-    component.find('.foreign-business-sponsorship-dates .to .day input').simulate('change')
-    component.find('.foreign-business-sponsorship-residence .city input').simulate('change')
-    component.find('.foreign-business-sponsorship-stay textarea').simulate('change')
-    component.find('.foreign-business-sponsorship-sponsorship textarea').simulate('change')
+    component
+      .find('.foreign-business-sponsorship-name .first input')
+      .simulate('change')
+    component
+      .find('.foreign-business-sponsorship-birthdate .day input')
+      .simulate('change')
+    component
+      .find('.foreign-business-sponsorship-address .city input')
+      .simulate('change')
+    component
+      .find('.foreign-business-sponsorship-citizenship input')
+      .simulate('change')
+    component
+      .find('.foreign-business-sponsorship-organization input')
+      .simulate('change')
+    component
+      .find('.foreign-business-sponsorship-dates .to .day input')
+      .simulate('change')
+    component
+      .find('.foreign-business-sponsorship-residence .city input')
+      .simulate('change')
+    component
+      .find('.foreign-business-sponsorship-stay textarea')
+      .simulate('change')
+    component
+      .find('.foreign-business-sponsorship-sponsorship textarea')
+      .simulate('change')
     expect(updates).toBe(9)
   })
 })

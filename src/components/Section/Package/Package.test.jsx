@@ -10,7 +10,12 @@ const applicationState = {
   Identification: {},
   Completed: {
     identification: [
-      { code: 'identification/name', section: 'identification', subsection: 'name', valid: false }
+      {
+        code: 'identification/name',
+        section: 'identification',
+        subsection: 'name',
+        valid: false
+      }
     ]
   },
   Psychological: {
@@ -24,7 +29,7 @@ const applicationState = {
 
 describe('The Package form component', () => {
   window.token = 'fake-token'
-  const middlewares = [ thunk ]
+  const middlewares = [thunk]
   const mockStore = configureMockStore(middlewares)
 
   it('visible when authenticated', () => {
@@ -33,7 +38,13 @@ describe('The Package form component', () => {
       authentication: { authenticated: true },
       application: applicationState
     })
-    const component = mount(<Provider store={store}><MemoryRouter><Package Application={applicationState} /></MemoryRouter></Provider>)
+    const component = mount(
+      <Provider store={store}>
+        <MemoryRouter>
+          <Package Application={applicationState} />
+        </MemoryRouter>
+      </Provider>
+    )
     expect(component.find('div').length).toBeGreaterThan(0)
   })
 

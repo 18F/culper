@@ -15,7 +15,7 @@ describe('The other names section', () => {
     const props = {
       HasOtherNames: { value: 'Yes' },
       List: {
-        items: [{Item: {}}]
+        items: [{ Item: {} }]
       }
     }
     const component = mount(<OtherNames {...props} />)
@@ -34,7 +34,7 @@ describe('The other names section', () => {
     const props = {
       HasOtherNames: { value: 'Yes' },
       List: {
-        items: [{Item: {}}]
+        items: [{ Item: {} }]
       }
     }
     const component = mount(<OtherNames {...props} />)
@@ -45,7 +45,7 @@ describe('The other names section', () => {
     const props = {
       HasOtherNames: { value: 'Yes' },
       List: {
-        items: [{Item: {}}]
+        items: [{ Item: {} }]
       }
     }
     const component = mount(<OtherNames {...props} />)

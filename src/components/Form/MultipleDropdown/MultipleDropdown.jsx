@@ -3,7 +3,7 @@ import ValidationElement from '../ValidationElement'
 import Dropdown from '../Dropdown'
 
 export default class MultipleDropdown extends ValidationElement {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
@@ -16,7 +16,7 @@ export default class MultipleDropdown extends ValidationElement {
     this.handleError = this.handleError.bind(this)
   }
 
-  update (queue) {
+  update(queue) {
     this.props.onUpdate({
       value: this.props.value,
       ...queue
@@ -25,7 +25,7 @@ export default class MultipleDropdown extends ValidationElement {
     this.handleError(queue, [])
   }
 
-  updateToken (event, options) {
+  updateToken(event, options) {
     // If one has already been selected then no need to add it again
     if (this.props.value.some(x => x === options.suggestion.value)) {
       return
@@ -37,7 +37,7 @@ export default class MultipleDropdown extends ValidationElement {
     })
   }
 
-  remove (index) {
+  remove(index) {
     const arr = [...(this.props.value || [])]
     arr.splice(index, 1)
 
@@ -46,7 +46,7 @@ export default class MultipleDropdown extends ValidationElement {
     })
   }
 
-  handleError (value, arr) {
+  handleError(value, arr) {
     const local = this.constructor.errors.map(err => {
       return {
         code: err.code,
@@ -55,35 +55,43 @@ export default class MultipleDropdown extends ValidationElement {
       }
     })
 
-    return this.props.onError(value, arr.filter(x => x.code.indexOf('required') === -1).concat(local))
+    return this.props.onError(
+      value,
+      arr.filter(x => x.code.indexOf('required') === -1).concat(local)
+    )
   }
 
-  render () {
+  render() {
     const values = this.props.value || []
-    const klass = `multiple-dropdown ${this.props.className || ''} ${values.length ? 'has-tokens' : ''}`.trim()
+    const klass = `multiple-dropdown ${this.props.className || ''} ${
+      values.length ? 'has-tokens' : ''
+    }`.trim()
     const tokens = values.map((x, i) => {
       return (
         <span className="token" key={`${this.props.name}-${x}`}>
           {x}
-          <span className="token-delete" onClick={this.remove.bind(this, i)}>X</span>
+          <span className="token-delete" onClick={this.remove.bind(this, i)}>
+            X
+          </span>
         </span>
       )
     })
 
     return (
       <div className={klass}>
-        <Dropdown name={this.props.name}
-                  ref="dropdown"
-                  label={this.props.label}
-                  showComments={this.props.showComments}
-                  comments={this.props.comments}
-                  placeholder={this.props.placeholder}
-                  disabled={this.props.disabled}
-                  required={false}
-                  clearOnSelection={true}
-                  onSuggestionSelected={this.updateToken}
-                  onError={this.handleError}>
-          { this.props.children }
+        <Dropdown
+          name={this.props.name}
+          ref="dropdown"
+          label={this.props.label}
+          showComments={this.props.showComments}
+          comments={this.props.comments}
+          placeholder={this.props.placeholder}
+          disabled={this.props.disabled}
+          required={false}
+          clearOnSelection={true}
+          onSuggestionSelected={this.updateToken}
+          onError={this.handleError}>
+          {this.props.children}
         </Dropdown>
         <span className="tokens">{tokens}</span>
       </div>
@@ -105,8 +113,10 @@ MultipleDropdown.defaultProps = {
   value: [],
   showComments: false,
   comments: '',
-  onUpdate: (queue) => {},
-  onError: (value, arr) => { return arr }
+  onUpdate: queue => {},
+  onError: (value, arr) => {
+    return arr
+  }
 }
 
 MultipleDropdown.errors = [

@@ -7,21 +7,23 @@ describe('Schema for citizenship multiple', () => {
       HasMultiple: { value: 'Yes' },
       List: {
         branch: { value: 'No' },
-        items: [{
-          Item: {
-            Country: {},
-            Dates: {
-              from: {},
-              to: {},
-              present: null
-            },
-            How: {},
-            Renounced: {},
-            RenouncedExplanation: {},
-            Current: {},
-            CurrentExplanation: {}
+        items: [
+          {
+            Item: {
+              Country: {},
+              Dates: {
+                from: {},
+                to: {},
+                present: null
+              },
+              How: {},
+              Renounced: {},
+              RenouncedExplanation: {},
+              Current: {},
+              CurrentExplanation: {}
+            }
           }
-        }]
+        ]
       }
     }
 

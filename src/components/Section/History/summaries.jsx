@@ -3,11 +3,32 @@ import { i18n } from '../../../config'
 import { gaps, extractDate } from './dateranges'
 import { Svg } from '../../Form'
 import { newGuid } from '../../Form/ValidationElement'
-import { Summary, AddressSummary, DateSummary, NameSummary } from '../../Summary'
-import { ResidenceValidator, EmploymentValidator, EducationItemValidator } from '../../../validators'
+import {
+  Summary,
+  AddressSummary,
+  DateSummary,
+  NameSummary
+} from '../../Summary'
+import {
+  ResidenceValidator,
+  EmploymentValidator,
+  EducationItemValidator
+} from '../../../validators'
 import { openState, chevron } from '../../Form/Accordion/Accordion'
 
-export const CustomSummary = (validation, summary, more, item, index, initial, callback, toggle, openText, remove, byline) => {
+export const CustomSummary = (
+  validation,
+  summary,
+  more,
+  item,
+  index,
+  initial,
+  callback,
+  toggle,
+  openText,
+  remove,
+  byline
+) => {
   if (item.type === 'Gap') {
     return null
   }
@@ -20,18 +41,25 @@ export const CustomSummary = (validation, summary, more, item, index, initial, c
     <div className="summary-container">
       <div className="summary">
         <span className={`left ${openState(item, initial)}`}>
-          <a href="javascript:;;;" onClick={toggle()} title={`Click to ${text.toLowerCase()} this item`}>
+          <a
+            href="javascript:;;;"
+            onClick={toggle()}
+            title={`Click to ${text.toLowerCase()} this item`}>
             <span className="button-with-icon" aria-hidden="true">
-              <i className={chevron(item)} aria-hidden="true"></i>
+              <i className={chevron(item)} aria-hidden="true" />
               <span className="toggle">{text}</span>
             </span>
             {summary(target, errors)}
           </a>
           {more(target, errors)}
         </span>
-        <a href="javascript:;;;" className="right remove" onClick={remove()} title="Remove this item">
+        <a
+          href="javascript:;;;"
+          className="right remove"
+          onClick={remove()}
+          title="Remove this item">
           <span className="button-with-icon">
-            <i className="fa fa-trash" aria-hidden="true"></i>
+            <i className="fa fa-trash" aria-hidden="true" />
             <span>{i18n.t('collection.remove')}</span>
           </span>
         </a>
@@ -46,10 +74,14 @@ export const CustomSummary = (validation, summary, more, item, index, initial, c
  */
 export const ResidenceSummary = (item, index, errors, open) => {
   const address = AddressSummary(item.Address)
-  const dates = DateSummary(item.Dates, i18n.t('history.employment.default.noDate.label'))
-  const svg = errors && !open
-        ? <Svg src="/img/exclamation-point.svg" className="incomplete" />
-        : null
+  const dates = DateSummary(
+    item.Dates,
+    i18n.t('history.employment.default.noDate.label')
+  )
+  const svg =
+    errors && !open ? (
+      <Svg src="/img/exclamation-point.svg" className="incomplete" />
+    ) : null
 
   return Summary({
     icon: svg,
@@ -77,17 +109,34 @@ const PersonSummary = (item, errors) => {
   })
 }
 
-export const ResidenceCustomSummary = (item, index, initial, callback, toggle, openText, remove, byline) => {
+export const ResidenceCustomSummary = (
+  item,
+  index,
+  initial,
+  callback,
+  toggle,
+  openText,
+  remove,
+  byline
+) => {
   return CustomSummary(
-    (x) => { return new ResidenceValidator(x, null).isValid() },
-    (x, e) => { return ResidenceSummary(x, index, e, item.open) },
+    x => {
+      return new ResidenceValidator(x, null).isValid()
+    },
+    (x, e) => {
+      return ResidenceSummary(x, index, e, item.open)
+    },
     (x, e) => {
       const ps = PersonSummary(x, e)
       if (ps === null) {
         return null
       }
 
-      return (<a href="javascript:;;;" onClick={toggle()}>{ps}</a>)
+      return (
+        <a href="javascript:;;;" onClick={toggle()}>
+          {ps}
+        </a>
+      )
     },
     item,
     index,
@@ -96,30 +145,29 @@ export const ResidenceCustomSummary = (item, index, initial, callback, toggle, o
     toggle,
     openText,
     remove,
-    byline)
+    byline
+  )
 }
 
 const employmentTitle = (activity, item, unk) => {
   switch (activity) {
-  case 'ActiveMilitary':
-  case 'NationalGuard':
-  case 'USPHS':
-    return item.Title && item.Title.value
-      ? item.Title.value
-      : unk
-  case 'OtherFederal':
-  case 'StateGovernment':
-  case 'FederalContractor':
-  case 'NonGovernment':
-  case 'SelfEmployment':
-  case 'Other':
-    return item.Employment && item.Employment.value
-      ? item.Employment.value
-      : unk
-  case 'Unemployment':
-    return i18n.t('history.employment.default.activity.type.unemployment')
-  default:
-    return unk
+    case 'ActiveMilitary':
+    case 'NationalGuard':
+    case 'USPHS':
+      return item.Title && item.Title.value ? item.Title.value : unk
+    case 'OtherFederal':
+    case 'StateGovernment':
+    case 'FederalContractor':
+    case 'NonGovernment':
+    case 'SelfEmployment':
+    case 'Other':
+      return item.Employment && item.Employment.value
+        ? item.Employment.value
+        : unk
+    case 'Unemployment':
+      return i18n.t('history.employment.default.activity.type.unemployment')
+    default:
+      return unk
   }
 }
 
@@ -129,10 +177,14 @@ const employmentTitle = (activity, item, unk) => {
 export const EmploymentSummary = (item, index, errors, open) => {
   const activity = (item.EmploymentActivity || {}).value
   const employer = employmentTitle(activity, item)
-  const dates = DateSummary(item.Dates, i18n.t('history.employment.default.noDate.label'))
-  const svg = errors && !open
-        ? <Svg src="/img/exclamation-point.svg" className="incomplete" />
-        : null
+  const dates = DateSummary(
+    item.Dates,
+    i18n.t('history.employment.default.noDate.label')
+  )
+  const svg =
+    errors && !open ? (
+      <Svg src="/img/exclamation-point.svg" className="incomplete" />
+    ) : null
 
   return Summary({
     icon: svg,
@@ -145,12 +197,19 @@ export const EmploymentSummary = (item, index, errors, open) => {
 }
 
 const ActivitySummary = (item, errors) => {
-  if (!item.Additional || item.Additional.HasAdditionalActivity !== 'Yes' || (item.Additional.List || []).length === 0) {
+  if (
+    !item.Additional ||
+    item.Additional.HasAdditionalActivity !== 'Yes' ||
+    (item.Additional.List || []).length === 0
+  ) {
     return []
   }
 
   return item.Additional.List.map(activity => {
-    const dates = DateSummary(activity.DatesEmployed, i18n.t('history.employment.default.noDate.label'))
+    const dates = DateSummary(
+      activity.DatesEmployed,
+      i18n.t('history.employment.default.noDate.label')
+    )
 
     if ((activity.Position || {}).value && dates) {
       return Summary({
@@ -164,15 +223,32 @@ const ActivitySummary = (item, errors) => {
   })
 }
 
-export const EmploymentCustomSummary = (item, index, initial, callback, toggle, openText, remove, byline) => {
+export const EmploymentCustomSummary = (
+  item,
+  index,
+  initial,
+  callback,
+  toggle,
+  openText,
+  remove,
+  byline
+) => {
   return CustomSummary(
-    (x) => { return new EmploymentValidator(x, null).isValid() },
-    (x, e) => { return EmploymentSummary(x, index, e, item.open) },
+    x => {
+      return new EmploymentValidator(x, null).isValid()
+    },
+    (x, e) => {
+      return EmploymentSummary(x, index, e, item.open)
+    },
     (x, e) => {
       return ActivitySummary(x, e)
         .filter(activity => activity !== null)
         .map(activity => {
-          return (<a href="javascript:;;;" key={newGuid()} onClick={toggle()}>{activity}</a>)
+          return (
+            <a href="javascript:;;;" key={newGuid()} onClick={toggle()}>
+              {activity}
+            </a>
+          )
         })
     },
     item,
@@ -182,18 +258,23 @@ export const EmploymentCustomSummary = (item, index, initial, callback, toggle, 
     toggle,
     openText,
     remove,
-    byline)
+    byline
+  )
 }
 
 /**
  * Renders a formatted summary information for an education row
  */
 export const EducationSummary = (item, index, errors, open) => {
-  const school = (item.Name && item.Name.value ? item.Name.value : '')
-  const dates = DateSummary(item.Dates, i18n.t('history.employment.default.noDate.label'))
-  const svg = errors && !open
-        ? <Svg src="/img/exclamation-point.svg" className="incomplete" />
-        : null
+  const school = item.Name && item.Name.value ? item.Name.value : ''
+  const dates = DateSummary(
+    item.Dates,
+    i18n.t('history.employment.default.noDate.label')
+  )
+  const svg =
+    errors && !open ? (
+      <Svg src="/img/exclamation-point.svg" className="incomplete" />
+    ) : null
 
   return Summary({
     icon: svg,
@@ -214,9 +295,7 @@ const DiplomaSummary = (item, errors) => {
     const dd = degree.Item || {}
     const other = (dd.DiplomaOther || {}).value || ''
     const diploma = (dd.Diploma || {}).value || ''
-    const val = diploma
-          ? diploma === 'Other' ? other : diploma
-          : other
+    const val = diploma ? (diploma === 'Other' ? other : diploma) : other
 
     if (val) {
       return Summary({
@@ -230,10 +309,23 @@ const DiplomaSummary = (item, errors) => {
   })
 }
 
-export const EducationCustomSummary = (item, index, initial, callback, toggle, openText, remove, byline) => {
+export const EducationCustomSummary = (
+  item,
+  index,
+  initial,
+  callback,
+  toggle,
+  openText,
+  remove,
+  byline
+) => {
   return CustomSummary(
-    (x) => { return new EducationItemValidator(x).isValid() },
-    (x, e) => { return EducationSummary(x, index, e, item.open) },
+    x => {
+      return new EducationItemValidator(x).isValid()
+    },
+    (x, e) => {
+      return EducationSummary(x, index, e, item.open)
+    },
     (x, e) => {
       return DiplomaSummary(x, e)
         .filter(diploma => diploma !== null)
@@ -252,7 +344,8 @@ export const EducationCustomSummary = (item, index, initial, callback, toggle, o
     toggle,
     openText,
     remove,
-    byline)
+    byline
+  )
 }
 
 /**
@@ -262,14 +355,14 @@ export const InjectGaps = (list = [], start) => {
   // Let us just make sure we clear any previous gaps
   list = list.filter(item => !item.type || (item.type && item.type !== 'Gap'))
 
-  const hasDates = (item) => {
+  const hasDates = item => {
     const dates = ((item || {}).Item || {}).Dates || {}
     const from = extractDate(dates.from)
     const to = dates.present === true ? new Date() : extractDate(dates.to)
     return from && to
   }
 
-  const gapToItem = (gap) => {
+  const gapToItem = gap => {
     return {
       type: 'Gap',
       uuid: newGuid(),
@@ -278,13 +371,13 @@ export const InjectGaps = (list = [], start) => {
         Dates: {
           from: {
             date: gap.from,
-            month: `${gap.from.getMonth()+1}`,
+            month: `${gap.from.getMonth() + 1}`,
             day: `${gap.from.getDate()}`,
             year: `${gap.from.getFullYear()}`
           },
           to: {
             date: gap.to,
-            month: `${gap.to.getMonth()+1}`,
+            month: `${gap.to.getMonth() + 1}`,
             day: `${gap.to.getDate()}`,
             year: `${gap.to.getFullYear()}`
           }
@@ -295,7 +388,7 @@ export const InjectGaps = (list = [], start) => {
 
   const sort = (a, b) => {
     // Helper to find the date value or default it to 0
-    const getOptionalDate = (obj) => {
+    const getOptionalDate = obj => {
       return ((((obj || {}).Item || {}).Dates || {}).to || {}).date || 0
     }
 
@@ -313,13 +406,15 @@ export const InjectGaps = (list = [], start) => {
 
   // Find all our "holes" for this type
   const ranges = list
-        .filter(item => { return hasDates(item) })
-        .map(item => {
-          const dates = ((item || {}).Item || {}).Dates || {}
-          const from = extractDate(dates.from)
-          const to = dates.present === true ? new Date() : extractDate(dates.to)
-          return { from, to }
-        })
+    .filter(item => {
+      return hasDates(item)
+    })
+    .map(item => {
+      const dates = ((item || {}).Item || {}).Dates || {}
+      const from = extractDate(dates.from)
+      const to = dates.present === true ? new Date() : extractDate(dates.to)
+      return { from, to }
+    })
 
   gaps(ranges, start).forEach(gap => list.push(gapToItem(gap)))
   return list.sort(sort)

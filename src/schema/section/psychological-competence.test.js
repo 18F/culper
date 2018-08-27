@@ -7,28 +7,32 @@ describe('Schema for financial taxes', () => {
       IsIncompetent: { value: 'Yes' },
       List: {
         branch: { value: 'No' },
-        items: [{
-          Item: {
-            CourtAddress: {
-              country: null
-            },
-            CourtName: {},
-            Occurred: {},
-            Appeals: {
-              branch: null,
-              items: [{
-                Item: {
-                  Has: {},
-                  CourtName: {},
-                  CourtAddress: {
-                    country: null
-                  },
-                  Disposition: {}
-                }
-              }]
+        items: [
+          {
+            Item: {
+              CourtAddress: {
+                country: null
+              },
+              CourtName: {},
+              Occurred: {},
+              Appeals: {
+                branch: null,
+                items: [
+                  {
+                    Item: {
+                      Has: {},
+                      CourtName: {},
+                      CourtAddress: {
+                        country: null
+                      },
+                      Disposition: {}
+                    }
+                  }
+                ]
+              }
             }
           }
-        }]
+        ]
       }
     }
 

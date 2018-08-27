@@ -11,11 +11,17 @@ export const AddressSummary = (props, unknown = '') => {
   let address2 = ''
 
   if (country === 'United States') {
-    address2 = `${(props.city || '').toLowerCase()}, ${(props.state || '').toUpperCase()} ${props.zipcode || ''}`.trim()
+    address2 = `${(props.city || '').toLowerCase()}, ${(
+      props.state || ''
+    ).toUpperCase()} ${props.zipcode || ''}`.trim()
   } else if (country === 'POSTOFFICE') {
-    address2 = `${(props.apoFpoType || '').toUpperCase()}, ${(props.apoFpo || '').toUpperCase()} ${props.zipcode || ''}`.trim()
+    address2 = `${(props.apoFpoType || '').toUpperCase()}, ${(
+      props.apoFpo || ''
+    ).toUpperCase()} ${props.zipcode || ''}`.trim()
   } else if (country !== '') {
-    address2 = `${(props.city || '').toLowerCase()}, ${(country || '').toLowerCase()}`.trim()
+    address2 = `${(props.city || '').toLowerCase()}, ${(
+      country || ''
+    ).toLowerCase()}`.trim()
   }
 
   if (address1.length === 0 || address2.length === 1) {
@@ -23,6 +29,8 @@ export const AddressSummary = (props, unknown = '') => {
   }
 
   return (
-    <span className="title-case">{`${address1.toLowerCase()}, ${address2}`.trim()}</span>
+    <span className="title-case">
+      {`${address1.toLowerCase()}, ${address2}`.trim()}
+    </span>
   )
 }
