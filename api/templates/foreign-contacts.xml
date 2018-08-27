@@ -118,8 +118,8 @@
     {{end}}
     {{end}}
   </Contacts>
-  {{- if branchcollectionHas .props.List | eq "Yes"}}
+  {{ if gt (len .props.List.props.items) 0 }}
   <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
-  <SummaryComment></SummaryComment>
   {{end}}
+  <SummaryComment></SummaryComment>
 </ForeignContacts>
