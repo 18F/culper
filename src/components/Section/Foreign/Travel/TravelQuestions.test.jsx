@@ -18,11 +18,9 @@ describe('The travel questions component', () => {
       }
     }
     const component = mount(<TravelQuestions {...expected} />)
-    component
-      .find('.foreign-travel-country input')
-      .simulate('change', {
-        target: { name: 'country', value: 'United States' }
-      })
+    component.find('.foreign-travel-country input').simulate('change', {
+      target: { name: 'country', value: 'United States' }
+    })
     component.find('.foreign-travel-dates .from .day input').simulate('change')
     component.find('.foreign-travel-days .days-1-5 input').simulate('change')
     component

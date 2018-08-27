@@ -143,17 +143,15 @@ describe('The generic component', () => {
       }
     }
     const component = mount(<Generic {...expected} />)
-    component
-      .find('input')
-      .simulate('keydown', {
-        keyCode: 48,
-        target: {
-          value: '1',
-          selectionDirection: 'forward',
-          selectionStart: 0,
-          selectionEnd: 2
-        }
-      })
+    component.find('input').simulate('keydown', {
+      keyCode: 48,
+      target: {
+        value: '1',
+        selectionDirection: 'forward',
+        selectionStart: 0,
+        selectionEnd: 2
+      }
+    })
     expect(tabbed).toBe(false)
   })
 

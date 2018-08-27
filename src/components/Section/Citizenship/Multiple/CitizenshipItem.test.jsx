@@ -51,11 +51,9 @@ describe('The citizenship item component', () => {
       }
     }
     const component = mount(<CitizenshipItem {...expected} />)
-    component
-      .find('.citizenship-country .country input')
-      .simulate('change', {
-        target: { name: 'Country', value: 'United States' }
-      })
+    component.find('.citizenship-country .country input').simulate('change', {
+      target: { name: 'Country', value: 'United States' }
+    })
     component.find('.citizenship-dates .to .year input').simulate('change')
     component.find('.citizenship-how textarea').simulate('change')
     component.find('.citizenship-renounced .yes input').simulate('change')

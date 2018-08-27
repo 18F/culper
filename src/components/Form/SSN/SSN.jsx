@@ -80,7 +80,7 @@ export default class SSN extends ValidationElement {
   handleErrorNotApplicable(value, arr) {
     if (this.props.notApplicable) {
       // When not applicable, set other fields to valid to clear errors
-      ;['first', 'middle', 'last'].forEach(code => {
+      ['first', 'middle', 'last'].forEach(code => {
         this.handleError(code, '', [
           {
             code: 'required',

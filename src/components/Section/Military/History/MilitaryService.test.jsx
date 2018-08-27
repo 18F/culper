@@ -118,11 +118,9 @@ describe('The military service component', () => {
       .simulate('change', { target: { name: 'year', value: '2005' } })
     component.find('.discharged .yes input').simulate('change')
     component.find('.discharge-type-other input').simulate('change')
-    component
-      .find('.discharge-type-otherex input')
-      .simulate('change', {
-        target: { value: 'Something I have not heard of' }
-      })
+    component.find('.discharge-type-otherex input').simulate('change', {
+      target: { value: 'Something I have not heard of' }
+    })
     component
       .find('.discharge-reason textarea')
       .simulate('change', { target: { value: 'Some reason' } })

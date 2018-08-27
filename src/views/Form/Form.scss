@@ -1,14 +1,19 @@
 @import 'eqip-colors';
 @import 'eqip-fonts';
 
-label, input, textarea, select {
+label,
+input,
+textarea,
+select {
   width: 100%;
   max-width: 64rem;
   margin-top: 0;
   color: $eapp-grey-dark;
 }
 
-input, textarea, select {
+input,
+textarea,
+select {
   border-radius: 3px;
 }
 
@@ -30,12 +35,15 @@ button {
 }
 
 /* bring in USWD validation classes and alter for our design */
-input[type='text'], textarea, select {
+input[type='text'],
+textarea,
+select {
   padding-right: 3rem;
   transition: border-color 0.4s, border-width 0.4s, background-position 0.4s;
 }
 
-input[type='checkbox'], input[type='radio'] {
+input[type='checkbox'],
+input[type='radio'] {
   position: absolute;
   margin-left: 0;
   width: 0;
@@ -108,14 +116,16 @@ input[type='checkbox'], input[type='radio'] {
   input[type='email'],
   textarea,
   select {
-    background: url('../img/exclamation-point.svg') no-repeat right 0.7rem center / 1.7rem 100%;
+    background: url('../img/exclamation-point.svg') no-repeat right 0.7rem
+      center / 1.7rem 100%;
     box-shadow: none;
     border-width: 2px;
     width: 100%;
 
     &.usa-input-success {
       box-shadow: none;
-      background: url('../img/exclamation-point.svg') no-repeat right 0.7rem center / 1.7rem 100%;
+      background: url('../img/exclamation-point.svg') no-repeat right 0.7rem
+        center / 1.7rem 100%;
       border-width: 2px;
       width: 100%;
     }
@@ -139,7 +149,8 @@ select {
 
   &.usa-input-success {
     box-shadow: none;
-    background: url('../img/checkmark.svg') no-repeat right 0.7rem center / 1.7rem 100%;
+    background: url('../img/checkmark.svg') no-repeat right 0.7rem center /
+      1.7rem 100%;
     border-width: 2px;
     width: 100%;
   }
@@ -337,7 +348,8 @@ select {
         transition: all 0.3s;
         border-radius: 0;
 
-        svg, img {
+        svg,
+        img {
           position: absolute;
           top: 1.4rem;
           left: 50%;
@@ -368,7 +380,8 @@ select {
         background-color: $eapp-grey-light;
         margin-left: -2.3rem;
 
-        svg, img {
+        svg,
+        img {
           top: 0.8rem;
           height: 3rem;
           width: 3rem;

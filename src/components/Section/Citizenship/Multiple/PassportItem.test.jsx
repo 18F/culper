@@ -14,11 +14,9 @@ describe('The passport item component', () => {
       }
     }
     const component = mount(<PassportItem {...expected} />)
-    component
-      .find('.passport-country .country input')
-      .simulate('change', {
-        target: { name: 'Country', value: 'United States' }
-      })
+    component.find('.passport-country .country input').simulate('change', {
+      target: { name: 'Country', value: 'United States' }
+    })
     component
       .find('.passport-issued .day input')
       .first()

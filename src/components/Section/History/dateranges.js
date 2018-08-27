@@ -206,11 +206,7 @@ export const gaps = (ranges = [], start = ten, buffer = 30) => {
   for (const range of ranges) {
     if (
       daysAgo(range.from, -1 * buffer) <= start &&
-<<<<<<< HEAD
       range.to >= daysAgo(today, buffer)
-=======
-      range.to >= daysAgo(start, buffer)
->>>>>>> Run prettier on src
     ) {
       return []
     }
