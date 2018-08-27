@@ -48,6 +48,7 @@ func (service Service) DefaultTemplate(templateName string, data map[string]inte
 		"doctorLastName":         doctorLastName,
 		"foreignDocType":         foreignDocType,
 		"foreignAffiliation":     foreignAffiliation,
+		"frequencyType":          frequencyType,
 		"monthYearDaterange":     monthYearDaterange,
 		"email":                  email,
 		"employmentType":         employmentType,
@@ -783,6 +784,16 @@ func dischargeType(v string) string {
 		"General":      "General",
 		"BadConduct":   "BadConduct",
 		"Other":        "Other",
+	}
+	return basis[v]
+}
+
+func frequencyType(v string) string {
+	basis := map[string]string{
+		"OneTime":    "Onetime",
+		"Future":     "Future",
+		"Continuing": "Continuing",
+		"Other":      "Other",
 	}
 	return basis[v]
 }
