@@ -173,6 +173,8 @@
           </FullName>
         </MothersMaidenName>
         {{end}}
+        {{with $rtype := text $Item.Relation | relationshipType}}
+        {{if or (eq $rtype "02Father") (eq $rtype "06Child") (eq $rtype "07Stepchild") (eq $rtype "08Brother") (eq $rtype "09Sister") (eq $rtype "12HalfBrother") (eq $rtype "13HalfSister") (eq $rtype "10Stepbrother") (eq $rtype "11Stepsister") (eq $rtype "03Stepmother") (eq $rtype "04Stepfather") (eq $rtype "01Mother")}}
         <OtherNamesUsed>
           <Answer>{{branchcollectionHas $Item.Aliases}}</Answer>
           <AnswerComment></AnswerComment>
@@ -199,6 +201,8 @@
           <SummaryComment></SummaryComment>
           {{end}}
         </OtherNamesUsed>
+        {{end}}
+        {{end}}
         <Type>{{text $Item.Relation | relationshipType}}</Type>
       </Relative>
       {{end}}
