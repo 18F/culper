@@ -11,7 +11,9 @@ describe('The ToggleableLocation component', () => {
   it('Performs US updates', () => {
     let updates = 0
     const props = {
-      onUpdate: () => { updates++ },
+      onUpdate: () => {
+        updates++
+      },
       country: { value: 'United States' },
       domesticFields: ['street', 'city', 'county', 'stateZipcode']
     }
@@ -19,7 +21,9 @@ describe('The ToggleableLocation component', () => {
     component.find('.mailing input').simulate('change')
     component.find('.city input').simulate('change')
     component.find('.county input').simulate('change')
-    component.find('.state input').simulate('change', { target: { value: 'Virginia' } })
+    component
+      .find('.state input')
+      .simulate('change', { target: { value: 'Virginia' } })
     component.find('.zipcode input').simulate('change')
     expect(updates).toBe(5)
   })
@@ -27,13 +31,17 @@ describe('The ToggleableLocation component', () => {
   it('Performs International updates', () => {
     let updates = 0
     const props = {
-      onUpdate: () => { updates++ },
+      onUpdate: () => {
+        updates++
+      },
       country: { value: '' },
       internationalFields: ['country', 'city']
     }
     const component = mount(<ToggleableLocation {...props} />)
     component.find('.city input').simulate('change')
-    component.find('.country input').simulate('change', { target: { value: 'Germany' } })
+    component
+      .find('.country input')
+      .simulate('change', { target: { value: 'Germany' } })
     expect(updates).toBe(2)
   })
 
@@ -41,7 +49,14 @@ describe('The ToggleableLocation component', () => {
     const props = {
       required: true,
       country: { value: 'United States' },
-      domesticFields: ['country', 'city', 'county', 'stateZipcode', 'state', 'what']
+      domesticFields: [
+        'country',
+        'city',
+        'county',
+        'stateZipcode',
+        'state',
+        'what'
+      ]
     }
     const component = mount(<ToggleableLocation {...props} />)
     expect(component.find('.usa-input-error').length).toBe(5)

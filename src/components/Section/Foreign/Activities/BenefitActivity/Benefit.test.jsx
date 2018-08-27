@@ -10,15 +10,31 @@ describe('The Benefit component', () => {
 
   it('Performs updates for base fields', () => {
     let updates = 0
-    const onUpdate = () => { updates++ }
+    const onUpdate = () => {
+      updates++
+    }
     const interestTypes = { value: ['Yourself'] }
-    const component = mount(<Benefit onUpdate={onUpdate} InterestTypes={interestTypes} />)
+    const component = mount(
+      <Benefit onUpdate={onUpdate} InterestTypes={interestTypes} />
+    )
     expect(component.find('.benefit').length).toBe(1)
     // Toggle
-    component.find('.interest-types .yourself input').first().simulate('change')
-    component.find('.interest-types .cohabitant input').first().simulate('change')
-    component.find('.benefit-types input').first().simulate('change')
-    component.find('.benefit-frequency input').first().simulate('change')
+    component
+      .find('.interest-types .yourself input')
+      .first()
+      .simulate('change')
+    component
+      .find('.interest-types .cohabitant input')
+      .first()
+      .simulate('change')
+    component
+      .find('.benefit-types input')
+      .first()
+      .simulate('change')
+    component
+      .find('.benefit-frequency input')
+      .first()
+      .simulate('change')
 
     expect(updates).toBe(4)
   })
@@ -26,7 +42,9 @@ describe('The Benefit component', () => {
   it('Renders with Onetime benefit and triggers update', () => {
     let updates = 0
     const expected = {
-      onUpdate: () => { updates++ },
+      onUpdate: () => {
+        updates++
+      },
       BenefitFrequency: { value: 'OneTime' },
       OneTimeBenefit: {
         Received: {
@@ -59,7 +77,9 @@ describe('The Benefit component', () => {
   it('Renders with Future benefit and triggers update', () => {
     let updates = 0
     const expected = {
-      onUpdate: () => { updates++ },
+      onUpdate: () => {
+        updates++
+      },
       BenefitFrequency: { value: 'Future' },
       FutureBenefit: {
         Obligated: { value: 'Yes' },
@@ -78,7 +98,9 @@ describe('The Benefit component', () => {
   it('Renders with Other Benefit Type and updates other explanation', () => {
     let updates = 0
     const expected = {
-      onUpdate: () => { updates++ },
+      onUpdate: () => {
+        updates++
+      },
       BenefitType: { value: 'Other' }
     }
 
@@ -90,7 +112,9 @@ describe('The Benefit component', () => {
   it('Renders with Continuing benefit and triggers update', () => {
     let updates = 0
     const expected = {
-      onUpdate: () => { updates++ },
+      onUpdate: () => {
+        updates++
+      },
       BenefitFrequency: { value: 'Continuing' },
       ContinuingBenefit: {
         Obligated: { value: 'Yes' },
@@ -109,7 +133,9 @@ describe('The Benefit component', () => {
   it('Renders with other benefit and triggers update', () => {
     let updates = 0
     const expected = {
-      onUpdate: () => { updates++ },
+      onUpdate: () => {
+        updates++
+      },
       BenefitFrequency: { value: 'Other' },
       OtherBenefit: {
         value: 'Other'

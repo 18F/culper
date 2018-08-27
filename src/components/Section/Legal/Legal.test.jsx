@@ -13,26 +13,43 @@ const applicationState = {
 describe('The legal section', () => {
   // Setup
   window.token = 'fake-token'
-  const middlewares = [ thunk ]
+  const middlewares = [thunk]
   const mockStore = configureMockStore(middlewares)
 
   it('hidden when not authenticated', () => {
     window.token = ''
-    const store = mockStore({ authentication: [], application: applicationState })
-    const component = mount(<Provider store={store}><Legal /></Provider>)
+    const store = mockStore({
+      authentication: [],
+      application: applicationState
+    })
+    const component = mount(
+      <Provider store={store}>
+        <Legal />
+      </Provider>
+    )
     expect(component.find('div').length).toEqual(0)
     window.token = 'fake-token'
   })
 
   it('visible when authenticated', () => {
-    const store = mockStore({ authentication: { authenticated: true, application: applicationState } })
-    const component = mount(<Provider store={store}><Legal /></Provider>)
+    const store = mockStore({
+      authentication: { authenticated: true, application: applicationState }
+    })
+    const component = mount(
+      <Provider store={store}>
+        <Legal />
+      </Provider>
+    )
     expect(component.find('div').length).toBeGreaterThan(0)
   })
 
   it('can review all subsections', () => {
     const store = mockStore({ authentication: { authenticated: true } })
-    const component = mount(<Provider store={store}><Legal subsection="review" /></Provider>)
+    const component = mount(
+      <Provider store={store}>
+        <Legal subsection="review" />
+      </Provider>
+    )
     expect(component.find('div').length).toBeGreaterThan(0)
   })
 
@@ -40,8 +57,12 @@ describe('The legal section', () => {
     const sections = ['police', 'review']
     const store = mockStore({ authentication: { authenticated: true } })
 
-    sections.forEach((section) => {
-      const component = mount(<Provider store={store}><Legal subsection={section} /></Provider>)
+    sections.forEach(section => {
+      const component = mount(
+        <Provider store={store}>
+          <Legal subsection={section} />
+        </Provider>
+      )
       expect(component.find('div').length).toBeGreaterThan(0)
     })
   })
@@ -67,8 +88,12 @@ describe('The legal section', () => {
     ]
     const store = mockStore({ authentication: { authenticated: true } })
 
-    sections.forEach((section) => {
-      const component = mount(<Provider store={store}><Legal subsection={section} /></Provider>)
+    sections.forEach(section => {
+      const component = mount(
+        <Provider store={store}>
+          <Legal subsection={section} />
+        </Provider>
+      )
       component.find('.no input').simulate('change')
       expect(component.find('div').length).toBeGreaterThan(0)
     })

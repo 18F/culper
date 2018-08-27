@@ -1,33 +1,37 @@
-import { validAccordion, validBranch, validGenericTextfield, validGenericMonthYear } from './helpers'
+import {
+  validAccordion,
+  validBranch,
+  validGenericTextfield,
+  validGenericMonthYear
+} from './helpers'
 
 export default class DrugInvolvementsValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.involved = (data.Involved || {}).value
     this.list = data.List
   }
 
-  validInvolved () {
+  validInvolved() {
     return validBranch(this.involved)
   }
 
-  validDrugInvolvements () {
+  validDrugInvolvements() {
     if (this.validInvolved() && this.involved === 'No') {
       return true
     }
 
-    return validAccordion(this.list, (item) => {
+    return validAccordion(this.list, item => {
       return new DrugInvolvementValidator(item).isValid()
     })
   }
 
-  isValid () {
-    return this.validInvolved() &&
-      this.validDrugInvolvements()
+  isValid() {
+    return this.validInvolved() && this.validDrugInvolvements()
   }
 }
 
 export class DrugInvolvementValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.drugType = data.DrugType
     this.firstInvolvement = data.FirstInvolvement
     this.recentInvolvement = data.RecentInvolvement
@@ -39,24 +43,26 @@ export class DrugInvolvementValidator {
     this.explanation = data.Explanation
   }
 
-  validFuture () {
+  validFuture() {
     switch (this.involvementInFuture) {
-    case 'Yes':
-      return validGenericTextfield(this.explanation)
-    case 'No':
-      return true
-    default:
-      return false
+      case 'Yes':
+        return validGenericTextfield(this.explanation)
+      case 'No':
+        return true
+      default:
+        return false
     }
   }
 
-  isValid () {
-    return validGenericMonthYear(this.firstInvolvement) &&
+  isValid() {
+    return (
+      validGenericMonthYear(this.firstInvolvement) &&
       validGenericMonthYear(this.recentInvolvement) &&
       validGenericTextfield(this.natureOfInvolvement) &&
       validGenericTextfield(this.reasons) &&
       validBranch(this.involvementWhileEmployed) &&
       validBranch(this.involvementWithClearance) &&
       this.validFuture()
+    )
   }
 }

@@ -21,7 +21,9 @@ describe('The HairColor component', () => {
       name: 'input-focus',
       label: 'Text input focused',
       value: '',
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
     const component = mount(<HairColor {...expected} />)
     component.find('.bald input').simulate('change')

@@ -1,7 +1,7 @@
 import DateRangeValidator from './daterange'
 
-describe('Date range validator', function () {
-  it('should validate date ranges', function () {
+describe('Date range validator', function() {
+  it('should validate date ranges', function() {
     const tests = [
       {
         data: {

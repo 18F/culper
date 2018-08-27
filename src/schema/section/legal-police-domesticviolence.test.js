@@ -7,16 +7,18 @@ describe('Schema for financial taxes', () => {
       HasDomesticViolence: { value: 'Yes' },
       List: {
         branch: { value: 'No' },
-        items: [{
-          Item: {
-            Explanation: {},
-            Issued: {},
-            CourtName: {},
-            CourtAddress: {
-              country: null
+        items: [
+          {
+            Item: {
+              Explanation: {},
+              Issued: {},
+              CourtName: {},
+              CourtAddress: {
+                country: null
+              }
             }
           }
-        }]
+        ]
       }
     }
 

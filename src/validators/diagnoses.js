@@ -3,7 +3,7 @@ import DiagnosisValidator from './diagnosis'
 import { validAccordion, validBranch } from './helpers'
 
 export default class DiagnosesValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.diagnosed = (data.Diagnosed || {}).value
     this.didNotConsult = (data.DidNotConsult || {}).value
     this.inTreatment = (data.InTreatment || {}).value
@@ -11,27 +11,27 @@ export default class DiagnosesValidator {
     this.treatmentList = data.TreatmentList
   }
 
-  validDiagnosisList () {
+  validDiagnosisList() {
     if (this.diagnosed === 'No') {
       return true
     }
 
-    return validAccordion(this.diagnosisList, (item) => {
+    return validAccordion(this.diagnosisList, item => {
       return new DiagnosisValidator(item).isValid()
     })
   }
 
-  validTreatmentList () {
+  validTreatmentList() {
     if (this.inTreatment === 'No') {
       return true
     }
 
-    return validAccordion(this.treatmentList, (item) => {
+    return validAccordion(this.treatmentList, item => {
       return new TreatmentValidator(item).isValid()
     })
   }
 
-  isValid () {
+  isValid() {
     if (!validBranch(this.diagnosed)) {
       return false
     }
@@ -40,9 +40,11 @@ export default class DiagnosesValidator {
       return true
     }
 
-    return validBranch(this.didNotConsult) &&
+    return (
+      validBranch(this.didNotConsult) &&
       validBranch(this.inTreatment) &&
       this.validDiagnosisList() &&
       this.validTreatmentList()
+    )
   }
 }

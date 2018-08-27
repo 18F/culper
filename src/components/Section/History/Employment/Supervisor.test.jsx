@@ -16,8 +16,14 @@ describe('The employment supervisor component', () => {
     component.find('.supervisor-title input').simulate('change')
     component.find('.supervisor-email input').simulate('change')
     component.find('.supervisor-email-na.button input').simulate('change')
-    component.find('.supervisor-address .street input').at(0).simulate('change')
-    component.find('.supervisor-telephone .number input').at(0).simulate('change')
+    component
+      .find('.supervisor-address .street input')
+      .at(0)
+      .simulate('change')
+    component
+      .find('.supervisor-telephone .number input')
+      .at(0)
+      .simulate('change')
     expect(updates).toEqual(6)
   })
 })

@@ -9,17 +9,21 @@ import ScoreCard from './ScoreCard'
 describe('The score card component', () => {
   it('hidden when not authenticated', () => {
     window.token = ''
-    const middlewares = [ thunk ]
+    const middlewares = [thunk]
     const mockStore = configureMockStore(middlewares)
     const store = mockStore({ authentication: [] })
-    const component = mount(<Provider store={store}><ScoreCard /></Provider>)
+    const component = mount(
+      <Provider store={store}>
+        <ScoreCard />
+      </Provider>
+    )
     expect(component.find('div').length).toEqual(0)
     window.token = 'fake-token'
   })
 
   it('visible when authenticated', () => {
     window.token = 'fake-token'
-    const middlewares = [ thunk ]
+    const middlewares = [thunk]
     const mockStore = configureMockStore(middlewares)
     const store = mockStore({
       authentication: {
@@ -32,7 +36,11 @@ describe('The score card component', () => {
       },
       section: {}
     })
-    const component = mount(<Provider store={store}><ScoreCard /></Provider>)
+    const component = mount(
+      <Provider store={store}>
+        <ScoreCard />
+      </Provider>
+    )
     expect(component.find('div').length).toEqual(1)
   })
 })

@@ -7,29 +7,33 @@ describe('Schema for financial taxes', () => {
       Consulted: { value: 'Yes' },
       List: {
         branch: { value: 'No' },
-        items: [{
-          Item: {
-            CourtAddress: {
-              country: null
-            },
-            CourtName: {},
-            Disposition: {},
-            Occurred: {},
-            Appeals: {
-              branch: null,
-              items: [{
-                Item: {
-                  CourtName: {},
-                  CourtAddress: {
-                    country: null
-                  },
-                  Disposition: {},
-                  Has: {}
-                }
-              }]
+        items: [
+          {
+            Item: {
+              CourtAddress: {
+                country: null
+              },
+              CourtName: {},
+              Disposition: {},
+              Occurred: {},
+              Appeals: {
+                branch: null,
+                items: [
+                  {
+                    Item: {
+                      CourtName: {},
+                      CourtAddress: {
+                        country: null
+                      },
+                      Disposition: {},
+                      Has: {}
+                    }
+                  }
+                ]
+              }
             }
           }
-        }]
+        ]
       }
     }
 

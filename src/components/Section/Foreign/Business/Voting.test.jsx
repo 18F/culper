@@ -32,8 +32,14 @@ describe('The foreign business voting component', () => {
       }
     }
     const component = mount(<Voting {...expected} />)
-    component.find('.branch .yes input').at(0).simulate('change')
-    component.find('.branch .yes input').at(0).simulate('blur')
+    component
+      .find('.branch .yes input')
+      .at(0)
+      .simulate('change')
+    component
+      .find('.branch .yes input')
+      .at(0)
+      .simulate('blur')
     expect(validated).toBe(true)
   })
 
@@ -53,14 +59,22 @@ describe('The foreign business voting component', () => {
           }
         ]
       },
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
     const component = mount(<Voting {...expected} />)
     expect(component.find('.accordion').length).toBe(1)
-    component.find('.foreign-business-voting-date .day input').simulate('change')
+    component
+      .find('.foreign-business-voting-date .day input')
+      .simulate('change')
     component.find('.foreign-business-voting-country input').simulate('change')
-    component.find('.foreign-business-voting-reason textarea').simulate('change')
-    component.find('.foreign-business-voting-eligibility input').simulate('change')
+    component
+      .find('.foreign-business-voting-reason textarea')
+      .simulate('change')
+    component
+      .find('.foreign-business-voting-eligibility input')
+      .simulate('change')
     expect(updates).toBe(4)
   })
 })

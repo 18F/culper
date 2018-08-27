@@ -2,9 +2,9 @@ import PeopleValidator from './people'
 import PersonValidator from './person'
 import Location from '../components/Form/Location'
 
-describe('People validator', function () {
-  it('should validate people', function () {
-    const currentYear = (new Date()).getFullYear().toString()
+describe('People validator', function() {
+  it('should validate people', function() {
+    const currentYear = new Date().getFullYear().toString()
     const tests = [
       {
         data: {
@@ -227,7 +227,7 @@ describe('People validator', function () {
     })
   })
 
-  it('should count number of valid people', function () {
+  it('should count number of valid people', function() {
     const tests = [
       {
         data: {
@@ -242,68 +242,70 @@ describe('People validator', function () {
         data: {
           List: {
             branch: { value: 'No' },
-            items: [{
-              Item: {
-                Name: {
-                  first: 'Foo',
-                  firstInitialOnly: false,
-                  middle: 'J',
-                  middleInitialOnly: true,
-                  noMiddleName: false,
-                  last: 'Bar',
-                  lastInitialOnly: false,
-                  suffix: 'Jr'
-                },
-                Relationship: {
-                  values: ['Friend']
-                },
-                Dates: {
-                  from: {
-                    month: '1',
-                    day: '1',
-                    year: '2005',
-                    date: new Date('1/1/2005')
+            items: [
+              {
+                Item: {
+                  Name: {
+                    first: 'Foo',
+                    firstInitialOnly: false,
+                    middle: 'J',
+                    middleInitialOnly: true,
+                    noMiddleName: false,
+                    last: 'Bar',
+                    lastInitialOnly: false,
+                    suffix: 'Jr'
                   },
-                  to: {
-                    month: '1',
-                    day: '1',
-                    year: '2017',
-                    date: new Date('1/1/2017')
+                  Relationship: {
+                    values: ['Friend']
                   },
-                  present: false
-                },
-                Rank: {
-                  value: 'Some rank'
-                },
-                MobileTelephone: {
-                  noNumber: '',
-                  number: '7031112222',
-                  numberType: 'Home',
-                  type: 'Domestic',
-                  timeOfDay: 'Both',
-                  extension: ''
-                },
-                OtherTelephone: {
-                  noNumber: '',
-                  number: '7031112223',
-                  numberType: 'Home',
-                  type: 'Domestic',
-                  timeOfDay: 'Both',
-                  extension: ''
-                },
-                Email: {
-                  value: 'test@local.dev'
-                },
-                Address: {
-                  country: { value: 'United States' },
-                  street: '1234 Some Rd',
-                  city: 'Arlington',
-                  state: 'VA',
-                  zipcode: '22202',
-                  layout: Location.ADDRESS
+                  Dates: {
+                    from: {
+                      month: '1',
+                      day: '1',
+                      year: '2005',
+                      date: new Date('1/1/2005')
+                    },
+                    to: {
+                      month: '1',
+                      day: '1',
+                      year: '2017',
+                      date: new Date('1/1/2017')
+                    },
+                    present: false
+                  },
+                  Rank: {
+                    value: 'Some rank'
+                  },
+                  MobileTelephone: {
+                    noNumber: '',
+                    number: '7031112222',
+                    numberType: 'Home',
+                    type: 'Domestic',
+                    timeOfDay: 'Both',
+                    extension: ''
+                  },
+                  OtherTelephone: {
+                    noNumber: '',
+                    number: '7031112223',
+                    numberType: 'Home',
+                    type: 'Domestic',
+                    timeOfDay: 'Both',
+                    extension: ''
+                  },
+                  Email: {
+                    value: 'test@local.dev'
+                  },
+                  Address: {
+                    country: { value: 'United States' },
+                    street: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'VA',
+                    zipcode: '22202',
+                    layout: Location.ADDRESS
+                  }
                 }
               }
-            }]
+            ]
           }
         },
         expected: 1

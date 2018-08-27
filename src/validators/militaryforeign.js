@@ -1,14 +1,18 @@
 import LocationValidator from './location'
 import DateRangeValidator from './daterange'
 import NameValidator from './name'
-import { validAccordion, BranchCollection, validGenericTextfield } from './helpers'
+import {
+  validAccordion,
+  BranchCollection,
+  validGenericTextfield
+} from './helpers'
 
 export default class MilitaryForeignValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.list = data.List || {}
   }
 
-  validItems () {
+  validItems() {
     if ((this.list.items || []).length === 0) {
       return false
     }
@@ -27,13 +31,13 @@ export default class MilitaryForeignValidator {
     })
   }
 
-  isValid () {
+  isValid() {
     return this.validItems()
   }
 }
 
 export class ForeignServiceValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.organization = data.Organization
     this.name = data.Name
     this.dates = data.Dates
@@ -46,40 +50,41 @@ export class ForeignServiceValidator {
     this.list = data.List || {}
   }
 
-  validOrganization () {
+  validOrganization() {
     return this.organization && this.organization.length > 0
   }
 
-  validName () {
+  validName() {
     return validGenericTextfield(this.name)
   }
 
-  validDates () {
+  validDates() {
     return new DateRangeValidator(this.dates).isValid()
   }
 
-  validCountry () {
+  validCountry() {
     return validGenericTextfield(this.country)
   }
 
-  validRank () {
+  validRank() {
     return validGenericTextfield(this.rank)
   }
 
-  validDivision () {
+  validDivision() {
     return validGenericTextfield(this.division)
   }
 
-  validCircumstances () {
+  validCircumstances() {
     return validGenericTextfield(this.circumstances)
   }
 
-  validReasonLeft () {
+  validReasonLeft() {
     return validGenericTextfield(this.reasonLeft)
   }
 
-  validMaintainsContact () {
-    const hasValue = this.maintainsContact === 'Yes' || this.maintainsContact === 'No'
+  validMaintainsContact() {
+    const hasValue =
+      this.maintainsContact === 'Yes' || this.maintainsContact === 'No'
     if (!hasValue) {
       return false
     }
@@ -88,13 +93,14 @@ export class ForeignServiceValidator {
       return true
     }
 
-    return validAccordion(this.list, (item) => {
+    return validAccordion(this.list, item => {
       return new ForeignContactValidator(item).isValid()
     })
   }
 
-  isValid () {
-    return this.validOrganization() &&
+  isValid() {
+    return (
+      this.validOrganization() &&
       this.validName() &&
       this.validDates() &&
       this.validCountry() &&
@@ -103,11 +109,12 @@ export class ForeignServiceValidator {
       this.validCircumstances() &&
       this.validReasonLeft() &&
       this.validMaintainsContact()
+    )
   }
 }
 
 export class ForeignContactValidator {
-  constructor (data) {
+  constructor(data) {
     this.name = data.Name
     this.address = data.Address
     this.title = data.Title
@@ -115,31 +122,33 @@ export class ForeignContactValidator {
     this.frequency = data.Frequency
   }
 
-  validName () {
+  validName() {
     return new NameValidator(this.name).isValid()
   }
 
-  validAddress () {
+  validAddress() {
     return new LocationValidator(this.address).isValid()
   }
 
-  validTitle () {
+  validTitle() {
     return validGenericTextfield(this.title)
   }
 
-  validDates () {
+  validDates() {
     return new DateRangeValidator(this.dates).isValid()
   }
 
-  validFrequency () {
+  validFrequency() {
     return validGenericTextfield(this.frequency)
   }
 
-  isValid () {
-    return this.validName() &&
+  isValid() {
+    return (
+      this.validName() &&
       this.validAddress() &&
       this.validTitle() &&
       this.validDates() &&
       this.validFrequency()
+    )
   }
 }

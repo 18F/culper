@@ -2,7 +2,9 @@ const defaultState = {}
 
 // returns the list of errors with those from this subsection removed
 const clearErrors = (sectionErrors, action) => {
-  return sectionErrors.filter(x => x.section === action.property && x.subsection !== action.subsection)
+  return sectionErrors.filter(
+    x => x.section === action.property && x.subsection !== action.subsection
+  )
 }
 
 const errorMatches = (err1, err2) => {
@@ -30,8 +32,8 @@ const updateErrors = (sectionErrors, action) => {
   }
 }
 
-const errorReducer = function (sectionName) {
-  return function (state = defaultState, action) {
+const errorReducer = function(sectionName) {
+  return function(state = defaultState, action) {
     // Check that section matches intended section reducer. This is to prevent
     // merging of everything every time an action is dispatched. We only
     // perform for the relevant section

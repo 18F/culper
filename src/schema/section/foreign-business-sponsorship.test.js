@@ -7,36 +7,38 @@ describe('Schema for financial taxes', () => {
       HasForeignSponsorship: { value: 'Yes' },
       List: {
         branch: { value: 'No' },
-        items: [{
-          Item: {
-            Name: {},
-            Birthdate: {},
-            BirthdateNotApplicable: {},
-            Birthplace: {
-              country: null
-            },
-            Address: {
-              country: null
-            },
-            Citizenship: {},
-            Organization: {},
-            OrganizationNotApplicable: {},
-            OrganizationAddress: {
-              country: null
-            },
-            OrganizationAddressNotApplicable: {},
-            Dates: {
-              from: {},
-              to: {},
-              present: null
-            },
-            Residence: {
-              country: null
-            },
-            Stay: {},
-            Sponsorship: {}
+        items: [
+          {
+            Item: {
+              Name: {},
+              Birthdate: {},
+              BirthdateNotApplicable: {},
+              Birthplace: {
+                country: null
+              },
+              Address: {
+                country: null
+              },
+              Citizenship: {},
+              Organization: {},
+              OrganizationNotApplicable: {},
+              OrganizationAddress: {
+                country: null
+              },
+              OrganizationAddressNotApplicable: {},
+              Dates: {
+                from: {},
+                to: {},
+                present: null
+              },
+              Residence: {
+                country: null
+              },
+              Stay: {},
+              Sponsorship: {}
+            }
           }
-        }]
+        ]
       }
     }
 

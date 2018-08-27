@@ -4,33 +4,34 @@ import { ValidationElement } from '../../Form'
 import Signature from './Signature'
 
 export default class Medical extends ValidationElement {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.update = this.update.bind(this)
     this.updateSignature = this.updateSignature.bind(this)
   }
 
-  update (queue) {
+  update(queue) {
     this.props.onUpdate({
       Signature: this.props.Signature,
       ...queue
     })
   }
 
-  updateSignature (values) {
+  updateSignature(values) {
     this.update({ Signature: values })
   }
 
-  render () {
+  render() {
     return (
       <div className="medical-release">
-        { i18n.m('releases.medical.contents') }
-        <Signature {...this.props.Signature}
-                   LegalName={this.props.LegalName}
-                   onUpdate={this.updateSignature}
-                   onError={this.props.onError}
-                   />
+        {i18n.m('releases.medical.contents')}
+        <Signature
+          {...this.props.Signature}
+          LegalName={this.props.LegalName}
+          onUpdate={this.updateSignature}
+          onError={this.props.onError}
+        />
       </div>
     )
   }
@@ -39,6 +40,8 @@ export default class Medical extends ValidationElement {
 Medical.defaultProps = {
   Signature: {},
   LegalName: {},
-  onUpdate: (queue) => {},
-  onError: (value, arr) => { return arr }
+  onUpdate: queue => {},
+  onError: (value, arr) => {
+    return arr
+  }
 }

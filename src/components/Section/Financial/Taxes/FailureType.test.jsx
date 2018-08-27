@@ -19,7 +19,7 @@ describe('The failure type component', () => {
     const expected = {
       name: 'taxes-failure',
       value: value,
-      onUpdate: (values) => {
+      onUpdate: values => {
         value = values.value
       }
     }

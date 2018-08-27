@@ -1,7 +1,9 @@
-import DrugInvolvementsValidator, { DrugInvolvementValidator } from './druginvolvements'
+import DrugInvolvementsValidator, {
+  DrugInvolvementValidator
+} from './druginvolvements'
 
-describe('Drug Involvement Validation', function () {
-  it('should validate drug usage', function () {
+describe('Drug Involvement Validation', function() {
+  it('should validate drug usage', function() {
     const tests = [
       {
         state: {
@@ -30,7 +32,7 @@ describe('Drug Involvement Validation', function () {
           Involved: { value: 'Yes' },
           List: {
             branch: { value: 'Nope' },
-            items: [{DrugInvolvement: {}}]
+            items: [{ DrugInvolvement: {} }]
           }
         },
         expected: false
@@ -40,7 +42,7 @@ describe('Drug Involvement Validation', function () {
           Involved: { value: 'Yes' },
           List: {
             branch: { value: 'No' },
-            items: [{DrugInvolvement: {}}]
+            items: [{ DrugInvolvement: {} }]
           }
         },
         expected: false
@@ -85,11 +87,13 @@ describe('Drug Involvement Validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new DrugInvolvementsValidator(test.state).isValid()).toBe(test.expected)
+      expect(new DrugInvolvementsValidator(test.state).isValid()).toBe(
+        test.expected
+      )
     })
   })
 
-  it('should validate future use', function () {
+  it('should validate future use', function() {
     const tests = [
       {
         state: {
@@ -114,7 +118,9 @@ describe('Drug Involvement Validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new DrugInvolvementValidator(test.state).validFuture()).toBe(test.expected)
+      expect(new DrugInvolvementValidator(test.state).validFuture()).toBe(
+        test.expected
+      )
     })
   })
 })

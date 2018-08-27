@@ -7,43 +7,47 @@ describe('Schema for financial taxes', () => {
       HasInterests: { value: 'Yes' },
       List: {
         branch: { value: 'No' },
-        items: [{
-          Item: {
-            InterestTypes: {},
-            RealEstateType: {},
-            Address: {
-              country: null
-            },
-            Acquired: {},
-            HowAcquired: {},
-            Cost: {
-              value: ''
-            },
-            CostEstimated: {},
-            Sold: {},
-            SoldNotApplicable: {},
-            Value: {
-              value: ''
-            },
-            ValueEstimated: {},
-            CoOwners: {
-              List: {
-                branch: null,
-                items: [{
-                  Item: {
-                    Has: { value: 'No' },
-                    Name: {},
-                    Address: {
-                      country: null
-                    },
-                    Countries: {},
-                    RelationshipNature: {}
-                  }
-                }]
+        items: [
+          {
+            Item: {
+              InterestTypes: {},
+              RealEstateType: {},
+              Address: {
+                country: null
+              },
+              Acquired: {},
+              HowAcquired: {},
+              Cost: {
+                value: ''
+              },
+              CostEstimated: {},
+              Sold: {},
+              SoldNotApplicable: {},
+              Value: {
+                value: ''
+              },
+              ValueEstimated: {},
+              CoOwners: {
+                List: {
+                  branch: null,
+                  items: [
+                    {
+                      Item: {
+                        Has: { value: 'No' },
+                        Name: {},
+                        Address: {
+                          country: null
+                        },
+                        Countries: {},
+                        RelationshipNature: {}
+                      }
+                    }
+                  ]
+                }
               }
             }
           }
-        }]
+        ]
       }
     }
 

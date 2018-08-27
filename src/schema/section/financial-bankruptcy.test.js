@@ -7,29 +7,31 @@ describe('Schema for financial bankruptcy', () => {
       HasBankruptcy: { value: 'Yes' },
       List: {
         branch: { value: 'No' },
-        items: [{
-          Item: {
-            PetitionType: {},
-            CourtAddress: {
-              country: null
-            },
-            CourtInvolved: {},
-            CourtNumber: {},
-            NameDebt: {},
-            TotalAmount: {
-              value: ''
-            },
-            DateFiled: {},
-            DateDischarged: {},
-            DateDischargedNotApplicable: {},
-            HasDischargeExplanation: {},
-            DischargeExplanation: {},
-            Trustee: {},
-            TrusteeAddress: {
-              country: null
+        items: [
+          {
+            Item: {
+              PetitionType: {},
+              CourtAddress: {
+                country: null
+              },
+              CourtInvolved: {},
+              CourtNumber: {},
+              NameDebt: {},
+              TotalAmount: {
+                value: ''
+              },
+              DateFiled: {},
+              DateDischarged: {},
+              DateDischargedNotApplicable: {},
+              HasDischargeExplanation: {},
+              DischargeExplanation: {},
+              Trustee: {},
+              TrusteeAddress: {
+                country: null
+              }
             }
           }
-        }]
+        ]
       }
     }
 

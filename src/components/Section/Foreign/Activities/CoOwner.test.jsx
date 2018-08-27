@@ -10,13 +10,17 @@ describe('The CoOwner component', () => {
 
   it('Performs updates', () => {
     let updates = 0
-    const onUpdate = () => { updates++ }
+    const onUpdate = () => {
+      updates++
+    }
 
     // Start with countries so we don't have to worry about simulating multi-select
     const countries = {
       value: ['Germany']
     }
-    const component = mount(<CoOwner onUpdate={onUpdate} Countries={countries} />)
+    const component = mount(
+      <CoOwner onUpdate={onUpdate} Countries={countries} />
+    )
     expect(component.find('.co-owner').length).toBe(1)
     component.find('input[name="first"]').simulate('change')
     component.find('input[name="address"]').simulate('change')

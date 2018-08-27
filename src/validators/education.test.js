@@ -1,7 +1,7 @@
 import HistoryEducationValidator, { EducationItemValidator } from './education'
 import Location from '../components/Form/Location'
 
-describe('Education component validation', function () {
+describe('Education component validation', function() {
   it('handle no education', () => {
     const tests = [
       {
@@ -35,7 +35,9 @@ describe('Education component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new HistoryEducationValidator(test.data).isValid()).toBe(test.expected)
+      expect(new HistoryEducationValidator(test.data).isValid()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -86,7 +88,9 @@ describe('Education component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new EducationItemValidator(test.data).validDates()).toBe(test.expected)
+      expect(new EducationItemValidator(test.data).validDates()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -109,7 +113,9 @@ describe('Education component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new EducationItemValidator(test.data).validAddress()).toBe(test.expected)
+      expect(new EducationItemValidator(test.data).validAddress()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -127,7 +133,9 @@ describe('Education component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new EducationItemValidator(test.data).validName()).toBe(test.expected)
+      expect(new EducationItemValidator(test.data).validName()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -143,7 +151,9 @@ describe('Education component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new EducationItemValidator(test.data).validType()).toBe(test.expected)
+      expect(new EducationItemValidator(test.data).validType()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -230,7 +240,9 @@ describe('Education component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new EducationItemValidator(test.data).validReference()).toBe(test.expected)
+      expect(new EducationItemValidator(test.data).validReference()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -411,7 +423,9 @@ describe('Education component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new EducationItemValidator(test.data).validDiplomas()).toBe(test.expected)
+      expect(new EducationItemValidator(test.data).validDiplomas()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -441,7 +455,9 @@ describe('Education component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new HistoryEducationValidator(test.data).validAttendance()).toBe(test.expected)
+      expect(new HistoryEducationValidator(test.data).validAttendance()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -563,7 +579,9 @@ describe('Education component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new HistoryEducationValidator(test.data).validList()).toBe(test.expected)
+      expect(new HistoryEducationValidator(test.data).validList()).toBe(
+        test.expected
+      )
     })
   })
 })

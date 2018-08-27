@@ -7,21 +7,23 @@ describe('Schema for financial taxes', () => {
       Hospitalized: { value: 'Yes' },
       List: {
         branch: { value: 'No' },
-        items: [{
-          Item: {
-            TreatmentDate: {
-              from: {},
-              to: {},
-              present: null
-            },
-            Admission: {},
-            Facility: {},
-            FacilityAddress: {
-              country: null
-            },
-            Explanation: {}
+        items: [
+          {
+            Item: {
+              TreatmentDate: {
+                from: {},
+                to: {},
+                present: null
+              },
+              Admission: {},
+              Facility: {},
+              FacilityAddress: {
+                country: null
+              },
+              Explanation: {}
+            }
           }
-        }]
+        ]
       }
     }
 

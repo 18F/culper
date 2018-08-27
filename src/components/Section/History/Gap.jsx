@@ -6,7 +6,7 @@ import { DateSummary } from '../../Summary'
  * Renders a formatted gap row
  */
 export class Gap extends React.Component {
-  render () {
+  render() {
     if (!this.props.dates.from || !this.props.dates.to) {
       return null
     }
@@ -15,13 +15,15 @@ export class Gap extends React.Component {
     return (
       <div className="gap details open">
         <div className="message error">
-          <i className="fa fa-exclamation"></i>
-          <span className="dates"><strong>{dates}</strong></span>
+          <i className="fa fa-exclamation" />
+          <span className="dates">
+            <strong>{dates}</strong>
+          </span>
           <h3>{this.props.title}</h3>
           <p>{this.props.para}</p>
           <button className="usa-button-outline" onClick={this.props.onClick}>
             <span>{this.props.btnText}</span>
-            <i className="fa fa-plus-circle"></i>
+            <i className="fa fa-plus-circle" />
           </button>
         </div>
       </div>

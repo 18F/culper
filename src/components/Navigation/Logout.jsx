@@ -13,8 +13,12 @@ class Logout extends React.Component {
     this.props.dispatch(logout())
   }
 
-  render () {
-    return <a href="#" onClick={this.logout} className="logout">{i18n.t('app.logout')}</a>
+  render() {
+    return (
+      <a href="#" onClick={this.logout} className="logout">
+        {i18n.t('app.logout')}
+      </a>
+    )
   }
 }
 

@@ -10,9 +10,13 @@ describe('The legal investigations debarred component', () => {
 
   it('can select "yes"', () => {
     let updates = 0
-    const onUpdate = () => { updates++ }
+    const onUpdate = () => {
+      updates++
+    }
     const component = mount(<Debarred onUpdate={onUpdate} />)
-    component.find('.legal-investigations-debarred-has-debarment .yes input').simulate('change')
+    component
+      .find('.legal-investigations-debarred-has-debarment .yes input')
+      .simulate('change')
     expect(updates).toBe(1)
   })
 

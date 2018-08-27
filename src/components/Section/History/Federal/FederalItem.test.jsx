@@ -9,12 +9,17 @@ describe('The federal item component', () => {
       name: 'federal_service',
       HasFederalService: 'Yes',
       List: [{}],
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
     const component = mount(<FederalItem {...expected} />)
-    component.find({type: 'text', name: 'Position'}).simulate('change')
-    component.find({type: 'text', name: 'Name'}).simulate('change')
-    component.find('.datecontrol .day input').first().simulate('change')
+    component.find({ type: 'text', name: 'Position' }).simulate('change')
+    component.find({ type: 'text', name: 'Name' }).simulate('change')
+    component
+      .find('.datecontrol .day input')
+      .first()
+      .simulate('change')
     component.find('.mailing input').simulate('change')
     expect(updates).toBeGreaterThan(3)
   })

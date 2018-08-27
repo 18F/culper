@@ -8,7 +8,7 @@ import { Accordion, Branch, Show } from '../../../Form'
 import HistoryItem from './HistoryItem'
 
 export default class History extends SubsectionElement {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.update = this.update.bind(this)
@@ -16,7 +16,7 @@ export default class History extends SubsectionElement {
     this.updateList = this.updateList.bind(this)
   }
 
-  update (queue) {
+  update(queue) {
     this.props.onUpdate({
       List: this.props.List,
       HasHistory: this.props.HasHistory,
@@ -24,21 +24,21 @@ export default class History extends SubsectionElement {
     })
   }
 
-  updateList (values) {
+  updateList(values) {
     this.update({
       List: values
     })
   }
 
-  updateBranch (values) {
+  updateBranch(values) {
     this.update({
       HasHistory: values,
       List: values.value === 'Yes' ? this.props.List : []
     })
   }
 
-  summary (item, index) {
-    const o = ((item && item.Item) || {})
+  summary(item, index) {
+    const o = (item && item.Item) || {}
     const dates = DateSummary(o.Granted)
     const agency = (o.Agency || {}).Agency || ''
 
@@ -51,39 +51,50 @@ export default class History extends SubsectionElement {
     })
   }
 
-  render () {
+  render() {
     return (
-      <div className="section-content investigations-history" {...super.dataAttributes(this.props)}>
-        <Branch name="has_history"
-                label={i18n.t('legal.investigations.history.heading.title')}
-                labelSize="h2"
-                className="legal-investigations-history-has-history"
-                {...this.props.HasHistory}
-                warning={true}
-                onError={this.handleError}
-                required={this.props.required}
-                onUpdate={this.updateBranch}
-                scrollIntoView={this.props.scrollIntoView}>
-        </Branch>
+      <div
+        className="section-content investigations-history"
+        {...super.dataAttributes(this.props)}>
+        <Branch
+          name="has_history"
+          label={i18n.t('legal.investigations.history.heading.title')}
+          labelSize="h2"
+          className="legal-investigations-history-has-history"
+          {...this.props.HasHistory}
+          warning={true}
+          onError={this.handleError}
+          required={this.props.required}
+          onUpdate={this.updateBranch}
+          scrollIntoView={this.props.scrollIntoView}
+        />
 
         <Show when={this.props.HasHistory.value === 'Yes'}>
-          <Accordion defaultState={this.props.defaultState}
-                     {...this.props.List}
-                     scrollToBottom={this.props.scrollToBottom}
-                     summary={this.summary}
-                     onUpdate={this.updateList}
-                     onError={this.handleError}
-                     validator={HistoryValidator}
-                     description={i18n.t('legal.investigations.history.collection.description')}
-                     appendTitle={i18n.t('legal.investigations.history.collection.appendTitle')}
-                     appendLabel={i18n.t('legal.investigations.history.collection.appendLabel')}
-                     required={this.props.required}
-                     scrollIntoView={this.props.scrollIntoView}>
-            <HistoryItem name="Item"
-                         bind={true}
-                         required={this.props.required}
-                         scrollIntoView={this.props.scrollIntoView}
-                         />
+          <Accordion
+            defaultState={this.props.defaultState}
+            {...this.props.List}
+            scrollToBottom={this.props.scrollToBottom}
+            summary={this.summary}
+            onUpdate={this.updateList}
+            onError={this.handleError}
+            validator={HistoryValidator}
+            description={i18n.t(
+              'legal.investigations.history.collection.description'
+            )}
+            appendTitle={i18n.t(
+              'legal.investigations.history.collection.appendTitle'
+            )}
+            appendLabel={i18n.t(
+              'legal.investigations.history.collection.appendLabel'
+            )}
+            required={this.props.required}
+            scrollIntoView={this.props.scrollIntoView}>
+            <HistoryItem
+              name="Item"
+              bind={true}
+              required={this.props.required}
+              scrollIntoView={this.props.scrollIntoView}
+            />
           </Accordion>
         </Show>
       </div>
@@ -96,12 +107,14 @@ History.defaultProps = {
   HasHistory: {},
   List: Accordion.defaultList,
   defaultState: true,
-  onUpdate: (queue) => {},
-  onError: (value, arr) => { return arr },
+  onUpdate: queue => {},
+  onError: (value, arr) => {
+    return arr
+  },
   section: 'legal',
   subsection: 'investigations/history',
   dispatch: () => {},
-  validator: (data) => {
+  validator: data => {
     return validate(schema('legal.investigations.history', data))
   },
   scrollToBottom: ''

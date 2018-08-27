@@ -17,7 +17,9 @@ describe('The offense component', () => {
     let updates = 0
     const expected = {
       name: 'offense',
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
     const component = mount(<OtherOffenses {...expected} />)
     component.find('.has-otheroffenses .yes input').simulate('change')
@@ -28,7 +30,7 @@ describe('The offense component', () => {
     let updates = 0
     const expected = {
       name: 'offense',
-      onUpdate: (values) => {
+      onUpdate: values => {
         if (values.List.length === 0) {
           updates++
         }
@@ -37,7 +39,7 @@ describe('The offense component', () => {
         branch: {
           value: 'No'
         },
-        items: [{Item: {}}]
+        items: [{ Item: {} }]
       }
     }
     const component = mount(<OtherOffenses {...expected} />)

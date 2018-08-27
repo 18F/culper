@@ -9,7 +9,9 @@ describe('Basic accordion component', () => {
       items: [
         {
           valid: () => false,
-          component: () => { return <div>test</div> },
+          component: () => {
+            return <div>test</div>
+          },
           open: false,
           scrollIntoView: false
         }

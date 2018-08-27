@@ -1,7 +1,7 @@
 import NonCriminalCourtActionsValidator from './legalnoncriminalcourtactions'
 import Location from '../components/Form/Location'
 
-describe('received counseling component validation', function () {
+describe('received counseling component validation', function() {
   it('can validate list of court actions', () => {
     const tests = [
       {
@@ -76,14 +76,16 @@ describe('received counseling component validation', function () {
           HasCourtActions: { value: 'Yes' },
           List: {
             branch: { value: 'No' },
-            items: [{Item: {}}]
+            items: [{ Item: {} }]
           }
         },
         expected: false
       }
     ]
     tests.forEach(test => {
-      expect(new NonCriminalCourtActionsValidator(test.state).isValid()).toBe(test.expected)
+      expect(new NonCriminalCourtActionsValidator(test.state).isValid()).toBe(
+        test.expected
+      )
     })
   })
 })

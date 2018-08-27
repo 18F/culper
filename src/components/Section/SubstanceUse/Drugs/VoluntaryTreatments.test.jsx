@@ -10,7 +10,9 @@ describe('The VoluntaryTreatments component', () => {
 
   it('Performs update', () => {
     let updates = 0
-    const onUpdate = () => { updates++ }
+    const onUpdate = () => {
+      updates++
+    }
     const component = mount(<VoluntaryTreatments onUpdate={onUpdate} />)
     expect(component.find('.voluntary-treatments').length).toBe(1)
     component.find('.treatment-voluntary .yes input').simulate('change')
@@ -19,7 +21,9 @@ describe('The VoluntaryTreatments component', () => {
 
   it('Performs updates to accordion', () => {
     let updates = 0
-    const onUpdate = () => { updates++ }
+    const onUpdate = () => {
+      updates++
+    }
     const list = {
       items: [
         {
@@ -55,7 +59,13 @@ describe('The VoluntaryTreatments component', () => {
         }
       ]
     }
-    const component = mount(<VoluntaryTreatments onUpdate={onUpdate} TreatmentVoluntary={{ value: 'Yes' }} List={list} />)
+    const component = mount(
+      <VoluntaryTreatments
+        onUpdate={onUpdate}
+        TreatmentVoluntary={{ value: 'Yes' }}
+        List={list}
+      />
+    )
     expect(component.find('.voluntary-treatments').length).toBe(1)
     component.find('.treatment-provider input').simulate('change')
     expect(updates).toBe(2)

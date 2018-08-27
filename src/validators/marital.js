@@ -3,28 +3,36 @@ import DivorceValidator from './divorce'
 import { validAccordion } from './helpers'
 
 export default class MaritalValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.civilUnion = data.CivilUnion || {}
     this.status = data.Status || {}
     this.divorcedList = data.DivorcedList || {}
   }
 
-  validStatus () {
+  validStatus() {
     const statusValue = this.status.value || ''
-    return ['NeverMarried', 'Married', 'InCivilUnion', 'Separated', 'Annulled', 'Divorced', 'Widowed'].includes(statusValue)
+    return [
+      'NeverMarried',
+      'Married',
+      'InCivilUnion',
+      'Separated',
+      'Annulled',
+      'Divorced',
+      'Widowed'
+    ].includes(statusValue)
   }
 
-  validDivorce () {
+  validDivorce() {
     if (!this.divorcedList.items || !this.divorcedList.items.length) {
       return false
     }
 
-    return validAccordion(this.divorcedList, (item) => {
+    return validAccordion(this.divorcedList, item => {
       return new DivorceValidator(item).isValid()
     })
   }
 
-  isValid () {
+  isValid() {
     if (!this.validStatus()) {
       return false
     }

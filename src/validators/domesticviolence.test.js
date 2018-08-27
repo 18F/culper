@@ -1,7 +1,7 @@
 import DomesticViolence, { DomesticViolenceItem } from './domesticviolence'
 import Location from '../components/Form/Location'
 
-describe('Domestic Violence validation', function () {
+describe('Domestic Violence validation', function() {
   it('can validate DomesticViolenceItem', () => {
     const tests = [
       {

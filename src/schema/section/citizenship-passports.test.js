@@ -6,33 +6,37 @@ describe('Schema for citizenship passports', () => {
     const data = {
       Passports: {
         branch: null,
-        items: [{
-          Item: {
-            Has: { value: 'No' },
-            Country: {},
-            Issued: {},
-            Location: {
-              country: null
-            },
-            Name: {},
-            Number: {},
-            Expiration: {},
-            Used: {},
-            Countries: {
-              items: [{
-                Item: {
-                  Country: {},
-                  Dates: {
-                    from: {},
-                    to: {},
-                    present: null
+        items: [
+          {
+            Item: {
+              Has: { value: 'No' },
+              Country: {},
+              Issued: {},
+              Location: {
+                country: null
+              },
+              Name: {},
+              Number: {},
+              Expiration: {},
+              Used: {},
+              Countries: {
+                items: [
+                  {
+                    Item: {
+                      Country: {},
+                      Dates: {
+                        from: {},
+                        to: {},
+                        present: null
+                      }
+                    }
                   }
-                }
-              }],
-              branch: null
+                ],
+                branch: null
+              }
             }
           }
-        }]
+        ]
       }
     }
 

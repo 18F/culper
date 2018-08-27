@@ -1,7 +1,11 @@
-import ForeignBenefitValidator, { OneTimeBenefitValidator, FutureBenefitValidator, ContinuingBenefitValidator } from './foreignbenefit'
+import ForeignBenefitValidator, {
+  OneTimeBenefitValidator,
+  FutureBenefitValidator,
+  ContinuingBenefitValidator
+} from './foreignbenefit'
 
-describe('Foreign Born Benefits', function () {
-  it('should validate benefit activities', function () {
+describe('Foreign Born Benefits', function() {
+  it('should validate benefit activities', function() {
     const tests = [
       {
         props: {
@@ -114,11 +118,13 @@ describe('Foreign Born Benefits', function () {
     ]
 
     tests.forEach(test => {
-      expect(new ForeignBenefitValidator(test.props).isValid()).toBe(test.expected)
+      expect(new ForeignBenefitValidator(test.props).isValid()).toBe(
+        test.expected
+      )
     })
   })
 
-  it('should validate invalid benefit frequency ', function () {
+  it('should validate invalid benefit frequency ', function() {
     const tests = [
       {
         props: {
@@ -131,11 +137,13 @@ describe('Foreign Born Benefits', function () {
     ]
 
     tests.forEach(test => {
-      expect(new ForeignBenefitValidator(test.props).validBenefit()).toBe(test.expected)
+      expect(new ForeignBenefitValidator(test.props).validBenefit()).toBe(
+        test.expected
+      )
     })
   })
 
-  it('should validate benefit types', function () {
+  it('should validate benefit types', function() {
     const tests = [
       {
         props: {
@@ -164,11 +172,13 @@ describe('Foreign Born Benefits', function () {
     ]
 
     tests.forEach(test => {
-      expect(new ForeignBenefitValidator(test.props).validBenefitType()).toBe(test.expected)
+      expect(new ForeignBenefitValidator(test.props).validBenefitType()).toBe(
+        test.expected
+      )
     })
   })
 
-  it('should validate one time benefit', function () {
+  it('should validate one time benefit', function() {
     const tests = [
       {
         props: {
@@ -196,11 +206,13 @@ describe('Foreign Born Benefits', function () {
     ]
 
     tests.forEach(test => {
-      expect(new OneTimeBenefitValidator(test.props).isValid()).toBe(test.expected)
+      expect(new OneTimeBenefitValidator(test.props).isValid()).toBe(
+        test.expected
+      )
     })
   })
 
-  it('should validate one time obligated explanation', function () {
+  it('should validate one time obligated explanation', function() {
     const tests = [
       {
         props: {
@@ -226,11 +238,13 @@ describe('Foreign Born Benefits', function () {
     ]
 
     tests.forEach(test => {
-      expect(new OneTimeBenefitValidator(test.props).validObligatedExplanation()).toBe(test.expected)
+      expect(
+        new OneTimeBenefitValidator(test.props).validObligatedExplanation()
+      ).toBe(test.expected)
     })
   })
 
-  it('should validate future benefit', function () {
+  it('should validate future benefit', function() {
     const tests = [
       {
         props: {
@@ -259,11 +273,13 @@ describe('Foreign Born Benefits', function () {
     ]
 
     tests.forEach(test => {
-      expect(new FutureBenefitValidator(test.props).isValid()).toBe(test.expected)
+      expect(new FutureBenefitValidator(test.props).isValid()).toBe(
+        test.expected
+      )
     })
   })
 
-  it('should validate future benefit obligated explanation', function () {
+  it('should validate future benefit obligated explanation', function() {
     const tests = [
       {
         props: {
@@ -289,11 +305,13 @@ describe('Foreign Born Benefits', function () {
     ]
 
     tests.forEach(test => {
-      expect(new FutureBenefitValidator(test.props).validObligatedExplanation()).toBe(test.expected)
+      expect(
+        new FutureBenefitValidator(test.props).validObligatedExplanation()
+      ).toBe(test.expected)
     })
   })
 
-  it('should validate continuing benefit', function () {
+  it('should validate continuing benefit', function() {
     const tests = [
       {
         props: {
@@ -327,11 +345,13 @@ describe('Foreign Born Benefits', function () {
     ]
 
     tests.forEach(test => {
-      expect(new ContinuingBenefitValidator(test.props).isValid()).toBe(test.expected)
+      expect(new ContinuingBenefitValidator(test.props).isValid()).toBe(
+        test.expected
+      )
     })
   })
 
-  it('should validate continuing benefit obligated explanation', function () {
+  it('should validate continuing benefit obligated explanation', function() {
     const tests = [
       {
         props: {
@@ -357,11 +377,13 @@ describe('Foreign Born Benefits', function () {
     ]
 
     tests.forEach(test => {
-      expect(new ContinuingBenefitValidator(test.props).validObligatedExplanation()).toBe(test.expected)
+      expect(
+        new ContinuingBenefitValidator(test.props).validObligatedExplanation()
+      ).toBe(test.expected)
     })
   })
 
-  it('should validate continuing benefit other frequency', function () {
+  it('should validate continuing benefit other frequency', function() {
     const tests = [
       {
         props: {
@@ -387,11 +409,13 @@ describe('Foreign Born Benefits', function () {
     ]
 
     tests.forEach(test => {
-      expect(new ContinuingBenefitValidator(test.props).validFrequency()).toBe(test.expected)
+      expect(new ContinuingBenefitValidator(test.props).validFrequency()).toBe(
+        test.expected
+      )
     })
   })
 
-  it('should validate future benefit other frequency', function () {
+  it('should validate future benefit other frequency', function() {
     const tests = [
       {
         props: {
@@ -417,7 +441,9 @@ describe('Foreign Born Benefits', function () {
     ]
 
     tests.forEach(test => {
-      expect(new FutureBenefitValidator(test.props).validFrequency()).toBe(test.expected)
+      expect(new FutureBenefitValidator(test.props).validFrequency()).toBe(
+        test.expected
+      )
     })
   })
 })

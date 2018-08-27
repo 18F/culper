@@ -1,30 +1,34 @@
 import NameValidator from './name'
 import LocationValidator from './location'
-import { validAccordion, validGenericTextfield, validDateField } from './helpers'
+import {
+  validAccordion,
+  validGenericTextfield,
+  validDateField
+} from './helpers'
 
 export default class ForeignBusinessEmploymentValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.hasForeignEmployment = (data.HasForeignEmployment || {}).value
     this.list = data.List || {}
   }
 
-  validList () {
+  validList() {
     if (this.hasForeignEmployment === 'No') {
       return true
     }
 
-    return validAccordion(this.list, (item) => {
+    return validAccordion(this.list, item => {
       return new ForeignBusinessEmploymentItemValidator(item).isValid()
     })
   }
 
-  isValid () {
+  isValid() {
     return this.validList()
   }
 }
 
 export class ForeignBusinessEmploymentItemValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.name = data.Name
     this.description = data.Description
     this.date = data.Date
@@ -33,23 +37,23 @@ export class ForeignBusinessEmploymentItemValidator {
     this.explanation = data.Explanation
   }
 
-  validName () {
+  validName() {
     return !!this.name && new NameValidator(this.name).isValid()
   }
 
-  validDescription () {
+  validDescription() {
     return !!this.description && validGenericTextfield(this.description)
   }
 
-  validDate () {
+  validDate() {
     return !!this.date && validDateField(this.date)
   }
 
-  validAddress () {
+  validAddress() {
     return !!this.address && new LocationValidator(this.address).isValid()
   }
 
-  validAcceptance () {
+  validAcceptance() {
     if (this.accepted === 'Yes' || this.accepted === 'No') {
       return !!this.explanation && validGenericTextfield(this.explanation)
     }
@@ -57,11 +61,13 @@ export class ForeignBusinessEmploymentItemValidator {
     return false
   }
 
-  isValid () {
-    return this.validName() &&
+  isValid() {
+    return (
+      this.validName() &&
       this.validDescription() &&
       this.validDate() &&
       this.validAddress() &&
       this.validAcceptance()
+    )
   }
 }

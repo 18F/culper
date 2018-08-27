@@ -1,7 +1,9 @@
-import ForeignBusinessPoliticalValidator, { PoliticalValidator } from './foreignbusinesspolitical'
+import ForeignBusinessPoliticalValidator, {
+  PoliticalValidator
+} from './foreignbusinesspolitical'
 import { battery } from './helpers'
 
-describe('Foreign business political component validation', function () {
+describe('Foreign business political component validation', function() {
   it('validate foreign business political position', () => {
     const tests = [
       {

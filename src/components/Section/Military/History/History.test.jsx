@@ -35,8 +35,14 @@ describe('The military history component', () => {
   it('can humanize service value names', () => {
     const tests = [
       { service: { value: 'AirForce' }, expected: 'Air Force' },
-      { service: { value: 'AirNationalGuard' }, expected: 'Air National Guard' },
-      { service: { value: 'ArmyNationalGuard' }, expected: 'Army National Guard' },
+      {
+        service: { value: 'AirNationalGuard' },
+        expected: 'Air National Guard'
+      },
+      {
+        service: { value: 'ArmyNationalGuard' },
+        expected: 'Army National Guard'
+      },
       { service: { value: 'CoastGuard' }, expected: 'Coast Guard' },
       { service: { value: 'MarineCorps' }, expected: 'Marine Corps' },
       { service: { value: 'Unknown' }, expected: 'Unknown' }

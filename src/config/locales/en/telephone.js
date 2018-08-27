@@ -15,7 +15,7 @@ export const telephone = {
     label: 'DSN telephone number'
   },
   noNumber: {
-    label: 'I don\'t know'
+    label: "I don't know"
   },
   type: {
     domestic: 'United States number',

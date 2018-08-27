@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Show (props) {
+export default function Show(props) {
   if (props.when && props.children) {
     const okayRaw = ['[object Function]', '[object Object]']
     if (okayRaw.includes(Object.prototype.toString.call(props.children))) {

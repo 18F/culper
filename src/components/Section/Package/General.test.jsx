@@ -7,9 +7,15 @@ describe('The General Release component', () => {
   it('trigger updates', () => {
     let updates = 0
     const expected = {
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
-    const component = mount(<MemoryRouter><General {...expected} /></MemoryRouter>)
+    const component = mount(
+      <MemoryRouter>
+        <General {...expected} />
+      </MemoryRouter>
+    )
     expect(component.find('.general-release').length).toBe(1)
     component.find('.signature button').simulate('click')
     expect(updates).toBe(1)

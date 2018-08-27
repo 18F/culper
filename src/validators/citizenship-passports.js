@@ -1,14 +1,19 @@
 import DateRangeValidator from './daterange'
 import LocationValidator from './location'
 import NameValidator from './name'
-import { validAccordion, validGenericTextfield, validDateField, BranchCollection } from './helpers'
+import {
+  validAccordion,
+  validGenericTextfield,
+  validDateField,
+  BranchCollection
+} from './helpers'
 
 export default class CitizenshipPassportsValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.passports = data.Passports || []
   }
 
-  validPassports () {
+  validPassports() {
     const bc = new BranchCollection(this.passports)
     if (!bc.validKeyValues()) {
       return false
@@ -23,13 +28,13 @@ export default class CitizenshipPassportsValidator {
     })
   }
 
-  isValid () {
+  isValid() {
     return this.validPassports()
   }
 }
 
 export class PassportItemValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.country = data.Country
     this.issued = data.Issued
     this.location = data.Location
@@ -40,46 +45,51 @@ export class PassportItemValidator {
     this.countries = data.Countries || {}
   }
 
-  validCountry () {
+  validCountry() {
     return validGenericTextfield(this.country)
   }
 
-  validIssued () {
+  validIssued() {
     return !!this.issued && validDateField(this.issued)
   }
 
-  validLocation () {
+  validLocation() {
     return !!this.location && new LocationValidator(this.location).isValid()
   }
 
-  validName () {
+  validName() {
     return !!this.name && new NameValidator(this.name).isValid()
   }
 
-  validNumber () {
+  validNumber() {
     return !!this.number && validGenericTextfield(this.number)
   }
 
-  validExpiration () {
+  validExpiration() {
     return !!this.expiration && validDateField(this.expiration)
   }
 
-  validUsed () {
+  validUsed() {
     return !!this.used && (this.used === 'Yes' || this.used === 'No')
   }
 
-  validCountries () {
+  validCountries() {
     if (this.used !== 'Yes') {
       return true
     }
 
-    return validAccordion(this.countries, (item) => {
-      return new TravelItemValidator(item).isValid()
-    }, true)
+    return validAccordion(
+      this.countries,
+      item => {
+        return new TravelItemValidator(item).isValid()
+      },
+      true
+    )
   }
 
-  isValid () {
-    return this.validCountry() &&
+  isValid() {
+    return (
+      this.validCountry() &&
       this.validIssued() &&
       this.validLocation() &&
       this.validName() &&
@@ -87,24 +97,25 @@ export class PassportItemValidator {
       this.validExpiration() &&
       this.validUsed() &&
       this.validCountries()
+    )
   }
 }
 
 export class TravelItemValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.country = data.Country
     this.dates = data.Dates
   }
 
-  validCountry () {
+  validCountry() {
     return validGenericTextfield(this.country)
   }
 
-  validDates () {
+  validDates() {
     return !!this.dates && new DateRangeValidator(this.dates, null).isValid()
   }
 
-  isValid () {
+  isValid() {
     return this.validCountry() && this.validDates()
   }
 }

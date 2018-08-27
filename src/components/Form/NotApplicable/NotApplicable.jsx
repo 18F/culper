@@ -3,7 +3,7 @@ import { i18n } from '../../../config'
 import Checkbox from '../Checkbox'
 
 export default class NotApplicable extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
@@ -13,7 +13,7 @@ export default class NotApplicable extends React.Component {
     this.onUpdate = this.onUpdate.bind(this)
   }
 
-  onUpdate (values) {
+  onUpdate(values) {
     const next = !this.state.applicable
     this.setState({ applicable: next }, () => {
       if (this.props.onUpdate) {
@@ -43,15 +43,17 @@ export default class NotApplicable extends React.Component {
     })
   }
 
-  renderChildren () {
-    return React.Children.map(this.props.children, (child) => {
+  renderChildren() {
+    return React.Children.map(this.props.children, child => {
       let extendedProps = {
         disabled: !this.state.applicable,
         required: this.state.applicable && (child.props.required || false),
         onError: (value, arr) => {
           let errors = [...this.errors]
           for (const e of arr) {
-            const idx = errors.findIndex(x => x.uid === e.uid && x.code === e.code)
+            const idx = errors.findIndex(
+              x => x.uid === e.uid && x.code === e.code
+            )
             if (idx !== -1) {
               errors[idx] = { ...e }
             } else {
@@ -72,25 +74,29 @@ export default class NotApplicable extends React.Component {
     })
   }
 
-  render () {
+  render() {
     // Append on any classes passed down
     const klass = `${this.props.className || ''}`.trim()
     const dithered = this.state.applicable ? 'enable' : 'disable'
 
     // When there is nothing special do the status quo
     return (
-      <div className={`not-applicable ${dithered} ${this.props.or ? 'with-or' : ''}`.trim()}>
+      <div
+        className={`not-applicable ${dithered} ${
+          this.props.or ? 'with-or' : ''
+        }`.trim()}>
         <div className={`${klass} ${dithered} content`.trim()}>
           {this.renderChildren()}
         </div>
         <div className={`${klass} button`.trim()}>
           <div className="or">{this.props.or}</div>
-          <Checkbox name={this.props.name}
-                    label={this.props.label}
-                    checked={!this.state.applicable}
-                    onUpdate={this.onUpdate}
-                    onError={this.props.onError}
-                    />
+          <Checkbox
+            name={this.props.name}
+            label={this.props.label}
+            checked={!this.state.applicable}
+            onUpdate={this.onUpdate}
+            onError={this.props.onError}
+          />
         </div>
       </div>
     )
@@ -102,5 +108,7 @@ NotApplicable.defaultProps = {
   label: i18n.t('financial.bankruptcy.notApplicable'),
   or: '',
   applicable: true,
-  onError: (value, arr) => { return arr }
+  onError: (value, arr) => {
+    return arr
+  }
 }

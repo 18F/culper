@@ -1,8 +1,10 @@
-import DrugVoluntaryTreatmentsValidator, { DrugVoluntaryTreatmentValidator } from './drugvoluntarytreatments'
+import DrugVoluntaryTreatmentsValidator, {
+  DrugVoluntaryTreatmentValidator
+} from './drugvoluntarytreatments'
 import Location from '../components/Form/Location'
 
-describe('Drug Voluntary Treatment Validation', function () {
-  it('should validate drug ordered treatments', function () {
+describe('Drug Voluntary Treatment Validation', function() {
+  it('should validate drug ordered treatments', function() {
     const tests = [
       {
         state: {
@@ -31,7 +33,7 @@ describe('Drug Voluntary Treatment Validation', function () {
           TreatmentVoluntary: { value: 'Yes' },
           List: {
             branch: { value: 'Nope' },
-            items: [{VoluntaryTreatment: {}}]
+            items: [{ VoluntaryTreatment: {} }]
           }
         },
         expected: false
@@ -41,7 +43,7 @@ describe('Drug Voluntary Treatment Validation', function () {
           TreatmentVoluntary: { value: 'Yes' },
           List: {
             branch: { value: 'No' },
-            items: [{VoluntaryTreatment: {}}]
+            items: [{ VoluntaryTreatment: {} }]
           }
         },
         expected: false
@@ -98,11 +100,13 @@ describe('Drug Voluntary Treatment Validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new DrugVoluntaryTreatmentsValidator(test.state).isValid()).toBe(test.expected)
+      expect(new DrugVoluntaryTreatmentsValidator(test.state).isValid()).toBe(
+        test.expected
+      )
     })
   })
 
-  it('should validate treatment completed', function () {
+  it('should validate treatment completed', function() {
     const tests = [
       {
         state: {
@@ -128,7 +132,11 @@ describe('Drug Voluntary Treatment Validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new DrugVoluntaryTreatmentValidator(test.state).validTreatmentCompleted()).toBe(test.expected)
+      expect(
+        new DrugVoluntaryTreatmentValidator(
+          test.state
+        ).validTreatmentCompleted()
+      ).toBe(test.expected)
     })
   })
 })

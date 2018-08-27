@@ -5,32 +5,33 @@ import { SignatureValidator } from '../../../validators'
 import Signature from './Signature'
 
 export default class Credit extends SubsectionElement {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.update = this.update.bind(this)
     this.updateSignature = this.updateSignature.bind(this)
   }
 
-  update (queue) {
+  update(queue) {
     this.props.onUpdate({
       Signature: this.props.Signature,
       ...queue
     })
   }
 
-  updateSignature (values) {
+  updateSignature(values) {
     this.update({ Signature: values })
   }
 
-  render () {
+  render() {
     return (
       <div className="credit-release">
-        { i18n.m('releases.credit.contents') }
-        <Signature {...this.props.Signature}
-                   LegalName={this.props.LegalName}
-                   onUpdate={this.updateSignature}
-                   onError={this.handleError}
-                   />
+        {i18n.m('releases.credit.contents')}
+        <Signature
+          {...this.props.Signature}
+          LegalName={this.props.LegalName}
+          onUpdate={this.updateSignature}
+          onError={this.handleError}
+        />
       </div>
     )
   }
@@ -42,9 +43,11 @@ Credit.defaultProps = {
   section: 'releases',
   subsection: 'credit',
   dispatch: () => {},
-  validator: (data) => {
+  validator: data => {
     return new SignatureValidator(data).isValid()
   },
-  onUpdate: (queue) => {},
-  onError: (value, arr) => { return arr }
+  onUpdate: queue => {},
+  onError: (value, arr) => {
+    return arr
+  }
 }

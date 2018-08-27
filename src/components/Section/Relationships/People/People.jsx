@@ -16,7 +16,7 @@ import { InjectGaps } from '../../History/summaries'
 import { Gap } from '../../History/Gap'
 
 export default class People extends SubsectionElement {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.update = this.update.bind(this)
@@ -28,26 +28,28 @@ export default class People extends SubsectionElement {
     this.customDetails = this.customDetails.bind(this)
   }
 
-  update (queue) {
+  update(queue) {
     this.props.onUpdate({
       List: this.props.List,
       ...queue
     })
   }
 
-  updateList (values) {
+  updateList(values) {
     this.update({
       List: values
     })
   }
 
-  excludeGaps (items) {
-    return (items || []).filter(item => !item.type || (item.type && item.type !== 'Gap'))
+  excludeGaps(items) {
+    return (items || []).filter(
+      item => !item.type || (item.type && item.type !== 'Gap')
+    )
   }
 
-  sort (a, b) {
+  sort(a, b) {
     // Helper to find the date value or default it to 0
-    const getOptionalDate = (obj) => {
+    const getOptionalDate = obj => {
       return ((((obj || {}).Item || {}).Dates || {}).to || {}).date || 0
     }
 
@@ -63,7 +65,7 @@ export default class People extends SubsectionElement {
     return 0
   }
 
-  fillGap (dates) {
+  fillGap(dates) {
     let items = [...(this.props.List || {}).items]
     items.push({
       uuid: newGuid(),
@@ -85,7 +87,7 @@ export default class People extends SubsectionElement {
     })
   }
 
-  summary (item, index) {
+  summary(item, index) {
     const o = (item || {}).Item || {}
     const date = DateSummary(o.Dates)
     const name = NameSummary(o.Name)
@@ -96,28 +98,31 @@ export default class People extends SubsectionElement {
       index: index,
       left: name,
       right: date,
-      placeholder: i18n.t('relationships.people.person.collection.summary.unknown')
+      placeholder: i18n.t(
+        'relationships.people.person.collection.summary.unknown'
+      )
     })
   }
 
-  customDetails (item, index, initial, callback) {
+  customDetails(item, index, initial, callback) {
     if (item.type === 'Gap') {
       const dates = (item.Item || {}).Dates || {}
       return (
-        <Gap title={i18n.t('relationships.people.person.gap.title')}
-             para={i18n.t('relationships.people.person.gap.para')}
-             btnText={i18n.t('relationships.people.person.gap.button')}
-             first={index === 0}
-             dates={dates}
-             onClick={this.fillGap.bind(this, dates)}
-             />
+        <Gap
+          title={i18n.t('relationships.people.person.gap.title')}
+          para={i18n.t('relationships.people.person.gap.para')}
+          btnText={i18n.t('relationships.people.person.gap.button')}
+          first={index === 0}
+          dates={dates}
+          onClick={this.fillGap.bind(this, dates)}
+        />
       )
     }
 
     return callback()
   }
 
-  peopleSummaryList () {
+  peopleSummaryList() {
     return this.excludeGaps(this.props.List.items).reduce((dates, item) => {
       if (!item || !new PersonValidator(item.Item).isValid()) {
         return dates
@@ -134,24 +139,30 @@ export default class People extends SubsectionElement {
     }, [])
   }
 
-  inject (items) {
+  inject(items) {
     return InjectGaps(items, daysAgo(today, 365 * this.props.totalYears))
   }
 
-  render () {
+  render() {
     return (
-      <div className="section-content people" {...super.dataAttributes(this.props)}>
+      <div
+        className="section-content people"
+        {...super.dataAttributes(this.props)}>
         {i18n.m('relationships.people.para.intro')}
 
-        <span id="scrollToPeople"></span>
+        <span id="scrollToPeople" />
         <div className="summaryprogress progress">
-          <SummaryProgress className="people-summary"
-                           List={this.peopleSummaryList}
-                           title={i18n.t('relationships.people.summaryProgress.title')}
-                           unit={i18n.t('relationships.people.summaryProgress.unit')}
-                           total={7}>
+          <SummaryProgress
+            className="people-summary"
+            List={this.peopleSummaryList}
+            title={i18n.t('relationships.people.summaryProgress.title')}
+            unit={i18n.t('relationships.people.summaryProgress.unit')}
+            total={7}>
             <div className="summary-icon">
-              <Svg src="/img/people-who-know-you.svg" alt={i18n.t('relationships.people.summaryProgress.svgAlt')} />
+              <Svg
+                src="/img/people-who-know-you.svg"
+                alt={i18n.t('relationships.people.summaryProgress.svgAlt')}
+              />
             </div>
           </SummaryProgress>
         </div>
@@ -159,29 +170,38 @@ export default class People extends SubsectionElement {
           <PeopleCounter List={this.props.List} />
         </div>
 
-        <Accordion scrollTo="scrollToPeople"
-                   {...this.props.List}
-                   defaultState={this.props.defaultState}
-                   scrollToBottom={this.props.scrollToBottom}
-                   realtime={true}
-                   sort={this.sort}
-                   inject={this.inject}
-                   summary={this.summary}
-                   customDetails={this.customDetails}
-                   validator={PersonValidator}
-                   onUpdate={this.updateList}
-                   onError={this.handleError}
-                   required={this.props.required}
-                   scrollIntoView={this.props.scrollIntoView}
-                   description={i18n.t('relationships.people.person.collection.description')}
-                   appendTitle={i18n.t('relationships.people.person.collection.appendTitle')}
-                   appendLabel={i18n.t('relationships.people.person.collection.appendLabel')}>
-          <Person name="Item"
-                  bind={true}
-                  addressBooks={this.props.addressBooks}
-                  dispatch={this.props.dispatch}
-                  required={this.props.required}
-                  scrollIntoView={this.props.scrollIntoView} />
+        <Accordion
+          scrollTo="scrollToPeople"
+          {...this.props.List}
+          defaultState={this.props.defaultState}
+          scrollToBottom={this.props.scrollToBottom}
+          realtime={true}
+          sort={this.sort}
+          inject={this.inject}
+          summary={this.summary}
+          customDetails={this.customDetails}
+          validator={PersonValidator}
+          onUpdate={this.updateList}
+          onError={this.handleError}
+          required={this.props.required}
+          scrollIntoView={this.props.scrollIntoView}
+          description={i18n.t(
+            'relationships.people.person.collection.description'
+          )}
+          appendTitle={i18n.t(
+            'relationships.people.person.collection.appendTitle'
+          )}
+          appendLabel={i18n.t(
+            'relationships.people.person.collection.appendLabel'
+          )}>
+          <Person
+            name="Item"
+            bind={true}
+            addressBooks={this.props.addressBooks}
+            dispatch={this.props.dispatch}
+            required={this.props.required}
+            scrollIntoView={this.props.scrollIntoView}
+          />
         </Accordion>
       </div>
     )
@@ -190,13 +210,15 @@ export default class People extends SubsectionElement {
 
 People.defaultProps = {
   List: { items: [] },
-  onUpdate: (queue) => {},
-  onError: (value, arr) => { return arr },
+  onUpdate: queue => {},
+  onError: (value, arr) => {
+    return arr
+  },
   section: 'relationships',
   subsection: 'people',
   addressBooks: {},
   dispatch: () => {},
-  validator: (data) => {
+  validator: data => {
     return validate(schema('relationships.people', data))
   },
   defaultState: true,

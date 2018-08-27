@@ -1,35 +1,39 @@
 import DateRangeValidator from './daterange'
 import LocationValidator from './location'
-import { validAccordion, validBranch, validGenericTextfield, validPhoneNumber } from './helpers'
+import {
+  validAccordion,
+  validBranch,
+  validGenericTextfield,
+  validPhoneNumber
+} from './helpers'
 
 export default class VoluntaryCounselingsValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.soughtTreatment = (data.SoughtTreatment || {}).value
     this.list = data.List || {}
   }
 
-  validSoughtTreatment () {
+  validSoughtTreatment() {
     return validBranch(this.soughtTreatment)
   }
 
-  validVoluntaryCounselings () {
+  validVoluntaryCounselings() {
     if (this.validSoughtTreatment() && this.soughtTreatment === 'No') {
       return true
     }
 
-    return validAccordion(this.list, (item) => {
+    return validAccordion(this.list, item => {
       return new VoluntaryCounselingValidator(item).isValid()
     })
   }
 
-  isValid () {
-    return this.validSoughtTreatment() &&
-      this.validVoluntaryCounselings()
+  isValid() {
+    return this.validSoughtTreatment() && this.validVoluntaryCounselings()
   }
 }
 
 export class VoluntaryCounselingValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.counselingDates = data.CounselingDates
     this.treatmentProviderName = data.TreatmentProviderName
     this.treatmentProviderAddress = data.TreatmentProviderAddress
@@ -38,22 +42,24 @@ export class VoluntaryCounselingValidator {
     this.noCompletedTreatmentExplanation = data.NoCompletedTreatmentExplanation
   }
 
-  validCompletedTreatment () {
+  validCompletedTreatment() {
     switch (this.completedTreatment) {
-    case 'Yes':
-      return true
-    case 'No':
-      return validGenericTextfield(this.noCompletedTreatmentExplanation)
-    default:
-      return false
+      case 'Yes':
+        return true
+      case 'No':
+        return validGenericTextfield(this.noCompletedTreatmentExplanation)
+      default:
+        return false
     }
   }
 
-  isValid () {
-    return new DateRangeValidator(this.counselingDates).isValid() &&
+  isValid() {
+    return (
+      new DateRangeValidator(this.counselingDates).isValid() &&
       validGenericTextfield(this.treatmentProviderName) &&
       new LocationValidator(this.treatmentProviderAddress).isValid() &&
       validPhoneNumber(this.treatmentProviderTelephone) &&
       this.validCompletedTreatment()
+    )
   }
 }

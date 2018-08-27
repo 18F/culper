@@ -22,11 +22,16 @@ describe('The CheckboxGroup component', () => {
       </CheckboxGroup>
     )
 
-    expect(component.find('input[type="checkbox"]').first().props().checked).toBe(true)
+    expect(
+      component
+        .find('input[type="checkbox"]')
+        .first()
+        .props().checked
+    ).toBe(true)
   })
 
   it('renders checkbox button children with selected func', () => {
-    let selectedValueFunc = (props) => {
+    let selectedValueFunc = props => {
       return props.value === 'Option1'
     }
 
@@ -37,7 +42,12 @@ describe('The CheckboxGroup component', () => {
       </CheckboxGroup>
     )
 
-    expect(component.find('input[type="checkbox"]').first().props().checked).toBe(true)
+    expect(
+      component
+        .find('input[type="checkbox"]')
+        .first()
+        .props().checked
+    ).toBe(true)
   })
 
   it('renders checkbox button children', () => {

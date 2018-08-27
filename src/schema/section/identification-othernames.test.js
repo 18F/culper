@@ -7,18 +7,20 @@ describe('Schema for financial taxes', () => {
       HasOtherNames: { value: 'Yes' },
       List: {
         branch: { value: 'No' },
-        items: [{
-          Item: {
-            Name: {},
-            MaidenName: {},
-            DatesUsed: {
-              from: {},
-              to: {},
-              present: null
-            },
-            Reason: {}
+        items: [
+          {
+            Item: {
+              Name: {},
+              MaidenName: {},
+              DatesUsed: {
+                from: {},
+                to: {},
+                present: null
+              },
+              Reason: {}
+            }
           }
-        }]
+        ]
       }
     }
 

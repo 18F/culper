@@ -38,26 +38,58 @@ describe('The nonpayment component', () => {
       name: 'nonpayment',
       HasNonpayment: { value: 'Yes' },
       List: { branch: {}, items: [{}] },
-      onUpdate: (obj) => {
+      onUpdate: obj => {
         updates++
       }
     }
     const component = mount(<Nonpayment {...expected} />)
-    component.find('.branch .yes input').first().simulate('change')
-    component.find('.nonpayment-name input').simulate('change', { target: { value: 'IRS' } })
-    component.find('.nonpayment-infractions input').first().simulate('change', { target: { value: 'IRS' } })
-    component.find('.nonpayment-accountnumber input').simulate('change', { target: { value: 'IRS' } })
-    component.find('.nonpayment-propertytype input').simulate('change', { target: { value: 'IRS' } })
-    component.find('.nonpayment-amount input[type="text"]').simulate('change', { target: { value: '10000' } })
-    component.find('.nonpayment-reason textarea').simulate('change', { target: { value: 'Reason for not filing' } })
-    component.find('.nonpayment-status input').simulate('change', { target: { value: 'Reason for not filing' } })
-    component.find('.nonpayment-date .day input').simulate('change', { target: { name: 'day', value: '1' } })
-    component.find('.nonpayment-date .month input').simulate('change', { target: { name: 'month', value: '1' } })
-    component.find('.nonpayment-date .year input').simulate('change', { target: { name: 'year', value: '2005' } })
-    component.find('.nonpayment-resolved .day input').simulate('change', { target: { name: 'day', value: '1' } })
-    component.find('.nonpayment-resolved .month input').simulate('change', { target: { name: 'month', value: '1' } })
-    component.find('.nonpayment-resolved .year input').simulate('change', { target: { name: 'year', value: '2005' } })
-    component.find('.nonpayment-description textarea').simulate('change', { target: { value: 'Description for not filing' } })
+    component
+      .find('.branch .yes input')
+      .first()
+      .simulate('change')
+    component
+      .find('.nonpayment-name input')
+      .simulate('change', { target: { value: 'IRS' } })
+    component
+      .find('.nonpayment-infractions input')
+      .first()
+      .simulate('change', { target: { value: 'IRS' } })
+    component
+      .find('.nonpayment-accountnumber input')
+      .simulate('change', { target: { value: 'IRS' } })
+    component
+      .find('.nonpayment-propertytype input')
+      .simulate('change', { target: { value: 'IRS' } })
+    component
+      .find('.nonpayment-amount input[type="text"]')
+      .simulate('change', { target: { value: '10000' } })
+    component
+      .find('.nonpayment-reason textarea')
+      .simulate('change', { target: { value: 'Reason for not filing' } })
+    component
+      .find('.nonpayment-status input')
+      .simulate('change', { target: { value: 'Reason for not filing' } })
+    component
+      .find('.nonpayment-date .day input')
+      .simulate('change', { target: { name: 'day', value: '1' } })
+    component
+      .find('.nonpayment-date .month input')
+      .simulate('change', { target: { name: 'month', value: '1' } })
+    component
+      .find('.nonpayment-date .year input')
+      .simulate('change', { target: { name: 'year', value: '2005' } })
+    component
+      .find('.nonpayment-resolved .day input')
+      .simulate('change', { target: { name: 'day', value: '1' } })
+    component
+      .find('.nonpayment-resolved .month input')
+      .simulate('change', { target: { name: 'month', value: '1' } })
+    component
+      .find('.nonpayment-resolved .year input')
+      .simulate('change', { target: { name: 'year', value: '2005' } })
+    component
+      .find('.nonpayment-description textarea')
+      .simulate('change', { target: { value: 'Description for not filing' } })
     expect(updates).toBeGreaterThan(11)
   })
 })

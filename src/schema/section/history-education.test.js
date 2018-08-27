@@ -8,40 +8,44 @@ describe('Schema for financial taxes', () => {
       HasDegree10: { value: 'No' },
       List: {
         branch: { value: 'No' },
-        items: [{
-          Item: {
-            Dates: {
-              from: {},
-              to: {},
-              present: null
-            },
-            Type: {},
-            Name: {},
-            Address: {
-              country: null
-            },
-            Comments: {},
-            ReferenceName: {},
-            ReferenceNameNotApplicable: {},
-            ReferencePhone: {},
-            ReferenceEmail: {},
-            ReferenceEmailNotApplicable: {},
-            ReferenceAddress: {
-              country: null
-            },
-            Diplomas: {
-              branch: null,
-              items: [{
-                Item: {
-                  Has: {},
-                  Diploma: {},
-                  DiplomaOther: {},
-                  Date: {}
-                }
-              }]
+        items: [
+          {
+            Item: {
+              Dates: {
+                from: {},
+                to: {},
+                present: null
+              },
+              Type: {},
+              Name: {},
+              Address: {
+                country: null
+              },
+              Comments: {},
+              ReferenceName: {},
+              ReferenceNameNotApplicable: {},
+              ReferencePhone: {},
+              ReferenceEmail: {},
+              ReferenceEmailNotApplicable: {},
+              ReferenceAddress: {
+                country: null
+              },
+              Diplomas: {
+                branch: null,
+                items: [
+                  {
+                    Item: {
+                      Has: {},
+                      Diploma: {},
+                      DiplomaOther: {},
+                      Date: {}
+                    }
+                  }
+                ]
+              }
             }
           }
-        }]
+        ]
       }
     }
 

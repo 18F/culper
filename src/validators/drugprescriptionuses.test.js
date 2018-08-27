@@ -1,7 +1,7 @@
 import DrugPrescriptionUsesValidator from './drugprescriptionuses'
 
-describe('Drug Prescription Validation', function () {
-  it('should validate drug prescription misuse', function () {
+describe('Drug Prescription Validation', function() {
+  it('should validate drug prescription misuse', function() {
     const tests = [
       {
         data: {
@@ -30,7 +30,7 @@ describe('Drug Prescription Validation', function () {
           MisusedDrugs: { value: 'Yes' },
           List: {
             branch: { value: 'Nope' },
-            items: [{DrugUse: {}}]
+            items: [{ DrugUse: {} }]
           }
         },
         expected: false
@@ -40,7 +40,7 @@ describe('Drug Prescription Validation', function () {
           MisusedDrugs: { value: 'Yes' },
           List: {
             branch: { value: 'No' },
-            items: [{DrugUse: {}}]
+            items: [{ DrugUse: {} }]
           }
         },
         expected: false
@@ -85,7 +85,9 @@ describe('Drug Prescription Validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new DrugPrescriptionUsesValidator(test.data).isValid()).toBe(test.expected)
+      expect(new DrugPrescriptionUsesValidator(test.data).isValid()).toBe(
+        test.expected
+      )
     })
   })
 })

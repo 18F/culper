@@ -1,9 +1,17 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Email, Text, Field, Location, Telephone, NotApplicable } from '../../../Form'
+import {
+  ValidationElement,
+  Email,
+  Text,
+  Field,
+  Location,
+  Telephone,
+  NotApplicable
+} from '../../../Form'
 
 export default class Supervisor extends ValidationElement {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.update = this.update.bind(this)
@@ -15,7 +23,7 @@ export default class Supervisor extends ValidationElement {
     this.updateTelephone = this.updateTelephone.bind(this)
   }
 
-  update (queue) {
+  update(queue) {
     this.props.onUpdate({
       SupervisorName: this.props.SupervisorName,
       Title: this.props.Title,
@@ -27,121 +35,142 @@ export default class Supervisor extends ValidationElement {
     })
   }
 
-  updateSupervisorName (values) {
+  updateSupervisorName(values) {
     this.update({
       SupervisorName: values
     })
   }
 
-  updateTitle (values) {
+  updateTitle(values) {
     this.update({
       Title: values
     })
   }
 
-  updateEmailNotApplicable (values) {
+  updateEmailNotApplicable(values) {
     this.update({
       EmailNotApplicable: values
     })
   }
 
-  updateEmail (values) {
+  updateEmail(values) {
     this.update({
       Email: values
     })
   }
 
-  updateAddress (values) {
+  updateAddress(values) {
     this.update({
       Address: values
     })
   }
 
-  updateTelephone (values) {
+  updateTelephone(values) {
     this.update({
       Telephone: values
     })
   }
 
-  render () {
+  render() {
     return (
       <div className="supervisor">
-        <Field title={i18n.t('history.employment.default.supervisor.heading.name')}
-               adjustFor="labels"
-               scrollIntoView={this.props.scrollIntoView}>
-          <Text name="SupervisorName"
-                className="text full-width supervisor-name"
-                {...this.props.SupervisorName}
-                onError={this.props.onError}
-                onUpdate={this.updateSupervisorName}
-                required={this.props.required}
-                />
+        <Field
+          title={i18n.t('history.employment.default.supervisor.heading.name')}
+          adjustFor="labels"
+          scrollIntoView={this.props.scrollIntoView}>
+          <Text
+            name="SupervisorName"
+            className="text full-width supervisor-name"
+            {...this.props.SupervisorName}
+            onError={this.props.onError}
+            onUpdate={this.updateSupervisorName}
+            required={this.props.required}
+          />
         </Field>
 
-        <Field title={i18n.t('history.employment.default.supervisor.heading.title')}
-               adjustFor="labels"
-               scrollIntoView={this.props.scrollIntoView}>
-          <Text name="Title"
-                {...this.props.Title}
-                className="text full-width supervisor-title"
-                onUpdate={this.updateTitle}
-                onError={this.props.onError}
-                required={this.props.required}
-                />
+        <Field
+          title={i18n.t('history.employment.default.supervisor.heading.title')}
+          adjustFor="labels"
+          scrollIntoView={this.props.scrollIntoView}>
+          <Text
+            name="Title"
+            {...this.props.Title}
+            className="text full-width supervisor-title"
+            onUpdate={this.updateTitle}
+            onError={this.props.onError}
+            required={this.props.required}
+          />
         </Field>
 
-        <Field title={i18n.t('history.employment.default.supervisor.heading.email')}
-               adjustFor="label"
-               shrink={true}
-               scrollIntoView={this.props.scrollIntoView}>
-          <NotApplicable name="EmailNotApplicable"
-                         {...this.props.EmailNotApplicable}
-                         className="supervisor-email-na"
-                         label={i18n.t('reference.label.idk')}
-                         or={i18n.m('reference.para.or')}
-                         onUpdate={this.updateEmailNotApplicable}
-                         onError={this.props.onError}>
-            <Email name="Email"
-                   {...this.props.Email}
-                   className="text supervisor-email"
-                   onUpdate={this.updateEmail}
-                   onError={this.props.onError}
-                   required={(this.props.EmailNotApplicable || {}).applicable === false ? false : this.props.required}
-                   />
+        <Field
+          title={i18n.t('history.employment.default.supervisor.heading.email')}
+          adjustFor="label"
+          shrink={true}
+          scrollIntoView={this.props.scrollIntoView}>
+          <NotApplicable
+            name="EmailNotApplicable"
+            {...this.props.EmailNotApplicable}
+            className="supervisor-email-na"
+            label={i18n.t('reference.label.idk')}
+            or={i18n.m('reference.para.or')}
+            onUpdate={this.updateEmailNotApplicable}
+            onError={this.props.onError}>
+            <Email
+              name="Email"
+              {...this.props.Email}
+              className="text supervisor-email"
+              onUpdate={this.updateEmail}
+              onError={this.props.onError}
+              required={
+                (this.props.EmailNotApplicable || {}).applicable === false
+                  ? false
+                  : this.props.required
+              }
+            />
           </NotApplicable>
         </Field>
 
-        <Field title={i18n.t('history.employment.default.supervisor.heading.address')}
-               optional={true}
-               help="history.employment.default.supervisor.address.help"
-               adjustFor="address"
-               scrollIntoView={this.props.scrollIntoView}>
-          <Location name="Address"
-                    {...this.props.Address}
-                    label={i18n.t('history.employment.default.supervisor.address.label')}
-                    className="supervisor-address"
-                    layout={Location.ADDRESS}
-                    geocode={true}
-                    addressBooks={this.props.addressBooks}
-                    addressBook={this.props.addressBook}
-                    dispatch={this.props.dispatch}
-                    onUpdate={this.updateAddress}
-                    onError={this.props.onError}
-                    required={this.props.required}
-                    />
+        <Field
+          title={i18n.t(
+            'history.employment.default.supervisor.heading.address'
+          )}
+          optional={true}
+          help="history.employment.default.supervisor.address.help"
+          adjustFor="address"
+          scrollIntoView={this.props.scrollIntoView}>
+          <Location
+            name="Address"
+            {...this.props.Address}
+            label={i18n.t(
+              'history.employment.default.supervisor.address.label'
+            )}
+            className="supervisor-address"
+            layout={Location.ADDRESS}
+            geocode={true}
+            addressBooks={this.props.addressBooks}
+            addressBook={this.props.addressBook}
+            dispatch={this.props.dispatch}
+            onUpdate={this.updateAddress}
+            onError={this.props.onError}
+            required={this.props.required}
+          />
         </Field>
 
-        <Field title={i18n.t('history.employment.default.supervisor.heading.telephone')}
-               className="override-required"
-               adjustFor="telephone"
-               scrollIntoView={this.props.scrollIntoView}>
-          <Telephone name="Telephone"
-                     {...this.props.Telephone}
-                     className="supervisor-telephone"
-                     onUpdate={this.updateTelephone}
-                     onError={this.props.onError}
-                     required={this.props.required}
-                     />
+        <Field
+          title={i18n.t(
+            'history.employment.default.supervisor.heading.telephone'
+          )}
+          className="override-required"
+          adjustFor="telephone"
+          scrollIntoView={this.props.scrollIntoView}>
+          <Telephone
+            name="Telephone"
+            {...this.props.Telephone}
+            className="supervisor-telephone"
+            onUpdate={this.updateTelephone}
+            onError={this.props.onError}
+            required={this.props.required}
+          />
         </Field>
       </div>
     )
@@ -157,7 +186,9 @@ Supervisor.defaultProps = {
   Telephone: {},
   addressBooks: {},
   addressBook: 'Employment',
-  dispatch: (action) => {},
-  onUpdate: (queue) => {},
-  onError: (value, arr) => { return arr }
+  dispatch: action => {},
+  onUpdate: queue => {},
+  onError: (value, arr) => {
+    return arr
+  }
 }

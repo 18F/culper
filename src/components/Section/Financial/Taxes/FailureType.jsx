@@ -3,12 +3,12 @@ import { i18n } from '../../../../config'
 import { ValidationElement, RadioGroup, Radio } from '../../../Form'
 
 export default class FailureType extends ValidationElement {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.update = this.update.bind(this)
   }
 
-  update (values) {
+  update(values) {
     if (this.props.onUpdate) {
       this.props.onUpdate({
         name: this.props.name,
@@ -17,30 +17,34 @@ export default class FailureType extends ValidationElement {
     }
   }
 
-  render () {
+  render() {
     return (
-      <RadioGroup className={`option-list ${this.props.className || ''}`.trim()}
-                  required={this.props.required}
-                  onError={this.props.onError}
-                  selectedValue={this.props.value}>
-        <Radio label={i18n.t('financial.taxes.label.file')}
-               value="File"
-               className="failure-file"
-               onUpdate={this.update}
-               onError={this.props.onError}
-               />
-        <Radio label={i18n.t('financial.taxes.label.pay')}
-               value="Pay"
-               className="failure-pay"
-               onUpdate={this.update}
-               onError={this.props.onError}
-               />
-        <Radio label={i18n.t('financial.taxes.label.both')}
-               value="Both"
-               className="failure-both"
-               onUpdate={this.update}
-               onError={this.props.onError}
-               />
+      <RadioGroup
+        className={`option-list ${this.props.className || ''}`.trim()}
+        required={this.props.required}
+        onError={this.props.onError}
+        selectedValue={this.props.value}>
+        <Radio
+          label={i18n.t('financial.taxes.label.file')}
+          value="File"
+          className="failure-file"
+          onUpdate={this.update}
+          onError={this.props.onError}
+        />
+        <Radio
+          label={i18n.t('financial.taxes.label.pay')}
+          value="Pay"
+          className="failure-pay"
+          onUpdate={this.update}
+          onError={this.props.onError}
+        />
+        <Radio
+          label={i18n.t('financial.taxes.label.both')}
+          value="Both"
+          className="failure-both"
+          onUpdate={this.update}
+          onError={this.props.onError}
+        />
       </RadioGroup>
     )
   }
@@ -48,5 +52,7 @@ export default class FailureType extends ValidationElement {
 
 FailureType.defaultProps = {
   value: '',
-  onError: (value, arr) => { return arr }
+  onError: (value, arr) => {
+    return arr
+  }
 }

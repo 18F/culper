@@ -18,8 +18,14 @@ describe('The verify component', () => {
       },
       history: {}
     }
-    const component = mount(<MemoryRouter><Verify {...props} /></MemoryRouter>)
-    expect(component.find('.release-name .component span.title-case').text()).toBe('Bob Joe Smith')
+    const component = mount(
+      <MemoryRouter>
+        <Verify {...props} />
+      </MemoryRouter>
+    )
+    expect(
+      component.find('.release-name .component span.title-case').text()
+    ).toBe('Bob Joe Smith')
   })
 
   it('displays other names used', () => {
@@ -56,8 +62,14 @@ describe('The verify component', () => {
       },
       history: {}
     }
-    const component = mount(<MemoryRouter><Verify {...props} /></MemoryRouter>)
-    expect(component.find('.release-aliases .component span.title-case').text()).toBe('Foo J Bar Jr')
+    const component = mount(
+      <MemoryRouter>
+        <Verify {...props} />
+      </MemoryRouter>
+    )
+    expect(
+      component.find('.release-aliases .component span.title-case').text()
+    ).toBe('Foo J Bar Jr')
   })
 
   it('displays date of birth with day', () => {
@@ -74,8 +86,14 @@ describe('The verify component', () => {
       },
       history: {}
     }
-    const component = mount(<MemoryRouter><Verify {...props} /></MemoryRouter>)
-    expect(component.find('.release-dob .component > span').text()).toBe('1/1/1982')
+    const component = mount(
+      <MemoryRouter>
+        <Verify {...props} />
+      </MemoryRouter>
+    )
+    expect(component.find('.release-dob .component > span').text()).toBe(
+      '1/1/1982'
+    )
   })
 
   it('displays social security number', () => {
@@ -91,8 +109,14 @@ describe('The verify component', () => {
       },
       history: {}
     }
-    const component = mount(<MemoryRouter><Verify {...props} /></MemoryRouter>)
-    expect(component.find('.release-ssn .component > span').text()).toBe('123-45-6789')
+    const component = mount(
+      <MemoryRouter>
+        <Verify {...props} />
+      </MemoryRouter>
+    )
+    expect(component.find('.release-ssn .component > span').text()).toBe(
+      '123-45-6789'
+    )
   })
 
   it('displays phone number(s)', () => {
@@ -125,9 +149,23 @@ describe('The verify component', () => {
       },
       history: {}
     }
-    const component = mount(<MemoryRouter><Verify {...props} /></MemoryRouter>)
-    expect(component.find('.release-telephone .component span.title-case').at(0).text()).toBe('(202) 867-5309 x1234')
-    expect(component.find('.release-telephone .component span.title-case').at(1).text()).toBe('(123) 123-1234')
+    const component = mount(
+      <MemoryRouter>
+        <Verify {...props} />
+      </MemoryRouter>
+    )
+    expect(
+      component
+        .find('.release-telephone .component span.title-case')
+        .at(0)
+        .text()
+    ).toBe('(202) 867-5309 x1234')
+    expect(
+      component
+        .find('.release-telephone .component span.title-case')
+        .at(1)
+        .text()
+    ).toBe('(123) 123-1234')
   })
 
   it('displays current address', () => {
@@ -198,8 +236,16 @@ describe('The verify component', () => {
         }
       }
     }
-    const component = mount(<MemoryRouter><Verify {...props} /></MemoryRouter>)
-    expect(component.find('.release-current-address .component span.title-case').text()).toBe('1234 some rd, new orleans, LA 22202')
+    const component = mount(
+      <MemoryRouter>
+        <Verify {...props} />
+      </MemoryRouter>
+    )
+    expect(
+      component
+        .find('.release-current-address .component span.title-case')
+        .text()
+    ).toBe('1234 some rd, new orleans, LA 22202')
   })
 
   it('displays text when nothing is found', () => {
@@ -207,12 +253,28 @@ describe('The verify component', () => {
       Identification: {},
       History: {}
     }
-    const component = mount(<MemoryRouter><Verify {...props} /></MemoryRouter>)
-    expect(component.find('.release-name .component > span').text()).toBe('Not entered')
-    expect(component.find('.release-aliases .component > span').text()).toBe('Not entered')
-    expect(component.find('.release-dob .component > span').text()).toBe('Not entered')
-    expect(component.find('.release-ssn .component > span').text()).toBe('Not entered')
-    expect(component.find('.release-telephone .component > span').text()).toBe('Not entered')
-    expect(component.find('.release-current-address .component > span').text()).toBe('Not entered')
+    const component = mount(
+      <MemoryRouter>
+        <Verify {...props} />
+      </MemoryRouter>
+    )
+    expect(component.find('.release-name .component > span').text()).toBe(
+      'Not entered'
+    )
+    expect(component.find('.release-aliases .component > span').text()).toBe(
+      'Not entered'
+    )
+    expect(component.find('.release-dob .component > span').text()).toBe(
+      'Not entered'
+    )
+    expect(component.find('.release-ssn .component > span').text()).toBe(
+      'Not entered'
+    )
+    expect(component.find('.release-telephone .component > span').text()).toBe(
+      'Not entered'
+    )
+    expect(
+      component.find('.release-current-address .component > span').text()
+    ).toBe('Not entered')
   })
 })

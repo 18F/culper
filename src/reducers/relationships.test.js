@@ -1,7 +1,7 @@
 import relationshipsReducer from './relationships'
 
-describe('Relationships Reducer', function () {
-  it('should handle default relationships update', function () {
+describe('Relationships Reducer', function() {
+  it('should handle default relationships update', function() {
     const tests = [
       {
         state: {},
@@ -25,11 +25,13 @@ describe('Relationships Reducer', function () {
       }
     ]
     tests.forEach(test => {
-      expect(relationshipsReducer(test.state, test.action)).toEqual(test.expected)
+      expect(relationshipsReducer(test.state, test.action)).toEqual(
+        test.expected
+      )
     })
   })
 
-  it('should handle ClearSameSpouseConfirmed relationships update', function () {
+  it('should handle ClearSameSpouseConfirmed relationships update', function() {
     const tests = [
       {
         state: {
@@ -87,7 +89,7 @@ describe('Relationships Reducer', function () {
       {
         state: {
           Cohabitants: {
-            CohabitantList: [{Cohabitant: null}]
+            CohabitantList: [{ Cohabitant: null }]
           }
         },
         action: {
@@ -99,16 +101,20 @@ describe('Relationships Reducer', function () {
         expected: {
           ClearSameSpouseConfirmed: true,
           Cohabitants: {
-            CohabitantList: [{Cohabitant: null}]
+            CohabitantList: [{ Cohabitant: null }]
           }
         }
       },
       {
         state: {
           Cohabitants: {
-            CohabitantList: [{Cohabitant: {
-              SameSpouseConfirmed: true
-            }}]
+            CohabitantList: [
+              {
+                Cohabitant: {
+                  SameSpouseConfirmed: true
+                }
+              }
+            ]
           }
         },
         action: {
@@ -120,18 +126,22 @@ describe('Relationships Reducer', function () {
         expected: {
           ClearSameSpouseConfirmed: true,
           Cohabitants: {
-            CohabitantList: [{
-              Cohabitant: {
-                SameSpouseConfirmed: false
+            CohabitantList: [
+              {
+                Cohabitant: {
+                  SameSpouseConfirmed: false
+                }
               }
-            }]
+            ]
           }
         }
       }
     ]
 
     tests.forEach(test => {
-      expect(relationshipsReducer(test.state, test.action)).toEqual(test.expected)
+      expect(relationshipsReducer(test.state, test.action)).toEqual(
+        test.expected
+      )
     })
   })
 })

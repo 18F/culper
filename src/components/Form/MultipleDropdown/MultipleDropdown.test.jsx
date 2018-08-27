@@ -13,9 +13,15 @@ describe('The MultipleDropdown component', () => {
       { name: 'United States', value: 'United States' },
       { name: 'Germany', value: 'Germany' }
     ].map(x => {
-      return <option key={x.value} value={x.value}>{x.name}</option>
+      return (
+        <option key={x.value} value={x.value}>
+          {x.name}
+        </option>
+      )
     })
-    const component = mount(<MultipleDropdown {...expected}>{options}</MultipleDropdown>)
+    const component = mount(
+      <MultipleDropdown {...expected}>{options}</MultipleDropdown>
+    )
     expect(component.find('.token').length).toBe(1)
   })
 
@@ -33,15 +39,23 @@ describe('The MultipleDropdown component', () => {
     const expected = {
       name: 'multiple-dropdown',
       value: ['United States'],
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
     const options = [
       { name: 'United States', value: 'United States' },
       { name: 'Germany', value: 'Germany' }
     ].map(x => {
-      return <option key={x.value} value={x.value}>{x.name}</option>
+      return (
+        <option key={x.value} value={x.value}>
+          {x.name}
+        </option>
+      )
     })
-    const component = mount(<MultipleDropdown {...expected}>{options}</MultipleDropdown>)
+    const component = mount(
+      <MultipleDropdown {...expected}>{options}</MultipleDropdown>
+    )
     component.find('.token-delete').simulate('click')
     expect(updates).toBe(1)
   })
@@ -55,9 +69,15 @@ describe('The MultipleDropdown component', () => {
       { name: 'United States', value: 'United States' },
       { name: 'Germany', value: 'Germany' }
     ].map(x => {
-      return <option key={x.value} value={x.value}>{x.name}</option>
+      return (
+        <option key={x.value} value={x.value}>
+          {x.name}
+        </option>
+      )
     })
-    const component = mount(<MultipleDropdown {...expected}>{options}</MultipleDropdown>)
+    const component = mount(
+      <MultipleDropdown {...expected}>{options}</MultipleDropdown>
+    )
     expect(component.find('input').length).toBe(1)
   })
 
@@ -65,14 +85,20 @@ describe('The MultipleDropdown component', () => {
     let updated = false
     const expected = {
       value: [],
-      onUpdate: () => { updated = true }
+      onUpdate: () => {
+        updated = true
+      }
     }
-    const options = [
-      { name: 'Germany', value: 'Germany' }
-    ].map(x => {
-      return <option key={x.value} value={x.value}>{x.name}</option>
+    const options = [{ name: 'Germany', value: 'Germany' }].map(x => {
+      return (
+        <option key={x.value} value={x.value}>
+          {x.name}
+        </option>
+      )
     })
-    const component = mount(<MultipleDropdown {...expected}>{options}</MultipleDropdown>)
+    const component = mount(
+      <MultipleDropdown {...expected}>{options}</MultipleDropdown>
+    )
     component.find('.dropdown input').simulate('change', {
       target: {
         value: 'Belg'

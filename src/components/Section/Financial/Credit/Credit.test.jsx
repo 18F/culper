@@ -36,20 +36,34 @@ describe('The credit component', () => {
       name: 'credit-counseling',
       HasCreditCounseling: { value: 'Yes' },
       List: { branch: { value: 'No' }, items: [{}] },
-      onUpdate: (obj) => {
+      onUpdate: obj => {
         updates++
       }
     }
     const component = mount(<Credit {...expected} />)
-    component.find('.branch .yes input').first().simulate('change')
+    component
+      .find('.branch .yes input')
+      .first()
+      .simulate('change')
     expect(updates).toBe(2)
     expect(component.find('.accordion').length).toBe(1)
     updates = 0
-    component.find('.credit-explanation textarea').simulate('change', { target: { value: 'IRS' } })
-    component.find('.credit-name input').simulate('change', { target: { value: 'IRS' } })
-    component.find('.credit-telephone input').first().simulate('change')
-    component.find('.credit-location .city input').simulate('change', { target: { value: 'Mesa' } })
-    component.find('.credit-description textarea').simulate('change', { target: { value: 'Description for not filing' } })
+    component
+      .find('.credit-explanation textarea')
+      .simulate('change', { target: { value: 'IRS' } })
+    component
+      .find('.credit-name input')
+      .simulate('change', { target: { value: 'IRS' } })
+    component
+      .find('.credit-telephone input')
+      .first()
+      .simulate('change')
+    component
+      .find('.credit-location .city input')
+      .simulate('change', { target: { value: 'Mesa' } })
+    component
+      .find('.credit-description textarea')
+      .simulate('change', { target: { value: 'Description for not filing' } })
     expect(updates).toBe(5)
   })
 })

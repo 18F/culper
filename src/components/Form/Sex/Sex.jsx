@@ -6,7 +6,7 @@ import Radio from '../Radio'
 import RadioGroup from '../RadioGroup'
 
 export default class Sex extends ValidationElement {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.handleUpdate = this.handleUpdate.bind(this)
     this.handleError = this.handleError.bind(this)
@@ -15,13 +15,13 @@ export default class Sex extends ValidationElement {
   /**
    * Handle the change event.
    */
-  handleUpdate (values) {
+  handleUpdate(values) {
     this.props.onUpdate({
       value: values.value
     })
   }
 
-  handleError (value, arr) {
+  handleError(value, arr) {
     arr = arr.map(err => {
       return {
         code: `sex.${err.code}`,
@@ -34,35 +34,38 @@ export default class Sex extends ValidationElement {
     return this.props.onError(value, arr)
   }
 
-  divClass () {
+  divClass() {
     return (this.props.className || '') + ' sex'
   }
 
-  render () {
+  render() {
     return (
       <div className={this.divClass()}>
         <label>{this.props.label}</label>
-        <RadioGroup selectedValue={this.props.value}
-                    onError={this.props.onError}
-                    required={this.props.required}>
-          <Radio name={this.props.name}
-                 label={i18n.t('identification.traits.sex.female')}
-                 placeholder={this.props.placeholder}
-                 value="Female"
-                 className="female"
-                 onUpdate={this.handleUpdate}
-                 onError={this.handleError}>
+        <RadioGroup
+          selectedValue={this.props.value}
+          onError={this.props.onError}
+          required={this.props.required}>
+          <Radio
+            name={this.props.name}
+            label={i18n.t('identification.traits.sex.female')}
+            placeholder={this.props.placeholder}
+            value="Female"
+            className="female"
+            onUpdate={this.handleUpdate}
+            onError={this.handleError}>
             <div className="sex-icon">
               <Svg src="/img/female.svg" />
             </div>
           </Radio>
-          <Radio name={this.props.name}
-                 label={i18n.t('identification.traits.sex.male')}
-                 placeholder={this.props.placeholder}
-                 value="Male"
-                 className="male"
-                 onUpdate={this.handleUpdate}
-                 onError={this.handleError}>
+          <Radio
+            name={this.props.name}
+            label={i18n.t('identification.traits.sex.male')}
+            placeholder={this.props.placeholder}
+            value="Male"
+            className="male"
+            onUpdate={this.handleUpdate}
+            onError={this.handleError}>
             <div className="sex-icon">
               <Svg src="/img/male.svg" />
             </div>
@@ -75,8 +78,10 @@ export default class Sex extends ValidationElement {
 
 Sex.defaultProps = {
   value: '',
-  onUpdate: (queue) => {},
-  onError: (value, arr) => { return arr }
+  onUpdate: queue => {},
+  onError: (value, arr) => {
+    return arr
+  }
 }
 
 Sex.errors = []

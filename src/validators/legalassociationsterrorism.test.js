@@ -1,7 +1,7 @@
 import LegalAssociationsTerrorismValidator from './legalassociationsterrorism'
 import { battery } from './helpers'
 
-describe('Legal associations terrrorism component validation', function () {
+describe('Legal associations terrrorism component validation', function() {
   it('validate associations in terrorism', () => {
     const tests = [
       {

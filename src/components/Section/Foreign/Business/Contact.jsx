@@ -3,13 +3,16 @@ import { i18n } from '../../../../config'
 import schema from '../../../../schema'
 import validate from '../../../../validators'
 import { Summary, NameText, DateSummary } from '../../../Summary'
-import { ForeignBusinessContactValidator, ContactValidator } from '../../../../validators'
+import {
+  ForeignBusinessContactValidator,
+  ContactValidator
+} from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion } from '../../../Form'
 import ContactItem from './ContactItem'
 
 export default class Contact extends SubsectionElement {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.update = this.update.bind(this)
@@ -17,7 +20,7 @@ export default class Contact extends SubsectionElement {
     this.updateList = this.updateList.bind(this)
   }
 
-  update (queue) {
+  update(queue) {
     this.props.onUpdate({
       List: this.props.List,
       HasForeignContact: this.props.HasForeignContact,
@@ -25,28 +28,32 @@ export default class Contact extends SubsectionElement {
     })
   }
 
-  updateHasForeignContact (values) {
+  updateHasForeignContact(values) {
     this.update({
       HasForeignContact: values,
       List: values.value === 'Yes' ? this.props.List : { items: [], branch: {} }
     })
   }
 
-  updateList (values) {
+  updateList(values) {
     this.update({
       List: values
     })
   }
 
-  summary (item, index) {
-    const obj = ((item && item.Item) || {})
+  summary(item, index) {
+    const obj = (item && item.Item) || {}
     const date = DateSummary(obj.Date)
     const name = NameText(obj.Name)
     const govt = ((obj.Governments || {}).value || []).join(', ')
 
     let display = ''
     if (name && govt) {
-      display = <span className="title-case">{name} ({govt})</span>
+      display = (
+        <span className="title-case">
+          {name} ({govt})
+        </span>
+      )
     } else if (name) {
       display = <span className="title-case">{name}</span>
     } else if (govt) {
@@ -62,42 +69,53 @@ export default class Contact extends SubsectionElement {
     })
   }
 
-  render () {
+  render() {
     return (
-      <div className="section-content foreign-business-contact" {...super.dataAttributes(this.props)}>
+      <div
+        className="section-content foreign-business-contact"
+        {...super.dataAttributes(this.props)}>
         {i18n.m('foreign.business.contact.para.intro')}
 
-        <Branch name="has_foreign_contact"
-                label={i18n.t('foreign.business.contact.heading.title')}
-                labelSize="h2"
-                {...this.props.HasForeignContact}
-                warning={true}
-                onUpdate={this.updateHasForeignContact}
-                required={this.props.required}
-                onError={this.handleError}
-                scrollIntoView={this.props.scrollIntoView}>
+        <Branch
+          name="has_foreign_contact"
+          label={i18n.t('foreign.business.contact.heading.title')}
+          labelSize="h2"
+          {...this.props.HasForeignContact}
+          warning={true}
+          onUpdate={this.updateHasForeignContact}
+          required={this.props.required}
+          onError={this.handleError}
+          scrollIntoView={this.props.scrollIntoView}>
           {i18n.m('foreign.business.contact.para.branch')}
         </Branch>
 
         <Show when={this.props.HasForeignContact.value === 'Yes'}>
-          <Accordion {...this.props.List}
-                     defaultState={this.props.defaultState}
-                     scrollToBottom={this.props.scrollToBottom}
-                     onUpdate={this.updateList}
-                     onError={this.handleError}
-                     validator={ContactValidator}
-                     summary={this.summary}
-                     description={i18n.t('foreign.business.contact.collection.summary.title')}
-                     appendTitle={i18n.t('foreign.business.contact.collection.appendTitle')}
-                     appendMessage={i18n.m('foreign.business.contact.collection.appendMessage')}
-                     appendLabel={i18n.t('foreign.business.contact.collection.append')}
-                     required={this.props.required}
-                     scrollIntoView={this.props.scrollIntoView}>
-            <ContactItem name="Item"
-                         bind={true}
-                         scrollIntoView={this.props.scrollIntoView}
-                         required={this.props.required}
-                         />
+          <Accordion
+            {...this.props.List}
+            defaultState={this.props.defaultState}
+            scrollToBottom={this.props.scrollToBottom}
+            onUpdate={this.updateList}
+            onError={this.handleError}
+            validator={ContactValidator}
+            summary={this.summary}
+            description={i18n.t(
+              'foreign.business.contact.collection.summary.title'
+            )}
+            appendTitle={i18n.t(
+              'foreign.business.contact.collection.appendTitle'
+            )}
+            appendMessage={i18n.m(
+              'foreign.business.contact.collection.appendMessage'
+            )}
+            appendLabel={i18n.t('foreign.business.contact.collection.append')}
+            required={this.props.required}
+            scrollIntoView={this.props.scrollIntoView}>
+            <ContactItem
+              name="Item"
+              bind={true}
+              scrollIntoView={this.props.scrollIntoView}
+              required={this.props.required}
+            />
           </Accordion>
         </Show>
       </div>
@@ -109,13 +127,15 @@ Contact.defaultProps = {
   name: 'Contact',
   HasForeignContact: {},
   List: Accordion.defaultList,
-  onUpdate: (queue) => {},
-  onError: (value, arr) => { return arr },
+  onUpdate: queue => {},
+  onError: (value, arr) => {
+    return arr
+  },
   section: 'foreign',
   subsection: 'business/contact',
   addressBooks: {},
-  dispatch: (action) => {},
-  validator: (data) => {
+  dispatch: action => {},
+  validator: data => {
     return validate(schema('foreign.business.contact', data))
   },
   defaultState: true,

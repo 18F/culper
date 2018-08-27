@@ -1,11 +1,16 @@
 import DateControlValidator from './datecontrol'
 
 export default class DateRangeValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     const now = new Date()
     this.from = data.from
     this.to = data.present
-      ? { month: `${now.getMonth() + 1}`, day: `${now.getDate()}`, year: `${now.getFullYear()}`, date: now }
+      ? {
+          month: `${now.getMonth() + 1}`,
+          day: `${now.getDate()}`,
+          year: `${now.getFullYear()}`,
+          date: now
+        }
       : data.to
     this.present = data.present
   }
@@ -13,7 +18,7 @@ export default class DateRangeValidator {
   /**
    * Validates the date ranges
    */
-  isValid () {
+  isValid() {
     if (!new DateControlValidator(this.from || {}).isValid()) {
       return false
     }
@@ -22,8 +27,12 @@ export default class DateRangeValidator {
       return false
     }
 
-    const tdate = new Date(`${this.to.month || ''}/${this.to.day || '1'}/${this.to.year}`)
-    const fdate = new Date(`${this.from.month || ''}/${this.from.day || '1'}/${this.from.year}`)
+    const tdate = new Date(
+      `${this.to.month || ''}/${this.to.day || '1'}/${this.to.year}`
+    )
+    const fdate = new Date(
+      `${this.from.month || ''}/${this.from.day || '1'}/${this.from.year}`
+    )
     return tdate > fdate
   }
 }

@@ -12,7 +12,7 @@ smoothscroll.polyfill()
 
 var targetNode = document.getElementsByTagName('body')[0]
 var config = { attributes: true }
-var callback = function (mutationList) {
+var callback = function(mutationList) {
   tabology()
 }
 var observer = new MutationObserver(callback)

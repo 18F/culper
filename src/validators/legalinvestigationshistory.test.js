@@ -1,7 +1,9 @@
-import LegalInvestigationsHistoryValidator, { HistoryValidator } from './legalinvestigationshistory.js'
+import LegalInvestigationsHistoryValidator, {
+  HistoryValidator
+} from './legalinvestigationshistory.js'
 import { battery } from './helpers'
 
-describe('Legal investigations history component validation', function () {
+describe('Legal investigations history component validation', function() {
   it('validate agency information', () => {
     const tests = [
       {

@@ -27,14 +27,17 @@ describe('The SubmissionStatus form component', () => {
     let updates = 0
     const expected = {
       transition: true,
-      onTransitionEnd: () => { updates++ }
+      onTransitionEnd: () => {
+        updates++
+      }
     }
     const component = mount(<SubmissionStatus {...expected} />)
     expect(component.state('width')).not.toBe(100)
-    expect(component.find('.submission-status .progress.transition').length).toBe(1)
+    expect(
+      component.find('.submission-status .progress.transition').length
+    ).toBe(1)
     window.setTimeout(() => {
       expect(updates).toBe(1)
     }, 1000)
   })
 })
-

@@ -1,8 +1,8 @@
 import BankruptcyValidator, { BankruptcyItemValidator } from './bankruptcy'
 import Location from '../components/Form/Location'
 
-describe('Bankruptcy component validation', function () {
-  it('should validate has bankruptcy branch', function () {
+describe('Bankruptcy component validation', function() {
+  it('should validate has bankruptcy branch', function() {
     const tests = [
       {
         props: {
@@ -31,11 +31,13 @@ describe('Bankruptcy component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new BankruptcyValidator(test.props).validHasBankruptcy()).toBe(test.expected)
+      expect(new BankruptcyValidator(test.props).validHasBankruptcy()).toBe(
+        test.expected
+      )
     })
   })
 
-  it('should validate bankruptcy items', function () {
+  it('should validate bankruptcy items', function() {
     const tests = [
       {
         props: {
@@ -195,7 +197,7 @@ describe('Bankruptcy component validation', function () {
     })
   })
 
-  it('should validate bankruptcy petition type', function () {
+  it('should validate bankruptcy petition type', function() {
     const tests = [
       {
         props: {
@@ -224,11 +226,13 @@ describe('Bankruptcy component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new BankruptcyItemValidator(test.props).validPetitionType()).toBe(test.expected)
+      expect(new BankruptcyItemValidator(test.props).validPetitionType()).toBe(
+        test.expected
+      )
     })
   })
 
-  it('should validate bankruptcy court address', function () {
+  it('should validate bankruptcy court address', function() {
     const tests = [
       {
         props: {
@@ -252,11 +256,13 @@ describe('Bankruptcy component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new BankruptcyItemValidator(test.props).validCourtAddress()).toBe(test.expected)
+      expect(new BankruptcyItemValidator(test.props).validCourtAddress()).toBe(
+        test.expected
+      )
     })
   })
 
-  it('should validate bankruptcy court involved', function () {
+  it('should validate bankruptcy court involved', function() {
     const tests = [
       {
         props: {
@@ -283,11 +289,13 @@ describe('Bankruptcy component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new BankruptcyItemValidator(test.props).validCourtInvolved()).toBe(test.expected)
+      expect(new BankruptcyItemValidator(test.props).validCourtInvolved()).toBe(
+        test.expected
+      )
     })
   })
 
-  it('should validate bankruptcy court number', function () {
+  it('should validate bankruptcy court number', function() {
     const tests = [
       {
         props: {
@@ -314,11 +322,13 @@ describe('Bankruptcy component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new BankruptcyItemValidator(test.props).validCourtNumber()).toBe(test.expected)
+      expect(new BankruptcyItemValidator(test.props).validCourtNumber()).toBe(
+        test.expected
+      )
     })
   })
 
-  it('should validate bankruptcy total amount number', function () {
+  it('should validate bankruptcy total amount number', function() {
     const tests = [
       {
         props: {
@@ -345,11 +355,13 @@ describe('Bankruptcy component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new BankruptcyItemValidator(test.props).validTotalAmount()).toBe(test.expected)
+      expect(new BankruptcyItemValidator(test.props).validTotalAmount()).toBe(
+        test.expected
+      )
     })
   })
 
-  it('should validate bankruptcy date filed', function () {
+  it('should validate bankruptcy date filed', function() {
     const tests = [
       {
         props: {
@@ -369,11 +381,13 @@ describe('Bankruptcy component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new BankruptcyItemValidator(test.props).validDateFiled()).toBe(test.expected)
+      expect(new BankruptcyItemValidator(test.props).validDateFiled()).toBe(
+        test.expected
+      )
     })
   })
 
-  it('should validate bankruptcy date discharged', function () {
+  it('should validate bankruptcy date discharged', function() {
     const tests = [
       {
         props: {
@@ -393,11 +407,13 @@ describe('Bankruptcy component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new BankruptcyItemValidator(test.props).validDateDischarged()).toBe(test.expected)
+      expect(
+        new BankruptcyItemValidator(test.props).validDateDischarged()
+      ).toBe(test.expected)
     })
   })
 
-  it('should validate entire bankruptcy item', function () {
+  it('should validate entire bankruptcy item', function() {
     const tests = [
       {
         props: {
@@ -449,11 +465,13 @@ describe('Bankruptcy component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new BankruptcyItemValidator(test.props).isValid()).toBe(test.expected)
+      expect(new BankruptcyItemValidator(test.props).isValid()).toBe(
+        test.expected
+      )
     })
   })
 
-  it('should validate petition types', function () {
+  it('should validate petition types', function() {
     const tests = [
       {
         props: {
@@ -509,7 +527,9 @@ describe('Bankruptcy component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new BankruptcyItemValidator(test.props).validPetitionType()).toBe(test.expected)
+      expect(new BankruptcyItemValidator(test.props).validPetitionType()).toBe(
+        test.expected
+      )
     })
   })
 })

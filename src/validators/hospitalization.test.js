@@ -1,8 +1,10 @@
-import HospitalizationsValidator, { HospitalizationValidator } from './hospitalization'
+import HospitalizationsValidator, {
+  HospitalizationValidator
+} from './hospitalization'
 import Location from '../components/Form/Location'
 
-describe('Hospitalization validation', function () {
-  it('should validate admission', function () {
+describe('Hospitalization validation', function() {
+  it('should validate admission', function() {
     const tests = [
       {
         state: {
@@ -25,11 +27,13 @@ describe('Hospitalization validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new HospitalizationValidator(test.state, null).validAdmission()).toBe(test.expected)
+      expect(
+        new HospitalizationValidator(test.state, null).validAdmission()
+      ).toBe(test.expected)
     })
   })
 
-  it('should validate hospitalization', function () {
+  it('should validate hospitalization', function() {
     const tests = [
       {
         state: {
@@ -69,11 +73,13 @@ describe('Hospitalization validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new HospitalizationValidator(test.state, null).isValid()).toBe(test.expected)
+      expect(new HospitalizationValidator(test.state, null).isValid()).toBe(
+        test.expected
+      )
     })
   })
 
-  it('should validate hospitalized branch', function () {
+  it('should validate hospitalized branch', function() {
     const tests = [
       {
         state: {
@@ -90,10 +96,12 @@ describe('Hospitalization validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new HospitalizationsValidator(test.state, null).validHospitalization()).toBe(test.expected)
+      expect(
+        new HospitalizationsValidator(test.state, null).validHospitalization()
+      ).toBe(test.expected)
     })
   })
-  it('should validate hospitalizations', function () {
+  it('should validate hospitalizations', function() {
     const tests = [
       {
         state: {
@@ -279,7 +287,9 @@ describe('Hospitalization validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new HospitalizationsValidator(test.state, null).isValid()).toBe(test.expected)
+      expect(new HospitalizationsValidator(test.state, null).isValid()).toBe(
+        test.expected
+      )
     })
   })
 })

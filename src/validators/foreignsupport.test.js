@@ -1,8 +1,10 @@
-import ForeignActivitiesSupportValidator, { SupportValidator } from './foreignsupport'
+import ForeignActivitiesSupportValidator, {
+  SupportValidator
+} from './foreignsupport'
 import { battery } from './helpers'
 import Location from '../components/Form/Location'
 
-describe('Foreign activities support component validation', function () {
+describe('Foreign activities support component validation', function() {
   it('validate foreign activities support name', () => {
     const tests = [
       {

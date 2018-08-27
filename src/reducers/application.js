@@ -6,14 +6,14 @@ import errorReducer from './error'
 const defaultState = {}
 
 // Defines the authentication sub-state for the application.
-export const reducer = function (sectionName) {
-  return function (state = defaultState, action) {
+export const reducer = function(sectionName) {
+  return function(state = defaultState, action) {
     // Check that section matches intended section reducer. This is to prevent
     // merging of everything every time an action is dispatched. We only
     // perform for the relevant section
     if (action.section === sectionName) {
       // copy current state
-      let updated = {...state}
+      let updated = { ...state }
 
       // Override all values for the particular reducer key
       updated[action.property] = action.values

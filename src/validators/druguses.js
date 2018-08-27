@@ -1,33 +1,37 @@
-import { validAccordion, validBranch, validGenericTextfield, validGenericMonthYear } from './helpers'
+import {
+  validAccordion,
+  validBranch,
+  validGenericTextfield,
+  validGenericMonthYear
+} from './helpers'
 
 export default class DrugUsesValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.usedDrugs = (data.UsedDrugs || {}).value
     this.list = data.List
   }
 
-  validUsedDrugs () {
+  validUsedDrugs() {
     return validBranch(this.usedDrugs)
   }
 
-  validDrugUses () {
+  validDrugUses() {
     if (this.validUsedDrugs() && this.usedDrugs === 'No') {
       return true
     }
 
-    return validAccordion(this.list, (item) => {
+    return validAccordion(this.list, item => {
       return new DrugUseValidator(item).isValid()
     })
   }
 
-  isValid () {
-    return this.validUsedDrugs() &&
-      this.validDrugUses()
+  isValid() {
+    return this.validUsedDrugs() && this.validDrugUses()
   }
 }
 
 export class DrugUseValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.drugType = data.DrugType
     this.firstUse = data.FirstUse
     this.recentUse = data.RecentUse
@@ -38,13 +42,15 @@ export class DrugUseValidator {
     this.explanation = data.Explanation
   }
 
-  isValid () {
-    return validGenericMonthYear(this.firstUse) &&
+  isValid() {
+    return (
+      validGenericMonthYear(this.firstUse) &&
       validGenericMonthYear(this.recentUse) &&
       validGenericTextfield(this.natureOfUse) &&
       validBranch(this.useWhileEmployed) &&
       validBranch(this.useWithClearance) &&
       validBranch(this.useInFuture) &&
       validGenericTextfield(this.explanation)
+    )
   }
 }

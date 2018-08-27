@@ -7,7 +7,7 @@ import { Spinner, SpinnerAction } from '../../components/Form'
 import { timeout } from '../../components/Form/Location/Location'
 
 class Loading extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
@@ -21,49 +21,55 @@ class Loading extends React.Component {
     this.animateCloseTimeout = this.animateCloseTimeout.bind(this)
   }
 
-  componentWillMount () {
+  componentWillMount() {
     if (!this.props.authenticated) {
       this.props.history.push('/login')
     }
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.cancelAnimations()
     this.setState({ spinner: true }, () => {
-      this.props.dispatch(getApplicationState(() => {
-        this.animateCloseTimeout()
-      }))
+      this.props.dispatch(
+        getApplicationState(() => {
+          this.animateCloseTimeout()
+        })
+      )
     })
   }
 
-  animateCloseTimeout () {
+  animateCloseTimeout() {
     timeout(() => {
-      this.setState({spinner: true, spinnerAction: SpinnerAction.Shrink})
+      this.setState({ spinner: true, spinnerAction: SpinnerAction.Shrink })
 
       timeout(() => {
         // Grow the green arrow
-        this.setState({spinner: true, spinnerAction: SpinnerAction.Grow}, () => {
-          timeout(() => {
-            this.props.history.push('/form/identification/intro')
-          }, 1000)
-        })
+        this.setState(
+          { spinner: true, spinnerAction: SpinnerAction.Grow },
+          () => {
+            timeout(() => {
+              this.props.history.push('/form/identification/intro')
+            }, 1000)
+          }
+        )
       })
     }, 1000)
   }
 
-  cancelAnimations (w = window) {
+  cancelAnimations(w = window) {
     if (this.animationDelay) {
       w.clearTimeout(this.animationDelay)
     }
   }
 
-  render () {
+  render() {
     return (
       <div className="loading">
-        <Spinner show={this.state.spinner}
-                 action={this.state.spinnerAction}
-                 label={i18n.m('application.loading.title')}
-                 />
+        <Spinner
+          show={this.state.spinner}
+          action={this.state.spinnerAction}
+          label={i18n.m('application.loading.title')}
+        />
       </div>
     )
   }
@@ -80,7 +86,7 @@ Loading.defaultProps = {
  * to the authentication reducer. When actions are dispatched, this
  * method is executed which causes a re-render.
  */
-function mapStateToProps (state) {
+function mapStateToProps(state) {
   const auth = state.authentication
   return {
     authenticated: auth.authenticated

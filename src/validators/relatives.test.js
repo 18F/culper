@@ -1,7 +1,7 @@
 import RelativesValidator, { RelativeValidator } from './relatives'
 import Location from '../components/Form/Location'
 
-describe('Relatives validation', function () {
+describe('Relatives validation', function() {
   it('validate relative relationship', () => {
     const tests = [
       {
@@ -23,15 +23,16 @@ describe('Relatives validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new RelativeValidator(test.data).validRelation()).toBe(test.expected)
+      expect(new RelativeValidator(test.data).validRelation()).toBe(
+        test.expected
+      )
     })
   })
 
   it('validate relative name', () => {
     const tests = [
       {
-        data: {
-        },
+        data: {},
         expected: false
       },
       {
@@ -88,15 +89,16 @@ describe('Relatives validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new RelativeValidator(test.data).validDocument()).toBe(test.expected)
+      expect(new RelativeValidator(test.data).validDocument()).toBe(
+        test.expected
+      )
     })
   })
 
   it('validate relative birth date', () => {
     const tests = [
       {
-        data: {
-        },
+        data: {},
         expected: false
       },
       {
@@ -119,15 +121,16 @@ describe('Relatives validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new RelativeValidator(test.data).validBirthdate()).toBe(test.expected)
+      expect(new RelativeValidator(test.data).validBirthdate()).toBe(
+        test.expected
+      )
     })
   })
 
   it('validate relative birth place', () => {
     const tests = [
       {
-        data: {
-        },
+        data: {},
         expected: false
       },
       {
@@ -150,15 +153,16 @@ describe('Relatives validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new RelativeValidator(test.data).validBirthplace()).toBe(test.expected)
+      expect(new RelativeValidator(test.data).validBirthplace()).toBe(
+        test.expected
+      )
     })
   })
 
   it('validate relative citizenship', () => {
     const tests = [
       {
-        data: {
-        },
+        data: {},
         expected: false
       },
       {
@@ -186,7 +190,9 @@ describe('Relatives validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new RelativeValidator(test.data).validCitizenship()).toBe(test.expected)
+      expect(new RelativeValidator(test.data).validCitizenship()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -237,7 +243,9 @@ describe('Relatives validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new RelativeValidator(test.data).validMaidenName()).toBe(test.expected)
+      expect(new RelativeValidator(test.data).validMaidenName()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -341,15 +349,16 @@ describe('Relatives validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new RelativeValidator(test.data).validAliases()).toBe(test.expected)
+      expect(new RelativeValidator(test.data).validAliases()).toBe(
+        test.expected
+      )
     })
   })
 
   it('validate relative is deceased', () => {
     const tests = [
       {
-        data: {
-        },
+        data: {},
         expected: false
       },
       {
@@ -373,15 +382,16 @@ describe('Relatives validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new RelativeValidator(test.data).validIsDeceased()).toBe(test.expected)
+      expect(new RelativeValidator(test.data).validIsDeceased()).toBe(
+        test.expected
+      )
     })
   })
 
   it('validate relative is not deceased and has address', () => {
     const tests = [
       {
-        data: {
-        },
+        data: {},
         expected: false
       },
       {
@@ -414,7 +424,9 @@ describe('Relatives validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new RelativeValidator(test.data).validAddress()).toBe(test.expected)
+      expect(new RelativeValidator(test.data).validAddress()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -503,7 +515,9 @@ describe('Relatives validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new RelativeValidator(test.data).requiresCitizenshipDocumentation()).toBe(test.expected)
+      expect(
+        new RelativeValidator(test.data).requiresCitizenshipDocumentation()
+      ).toBe(test.expected)
     })
   })
 
@@ -649,7 +663,9 @@ describe('Relatives validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new RelativeValidator(test.data).validCitizenshipDocumentation()).toBe(test.expected)
+      expect(
+        new RelativeValidator(test.data).validCitizenshipDocumentation()
+      ).toBe(test.expected)
     })
   })
 
@@ -752,7 +768,9 @@ describe('Relatives validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new RelativeValidator(test.data).validDocumentNumber()).toBe(test.expected)
+      expect(new RelativeValidator(test.data).validDocumentNumber()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -855,7 +873,9 @@ describe('Relatives validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new RelativeValidator(test.data).validCourtName()).toBe(test.expected)
+      expect(new RelativeValidator(test.data).validCourtName()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -964,7 +984,9 @@ describe('Relatives validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new RelativeValidator(test.data).validCourtAddress()).toBe(test.expected)
+      expect(new RelativeValidator(test.data).validCourtAddress()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -1024,7 +1046,9 @@ describe('Relatives validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new RelativeValidator(test.data).validDocument()).toBe(test.expected)
+      expect(new RelativeValidator(test.data).validDocument()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -1082,7 +1106,9 @@ describe('Relatives validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new RelativeValidator(test.data).validResidenceDocumentNumber()).toBe(test.expected)
+      expect(
+        new RelativeValidator(test.data).validResidenceDocumentNumber()
+      ).toBe(test.expected)
     })
   })
 
@@ -1143,7 +1169,9 @@ describe('Relatives validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new RelativeValidator(test.data).validExpiration()).toBe(test.expected)
+      expect(new RelativeValidator(test.data).validExpiration()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -1197,7 +1225,9 @@ describe('Relatives validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new RelativeValidator(test.data).validFirstContact()).toBe(test.expected)
+      expect(new RelativeValidator(test.data).validFirstContact()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -1251,7 +1281,9 @@ describe('Relatives validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new RelativeValidator(test.data).validLastContact()).toBe(test.expected)
+      expect(new RelativeValidator(test.data).validLastContact()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -1304,7 +1336,9 @@ describe('Relatives validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new RelativeValidator(test.data).validMethods()).toBe(test.expected)
+      expect(new RelativeValidator(test.data).validMethods()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -1355,7 +1389,9 @@ describe('Relatives validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new RelativeValidator(test.data).validFrequency()).toBe(test.expected)
+      expect(new RelativeValidator(test.data).validFrequency()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -1406,7 +1442,9 @@ describe('Relatives validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new RelativeValidator(test.data).validEmployer()).toBe(test.expected)
+      expect(new RelativeValidator(test.data).validEmployer()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -1462,7 +1500,9 @@ describe('Relatives validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new RelativeValidator(test.data).validEmployerAddress()).toBe(test.expected)
+      expect(new RelativeValidator(test.data).validEmployerAddress()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -1471,7 +1511,7 @@ describe('Relatives validation', function () {
       {
         data: {
           Citizenship: {
-            value: [ 'Germany' ]
+            value: ['Germany']
           },
           IsDeceased: { value: 'No' },
           Address: {
@@ -1488,7 +1528,7 @@ describe('Relatives validation', function () {
       {
         data: {
           Citizenship: {
-            value: [ 'Germany' ]
+            value: ['Germany']
           },
           IsDeceased: { value: 'No' },
           Address: {
@@ -1504,7 +1544,7 @@ describe('Relatives validation', function () {
       {
         data: {
           Citizenship: {
-            value: [ 'Germany' ]
+            value: ['Germany']
           },
           IsDeceased: { value: 'No' },
           Address: {
@@ -1520,7 +1560,7 @@ describe('Relatives validation', function () {
       {
         data: {
           Citizenship: {
-            value: [ 'Germany' ]
+            value: ['Germany']
           },
           IsDeceased: { value: 'No' },
           Address: {
@@ -1537,7 +1577,7 @@ describe('Relatives validation', function () {
       {
         data: {
           Citizenship: {
-            value: [ 'Germany' ]
+            value: ['Germany']
           },
           IsDeceased: { value: 'No' },
           Address: {
@@ -1556,7 +1596,9 @@ describe('Relatives validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new RelativeValidator(test.data).validEmployerRelationship()).toBe(test.expected)
+      expect(new RelativeValidator(test.data).validEmployerRelationship()).toBe(
+        test.expected
+      )
     })
   })
 

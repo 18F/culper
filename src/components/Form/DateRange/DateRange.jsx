@@ -6,7 +6,7 @@ import Svg from '../Svg'
 import { now } from '../../Section/History/dateranges'
 
 export default class DateRange extends ValidationElement {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
@@ -32,14 +32,14 @@ export default class DateRange extends ValidationElement {
     this.errors = []
   }
 
-  componentWillReceiveProps (nextProps) {
+  componentWillReceiveProps(nextProps) {
     if (nextProps.disabled !== this.props.disabled) {
       // Check when disable flag is updated
       this.handleDisable(nextProps)
     }
   }
 
-  handleDisable (nextProps) {
+  handleDisable(nextProps) {
     let errors = [...this.errors] || []
     if (nextProps.disabled) {
       errors = errors.map(err => {
@@ -54,7 +54,7 @@ export default class DateRange extends ValidationElement {
     this.setState()
   }
 
-  update (queue) {
+  update(queue) {
     this.props.onUpdate({
       name: this.props.name,
       from: this.state.from,
@@ -64,19 +64,19 @@ export default class DateRange extends ValidationElement {
     })
   }
 
-  updateFrom (values) {
+  updateFrom(values) {
     this.setState({ from: values, presentClicked: false }, () => {
       this.update({ from: values })
     })
   }
 
-  updateTo (values) {
+  updateTo(values) {
     this.setState({ to: values, presentClicked: false }, () => {
       this.update({ to: values })
     })
   }
 
-  updatePresent (values) {
+  updatePresent(values) {
     // Get a handle to current state values as well as set the value for the current
     // element that triggered a change
     let futureState = {
@@ -121,7 +121,7 @@ export default class DateRange extends ValidationElement {
     })
   }
 
-  storeErrors (arr = [], callback) {
+  storeErrors(arr = [], callback) {
     let errors = [...this.errors]
     for (const e of arr) {
       const idx = errors.findIndex(x => x.uid === e.uid && x.code === e.code)
@@ -135,19 +135,19 @@ export default class DateRange extends ValidationElement {
     callback()
   }
 
-  handleErrorFrom (value, arr) {
+  handleErrorFrom(value, arr) {
     return this.handleError('from', value, arr)
   }
 
-  handleErrorTo (value, arr) {
+  handleErrorTo(value, arr) {
     return this.handleError('to', value, arr)
   }
 
-  handleErrorPresent (value, arr) {
+  handleErrorPresent(value, arr) {
     return this.handleError('present', value, arr)
   }
 
-  handleError (code, value, arr) {
+  handleError(code, value, arr) {
     arr = arr.map(err => {
       return {
         code: `daterange.${code}.${err.code.replace('date.', '')}`,
@@ -157,23 +157,27 @@ export default class DateRange extends ValidationElement {
     })
 
     // Handle required
-    arr = arr.concat(this.constructor.errors
-      .filter(err => err.code === 'required')
-      .map(err => {
-        const value = { ...this.state }
-        return {
-          code: `daterange.${err.code}`,
-          valid: err.func(value, this.props),
-          uid: this.state.uid
-        }
-      }))
+    arr = arr.concat(
+      this.constructor.errors
+        .filter(err => err.code === 'required')
+        .map(err => {
+          const value = { ...this.state }
+          return {
+            code: `daterange.${err.code}`,
+            valid: err.func(value, this.props),
+            uid: this.state.uid
+          }
+        })
+    )
 
     // Introducing local state to the DateControl so it can determine
     // if there were **any** errors found in other child components.
     this.storeErrors(arr, () => {
       const existingErr = this.errors.some(e => e.valid === false)
       let local = []
-      const noneRequiredErrors = this.constructor.errors.filter(err => err.code !== 'required')
+      const noneRequiredErrors = this.constructor.errors.filter(
+        err => err.code !== 'required'
+      )
 
       if (!existingErr && this.state.from.date && this.state.to.date) {
         // Prepare some properties for the error testing
@@ -207,61 +211,65 @@ export default class DateRange extends ValidationElement {
     return arr
   }
 
-  render () {
+  render() {
     const klass = `daterange usa-grid ${this.props.className || ''}`.trim()
     const klassTo = `to ${this.state.error ? 'usa-input-error' : ''}`.trim()
 
     return (
       <div className={klass}>
         <div className="usa-grid from-grid">
-          <div className="from-label">
-            From date
-          </div>
-          <DateControl name="from"
-                       className="from"
-                       {...this.state.from}
-                       onUpdate={this.updateFrom}
-                       minDate={this.props.minDate}
-                       maxDate={this.props.maxDate}
-                       prefix={this.props.prefix}
-                       onError={this.handleErrorFrom}
-                       disabled={this.props.disabled}
-                       required={this.props.required}
-                       />
+          <div className="from-label">From date</div>
+          <DateControl
+            name="from"
+            className="from"
+            {...this.state.from}
+            onUpdate={this.updateFrom}
+            minDate={this.props.minDate}
+            maxDate={this.props.maxDate}
+            prefix={this.props.prefix}
+            onError={this.handleErrorFrom}
+            disabled={this.props.disabled}
+            required={this.props.required}
+          />
         </div>
         <div className="arrow">
-          <Svg src="/img/date-down-arrow.svg" alt="Range spanning from one date to another" />
+          <Svg
+            src="/img/date-down-arrow.svg"
+            alt="Range spanning from one date to another"
+          />
         </div>
         <div className="usa-grid to-grid">
-          <div className="from-label">
-            To date
-          </div>
-          <DateControl name="to"
-                       ref="to"
-                       className={klassTo}
-                       {...this.state.to}
-                       receiveProps={this.state.presentClicked}
-                       disabled={this.state.present || this.props.disabled}
-                       onUpdate={this.updateTo}
-                       minDate={this.props.minDate}
-                       maxDate={this.props.maxDate}
-                       prefix={this.props.prefix}
-                       onError={this.handleErrorTo}
-                       required={this.props.required && !this.state.present && !this.props.disabled}
-                       />
+          <div className="from-label">To date</div>
+          <DateControl
+            name="to"
+            ref="to"
+            className={klassTo}
+            {...this.state.to}
+            receiveProps={this.state.presentClicked}
+            disabled={this.state.present || this.props.disabled}
+            onUpdate={this.updateTo}
+            minDate={this.props.minDate}
+            maxDate={this.props.maxDate}
+            prefix={this.props.prefix}
+            onError={this.handleErrorTo}
+            required={
+              this.props.required && !this.state.present && !this.props.disabled
+            }
+          />
           <div className="from-present">
             <span className="or"> or </span>
           </div>
           <div className="from-present">
-            <Checkbox name="present"
-                      className="present"
-                      label="Present"
-                      value="present"
-                      disabled={this.props.disabled}
-                      checked={this.state.present}
-                      onUpdate={this.updatePresent}
-                      onError={this.handleErrorPresent}
-                      />
+            <Checkbox
+              name="present"
+              className="present"
+              label="Present"
+              value="present"
+              disabled={this.props.disabled}
+              checked={this.state.present}
+              onUpdate={this.updatePresent}
+              onError={this.handleErrorPresent}
+            />
           </div>
         </div>
       </div>
@@ -276,7 +284,9 @@ DateRange.defaultProps = {
   prefix: '',
   minDate: null,
   maxDate: new Date(),
-  onError: (value, arr) => { return arr },
+  onError: (value, arr) => {
+    return arr
+  },
   disabled: false
 }
 
@@ -285,7 +295,7 @@ DateRange.errors = [
     code: 'required',
     func: (value, props) => {
       if (props.required && !props.disabled) {
-        const hasParts = (dateObj) => {
+        const hasParts = dateObj => {
           return Boolean(dateObj.day && dateObj.month && dateObj.year)
         }
         return hasParts(value.from) && hasParts(value.to)
@@ -296,7 +306,12 @@ DateRange.errors = [
   {
     code: 'daterange.order',
     func: (value, props) => {
-      if (!props.from || isNaN(props.from.date) || !props.to || isNaN(props.to.date)) {
+      if (
+        !props.from ||
+        isNaN(props.from.date) ||
+        !props.to ||
+        isNaN(props.to.date)
+      ) {
         return null
       }
       return props.from.date && props.to.date && props.from.date < props.to.date

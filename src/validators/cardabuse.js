@@ -1,13 +1,17 @@
 import LocationValidator from './location'
-import { validAccordion, validDateField, validGenericTextfield } from './helpers'
+import {
+  validAccordion,
+  validDateField,
+  validGenericTextfield
+} from './helpers'
 
 export default class CardAbuseValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.hasCardAbuse = (data.HasCardAbuse || {}).value
     this.list = data.List || {}
   }
 
-  validHasCardAbuse () {
+  validHasCardAbuse() {
     if (!this.hasCardAbuse) {
       return false
     }
@@ -19,24 +23,23 @@ export default class CardAbuseValidator {
     return true
   }
 
-  validList () {
+  validList() {
     if (this.validHasCardAbuse() && this.hasCardAbuse === 'No') {
       return true
     }
 
-    return validAccordion(this.list, (item) => {
+    return validAccordion(this.list, item => {
       return new CardAbuseItemValidator(item).isValid()
     })
   }
 
-  isValid () {
-    return this.validHasCardAbuse() &&
-      this.validList()
+  isValid() {
+    return this.validHasCardAbuse() && this.validList()
   }
 }
 
 export class CardAbuseItemValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.agency = data.Agency
     this.address = data.Address
     this.date = data.Date
@@ -46,40 +49,46 @@ export class CardAbuseItemValidator {
     this.description = data.Description
   }
 
-  validAgency () {
+  validAgency() {
     return !!this.agency && validGenericTextfield(this.agency)
   }
 
-  validAddress () {
+  validAddress() {
     return !!this.address && new LocationValidator(this.address).isValid()
   }
 
-  validDate () {
+  validDate() {
     return !!this.date && validDateField(this.date)
   }
 
-  validReason () {
+  validReason() {
     return !!this.reason && validGenericTextfield(this.reason)
   }
 
-  validAmount () {
-    if (!this.amount || isNaN(parseInt(this.amount.value)) || parseInt(this.amount.value) <= 0) {
+  validAmount() {
+    if (
+      !this.amount ||
+      isNaN(parseInt(this.amount.value)) ||
+      parseInt(this.amount.value) <= 0
+    ) {
       return false
     }
 
     return true
   }
 
-  validDescription () {
+  validDescription() {
     return !!this.description && validGenericTextfield(this.description)
   }
 
-  isValid () {
-    return this.validAgency() &&
+  isValid() {
+    return (
+      this.validAgency() &&
       this.validAddress() &&
       this.validDate() &&
       this.validReason() &&
       this.validAmount() &&
       this.validDescription()
+    )
   }
 }

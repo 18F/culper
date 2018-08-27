@@ -7,16 +7,18 @@ describe('Schema for financial taxes', () => {
       HasUnauthorized: { value: 'Yes' },
       List: {
         branch: { value: 'No' },
-        items: [{
-          Item: {
-            Date: {},
-            Incident: {},
-            Location: {
-              country: null
-            },
-            Action: {}
+        items: [
+          {
+            Item: {
+              Date: {},
+              Incident: {},
+              Location: {
+                country: null
+              },
+              Action: {}
+            }
           }
-        }]
+        ]
       }
     }
 

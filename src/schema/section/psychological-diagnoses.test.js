@@ -8,45 +8,49 @@ describe('Schema for financial taxes', () => {
       DidNotConsult: { value: 'Yes' },
       DiagnosisList: {
         branch: { value: 'No' },
-        items: [{
-          Item: {
-            Condition: {},
-            Diagnosed: {
-              from: {},
-              to: {},
-              present: null
-            },
-            Treatment: {
-              Name: {},
-              Phone: {},
-              Address: {
-                country: null
-              }
-            },
-            TreatmentFacility: {
-              Name: {},
-              Phone: {},
-              Address: {
-                country: null
-              }
-            },
-            Effective: {},
-            Explanation: {}
+        items: [
+          {
+            Item: {
+              Condition: {},
+              Diagnosed: {
+                from: {},
+                to: {},
+                present: null
+              },
+              Treatment: {
+                Name: {},
+                Phone: {},
+                Address: {
+                  country: null
+                }
+              },
+              TreatmentFacility: {
+                Name: {},
+                Phone: {},
+                Address: {
+                  country: null
+                }
+              },
+              Effective: {},
+              Explanation: {}
+            }
           }
-        }]
+        ]
       },
       InTreatment: { value: 'Yes' },
       TreatmentList: {
         branch: { value: 'No' },
-        items: [{
-          Item: {
-            Name: {},
-            Phone: {},
-            Address: {
-              country: null
+        items: [
+          {
+            Item: {
+              Name: {},
+              Phone: {},
+              Address: {
+                country: null
+              }
             }
           }
-        }]
+        ]
       }
     }
 

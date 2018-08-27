@@ -15,7 +15,9 @@ describe('The Consultation component', () => {
       List: {
         items: [{}]
       },
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
     const component = mount(<Consultation {...props} />)
     updates = 0

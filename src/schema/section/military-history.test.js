@@ -7,24 +7,26 @@ describe('Schema for financial taxes', () => {
       HasServed: { value: 'Yes' },
       List: {
         branch: { value: 'No' },
-        items: [{
-          Item: {
-            Service: {},
-            Status: {},
-            Officer: {},
-            ServiceNumber: {},
-            Dates: {
-              from: {},
-              to: {},
-              present: null
-            },
-            HasBeenDischarged: {},
-            DischargeType: {},
-            DischargeTypeOther: {},
-            DischargeReason: {},
-            DischargeDate: {}
+        items: [
+          {
+            Item: {
+              Service: {},
+              Status: {},
+              Officer: {},
+              ServiceNumber: {},
+              Dates: {
+                from: {},
+                to: {},
+                present: null
+              },
+              HasBeenDischarged: {},
+              DischargeType: {},
+              DischargeTypeOther: {},
+              DischargeReason: {},
+              DischargeDate: {}
+            }
           }
-        }]
+        ]
       }
     }
 

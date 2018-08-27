@@ -12,9 +12,13 @@ export const substanceAlcoholOrdered = (data = {}) => {
         CounselingDates: form.daterange(xitem.CounselingDates),
         TreatmentProviderName: form.text(xitem.TreatmentProviderName),
         TreatmentProviderAddress: form.location(xitem.TreatmentProviderAddress),
-        TreatmentProviderTelephone: form.telephone(xitem.TreatmentProviderTelephone),
+        TreatmentProviderTelephone: form.telephone(
+          xitem.TreatmentProviderTelephone
+        ),
         CompletedTreatment: form.branch(xitem.CompletedTreatment),
-        NoCompletedTreatmentExplanation: form.textarea(xitem.NoCompletedTreatmentExplanation)
+        NoCompletedTreatmentExplanation: form.textarea(
+          xitem.NoCompletedTreatmentExplanation
+        )
       }
     }
   })

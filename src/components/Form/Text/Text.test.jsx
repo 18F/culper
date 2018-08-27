@@ -59,7 +59,9 @@ describe('The text component', () => {
       error: false,
       focus: false,
       valid: false,
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
     const component = mount(<Text {...expected} />)
     expect(component.find('label').text()).toEqual(expected.label)
@@ -71,7 +73,7 @@ describe('The text component', () => {
 
   it('can apply a prefilter prior to storing the value', () => {
     const props = {
-      prefilter: (value) => {
+      prefilter: value => {
         if (!value.match(/^(\s*|\d+)$/)) {
           value = value.replace(/\D/g, '')
         }
@@ -79,7 +81,9 @@ describe('The text component', () => {
       }
     }
     const component = mount(<Text {...props} />)
-    component.find('input').simulate('change', { target: { value: ' abc 0123 def ' } })
+    component
+      .find('input')
+      .simulate('change', { target: { value: ' abc 0123 def ' } })
     expect(component.state('value')).toBe('0123')
   })
 })

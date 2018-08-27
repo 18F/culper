@@ -1,17 +1,26 @@
 import React from 'react'
 import { newGuid } from '../../../Form/ValidationElement'
 import { ValidationElement } from '../../../Form'
-import { extractDate, decimalAdjust, rangeSorter, julian, findPercentage, today, daysAgo, julianNow } from '../dateranges'
+import {
+  extractDate,
+  decimalAdjust,
+  rangeSorter,
+  julian,
+  findPercentage,
+  today,
+  daysAgo,
+  julianNow
+} from '../dateranges'
 
 export default class SummaryProgress extends ValidationElement {
-  total () {
+  total() {
     return parseInt(this.props.total || 10)
   }
 
   /**
    * Compile the ranges from the list of items
    */
-  ranges () {
+  ranges() {
     let items = []
     if (this.props.List) {
       items = this.props.List() || []
@@ -21,7 +30,7 @@ export default class SummaryProgress extends ValidationElement {
 
     const julianMax = julian(daysAgo(today, 365 * this.total()))
 
-    return items.sort(rangeSorter).map((dates) => {
+    return items.sort(rangeSorter).map(dates => {
       let left = 0
       let width = 0
       const dfrom = extractDate(dates.from)
@@ -68,7 +77,7 @@ export default class SummaryProgress extends ValidationElement {
    * Calculate the amount of units based on the sum of percentages
    * in compiled ranges.
    */
-  completed () {
+  completed() {
     const sum = this.ranges().reduce((a, b) => a + b.width, 0)
     const x = decimalAdjust('round', this.total() * (sum / 100), 0)
     const y = this.total()
@@ -78,25 +87,35 @@ export default class SummaryProgress extends ValidationElement {
   /**
    * Provide visualized timeline from compiled ranges
    */
-  timeline () {
+  timeline() {
     // Loop through the collected ranges and output as elements
     //
     // Example: 10 years ago |----- Gap -----|----- Filled -----|----- Gap -----| Today
     // Imagine 10 years ago is 0% and today is 100%
-    return this.ranges().map((range) => {
+    return this.ranges().map(range => {
       const styles = {
         left: '' + range.left + '%',
         width: '' + Math.abs(range.width) + '%'
       }
-      return <div key={newGuid()} className="filled" style={styles} data-from={range.dates.from.date} data-to={range.dates.to.date}></div>
+      return (
+        <div
+          key={newGuid()}
+          className="filled"
+          style={styles}
+          data-from={range.dates.from.date}
+          data-to={range.dates.to.date}
+        />
+      )
     })
   }
 
-  render () {
+  render() {
     const klass = `summary-progress ${this.props.className || ''}`.trim()
     const completed = this.completed()
     const total = this.total()
-    const klassFraction = `fraction ${completed === total ? 'covered' : ''}`.trim()
+    const klassFraction = `fraction ${
+      completed === total ? 'covered' : ''
+    }`.trim()
 
     return (
       <div className={klass}>
@@ -105,9 +124,7 @@ export default class SummaryProgress extends ValidationElement {
             {this.props.children}
             <span className="title">{this.props.title}</span>
           </div>
-          <div className="progress">
-            {this.timeline()}
-          </div>
+          <div className="progress">{this.timeline()}</div>
         </div>
         <div className="stats">
           <div className={klassFraction}>

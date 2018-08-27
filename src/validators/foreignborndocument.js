@@ -1,11 +1,25 @@
 import { validGenericTextfield, validDateField } from './helpers'
 
-const documentTypes = ['FS240', 'DS1350', 'AlienRegistration', 'PermanentResident', 'CertificateOfNaturalization',
-  'DerivedAlienRegistration', 'DerivedPermanentResident', 'DerivedCertificateOfNaturalization',
-  'I-551', 'I-766', 'I-94', 'Visa', 'NonImmigrantStudent', 'ExchangeVisitor', 'Other']
+const documentTypes = [
+  'FS240',
+  'DS1350',
+  'AlienRegistration',
+  'PermanentResident',
+  'CertificateOfNaturalization',
+  'DerivedAlienRegistration',
+  'DerivedPermanentResident',
+  'DerivedCertificateOfNaturalization',
+  'I-551',
+  'I-766',
+  'I-94',
+  'Visa',
+  'NonImmigrantStudent',
+  'ExchangeVisitor',
+  'Other'
+]
 
 export default class ForeignBornDocumentValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.documentType = (data.DocumentType || {}).value
     this.documentExpiration = data.DocumentExpiration
     this.documentExpirationNotApplicable = data.DocumentExpirationNotApplicable
@@ -13,28 +27,30 @@ export default class ForeignBornDocumentValidator {
     this.documentNumber = data.DocumentNumber
   }
 
-  validDocumentType () {
+  validDocumentType() {
     return documentTypes.includes(this.documentType)
   }
 
-  validDocumentExplanation () {
+  validDocumentExplanation() {
     if (this.documentType !== 'Other') {
       return true
     }
     return validGenericTextfield(this.otherExplanation)
   }
 
-  validDocumentExpiration () {
+  validDocumentExpiration() {
     if (this.documentExpirationNotApplicable) {
       return true
     }
     return validDateField(this.documentExpiration)
   }
 
-  isValid () {
-    return this.validDocumentType() &&
+  isValid() {
+    return (
+      this.validDocumentType() &&
       this.validDocumentExpiration() &&
       this.validDocumentExplanation() &&
       validGenericTextfield(this.documentNumber)
+    )
   }
 }

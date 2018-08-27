@@ -32,9 +32,7 @@ export const application = {
       '## All required fields are complete',
       'Not a guarantee of acceptance, but all required fields are complete.'
     ],
-    valid2: [
-      '### Please sign the releases below and submit your form'
-    ],
+    valid2: ['### Please sign the releases below and submit your form'],
     invalid: [
       '## Some required fields are incomplete',
       'Please fix the errors listed below.'
@@ -60,13 +58,15 @@ export const application = {
     ],
     files: {
       title: 'Certification and Releases',
-      para: 'The following are archival documents corresponding to your digitally signed certification and releases.'
+      para:
+        'The following are archival documents corresponding to your digitally signed certification and releases.'
     }
   },
   attachments: {
     method: {
       title: 'Specify your attachment method',
-      para: 'Choose the method you will use to provide attachments for your Investigation Request.'
+      para:
+        'Choose the method you will use to provide attachments for your Investigation Request.'
     },
     type: {
       upload: 'Upload file',
@@ -97,14 +97,16 @@ export const application = {
       send: 'Upload attachment',
       files: {
         title: 'Uploaded files',
-        para: 'The following documents and/or files have been associated with your Investigation Request.',
+        para:
+          'The following documents and/or files have been associated with your Investigation Request.',
         remove: 'Remove'
       },
       error: {
         title: 'We had a problem with your attachment!',
         delete: 'Failed to delete attachment.',
         download: 'Failed to download attachment.',
-        save: 'Failed to save attachment. Please check the size and type of attachment.',
+        save:
+          'Failed to save attachment. Please check the size and type of attachment.',
         update: 'Failed to save attachment description.'
       }
     },
@@ -138,6 +140,6 @@ export const application = {
   timeout: {
     title: 'Are you still working?',
     message: 'Let us know below or you will be logged out in {time} seconds.',
-    button: 'Yes I\'m still working'
+    button: "Yes I'm still working"
   }
 }

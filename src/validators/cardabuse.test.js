@@ -1,7 +1,7 @@
 import CardAbuseValidator, { CardAbuseItemValidator } from './cardabuse'
 import Location from '../components/Form/Location'
 
-describe('taxes component validation', function () {
+describe('taxes component validation', function() {
   it('validate agency', () => {
     const tests = [
       {
@@ -23,7 +23,9 @@ describe('taxes component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new CardAbuseItemValidator(test.state, null).validAgency()).toBe(test.expected)
+      expect(new CardAbuseItemValidator(test.state, null).validAgency()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -51,7 +53,9 @@ describe('taxes component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new CardAbuseItemValidator(test.state, null).validAddress()).toBe(test.expected)
+      expect(new CardAbuseItemValidator(test.state, null).validAddress()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -78,7 +82,9 @@ describe('taxes component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new CardAbuseItemValidator(test.state, null).validDate()).toBe(test.expected)
+      expect(new CardAbuseItemValidator(test.state, null).validDate()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -103,7 +109,9 @@ describe('taxes component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new CardAbuseItemValidator(test.state, null).validReason()).toBe(test.expected)
+      expect(new CardAbuseItemValidator(test.state, null).validReason()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -144,7 +152,9 @@ describe('taxes component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new CardAbuseItemValidator(test.state, null).validAmount()).toBe(test.expected)
+      expect(new CardAbuseItemValidator(test.state, null).validAmount()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -169,7 +179,9 @@ describe('taxes component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new CardAbuseItemValidator(test.state, null).validDescription()).toBe(test.expected)
+      expect(
+        new CardAbuseItemValidator(test.state, null).validDescription()
+      ).toBe(test.expected)
     })
   })
 
@@ -202,7 +214,9 @@ describe('taxes component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new CardAbuseValidator(test.state, null).validHasCardAbuse()).toBe(test.expected)
+      expect(new CardAbuseValidator(test.state, null).validHasCardAbuse()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -283,7 +297,9 @@ describe('taxes component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new CardAbuseValidator(test.state, null).isValid()).toBe(test.expected)
+      expect(new CardAbuseValidator(test.state, null).isValid()).toBe(
+        test.expected
+      )
     })
   })
 })

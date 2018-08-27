@@ -53,7 +53,7 @@ describe('The radio component', () => {
       error: true,
       focus: false,
       valid: false,
-      onUpdate: function (event) {
+      onUpdate: function(event) {
         changes++
       }
     }
@@ -70,7 +70,7 @@ describe('The radio component', () => {
       error: true,
       focus: false,
       valid: false,
-      onFocus: function (event) {
+      onFocus: function(event) {
         foci++
       }
     }
@@ -87,7 +87,7 @@ describe('The radio component', () => {
       error: true,
       focus: false,
       valid: false,
-      onBlur: function (event) {
+      onBlur: function(event) {
         blurs++
       }
     }
@@ -98,10 +98,12 @@ describe('The radio component', () => {
 
   it('can toggle checked state', () => {
     let checked = 0
-    const onUpdate = (values) => {
+    const onUpdate = values => {
       checked++
     }
-    const component = mount(<Radio name="toggle" value="foo" checked="true" onUpdate={onUpdate} />)
+    const component = mount(
+      <Radio name="toggle" value="foo" checked="true" onUpdate={onUpdate} />
+    )
     expect(component.find('.checked').length).toEqual(1)
     component.find('input').simulate('change')
     expect(checked).toBe(1)

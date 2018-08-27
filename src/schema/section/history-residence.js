@@ -10,13 +10,17 @@ export const historyResidence = (data = {}) => {
         Comments: form.textarea(xitem.Comments),
         ReferenceName: form.name(xitem.ReferenceName),
         ReferenceLastContact: form.datecontrol(xitem.ReferenceLastContact),
-        ReferenceRelationshipComments: form.checkboxgroup(xitem.ReferenceRelationshipComments),
+        ReferenceRelationshipComments: form.checkboxgroup(
+          xitem.ReferenceRelationshipComments
+        ),
         ReferenceRelationship: form.checkboxgroup(xitem.ReferenceRelationship),
         ReferenceRelationshipOther: form.text(xitem.ReferenceRelationshipOther),
         ReferencePhoneEvening: form.telephone(xitem.ReferencePhoneEvening),
         ReferencePhoneDay: form.telephone(xitem.ReferencePhoneDay),
         ReferencePhoneMobile: form.telephone(xitem.ReferencePhoneMobile),
-        ReferenceEmailNotApplicable: form.notapplicable(xitem.ReferenceEmailNotApplicable),
+        ReferenceEmailNotApplicable: form.notapplicable(
+          xitem.ReferenceEmailNotApplicable
+        ),
         ReferenceEmail: form.email(xitem.ReferenceEmail),
         ReferenceAddress: form.location(xitem.ReferenceAddress),
         Role: form.radio(xitem.Role),

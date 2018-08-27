@@ -24,7 +24,9 @@ describe('The telephone summary', () => {
       extension: '1234'
     }
     const summary = TelephoneSummary(phone, 'Unknown')
-    expect(summary).toEqual(<span className="title-case">+001 1234567890 x1234</span>)
+    expect(summary).toEqual(
+      <span className="title-case">+001 1234567890 x1234</span>
+    )
   })
 
   it('display domestic format', () => {
@@ -34,7 +36,9 @@ describe('The telephone summary', () => {
       extension: '1234'
     }
     const summary = TelephoneSummary(phone, 'Unknown')
-    expect(summary).toEqual(<span className="title-case">(202) 867-5309 x1234</span>)
+    expect(summary).toEqual(
+      <span className="title-case">(202) 867-5309 x1234</span>
+    )
   })
 
   it('displays unknown if empty object', () => {

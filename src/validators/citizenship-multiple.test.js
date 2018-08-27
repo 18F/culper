@@ -1,7 +1,9 @@
-import CitizenshipMultipleValidator, { CitizenshipItemValidator } from './citizenship-multiple'
+import CitizenshipMultipleValidator, {
+  CitizenshipItemValidator
+} from './citizenship-multiple'
 import { battery } from './helpers'
 
-describe('citizenship multiple component validation', function () {
+describe('citizenship multiple component validation', function() {
   it('can validate citizenship country', () => {
     const tests = [
       {
@@ -253,8 +255,7 @@ describe('citizenship multiple component validation', function () {
             branch: { value: 'No' },
             items: [
               {
-                Item: {
-                }
+                Item: {}
               }
             ]
           }

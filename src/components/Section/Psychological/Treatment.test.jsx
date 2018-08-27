@@ -10,7 +10,9 @@ describe('The Treatment component', () => {
 
   it('Performs updates', () => {
     let updates = 0
-    const onUpdate = () => { updates++ }
+    const onUpdate = () => {
+      updates++
+    }
     const component = mount(<Treatment onUpdate={onUpdate} />)
     expect(component.find('.treatment').length).toBe(1)
     component.find('input[name="Name"]').simulate('change')

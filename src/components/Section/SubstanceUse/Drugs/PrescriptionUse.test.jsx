@@ -10,7 +10,9 @@ describe('The PrescriptionUse component', () => {
 
   it('Performs update', () => {
     let updates = 0
-    const onUpdate = () => { updates++ }
+    const onUpdate = () => {
+      updates++
+    }
     const component = mount(<PrescriptionUse onUpdate={onUpdate} />)
     expect(component.find('.prescription-use').length).toBe(1)
     component.find('.involvement-dates .from .year input').simulate('change')

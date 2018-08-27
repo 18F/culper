@@ -18,7 +18,7 @@ describe('The Name component', () => {
     const expected = [
       {
         name: 'applicant-name',
-        last: 'X- Mc. O\'Leary',
+        last: "X- Mc. O'Leary",
         valid: true
       },
       {
@@ -28,7 +28,7 @@ describe('The Name component', () => {
       }
     ]
 
-    expected.forEach((ex) => {
+    expected.forEach(ex => {
       const component = mount(<Name {...ex} />)
       component.find('.last input').simulate('change')
       expect(component.find('.suffix-other').length).toBe(0)
@@ -39,19 +39,22 @@ describe('The Name component', () => {
     const expected = [
       {
         name: 'applicant-long-first',
-        first: 'aaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeeeffffffffffgggggggggghhhhhhhhhhiiiiiiiiiijjjjjjjjjjkkkkkkkkkk',
+        first:
+          'aaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeeeffffffffffgggggggggghhhhhhhhhhiiiiiiiiiijjjjjjjjjjkkkkkkkkkk',
         part: 'first',
         valid: false
       },
       {
         name: 'applicant-long-last',
-        last: 'aaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeeeffffffffffgggggggggghhhhhhhhhhiiiiiiiiiijjjjjjjjjjkkkkkkkkkk',
+        last:
+          'aaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeeeffffffffffgggggggggghhhhhhhhhhiiiiiiiiiijjjjjjjjjjkkkkkkkkkk',
         part: 'last',
         valid: false
       },
       {
         name: 'applicant-long-middle',
-        middle: 'aaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeeeffffffffffgggggggggghhhhhhhhhhiiiiiiiiiijjjjjjjjjjkkkkkkkkkk',
+        middle:
+          'aaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeeeffffffffffgggggggggghhhhhhhhhhiiiiiiiiiijjjjjjjjjjkkkkkkkkkk',
         part: 'middle',
         valid: false
       },
@@ -64,10 +67,13 @@ describe('The Name component', () => {
       }
     ]
 
-    expected.forEach((ex) => {
+    expected.forEach(ex => {
       const component = mount(<Name {...ex} />)
       component.find({ name: ex.part }).simulate('change')
-      expect(component.find('.usa-input-error-label').length === component.find('span').length).toEqual(ex.valid)
+      expect(
+        component.find('.usa-input-error-label').length ===
+          component.find('span').length
+      ).toEqual(ex.valid)
     })
   })
 
@@ -85,7 +91,10 @@ describe('The Name component', () => {
       }
     }
     const component = mount(<Name {...expected} />)
-    component.find('input').first().simulate('change')
+    component
+      .find('input')
+      .first()
+      .simulate('change')
     expect(validations > 0).toEqual(true)
   })
 
@@ -97,12 +106,15 @@ describe('The Name component', () => {
       error: true,
       focus: false,
       valid: false,
-      onFocus: function (event) {
+      onFocus: function(event) {
         foci++
       }
     }
     const component = mount(<Name {...expected} />)
-    component.find('input').first().simulate('focus')
+    component
+      .find('input')
+      .first()
+      .simulate('focus')
     expect(foci).toEqual(1)
   })
 
@@ -114,12 +126,15 @@ describe('The Name component', () => {
       error: true,
       focus: false,
       valid: false,
-      onBlur: function (event) {
+      onBlur: function(event) {
         blurs++
       }
     }
     const component = mount(<Name {...expected} />)
-    component.find('input').first().simulate('blur')
+    component
+      .find('input')
+      .first()
+      .simulate('blur')
     expect(blurs).toEqual(1)
   })
 
@@ -128,7 +143,9 @@ describe('The Name component', () => {
     const expected = {
       name: 'name',
       suffix: 'Other',
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
 
     const component = mount(<Name {...expected} />)
@@ -250,7 +267,7 @@ describe('The Name component', () => {
       }
     ]
 
-    expected.forEach((ex) => {
+    expected.forEach(ex => {
       const component = mount(<Name {...ex} />)
       component.find({ name: 'middle' }).simulate('change')
       expect(component.find('.usa-input-error').length).toEqual(ex.errors)

@@ -3,7 +3,7 @@ import ValidationElement from '../ValidationElement'
 import { ariaLabel } from '../Generic'
 
 export default class Textarea extends ValidationElement {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
@@ -18,7 +18,7 @@ export default class Textarea extends ValidationElement {
   /**
    * Handle the change event.
    */
-  handleChange (event) {
+  handleChange(event) {
     event.persist()
     this.setState({ value: event.target.value }, () => {
       super.handleChange(event)
@@ -34,7 +34,7 @@ export default class Textarea extends ValidationElement {
   /**
    * Handle the focus event.
    */
-  handleFocus (event) {
+  handleFocus(event) {
     event.persist()
     this.setState({ focus: true }, () => {
       super.handleFocus(event)
@@ -44,7 +44,7 @@ export default class Textarea extends ValidationElement {
   /**
    * Handle the blur event.
    */
-  handleBlur (event) {
+  handleBlur(event) {
     event.persist()
     this.setState({ focus: false }, () => {
       super.handleBlur(event)
@@ -54,30 +54,37 @@ export default class Textarea extends ValidationElement {
   /**
    * Execute validation checks on the value.
    */
-  handleValidation (event) {
+  handleValidation(event) {
     const value = `${this.state.value}`.trim()
-    const errors = this.props.onError(value, this.constructor.errors.map(err => {
-      return {
-        code: err.code,
-        valid: err.func(value, this.props),
-        uid: this.state.uid
-      }
-    })) || []
+    const errors =
+      this.props.onError(
+        value,
+        this.constructor.errors.map(err => {
+          return {
+            code: err.code,
+            valid: err.func(value, this.props),
+            uid: this.state.uid
+          }
+        })
+      ) || []
 
-    this.setState({ error: errors.some(x => x.valid === false), valid: errors.every(x => x.valid === true) })
+    this.setState({
+      error: errors.some(x => x.valid === false),
+      valid: errors.every(x => x.valid === true)
+    })
   }
 
   /**
    * Generated name for the error message.
    */
-  errorName () {
+  errorName() {
     return '' + this.props.name + '-error'
   }
 
   /**
    * Style classes applied to the wrapper.
    */
-  divClass () {
+  divClass() {
     let klass = this.props.className || ''
 
     if (this.state.error) {
@@ -90,7 +97,7 @@ export default class Textarea extends ValidationElement {
   /**
    * Style classes applied to the label element.
    */
-  labelClass () {
+  labelClass() {
     let klass = ''
 
     if (this.state.error) {
@@ -103,7 +110,7 @@ export default class Textarea extends ValidationElement {
   /**
    * Style classes applied to the input element.
    */
-  inputClass () {
+  inputClass() {
     let klass = ''
 
     if (this.state.focus) {
@@ -117,33 +124,33 @@ export default class Textarea extends ValidationElement {
     return klass.trim()
   }
 
-  render () {
+  render() {
     return (
       <div className={this.divClass()}>
-        <label className={this.labelClass()}
-               htmlFor={this.state.uid}>
+        <label className={this.labelClass()} htmlFor={this.state.uid}>
           {this.props.label}
         </label>
-        <textarea className={this.inputClass()}
-                  id={this.state.uid}
-                  name={this.props.name}
-                  aria-describedby={this.errorName()}
-                  aria-label={this.props.label || ariaLabel(this.refs.textarea)}
-                  disabled={this.props.disabled}
-                  maxLength={this.props.maxlength}
-                  pattern={this.props.pattern}
-                  readOnly={this.props.readonly}
-                  autoCapitalize={this.props.autocapitalize}
-                  autoCorrect={this.props.autocorrect}
-                  autoComplete={this.props.autocomplete}
-                  spellCheck={this.props.spellcheck}
-                  required={this.props.required}
-                  value={this.state.value}
-                  onChange={this.handleChange}
-                  onFocus={this.handleFocus}
-                  onBlur={this.handleBlur}
-                  ref="textarea"
-                  />
+        <textarea
+          className={this.inputClass()}
+          id={this.state.uid}
+          name={this.props.name}
+          aria-describedby={this.errorName()}
+          aria-label={this.props.label || ariaLabel(this.refs.textarea)}
+          disabled={this.props.disabled}
+          maxLength={this.props.maxlength}
+          pattern={this.props.pattern}
+          readOnly={this.props.readonly}
+          autoCapitalize={this.props.autocapitalize}
+          autoCorrect={this.props.autocorrect}
+          autoComplete={this.props.autocomplete}
+          spellCheck={this.props.spellcheck}
+          required={this.props.required}
+          value={this.state.value}
+          onChange={this.handleChange}
+          onFocus={this.handleFocus}
+          onBlur={this.handleBlur}
+          ref="textarea"
+        />
       </div>
     )
   }
@@ -161,7 +168,9 @@ Textarea.defaultProps = {
   autocapitalize: true,
   autocorrect: true,
   autocomplete: true,
-  onError: (value, arr) => { return arr }
+  onError: (value, arr) => {
+    return arr
+  }
 }
 
 Textarea.errors = [
@@ -180,8 +189,10 @@ Textarea.errors = [
       if (!value || !value.length) {
         return null
       }
-      return value.length >= parseInt(props.minlength || 0) &&
+      return (
+        value.length >= parseInt(props.minlength || 0) &&
         value.length <= parseInt(props.maxlength || 4000)
+      )
     }
   },
   {

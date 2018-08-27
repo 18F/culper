@@ -7,14 +7,20 @@ export const foreignBusinessSponsorship = (data = {}) => {
       Item: {
         Name: form.name(xitem.Name),
         Birthdate: form.datecontrol(xitem.Birthdate),
-        BirthdateNotApplicable: form.notapplicable(xitem.BirthdateNotApplicable),
+        BirthdateNotApplicable: form.notapplicable(
+          xitem.BirthdateNotApplicable
+        ),
         Birthplace: form.location(xitem.Birthplace),
         Address: form.location(xitem.Address),
         Citizenship: form.country(xitem.Citizenship),
         Organization: form.text(xitem.Organization),
-        OrganizationNotApplicable: form.notapplicable(xitem.OrganizationNotApplicable),
+        OrganizationNotApplicable: form.notapplicable(
+          xitem.OrganizationNotApplicable
+        ),
         OrganizationAddress: form.location(xitem.OrganizationAddress),
-        OrganizationAddressNotApplicable: form.notapplicable(xitem.OrganizationAddressNotApplicable),
+        OrganizationAddressNotApplicable: form.notapplicable(
+          xitem.OrganizationAddressNotApplicable
+        ),
         Dates: form.daterange(xitem.Dates),
         Residence: form.location(xitem.Residence),
         Stay: form.textarea(xitem.Stay),

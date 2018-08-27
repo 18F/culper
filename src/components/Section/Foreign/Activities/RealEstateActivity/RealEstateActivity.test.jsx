@@ -11,7 +11,9 @@ describe('The RealEstateActivity component', () => {
 
   it('Updates with yes', () => {
     let updates = 0
-    const onUpdate = () => { updates++ }
+    const onUpdate = () => {
+      updates++
+    }
     const component = mount(<RealEstateActivity onUpdate={onUpdate} />)
     expect(component.find('.realestate').length).toBe(1)
     component.find('.branch .no input').simulate('change')
@@ -22,12 +24,14 @@ describe('The RealEstateActivity component', () => {
     const expected = {
       HasInterests: { value: 'Yes' },
       List: {
-        items: [{
-          Item: {
-            InterestTypes: { values: ['Yourself'] }
-          },
-          open: true
-        }]
+        items: [
+          {
+            Item: {
+              InterestTypes: { values: ['Yourself'] }
+            },
+            open: true
+          }
+        ]
       }
     }
     const component = mount(<RealEstateActivity {...expected} />)
@@ -41,20 +45,22 @@ describe('The RealEstateActivity component', () => {
         props: {
           HasInterests: { value: 'Yes' },
           List: {
-            items: [{
-              Item: {
-                InterestTypes: { values: ['Yourself'] },
-                Address: {
-                  country: { value: ['United States'] },
-                  street: '1234 Some Rd',
-                  city: 'Arlington',
-                  state: 'VA',
-                  zipcode: '22202',
-                  layout: Location.ADDRESS
-                },
-                open: true
+            items: [
+              {
+                Item: {
+                  InterestTypes: { values: ['Yourself'] },
+                  Address: {
+                    country: { value: ['United States'] },
+                    street: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'VA',
+                    zipcode: '22202',
+                    layout: Location.ADDRESS
+                  },
+                  open: true
+                }
               }
-            }]
+            ]
           }
         },
         expected: 'Yourself - 1234 some rd, arlington, VA 22202'
@@ -63,18 +69,20 @@ describe('The RealEstateActivity component', () => {
         props: {
           HasInterests: { value: 'Yes' },
           List: {
-            items: [{
-              Item: {
-                InterestTypes: { values: ['Yourself'] },
-                Address: {
-                  street: '1 Rd',
-                  city: 'Munich',
-                  country: { value: ['Germany'] },
-                  layout: Location.ADDRESS
-                },
-                open: true
+            items: [
+              {
+                Item: {
+                  InterestTypes: { values: ['Yourself'] },
+                  Address: {
+                    street: '1 Rd',
+                    city: 'Munich',
+                    country: { value: ['Germany'] },
+                    layout: Location.ADDRESS
+                  },
+                  open: true
+                }
               }
-            }]
+            ]
           }
         },
         expected: 'Yourself - 1 rd, munich, germany'
@@ -83,20 +91,22 @@ describe('The RealEstateActivity component', () => {
         props: {
           HasInterests: { value: 'Yes' },
           List: {
-            items: [{
-              Item: {
-                InterestTypes: { values: ['Yourself'] },
-                Address: {
-                  country: { value: ['United States'] },
-                  street: '1 Rd',
-                  city: 'APO',
-                  state: 'AA',
-                  zipcode: '22222',
-                  layout: Location.ADDRESS
-                },
-                open: true
+            items: [
+              {
+                Item: {
+                  InterestTypes: { values: ['Yourself'] },
+                  Address: {
+                    country: { value: ['United States'] },
+                    street: '1 Rd',
+                    city: 'APO',
+                    state: 'AA',
+                    zipcode: '22222',
+                    layout: Location.ADDRESS
+                  },
+                  open: true
+                }
               }
-            }]
+            ]
           }
         },
         expected: 'Yourself - 1 rd, apo, AA 22222'

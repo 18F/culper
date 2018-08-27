@@ -1,9 +1,15 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Branch, Location, Field, Telephone } from '../../../Form'
+import {
+  ValidationElement,
+  Branch,
+  Location,
+  Field,
+  Telephone
+} from '../../../Form'
 
 export default class PhysicalAddress extends ValidationElement {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.update = this.update.bind(this)
@@ -12,7 +18,7 @@ export default class PhysicalAddress extends ValidationElement {
     this.updateTelephone = this.updateTelephone.bind(this)
   }
 
-  update (queue) {
+  update(queue) {
     this.props.onUpdate({
       name: this.props.name,
       HasDifferentAddress: this.props.HasDifferentAddress,
@@ -25,98 +31,107 @@ export default class PhysicalAddress extends ValidationElement {
   /**
    * Handle the change event.
    */
-  updateBranch (values) {
+  updateBranch(values) {
     this.update({
       HasDifferentAddress: values
     })
   }
 
-  updateAddress (values) {
+  updateAddress(values) {
     this.update({
       Address: values
     })
   }
 
-  updateTelephone (values) {
+  updateTelephone(values) {
     this.update({
       Telephone: values
     })
   }
 
-  options () {
+  options() {
     return (
-      <Branch label={this.props.title}
-              labelSize="h3"
-              name="physicalAddress"
-              {...this.props.HasDifferentAddress}
-              className="has-different-address"
-              help="history.employment.default.physicalAddress.help"
-              onUpdate={this.updateBranch}
-              onError={this.props.onError}
-              required={this.props.required}
-              scrollIntoView={this.props.scrollIntoView}>
-      </Branch>
+      <Branch
+        label={this.props.title}
+        labelSize="h3"
+        name="physicalAddress"
+        {...this.props.HasDifferentAddress}
+        className="has-different-address"
+        help="history.employment.default.physicalAddress.help"
+        onUpdate={this.updateBranch}
+        onError={this.props.onError}
+        required={this.props.required}
+        scrollIntoView={this.props.scrollIntoView}
+      />
     )
   }
 
-  render () {
+  render() {
     const klass = `physical ${this.props.className || ''}`.trim()
     let options = this.options()
 
     if ((this.props.HasDifferentAddress || {}).value === 'Yes') {
       return (
         <div className="has-different">
-          <div className={klass + ' physical-address'}>
-            {options}
-          </div>
+          <div className={klass + ' physical-address'}>{options}</div>
 
-          <Field title={i18n.t('history.employment.default.physicalAddress.heading.address')}
-                 titleSize="h4"
-                 optional={true}
-                 help="history.employment.default.physicalAddress.address.help"
-                 adjustFor="labels"
-                 shrink={true}
-                 scrollIntoView={this.props.scrollIntoView}>
-            <Location name="address"
-                      className="physical-address-address"
-                      {...this.props.Address}
-                      label={i18n.t('history.employment.default.physicalAddress.address.label')}
-                      placeholder={i18n.t('history.employment.default.physicalAddress.address.placeholder')}
-                      layout={Location.ADDRESS}
-                      geocode={true}
-                      addressBooks={this.props.addressBooks}
-                      addressBook={this.props.addressBook}
-                      dispatch={this.props.dispatch}
-                      onUpdate={this.updateAddress}
-                      onError={this.props.onError}
-                      required={this.props.required}
-                      />
+          <Field
+            title={i18n.t(
+              'history.employment.default.physicalAddress.heading.address'
+            )}
+            titleSize="h4"
+            optional={true}
+            help="history.employment.default.physicalAddress.address.help"
+            adjustFor="labels"
+            shrink={true}
+            scrollIntoView={this.props.scrollIntoView}>
+            <Location
+              name="address"
+              className="physical-address-address"
+              {...this.props.Address}
+              label={i18n.t(
+                'history.employment.default.physicalAddress.address.label'
+              )}
+              placeholder={i18n.t(
+                'history.employment.default.physicalAddress.address.placeholder'
+              )}
+              layout={Location.ADDRESS}
+              geocode={true}
+              addressBooks={this.props.addressBooks}
+              addressBook={this.props.addressBook}
+              dispatch={this.props.dispatch}
+              onUpdate={this.updateAddress}
+              onError={this.props.onError}
+              required={this.props.required}
+            />
           </Field>
 
-          <Field title={i18n.t('history.employment.default.physicalAddress.heading.telephone')}
-                 titleSize="h4"
-                 className="override-required"
-                 help="history.employment.default.physicalAddress.telephone.help"
-                 adjustFor="telephone"
-                 scrollIntoView={this.props.scrollIntoView}>
-            <Telephone name="telephone"
-                       {...this.props.Telephone}
-                       className="physical-address-telephone"
-                       label={i18n.t('history.employment.default.physicalAddress.telephone.label')}
-                       onUpdate={this.updateTelephone}
-                       onError={this.props.onError}
-                       required={this.props.required}
-                       />
+          <Field
+            title={i18n.t(
+              'history.employment.default.physicalAddress.heading.telephone'
+            )}
+            titleSize="h4"
+            className="override-required"
+            help="history.employment.default.physicalAddress.telephone.help"
+            adjustFor="telephone"
+            scrollIntoView={this.props.scrollIntoView}>
+            <Telephone
+              name="telephone"
+              {...this.props.Telephone}
+              className="physical-address-telephone"
+              label={i18n.t(
+                'history.employment.default.physicalAddress.telephone.label'
+              )}
+              onUpdate={this.updateTelephone}
+              onError={this.props.onError}
+              required={this.props.required}
+            />
           </Field>
         </div>
       )
     }
 
-    return (
-      <div className={klass + ' physical-address'}>
-        {options}
-      </div>
-    )
+    return <div className={klass + ' physical-address'}>{options}</div>
   }
 }
 
@@ -125,7 +140,9 @@ PhysicalAddress.defaultProps = {
   HasDifferentAddress: {},
   addressBooks: {},
   addressBook: 'Company',
-  dispatch: (action) => {},
-  onUpdate: (queue) => {},
-  onError: (value, arr) => { return arr }
+  dispatch: action => {},
+  onUpdate: queue => {},
+  onError: (value, arr) => {
+    return arr
+  }
 }

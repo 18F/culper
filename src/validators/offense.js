@@ -3,7 +3,7 @@ import SentenceValidator from './sentence'
 import { validGenericTextfield, validDateField, validBranch } from './helpers'
 
 export default class OffenseValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.date = data.Date
     this.description = data.Description
     this.involvedViolence = (data.InvolvedViolence || {}).value
@@ -27,35 +27,35 @@ export default class OffenseValidator {
     this.awaitingTrialExplanation = data.AwaitingTrialExplanation
   }
 
-  validDate () {
+  validDate() {
     return !!this.date && validDateField(this.date)
   }
 
-  validDescription () {
+  validDescription() {
     return !!this.description && validGenericTextfield(this.description)
   }
 
-  validViolence () {
+  validViolence() {
     return this.involvedViolence === 'Yes' || this.involvedViolence === 'No'
   }
 
-  validFirearms () {
+  validFirearms() {
     return this.involvedFirearms === 'Yes' || this.involvedFirearms === 'No'
   }
 
-  validSubstances () {
+  validSubstances() {
     return this.involvedSubstances === 'Yes' || this.involvedSubstances === 'No'
   }
 
-  validAddress () {
+  validAddress() {
     return !!this.address && new LocationValidator(this.address).isValid()
   }
 
-  validCited () {
+  validCited() {
     return this.wasCited === 'Yes' || this.wasCited === 'No'
   }
 
-  validCitedBy () {
+  validCitedBy() {
     if (this.wasCited === 'No') {
       return true
     }
@@ -63,15 +63,18 @@ export default class OffenseValidator {
     return !!this.citedBy && validGenericTextfield(this.citedBy)
   }
 
-  validAgencyAddress () {
+  validAgencyAddress() {
     if (this.wasCited === 'No') {
       return true
     }
 
-    return !!this.agencyAddress && new LocationValidator(this.agencyAddress).isValid()
+    return (
+      !!this.agencyAddress &&
+      new LocationValidator(this.agencyAddress).isValid()
+    )
   }
 
-  validCharged () {
+  validCharged() {
     if (this.wasCited === 'No') {
       return true
     }
@@ -79,7 +82,7 @@ export default class OffenseValidator {
     return this.wasCharged === 'Yes' || this.wasCharged === 'No'
   }
 
-  validExplanation () {
+  validExplanation() {
     if (this.wasCited === 'No' || this.wasCharged !== 'No') {
       return true
     }
@@ -87,7 +90,7 @@ export default class OffenseValidator {
     return !!this.explanation && validGenericTextfield(this.explanation)
   }
 
-  validCourtName () {
+  validCourtName() {
     if (this.wasCited === 'No' || this.wasCharged !== 'Yes') {
       return true
     }
@@ -95,23 +98,28 @@ export default class OffenseValidator {
     return !!this.courtName && validGenericTextfield(this.courtName)
   }
 
-  validCourtAddress () {
+  validCourtAddress() {
     if (this.wasCited === 'No' || this.wasCharged !== 'Yes') {
       return true
     }
 
-    return !!this.courtAddress && new LocationValidator(this.courtAddress).isValid()
+    return (
+      !!this.courtAddress && new LocationValidator(this.courtAddress).isValid()
+    )
   }
 
-  validChargeType () {
+  validChargeType() {
     if (this.wasCited === 'No' || this.wasCharged !== 'Yes') {
       return true
     }
 
-    return !!this.chargeType && ['Felony', 'Misdemeanor', 'Other'].includes(this.chargeType)
+    return (
+      !!this.chargeType &&
+      ['Felony', 'Misdemeanor', 'Other'].includes(this.chargeType)
+    )
   }
 
-  validCourtCharge () {
+  validCourtCharge() {
     if (this.wasCited === 'No' || this.wasCharged !== 'Yes') {
       return true
     }
@@ -119,7 +127,7 @@ export default class OffenseValidator {
     return !!this.courtCharge && validGenericTextfield(this.courtCharge)
   }
 
-  validCourtOutcome () {
+  validCourtOutcome() {
     if (this.wasCited === 'No' || this.wasCharged !== 'Yes') {
       return true
     }
@@ -127,7 +135,7 @@ export default class OffenseValidator {
     return !!this.courtOutcome && validGenericTextfield(this.courtOutcome)
   }
 
-  validCourtDate () {
+  validCourtDate() {
     if (this.wasCited === 'No' || this.wasCharged !== 'Yes') {
       return true
     }
@@ -135,7 +143,7 @@ export default class OffenseValidator {
     return !!this.courtDate && validDateField(this.courtDate)
   }
 
-  validSentenced () {
+  validSentenced() {
     if (this.wasCited === 'No' || this.wasCharged !== 'Yes') {
       return true
     }
@@ -151,16 +159,23 @@ export default class OffenseValidator {
     return false
   }
 
-  validAwaitingTrial () {
-    if (this.wasCharged === 'Yes' && this.wasCited === 'Yes' && this.wasSentenced === 'No') {
-      return validBranch(this.awaitingTrial) &&
+  validAwaitingTrial() {
+    if (
+      this.wasCharged === 'Yes' &&
+      this.wasCited === 'Yes' &&
+      this.wasSentenced === 'No'
+    ) {
+      return (
+        validBranch(this.awaitingTrial) &&
         validGenericTextfield(this.awaitingTrialExplanation)
+      )
     }
     return true
   }
 
-  isValid () {
-    return this.validDate() &&
+  isValid() {
+    return (
+      this.validDate() &&
       this.validDescription() &&
       this.validViolence() &&
       this.validFirearms() &&
@@ -179,5 +194,6 @@ export default class OffenseValidator {
       this.validCourtDate() &&
       this.validSentenced() &&
       this.validAwaitingTrial()
+    )
   }
 }

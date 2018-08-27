@@ -7,19 +7,21 @@ describe('Schema for financial taxes', () => {
       Involved: { value: 'Yes' },
       List: {
         branch: { value: 'No' },
-        items: [{
-          Item: {
-            DrugType: { value: null },
-            FirstInvolvement: {},
-            RecentInvolvement: {},
-            NatureOfInvolvement: {},
-            InvolvementWhileEmployed: {},
-            InvolvementWithClearance: {},
-            InvolvementInFuture: {},
-            Reasons: {},
-            Explanation: {}
+        items: [
+          {
+            Item: {
+              DrugType: { value: null },
+              FirstInvolvement: {},
+              RecentInvolvement: {},
+              NatureOfInvolvement: {},
+              InvolvementWhileEmployed: {},
+              InvolvementWithClearance: {},
+              InvolvementInFuture: {},
+              Reasons: {},
+              Explanation: {}
+            }
           }
-        }]
+        ]
       }
     }
 

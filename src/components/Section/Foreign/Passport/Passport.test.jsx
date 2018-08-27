@@ -45,7 +45,7 @@ describe('The passport component', () => {
     const expected = {
       name: 'passport',
       HasPassports: { value: 'Yes' },
-      onUpdate: (values) => {
+      onUpdate: values => {
         first = values.Name.first
       },
       suggestedNames: [
@@ -61,7 +61,10 @@ describe('The passport component', () => {
     }
     const component = mount(<Passport {...expected} />)
     expect(component.find('.modal').length).toEqual(1)
-    component.find('.suggestion .action button').first().simulate('click')
+    component
+      .find('.suggestion .action button')
+      .first()
+      .simulate('click')
     expect(first).toEqual(expected.suggestedNames[0].first)
   })
 
@@ -106,7 +109,9 @@ describe('The passport component', () => {
     component.find('.passport-issued .day input').simulate('change')
     component.find('.passport-expiration .day input').simulate('change')
     component.find('.passport-card input').simulate('change')
-    expect(component.find('.passport-book input').hasClass('selected')).toBe(true)
+    expect(component.find('.passport-book input').hasClass('selected')).toBe(
+      true
+    )
   })
 
   it('can render with regular expression for passport card', () => {

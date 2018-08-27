@@ -1,7 +1,9 @@
-import LegalAssociationsAdvocatingValidator, { AdvocatingValidator } from './legalassociationsadvocating'
+import LegalAssociationsAdvocatingValidator, {
+  AdvocatingValidator
+} from './legalassociationsadvocating'
 import { battery } from './helpers'
 
-describe('Legal associations advocated component validation', function () {
+describe('Legal associations advocated component validation', function() {
   it('validate dates', () => {
     const tests = [
       {

@@ -1,7 +1,7 @@
 import MaritalValidator from './marital'
 import Location from '../components/Form/Location'
 
-describe('Marital validation', function () {
+describe('Marital validation', function() {
   it('validates divorce', () => {
     const tests = [
       {
@@ -17,7 +17,7 @@ describe('Marital validation', function () {
         state: {
           DivorcedList: {
             branch: { value: 'No' },
-            items: [{Item: {}}]
+            items: [{ Item: {} }]
           }
         },
         expected: false
@@ -26,72 +26,76 @@ describe('Marital validation', function () {
         state: {
           DivorcedList: {
             branch: { value: 'No' },
-            items: [{
-              Item: {
-                Status: { value: 'Widowed' },
-                Name: {
-                  first: 'Foo',
-                  firstInitialOnly: false,
-                  middle: 'J',
-                  middleInitialOnly: true,
-                  noMiddleName: false,
-                  last: 'Bar',
-                  lastInitialOnly: false,
-                  suffix: 'Jr'
-                },
-                DateDivorced: {
-                  day: '1',
-                  month: '1',
-                  year: '2016',
-                  date: new Date('1/1/2016')
-                },
-                Birthdate: {
-                  day: '1',
-                  month: '1',
-                  year: '2016',
-                  date: new Date('1/1/2016')
-                },
-                BirthPlace: {
-                  country: { value: 'United States' },
-                  city: 'Arlington',
-                  county: 'Arlington',
-                  state: 'VA',
-                  layout: Location.BIRTHPLACE
-                },
-                Citizenship: {
-                  value: ['Germany']
-                },
-                Telephone: {
-                  noNumber: '',
-                  number: '7031112222',
-                  numberType: 'Home',
-                  type: 'Domestic',
-                  timeOfDay: 'Both',
-                  extension: ''
-                },
-                Recognized: {
-                  day: '1',
-                  month: '1',
-                  year: '2016',
-                  date: new Date('1/1/2016')
-                },
-                Address: {
-                  country: { value: 'United States' },
-                  street: '1234 Some Rd',
-                  city: 'Arlington',
-                  state: 'VA',
-                  zipcode: '22202',
-                  layout: Location.ADDRESS
+            items: [
+              {
+                Item: {
+                  Status: { value: 'Widowed' },
+                  Name: {
+                    first: 'Foo',
+                    firstInitialOnly: false,
+                    middle: 'J',
+                    middleInitialOnly: true,
+                    noMiddleName: false,
+                    last: 'Bar',
+                    lastInitialOnly: false,
+                    suffix: 'Jr'
+                  },
+                  DateDivorced: {
+                    day: '1',
+                    month: '1',
+                    year: '2016',
+                    date: new Date('1/1/2016')
+                  },
+                  Birthdate: {
+                    day: '1',
+                    month: '1',
+                    year: '2016',
+                    date: new Date('1/1/2016')
+                  },
+                  BirthPlace: {
+                    country: { value: 'United States' },
+                    city: 'Arlington',
+                    county: 'Arlington',
+                    state: 'VA',
+                    layout: Location.BIRTHPLACE
+                  },
+                  Citizenship: {
+                    value: ['Germany']
+                  },
+                  Telephone: {
+                    noNumber: '',
+                    number: '7031112222',
+                    numberType: 'Home',
+                    type: 'Domestic',
+                    timeOfDay: 'Both',
+                    extension: ''
+                  },
+                  Recognized: {
+                    day: '1',
+                    month: '1',
+                    year: '2016',
+                    date: new Date('1/1/2016')
+                  },
+                  Address: {
+                    country: { value: 'United States' },
+                    street: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'VA',
+                    zipcode: '22202',
+                    layout: Location.ADDRESS
+                  }
                 }
               }
-            }]
+            ]
           }
         },
         expected: true
       }
     ]
     tests.forEach(test => {
-      expect(new MaritalValidator(test.state, null).validDivorce()).toBe(test.expected)
+      expect(new MaritalValidator(test.state, null).validDivorce()).toBe(
+        test.expected
+      )
     })
   })
   it('validates status', () => {
@@ -101,7 +105,6 @@ describe('Marital validation', function () {
           Status: {
             value: 'NeverMarried'
           }
-
         },
         expected: true
       },
@@ -115,7 +118,9 @@ describe('Marital validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new MaritalValidator(test.state, null).validStatus()).toBe(test.expected)
+      expect(new MaritalValidator(test.state, null).validStatus()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -152,7 +157,7 @@ describe('Marital validation', function () {
           },
           DivorcedList: {
             branch: { value: '' },
-            items: [{Item: {}}]
+            items: [{ Item: {} }]
           }
         },
         expected: false
@@ -162,7 +167,7 @@ describe('Marital validation', function () {
           Status: { value: 'InCivilUnion' },
           DivorcedList: {
             branch: { value: '' },
-            items: [{Item: {}}]
+            items: [{ Item: {} }]
           },
           CivilUnion: {
             Name: {
@@ -254,7 +259,9 @@ describe('Marital validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new MaritalValidator(test.state, null).isValid()).toBe(test.expected)
+      expect(new MaritalValidator(test.state, null).isValid()).toBe(
+        test.expected
+      )
     })
   })
 })

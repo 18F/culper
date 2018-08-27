@@ -1,7 +1,9 @@
-import LegalInvestigationsRevokedValidator, { RevokedValidator } from './legalinvestigationsrevoked.js'
+import LegalInvestigationsRevokedValidator, {
+  RevokedValidator
+} from './legalinvestigationsrevoked.js'
 import { battery } from './helpers'
 
-describe('Legal investigations revoked component validation', function () {
+describe('Legal investigations revoked component validation', function() {
   it('validate date completed', () => {
     const tests = [
       {

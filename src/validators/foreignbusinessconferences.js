@@ -1,29 +1,33 @@
 import DateRangeValidator from './daterange'
-import { validAccordion, validGenericTextfield, BranchCollection } from './helpers'
+import {
+  validAccordion,
+  validGenericTextfield,
+  BranchCollection
+} from './helpers'
 
 export default class ForeignBusinessConferencesValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.hasForeignConferences = (data.HasForeignConferences || {}).value
     this.list = data.List || {}
   }
 
-  validList () {
+  validList() {
     if (this.hasForeignConferences === 'No') {
       return true
     }
 
-    return validAccordion(this.list, (item) => {
+    return validAccordion(this.list, item => {
       return new ConferencesValidator(item).isValid()
     })
   }
 
-  isValid () {
+  isValid() {
     return this.validList()
   }
 }
 
 export class ConferencesValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.description = data.Description
     this.sponsor = data.Sponsor
     this.city = data.City
@@ -33,31 +37,31 @@ export class ConferencesValidator {
     this.contacts = data.Contacts
   }
 
-  validDescription () {
+  validDescription() {
     return !!this.description && validGenericTextfield(this.description)
   }
 
-  validSponsor () {
+  validSponsor() {
     return !!this.sponsor && validGenericTextfield(this.sponsor)
   }
 
-  validCity () {
+  validCity() {
     return !!this.city && validGenericTextfield(this.city)
   }
 
-  validCountry () {
+  validCountry() {
     return !!this.country && validGenericTextfield(this.country)
   }
 
-  validDates () {
+  validDates() {
     return !!this.dates && new DateRangeValidator(this.dates, null).isValid()
   }
 
-  validPurpose () {
+  validPurpose() {
     return !!this.purpose && validGenericTextfield(this.purpose)
   }
 
-  validContacts () {
+  validContacts() {
     if (!this.contacts) {
       return false
     }
@@ -76,13 +80,15 @@ export class ConferencesValidator {
     })
   }
 
-  isValid () {
-    return this.validDescription() &&
+  isValid() {
+    return (
+      this.validDescription() &&
       this.validSponsor() &&
       this.validCity() &&
       this.validCountry() &&
       this.validDates() &&
       this.validPurpose() &&
       this.validContacts()
+    )
   }
 }

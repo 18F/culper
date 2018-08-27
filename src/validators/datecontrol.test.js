@@ -1,7 +1,7 @@
 import DateControlValidator from './datecontrol'
 import { today, daysAgo } from '../components/Section/History/dateranges'
 
-describe('date control validator', function () {
+describe('date control validator', function() {
   it('validate basic date properties', () => {
     const tests = [
       {
@@ -104,7 +104,9 @@ describe('date control validator', function () {
     ]
 
     tests.forEach(test => {
-      expect(new DateControlValidator(test.data).validMaxDate()).toBe(test.expected)
+      expect(new DateControlValidator(test.data).validMaxDate()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -150,12 +152,14 @@ describe('date control validator', function () {
     ]
 
     tests.forEach(test => {
-      expect(new DateControlValidator(test.data).validMinDate()).toBe(test.expected)
+      expect(new DateControlValidator(test.data).validMinDate()).toBe(
+        test.expected
+      )
     })
   })
 
   it('validates based on relationship and birthdate', () => {
-    function age (i) {
+    function age(i) {
       const date = daysAgo(today, 365 * i)
       return {
         month: `${date.getMonth() + 1}`,
@@ -363,7 +367,7 @@ describe('date control validator', function () {
   })
 
   it('can handle min/max explicitly set along with applicant birthdate', () => {
-    function age (i) {
+    function age(i) {
       const date = daysAgo(today, 365 * i)
       return {
         month: `${date.getMonth() + 1}`,

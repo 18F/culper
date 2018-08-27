@@ -32,8 +32,14 @@ describe('The foreign business employment component', () => {
       }
     }
     const component = mount(<Employment {...expected} />)
-    component.find('.branch .yes input').at(0).simulate('change')
-    component.find('.branch .yes input').at(0).simulate('blur')
+    component
+      .find('.branch .yes input')
+      .at(0)
+      .simulate('change')
+    component
+      .find('.branch .yes input')
+      .at(0)
+      .simulate('blur')
     expect(validated).toBe(true)
   })
 
@@ -43,14 +49,18 @@ describe('The foreign business employment component', () => {
       name: 'foreign-business-employment',
       HasForeignEmployment: { value: 'Yes' },
       List: {
-        items: [{
-          Item: {
-            Address: { country: { value: 'United States' } },
-            Accepted: { value: 'Yes' }
+        items: [
+          {
+            Item: {
+              Address: { country: { value: 'United States' } },
+              Accepted: { value: 'Yes' }
+            }
           }
-        }]
+        ]
       },
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
     const component = mount(<Employment {...expected} />)
     expect(component.find('.accordion').length).toBe(1)

@@ -8,7 +8,7 @@ import { Accordion, Branch, Show } from '../../../Form'
 import Order from '../Order'
 
 export default class Consultation extends SubsectionElement {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.update = this.update.bind(this)
@@ -16,7 +16,7 @@ export default class Consultation extends SubsectionElement {
     this.updateList = this.updateList.bind(this)
   }
 
-  update (queue) {
+  update(queue) {
     this.props.onUpdate({
       List: this.props.List,
       Consulted: this.props.Consulted,
@@ -24,20 +24,20 @@ export default class Consultation extends SubsectionElement {
     })
   }
 
-  updateList (values) {
+  updateList(values) {
     this.update({
       List: values
     })
   }
 
-  updateConsulted (values) {
+  updateConsulted(values) {
     this.update({
       Consulted: values,
       List: values.value === 'Yes' ? this.props.List : []
     })
   }
 
-  summary (item, index) {
+  summary(item, index) {
     const o = (item || {}).Item || {}
     const occurred = DateSummary(o.Occurred || {})
     const courtName = (o.CourtName || {}).value || ''
@@ -47,45 +47,59 @@ export default class Consultation extends SubsectionElement {
       index: index,
       left: courtName,
       right: occurred,
-      placeholder: i18n.t('psychological.consultation.collection.summaryCourtName')
+      placeholder: i18n.t(
+        'psychological.consultation.collection.summaryCourtName'
+      )
     })
   }
 
-  render () {
+  render() {
     return (
-      <div className="section-content consultation" {...super.dataAttributes(this.props)}>
-        <Branch name="is_incompetent"
-                label={i18n.t('psychological.heading.consultation')}
-                labelSize="h2"
-                {...this.props.Consulted}
-                warning={true}
-                onError={this.handleError}
-                required={this.props.required}
-                onUpdate={this.updateConsulted}
-                scrollIntoView={this.props.scrollIntoView}>
-          { i18n.m('psychological.heading.consultation2') }
+      <div
+        className="section-content consultation"
+        {...super.dataAttributes(this.props)}>
+        <Branch
+          name="is_incompetent"
+          label={i18n.t('psychological.heading.consultation')}
+          labelSize="h2"
+          {...this.props.Consulted}
+          warning={true}
+          onError={this.handleError}
+          required={this.props.required}
+          onUpdate={this.updateConsulted}
+          scrollIntoView={this.props.scrollIntoView}>
+          {i18n.m('psychological.heading.consultation2')}
         </Branch>
 
         <Show when={this.props.Consulted.value === 'Yes'}>
-          <Accordion defaultState={this.props.defaultState}
-                     {...this.props.List}
-                     scrollToBottom={this.props.scrollToBottom}
-                     summary={this.summary}
-                     onUpdate={this.updateList}
-                     onError={this.handleError}
-                     validator={ConsultationOrderValidator}
-                     description={i18n.t('psychological.consultation.collection.description')}
-                     appendTitle={i18n.t('psychological.consultation.collection.appendTitle')}
-                     appendLabel={i18n.t('psychological.consultation.collection.appendLabel')}
-                     required={this.props.required}
-                     scrollIntoView={this.props.scrollIntoView}>
-            <Order name="Item"
-                   prefix="consultation"
-                   addressBooks={this.props.addressBooks}
-                   dispatch={this.props.dispatch}
-                   required={this.props.required}
-                   scrollIntoView={this.props.scrollIntoView}
-                   bind={true} />
+          <Accordion
+            defaultState={this.props.defaultState}
+            {...this.props.List}
+            scrollToBottom={this.props.scrollToBottom}
+            summary={this.summary}
+            onUpdate={this.updateList}
+            onError={this.handleError}
+            validator={ConsultationOrderValidator}
+            description={i18n.t(
+              'psychological.consultation.collection.description'
+            )}
+            appendTitle={i18n.t(
+              'psychological.consultation.collection.appendTitle'
+            )}
+            appendLabel={i18n.t(
+              'psychological.consultation.collection.appendLabel'
+            )}
+            required={this.props.required}
+            scrollIntoView={this.props.scrollIntoView}>
+            <Order
+              name="Item"
+              prefix="consultation"
+              addressBooks={this.props.addressBooks}
+              dispatch={this.props.dispatch}
+              required={this.props.required}
+              scrollIntoView={this.props.scrollIntoView}
+              bind={true}
+            />
           </Accordion>
         </Show>
       </div>
@@ -97,13 +111,15 @@ Consultation.defaultProps = {
   Consulted: {},
   List: Accordion.defaultList,
   defaultState: true,
-  onUpdate: (queue) => {},
-  onError: (value, arr) => { return arr },
+  onUpdate: queue => {},
+  onError: (value, arr) => {
+    return arr
+  },
   section: 'psychological',
   subsection: 'consultations',
   addressBooks: {},
   dispatch: () => {},
-  validator: (data) => {
+  validator: data => {
     return validate(schema('psychological.consultations', data))
   },
   scrollToBottom: ''

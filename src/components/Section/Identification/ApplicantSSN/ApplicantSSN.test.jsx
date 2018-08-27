@@ -47,7 +47,7 @@ describe('The applicant SSN component', () => {
         last: '1234'
       },
       verified: true,
-      onUpdate: (queue) => {
+      onUpdate: queue => {
         dirty = !queue.verified
       }
     }
@@ -67,12 +67,14 @@ describe('The applicant SSN component', () => {
         last: '1234'
       },
       verified: false,
-      onUpdate: (queue) => {
+      onUpdate: queue => {
         updated = true
       }
     }
     const component = mount(<ApplicantSSN {...props} />)
-    component.find('.applicant-ssn-verification .first input').simulate('change')
+    component
+      .find('.applicant-ssn-verification .first input')
+      .simulate('change')
     component.find('.applicant-ssn-initial .first input').simulate('change')
     expect(updated).toBe(true)
   })

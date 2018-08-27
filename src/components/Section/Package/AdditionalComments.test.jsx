@@ -6,7 +6,9 @@ describe('The AdditionalComments Release component', () => {
   it('trigger updates', () => {
     let updates = 0
     const expected = {
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
     const component = mount(<AdditionalComments {...expected} />)
     updates = 0

@@ -1,7 +1,7 @@
 import ForeignBornDocumentValidator from './foreignborndocument'
 
-describe('Foreign Born Document Validator', function () {
-  it('should validate document types', function () {
+describe('Foreign Born Document Validator', function() {
+  it('should validate document types', function() {
     const tests = [
       {
         data: {
@@ -18,11 +18,13 @@ describe('Foreign Born Document Validator', function () {
     ]
 
     tests.forEach(test => {
-      expect(new ForeignBornDocumentValidator(test.data).validDocumentType()).toBe(test.expected)
+      expect(
+        new ForeignBornDocumentValidator(test.data).validDocumentType()
+      ).toBe(test.expected)
     })
   })
 
-  it('should validate document explanation', function () {
+  it('should validate document explanation', function() {
     const tests = [
       {
         data: {
@@ -51,11 +53,13 @@ describe('Foreign Born Document Validator', function () {
     ]
 
     tests.forEach(test => {
-      expect(new ForeignBornDocumentValidator(test.data).validDocumentExplanation()).toBe(test.expected)
+      expect(
+        new ForeignBornDocumentValidator(test.data).validDocumentExplanation()
+      ).toBe(test.expected)
     })
   })
 
-  it('should validate document expiration', function () {
+  it('should validate document expiration', function() {
     const tests = [
       {
         data: {
@@ -78,11 +82,13 @@ describe('Foreign Born Document Validator', function () {
     ]
 
     tests.forEach(test => {
-      expect(new ForeignBornDocumentValidator(test.data).validDocumentExpiration()).toBe(test.expected)
+      expect(
+        new ForeignBornDocumentValidator(test.data).validDocumentExpiration()
+      ).toBe(test.expected)
     })
   })
 
-  it('should validate entire document', function () {
+  it('should validate entire document', function() {
     const tests = [
       {
         data: {
@@ -97,7 +103,9 @@ describe('Foreign Born Document Validator', function () {
     ]
 
     tests.forEach(test => {
-      expect(new ForeignBornDocumentValidator(test.data).isValid()).toBe(test.expected)
+      expect(new ForeignBornDocumentValidator(test.data).isValid()).toBe(
+        test.expected
+      )
     })
   })
 })

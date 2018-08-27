@@ -7,21 +7,23 @@ describe('Schema for financial taxes', () => {
       HasForeignSupport: { value: 'Yes' },
       List: {
         branch: { value: 'No' },
-        items: [{
-          Item: {
-            Name: {},
-            Address: {
-              country: null
-            },
-            Relationship: {},
-            Amount: {
-              value: ''
-            },
-            AmountEstimated: {},
-            Frequency: {},
-            Citizenship: {}
+        items: [
+          {
+            Item: {
+              Name: {},
+              Address: {
+                country: null
+              },
+              Relationship: {},
+              Amount: {
+                value: ''
+              },
+              AmountEstimated: {},
+              Frequency: {},
+              Citizenship: {}
+            }
           }
-        }]
+        ]
       }
     }
 

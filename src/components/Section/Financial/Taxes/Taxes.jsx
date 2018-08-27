@@ -9,7 +9,7 @@ import { Branch, Show, Accordion } from '../../../Form'
 import TaxesItem from './TaxesItem'
 
 export default class Taxes extends SubsectionElement {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.updateBranch = this.updateBranch.bind(this)
@@ -17,7 +17,7 @@ export default class Taxes extends SubsectionElement {
     this.summary = this.summary.bind(this)
   }
 
-  update (queue) {
+  update(queue) {
     this.props.onUpdate({
       HasTaxes: this.props.HasTaxes,
       List: this.props.List,
@@ -28,7 +28,7 @@ export default class Taxes extends SubsectionElement {
   /**
    * Updates triggered by the branching component.
    */
-  updateBranch (values) {
+  updateBranch(values) {
     this.update({
       HasTaxes: values,
       List: values.value === 'Yes' ? this.props.List : {}
@@ -39,7 +39,7 @@ export default class Taxes extends SubsectionElement {
    * Dispatch callback initiated from the collection to notify of any new
    * updates to the items.
    */
-  updateList (values) {
+  updateList(values) {
     this.update({
       List: values
     })
@@ -48,8 +48,8 @@ export default class Taxes extends SubsectionElement {
   /**
    * Assists in rendering the summary section.
    */
-  summary (item, index) {
-    const obj = (item.Item || {})
+  summary(item, index) {
+    const obj = item.Item || {}
     const year = (obj.Year || {}).value || ''
     const agency = (obj.Agency || {}).value || ''
 
@@ -62,38 +62,43 @@ export default class Taxes extends SubsectionElement {
     })
   }
 
-  render () {
+  render() {
     return (
-      <div className="section-content taxes" {...super.dataAttributes(this.props)}>
-        <Branch name="has_taxes"
-                label={i18n.t('financial.taxes.title')}
-                labelSize="h2"
-                className="taxes-branch"
-                {...this.props.HasTaxes}
-                warning={true}
-                onUpdate={this.updateBranch}
-                required={this.props.required}
-                scrollIntoView={this.props.scrollIntoView}
-                onError={this.handleError}>
-        </Branch>
+      <div
+        className="section-content taxes"
+        {...super.dataAttributes(this.props)}>
+        <Branch
+          name="has_taxes"
+          label={i18n.t('financial.taxes.title')}
+          labelSize="h2"
+          className="taxes-branch"
+          {...this.props.HasTaxes}
+          warning={true}
+          onUpdate={this.updateBranch}
+          required={this.props.required}
+          scrollIntoView={this.props.scrollIntoView}
+          onError={this.handleError}
+        />
         <Show when={(this.props.HasTaxes || {}).value === 'Yes'}>
-          <Accordion {...this.props.List}
-                     defaultState={this.props.defaultState}
-                     scrollToBottom={this.props.scrollToBottom}
-                     onUpdate={this.updateList}
-                     onError={this.handleError}
-                     summary={this.summary}
-                     required={this.props.required}
-                     scrollIntoView={this.props.scrollIntoView}
-                     validator={TaxValidator}
-                     description={i18n.t('financial.taxes.collection.summary.title')}
-                     appendTitle={i18n.t('financial.taxes.collection.appendTitle')}
-                     appendLabel={i18n.t('financial.taxes.collection.append')}>
-            <TaxesItem name="Item"
-                       bind={true}
-                       required={this.props.required}
-                       scrollIntoView={this.props.scrollIntoView}
-                       />
+          <Accordion
+            {...this.props.List}
+            defaultState={this.props.defaultState}
+            scrollToBottom={this.props.scrollToBottom}
+            onUpdate={this.updateList}
+            onError={this.handleError}
+            summary={this.summary}
+            required={this.props.required}
+            scrollIntoView={this.props.scrollIntoView}
+            validator={TaxValidator}
+            description={i18n.t('financial.taxes.collection.summary.title')}
+            appendTitle={i18n.t('financial.taxes.collection.appendTitle')}
+            appendLabel={i18n.t('financial.taxes.collection.append')}>
+            <TaxesItem
+              name="Item"
+              bind={true}
+              required={this.props.required}
+              scrollIntoView={this.props.scrollIntoView}
+            />
           </Accordion>
         </Show>
       </div>
@@ -104,12 +109,14 @@ export default class Taxes extends SubsectionElement {
 Taxes.defaultProps = {
   HasTaxes: {},
   List: {},
-  onUpdate: (queue) => {},
-  onError: (value, arr) => { return arr },
+  onUpdate: queue => {},
+  onError: (value, arr) => {
+    return arr
+  },
   section: 'financial',
   subsection: 'taxes',
   dispatch: () => {},
-  validator: (data) => {
+  validator: data => {
     return validate(schema('financial.taxes', data))
   },
   defaultState: true

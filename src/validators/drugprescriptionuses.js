@@ -2,33 +2,32 @@ import DateRangeValidator from './daterange'
 import { validAccordion, validBranch, validGenericTextfield } from './helpers'
 
 export default class DrugPrescriptionUsesValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.usedDrugs = (data.MisusedDrugs || {}).value
     this.list = data.List
   }
 
-  validMisusedDrugs () {
+  validMisusedDrugs() {
     return validBranch(this.usedDrugs)
   }
 
-  validDrugPrescriptionUses () {
+  validDrugPrescriptionUses() {
     if (this.validMisusedDrugs() && this.usedDrugs === 'No') {
       return true
     }
 
-    return validAccordion(this.list, (item) => {
+    return validAccordion(this.list, item => {
       return new DrugPrescriptionUseValidator(item).isValid()
     })
   }
 
-  isValid () {
-    return this.validMisusedDrugs() &&
-      this.validDrugPrescriptionUses()
+  isValid() {
+    return this.validMisusedDrugs() && this.validDrugPrescriptionUses()
   }
 }
 
 export class DrugPrescriptionUseValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.prescriptionName = data.PrescriptionName
     this.involvementDates = data.InvolvementDates
     this.reason = data.Reason
@@ -36,11 +35,13 @@ export class DrugPrescriptionUseValidator {
     this.useWithClearance = (data.UseWithClearance || {}).value
   }
 
-  isValid () {
-    return new DateRangeValidator(this.involvementDates).isValid() &&
+  isValid() {
+    return (
+      new DateRangeValidator(this.involvementDates).isValid() &&
       validGenericTextfield(this.prescriptionName) &&
       validGenericTextfield(this.reason) &&
       validBranch(this.useWhileEmployed) &&
       validBranch(this.useWithClearance)
+    )
   }
 }

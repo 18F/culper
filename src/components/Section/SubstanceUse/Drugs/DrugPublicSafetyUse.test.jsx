@@ -10,7 +10,9 @@ describe('The DrugPublicSafetyUse component', () => {
 
   it('Performs update', () => {
     let updates = 0
-    const onUpdate = () => { updates++ }
+    const onUpdate = () => {
+      updates++
+    }
     const component = mount(<DrugPublicSafetyUse onUpdate={onUpdate} />)
     expect(component.find('.drug-public-safety-use').length).toBe(1)
     component.find('.involvement-dates .from .year input').simulate('change')
@@ -19,4 +21,3 @@ describe('The DrugPublicSafetyUse component', () => {
     expect(updates).toBe(3)
   })
 })
-

@@ -34,14 +34,22 @@ describe('The diploma component', () => {
     const expected = {
       name: 'diploma',
       Diploma: { value: 'Other' },
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
     const component = mount(<DiplomaItem {...expected} />)
     component.find('.diploma-highschool input').simulate('change')
     component.find('.diploma-other input').simulate('change')
-    component.find('.other input').simulate('change', { target: { name: 'DiplomaOther', value: 'Other' } })
-    component.find('.date-awarded .month input').simulate('change', { target: { name: 'month', value: '1' } })
-    component.find('.date-awarded .year input').simulate('change', { target: { name: 'year', value: '2010' } })
+    component
+      .find('.other input')
+      .simulate('change', { target: { name: 'DiplomaOther', value: 'Other' } })
+    component
+      .find('.date-awarded .month input')
+      .simulate('change', { target: { name: 'month', value: '1' } })
+    component
+      .find('.date-awarded .year input')
+      .simulate('change', { target: { name: 'year', value: '2010' } })
     expect(updates).toEqual(5)
   })
 })

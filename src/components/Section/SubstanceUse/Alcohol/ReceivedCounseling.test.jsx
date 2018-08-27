@@ -11,13 +11,23 @@ describe('The ReceivedCounseling component', () => {
   it('Renders with action taken marked as yes', () => {
     let updates = 0
     const expected = {
-      onUpdate: () => { updates++ },
+      onUpdate: () => {
+        updates++
+      },
       UseSameAddress: { value: 'No' }
     }
     const component = mount(<ReceivedCounseling {...expected} />)
-    component.find('.treatment-began-date .datecontrol .year input').first().simulate('change', { target: { value: '2010' } })
-    component.find('.treatment-end-date .datecontrol .year input').first().simulate('change', { target: { value: '2010' } })
-    component.find('input[name="PresentTreatmentEndDate"]').simulate('change', { target: { checked: true } })
+    component
+      .find('.treatment-began-date .datecontrol .year input')
+      .first()
+      .simulate('change', { target: { value: '2010' } })
+    component
+      .find('.treatment-end-date .datecontrol .year input')
+      .first()
+      .simulate('change', { target: { value: '2010' } })
+    component
+      .find('input[name="PresentTreatmentEndDate"]')
+      .simulate('change', { target: { checked: true } })
     component.find('input[name="TreatmentProviderName"]').simulate('change')
     component.find('.provider-address input[name="address"]').simulate('change')
     component.find('input[name="AgencyName"]').simulate('change')
@@ -29,11 +39,15 @@ describe('The ReceivedCounseling component', () => {
   it('Renders with treatment completed marked as no', () => {
     let updates = 0
     const expected = {
-      onUpdate: () => { updates++ },
+      onUpdate: () => {
+        updates++
+      },
       CompletedTreatment: { value: 'No' }
     }
     const component = mount(<ReceivedCounseling {...expected} />)
-    component.find('textarea[name="NoCompletedTreatmentExplanation"]').simulate('change')
+    component
+      .find('textarea[name="NoCompletedTreatmentExplanation"]')
+      .simulate('change')
     component.find('.use-same-address .yes input').simulate('change')
     expect(updates).toBe(2)
   })
@@ -42,7 +56,7 @@ describe('The ReceivedCounseling component', () => {
     let checked = false
     const props = {
       PresentTreatmentEndDate: false,
-      onUpdate: (values) => {
+      onUpdate: values => {
         checked = true
       }
     }
@@ -56,7 +70,7 @@ describe('The ReceivedCounseling component', () => {
     let checked = true
     const props = {
       PresentTreatmentEndDate: true,
-      onUpdate: (values) => {
+      onUpdate: values => {
         checked = false
       }
     }

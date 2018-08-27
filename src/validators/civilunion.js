@@ -2,10 +2,16 @@ import LocationValidator, { countryString } from './location'
 import NameValidator from './name'
 import DateRangeValidator from './daterange'
 import ForeignBornDocument from './foreignborndocument'
-import { validBranch, validSSN, validDateField, validPhoneNumber, BranchCollection } from './helpers'
+import {
+  validBranch,
+  validSSN,
+  validDateField,
+  validPhoneNumber,
+  BranchCollection
+} from './helpers'
 
 export default class CivilUnionValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.name = data.Name
     this.birthdate = data.Birthdate
     this.birthPlace = data.BirthPlace
@@ -24,11 +30,15 @@ export default class CivilUnionValidator {
     this.divorced = (data.Divorced || {}).value
   }
 
-  validCitizenship () {
-    return !!this.citizenship && !!this.citizenship.value && this.citizenship.value.length > 0
+  validCitizenship() {
+    return (
+      !!this.citizenship &&
+      !!this.citizenship.value &&
+      this.citizenship.value.length > 0
+    )
   }
 
-  validOtherName () {
+  validOtherName() {
     const branchValidator = new BranchCollection(this.otherNames)
     if (!branchValidator.validKeyValues()) {
       return false
@@ -39,13 +49,15 @@ export default class CivilUnionValidator {
     }
 
     return branchValidator.each(item => {
-      return new NameValidator(item.Othername).isValid() &&
+      return (
+        new NameValidator(item.Othername).isValid() &&
         new DateRangeValidator(item.DatesUsed) &&
         validBranch((item.MaidenName || {}).value)
+      )
     })
   }
 
-  validSeparated () {
+  validSeparated() {
     if (!validBranch(this.separated)) {
       return false
     }
@@ -62,25 +74,35 @@ export default class CivilUnionValidator {
     return validDateField(this.dateSeparated) && addressValid
   }
 
-  validForeignBornDocument () {
-    if (new LocationValidator(this.birthPlace).isValid() && countryString(this.birthPlace.country) !== 'United States') {
+  validForeignBornDocument() {
+    if (
+      new LocationValidator(this.birthPlace).isValid() &&
+      countryString(this.birthPlace.country) !== 'United States'
+    ) {
       return new ForeignBornDocument(this.foreignBornDocument).isValid()
     }
     return true
   }
 
-  validAddress () {
+  validAddress() {
     const address = this.address || {}
     // This one is optional so if a user fills anything, then assume they want to fill it all out
-    const fields = [address.street, address.street2, address.city, address.state, address.zipcode]
+    const fields = [
+      address.street,
+      address.street2,
+      address.city,
+      address.state,
+      address.zipcode
+    ]
     if (fields.some(field => !!field)) {
       return new LocationValidator(this.address).isValid()
     }
     return true
   }
 
-  isValid () {
-    return new NameValidator(this.name).isValid() &&
+  isValid() {
+    return (
+      new NameValidator(this.name).isValid() &&
       validDateField(this.birthdate) &&
       new LocationValidator(this.birthPlace).isValid() &&
       this.validForeignBornDocument() &&
@@ -92,5 +114,6 @@ export default class CivilUnionValidator {
       this.validSeparated() &&
       this.validCitizenship() &&
       !!this.divorced
+    )
   }
 }

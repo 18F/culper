@@ -17,8 +17,7 @@ describe('The Education component', () => {
       List: {
         items: [
           {
-            Item: {
-            }
+            Item: {}
           }
         ]
       }

@@ -83,7 +83,9 @@ describe('The ValidationElement helpers', () => {
     ]
 
     tests.forEach(test => {
-      expect(triageErrors(test.section, test.previous, test.codes)).toEqual(test.expected)
+      expect(triageErrors(test.section, test.previous, test.codes)).toEqual(
+        test.expected
+      )
     })
   })
 })

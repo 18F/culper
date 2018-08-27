@@ -1,6 +1,8 @@
-import SelectiveServiceValidator, { hideSelectiveService } from './selectiveservice'
+import SelectiveServiceValidator, {
+  hideSelectiveService
+} from './selectiveservice'
 
-describe('Selective service validation', function () {
+describe('Selective service validation', function() {
   it('', () => {
     const tests = [
       {
@@ -97,7 +99,9 @@ describe('Selective service validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new SelectiveServiceValidator(test.state, null).validBornAfter()).toBe(test.expected)
+      expect(
+        new SelectiveServiceValidator(test.state, null).validBornAfter()
+      ).toBe(test.expected)
     })
   })
 
@@ -127,7 +131,9 @@ describe('Selective service validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new SelectiveServiceValidator(test.state, null).validRegistered()).toBe(test.expected)
+      expect(
+        new SelectiveServiceValidator(test.state, null).validRegistered()
+      ).toBe(test.expected)
     })
   })
 
@@ -164,7 +170,12 @@ describe('Selective service validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new SelectiveServiceValidator(test.state, null).validRegistrationNumber()).toBe(test.expected)
+      expect(
+        new SelectiveServiceValidator(
+          test.state,
+          null
+        ).validRegistrationNumber()
+      ).toBe(test.expected)
     })
   })
 
@@ -201,7 +212,9 @@ describe('Selective service validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new SelectiveServiceValidator(test.state, null).validExplanation()).toBe(test.expected)
+      expect(
+        new SelectiveServiceValidator(test.state, null).validExplanation()
+      ).toBe(test.expected)
     })
   })
 
@@ -230,7 +243,9 @@ describe('Selective service validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new SelectiveServiceValidator(test.state, null).isValid()).toBe(test.expected)
+      expect(new SelectiveServiceValidator(test.state, null).isValid()).toBe(
+        test.expected
+      )
     })
   })
 })

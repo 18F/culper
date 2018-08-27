@@ -1,8 +1,8 @@
 import section from './section'
 import SectionConstants from '../actions/SectionConstants'
 
-describe('Section Reducer', function () {
-  it('should handle section updates', function () {
+describe('Section Reducer', function() {
+  it('should handle section updates', function() {
     const tests = [
       {
         state: {},

@@ -8,19 +8,23 @@ export const relationshipsCohabitants = (data = {}) => {
         Name: form.name(xitem.Name),
         Birthdate: form.datecontrol(xitem.Birthdate),
         BirthPlace: form.location(xitem.BirthPlace),
-        ForeignBornDocument: form.foreignborndocument(xitem.ForeignBornDocument),
+        ForeignBornDocument: form.foreignborndocument(
+          xitem.ForeignBornDocument
+        ),
         SSN: form.ssn(xitem.SSN),
-        OtherNames: form.collection(((xitem.OtherNames || {}).items || []).map(y => {
-          const yitem = y.Item || {}
-          return {
-            Item: {
-              Has: form.branch(yitem.Has),
-              OtherName: form.name(yitem.OtherName),
-              MaidenName: form.branch(yitem.MaidenName),
-              DatesUsed: form.daterange(yitem.DatesUsed)
+        OtherNames: form.collection(
+          ((xitem.OtherNames || {}).items || []).map(y => {
+            const yitem = y.Item || {}
+            return {
+              Item: {
+                Has: form.branch(yitem.Has),
+                OtherName: form.name(yitem.OtherName),
+                MaidenName: form.branch(yitem.MaidenName),
+                DatesUsed: form.daterange(yitem.DatesUsed)
+              }
             }
-          }
-        })),
+          })
+        ),
         Citizenship: form.country(xitem.Citizenship),
         CohabitationBegan: form.datecontrol(xitem.CohabitationBegan)
       }

@@ -10,21 +10,33 @@ describe('The Address component', () => {
 
   it('Renders US Address', () => {
     let updates = 0
-    const onUpdate = () => { updates++ }
-    const component = mount(<Location onUpdate={onUpdate} layout={Location.US_ADDRESS} />)
+    const onUpdate = () => {
+      updates++
+    }
+    const component = mount(
+      <Location onUpdate={onUpdate} layout={Location.US_ADDRESS} />
+    )
     component.find('.street input').simulate('change')
     component.find('.street2 input').simulate('change')
     component.find('.city input').simulate('change')
-    component.find('.state input').simulate('change', { target: { value: 'Virginia' } })
+    component
+      .find('.state input')
+      .simulate('change', { target: { value: 'Virginia' } })
     component.find('.zipcode input').simulate('change')
     expect(updates).toBe(5)
   })
 
   it('Renders Country Address', () => {
     let updates = 0
-    const onUpdate = () => { updates++ }
-    const component = mount(<Location onUpdate={onUpdate} layout={Location.COUNTRY} country="" />)
-    component.find('.country input').simulate('change', { target: { value: 'Germnay' } })
+    const onUpdate = () => {
+      updates++
+    }
+    const component = mount(
+      <Location onUpdate={onUpdate} layout={Location.COUNTRY} country="" />
+    )
+    component
+      .find('.country input')
+      .simulate('change', { target: { value: 'Germnay' } })
     expect(updates).toBe(1)
   })
 
@@ -60,18 +72,23 @@ describe('The Address component', () => {
       layout: Location.ADDRESS,
       geocodeResult: {
         Error: 'error.geocode.partial',
-        Suggestions: [{
-          Address: '123 Some Rd',
-          City: 'Arlington',
-          State: 'VA',
-          Zipcode: '22201'
-        }]
+        Suggestions: [
+          {
+            Address: '123 Some Rd',
+            City: 'Arlington',
+            State: 'VA',
+            Zipcode: '22201'
+          }
+        ]
       }
     }
 
     const component = mount(<Location {...expected} />)
     expect(component.find('.suggestions.modal-content').length).toBe(1)
-    component.find('.suggestion-btn').first().simulate('click')
+    component
+      .find('.suggestion-btn')
+      .first()
+      .simulate('click')
     expect(component.find('.suggestions.modal-content').length).toBe(0)
   })
 
@@ -85,45 +102,68 @@ describe('The Address component', () => {
       suggestions: true,
       geocodeResult: {
         Error: 'error.geocode.partial',
-        Suggestions: [{
-          Address: '123 Some Rd',
-          City: 'Arlington',
-          State: 'VA',
-          Zipcode: '22201'
-        }]
+        Suggestions: [
+          {
+            Address: '123 Some Rd',
+            City: 'Arlington',
+            State: 'VA',
+            Zipcode: '22201'
+          }
+        ]
       }
     }
 
     const component = mount(<Location {...expected} />)
     expect(component.find('.suggestions.modal-content').length).toBe(1)
-    component.find('.dismiss a').first().simulate('click')
+    component
+      .find('.dismiss a')
+      .first()
+      .simulate('click')
     expect(component.find('.suggestions.modal-content').length).toBe(0)
   })
 
   it('renders all the things', () => {
     const tests = [
       {
-        props: { layout: Location.BIRTHPLACE, country: { value: 'United States' } },
+        props: {
+          layout: Location.BIRTHPLACE,
+          country: { value: 'United States' }
+        },
         selectors: ['.state', '.city', '.county']
       },
       {
-        props: { layout: Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY_COUNTRY, country: { value: 'United States' } },
+        props: {
+          layout: Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY_COUNTRY,
+          country: { value: 'United States' }
+        },
         selectors: ['.state', '.city']
       },
       {
-        props: { layout: Location.BIRTHPLACE_WITHOUT_COUNTY, country: { value: 'United States' } },
+        props: {
+          layout: Location.BIRTHPLACE_WITHOUT_COUNTY,
+          country: { value: 'United States' }
+        },
         selectors: ['.state', '.city']
       },
       {
-        props: { layout: Location.US_CITY_STATE_INTERNATIONAL_CITY_COUNTRY, country: { value: 'United States' } },
+        props: {
+          layout: Location.US_CITY_STATE_INTERNATIONAL_CITY_COUNTRY,
+          country: { value: 'United States' }
+        },
         selectors: ['.state', '.city']
       },
       {
-        props: { layout: Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY, country: { value: 'United States' } },
+        props: {
+          layout: Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY,
+          country: { value: 'United States' }
+        },
         selectors: ['.city', '.state', '.zipcode']
       },
       {
-        props: { layout: Location.ADDRESS, country: { value: 'United States' } },
+        props: {
+          layout: Location.ADDRESS,
+          country: { value: 'United States' }
+        },
         selectors: ['.street', '.street2', '.city', '.state', '.zipcode']
       },
       {
@@ -219,7 +259,9 @@ describe('The Address component', () => {
   it('can set timeout function', () => {
     let called = false
     const w = {
-      setTimeout: (fn, ms) => { called = true }
+      setTimeout: (fn, ms) => {
+        called = true
+      }
     }
     timeout(null, 0, w)
     expect(called).toBe(true)
@@ -343,8 +385,17 @@ describe('The Address component', () => {
             validated: true
           }
         },
-        expect: [{'city': 'Arlington', 'country': {'value': 'United States'}, 'layout': 'US Address', 'state': 'VA', 'street': '123 Some Rd', 'validated': true, 'zipcode': '22202'}]
-
+        expect: [
+          {
+            city: 'Arlington',
+            country: { value: 'United States' },
+            layout: 'US Address',
+            state: 'VA',
+            street: '123 Some Rd',
+            validated: true,
+            zipcode: '22202'
+          }
+        ]
       },
       {
         data: {
@@ -389,13 +440,23 @@ describe('The Address component', () => {
             validated: true
           }
         },
-        expect: [{'city': 'Munich', 'country': {'value': 'Germany'}, 'layout': 'Address', 'street': '123 Some Rd', 'validated': true}]
+        expect: [
+          {
+            city: 'Munich',
+            country: { value: 'Germany' },
+            layout: 'Address',
+            street: '123 Some Rd',
+            validated: true
+          }
+        ]
       },
       {
         data: {
-          books: [{
-            uid: 'abc-123'
-          }],
+          books: [
+            {
+              uid: 'abc-123'
+            }
+          ],
           name: 'default',
           address: {
             uid: 'abc-123',
@@ -414,7 +475,9 @@ describe('The Address component', () => {
 
     tests.forEach(test => {
       const loc = mount(<Location />)
-      const book = loc.instance().appendToAddressBook(test.data.books, test.data.name, test.data.address)
+      const book = loc
+        .instance()
+        .appendToAddressBook(test.data.books, test.data.name, test.data.address)
       expect(book).toEqual(test.expect)
     })
   })

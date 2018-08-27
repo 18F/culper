@@ -1,7 +1,20 @@
-import { hasStatus, allHaveStatus, anyHasStatus, validPhoneNumber, validDateField, withinSevenYears, validGenericTextfield, BranchCollection, validNotApplicable, validBranch, validSSN, validCurrency } from './helpers'
+import {
+  hasStatus,
+  allHaveStatus,
+  anyHasStatus,
+  validPhoneNumber,
+  validDateField,
+  withinSevenYears,
+  validGenericTextfield,
+  BranchCollection,
+  validNotApplicable,
+  validBranch,
+  validSSN,
+  validCurrency
+} from './helpers'
 
-describe('Helpers for validators', function () {
-  it('should return if a property has a status', function () {
+describe('Helpers for validators', function() {
+  it('should return if a property has a status', function() {
     const tests = [
       {
         completed: {
@@ -20,11 +33,13 @@ describe('Helpers for validators', function () {
     ]
 
     tests.forEach(test => {
-      expect(hasStatus(test.completed)(test.property, test.status, test.val)).toBe(true)
+      expect(
+        hasStatus(test.completed)(test.property, test.status, test.val)
+      ).toBe(true)
     })
   })
 
-  it('should validate generic text field', function () {
+  it('should validate generic text field', function() {
     const tests = [
       {
         Field: {
@@ -45,7 +60,7 @@ describe('Helpers for validators', function () {
     })
   })
 
-  it('should validate currency field', function () {
+  it('should validate currency field', function() {
     const tests = [
       {
         Field: {
@@ -72,7 +87,7 @@ describe('Helpers for validators', function () {
     })
   })
 
-  it('should return if a all properties have the same status', function () {
+  it('should return if a all properties have the same status', function() {
     const tests = [
       {
         completed: {
@@ -113,11 +128,13 @@ describe('Helpers for validators', function () {
     ]
 
     tests.forEach(test => {
-      expect(allHaveStatus(test.completed)(test.properties, test.status, test.val)).toBe(test.expected)
+      expect(
+        allHaveStatus(test.completed)(test.properties, test.status, test.val)
+      ).toBe(test.expected)
     })
   })
 
-  it('should return if a any properties have the specified status', function () {
+  it('should return if a any properties have the specified status', function() {
     const tests = [
       {
         completed: {
@@ -158,11 +175,13 @@ describe('Helpers for validators', function () {
     ]
 
     tests.forEach(test => {
-      expect(anyHasStatus(test.completed)(test.properties, test.status, test.val)).toBe(test.expected)
+      expect(
+        anyHasStatus(test.completed)(test.properties, test.status, test.val)
+      ).toBe(test.expected)
     })
   })
 
-  it('should validate parts of a phone number', function () {
+  it('should validate parts of a phone number', function() {
     const tests = [
       {
         phone: {
@@ -270,7 +289,7 @@ describe('Helpers for validators', function () {
     })
   })
 
-  it('should validate a date field', function () {
+  it('should validate a date field', function() {
     const tests = [
       {
         date: {
@@ -319,7 +338,7 @@ describe('Helpers for validators', function () {
     })
   })
 
-  it('should validate if within seven years', function () {
+  it('should validate if within seven years', function() {
     const tests = [
       {
         Dates: {
@@ -360,11 +379,13 @@ describe('Helpers for validators', function () {
     ]
 
     tests.forEach(test => {
-      expect(withinSevenYears(test.Dates.from, test.Dates.to)).toBe(test.expected)
+      expect(withinSevenYears(test.Dates.from, test.Dates.to)).toBe(
+        test.expected
+      )
     })
   })
 
-  it('should validate if branch collection is empty', function () {
+  it('should validate if branch collection is empty', function() {
     const tests = [
       {
         Collection: {
@@ -396,7 +417,7 @@ describe('Helpers for validators', function () {
     })
   })
 
-  it('should validate if branch collection has a key', function () {
+  it('should validate if branch collection has a key', function() {
     const tests = [
       {
         Collection: {
@@ -432,10 +453,10 @@ describe('Helpers for validators', function () {
     })
   })
 
-  it('should validate with custom each function', function () {
+  it('should validate with custom each function', function() {
     const tests = [
       {
-        Function: (item) => {
+        Function: item => {
           return true
         },
         Collection: {
@@ -444,7 +465,7 @@ describe('Helpers for validators', function () {
         expected: true
       },
       {
-        Function: (item) => {
+        Function: item => {
           return true
         },
         Collection: {
@@ -453,7 +474,7 @@ describe('Helpers for validators', function () {
         expected: false
       },
       {
-        Function: (item) => {
+        Function: item => {
           return false
         },
         Collection: {
@@ -468,34 +489,42 @@ describe('Helpers for validators', function () {
     })
   })
 
-  it('should validate not applicable groups', function () {
+  it('should validate not applicable groups', function() {
     const tests = [
       {
-        logic: () => { return false },
+        logic: () => {
+          return false
+        },
         expected: false
       },
       {
         NotApplicable: {
           applicable: true
         },
-        logic: () => { return false },
+        logic: () => {
+          return false
+        },
         expected: false
       },
       {
         NotApplicable: {
           applicable: false
         },
-        logic: () => { return false },
+        logic: () => {
+          return false
+        },
         expected: true
       }
     ]
 
     tests.forEach(test => {
-      expect(validNotApplicable(test.NotApplicable, test.logic)).toBe(test.expected)
+      expect(validNotApplicable(test.NotApplicable, test.logic)).toBe(
+        test.expected
+      )
     })
   })
 
-  it('should validate branch options', function () {
+  it('should validate branch options', function() {
     const tests = [
       {
         Value: 'Yes',
@@ -518,11 +547,13 @@ describe('Helpers for validators', function () {
     ]
 
     tests.forEach(test => {
-      expect(validBranch(test.Value, test.YesValue, test.NoValue)).toBe(test.expected)
+      expect(validBranch(test.Value, test.YesValue, test.NoValue)).toBe(
+        test.expected
+      )
     })
   })
 
-  it('should validate ssn', function () {
+  it('should validate ssn', function() {
     const tests = [
       {
         ssn: {

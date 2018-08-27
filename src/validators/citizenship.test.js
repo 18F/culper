@@ -1,7 +1,7 @@
 import CitizenshipValidator from './citizenship'
 import Location from '../components/Form/Location'
 
-describe('citizenship component validation', function () {
+describe('citizenship component validation', function() {
   it('can validate status', () => {
     const tests = [
       {
@@ -49,7 +49,9 @@ describe('citizenship component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new CitizenshipValidator(test.data).validCitizenshipStatus()).toBe(test.expected)
+      expect(new CitizenshipValidator(test.data).validCitizenshipStatus()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -92,7 +94,9 @@ describe('citizenship component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new CitizenshipValidator(test.data).validAbroadDocumentation()).toBe(test.expected)
+      expect(
+        new CitizenshipValidator(test.data).validAbroadDocumentation()
+      ).toBe(test.expected)
     })
   })
 
@@ -135,7 +139,9 @@ describe('citizenship component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new CitizenshipValidator(test.data).validBornOnMilitaryInstallation()).toBe(test.expected)
+      expect(
+        new CitizenshipValidator(test.data).validBornOnMilitaryInstallation()
+      ).toBe(test.expected)
     })
   })
 
@@ -178,7 +184,9 @@ describe('citizenship component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new CitizenshipValidator(test.data).validAlienRegistration()).toBe(test.expected)
+      expect(new CitizenshipValidator(test.data).validAlienRegistration()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -215,7 +223,9 @@ describe('citizenship component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new CitizenshipValidator(test.data).validBasis()).toBe(test.expected)
+      expect(new CitizenshipValidator(test.data).validBasis()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -258,7 +268,9 @@ describe('citizenship component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new CitizenshipValidator(test.data).validDocumentType()).toBe(test.expected)
+      expect(new CitizenshipValidator(test.data).validDocumentType()).toBe(
+        test.expected
+      )
     })
   })
 

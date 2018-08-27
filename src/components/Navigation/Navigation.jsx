@@ -4,10 +4,10 @@ import { navigation } from '../../config'
 import SectionList from './SectionList'
 
 class Navigation extends React.Component {
-  render () {
+  render() {
     return (
       <nav className="form-navigation" role="navigation">
-        <SectionList sections={navigation}/>
+        <SectionList sections={navigation} />
       </nav>
     )
   }
