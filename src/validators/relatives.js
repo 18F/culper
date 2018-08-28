@@ -159,6 +159,12 @@ export class RelativeValidator {
 
   validAliases() {
     const items = this.aliases.items || []
+    const nonImmediateFamily = ['Fosterparent', 'Father-in-law', 'Mother-in-law', 'Guardian']
+
+    if (nonImmediateFamily.includes(this.relation)) {
+      return true
+    }
+
     if (items.length === 0) {
       return false
     }

@@ -268,6 +268,17 @@ describe('Relatives validation', function() {
       },
       {
         data: {
+          Relation: {
+            value: 'Guardian'
+          },
+          Aliases: {
+            items: []
+          }
+        },
+        expected: true
+      },
+      {
+        data: {
           hideMaiden: false,
           Aliases: {
             items: [
