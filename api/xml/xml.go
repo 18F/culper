@@ -40,7 +40,10 @@ func (service Service) DefaultTemplate(templateName string, data map[string]inte
 		"daterange":              daterange,
 		"daysInRange":            daysInRange,
 		"degreeType":             degreeType,
+		"derivedBasis":           derivedBasis,
+		"naturalizedBasis":       naturalizedBasis,
 		"diagnosisType":          diagnosisType,
+		"dischargeType":          dischargeType,
 		"doctorFirstName":        doctorFirstName,
 		"doctorLastName":         doctorLastName,
 		"foreignDocType":         foreignDocType,
@@ -680,7 +683,7 @@ func location(data map[string]interface{}) (template.HTML, error) {
 		if domestic {
 			return xmlTemplateWithFuncs("location-city-state-county.xml", data, fmap)
 		}
-		return xmlTemplate("location-city-county.xml", data)
+		return xmlTemplate("location-city-country.xml", data)
 	case api.LayoutBirthPlaceWithoutCounty:
 		if domestic {
 			return xmlTemplateWithFuncs("location-city-state.xml", data, fmap)
@@ -746,4 +749,32 @@ func padDigits(digits string) string {
 
 func toUpper(state string) string {
 	return strings.ToUpper(state)
+}
+
+func derivedBasis(v string) string {
+	basis := map[string]string{
+		"Individual": "ByOperationofLaw",
+		"Other":      "Other",
+	}
+	return basis[v]
+}
+
+func naturalizedBasis(v string) string {
+	basis := map[string]string{
+		"Individual": "BasedOnMyOwnIndividualNaturalizationApplication",
+		"Other":      "Other",
+	}
+	return basis[v]
+}
+
+func dischargeType(v string) string {
+	basis := map[string]string{
+		"Honorable":    "Honorable",
+		"Dishonorable": "Dishonorable",
+		"LessThan":     "OtherThanHonorable",
+		"General":      "General",
+		"BadConduct":   "BadConduct",
+		"Other":        "Other",
+	}
+	return basis[v]
 }

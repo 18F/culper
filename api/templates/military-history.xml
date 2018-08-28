@@ -10,7 +10,11 @@
     <!-- <GuardLocation> -->
     <!--   <State>DQ</State> -->
     <!-- </GuardLocation> -->
-    <Rank NotApplicable="{{if radio $Item.Officer | eq "NotApplicable"}}True{{else}}False{{end}}">{{radio $Item.Officer}}</Rank>
+    {{if radio $Item.Officer | eq "NotApplicable"}}
+    <Rank NotApplicable="True" />
+    {{else}}
+    <Rank>{{radio $Item.Officer}}</Rank>
+    {{end}}
     <ServiceNumber>{{text $Item.ServiceNumber}}</ServiceNumber>
     <Status>{{radio $Item.Status | militaryStatus}}</Status>
     <WasDischarged>
@@ -19,7 +23,7 @@
     {{if branch $Item.HasBeenDischarged | eq "Yes"}}
     <Discharge>
       <Date Type="{{dateEstimated $Item.DischargeDate}}">{{monthYear $Item.DischargeDate}}</Date>
-      <Type>{{radio $Item.DischargeType}}</Type>
+      <Type>{{radio $Item.DischargeType | dischargeType}}</Type>
       <Explanation>{{text $Item.DischargeTypeOther}}</Explanation>
       <Comment></Comment>
     </Discharge>
