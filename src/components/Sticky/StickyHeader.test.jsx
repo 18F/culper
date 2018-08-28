@@ -6,9 +6,7 @@ describe('The sticky accordion component', () => {
   it('Ensure content is not sticking', () => {
     const component = mount(
       <StickyHeader offset={5}>
-        <div>
-          Hello
-        </div>
+        <div>Hello</div>
       </StickyHeader>
     )
     expect(component.state('stick')).toBe(false)
@@ -16,10 +14,12 @@ describe('The sticky accordion component', () => {
 
   it('Ensure content sticks', () => {
     const component = mount(
-      <StickyHeader offset={0} window={() => { return window }}>
-        <div>
-          Hello
-        </div>
+      <StickyHeader
+        offset={0}
+        window={() => {
+          return window
+        }}>
+        <div>Hello</div>
       </StickyHeader>
     )
     window.scroll(0, 4)

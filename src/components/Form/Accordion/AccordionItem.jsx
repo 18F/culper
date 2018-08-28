@@ -1,18 +1,18 @@
 import React from 'react'
 
 export default class AccordionItem extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.dynamicProperties = this.dynamicProperties.bind(this)
     this.update = this.update.bind(this)
     this.factory = this.factory.bind(this)
   }
 
-  dynamicProperties (children) {
+  dynamicProperties(children) {
     const parent = this.props
     let dynamo = {}
 
-    React.Children.map(children, (child) => {
+    React.Children.map(children, child => {
       const name = child.props.name || ''
 
       if (React.isValidElement(child)) {
@@ -21,8 +21,13 @@ export default class AccordionItem extends React.Component {
         }
       }
 
-      const typeOfChildren = Object.prototype.toString.call(child.props.children)
-      if (child.props.children && ['[object Object]', '[object Array]'].includes(typeOfChildren)) {
+      const typeOfChildren = Object.prototype.toString.call(
+        child.props.children
+      )
+      if (
+        child.props.children &&
+        ['[object Object]', '[object Array]'].includes(typeOfChildren)
+      ) {
         if (name) {
           dynamo[name] = this.dynamicProperties(child.props.children)
         } else {
@@ -37,16 +42,16 @@ export default class AccordionItem extends React.Component {
     return dynamo
   }
 
-  update (queue) {
+  update(queue) {
     this.props.onUpdate({
       ...this.dynamicProperties(this.props.children),
       ...queue
     })
   }
 
-  factory (children) {
+  factory(children) {
     const parent = this.props
-    return React.Children.map(children, (child) => {
+    return React.Children.map(children, child => {
       let childProps = {}
 
       if (React.isValidElement(child)) {
@@ -59,7 +64,7 @@ export default class AccordionItem extends React.Component {
             scrollIntoView: parent.scrollIntoView,
             required: parent.required,
             dispatch: parent.dispatch,
-            onUpdate: (values) => {
+            onUpdate: values => {
               this.update({
                 [child.props.name]: values
               })
@@ -69,8 +74,13 @@ export default class AccordionItem extends React.Component {
         }
       }
 
-      const typeOfChildren = Object.prototype.toString.call(child.props.children)
-      if (child.props.children && ['[object Object]', '[object Array]'].includes(typeOfChildren)) {
+      const typeOfChildren = Object.prototype.toString.call(
+        child.props.children
+      )
+      if (
+        child.props.children &&
+        ['[object Object]', '[object Array]'].includes(typeOfChildren)
+      ) {
         childProps.children = this.factory(child.props.children)
       }
 
@@ -78,12 +88,8 @@ export default class AccordionItem extends React.Component {
     })
   }
 
-  render () {
-    return (
-      <div>
-        {this.factory(this.props.children)}
-      </div>
-    )
+  render() {
+    return <div>{this.factory(this.props.children)}</div>
   }
 }
 
@@ -94,6 +100,8 @@ AccordionItem.defaultProps = {
   scrollIntoView: false,
   required: false,
   dispatch: () => {},
-  onUpdate: (queue) => {},
-  onError: (value, arr) => { return arr }
+  onUpdate: queue => {},
+  onError: (value, arr) => {
+    return arr
+  }
 }

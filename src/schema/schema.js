@@ -9,7 +9,7 @@ export const schema = (type, props, raw = true) => {
   }
 }
 
-export const unschema = (data) => {
+export const unschema = data => {
   // The absence of something is nothing
   if (data === undefined || data === null) {
     return null
@@ -62,364 +62,364 @@ const hasProperty = (obj, propertyName) => {
 }
 
 const transform = {
-  'benefit': (data) => {
+  benefit: data => {
     return form.benefit(data)
   },
-  'branch': (data) => {
+  branch: data => {
     return form.branch(data)
   },
-  'checkbox': (data) => {
+  checkbox: data => {
     return form.checkbox(data)
   },
-  'checkboxgroup': (data) => {
+  checkboxgroup: data => {
     return form.checkboxgroup(data)
   },
-  'clearancelevel': (data) => {
+  clearancelevel: data => {
     return form.clearancelevel(data)
   },
-  'collection': (data) => {
+  collection: data => {
     return form.collection(data)
   },
-  'contacts': (data) => {
+  contacts: data => {
     return form.contacts(data)
   },
-  'coowners': (data) => {
+  coowners: data => {
     return form.coowners(data)
   },
-  'country': (data) => {
+  country: data => {
     return form.country(data)
   },
-  'datecontrol': (data) => {
+  datecontrol: data => {
     return form.datecontrol(data)
   },
-  'daterange': (data) => {
+  daterange: data => {
     return form.daterange(data)
   },
-  'email': (data) => {
+  email: data => {
     return form.email(data)
   },
-  'employmentactivity': (data) => {
+  employmentactivity: data => {
     return form.employmentactivity(data)
   },
-  'foreignborndocument': (data) => {
+  foreignborndocument: data => {
     return form.foreignborndocument(data)
   },
-  'height': (data) => {
+  height: data => {
     return form.height(data)
   },
-  'location': (data) => {
+  location: data => {
     return form.location(data)
   },
-  'name': (data) => {
+  name: data => {
     return form.name(data)
   },
-  'notapplicable': (data) => {
+  notapplicable: data => {
     return form.notapplicable(data)
   },
-  'number': (data) => {
+  number: data => {
     return form.number(data)
   },
-  'physicaladdress': (data) => {
+  physicaladdress: data => {
     return form.physicaladdress(data)
   },
-  'radio': (data) => {
+  radio: data => {
     return form.radio(data)
   },
-  'reasonleft': (data) => {
+  reasonleft: data => {
     return form.reasonleft(data)
   },
-  'sentence': (data) => {
+  sentence: data => {
     return form.sentence(data)
   },
-  'signature': (data) => {
+  signature: data => {
     return form.signature(data)
   },
-  'ssn': (data) => {
+  ssn: data => {
     return form.ssn(data)
   },
-  'supervisor': (data) => {
+  supervisor: data => {
     return form.supervisor(data)
   },
-  'telephone': (data) => {
+  telephone: data => {
     return form.telephone(data)
   },
-  'text': (data) => {
+  text: data => {
     return form.text(data)
   },
-  'textarea': (data) => {
+  textarea: data => {
     return form.textarea(data)
   },
-  'identification.birthdate': (data) => {
+  'identification.birthdate': data => {
     return section.identificationBirthdate(data)
   },
-  'identification.birthplace': (data) => {
+  'identification.birthplace': data => {
     return section.identificationBirthplace(data)
   },
-  'identification.contacts': (data) => {
+  'identification.contacts': data => {
     return section.identificationContacts(data)
   },
-  'identification.name': (data) => {
+  'identification.name': data => {
     return section.identificationName(data)
   },
-  'identification.othernames': (data) => {
+  'identification.othernames': data => {
     return section.identificationOthernames(data)
   },
-  'identification.physical': (data) => {
+  'identification.physical': data => {
     return section.identificationPhysical(data)
   },
-  'identification.ssn': (data) => {
+  'identification.ssn': data => {
     return section.identificationSSN(data)
   },
-  'identification.comments': (data) => {
+  'identification.comments': data => {
     return section.identificationComments(data)
   },
-  'financial.bankruptcy': (data) => {
+  'financial.bankruptcy': data => {
     return section.financialBankruptcy(data)
   },
-  'financial.gambling': (data) => {
+  'financial.gambling': data => {
     return section.financialGambling(data)
   },
-  'financial.taxes': (data) => {
+  'financial.taxes': data => {
     return section.financialTaxes(data)
   },
-  'financial.card': (data) => {
+  'financial.card': data => {
     return section.financialCard(data)
   },
-  'financial.credit': (data) => {
+  'financial.credit': data => {
     return section.financialCredit(data)
   },
-  'financial.delinquent': (data) => {
+  'financial.delinquent': data => {
     return section.financialDelinquent(data)
   },
-  'financial.nonpayment': (data) => {
+  'financial.nonpayment': data => {
     return section.financialNonpayment(data)
   },
-  'financial.comments': (data) => {
+  'financial.comments': data => {
     return section.financialComments(data)
   },
-  'history.education': (data) => {
+  'history.education': data => {
     return section.historyEducation(data)
   },
-  'history.employment': (data) => {
+  'history.employment': data => {
     return section.historyEmployment(data)
   },
-  'history.federal': (data) => {
+  'history.federal': data => {
     return section.historyFederal(data)
   },
-  'history.residence': (data) => {
+  'history.residence': data => {
     return section.historyResidence(data)
   },
-  'history.comments': (data) => {
+  'history.comments': data => {
     return section.historyComments(data)
   },
-  'relationships.status.cohabitant': (data) => {
+  'relationships.status.cohabitant': data => {
     return section.relationshipsCohabitants(data)
   },
-  'relationships.status.marital': (data) => {
+  'relationships.status.marital': data => {
     return section.relationshipsMarital(data)
   },
-  'relationships.people': (data) => {
+  'relationships.people': data => {
     return section.relationshipsPeople(data)
   },
-  'relationships.relatives': (data) => {
+  'relationships.relatives': data => {
     return section.relationshipsRelatives(data)
   },
-  'relationships.comments': (data) => {
+  'relationships.comments': data => {
     return section.relationshipsComments(data)
   },
-  'citizenship.multiple': (data) => {
+  'citizenship.multiple': data => {
     return section.citizenshipMultiple(data)
   },
-  'citizenship.passports': (data) => {
+  'citizenship.passports': data => {
     return section.citizenshipPassports(data)
   },
-  'citizenship.status': (data) => {
+  'citizenship.status': data => {
     return section.citizenshipStatus(data)
   },
-  'citizenship.comments': (data) => {
+  'citizenship.comments': data => {
     return section.citizenshipComments(data)
   },
-  'military.selective': (data) => {
+  'military.selective': data => {
     return section.militarySelective(data)
   },
-  'military.history': (data) => {
+  'military.history': data => {
     return section.militaryHistory(data)
   },
-  'military.disciplinary': (data) => {
+  'military.disciplinary': data => {
     return section.militaryDisciplinary(data)
   },
-  'military.foreign': (data) => {
+  'military.foreign': data => {
     return section.militaryForeign(data)
   },
-  'military.comments': (data) => {
+  'military.comments': data => {
     return section.militaryComments(data)
   },
-  'foreign.activities.benefits': (data) => {
+  'foreign.activities.benefits': data => {
     return section.foreignActivitiesBenefits(data)
   },
-  'foreign.activities.direct': (data) => {
+  'foreign.activities.direct': data => {
     return section.foreignActivitiesDirect(data)
   },
-  'foreign.activities.indirect': (data) => {
+  'foreign.activities.indirect': data => {
     return section.foreignActivitiesIndirect(data)
   },
-  'foreign.activities.realestate': (data) => {
+  'foreign.activities.realestate': data => {
     return section.foreignActivitiesRealestate(data)
   },
-  'foreign.activities.support': (data) => {
+  'foreign.activities.support': data => {
     return section.foreignActivitiesSupport(data)
   },
-  'foreign.business.advice': (data) => {
+  'foreign.business.advice': data => {
     return section.foreignBusinessAdvice(data)
   },
-  'foreign.business.conferences': (data) => {
+  'foreign.business.conferences': data => {
     return section.foreignBusinessConferences(data)
   },
-  'foreign.business.contact': (data) => {
+  'foreign.business.contact': data => {
     return section.foreignBusinessContact(data)
   },
-  'foreign.business.employment': (data) => {
+  'foreign.business.employment': data => {
     return section.foreignBusinessEmployment(data)
   },
-  'foreign.business.family': (data) => {
+  'foreign.business.family': data => {
     return section.foreignBusinessFamily(data)
   },
-  'foreign.business.political': (data) => {
+  'foreign.business.political': data => {
     return section.foreignBusinessPolitical(data)
   },
-  'foreign.business.sponsorship': (data) => {
+  'foreign.business.sponsorship': data => {
     return section.foreignBusinessSponsorship(data)
   },
-  'foreign.business.ventures': (data) => {
+  'foreign.business.ventures': data => {
     return section.foreignBusinessVentures(data)
   },
-  'foreign.business.voting': (data) => {
+  'foreign.business.voting': data => {
     return section.foreignBusinessVoting(data)
   },
-  'foreign.contacts': (data) => {
+  'foreign.contacts': data => {
     return section.foreignContacts(data)
   },
-  'foreign.passport': (data) => {
+  'foreign.passport': data => {
     return section.foreignPassport(data)
   },
-  'foreign.travel': (data) => {
+  'foreign.travel': data => {
     return section.foreignTravel(data)
   },
-  'foreign.comments': (data) => {
+  'foreign.comments': data => {
     return section.foreignComments(data)
   },
-  'substance.alcohol.additional': (data) => {
+  'substance.alcohol.additional': data => {
     return section.substanceAlcoholAdditional(data)
   },
-  'substance.alcohol.negative': (data) => {
+  'substance.alcohol.negative': data => {
     return section.substanceAlcoholNegative(data)
   },
-  'substance.alcohol.ordered': (data) => {
+  'substance.alcohol.ordered': data => {
     return section.substanceAlcoholOrdered(data)
   },
-  'substance.alcohol.voluntary': (data) => {
+  'substance.alcohol.voluntary': data => {
     return section.substanceAlcoholVoluntary(data)
   },
-  'substance.drugs.clearance': (data) => {
+  'substance.drugs.clearance': data => {
     return section.substanceDrugClearance(data)
   },
-  'substance.drugs.misuse': (data) => {
+  'substance.drugs.misuse': data => {
     return section.substanceDrugMisuse(data)
   },
-  'substance.drugs.ordered': (data) => {
+  'substance.drugs.ordered': data => {
     return section.substanceDrugOrdered(data)
   },
-  'substance.drugs.publicsafety': (data) => {
+  'substance.drugs.publicsafety': data => {
     return section.substanceDrugPublicSafety(data)
   },
-  'substance.drugs.purchase': (data) => {
+  'substance.drugs.purchase': data => {
     return section.substanceDrugPurchase(data)
   },
-  'substance.drugs.usage': (data) => {
+  'substance.drugs.usage': data => {
     return section.substanceDrugUsage(data)
   },
-  'substance.drugs.voluntary': (data) => {
+  'substance.drugs.voluntary': data => {
     return section.substanceDrugVoluntary(data)
   },
-  'substance.comments': (data) => {
+  'substance.comments': data => {
     return section.substanceComments(data)
   },
-  'legal.associations.activities-to-overthrow': (data) => {
+  'legal.associations.activities-to-overthrow': data => {
     return section.legalAssociationsActivitiesToOverthrow(data)
   },
-  'legal.associations.advocating': (data) => {
+  'legal.associations.advocating': data => {
     return section.legalAssociationsAdvocating(data)
   },
-  'legal.associations.engaged-in-terrorism': (data) => {
+  'legal.associations.engaged-in-terrorism': data => {
     return section.legalAssociationsEngagedInTerrorism(data)
   },
-  'legal.associations.membership-overthrow': (data) => {
+  'legal.associations.membership-overthrow': data => {
     return section.legalAssociationsMembershipOverthrow(data)
   },
-  'legal.associations.membership-violence-or-force': (data) => {
+  'legal.associations.membership-violence-or-force': data => {
     return section.legalAssociationsMembershipViolenceOrForce(data)
   },
-  'legal.associations.terrorism-association': (data) => {
+  'legal.associations.terrorism-association': data => {
     return section.legalAssociationsTerrorismAssociation(data)
   },
-  'legal.associations.terrorist-organization': (data) => {
+  'legal.associations.terrorist-organization': data => {
     return section.legalAssociationsTerroristOrganization(data)
   },
-  'legal.court': (data) => {
+  'legal.court': data => {
     return section.legalCourt(data)
   },
-  'legal.investigations.debarred': (data) => {
+  'legal.investigations.debarred': data => {
     return section.legalInvestigationsDebarred(data)
   },
-  'legal.investigations.history': (data) => {
+  'legal.investigations.history': data => {
     return section.legalInvestigationsHistory(data)
   },
-  'legal.investigations.revoked': (data) => {
+  'legal.investigations.revoked': data => {
     return section.legalInvestigationsRevoked(data)
   },
-  'legal.police.additionaloffenses': (data) => {
+  'legal.police.additionaloffenses': data => {
     return section.legalPoliceAdditionalOffenses(data)
   },
-  'legal.police.domesticviolence': (data) => {
+  'legal.police.domesticviolence': data => {
     return section.legalPoliceDomesticViolence(data)
   },
-  'legal.police.offenses': (data) => {
+  'legal.police.offenses': data => {
     return section.legalPoliceOffenses(data)
   },
-  'legal.technology.manipulating': (data) => {
+  'legal.technology.manipulating': data => {
     return section.legalTechnologyManipulating(data)
   },
-  'legal.technology.unauthorized': (data) => {
+  'legal.technology.unauthorized': data => {
     return section.legalTechnologyUnauthorized(data)
   },
-  'legal.technology.unlawful': (data) => {
+  'legal.technology.unlawful': data => {
     return section.legalTechnologyUnlawful(data)
   },
-  'legal.comments': (data) => {
+  'legal.comments': data => {
     return section.legalComments(data)
   },
-  'psychological.competence': (data) => {
+  'psychological.competence': data => {
     return section.psychologicalCompetence(data)
   },
-  'psychological.conditions': (data) => {
+  'psychological.conditions': data => {
     return section.psychologicalExisting(data)
   },
-  'psychological.consultations': (data) => {
+  'psychological.consultations': data => {
     return section.psychologicalConsultations(data)
   },
-  'psychological.diagnoses': (data) => {
+  'psychological.diagnoses': data => {
     return section.psychologicalDiagnoses(data)
   },
-  'psychological.hospitalizations': (data) => {
+  'psychological.hospitalizations': data => {
     return section.psychologicalHospitalizations(data)
   },
-  'psychological.comments': (data) => {
+  'psychological.comments': data => {
     return section.psychologicalComments(data)
   },
-  'psychological.treatment': (data) => {
+  'psychological.treatment': data => {
     return form.treatment(data)
   },
-  'package.submit': (data) => {
+  'package.submit': data => {
     return section.submission(data)
   }
 }

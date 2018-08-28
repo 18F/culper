@@ -1,8 +1,8 @@
 import PersonValidator from './person'
 import Location from '../components/Form/Location'
 
-describe('Person validator', function () {
-  it('should validate relationship', function () {
+describe('Person validator', function() {
+  it('should validate relationship', function() {
     const tests = [
       {
         data: {
@@ -48,11 +48,13 @@ describe('Person validator', function () {
     ]
 
     tests.forEach(test => {
-      expect(new PersonValidator(test.data).validRelationship()).toBe(test.expected)
+      expect(new PersonValidator(test.data).validRelationship()).toBe(
+        test.expected
+      )
     })
   })
 
-  it('should validate person', function () {
+  it('should validate person', function() {
     const tests = [
       {
         data: {

@@ -6,43 +6,47 @@ describe('Schema for financial taxes', () => {
     const data = {
       List: {
         branch: null,
-        items: [{
-          Item: {
-            Has: {},
-            Organization: {},
-            Name: {},
-            Dates: {
-              from: {},
-              to: {},
-              present: null
-            },
-            Country: {},
-            Rank: {},
-            Division: {},
-            Circumstances: {},
-            ReasonLeft: {},
-            MaintainsContact: {},
-            List: {
-              branch: null,
-              items: [{
-                Item: {
-                  Has: {},
-                  Name: {},
-                  Address: {
-                    country: null
-                  },
-                  Title: {},
-                  Dates: {
-                    from: {},
-                    to: {},
-                    present: null
-                  },
-                  Frequency: {}
-                }
-              }]
+        items: [
+          {
+            Item: {
+              Has: {},
+              Organization: {},
+              Name: {},
+              Dates: {
+                from: {},
+                to: {},
+                present: null
+              },
+              Country: {},
+              Rank: {},
+              Division: {},
+              Circumstances: {},
+              ReasonLeft: {},
+              MaintainsContact: {},
+              List: {
+                branch: null,
+                items: [
+                  {
+                    Item: {
+                      Has: {},
+                      Name: {},
+                      Address: {
+                        country: null
+                      },
+                      Title: {},
+                      Dates: {
+                        from: {},
+                        to: {},
+                        present: null
+                      },
+                      Frequency: {}
+                    }
+                  }
+                ]
+              }
             }
           }
-        }]
+        ]
       }
     }
 

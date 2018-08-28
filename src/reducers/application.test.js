@@ -10,7 +10,9 @@ describe('Application reducers', () => {
     const sectionName = 'test'
     const defaultState = {}
     const action = updateApplication(sectionName, 'value', 42)
-    expect(reducer(sectionName)(defaultState, action)[action.property]).toEqual(action.values)
+    expect(reducer(sectionName)(defaultState, action)[action.property]).toEqual(
+      action.values
+    )
   })
 
   it('can update existing property', () => {
@@ -19,6 +21,8 @@ describe('Application reducers', () => {
       value: 42
     }
     const action = updateApplication(sectionName, 'value', 3.14159)
-    expect(reducer(sectionName)(defaultState, action)[action.property]).toEqual(action.values)
+    expect(reducer(sectionName)(defaultState, action)[action.property]).toEqual(
+      action.values
+    )
   })
 })

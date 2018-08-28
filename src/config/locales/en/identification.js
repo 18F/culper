@@ -1,14 +1,16 @@
 export const identification = {
   intro: {
     title: 'Section 1: Information about you',
-    body: 'You will be asked questions about your personal information and be asked to provide details if necessary.'
+    body:
+      'You will be asked questions about your personal information and be asked to provide details if necessary.'
   },
   tour: {
     para: 'Take a guided tour through the section'
   },
   review: {
     para: 'View all the sections associated with identification at once',
-    comments: 'Add a comment to clarify any of your responses in the information about you section'
+    comments:
+      'Add a comment to clarify any of your responses in the information about you section'
   },
   destination: {
     intro: 'Identification intro',
@@ -26,14 +28,16 @@ export const identification = {
     last: {
       help: {
         title: 'Enter a valid last name.',
-        message: 'Please enter your entire last name. If your last name if a single letter, select the "Initial only" checkbox and type the letter below.',
+        message:
+          'Please enter your entire last name. If your last name if a single letter, select the "Initial only" checkbox and type the letter below.',
         note: ''
       }
     },
     first: {
       help: {
         title: 'Enter a valid first name.',
-        message: 'Please enter your entire first name. If your first name is a single letter, select the "Initial only" checkbox and type the letter below.',
+        message:
+          'Please enter your entire first name. If your first name is a single letter, select the "Initial only" checkbox and type the letter below.',
         note: ''
       }
     },
@@ -50,21 +54,24 @@ export const identification = {
     suffix: {
       help: {
         title: 'Use "Other" if your suffix isn\'t listed',
-        message: 'If the suffix does not appear in this list, select "Other" and enter the suffix in the provided field.',
+        message:
+          'If the suffix does not appear in this list, select "Other" and enter the suffix in the provided field.',
         note: ''
       }
     }
   },
   othernames: {
     title: 'Provide your other names used and the period of time you used them',
-    info: 'For example: your maiden name, name(s) by a former marriage, former name(s), alias(es), or nickname(s).',
+    info:
+      'For example: your maiden name, name(s) by a former marriage, former name(s), alias(es), or nickname(s).',
     branch: {
       help: {
         title: 'List all other names you have used no matter how long ago',
         message: [
           'Input names one at a time, you will have the ability to add multiple other names.'
         ],
-        note: 'Example: Full name is Michael and nickname Mike. "Mike" would be the other name used.'
+        note:
+          'Example: Full name is Michael and nickname Mike. "Mike" would be the other name used.'
       },
       question: 'Have you used any other names?'
     },
@@ -95,7 +102,8 @@ export const identification = {
     confirmation: 'I confirm this date is correct',
     help: {
       title: 'Check "Estimated" if date of birth is unknown',
-      message: 'If you are not sure of your exact date of birth estimate it as best you can and check the "Estimated" checkbox. ',
+      message:
+        'If you are not sure of your exact date of birth estimate it as best you can and check the "Estimated" checkbox. ',
       note: ''
     }
   },
@@ -109,7 +117,8 @@ export const identification = {
     branch: {
       help: {
         title: 'This is your physical place of birth',
-        message: 'Example: United States citizens born in another country would list that other country.',
+        message:
+          'Example: United States citizens born in another country would list that other country.',
         note: ''
       }
     },
@@ -154,12 +163,14 @@ export const identification = {
     help: {
       email: {
         title: 'Email addresses are not required',
-        message: 'More than 2 email addresses are not required but may assist in the completion of your background investigation.',
+        message:
+          'More than 2 email addresses are not required but may assist in the completion of your background investigation.',
         note: 'Email format example: name@example.com'
       },
       phoneNumber: {
         title: 'Enter only current phone numbers',
-        message: 'Additional numbers provided may assist in the completion of your background investigation.',
+        message:
+          'Additional numbers provided may assist in the completion of your background investigation.',
         note: ''
       }
     },
@@ -185,12 +196,15 @@ export const identification = {
       comments: 'Add optional comments'
     },
     para: {
-      email: 'Providing email addresses may assist in the completion of your background investigation. Email addresses may be used as contact method, and identify subject in records.',
-      phoneNumber: 'Provide three contact numbers. **At least one number is required**. Additional numbers may assist in the completion of your background investigation.'
+      email:
+        'Providing email addresses may assist in the completion of your background investigation. Email addresses may be used as contact method, and identify subject in records.',
+      phoneNumber:
+        'Provide three contact numbers. **At least one number is required**. Additional numbers may assist in the completion of your background investigation.'
     },
     label: {
       email: 'Email address',
-      comments: 'If you need to provide any additional comments about this information enter them below',
+      comments:
+        'If you need to provide any additional comments about this information enter them below',
       phoneNumber: 'Phone number'
     },
     placeholder: {
@@ -206,7 +220,8 @@ export const identification = {
     },
     help: {
       title: 'Check "Not applicable" if no SSN',
-      message: 'If a U.S. Social Security Number isn\'t present check the "Not applicable" checkbox.',
+      message:
+        'If a U.S. Social Security Number isn\'t present check the "Not applicable" checkbox.',
       note: ''
     },
     label: {
@@ -252,9 +267,7 @@ export const identification = {
       },
       weight: {
         title: 'Use pounds and whole numbers only',
-        message: [
-          'Weight must be a number between 10 and 999.'
-        ],
+        message: ['Weight must be a number between 10 and 999.'],
         note: ''
       },
       eye: {
@@ -264,12 +277,14 @@ export const identification = {
       },
       hair: {
         title: 'Select your current hair color or style',
-        message: 'Choose the hair color that most closely represents your hair today.',
+        message:
+          'Choose the hair color that most closely represents your hair today.',
         note: ''
       },
       sex: {
         title: 'Provide more information',
-        message: 'To add more information regarding your gender, select “Add a comment” below.',
+        message:
+          'To add more information regarding your gender, select “Add a comment” below.',
         note: ''
       }
     },

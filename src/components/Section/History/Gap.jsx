@@ -6,7 +6,7 @@ import { DateSummary } from '../../Summary'
  * Renders a formatted gap row
  */
 export class Gap extends React.Component {
-  render () {
+  render() {
     if (!this.props.dates.from || !this.props.dates.to) {
       return null
     }

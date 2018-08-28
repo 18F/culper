@@ -21,9 +21,17 @@ export const Summary = (props = {}) => {
     ...props
   }
 
-  const title = props.index < 0 ? props.type : `${props.type} ${props.index + 1}`
-  const left = !props.left && props.right ? '' : !props.left && !props.right ? props.placeholder : props.left
-  const klass = `summary-item-content ${left === props.placeholder ? 'default' : 'has-content'}`
+  const title =
+    props.index < 0 ? props.type : `${props.type} ${props.index + 1}`
+  const left =
+    !props.left && props.right
+      ? ''
+      : !props.left && !props.right
+        ? props.placeholder
+        : props.left
+  const klass = `summary-item-content ${
+    left === props.placeholder ? 'default' : 'has-content'
+  }`
 
   let tlen = letters(title) + 2
   let rlen = letters(props.right)
@@ -37,9 +45,18 @@ export const Summary = (props = {}) => {
     <span className={klass}>
       {props.icon}
       <span className="index">{title}:</span>
-      <span className="context"><strong className={`at-${llen} ${!props.left && !props.right ? 'italic' : ''}`}>{left}</strong></span>
+      <span className="context">
+        <strong
+          className={`at-${llen} ${
+            !props.left && !props.right ? 'italic' : ''
+          }`}>
+          {left}
+        </strong>
+      </span>
       <Show when={props.right}>
-        <span className="dates"><strong className={`at-${rlen}`}>{props.right}</strong></span>
+        <span className="dates">
+          <strong className={`at-${rlen}`}>{props.right}</strong>
+        </span>
       </Show>
     </span>
   )
@@ -50,7 +67,7 @@ export const Summary = (props = {}) => {
  * @param {object} obj - The react object
  * @returns {integer} The number of letters.
  */
-const letters = (obj) => {
+const letters = obj => {
   if (!obj) {
     return 0
   }

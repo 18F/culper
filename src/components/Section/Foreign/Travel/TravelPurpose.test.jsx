@@ -7,7 +7,9 @@ describe('The travel purpose component', () => {
     let updates = 0
     const expected = {
       values: ['Business'],
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
     const component = mount(<TravelPurpose {...expected} />)
     component.find('.purpose-business input').simulate('change')

@@ -7,43 +7,45 @@ describe('Schema for financial taxes', () => {
       HasOtherOffenses: { value: 'Yes' },
       List: {
         branch: { value: 'No' },
-        items: [{
-          Item: {
-            Date: {},
-            Description: {},
-            InvolvedViolence: {},
-            InvolvedFirearms: {},
-            InvolvedSubstances: {},
-            CourtName: {},
-            CourtAddress: {
-              country: null
-            },
-            CourtCharge: {},
-            CourtOutcome: {},
-            CourtDate: {},
-            ChargeType: {},
-            WasSentenced: {},
-            Sentence: {
+        items: [
+          {
+            Item: {
+              Date: {},
               Description: {},
-              ExceedsYear: {},
-              Incarcerated: {},
-              IncarcerationDates: {
-                from: {},
-                to: {},
-                present: null
+              InvolvedViolence: {},
+              InvolvedFirearms: {},
+              InvolvedSubstances: {},
+              CourtName: {},
+              CourtAddress: {
+                country: null
               },
-              IncarcerationDatesNA: {},
-              ProbationDates: {
-                from: {},
-                to: {},
-                present: null
+              CourtCharge: {},
+              CourtOutcome: {},
+              CourtDate: {},
+              ChargeType: {},
+              WasSentenced: {},
+              Sentence: {
+                Description: {},
+                ExceedsYear: {},
+                Incarcerated: {},
+                IncarcerationDates: {
+                  from: {},
+                  to: {},
+                  present: null
+                },
+                IncarcerationDatesNA: {},
+                ProbationDates: {
+                  from: {},
+                  to: {},
+                  present: null
+                },
+                ProbationDatesNA: {}
               },
-              ProbationDatesNA: {}
-            },
-            AwaitingTrial: {},
-            AwaitingTrialExplanation: {}
+              AwaitingTrial: {},
+              AwaitingTrialExplanation: {}
+            }
           }
-        }]
+        ]
       }
     }
 

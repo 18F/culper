@@ -8,32 +8,34 @@ describe('Schema for financial taxes', () => {
       HasForeignTravelOfficial: { value: 'No' },
       List: {
         branch: { value: 'No' },
-        items: [{
-          Item: {
-            Dates: {
-              from: {},
-              to: {},
-              present: null
-            },
-            Country: {},
-            Days: {},
-            Purpose: {},
-            Questioned: {},
-            QuestionedExplanation: {},
-            Encounter: {},
-            EncounterExplanation: {},
-            Contacted: {},
-            ContactedExplanation: {},
-            Counter: {},
-            CounterExplanation: {},
-            Interest: {},
-            InterestExplanation: {},
-            Sensitive: {},
-            SensitiveExplanation: {},
-            Threatened: {},
-            ThreatenedExplanation: {}
+        items: [
+          {
+            Item: {
+              Dates: {
+                from: {},
+                to: {},
+                present: null
+              },
+              Country: {},
+              Days: {},
+              Purpose: {},
+              Questioned: {},
+              QuestionedExplanation: {},
+              Encounter: {},
+              EncounterExplanation: {},
+              Contacted: {},
+              ContactedExplanation: {},
+              Counter: {},
+              CounterExplanation: {},
+              Interest: {},
+              InterestExplanation: {},
+              Sensitive: {},
+              SensitiveExplanation: {},
+              Threatened: {},
+              ThreatenedExplanation: {}
+            }
           }
-        }]
+        ]
       }
     }
 

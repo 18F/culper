@@ -3,13 +3,16 @@ import { i18n } from '../../../../config'
 import schema from '../../../../schema'
 import validate from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
-import { LegalTechnologyUnauthorizedValidator, UnauthorizedValidator } from '../../../../validators'
+import {
+  LegalTechnologyUnauthorizedValidator,
+  UnauthorizedValidator
+} from '../../../../validators'
 import { Summary, DateSummary } from '../../../Summary'
 import { Accordion, Branch, Show } from '../../../Form'
 import UnauthorizedItem from './UnauthorizedItem'
 
 export default class Unauthorized extends SubsectionElement {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.update = this.update.bind(this)
@@ -17,7 +20,7 @@ export default class Unauthorized extends SubsectionElement {
     this.updateList = this.updateList.bind(this)
   }
 
-  update (queue) {
+  update(queue) {
     this.props.onUpdate({
       List: this.props.List,
       HasUnauthorized: this.props.HasUnauthorized,
@@ -25,21 +28,21 @@ export default class Unauthorized extends SubsectionElement {
     })
   }
 
-  updateList (values) {
+  updateList(values) {
     this.update({
       List: values
     })
   }
 
-  updateBranch (values) {
+  updateBranch(values) {
     this.update({
       HasUnauthorized: values,
       List: values.value === 'Yes' ? this.props.List : []
     })
   }
 
-  summary (item, index) {
-    const o = ((item && item.Item) || {})
+  summary(item, index) {
+    const o = (item && item.Item) || {}
     const dates = DateSummary(o.Date)
     const incident = (o.Incident || {}).value ? o.Incident.value : ''
 
@@ -52,43 +55,54 @@ export default class Unauthorized extends SubsectionElement {
     })
   }
 
-  render () {
+  render() {
     return (
-      <div className="section-content legal-technology-unauthorized" {...super.dataAttributes(this.props)}>
+      <div
+        className="section-content legal-technology-unauthorized"
+        {...super.dataAttributes(this.props)}>
         {i18n.m('legal.technology.unauthorized.para.intro')}
 
-        <Branch name="has_unauthorized"
-                label={i18n.t('legal.technology.unauthorized.heading.title')}
-                labelSize="h2"
-                className="legal-technology-unauthorized-has-unauthorized"
-                {...this.props.HasUnauthorized}
-                warning={true}
-                onError={this.handleError}
-                required={this.props.required}
-                onUpdate={this.updateBranch}
-                scrollIntoView={this.props.scrollIntoView}>
-        </Branch>
+        <Branch
+          name="has_unauthorized"
+          label={i18n.t('legal.technology.unauthorized.heading.title')}
+          labelSize="h2"
+          className="legal-technology-unauthorized-has-unauthorized"
+          {...this.props.HasUnauthorized}
+          warning={true}
+          onError={this.handleError}
+          required={this.props.required}
+          onUpdate={this.updateBranch}
+          scrollIntoView={this.props.scrollIntoView}
+        />
 
         <Show when={this.props.HasUnauthorized.value === 'Yes'}>
-          <Accordion defaultState={this.props.defaultState}
-                     {...this.props.List}
-                     scrollToBottom={this.props.scrollToBottom}
-                     summary={this.summary}
-                     onUpdate={this.updateList}
-                     onError={this.handleError}
-                     validator={UnauthorizedValidator}
-                     description={i18n.t('legal.technology.unauthorized.collection.description')}
-                     appendTitle={i18n.t('legal.technology.unauthorized.collection.appendTitle')}
-                     appendLabel={i18n.t('legal.technology.unauthorized.collection.appendLabel')}
-                     required={this.props.required}
-                     scrollIntoView={this.props.scrollIntoView}>
-            <UnauthorizedItem name="Item"
-                              bind={true}
-                              required={this.props.required}
-                              scrollIntoView={this.props.scrollIntoView}
-                              addressBooks={this.props.addressBooks}
-                              dispatch={this.props.dispatch}
-                              />
+          <Accordion
+            defaultState={this.props.defaultState}
+            {...this.props.List}
+            scrollToBottom={this.props.scrollToBottom}
+            summary={this.summary}
+            onUpdate={this.updateList}
+            onError={this.handleError}
+            validator={UnauthorizedValidator}
+            description={i18n.t(
+              'legal.technology.unauthorized.collection.description'
+            )}
+            appendTitle={i18n.t(
+              'legal.technology.unauthorized.collection.appendTitle'
+            )}
+            appendLabel={i18n.t(
+              'legal.technology.unauthorized.collection.appendLabel'
+            )}
+            required={this.props.required}
+            scrollIntoView={this.props.scrollIntoView}>
+            <UnauthorizedItem
+              name="Item"
+              bind={true}
+              required={this.props.required}
+              scrollIntoView={this.props.scrollIntoView}
+              addressBooks={this.props.addressBooks}
+              dispatch={this.props.dispatch}
+            />
           </Accordion>
         </Show>
       </div>
@@ -101,13 +115,15 @@ Unauthorized.defaultProps = {
   HasUnauthorized: {},
   List: Accordion.defaultList,
   defaultState: true,
-  onUpdate: (queue) => {},
-  onError: (value, arr) => { return arr },
+  onUpdate: queue => {},
+  onError: (value, arr) => {
+    return arr
+  },
   section: 'legal',
   subsection: 'technology/unauthorized',
   addressBooks: {},
-  dispatch: (action) => {},
-  validator: (data) => {
+  dispatch: action => {},
+  validator: data => {
     return validate(schema('legal.technology.unauthorized', data))
   },
   scrollToBottom: ''

@@ -13,26 +13,43 @@ const applicationState = {
 describe('The psych section', () => {
   // Setup
   window.token = 'fake-token'
-  const middlewares = [ thunk ]
+  const middlewares = [thunk]
   const mockStore = configureMockStore(middlewares)
 
   it('hidden when not authenticated', () => {
     window.token = ''
-    const store = mockStore({ authentication: [], application: applicationState })
-    const component = mount(<Provider store={store}><Psychological /></Provider>)
+    const store = mockStore({
+      authentication: [],
+      application: applicationState
+    })
+    const component = mount(
+      <Provider store={store}>
+        <Psychological />
+      </Provider>
+    )
     expect(component.find('div').length).toEqual(0)
     window.token = 'fake-token'
   })
 
   it('visible when authenticated', () => {
-    const store = mockStore({ authentication: { authenticated: true, application: applicationState } })
-    const component = mount(<Provider store={store}><Psychological /></Provider>)
+    const store = mockStore({
+      authentication: { authenticated: true, application: applicationState }
+    })
+    const component = mount(
+      <Provider store={store}>
+        <Psychological />
+      </Provider>
+    )
     expect(component.find('div').length).toBeGreaterThan(0)
   })
 
   it('can review all subsections', () => {
     const store = mockStore({ authentication: { authenticated: true } })
-    const component = mount(<Provider store={store}><Psychological subsection="review" /></Provider>)
+    const component = mount(
+      <Provider store={store}>
+        <Psychological subsection="review" />
+      </Provider>
+    )
     expect(component.find('div').length).toBeGreaterThan(0)
   })
 
@@ -44,8 +61,15 @@ describe('The psych section', () => {
         }
       }
     }
-    const store = mockStore({ application: appState, authentication: { authenticated: true } })
-    const component = mount(<Provider store={store}><Psychological subsection="review" /></Provider>)
+    const store = mockStore({
+      application: appState,
+      authentication: { authenticated: true }
+    })
+    const component = mount(
+      <Provider store={store}>
+        <Psychological subsection="review" />
+      </Provider>
+    )
     expect(component.find('.competence .accordion').length).toBe(1)
   })
 
@@ -72,8 +96,15 @@ describe('The psych section', () => {
         }
       }
     }
-    const store = mockStore({ application: appState, authentication: { authenticated: true } })
-    const component = mount(<Provider store={store}><Psychological subsection="review" /></Provider>)
+    const store = mockStore({
+      application: appState,
+      authentication: { authenticated: true }
+    })
+    const component = mount(
+      <Provider store={store}>
+        <Psychological subsection="review" />
+      </Provider>
+    )
     expect(component.find('div').length).toBeGreaterThan(0)
     expect(component.find('.competence .accordion').length).toBe(0)
     expect(component.find('.consultation .accordion').length).toBe(0)
@@ -103,8 +134,15 @@ describe('The psych section', () => {
         }
       }
     }
-    const store = mockStore({ application: appState, authentication: { authenticated: true } })
-    const component = mount(<Provider store={store}><Psychological subsection="review" /></Provider>)
+    const store = mockStore({
+      application: appState,
+      authentication: { authenticated: true }
+    })
+    const component = mount(
+      <Provider store={store}>
+        <Psychological subsection="review" />
+      </Provider>
+    )
     expect(component.find('div').length).toBeGreaterThan(0)
     expect(component.find('.existingconditions').length).toBe(1)
   })

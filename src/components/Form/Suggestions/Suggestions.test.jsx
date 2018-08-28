@@ -3,8 +3,8 @@ import { mount } from 'enzyme'
 import Suggestions from './Suggestions'
 
 describe('The suggestions component', () => {
-  const renderSuggestion = (suggestion) => {
-    return (<span>suggestion</span>)
+  const renderSuggestion = suggestion => {
+    return <span>suggestion</span>
   }
 
   it('does not display suggestions if none are given', () => {
@@ -56,7 +56,9 @@ describe('The suggestions component', () => {
     let dismissed = false
     const expected = {
       renderSuggestion: renderSuggestion,
-      onDismiss: () => { dismissed = true },
+      onDismiss: () => {
+        dismissed = true
+      },
       show: true,
       suggestions: ['suggestion1', 'suggestion2'],
       withSuggestions: 'true',
@@ -76,7 +78,9 @@ describe('The suggestions component', () => {
     let dismissed = false
     const expected = {
       renderSuggestion: renderSuggestion,
-      onDismiss: () => { dismissed = true },
+      onDismiss: () => {
+        dismissed = true
+      },
       show: true,
       suggestions: ['suggestion1', 'suggestion2'],
       withSuggestions: 'true',
@@ -97,7 +101,9 @@ describe('The suggestions component', () => {
     let used = false
     const expected = {
       renderSuggestion: renderSuggestion,
-      onSuggestion: () => { used = true },
+      onSuggestion: () => {
+        used = true
+      },
       show: true,
       suggestions: ['suggestion1', 'suggestion2'],
       withSuggestions: 'true',
@@ -109,7 +115,10 @@ describe('The suggestions component', () => {
     }
     const component = mount(<Suggestions {...expected} />)
     expect(component.find('.modal').length).toEqual(1)
-    component.find('.suggestion .action button').first().simulate('click')
+    component
+      .find('.suggestion .action button')
+      .first()
+      .simulate('click')
     expect(used).toBe(true)
   })
 

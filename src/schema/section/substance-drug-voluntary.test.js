@@ -7,23 +7,25 @@ describe('Schema for financial taxes', () => {
       TreatmentVoluntary: { value: 'Yes' },
       List: {
         branch: { value: 'No' },
-        items: [{
-          Item: {
-            DrugType: { value: null },
-            TreatmentProvider: {},
-            TreatmentProviderAddress: {
-              country: null
-            },
-            TreatmentProviderTelephone: {},
-            TreatmentDates: {
-              from: {},
-              to: {},
-              present: null
-            },
-            TreatmentCompleted: {},
-            NoTreatmentExplanation: {}
+        items: [
+          {
+            Item: {
+              DrugType: { value: null },
+              TreatmentProvider: {},
+              TreatmentProviderAddress: {
+                country: null
+              },
+              TreatmentProviderTelephone: {},
+              TreatmentDates: {
+                from: {},
+                to: {},
+                present: null
+              },
+              TreatmentCompleted: {},
+              NoTreatmentExplanation: {}
+            }
           }
-        }]
+        ]
       }
     }
 

@@ -1,8 +1,10 @@
-import ForeignBusinessVenturesValidator, { VenturesValidator } from './foreignbusinessventures'
+import ForeignBusinessVenturesValidator, {
+  VenturesValidator
+} from './foreignbusinessventures'
 import { battery } from './helpers'
 import Location from '../components/Form/Location'
 
-describe('Foreign business ventures component validation', function () {
+describe('Foreign business ventures component validation', function() {
   it('validate foreign business ventures name', () => {
     const tests = [
       {
@@ -58,8 +60,7 @@ describe('Foreign business ventures component validation', function () {
   it('validate foreign business ventures country', () => {
     const tests = [
       {
-        state: {
-        },
+        state: {},
         expected: false
       },
       {

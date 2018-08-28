@@ -1,7 +1,7 @@
 import CreditValidator, { CreditItemValidator } from './credit'
 import Location from '../components/Form/Location'
 
-describe('credit component validation', function () {
+describe('credit component validation', function() {
   it('validate reason', () => {
     const tests = [
       {
@@ -23,7 +23,9 @@ describe('credit component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new CreditItemValidator(test.state, null).validExplanation()).toBe(test.expected)
+      expect(new CreditItemValidator(test.state, null).validExplanation()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -48,7 +50,9 @@ describe('credit component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new CreditItemValidator(test.state, null).validName()).toBe(test.expected)
+      expect(new CreditItemValidator(test.state, null).validName()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -76,7 +80,9 @@ describe('credit component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new CreditItemValidator(test.state, null).validTelephone()).toBe(test.expected)
+      expect(new CreditItemValidator(test.state, null).validTelephone()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -102,7 +108,9 @@ describe('credit component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new CreditItemValidator(test.state, null).validLocation()).toBe(test.expected)
+      expect(new CreditItemValidator(test.state, null).validLocation()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -127,7 +135,9 @@ describe('credit component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new CreditItemValidator(test.state, null).validDescription()).toBe(test.expected)
+      expect(new CreditItemValidator(test.state, null).validDescription()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -160,7 +170,9 @@ describe('credit component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new CreditValidator(test.state, null).validHasCreditCounseling()).toBe(test.expected)
+      expect(
+        new CreditValidator(test.state, null).validHasCreditCounseling()
+      ).toBe(test.expected)
     })
   })
 
@@ -181,11 +193,13 @@ describe('credit component validation', function () {
           HasCreditCounseling: { value: 'Yes' },
           List: {
             branch: { value: 'No' },
-            items: [{
-              Explanation: {
-                value: 'Completely forgot'
+            items: [
+              {
+                Explanation: {
+                  value: 'Completely forgot'
+                }
               }
-            }]
+            ]
           }
         },
         expected: false
@@ -251,7 +265,9 @@ describe('credit component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new CreditValidator(test.state, null).isValid()).toBe(test.expected)
+      expect(new CreditValidator(test.state, null).isValid()).toBe(
+        test.expected
+      )
     })
   })
 })

@@ -1,8 +1,8 @@
 import { ResidenceValidator } from './residence'
 import Location from '../components/Form/Location'
 
-describe('Residence component validation', function () {
-  it('should validate role', function () {
+describe('Residence component validation', function() {
+  it('should validate role', function() {
     const tests = [
       {
         state: {
@@ -50,11 +50,13 @@ describe('Residence component validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new ResidenceValidator(test.state, null).validRole()).toBe(test.expected)
+      expect(new ResidenceValidator(test.state, null).validRole()).toBe(
+        test.expected
+      )
     })
   })
 
-  it('should validate residence', function () {
+  it('should validate residence', function() {
     const tests = [
       {
         state: {
@@ -185,7 +187,9 @@ describe('Residence component validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new ResidenceValidator(test.state, null).isValid()).toBe(test.expected)
+      expect(new ResidenceValidator(test.state, null).isValid()).toBe(
+        test.expected
+      )
     })
   })
 })

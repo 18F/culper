@@ -29,7 +29,10 @@ describe('The employment additional activity component', () => {
     }
 
     const component = mount(<AdditionalActivity {...expected} />)
-    component.find('.branch .yes input').at(0).simulate('change')
+    component
+      .find('.branch .yes input')
+      .at(0)
+      .simulate('change')
     component.find({ type: 'text', name: 'Position' }).simulate('change')
     expect(updates).toBeGreaterThan(0)
   })

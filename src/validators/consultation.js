@@ -2,26 +2,26 @@ import { ConsultationOrderValidator } from './order'
 import { validAccordion } from './helpers'
 
 export default class ConsultationValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.list = data.List || {}
     this.consulted = (data.Consulted || {}).value
   }
 
-  validConsulted () {
+  validConsulted() {
     return this.consulted === 'Yes' || this.consulted === 'No'
   }
 
-  validList () {
+  validList() {
     if (this.consulted === 'No') {
       return true
     }
 
-    return validAccordion(this.list, (item) => {
+    return validAccordion(this.list, item => {
       return new ConsultationOrderValidator(item).isValid()
     })
   }
 
-  isValid () {
+  isValid() {
     if (!this.validConsulted()) {
       return false
     }

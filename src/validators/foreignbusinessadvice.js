@@ -3,28 +3,28 @@ import DateRangeValidator from './daterange'
 import { validAccordion, validGenericTextfield } from './helpers'
 
 export default class ForeignBusinessAdviceValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.hasForeignAdvice = (data.HasForeignAdvice || {}).value
     this.list = data.List || []
   }
 
-  validList () {
+  validList() {
     if (this.hasForeignAdvice === 'No') {
       return true
     }
 
-    return validAccordion(this.list, (item) => {
+    return validAccordion(this.list, item => {
       return new AdviceValidator(item).isValid()
     })
   }
 
-  isValid () {
+  isValid() {
     return this.validList()
   }
 }
 
 export class AdviceValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.description = data.Description
     this.name = data.Name
     this.organization = data.Organization
@@ -33,31 +33,33 @@ export class AdviceValidator {
     this.compensation = data.Compensation // optional
   }
 
-  validDescription () {
+  validDescription() {
     return !!this.description && validGenericTextfield(this.description)
   }
 
-  validName () {
+  validName() {
     return !!this.name && new NameValidator(this.name).isValid()
   }
 
-  validOrganization () {
+  validOrganization() {
     return !!this.organization && validGenericTextfield(this.organization)
   }
 
-  validCountry () {
+  validCountry() {
     return !!this.country && validGenericTextfield(this.country)
   }
 
-  validDates () {
+  validDates() {
     return !!this.dates && new DateRangeValidator(this.dates).isValid()
   }
 
-  isValid () {
-    return this.validDescription() &&
+  isValid() {
+    return (
+      this.validDescription() &&
       this.validName() &&
       this.validOrganization() &&
       this.validCountry() &&
       this.validDates()
+    )
   }
 }

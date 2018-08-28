@@ -3,13 +3,16 @@ import { i18n } from '../../../../config'
 import schema from '../../../../schema'
 import validate from '../../../../validators'
 import { Summary, DateSummary } from '../../../Summary'
-import { CompetenceValidator, CompetenceOrderValidator } from '../../../../validators'
+import {
+  CompetenceValidator,
+  CompetenceOrderValidator
+} from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion, Branch, Show } from '../../../Form'
 import Order from '../Order'
 
 export default class Competence extends SubsectionElement {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.update = this.update.bind(this)
@@ -17,7 +20,7 @@ export default class Competence extends SubsectionElement {
     this.updateList = this.updateList.bind(this)
   }
 
-  update (queue) {
+  update(queue) {
     this.props.onUpdate({
       List: this.props.List,
       IsIncompetent: this.props.IsIncompetent,
@@ -25,20 +28,20 @@ export default class Competence extends SubsectionElement {
     })
   }
 
-  updateList (values) {
+  updateList(values) {
     this.update({
       List: values
     })
   }
 
-  updateIsIncompentent (values) {
+  updateIsIncompentent(values) {
     this.update({
       IsIncompetent: values,
       List: values.value === 'Yes' ? this.props.List : []
     })
   }
 
-  summary (item, index) {
+  summary(item, index) {
     const o = (item || {}).Item || {}
     const occurred = DateSummary(o.Occurred || {})
     const courtName = (o.CourtName || {}).value || ''
@@ -48,44 +51,58 @@ export default class Competence extends SubsectionElement {
       index: index,
       left: courtName,
       right: occurred,
-      placeholder: i18n.t('psychological.competence.collection.summaryCourtName')
+      placeholder: i18n.t(
+        'psychological.competence.collection.summaryCourtName'
+      )
     })
   }
 
-  render () {
+  render() {
     return (
-      <div className="section-content competence" {...super.dataAttributes(this.props)}>
-        <Branch name="is_incompetent"
-                label={i18n.t('psychological.heading.competence')}
-                labelSize="h2"
-                {...this.props.IsIncompetent}
-                warning={true}
-                onError={this.handleError}
-                required={this.props.required}
-                onUpdate={this.updateIsIncompentent}
-                scrollIntoView={this.props.scrollIntoView}>
-        </Branch>
+      <div
+        className="section-content competence"
+        {...super.dataAttributes(this.props)}>
+        <Branch
+          name="is_incompetent"
+          label={i18n.t('psychological.heading.competence')}
+          labelSize="h2"
+          {...this.props.IsIncompetent}
+          warning={true}
+          onError={this.handleError}
+          required={this.props.required}
+          onUpdate={this.updateIsIncompentent}
+          scrollIntoView={this.props.scrollIntoView}
+        />
 
         <Show when={this.props.IsIncompetent.value === 'Yes'}>
-          <Accordion defaultState={this.props.defaultState}
-                     {...this.props.List}
-                     scrollToBottom={this.props.scrollToBottom}
-                     summary={this.summary}
-                     onUpdate={this.updateList}
-                     onError={this.handleError}
-                     validator={CompetenceOrderValidator}
-                     description={i18n.t('psychological.competence.collection.description')}
-                     appendTitle={i18n.t('psychological.competence.collection.appendTitle')}
-                     appendLabel={i18n.t('psychological.competence.collection.appendLabel')}
-                     required={this.props.required}
-                     scrollIntoView={this.props.scrollIntoView}>
-            <Order name="Item"
-                   prefix="competence"
-                   addressBooks={this.props.addressBooks}
-                   dispatch={this.props.dispatch}
-                   required={this.props.required}
-                   scrollIntoView={this.props.scrollIntoView}
-                   bind={true} />
+          <Accordion
+            defaultState={this.props.defaultState}
+            {...this.props.List}
+            scrollToBottom={this.props.scrollToBottom}
+            summary={this.summary}
+            onUpdate={this.updateList}
+            onError={this.handleError}
+            validator={CompetenceOrderValidator}
+            description={i18n.t(
+              'psychological.competence.collection.description'
+            )}
+            appendTitle={i18n.t(
+              'psychological.competence.collection.appendTitle'
+            )}
+            appendLabel={i18n.t(
+              'psychological.competence.collection.appendLabel'
+            )}
+            required={this.props.required}
+            scrollIntoView={this.props.scrollIntoView}>
+            <Order
+              name="Item"
+              prefix="competence"
+              addressBooks={this.props.addressBooks}
+              dispatch={this.props.dispatch}
+              required={this.props.required}
+              scrollIntoView={this.props.scrollIntoView}
+              bind={true}
+            />
           </Accordion>
         </Show>
       </div>
@@ -97,13 +114,15 @@ Competence.defaultProps = {
   IsIncompetent: {},
   List: Accordion.defaultList,
   defaultState: true,
-  onUpdate: (queue) => {},
-  onError: (value, arr) => { return arr },
+  onUpdate: queue => {},
+  onError: (value, arr) => {
+    return arr
+  },
   section: 'psychological',
   subsection: 'competence',
   addressBooks: {},
   dispatch: () => {},
-  validator: (data) => {
+  validator: data => {
     return validate(schema('psychological.competence', data))
   },
   scrollToBottom: ''

@@ -7,7 +7,9 @@ describe('The travel days component', () => {
     let updates = 0
     const expected = {
       values: ['1-5'],
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
     const component = mount(<TravelDays {...expected} />)
     component.find('.days-1-5 input').simulate('change')

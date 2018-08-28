@@ -1,8 +1,8 @@
 import ForeignRealEstateActivityValidator from './foreignrealestateactivity'
 import Location from '../components/Form/Location'
 
-describe('Foreign RealEstate Activity validation', function () {
-  it('should validate list of indirect interests', function () {
+describe('Foreign RealEstate Activity validation', function() {
+  it('should validate list of indirect interests', function() {
     const tests = [
       {
         props: {
@@ -79,7 +79,9 @@ describe('Foreign RealEstate Activity validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new ForeignRealEstateActivityValidator(test.props).isValid()).toBe(test.expected)
+      expect(new ForeignRealEstateActivityValidator(test.props).isValid()).toBe(
+        test.expected
+      )
     })
   })
 })

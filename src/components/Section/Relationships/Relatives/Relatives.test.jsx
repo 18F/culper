@@ -19,14 +19,18 @@ describe('The relatives component', () => {
       List: {
         items: [{ Item: { Relation: { value: 'Mother' } } }]
       },
-      onUpdate: (obj) => {
+      onUpdate: obj => {
         updates++
       }
     }
     const component = mount(<Relatives {...expected} />)
     component.find({ type: 'radio', value: 'Mother' }).simulate('change')
-    component.find('.relative-name .first input').simulate('change', { target: { name: 'first', value: 'The name' } })
-    component.find('.relative-name .first input').simulate('change', { target: { name: 'first', value: '123123123' } })
+    component
+      .find('.relative-name .first input')
+      .simulate('change', { target: { name: 'first', value: 'The name' } })
+    component
+      .find('.relative-name .first input')
+      .simulate('change', { target: { name: 'first', value: '123123123' } })
     expect(updates).toBeGreaterThan(1)
   })
 })

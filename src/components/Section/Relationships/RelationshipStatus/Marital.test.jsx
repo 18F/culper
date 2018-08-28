@@ -17,14 +17,20 @@ describe('The relationship status component', () => {
     const expected = {
       name: 'relatives',
       Status: { value: 'InCivilUnion' },
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
 
     const component = mount(<Marital {...expected} />)
     expect(component.find('.marital').length).toEqual(1)
-    component.find('.status-options input[value="InCivilUnion"]').simulate('change')
+    component
+      .find('.status-options input[value="InCivilUnion"]')
+      .simulate('change')
     component.find('.civil-union .civil .first input').simulate('change')
-    component.find('.status-options input[value="NeverMarried"]').simulate('change')
+    component
+      .find('.status-options input[value="NeverMarried"]')
+      .simulate('change')
     expect(updates).toBe(3)
   })
 
@@ -47,7 +53,9 @@ describe('The relationship status component', () => {
           }
         ]
       },
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
 
     const component = mount(<Marital {...expected} />)

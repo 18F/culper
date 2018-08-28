@@ -8,7 +8,7 @@ import { mount } from 'enzyme'
 
 describe('The physical attributes section', () => {
   // Setup
-  const middlewares = [ thunk ]
+  const middlewares = [thunk]
   const mockStore = configureMockStore(middlewares)
 
   it('no error on first composition', () => {
@@ -27,24 +27,30 @@ describe('The physical attributes section', () => {
     let data = {
       Comments: 'Hello',
       EyeColor: 'Black',
-      HairColor: [
-        'Bald'
-      ],
+      HairColor: ['Bald'],
       Height: {
         feet: 5,
         inches: 10
       },
       Sex: 'Male',
       Weight: 180,
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
     const component = mount(<Physical name="physical" {...data} />)
     component.find('.pounds input').simulate('change')
     component.find('.feet input').simulate('change')
     component.find('.inches input').simulate('change')
     component.find('.bald input').simulate('change')
-    component.find('.eye-colors input').first().simulate('change')
-    component.find('.sex input').first().simulate('change')
+    component
+      .find('.eye-colors input')
+      .first()
+      .simulate('change')
+    component
+      .find('.sex input')
+      .first()
+      .simulate('change')
     expect(updates).toBeGreaterThan(0)
   })
 })

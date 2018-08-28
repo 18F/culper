@@ -1,8 +1,10 @@
-import LegalTechnologyUnauthorizedValidator, { UnauthorizedValidator } from './legaltechnologyunauthorized'
+import LegalTechnologyUnauthorizedValidator, {
+  UnauthorizedValidator
+} from './legaltechnologyunauthorized'
 import { battery } from './helpers'
 import Location from '../components/Form/Location'
 
-describe('Legal technology unauthorized component validation', function () {
+describe('Legal technology unauthorized component validation', function() {
   it('validate date', () => {
     const tests = [
       {

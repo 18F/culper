@@ -27,7 +27,9 @@ describe('The multiple component', () => {
       name: 'multiple',
       HasMultiple: { value: 'Yes' },
       List: { items: [{}] },
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
     const component = mount(<Multiple {...expected} />)
     updates = 0
@@ -66,7 +68,11 @@ describe('The multiple component', () => {
       }
     }
     const component = mount(<Multiple {...props} />)
-    expect(component.find('.summary .left .context').text()).toBe('United States')
-    expect(component.find('.summary .left .dates').text()).toBe('1/2000 - 4/2010')
+    expect(component.find('.summary .left .context').text()).toBe(
+      'United States'
+    )
+    expect(component.find('.summary .left .dates').text()).toBe(
+      '1/2000 - 4/2010'
+    )
   })
 })

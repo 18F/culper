@@ -9,21 +9,21 @@ import { Field, Accordion } from '../../../Form'
 import Relative from './Relative'
 
 export default class Relatives extends SubsectionElement {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.update = this.update.bind(this)
     this.updateList = this.updateList.bind(this)
   }
 
-  update (queue) {
+  update(queue) {
     this.props.onUpdate({
       List: this.props.List,
       ...queue
     })
   }
 
-  updateList (values) {
+  updateList(values) {
     this.update({
       List: values
     })
@@ -32,11 +32,12 @@ export default class Relatives extends SubsectionElement {
   /**
    * Assists in rendering the summary section.
    */
-  summary (item, index) {
+  summary(item, index) {
     const o = (item || {}).Item || {}
-    const relation = (o.Relations || []).length > 0
-          ? o.Relations[0]
-          : i18n.t('relationships.relatives.collection.summary.item')
+    const relation =
+      (o.Relations || []).length > 0
+        ? o.Relations[0]
+        : i18n.t('relationships.relatives.collection.summary.item')
     const name = NameSummary(o.Name)
 
     return Summary({
@@ -48,35 +49,42 @@ export default class Relatives extends SubsectionElement {
     })
   }
 
-  render () {
+  render() {
     return (
-      <div className="section-content relatives" {...super.dataAttributes(this.props)}>
-        <Field title={i18n.t('relationships.relatives.heading.title')}
-               titleSize="h2"
-               optional={true}
-               className="no-margin-bottom">
+      <div
+        className="section-content relatives"
+        {...super.dataAttributes(this.props)}>
+        <Field
+          title={i18n.t('relationships.relatives.heading.title')}
+          titleSize="h2"
+          optional={true}
+          className="no-margin-bottom">
           {i18n.m('relationships.relatives.para.opportunity')}
         </Field>
 
-        <Accordion {...this.props.List}
-                   defaultState={this.props.defaultState}
-                   scrollToBottom={this.props.scrollToBottom}
-                   onUpdate={this.updateList}
-                   onError={this.handleError}
-                   summary={this.summary}
-                   description={i18n.t('relationships.relatives.collection.summary.title')}
-                   required={this.props.required}
-                   validator={RelativeValidator}
-                   scrollIntoView={this.props.scrollIntoView}
-                   appendTitle={i18n.t('relationships.relatives.collection.appendTitle')}
-                   appendLabel={i18n.t('relationships.relatives.collection.append')}>
-          <Relative name="Item"
-                    addressBooks={this.props.addressBooks}
-                    dispatch={this.props.dispatch}
-                    bind={true}
-                    scrollIntoView={this.props.scrollIntoView}
-                    required={this.props.required}
-                    />
+        <Accordion
+          {...this.props.List}
+          defaultState={this.props.defaultState}
+          scrollToBottom={this.props.scrollToBottom}
+          onUpdate={this.updateList}
+          onError={this.handleError}
+          summary={this.summary}
+          description={i18n.t(
+            'relationships.relatives.collection.summary.title'
+          )}
+          required={this.props.required}
+          validator={RelativeValidator}
+          scrollIntoView={this.props.scrollIntoView}
+          appendTitle={i18n.t('relationships.relatives.collection.appendTitle')}
+          appendLabel={i18n.t('relationships.relatives.collection.append')}>
+          <Relative
+            name="Item"
+            addressBooks={this.props.addressBooks}
+            dispatch={this.props.dispatch}
+            bind={true}
+            scrollIntoView={this.props.scrollIntoView}
+            required={this.props.required}
+          />
         </Accordion>
       </div>
     )
@@ -85,13 +93,15 @@ export default class Relatives extends SubsectionElement {
 
 Relatives.defaultProps = {
   List: {},
-  onUpdate: (queue) => {},
-  onError: (value, arr) => { return arr },
+  onUpdate: queue => {},
+  onError: (value, arr) => {
+    return arr
+  },
   section: 'relationships',
   subsection: 'relatives',
   addressBooks: {},
   dispatch: () => {},
-  validator: (data) => {
+  validator: data => {
     return validate(schema('relationships.relatives', data))
   },
   defaultState: true,

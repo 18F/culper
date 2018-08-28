@@ -10,10 +10,14 @@ describe('The GamblingItem component', () => {
 
   it('Performs updates', () => {
     let updates = 0
-    const onUpdate = () => { updates++ }
+    const onUpdate = () => {
+      updates++
+    }
 
     const component = mount(<GamblingItem onUpdate={onUpdate} />)
-    component.find('.dates .from input[name="month"]').simulate('change', { target: { value: '1' } })
+    component
+      .find('.dates .from input[name="month"]')
+      .simulate('change', { target: { value: '1' } })
     component.find('.losses input').simulate('change')
     component.find('.description textarea').simulate('change')
     component.find('.actions textarea').simulate('change')

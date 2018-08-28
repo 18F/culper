@@ -32,8 +32,14 @@ describe('The foreign business conferences component', () => {
       }
     }
     const component = mount(<Conferences {...expected} />)
-    component.find('.branch .yes input').at(0).simulate('change')
-    component.find('.branch .yes input').at(0).simulate('blur')
+    component
+      .find('.branch .yes input')
+      .at(0)
+      .simulate('change')
+    component
+      .find('.branch .yes input')
+      .at(0)
+      .simulate('blur')
     expect(validated).toBe(true)
   })
 
@@ -51,7 +57,9 @@ describe('The foreign business conferences component', () => {
           }
         ]
       },
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
     const component = mount(<Conferences {...expected} />)
     expect(component.find('.accordion').length).toBe(1)

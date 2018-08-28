@@ -35,13 +35,18 @@ describe('The federal component', () => {
       List: {
         items: [{}]
       },
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
     const component = mount(<Federal {...expected} />)
     expect(component.find('.accordion').length).toBe(1)
-    component.find({type: 'text', name: 'Position'}).simulate('change')
-    component.find({type: 'text', name: 'Name'}).simulate('change')
-    component.find('.accordion .datecontrol .day input').first().simulate('change')
+    component.find({ type: 'text', name: 'Position' }).simulate('change')
+    component.find({ type: 'text', name: 'Name' }).simulate('change')
+    component
+      .find('.accordion .datecontrol .day input')
+      .first()
+      .simulate('change')
     component.find('.accordion .mailing input').simulate('change')
     expect(updates).toBeGreaterThan(3)
   })

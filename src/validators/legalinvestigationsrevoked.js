@@ -1,48 +1,50 @@
-import { validAccordion, validGenericTextfield, validDateField } from './helpers'
+import {
+  validAccordion,
+  validGenericTextfield,
+  validDateField
+} from './helpers'
 
 export default class LegalInvestigationsRevokedValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.hasRevocations = (data.HasRevocations || {}).value
     this.list = data.List || {}
   }
 
-  validList () {
+  validList() {
     if (this.hasRevocations === 'No') {
       return true
     }
 
-    return validAccordion(this.list, (item) => {
+    return validAccordion(this.list, item => {
       return new RevokedValidator(item).isValid()
     })
   }
 
-  isValid () {
+  isValid() {
     return this.validList()
   }
 }
 
 export class RevokedValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.date = data.Date
     this.agency = data.Agency
     this.explanation = data.Explanation
   }
 
-  validDate () {
+  validDate() {
     return !!this.date && validDateField(this.date)
   }
 
-  validAgency () {
+  validAgency() {
     return !!this.agency && validGenericTextfield(this.agency)
   }
 
-  validExplanation () {
+  validExplanation() {
     return !!this.explanation && validGenericTextfield(this.explanation)
   }
 
-  isValid () {
-    return this.validDate() &&
-      this.validAgency() &&
-      this.validExplanation()
+  isValid() {
+    return this.validDate() && this.validAgency() && this.validExplanation()
   }
 }

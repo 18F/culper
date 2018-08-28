@@ -13,18 +13,20 @@ export const relationshipsRelatives = (data = {}) => {
         CitizenshipDocumentation: form.radio(xitem.CitizenshipDocumentation),
         MaidenSameAsListed: form.branch(xitem.MaidenSameAsListed),
         MaidenName: form.name(xitem.MaidenName),
-        Aliases: form.collection(((xitem.Aliases || {}).items || []).map(y => {
-          const yitem = y.Item || {}
-          return {
-            Item: {
-              Has: form.branch(yitem.Has),
-              Name: form.name(yitem.Name),
-              MaidenName: form.branch(yitem.MaidenName),
-              Dates: form.daterange(yitem.Dates),
-              Reason: form.textarea(yitem.Reason)
+        Aliases: form.collection(
+          ((xitem.Aliases || {}).items || []).map(y => {
+            const yitem = y.Item || {}
+            return {
+              Item: {
+                Has: form.branch(yitem.Has),
+                Name: form.name(yitem.Name),
+                MaidenName: form.branch(yitem.MaidenName),
+                Dates: form.daterange(yitem.Dates),
+                Reason: form.textarea(yitem.Reason)
+              }
             }
-          }
-        })),
+          })
+        ),
         IsDeceased: form.branch(xitem.IsDeceased),
         Address: form.location(xitem.Address),
         DocumentNumber: form.text(xitem.DocumentNumber),
@@ -40,8 +42,12 @@ export const relationshipsRelatives = (data = {}) => {
         MethodsComments: form.textarea(xitem.MethodsComments),
         Frequency: form.radio(xitem.Frequency),
         EmployerNotApplicable: form.notapplicable(xitem.EmployerNotApplicable),
-        EmployerAddressNotApplicable: form.notapplicable(xitem.EmployerAddressNotApplicable),
-        EmployerRelationshipNotApplicable: form.notapplicable(xitem.EmployerRelationshipNotApplicable),
+        EmployerAddressNotApplicable: form.notapplicable(
+          xitem.EmployerAddressNotApplicable
+        ),
+        EmployerRelationshipNotApplicable: form.notapplicable(
+          xitem.EmployerRelationshipNotApplicable
+        ),
         Employer: form.text(xitem.Employer),
         EmployerAddress: form.location(xitem.EmployerAddress),
         HasAffiliation: form.branch(xitem.HasAffiliation),

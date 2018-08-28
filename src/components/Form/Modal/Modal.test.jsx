@@ -33,7 +33,9 @@ describe('The modal component', () => {
     const props = {
       show: true,
       closeable: true,
-      onDismiss: () => { dismissed = true }
+      onDismiss: () => {
+        dismissed = true
+      }
     }
     const component = mount(<Modal {...props} />)
     component.find('.modal').simulate('click')
@@ -45,7 +47,9 @@ describe('The modal component', () => {
     const props = {
       show: true,
       closeable: true,
-      onDismiss: () => { dismissed = true }
+      onDismiss: () => {
+        dismissed = true
+      }
     }
     const component = mount(<Modal {...props} />)
     component.find('.modal-close').simulate('click')
@@ -57,7 +61,9 @@ describe('The modal component', () => {
     const props = {
       show: true,
       closeable: true,
-      onDismiss: () => { dismissed = true }
+      onDismiss: () => {
+        dismissed = true
+      }
     }
     const component = mount(<Modal {...props} />)
     component.find('.modal-content').simulate('click')
@@ -68,7 +74,9 @@ describe('The modal component', () => {
     let dismissed = false
     const props = {
       show: true,
-      onDismiss: () => { dismissed = true }
+      onDismiss: () => {
+        dismissed = true
+      }
     }
     const component = mount(<Modal {...props} />)
     component.find('.modal').simulate('click')

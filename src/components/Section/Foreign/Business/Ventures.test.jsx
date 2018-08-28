@@ -32,8 +32,14 @@ describe('The foreign business ventures component', () => {
       }
     }
     const component = mount(<Ventures {...expected} />)
-    component.find('.branch .yes input').at(0).simulate('change')
-    component.find('.branch .yes input').at(0).simulate('blur')
+    component
+      .find('.branch .yes input')
+      .at(0)
+      .simulate('change')
+    component
+      .find('.branch .yes input')
+      .at(0)
+      .simulate('blur')
     expect(validated).toBe(true)
   })
 
@@ -43,7 +49,9 @@ describe('The foreign business ventures component', () => {
       name: 'foreign-business-ventures',
       HasForeignVentures: { value: 'Yes' },
       List: { items: [{}], branch: {} },
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
     const component = mount(<Ventures {...expected} />)
     expect(component.find('.accordion').length).toBe(1)

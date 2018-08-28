@@ -8,7 +8,9 @@ import StickyAccordionSummary from '../../Sticky/StickyAccordionSummary'
 import { findPosition } from '../../Navigation/navigation-helpers'
 
 export const openState = (item = {}, initial = false) => {
-  return `${item.open ? 'open' : 'close'} ${initial ? 'static' : 'animate'}`.trim()
+  return `${item.open ? 'open' : 'close'} ${
+    initial ? 'static' : 'animate'
+  }`.trim()
 }
 
 export const chevron = (item = {}) => {
@@ -37,7 +39,7 @@ export const doScroll = (first, item, scrollTo) => {
   window.scroll({ top: pos - offset - offsetDeux, left: 0, behavior: 'smooth' })
 }
 
-export const scrollToBottom = (selector) => {
+export const scrollToBottom = selector => {
   const el = document.querySelector(selector)
   if (!el) {
     return
@@ -46,7 +48,7 @@ export const scrollToBottom = (selector) => {
 }
 
 export default class Accordion extends ValidationElement {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
@@ -74,7 +76,7 @@ export default class Accordion extends ValidationElement {
    * present. If they are not (this may be due to coming from persisted data) assign
    * them appropriately.
    */
-  componentWillMount () {
+  componentWillMount() {
     let dirty = false
     let items = this.getItems()
 
@@ -116,7 +118,7 @@ export default class Accordion extends ValidationElement {
    * When the component recieves an update we need to check if it is necessary to scroll an
    * item in to view.
    */
-  componentDidUpdate () {
+  componentDidUpdate() {
     if (!this.state.scrollToId || this.state.initial) {
       return
     }
@@ -130,7 +132,9 @@ export default class Accordion extends ValidationElement {
     this.setState({ initial: false, scrollToId: '' }, () => {
       // Find the item by UUID instead of index because we can't true the index
       // will always be the same
-      const item = this.props.items.filter(x => x.uuid === id)[0] || { uuid: id }
+      const item = this.props.items.filter(x => x.uuid === id)[0] || {
+        uuid: id
+      }
 
       // Calculate a magic number to phase the timeout value. This always
       // for any CSS keyframe animations or transitions to take place prior
@@ -138,12 +142,12 @@ export default class Accordion extends ValidationElement {
       const index = this.props.items.findIndex(x => x.uuid === id)
       const sindex = index < 0 ? 0 : index
       const shift = (sindex / 10) * 0.3142
-      const timeout = this.props.timeout + (this.props.timeout * shift)
+      const timeout = this.props.timeout + this.props.timeout * shift
 
       // Get the element to which we should scroll to
       const scrollTo = this.props.scrollToTop
-            ? document.getElementById(this.props.scrollToTop)
-            : this.refs.accordion
+        ? document.getElementById(this.props.scrollToTop)
+        : this.refs.accordion
 
       // Get the identifier to the first item
       const first = this.props.items[0].uuid
@@ -151,7 +155,9 @@ export default class Accordion extends ValidationElement {
       if (timeout === 0) {
         doScroll(first, item, scrollTo)
       } else {
-        window.setTimeout(() => { doScroll(first, item, scrollTo) }, timeout)
+        window.setTimeout(() => {
+          doScroll(first, item, scrollTo)
+        }, timeout)
       }
     })
   }
@@ -159,14 +165,14 @@ export default class Accordion extends ValidationElement {
   /**
    * Create a new item with required properties.
    */
-  newItem () {
+  newItem() {
     return { uuid: super.guid(), open: true }
   }
 
   /**
    * Perform any injections or sorting to the list as deemed necessary.
    */
-  getItems (skipInnoculation = false) {
+  getItems(skipInnoculation = false) {
     // If this has realtime enabled then we always perform sorting and
     // additional injections.
     //
@@ -174,12 +180,16 @@ export default class Accordion extends ValidationElement {
     // then we do the same.
     //
     // If we have been previously infected then assume we still are.
-    const infected = this.props.realtime || this.state.initial || this.props.items.some(item => item.type && item.type === 'Gap')
+    const infected =
+      this.props.realtime ||
+      this.state.initial ||
+      this.props.items.some(item => item.type && item.type === 'Gap')
 
     // If we are infected then inject the anecdote.
-    const innoculated = infected && !skipInnoculation
-          ? this.props.inject([...this.props.items])
-          : [...this.props.items]
+    const innoculated =
+      infected && !skipInnoculation
+        ? this.props.inject([...this.props.items])
+        : [...this.props.items]
 
     // If we are not in a dirty environment and have a sorting function then
     // apply order.
@@ -191,7 +201,7 @@ export default class Accordion extends ValidationElement {
   /**
    * Send the updated list of items back to the parent component.
    */
-  update (items, branch) {
+  update(items, branch) {
     this.props.onUpdate({
       branch: branch,
       items: items
@@ -201,7 +211,7 @@ export default class Accordion extends ValidationElement {
   /**
    * Flip the `open` bit for the item.
    */
-  toggle (item) {
+  toggle(item) {
     const items = [...this.props.items].map(x => {
       if (x.uuid === item.uuid) {
         x.open = !x.open
@@ -223,7 +233,7 @@ export default class Accordion extends ValidationElement {
    * Add a new item to the end of the current array of items while setting the
    * default states.
    */
-  add () {
+  add() {
     let items = [...this.props.items]
     for (let item of items) {
       item.open = false
@@ -238,9 +248,12 @@ export default class Accordion extends ValidationElement {
   /**
    * Remove the item from the array of items.
    */
-  remove (item) {
+  remove(item) {
     // Confirm deletion first
-    if (this.props.skipWarning || window.confirm(i18n.t('collection.warning')) === true) {
+    if (
+      this.props.skipWarning ||
+      window.confirm(i18n.t('collection.warning')) === true
+    ) {
       let items = [...this.props.items].filter(x => {
         return x.uuid !== item.uuid
       })
@@ -257,7 +270,7 @@ export default class Accordion extends ValidationElement {
   /**
    * Update an item properties based on a child component.
    */
-  updateChild (item, prop, value) {
+  updateChild(item, prop, value) {
     let items = [...this.props.items]
     const index = items.findIndex(x => x.uuid === item.uuid)
     items[index][prop] = value
@@ -267,7 +280,7 @@ export default class Accordion extends ValidationElement {
   /**
    * Update the accordion addendum branch value.
    */
-  updateAddendum (values) {
+  updateAddendum(values) {
     if (values.value === 'Yes') {
       this.add()
       return
@@ -282,25 +295,32 @@ export default class Accordion extends ValidationElement {
   /**
    * Clone the component children and provide the associated values based on the item context.
    */
-  factory (item, index, children) {
-    return React.Children.map(children, (child) => {
+  factory(item, index, children) {
+    return React.Children.map(children, child => {
       let childProps = {}
 
       if (React.isValidElement(child)) {
         if (child.props.bind) {
-          childProps = {...item[child.props.name]}
-          childProps.onUpdate = (value) => {
+          childProps = { ...item[child.props.name] }
+          childProps.onUpdate = value => {
             const propName = child.props.name
-                  ? child.props.name
-                  : value && value.name ? value.name : 'Extra'
+              ? child.props.name
+              : value && value.name
+                ? value.name
+                : 'Extra'
             this.updateChild(item, propName, value)
           }
           childProps.onError = this.props.onError
         }
       }
 
-      const typeOfChildren = Object.prototype.toString.call(child.props.children)
-      if (child.props.children && ['[object Object]', '[object Array]'].includes(typeOfChildren)) {
+      const typeOfChildren = Object.prototype.toString.call(
+        child.props.children
+      )
+      if (
+        child.props.children &&
+        ['[object Object]', '[object Array]'].includes(typeOfChildren)
+      ) {
         childProps.children = this.factory(item, index, child.props.children)
       }
 
@@ -311,44 +331,64 @@ export default class Accordion extends ValidationElement {
   /**
    * Return the appropriate verbiage to use based on the items open state
    */
-  openText (item = {}) {
+  openText(item = {}) {
     return item.open ? this.props.closeLabel : this.props.openLabel
   }
 
   /**
    * Render the item summary which can be overriden with `customSummary`
    */
-  summary (item, index, initial = false) {
+  summary(item, index, initial = false) {
     // If this is a `gap` then you cannot destroy what you did not create.
     if (item.type && item.type === 'Gap') {
       return null
     }
 
-    const closedAndIncomplete = !item.open && !this.isValid(this.props.transformer(item))
-    const svg = closedAndIncomplete
-          ? <Svg src="/img/exclamation-point.svg" className="incomplete" alt={this.props.incomplete} />
-          : null
+    const closedAndIncomplete =
+      !item.open && !this.isValid(this.props.transformer(item))
+    const svg = closedAndIncomplete ? (
+      <Svg
+        src="/img/exclamation-point.svg"
+        className="incomplete"
+        alt={this.props.incomplete}
+      />
+    ) : null
 
     return (
       <div className="summary-container">
         <div className="summary">
-          <a href="javascript:;;;" className={`left ${openState(item, initial)}`} title={`Click to ${this.openText(item).toLowerCase()} this item`} onClick={this.toggle.bind(this, item)}>
+          <a
+            href="javascript:;;;"
+            className={`left ${openState(item, initial)}`}
+            title={`Click to ${this.openText(item).toLowerCase()} this item`}
+            onClick={this.toggle.bind(this, item)}>
             <span className="button-with-icon" aria-hidden="true">
-              <i className={chevron(item)} aria-hidden="true"></i>
+              <i className={chevron(item)} aria-hidden="true" />
               <span className="toggle">{this.openText(item)}</span>
             </span>
             {svg}
             {this.props.summary(item, index, initial)}
           </a>
-          <a href="javascript:;;;" className="right remove" aria-label="Remove this item" title="Remove this item" onClick={this.remove.bind(this, item)}>
+          <a
+            href="javascript:;;;"
+            className="right remove"
+            aria-label="Remove this item"
+            title="Remove this item"
+            onClick={this.remove.bind(this, item)}>
             <span className="button-with-icon">
-              <i className="fa fa-trash" aria-hidden="true"></i>
+              <i className="fa fa-trash" aria-hidden="true" />
               <span>{this.props.removeLabel}</span>
             </span>
           </a>
         </div>
         <Show when={closedAndIncomplete}>
-          {this.props.byline(item, index, initial, this.props.incomplete, this.props.required)}
+          {this.props.byline(
+            item,
+            index,
+            initial,
+            this.props.incomplete,
+            this.props.required
+          )}
         </Show>
       </div>
     )
@@ -357,7 +397,7 @@ export default class Accordion extends ValidationElement {
   /**
    * Render the item details which can be overriden with `customDetails`
    */
-  details (item, index, initial = false) {
+  details(item, index, initial = false) {
     return (
       <div className={`details ${openState(item, initial)}`}>
         {this.factory(item, index, this.props.children)}
@@ -365,7 +405,7 @@ export default class Accordion extends ValidationElement {
     )
   }
 
-  onStickyScroll (item, stick) {
+  onStickyScroll(item, stick) {
     // Set the sticky status for the particular item
     this.stickyStatus[item.uuid] = stick
   }
@@ -373,7 +413,7 @@ export default class Accordion extends ValidationElement {
   /**
    * Render the individual items in the array.
    */
-  content () {
+  content() {
     // Ensure we have the minimum amount of items required
     const initial = this.state.initial
     const items = [...this.props.items]
@@ -382,17 +422,34 @@ export default class Accordion extends ValidationElement {
       // Bind for each item so we get a handle to it when we set the sticky status
       const onScroll = this.onStickyScroll.bind(this, item)
 
-      const summary = this.props.customSummary(item, index, initial,
-        () => { return this.summary(item, index, initial) },
-        () => { return this.toggle.bind(this, item) },
-        () => { return this.openText(item) },
-        () => { return this.remove.bind(this, item) },
-        () => { return this.props.byline(item, index, initial) })
+      const summary = this.props.customSummary(
+        item,
+        index,
+        initial,
+        () => {
+          return this.summary(item, index, initial)
+        },
+        () => {
+          return this.toggle.bind(this, item)
+        },
+        () => {
+          return this.openText(item)
+        },
+        () => {
+          return this.remove.bind(this, item)
+        },
+        () => {
+          return this.props.byline(item, index, initial)
+        }
+      )
 
-      const details = this.props.customDetails(item, index, initial, () => { return this.details(item, index, initial) })
+      const details = this.props.customDetails(item, index, initial, () => {
+        return this.details(item, index, initial)
+      })
 
       return (
-        <StickyAccordionSummary id={item.uuid}
+        <StickyAccordionSummary
+          id={item.uuid}
           key={item.uuid}
           className="item"
           stickyClass="sticky-accordion"
@@ -408,7 +465,7 @@ export default class Accordion extends ValidationElement {
   /**
    * The append button is only displayed if there is no addendum.
    */
-  appendButton () {
+  appendButton() {
     if (this.props.appendTitle || this.props.appendMessage) {
       return null
     }
@@ -416,7 +473,7 @@ export default class Accordion extends ValidationElement {
     return (
       <button className="add usa-button-outline" onClick={this.add}>
         {this.props.appendLabel}
-        <i className="fa fa-plus-circle"></i>
+        <i className="fa fa-plus-circle" />
       </button>
     )
   }
@@ -424,28 +481,29 @@ export default class Accordion extends ValidationElement {
   /**
    * Render the accordion addendum notice
    */
-  addendum () {
+  addendum() {
     if (!this.props.appendTitle && !this.props.appendMessage) {
       return null
     }
 
     const klassAppend = `addendum ${this.props.appendClass}`.trim()
     return (
-      <Branch label={this.props.appendTitle}
-              labelSize="h3"
-              className={klassAppend}
-              help={this.props.appendHelp}
-              value={(this.props.branch || {}).value}
-              onUpdate={this.updateAddendum}
-              onError={this.props.onError}
-              required={this.props.required}
-              scrollIntoView={this.props.scrollIntoView}>
+      <Branch
+        label={this.props.appendTitle}
+        labelSize="h3"
+        className={klassAppend}
+        help={this.props.appendHelp}
+        value={(this.props.branch || {}).value}
+        onUpdate={this.updateAddendum}
+        onError={this.props.onError}
+        required={this.props.required}
+        scrollIntoView={this.props.scrollIntoView}>
         {this.props.appendMessage}
       </Branch>
     )
   }
 
-  description () {
+  description() {
     const ariaOnly = this.props.items.length < 2
     return (
       <strong className={ariaOnly ? 'aria-description' : ''}>
@@ -458,24 +516,24 @@ export default class Accordion extends ValidationElement {
    * Render the accordion caption which is essentially a `table-caption`
    * for the accordion
    */
-  caption () {
-    return this.props.caption
-      ? <div className="caption">{this.props.caption(this.props)}</div>
-      : null
+  caption() {
+    return this.props.caption ? (
+      <div className="caption">{this.props.caption(this.props)}</div>
+    ) : null
   }
 
   /**
    * Determines if current item is valid. By default, this
    * utilizes the validator that is passed in.
    * */
-  isValid (item) {
+  isValid(item) {
     if (this.props.required) {
       return new this.props.validator(item).isValid()
     }
     return true
   }
 
-  render () {
+  render() {
     const klass = `accordion ${this.props.className}`.trim()
 
     return (
@@ -483,12 +541,8 @@ export default class Accordion extends ValidationElement {
         <div className={klass}>
           {this.description()}
           {this.caption()}
-          <div className="items">
-            {this.content()}
-          </div>
-          <div className="append-button">
-            {this.appendButton()}
-          </div>
+          <div className="items">{this.content()}</div>
+          <div className="append-button">{this.appendButton()}</div>
         </div>
         {this.addendum()}
       </div>
@@ -520,9 +574,13 @@ Accordion.defaultProps = {
   timeout: 500,
   sort: null,
   realtime: true,
-  inject: (items) => { return items },
-  onUpdate: (queue) => {},
-  onError: (value, arr) => { return arr },
+  inject: items => {
+    return items
+  },
+  onUpdate: queue => {},
+  onError: (value, arr) => {
+    return arr
+  },
   summary: (item, index, initial = false) => {
     return (
       <span>
@@ -530,14 +588,14 @@ Accordion.defaultProps = {
       </span>
     )
   },
-  validator: (item) => {
+  validator: item => {
     return class {
-      isValid () {
+      isValid() {
         return true
       }
     }
   },
-  transformer: (item) => {
+  transformer: item => {
     return item && item.Item ? item.Item : item
   },
   byline: (item, index, initial = false, message = '') => {
@@ -551,7 +609,16 @@ Accordion.defaultProps = {
       </div>
     )
   },
-  customSummary: (item, index, initial, callback, toggle, openText, remove, byline) => {
+  customSummary: (
+    item,
+    index,
+    initial,
+    callback,
+    toggle,
+    openText,
+    remove,
+    byline
+  ) => {
     return callback()
   },
   customDetails: (item, index, initial, callback) => {

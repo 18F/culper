@@ -1,7 +1,7 @@
 import CivilUnionValidator from './civilunion'
 import Location from '../components/Form/Location'
 
-describe('CivilUnion validation', function () {
+describe('CivilUnion validation', function() {
   it('validates separated', () => {
     const tests = [
       {
@@ -51,7 +51,9 @@ describe('CivilUnion validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new CivilUnionValidator(test.data).validSeparated()).toBe(test.expected)
+      expect(new CivilUnionValidator(test.data).validSeparated()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -142,7 +144,9 @@ describe('CivilUnion validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new CivilUnionValidator(test.data).validOtherName()).toBe(test.expected)
+      expect(new CivilUnionValidator(test.data).validOtherName()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -172,7 +176,9 @@ describe('CivilUnion validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new CivilUnionValidator(test.data).validCitizenship()).toBe(test.expected)
+      expect(new CivilUnionValidator(test.data).validCitizenship()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -212,7 +218,9 @@ describe('CivilUnion validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new CivilUnionValidator(test.data).validAddress()).toBe(test.expected)
+      expect(new CivilUnionValidator(test.data).validAddress()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -348,7 +356,9 @@ describe('CivilUnion validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new CivilUnionValidator(test.data).validForeignBornDocument()).toBe(test.expected)
+      expect(
+        new CivilUnionValidator(test.data).validForeignBornDocument()
+      ).toBe(test.expected)
     })
   })
 })

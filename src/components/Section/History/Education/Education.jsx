@@ -27,43 +27,58 @@ const byline = (item, index, initial, translation, required, validator) => {
 }
 
 export default class Education extends SubsectionElement {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.customEducationByline = this.customEducationByline.bind(this)
   }
 
-  customEducationByline (item, index, initial) {
-    return byline(item, index, this.props.overrideInitial(initial), 'history.education.collection.school.summary.incomplete', this.props.required, (item) => {
-      return new EducationItemValidator(item).isValid()
-    })
+  customEducationByline(item, index, initial) {
+    return byline(
+      item,
+      index,
+      this.props.overrideInitial(initial),
+      'history.education.collection.school.summary.incomplete',
+      this.props.required,
+      item => {
+        return new EducationItemValidator(item).isValid()
+      }
+    )
   }
 
-  render () {
+  render() {
     return (
-      <div className="section-content education" {...super.dataAttributes(this.props)}>
-        <Accordion scrollToTop={this.props.scrollToTop}
-                   defaultState={this.props.defaultState}
-                   {...this.props.List}
-                   sort={this.props.sort}
-                   realtime={this.props.realtime}
-                   onUpdate={this.props.onUpdate}
-                   onError={this.handleError}
-                   caption={this.props.caption}
-                   byline={this.customEducationByline}
-                   customSummary={EducationCustomSummary}
-                   description={i18n.t('history.education.collection.school.summary.title')}
-                   appendTitle={i18n.t('history.education.collection.school.appendTitle')}
-                   appendLabel={i18n.t('history.education.collection.school.append')}
-                   required={this.props.required}
-                   scrollIntoView={this.props.scrollIntoView}>
-          <EducationItem name="Item"
-                         bind={true}
-                         required={this.props.required}
-                         scrollIntoView={this.props.scrollIntoView}
-                         addressBooks={this.props.addressBooks}
-                         dispatch={this.props.dispatch}
-                         />
+      <div
+        className="section-content education"
+        {...super.dataAttributes(this.props)}>
+        <Accordion
+          scrollToTop={this.props.scrollToTop}
+          defaultState={this.props.defaultState}
+          {...this.props.List}
+          sort={this.props.sort}
+          realtime={this.props.realtime}
+          onUpdate={this.props.onUpdate}
+          onError={this.handleError}
+          caption={this.props.caption}
+          byline={this.customEducationByline}
+          customSummary={EducationCustomSummary}
+          description={i18n.t(
+            'history.education.collection.school.summary.title'
+          )}
+          appendTitle={i18n.t(
+            'history.education.collection.school.appendTitle'
+          )}
+          appendLabel={i18n.t('history.education.collection.school.append')}
+          required={this.props.required}
+          scrollIntoView={this.props.scrollIntoView}>
+          <EducationItem
+            name="Item"
+            bind={true}
+            required={this.props.required}
+            scrollIntoView={this.props.scrollIntoView}
+            addressBooks={this.props.addressBooks}
+            dispatch={this.props.dispatch}
+          />
         </Accordion>
       </div>
     )
@@ -77,14 +92,18 @@ Education.defaultProps = {
   realtime: false,
   sort: null,
   totalYears: 10,
-  overrideInitial: (initial) => { return initial },
+  overrideInitial: initial => {
+    return initial
+  },
   caption: null,
   onUpdate: () => {},
-  onError: (value, arr) => { return arr },
+  onError: (value, arr) => {
+    return arr
+  },
   section: 'history',
   subsection: 'education',
   dispatch: () => {},
-  validator: (data) => {
+  validator: data => {
     return validate(schema('history.education', data))
   }
 }

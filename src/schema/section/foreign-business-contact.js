@@ -12,17 +12,19 @@ export const foreignBusinessContact = (data = {}) => {
         Establishment: form.textarea(xitem.Establishment),
         Representatives: form.textarea(xitem.Representatives),
         Purpose: form.textarea(xitem.Purpose),
-        SubsequentContacts: form.collection(((xitem.SubsequentContacts || {}).items || []).map(y => {
-          const yitem = y.Item || {}
-          return {
-            Item: {
-              Has: form.branch(yitem.Has),
-              Subsequent: form.text(yitem.Subsequent),
-              Recent: form.datecontrol(yitem.Recent),
-              Future: form.text(yitem.Future)
+        SubsequentContacts: form.collection(
+          ((xitem.SubsequentContacts || {}).items || []).map(y => {
+            const yitem = y.Item || {}
+            return {
+              Item: {
+                Has: form.branch(yitem.Has),
+                Subsequent: form.text(yitem.Subsequent),
+                Recent: form.datecontrol(yitem.Recent),
+                Future: form.text(yitem.Future)
+              }
             }
-          }
-        }))
+          })
+        )
       }
     }
   })

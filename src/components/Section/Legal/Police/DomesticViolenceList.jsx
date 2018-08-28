@@ -8,7 +8,7 @@ import { Summary, DateSummary } from '../../../Summary'
 import DomesticViolence from './DomesticViolence'
 
 export default class DomesticViolenceList extends SubsectionElement {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.update = this.update.bind(this)
@@ -16,7 +16,7 @@ export default class DomesticViolenceList extends SubsectionElement {
     this.updateList = this.updateList.bind(this)
   }
 
-  update (queue) {
+  update(queue) {
     this.props.onUpdate({
       HasDomesticViolence: this.props.HasDomesticViolence,
       List: this.props.List,
@@ -24,23 +24,24 @@ export default class DomesticViolenceList extends SubsectionElement {
     })
   }
 
-  updateBranch (values) {
+  updateBranch(values) {
     this.update({
       HasDomesticViolence: values,
       List: values.value === 'No' ? Accordion.defaultList : this.props.List
     })
   }
 
-  updateList (values) {
+  updateList(values) {
     this.update({
       List: values
     })
   }
 
-  summary (item, index) {
+  summary(item, index) {
     const o = (item || {}).Item || {}
     const dates = DateSummary(o.Issued)
-    const description = o.Explanation && o.Explanation.value ? o.Explanation.value : ''
+    const description =
+      o.Explanation && o.Explanation.value ? o.Explanation.value : ''
 
     return Summary({
       type: i18n.t('legal.police.collection.summary.item'),
@@ -51,41 +52,47 @@ export default class DomesticViolenceList extends SubsectionElement {
     })
   }
 
-  render () {
+  render() {
     return (
-      <div className="section-content domestic-violence-list" {...super.dataAttributes(this.props)}>
-        <Branch name="has_domestic_violence"
-                label={i18n.t('legal.police.label.domesticViolence')}
-                labelSize="h2"
-                className="has-domestic-violence"
-                {...this.props.HasDomesticViolence}
-                warning={true}
-                onUpdate={this.updateBranch}
-                required={this.props.required}
-                onError={this.handleError}
-                scrollIntoView={this.props.scrollIntoView} />
+      <div
+        className="section-content domestic-violence-list"
+        {...super.dataAttributes(this.props)}>
+        <Branch
+          name="has_domestic_violence"
+          label={i18n.t('legal.police.label.domesticViolence')}
+          labelSize="h2"
+          className="has-domestic-violence"
+          {...this.props.HasDomesticViolence}
+          warning={true}
+          onUpdate={this.updateBranch}
+          required={this.props.required}
+          onError={this.handleError}
+          scrollIntoView={this.props.scrollIntoView}
+        />
         <Show when={(this.props.HasDomesticViolence || {}).value === 'Yes'}>
-          <Accordion {...this.props.List}
-                     defaultState={this.props.defaultState}
-                     label={i18n.t('legal.police.label.domesticViolence')}
-                     labelSize="h2"
-                     className="has-order"
-                     summary={this.summary}
-                     appendTitle={i18n.t('legal.police.label.domesticViolenceAppend')}
-                     onError={this.handleError}
-                     onUpdate={this.updateList}
-                     validator={DomesticViolenceItem}
-                     required={this.props.required}
-                     scrollToBottom={this.props.scrollToBottom}
-                     scrollIntoView={this.props.scrollIntoView}>
-            <DomesticViolence name="Item"
-                              addressBooks={this.props.addressBooks}
-                              dispatch={this.props.dispatch}
-                              bind={true}
-                              onError={this.handleError}
-                              required={this.props.required}
-                              scrollIntoView={this.props.scrollIntoView}
-                              />
+          <Accordion
+            {...this.props.List}
+            defaultState={this.props.defaultState}
+            label={i18n.t('legal.police.label.domesticViolence')}
+            labelSize="h2"
+            className="has-order"
+            summary={this.summary}
+            appendTitle={i18n.t('legal.police.label.domesticViolenceAppend')}
+            onError={this.handleError}
+            onUpdate={this.updateList}
+            validator={DomesticViolenceItem}
+            required={this.props.required}
+            scrollToBottom={this.props.scrollToBottom}
+            scrollIntoView={this.props.scrollIntoView}>
+            <DomesticViolence
+              name="Item"
+              addressBooks={this.props.addressBooks}
+              dispatch={this.props.dispatch}
+              bind={true}
+              onError={this.handleError}
+              required={this.props.required}
+              scrollIntoView={this.props.scrollIntoView}
+            />
           </Accordion>
         </Show>
       </div>
@@ -96,13 +103,15 @@ export default class DomesticViolenceList extends SubsectionElement {
 DomesticViolenceList.defaultProps = {
   HasDomesticViolence: {},
   List: Accordion.defaultList,
-  onUpdate: (queue) => {},
-  onError: (value, arr) => { return arr },
+  onUpdate: queue => {},
+  onError: (value, arr) => {
+    return arr
+  },
   section: 'legal',
   subsection: 'police/domesticviolence',
   addressBooks: {},
-  dispatch: (action) => {},
-  validator: (data) => {
+  dispatch: action => {},
+  validator: data => {
     return validate(schema('legal.police.domesticviolence', data))
   },
   scrollToBottom: ''

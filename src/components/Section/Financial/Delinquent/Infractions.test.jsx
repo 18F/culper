@@ -8,7 +8,7 @@ describe('The infractions component', () => {
     const expected = {
       name: 'infractions',
       values: values,
-      onUpdate: (obj) => {
+      onUpdate: obj => {
         values = obj.values
       }
     }
@@ -23,7 +23,7 @@ describe('The infractions component', () => {
     const expected = {
       name: 'infractions',
       values: values,
-      onUpdate: (obj) => {
+      onUpdate: obj => {
         values = obj.values
       }
     }

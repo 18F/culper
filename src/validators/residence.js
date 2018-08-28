@@ -2,10 +2,22 @@ import DateRangeValidator from './daterange'
 import LocationValidator from './location'
 import NameValidator from './name'
 import { daysAgo, today } from '../components/Section/History/dateranges'
-import { validPhoneNumber, validNotApplicable, validDateField, validAccordion, validGenericTextfield } from './helpers'
+import {
+  validPhoneNumber,
+  validNotApplicable,
+  validDateField,
+  validAccordion,
+  validGenericTextfield
+} from './helpers'
 
 // Options for relationships
-const relationshipOptions = ['Neighbor', 'Friend', 'Landlord', 'Business', 'Other']
+const relationshipOptions = [
+  'Neighbor',
+  'Friend',
+  'Landlord',
+  'Business',
+  'Other'
+]
 
 // Options for roles
 const roleOptions = ['Other', 'MilitaryHousing', 'Own', 'Rent']
@@ -15,19 +27,19 @@ const withinThreeYears = (from, to) => {
 }
 
 export default class HistoryResidenceValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.list = data.List || {}
   }
 
-  isValid () {
-    return validAccordion(this.list, (item) => {
+  isValid() {
+    return validAccordion(this.list, item => {
       return new ResidenceValidator(item).isValid()
     })
   }
 }
 
 export class ResidenceValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.dates = data.Dates || {}
     this.address = data.Address || {}
     this.referenceName = data.ReferenceName || {}
@@ -45,27 +57,37 @@ export class ResidenceValidator {
     this.roleOther = data.RoleOther || {}
   }
 
-  validDates () {
+  validDates() {
     return new DateRangeValidator(this.dates, null).isValid()
   }
 
-  validAddress () {
+  validAddress() {
     return new LocationValidator(this.address).isValid()
   }
 
-  validReference () {
+  validReference() {
     if (withinThreeYears(this.dates.from.date, this.dates.to.date)) {
-      const other = this.referenceRelationship.every(x => { return relationshipOptions.includes(x) }) ||
-            (this.referenceRelationship.some(x => { return x === 'Other' }) && validGenericTextfield(this.referenceRelationshipOther))
+      const other =
+        this.referenceRelationship.every(x => {
+          return relationshipOptions.includes(x)
+        }) ||
+        (this.referenceRelationship.some(x => {
+          return x === 'Other'
+        }) &&
+          validGenericTextfield(this.referenceRelationshipOther))
       const validRelationship = this.referenceRelationship && other
-      return new NameValidator(this.referenceName).isValid() &&
+      return (
+        new NameValidator(this.referenceName).isValid() &&
         validDateField(this.referenceLastContact) &&
         validPhoneNumber(this.referencePhoneEvening) &&
         validPhoneNumber(this.referencePhoneDay) &&
         validPhoneNumber(this.referencePhoneMobile) &&
         validRelationship &&
-        validNotApplicable(this.referenceEmailNotApplicable, () => { return validGenericTextfield(this.email) }) &&
+        validNotApplicable(this.referenceEmailNotApplicable, () => {
+          return validGenericTextfield(this.email)
+        }) &&
         new LocationValidator(this.referenceAddress).isValid()
+      )
     }
 
     return true
@@ -75,7 +97,7 @@ export class ResidenceValidator {
    * Ensures a role is selected and that if Other is marked, it requires the other information to
    * be populated.
    */
-  validRole () {
+  validRole() {
     if (!this.role) {
       return false
     }
@@ -90,10 +112,12 @@ export class ResidenceValidator {
     return true
   }
 
-  isValid () {
-    return this.validDates() &&
+  isValid() {
+    return (
+      this.validDates() &&
       this.validAddress() &&
       this.validReference() &&
       this.validRole()
+    )
   }
 }

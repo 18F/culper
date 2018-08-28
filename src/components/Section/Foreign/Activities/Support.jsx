@@ -3,13 +3,16 @@ import { i18n } from '../../../../config'
 import schema from '../../../../schema'
 import validate from '../../../../validators'
 import { Summary, NameSummary } from '../../../Summary'
-import { ForeignActivitiesSupportValidator, SupportValidator } from '../../../../validators'
+import {
+  ForeignActivitiesSupportValidator,
+  SupportValidator
+} from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion } from '../../../Form'
 import SupportItem from './SupportItem'
 
 export default class Support extends SubsectionElement {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.update = this.update.bind(this)
@@ -17,7 +20,7 @@ export default class Support extends SubsectionElement {
     this.updateList = this.updateList.bind(this)
   }
 
-  update (queue) {
+  update(queue) {
     this.props.onUpdate({
       HasForeignSupport: this.props.HasForeignSupport,
       List: this.props.List,
@@ -25,63 +28,74 @@ export default class Support extends SubsectionElement {
     })
   }
 
-  updateHasForeignSupport (values) {
+  updateHasForeignSupport(values) {
     this.update({
       HasForeignSupport: values,
       List: values.value === 'Yes' ? this.props.List : []
     })
   }
 
-  updateList (values) {
+  updateList(values) {
     this.update({
       List: values
     })
   }
 
-  summary (item, index) {
+  summary(item, index) {
     const name = NameSummary((item || {}).Name)
     return Summary({
       type: i18n.t('foreign.activities.support.collection.summary.item'),
       index: index,
       left: name,
-      placeholder: i18n.t('foreign.activities.support.collection.summary.unknown')
+      placeholder: i18n.t(
+        'foreign.activities.support.collection.summary.unknown'
+      )
     })
   }
 
-  render () {
+  render() {
     return (
-      <div className="section-content foreign-activities-support" {...super.dataAttributes(this.props)}>
-        <Branch name="has_foreign_support"
-                label={i18n.t('foreign.activities.support.heading.title')}
-                labelSize="h2"
-                {...this.props.HasForeignSupport}
-                warning={true}
-                onUpdate={this.updateHasForeignSupport}
-                onError={this.handleError}
-                required={this.props.required}
-                scrollIntoView={this.props.scrollIntoView}
-                />
+      <div
+        className="section-content foreign-activities-support"
+        {...super.dataAttributes(this.props)}>
+        <Branch
+          name="has_foreign_support"
+          label={i18n.t('foreign.activities.support.heading.title')}
+          labelSize="h2"
+          {...this.props.HasForeignSupport}
+          warning={true}
+          onUpdate={this.updateHasForeignSupport}
+          onError={this.handleError}
+          required={this.props.required}
+          scrollIntoView={this.props.scrollIntoView}
+        />
 
         <Show when={this.props.HasForeignSupport.value === 'Yes'}>
-          <Accordion {...this.props.List}
-                     defaultState={this.props.defaultState}
-                     onUpdate={this.updateList}
-                     onError={this.handleError}
-                     validator={SupportValidator}
-                     summary={this.summary}
-                     description={i18n.t('foreign.activities.support.collection.summary.title')}
-                     appendTitle={i18n.t('foreign.activities.support.collection.appendTitle')}
-                     appendLabel={i18n.t('foreign.activities.support.collection.append')}
-                     required={this.props.required}
-                     scrollToBottom={this.props.scrollToBottom}
-                     scrollIntoView={this.props.scrollIntoView}>
-            <SupportItem name="Item"
-                         bind={true}
-                         dispatch={this.props.dispatch}
-                         addressBooks={this.props.addressBooks}
-                         required={this.props.required}
-                         scrollIntoView={this.props.scrollIntoView}
-                         />
+          <Accordion
+            {...this.props.List}
+            defaultState={this.props.defaultState}
+            onUpdate={this.updateList}
+            onError={this.handleError}
+            validator={SupportValidator}
+            summary={this.summary}
+            description={i18n.t(
+              'foreign.activities.support.collection.summary.title'
+            )}
+            appendTitle={i18n.t(
+              'foreign.activities.support.collection.appendTitle'
+            )}
+            appendLabel={i18n.t('foreign.activities.support.collection.append')}
+            required={this.props.required}
+            scrollToBottom={this.props.scrollToBottom}
+            scrollIntoView={this.props.scrollIntoView}>
+            <SupportItem
+              name="Item"
+              bind={true}
+              dispatch={this.props.dispatch}
+              addressBooks={this.props.addressBooks}
+              required={this.props.required}
+              scrollIntoView={this.props.scrollIntoView}
+            />
           </Accordion>
         </Show>
       </div>
@@ -93,13 +107,15 @@ Support.defaultProps = {
   name: 'Support',
   HasForeignSupport: {},
   List: {},
-  onUpdate: (queue) => {},
-  onError: (value, arr) => { return arr },
+  onUpdate: queue => {},
+  onError: (value, arr) => {
+    return arr
+  },
   section: 'foreign',
   subsection: 'activities/support',
   addressBooks: {},
   dispatch: () => {},
-  validator: (data) => {
+  validator: data => {
     return validate(schema('foreign.activities.support', data))
   },
   defaultState: true

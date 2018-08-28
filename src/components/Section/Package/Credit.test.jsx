@@ -6,7 +6,9 @@ describe('The Credit Release component', () => {
   it('trigger updates', () => {
     let updates = 0
     const expected = {
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
     const component = mount(<Credit {...expected} />)
     expect(component.find('.credit-release').length).toBe(1)

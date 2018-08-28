@@ -1,38 +1,41 @@
 import DateRangeValidator from './daterange'
-import { validAccordion, validGenericTextfield, validDateField } from './helpers'
+import {
+  validAccordion,
+  validGenericTextfield,
+  validDateField
+} from './helpers'
 
 export default class MilitaryHistoryValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.hasServed = (data.HasServed || {}).value
     this.list = data.List || {}
   }
 
-  hasHistory () {
+  hasHistory() {
     return this.hasServed === 'Yes'
   }
 
-  validServed () {
+  validServed() {
     return this.hasServed === 'Yes' || this.hasServed === 'No'
   }
 
-  validItems () {
+  validItems() {
     if (this.hasServed === 'No') {
       return true
     }
 
-    return validAccordion(this.list, (item) => {
+    return validAccordion(this.list, item => {
       return new MilitaryServiceValidator(item).isValid()
     })
   }
 
-  isValid () {
-    return this.validServed() &&
-      this.validItems()
+  isValid() {
+    return this.validServed() && this.validItems()
   }
 }
 
 export class MilitaryServiceValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.service = (data.Service || {}).value
     this.status = (data.Status || {}).value
     this.officer = (data.Officer || {}).value
@@ -45,11 +48,11 @@ export class MilitaryServiceValidator {
     this.dischargeDate = data.DischargeDate || {}
   }
 
-  validService () {
+  validService() {
     return this.service && this.service.length > 0
   }
 
-  validStatus () {
+  validStatus() {
     if (['AirNationalGuard', 'ArmyNationalGuard'].includes(this.service)) {
       return this.status && this.status.length > 0
     }
@@ -57,31 +60,35 @@ export class MilitaryServiceValidator {
     return true
   }
 
-  validOfficer () {
+  validOfficer() {
     return this.officer && this.officer.length > 0
   }
 
-  validServiceNumber () {
+  validServiceNumber() {
     return !!this.serviceNumber && validGenericTextfield(this.serviceNumber)
   }
 
-  validDates () {
+  validDates() {
     return new DateRangeValidator(this.dates, null).isValid()
   }
 
-  validHasBeenDischarged () {
+  validHasBeenDischarged() {
     return this.hasBeenDischarged === 'Yes' || this.hasBeenDischarged === 'No'
   }
 
-  validDischargeType () {
+  validDischargeType() {
     if (this.hasBeenDischarged === 'No') {
       return true
     }
 
-    return this.validHasBeenDischarged() && this.dischargeType && this.dischargeType.length > 0
+    return (
+      this.validHasBeenDischarged() &&
+      this.dischargeType &&
+      this.dischargeType.length > 0
+    )
   }
 
-  validDischargeTypeOther () {
+  validDischargeTypeOther() {
     if (this.hasBeenDischarged === 'No') {
       return true
     }
@@ -90,18 +97,25 @@ export class MilitaryServiceValidator {
       return true
     }
 
-    return this.validHasBeenDischarged() && this.dischargeType === 'Other' && validGenericTextfield(this.dischargeTypeOther)
+    return (
+      this.validHasBeenDischarged() &&
+      this.dischargeType === 'Other' &&
+      validGenericTextfield(this.dischargeTypeOther)
+    )
   }
 
-  validDischargeReason () {
+  validDischargeReason() {
     if (this.hasBeenDischarged === 'No' || this.dischargeType === 'Honorable') {
       return true
     }
 
-    return this.validHasBeenDischarged() && validGenericTextfield(this.dischargeReason)
+    return (
+      this.validHasBeenDischarged() &&
+      validGenericTextfield(this.dischargeReason)
+    )
   }
 
-  validDischargeDate () {
+  validDischargeDate() {
     if (this.hasBeenDischarged === 'No') {
       return true
     }
@@ -109,8 +123,9 @@ export class MilitaryServiceValidator {
     return this.validHasBeenDischarged() && validDateField(this.dischargeDate)
   }
 
-  isValid () {
-    return this.validService() &&
+  isValid() {
+    return (
+      this.validService() &&
       this.validStatus() &&
       this.validOfficer() &&
       this.validServiceNumber() &&
@@ -120,5 +135,6 @@ export class MilitaryServiceValidator {
       this.validDischargeTypeOther() &&
       this.validDischargeReason() &&
       this.validDischargeDate()
+    )
   }
 }

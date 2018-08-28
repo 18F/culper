@@ -1,23 +1,32 @@
 import PersonValidator from './person'
 import { validAccordion } from './helpers'
-import { extractDate, decimalAdjust, rangeSorter, julian, findPercentage, today, daysAgo, julianNow } from '../components/Section/History/dateranges'
+import {
+  extractDate,
+  decimalAdjust,
+  rangeSorter,
+  julian,
+  findPercentage,
+  today,
+  daysAgo,
+  julianNow
+} from '../components/Section/History/dateranges'
 
 const minimumYears = 7
 const minimumPeople = 3
 
 export default class PeopleValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.list = data.List || {}
   }
 
-  validCount () {
+  validCount() {
     return ((this.list || {}).items || []).reduce((acc, cur) => {
       const valid = new PersonValidator(cur.Item).isValid()
       return valid ? acc + 1 : acc
     }, 0)
   }
 
-  validYearRange () {
+  validYearRange() {
     const julianMax = julian(daysAgo(today, 365 * minimumYears))
 
     // Collect all the valid date ranges
@@ -36,7 +45,7 @@ export default class PeopleValidator {
       }
     }
 
-    const ranges = dates.sort(rangeSorter).map((dates) => {
+    const ranges = dates.sort(rangeSorter).map(dates => {
       let left = 0
       let width = 0
       const dfrom = extractDate(dates.from)
@@ -76,15 +85,20 @@ export default class PeopleValidator {
     })
 
     const sum = ranges.reduce((a, b) => a + b.width, 0)
-    return Math.min(decimalAdjust('floor', minimumYears * (sum / 100), 0), minimumYears) >= minimumYears
+    return (
+      Math.min(
+        decimalAdjust('floor', minimumYears * (sum / 100), 0),
+        minimumYears
+      ) >= minimumYears
+    )
   }
 
-  isValid () {
+  isValid() {
     if ((this.list.branch || {}).value !== 'No') {
       return false
     }
 
-    const valid = validAccordion(this.list, (item) => {
+    const valid = validAccordion(this.list, item => {
       return new PersonValidator(item).isValid()
     })
 

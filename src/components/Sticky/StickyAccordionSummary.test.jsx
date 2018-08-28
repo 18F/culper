@@ -6,9 +6,7 @@ describe('The sticky accordion component', () => {
   it('Ensure content is not sticking', () => {
     const component = mount(
       <StickyAccordionSummary offset={5}>
-        <div className="summary">
-          Hello
-        </div>
+        <div className="summary">Hello</div>
       </StickyAccordionSummary>
     )
     expect(component.state('stick')).toBe(false)
@@ -16,10 +14,12 @@ describe('The sticky accordion component', () => {
 
   it('Ensure content sticks', () => {
     const component = mount(
-      <StickyAccordionSummary offset={0} window={() => { return window }}>
-        <div className="summary">
-          Hello
-        </div>
+      <StickyAccordionSummary
+        offset={0}
+        window={() => {
+          return window
+        }}>
+        <div className="summary">Hello</div>
       </StickyAccordionSummary>
     )
     window.scroll(0, 4)
@@ -27,13 +27,15 @@ describe('The sticky accordion component', () => {
   })
 
   it('Does not stick when below mobile breakpoint', () => {
-    const win = {...window}
+    const win = { ...window }
     win.innerWidth = 10
     const component = mount(
-      <StickyAccordionSummary offset={0} window={() => { return win }}>
-        <div className="summary">
-          Hello
-        </div>
+      <StickyAccordionSummary
+        offset={0}
+        window={() => {
+          return win
+        }}>
+        <div className="summary">Hello</div>
       </StickyAccordionSummary>
     )
     expect(component.state('stick')).toBe(false)

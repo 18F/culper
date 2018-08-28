@@ -8,7 +8,7 @@ import { login, handleLoginSuccess } from '../../actions/AuthActions'
 import { Consent } from '../../components/Form'
 
 export class Login extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       authenticated: this.props.authenticated,
@@ -24,16 +24,16 @@ export class Login extends React.Component {
     this.login = this.login.bind(this)
   }
 
-  componentWillMount () {
+  componentWillMount() {
     this.redirect()
     if (env.SamlEnabled()) {
-      api.saml().then((response) => {
+      api.saml().then(response => {
         this.setState({ saml: response.data || {} })
       })
     }
   }
 
-  redirect () {
+  redirect() {
     // If user is authenticated, redirect to home page
     if (this.props.authenticated) {
       this.props.history.push('/loading')
@@ -53,49 +53,50 @@ export class Login extends React.Component {
     const err = getQueryValue(window.location.search, 'error')
     if (err) {
       switch (err) {
-      case 'token':
-        this.props.history.push('/token')
-        return
-      case 'access_denied':
-        this.props.history.push('/accessdenied')
-        return
+        case 'token':
+          this.props.history.push('/token')
+          return
+        case 'access_denied':
+          this.props.history.push('/accessdenied')
+          return
       }
     }
   }
 
-  onUsernameChange (e) {
+  onUsernameChange(e) {
     if (env.BasicAuthenticationEnabled()) {
-      this.setState({username: e.target.value})
+      this.setState({ username: e.target.value })
     }
   }
 
-  onPasswordChange (e) {
+  onPasswordChange(e) {
     if (env.BasicAuthenticationEnabled()) {
-      this.setState({password: e.target.value})
+      this.setState({ password: e.target.value })
     }
   }
 
-  togglePassword () {
+  togglePassword() {
     if (env.BasicAuthenticationEnabled()) {
-      this.setState({showPassword: !this.state.showPassword})
+      this.setState({ showPassword: !this.state.showPassword })
     }
   }
 
-  login (event) {
+  login(event) {
     event.preventDefault()
     if (env.BasicAuthenticationEnabled()) {
       this.props.dispatch(login(this.state.username, this.state.password))
     }
   }
 
-  errorMessage () {
+  errorMessage() {
     if (!this.props.error) {
       return ''
     }
 
-    const msg = this.props.error.indexOf('pg: ') === -1
-          ? this.props.error
-          : i18n.m('login.error.generic')
+    const msg =
+      this.props.error.indexOf('pg: ') === -1
+        ? this.props.error
+        : i18n.m('login.error.generic')
 
     return (
       <div className="field no-margin-bottom">
@@ -111,7 +112,7 @@ export class Login extends React.Component {
     )
   }
 
-  authSAML () {
+  authSAML() {
     if (!env.SamlEnabled()) {
       return null
     }
@@ -119,7 +120,11 @@ export class Login extends React.Component {
     return (
       <div id="saml" className="auth saml">
         <form method="post" action={this.state.saml.URL}>
-          <input type="hidden" name="SAMLRequest" value={this.state.saml.Base64XML} />
+          <input
+            type="hidden"
+            name="SAMLRequest"
+            value={this.state.saml.Base64XML}
+          />
           <h2>{i18n.t('login.saml.title')}</h2>
           {i18n.m('login.saml.para')}
           <button type="submit" className="usa-button-big">
@@ -130,7 +135,7 @@ export class Login extends React.Component {
     )
   }
 
-  authBasic () {
+  authBasic() {
     if (!env.BasicAuthenticationEnabled()) {
       return null
     }
@@ -145,39 +150,53 @@ export class Login extends React.Component {
       <div id="basic" className="auth basic">
         <form onSubmit={this.login}>
           <div>
-            <label htmlFor="user">
-              {i18n.t('login.basic.username.label')}
-            </label>
-            <input id="user"
-                   name="user"
-                   type="text"
-                   value={this.state.username}
-                   onChange={this.onUsernameChange} />
+            <label htmlFor="user">{i18n.t('login.basic.username.label')}</label>
+            <input
+              id="user"
+              name="user"
+              type="text"
+              value={this.state.username}
+              onChange={this.onUsernameChange}
+            />
           </div>
           <div className={pwClass}>
             <label htmlFor="password">
               {i18n.t('login.basic.password.label')}
             </label>
-            <input id="password"
-                   name="password"
-                   type={this.state.showPassword ? 'text' : 'password'}
-                   value={this.state.password}
-                   onChange={this.onPasswordChange} />
+            <input
+              id="password"
+              name="password"
+              type={this.state.showPassword ? 'text' : 'password'}
+              value={this.state.password}
+              onChange={this.onPasswordChange}
+            />
             <div className="peek">
-              <a id="show-password"
-                 onClick={this.togglePassword}
-                 href="javascript:;;"
-                 title={i18n.t(`login.basic.${this.state.showPassword ? 'hide' : 'show'}.title`)}>
-                {i18n.t(`login.basic.${this.state.showPassword ? 'hide' : 'show'}.text`)}
+              <a
+                id="show-password"
+                onClick={this.togglePassword}
+                href="javascript:;;"
+                title={i18n.t(
+                  `login.basic.${
+                    this.state.showPassword ? 'hide' : 'show'
+                  }.title`
+                )}>
+                {i18n.t(
+                  `login.basic.${
+                    this.state.showPassword ? 'hide' : 'show'
+                  }.text`
+                )}
               </a>
             </div>
             {this.errorMessage()}
           </div>
           <div>
-            <button type="submit" className="usa-button-big">{i18n.t('login.basic.button')}</button>
-            <a id="forgot-password"
-               href="javascript:;;"
-               title={i18n.t('login.basic.forgot.title')}>
+            <button type="submit" className="usa-button-big">
+              {i18n.t('login.basic.button')}
+            </button>
+            <a
+              id="forgot-password"
+              href="javascript:;;"
+              title={i18n.t('login.basic.forgot.title')}>
               {i18n.t('login.basic.forgot.text')}
             </a>
           </div>
@@ -186,7 +205,7 @@ export class Login extends React.Component {
     )
   }
 
-  loginFormClass (auths) {
+  loginFormClass(auths) {
     let count = 0
     for (const auth of auths) {
       if (auth) {
@@ -195,18 +214,18 @@ export class Login extends React.Component {
     }
 
     switch (count) {
-    case 3:
-      return 'table three'
-    case 2:
-      return 'table two'
-    case 1:
-      return 'table one'
-    default:
-      return 'table zero'
+      case 3:
+        return 'table three'
+      case 2:
+        return 'table two'
+      case 1:
+        return 'table one'
+      default:
+        return 'table zero'
     }
   }
 
-  loginForm () {
+  loginForm() {
     const saml = this.authSAML()
     const basic = this.authBasic()
 
@@ -218,18 +237,28 @@ export class Login extends React.Component {
     )
   }
 
-  render () {
+  render() {
     const modalOpen = document.body.classList.contains('modal-open')
     return (
       <div className="login eapp-core" id="login">
         <Consent dispatch={this.props.dispatch} />
-        <div id="seal-header" className="seal-header text-center" aria-hidden={modalOpen} aria-disabled={modalOpen}>
+        <div
+          id="seal-header"
+          className="seal-header text-center"
+          aria-hidden={modalOpen}
+          aria-disabled={modalOpen}>
           <div className="content">
-            <img src="/img/US-OfficeOfPersonnelManagement-Seal.svg" alt="U.S. Office of Personnel Management" />
+            <img
+              src="/img/US-OfficeOfPersonnelManagement-Seal.svg"
+              alt="U.S. Office of Personnel Management"
+            />
             <h2>{i18n.t('login.title')}</h2>
           </div>
         </div>
-        <div className="content" aria-hidden={modalOpen} aria-disabled={modalOpen}>
+        <div
+          className="content"
+          aria-hidden={modalOpen}
+          aria-disabled={modalOpen}>
           {!this.props.authenticated && this.loginForm()}
         </div>
       </div>
@@ -250,7 +279,7 @@ Login.defaultProps = {
  * to the authentication reducer. When actions are dispatched, this
  * method is executed which causes a re-render.
  */
-function mapStateToProps (state) {
+function mapStateToProps(state) {
   const auth = state.authentication
   return {
     authenticated: auth.authenticated,

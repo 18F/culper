@@ -2,12 +2,12 @@ import DateRangeValidator from './daterange'
 import { validAccordion } from './helpers'
 
 export default class GamblingValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.hasGamblingDebt = (data.HasGamblingDebt || {}).value
     this.list = data.List || {}
   }
 
-  validHasGamblingDebt () {
+  validHasGamblingDebt() {
     if (!this.hasGamblingDebt) {
       return false
     }
@@ -22,12 +22,12 @@ export default class GamblingValidator {
   /**
    * Validates all fields for a collection of gambling debt
    */
-  validGamblingDebt () {
+  validGamblingDebt() {
     if (this.validHasGamblingDebt() && this.hasGamblingDebt === 'No') {
       return true
     }
 
-    return validAccordion(this.list, (item) => {
+    return validAccordion(this.list, item => {
       return new GamblingItemValidator(item).isValid()
     })
   }
@@ -35,21 +35,20 @@ export default class GamblingValidator {
   /**
    * Validates section of gambling debt
    */
-  isValid () {
-    return this.validHasGamblingDebt() &&
-      this.validGamblingDebt()
+  isValid() {
+    return this.validHasGamblingDebt() && this.validGamblingDebt()
   }
 }
 
 export class GamblingItemValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.losses = data.Losses
     this.description = data.Description
     this.actions = data.Actions
     this.dates = data.Dates
   }
 
-  isValid () {
+  isValid() {
     if (!this.losses || parseInt(this.losses.value) < 1) {
       return false
     }

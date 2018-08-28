@@ -25,109 +25,121 @@ const getSplitValue = (key, raw, delim1, delim2) => {
   return null
 }
 
-export const deleteCookie = (name) => {
+export const deleteCookie = name => {
   const domain = process.env.COOKIE_DOMAIN || window.location.hostname
   Cookies.remove(name, { domain })
   if (Cookies.get(name)) {
-    console.warn(`${name} cookie couldn't be removed - check that domain matches, etc.`)
+    console.warn(
+      `${name} cookie couldn't be removed - check that domain matches, etc.`
+    )
   }
 }
 
 class Api {
-  constructor () {
+  constructor() {
     this.proxy = axios.create({
       baseURL: env ? env.ApiBaseURL() : '/api',
       timeout: 10000
     })
   }
 
-  getToken () {
+  getToken() {
     return window.token
   }
 
-  setToken (token) {
+  setToken(token) {
     window.token = token
   }
 
-  bearerToken () {
-    return { 'Authorization': `Bearer ${this.getToken()}` }
+  bearerToken() {
+    return { Authorization: `Bearer ${this.getToken()}` }
   }
 
-  information () {
+  information() {
     return this.proxy.get('/')
   }
 
-  get (endpoint, secure = true, headers = {}) {
-    const h = secure ? { headers: { ...headers, ...this.bearerToken() } } : headers
+  get(endpoint, secure = true, headers = {}) {
+    const h = secure
+      ? { headers: { ...headers, ...this.bearerToken() } }
+      : headers
     return this.proxy.get(endpoint, h)
   }
 
-  post (endpoint, params = {}, secure = true, headers = {}) {
-    const h = secure ? { headers: { ...headers, ...this.bearerToken() } } : headers
+  post(endpoint, params = {}, secure = true, headers = {}) {
+    const h = secure
+      ? { headers: { ...headers, ...this.bearerToken() } }
+      : headers
     return this.proxy.post(endpoint, params, h)
   }
 
-  saml () {
+  saml() {
     return this.get(env.EndpointSaml(), false)
   }
 
-  login (username, password) {
-    return this.post(env.EndpointBasicAuthentication(), { username: username, password: password }, false)
+  login(username, password) {
+    return this.post(
+      env.EndpointBasicAuthentication(),
+      { username: username, password: password },
+      false
+    )
   }
 
-  logout () {
+  logout() {
     return this.get(env.EndpointLogout())
   }
 
-  refresh () {
+  refresh() {
     return this.post(env.EndpointRefresh())
   }
 
-  save (payload) {
+  save(payload) {
     return this.post(env.EndpointSave(), payload)
   }
 
-  section (type) {
+  section(type) {
     return this.get(env.EndpointSection(type))
   }
 
-  status () {
+  status() {
     return this.get(env.EndpointStatus())
   }
 
-  submit () {
+  submit() {
     return this.post(env.EndpointSubmit())
   }
 
-  form () {
+  form() {
     return this.get(env.EndpointForm())
   }
 
-  hash () {
+  hash() {
     return this.get(env.EndpointFormHash())
   }
 
-  validate (payload) {
+  validate(payload) {
     return this.post(env.EndpointValidate(), payload)
   }
 
-  listAttachments () {
+  listAttachments() {
     return this.get(env.EndpointAttachment())
   }
 
-  saveAttachment (formData) {
+  saveAttachment(formData) {
     return this.post(env.EndpointAttachment(), formData)
   }
 
-  updateAttachment (id, description) {
-    return this.post(env.EndpointAttachmentUpdate(id), { description: description })
+  updateAttachment(id, description) {
+    return this.post(env.EndpointAttachmentUpdate(id), {
+      description: description
+    })
   }
 
-  getAttachment (id) {
+  getAttachment(id) {
     return this.get(env.EndpointAttachmentGet(id))
   }
 
-  deleteAttachment (id) {
+  deleteAttachment(id) {
     return this.post(env.EndpointAttachmentDelete(id))
   }
 }

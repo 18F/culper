@@ -1,13 +1,17 @@
 import React from 'react' // eslint-disable-line no-unused-vars
 import { i18n } from '../../config'
 
-export const DateSummary = (props, unknown = i18n.t('history.employment.default.noDate.label'), full = false) => {
+export const DateSummary = (
+  props,
+  unknown = i18n.t('history.employment.default.noDate.label'),
+  full = false
+) => {
   if (!props) {
     return ''
   }
 
   const noDateLabel = unknown
-  function format (dateControl = {}) {
+  function format(dateControl = {}) {
     if (!dateControl.day || !dateControl.month || !dateControl.year) {
       return null
     }

@@ -10,7 +10,9 @@ describe('The DrugInvolvement component', () => {
 
   it('Performs update', () => {
     let updates = 0
-    const onUpdate = () => { updates++ }
+    const onUpdate = () => {
+      updates++
+    }
     const component = mount(<DrugInvolvement onUpdate={onUpdate} />)
     expect(component.find('.drug-involvement').length).toBe(1)
     component.find('.drug-type-involvement .cocaine input').simulate('change')
@@ -26,8 +28,15 @@ describe('The DrugInvolvement component', () => {
 
   it('Performs update', () => {
     let updates = 0
-    const onUpdate = () => { updates++ }
-    const component = mount(<DrugInvolvement onUpdate={onUpdate} InvolvementInFuture={{ value: 'Yes' }} />)
+    const onUpdate = () => {
+      updates++
+    }
+    const component = mount(
+      <DrugInvolvement
+        onUpdate={onUpdate}
+        InvolvementInFuture={{ value: 'Yes' }}
+      />
+    )
     expect(component.find('.drug-involvement').length).toBe(1)
     component.find('.explanation textarea').simulate('change')
     expect(updates).toBe(1)

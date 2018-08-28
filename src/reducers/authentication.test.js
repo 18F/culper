@@ -1,17 +1,17 @@
 import authentication from './authentication'
 import { handleLoginError, handleLoginSuccess } from '../actions/AuthActions'
 
-describe('Authentication Reducer', function () {
+describe('Authentication Reducer', function() {
   const defaultState = {
     authenticated: false,
     token: null
   }
 
-  it('should return the initial state', function () {
+  it('should return the initial state', function() {
     expect(authentication(undefined, {})).toEqual(defaultState)
   })
 
-  it('should handle login success', function () {
+  it('should handle login success', function() {
     const expectedState = {
       authenticated: true,
       token: 'faketoken',
@@ -22,7 +22,7 @@ describe('Authentication Reducer', function () {
     expect(authentication(defaultState, action)).toEqual(expectedState)
   })
 
-  it('should handle login error', function () {
+  it('should handle login error', function() {
     const expectedState = {
       authenticated: false,
       token: null,

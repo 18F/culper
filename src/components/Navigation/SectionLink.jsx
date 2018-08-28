@@ -5,30 +5,33 @@ import PropTypes from 'prop-types'
 import { hasErrors, isValid } from '../Navigation/navigation-helpers'
 
 class SectionLink extends React.Component {
-  url () {
+  url() {
     return `${this.props.baseUrl}/${this.props.section.url}`
   }
 
-  href () {
+  href() {
     return this.isLocked() ? 'javascript:;;;' : this.url()
   }
 
-  isLocked () {
-    return this.props.section.locked && this.props.section.locked(this.props.application)
+  isLocked() {
+    return (
+      this.props.section.locked &&
+      this.props.section.locked(this.props.application)
+    )
   }
 
-  hasErrors () {
+  hasErrors() {
     if (this.props.section.name === 'Review') {
       return hasErrors(this.props.baseUrl, this.props.errors)
     }
     return hasErrors(this.url(), this.props.errors)
   }
 
-  isValid () {
+  isValid() {
     return isValid(this.url(), this.props)
   }
 
-  getClassName () {
+  getClassName() {
     let className = 'section-link'
 
     if (this.isLocked()) {
@@ -43,14 +46,15 @@ class SectionLink extends React.Component {
     return className
   }
 
-  render () {
+  render() {
     return (
       <li>
-        <NavLink to={this.href()} activeClassName="usa-current" className={this.getClassName()}>
-          <span className="section-name">
-            {this.props.section.name}
-          </span>
-          <span className="eapp-status-icon"></span>
+        <NavLink
+          to={this.href()}
+          activeClassName="usa-current"
+          className={this.getClassName()}>
+          <span className="section-name">{this.props.section.name}</span>
+          <span className="eapp-status-icon" />
         </NavLink>
       </li>
     )

@@ -7,49 +7,53 @@ describe('Schema for financial taxes', () => {
       HasForeignContacts: { value: 'Yes' },
       List: {
         branch: { value: 'No' },
-        items: [{
-          Item: {
-            Name: {},
-            NameNotApplicable: {},
-            NameExplanation: {},
-            FirstContact: {},
-            LastContact: {},
-            Methods: {},
-            MethodsExplanation: {},
-            Frequency: {},
-            FrequencyExplanation: {},
-            Relationship: {},
-            RelationshipExplanation: {},
-            Aliases: {
-              branch: null,
-              items: [{
-                Item: {
-                  Has: {},
-                  Alias: {}
-                }
-              }]
-            },
-            Citizenship: {},
-            Birthdate: {},
-            BirthdateNotApplicable: {},
-            Birthplace: {
-              country: null
-            },
-            BirthplaceNotApplicable: {},
-            Address: {
-              country: null
-            },
-            AddressNotApplicable: {},
-            Employer: {},
-            EmployerNotApplicable: {},
-            EmployerAddress: {
-              country: null
-            },
-            EmployerAddressNotApplicable: {},
-            HasAffiliations: {},
-            Affiliations: {}
+        items: [
+          {
+            Item: {
+              Name: {},
+              NameNotApplicable: {},
+              NameExplanation: {},
+              FirstContact: {},
+              LastContact: {},
+              Methods: {},
+              MethodsExplanation: {},
+              Frequency: {},
+              FrequencyExplanation: {},
+              Relationship: {},
+              RelationshipExplanation: {},
+              Aliases: {
+                branch: null,
+                items: [
+                  {
+                    Item: {
+                      Has: {},
+                      Alias: {}
+                    }
+                  }
+                ]
+              },
+              Citizenship: {},
+              Birthdate: {},
+              BirthdateNotApplicable: {},
+              Birthplace: {
+                country: null
+              },
+              BirthplaceNotApplicable: {},
+              Address: {
+                country: null
+              },
+              AddressNotApplicable: {},
+              Employer: {},
+              EmployerNotApplicable: {},
+              EmployerAddress: {
+                country: null
+              },
+              EmployerAddressNotApplicable: {},
+              HasAffiliations: {},
+              Affiliations: {}
+            }
           }
-        }]
+        ]
       }
     }
 

@@ -1,6 +1,11 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import { ResidenceCustomSummary, EmploymentCustomSummary, EducationCustomSummary, InjectGaps } from './summaries'
+import {
+  ResidenceCustomSummary,
+  EmploymentCustomSummary,
+  EducationCustomSummary,
+  InjectGaps
+} from './summaries'
 import Location from '../../Form/Location'
 import { today } from './dateranges'
 
@@ -43,15 +48,18 @@ describe('The summary components', () => {
       byline: () => {}
     }
 
-    const component = mount(ResidenceCustomSummary(
-      expected.item,
-      expected.index,
-      expected.initial,
-      expected.callback,
-      expected.toggle,
-      expected.openText,
-      expected.remove,
-      expected.byline))
+    const component = mount(
+      ResidenceCustomSummary(
+        expected.item,
+        expected.index,
+        expected.initial,
+        expected.callback,
+        expected.toggle,
+        expected.openText,
+        expected.remove,
+        expected.byline
+      )
+    )
     expect(component.find('.index').length).toEqual(1)
     expect(component.find('.context').length).toEqual(1)
     expect(component.find('.dates').length).toEqual(1)
@@ -90,15 +98,18 @@ describe('The summary components', () => {
       byline: () => {}
     }
 
-    const component = mount(EmploymentCustomSummary(
-      expected.item,
-      expected.index,
-      expected.initial,
-      expected.callback,
-      expected.toggle,
-      expected.openText,
-      expected.remove,
-      expected.byline))
+    const component = mount(
+      EmploymentCustomSummary(
+        expected.item,
+        expected.index,
+        expected.initial,
+        expected.callback,
+        expected.toggle,
+        expected.openText,
+        expected.remove,
+        expected.byline
+      )
+    )
     expect(component.find('.index').length).toEqual(1)
     expect(component.find('.context').length).toEqual(1)
     expect(component.find('.dates').length).toEqual(1)
@@ -137,22 +148,25 @@ describe('The summary components', () => {
       byline: () => {}
     }
 
-    const component = mount(EducationCustomSummary(
-      expected.item,
-      expected.index,
-      expected.initial,
-      expected.callback,
-      expected.toggle,
-      expected.openText,
-      expected.remove,
-      expected.byline))
+    const component = mount(
+      EducationCustomSummary(
+        expected.item,
+        expected.index,
+        expected.initial,
+        expected.callback,
+        expected.toggle,
+        expected.openText,
+        expected.remove,
+        expected.byline
+      )
+    )
     expect(component.find('.index').length).toEqual(1)
     expect(component.find('.context').length).toEqual(1)
     expect(component.find('.dates').length).toEqual(1)
   })
 
   it('can inject gaps', () => {
-    const expand = (date) => {
+    const expand = date => {
       return {
         day: `${date.getDate()}`,
         month: `${date.getMonth() + 1}`,
@@ -174,18 +188,34 @@ describe('The summary components', () => {
     }
 
     const list = [
-      item('Residence',  new Date(today.getFullYear() -  5, 12, 17), today),
-      item('Residence',  new Date(today.getFullYear() - 11, 12, 17), new Date(today.getFullYear() - 9, 12, 17)),
-      item('Employment', new Date(today.getFullYear() -  5, 12, 17), today),
-      item('Gap',        new Date(today.getFullYear() - 10, 12, 17), new Date(today.getFullYear() - 5, 12, 17))
+      item('Residence', new Date(today.getFullYear() - 5, 12, 17), today),
+      item(
+        'Residence',
+        new Date(today.getFullYear() - 11, 12, 17),
+        new Date(today.getFullYear() - 9, 12, 17)
+      ),
+      item('Employment', new Date(today.getFullYear() - 5, 12, 17), today),
+      item(
+        'Gap',
+        new Date(today.getFullYear() - 10, 12, 17),
+        new Date(today.getFullYear() - 5, 12, 17)
+      )
     ]
 
-    const residence = InjectGaps(list.filter(x => x.type === 'Residence' || x.type === 'Gap'))
-    const employment = InjectGaps(list.filter(x => x.type === 'Employment' || x.type === 'Gap'))
+    const residence = InjectGaps(
+      list.filter(x => x.type === 'Residence' || x.type === 'Gap')
+    )
+    const employment = InjectGaps(
+      list.filter(x => x.type === 'Employment' || x.type === 'Gap')
+    )
 
-    expect(residence.filter(item => item.type === 'Residence').length).toEqual(2)
-    expect(residence.filter(item => item.type === 'Gap').length).toEqual(0)
-    expect(employment.filter(item => item.type === 'Employment').length).toEqual(1)
+    expect(residence.filter(item => item.type === 'Residence').length).toEqual(
+      2
+    )
+    expect(residence.filter(item => item.type === 'Gap').length).toEqual(1)
+    expect(
+      employment.filter(item => item.type === 'Employment').length
+    ).toEqual(1)
     expect(employment.filter(item => item.type === 'Gap').length).toEqual(1)
   })
 })

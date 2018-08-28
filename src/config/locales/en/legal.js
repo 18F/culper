@@ -1,14 +1,17 @@
 export const legal = {
   intro: {
     title: 'Section 9: Investigative and criminal history',
-    body: 'You will be asked questions about your investigative and criminal background and be asked to provide details if necessary.'
+    body:
+      'You will be asked questions about your investigative and criminal background and be asked to provide details if necessary.'
   },
   tour: {
     para: 'Take a guided tour through the section'
   },
   review: {
-    para: 'View all the sections associated with investigative & criminal history at once',
-    comments: 'Add a comment to clarify any of your responses in the investigative and criminal history section'
+    para:
+      'View all the sections associated with investigative & criminal history at once',
+    comments:
+      'Add a comment to clarify any of your responses in the investigative and criminal history section'
   },
   destination: {
     intro: 'Investigative and criminal history intro',
@@ -43,57 +46,85 @@ export const legal = {
       title: 'Police record',
       questions: 'Have any of the following happened?',
       date: 'Provide the date of the offense',
-      description: 'Provide a description of the specific nature of the offense',
+      description:
+        'Provide a description of the specific nature of the offense',
       involvement: 'Did this offense involve any of the following?',
       address: 'Provide the location where the offense occurred',
-      cited: 'Were you arrested, summoned, cited, or did you receive a ticket to appear as a result of this offense by any police officer, sheriff, marshal or any other type of law enforcement official?',
+      cited:
+        'Were you arrested, summoned, cited, or did you receive a ticket to appear as a result of this offense by any police officer, sheriff, marshal or any other type of law enforcement official?',
       citedagency: 'Arresting/citing/summoning agency',
-      citedby: 'Provide the name of the law enforcement agency that arrested/cited/summoned you.',
+      citedby:
+        'Provide the name of the law enforcement agency that arrested/cited/summoned you.',
       agencyaddress: 'Provide the location of the law enforcement agency',
-      charged: 'As a result of this offense were you charged, convicted, currently awaiting trial, and/or ordered to appear in court in a criminal proceeding against you?',
+      charged:
+        'As a result of this offense were you charged, convicted, currently awaiting trial, and/or ordered to appear in court in a criminal proceeding against you?',
       courtinfo: 'Court Information',
       courtname: 'Provide the name of the court',
       courtaddress: 'Provide the location of the court',
-      chargedetails: 'Provide all the charges brought against you for this offense, and the outcome of each charged offense',
+      chargedetails:
+        'Provide all the charges brought against you for this offense, and the outcome of each charged offense',
       chargeType: 'Type of charge',
       courtdate: 'Date of outcome',
       sentenced: 'Were you sentenced as a result of this offense?',
       needmore: 'Since you answered yes we need more information',
       sentenceDescription: 'Provide a description of the sentence',
-      exceedsYear: 'Were you sentenced to imprisonment for a term exceeding 1 year?',
-      incarcerated: 'Were you incarcerated as a result of that sentence for not less than 1 year?',
-      incarcerationDates: 'If the conviction resulted in imprisonment, provide the dates that you actually were incarcerated',
-      probationDates: 'If conviction resulted in probation or parole, provide the  dates of probation or parole',
-      awaitingTrial: 'Are you currently on trial, awaiting a trial, or awaiting sentencing on criminal charges for this offense?',
+      exceedsYear:
+        'Were you sentenced to imprisonment for a term exceeding 1 year?',
+      incarcerated:
+        'Were you incarcerated as a result of that sentence for not less than 1 year?',
+      incarcerationDates:
+        'If the conviction resulted in imprisonment, provide the dates that you actually were incarcerated',
+      probationDates:
+        'If conviction resulted in probation or parole, provide the  dates of probation or parole',
+      awaitingTrial:
+        'Are you currently on trial, awaiting a trial, or awaiting sentencing on criminal charges for this offense?',
       awaitingTrialExplanation: 'Provide explanation',
       domesticExplanation: 'Provide explanation',
-      domesticCourtName: 'Provide the name of the court or agency that issued the order',
-      domesticCourtAddress: 'Provide the location of the court or agency that issued the order',
+      domesticCourtName:
+        'Provide the name of the court or agency that issued the order',
+      domesticCourtAddress:
+        'Provide the location of the court or agency that issued the order',
       domesticCourtDate: 'Provide the date the order was issued',
       otherOffenseSentenced: 'Were you sentenced as a result of these charges?'
     },
     para: {
-      intro1: 'For this section report information regardless of whether the record in your case has been sealed, expunged, or otherwise stricken from the court record, or the charge was dismissed.',
-      intro2: 'You need not report convictions under the Federal Controlled Substances Act for which the court issued an expungement order under the authority of 21 U.S.C 844 or 18 U.S.C. 3607.',
-      intro3: '**Be sure to include all incidents whether occurring in the U.S. or abroad.**',
-      chargedetails: 'Such as found guilty, found not-guilty, charge dropped or "nolle pros," etc. If you were found guilty of or pleaded guilty to lesser offense, list separately both the original charge and the lesser offense.',
+      intro1:
+        'For this section report information regardless of whether the record in your case has been sealed, expunged, or otherwise stricken from the court record, or the charge was dismissed.',
+      intro2:
+        'You need not report convictions under the Federal Controlled Substances Act for which the court issued an expungement order under the authority of 21 U.S.C 844 or 18 U.S.C. 3607.',
+      intro3:
+        '**Be sure to include all incidents whether occurring in the U.S. or abroad.**',
+      chargedetails:
+        'Such as found guilty, found not-guilty, charge dropped or "nolle pros," etc. If you were found guilty of or pleaded guilty to lesser offense, list separately both the original charge and the lesser offense.',
       otherOffense: {
-        intro: 'Other than those offenses already listed, have you EVER had the following happen to you?',
-        first: '**Have you EVER been convicted** in any court of the United States of a crime, sentenced to imprisonment for a term exceeding 1 year for that crime, and incarcerated as a result of that sentence for not less than 1 year? Include all qualifying convictions in Federal, state, local, or military court, even if previously listed on this form',
-        second: '**Have you EVER been charged** with any felony offense? Include those under the Uniform Code of Military Justice and non-military/civilian offenses',
-        third: '**Have you EVER been convicted** of an offense involving domestic violence or a crime of violence (such as battery or assault) against your child, dependent, cohabitant, spouse or legally recognized civil union/domestic partner, former spouse or legally recognized civil union/domestic partner, or someone with whom you share a child in common?',
-        fourth: '**Have you EVER been charged** with an offense involving firearms or explosives?',
-        fifth: '**Have you EVER been charged** with an offense involving alcohol or drugs?'
+        intro:
+          'Other than those offenses already listed, have you EVER had the following happen to you?',
+        first:
+          '**Have you EVER been convicted** in any court of the United States of a crime, sentenced to imprisonment for a term exceeding 1 year for that crime, and incarcerated as a result of that sentence for not less than 1 year? Include all qualifying convictions in Federal, state, local, or military court, even if previously listed on this form',
+        second:
+          '**Have you EVER been charged** with any felony offense? Include those under the Uniform Code of Military Justice and non-military/civilian offenses',
+        third:
+          '**Have you EVER been convicted** of an offense involving domestic violence or a crime of violence (such as battery or assault) against your child, dependent, cohabitant, spouse or legally recognized civil union/domestic partner, former spouse or legally recognized civil union/domestic partner, or someone with whom you share a child in common?',
+        fourth:
+          '**Have you EVER been charged** with an offense involving firearms or explosives?',
+        fifth:
+          '**Have you EVER been charged** with an offense involving alcohol or drugs?'
       },
       or: 'or'
     },
     label: {
-      summons: '**In the last seven (7) years** have you been issued a summons, citation, or ticket to appear in court in a criminal proceeding against you? Do not check if all the citations involved traffic infractions where the fine was less than $300 and did not include alcohol or drugs.',
-      arrests: '**In the last seven (7) years** have you been arrested by any police officer, sheriff, marshal or any other type of law enforcement official?',
-      charges: '**In the last seven (7) years** have you been charged with, convicted of, or sentenced for a crime in any court? Include all qualifying charges, convictions or sentences in any federal, state, local, military, or non-U.S. court, even if previously listed on this form.',
-      probation: '**In the last seven (7) years** have you been or are you currently on probation or parole?',
-      trial: 'Are you currently on trial or awaiting a trial on criminal charges?',
-      violence: '**Domestic violence or a crime of violence** (such as battery or assault) against your child, dependent, cohabitant, spouse or legally recognized civil union/domestic partner, former spouse or legally recognized civil union/domestic partner, or someone with whom you share a child in common?',
+      summons:
+        '**In the last seven (7) years** have you been issued a summons, citation, or ticket to appear in court in a criminal proceeding against you? Do not check if all the citations involved traffic infractions where the fine was less than $300 and did not include alcohol or drugs.',
+      arrests:
+        '**In the last seven (7) years** have you been arrested by any police officer, sheriff, marshal or any other type of law enforcement official?',
+      charges:
+        '**In the last seven (7) years** have you been charged with, convicted of, or sentenced for a crime in any court? Include all qualifying charges, convictions or sentences in any federal, state, local, military, or non-U.S. court, even if previously listed on this form.',
+      probation:
+        '**In the last seven (7) years** have you been or are you currently on probation or parole?',
+      trial:
+        'Are you currently on trial or awaiting a trial on criminal charges?',
+      violence:
+        '**Domestic violence or a crime of violence** (such as battery or assault) against your child, dependent, cohabitant, spouse or legally recognized civil union/domestic partner, former spouse or legally recognized civil union/domestic partner, or someone with whom you share a child in common?',
       firearms: '**Involve firearms or explosives?**',
       substances: '**Involve alcohol or drugs?**',
       address: 'This address is',
@@ -104,39 +135,47 @@ export const legal = {
       other: 'Other',
       courtcharge: 'Charge',
       courtoutcome: 'Outcome',
-      domesticViolence: 'Is there currently a domestic violence protective order or restraining order issued against you?',
-      domesticViolenceAppend: 'Do you have another domestic violence protective order or restraining order currently issued against you to report?',
+      domesticViolence:
+        'Is there currently a domestic violence protective order or restraining order issued against you?',
+      domesticViolenceAppend:
+        'Do you have another domestic violence protective order or restraining order currently issued against you to report?',
       notApplicable: 'Not applicable'
     },
     help: {
       summons: {
         title: 'Need help with a summons, citation, or ticket?',
-        message: 'Answer "No" if all the citations involved traffic infractions where the fine was less than $300 and did not include alcohol or drugs.',
+        message:
+          'Answer "No" if all the citations involved traffic infractions where the fine was less than $300 and did not include alcohol or drugs.',
         note: ''
       },
       arrests: {
         title: 'Need help with an arrest?',
-        message: 'If you were arrested answer "Yes" and provide the required information',
+        message:
+          'If you were arrested answer "Yes" and provide the required information',
         note: ''
       },
       charges: {
         title: 'Need help with a criminal charge?',
-        message: 'Include all qualifying charges, convictions or sentences in any federal, state, local, military, or non-U.S. court, even if previously listed on this form.',
+        message:
+          'Include all qualifying charges, convictions or sentences in any federal, state, local, military, or non-U.S. court, even if previously listed on this form.',
         note: ''
       },
       probation: {
         title: 'Need help with a current probation or parole?',
-        message: 'If you are currently on probation or parole answer "Yes" and provide the required information',
+        message:
+          'If you are currently on probation or parole answer "Yes" and provide the required information',
         note: ''
       },
       trial: {
         title: 'Need help if on or awaiting trial?',
-        message: 'If you currently awaiting or on trial please answer "Yes" and provide the required information',
+        message:
+          'If you currently awaiting or on trial please answer "Yes" and provide the required information',
         note: ''
       },
       date: {
         title: 'Tell us the date the actual offense happened',
-        message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+        message:
+          'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
         note: ''
       },
       description: {
@@ -146,7 +185,8 @@ export const legal = {
       },
       violence: {
         title: 'Need help if this offense involved violence?',
-        message: 'Indicate if the offense involved domestic or criminal violence',
+        message:
+          'Indicate if the offense involved domestic or criminal violence',
         note: ''
       },
       firearms: {
@@ -165,23 +205,30 @@ export const legal = {
         note: ''
       },
       cited: {
-        title: 'Need help if you were arrested, summoned, or cited for this offense?',
-        message: 'If you were arrested, summoned, or cited please answer "Yes" and provide the required information',
+        title:
+          'Need help if you were arrested, summoned, or cited for this offense?',
+        message:
+          'If you were arrested, summoned, or cited please answer "Yes" and provide the required information',
         note: ''
       },
       citedby: {
         title: 'Need help with the law enforcement agency name?',
-        message: 'Provide the name of the law enforcement agency who handled this offense',
+        message:
+          'Provide the name of the law enforcement agency who handled this offense',
         note: ''
       },
       agencyaddress: {
-        title: 'Try looking up the agency name, this could help you find the address',
-        message: 'If you can only find a phone number try calling and asking for the address',
-        note: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
+        title:
+          'Try looking up the agency name, this could help you find the address',
+        message:
+          'If you can only find a phone number try calling and asking for the address',
+        note:
+          'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
       },
       charged: {
         title: 'Need help if you were charged, convicted, or awaiting trial?',
-        message: 'If you were charged, convicted, currently awaiting trial, or due to appear in court answer "Yes" and provide the required information',
+        message:
+          'If you were charged, convicted, currently awaiting trial, or due to appear in court answer "Yes" and provide the required information',
         note: ''
       },
       courtname: {
@@ -190,9 +237,12 @@ export const legal = {
         note: ''
       },
       courtaddress: {
-        title: 'Try looking up the court name, this could help you find the address',
-        message: 'If you can only find a phone number try calling and asking for the address.',
-        note: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
+        title:
+          'Try looking up the court name, this could help you find the address',
+        message:
+          'If you can only find a phone number try calling and asking for the address.',
+        note:
+          'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
       },
       chargeType: {
         title: 'Need help with the type of charge?',
@@ -211,12 +261,14 @@ export const legal = {
       },
       courtdate: {
         title: 'Estimate the date if unsure',
-        message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+        message:
+          'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
         note: ''
       },
       sentenced: {
         title: 'Need help if you were sentenced for this offense?',
-        message: 'If you were sentenced by the court for this offense please click "Yes" and provide the necessary information',
+        message:
+          'If you were sentenced by the court for this offense please click "Yes" and provide the necessary information',
         note: ''
       },
       sentenceDescription: {
@@ -226,22 +278,26 @@ export const legal = {
       },
       exceedsYear: {
         title: 'Need help?',
-        message: 'If you were sentenced for a term exceeding 1 year, please click "Yes"',
+        message:
+          'If you were sentenced for a term exceeding 1 year, please click "Yes"',
         note: ''
       },
       incarcerationDates: {
         title: 'Estimate the date if unsure',
-        message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
+        message:
+          'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
         note: ''
       },
       probationDates: {
         title: 'Estimate the date if unsure',
-        message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
+        message:
+          'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
         note: ''
       },
       awaitingTrial: {
         title: 'Need help with this question?',
-        message: 'Are you currently on trial, awaiting a trial, or awaiting sentencing on criminal charges for this offense?',
+        message:
+          'Are you currently on trial, awaiting a trial, or awaiting sentencing on criminal charges for this offense?',
         note: ''
       },
       awaitingTrialExplanation: {
@@ -251,12 +307,14 @@ export const legal = {
       },
       otherConviction: {
         title: 'Need help with this conviction question?',
-        message: 'Include all qualifying convictions in Federal, state, local, or military court, even if previously listed on this form.',
+        message:
+          'Include all qualifying convictions in Federal, state, local, or military court, even if previously listed on this form.',
         note: ''
       },
       otherFelony: {
         title: 'Need help with this charge question?',
-        message: 'Include those under the Uniform Code of Military Justice and non-military/civilian felony offenses.',
+        message:
+          'Include those under the Uniform Code of Military Justice and non-military/civilian felony offenses.',
         note: ''
       },
       domesticExplanation: {
@@ -268,7 +326,8 @@ export const legal = {
     branchCollection: {
       domesticViolence: {
         title: 'Need help?',
-        message: 'Is there currently a domestic violence protective order or restraining order issued against you?'
+        message:
+          'Is there currently a domestic violence protective order or restraining order issued against you?'
       }
     },
     collection: {
@@ -277,7 +336,8 @@ export const legal = {
         item: 'Offense',
         unknown: 'Provide offense below'
       },
-      appendTitle: 'Do you have any other offenses where any of the following has happened to you?',
+      appendTitle:
+        'Do you have any other offenses where any of the following has happened to you?',
       appendMessage: [
         '- **In the last seven (7) years** have you been issued a summons, citation, or ticket to appear in court in a criminal proceeding against you? Do not check if all the citations involved traffic infractions where the fine was than $300 and did not include alcohol or drugs.',
         '- **In the last seven (7) years** have you been arrested by any police officer, sheriff, marshal or any other type of law enforcement official?',
@@ -291,52 +351,40 @@ export const legal = {
   investigations: {
     history: {
       heading: {
-        title: 'Has the U.S. Government (or a foreign government) EVER investigated your background and/or granted you a security clearance eligibility/access?',
+        title:
+          'Has the U.S. Government (or a foreign government) EVER investigated your background and/or granted you a security clearance eligibility/access?',
         agency: 'Provide the investigating agency',
         completed: 'Date the investigation was completed',
-        issued: 'Provide the name of agency that issued the clearance eligibility/access if different from the investigating agency',
+        issued:
+          'Provide the name of agency that issued the clearance eligibility/access if different from the investigating agency',
         granted: 'Provide the date clearance eligibility/access was granted',
         clearance: 'Provide the level of clearance eligibility/access granted',
-        agencyExplanation: 'Provide the name of the bureau, government, or explanation',
+        agencyExplanation:
+          'Provide the name of the bureau, government, or explanation',
         clearanceExplanation: 'Provide an explanation'
       },
       label: {
-        idk: 'I don\'t know',
+        idk: "I don't know",
         agency: {
           dod: 'U.S. Department of Defense',
           dos: 'U.S. Department of State',
           opm: 'U.S. Office of Personnel Management',
           fbi: 'Federal Bureau of Investigation',
-          dot: [
-            'U.S. Department of Treasury',
-            '(provide name of bureau)'
-          ],
+          dot: ['U.S. Department of Treasury', '(provide name of bureau)'],
           dhs: 'U.S. Department of Homeland Security',
-          foreign: [
-            'Foreign government',
-            '(provide name of government)'
-          ],
-          other: [
-            'Other',
-            '(provide explanation)'
-          ]
+          foreign: ['Foreign government', '(provide name of government)'],
+          other: ['Other', '(provide explanation)']
         },
         level: {
           none: 'None',
           confidential: 'Confidential',
           secret: 'Secret',
           topsecret: 'Top Secret',
-          sci: [
-            'Sensitive Compartmented Information',
-            '(SCI)'
-          ],
+          sci: ['Sensitive Compartmented Information', '(SCI)'],
           q: 'Q',
           l: 'L',
           foreign: 'Issued by foreign country',
-          other: [
-            'Other',
-            '(provide explanation)'
-          ]
+          other: ['Other', '(provide explanation)']
         }
       },
       para: {
@@ -352,7 +400,8 @@ export const legal = {
       help: {
         agency: {
           title: 'Need help with this investigative agency?',
-          message: 'If you are not sure of the agency issuing the investigation click "I don\'t know".',
+          message:
+            'If you are not sure of the agency issuing the investigation click "I don\'t know".',
           note: ''
         },
         agencyExplanation: {
@@ -362,22 +411,26 @@ export const legal = {
         },
         completed: {
           title: 'Estimate the date if unsure',
-          message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+          message:
+            'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
         issued: {
           title: 'Need help with who issued this clearance?',
-          message: 'If an agency besides the one who initiated the investigation issued your clearance please tell us.',
+          message:
+            'If an agency besides the one who initiated the investigation issued your clearance please tell us.',
           note: ''
         },
         granted: {
           title: 'Estimate the date if unsure',
-          message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+          message:
+            'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
         clearance: {
           title: 'Need help with which clearance was granted?',
-          message: 'If you are not sure of the clearance being issued click "I don\'t know".',
+          message:
+            'If you are not sure of the clearance being issued click "I don\'t know".',
           note: ''
         },
         clearanceExplanation: {
@@ -389,30 +442,37 @@ export const legal = {
     },
     revoked: {
       heading: {
-        title: 'Have you EVER had a security clearance eligibility/access authorization denied, suspended, or revoked?',
-        date: 'Provide the date security clearance eligibility/access authorization was denied, suspended or revoked',
+        title:
+          'Have you EVER had a security clearance eligibility/access authorization denied, suspended, or revoked?',
+        date:
+          'Provide the date security clearance eligibility/access authorization was denied, suspended or revoked',
         agency: 'Provide the name of the agency that took the action',
-        explanation: 'Provide an explanation of the circumstances of the denial, suspension or revocation action'
+        explanation:
+          'Provide an explanation of the circumstances of the denial, suspension or revocation action'
       },
       para: {
-        downgrade: 'Note: An administrative downgrade or administrative termination of a security clearance is not a revocation.'
+        downgrade:
+          'Note: An administrative downgrade or administrative termination of a security clearance is not a revocation.'
       },
       collection: {
         description: 'Summary of denials',
         item: 'Denial',
         unknown: 'Provide denial details below',
-        appendTitle: 'Do you have another denied, revoked, or suspended security clearance eligibility/access authorization to enter?',
+        appendTitle:
+          'Do you have another denied, revoked, or suspended security clearance eligibility/access authorization to enter?',
         appendLabel: 'Add another denial'
       },
       help: {
         date: {
           title: 'Estimate the date if unsure',
-          message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+          message:
+            'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
         agency: {
           title: 'Need help with the agency authorization this termination?',
-          message: 'Provide the agency name to the best of your abilities responsible for authorizing this action.',
+          message:
+            'Provide the agency name to the best of your abilities responsible for authorizing this action.',
           note: ''
         },
         explanation: {
@@ -425,9 +485,11 @@ export const legal = {
     debarred: {
       heading: {
         title: 'Have you EVER been debarred from government employment?',
-        agency: 'Provide the name of the government agency taking debarment action',
+        agency:
+          'Provide the name of the government agency taking debarment action',
         date: 'Provide the date the debarment occurred',
-        explanation: 'Provide an explanation of the circumstances of the debarment'
+        explanation:
+          'Provide an explanation of the circumstances of the debarment'
       },
       collection: {
         description: 'Summary of debarments',
@@ -439,12 +501,14 @@ export const legal = {
       help: {
         date: {
           title: 'Estimate the date if unsure',
-          message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+          message:
+            'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
         agency: {
           title: 'Need help with the agency taking the debarment action?',
-          message: 'Provide the agency name to the best of your abilities responsible for this action.',
+          message:
+            'Provide the agency name to the best of your abilities responsible for this action.',
           note: ''
         },
         explanation: {
@@ -457,24 +521,27 @@ export const legal = {
   },
   nonCriminalAction: {
     heading: {
-      hasCourtActions: 'In the last ten (10) years, have you been a party to any public record civil court action not listed elsewhere on this form?',
+      hasCourtActions:
+        'In the last ten (10) years, have you been a party to any public record civil court action not listed elsewhere on this form?',
       civilActionDate: 'Provide the date of the civil action',
       courtName: 'Provide the court name',
       courtAddress: 'Provide the address of the court',
       natureOfAction: 'Provide details of the nature of the action',
       resultsOfAction: 'Provide a description of the results of the action',
-      principalPartyNames: 'Provide the name(s) of the principal parties involved in the court action'
+      principalPartyNames:
+        'Provide the name(s) of the principal parties involved in the court action'
     },
     collection: {
       description: 'Summary of court actions',
       summary: 'Provide your court action details below',
-      appendTitle: 'Are there any other civil court actions in the last ten (10) years to report?',
+      appendTitle:
+        'Are there any other civil court actions in the last ten (10) years to report?',
       appendLabel: 'Add another court action',
       itemType: 'Court Action'
     },
     help: {
       civilActionDate: {
-        title: 'Can\'t remember the exact date?',
+        title: "Can't remember the exact date?",
         message: 'Give us your best guess and check the "Estimated" checkbox.',
         note: ''
       },
@@ -484,9 +551,12 @@ export const legal = {
         note: ''
       },
       courtAddress: {
-        title: 'Try looking up the court name, this could help you find the address',
-        message: 'If you can only find a phone number try calling and asking for the address.',
-        note: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
+        title:
+          'Try looking up the court name, this could help you find the address',
+        message:
+          'If you can only find a phone number try calling and asking for the address.',
+        note:
+          'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
       },
       natureOfAction: {
         title: 'Need help with the nature of the action?',
@@ -500,7 +570,8 @@ export const legal = {
       },
       principalPartyNames: {
         title: 'Need help with the principal parties involved?',
-        message: 'Provide the name(s) of the principal parties involved in the court action',
+        message:
+          'Provide the name(s) of the principal parties involved in the court action',
         note: ''
       }
     }
@@ -508,11 +579,14 @@ export const legal = {
   technology: {
     unauthorized: {
       heading: {
-        title: 'In the last seven (7) years have you illegally or without proper authorization accessed or attempted to access any information technology system?',
+        title:
+          'In the last seven (7) years have you illegally or without proper authorization accessed or attempted to access any information technology system?',
         date: 'Provide the date of the incident',
-        incident: 'Provide a description of the nature of the incident or offense',
+        incident:
+          'Provide a description of the nature of the incident or offense',
         location: 'Provide the location where the incident took place',
-        action: 'Provide a description of the action (administrative, criminal or other) taken as a result of this incident'
+        action:
+          'Provide a description of the action (administrative, criminal or other) taken as a result of this incident'
       },
       para: {
         intro: [
@@ -530,7 +604,8 @@ export const legal = {
       help: {
         date: {
           title: 'Estimate the date if unsure',
-          message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+          message:
+            'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
         incident: {
@@ -540,26 +615,32 @@ export const legal = {
         },
         location: {
           title: 'Acronyms:',
-          message: 'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
+          message:
+            'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
           note: ''
         },
         action: {
           title: 'Need help with any actions as a result of this incident?',
-          message: 'Provide all actions which took place as a result of this incident.',
+          message:
+            'Provide all actions which took place as a result of this incident.',
           note: ''
         }
       }
     },
     manipulating: {
       heading: {
-        title: 'In the last seven (7) years have you illegally or without authorization, modified, destroyed, manipulated, or denied others access to information residing on an information technology system or attempted any of the above?',
+        title:
+          'In the last seven (7) years have you illegally or without authorization, modified, destroyed, manipulated, or denied others access to information residing on an information technology system or attempted any of the above?',
         date: 'Provide the date of the incident',
-        incident: 'Provide a description of the nature of the incident or offense',
+        incident:
+          'Provide a description of the nature of the incident or offense',
         location: 'Provide the location where the incident took place',
-        action: 'Provide a description of the action (administrative, criminal or other) taken as a result of this incident'
+        action:
+          'Provide a description of the action (administrative, criminal or other) taken as a result of this incident'
       },
       collection: {
-        description: 'Summary of modified, destroyed, manipulated, or denied access',
+        description:
+          'Summary of modified, destroyed, manipulated, or denied access',
         item: 'Incident',
         unknown: 'Provide details below',
         appendTitle: 'Are there any other incidents to report?',
@@ -568,7 +649,8 @@ export const legal = {
       help: {
         date: {
           title: 'Estimate the date if unsure',
-          message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+          message:
+            'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
         incident: {
@@ -578,23 +660,28 @@ export const legal = {
         },
         location: {
           title: 'Acronyms:',
-          message: 'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
+          message:
+            'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
           note: ''
         },
         action: {
           title: 'Need help with any actions as a result of this incident?',
-          message: 'Provide all actions which took place as a result of this incident.',
+          message:
+            'Provide all actions which took place as a result of this incident.',
           note: ''
         }
       }
     },
     unlawful: {
       heading: {
-        title: 'In the last seven (7) years have you introduced, removed, or used hardware, software, or media in connection with any information technology system without authorization, when specifically prohibited by rules, procedures, guidelines, or regulations or attempted any of the above?',
+        title:
+          'In the last seven (7) years have you introduced, removed, or used hardware, software, or media in connection with any information technology system without authorization, when specifically prohibited by rules, procedures, guidelines, or regulations or attempted any of the above?',
         date: 'Provide the date of the incident',
-        incident: 'Provide a description of the nature of the incident or offense',
+        incident:
+          'Provide a description of the nature of the incident or offense',
         location: 'Provide the location where the incident took place',
-        action: 'Provide a description of the action (administrative, criminal or other) taken as a result of this incident'
+        action:
+          'Provide a description of the action (administrative, criminal or other) taken as a result of this incident'
       },
       collection: {
         description: 'Summary of unlawful use',
@@ -606,7 +693,8 @@ export const legal = {
       help: {
         date: {
           title: 'Estimate the date if unsure',
-          message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+          message:
+            'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
         incident: {
@@ -616,12 +704,14 @@ export const legal = {
         },
         location: {
           title: 'Acronyms:',
-          message: 'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
+          message:
+            'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
           note: ''
         },
         action: {
           title: 'Need help with any actions as a result of this incident?',
-          message: 'Provide all actions which took place as a result of this incident.',
+          message:
+            'Provide all actions which took place as a result of this incident.',
           note: ''
         }
       }
@@ -630,13 +720,16 @@ export const legal = {
   associations: {
     terrorist: {
       heading: {
-        title: 'Are you now or have you EVER been a member of an organization dedicated to terrorism, either with an awareness of the organization\'s dedication to that end, or with the specific intent to further such activities?',
+        title:
+          "Are you now or have you EVER been a member of an organization dedicated to terrorism, either with an awareness of the organization's dedication to that end, or with the specific intent to further such activities?",
         organization: 'Provide the full name of the organization',
         address: 'Provide the address/location of the organization',
         dates: 'Provide the dates of your involvement with the organization',
         positions: 'Provide all positions held in the organization, if any',
-        contributions: 'Provide all contributions made to the organization, if any',
-        reasons: 'Provide a description of the nature of and reasons for your involvement with the organization'
+        contributions:
+          'Provide all contributions made to the organization, if any',
+        reasons:
+          'Provide a description of the nature of and reasons for your involvement with the organization'
       },
       para: {
         intro: [
@@ -653,7 +746,8 @@ export const legal = {
         description: 'Summary of terrorist organizations',
         item: 'Organization',
         unknown: 'Provide details of organization below',
-        appendTitle: 'Do you have any other instances of being a member of an organization dedicated to terrorism, either with an awareness of the organization\'s dedication to that end, or with the specific intent to further such activities to report?',
+        appendTitle:
+          "Do you have any other instances of being a member of an organization dedicated to terrorism, either with an awareness of the organization's dedication to that end, or with the specific intent to further such activities to report?",
         appendLabel: 'Add another terrorist organization'
       },
       help: {
@@ -664,27 +758,32 @@ export const legal = {
         },
         address: {
           title: 'Acronyms:',
-          message: 'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
+          message:
+            'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
           note: ''
         },
         dates: {
           title: 'Estimate the date if unsure',
-          message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
+          message:
+            'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
         positions: {
           title: 'Need help with positions held?',
           message: 'Provide any positions held during this time.',
-          note: 'Note: If you didn\'t hold a position please click "No positions held."'
+          note:
+            'Note: If you didn\'t hold a position please click "No positions held."'
         },
         contributions: {
           title: 'Need help with contributions?',
           message: 'Provide any contributions made to organization.',
-          note: 'Note: If you didn\'t provide any contributions click "No contributions made."'
+          note:
+            'Note: If you didn\'t provide any contributions click "No contributions made."'
         },
         reasons: {
           title: 'Need help with the nature and reasons of this incident?',
-          message: 'Provide an explanation of events surrounding this incident to the best of your knowledge.',
+          message:
+            'Provide an explanation of events surrounding this incident to the best of your knowledge.',
           note: ''
         }
       }
@@ -699,25 +798,29 @@ export const legal = {
         description: 'Summary of acts of terrorism',
         item: 'Act',
         unknown: 'Provide details for the terrorism below',
-        appendTitle: 'Do you have any other instances of knowingly engaging in acts of terrorism to report?',
+        appendTitle:
+          'Do you have any other instances of knowingly engaging in acts of terrorism to report?',
         appendLabel: 'Add another act of terrorism'
       },
       help: {
         reasons: {
           title: 'Need help with the nature and reasons of this incident?',
-          message: 'Provide an explanation of events surrounding this incident to the best of your knowledge.',
+          message:
+            'Provide an explanation of events surrounding this incident to the best of your knowledge.',
           note: ''
         },
         dates: {
           title: 'Estimate the date if unsure',
-          message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
+          message:
+            'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
           note: ''
         }
       }
     },
     advocating: {
       heading: {
-        title: 'Have you EVER advocated any acts of terrorism or activities designed to overthrow the U.S. Government by force?',
+        title:
+          'Have you EVER advocated any acts of terrorism or activities designed to overthrow the U.S. Government by force?',
         reasons: 'Provide the reason(s) for advocating acts of terrorism',
         dates: 'Provide the dates of advocating acts of terrorism'
       },
@@ -725,31 +828,37 @@ export const legal = {
         description: 'Summary of advocating terrorism',
         item: 'Instance',
         unknown: 'Provide details of the instance below',
-        appendTitle: 'Do you have any other instances of advocating acts of terrorism or activities designed to overthrow the U.S. Government by force to report?',
+        appendTitle:
+          'Do you have any other instances of advocating acts of terrorism or activities designed to overthrow the U.S. Government by force to report?',
         appendLabel: 'Add another instance'
       },
       help: {
         reasons: {
           title: 'Need help with the nature and reasons of this incident?',
-          message: 'Provide an explanation of events surrounding this incident to the best of your knowledge.',
+          message:
+            'Provide an explanation of events surrounding this incident to the best of your knowledge.',
           note: ''
         },
         dates: {
           title: 'Estimate the date if unsure',
-          message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
+          message:
+            'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
           note: ''
         }
       }
     },
     overthrow: {
       heading: {
-        title: 'Have you EVER been a member of an organization dedicated to the use of violence or force to overthrow the United States Government, and which engaged in activities to that end with an awareness of the organization\'s dedication to that end or with the specific intent to further such activities?',
+        title:
+          "Have you EVER been a member of an organization dedicated to the use of violence or force to overthrow the United States Government, and which engaged in activities to that end with an awareness of the organization's dedication to that end or with the specific intent to further such activities?",
         organization: 'Provide the full name of the organization',
         address: 'Provide the address/location of the organization',
         dates: 'Provide the dates of your involvement with the organization',
         positions: 'Provide all positions held in the organization, if any',
-        contributions: 'Provide all contributions made to the organization, if any',
-        reasons: 'Provide a description of the nature of and reasons for your involvement with the organization'
+        contributions:
+          'Provide all contributions made to the organization, if any',
+        reasons:
+          'Provide a description of the nature of and reasons for your involvement with the organization'
       },
       para: {
         or: 'or'
@@ -762,7 +871,8 @@ export const legal = {
         description: 'Summary of memberships',
         item: 'Membership',
         unknown: 'Please provide membership details below',
-        appendTitle: 'Do you have any other instances of being a member of an organization dedicated to the use of violence or force to overthrow the United States Government, which engaged in activities to that end with an awareness of the organization’s dedication to that end or with the specific intent to further such activities to report?',
+        appendTitle:
+          'Do you have any other instances of being a member of an organization dedicated to the use of violence or force to overthrow the United States Government, which engaged in activities to that end with an awareness of the organization’s dedication to that end or with the specific intent to further such activities to report?',
         appendLabel: 'Add another membership'
       },
       help: {
@@ -773,40 +883,48 @@ export const legal = {
         },
         address: {
           title: 'Acronyms:',
-          message: 'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
+          message:
+            'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
           note: ''
         },
         dates: {
           title: 'Estimate the date if unsure',
-          message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
+          message:
+            'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
         positions: {
           title: 'Need help with positions held?',
           message: 'Provide any positions held during this time.',
-          note: 'Note: If you didn\'t hold a position please click "No positions held."'
+          note:
+            'Note: If you didn\'t hold a position please click "No positions held."'
         },
         contributions: {
           title: 'Need help with contributions?',
           message: 'Provide any contributions made to organization.',
-          note: 'Note: If you didn\'t provide any contributions click "No contributions made."'
+          note:
+            'Note: If you didn\'t provide any contributions click "No contributions made."'
         },
         reasons: {
           title: 'Need help with the nature and reasons of this incident?',
-          message: 'Provide an explanation of events surrounding this incident to the best of your knowledge.',
+          message:
+            'Provide an explanation of events surrounding this incident to the best of your knowledge.',
           note: ''
         }
       }
     },
     violence: {
       heading: {
-        title: 'Have you EVER been a member of an organization that advocates or practices commission of acts of force or violence to discourage others from exercising their rights under the U.S. Constitution or any state of the United States with the specific intent to further such action?',
+        title:
+          'Have you EVER been a member of an organization that advocates or practices commission of acts of force or violence to discourage others from exercising their rights under the U.S. Constitution or any state of the United States with the specific intent to further such action?',
         organization: 'Provide the full name of the organization',
         address: 'Provide the address/location of the organization',
         dates: 'Provide the dates of your involvement with the organization',
         positions: 'Provide all positions held in the organization, if any',
-        contributions: 'Provide all contributions (in U.S. dollars) made to the organization, if any',
-        reasons: 'Provide a description of the nature of and reasons for your involvement with the organization'
+        contributions:
+          'Provide all contributions (in U.S. dollars) made to the organization, if any',
+        reasons:
+          'Provide a description of the nature of and reasons for your involvement with the organization'
       },
       para: {
         or: 'or'
@@ -819,7 +937,8 @@ export const legal = {
         description: 'Summary of memberships',
         item: 'Membership',
         unknown: 'Provide membership details below',
-        appendTitle: 'Do you have any other instances of being a member of an organization that advocates or practices commission of acts of force or violence to discourage others from exercising their rights under the U.S. Constitution or any state of the United States with the specific intent to further such action to report',
+        appendTitle:
+          'Do you have any other instances of being a member of an organization that advocates or practices commission of acts of force or violence to discourage others from exercising their rights under the U.S. Constitution or any state of the United States with the specific intent to further such action to report',
         appendLabel: 'Add another membership'
       },
       help: {
@@ -830,34 +949,40 @@ export const legal = {
         },
         address: {
           title: 'Acronyms:',
-          message: 'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
+          message:
+            'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
           note: ''
         },
         dates: {
           title: 'Estimate the date if unsure',
-          message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+          message:
+            'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
         positions: {
           title: 'Need help with positions held?',
           message: 'Provide any positions held during this time.',
-          note: 'Note: If you didn\'t hold a position please click "No positions held."'
+          note:
+            'Note: If you didn\'t hold a position please click "No positions held."'
         },
         contributions: {
           title: 'Need help with contributions?',
           message: 'Provide any contributions made to organization.',
-          note: 'Note: If you didn\'t provide any contributions click "No contributions made."'
+          note:
+            'Note: If you didn\'t provide any contributions click "No contributions made."'
         },
         reasons: {
           title: 'Need help with the nature and reasons of this incident?',
-          message: 'Provide an explanation of events surrounding this incident to the best of your knowledge.',
+          message:
+            'Provide an explanation of events surrounding this incident to the best of your knowledge.',
           note: ''
         }
       }
     },
     activities: {
       heading: {
-        title: 'Have you EVER knowingly engaged in activities designed to overthrow the U.S. Government by force?',
+        title:
+          'Have you EVER knowingly engaged in activities designed to overthrow the U.S. Government by force?',
         reasons: 'Describe the nature and reasons for the activity',
         dates: 'Provide the dates of such activities'
       },
@@ -865,31 +990,36 @@ export const legal = {
         description: 'Summary of acts of terrorism',
         item: 'Activity',
         unknown: 'Provide details below',
-        appendTitle: 'Do you have any other instances of having knowingly engaged in activities designed to overthrow the U.S. Government by force to report?',
+        appendTitle:
+          'Do you have any other instances of having knowingly engaged in activities designed to overthrow the U.S. Government by force to report?',
         appendLabel: 'Add another activity'
       },
       help: {
         reasons: {
           title: 'Need help with the nature and reasons of this activity?',
-          message: 'Provide an explanation of events surrounding this activity to the best of your knowledge.',
+          message:
+            'Provide an explanation of events surrounding this activity to the best of your knowledge.',
           note: ''
         },
         dates: {
           title: 'Estimate the date if unsure',
-          message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+          message:
+            'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
           note: ''
         }
       }
     },
     terrorism: {
       heading: {
-        title: 'Have you EVER associated with anyone involved in activities to further terrorism?',
+        title:
+          'Have you EVER associated with anyone involved in activities to further terrorism?',
         explanation: 'Provide explanation'
       },
       help: {
         explanation: {
           title: 'Need help with this explanation?',
-          message: 'If you have ever known or been in association with anyone who was involved in terrorist activities provide an explanation of the circumstances.',
+          message:
+            'If you have ever known or been in association with anyone who was involved in terrorist activities provide an explanation of the circumstances.',
           note: ''
         }
       }

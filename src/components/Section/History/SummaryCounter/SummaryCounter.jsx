@@ -5,11 +5,15 @@ import { rangeSorter, julian, today, daysAgo } from '../dateranges'
  * Scan an array of items (of date ranges) and count those found with
  * appropriate date(s).
  */
-const scan = (items) => {
+const scan = items => {
   let counter = 0
 
   for (const dates of items.sort(rangeSorter)) {
-    if (dates.from && dates.from.date && (dates.present || (dates.to && dates.to.date))) {
+    if (
+      dates.from &&
+      dates.from.date &&
+      (dates.present || (dates.to && dates.to.date))
+    ) {
       counter++
     } else if (dates.date) {
       counter++
@@ -23,14 +27,14 @@ export default class SummaryCounter extends React.Component {
   /**
    * Compile the ranges from the list of items
    */
-  ranges () {
+  ranges() {
     return {
-      schools: scan(this.props.schools && this.props.schools() || []),
-      diplomas: scan(this.props.diplomas && this.props.diplomas() || [])
+      schools: scan((this.props.schools && this.props.schools()) || []),
+      diplomas: scan((this.props.diplomas && this.props.diplomas()) || [])
     }
   }
 
-  render () {
+  render() {
     const klass = `summary-counter ${this.props.className || ''}`.trim()
     const total = this.ranges()
     const totalSchools = total.schools
@@ -39,7 +43,7 @@ export default class SummaryCounter extends React.Component {
     return (
       <div className={klass}>
         <div className="row">
-          <span className="content"></span>
+          <span className="content" />
           <span className="cell schools">{totalSchools}</span>
           <span className="cell diplomas">{totalDiplomas}</span>
         </div>

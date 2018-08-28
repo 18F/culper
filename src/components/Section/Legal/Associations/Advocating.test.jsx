@@ -10,9 +10,13 @@ describe('The legal associations advocating component', () => {
 
   it('can select "yes"', () => {
     let updates = 0
-    const onUpdate = () => { updates++ }
+    const onUpdate = () => {
+      updates++
+    }
     const component = mount(<Advocating onUpdate={onUpdate} />)
-    component.find('.legal-associations-advocating-has-advocated .yes input').simulate('change')
+    component
+      .find('.legal-associations-advocating-has-advocated .yes input')
+      .simulate('change')
     expect(updates).toBe(1)
   })
 

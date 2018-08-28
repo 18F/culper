@@ -74,7 +74,8 @@
   .usa-sidenav-sub_list {
     .section-link {
       // compute offset using built-in USWDS values
-      margin-left: $num-width + $num-right-margin - $sidenav-current-border-width;
+      margin-left: $num-width + $num-right-margin -
+        $sidenav-current-border-width;
       padding-left: $site-margins-mobile;
     }
 

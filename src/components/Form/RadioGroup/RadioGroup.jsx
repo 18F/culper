@@ -3,7 +3,7 @@ import Radio from '../Radio'
 import ValidationElement from '../ValidationElement'
 
 export default class RadioGroup extends ValidationElement {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       uid: `${props.name}-${super.guid()}`,
@@ -14,18 +14,18 @@ export default class RadioGroup extends ValidationElement {
     this.processError = this.processError.bind(this)
   }
 
-  componentWillReceiveProps (nextProps) {
+  componentWillReceiveProps(nextProps) {
     const selectedValue = nextProps.selectedValue
     if (this.lastSelectedValue !== selectedValue) {
       this.processError(selectedValue)
     }
   }
 
-  componentDidMount () {
-    this.onUpdate({value: this.props.selectedValue})
+  componentDidMount() {
+    this.onUpdate({ value: this.props.selectedValue })
   }
 
-  processError (selectedValue) {
+  processError(selectedValue) {
     const errors = this.constructor.errors.map(err => {
       return {
         code: err.code,
@@ -40,28 +40,28 @@ export default class RadioGroup extends ValidationElement {
     this.lastSelectedValue = selectedValue
   }
 
-  onUpdate (option) {
+  onUpdate(option) {
     const selectedValue = option.value
     this.processError(selectedValue)
   }
 
-  render () {
+  render() {
     const self = this
     const name = self.props.name ? `${self.state.uid}-${self.props.name}` : null
-    const children = React.Children.map(self.props.children, (child) => {
+    const children = React.Children.map(self.props.children, child => {
       // If type is not Radio, stop
       if (child.type !== Radio) {
         return child
       }
 
       // Check if current value matches one of the child radio options
-      let checked = (child.props.value === self.props.selectedValue)
+      let checked = child.props.value === self.props.selectedValue
 
       // Use function when you want custom behavior
       if (this.props.selectedValueFunc) {
         checked = self.props.selectedValueFunc(child.props)
       }
-      const onUpdate = (option) => {
+      const onUpdate = option => {
         if (child.props.onUpdate) {
           child.props.onUpdate(option)
         }
@@ -74,21 +74,26 @@ export default class RadioGroup extends ValidationElement {
           name={name || child.props.name}
           disabled={self.props.disabled}
           checked={checked}
-          onUpdate={onUpdate}>
-        </child.type>
+          onUpdate={onUpdate}
+        />
       )
     })
 
-    const errorClass = ((self.state.error === true && self.props.disabled === false) ? 'usa-input-error' : '')
-    const classes = ['blocks', self.props.className, errorClass].join(' ').trim()
-    return (
-      <div className={classes}>{children}</div>
-    )
+    const errorClass =
+      self.state.error === true && self.props.disabled === false
+        ? 'usa-input-error'
+        : ''
+    const classes = ['blocks', self.props.className, errorClass]
+      .join(' ')
+      .trim()
+    return <div className={classes}>{children}</div>
   }
 }
 
 RadioGroup.defaultProps = {
-  onError: (value, arr) => { return arr },
+  onError: (value, arr) => {
+    return arr
+  },
   required: false,
   disabled: false
 }

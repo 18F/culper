@@ -3,7 +3,7 @@ import ValidationElement from '../ValidationElement'
 import Generic from '../Generic'
 
 export default class Number extends ValidationElement {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
@@ -15,7 +15,7 @@ export default class Number extends ValidationElement {
     this.handleError = this.handleError.bind(this)
   }
 
-  componentWillReceiveProps (next) {
+  componentWillReceiveProps(next) {
     if (!next.receiveProps) {
       return
     }
@@ -29,7 +29,9 @@ export default class Number extends ValidationElement {
             target: {
               name: this.props.name
             }
-          }, null)
+          },
+          null
+        )
       }
     })
   }
@@ -37,7 +39,7 @@ export default class Number extends ValidationElement {
   /**
    * Handle the change event.
    */
-  handleChange (event) {
+  handleChange(event) {
     event.persist()
 
     // Prevent non-numerical values from being entered
@@ -57,46 +59,51 @@ export default class Number extends ValidationElement {
     })
   }
 
-  handleError (value, arr) {
-    let errors = arr.concat(this.constructor.errors.map(err => {
-      return {
-        code: !this.props.prefix ? err.code : `${this.props.prefix}.${err.code}`,
-        valid: err.func(value, this.props),
-        uid: this.state.uid
-      }
-    }))
+  handleError(value, arr) {
+    let errors = arr.concat(
+      this.constructor.errors.map(err => {
+        return {
+          code: !this.props.prefix
+            ? err.code
+            : `${this.props.prefix}.${err.code}`,
+          valid: err.func(value, this.props),
+          uid: this.state.uid
+        }
+      })
+    )
 
     // Take the original and concatenate our new error values to it
     return this.props.onError(value, errors)
   }
 
-  render () {
+  render() {
     return (
-      <Generic name={this.props.name}
-               label={this.props.label}
-               placeholder={this.props.placeholder}
-               type="text"
-               className={this.props.className}
-               disabled={this.props.disabled}
-               minlength={this.props.minlength}
-               maxlength={this.props.maxlength}
-               pattern={this.props.pattern}
-               readonly={this.props.readonly}
-               required={this.props.required}
-               value={this.state.value}
-               onChange={this.handleChange}
-               onFocus={this.props.onFocus}
-               onBlur={this.props.onBlur}
-               onKeyDown={this.props.onKeyDown}
-               onCopy={this.props.onCopy}
-               onCut={this.props.onCut}
-               onPaste={this.props.onPaste}
-               clipboard={this.props.clipboard}
-               tabBack={this.props.tabBack}
-               tabNext={this.props.tabNext}
-               ref="number"
-               onError={this.handleError}
-               />
+      <Generic
+        name={this.props.name}
+        label={this.props.label}
+        placeholder={this.props.placeholder}
+        type="text"
+        className={this.props.className}
+        disabled={this.props.disabled}
+        minlength={this.props.minlength}
+        maxlength={this.props.maxlength}
+        pattern={this.props.pattern}
+        readonly={this.props.readonly}
+        required={this.props.required}
+        value={this.state.value}
+        onChange={this.handleChange}
+        onFocus={this.props.onFocus}
+        onBlur={this.props.onBlur}
+        onKeyDown={this.props.onKeyDown}
+        onCopy={this.props.onCopy}
+        onCut={this.props.onCut}
+        onPaste={this.props.onPaste}
+        clipboard={this.props.clipboard}
+        tabBack={this.props.tabBack}
+        tabNext={this.props.tabNext}
+        ref="number"
+        onError={this.handleError}
+      />
     )
   }
 }
@@ -109,7 +116,9 @@ Number.defaultProps = {
   prefix: '',
   pattern: '^(\\s*|\\d+)$',
   errorCode: null,
-  onError: (value, arr) => { return arr }
+  onError: (value, arr) => {
+    return arr
+  }
 }
 
 Number.errors = [

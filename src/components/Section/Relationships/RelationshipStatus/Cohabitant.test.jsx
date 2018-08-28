@@ -20,22 +20,33 @@ describe('The cohabitant component', () => {
       BirthPlace: { country: { value: 'Germany' } },
       ForeignBornDocument: { DocumentType: { value: 'Other' } },
       OtherNameMaiden: { value: 'Yes' },
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
 
     const component = mount(<Cohabitant {...expected} />)
     expect(component.find('.cohabitant').length).toEqual(1)
     component.find('.cohabitant-name .first input').simulate('change')
-    component.find('.birthdate .month input').simulate('change', { target: { value: '12' } })
+    component
+      .find('.birthdate .month input')
+      .simulate('change', { target: { value: '12' } })
     component.find('.birthplace .city input').simulate('change')
-    component.find('.foreign-born-documents input').first().simulate('change')
+    component
+      .find('.foreign-born-documents input')
+      .first()
+      .simulate('change')
     component.find('.foreign-born-documents .other input').simulate('change')
     component.find('.foreign-born-documents textarea').simulate('change')
     component.find('.foreign-born-document-number input').simulate('change')
-    component.find('.foreign-born-documents .month input').simulate('change', { target: { value: '12' } })
+    component
+      .find('.foreign-born-documents .month input')
+      .simulate('change', { target: { value: '12' } })
     component.find('.ssn .first input').simulate('change')
     component.find('.cohabitant-othernames .yes input').simulate('change')
-    component.find('.cohabitation-began .month input').simulate('change', { target: { value: '12' } })
+    component
+      .find('.cohabitation-began .month input')
+      .simulate('change', { target: { value: '12' } })
     expect(updates).toBe(11)
   })
 
@@ -58,7 +69,9 @@ describe('The cohabitant component', () => {
     }
 
     const component = mount(<Cohabitant {...expected} />)
-    component.find('.cohabitant-name .first input').simulate('change', { target: { value: 'Foo' } })
+    component
+      .find('.cohabitant-name .first input')
+      .simulate('change', { target: { value: 'Foo' } })
     expect(component.find('.spouse-suggestion').length).toBe(1)
     component.find('.cohabitant-name .first input').simulate('blur')
     expect(component.find('.spouse-suggestion .suggestion-btn').length).toBe(1)
@@ -89,7 +102,9 @@ describe('The cohabitant component', () => {
     }
 
     const component = mount(<Cohabitant {...expected} />)
-    component.find('.cohabitant-name .first input').simulate('change', { target: { value: 'Foo' } })
+    component
+      .find('.cohabitant-name .first input')
+      .simulate('change', { target: { value: 'Foo' } })
     expect(component.find('.spouse-suggestion').length).toBe(1)
     component.find('.cohabitant-name .first input').simulate('blur')
     expect(component.find('.spouse-suggestion .suggestion-btn').length).toBe(1)

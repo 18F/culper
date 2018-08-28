@@ -3,12 +3,12 @@ import { i18n } from '../../../../config'
 import { ValidationElement, CheckboxGroup, Checkbox } from '../../../Form'
 
 export default class Infractions extends ValidationElement {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.update = this.update.bind(this)
   }
 
-  update (values) {
+  update(values) {
     let selected = values.value
     let list = [...(this.props.values || [])]
 
@@ -26,40 +26,45 @@ export default class Infractions extends ValidationElement {
     }
   }
 
-  render () {
+  render() {
     return (
       <div>
         {i18n.m('financial.delinquent.para.checkAll')}
-        <CheckboxGroup className={`option-list ${this.props.className || ''}`.trim()}
-                      selectedValues={this.props.values}>
-          <Checkbox label={i18n.m('financial.delinquent.para.alimony')}
-                    value="Alimony"
-                    className="delinquent-alimony"
-                    toggle="false"
-                    onUpdate={this.update}
-                    onError={this.props.onError}
-                    />
-          <Checkbox label={i18n.m('financial.delinquent.para.judgement')}
-                    value="Judgement"
-                    className="delinquent-judgement"
-                    toggle="false"
-                    onUpdate={this.update}
-                    onError={this.props.onError}
-                    />
-          <Checkbox label={i18n.m('financial.delinquent.para.lien')}
-                    value="Lien"
-                    className="delinquent-lien"
-                    toggle="false"
-                    onUpdate={this.update}
-                    onError={this.props.onError}
-                    />
-          <Checkbox label={i18n.m('financial.delinquent.para.federal')}
-                    value="Federal"
-                    className="delinquent-federal"
-                    toggle="false"
-                    onUpdate={this.update}
-                    onError={this.props.onError}
-                    />
+        <CheckboxGroup
+          className={`option-list ${this.props.className || ''}`.trim()}
+          selectedValues={this.props.values}>
+          <Checkbox
+            label={i18n.m('financial.delinquent.para.alimony')}
+            value="Alimony"
+            className="delinquent-alimony"
+            toggle="false"
+            onUpdate={this.update}
+            onError={this.props.onError}
+          />
+          <Checkbox
+            label={i18n.m('financial.delinquent.para.judgement')}
+            value="Judgement"
+            className="delinquent-judgement"
+            toggle="false"
+            onUpdate={this.update}
+            onError={this.props.onError}
+          />
+          <Checkbox
+            label={i18n.m('financial.delinquent.para.lien')}
+            value="Lien"
+            className="delinquent-lien"
+            toggle="false"
+            onUpdate={this.update}
+            onError={this.props.onError}
+          />
+          <Checkbox
+            label={i18n.m('financial.delinquent.para.federal')}
+            value="Federal"
+            className="delinquent-federal"
+            toggle="false"
+            onUpdate={this.update}
+            onError={this.props.onError}
+          />
         </CheckboxGroup>
       </div>
     )
@@ -68,5 +73,7 @@ export default class Infractions extends ValidationElement {
 
 Infractions.defaultProps = {
   values: [],
-  onError: (value, arr) => { return arr }
+  onError: (value, arr) => {
+    return arr
+  }
 }

@@ -6,7 +6,7 @@ import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import SectionLink from './SectionLink'
 
-describe("The SectionLink component", () => {
+describe('The SectionLink component', () => {
   const middlewares = [thunk]
   const mockStore = configureMockStore(middlewares)
 
@@ -21,7 +21,7 @@ describe("The SectionLink component", () => {
     )
   }
 
-  it("renders a basic SectionLink", () => {
+  it('renders a basic SectionLink', () => {
     const section = {
       name: 'Foo',
       url: 'foo'
@@ -49,7 +49,7 @@ describe("The SectionLink component", () => {
     expect(component.find('a.usa-current').length).toBe(0)
   })
 
-  it("shows errors", () => {
+  it('shows errors', () => {
     const section = {
       name: 'Foreign activity',
       url: 'foreign'
@@ -58,7 +58,12 @@ describe("The SectionLink component", () => {
       application: {
         Errors: {
           foreign: [
-            { section: 'foreign', subsection: 'activities/direct', valid: false, code: 'date.month.notfound' }
+            {
+              section: 'foreign',
+              subsection: 'activities/direct',
+              valid: false,
+              code: 'date.month.notfound'
+            }
           ]
         }
       }

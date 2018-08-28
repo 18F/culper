@@ -1,7 +1,7 @@
 import PoliceOtherOffensesValidator from './policeotheroffenses'
 import Location from '../components/Form/Location'
 
-describe('Police record validation', function () {
+describe('Police record validation', function() {
   it('validates offenses', () => {
     const tests = [
       {
@@ -19,7 +19,7 @@ describe('Police record validation', function () {
           HasOtherOffenses: { value: 'Yes' },
           List: {
             branch: { value: 'No' },
-            items: [{Item: {}}]
+            items: [{ Item: {} }]
           }
         },
         expected: false
@@ -138,7 +138,9 @@ describe('Police record validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new PoliceOtherOffensesValidator(test.state, null).isValid()).toBe(test.expected)
+      expect(new PoliceOtherOffensesValidator(test.state, null).isValid()).toBe(
+        test.expected
+      )
     })
   })
 })

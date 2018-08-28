@@ -1,7 +1,7 @@
 import CohabitantsValidator, { CohabitantValidator } from './cohabitant'
 import Location from '../components/Form/Location'
 
-describe('Cohabitant validation', function () {
+describe('Cohabitant validation', function() {
   it('validates citizenship', () => {
     const tests = [
       {
@@ -28,7 +28,9 @@ describe('Cohabitant validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new CohabitantValidator(test.data).validCitizenship()).toBe(test.expected)
+      expect(new CohabitantValidator(test.data).validCitizenship()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -86,7 +88,9 @@ describe('Cohabitant validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new CohabitantValidator(test.data).validOtherNames()).toBe(test.expected)
+      expect(new CohabitantValidator(test.data).validOtherNames()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -180,7 +184,7 @@ describe('Cohabitant validation', function () {
           HasCohabitant: { value: 'Yes' },
           CohabitantList: {
             branch: { value: 'No' },
-            items: [{Cohabitant: {}}]
+            items: [{ Cohabitant: {} }]
           }
         },
         expected: false
@@ -281,7 +285,9 @@ describe('Cohabitant validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new CohabitantValidator(test.data).validForeignBornDocument()).toBe(test.expected)
+      expect(
+        new CohabitantValidator(test.data).validForeignBornDocument()
+      ).toBe(test.expected)
     })
   })
 
@@ -325,7 +331,9 @@ describe('Cohabitant validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new CohabitantValidator(test.data).similarSpouse(test.spouse)).toBe(test.expected)
+      expect(
+        new CohabitantValidator(test.data).similarSpouse(test.spouse)
+      ).toBe(test.expected)
     })
   })
 })

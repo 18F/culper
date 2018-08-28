@@ -1,7 +1,7 @@
 import ForeignDirectInterestValidator from './foreigndirectinterest'
 
-describe('Direct Interest validation', function () {
-  it('should validate interest types', function () {
+describe('Direct Interest validation', function() {
+  it('should validate interest types', function() {
     const tests = [
       {
         props: {
@@ -17,11 +17,13 @@ describe('Direct Interest validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new ForeignDirectInterestValidator(test.props).validInterestTypes()).toBe(test.expected)
+      expect(
+        new ForeignDirectInterestValidator(test.props).validInterestTypes()
+      ).toBe(test.expected)
     })
   })
 
-  it('should validate direct interest', function () {
+  it('should validate direct interest', function() {
     const tests = [
       {
         props: {
@@ -64,7 +66,9 @@ describe('Direct Interest validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new ForeignDirectInterestValidator(test.props).isValid()).toBe(test.expected)
+      expect(new ForeignDirectInterestValidator(test.props).isValid()).toBe(
+        test.expected
+      )
     })
   })
 })

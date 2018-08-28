@@ -1,8 +1,10 @@
-import LegalAssociationsTerroristValidator, { TerroristValidator } from './legalassociationsterrorist'
+import LegalAssociationsTerroristValidator, {
+  TerroristValidator
+} from './legalassociationsterrorist'
 import { battery } from './helpers'
 import Location from '../components/Form/Location'
 
-describe('Legal associations terrorist component validation', function () {
+describe('Legal associations terrorist component validation', function() {
   it('validate organization', () => {
     const tests = [
       {

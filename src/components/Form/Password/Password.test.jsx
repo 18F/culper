@@ -17,8 +17,17 @@ describe('The Password component', () => {
         return arr
       }
     }
-    const component = mount(<Password name={expected.name} value="mypassword" onError={expected.onError} />)
-    component.find('input').first().simulate('blur')
+    const component = mount(
+      <Password
+        name={expected.name}
+        value="mypassword"
+        onError={expected.onError}
+      />
+    )
+    component
+      .find('input')
+      .first()
+      .simulate('blur')
     expect(hits > 0).toEqual(true)
   })
 
@@ -31,12 +40,17 @@ describe('The Password component', () => {
       error: true,
       focus: false,
       valid: false,
-      handleChange: function (event) {
+      handleChange: function(event) {
         changes++
       }
     }
-    const component = mount(<Password name={expected.name} onChange={expected.handleChange} />)
-    component.find('input').first().simulate('change')
+    const component = mount(
+      <Password name={expected.name} onChange={expected.handleChange} />
+    )
+    component
+      .find('input')
+      .first()
+      .simulate('change')
     expect(changes).toEqual(1)
   })
 })

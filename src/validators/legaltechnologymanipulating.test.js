@@ -1,8 +1,10 @@
-import LegalTechnologyManipulatingValidator, { ManipulatingValidator } from './legaltechnologymanipulating'
+import LegalTechnologyManipulatingValidator, {
+  ManipulatingValidator
+} from './legaltechnologymanipulating'
 import { battery } from './helpers'
 import Location from '../components/Form/Location'
 
-describe('Legal technology manipulating component validation', function () {
+describe('Legal technology manipulating component validation', function() {
   it('validate date', () => {
     const tests = [
       {

@@ -23,7 +23,15 @@ describe('The textarea component', () => {
       focus: true,
       valid: false
     }
-    const component = mount(<Textarea name={expected.name} label={expected.label} error={expected.error} focus={expected.focus} valid={expected.valid} />)
+    const component = mount(
+      <Textarea
+        name={expected.name}
+        label={expected.label}
+        error={expected.error}
+        focus={expected.focus}
+        valid={expected.valid}
+      />
+    )
     expect(component.find('label').text()).toEqual(expected.label)
     expect(component.find('textarea').length).toEqual(1)
     expect(component.find('textarea').hasClass('usa-input-focus')).toEqual(true)
@@ -38,7 +46,15 @@ describe('The textarea component', () => {
       focus: false,
       valid: true
     }
-    const component = mount(<Textarea name={expected.name} label={expected.label} error={expected.error} focus={expected.focus} valid={expected.valid} />)
+    const component = mount(
+      <Textarea
+        name={expected.name}
+        label={expected.label}
+        error={expected.error}
+        focus={expected.focus}
+        valid={expected.valid}
+      />
+    )
     expect(component.find('label').text()).toEqual(expected.label)
     expect(component.find('textarea').length).toEqual(1)
     expect(component.find('.usa-input-error-label').length).toEqual(0)
@@ -52,7 +68,15 @@ describe('The textarea component', () => {
       focus: false,
       valid: false
     }
-    const component = mount(<Textarea name={expected.name} label={expected.label} error={expected.error} focus={expected.focus} valid={expected.valid} />)
+    const component = mount(
+      <Textarea
+        name={expected.name}
+        label={expected.label}
+        error={expected.error}
+        focus={expected.focus}
+        valid={expected.valid}
+      />
+    )
     expect(component.find('label').text()).toEqual(expected.label)
     expect(component.find('textarea').length).toEqual(1)
     expect(component.find('.usa-input-error-label').length).toEqual(0)
@@ -66,11 +90,17 @@ describe('The textarea component', () => {
       error: true,
       focus: false,
       valid: false,
-      handleChange: function (event) {
+      handleChange: function(event) {
         changes++
       }
     }
-    const component = mount(<Textarea name={expected.name} value="1" onChange={expected.handleChange} />)
+    const component = mount(
+      <Textarea
+        name={expected.name}
+        value="1"
+        onChange={expected.handleChange}
+      />
+    )
     component.find('textarea').simulate('change')
     expect(changes).toEqual(1)
   })
@@ -83,11 +113,13 @@ describe('The textarea component', () => {
       error: true,
       focus: false,
       valid: false,
-      handleFocus: function (event) {
+      handleFocus: function(event) {
         foci++
       }
     }
-    const component = mount(<Textarea name={expected.name} onFocus={expected.handleFocus} />)
+    const component = mount(
+      <Textarea name={expected.name} onFocus={expected.handleFocus} />
+    )
     component.find('textarea').simulate('focus')
     expect(foci).toEqual(1)
   })
@@ -100,11 +132,13 @@ describe('The textarea component', () => {
       error: true,
       focus: false,
       valid: false,
-      handleBlur: function (event) {
+      handleBlur: function(event) {
         blurs++
       }
     }
-    const component = mount(<Textarea name={expected.name} onBlur={expected.handleBlur} />)
+    const component = mount(
+      <Textarea name={expected.name} onBlur={expected.handleBlur} />
+    )
     component.find('textarea').simulate('blur')
     expect(blurs).toEqual(1)
   })

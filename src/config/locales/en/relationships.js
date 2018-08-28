@@ -1,14 +1,16 @@
 export const relationships = {
   intro: {
     title: 'Section 3: Relationships',
-    body: 'You will be asked questions about your personal relationships and be asked to provide details if necessary.'
+    body:
+      'You will be asked questions about your personal relationships and be asked to provide details if necessary.'
   },
   tour: {
     para: 'Take a guided tour through the section'
   },
   review: {
     para: 'View all the sections associated with relationships at once',
-    comments: 'Add a comment to clarify any of your responses in the relationships section'
+    comments:
+      'Add a comment to clarify any of your responses in the relationships section'
   },
   destination: {
     intro: 'Relationships intro',
@@ -29,34 +31,40 @@ export const relationships = {
       append: 'Add another relative'
     },
     heading: {
-      title: 'Add each relative applicable to you, regardless if they are living or deceased.',
+      title:
+        'Add each relative applicable to you, regardless if they are living or deceased.',
       needmore: 'Since you answered yes we need more information',
       relation: 'Provide relative type',
-      name: 'Provide your relative\'s full name',
-      birthdate: 'Provide your relative\'s date of birth',
-      birthplace: 'Provide your relative\'s place of birth',
-      citizenship: 'Provide your relative\'s country(ies) of citizenship',
-      maiden: 'Provide your mother\'s maiden name',
+      name: "Provide your relative's full name",
+      birthdate: "Provide your relative's date of birth",
+      birthplace: "Provide your relative's place of birth",
+      citizenship: "Provide your relative's country(ies) of citizenship",
+      maiden: "Provide your mother's maiden name",
       alias: {
         branch: 'Has this relative used any additional names?',
-        title: 'Provide other names used and the period of time that your relative used them.',
+        title:
+          'Provide other names used and the period of time that your relative used them.',
         maiden: 'Was this their maiden name?',
         reason: 'Provide the reason(s) why the name changed.',
         additional: 'Has this relative used any additional names?'
       },
       deceased: {
         branch: 'Is your relative deceased?',
-        address: 'Provide your relative\'s current address'
+        address: "Provide your relative's current address"
       },
       us: {
         title: 'U.S. Citizenship Documentation',
-        documentation: 'Provide one type of citizenship documentation and document number below:',
+        documentation:
+          'Provide one type of citizenship documentation and document number below:',
         number: 'Provide the document number',
-        name: 'Provide the name of the court that issued the Certificate of Naturalization',
-        address: 'Provide the address of the court that issued the Certificate of Naturalization'
+        name:
+          'Provide the name of the court that issued the Certificate of Naturalization',
+        address:
+          'Provide the address of the court that issued the Certificate of Naturalization'
       },
       address: {
-        title: 'Provide type of documentation he or she possesses to support U.S. residence:',
+        title:
+          'Provide type of documentation he or she possesses to support U.S. residence:',
         number: 'Provide the document number',
         expiration: 'Provide document expiration date',
         firstcontact: 'Provide approximate date of first contact',
@@ -65,16 +73,22 @@ export const relationships = {
         frequency: 'Provide approximate frequency of contact'
       },
       employer: {
-        name: 'Provide name of current employer, or provide the name of their most recent employer if not currently employed (if known)',
-        address: 'Provide the address of current employer, or provide the address of their most recent employer if not currently employed',
-        affiliated: 'Is this relative affiliated with a foreign government, military, security, defense industry, foreign movement, or intelligence service?',
-        relationship: 'Describe the relative\'s relationship with the foreign government, military, security, defense industry, foreign movement, or intelligence service.'
+        name:
+          'Provide name of current employer, or provide the name of their most recent employer if not currently employed (if known)',
+        address:
+          'Provide the address of current employer, or provide the address of their most recent employer if not currently employed',
+        affiliated:
+          'Is this relative affiliated with a foreign government, military, security, defense industry, foreign movement, or intelligence service?',
+        relationship:
+          "Describe the relative's relationship with the foreign government, military, security, defense industry, foreign movement, or intelligence service."
       }
     },
     para: {
-      opportunity: 'An opportunity will be provided to list multiple relatives for each type.',
+      opportunity:
+        'An opportunity will be provided to list multiple relatives for each type.',
       checkall: 'Check all that apply.',
-      alias: 'Such as maiden, name by former marriage, former name, alias, or nickname.',
+      alias:
+        'Such as maiden, name by former marriage, former name, alias, or nickname.',
       abroad: 'Born abroad to U.S. Parents:',
       naturalized: 'Naturalized:',
       derived: 'Derived:',
@@ -82,17 +96,14 @@ export const relationships = {
       or: 'or'
     },
     label: {
-      idk: 'I don\'t know',
+      idk: "I don't know",
       relation: {
         mother: 'Mother',
         father: 'Father',
         stepmother: 'Stepmother',
         stepfather: 'Stepfather',
         fosterparent: 'Foster parent',
-        child: [
-          'Child',
-          '(including adopted/foster)'
-        ],
+        child: ['Child', '(including adopted/foster)'],
         stepchild: 'Stepchild',
         brother: 'Brother',
         sister: 'Sister',
@@ -113,32 +124,17 @@ export const relationships = {
           'Alien Registration',
           '(on Certification of Naturalization - utilize USCIS, CIS, or INS registration number)'
         ],
-        permanent: [
-          'Permanent resident card',
-          '(I-551)'
-        ],
-        certificate: [
-          'Certificate of naturalization',
-          '(N550 or N570)'
-        ]
+        permanent: ['Permanent resident card', '(I-551)'],
+        certificate: ['Certificate of naturalization', '(N550 or N570)']
       },
       derived: {
         alien: [
           'Alien Registration',
           '(on Certification of Naturalization - utilize USCIS, CIS, or INS registration number)'
         ],
-        permanent: [
-          'Permanent resident card',
-          '(I-551)'
-        ],
-        certificate: [
-          'Certificate of naturalization',
-          '(N550 or N570)'
-        ],
-        other: [
-          'Other',
-          '(provide explanation)'
-        ]
+        permanent: ['Permanent resident card', '(I-551)'],
+        certificate: ['Certificate of naturalization', '(N550 or N570)'],
+        other: ['Other', '(provide explanation)']
       },
       methods: {
         inperson: 'In person',
@@ -148,10 +144,7 @@ export const relationships = {
           '(such as email, texting, chat rooms, etc.)'
         ],
         written: 'Written correspondence',
-        other: [
-          'Other',
-          '(provide explanation)'
-        ]
+        other: ['Other', '(provide explanation)']
       },
       frequency: {
         daily: 'Daily',
@@ -159,31 +152,19 @@ export const relationships = {
         monthly: 'Monthly',
         quarterly: 'Quarterly',
         annually: 'Annually',
-        other: [
-          'Other',
-          '(provide explanation)'
-        ]
+        other: ['Other', '(provide explanation)']
       },
       document: {
         permanent: 'I-551 Permanent Resident',
         employment: 'I-766 Employment Authorization',
         arrival: 'I-94 Arrival-Departure Record',
-        visa: [
-          'U.S. Visa',
-          '(red foil number)'
-        ],
-        f1: [
-          'I-20 Certificate of Eligibility',
-          '(non-immigrant F1 student)'
-        ],
+        visa: ['U.S. Visa', '(red foil number)'],
+        f1: ['I-20 Certificate of Eligibility', '(non-immigrant F1 student)'],
         j1: [
           'DS-2019 Certificate of Eligibility',
           '(exchange visitor J1 status)'
         ],
-        other: [
-          'Other',
-          '(provide explanation)'
-        ]
+        other: ['Other', '(provide explanation)']
       },
       maiden: {
         same: 'Same as listed',
@@ -204,7 +185,8 @@ export const relationships = {
       },
       birthdate: {
         title: 'Estimate the date if unsure',
-        message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+        message:
+          'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
         note: ''
       },
       birthplace: {
@@ -229,7 +211,8 @@ export const relationships = {
       },
       address: {
         title: 'Acronyms:',
-        message: 'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
+        message:
+          'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
         note: ''
       },
       abroad: {
@@ -259,17 +242,21 @@ export const relationships = {
       },
       courtname: {
         title: 'Need help with the court name?',
-        message: 'Provide the court name that issued the Certificate of Naturalization',
+        message:
+          'Provide the court name that issued the Certificate of Naturalization',
         note: ''
       },
       courtaddress: {
         title: 'Need help with the court address?',
-        message: 'Provide the address of the court that issued the Certificate of Naturalization',
+        message:
+          'Provide the address of the court that issued the Certificate of Naturalization',
         note: ''
       },
       document: {
-        title: 'Need help if the relative has documentation to support U.S. residence?',
-        message: 'If the relative resides in the U.S. but is not a citizen provide the documentation',
+        title:
+          'Need help if the relative has documentation to support U.S. residence?',
+        message:
+          'If the relative resides in the U.S. but is not a citizen provide the documentation',
         note: ''
       },
       residencedocumentnumber: {
@@ -293,33 +280,40 @@ export const relationships = {
         note: ''
       },
       methods: {
-        title: 'Need help with the methods of correspondence with the relative?',
+        title:
+          'Need help with the methods of correspondence with the relative?',
         message: 'Select all types of correspondence used with the relative',
         note: ''
       },
       frequency: {
         title: 'Need help with the frequency of correspondence?',
-        message: 'Provide the best response to how often you correspond with the relative',
+        message:
+          'Provide the best response to how often you correspond with the relative',
         note: ''
       },
       employer: {
-        title: 'Need help with the relative\'s employer name?',
-        message: 'Provide the employer name or select "I don\'t know" if unknown',
+        title: "Need help with the relative's employer name?",
+        message:
+          'Provide the employer name or select "I don\'t know" if unknown',
         note: ''
       },
       employeraddress: {
-        title: 'Need help with the relative\'s employer\'s address?',
-        message: 'Provide the employer address or select "I don\'t know" if unknown',
+        title: "Need help with the relative's employer's address?",
+        message:
+          'Provide the employer address or select "I don\'t know" if unknown',
         note: ''
       },
       affiliation: {
         title: 'Need help if the relative has any foreign affiliations?',
-        message: 'If the relative is affiliated with a foreign government, military, security, defense industry, foreign movement, or intelligence service answer "Yes"',
+        message:
+          'If the relative is affiliated with a foreign government, military, security, defense industry, foreign movement, or intelligence service answer "Yes"',
         note: ''
       },
       employerrelationship: {
-        title: 'Need help with the relative\'s relationships to foreign affiliates?',
-        message: 'Describe the affiliation with the foreign government, military, security, defense industry, foreign movement, or intelligence service answer "Yes"',
+        title:
+          "Need help with the relative's relationships to foreign affiliates?",
+        message:
+          'Describe the affiliation with the foreign government, military, security, defense industry, foreign movement, or intelligence service answer "Yes"',
         note: ''
       },
       aliasdates: {
@@ -331,13 +325,16 @@ export const relationships = {
   },
   marital: {
     heading: {
-      title: 'Provide your current marital/relationship status with regard to civil marriage, legally recognized civil union, or legally recognized domestic partnership.'
+      title:
+        'Provide your current marital/relationship status with regard to civil marriage, legally recognized civil union, or legally recognized domestic partnership.'
     },
     label: {
       status: {
-        never: 'Never entered into a civil marriage, legally recognized civil union, or legally recognized domestic partnership',
+        never:
+          'Never entered into a civil marriage, legally recognized civil union, or legally recognized domestic partnership',
         married: 'Currently in a civil marriage',
-        inCivilUnion: 'Currently in a legally recognized domestic partnership or legally recognized civil union',
+        inCivilUnion:
+          'Currently in a legally recognized domestic partnership or legally recognized civil union',
         separated: 'Separated',
         annulled: 'Annulled',
         divorced: 'Divorced/dissolved',
@@ -347,25 +344,31 @@ export const relationships = {
   },
   civilUnion: {
     heading: {
-      name: 'Provide this person\'s full name',
-      birthdate: 'Provide this person\'s date of birth',
-      birthplace: 'Provide this person\'s place of birth',
-      foreignBornDocument: 'If the person is foreign born, provide one type of documentation that he or she possesses and the document number.',
-      ssn: 'Provide this person\'s U.S. Social Security Number',
+      name: "Provide this person's full name",
+      birthdate: "Provide this person's date of birth",
+      birthplace: "Provide this person's place of birth",
+      foreignBornDocument:
+        'If the person is foreign born, provide one type of documentation that he or she possesses and the document number.',
+      ssn: "Provide this person's U.S. Social Security Number",
       othernames: 'Has this person used another name?',
       appendOthernames: 'Has this person used any other names?',
-      citizenship: 'Provide this person\'s country(ies) of citizenship',
+      citizenship: "Provide this person's country(ies) of citizenship",
       location: 'Provide the location',
-      address: 'Provide this person\'s current address, if different than your current address',
-      addressWithoutCurrent: 'Provide this person\'s current address',
-      telephone: 'Provide this person\'s telephone number',
-      email: 'Provide this person\'s email address',
+      address:
+        "Provide this person's current address, if different than your current address",
+      addressWithoutCurrent: "Provide this person's current address",
+      telephone: "Provide this person's telephone number",
+      email: "Provide this person's email address",
       separated: 'Are you separated?',
       dateSeparated: 'Provide date of separation',
-      enteredCivilUnion: 'Provide date when you entered into your civil marriage, civil union, or domestic partnership.',
-      locationSeparated: 'If legally separated, provide the location of the record',
-      divorced: 'Do you have a person from whom you are divorced/dissolved, annulled, or widowed to report?',
-      addressSeparated: 'If legally separated, provide the location of the record.'
+      enteredCivilUnion:
+        'Provide date when you entered into your civil marriage, civil union, or domestic partnership.',
+      locationSeparated:
+        'If legally separated, provide the location of the record',
+      divorced:
+        'Do you have a person from whom you are divorced/dissolved, annulled, or widowed to report?',
+      addressSeparated:
+        'If legally separated, provide the location of the record.'
     },
     notApplicable: {
       or: 'or',
@@ -377,11 +380,13 @@ export const relationships = {
     },
     deceasedAddressNotApplicable: {
       or: 'or',
-      label: 'I don\'t know'
+      label: "I don't know"
     },
     para: {
-      never: 'Complete the following about the person with whom you are in a civil marriage, legally recognized civil union, or legally recognized domestic partnership, or the person from whom you are currently separated.',
-      othernames: 'Such as maiden name, names by other marriages, civil marriages, legally recognized civil unions, or legally recognized domestic partnerships, nicknames, etc., and provide dates used for each name.'
+      never:
+        'Complete the following about the person with whom you are in a civil marriage, legally recognized civil union, or legally recognized domestic partnership, or the person from whom you are currently separated.',
+      othernames:
+        'Such as maiden name, names by other marriages, civil marriages, legally recognized civil unions, or legally recognized domestic partnerships, nicknames, etc., and provide dates used for each name.'
     },
     label: {
       birthplace: 'Was this person born in the United States of America?',
@@ -390,16 +395,19 @@ export const relationships = {
     },
     divorce: {
       heading: {
-        name: 'Provide this person\'s full name',
+        name: "Provide this person's full name",
         address: 'Provide the location',
-        birthdate: 'Provide this person\'s date of birth',
+        birthdate: "Provide this person's date of birth",
         citizenship: 'Provide the country(ies) of citizenship',
-        telephone: 'Provide this person\'s telephone number',
-        birthplace: 'Provide this person\'s place of birth',
-        dateDivorced: 'Provide the date divorced/dissolved, annulled or widowed',
-        recognized: 'Provide the date your civil marriage, civil union, or domestic partnership was legally recognized',
+        telephone: "Provide this person's telephone number",
+        birthplace: "Provide this person's place of birth",
+        dateDivorced:
+          'Provide the date divorced/dissolved, annulled or widowed',
+        recognized:
+          'Provide the date your civil marriage, civil union, or domestic partnership was legally recognized',
         deceased: 'Is this person deceased?',
-        deceasedAddress: 'Provide last known address of the person from whom you are divorced/dissolved or annulled',
+        deceasedAddress:
+          'Provide last known address of the person from whom you are divorced/dissolved or annulled',
         status: 'Provide status'
       },
       label: {
@@ -409,25 +417,28 @@ export const relationships = {
         birthplace: 'Was this person born in the United States of America?'
       },
       para: {
-        intro: 'Provide information about any person from whom you are divorced/dissolved, annulled, or widowed.'
+        intro:
+          'Provide information about any person from whom you are divorced/dissolved, annulled, or widowed.'
       },
       deceased: {
         label: {
           yes: 'Yes',
           no: 'No',
-          dontKnow: 'I don\'t know'
+          dontKnow: "I don't know"
         }
       },
       collection: {
         description: 'Summary of divorcees',
-        appendTitle: 'Do you have any additional person(s) from whom you are divorced/dissolved, annulled, or widowed to report?',
+        appendTitle:
+          'Do you have any additional person(s) from whom you are divorced/dissolved, annulled, or widowed to report?',
         appendLabel: 'Add another person',
         itemType: 'Person'
       },
       help: {
         birthdate: {
           title: 'Estimate the date if unsure',
-          message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+          message:
+            'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
         birthplace: {
@@ -437,7 +448,8 @@ export const relationships = {
         },
         recognized: {
           title: 'Estimate the date if unsure',
-          message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+          message:
+            'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
         separated: {
@@ -462,12 +474,14 @@ export const relationships = {
         },
         address: {
           title: 'Acronyms:',
-          message: 'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
+          message:
+            'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
           note: ''
         },
         dateDivorced: {
           title: 'Estimate the date if unsure',
-          message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+          message:
+            'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
           note: ''
         }
       }
@@ -482,7 +496,8 @@ export const relationships = {
     help: {
       address: {
         title: 'Acronyms:',
-        message: 'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
+        message:
+          'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
         note: ''
       },
       addressSeparated: {
@@ -497,12 +512,14 @@ export const relationships = {
       },
       dateSeparated: {
         title: 'Estimate the date if unsure',
-        message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+        message:
+          'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
         note: ''
       },
       birthdate: {
         title: 'Estimate the date if unsure',
-        message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+        message:
+          'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
         note: ''
       },
       birthplace: {
@@ -517,7 +534,8 @@ export const relationships = {
       },
       othernames: {
         title: 'Need help with other names used?',
-        message: 'Such as maiden name, names by other marriages, civil marriages, legally recognized civil unions, or legally recognized domestic partnerships, nicknames, etc., and provide dates used for each name.',
+        message:
+          'Such as maiden name, names by other marriages, civil marriages, legally recognized civil unions, or legally recognized domestic partnerships, nicknames, etc., and provide dates used for each name.',
         note: ''
       },
       separated: {
@@ -537,7 +555,8 @@ export const relationships = {
       },
       hasCohabitant: {
         title: 'Need help with this question?',
-        message: 'Do you presently reside with a person, other than a spouse or legally recognized civil union/domestic partner, with whom you share bonds of affection, obligation, or other commitment, as opposed to a person with whom you live for reasons of convenience?',
+        message:
+          'Do you presently reside with a person, other than a spouse or legally recognized civil union/domestic partner, with whom you share bonds of affection, obligation, or other commitment, as opposed to a person with whom you live for reasons of convenience?',
         note: ''
       },
       citizenship: {
@@ -549,22 +568,25 @@ export const relationships = {
   },
   cohabitant: {
     heading: {
-      hasCohabitant: 'Do you presently reside with a person, other than a spouse or legally recognized civil union/domestic partner, with whom you share bonds of affection, obligation, or other commitment, as opposed to a person with whom you live for reasons of convenience?',
-      name: 'Provide your cohabitant\'s full name',
+      hasCohabitant:
+        'Do you presently reside with a person, other than a spouse or legally recognized civil union/domestic partner, with whom you share bonds of affection, obligation, or other commitment, as opposed to a person with whom you live for reasons of convenience?',
+      name: "Provide your cohabitant's full name",
       address: 'Provide location',
-      birthdate: 'Provide your cohabitant\'s birthdate',
-      telephone: 'Provide your cohabitant\'s telephone number',
-      birthplace: 'Provide your cohabitant\'s the place of birth',
-      foreignBornDocument: 'If the person is foreign born, provide one type of documentation that he or she possesses and the document number',
+      birthdate: "Provide your cohabitant's birthdate",
+      telephone: "Provide your cohabitant's telephone number",
+      birthplace: "Provide your cohabitant's the place of birth",
+      foreignBornDocument:
+        'If the person is foreign born, provide one type of documentation that he or she possesses and the document number',
       ssn: 'Provide your cohabitant’s U.S. Social Security Number',
       othernames: 'Has your cohabitant used another name?',
       appendOthernames: 'Has your cohabitant used any other names?',
-      citizenship: 'Provide your cohabitant\'s country(ies) of citizenship',
+      citizenship: "Provide your cohabitant's country(ies) of citizenship",
       cohabitationBegan: 'Provide date cohabitation residing with person began'
     },
     suggestion: {
-      title: 'Looks like you\'ve entered this person before',
-      paragraph: 'This name matches a spouse entered under the marital section.\n\nEnter only people who you presently reside with a person, other than a spouse or legally recognized civil union/domestic partner, with whom you share bonds of affection, obligation, or other commitment, as opposed to a person with whom you live for reasons of convenience (e.g. a roommate).',
+      title: "Looks like you've entered this person before",
+      paragraph:
+        'This name matches a spouse entered under the marital section.\n\nEnter only people who you presently reside with a person, other than a spouse or legally recognized civil union/domestic partner, with whom you share bonds of affection, obligation, or other commitment, as opposed to a person with whom you live for reasons of convenience (e.g. a roommate).',
       dismissLabel: 'This is not my spouse',
       label: 'Spouse match',
       useLabel: 'This is my spouse'
@@ -572,7 +594,7 @@ export const relationships = {
     othernames: {
       heading: {
         name: 'Provide full name',
-        maiden: 'Is this your cohabitant\'s maiden name?',
+        maiden: "Is this your cohabitant's maiden name?",
         used: 'Provide dates name was used'
       }
     },
@@ -591,7 +613,8 @@ export const relationships = {
     help: {
       birthdate: {
         title: 'Estimate the date if unsure',
-        message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+        message:
+          'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
         note: ''
       },
       birthplace: {
@@ -600,8 +623,10 @@ export const relationships = {
         note: ''
       },
       recognized: {
-        title: 'Need help with providing date your civil marriage, civil union, or domestic partnership was legally recognized?',
-        message: 'Provide the date your civil marriage, civil union, or domestic partnership was legally recognized',
+        title:
+          'Need help with providing date your civil marriage, civil union, or domestic partnership was legally recognized?',
+        message:
+          'Provide the date your civil marriage, civil union, or domestic partnership was legally recognized',
         note: ''
       },
       separated: {
@@ -626,17 +651,20 @@ export const relationships = {
       },
       address: {
         title: 'Need help with providing address?',
-        message: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
+        message:
+          'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
         note: ''
       },
       dateDivorced: {
         title: 'Estimate the date if unsure',
-        message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+        message:
+          'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
         note: ''
       },
       foreignBornDocument: {
         title: 'Need help with selecting the appropriate documentation?',
-        message: 'If the person is foreign born, provide one type of documentation that he or she possesses and the document number',
+        message:
+          'If the person is foreign born, provide one type of documentation that he or she possesses and the document number',
         note: ''
       },
       ssn: {
@@ -646,12 +674,14 @@ export const relationships = {
       },
       cohabitationBegan: {
         title: 'When did you start living with this person?',
-        message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+        message:
+          'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
         note: ''
       },
       hasCohabitant: {
         title: 'Cohabitation',
-        message: 'If you live with an individual for reasons of convenience (e.g. a roommate), please select no below. If you share any bonds of affection, obligation, or other commitment with an individual you cohabitate with, please select “yes” below.',
+        message:
+          'If you live with an individual for reasons of convenience (e.g. a roommate), please select no below. If you share any bonds of affection, obligation, or other commitment with an individual you cohabitate with, please select “yes” below.',
         note: ''
       },
       citizenship: {
@@ -671,14 +701,15 @@ export const relationships = {
       svgAlt: 'People who know you well 7 year coverage'
     },
     para: {
-      intro: '### Provide three people who know you well and who preferably live in the U.S.\n\nThey should be friends, peers, colleagues, college roommates, associates, etc., who are collectively aware of your activities outside of your workplace, school, or neighborhood, and whose combined association with you **covers at least the last seven (7) years.**\n\n **Do not list your spouse, former spouse (s), other relatives, or anyone listed elsewhere on this form.**'
+      intro:
+        '### Provide three people who know you well and who preferably live in the U.S.\n\nThey should be friends, peers, colleagues, college roommates, associates, etc., who are collectively aware of your activities outside of your workplace, school, or neighborhood, and whose combined association with you **covers at least the last seven (7) years.**\n\n **Do not list your spouse, former spouse (s), other relatives, or anyone listed elsewhere on this form.**'
     },
     person: {
       heading: {
         knownDates: 'Provide dates known',
-        name: 'Provide this person\'s  full name',
-        rank: 'Provide this person\'s  rank/title',
-        relationship: 'Provide this person\'s  relationship to you',
+        name: "Provide this person's  full name",
+        rank: "Provide this person's  rank/title",
+        relationship: "Provide this person's  relationship to you",
         mobileTelephone: 'Provide mobile/cell phone number for this person',
         otherTelephone: 'Provide another phone number for this person',
         email: 'Provide email address for this person',
@@ -687,7 +718,7 @@ export const relationships = {
       label: {
         address: 'This address is',
         or: 'or',
-        emailNotApplicable: 'I don\'t know',
+        emailNotApplicable: "I don't know",
         rankNotApplicable: 'Not applicable',
         relationship: {
           title: 'Check all that apply.',
@@ -701,13 +732,15 @@ export const relationships = {
       },
       gap: {
         title: 'Coverage gap',
-        para: 'There is a gap in your 7 year period. The entire 7 years should be covered with no gaps.',
+        para:
+          'There is a gap in your 7 year period. The entire 7 years should be covered with no gaps.',
         button: 'Add another person'
       },
       help: {
         knownDates: {
           title: 'Tell us the entire time you have known this person',
-          message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
+          message:
+            'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
         rank: {
@@ -717,7 +750,8 @@ export const relationships = {
         },
         relationship: {
           title: 'Need help with the relationship?',
-          message: 'Provide relationship to you for the person who knows you well',
+          message:
+            'Provide relationship to you for the person who knows you well',
           note: ''
         },
         mobileTelephone: {
@@ -737,17 +771,19 @@ export const relationships = {
         },
         address: {
           title: 'Acronyms:',
-          message: 'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
+          message:
+            'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
           note: ''
         }
       },
       collection: {
         summary: {
-          unknown: 'Provide the person\'s information below'
+          unknown: "Provide the person's information below"
         },
         description: 'Summary of people who know you',
         appendLabel: 'Add another person',
-        appendTitle: 'Do you have an additional person who knows you well to list?',
+        appendTitle:
+          'Do you have an additional person who knows you well to list?',
         itemType: 'Person'
       }
     }

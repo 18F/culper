@@ -1,7 +1,7 @@
 import IdentificationContactInformationValidator from './identificationcontacts'
 
-describe('Contact Information validation', function () {
-  it('should validate emails', function () {
+describe('Contact Information validation', function() {
+  it('should validate emails', function() {
     const tests = [
       {
         state: {
@@ -47,11 +47,16 @@ describe('Contact Information validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new IdentificationContactInformationValidator(test.state, null).validEmails()).toBe(test.expected)
+      expect(
+        new IdentificationContactInformationValidator(
+          test.state,
+          null
+        ).validEmails()
+      ).toBe(test.expected)
     })
   })
 
-  it('should validate phone numbers', function () {
+  it('should validate phone numbers', function() {
     const tests = [
       {
         state: {
@@ -140,11 +145,16 @@ describe('Contact Information validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new IdentificationContactInformationValidator(test.state, null).validPhoneNumbers()).toBe(test.expected)
+      expect(
+        new IdentificationContactInformationValidator(
+          test.state,
+          null
+        ).validPhoneNumbers()
+      ).toBe(test.expected)
     })
   })
 
-  it('should validate contact information', function () {
+  it('should validate contact information', function() {
     const tests = [
       {
         state: {
@@ -200,7 +210,12 @@ describe('Contact Information validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new IdentificationContactInformationValidator(test.state, null).isValid()).toBe(test.expected)
+      expect(
+        new IdentificationContactInformationValidator(
+          test.state,
+          null
+        ).isValid()
+      ).toBe(test.expected)
     })
   })
 })

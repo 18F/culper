@@ -6,7 +6,7 @@ import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import ToggleItem from './ToggleItem'
 
-describe("The ToggleItem component", () => {
+describe('The ToggleItem component', () => {
   const middlewares = [thunk]
   const mockStore = configureMockStore(middlewares)
 
@@ -21,7 +21,7 @@ describe("The ToggleItem component", () => {
     )
   }
 
-  it("renders a ToggleItem with subsections", () => {
+  it('renders a ToggleItem with subsections', () => {
     const section = {
       name: 'Foo',
       url: 'foo',

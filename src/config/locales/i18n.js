@@ -5,15 +5,15 @@ import en from './en'
 const locales = { en }
 
 class I18n {
-  localeId (id, locale = 'en') {
+  localeId(id, locale = 'en') {
     return `${locale}.${id}`
   }
 
-  valid (text) {
+  valid(text) {
     return !!text && text.length > 0
   }
 
-  value (id, locale = 'en') {
+  value(id, locale = 'en') {
     try {
       return id.split('.').reduce((o, i) => o[i], locales[locale]) || ''
     } catch (e) {
@@ -21,15 +21,15 @@ class I18n {
     }
   }
 
-  valueType (value) {
+  valueType(value) {
     return Object.prototype.toString.call(value)
   }
 
-  isArray (value) {
+  isArray(value) {
     return this.valueType(value) === '[object Array]'
   }
 
-  t (id, locale = 'en') {
+  t(id, locale = 'en') {
     const text = this.value(id, locale)
     if (!this.valid(text)) {
       return this.localeId(id, locale)
@@ -42,7 +42,7 @@ class I18n {
     return text
   }
 
-  m (id, locale = 'en') {
+  m(id, locale = 'en') {
     const text = this.value(id, locale)
     const localeId = this.localeId(id, locale)
     if (!this.valid(text)) {
@@ -58,7 +58,7 @@ class I18n {
     return markdown(text)
   }
 
-  m2 (id, locale = 'en') {
+  m2(id, locale = 'en') {
     const text = this.value(id, locale)
     const localeId = this.localeId(id, locale)
     if (!this.valid(text)) {
@@ -80,17 +80,21 @@ class I18n {
 export const i18n = new I18n()
 
 export const markdown = (text, key) => {
-  return (<ReactMarkdown source={text} key={key} renderers={customRenderers} />)
+  return <ReactMarkdown source={text} key={key} renderers={customRenderers} />
 }
 
 const customRenderers = {
   // We want our markdown links to open in a new tab or window since they
   // are always external links.
   link: (props, key) => {
-    return React.createElement('a', {
-      target: '_blank',
-      title: props.title || undefined,
-      href: props.href
-    }, props.children)
+    return React.createElement(
+      'a',
+      {
+        target: '_blank',
+        title: props.title || undefined,
+        href: props.href
+      },
+      props.children
+    )
   }
 }

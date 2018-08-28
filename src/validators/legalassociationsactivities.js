@@ -2,42 +2,41 @@ import DateRangeValidator from './daterange'
 import { validAccordion, validGenericTextfield } from './helpers'
 
 export default class LegalAssociationActivitiesValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.hasActivities = (data.HasActivities || {}).value
     this.list = data.List || {}
   }
 
-  validList () {
+  validList() {
     if (this.hasActivities === 'No') {
       return true
     }
 
-    return validAccordion(this.list, (item) => {
+    return validAccordion(this.list, item => {
       return new ActivitiesValidator(item).isValid()
     })
   }
 
-  isValid () {
+  isValid() {
     return this.validList()
   }
 }
 
 export class ActivitiesValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.reasons = data.Reasons
     this.dates = data.Dates
   }
 
-  validReasons () {
+  validReasons() {
     return !!this.reasons && validGenericTextfield(this.reasons)
   }
 
-  validDates () {
+  validDates() {
     return !!this.dates && new DateRangeValidator(this.dates, null).isValid()
   }
 
-  isValid () {
-    return this.validReasons() &&
-      this.validDates()
+  isValid() {
+    return this.validReasons() && this.validDates()
   }
 }

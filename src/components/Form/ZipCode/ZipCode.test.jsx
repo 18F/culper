@@ -11,8 +11,12 @@ describe('The ZipCode component', () => {
       label: 'Text input focused',
       className: 'input-focus',
       value: '',
-      onFocus: () => { focus++ },
-      onBlur: () => { blur++ }
+      onFocus: () => {
+        focus++
+      },
+      onBlur: () => {
+        blur++
+      }
     }
     const component = mount(<ZipCode {...expected} />)
     component.find('input').simulate('change')

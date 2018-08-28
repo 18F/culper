@@ -1,6 +1,6 @@
 import TaxesValidator, { TaxValidator } from './taxes'
 
-describe('taxes component validation', function () {
+describe('taxes component validation', function() {
   it('validate failures', () => {
     const tests = [
       {
@@ -36,7 +36,9 @@ describe('taxes component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new TaxValidator(test.state, null).validFailure()).toBe(test.expected)
+      expect(new TaxValidator(test.state, null).validFailure()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -102,7 +104,9 @@ describe('taxes component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new TaxValidator(test.state, null).validReason()).toBe(test.expected)
+      expect(new TaxValidator(test.state, null).validReason()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -127,7 +131,9 @@ describe('taxes component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new TaxValidator(test.state, null).validAgency()).toBe(test.expected)
+      expect(new TaxValidator(test.state, null).validAgency()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -152,7 +158,9 @@ describe('taxes component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new TaxValidator(test.state, null).validTaxType()).toBe(test.expected)
+      expect(new TaxValidator(test.state, null).validTaxType()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -193,7 +201,9 @@ describe('taxes component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new TaxValidator(test.state, null).validAmount()).toBe(test.expected)
+      expect(new TaxValidator(test.state, null).validAmount()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -278,7 +288,9 @@ describe('taxes component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new TaxValidator(test.state, null).validDescription()).toBe(test.expected)
+      expect(new TaxValidator(test.state, null).validDescription()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -311,7 +323,9 @@ describe('taxes component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new TaxesValidator(test.state, null).validHasTaxes()).toBe(test.expected)
+      expect(new TaxesValidator(test.state, null).validHasTaxes()).toBe(
+        test.expected
+      )
     })
   })
 

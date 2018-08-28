@@ -3,8 +3,8 @@ import Location from '../components/Form/Location'
 import { api } from '../services/api'
 import MockAdapter from 'axios-mock-adapter'
 
-describe('the location component', function () {
-  it('should validate locations', function () {
+describe('the location component', function() {
+  it('should validate locations', function() {
     const tests = [
       {
         data: {
@@ -105,11 +105,13 @@ describe('the location component', function () {
     ]
 
     tests.forEach(test => {
-      expect(new LocationValidator(test.data).isValid(test.fields)).toBe(test.expected)
+      expect(new LocationValidator(test.data).isValid(test.fields)).toBe(
+        test.expected
+      )
     })
   })
 
-  it('should validate fields', function () {
+  it('should validate fields', function() {
     const tests = [
       {
         data: {
@@ -136,11 +138,13 @@ describe('the location component', function () {
     ]
 
     tests.forEach(test => {
-      expect(new LocationValidator(test.data).validFields(test.fields)).toBe(test.expected)
+      expect(new LocationValidator(test.data).validFields(test.fields)).toBe(
+        test.expected
+      )
     })
   })
 
-  it('should check if international', function () {
+  it('should check if international', function() {
     const tests = [
       {
         data: {
@@ -167,11 +171,13 @@ describe('the location component', function () {
     ]
 
     tests.forEach(test => {
-      expect(new LocationValidator(test.data).isInternational()).toBe(test.expected)
+      expect(new LocationValidator(test.data).isInternational()).toBe(
+        test.expected
+      )
     })
   })
 
-  it('should check if it can geocode', function () {
+  it('should check if it can geocode', function() {
     const tests = [
       {
         data: {
@@ -221,7 +227,7 @@ describe('the location component', function () {
     })
   })
 
-  it('should handle geocode errors', function () {
+  it('should handle geocode errors', function() {
     const tests = [
       {
         data: {
@@ -252,7 +258,9 @@ describe('the location component', function () {
     ]
 
     tests.forEach(test => {
-      expect(new Geocoder(test.data).isSystemError(test.data)).toBe(test.expected)
+      expect(new Geocoder(test.data).isSystemError(test.data)).toBe(
+        test.expected
+      )
     })
   })
 
@@ -266,23 +274,27 @@ describe('the location component', function () {
         zipcode: '22202'
       },
       expected: {
-        Errors: [{
-          Error: 'error.geocode.system'
-        }]
+        Errors: [
+          {
+            Error: 'error.geocode.system'
+          }
+        ]
       }
     }
 
     api.setToken('my-token')
     const mock = new MockAdapter(api.proxy)
     mock.onPost('/me/validate').reply(200, {
-      Errors: [{
-        Error: 'error.geocode.system'
-      }]
+      Errors: [
+        {
+          Error: 'error.geocode.system'
+        }
+      ]
     })
     return new LocationValidator(test.state, null)
       .geocode()
-      .then(r => {
-      }).catch(r => {
+      .then(r => {})
+      .catch(r => {
         expect(r).toEqual(test.expected)
       })
   })
@@ -297,23 +309,27 @@ describe('the location component', function () {
         zipcode: '22202'
       },
       expected: {
-        Errors: [{
-          Error: 'error.geocode.partial'
-        }]
+        Errors: [
+          {
+            Error: 'error.geocode.partial'
+          }
+        ]
       }
     }
 
     api.setToken('my-token')
     const mock = new MockAdapter(api.proxy)
     mock.onPost('/me/validate').reply(200, {
-      Errors: [{
-        Error: 'error.geocode.partial'
-      }]
+      Errors: [
+        {
+          Error: 'error.geocode.partial'
+        }
+      ]
     })
     return new LocationValidator(test.state, null)
       .geocode()
-      .then(r => {
-      }).catch(r => {
+      .then(r => {})
+      .catch(r => {
         expect(r).toEqual(test.expected)
       })
   })
@@ -339,13 +355,13 @@ describe('the location component', function () {
     })
     return new LocationValidator(test.state, null)
       .geocode()
-      .then(r => {
-      }).catch(r => {
+      .then(r => {})
+      .catch(r => {
         expect(r).toEqual(test.expected)
       })
   })
 
-  it('should validate zipcode', function () {
+  it('should validate zipcode', function() {
     const tests = [
       {
         state: {
@@ -370,7 +386,9 @@ describe('the location component', function () {
     ]
 
     tests.forEach(test => {
-      expect(new LocationValidator(test.state, null).validZipcode()).toEqual(test.expected)
+      expect(new LocationValidator(test.state, null).validZipcode()).toEqual(
+        test.expected
+      )
     })
   })
 })

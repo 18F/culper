@@ -7,24 +7,26 @@ describe('Schema for financial taxes', () => {
       HasTerrorist: { value: 'Yes' },
       List: {
         branch: { value: 'No' },
-        items: [{
-          Item: {
-            Organization: {},
-            Address: {
-              country: null
-            },
-            Dates: {
-              from: {},
-              to: {},
-              present: null
-            },
-            Positions: {},
-            PositionsNotApplicable: {},
-            Contributions: {},
-            ContributionsNotApplicable: {},
-            Reasons: {}
+        items: [
+          {
+            Item: {
+              Organization: {},
+              Address: {
+                country: null
+              },
+              Dates: {
+                from: {},
+                to: {},
+                present: null
+              },
+              Positions: {},
+              PositionsNotApplicable: {},
+              Contributions: {},
+              ContributionsNotApplicable: {},
+              Reasons: {}
+            }
           }
-        }]
+        ]
       }
     }
 

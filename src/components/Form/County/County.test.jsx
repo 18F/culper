@@ -25,12 +25,15 @@ describe('The County component', () => {
       error: true,
       focus: false,
       valid: false,
-      onUpdate: function (event) {
+      onUpdate: function(event) {
         updates++
       }
     }
     const component = mount(<County {...expected} />)
-    component.find('input').first().simulate('change')
+    component
+      .find('input')
+      .first()
+      .simulate('change')
     expect(updates).toEqual(1)
   })
 })

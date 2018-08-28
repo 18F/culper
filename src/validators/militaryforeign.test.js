@@ -1,7 +1,9 @@
-import MilitaryForeignValidator, { ForeignServiceValidator } from './militaryforeign'
+import MilitaryForeignValidator, {
+  ForeignServiceValidator
+} from './militaryforeign'
 import Location from '../components/Form/Location'
 
-describe('Military foreign validation', function () {
+describe('Military foreign validation', function() {
   it('handle whether subject has foreign military', () => {
     const tests = [
       {
@@ -49,11 +51,13 @@ describe('Military foreign validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new MilitaryForeignValidator(test.props).isValid()).toBe(test.expected)
+      expect(new MilitaryForeignValidator(test.props).isValid()).toBe(
+        test.expected
+      )
     })
   })
 
-  it('handle overall validity', function () {
+  it('handle overall validity', function() {
     const tests = [
       {
         props: {
@@ -207,7 +211,9 @@ describe('Military foreign validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new MilitaryForeignValidator(test.props).isValid()).toBe(test.expected)
+      expect(new MilitaryForeignValidator(test.props).isValid()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -240,47 +246,49 @@ describe('Military foreign validation', function () {
           MaintainsContact: { value: 'Yes' },
           List: {
             branch: { value: 'No' },
-            items: [{
-              Item: {
-                Name: {
-                  first: 'Foo',
-                  firstInitialOnly: false,
-                  middle: 'J',
-                  middleInitialOnly: true,
-                  noMiddleName: false,
-                  last: 'Bar',
-                  lastInitialOnly: false,
-                  suffix: 'Jr'
-                },
-                Address: {
-                  street: '1234 Some Rd',
-                  city: 'Munich',
-                  country: { value: 'Germany' },
-                  layout: Location.ADDRESS
-                },
-                Title: {
-                  value: 'Test'
-                },
-                Dates: {
-                  from: {
-                    month: '1',
-                    day: '1',
-                    year: '2010',
-                    date: new Date('1/1/2010')
+            items: [
+              {
+                Item: {
+                  Name: {
+                    first: 'Foo',
+                    firstInitialOnly: false,
+                    middle: 'J',
+                    middleInitialOnly: true,
+                    noMiddleName: false,
+                    last: 'Bar',
+                    lastInitialOnly: false,
+                    suffix: 'Jr'
                   },
-                  to: {
-                    month: '1',
-                    day: '1',
-                    year: '2012',
-                    date: new Date('1/1/2012')
+                  Address: {
+                    street: '1234 Some Rd',
+                    city: 'Munich',
+                    country: { value: 'Germany' },
+                    layout: Location.ADDRESS
                   },
-                  present: false
-                },
-                Frequency: {
-                  value: 'Monthly'
+                  Title: {
+                    value: 'Test'
+                  },
+                  Dates: {
+                    from: {
+                      month: '1',
+                      day: '1',
+                      year: '2010',
+                      date: new Date('1/1/2010')
+                    },
+                    to: {
+                      month: '1',
+                      day: '1',
+                      year: '2012',
+                      date: new Date('1/1/2012')
+                    },
+                    present: false
+                  },
+                  Frequency: {
+                    value: 'Monthly'
+                  }
                 }
               }
-            }]
+            ]
           }
         },
         expected: true
@@ -288,7 +296,9 @@ describe('Military foreign validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new ForeignServiceValidator(test.state).validMaintainsContact()).toBe(test.expected)
+      expect(
+        new ForeignServiceValidator(test.state).validMaintainsContact()
+      ).toBe(test.expected)
     })
   })
 })

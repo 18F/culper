@@ -1,30 +1,35 @@
 import NameValidator from './name'
 import LocationValidator from './location'
-import { validAccordion, validGenericTextfield, validDateField, BranchCollection } from './helpers'
+import {
+  validAccordion,
+  validGenericTextfield,
+  validDateField,
+  BranchCollection
+} from './helpers'
 
 export default class ForeignBusinessContactValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.hasForeignContact = (data.HasForeignContact || {}).value
     this.list = data.List || {}
   }
 
-  validList () {
+  validList() {
     if (this.hasForeignContact === 'No') {
       return true
     }
 
-    return validAccordion(this.list, (item) => {
+    return validAccordion(this.list, item => {
       return new ContactValidator(item).isValid()
     })
   }
 
-  isValid () {
+  isValid() {
     return this.validList()
   }
 }
 
 export class ContactValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.name = data.Name
     this.location = data.Location
     this.date = data.Date
@@ -35,35 +40,39 @@ export class ContactValidator {
     this.subsequentContacts = data.SubsequentContacts
   }
 
-  validName () {
+  validName() {
     return !!this.name && new NameValidator(this.name).isValid()
   }
 
-  validLocation () {
+  validLocation() {
     return !!this.location && new LocationValidator(this.location).isValid()
   }
 
-  validDate () {
+  validDate() {
     return !!this.date && validDateField(this.date)
   }
 
-  validGovernments () {
-    return !!this.governments && !!this.governments.value && this.governments.value.length > 0
+  validGovernments() {
+    return (
+      !!this.governments &&
+      !!this.governments.value &&
+      this.governments.value.length > 0
+    )
   }
 
-  validEstablishment () {
+  validEstablishment() {
     return !!this.establishment && validGenericTextfield(this.establishment)
   }
 
-  validRepresentatives () {
+  validRepresentatives() {
     return !!this.representatives && validGenericTextfield(this.representatives)
   }
 
-  validPurpose () {
+  validPurpose() {
     return !!this.purpose && validGenericTextfield(this.purpose)
   }
 
-  validSubsequentContacts () {
+  validSubsequentContacts() {
     if (!this.subsequentContacts) {
       return false
     }
@@ -78,14 +87,17 @@ export class ContactValidator {
     }
 
     return branchValidator.each(item => {
-      return validGenericTextfield(item.Subsequent) &&
+      return (
+        validGenericTextfield(item.Subsequent) &&
         validDateField(item.Recent) &&
         validGenericTextfield(item.Future)
+      )
     })
   }
 
-  isValid () {
-    return this.validName() &&
+  isValid() {
+    return (
+      this.validName() &&
       this.validLocation() &&
       this.validDate() &&
       this.validGovernments() &&
@@ -93,5 +105,6 @@ export class ContactValidator {
       this.validRepresentatives() &&
       this.validPurpose() &&
       this.validSubsequentContacts()
+    )
   }
 }

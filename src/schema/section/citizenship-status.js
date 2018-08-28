@@ -23,7 +23,9 @@ export const citizenshipStatus = (data = {}) => {
     PriorCitizenship: form.country(data.PriorCitizenship),
     HasAlienRegistration: form.branch(data.HasAlienRegistration),
     AlienRegistrationNumber: form.text(data.AlienRegistrationNumber),
-    AlienRegistrationExpiration: form.datecontrol(data.AlienRegistrationExpiration),
+    AlienRegistrationExpiration: form.datecontrol(
+      data.AlienRegistrationExpiration
+    ),
     Basis: form.radio(data.Basis),
     PermanentResidentCardNumber: form.text(data.PermanentResidentCardNumber),
     ResidenceStatus: form.text(data.ResidenceStatus)

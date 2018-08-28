@@ -1,8 +1,10 @@
-import ForeignBusinessSponsorshipValidator, { SponsorshipValidator } from './foreignbusinesssponsorship'
+import ForeignBusinessSponsorshipValidator, {
+  SponsorshipValidator
+} from './foreignbusinesssponsorship'
 import { battery } from './helpers'
 import Location from '../components/Form/Location'
 
-describe('Foreign business sponsorship component validation', function () {
+describe('Foreign business sponsorship component validation', function() {
   it('validate foreign business sponsorship name', () => {
     const tests = [
       {

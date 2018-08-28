@@ -32,8 +32,14 @@ describe('The foreign business political component', () => {
       }
     }
     const component = mount(<Political {...expected} />)
-    component.find('.branch .yes input').at(0).simulate('change')
-    component.find('.branch .yes input').at(0).simulate('blur')
+    component
+      .find('.branch .yes input')
+      .at(0)
+      .simulate('change')
+    component
+      .find('.branch .yes input')
+      .at(0)
+      .simulate('blur')
     expect(validated).toBe(true)
   })
 
@@ -53,15 +59,27 @@ describe('The foreign business political component', () => {
           }
         ]
       },
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
     const component = mount(<Political {...expected} />)
     expect(component.find('.accordion').length).toBe(1)
-    component.find('.foreign-business-political-position input').simulate('change')
-    component.find('.foreign-business-political-dates .to .day input').simulate('change')
-    component.find('.foreign-business-political-country input').simulate('change')
-    component.find('.foreign-business-political-reason textarea').simulate('change')
-    component.find('.foreign-business-political-eligibility input').simulate('change')
+    component
+      .find('.foreign-business-political-position input')
+      .simulate('change')
+    component
+      .find('.foreign-business-political-dates .to .day input')
+      .simulate('change')
+    component
+      .find('.foreign-business-political-country input')
+      .simulate('change')
+    component
+      .find('.foreign-business-political-reason textarea')
+      .simulate('change')
+    component
+      .find('.foreign-business-political-eligibility input')
+      .simulate('change')
     expect(updates).toBe(5)
   })
 })

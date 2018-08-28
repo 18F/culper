@@ -1,12 +1,12 @@
 import { allHaveStatus, anyHasStatus } from './helpers'
 
 export default class RelationshipsValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.completed = data.Completed
     this.relationships = data.Relationships
   }
 
-  completionStatus (status) {
+  completionStatus(status) {
     let toCheck = ['relatives', 'marital', 'cohabitants', 'friends']
 
     if (allHaveStatus(this.completed)(toCheck, status, true)) {

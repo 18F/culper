@@ -3,7 +3,7 @@ import LocationValidator from './location'
 import { validDateField, validPhoneNumber } from './helpers'
 
 export default class DivorceValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.name = data.Name || {}
     this.birthdate = data.Birthdate || {}
     this.birthplace = data.BirthPlace || {}
@@ -17,12 +17,12 @@ export default class DivorceValidator {
     this.deceasedAddress = data.DeceasedAddress || {}
   }
 
-  validStatus () {
+  validStatus() {
     const statusValue = this.status.value || ''
     return ['Divorced', 'Widowed', 'Annulled'].includes(statusValue)
   }
 
-  validDeceased () {
+  validDeceased() {
     const statusValue = this.status.value || ''
     if (statusValue === 'Widowed') {
       return true
@@ -39,13 +39,14 @@ export default class DivorceValidator {
     return true
   }
 
-  validCitizenship () {
+  validCitizenship() {
     const countries = this.citizenship.value || []
     return countries.length > 0
   }
 
-  isValid () {
-    return new NameValidator(this.name).isValid() &&
+  isValid() {
+    return (
+      new NameValidator(this.name).isValid() &&
       validDateField(this.birthdate) &&
       new LocationValidator(this.birthplace).isValid() &&
       this.validCitizenship() &&
@@ -55,5 +56,6 @@ export default class DivorceValidator {
       validDateField(this.dateDivorced) &&
       this.validStatus() &&
       this.validDeceased()
+    )
   }
 }

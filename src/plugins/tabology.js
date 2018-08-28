@@ -58,7 +58,10 @@ const tabology = () => {
       // Store the origina `tabindex` value if
       //  - one was present
       //  - it has not been previously stored
-      if (utel.hasAttribute('tabindex') && `${utel.dataset.tabindex || ''}`.length !== 0) {
+      if (
+        utel.hasAttribute('tabindex') &&
+        `${utel.dataset.tabindex || ''}`.length !== 0
+      ) {
         utel.dataset.tabindex = utel.getAttribute('tabindex') || ''
       }
 

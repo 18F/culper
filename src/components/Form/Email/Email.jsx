@@ -3,7 +3,7 @@ import ValidationElement from '../ValidationElement'
 import Generic from '../Generic'
 
 export default class Email extends ValidationElement {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
@@ -17,7 +17,7 @@ export default class Email extends ValidationElement {
   /**
    * Handle the change event.
    */
-  handleChange (event) {
+  handleChange(event) {
     this.setState({ value: event.target.value }, () => {
       super.handleChange(event)
       if (this.props.onUpdate) {
@@ -29,7 +29,7 @@ export default class Email extends ValidationElement {
     })
   }
 
-  handleError (value, arr) {
+  handleError(value, arr) {
     arr = arr.map(err => {
       return {
         code: `email.${err.code}`,
@@ -41,29 +41,30 @@ export default class Email extends ValidationElement {
     return this.props.onError(value, arr)
   }
 
-  render () {
+  render() {
     return (
-      <Generic name={this.props.name}
-               label={this.props.label}
-               ariaLabel={this.props.ariaLabel}
-               placeholder={this.props.placeholder}
-               className={`email ${this.props.className || ''}`.trim()}
-               type="text"
-               disabled={this.props.disabled}
-               maxlength={this.props.maxlength}
-               pattern={this.state.pattern}
-               readonly={this.props.readonly}
-               required={this.props.required}
-               autocapitalize={this.props.autocapitalize}
-               autocorrect={this.props.autocorrect}
-               autocomplete={this.props.autocomplete}
-               spellcheck={this.props.spellcheck}
-               value={this.state.value}
-               onChange={this.handleChange}
-               onFocus={this.props.Focus}
-               onBlur={this.props.Blur}
-               onError={this.handleError}
-               />
+      <Generic
+        name={this.props.name}
+        label={this.props.label}
+        ariaLabel={this.props.ariaLabel}
+        placeholder={this.props.placeholder}
+        className={`email ${this.props.className || ''}`.trim()}
+        type="text"
+        disabled={this.props.disabled}
+        maxlength={this.props.maxlength}
+        pattern={this.state.pattern}
+        readonly={this.props.readonly}
+        required={this.props.required}
+        autocapitalize={this.props.autocapitalize}
+        autocorrect={this.props.autocorrect}
+        autocomplete={this.props.autocomplete}
+        spellcheck={this.props.spellcheck}
+        value={this.state.value}
+        onChange={this.handleChange}
+        onFocus={this.props.Focus}
+        onBlur={this.props.Blur}
+        onError={this.handleError}
+      />
     )
   }
 }
@@ -75,7 +76,9 @@ Email.defaultProps = {
   autocapitalize: false,
   autocorrect: false,
   autocomplete: true,
-  onError: (value, arr) => { return arr }
+  onError: (value, arr) => {
+    return arr
+  }
 }
 
 Email.errors = []

@@ -32,8 +32,14 @@ describe('The foreign business family component', () => {
       }
     }
     const component = mount(<Family {...expected} />)
-    component.find('.branch .yes input').at(0).simulate('change')
-    component.find('.branch .yes input').at(0).simulate('blur')
+    component
+      .find('.branch .yes input')
+      .at(0)
+      .simulate('change')
+    component
+      .find('.branch .yes input')
+      .at(0)
+      .simulate('blur')
     expect(validated).toBe(true)
   })
 
@@ -43,7 +49,9 @@ describe('The foreign business family component', () => {
       name: 'foreign-business-family',
       HasForeignFamily: { value: 'Yes' },
       List: { items: [{}] },
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
     const component = mount(<Family {...expected} />)
     expect(component.find('.accordion').length).toBe(1)

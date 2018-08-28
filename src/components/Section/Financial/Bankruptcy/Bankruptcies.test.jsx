@@ -17,7 +17,9 @@ describe('The bankruptcies component', () => {
     let updates = 0
     const expected = {
       name: 'bankruptcy',
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
     const component = mount(<Bankruptcies {...expected} />)
     component.find('.branch .yes input').simulate('change')
@@ -80,7 +82,9 @@ describe('The bankruptcies component', () => {
         value: 'Yes'
       },
       List: bankruptcyData,
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
 
     const component = mount(<Bankruptcies {...expected} />)

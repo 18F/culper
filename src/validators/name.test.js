@@ -1,7 +1,7 @@
 import NameValidator from './name'
 
-describe('Name component validation', function () {
-  it('should validate first', function () {
+describe('Name component validation', function() {
+  it('should validate first', function() {
     const tests = [
       {
         data: {
@@ -38,7 +38,7 @@ describe('Name component validation', function () {
     })
   })
 
-  it('should validate last', function () {
+  it('should validate last', function() {
     const tests = [
       {
         data: {
@@ -75,7 +75,7 @@ describe('Name component validation', function () {
     })
   })
 
-  it('should validate middle', function () {
+  it('should validate middle', function() {
     const tests = [
       {
         data: {
@@ -138,7 +138,7 @@ describe('Name component validation', function () {
     })
   })
 
-  it('should validate suffix', function () {
+  it('should validate suffix', function() {
     const tests = [
       {
         data: {
@@ -187,7 +187,7 @@ describe('Name component validation', function () {
     })
   })
 
-  it('should validate entire name', function () {
+  it('should validate entire name', function() {
     const tests = [
       {
         data: {

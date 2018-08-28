@@ -6,27 +6,29 @@ describe('Schema for financial taxes', () => {
     const data = {
       List: {
         branch: { value: 'No' },
-        items: [{
-          Item: {
-            Address: {
-              country: null
-            },
-            Name: {},
-            Dates: {
-              from: {},
-              to: {},
-              present: null
-            },
-            Email: {},
-            EmailNotApplicable: {},
-            MobileTelephone: {},
-            OtherTelephone: {},
-            Rank: {},
-            RankNotApplicable: {},
-            Relationship: {},
-            RelationshipOther: {}
+        items: [
+          {
+            Item: {
+              Address: {
+                country: null
+              },
+              Name: {},
+              Dates: {
+                from: {},
+                to: {},
+                present: null
+              },
+              Email: {},
+              EmailNotApplicable: {},
+              MobileTelephone: {},
+              OtherTelephone: {},
+              Rank: {},
+              RankNotApplicable: {},
+              Relationship: {},
+              RelationshipOther: {}
+            }
           }
-        }]
+        ]
       }
     }
 

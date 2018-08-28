@@ -7,23 +7,25 @@ describe('Schema for financial taxes', () => {
       HasHistory: { value: 'Yes' },
       List: {
         branch: { value: 'No' },
-        items: [{
-          Item: {
-            Agency: {},
-            AgencyExplanation: {},
-            AgencyNotApplicable: {},
-            Completed: {},
-            CompletedNotApplicable: {},
-            Issued: {},
-            Granted: {},
-            GrantedNotApplicable: {},
-            ClearanceLevel: {
-              Level: {},
-              Explanation: {}
-            },
-            ClearanceLevelNotApplicable: {}
+        items: [
+          {
+            Item: {
+              Agency: {},
+              AgencyExplanation: {},
+              AgencyNotApplicable: {},
+              Completed: {},
+              CompletedNotApplicable: {},
+              Issued: {},
+              Granted: {},
+              GrantedNotApplicable: {},
+              ClearanceLevel: {
+                Level: {},
+                Explanation: {}
+              },
+              ClearanceLevelNotApplicable: {}
+            }
           }
-        }]
+        ]
       }
     }
 

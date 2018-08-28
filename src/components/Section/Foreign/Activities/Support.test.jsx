@@ -32,8 +32,14 @@ describe('The foreign activities support component', () => {
       }
     }
     const component = mount(<Support {...expected} />)
-    component.find('.branch .yes input').at(0).simulate('change')
-    component.find('.branch .yes input').at(0).simulate('blur')
+    component
+      .find('.branch .yes input')
+      .at(0)
+      .simulate('change')
+    component
+      .find('.branch .yes input')
+      .at(0)
+      .simulate('blur')
     expect(validated).toBe(true)
   })
 
@@ -45,16 +51,30 @@ describe('The foreign activities support component', () => {
       List: {
         items: [{}]
       },
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
     const component = mount(<Support {...expected} />)
     expect(component.find('.accordion').length).toBe(1)
-    component.find('.foreign-activities-support-name .first input').simulate('change')
-    component.find('.foreign-activities-support-address .mailing input').simulate('change')
-    component.find('.foreign-activities-support-relationship textarea').simulate('change')
-    component.find('.foreign-activities-support-amount input').simulate('change')
-    component.find('.foreign-activities-support-frequency input').simulate('change')
-    component.find('.foreign-activities-support-citizenship input').simulate('change')
+    component
+      .find('.foreign-activities-support-name .first input')
+      .simulate('change')
+    component
+      .find('.foreign-activities-support-address .mailing input')
+      .simulate('change')
+    component
+      .find('.foreign-activities-support-relationship textarea')
+      .simulate('change')
+    component
+      .find('.foreign-activities-support-amount input')
+      .simulate('change')
+    component
+      .find('.foreign-activities-support-frequency input')
+      .simulate('change')
+    component
+      .find('.foreign-activities-support-citizenship input')
+      .simulate('change')
     expect(updates).toBe(6)
   })
 })

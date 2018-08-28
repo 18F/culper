@@ -1,7 +1,9 @@
-import OrderedCounselingsValidator, { OrderedCounselingValidator } from './alcoholorderedcounseling'
+import OrderedCounselingsValidator, {
+  OrderedCounselingValidator
+} from './alcoholorderedcounseling'
 import Location from '../components/Form/Location'
 
-describe('ordered counseling component validation', function () {
+describe('ordered counseling component validation', function() {
   it('can validate ordered counseling', () => {
     const tests = [
       {
@@ -66,7 +68,9 @@ describe('ordered counseling component validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new OrderedCounselingValidator(test.state, null).isValid()).toBe(test.expected)
+      expect(new OrderedCounselingValidator(test.state, null).isValid()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -95,7 +99,9 @@ describe('ordered counseling component validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new OrderedCounselingValidator(test.state).validCompletedTreatment()).toBe(test.expected)
+      expect(
+        new OrderedCounselingValidator(test.state).validCompletedTreatment()
+      ).toBe(test.expected)
     })
   })
 
@@ -183,14 +189,16 @@ describe('ordered counseling component validation', function () {
           HasBeenOrdered: { value: 'Yes' },
           List: {
             branch: { value: 'No' },
-            items: [{Item: {}}]
+            items: [{ Item: {} }]
           }
         },
         expected: false
       }
     ]
     tests.forEach(test => {
-      expect(new OrderedCounselingsValidator(test.state).isValid()).toBe(test.expected)
+      expect(new OrderedCounselingsValidator(test.state).isValid()).toBe(
+        test.expected
+      )
     })
   })
 })

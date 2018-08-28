@@ -11,7 +11,9 @@ describe('The NonCriminalCourtActions component', () => {
 
   it('Updates branch', () => {
     let updates = 0
-    const onUpdate = () => { updates++ }
+    const onUpdate = () => {
+      updates++
+    }
     const component = mount(<NonCriminalCourtActions onUpdate={onUpdate} />)
     expect(component.find('.non-criminal-court-actions').length).toBe(1)
     component.find('.has-court-actions .no input').simulate('change')
@@ -21,42 +23,46 @@ describe('The NonCriminalCourtActions component', () => {
   it('Updates item in accordion', () => {
     let updates = 0
     const expected = {
-      onUpdate: () => { updates++ },
+      onUpdate: () => {
+        updates++
+      },
       HasCourtActions: { value: 'Yes' },
       List: {
         branch: {
           value: 'No'
         },
-        items: [{
-          Item: {
-            CivilActionDate: {
-              day: '1',
-              month: '1',
-              year: '2016',
-              date: new Date('1/1/2016')
-            },
-            CourtName: {
-              value: 'The name'
-            },
-            CourtAddress: {
-              country: 'United States',
-              street: '1234 Some Rd',
-              city: 'Arlington',
-              state: 'Virginia',
-              zipcode: '22202',
-              layout: Location.ADDRESS
-            },
-            NatureOfAction: {
-              value: 'Nature of action'
-            },
-            ResultsOfAction: {
-              value: 'Results of action'
-            },
-            PrincipalPartyNames: {
-              value: 'John Doe'
+        items: [
+          {
+            Item: {
+              CivilActionDate: {
+                day: '1',
+                month: '1',
+                year: '2016',
+                date: new Date('1/1/2016')
+              },
+              CourtName: {
+                value: 'The name'
+              },
+              CourtAddress: {
+                country: 'United States',
+                street: '1234 Some Rd',
+                city: 'Arlington',
+                state: 'Virginia',
+                zipcode: '22202',
+                layout: Location.ADDRESS
+              },
+              NatureOfAction: {
+                value: 'Nature of action'
+              },
+              ResultsOfAction: {
+                value: 'Results of action'
+              },
+              PrincipalPartyNames: {
+                value: 'John Doe'
+              }
             }
           }
-        }]
+        ]
       }
     }
     const component = mount(<NonCriminalCourtActions {...expected} />)

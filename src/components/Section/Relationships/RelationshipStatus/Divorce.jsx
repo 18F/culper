@@ -1,10 +1,20 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { Location, Field, DateControl, Show, RadioGroup, Radio,
-         Telephone, Name, NotApplicable, Country } from '../../../Form'
+import {
+  Location,
+  Field,
+  DateControl,
+  Show,
+  RadioGroup,
+  Radio,
+  Telephone,
+  Name,
+  NotApplicable,
+  Country
+} from '../../../Form'
 
 export default class Divorce extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.updateName = this.updateName.bind(this)
@@ -18,10 +28,12 @@ export default class Divorce extends React.Component {
     this.updateStatus = this.updateStatus.bind(this)
     this.updateDeceased = this.updateDeceased.bind(this)
     this.updateDeceasedAddress = this.updateDeceasedAddress.bind(this)
-    this.updateDeceasedAddressNotApplicable = this.updateDeceasedAddressNotApplicable.bind(this)
+    this.updateDeceasedAddressNotApplicable = this.updateDeceasedAddressNotApplicable.bind(
+      this
+    )
   }
 
-  update (queue) {
+  update(queue) {
     this.props.onUpdate({
       Name: this.props.Name,
       Birthdate: this.props.Birthdate,
@@ -38,263 +50,312 @@ export default class Divorce extends React.Component {
     })
   }
 
-  updateName (values) {
+  updateName(values) {
     this.update({
       Name: values
     })
   }
 
-  updateBirthdate (values) {
+  updateBirthdate(values) {
     this.update({
       Birthdate: values
     })
   }
 
-  updateBirthPlace (values) {
+  updateBirthPlace(values) {
     this.update({
       BirthPlace: values
     })
   }
 
-  updateCitizenship (values) {
+  updateCitizenship(values) {
     this.update({
       Citizenship: values
     })
   }
 
-  updateTelephone (values) {
+  updateTelephone(values) {
     this.update({
       Telephone: values
     })
   }
 
-  updateRecognized (values) {
+  updateRecognized(values) {
     this.update({
       Recognized: values
     })
   }
 
-  updateAddress (values) {
+  updateAddress(values) {
     this.update({
       Address: values
     })
   }
 
-  updateDateDivorced (values) {
+  updateDateDivorced(values) {
     this.update({
       DateDivorced: values
     })
   }
 
-  updateStatus (values) {
+  updateStatus(values) {
     this.update({
       Status: values
     })
   }
 
-  updateDeceased (values) {
+  updateDeceased(values) {
     this.update({
       Deceased: values
     })
   }
 
-  updateDeceasedAddress (values) {
+  updateDeceasedAddress(values) {
     this.update({
       DeceasedAddress: values
     })
   }
 
-  updateDeceasedAddressNotApplicable (values) {
+  updateDeceasedAddressNotApplicable(values) {
     this.update({
       DeceasedAddressNotApplicable: values
     })
   }
 
-  render () {
+  render() {
     return (
       <div className="divorce">
-        <Field title={i18n.t('relationships.civilUnion.heading.name')}
-               optional={true}
-               filterErrors={Name.requiredErrorsOnly}
-               scrollIntoView={this.props.scrollIntoView}
-               adjustFor="labels">
-          <Name name="Name"
-                {...this.props.Name}
-                onUpdate={this.updateName}
-                onError={this.props.onError}
-                required={this.props.required}
-                />
+        <Field
+          title={i18n.t('relationships.civilUnion.heading.name')}
+          optional={true}
+          filterErrors={Name.requiredErrorsOnly}
+          scrollIntoView={this.props.scrollIntoView}
+          adjustFor="labels">
+          <Name
+            name="Name"
+            {...this.props.Name}
+            onUpdate={this.updateName}
+            onError={this.props.onError}
+            required={this.props.required}
+          />
         </Field>
 
-        <Field help="relationships.civilUnion.divorce.help.birthdate"
-               title={i18n.t('relationships.civilUnion.divorce.heading.birthdate')}
-               scrollIntoView={this.props.scrollIntoView}
-               adjustFor="datecontrol">
-          <DateControl name="birthdate"
-                       className="birthdate"
-                       {...this.props.Birthdate}
-                       relationship="Other"
-                       onUpdate={this.updateBirthdate}
-                       onError={this.props.onError}
-                       required={this.props.required}
-                       />
+        <Field
+          help="relationships.civilUnion.divorce.help.birthdate"
+          title={i18n.t('relationships.civilUnion.divorce.heading.birthdate')}
+          scrollIntoView={this.props.scrollIntoView}
+          adjustFor="datecontrol">
+          <DateControl
+            name="birthdate"
+            className="birthdate"
+            {...this.props.Birthdate}
+            relationship="Other"
+            onUpdate={this.updateBirthdate}
+            onError={this.props.onError}
+            required={this.props.required}
+          />
         </Field>
 
-        <Field title={i18n.t('relationships.civilUnion.divorce.heading.birthplace')}
-               scrollIntoView={this.props.scrollIntoView}>
-          <Location name="birthplace"
-                    {...this.props.BirthPlace}
-                    layout={Location.BIRTHPLACE}
-                    label={i18n.t('relationships.civilUnion.divorce.label.birthplace')}
-                    className="birthplace"
-                    onUpdate={this.updateBirthPlace}
-                    onError={this.props.onError}
-                    required={this.props.required}
-                    />
+        <Field
+          title={i18n.t('relationships.civilUnion.divorce.heading.birthplace')}
+          scrollIntoView={this.props.scrollIntoView}>
+          <Location
+            name="birthplace"
+            {...this.props.BirthPlace}
+            layout={Location.BIRTHPLACE}
+            label={i18n.t('relationships.civilUnion.divorce.label.birthplace')}
+            className="birthplace"
+            onUpdate={this.updateBirthPlace}
+            onError={this.props.onError}
+            required={this.props.required}
+          />
         </Field>
 
-        <Field title={i18n.t('relationships.civilUnion.divorce.heading.citizenship')}
-               scrollIntoView={this.props.scrollIntoView}>
-          <Country name="Citizenship"
-                   multiple={true}
-                   {...this.props.Citizenship}
-                   className="citizenship"
-                   onError={this.props.onError}
-                   onUpdate={this.updateCitizenship}
-                   required={this.props.required}
-                   />
+        <Field
+          title={i18n.t('relationships.civilUnion.divorce.heading.citizenship')}
+          scrollIntoView={this.props.scrollIntoView}>
+          <Country
+            name="Citizenship"
+            multiple={true}
+            {...this.props.Citizenship}
+            className="citizenship"
+            onError={this.props.onError}
+            onUpdate={this.updateCitizenship}
+            required={this.props.required}
+          />
         </Field>
 
-        <Field title={i18n.t('relationships.civilUnion.divorce.heading.telephone')}
-               className="override-required"
-               scrollIntoView={this.props.scrollIntoView}
-               adjustFor="telephone">
-          <Telephone name="Telephone"
-                     {...this.props.Telephone}
-                     onUpdate={this.updateTelephone}
-                     onError={this.props.onError}
-                     required={this.props.required}
-                     />
+        <Field
+          title={i18n.t('relationships.civilUnion.divorce.heading.telephone')}
+          className="override-required"
+          scrollIntoView={this.props.scrollIntoView}
+          adjustFor="telephone">
+          <Telephone
+            name="Telephone"
+            {...this.props.Telephone}
+            onUpdate={this.updateTelephone}
+            onError={this.props.onError}
+            required={this.props.required}
+          />
         </Field>
 
-        <Field help="relationships.civilUnion.divorce.help.recognized"
-               title={i18n.t('relationships.civilUnion.divorce.heading.recognized')}
-               scrollIntoView={this.props.scrollIntoView}
-               adjustFor="datecontrol">
-          <DateControl name="Recognized"
-                       className="recognized"
-                       {...this.props.Recognized}
-                       onUpdate={this.updateRecognized}
-                       onError={this.props.onError}
-                       required={this.props.required}
-                       />
+        <Field
+          help="relationships.civilUnion.divorce.help.recognized"
+          title={i18n.t('relationships.civilUnion.divorce.heading.recognized')}
+          scrollIntoView={this.props.scrollIntoView}
+          adjustFor="datecontrol">
+          <DateControl
+            name="Recognized"
+            className="recognized"
+            {...this.props.Recognized}
+            onUpdate={this.updateRecognized}
+            onError={this.props.onError}
+            required={this.props.required}
+          />
         </Field>
 
-        <Field title={i18n.t('relationships.civilUnion.divorce.heading.address')}
-               optional={true}
-               scrollIntoView={this.props.scrollIntoView}
-               adjustFor="labels">
-          <Location name="address"
-                    className="location"
-                    {...this.props.Address}
-                    layout={Location.ADDRESS}
-                    geocode={true}
-                    onUpdate={this.updateAddress}
-                    onError={this.props.onError}
-                    required={this.props.required}
-                    />
+        <Field
+          title={i18n.t('relationships.civilUnion.divorce.heading.address')}
+          optional={true}
+          scrollIntoView={this.props.scrollIntoView}
+          adjustFor="labels">
+          <Location
+            name="address"
+            className="location"
+            {...this.props.Address}
+            layout={Location.ADDRESS}
+            geocode={true}
+            onUpdate={this.updateAddress}
+            onError={this.props.onError}
+            required={this.props.required}
+          />
         </Field>
 
-        <Field help="relationships.civilUnion.divorce.help.dateDivorced"
-               title={i18n.t('relationships.civilUnion.divorce.heading.dateDivorced')}
-               scrollIntoView={this.props.scrollIntoView}
-               adjustFor="datecontrol">
-          <DateControl name="DateDivorced"
-                       className="date-divorced"
-                       {...this.props.DateDivorced}
-                       minDate={(this.props.Recognized || {}).date}
-                       onUpdate={this.updateDateDivorced}
-                       onError={this.props.onError}
-                       required={this.props.required}
-                       />
+        <Field
+          help="relationships.civilUnion.divorce.help.dateDivorced"
+          title={i18n.t(
+            'relationships.civilUnion.divorce.heading.dateDivorced'
+          )}
+          scrollIntoView={this.props.scrollIntoView}
+          adjustFor="datecontrol">
+          <DateControl
+            name="DateDivorced"
+            className="date-divorced"
+            {...this.props.DateDivorced}
+            minDate={(this.props.Recognized || {}).date}
+            onUpdate={this.updateDateDivorced}
+            onError={this.props.onError}
+            required={this.props.required}
+          />
         </Field>
 
-        <Field title={i18n.t('relationships.civilUnion.divorce.heading.status')}
-               scrollIntoView={this.props.scrollIntoView}
-               className="status">
-          <RadioGroup name="status" selectedValue={(this.props.Status || {}).value} required={this.props.required} onError={this.props.onError}>
+        <Field
+          title={i18n.t('relationships.civilUnion.divorce.heading.status')}
+          scrollIntoView={this.props.scrollIntoView}
+          className="status">
+          <RadioGroup
+            name="status"
+            selectedValue={(this.props.Status || {}).value}
+            required={this.props.required}
+            onError={this.props.onError}>
             <Radio
               label={i18n.t('relationships.civilUnion.divorce.label.divorced')}
               value="Divorced"
               className="divorced"
               onUpdate={this.updateStatus}
               onError={this.props.onError}
-              />
+            />
             <Radio
               label={i18n.t('relationships.civilUnion.divorce.label.widowed')}
               value="Widowed"
               className="widowed"
               onUpdate={this.updateStatus}
               onError={this.props.onError}
-              />
+            />
             <Radio
               label={i18n.t('relationships.civilUnion.divorce.label.annulled')}
               value="Annulled"
               className="annulled"
               onUpdate={this.updateStatus}
               onError={this.props.onError}
-              />
+            />
           </RadioGroup>
         </Field>
 
-        <Show when={['Divorced', 'Annulled'].includes((this.props.Status || {}).value)}>
+        <Show
+          when={['Divorced', 'Annulled'].includes(
+            (this.props.Status || {}).value
+          )}>
           <div>
-            <Field title={i18n.t('relationships.civilUnion.divorce.heading.deceased')} className="deceased"
-                   scrollIntoView={this.props.scrollIntoView}>
-              <RadioGroup name="deceased" selectedValue={(this.props.Deceased || {}).value} required={this.props.required} onError={this.props.onError}>
+            <Field
+              title={i18n.t(
+                'relationships.civilUnion.divorce.heading.deceased'
+              )}
+              className="deceased"
+              scrollIntoView={this.props.scrollIntoView}>
+              <RadioGroup
+                name="deceased"
+                selectedValue={(this.props.Deceased || {}).value}
+                required={this.props.required}
+                onError={this.props.onError}>
                 <Radio
                   className="yes"
-                  label={i18n.t('relationships.civilUnion.divorce.deceased.label.yes')}
+                  label={i18n.t(
+                    'relationships.civilUnion.divorce.deceased.label.yes'
+                  )}
                   value="Yes"
                   onUpdate={this.updateDeceased}
                   onError={this.props.onError}
-                  />
+                />
                 <Radio
                   className="no widowed"
-                  label={i18n.t('relationships.civilUnion.divorce.deceased.label.no')}
+                  label={i18n.t(
+                    'relationships.civilUnion.divorce.deceased.label.no'
+                  )}
                   value="No"
                   onUpdate={this.updateDeceased}
                   onError={this.props.onError}
-                  />
+                />
                 <Radio
-                  label={i18n.t('relationships.civilUnion.divorce.deceased.label.dontKnow')}
+                  label={i18n.t(
+                    'relationships.civilUnion.divorce.deceased.label.dontKnow'
+                  )}
                   className="dk"
                   value="DK"
                   onUpdate={this.updateDeceased}
                   onError={this.props.onError}
-                  />
+                />
               </RadioGroup>
             </Field>
 
             <Show when={(this.props.Deceased || {}).value === 'No'}>
-              <Field title={i18n.t('relationships.civilUnion.divorce.heading.deceasedAddress')}
-                     optional={true}
-                     scrollIntoView={this.props.scrollIntoView}>
-                <NotApplicable name="DeceasedAddressNotApplicable"
-                               className="deceased-notapplicable"
-                               {...this.props.DeceasedAddressNotApplicable}
-                               label={i18n.t('relationships.civilUnion.deceasedAddressNotApplicable.label')}
-                               or={i18n.m('relationships.civilUnion.deceasedAddressNotApplicable.or')}
-                               onError={this.props.onError}
-                               onUpdate={this.updateDeceasedAddressNotApplicable}>
-                  <Location className="address-deceased"
-                            {...this.props.DeceasedAddress}
-                            layout={Location.ADDRESS}
-                            geocode={true}
-                            onUpdate={this.updateDeceasedAddress}
-                            onError={this.props.onError}
-                            required={this.props.required}
-                            />
+              <Field
+                title={i18n.t(
+                  'relationships.civilUnion.divorce.heading.deceasedAddress'
+                )}
+                optional={true}
+                scrollIntoView={this.props.scrollIntoView}>
+                <NotApplicable
+                  name="DeceasedAddressNotApplicable"
+                  className="deceased-notapplicable"
+                  {...this.props.DeceasedAddressNotApplicable}
+                  label={i18n.t(
+                    'relationships.civilUnion.deceasedAddressNotApplicable.label'
+                  )}
+                  or={i18n.m(
+                    'relationships.civilUnion.deceasedAddressNotApplicable.or'
+                  )}
+                  onError={this.props.onError}
+                  onUpdate={this.updateDeceasedAddressNotApplicable}>
+                  <Location
+                    className="address-deceased"
+                    {...this.props.DeceasedAddress}
+                    layout={Location.ADDRESS}
+                    geocode={true}
+                    onUpdate={this.updateDeceasedAddress}
+                    onError={this.props.onError}
+                    required={this.props.required}
+                  />
                 </NotApplicable>
               </Field>
             </Show>
@@ -307,6 +368,8 @@ export default class Divorce extends React.Component {
 
 Divorce.defaultProps = {
   DeceasedAddressNotApplicable: { applicable: true },
-  onUpdate: (queue) => {},
-  onError: (value, arr) => { return arr }
+  onUpdate: queue => {},
+  onError: (value, arr) => {
+    return arr
+  }
 }

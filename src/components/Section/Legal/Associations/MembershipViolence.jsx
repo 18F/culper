@@ -8,7 +8,7 @@ import { Accordion, Branch, Show } from '../../../Form'
 import MembershipViolenceItem from './MembershipViolenceItem'
 
 export default class MembershipViolence extends SubsectionElement {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.update = this.update.bind(this)
@@ -16,7 +16,7 @@ export default class MembershipViolence extends SubsectionElement {
     this.updateList = this.updateList.bind(this)
   }
 
-  update (queue) {
+  update(queue) {
     this.props.onUpdate({
       List: this.props.List,
       HasViolence: this.props.HasViolence,
@@ -24,21 +24,21 @@ export default class MembershipViolence extends SubsectionElement {
     })
   }
 
-  updateList (values) {
+  updateList(values) {
     this.update({
       List: values
     })
   }
 
-  updateBranch (values) {
+  updateBranch(values) {
     this.update({
       HasViolence: values,
       List: values.value === 'Yes' ? this.props.List : []
     })
   }
 
-  summary (item, index) {
-    const o = ((item && item.Item) || {})
+  summary(item, index) {
+    const o = (item && item.Item) || {}
     const dates = DateSummary(o.Dates)
     const details = (o.Organization || {}).value || ''
 
@@ -51,41 +51,52 @@ export default class MembershipViolence extends SubsectionElement {
     })
   }
 
-  render () {
+  render() {
     return (
-      <div className="section-content legal-associations-violence" {...super.dataAttributes(this.props)}>
-        <Branch name="has_violence"
-                label={i18n.t('legal.associations.violence.heading.title')}
-                labelSize="h2"
-                className="legal-associations-violence-has-violence"
-                {...this.props.HasViolence}
-                warning={true}
-                onError={this.handleError}
-                required={this.props.required}
-                onUpdate={this.updateBranch}
-                scrollIntoView={this.props.scrollIntoView}>
-        </Branch>
+      <div
+        className="section-content legal-associations-violence"
+        {...super.dataAttributes(this.props)}>
+        <Branch
+          name="has_violence"
+          label={i18n.t('legal.associations.violence.heading.title')}
+          labelSize="h2"
+          className="legal-associations-violence-has-violence"
+          {...this.props.HasViolence}
+          warning={true}
+          onError={this.handleError}
+          required={this.props.required}
+          onUpdate={this.updateBranch}
+          scrollIntoView={this.props.scrollIntoView}
+        />
 
         <Show when={this.props.HasViolence.value === 'Yes'}>
-          <Accordion defaultState={this.props.defaultState}
-                     {...this.props.List}
-                     scrollToBottom={this.props.scrollToBottom}
-                     summary={this.summary}
-                     onUpdate={this.updateList}
-                     onError={this.handleError}
-                     validator={ViolenceValidator}
-                     description={i18n.t('legal.associations.violence.collection.description')}
-                     appendTitle={i18n.t('legal.associations.violence.collection.appendTitle')}
-                     appendLabel={i18n.t('legal.associations.violence.collection.appendLabel')}
-                     required={this.props.required}
-                     scrollIntoView={this.props.scrollIntoView}>
-            <MembershipViolenceItem name="Item"
-                                    bind={true}
-                                    required={this.props.required}
-                                    scrollIntoView={this.props.scrollIntoView}
-                                    addressBooks={this.props.addressBooks}
-                                    dispatch={this.props.dispatch}
-                                    />
+          <Accordion
+            defaultState={this.props.defaultState}
+            {...this.props.List}
+            scrollToBottom={this.props.scrollToBottom}
+            summary={this.summary}
+            onUpdate={this.updateList}
+            onError={this.handleError}
+            validator={ViolenceValidator}
+            description={i18n.t(
+              'legal.associations.violence.collection.description'
+            )}
+            appendTitle={i18n.t(
+              'legal.associations.violence.collection.appendTitle'
+            )}
+            appendLabel={i18n.t(
+              'legal.associations.violence.collection.appendLabel'
+            )}
+            required={this.props.required}
+            scrollIntoView={this.props.scrollIntoView}>
+            <MembershipViolenceItem
+              name="Item"
+              bind={true}
+              required={this.props.required}
+              scrollIntoView={this.props.scrollIntoView}
+              addressBooks={this.props.addressBooks}
+              dispatch={this.props.dispatch}
+            />
           </Accordion>
         </Show>
       </div>
@@ -98,14 +109,18 @@ MembershipViolence.defaultProps = {
   HasViolence: {},
   List: Accordion.defaultList,
   defaultState: true,
-  onUpdate: (queue) => {},
-  onError: (value, arr) => { return arr },
+  onUpdate: queue => {},
+  onError: (value, arr) => {
+    return arr
+  },
   section: 'legal',
   subsection: 'associations/membership-violence-or-force',
   addressBooks: {},
-  dispatch: (action) => {},
-  validator: (data) => {
-    return validate(schema('legal.associations.membership-violence-or-force', data))
+  dispatch: action => {},
+  validator: data => {
+    return validate(
+      schema('legal.associations.membership-violence-or-force', data)
+    )
   },
   scrollToBottom: ''
 }

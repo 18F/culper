@@ -7,7 +7,8 @@ RUN go get -u golang.org/x/lint/golint
 
 WORKDIR /go/src/github.com/18F/e-QIP-prototype/api
 ENV PATH="${PATH}:${GOPATH}/src/github.com/18F/e-QIP-prototype/api/bin"
-RUN DEBIAN_FRONTEND=noninteractive apt-get -q -y update && apt-get -q -y install xmlsec1 strace;
+# libxml2-utils provides xmllint and is only required for automated tests, not production use
+RUN DEBIAN_FRONTEND=noninteractive apt-get -q -y update && apt-get -q -y install xmlsec1 strace libxml2-utils;
 
 # install dependencies
 COPY api/Gopkg.toml api/Gopkg.lock ./

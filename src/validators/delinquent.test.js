@@ -1,7 +1,7 @@
 import DelinquentValidator, { DelinquentItemValidator } from './delinquent'
 import Location from '../components/Form/Location'
 
-describe('delinquent component validation', function () {
+describe('delinquent component validation', function() {
   it('validate name', () => {
     const tests = [
       {
@@ -23,7 +23,9 @@ describe('delinquent component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new DelinquentItemValidator(test.state, null).validName()).toBe(test.expected)
+      expect(new DelinquentItemValidator(test.state, null).validName()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -50,7 +52,9 @@ describe('delinquent component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new DelinquentItemValidator(test.state, null).validInfractions()).toBe(test.expected)
+      expect(
+        new DelinquentItemValidator(test.state, null).validInfractions()
+      ).toBe(test.expected)
     })
   })
 
@@ -75,7 +79,9 @@ describe('delinquent component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new DelinquentItemValidator(test.state, null).validAccountNumber()).toBe(test.expected)
+      expect(
+        new DelinquentItemValidator(test.state, null).validAccountNumber()
+      ).toBe(test.expected)
     })
   })
 
@@ -100,7 +106,9 @@ describe('delinquent component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new DelinquentItemValidator(test.state, null).validPropertyType()).toBe(test.expected)
+      expect(
+        new DelinquentItemValidator(test.state, null).validPropertyType()
+      ).toBe(test.expected)
     })
   })
 
@@ -141,7 +149,9 @@ describe('delinquent component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new DelinquentItemValidator(test.state, null).validAmount()).toBe(test.expected)
+      expect(new DelinquentItemValidator(test.state, null).validAmount()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -166,7 +176,9 @@ describe('delinquent component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new DelinquentItemValidator(test.state, null).validReason()).toBe(test.expected)
+      expect(new DelinquentItemValidator(test.state, null).validReason()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -191,7 +203,9 @@ describe('delinquent component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new DelinquentItemValidator(test.state, null).validStatus()).toBe(test.expected)
+      expect(new DelinquentItemValidator(test.state, null).validStatus()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -218,7 +232,9 @@ describe('delinquent component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new DelinquentItemValidator(test.state, null).validDate()).toBe(test.expected)
+      expect(new DelinquentItemValidator(test.state, null).validDate()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -278,7 +294,9 @@ describe('delinquent component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new DelinquentItemValidator(test.state, null).validResolved()).toBe(test.expected)
+      expect(
+        new DelinquentItemValidator(test.state, null).validResolved()
+      ).toBe(test.expected)
     })
   })
 
@@ -303,7 +321,9 @@ describe('delinquent component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new DelinquentItemValidator(test.state, null).validCourtName()).toBe(test.expected)
+      expect(
+        new DelinquentItemValidator(test.state, null).validCourtName()
+      ).toBe(test.expected)
     })
   })
 
@@ -331,7 +351,9 @@ describe('delinquent component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new DelinquentItemValidator(test.state, null).validCourtAddress()).toBe(test.expected)
+      expect(
+        new DelinquentItemValidator(test.state, null).validCourtAddress()
+      ).toBe(test.expected)
     })
   })
 
@@ -356,7 +378,9 @@ describe('delinquent component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new DelinquentItemValidator(test.state, null).validDescription()).toBe(test.expected)
+      expect(
+        new DelinquentItemValidator(test.state, null).validDescription()
+      ).toBe(test.expected)
     })
   })
 
@@ -389,7 +413,9 @@ describe('delinquent component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new DelinquentValidator(test.state, null).validHasDelinquent()).toBe(test.expected)
+      expect(
+        new DelinquentValidator(test.state, null).validHasDelinquent()
+      ).toBe(test.expected)
     })
   })
 
@@ -493,7 +519,9 @@ describe('delinquent component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new DelinquentValidator(test.state, null).isValid()).toBe(test.expected)
+      expect(new DelinquentValidator(test.state, null).isValid()).toBe(
+        test.expected
+      )
     })
   })
 })

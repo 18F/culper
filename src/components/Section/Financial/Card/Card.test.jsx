@@ -36,20 +36,39 @@ describe('The card component', () => {
       name: 'card-abuse',
       HasCardAbuse: { value: 'Yes' },
       List: { branch: { value: 'No' }, items: [{}] },
-      onUpdate: (obj) => {
+      onUpdate: obj => {
         updates++
       }
     }
     const component = mount(<Card {...expected} />)
-    component.find('.branch .yes input').first().simulate('change')
-    component.find('.card-agency input').simulate('change', { target: { value: 'IRS' } })
-    component.find('.card-address .mailing input').simulate('change', { target: { value: '123 Some Rd' } })
-    component.find('.card-date .day input').simulate('change', { target: { name: 'day', value: '1' } })
-    component.find('.card-date .month input').simulate('change', { target: { name: 'month', value: '1' } })
-    component.find('.card-date .year input').simulate('change', { target: { name: 'year', value: '2005' } })
-    component.find('.card-reason textarea').simulate('change', { target: { value: 'Reason for not filing' } })
-    component.find('.card-amount input[type="text"]').simulate('change', { target: { value: '10000' } })
-    component.find('.card-description textarea').simulate('change', { target: { value: 'Description for not filing' } })
+    component
+      .find('.branch .yes input')
+      .first()
+      .simulate('change')
+    component
+      .find('.card-agency input')
+      .simulate('change', { target: { value: 'IRS' } })
+    component
+      .find('.card-address .mailing input')
+      .simulate('change', { target: { value: '123 Some Rd' } })
+    component
+      .find('.card-date .day input')
+      .simulate('change', { target: { name: 'day', value: '1' } })
+    component
+      .find('.card-date .month input')
+      .simulate('change', { target: { name: 'month', value: '1' } })
+    component
+      .find('.card-date .year input')
+      .simulate('change', { target: { name: 'year', value: '2005' } })
+    component
+      .find('.card-reason textarea')
+      .simulate('change', { target: { value: 'Reason for not filing' } })
+    component
+      .find('.card-amount input[type="text"]')
+      .simulate('change', { target: { value: '10000' } })
+    component
+      .find('.card-description textarea')
+      .simulate('change', { target: { value: 'Description for not filing' } })
     expect(updates).toBeGreaterThan(7)
   })
 })

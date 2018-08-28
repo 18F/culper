@@ -10,8 +10,12 @@ describe('The clearance level component', () => {
 
   it('captures level', () => {
     let level = { value: '' }
-    const onUpdate = (values) => { level = values.Level }
-    const component = mount(<ClearanceLevel Level={level} onUpdate={onUpdate} />)
+    const onUpdate = values => {
+      level = values.Level
+    }
+    const component = mount(
+      <ClearanceLevel Level={level} onUpdate={onUpdate} />
+    )
     component.find('.clearance-level-q input').simulate('change')
     expect(level.value).toBe('Q')
   })
@@ -19,10 +23,19 @@ describe('The clearance level component', () => {
   it('requires explanation if "other" is selected', () => {
     const level = { value: 'Other' }
     let updates = 0
-    const onUpdate = () => { updates++ }
-    const component = mount(<ClearanceLevel Level={level} onUpdate={onUpdate} />)
-    expect(component.find('.legal-investigations-history-clearance-explanation').length).toBe(1)
-    component.find('.legal-investigations-history-clearance-explanation textarea').simulate('change')
+    const onUpdate = () => {
+      updates++
+    }
+    const component = mount(
+      <ClearanceLevel Level={level} onUpdate={onUpdate} />
+    )
+    expect(
+      component.find('.legal-investigations-history-clearance-explanation')
+        .length
+    ).toBe(1)
+    component
+      .find('.legal-investigations-history-clearance-explanation textarea')
+      .simulate('change')
     expect(updates).toBe(1)
   })
 })

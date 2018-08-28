@@ -1,12 +1,17 @@
-import { validAccordion, validNotApplicable, validDateField, validGenericTextfield } from './helpers'
+import {
+  validAccordion,
+  validNotApplicable,
+  validDateField,
+  validGenericTextfield
+} from './helpers'
 
 export default class NonpaymentValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.hasNonpayment = (data.HasNonpayment || {}).value
     this.list = data.List || {}
   }
 
-  validHasNonpayment () {
+  validHasNonpayment() {
     if (!this.hasNonpayment) {
       return false
     }
@@ -18,24 +23,23 @@ export default class NonpaymentValidator {
     return true
   }
 
-  validList () {
+  validList() {
     if (this.validHasNonpayment() && this.hasNonpayment === 'No') {
       return true
     }
 
-    return validAccordion(this.list, (item) => {
+    return validAccordion(this.list, item => {
       return new NonpaymentItemValidator(item).isValid()
     })
   }
 
-  isValid () {
-    return this.validHasNonpayment() &&
-      this.validList()
+  isValid() {
+    return this.validHasNonpayment() && this.validList()
   }
 }
 
 export class NonpaymentItemValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.name = data.Name
     this.infractions = data.Infractions || []
     this.accountNumber = data.AccountNumber
@@ -50,56 +54,76 @@ export class NonpaymentItemValidator {
     this.description = data.Description
   }
 
-  validName () {
+  validName() {
     return !!this.name && validGenericTextfield(this.name)
   }
 
-  validInfractions () {
-    const allowed = ['Repossession', 'Defaulted', 'Collections', 'Cancelled', 'Evicted', 'Garnished', 'Delinquent', 'Any']
-    return !!this.infractions &&
+  validInfractions() {
+    const allowed = [
+      'Repossession',
+      'Defaulted',
+      'Collections',
+      'Cancelled',
+      'Evicted',
+      'Garnished',
+      'Delinquent',
+      'Any'
+    ]
+    return (
+      !!this.infractions &&
       this.infractions.length > 0 &&
-      this.infractions.every(x => { return allowed.includes(x) })
+      this.infractions.every(x => {
+        return allowed.includes(x)
+      })
+    )
   }
 
-  validAccountNumber () {
+  validAccountNumber() {
     return !!this.accountNumber && validGenericTextfield(this.accountNumber)
   }
 
-  validPropertyType () {
+  validPropertyType() {
     // This is an optional value at the moment
     return true
   }
 
-  validAmount () {
-    if (!this.amount || isNaN(parseInt(this.amount.value)) || parseInt(this.amount.value) <= 0) {
+  validAmount() {
+    if (
+      !this.amount ||
+      isNaN(parseInt(this.amount.value)) ||
+      parseInt(this.amount.value) <= 0
+    ) {
       return false
     }
 
     return true
   }
 
-  validReason () {
+  validReason() {
     return !!this.reason && validGenericTextfield(this.reason)
   }
 
-  validStatus () {
+  validStatus() {
     return !!this.status && validGenericTextfield(this.status)
   }
 
-  validDate () {
+  validDate() {
     return !!this.date && validDateField(this.date)
   }
 
-  validResolved () {
-    return validNotApplicable(this.resolvedNotApplicable, () => { return validDateField(this.resolved) })
+  validResolved() {
+    return validNotApplicable(this.resolvedNotApplicable, () => {
+      return validDateField(this.resolved)
+    })
   }
 
-  validDescription () {
+  validDescription() {
     return !!this.description && validGenericTextfield(this.description)
   }
 
-  isValid () {
-    return this.validName() &&
+  isValid() {
+    return (
+      this.validName() &&
       this.validAccountNumber() &&
       this.validPropertyType() &&
       this.validAmount() &&
@@ -108,5 +132,6 @@ export class NonpaymentItemValidator {
       this.validDate() &&
       this.validResolved() &&
       this.validDescription()
+    )
   }
 }

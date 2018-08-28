@@ -8,7 +8,7 @@ import OrderedCounseling from './OrderedCounseling'
 import { Summary, DateSummary } from '../../../Summary'
 
 export default class OrderedCounselings extends SubsectionElement {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.update = this.update.bind(this)
@@ -16,7 +16,7 @@ export default class OrderedCounselings extends SubsectionElement {
     this.updateList = this.updateList.bind(this)
   }
 
-  update (updateValues) {
+  update(updateValues) {
     if (this.props.onUpdate) {
       this.props.onUpdate({
         HasBeenOrdered: this.props.HasBeenOrdered,
@@ -26,25 +26,25 @@ export default class OrderedCounselings extends SubsectionElement {
     }
   }
 
-  updateList (values) {
+  updateList(values) {
     this.update({
       List: values
     })
   }
 
-  updateHasBeenOrdered (values) {
+  updateHasBeenOrdered(values) {
     this.update({
       HasBeenOrdered: values,
       List: values.value === 'Yes' ? this.props.List : []
     })
   }
 
-  summary (item, index) {
+  summary(item, index) {
     const o = (item || {}).Item || {}
     const counselingDates = DateSummary(o.CounselingDates)
 
     let seekers = []
-    for (const s of ((o.Seekers || {}).values || [])) {
+    for (const s of (o.Seekers || {}).values || []) {
       switch (s) {
         case 'Employer':
           seekers.push('Employer')
@@ -72,44 +72,58 @@ export default class OrderedCounselings extends SubsectionElement {
       index: index,
       left: seekers.join(', '),
       right: counselingDates,
-      placeholder: i18n.t('substance.alcohol.receivedCounseling.collection.summary')
+      placeholder: i18n.t(
+        'substance.alcohol.receivedCounseling.collection.summary'
+      )
     })
   }
 
-  render () {
+  render() {
     return (
-      <div className="section-content ordered-counselings" {...super.dataAttributes(this.props)}>
-        <Branch name="HasBeenOrdered"
-                label={i18n.t('substance.alcohol.heading.orderedCounseling')}
-                labelSize="h2"
-                className="has-been-ordered"
-                {...this.props.HasBeenOrdered}
-                warning={true}
-                onError={this.handleError}
-                required={this.props.required}
-                onUpdate={this.updateHasBeenOrdered}
-                scrollIntoView={this.props.scrollIntoView}>
-        </Branch>
+      <div
+        className="section-content ordered-counselings"
+        {...super.dataAttributes(this.props)}>
+        <Branch
+          name="HasBeenOrdered"
+          label={i18n.t('substance.alcohol.heading.orderedCounseling')}
+          labelSize="h2"
+          className="has-been-ordered"
+          {...this.props.HasBeenOrdered}
+          warning={true}
+          onError={this.handleError}
+          required={this.props.required}
+          onUpdate={this.updateHasBeenOrdered}
+          scrollIntoView={this.props.scrollIntoView}
+        />
 
         <Show when={this.props.HasBeenOrdered.value === 'Yes'}>
-          <Accordion defaultState={this.props.defaultState}
-                     {...this.props.List}
-                     scrollToBottom={this.props.scrollToBottom}
-                     summary={this.summary}
-                     onUpdate={this.updateList}
-                     onError={this.handleError}
-                     validator={OrderedCounselingValidator}
-                     description={i18n.t('substance.alcohol.orderedCounseling.collection.description')}
-                     appendTitle={i18n.t('substance.alcohol.orderedCounseling.collection.appendTitle')}
-                     appendLabel={i18n.t('substance.alcohol.orderedCounseling.collection.appendLabel')}
-                     required={this.props.required}
-                     scrollIntoView={this.props.scrollIntoView}>
-        <OrderedCounseling name="Item"
-                           bind={true}
-                           addressBooks={this.props.addressBooks}
-                           dispatch={this.props.dispatch}
-                           required={this.props.required}
-                           scrollIntoView={this.props.scrollIntoView} />
+          <Accordion
+            defaultState={this.props.defaultState}
+            {...this.props.List}
+            scrollToBottom={this.props.scrollToBottom}
+            summary={this.summary}
+            onUpdate={this.updateList}
+            onError={this.handleError}
+            validator={OrderedCounselingValidator}
+            description={i18n.t(
+              'substance.alcohol.orderedCounseling.collection.description'
+            )}
+            appendTitle={i18n.t(
+              'substance.alcohol.orderedCounseling.collection.appendTitle'
+            )}
+            appendLabel={i18n.t(
+              'substance.alcohol.orderedCounseling.collection.appendLabel'
+            )}
+            required={this.props.required}
+            scrollIntoView={this.props.scrollIntoView}>
+            <OrderedCounseling
+              name="Item"
+              bind={true}
+              addressBooks={this.props.addressBooks}
+              dispatch={this.props.dispatch}
+              required={this.props.required}
+              scrollIntoView={this.props.scrollIntoView}
+            />
           </Accordion>
         </Show>
       </div>
@@ -120,12 +134,14 @@ export default class OrderedCounselings extends SubsectionElement {
 OrderedCounselings.defaultProps = {
   HasBeenOrdered: {},
   List: Accordion.defaultList,
-  onError: (value, arr) => { return arr },
+  onError: (value, arr) => {
+    return arr
+  },
   section: 'substance',
   subsection: 'alcohol/ordered',
   addressBooks: {},
-  dispatch: (action) => {},
-  validator: (data) => {
+  dispatch: action => {},
+  validator: data => {
     return validate(schema('substance.alcohol.ordered', data))
   },
   scrollToBottom: ''

@@ -1,7 +1,7 @@
 import DivorceValidator from './divorce'
 import Location from '../components/Form/Location'
 
-describe('Divorce validation', function () {
+describe('Divorce validation', function() {
   it('validates status', () => {
     const tests = [
       {
@@ -18,7 +18,9 @@ describe('Divorce validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new DivorceValidator(test.state, null).validStatus()).toBe(test.expected)
+      expect(new DivorceValidator(test.state, null).validStatus()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -61,7 +63,9 @@ describe('Divorce validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new DivorceValidator(test.state, null).validDeceased()).toBe(test.expected)
+      expect(new DivorceValidator(test.state, null).validDeceased()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -129,7 +133,9 @@ describe('Divorce validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new DivorceValidator(test.state, null).isValid()).toBe(test.expected)
+      expect(new DivorceValidator(test.state, null).isValid()).toBe(
+        test.expected
+      )
     })
   })
 })

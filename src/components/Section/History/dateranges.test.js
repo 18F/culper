@@ -1,8 +1,20 @@
-import { validDate, rangeSorter, daysInMonth, gaps,
-         daysAgo, today, ten, utc, julian, fromJulian, endOfMonth,
-         daysBetween, findPercentage } from './dateranges'
+import {
+  validDate,
+  rangeSorter,
+  daysInMonth,
+  gaps,
+  daysAgo,
+  today,
+  ten,
+  utc,
+  julian,
+  fromJulian,
+  endOfMonth,
+  daysBetween,
+  findPercentage
+} from './dateranges'
 
-describe('date ranges ', function () {
+describe('date ranges ', function() {
   it('validate valid date', () => {
     const tests = [
       {
@@ -85,18 +97,12 @@ describe('date ranges ', function () {
   it('gaps', () => {
     const tests = [
       {
-        ranges: [
-          { from: ten, to: today }
-        ],
+        ranges: [{ from: ten, to: today }],
         expected: []
       },
       {
-        ranges: [
-          { from: daysAgo(today, 365 * 5), to: today }
-        ],
-        expected: [
-          { from: ten, to: daysAgo(today, 365 * 5) }
-        ]
+        ranges: [{ from: daysAgo(today, 365 * 5), to: today }],
+        expected: [{ from: ten, to: daysAgo(today, 365 * 5) }]
       },
       {
         ranges: [
@@ -112,12 +118,16 @@ describe('date ranges ', function () {
 
     const equality = (expected, actual) => {
       if (actual.date) {
-        return expected.getMonth() === actual.date.getMonth() &&
+        return (
+          expected.getMonth() === actual.date.getMonth() &&
           expected.getFullYear() === actual.date.getFullYear()
+        )
       }
 
-      return expected.getMonth() === actual.getMonth() &&
+      return (
+        expected.getMonth() === actual.getMonth() &&
         expected.getFullYear() === actual.getFullYear()
+      )
     }
 
     const minitest = (holes, expected) => {
@@ -126,7 +136,11 @@ describe('date ranges ', function () {
       }
 
       for (const hole of holes) {
-        if (!expected.some(x => equality(x.from, hole.from) && equality(x.to, hole.to))) {
+        if (
+          !expected.some(
+            x => equality(x.from, hole.from) && equality(x.to, hole.to)
+          )
+        ) {
           return false
         }
       }

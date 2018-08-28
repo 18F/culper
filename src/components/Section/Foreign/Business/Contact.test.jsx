@@ -32,8 +32,14 @@ describe('The foreign business contact component', () => {
       }
     }
     const component = mount(<Contact {...expected} />)
-    component.find('.branch .yes input').at(0).simulate('change')
-    component.find('.branch .yes input').at(0).simulate('blur')
+    component
+      .find('.branch .yes input')
+      .at(0)
+      .simulate('change')
+    component
+      .find('.branch .yes input')
+      .at(0)
+      .simulate('blur')
     expect(validated).toBe(true)
   })
 
@@ -56,17 +62,31 @@ describe('The foreign business contact component', () => {
           }
         ]
       },
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
     const component = mount(<Contact {...expected} />)
     expect(component.find('.accordion').length).toBe(1)
     updates = 0
-    component.find('.foreign-business-contact-name .first input').simulate('change')
-    component.find('.foreign-business-contact-location .yes input').simulate('change')
-    component.find('.foreign-business-contact-date .day input').simulate('change')
-    component.find('.foreign-business-contact-establishment textarea').simulate('change')
-    component.find('.foreign-business-contact-representatives textarea').simulate('change')
-    component.find('.foreign-business-contact-purpose textarea').simulate('change')
+    component
+      .find('.foreign-business-contact-name .first input')
+      .simulate('change')
+    component
+      .find('.foreign-business-contact-location .yes input')
+      .simulate('change')
+    component
+      .find('.foreign-business-contact-date .day input')
+      .simulate('change')
+    component
+      .find('.foreign-business-contact-establishment textarea')
+      .simulate('change')
+    component
+      .find('.foreign-business-contact-representatives textarea')
+      .simulate('change')
+    component
+      .find('.foreign-business-contact-purpose textarea')
+      .simulate('change')
     component.find('.has-foreign-contacts .no input').simulate('change')
     expect(updates).toBe(7)
   })

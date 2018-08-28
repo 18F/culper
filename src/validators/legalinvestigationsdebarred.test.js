@@ -1,7 +1,9 @@
-import LegalInvestigationsDebarredValidator, { DebarredValidator } from './legalinvestigationsdebarred.js'
+import LegalInvestigationsDebarredValidator, {
+  DebarredValidator
+} from './legalinvestigationsdebarred.js'
 import { battery } from './helpers'
 
-describe('Legal investigations debarred component validation', function () {
+describe('Legal investigations debarred component validation', function() {
   it('validate date completed', () => {
     const tests = [
       {

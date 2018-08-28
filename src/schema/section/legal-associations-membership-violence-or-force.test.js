@@ -7,27 +7,31 @@ describe('Schema for financial taxes', () => {
       HasViolence: { value: 'Yes' },
       List: {
         branch: { value: 'No' },
-        items: [{
-          Item: {
-            Organization: {},
-            Address: {
-              country: null
-            },
-            Dates: {
-              from: {},
-              to: {},
-              present: null
-            },
-            Positions: {},
-            PositionsNotApplicable: {},
-            Contributions: {},
-            ContributionsNotApplicable: {},
-            Reasons: {}
+        items: [
+          {
+            Item: {
+              Organization: {},
+              Address: {
+                country: null
+              },
+              Dates: {
+                from: {},
+                to: {},
+                present: null
+              },
+              Positions: {},
+              PositionsNotApplicable: {},
+              Contributions: {},
+              ContributionsNotApplicable: {},
+              Reasons: {}
+            }
           }
-        }]
+        ]
       }
     }
 
-    expect(unschema(legalAssociationsMembershipViolenceOrForce(data))).toEqual(data)
+    expect(unschema(legalAssociationsMembershipViolenceOrForce(data))).toEqual(
+      data
+    )
   })
 })

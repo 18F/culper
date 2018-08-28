@@ -8,7 +8,7 @@ import { Accordion, Branch, Show } from '../../../Form'
 import UnlawfulItem from './UnlawfulItem'
 
 export default class Unlawful extends SubsectionElement {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.update = this.update.bind(this)
@@ -16,7 +16,7 @@ export default class Unlawful extends SubsectionElement {
     this.updateList = this.updateList.bind(this)
   }
 
-  update (queue) {
+  update(queue) {
     this.props.onUpdate({
       List: this.props.List,
       HasUnlawful: this.props.HasUnlawful,
@@ -24,21 +24,21 @@ export default class Unlawful extends SubsectionElement {
     })
   }
 
-  updateList (values) {
+  updateList(values) {
     this.update({
       List: values
     })
   }
 
-  updateBranch (values) {
+  updateBranch(values) {
     this.update({
       HasUnlawful: values,
       List: values.value === 'Yes' ? this.props.List : []
     })
   }
 
-  summary (item, index) {
-    const o = ((item && item.Item) || {})
+  summary(item, index) {
+    const o = (item && item.Item) || {}
     const dates = DateSummary(o.Date)
     const incident = (o.Incident || {}).value ? o.Incident.value : ''
 
@@ -51,41 +51,52 @@ export default class Unlawful extends SubsectionElement {
     })
   }
 
-  render () {
+  render() {
     return (
-      <div className="section-content legal-technology-unlawful" {...super.dataAttributes(this.props)}>
-        <Branch name="has_unlawful"
-                label={i18n.t('legal.technology.unlawful.heading.title')}
-                labelSize="h2"
-                className="legal-technology-unlawful-has-unlawful"
-                {...this.props.HasUnlawful}
-                warning={true}
-                onError={this.handleError}
-                required={this.props.required}
-                onUpdate={this.updateBranch}
-                scrollIntoView={this.props.scrollIntoView}>
-        </Branch>
+      <div
+        className="section-content legal-technology-unlawful"
+        {...super.dataAttributes(this.props)}>
+        <Branch
+          name="has_unlawful"
+          label={i18n.t('legal.technology.unlawful.heading.title')}
+          labelSize="h2"
+          className="legal-technology-unlawful-has-unlawful"
+          {...this.props.HasUnlawful}
+          warning={true}
+          onError={this.handleError}
+          required={this.props.required}
+          onUpdate={this.updateBranch}
+          scrollIntoView={this.props.scrollIntoView}
+        />
 
         <Show when={this.props.HasUnlawful.value === 'Yes'}>
-          <Accordion defaultState={this.props.defaultState}
-                     {...this.props.List}
-                     scrollToBottom={this.props.scrollToBottom}
-                     summary={this.summary}
-                     onUpdate={this.updateList}
-                     onError={this.handleError}
-                     validator={UnlawfulValidator}
-                     description={i18n.t('legal.technology.unlawful.collection.description')}
-                     appendTitle={i18n.t('legal.technology.unlawful.collection.appendTitle')}
-                     appendLabel={i18n.t('legal.technology.unlawful.collection.appendLabel')}
-                     required={this.props.required}
-                     scrollIntoView={this.props.scrollIntoView}>
-            <UnlawfulItem name="Item"
-                          bind={true}
-                          addressBooks={this.props.addressBooks}
-                          dispatch={this.props.dispatch}
-                          required={this.props.required}
-                          scrollIntoView={this.props.scrollIntoView}
-                          />
+          <Accordion
+            defaultState={this.props.defaultState}
+            {...this.props.List}
+            scrollToBottom={this.props.scrollToBottom}
+            summary={this.summary}
+            onUpdate={this.updateList}
+            onError={this.handleError}
+            validator={UnlawfulValidator}
+            description={i18n.t(
+              'legal.technology.unlawful.collection.description'
+            )}
+            appendTitle={i18n.t(
+              'legal.technology.unlawful.collection.appendTitle'
+            )}
+            appendLabel={i18n.t(
+              'legal.technology.unlawful.collection.appendLabel'
+            )}
+            required={this.props.required}
+            scrollIntoView={this.props.scrollIntoView}>
+            <UnlawfulItem
+              name="Item"
+              bind={true}
+              addressBooks={this.props.addressBooks}
+              dispatch={this.props.dispatch}
+              required={this.props.required}
+              scrollIntoView={this.props.scrollIntoView}
+            />
           </Accordion>
         </Show>
       </div>
@@ -98,13 +109,15 @@ Unlawful.defaultProps = {
   HasUnlawful: {},
   List: Accordion.defaultList,
   defaultState: true,
-  onUpdate: (queue) => {},
-  onError: (value, arr) => { return arr },
+  onUpdate: queue => {},
+  onError: (value, arr) => {
+    return arr
+  },
   section: 'legal',
   subsection: 'technology/unlawful',
   addressBooks: {},
-  dispatch: (action) => {},
-  validator: (data) => {
+  dispatch: action => {},
+  validator: data => {
     return validate(schema('legal.technology.unlawful', data))
   },
   scrollToBottom: ''

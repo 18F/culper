@@ -6,7 +6,9 @@ describe('The NonCriminalCourtAction component', () => {
   it('no error on empty', () => {
     let updates = 0
     const expected = {
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
     const component = mount(<NonCriminalCourtAction {...expected} />)
     expect(component.find('.non-criminal-court-action').length).toEqual(1)

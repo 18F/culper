@@ -3,7 +3,7 @@ import ValidationElement from '../ValidationElement'
 import Generic from '../Generic'
 
 export default class Text extends ValidationElement {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
@@ -13,7 +13,7 @@ export default class Text extends ValidationElement {
     this.handleError = this.handleError.bind(this)
   }
 
-  componentWillReceiveProps (nextProps) {
+  componentWillReceiveProps(nextProps) {
     if (this.state.value === nextProps.value) {
       return
     }
@@ -23,7 +23,7 @@ export default class Text extends ValidationElement {
   /**
    * Handle the change event.
    */
-  handleChange (event) {
+  handleChange(event) {
     event.persist()
     this.setState({ value: this.props.prefilter(event.target.value) }, () => {
       super.handleChange(event)
@@ -34,7 +34,7 @@ export default class Text extends ValidationElement {
     })
   }
 
-  handleError (value, arr) {
+  handleError(value, arr) {
     if (this.props.prefix) {
       arr = arr.map(err => {
         return {
@@ -49,35 +49,36 @@ export default class Text extends ValidationElement {
     return this.props.onError(value, arr)
   }
 
-  render () {
+  render() {
     return (
-      <Generic name={this.props.name}
-               label={this.props.label}
-               ariaLabel={this.props.ariaLabel}
-               placeholder={this.props.placeholder}
-               type="text"
-               className={this.props.className}
-               disabled={this.props.disabled}
-               minlength={this.props.minlength}
-               maxlength={this.props.maxlength}
-               pattern={this.props.pattern}
-               readonly={this.props.readonly}
-               required={this.props.required}
-               value={this.state.value}
-               focus={this.props.focus}
-               onChange={this.handleChange}
-               onFocus={this.props.onFocus}
-               onBlur={this.props.onBlur}
-               onError={this.handleError}
-               onKeyDown={this.props.onKeyDown}
-               onCopy={this.props.onCopy}
-               onCut={this.props.onCut}
-               onPaste={this.props.onPaste}
-               clipboard={this.props.clipboard}
-               tabBack={this.props.tabBack}
-               tabNext={this.props.tabNext}
-               ref="text"
-               />
+      <Generic
+        name={this.props.name}
+        label={this.props.label}
+        ariaLabel={this.props.ariaLabel}
+        placeholder={this.props.placeholder}
+        type="text"
+        className={this.props.className}
+        disabled={this.props.disabled}
+        minlength={this.props.minlength}
+        maxlength={this.props.maxlength}
+        pattern={this.props.pattern}
+        readonly={this.props.readonly}
+        required={this.props.required}
+        value={this.state.value}
+        focus={this.props.focus}
+        onChange={this.handleChange}
+        onFocus={this.props.onFocus}
+        onBlur={this.props.onBlur}
+        onError={this.handleError}
+        onKeyDown={this.props.onKeyDown}
+        onCopy={this.props.onCopy}
+        onCut={this.props.onCut}
+        onPaste={this.props.onPaste}
+        clipboard={this.props.clipboard}
+        tabBack={this.props.tabBack}
+        tabNext={this.props.tabNext}
+        ref="text"
+      />
     )
   }
 }
@@ -87,9 +88,13 @@ Text.defaultProps = {
   value: '',
   prefix: '',
   required: false,
-  prefilter: (value) => { return value },
-  onUpdate: (queue) => {},
-  onError: (value, arr) => { return arr }
+  prefilter: value => {
+    return value
+  },
+  onUpdate: queue => {},
+  onError: (value, arr) => {
+    return arr
+  }
 }
 
 Text.errors = []

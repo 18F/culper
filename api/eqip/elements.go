@@ -22,6 +22,7 @@ type ImportRequest struct {
 
 // When processing templates, indicates that execution should stop immediately.
 const missingKeyIsError = "missingkey=error"
+const missingKeyIsEmpty = "missingkey=zero"
 
 // XML returns an xml representation of an ImportRequest
 func (a ImportRequest) XML() string {
@@ -97,7 +98,7 @@ type UserTemplate string
 // Load will use the application data in the user template.
 func (t *UserTemplate) Load(app map[string]interface{}) error {
 	tmpl := template.Must(template.New("user.xml").
-		Option(missingKeyIsError).Parse(userTemplate))
+		Option(missingKeyIsEmpty).Parse(userTemplate))
 	var output bytes.Buffer
 	if err := tmpl.Execute(&output, app); err != nil {
 		return err

@@ -1,12 +1,17 @@
 import NameValidator from './name'
 import LocationValidator from './location'
-import { validAccordion, validGenericMonthYear, validGenericTextfield, validBranch } from './helpers'
+import {
+  validAccordion,
+  validGenericMonthYear,
+  validGenericTextfield,
+  validBranch
+} from './helpers'
 
 /**
  * Validates an entire Bankruptcy section
  */
 export default class BankruptcyValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.hasBankruptcy = (data.HasBankruptcy || {}).value
     this.list = data.List || {}
   }
@@ -14,7 +19,7 @@ export default class BankruptcyValidator {
   /**
    * Validates the yes/no branching for bankruptcy
    */
-  validHasBankruptcy () {
+  validHasBankruptcy() {
     if (!this.hasBankruptcy) {
       return false
     }
@@ -26,12 +31,12 @@ export default class BankruptcyValidator {
     return true
   }
 
-  validBankruptcies () {
+  validBankruptcies() {
     if (this.validHasBankruptcy() && this.hasBankruptcy === 'No') {
       return true
     }
 
-    return validAccordion(this.list, (item) => {
+    return validAccordion(this.list, item => {
       return new BankruptcyItemValidator(item).isValid()
     })
   }
@@ -39,9 +44,8 @@ export default class BankruptcyValidator {
   /**
    * Validates all bankruptcy items
    */
-  isValid () {
-    return this.validHasBankruptcy() &&
-      this.validBankruptcies()
+  isValid() {
+    return this.validHasBankruptcy() && this.validBankruptcies()
   }
 }
 
@@ -49,7 +53,7 @@ export default class BankruptcyValidator {
  * Helper for validating single instances of a bankruptcy item
  */
 export class BankruptcyItemValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.petitionType = data.PetitionType
     this.courtAddress = data.CourtAddress
     this.courtInvolved = data.CourtInvolved
@@ -65,59 +69,67 @@ export class BankruptcyItemValidator {
     this.trusteeAddress = data.TrusteeAddress
   }
 
-  validPetitionType () {
+  validPetitionType() {
     switch ((this.petitionType || {}).value) {
-    case 'Chapter7':
-    case 'Chapter11':
-    case 'Chapter12':
-      return true
-    case 'Chapter13':
-      return validGenericTextfield(this.trustee) &&
-        new LocationValidator(this.trusteeAddress).isValid()
-    default:
-      return false
+      case 'Chapter7':
+      case 'Chapter11':
+      case 'Chapter12':
+        return true
+      case 'Chapter13':
+        return (
+          validGenericTextfield(this.trustee) &&
+          new LocationValidator(this.trusteeAddress).isValid()
+        )
+      default:
+        return false
     }
   }
 
-  validCourtAddress () {
+  validCourtAddress() {
     return new LocationValidator(this.courtAddress).isValid()
   }
 
-  validCourtInvolved () {
+  validCourtInvolved() {
     return validGenericTextfield(this.courtInvolved)
   }
 
-  validCourtNumber () {
+  validCourtNumber() {
     return validGenericTextfield(this.courtNumber)
   }
 
-  validTotalAmount () {
+  validTotalAmount() {
     return validGenericTextfield(this.totalAmount)
   }
 
-  validDateFiled () {
+  validDateFiled() {
     return validGenericMonthYear(this.dateFiled)
   }
 
-  validDateDischarged () {
-    if (this.dateDischargedNotApplicable && !this.dateDischargedNotApplicable.applicable) {
+  validDateDischarged() {
+    if (
+      this.dateDischargedNotApplicable &&
+      !this.dateDischargedNotApplicable.applicable
+    ) {
       return true
     }
 
     return validGenericMonthYear(this.dateDischarged)
   }
 
-  validName () {
+  validName() {
     return new NameValidator(this.nameDebt).isValid()
   }
 
-  validDischargeExplanation () {
-    return validBranch(this.hasDischargeExplanation) &&
+  validDischargeExplanation() {
+    return (
+      validBranch(this.hasDischargeExplanation) &&
       validGenericTextfield(this.dischargeExplanation)
+    )
   }
 
-  isValid () {
-    return this.validCourtInvolved() &&
+  isValid() {
+    return (
+      this.validCourtInvolved() &&
       this.validCourtNumber() &&
       this.validTotalAmount() &&
       this.validDateFiled() &&
@@ -125,5 +137,6 @@ export class BankruptcyItemValidator {
       this.validDischargeExplanation() &&
       this.validName() &&
       this.validPetitionType()
+    )
   }
 }

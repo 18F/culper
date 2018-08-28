@@ -13,7 +13,9 @@ export const financialBankruptcy = (data = {}) => {
         TotalAmount: form.number(xitem.TotalAmount),
         DateFiled: form.datecontrol(xitem.DateFiled),
         DateDischarged: form.datecontrol(xitem.DateDischarged),
-        DateDischargedNotApplicable: form.notapplicable(xitem.DateDischargedNotApplicable),
+        DateDischargedNotApplicable: form.notapplicable(
+          xitem.DateDischargedNotApplicable
+        ),
         HasDischargeExplanation: form.branch(xitem.HasDischargeExplanation),
         DischargeExplanation: form.textarea(xitem.DischargeExplanation),
         Trustee: form.text(xitem.Trustee),

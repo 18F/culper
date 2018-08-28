@@ -4,20 +4,28 @@ import SectionLink from './SectionLink'
 import ToggleItem from './ToggleItem'
 
 class SectionList extends React.Component {
-  render () {
+  render() {
     const className = `usa-accordion ${this.props.className}`
-    const navItems = this.props.sections.map((section) => {
+    const navItems = this.props.sections.map(section => {
       if (section.subsections) {
-        return <ToggleItem key={section.url} baseUrl={this.props.baseUrl} section={section} />
+        return (
+          <ToggleItem
+            key={section.url}
+            baseUrl={this.props.baseUrl}
+            section={section}
+          />
+        )
       }
-      return <SectionLink key={section.url} baseUrl={this.props.baseUrl} section={section} />
+      return (
+        <SectionLink
+          key={section.url}
+          baseUrl={this.props.baseUrl}
+          section={section}
+        />
+      )
     })
 
-    return (
-      <ol className={className}>
-        {navItems}
-      </ol>
-    )
+    return <ol className={className}>{navItems}</ol>
   }
 }
 

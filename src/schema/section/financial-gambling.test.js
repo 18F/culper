@@ -7,20 +7,22 @@ describe('Schema for financial gambling', () => {
       HasGamblingDebt: { value: 'Yes' },
       List: {
         branch: { value: 'No' },
-        items: [{
-          Item: {
-            Losses: {
-              value: ''
-            },
-            Description: {},
-            Actions: {},
-            Dates: {
-              from: {},
-              to: {},
-              present: null
+        items: [
+          {
+            Item: {
+              Losses: {
+                value: ''
+              },
+              Description: {},
+              Actions: {},
+              Dates: {
+                from: {},
+                to: {},
+                present: null
+              }
             }
           }
-        }]
+        ]
       }
     }
 

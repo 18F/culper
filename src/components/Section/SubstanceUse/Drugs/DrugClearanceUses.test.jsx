@@ -10,7 +10,9 @@ describe('The DrugClearanceUses component', () => {
 
   it('Performs update', () => {
     let updates = 0
-    const onUpdate = () => { updates++ }
+    const onUpdate = () => {
+      updates++
+    }
     const component = mount(<DrugClearanceUses onUpdate={onUpdate} />)
     expect(component.find('.drug-clearance-uses').length).toBe(1)
     component.find('.used-drugs .yes input').simulate('change')
@@ -19,7 +21,9 @@ describe('The DrugClearanceUses component', () => {
 
   it('Performs updates to accordion', () => {
     let updates = 0
-    const onUpdate = () => { updates++ }
+    const onUpdate = () => {
+      updates++
+    }
     const list = {
       items: [
         {
@@ -42,9 +46,18 @@ describe('The DrugClearanceUses component', () => {
         }
       ]
     }
-    const component = mount(<DrugClearanceUses onUpdate={onUpdate} UsedDrugs={{ value: 'Yes' }} List={list} />)
+    const component = mount(
+      <DrugClearanceUses
+        onUpdate={onUpdate}
+        UsedDrugs={{ value: 'Yes' }}
+        List={list}
+      />
+    )
     expect(component.find('.drug-clearance-uses').length).toBe(1)
-    component.find('.description textarea').first().simulate('change')
+    component
+      .find('.description textarea')
+      .first()
+      .simulate('change')
     expect(updates).toBe(2)
   })
 })

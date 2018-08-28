@@ -1,8 +1,8 @@
 import HistoryValidator from './history'
 import Location from '../components/Form/Location'
 
-describe('Employment component validation', function () {
-  it('should validate entire history', function () {
+describe('Employment component validation', function() {
+  it('should validate entire history', function() {
     const tests = [
       {
         data: {

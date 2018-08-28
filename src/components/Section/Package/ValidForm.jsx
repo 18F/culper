@@ -10,12 +10,12 @@ import Medical from './Medical'
 import Credit from './Credit'
 import Verify from './Verify'
 
-const signaturePresent = (data) => {
+const signaturePresent = data => {
   return new SignatureValidator(data).isValid()
 }
 
 export default class ValidForm extends ValidationElement {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.update = this.update.bind(this)
@@ -31,7 +31,7 @@ export default class ValidForm extends ValidationElement {
     }
   }
 
-  update (queue) {
+  update(queue) {
     this.props.onUpdate({
       AdditionalComments: this.props.AdditionalComments,
       General: this.props.General,
@@ -42,37 +42,37 @@ export default class ValidForm extends ValidationElement {
     })
   }
 
-  updateComments (values) {
+  updateComments(values) {
     this.update({
       AdditionalComments: values
     })
   }
 
-  updateGeneral (values) {
+  updateGeneral(values) {
     this.update({
       General: values
     })
   }
 
-  updateMedical (values) {
+  updateMedical(values) {
     this.update({
       Medical: values
     })
   }
 
-  updateCredit (values) {
+  updateCredit(values) {
     this.update({
       Credit: values
     })
   }
 
-  submit () {
+  submit() {
     if (window.confirm('Are you sure you want to submit this application?')) {
       this.props.onSubmit()
     }
   }
 
-  togglePanel (nextIndex, open = true) {
+  togglePanel(nextIndex, open = true) {
     return () => {
       let items = [...this.state.accordionItems]
       items = items.map(i => {
@@ -91,7 +91,7 @@ export default class ValidForm extends ValidationElement {
     }
   }
 
-  accordionItems () {
+  accordionItems() {
     const self = this
     return [
       {
@@ -99,17 +99,22 @@ export default class ValidForm extends ValidationElement {
         component: () => {
           return (
             <div>
-              <AdditionalComments {...self.props.AdditionalComments}
-                                  onUpdate={self.updateComments}
-                                  LegalName={self.props.LegalName}
-                                  />
+              <AdditionalComments
+                {...self.props.AdditionalComments}
+                onUpdate={self.updateComments}
+                LegalName={self.props.LegalName}
+              />
               <Show when={signaturePresent(self.props.AdditionalComments)}>
-                <button className="next-release" onClick={self.togglePanel(1)}>{i18n.t('application.validForm.next')}</button>
+                <button className="next-release" onClick={self.togglePanel(1)}>
+                  {i18n.t('application.validForm.next')}
+                </button>
               </Show>
             </div>
           )
         },
-        valid: () => { return signaturePresent(self.props.AdditionalComments) },
+        valid: () => {
+          return signaturePresent(self.props.AdditionalComments)
+        },
         open: true
       },
       {
@@ -117,30 +122,42 @@ export default class ValidForm extends ValidationElement {
         component: () => {
           return (
             <div>
-              <Verify Identification={self.props.Identification}
-                      History={self.props.History}
-                      />
+              <Verify
+                Identification={self.props.Identification}
+                History={self.props.History}
+              />
               <hr />
-              <General {...self.props.General}
-                       LegalName={self.props.LegalName}
-                       onUpdate={self.updateGeneral}
-                       />
+              <General
+                {...self.props.General}
+                LegalName={self.props.LegalName}
+                onUpdate={self.updateGeneral}
+              />
               <Show when={!self.props.hideHippa}>
                 <div>
                   <hr />
-                  <Medical {...self.props.Medical}
-                           LegalName={self.props.LegalName}
-                           onUpdate={self.updateMedical}
-                           />
+                  <Medical
+                    {...self.props.Medical}
+                    LegalName={self.props.LegalName}
+                    onUpdate={self.updateMedical}
+                  />
                 </div>
               </Show>
-              <Show when={signaturePresent(self.props.General) && (self.props.hideHippa || (!self.hideHippa && signaturePresent(self.props.Medical)))}>
-                <button className="next-release" onClick={self.togglePanel(2)}>{i18n.t('application.validForm.next')}</button>
+              <Show
+                when={
+                  signaturePresent(self.props.General) &&
+                  (self.props.hideHippa ||
+                    (!self.hideHippa && signaturePresent(self.props.Medical)))
+                }>
+                <button className="next-release" onClick={self.togglePanel(2)}>
+                  {i18n.t('application.validForm.next')}
+                </button>
               </Show>
             </div>
           )
         },
-        valid: () => { return signaturePresent(self.props.General) },
+        valid: () => {
+          return signaturePresent(self.props.General)
+        },
         open: false
       },
       {
@@ -148,32 +165,40 @@ export default class ValidForm extends ValidationElement {
         component: () => {
           return (
             <div>
-              <Credit {...self.props.Credit}
-                      onUpdate={self.updateCredit}
-                      LegalName={self.props.LegalName}
-                      />
+              <Credit
+                {...self.props.Credit}
+                onUpdate={self.updateCredit}
+                LegalName={self.props.LegalName}
+              />
             </div>
           )
         },
-        valid: () => { return signaturePresent(self.props.Credit) },
+        valid: () => {
+          return signaturePresent(self.props.Credit)
+        },
         open: false
       }
     ]
   }
 
-  render () {
+  render() {
     const accordionItems = this.state.accordionItems
     const signed = formIsSigned({ Submission: { Releases: { ...this.props } } })
-    const btnText = this.props.submitting ? i18n.t('application.validForm.submitting') : i18n.t('application.validForm.submit')
+    const btnText = this.props.submitting
+      ? i18n.t('application.validForm.submitting')
+      : i18n.t('application.validForm.submit')
     return (
       <div className="valid-form">
-        { i18n.m(`application.submissionStatus.valid2`) }
-        { i18n.m('releases.additionalComments.contents') }
+        {i18n.m(`application.submissionStatus.valid2`)}
+        {i18n.m('releases.additionalComments.contents')}
         <BasicAccordion items={accordionItems} />
         <div className="text-right">
-          <button onClick={this.submit} className="submit usa-button" disabled={this.props.submitting || !signed}>
-            { btnText }
-            <i className="fa fa-arrow-circle-right" aria-hidden="true"></i>
+          <button
+            onClick={this.submit}
+            className="submit usa-button"
+            disabled={this.props.submitting || !signed}>
+            {btnText}
+            <i className="fa fa-arrow-circle-right" aria-hidden="true" />
           </button>
         </div>
       </div>

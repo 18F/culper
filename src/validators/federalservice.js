@@ -3,54 +3,56 @@ import LocationValidator from './location'
 import { validAccordion, validGenericTextfield } from './helpers'
 
 export default class FederalServiceValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.hasFederalService = (data.HasFederalService || {}).value
     this.list = data.List
   }
 
-  validList () {
+  validList() {
     if (this.hasFederalService === 'No') {
       return true
     }
 
-    return validAccordion(this.list, (item) => {
+    return validAccordion(this.list, item => {
       return new FederalServiceItemValidator(item).isValid()
     })
   }
 
-  isValid () {
+  isValid() {
     return this.validList()
   }
 }
 
 export class FederalServiceItemValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.name = data.Name
     this.position = data.Position
     this.dates = data.Dates
     this.address = data.Address
   }
 
-  validName () {
+  validName() {
     return validGenericTextfield(this.name)
   }
 
-  validPosition () {
+  validPosition() {
     return validGenericTextfield(this.position)
   }
 
-  validAddress () {
+  validAddress() {
     return new LocationValidator(this.address).isValid()
   }
 
-  validDates () {
+  validDates() {
     return new DateRangeValidator(this.dates, null).isValid()
   }
 
-  isValid () {
-    return this.validName() &&
+  isValid() {
+    return (
+      this.validName() &&
       this.validPosition() &&
       this.validAddress() &&
       this.validDates()
+    )
   }
 }

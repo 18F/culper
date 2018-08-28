@@ -1,6 +1,15 @@
-import { validations, isActive, hasErrors, isValid, sectionsTotal, sectionsCompleted, findPosition, didRouteChange } from './navigation-helpers'
+import {
+  validations,
+  isActive,
+  hasErrors,
+  isValid,
+  sectionsTotal,
+  sectionsCompleted,
+  findPosition,
+  didRouteChange
+} from './navigation-helpers'
 
-describe('Navigation component validation', function () {
+describe('Navigation component validation', function() {
   it('can count number of validations', () => {
     const section = {
       subsections: [
@@ -8,16 +17,18 @@ describe('Navigation component validation', function () {
         { url: 'two' },
         {
           url: 'three',
-          subsections: [
-            { url: 'four' },
-            { url: 'five' }
-          ]
+          subsections: [{ url: 'four' }, { url: 'five' }]
         },
         {
           url: 'six',
           subsections: [
             { url: 'seven' },
-            { url: 'eight', hiddenFunc: () => { return true } }
+            {
+              url: 'eight',
+              hiddenFunc: () => {
+                return true
+              }
+            }
           ]
         }
       ]
@@ -27,19 +38,47 @@ describe('Navigation component validation', function () {
   })
 
   it('can determine if a path is active', () => {
-    expect(isActive('/form/identification', '/form/foreign/activities/direct')).toBe(false)
-    expect(isActive('/form/foreign', '/form/foreign/activities/direct')).toBe(true)
-    expect(isActive('/form/foreign/activities', '/form/foreign/activities/direct')).toBe(true)
-    expect(isActive('/form/foreign/activities', '/my/form/foreign/activities/direct')).toBe(false)
-    expect(isActive('/form/foreign/activities/direct', '/form/foreign/activities/direct')).toBe(true)
+    expect(
+      isActive('/form/identification', '/form/foreign/activities/direct')
+    ).toBe(false)
+    expect(isActive('/form/foreign', '/form/foreign/activities/direct')).toBe(
+      true
+    )
+    expect(
+      isActive('/form/foreign/activities', '/form/foreign/activities/direct')
+    ).toBe(true)
+    expect(
+      isActive('/form/foreign/activities', '/my/form/foreign/activities/direct')
+    ).toBe(false)
+    expect(
+      isActive(
+        '/form/foreign/activities/direct',
+        '/form/foreign/activities/direct'
+      )
+    ).toBe(true)
   })
 
   it('can determine a section has errors', () => {
     const errors = {
       foreign: [
-        { section: 'foreign', subsection: 'activities/direct', valid: false, code: 'date.month.notfound' },
-        { section: 'foreign', subsection: 'activities/direct', valid: true, code: 'acquired.length' },
-        { section: 'foreign', subsection: 'activities/indirect', valid: false, code: 'date.month.notfound' }
+        {
+          section: 'foreign',
+          subsection: 'activities/direct',
+          valid: false,
+          code: 'date.month.notfound'
+        },
+        {
+          section: 'foreign',
+          subsection: 'activities/direct',
+          valid: true,
+          code: 'acquired.length'
+        },
+        {
+          section: 'foreign',
+          subsection: 'activities/indirect',
+          valid: false,
+          code: 'date.month.notfound'
+        }
       ],
       identification: []
     }
@@ -55,7 +94,11 @@ describe('Navigation component validation', function () {
         foreign: [
           { section: 'foreign', subsection: 'activities/direct', valid: false },
           { section: 'foreign', subsection: 'activities/direct', valid: true },
-          { section: 'foreign', subsection: 'activities/indirect', valid: false }
+          {
+            section: 'foreign',
+            subsection: 'activities/indirect',
+            valid: false
+          }
         ],
         identification: [],
         citizenship: [
@@ -83,7 +126,11 @@ describe('Navigation component validation', function () {
         foreign: [
           { section: 'foreign', subsection: 'activities/direct', valid: false },
           { section: 'foreign', subsection: 'activities/direct', valid: true },
-          { section: 'foreign', subsection: 'activities/indirect', valid: false }
+          {
+            section: 'foreign',
+            subsection: 'activities/indirect',
+            valid: false
+          }
         ],
         identification: [],
         citizenship: [
@@ -99,7 +146,7 @@ describe('Navigation component validation', function () {
 })
 
 describe('UI helpers', () => {
-  it('should find the position', function () {
+  it('should find the position', function() {
     const el = {
       offsetTop: 10,
       offsetParent: {
@@ -111,8 +158,8 @@ describe('UI helpers', () => {
   })
 })
 
-describe("didRouteChange()", () => {
-  it("considers locations with the same pathname the same", function () {
+describe('didRouteChange()', () => {
+  it('considers locations with the same pathname the same', function() {
     const loc = {
       pathname: '/foo',
       otherprop: 'bar'
@@ -124,7 +171,7 @@ describe("didRouteChange()", () => {
     expect(didRouteChange(loc, prevLoc)).toEqual(false)
   })
 
-  it("considers locations with different pathnames to be different", function () {
+  it('considers locations with different pathnames to be different', function() {
     const loc = {
       pathname: '/foo',
       otherprop: 'bar'

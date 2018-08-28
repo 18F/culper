@@ -7,17 +7,19 @@ describe('Schema for financial taxes', () => {
       UsedDrugs: { value: 'Yes' },
       List: {
         branch: { value: 'No' },
-        items: [{
-          Item: {
-            Description: {},
-            InvolvementDates: {
-              from: {},
-              to: {},
-              present: null
-            },
-            EstimatedUse: {}
+        items: [
+          {
+            Item: {
+              Description: {},
+              InvolvementDates: {
+                from: {},
+                to: {},
+                present: null
+              },
+              EstimatedUse: {}
+            }
           }
-        }]
+        ]
       }
     }
 

@@ -11,10 +11,12 @@ describe('The Invalid section submission component', () => {
         section: {
           title: 'Cool'
         },
-        subsections: [{
-          name: 'Full name',
-          url: 'name'
-        }]
+        subsections: [
+          {
+            name: 'Full name',
+            url: 'name'
+          }
+        ]
       }
     }
     const component = mount(<MemoryRouter><InvalidSection {...expected} /></MemoryRouter>)

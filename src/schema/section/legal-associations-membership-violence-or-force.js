@@ -9,9 +9,13 @@ export const legalAssociationsMembershipViolenceOrForce = (data = {}) => {
         Address: form.location(xitem.Address),
         Dates: form.daterange(xitem.Dates),
         Positions: form.text(xitem.Positions),
-        PositionsNotApplicable: form.notapplicable(xitem.PositionsNotApplicable),
+        PositionsNotApplicable: form.notapplicable(
+          xitem.PositionsNotApplicable
+        ),
         Contributions: form.text(xitem.Contributions),
-        ContributionsNotApplicable: form.notapplicable(xitem.ContributionsNotApplicable),
+        ContributionsNotApplicable: form.notapplicable(
+          xitem.ContributionsNotApplicable
+        ),
         Reasons: form.textarea(xitem.Reasons)
       }
     }
