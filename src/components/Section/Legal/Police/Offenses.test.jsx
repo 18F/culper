@@ -17,7 +17,9 @@ describe('The Offenses record component', () => {
     let updates = 0
     const expected = {
       name: 'police-record',
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
     const component = mount(<Offenses {...expected} />)
     expect(component.find('.has-offenses').length).toEqual(1)
@@ -30,7 +32,9 @@ describe('The Offenses record component', () => {
     const expected = {
       name: 'police-record',
       HasOffenses: { value: 'Yes' },
-      onUpdate: () => { updates++ },
+      onUpdate: () => {
+        updates++
+      },
       List: {
         items: [
           {

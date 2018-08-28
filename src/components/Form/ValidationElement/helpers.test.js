@@ -1,6 +1,6 @@
-import { flattenObject, mergeError, triageErrors } from './ValidationElement'
+import { flattenObject, mergeError, triageErrors } from './helpers'
 
-describe('The ValidationElement component', () => {
+describe('The ValidationElement helpers', () => {
   it('can flatten an object', () => {
     const tests = [
       {
@@ -83,7 +83,9 @@ describe('The ValidationElement component', () => {
     ]
 
     tests.forEach(test => {
-      expect(triageErrors(test.section, test.previous, test.codes)).toEqual(test.expected)
+      expect(triageErrors(test.section, test.previous, test.codes)).toEqual(
+        test.expected
+      )
     })
   })
 })

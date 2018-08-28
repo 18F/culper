@@ -3,13 +3,16 @@ import { i18n } from '../../../../config'
 import { Summary, DateSummary } from '../../../Summary'
 import schema from '../../../../schema'
 import validate from '../../../../validators'
-import { CardAbuseValidator, CardAbuseItemValidator } from '../../../../validators'
+import {
+  CardAbuseValidator,
+  CardAbuseItemValidator
+} from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion } from '../../../Form'
 import CardItem from './CardItem'
 
 export default class Card extends SubsectionElement {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.updateBranch = this.updateBranch.bind(this)
@@ -17,7 +20,7 @@ export default class Card extends SubsectionElement {
     this.summary = this.summary.bind(this)
   }
 
-  update (queue) {
+  update(queue) {
     this.props.onUpdate({
       HasCardAbuse: this.props.HasCardAbuse,
       List: this.props.List,
@@ -28,7 +31,7 @@ export default class Card extends SubsectionElement {
   /**
    * Updates triggered by the branching component.
    */
-  updateBranch (values) {
+  updateBranch(values) {
     this.update({
       HasCardAbuse: values,
       List: values.value === 'Yes' ? this.props.List : {}
@@ -39,7 +42,7 @@ export default class Card extends SubsectionElement {
    * Dispatch callback initiated from the collection to notify of any new
    * updates to the items.
    */
-  updateList (values) {
+  updateList(values) {
     this.update({
       List: values
     })
@@ -48,10 +51,10 @@ export default class Card extends SubsectionElement {
   /**
    * Assists in rendering the summary section.
    */
-  summary (item, index) {
-    const obj = (item.Item || {})
-    const date = (obj.Date || {})
-    const from = DateSummary({date: date})
+  summary(item, index) {
+    const obj = item.Item || {}
+    const date = obj.Date || {}
+    const from = DateSummary({ date: date })
     const agency = (obj.Agency || {}).value || ''
 
     return Summary({
@@ -63,40 +66,45 @@ export default class Card extends SubsectionElement {
     })
   }
 
-  render () {
+  render() {
     return (
-      <div className="section-content card-abuse" {...super.dataAttributes(this.props)}>
-        <Branch name="has_cardabuse"
-                label={i18n.t('financial.card.title')}
-                labelSize="h2"
-                className="card-branch"
-                {...this.props.HasCardAbuse}
-                warning={true}
-                onUpdate={this.updateBranch}
-                required={this.props.required}
-                scrollIntoView={this.props.scrollIntoView}
-                onError={this.handleError}>
-        </Branch>
+      <div
+        className="section-content card-abuse"
+        {...super.dataAttributes(this.props)}>
+        <Branch
+          name="has_cardabuse"
+          label={i18n.t('financial.card.title')}
+          labelSize="h2"
+          className="card-branch"
+          {...this.props.HasCardAbuse}
+          warning={true}
+          onUpdate={this.updateBranch}
+          required={this.props.required}
+          scrollIntoView={this.props.scrollIntoView}
+          onError={this.handleError}
+        />
         <Show when={(this.props.HasCardAbuse || {}).value === 'Yes'}>
-          <Accordion {...this.props.List}
-                     defaultState={this.props.defaultState}
-                     scrollToBottom={this.props.scrollToBottom}
-                     onUpdate={this.updateList}
-                     onError={this.handleError}
-                     summary={this.summary}
-                     description={i18n.t('financial.card.collection.summary.title')}
-                     required={this.props.required}
-                     validator={CardAbuseItemValidator}
-                     scrollIntoView={this.props.scrollIntoView}
-                     appendTitle={i18n.t('financial.card.collection.appendTitle')}
-                     appendLabel={i18n.t('financial.card.collection.append')}>
-            <CardItem name="Item"
-                      bind={true}
-                      dispatch={this.props.dispatch}
-                      addressBooks={this.props.addressBooks}
-                      required={this.props.required}
-                      scrollIntoView={this.props.scrollIntoView}
-                      />
+          <Accordion
+            {...this.props.List}
+            defaultState={this.props.defaultState}
+            scrollToBottom={this.props.scrollToBottom}
+            onUpdate={this.updateList}
+            onError={this.handleError}
+            summary={this.summary}
+            description={i18n.t('financial.card.collection.summary.title')}
+            required={this.props.required}
+            validator={CardAbuseItemValidator}
+            scrollIntoView={this.props.scrollIntoView}
+            appendTitle={i18n.t('financial.card.collection.appendTitle')}
+            appendLabel={i18n.t('financial.card.collection.append')}>
+            <CardItem
+              name="Item"
+              bind={true}
+              dispatch={this.props.dispatch}
+              addressBooks={this.props.addressBooks}
+              required={this.props.required}
+              scrollIntoView={this.props.scrollIntoView}
+            />
           </Accordion>
         </Show>
       </div>
@@ -107,12 +115,14 @@ export default class Card extends SubsectionElement {
 Card.defaultProps = {
   HasCardAbuse: {},
   List: {},
-  onUpdate: (queue) => {},
-  onError: (value, arr) => { return arr },
+  onUpdate: queue => {},
+  onError: (value, arr) => {
+    return arr
+  },
   section: 'financial',
   subsection: 'card',
   dispatch: () => {},
-  validator: (data) => {
+  validator: data => {
     return validate(schema('financial.card', data))
   },
   defaultState: true

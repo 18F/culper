@@ -12,7 +12,7 @@ export class ErrorList extends React.Component {
    * Errors in a structured format.
    * @returns {NodeList} Structured errors.
    */
-  errors () {
+  errors() {
     const messages = this.props.errorMessages()
     if (!messages || messages.length === 0) {
       return null
@@ -28,7 +28,13 @@ export class ErrorList extends React.Component {
       const uuid = messages[key][0].uuid
       const bullets = messages[key].map((msg, i, arr) => {
         issues++
-        return <li key={i}><a href={`#${msg.id}`} title={msg.message}>{msg.message}</a></li>
+        return (
+          <li key={i}>
+            <a href={`#${msg.id}`} title={msg.message}>
+              {msg.message}
+            </a>
+          </li>
+        )
       })
       sectionErrors.push(
         <span key={title}>
@@ -48,11 +54,13 @@ export class ErrorList extends React.Component {
     return (
       <div className="error-list">
         <div className="field">
-          <h3 className="title h3">{`Here is a list of the ${issues} ${issues > 1 ? 'questions' : 'question'} with issues`}</h3>
+          <h3 className="title h3">{`Here is a list of the ${issues} ${
+            issues > 1 ? 'questions' : 'question'
+          } with issues`}</h3>
           <div className="table expand">
             <span className="messages error-messages">
               <div className="message error">
-                <i className="fa fa-exclamation"></i>
+                <i className="fa fa-exclamation" />
                 {sectionErrors}
               </div>
             </span>
@@ -66,13 +74,15 @@ export class ErrorList extends React.Component {
    * Renders the error list.
    * @returns {NodeList} The rendered component.
    */
-  render () {
+  render() {
     return this.errors()
   }
 }
 
 ErrorList.defaultProps = {
-  errorMessages: () => { return errorMessages() }
+  errorMessages: () => {
+    return errorMessages()
+  }
 }
 
 /**
@@ -80,7 +90,7 @@ ErrorList.defaultProps = {
  * @param {object} state - The application's state.
  * @returns {object} An object with section, app, and errors returned.
  */
-function mapStateToProps (state) {
+function mapStateToProps(state) {
   const section = state.section || {}
   const app = state.application || {}
   const errors = app.Errors || {}
@@ -98,7 +108,7 @@ export default connect(mapStateToProps)(ErrorList)
  * @param {Node} el - The node to use as a reference point.
  * @returns {string} The section title.
  */
-const sectionTitle = (el) => {
+const sectionTitle = el => {
   const content = closest(el, '.section-content')
   if (!content) {
     return null
@@ -133,7 +143,7 @@ const sectionTitle = (el) => {
  * @param {Node} el - The node to use as a reference point.
  * @returns {string} The accordion summary.
  */
-const accordionSummary = (el) => {
+const accordionSummary = el => {
   const accordionItem = closest(el, '.item')
   if (!accordionItem) {
     return null
@@ -157,7 +167,7 @@ const accordionSummary = (el) => {
  * @param {string} id - The unique identifier.
  * @returns {Node} The field element.
  */
-const field = (id) => {
+const field = id => {
   return document.querySelector(`.field[data-uuid="${id}"]`)
 }
 
@@ -166,7 +176,7 @@ const field = (id) => {
  * @param {Node} el - The node to use as a reference point.
  * @returns {string} The field title.
  */
-const fieldTitle = (id) => {
+const fieldTitle = id => {
   const field = document.querySelector(`.field[data-uuid="${id}"]`)
   if (!field) {
     return null
@@ -183,7 +193,7 @@ const fieldTitle = (id) => {
  * @param {Node} el - The node to use as a reference point.
  * @returns {string} The unique identifier.
  */
-const fieldId = (el) => {
+const fieldId = el => {
   const field = closest(el, '.field')
   if (!field) {
     return null
@@ -196,7 +206,7 @@ const fieldId = (el) => {
  * @param {Node} el - The node to use as a reference point.
  * @returns {bool} True if found in an accordion, and false otherwise.
  */
-export const inAccordion = (el) => {
+export const inAccordion = el => {
   return closest(el, '.accordion') !== null
 }
 
@@ -229,7 +239,9 @@ export const groupBy = (arr, getter) => {
  * @returns {object} A hash grouped by title with a value of an array of errors.
  */
 const errorMessages = () => {
-  const elements = document.querySelectorAll(':not(.error-list) .field .messages .message.error')
+  const elements = document.querySelectorAll(
+    ':not(.error-list) .field .messages .message.error'
+  )
   const messages = []
 
   for (const el of elements) {

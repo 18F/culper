@@ -4,7 +4,7 @@ import Radio from '../Radio'
 import RadioGroup from '../RadioGroup'
 
 export default class MaidenName extends ValidationElement {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.handleUpdate = this.handleUpdate.bind(this)
@@ -14,14 +14,14 @@ export default class MaidenName extends ValidationElement {
   /**
    * Handle the change event.
    */
-  handleUpdate (values) {
+  handleUpdate(values) {
     this.props.onUpdate({
       name: this.props.name,
       value: values.value
     })
   }
 
-  handleError (value, arr) {
+  handleError(value, arr) {
     arr = arr.map(err => {
       return {
         code: `maiden.${err.code}`,
@@ -34,36 +34,39 @@ export default class MaidenName extends ValidationElement {
     return this.props.onError(value, arr)
   }
 
-  render () {
+  render() {
     const klass = `maiden-name ${this.props.className || ''}`.trim()
 
     return (
       <div className={klass}>
         <label>{this.props.label}</label>
-        <RadioGroup className="option-list"
-                    selectedValue={this.props.value}
-                    onError={this.props.onError}
-                    required={this.props.required}>
-          <Radio name="maiden-name"
-                 label="Yes"
-                 value="Yes"
-                 className="yes"
-                 disabled={this.props.disabled}
-                 readonly={this.props.readonly}
-                 required={this.props.required}
-                 onUpdate={this.handleUpdate}
-                 onError={this.handleError}
-                 />
-          <Radio name="maiden-name"
-                 label="No"
-                 value="No"
-                 className="no"
-                 disabled={this.props.disabled}
-                 readonly={this.props.readonly}
-                 required={this.props.required}
-                 onUpdate={this.handleUpdate}
-                 onError={this.handleError}
-                 />
+        <RadioGroup
+          className="option-list"
+          selectedValue={this.props.value}
+          onError={this.props.onError}
+          required={this.props.required}>
+          <Radio
+            name="maiden-name"
+            label="Yes"
+            value="Yes"
+            className="yes"
+            disabled={this.props.disabled}
+            readonly={this.props.readonly}
+            required={this.props.required}
+            onUpdate={this.handleUpdate}
+            onError={this.handleError}
+          />
+          <Radio
+            name="maiden-name"
+            label="No"
+            value="No"
+            className="no"
+            disabled={this.props.disabled}
+            readonly={this.props.readonly}
+            required={this.props.required}
+            onUpdate={this.handleUpdate}
+            onError={this.handleError}
+          />
         </RadioGroup>
       </div>
     )
@@ -72,8 +75,10 @@ export default class MaidenName extends ValidationElement {
 
 MaidenName.defaultProps = {
   value: '',
-  onUpdate: (queue) => {},
-  onError: (value, arr) => { return arr }
+  onUpdate: queue => {},
+  onError: (value, arr) => {
+    return arr
+  }
 }
 
 MaidenName.errors = []

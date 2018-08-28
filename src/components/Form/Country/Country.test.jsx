@@ -19,10 +19,12 @@ describe('The Country component', () => {
       onBlur: () => {},
       onFocus: () => {}
     }
-    const options = [
-      { name: 'Belgium', value: 'Belgium' }
-    ].map(x => {
-      return <option key={x.value} value={x.value}>{x.name}</option>
+    const options = [{ name: 'Belgium', value: 'Belgium' }].map(x => {
+      return (
+        <option key={x.value} value={x.value}>
+          {x.name}
+        </option>
+      )
     })
     const component = mount(<Country {...expected}>{options}</Country>)
     component.find('.country input').simulate('change', {
@@ -31,7 +33,9 @@ describe('The Country component', () => {
       }
     })
     component.find('.country input').simulate('focus')
-    expect(component.find('.react-autosuggest__suggestions-list').length).toBeGreaterThan(0)
+    expect(
+      component.find('.react-autosuggest__suggestions-list').length
+    ).toBeGreaterThan(0)
     component.find('.country input').simulate('blur')
     expect(component.find('div').length).toBeGreaterThan(0)
   })

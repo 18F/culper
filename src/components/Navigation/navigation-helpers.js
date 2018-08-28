@@ -7,7 +7,10 @@ export const validations = (section, props = {}) => {
 
   return section.subsections
     .filter(subsection => {
-      if (subsection.hidden || (subsection.hiddenFunc && subsection.hiddenFunc(props.application))) {
+      if (
+        subsection.hidden ||
+        (subsection.hiddenFunc && subsection.hiddenFunc(props.application))
+      ) {
         return false
       }
 
@@ -22,16 +25,30 @@ export const validations = (section, props = {}) => {
     }, 0)
 }
 
-export const parseFormUrl = (url) => {
-  const parts = url.replace('/form/', '').split('/')
-  const section = parts.shift()
-  const subsectionRaw = parts.join('/')
+export const parseFormUrl = url => {
+  const crumbs = url
+    .toLowerCase()
+    .replace('/form/', '')
+    .split('/')
+  const subsectionRaw = crumbs.slice(1).join('/')
 
   return {
-    section,
+    crumbs,
+    section: crumbs[0],
     subsectionRaw,
     subsection: subsectionRaw || 'intro'
   }
+}
+
+const errorMatches = (err, routeParts) => {
+  const routeSection = routeParts.section
+  return (
+    err.section.toLowerCase() === routeSection &&
+    // either we're not within a subsection...
+    (!routeParts.subsectionRaw ||
+      // ...or the subsection matches
+      err.subsection.toLowerCase().startsWith(routeParts.subsectionRaw))
+  )
 }
 
 /**
@@ -45,48 +62,61 @@ export const hasErrors = (route, errors = {}) => {
   if (!routeParts.section) {
     return false
   }
-  const routeSection = routeParts.section.toLowerCase()
-  const sectionErrors = errors[routeSection] || []
+  const sectionErrors = errors[routeParts.section] || []
 
   return sectionErrors.some(
-    e =>
-      e.section.toLowerCase() === routeSection &&
-      // either we're not within a subsection, or the subsection matches
-      (!routeParts.subsectionRaw || e.subsection.toLowerCase().startsWith(routeParts.subsectionRaw)) &&
-      e.valid === false
+    e => errorMatches(e, routeParts) && e.valid === false
   )
+}
+
+// Find the navigation object that corresponds to this route
+const findNode = crumbs => {
+  let node = null
+  for (const crumb of crumbs) {
+    if (!node) {
+      node = navigation.find(x => x.url.toLowerCase() === crumb)
+    } else if (node.subsections) {
+      node = node.subsections.find(x => x.url.toLowerCase() === crumb)
+    }
+  }
+  return node
+}
+
+const getCompletedSections = (sections, routeParts) => {
+  const routeSection = routeParts.section
+  const routeSubSection = routeParts.subsection
+  const routeSubSectionRaw = routeParts.subsectionRaw
+
+  let completedSections = sections.filter(
+    e => e.section.toLowerCase() === routeSection
+  )
+  if (routeSubSection) {
+    completedSections = completedSections.filter(
+      e => e.subsection.toLowerCase().indexOf(routeSubSectionRaw) === 0
+    )
+  }
+
+  return completedSections.filter(e => e.valid)
 }
 
 /**
  * Determine if the route is considered complete and valid
  */
 export const isValid = (route, props = {}) => {
-  const crumbs = route.replace('/form/', '').split('/')
   const routeParts = parseFormUrl(route)
-  const routeSection = routeParts.section.toLowerCase()
-  const routeSubSection = routeParts.subsection.toLowerCase()
-
-  // Find which node we should be checking against
-  let node = null
-  for (const crumb of crumbs) {
-    if (!node) {
-      node = navigation.find(x => x.url.toLowerCase() === crumb.toLowerCase())
-    } else if (node.subsections) {
-      node = node.subsections.find(x => x.url.toLowerCase() === crumb.toLowerCase())
-    }
-  }
+  const crumbs = routeParts.crumbs
+  const routeSection = routeParts.section
+  const node = findNode(crumbs)
 
   for (const section in props.completed) {
     if (section.toLowerCase() !== routeSection) {
       continue
     }
 
-    let completedSections = props.completed[section].filter(e => e.section.toLowerCase() === routeSection)
-    if (routeSubSection) {
-      completedSections = completedSections.filter(e => e.subsection.toLowerCase().indexOf(crumbs.slice(1, crumbs.length).join('/').toLowerCase()) === 0)
-    }
+    const sections = props.completed[section]
+    const completedSections = getCompletedSections(sections, routeParts)
 
-    return completedSections.filter(e => e.valid === true).length >= validations(node, props)
+    return completedSections.length >= validations(node, props)
   }
 
   return false
@@ -105,9 +135,9 @@ export const sectionsCompleted = (store, props) => {
   let sections = 0
 
   for (const section in store) {
-    const valid = store[section]
-      .filter(e => e.section.toLowerCase() === section.toLowerCase() && e.valid === true)
-      .length
+    const valid = store[section].filter(
+      e => e.section.toLowerCase() === section.toLowerCase() && e.valid === true
+    ).length
     if (valid >= validations(navigation.find(n => n.url === section), props)) {
       sections++
     }
@@ -116,7 +146,7 @@ export const sectionsCompleted = (store, props) => {
   return sections
 }
 
-export const findPosition = (el) => {
+export const findPosition = el => {
   let currentTop = 0
 
   if (el && el.offsetParent) {
@@ -127,4 +157,10 @@ export const findPosition = (el) => {
   }
 
   return [currentTop]
+}
+
+// Compares location objects from React Router
+export const didRouteChange = (loc, prevLoc) => {
+  // https://stackoverflow.com/questions/41911309/how-to-listen-to-route-changes-in-react-router-v4/44410281#comment80823795_44410281
+  return loc.pathname !== prevLoc.pathname
 }

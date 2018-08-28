@@ -1,7 +1,7 @@
 import DiagnosisValidator from './diagnosis'
 import Location from '../components/Form/Location'
 
-describe('Diagnosis validation', function () {
+describe('Diagnosis validation', function() {
   it('validates effective', () => {
     const tests = [
       {
@@ -52,7 +52,9 @@ describe('Diagnosis validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new DiagnosisValidator(test.data).validEffective()).toBe(test.expected)
+      expect(new DiagnosisValidator(test.data).validEffective()).toBe(
+        test.expected
+      )
     })
   })
 

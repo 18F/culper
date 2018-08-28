@@ -1,6 +1,6 @@
 import * as logic from '../validators'
 
-const validate = (payload) => {
+const validate = payload => {
   if (payload && payload.type) {
     return validators[payload.type](payload.props)
   }
@@ -9,328 +9,328 @@ const validate = (payload) => {
 export default validate
 
 const validators = {
-  'benefit': (data) => {
+  benefit: data => {
     return false
   },
-  'branch': (data) => {
+  branch: data => {
     return logic.validBranch(data)
   },
-  'checkbox': (data) => {
+  checkbox: data => {
     return logic.validGenericTextfield(data)
   },
-  'checkboxgroup': (data) => {
+  checkboxgroup: data => {
     return false
   },
-  'clearancelevel': (data) => {
+  clearancelevel: data => {
     return false
   },
-  'collection': (data) => {
+  collection: data => {
     return false
   },
-  'contacts': (data) => {
+  contacts: data => {
     return false
   },
-  'coowners': (data) => {
+  coowners: data => {
     return false
   },
-  'country': (data) => {
+  country: data => {
     return false
   },
-  'datecontrol': (data) => {
+  datecontrol: data => {
     return new logic.DateControlValidator(data)
   },
-  'daterange': (data) => {
+  daterange: data => {
     return new logic.DateRangeValidator(data)
   },
-  'email': (data) => {
+  email: data => {
     return logic.validGenericTextfield(data)
   },
-  'employmentactivity': (data) => {
+  employmentactivity: data => {
     return false
   },
-  'foreignborndocument': (data) => {
+  foreignborndocument: data => {
     return new logic.ForeignBornDocumentValidator(data)
   },
-  'height': (data) => {
+  height: data => {
     return false
   },
-  'location': (data) => {
+  location: data => {
     return new logic.LocationValidator(data).isValid()
   },
-  'name': (data) => {
+  name: data => {
     return new logic.NameValidator(data).isValid()
   },
-  'notapplicable': (data) => {
+  notapplicable: data => {
     return false
   },
-  'number': (data) => {
+  number: data => {
     return false
   },
-  'physicaladdress': (data) => {
+  physicaladdress: data => {
     return false
   },
-  'radio': (data) => {
+  radio: data => {
     return logic.validGenericTextfield(data)
   },
-  'reasonleft': (data) => {
+  reasonleft: data => {
     return false
   },
-  'sentence': (data) => {
+  sentence: data => {
     return new logic.SentenceValidator(data).isValid()
   },
-  'ssn': (data) => {
+  ssn: data => {
     return logic.validSSN(data)
   },
-  'supervisor': (data) => {
+  supervisor: data => {
     return false
   },
-  'telephone': (data) => {
+  telephone: data => {
     return logic.validPhoneNumber(data)
   },
-  'text': (data) => {
+  text: data => {
     return logic.validGenericTextfield(data)
   },
-  'textarea': (data) => {
+  textarea: data => {
     return logic.validGenericTextfield(data)
   },
-  'identification.birthdate': (data) => {
+  'identification.birthdate': data => {
     return new logic.IdentificationBirthDateValidator(data).isValid()
   },
-  'identification.birthplace': (data) => {
+  'identification.birthplace': data => {
     return new logic.IdentificationBirthPlaceValidator(data).isValid()
   },
-  'identification.contacts': (data) => {
+  'identification.contacts': data => {
     return new logic.IdentificationContactInformationValidator(data).isValid()
   },
-  'identification.name': (data) => {
+  'identification.name': data => {
     return new logic.IdentificationNameValidator(data).isValid()
   },
-  'identification.othernames': (data) => {
+  'identification.othernames': data => {
     return new logic.IdentificationOtherNamesValidator(data).isValid()
   },
-  'identification.physical': (data) => {
+  'identification.physical': data => {
     return new logic.IdentificationPhysicalValidator(data).isValid()
   },
-  'identification.ssn': (data) => {
+  'identification.ssn': data => {
     return new logic.IdentificationSSNValidator(data).isValid()
   },
-  'financial.bankruptcy': (data) => {
+  'financial.bankruptcy': data => {
     return new logic.BankruptcyValidator(data).isValid()
   },
-  'financial.gambling': (data) => {
+  'financial.gambling': data => {
     return new logic.GamblingValidator(data).isValid()
   },
-  'financial.taxes': (data) => {
+  'financial.taxes': data => {
     return new logic.TaxesValidator(data).isValid()
   },
-  'financial.card': (data) => {
+  'financial.card': data => {
     return new logic.CardAbuseValidator(data).isValid()
   },
-  'financial.credit': (data) => {
+  'financial.credit': data => {
     return new logic.CreditValidator(data).isValid()
   },
-  'financial.delinquent': (data) => {
+  'financial.delinquent': data => {
     return new logic.DelinquentValidator(data).isValid()
   },
-  'financial.nonpayment': (data) => {
+  'financial.nonpayment': data => {
     return new logic.NonpaymentValidator(data).isValid()
   },
-  'history.education': (data) => {
+  'history.education': data => {
     return new logic.HistoryEducationValidator(data).isValid()
   },
-  'history.employment': (data) => {
+  'history.employment': data => {
     return new logic.HistoryEmploymentValidator(data).isValid()
   },
-  'history.federal': (data) => {
+  'history.federal': data => {
     return new logic.FederalServiceValidator(data).isValid()
   },
-  'history.residence': (data) => {
+  'history.residence': data => {
     return new logic.HistoryResidenceValidator(data).isValid()
   },
-  'relationships.status.cohabitant': (data) => {
+  'relationships.status.cohabitant': data => {
     return new logic.CohabitantsValidator(data).isValid()
   },
-  'relationships.status.marital': (data) => {
+  'relationships.status.marital': data => {
     return new logic.MaritalValidator(data).isValid()
   },
-  'relationships.people': (data) => {
+  'relationships.people': data => {
     return new logic.PeopleValidator(data).isValid()
   },
-  'relationships.relatives': (data) => {
+  'relationships.relatives': data => {
     return new logic.RelativesValidator(data).isValid()
   },
-  'citizenship.multiple': (data) => {
+  'citizenship.multiple': data => {
     return new logic.CitizenshipMultipleValidator(data).isValid()
   },
-  'citizenship.passports': (data) => {
+  'citizenship.passports': data => {
     return new logic.CitizenshipPassportsValidator(data).isValid()
   },
-  'citizenship.status': (data) => {
+  'citizenship.status': data => {
     return new logic.CitizenshipValidator(data).isValid()
   },
-  'military.selective': (data) => {
+  'military.selective': data => {
     return new logic.SelectiveServiceValidator(data).isValid()
   },
-  'military.history': (data) => {
+  'military.history': data => {
     return new logic.MilitaryHistoryValidator(data).isValid()
   },
-  'military.disciplinary': (data) => {
+  'military.disciplinary': data => {
     return new logic.MilitaryDisciplinaryValidator(data).isValid()
   },
-  'military.foreign': (data) => {
+  'military.foreign': data => {
     return new logic.MilitaryForeignValidator(data).isValid()
   },
-  'foreign.activities.benefits': (data) => {
+  'foreign.activities.benefits': data => {
     return new logic.ForeignBenefitActivityValidator(data).isValid()
   },
-  'foreign.activities.direct': (data) => {
+  'foreign.activities.direct': data => {
     return new logic.ForeignDirectActivityValidator(data).isValid()
   },
-  'foreign.activities.indirect': (data) => {
+  'foreign.activities.indirect': data => {
     return new logic.ForeignIndirectActivityValidator(data).isValid()
   },
-  'foreign.activities.realestate': (data) => {
+  'foreign.activities.realestate': data => {
     return new logic.ForeignRealEstateActivityValidator(data).isValid()
   },
-  'foreign.activities.support': (data) => {
+  'foreign.activities.support': data => {
     return new logic.ForeignActivitiesSupportValidator(data).isValid()
   },
-  'foreign.business.advice': (data) => {
+  'foreign.business.advice': data => {
     return new logic.ForeignBusinessAdviceValidator(data).isValid()
   },
-  'foreign.business.conferences': (data) => {
+  'foreign.business.conferences': data => {
     return new logic.ForeignBusinessConferencesValidator(data).isValid()
   },
-  'foreign.business.contact': (data) => {
+  'foreign.business.contact': data => {
     return new logic.ForeignBusinessContactValidator(data).isValid()
   },
-  'foreign.business.employment': (data) => {
+  'foreign.business.employment': data => {
     return new logic.ForeignBusinessEmploymentValidator(data).isValid()
   },
-  'foreign.business.family': (data) => {
+  'foreign.business.family': data => {
     return new logic.ForeignBusinessFamilyValidator(data).isValid()
   },
-  'foreign.business.political': (data) => {
+  'foreign.business.political': data => {
     return new logic.ForeignBusinessPoliticalValidator(data).isValid()
   },
-  'foreign.business.sponsorship': (data) => {
+  'foreign.business.sponsorship': data => {
     return new logic.ForeignBusinessSponsorshipValidator(data).isValid()
   },
-  'foreign.business.ventures': (data) => {
+  'foreign.business.ventures': data => {
     return new logic.ForeignBusinessVenturesValidator(data).isValid()
   },
-  'foreign.business.voting': (data) => {
+  'foreign.business.voting': data => {
     return new logic.ForeignBusinessVotingValidator(data).isValid()
   },
-  'foreign.contacts': (data) => {
+  'foreign.contacts': data => {
     return new logic.ForeignContactsValidator(data).isValid()
   },
-  'foreign.passport': (data) => {
+  'foreign.passport': data => {
     return new logic.PassportValidator(data).isValid()
   },
-  'foreign.travel': (data) => {
+  'foreign.travel': data => {
     return new logic.ForeignTravelValidator(data).isValid()
   },
-  'substance.alcohol.additional': (data) => {
+  'substance.alcohol.additional': data => {
     return new logic.AlcoholReceivedCounselingsValidator(data).isValid()
   },
-  'substance.alcohol.negative': (data) => {
+  'substance.alcohol.negative': data => {
     return new logic.AlcoholNegativeImpactsValidator(data).isValid()
   },
-  'substance.alcohol.ordered': (data) => {
+  'substance.alcohol.ordered': data => {
     return new logic.AlcoholOrderedCounselingsValidator(data).isValid()
   },
-  'substance.alcohol.voluntary': (data) => {
+  'substance.alcohol.voluntary': data => {
     return new logic.AlcoholVoluntaryCounselingsValidator(data).isValid()
   },
-  'substance.drugs.clearance': (data) => {
+  'substance.drugs.clearance': data => {
     return new logic.DrugClearanceUsesValidator(data).isValid()
   },
-  'substance.drugs.misuse': (data) => {
+  'substance.drugs.misuse': data => {
     return new logic.DrugPrescriptionUsesValidator(data).isValid()
   },
-  'substance.drugs.ordered': (data) => {
+  'substance.drugs.ordered': data => {
     return new logic.DrugOrderedTreatmentsValidator(data).isValid()
   },
-  'substance.drugs.publicsafety': (data) => {
+  'substance.drugs.publicsafety': data => {
     return new logic.DrugPublicSafetyUsesValidator(data).isValid()
   },
-  'substance.drugs.purchase': (data) => {
+  'substance.drugs.purchase': data => {
     return new logic.DrugInvolvementsValidator(data).isValid()
   },
-  'substance.drugs.usage': (data) => {
+  'substance.drugs.usage': data => {
     return new logic.DrugUsesValidator(data).isValid()
   },
-  'substance.drugs.voluntary': (data) => {
+  'substance.drugs.voluntary': data => {
     return new logic.DrugVoluntaryTreatmentsValidator(data).isValid()
   },
-  'legal.associations.activities-to-overthrow': (data) => {
+  'legal.associations.activities-to-overthrow': data => {
     return new logic.LegalAssociationsActivitiesValidator(data).isValid()
   },
-  'legal.associations.advocating': (data) => {
+  'legal.associations.advocating': data => {
     return new logic.LegalAssociationsAdvocatingValidator(data).isValid()
   },
-  'legal.associations.engaged-in-terrorism': (data) => {
+  'legal.associations.engaged-in-terrorism': data => {
     return new logic.LegalAssociationsEngagedValidator(data).isValid()
   },
-  'legal.associations.membership-overthrow': (data) => {
+  'legal.associations.membership-overthrow': data => {
     return new logic.LegalAssociationsOverthrowValidator(data).isValid()
   },
-  'legal.associations.membership-violence-or-force': (data) => {
+  'legal.associations.membership-violence-or-force': data => {
     return new logic.LegalAssociationsViolenceValidator(data).isValid()
   },
-  'legal.associations.terrorism-association': (data) => {
+  'legal.associations.terrorism-association': data => {
     return new logic.LegalAssociationsTerrorismValidator(data).isValid()
   },
-  'legal.associations.terrorist-organization': (data) => {
+  'legal.associations.terrorist-organization': data => {
     return new logic.LegalAssociationsTerroristValidator(data).isValid()
   },
-  'legal.court': (data) => {
+  'legal.court': data => {
     return new logic.LegalNonCriminalCourtActionsValidator(data).isValid()
   },
-  'legal.investigations.debarred': (data) => {
+  'legal.investigations.debarred': data => {
     return new logic.LegalInvestigationsDebarredValidator(data).isValid()
   },
-  'legal.investigations.history': (data) => {
+  'legal.investigations.history': data => {
     return new logic.LegalInvestigationsHistoryValidator(data).isValid()
   },
-  'legal.investigations.revoked': (data) => {
+  'legal.investigations.revoked': data => {
     return new logic.LegalInvestigationsRevokedValidator(data).isValid()
   },
-  'legal.police.additionaloffenses': (data) => {
+  'legal.police.additionaloffenses': data => {
     return new logic.PoliceOtherOffensesValidator(data).isValid()
   },
-  'legal.police.domesticviolence': (data) => {
+  'legal.police.domesticviolence': data => {
     return new logic.DomesticViolenceValidator(data).isValid()
   },
-  'legal.police.offenses': (data) => {
+  'legal.police.offenses': data => {
     return new logic.PoliceOffensesValidator(data).isValid()
   },
-  'legal.technology.manipulating': (data) => {
+  'legal.technology.manipulating': data => {
     return new logic.LegalTechnologyManipulatingValidator(data).isValid()
   },
-  'legal.technology.unauthorized': (data) => {
+  'legal.technology.unauthorized': data => {
     return new logic.LegalTechnologyUnauthorizedValidator(data).isValid()
   },
-  'legal.technology.unlawful': (data) => {
+  'legal.technology.unlawful': data => {
     return new logic.LegalTechnologyUnlawfulValidator(data).isValid()
   },
-  'psychological.competence': (data) => {
+  'psychological.competence': data => {
     return new logic.CompetenceValidator(data).isValid()
   },
-  'psychological.conditions': (data) => {
+  'psychological.conditions': data => {
     return new logic.ExistingConditionsValidator(data).isValid()
   },
-  'psychological.consultations': (data) => {
+  'psychological.consultations': data => {
     return new logic.ConsultationValidator(data).isValid()
   },
-  'psychological.diagnoses': (data) => {
+  'psychological.diagnoses': data => {
     return new logic.DiagnosesValidator(data).isValid()
   },
-  'psychological.hospitalizations': (data) => {
+  'psychological.hospitalizations': data => {
     return new logic.HospitalizationsValidator(data).isValid()
   },
-  'psychological.treatment': (data) => {
+  'psychological.treatment': data => {
     return false
   }
 }
@@ -338,7 +338,7 @@ const validators = {
 // Walk through the validation tree of a piece of information.
 // This is useful when all values within a particular chunk of
 // data does not contain validations based on branching.
-export const walkValidationTree = (data) => {
+export const walkValidationTree = data => {
   // No data, no love.
   if (!data) {
     return false

@@ -2,12 +2,12 @@ import ForeignRealEstateInterestValidator from './foreignrealestateinterest'
 import { validAccordion, validBranch } from './helpers'
 
 export default class ForeignRealEstateActivityValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.hasInterests = (data.HasInterests || {}).value
     this.list = data.List || {}
   }
 
-  isValid () {
+  isValid() {
     if (!validBranch(this.hasInterests)) {
       return false
     }
@@ -16,7 +16,7 @@ export default class ForeignRealEstateActivityValidator {
       return true
     }
 
-    return validAccordion(this.list, (item) => {
+    return validAccordion(this.list, item => {
       return new ForeignRealEstateInterestValidator(item).isValid()
     })
   }

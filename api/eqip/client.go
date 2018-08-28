@@ -38,8 +38,7 @@ func (c *Client) Send(action RequestBody, response Body) error {
 	// Generates XML based of text/templates from the golang lib.
 	xmlContent, err := NewSOAPEnvelopeTemplate(action, unsignedToken, string(signedToken))
 	if err != nil {
-		fmt.Println("Error: ", err)
-		return err
+		return fmt.Errorf("Could not generate SOAP message: %s", err.Error())
 	}
 	buf := new(bytes.Buffer)
 	buf.ReadFrom(xmlContent)
@@ -52,25 +51,31 @@ func (c *Client) Send(action RequestBody, response Body) error {
 	}
 	err = xml.Unmarshal(buf.Bytes(), &temp)
 	if err != nil {
-		fmt.Println("Error unmarshalling xml: ", err)
-		return err
+		return fmt.Errorf("SOAP request is malformed: %s", err.Error())
 	}
+
 	resp, err := http.Post(c.endpointURL, "text/xml; charset=utf-8", bytes.NewReader(temp.XML))
-	// Regardless of what happens, we always save the response body. In the event of network http error,
-	// we set the response body to the error message
 	if err != nil {
-		response.SetResponseBody([]byte(err.Error()))
 		return err
 	}
 	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK {
+		return fmt.Errorf("Post %s: %s", c.endpointURL, resp.Status)
+	}
+
 	bodyBytes, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		// If we can't read in the response body, set to error
-		response.SetResponseBody([]byte(err.Error()))
-		return err
+		return fmt.Errorf("Cannot read SOAP response: %s", err.Error())
 	}
+
+	err = xml.Unmarshal(bodyBytes, response)
+	if err != nil {
+		return fmt.Errorf("SOAP response is malformed: %s: %s", err.Error(), string(bodyBytes))
+	}
+
 	response.SetResponseBody(bodyBytes)
-	return xml.Unmarshal(bodyBytes, response)
+	return nil
 }
 
 // IsAlive checks if the webservice API is available

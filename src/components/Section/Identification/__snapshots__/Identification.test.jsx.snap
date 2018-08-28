@@ -1,0 +1,3887 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The identification section renders the IdentificationSections component 1`] = `
+<div>
+  <div
+    className="section-content applicant-name"
+    data-section="identification"
+    data-subsection="name"
+  >
+    <div
+      aria-label="Provide your full name"
+      className="field"
+      data-uuid="field-MOCK-GUID"
+    >
+      <a
+        aria-hidden="true"
+        className="anchor"
+        id="field-MOCK-GUID"
+        name="field-MOCK-GUID"
+      />
+      <h2
+        className="title h2"
+      >
+        Provide your full name
+      </h2>
+      <span
+        className="icon"
+      />
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages help-messages"
+        />
+      </div>
+      <div
+        className="table"
+      >
+        <span
+          className="content"
+        >
+          <span
+            className="component"
+          >
+            <div
+              className="name "
+            >
+              <div
+                aria-label="First name"
+                className="field required"
+                data-uuid="field-MOCK-GUID"
+              >
+                <a
+                  aria-hidden="true"
+                  className="anchor"
+                  id="field-MOCK-GUID"
+                  name="field-MOCK-GUID"
+                />
+                <label
+                  className="title label"
+                >
+                  First name
+                </label>
+                <span
+                  className="icon"
+                >
+                  <a
+                    aria-label="Show help for First name"
+                    className="toggle label  adjust-for-labels"
+                    href="javascript:;"
+                    onClick={[Function]}
+                    title="Show help for First name"
+                  >
+                    <svg
+                      alt="Scalable vector graphic"
+                      focusable="false"
+                      height="14.57px"
+                      tabIndex="-1"
+                      viewBox="0 0 14.57 14.57"
+                      width="14.57px"
+                    >
+                      <g>
+                        <path
+                          className="eapp-help-icon"
+                          d="M13.59,3.63c0.65,1.12,0.98,2.34,0.98,3.66s-0.33,2.54-0.98,3.66c-0.65,1.12-1.54,2-2.65,2.65 s-2.33,0.98-3.66,0.98c-1.32,0-2.54-0.33-3.66-0.98s-2-1.54-2.65-2.65C0.33,9.83,0,8.61,0,7.29s0.33-2.54,0.98-3.66 c0.65-1.12,1.54-2,2.65-2.65S5.96,0,7.29,0c1.32,0,2.54,0.33,3.66,0.98S12.94,2.51,13.59,3.63z M10.93,5.46 c0-0.56-0.18-1.07-0.53-1.55c-0.35-0.47-0.79-0.84-1.31-1.1C8.56,2.56,8.03,2.43,7.48,2.43c-1.54,0-2.71,0.67-3.52,2.02 C3.86,4.6,3.89,4.73,4.03,4.85L5.28,5.8c0.04,0.04,0.1,0.06,0.18,0.06c0.1,0,0.18-0.04,0.24-0.11c0.33-0.43,0.61-0.72,0.82-0.87 C6.73,4.71,7,4.64,7.33,4.64c0.3,0,0.57,0.08,0.81,0.25C8.38,5.05,8.5,5.24,8.5,5.45c0,0.24-0.06,0.43-0.19,0.58 C8.18,6.17,7.97,6.31,7.67,6.45C7.27,6.63,6.9,6.9,6.57,7.27c-0.33,0.37-0.5,0.77-0.5,1.19V8.8c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.09,0.22,0.09H8.2c0.09,0,0.16-0.03,0.22-0.09C8.47,8.96,8.5,8.89,8.5,8.8c0-0.12,0.07-0.28,0.2-0.47 c0.14-0.19,0.31-0.35,0.52-0.47c0.2-0.11,0.36-0.21,0.46-0.27s0.25-0.18,0.44-0.33c0.18-0.15,0.32-0.31,0.42-0.46 c0.1-0.15,0.19-0.34,0.27-0.57C10.89,6,10.93,5.74,10.93,5.46z M8.5,11.84v-1.82c0-0.09-0.03-0.16-0.08-0.22 C8.36,9.74,8.29,9.71,8.2,9.71H6.38c-0.09,0-0.16,0.03-0.22,0.08C6.1,9.86,6.07,9.93,6.07,10.02v1.82c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.08,0.22,0.08H8.2c0.09,0,0.16-0.03,0.22-0.08C8.47,12,8.5,11.93,8.5,11.84z"
+                        />
+                      </g>
+                    </svg>
+                  </a>
+                </span>
+                <div
+                  className="table expand"
+                >
+                  <span
+                    aria-live="polite"
+                    className="messages help-messages"
+                  />
+                </div>
+                <div
+                  className="table"
+                >
+                  <span
+                    className="content"
+                  >
+                    <span
+                      className="component"
+                    >
+                      <div
+                        className="first usa-input-error"
+                      >
+                        <input
+                          aria-describedby="first-error"
+                          aria-label={null}
+                          autoCapitalize={true}
+                          autoComplete={true}
+                          autoCorrect={true}
+                          className=""
+                          id="first-MOCK-GUID"
+                          maxLength="100"
+                          name="first"
+                          onBlur={[Function]}
+                          onChange={[Function]}
+                          onFocus={[Function]}
+                          onKeyDown={[Function]}
+                          pattern="^[a-zA-Z\\\\-\\\\.' ]*$"
+                          spellCheck={true}
+                          type="text"
+                          value=""
+                        />
+                      </div>
+                      <div
+                        className="flags"
+                      >
+                        <div
+                          className="first-initial-only block"
+                        >
+                          <input
+                            aria-label="Initial only for null"
+                            checked={false}
+                            className="usa-input-success"
+                            id="firstInitialOnly-MOCK-GUID"
+                            name="firstInitialOnly"
+                            onBlur={[Function]}
+                            onChange={[Function]}
+                            onFocus={[Function]}
+                            onKeyDown={[Function]}
+                            type="checkbox"
+                            value={false}
+                          />
+                          <label
+                            className="checkbox no-toggle"
+                            htmlFor="firstInitialOnly-MOCK-GUID"
+                          >
+                            <span>
+                              Initial only
+                            </span>
+                          </label>
+                        </div>
+                      </div>
+                    </span>
+                  </span>
+                </div>
+                <div
+                  className="table expand"
+                >
+                  <span
+                    aria-live="polite"
+                    className="messages error-messages"
+                    role="alert"
+                  />
+                </div>
+              </div>
+              <div
+                aria-label="Middle name"
+                className="field required"
+                data-uuid="field-MOCK-GUID"
+              >
+                <a
+                  aria-hidden="true"
+                  className="anchor"
+                  id="field-MOCK-GUID"
+                  name="field-MOCK-GUID"
+                />
+                <label
+                  className="title label"
+                >
+                  Middle name
+                </label>
+                <span
+                  className="icon"
+                >
+                  <a
+                    aria-label="Show help for Middle name"
+                    className="toggle label  adjust-for-labels"
+                    href="javascript:;"
+                    onClick={[Function]}
+                    title="Show help for Middle name"
+                  >
+                    <svg
+                      alt="Scalable vector graphic"
+                      focusable="false"
+                      height="14.57px"
+                      tabIndex="-1"
+                      viewBox="0 0 14.57 14.57"
+                      width="14.57px"
+                    >
+                      <g>
+                        <path
+                          className="eapp-help-icon"
+                          d="M13.59,3.63c0.65,1.12,0.98,2.34,0.98,3.66s-0.33,2.54-0.98,3.66c-0.65,1.12-1.54,2-2.65,2.65 s-2.33,0.98-3.66,0.98c-1.32,0-2.54-0.33-3.66-0.98s-2-1.54-2.65-2.65C0.33,9.83,0,8.61,0,7.29s0.33-2.54,0.98-3.66 c0.65-1.12,1.54-2,2.65-2.65S5.96,0,7.29,0c1.32,0,2.54,0.33,3.66,0.98S12.94,2.51,13.59,3.63z M10.93,5.46 c0-0.56-0.18-1.07-0.53-1.55c-0.35-0.47-0.79-0.84-1.31-1.1C8.56,2.56,8.03,2.43,7.48,2.43c-1.54,0-2.71,0.67-3.52,2.02 C3.86,4.6,3.89,4.73,4.03,4.85L5.28,5.8c0.04,0.04,0.1,0.06,0.18,0.06c0.1,0,0.18-0.04,0.24-0.11c0.33-0.43,0.61-0.72,0.82-0.87 C6.73,4.71,7,4.64,7.33,4.64c0.3,0,0.57,0.08,0.81,0.25C8.38,5.05,8.5,5.24,8.5,5.45c0,0.24-0.06,0.43-0.19,0.58 C8.18,6.17,7.97,6.31,7.67,6.45C7.27,6.63,6.9,6.9,6.57,7.27c-0.33,0.37-0.5,0.77-0.5,1.19V8.8c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.09,0.22,0.09H8.2c0.09,0,0.16-0.03,0.22-0.09C8.47,8.96,8.5,8.89,8.5,8.8c0-0.12,0.07-0.28,0.2-0.47 c0.14-0.19,0.31-0.35,0.52-0.47c0.2-0.11,0.36-0.21,0.46-0.27s0.25-0.18,0.44-0.33c0.18-0.15,0.32-0.31,0.42-0.46 c0.1-0.15,0.19-0.34,0.27-0.57C10.89,6,10.93,5.74,10.93,5.46z M8.5,11.84v-1.82c0-0.09-0.03-0.16-0.08-0.22 C8.36,9.74,8.29,9.71,8.2,9.71H6.38c-0.09,0-0.16,0.03-0.22,0.08C6.1,9.86,6.07,9.93,6.07,10.02v1.82c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.08,0.22,0.08H8.2c0.09,0,0.16-0.03,0.22-0.08C8.47,12,8.5,11.93,8.5,11.84z"
+                        />
+                      </g>
+                    </svg>
+                  </a>
+                </span>
+                <div
+                  className="table expand"
+                >
+                  <span
+                    aria-live="polite"
+                    className="messages help-messages"
+                  />
+                </div>
+                <div
+                  className="table"
+                >
+                  <span
+                    className="content"
+                  >
+                    <span
+                      className="component"
+                    >
+                      <div
+                        className="middle usa-input-error"
+                      >
+                        <input
+                          aria-describedby="middle-error"
+                          aria-label={null}
+                          autoCapitalize={true}
+                          autoComplete={true}
+                          autoCorrect={true}
+                          className=""
+                          id="middle-MOCK-GUID"
+                          maxLength="100"
+                          name="middle"
+                          onBlur={[Function]}
+                          onChange={[Function]}
+                          onFocus={[Function]}
+                          onKeyDown={[Function]}
+                          pattern="^[a-zA-Z\\\\-\\\\.' ]*$"
+                          spellCheck={true}
+                          type="text"
+                          value=""
+                        />
+                      </div>
+                      <div
+                        className="middle-options flags"
+                      >
+                        <div
+                          className="middle-none block"
+                        >
+                          <input
+                            aria-label="No middle name for null"
+                            checked={false}
+                            className="usa-input-success"
+                            id="noMiddleName-MOCK-GUID"
+                            name="noMiddleName"
+                            onBlur={[Function]}
+                            onChange={[Function]}
+                            onFocus={[Function]}
+                            onKeyDown={[Function]}
+                            type="checkbox"
+                            value={false}
+                          />
+                          <label
+                            className="checkbox no-toggle"
+                            htmlFor="noMiddleName-MOCK-GUID"
+                          >
+                            <span>
+                              No middle name
+                            </span>
+                          </label>
+                        </div>
+                        <div
+                          className="middle-initial-only block"
+                        >
+                          <input
+                            aria-label="Initial only for null"
+                            checked={false}
+                            className="usa-input-success"
+                            id="middleInitialOnly-MOCK-GUID"
+                            name="middleInitialOnly"
+                            onBlur={[Function]}
+                            onChange={[Function]}
+                            onFocus={[Function]}
+                            onKeyDown={[Function]}
+                            type="checkbox"
+                            value={false}
+                          />
+                          <label
+                            className="checkbox no-toggle"
+                            htmlFor="middleInitialOnly-MOCK-GUID"
+                          >
+                            <span>
+                              Initial only
+                            </span>
+                          </label>
+                        </div>
+                      </div>
+                    </span>
+                  </span>
+                </div>
+                <div
+                  className="table expand"
+                >
+                  <span
+                    aria-live="polite"
+                    className="messages error-messages"
+                    role="alert"
+                  />
+                </div>
+              </div>
+              <div
+                aria-label="Last name"
+                className="field required"
+                data-uuid="field-MOCK-GUID"
+              >
+                <a
+                  aria-hidden="true"
+                  className="anchor"
+                  id="field-MOCK-GUID"
+                  name="field-MOCK-GUID"
+                />
+                <label
+                  className="title label"
+                >
+                  Last name
+                </label>
+                <span
+                  className="icon"
+                >
+                  <a
+                    aria-label="Show help for Last name"
+                    className="toggle label  adjust-for-labels"
+                    href="javascript:;"
+                    onClick={[Function]}
+                    title="Show help for Last name"
+                  >
+                    <svg
+                      alt="Scalable vector graphic"
+                      focusable="false"
+                      height="14.57px"
+                      tabIndex="-1"
+                      viewBox="0 0 14.57 14.57"
+                      width="14.57px"
+                    >
+                      <g>
+                        <path
+                          className="eapp-help-icon"
+                          d="M13.59,3.63c0.65,1.12,0.98,2.34,0.98,3.66s-0.33,2.54-0.98,3.66c-0.65,1.12-1.54,2-2.65,2.65 s-2.33,0.98-3.66,0.98c-1.32,0-2.54-0.33-3.66-0.98s-2-1.54-2.65-2.65C0.33,9.83,0,8.61,0,7.29s0.33-2.54,0.98-3.66 c0.65-1.12,1.54-2,2.65-2.65S5.96,0,7.29,0c1.32,0,2.54,0.33,3.66,0.98S12.94,2.51,13.59,3.63z M10.93,5.46 c0-0.56-0.18-1.07-0.53-1.55c-0.35-0.47-0.79-0.84-1.31-1.1C8.56,2.56,8.03,2.43,7.48,2.43c-1.54,0-2.71,0.67-3.52,2.02 C3.86,4.6,3.89,4.73,4.03,4.85L5.28,5.8c0.04,0.04,0.1,0.06,0.18,0.06c0.1,0,0.18-0.04,0.24-0.11c0.33-0.43,0.61-0.72,0.82-0.87 C6.73,4.71,7,4.64,7.33,4.64c0.3,0,0.57,0.08,0.81,0.25C8.38,5.05,8.5,5.24,8.5,5.45c0,0.24-0.06,0.43-0.19,0.58 C8.18,6.17,7.97,6.31,7.67,6.45C7.27,6.63,6.9,6.9,6.57,7.27c-0.33,0.37-0.5,0.77-0.5,1.19V8.8c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.09,0.22,0.09H8.2c0.09,0,0.16-0.03,0.22-0.09C8.47,8.96,8.5,8.89,8.5,8.8c0-0.12,0.07-0.28,0.2-0.47 c0.14-0.19,0.31-0.35,0.52-0.47c0.2-0.11,0.36-0.21,0.46-0.27s0.25-0.18,0.44-0.33c0.18-0.15,0.32-0.31,0.42-0.46 c0.1-0.15,0.19-0.34,0.27-0.57C10.89,6,10.93,5.74,10.93,5.46z M8.5,11.84v-1.82c0-0.09-0.03-0.16-0.08-0.22 C8.36,9.74,8.29,9.71,8.2,9.71H6.38c-0.09,0-0.16,0.03-0.22,0.08C6.1,9.86,6.07,9.93,6.07,10.02v1.82c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.08,0.22,0.08H8.2c0.09,0,0.16-0.03,0.22-0.08C8.47,12,8.5,11.93,8.5,11.84z"
+                        />
+                      </g>
+                    </svg>
+                  </a>
+                </span>
+                <div
+                  className="table expand"
+                >
+                  <span
+                    aria-live="polite"
+                    className="messages help-messages"
+                  />
+                </div>
+                <div
+                  className="table"
+                >
+                  <span
+                    className="content"
+                  >
+                    <span
+                      className="component"
+                    >
+                      <div
+                        className="last usa-input-error"
+                      >
+                        <input
+                          aria-describedby="last-error"
+                          aria-label={null}
+                          autoCapitalize={true}
+                          autoComplete={true}
+                          autoCorrect={true}
+                          className=""
+                          id="last-MOCK-GUID"
+                          maxLength="100"
+                          name="last"
+                          onBlur={[Function]}
+                          onChange={[Function]}
+                          onFocus={[Function]}
+                          onKeyDown={[Function]}
+                          pattern="^[a-zA-Z\\\\-\\\\.' ]*$"
+                          spellCheck={true}
+                          type="text"
+                          value=""
+                        />
+                      </div>
+                      <div
+                        className="flags"
+                      >
+                        <div
+                          className="last-initial-only block"
+                        >
+                          <input
+                            aria-label="Initial only for null"
+                            checked={false}
+                            className="usa-input-success"
+                            id="lastInitialOnly-MOCK-GUID"
+                            name="lastInitialOnly"
+                            onBlur={[Function]}
+                            onChange={[Function]}
+                            onFocus={[Function]}
+                            onKeyDown={[Function]}
+                            type="checkbox"
+                            value={false}
+                          />
+                          <label
+                            className="checkbox no-toggle"
+                            htmlFor="lastInitialOnly-MOCK-GUID"
+                          >
+                            <span>
+                              Initial only
+                            </span>
+                          </label>
+                        </div>
+                      </div>
+                    </span>
+                  </span>
+                </div>
+                <div
+                  className="table expand"
+                >
+                  <span
+                    aria-live="polite"
+                    className="messages error-messages"
+                    role="alert"
+                  />
+                </div>
+              </div>
+              <div
+                aria-label="Suffix"
+                className="field"
+                data-uuid="field-MOCK-GUID"
+              >
+                <a
+                  aria-hidden="true"
+                  className="anchor"
+                  id="field-MOCK-GUID"
+                  name="field-MOCK-GUID"
+                />
+                <label
+                  className="title label"
+                >
+                  Suffix
+                  <span
+                    className="optional"
+                  >
+                    (Optional)
+                  </span>
+                </label>
+                <span
+                  className="icon"
+                >
+                  <a
+                    aria-label="Show help for Suffix"
+                    className="toggle label"
+                    href="javascript:;"
+                    onClick={[Function]}
+                    title="Show help for Suffix"
+                  >
+                    <svg
+                      alt="Scalable vector graphic"
+                      focusable="false"
+                      height="14.57px"
+                      tabIndex="-1"
+                      viewBox="0 0 14.57 14.57"
+                      width="14.57px"
+                    >
+                      <g>
+                        <path
+                          className="eapp-help-icon"
+                          d="M13.59,3.63c0.65,1.12,0.98,2.34,0.98,3.66s-0.33,2.54-0.98,3.66c-0.65,1.12-1.54,2-2.65,2.65 s-2.33,0.98-3.66,0.98c-1.32,0-2.54-0.33-3.66-0.98s-2-1.54-2.65-2.65C0.33,9.83,0,8.61,0,7.29s0.33-2.54,0.98-3.66 c0.65-1.12,1.54-2,2.65-2.65S5.96,0,7.29,0c1.32,0,2.54,0.33,3.66,0.98S12.94,2.51,13.59,3.63z M10.93,5.46 c0-0.56-0.18-1.07-0.53-1.55c-0.35-0.47-0.79-0.84-1.31-1.1C8.56,2.56,8.03,2.43,7.48,2.43c-1.54,0-2.71,0.67-3.52,2.02 C3.86,4.6,3.89,4.73,4.03,4.85L5.28,5.8c0.04,0.04,0.1,0.06,0.18,0.06c0.1,0,0.18-0.04,0.24-0.11c0.33-0.43,0.61-0.72,0.82-0.87 C6.73,4.71,7,4.64,7.33,4.64c0.3,0,0.57,0.08,0.81,0.25C8.38,5.05,8.5,5.24,8.5,5.45c0,0.24-0.06,0.43-0.19,0.58 C8.18,6.17,7.97,6.31,7.67,6.45C7.27,6.63,6.9,6.9,6.57,7.27c-0.33,0.37-0.5,0.77-0.5,1.19V8.8c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.09,0.22,0.09H8.2c0.09,0,0.16-0.03,0.22-0.09C8.47,8.96,8.5,8.89,8.5,8.8c0-0.12,0.07-0.28,0.2-0.47 c0.14-0.19,0.31-0.35,0.52-0.47c0.2-0.11,0.36-0.21,0.46-0.27s0.25-0.18,0.44-0.33c0.18-0.15,0.32-0.31,0.42-0.46 c0.1-0.15,0.19-0.34,0.27-0.57C10.89,6,10.93,5.74,10.93,5.46z M8.5,11.84v-1.82c0-0.09-0.03-0.16-0.08-0.22 C8.36,9.74,8.29,9.71,8.2,9.71H6.38c-0.09,0-0.16,0.03-0.22,0.08C6.1,9.86,6.07,9.93,6.07,10.02v1.82c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.08,0.22,0.08H8.2c0.09,0,0.16-0.03,0.22-0.08C8.47,12,8.5,11.93,8.5,11.84z"
+                        />
+                      </g>
+                    </svg>
+                  </a>
+                </span>
+                <div
+                  className="table expand"
+                >
+                  <span
+                    aria-live="polite"
+                    className="messages help-messages"
+                  />
+                </div>
+                <div
+                  className="table"
+                >
+                  <span
+                    className="content"
+                  >
+                    <span
+                      className="component"
+                    >
+                      <div
+                        className="blocks option-list suffix"
+                      >
+                        <div
+                          className="suffix-jr block"
+                        >
+                          <label
+                            className=""
+                            htmlFor="suffix-MOCK-GUID"
+                          >
+                            <input
+                              aria-label="Jr for null"
+                              checked={false}
+                              className="usa-input-success"
+                              disabled={false}
+                              id="suffix-MOCK-GUID"
+                              name="suffix-MOCK-GUID"
+                              onBlur={[Function]}
+                              onChange={[Function]}
+                              onClick={[Function]}
+                              onFocus={[Function]}
+                              onKeyDown={[Function]}
+                              type="radio"
+                              value="Jr"
+                            />
+                            <span>
+                              Jr
+                            </span>
+                          </label>
+                        </div>
+                        <div
+                          className="suffix-sr block"
+                        >
+                          <label
+                            className=""
+                            htmlFor="suffix-MOCK-GUID"
+                          >
+                            <input
+                              aria-label="Sr for null"
+                              checked={false}
+                              className="usa-input-success"
+                              disabled={false}
+                              id="suffix-MOCK-GUID"
+                              name="suffix-MOCK-GUID"
+                              onBlur={[Function]}
+                              onChange={[Function]}
+                              onClick={[Function]}
+                              onFocus={[Function]}
+                              onKeyDown={[Function]}
+                              type="radio"
+                              value="Sr"
+                            />
+                            <span>
+                              Sr
+                            </span>
+                          </label>
+                        </div>
+                        <div
+                          className="suffix-i block"
+                        >
+                          <label
+                            className=""
+                            htmlFor="suffix-MOCK-GUID"
+                          >
+                            <input
+                              aria-label="I for null"
+                              checked={false}
+                              className="usa-input-success"
+                              disabled={false}
+                              id="suffix-MOCK-GUID"
+                              name="suffix-MOCK-GUID"
+                              onBlur={[Function]}
+                              onChange={[Function]}
+                              onClick={[Function]}
+                              onFocus={[Function]}
+                              onKeyDown={[Function]}
+                              type="radio"
+                              value="I"
+                            />
+                            <span>
+                              I
+                            </span>
+                          </label>
+                        </div>
+                        <div
+                          className="suffix-ii block"
+                        >
+                          <label
+                            className=""
+                            htmlFor="suffix-MOCK-GUID"
+                          >
+                            <input
+                              aria-label="II for null"
+                              checked={false}
+                              className="usa-input-success"
+                              disabled={false}
+                              id="suffix-MOCK-GUID"
+                              name="suffix-MOCK-GUID"
+                              onBlur={[Function]}
+                              onChange={[Function]}
+                              onClick={[Function]}
+                              onFocus={[Function]}
+                              onKeyDown={[Function]}
+                              type="radio"
+                              value="II"
+                            />
+                            <span>
+                              II
+                            </span>
+                          </label>
+                        </div>
+                        <div
+                          className="suffix-iii block"
+                        >
+                          <label
+                            className=""
+                            htmlFor="suffix-MOCK-GUID"
+                          >
+                            <input
+                              aria-label="III for null"
+                              checked={false}
+                              className="usa-input-success"
+                              disabled={false}
+                              id="suffix-MOCK-GUID"
+                              name="suffix-MOCK-GUID"
+                              onBlur={[Function]}
+                              onChange={[Function]}
+                              onClick={[Function]}
+                              onFocus={[Function]}
+                              onKeyDown={[Function]}
+                              type="radio"
+                              value="III"
+                            />
+                            <span>
+                              III
+                            </span>
+                          </label>
+                        </div>
+                        <div
+                          className="suffix-iv block"
+                        >
+                          <label
+                            className=""
+                            htmlFor="suffix-MOCK-GUID"
+                          >
+                            <input
+                              aria-label="IV for null"
+                              checked={false}
+                              className="usa-input-success"
+                              disabled={false}
+                              id="suffix-MOCK-GUID"
+                              name="suffix-MOCK-GUID"
+                              onBlur={[Function]}
+                              onChange={[Function]}
+                              onClick={[Function]}
+                              onFocus={[Function]}
+                              onKeyDown={[Function]}
+                              type="radio"
+                              value="IV"
+                            />
+                            <span>
+                              IV
+                            </span>
+                          </label>
+                        </div>
+                        <div
+                          className="suffix-v block"
+                        >
+                          <label
+                            className=""
+                            htmlFor="suffix-MOCK-GUID"
+                          >
+                            <input
+                              aria-label="V for null"
+                              checked={false}
+                              className="usa-input-success"
+                              disabled={false}
+                              id="suffix-MOCK-GUID"
+                              name="suffix-MOCK-GUID"
+                              onBlur={[Function]}
+                              onChange={[Function]}
+                              onClick={[Function]}
+                              onFocus={[Function]}
+                              onKeyDown={[Function]}
+                              type="radio"
+                              value="V"
+                            />
+                            <span>
+                              V
+                            </span>
+                          </label>
+                        </div>
+                        <div
+                          className="suffix-vi block"
+                        >
+                          <label
+                            className=""
+                            htmlFor="suffix-MOCK-GUID"
+                          >
+                            <input
+                              aria-label="VI for null"
+                              checked={false}
+                              className="usa-input-success"
+                              disabled={false}
+                              id="suffix-MOCK-GUID"
+                              name="suffix-MOCK-GUID"
+                              onBlur={[Function]}
+                              onChange={[Function]}
+                              onClick={[Function]}
+                              onFocus={[Function]}
+                              onKeyDown={[Function]}
+                              type="radio"
+                              value="VI"
+                            />
+                            <span>
+                              VI
+                            </span>
+                          </label>
+                        </div>
+                        <div
+                          className="suffix-vii block"
+                        >
+                          <label
+                            className=""
+                            htmlFor="suffix-MOCK-GUID"
+                          >
+                            <input
+                              aria-label="VII for null"
+                              checked={false}
+                              className="usa-input-success"
+                              disabled={false}
+                              id="suffix-MOCK-GUID"
+                              name="suffix-MOCK-GUID"
+                              onBlur={[Function]}
+                              onChange={[Function]}
+                              onClick={[Function]}
+                              onFocus={[Function]}
+                              onKeyDown={[Function]}
+                              type="radio"
+                              value="VII"
+                            />
+                            <span>
+                              VII
+                            </span>
+                          </label>
+                        </div>
+                        <div
+                          className="suffix-viii block"
+                        >
+                          <label
+                            className=""
+                            htmlFor="suffix-MOCK-GUID"
+                          >
+                            <input
+                              aria-label="VIII for null"
+                              checked={false}
+                              className="usa-input-success"
+                              disabled={false}
+                              id="suffix-MOCK-GUID"
+                              name="suffix-MOCK-GUID"
+                              onBlur={[Function]}
+                              onChange={[Function]}
+                              onClick={[Function]}
+                              onFocus={[Function]}
+                              onKeyDown={[Function]}
+                              type="radio"
+                              value="VIII"
+                            />
+                            <span>
+                              VIII
+                            </span>
+                          </label>
+                        </div>
+                        <div
+                          className="suffix-ix block"
+                        >
+                          <label
+                            className=""
+                            htmlFor="suffix-MOCK-GUID"
+                          >
+                            <input
+                              aria-label="IX for null"
+                              checked={false}
+                              className="usa-input-success"
+                              disabled={false}
+                              id="suffix-MOCK-GUID"
+                              name="suffix-MOCK-GUID"
+                              onBlur={[Function]}
+                              onChange={[Function]}
+                              onClick={[Function]}
+                              onFocus={[Function]}
+                              onKeyDown={[Function]}
+                              type="radio"
+                              value="IX"
+                            />
+                            <span>
+                              IX
+                            </span>
+                          </label>
+                        </div>
+                        <div
+                          className="suffix-x block"
+                        >
+                          <label
+                            className=""
+                            htmlFor="suffix-MOCK-GUID"
+                          >
+                            <input
+                              aria-label="X for null"
+                              checked={false}
+                              className="usa-input-success"
+                              disabled={false}
+                              id="suffix-MOCK-GUID"
+                              name="suffix-MOCK-GUID"
+                              onBlur={[Function]}
+                              onChange={[Function]}
+                              onClick={[Function]}
+                              onFocus={[Function]}
+                              onKeyDown={[Function]}
+                              type="radio"
+                              value="X"
+                            />
+                            <span>
+                              X
+                            </span>
+                          </label>
+                        </div>
+                        <div
+                          className="suffix-more block"
+                        >
+                          <label
+                            className=""
+                            htmlFor="suffix-MOCK-GUID"
+                          >
+                            <input
+                              aria-label="Other for null"
+                              checked={false}
+                              className="usa-input-success"
+                              disabled={false}
+                              id="suffix-MOCK-GUID"
+                              name="suffix-MOCK-GUID"
+                              onBlur={[Function]}
+                              onChange={[Function]}
+                              onClick={[Function]}
+                              onFocus={[Function]}
+                              onKeyDown={[Function]}
+                              type="radio"
+                              value="Other"
+                            />
+                            <span>
+                              Other
+                            </span>
+                          </label>
+                        </div>
+                      </div>
+                    </span>
+                  </span>
+                </div>
+                <div
+                  className="table expand"
+                >
+                  <span
+                    aria-live="polite"
+                    className="messages error-messages"
+                    role="alert"
+                  />
+                </div>
+              </div>
+            </div>
+          </span>
+        </span>
+      </div>
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages error-messages"
+          role="alert"
+        >
+          <div
+            aria-live="polite"
+            className="message error"
+            role="alert"
+          >
+            <i
+              aria-hidden="true"
+              className="fa fa-exclamation"
+            />
+            <div
+              data-i18n="error.name.first.required"
+            >
+              <h5>
+                Oops, there’s a problem.
+              </h5>
+              <span>
+                <div>
+                  <p>
+                    If your first name is a single letter, please select the "Initial only" checkbox and type the letter. 100 character limit.
+                  </p>
+                </div>
+              </span>
+              
+            </div>
+          </div>
+        </span>
+      </div>
+    </div>
+  </div>
+  <hr
+    className="section-divider"
+  />
+  <div
+    className="section-content other-names"
+    data-section="identification"
+    data-subsection="othernames"
+  >
+    <div
+      aria-label="Provide your other names used and the period of time you used them"
+      className="field   no-margin-bottom"
+      data-uuid="field-MOCK-GUID"
+    >
+      <a
+        aria-hidden="true"
+        className="anchor"
+        id="field-MOCK-GUID"
+        name="field-MOCK-GUID"
+      />
+      <h2
+        className="title h2"
+      >
+        Provide your other names used and the period of time you used them
+      </h2>
+      <span
+        className="icon"
+      >
+        <a
+          aria-label="Show help for Provide your other names used and the period of time you used them"
+          className="toggle h2"
+          href="javascript:;"
+          onClick={[Function]}
+          title="Show help for Provide your other names used and the period of time you used them"
+        >
+          <svg
+            alt="Scalable vector graphic"
+            focusable="false"
+            height="14.57px"
+            tabIndex="-1"
+            viewBox="0 0 14.57 14.57"
+            width="14.57px"
+          >
+            <g>
+              <path
+                className="eapp-help-icon"
+                d="M13.59,3.63c0.65,1.12,0.98,2.34,0.98,3.66s-0.33,2.54-0.98,3.66c-0.65,1.12-1.54,2-2.65,2.65 s-2.33,0.98-3.66,0.98c-1.32,0-2.54-0.33-3.66-0.98s-2-1.54-2.65-2.65C0.33,9.83,0,8.61,0,7.29s0.33-2.54,0.98-3.66 c0.65-1.12,1.54-2,2.65-2.65S5.96,0,7.29,0c1.32,0,2.54,0.33,3.66,0.98S12.94,2.51,13.59,3.63z M10.93,5.46 c0-0.56-0.18-1.07-0.53-1.55c-0.35-0.47-0.79-0.84-1.31-1.1C8.56,2.56,8.03,2.43,7.48,2.43c-1.54,0-2.71,0.67-3.52,2.02 C3.86,4.6,3.89,4.73,4.03,4.85L5.28,5.8c0.04,0.04,0.1,0.06,0.18,0.06c0.1,0,0.18-0.04,0.24-0.11c0.33-0.43,0.61-0.72,0.82-0.87 C6.73,4.71,7,4.64,7.33,4.64c0.3,0,0.57,0.08,0.81,0.25C8.38,5.05,8.5,5.24,8.5,5.45c0,0.24-0.06,0.43-0.19,0.58 C8.18,6.17,7.97,6.31,7.67,6.45C7.27,6.63,6.9,6.9,6.57,7.27c-0.33,0.37-0.5,0.77-0.5,1.19V8.8c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.09,0.22,0.09H8.2c0.09,0,0.16-0.03,0.22-0.09C8.47,8.96,8.5,8.89,8.5,8.8c0-0.12,0.07-0.28,0.2-0.47 c0.14-0.19,0.31-0.35,0.52-0.47c0.2-0.11,0.36-0.21,0.46-0.27s0.25-0.18,0.44-0.33c0.18-0.15,0.32-0.31,0.42-0.46 c0.1-0.15,0.19-0.34,0.27-0.57C10.89,6,10.93,5.74,10.93,5.46z M8.5,11.84v-1.82c0-0.09-0.03-0.16-0.08-0.22 C8.36,9.74,8.29,9.71,8.2,9.71H6.38c-0.09,0-0.16,0.03-0.22,0.08C6.1,9.86,6.07,9.93,6.07,10.02v1.82c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.08,0.22,0.08H8.2c0.09,0,0.16-0.03,0.22-0.08C8.47,12,8.5,11.93,8.5,11.84z"
+              />
+            </g>
+          </svg>
+        </a>
+      </span>
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages help-messages"
+        />
+      </div>
+      <div
+        className="table"
+      >
+        <span
+          className="content"
+        >
+          <span
+            className="component"
+          >
+            <div>
+              <p>
+                For example: your maiden name, name(s) by a former marriage, former name(s), alias(es), or nickname(s).
+              </p>
+            </div>
+          </span>
+        </span>
+      </div>
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages error-messages"
+          role="alert"
+        />
+      </div>
+    </div>
+    <div
+      aria-label="Have you used any other names?"
+      className="field required  branch"
+      data-uuid="field-MOCK-GUID"
+    >
+      <a
+        aria-hidden="true"
+        className="anchor"
+        id="field-MOCK-GUID"
+        name="field-MOCK-GUID"
+      />
+      <h3
+        className="title h3"
+      >
+        Have you used any other names?
+      </h3>
+      <span
+        className="icon"
+      />
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages help-messages"
+        />
+      </div>
+      <div
+        className="table"
+      >
+        <span
+          className="content"
+        >
+          <span
+            className="component shrink"
+          >
+            <div
+              className="content"
+            />
+            <div
+              className="blocks option-list branch usa-input-error"
+            >
+              <div
+                className="yes block"
+              >
+                <label
+                  className=""
+                  htmlFor="has_othernames-MOCK-GUID"
+                >
+                  <input
+                    aria-label="Yes for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="has_othernames-MOCK-GUID"
+                    name="has_othernames-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="Yes"
+                  />
+                  <span>
+                    Yes
+                  </span>
+                </label>
+              </div>
+              <div
+                className="no block"
+              >
+                <label
+                  className=""
+                  htmlFor="has_othernames-MOCK-GUID"
+                >
+                  <input
+                    aria-label="No for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="has_othernames-MOCK-GUID"
+                    name="has_othernames-MOCK-GUID"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="radio"
+                    value="No"
+                  />
+                  <span>
+                    No
+                  </span>
+                </label>
+              </div>
+            </div>
+          </span>
+        </span>
+      </div>
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages error-messages"
+          role="alert"
+        >
+          <div
+            aria-live="polite"
+            className="message error"
+            role="alert"
+          >
+            <i
+              aria-hidden="true"
+              className="fa fa-exclamation"
+            />
+            <div
+              data-i18n="error.required"
+            >
+              <h5>
+                Your response is required
+              </h5>
+              
+              
+            </div>
+          </div>
+        </span>
+      </div>
+    </div>
+  </div>
+  <hr
+    className="section-divider"
+  />
+  <div
+    className="section-content contact"
+    data-section="identification"
+    data-subsection="contacts"
+  >
+    <div
+      aria-label="Provide your contact information"
+      className="field   no-margin-bottom"
+      data-uuid="field-MOCK-GUID"
+    >
+      <a
+        aria-hidden="true"
+        className="anchor"
+        id="field-MOCK-GUID"
+        name="field-MOCK-GUID"
+      />
+      <h2
+        className="title h2"
+      >
+        Provide your contact information
+      </h2>
+      <span
+        className="icon"
+      />
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages help-messages"
+        />
+      </div>
+      <div
+        className="table"
+      >
+        <span
+          className="content"
+        >
+          <span
+            className="component"
+          />
+        </span>
+      </div>
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages error-messages"
+          role="alert"
+        />
+      </div>
+    </div>
+    <div
+      aria-label="Your email addresses"
+      className="field   no-margin-bottom"
+      data-uuid="field-MOCK-GUID"
+    >
+      <a
+        aria-hidden="true"
+        className="anchor"
+        id="field-MOCK-GUID"
+        name="field-MOCK-GUID"
+      />
+      <h3
+        className="title h3"
+      >
+        Your email addresses
+      </h3>
+      <span
+        className="icon"
+      >
+        <a
+          aria-label="Show help for Your email addresses"
+          className="toggle h3"
+          href="javascript:;"
+          onClick={[Function]}
+          title="Show help for Your email addresses"
+        >
+          <svg
+            alt="Scalable vector graphic"
+            focusable="false"
+            height="14.57px"
+            tabIndex="-1"
+            viewBox="0 0 14.57 14.57"
+            width="14.57px"
+          >
+            <g>
+              <path
+                className="eapp-help-icon"
+                d="M13.59,3.63c0.65,1.12,0.98,2.34,0.98,3.66s-0.33,2.54-0.98,3.66c-0.65,1.12-1.54,2-2.65,2.65 s-2.33,0.98-3.66,0.98c-1.32,0-2.54-0.33-3.66-0.98s-2-1.54-2.65-2.65C0.33,9.83,0,8.61,0,7.29s0.33-2.54,0.98-3.66 c0.65-1.12,1.54-2,2.65-2.65S5.96,0,7.29,0c1.32,0,2.54,0.33,3.66,0.98S12.94,2.51,13.59,3.63z M10.93,5.46 c0-0.56-0.18-1.07-0.53-1.55c-0.35-0.47-0.79-0.84-1.31-1.1C8.56,2.56,8.03,2.43,7.48,2.43c-1.54,0-2.71,0.67-3.52,2.02 C3.86,4.6,3.89,4.73,4.03,4.85L5.28,5.8c0.04,0.04,0.1,0.06,0.18,0.06c0.1,0,0.18-0.04,0.24-0.11c0.33-0.43,0.61-0.72,0.82-0.87 C6.73,4.71,7,4.64,7.33,4.64c0.3,0,0.57,0.08,0.81,0.25C8.38,5.05,8.5,5.24,8.5,5.45c0,0.24-0.06,0.43-0.19,0.58 C8.18,6.17,7.97,6.31,7.67,6.45C7.27,6.63,6.9,6.9,6.57,7.27c-0.33,0.37-0.5,0.77-0.5,1.19V8.8c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.09,0.22,0.09H8.2c0.09,0,0.16-0.03,0.22-0.09C8.47,8.96,8.5,8.89,8.5,8.8c0-0.12,0.07-0.28,0.2-0.47 c0.14-0.19,0.31-0.35,0.52-0.47c0.2-0.11,0.36-0.21,0.46-0.27s0.25-0.18,0.44-0.33c0.18-0.15,0.32-0.31,0.42-0.46 c0.1-0.15,0.19-0.34,0.27-0.57C10.89,6,10.93,5.74,10.93,5.46z M8.5,11.84v-1.82c0-0.09-0.03-0.16-0.08-0.22 C8.36,9.74,8.29,9.71,8.2,9.71H6.38c-0.09,0-0.16,0.03-0.22,0.08C6.1,9.86,6.07,9.93,6.07,10.02v1.82c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.08,0.22,0.08H8.2c0.09,0,0.16-0.03,0.22-0.08C8.47,12,8.5,11.93,8.5,11.84z"
+              />
+            </g>
+          </svg>
+        </a>
+      </span>
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages help-messages"
+        />
+      </div>
+      <div
+        className="table"
+      >
+        <span
+          className="content"
+        >
+          <span
+            className="component"
+          >
+            <div>
+              <p>
+                Providing email addresses may assist in the completion of your background investigation. Email addresses may be used as contact method, and identify subject in records.
+              </p>
+            </div>
+          </span>
+        </span>
+      </div>
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages error-messages"
+          role="alert"
+        />
+      </div>
+    </div>
+    <div
+      className=" email-collection"
+    >
+      <div>
+        <div
+          className="accordion"
+        >
+          <strong
+            className="aria-description"
+          >
+            Summary of email addresses
+          </strong>
+          <div
+            className="items"
+          />
+          <div
+            className="append-button"
+          >
+            <button
+              className="add usa-button-outline"
+              onClick={[Function]}
+            >
+              Add another email
+              <i
+                className="fa fa-plus-circle"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      aria-label="Your phone numbers"
+      className="field   no-margin-bottom"
+      data-uuid="field-MOCK-GUID"
+    >
+      <a
+        aria-hidden="true"
+        className="anchor"
+        id="field-MOCK-GUID"
+        name="field-MOCK-GUID"
+      />
+      <h3
+        className="title h3"
+      >
+        Your phone numbers
+      </h3>
+      <span
+        className="icon"
+      >
+        <a
+          aria-label="Show help for Your phone numbers"
+          className="toggle h3"
+          href="javascript:;"
+          onClick={[Function]}
+          title="Show help for Your phone numbers"
+        >
+          <svg
+            alt="Scalable vector graphic"
+            focusable="false"
+            height="14.57px"
+            tabIndex="-1"
+            viewBox="0 0 14.57 14.57"
+            width="14.57px"
+          >
+            <g>
+              <path
+                className="eapp-help-icon"
+                d="M13.59,3.63c0.65,1.12,0.98,2.34,0.98,3.66s-0.33,2.54-0.98,3.66c-0.65,1.12-1.54,2-2.65,2.65 s-2.33,0.98-3.66,0.98c-1.32,0-2.54-0.33-3.66-0.98s-2-1.54-2.65-2.65C0.33,9.83,0,8.61,0,7.29s0.33-2.54,0.98-3.66 c0.65-1.12,1.54-2,2.65-2.65S5.96,0,7.29,0c1.32,0,2.54,0.33,3.66,0.98S12.94,2.51,13.59,3.63z M10.93,5.46 c0-0.56-0.18-1.07-0.53-1.55c-0.35-0.47-0.79-0.84-1.31-1.1C8.56,2.56,8.03,2.43,7.48,2.43c-1.54,0-2.71,0.67-3.52,2.02 C3.86,4.6,3.89,4.73,4.03,4.85L5.28,5.8c0.04,0.04,0.1,0.06,0.18,0.06c0.1,0,0.18-0.04,0.24-0.11c0.33-0.43,0.61-0.72,0.82-0.87 C6.73,4.71,7,4.64,7.33,4.64c0.3,0,0.57,0.08,0.81,0.25C8.38,5.05,8.5,5.24,8.5,5.45c0,0.24-0.06,0.43-0.19,0.58 C8.18,6.17,7.97,6.31,7.67,6.45C7.27,6.63,6.9,6.9,6.57,7.27c-0.33,0.37-0.5,0.77-0.5,1.19V8.8c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.09,0.22,0.09H8.2c0.09,0,0.16-0.03,0.22-0.09C8.47,8.96,8.5,8.89,8.5,8.8c0-0.12,0.07-0.28,0.2-0.47 c0.14-0.19,0.31-0.35,0.52-0.47c0.2-0.11,0.36-0.21,0.46-0.27s0.25-0.18,0.44-0.33c0.18-0.15,0.32-0.31,0.42-0.46 c0.1-0.15,0.19-0.34,0.27-0.57C10.89,6,10.93,5.74,10.93,5.46z M8.5,11.84v-1.82c0-0.09-0.03-0.16-0.08-0.22 C8.36,9.74,8.29,9.71,8.2,9.71H6.38c-0.09,0-0.16,0.03-0.22,0.08C6.1,9.86,6.07,9.93,6.07,10.02v1.82c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.08,0.22,0.08H8.2c0.09,0,0.16-0.03,0.22-0.08C8.47,12,8.5,11.93,8.5,11.84z"
+              />
+            </g>
+          </svg>
+        </a>
+      </span>
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages help-messages"
+        />
+      </div>
+      <div
+        className="table"
+      >
+        <span
+          className="content"
+        >
+          <span
+            className="component"
+          >
+            <div>
+              <p>
+                Provide three contact numbers. 
+                <strong>
+                  At least one number is required
+                </strong>
+                . Additional numbers may assist in the completion of your background investigation.
+              </p>
+            </div>
+          </span>
+        </span>
+      </div>
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages error-messages"
+          role="alert"
+        />
+      </div>
+    </div>
+    <div
+      className=" telephone-collection"
+    >
+      <div>
+        <div
+          className="accordion"
+        >
+          <strong
+            className="aria-description"
+          >
+            Summary of phone numbers
+          </strong>
+          <div
+            className="items"
+          />
+          <div
+            className="append-button"
+          >
+            <button
+              className="add usa-button-outline"
+              onClick={[Function]}
+            >
+              Add another phone number
+              <i
+                className="fa fa-plus-circle"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr
+    className="section-divider"
+  />
+  <div
+    className="section-content birthdate"
+    data-section="identification"
+    data-subsection="birthdate"
+  >
+    <div
+      aria-label="Provide your date of birth"
+      className="field required"
+      data-uuid="field-MOCK-GUID"
+    >
+      <a
+        aria-hidden="true"
+        className="anchor"
+        id="field-MOCK-GUID"
+        name="field-MOCK-GUID"
+      />
+      <h2
+        className="title h2"
+      >
+        Provide your date of birth
+      </h2>
+      <span
+        className="icon"
+      >
+        <a
+          aria-label="Show help for Provide your date of birth"
+          className="toggle h2"
+          href="javascript:;"
+          onClick={[Function]}
+          title="Show help for Provide your date of birth"
+        >
+          <svg
+            alt="Scalable vector graphic"
+            focusable="false"
+            height="14.57px"
+            tabIndex="-1"
+            viewBox="0 0 14.57 14.57"
+            width="14.57px"
+          >
+            <g>
+              <path
+                className="eapp-help-icon"
+                d="M13.59,3.63c0.65,1.12,0.98,2.34,0.98,3.66s-0.33,2.54-0.98,3.66c-0.65,1.12-1.54,2-2.65,2.65 s-2.33,0.98-3.66,0.98c-1.32,0-2.54-0.33-3.66-0.98s-2-1.54-2.65-2.65C0.33,9.83,0,8.61,0,7.29s0.33-2.54,0.98-3.66 c0.65-1.12,1.54-2,2.65-2.65S5.96,0,7.29,0c1.32,0,2.54,0.33,3.66,0.98S12.94,2.51,13.59,3.63z M10.93,5.46 c0-0.56-0.18-1.07-0.53-1.55c-0.35-0.47-0.79-0.84-1.31-1.1C8.56,2.56,8.03,2.43,7.48,2.43c-1.54,0-2.71,0.67-3.52,2.02 C3.86,4.6,3.89,4.73,4.03,4.85L5.28,5.8c0.04,0.04,0.1,0.06,0.18,0.06c0.1,0,0.18-0.04,0.24-0.11c0.33-0.43,0.61-0.72,0.82-0.87 C6.73,4.71,7,4.64,7.33,4.64c0.3,0,0.57,0.08,0.81,0.25C8.38,5.05,8.5,5.24,8.5,5.45c0,0.24-0.06,0.43-0.19,0.58 C8.18,6.17,7.97,6.31,7.67,6.45C7.27,6.63,6.9,6.9,6.57,7.27c-0.33,0.37-0.5,0.77-0.5,1.19V8.8c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.09,0.22,0.09H8.2c0.09,0,0.16-0.03,0.22-0.09C8.47,8.96,8.5,8.89,8.5,8.8c0-0.12,0.07-0.28,0.2-0.47 c0.14-0.19,0.31-0.35,0.52-0.47c0.2-0.11,0.36-0.21,0.46-0.27s0.25-0.18,0.44-0.33c0.18-0.15,0.32-0.31,0.42-0.46 c0.1-0.15,0.19-0.34,0.27-0.57C10.89,6,10.93,5.74,10.93,5.46z M8.5,11.84v-1.82c0-0.09-0.03-0.16-0.08-0.22 C8.36,9.74,8.29,9.71,8.2,9.71H6.38c-0.09,0-0.16,0.03-0.22,0.08C6.1,9.86,6.07,9.93,6.07,10.02v1.82c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.08,0.22,0.08H8.2c0.09,0,0.16-0.03,0.22-0.08C8.47,12,8.5,11.93,8.5,11.84z"
+              />
+            </g>
+          </svg>
+        </a>
+      </span>
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages help-messages"
+        />
+      </div>
+      <div
+        className="table"
+      >
+        <span
+          className="content"
+        >
+          <span
+            className="component"
+          >
+            <div
+              className="datecontrol"
+            >
+              <div>
+                <div
+                  className="usa-form-group month"
+                >
+                  <div
+                    className="usa-input-error"
+                  >
+                    <label
+                      className="usa-input-error-label"
+                      htmlFor="month-MOCK-GUID"
+                    >
+                      Month
+                    </label>
+                    <input
+                      aria-describedby="month-error"
+                      aria-label="Month"
+                      autoCapitalize={true}
+                      autoComplete={true}
+                      autoCorrect={true}
+                      className=""
+                      disabled={false}
+                      id="month-MOCK-GUID"
+                      maxLength="2"
+                      name="month"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      pattern="^(\\\\s*|\\\\d+)$"
+                      placeholder="##"
+                      spellCheck={true}
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                </div>
+                <div
+                  className="usa-form-group day "
+                >
+                  <div
+                    className="usa-input-error"
+                  >
+                    <label
+                      className="usa-input-error-label"
+                      htmlFor="day-MOCK-GUID"
+                    >
+                      Day
+                    </label>
+                    <input
+                      aria-describedby="day-error"
+                      aria-label="Day"
+                      autoCapitalize={true}
+                      autoComplete={true}
+                      autoCorrect={true}
+                      className=""
+                      disabled={false}
+                      id="day-MOCK-GUID"
+                      maxLength="2"
+                      name="day"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      pattern="^(\\\\s*|\\\\d+)$"
+                      placeholder="##"
+                      spellCheck={true}
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                </div>
+                <div
+                  className="usa-form-group year"
+                >
+                  <div
+                    className="usa-input-error"
+                  >
+                    <label
+                      className="usa-input-error-label"
+                      htmlFor="year-MOCK-GUID"
+                    >
+                      Year
+                    </label>
+                    <input
+                      aria-describedby="year-error"
+                      aria-label="Year"
+                      autoCapitalize={true}
+                      autoComplete={true}
+                      autoCorrect={true}
+                      className=""
+                      disabled={false}
+                      id="year-MOCK-GUID"
+                      maxLength="4"
+                      name="year"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      pattern="^(\\\\s*|\\\\d+)$"
+                      placeholder="####"
+                      spellCheck={true}
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                className="flags"
+              >
+                <div
+                  className="estimated block"
+                >
+                  <input
+                    aria-label="Estimated for null"
+                    checked={false}
+                    className="usa-input-success"
+                    disabled={false}
+                    id="estimated-MOCK-GUID"
+                    name="estimated"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="checkbox"
+                    value={false}
+                  />
+                  <label
+                    className="checkbox no-toggle"
+                    htmlFor="estimated-MOCK-GUID"
+                  >
+                    <span>
+                      Estimated
+                    </span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </span>
+        </span>
+      </div>
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages error-messages"
+          role="alert"
+        >
+          <div
+            aria-live="polite"
+            className="message error"
+            role="alert"
+          >
+            <i
+              aria-hidden="true"
+              className="fa fa-exclamation"
+            />
+            <div
+              data-i18n="error.date.required"
+            >
+              <h5>
+                Your response is required
+              </h5>
+              <span>
+                <div>
+                  <p>
+                    All parts of the date are required even if it is 
+                    <strong>
+                      estimated
+                    </strong>
+                    .
+                  </p>
+                </div>
+              </span>
+              
+            </div>
+          </div>
+        </span>
+      </div>
+    </div>
+  </div>
+  <hr
+    className="section-divider"
+  />
+  <div
+    className="section-content applicant-birthplace"
+    data-section="identification"
+    data-subsection="birthplace"
+  >
+    <div
+      aria-label="Provide your place of birth"
+      className="field required"
+      data-uuid="field-MOCK-GUID"
+    >
+      <a
+        aria-hidden="true"
+        className="anchor"
+        id="field-MOCK-GUID"
+        name="field-MOCK-GUID"
+      />
+      <h2
+        className="title h2"
+      >
+        Provide your place of birth
+      </h2>
+      <span
+        className="icon"
+      />
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages help-messages"
+        />
+      </div>
+      <div
+        className="table"
+      >
+        <span
+          className="content"
+        >
+          <span
+            className="component"
+          >
+            <div
+              className="location"
+            >
+              <div
+                className="fields"
+              >
+                <div
+                  className="toggleable-location"
+                >
+                  <div
+                    className="blocks option-list branch usa-input-error"
+                  >
+                    <label>
+                      Were you born in the United States?
+                    </label>
+                    <div
+                      className="yes block"
+                    >
+                      <label
+                        className=""
+                        htmlFor="birthplace-MOCK-GUID"
+                      >
+                        <input
+                          aria-label="Yes for null"
+                          checked={false}
+                          className="usa-input-success"
+                          disabled={false}
+                          id="birthplace-MOCK-GUID"
+                          name="birthplace-MOCK-GUID"
+                          onBlur={[Function]}
+                          onChange={[Function]}
+                          onClick={[Function]}
+                          onFocus={[Function]}
+                          onKeyDown={[Function]}
+                          type="radio"
+                          value="Yes"
+                        />
+                        <span>
+                          Yes
+                        </span>
+                      </label>
+                    </div>
+                    <div
+                      className="no block"
+                    >
+                      <label
+                        className=""
+                        htmlFor="birthplace-MOCK-GUID"
+                      >
+                        <input
+                          aria-label="No for null"
+                          checked={false}
+                          className="usa-input-success"
+                          disabled={false}
+                          id="birthplace-MOCK-GUID"
+                          name="birthplace-MOCK-GUID"
+                          onBlur={[Function]}
+                          onChange={[Function]}
+                          onClick={[Function]}
+                          onFocus={[Function]}
+                          onKeyDown={[Function]}
+                          type="radio"
+                          value="No"
+                        />
+                        <span>
+                          No
+                        </span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </span>
+        </span>
+      </div>
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages error-messages"
+          role="alert"
+        >
+          <div
+            aria-live="polite"
+            className="message error"
+            role="alert"
+          >
+            <i
+              aria-hidden="true"
+              className="fa fa-exclamation"
+            />
+            <div
+              data-i18n="error.location.required"
+            >
+              <h5>
+                Your response is required
+              </h5>
+              
+              
+            </div>
+          </div>
+        </span>
+      </div>
+    </div>
+  </div>
+  <hr
+    className="section-divider"
+  />
+  <div
+    className="section-content applicant-ssn"
+    data-section="identification"
+    data-subsection="ssn"
+  >
+    <div
+      aria-label="Provide your U.S. Social Security Number"
+      className="field required"
+      data-uuid="field-MOCK-GUID"
+    >
+      <a
+        aria-hidden="true"
+        className="anchor"
+        id="field-MOCK-GUID"
+        name="field-MOCK-GUID"
+      />
+      <h2
+        className="title h2"
+      >
+        Provide your U.S. Social Security Number
+      </h2>
+      <span
+        className="icon"
+      >
+        <a
+          aria-label="Show help for Provide your U.S. Social Security Number"
+          className="toggle h2"
+          href="javascript:;"
+          onClick={[Function]}
+          title="Show help for Provide your U.S. Social Security Number"
+        >
+          <svg
+            alt="Scalable vector graphic"
+            focusable="false"
+            height="14.57px"
+            tabIndex="-1"
+            viewBox="0 0 14.57 14.57"
+            width="14.57px"
+          >
+            <g>
+              <path
+                className="eapp-help-icon"
+                d="M13.59,3.63c0.65,1.12,0.98,2.34,0.98,3.66s-0.33,2.54-0.98,3.66c-0.65,1.12-1.54,2-2.65,2.65 s-2.33,0.98-3.66,0.98c-1.32,0-2.54-0.33-3.66-0.98s-2-1.54-2.65-2.65C0.33,9.83,0,8.61,0,7.29s0.33-2.54,0.98-3.66 c0.65-1.12,1.54-2,2.65-2.65S5.96,0,7.29,0c1.32,0,2.54,0.33,3.66,0.98S12.94,2.51,13.59,3.63z M10.93,5.46 c0-0.56-0.18-1.07-0.53-1.55c-0.35-0.47-0.79-0.84-1.31-1.1C8.56,2.56,8.03,2.43,7.48,2.43c-1.54,0-2.71,0.67-3.52,2.02 C3.86,4.6,3.89,4.73,4.03,4.85L5.28,5.8c0.04,0.04,0.1,0.06,0.18,0.06c0.1,0,0.18-0.04,0.24-0.11c0.33-0.43,0.61-0.72,0.82-0.87 C6.73,4.71,7,4.64,7.33,4.64c0.3,0,0.57,0.08,0.81,0.25C8.38,5.05,8.5,5.24,8.5,5.45c0,0.24-0.06,0.43-0.19,0.58 C8.18,6.17,7.97,6.31,7.67,6.45C7.27,6.63,6.9,6.9,6.57,7.27c-0.33,0.37-0.5,0.77-0.5,1.19V8.8c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.09,0.22,0.09H8.2c0.09,0,0.16-0.03,0.22-0.09C8.47,8.96,8.5,8.89,8.5,8.8c0-0.12,0.07-0.28,0.2-0.47 c0.14-0.19,0.31-0.35,0.52-0.47c0.2-0.11,0.36-0.21,0.46-0.27s0.25-0.18,0.44-0.33c0.18-0.15,0.32-0.31,0.42-0.46 c0.1-0.15,0.19-0.34,0.27-0.57C10.89,6,10.93,5.74,10.93,5.46z M8.5,11.84v-1.82c0-0.09-0.03-0.16-0.08-0.22 C8.36,9.74,8.29,9.71,8.2,9.71H6.38c-0.09,0-0.16,0.03-0.22,0.08C6.1,9.86,6.07,9.93,6.07,10.02v1.82c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.08,0.22,0.08H8.2c0.09,0,0.16-0.03,0.22-0.08C8.47,12,8.5,11.93,8.5,11.84z"
+              />
+            </g>
+          </svg>
+        </a>
+      </span>
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages help-messages"
+        />
+      </div>
+      <div
+        className="table"
+      >
+        <span
+          className="content"
+        >
+          <span
+            className="component"
+          >
+            <div
+              className="ssn applicant-ssn-initial"
+            >
+              <div
+                className="first eapp-short-input usa-input-error"
+              >
+                <input
+                  aria-describedby="first-error"
+                  aria-label={null}
+                  autoCapitalize={true}
+                  autoComplete={true}
+                  autoCorrect={true}
+                  className=""
+                  disabled={false}
+                  id="first-MOCK-GUID"
+                  maxLength="3"
+                  name="first"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onCopy={[Function]}
+                  onCut={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  onPaste={[Function]}
+                  pattern="^[0-9]{3}$"
+                  placeholder="###"
+                  spellCheck={true}
+                  type="text"
+                  value=""
+                />
+              </div>
+              <div
+                className="middle eapp-short-input usa-input-error"
+              >
+                <input
+                  aria-describedby="middle-error"
+                  aria-label={null}
+                  autoCapitalize={true}
+                  autoComplete={true}
+                  autoCorrect={true}
+                  className=""
+                  disabled={false}
+                  id="middle-MOCK-GUID"
+                  maxLength="2"
+                  name="middle"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onCopy={[Function]}
+                  onCut={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  onPaste={[Function]}
+                  pattern="^[0-9]{2}$"
+                  placeholder="##"
+                  spellCheck={true}
+                  type="text"
+                  value=""
+                />
+              </div>
+              <div
+                className="last eapp-short-input usa-input-error"
+              >
+                <input
+                  aria-describedby="last-error"
+                  aria-label={null}
+                  autoCapitalize={true}
+                  autoComplete={true}
+                  autoCorrect={true}
+                  className=""
+                  disabled={false}
+                  id="last-MOCK-GUID"
+                  maxLength="4"
+                  name="last"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onCopy={[Function]}
+                  onCut={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  onPaste={[Function]}
+                  pattern="^[0-9]{4}$"
+                  placeholder="####"
+                  spellCheck={true}
+                  type="text"
+                  value=""
+                />
+              </div>
+              <div
+                className="flags"
+              >
+                <div
+                  className="not-applicable block"
+                >
+                  <input
+                    aria-label="Not applicable for null"
+                    checked={false}
+                    className="usa-input-success"
+                    id="notApplicable-MOCK-GUID"
+                    name="notApplicable"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="checkbox"
+                    value={false}
+                  />
+                  <label
+                    className="checkbox no-toggle"
+                    htmlFor="notApplicable-MOCK-GUID"
+                  >
+                    <span>
+                      Not applicable
+                    </span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </span>
+        </span>
+      </div>
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages error-messages"
+          role="alert"
+        >
+          <div
+            aria-live="polite"
+            className="message error"
+            role="alert"
+          >
+            <i
+              aria-hidden="true"
+              className="fa fa-exclamation"
+            />
+            <div
+              data-i18n="error.ssn.required"
+            >
+              <h5>
+                Your response is required
+              </h5>
+              
+              
+            </div>
+          </div>
+        </span>
+      </div>
+    </div>
+  </div>
+  <hr
+    className="section-divider"
+  />
+  <div
+    className="section-content physical"
+    data-section="identification"
+    data-subsection="physical"
+  >
+    <div
+      aria-label="Provide your identifying information"
+      className="field   no-margin-bottom"
+      data-uuid="field-MOCK-GUID"
+    >
+      <a
+        aria-hidden="true"
+        className="anchor"
+        id="field-MOCK-GUID"
+        name="field-MOCK-GUID"
+      />
+      <h2
+        className="title h2"
+      >
+        Provide your identifying information
+      </h2>
+      <span
+        className="icon"
+      />
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages help-messages"
+        />
+      </div>
+      <div
+        className="table"
+      >
+        <span
+          className="content"
+        >
+          <span
+            className="component"
+          />
+        </span>
+      </div>
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages error-messages"
+          role="alert"
+        />
+      </div>
+    </div>
+    <div
+      aria-label="Height"
+      className="field required"
+      data-uuid="field-MOCK-GUID"
+    >
+      <a
+        aria-hidden="true"
+        className="anchor"
+        id="field-MOCK-GUID"
+        name="field-MOCK-GUID"
+      />
+      <h3
+        className="title h3"
+      >
+        Height
+      </h3>
+      <span
+        className="icon"
+      >
+        <a
+          aria-label="Show help for Height"
+          className="toggle h3  adjust-for-labels"
+          href="javascript:;"
+          onClick={[Function]}
+          title="Show help for Height"
+        >
+          <svg
+            alt="Scalable vector graphic"
+            focusable="false"
+            height="14.57px"
+            tabIndex="-1"
+            viewBox="0 0 14.57 14.57"
+            width="14.57px"
+          >
+            <g>
+              <path
+                className="eapp-help-icon"
+                d="M13.59,3.63c0.65,1.12,0.98,2.34,0.98,3.66s-0.33,2.54-0.98,3.66c-0.65,1.12-1.54,2-2.65,2.65 s-2.33,0.98-3.66,0.98c-1.32,0-2.54-0.33-3.66-0.98s-2-1.54-2.65-2.65C0.33,9.83,0,8.61,0,7.29s0.33-2.54,0.98-3.66 c0.65-1.12,1.54-2,2.65-2.65S5.96,0,7.29,0c1.32,0,2.54,0.33,3.66,0.98S12.94,2.51,13.59,3.63z M10.93,5.46 c0-0.56-0.18-1.07-0.53-1.55c-0.35-0.47-0.79-0.84-1.31-1.1C8.56,2.56,8.03,2.43,7.48,2.43c-1.54,0-2.71,0.67-3.52,2.02 C3.86,4.6,3.89,4.73,4.03,4.85L5.28,5.8c0.04,0.04,0.1,0.06,0.18,0.06c0.1,0,0.18-0.04,0.24-0.11c0.33-0.43,0.61-0.72,0.82-0.87 C6.73,4.71,7,4.64,7.33,4.64c0.3,0,0.57,0.08,0.81,0.25C8.38,5.05,8.5,5.24,8.5,5.45c0,0.24-0.06,0.43-0.19,0.58 C8.18,6.17,7.97,6.31,7.67,6.45C7.27,6.63,6.9,6.9,6.57,7.27c-0.33,0.37-0.5,0.77-0.5,1.19V8.8c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.09,0.22,0.09H8.2c0.09,0,0.16-0.03,0.22-0.09C8.47,8.96,8.5,8.89,8.5,8.8c0-0.12,0.07-0.28,0.2-0.47 c0.14-0.19,0.31-0.35,0.52-0.47c0.2-0.11,0.36-0.21,0.46-0.27s0.25-0.18,0.44-0.33c0.18-0.15,0.32-0.31,0.42-0.46 c0.1-0.15,0.19-0.34,0.27-0.57C10.89,6,10.93,5.74,10.93,5.46z M8.5,11.84v-1.82c0-0.09-0.03-0.16-0.08-0.22 C8.36,9.74,8.29,9.71,8.2,9.71H6.38c-0.09,0-0.16,0.03-0.22,0.08C6.1,9.86,6.07,9.93,6.07,10.02v1.82c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.08,0.22,0.08H8.2c0.09,0,0.16-0.03,0.22-0.08C8.47,12,8.5,11.93,8.5,11.84z"
+              />
+            </g>
+          </svg>
+        </a>
+      </span>
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages help-messages"
+        />
+      </div>
+      <div
+        className="table"
+      >
+        <span
+          className="content"
+        >
+          <span
+            className="component shrink"
+          >
+            <div
+              className="height"
+            >
+              <div
+                className="feet"
+              >
+                <div
+                  className="usa-input-error"
+                >
+                  <label
+                    className="usa-input-error-label"
+                    htmlFor="feet-MOCK-GUID"
+                  >
+                    Feet
+                  </label>
+                  <input
+                    aria-describedby="feet-error"
+                    aria-label="Feet"
+                    autoCapitalize={true}
+                    autoComplete={true}
+                    autoCorrect={true}
+                    className=""
+                    disabled={false}
+                    id="feet-MOCK-GUID"
+                    maxLength="1"
+                    name="feet"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    pattern="^(\\\\s*|\\\\d+)$"
+                    placeholder="#"
+                    spellCheck={true}
+                    type="text"
+                    value=""
+                  />
+                </div>
+              </div>
+              <div
+                className="inches"
+              >
+                <div
+                  className="usa-input-error"
+                >
+                  <label
+                    className="usa-input-error-label"
+                    htmlFor="inches-MOCK-GUID"
+                  >
+                    Inches
+                  </label>
+                  <input
+                    aria-describedby="inches-error"
+                    aria-label="Inches"
+                    autoCapitalize={true}
+                    autoComplete={true}
+                    autoCorrect={true}
+                    className=""
+                    disabled={false}
+                    id="inches-MOCK-GUID"
+                    maxLength="2"
+                    name="inches"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    pattern="^(\\\\s*|\\\\d+)$"
+                    placeholder="##"
+                    spellCheck={true}
+                    type="text"
+                    value=""
+                  />
+                </div>
+              </div>
+            </div>
+          </span>
+        </span>
+      </div>
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages error-messages"
+          role="alert"
+        >
+          <div
+            aria-live="polite"
+            className="message error"
+            role="alert"
+          >
+            <i
+              aria-hidden="true"
+              className="fa fa-exclamation"
+            />
+            <div
+              data-i18n="error.height.required"
+            >
+              <h5>
+                Your response is required
+              </h5>
+              
+              
+            </div>
+          </div>
+        </span>
+      </div>
+    </div>
+    <div
+      aria-label="Weight"
+      className="field required"
+      data-uuid="field-MOCK-GUID"
+    >
+      <a
+        aria-hidden="true"
+        className="anchor"
+        id="field-MOCK-GUID"
+        name="field-MOCK-GUID"
+      />
+      <h3
+        className="title h3"
+      >
+        Weight
+      </h3>
+      <span
+        className="icon"
+      >
+        <a
+          aria-label="Show help for Weight"
+          className="toggle h3  adjust-for-labels"
+          href="javascript:;"
+          onClick={[Function]}
+          title="Show help for Weight"
+        >
+          <svg
+            alt="Scalable vector graphic"
+            focusable="false"
+            height="14.57px"
+            tabIndex="-1"
+            viewBox="0 0 14.57 14.57"
+            width="14.57px"
+          >
+            <g>
+              <path
+                className="eapp-help-icon"
+                d="M13.59,3.63c0.65,1.12,0.98,2.34,0.98,3.66s-0.33,2.54-0.98,3.66c-0.65,1.12-1.54,2-2.65,2.65 s-2.33,0.98-3.66,0.98c-1.32,0-2.54-0.33-3.66-0.98s-2-1.54-2.65-2.65C0.33,9.83,0,8.61,0,7.29s0.33-2.54,0.98-3.66 c0.65-1.12,1.54-2,2.65-2.65S5.96,0,7.29,0c1.32,0,2.54,0.33,3.66,0.98S12.94,2.51,13.59,3.63z M10.93,5.46 c0-0.56-0.18-1.07-0.53-1.55c-0.35-0.47-0.79-0.84-1.31-1.1C8.56,2.56,8.03,2.43,7.48,2.43c-1.54,0-2.71,0.67-3.52,2.02 C3.86,4.6,3.89,4.73,4.03,4.85L5.28,5.8c0.04,0.04,0.1,0.06,0.18,0.06c0.1,0,0.18-0.04,0.24-0.11c0.33-0.43,0.61-0.72,0.82-0.87 C6.73,4.71,7,4.64,7.33,4.64c0.3,0,0.57,0.08,0.81,0.25C8.38,5.05,8.5,5.24,8.5,5.45c0,0.24-0.06,0.43-0.19,0.58 C8.18,6.17,7.97,6.31,7.67,6.45C7.27,6.63,6.9,6.9,6.57,7.27c-0.33,0.37-0.5,0.77-0.5,1.19V8.8c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.09,0.22,0.09H8.2c0.09,0,0.16-0.03,0.22-0.09C8.47,8.96,8.5,8.89,8.5,8.8c0-0.12,0.07-0.28,0.2-0.47 c0.14-0.19,0.31-0.35,0.52-0.47c0.2-0.11,0.36-0.21,0.46-0.27s0.25-0.18,0.44-0.33c0.18-0.15,0.32-0.31,0.42-0.46 c0.1-0.15,0.19-0.34,0.27-0.57C10.89,6,10.93,5.74,10.93,5.46z M8.5,11.84v-1.82c0-0.09-0.03-0.16-0.08-0.22 C8.36,9.74,8.29,9.71,8.2,9.71H6.38c-0.09,0-0.16,0.03-0.22,0.08C6.1,9.86,6.07,9.93,6.07,10.02v1.82c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.08,0.22,0.08H8.2c0.09,0,0.16-0.03,0.22-0.08C8.47,12,8.5,11.93,8.5,11.84z"
+              />
+            </g>
+          </svg>
+        </a>
+      </span>
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages help-messages"
+        />
+      </div>
+      <div
+        className="table"
+      >
+        <span
+          className="content"
+        >
+          <span
+            className="component shrink"
+          >
+            <div
+              className="weight"
+            >
+              <div
+                className="pounds"
+              >
+                <div
+                  className="usa-input-error"
+                >
+                  <label
+                    className="usa-input-error-label"
+                    htmlFor="pounds-MOCK-GUID"
+                  >
+                    Pounds
+                  </label>
+                  <input
+                    aria-describedby="pounds-error"
+                    aria-label="Pounds"
+                    autoCapitalize={true}
+                    autoComplete={true}
+                    autoCorrect={true}
+                    className=""
+                    disabled={false}
+                    id="pounds-MOCK-GUID"
+                    maxLength="3"
+                    name="pounds"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    pattern="^(\\\\s*|\\\\d+)$"
+                    placeholder="###"
+                    spellCheck={true}
+                    type="text"
+                    value=""
+                  />
+                </div>
+              </div>
+            </div>
+          </span>
+        </span>
+      </div>
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages error-messages"
+          role="alert"
+        >
+          <div
+            aria-live="polite"
+            className="message error"
+            role="alert"
+          >
+            <i
+              aria-hidden="true"
+              className="fa fa-exclamation"
+            />
+            <div
+              data-i18n="error.weight.required"
+            >
+              <h5>
+                Your response is required
+              </h5>
+              
+              
+            </div>
+          </div>
+        </span>
+      </div>
+    </div>
+    <div
+      aria-label="Hair color"
+      className="field required"
+      data-uuid="field-MOCK-GUID"
+    >
+      <a
+        aria-hidden="true"
+        className="anchor"
+        id="field-MOCK-GUID"
+        name="field-MOCK-GUID"
+      />
+      <h3
+        className="title h3"
+      >
+        Hair color
+      </h3>
+      <span
+        className="icon"
+      >
+        <a
+          aria-label="Show help for Hair color"
+          className="toggle h3  adjust-for-big-buttons"
+          href="javascript:;"
+          onClick={[Function]}
+          title="Show help for Hair color"
+        >
+          <svg
+            alt="Scalable vector graphic"
+            focusable="false"
+            height="14.57px"
+            tabIndex="-1"
+            viewBox="0 0 14.57 14.57"
+            width="14.57px"
+          >
+            <g>
+              <path
+                className="eapp-help-icon"
+                d="M13.59,3.63c0.65,1.12,0.98,2.34,0.98,3.66s-0.33,2.54-0.98,3.66c-0.65,1.12-1.54,2-2.65,2.65 s-2.33,0.98-3.66,0.98c-1.32,0-2.54-0.33-3.66-0.98s-2-1.54-2.65-2.65C0.33,9.83,0,8.61,0,7.29s0.33-2.54,0.98-3.66 c0.65-1.12,1.54-2,2.65-2.65S5.96,0,7.29,0c1.32,0,2.54,0.33,3.66,0.98S12.94,2.51,13.59,3.63z M10.93,5.46 c0-0.56-0.18-1.07-0.53-1.55c-0.35-0.47-0.79-0.84-1.31-1.1C8.56,2.56,8.03,2.43,7.48,2.43c-1.54,0-2.71,0.67-3.52,2.02 C3.86,4.6,3.89,4.73,4.03,4.85L5.28,5.8c0.04,0.04,0.1,0.06,0.18,0.06c0.1,0,0.18-0.04,0.24-0.11c0.33-0.43,0.61-0.72,0.82-0.87 C6.73,4.71,7,4.64,7.33,4.64c0.3,0,0.57,0.08,0.81,0.25C8.38,5.05,8.5,5.24,8.5,5.45c0,0.24-0.06,0.43-0.19,0.58 C8.18,6.17,7.97,6.31,7.67,6.45C7.27,6.63,6.9,6.9,6.57,7.27c-0.33,0.37-0.5,0.77-0.5,1.19V8.8c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.09,0.22,0.09H8.2c0.09,0,0.16-0.03,0.22-0.09C8.47,8.96,8.5,8.89,8.5,8.8c0-0.12,0.07-0.28,0.2-0.47 c0.14-0.19,0.31-0.35,0.52-0.47c0.2-0.11,0.36-0.21,0.46-0.27s0.25-0.18,0.44-0.33c0.18-0.15,0.32-0.31,0.42-0.46 c0.1-0.15,0.19-0.34,0.27-0.57C10.89,6,10.93,5.74,10.93,5.46z M8.5,11.84v-1.82c0-0.09-0.03-0.16-0.08-0.22 C8.36,9.74,8.29,9.71,8.2,9.71H6.38c-0.09,0-0.16,0.03-0.22,0.08C6.1,9.86,6.07,9.93,6.07,10.02v1.82c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.08,0.22,0.08H8.2c0.09,0,0.16-0.03,0.22-0.08C8.47,12,8.5,11.93,8.5,11.84z"
+              />
+            </g>
+          </svg>
+        </a>
+      </span>
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages help-messages"
+        />
+      </div>
+      <div
+        className="table"
+      >
+        <span
+          className="content"
+        >
+          <span
+            className="component"
+          >
+            <div
+              className=" hair-colors"
+            >
+              <label />
+              <div
+                className="blocks option-list eapp-extend-labels usa-input-error"
+              >
+                <div
+                  className="black block extended"
+                >
+                  <label
+                    className=""
+                    htmlFor="hair-black-MOCK-GUID"
+                  >
+                    <input
+                      aria-label="Black for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="hair-black-MOCK-GUID"
+                      name="hair-black-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="Black"
+                    />
+                    <div
+                      className="hair-icon black"
+                    >
+                      <svg
+                        alt="Scalable vector graphic"
+                        enableBackground="new 0 0 18 32"
+                        focusable="false"
+                        tabIndex="-1"
+                        viewBox="0 0 18 32"
+                      >
+                        <path
+                          d="M9,26.37c0,1.41,0.7,3.28,1.35,4.5l-0.08-0.02l0.02,0.02C4.74,28.32,0,24.8,0,18.01c0-7.7,9-8.38,9-13.5 C9,3.1,8.3,1.23,7.68,0l0.06,0.02L7.72,0c5.55,2.55,10.29,6.07,10.29,12.86C18.01,20.56,9,21.24,9,26.37z"
+                        />
+                      </svg>
+                    </div>
+                    <span>
+                      Black
+                    </span>
+                  </label>
+                </div>
+                <div
+                  className="brown block extended"
+                >
+                  <label
+                    className=""
+                    htmlFor="hair-brown-MOCK-GUID"
+                  >
+                    <input
+                      aria-label="Brown for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="hair-brown-MOCK-GUID"
+                      name="hair-brown-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="Brown"
+                    />
+                    <div
+                      className="hair-icon brown"
+                    >
+                      <svg
+                        alt="Scalable vector graphic"
+                        enableBackground="new 0 0 18 32"
+                        focusable="false"
+                        tabIndex="-1"
+                        viewBox="0 0 18 32"
+                      >
+                        <path
+                          d="M9,26.37c0,1.41,0.7,3.28,1.35,4.5l-0.08-0.02l0.02,0.02C4.74,28.32,0,24.8,0,18.01c0-7.7,9-8.38,9-13.5 C9,3.1,8.3,1.23,7.68,0l0.06,0.02L7.72,0c5.55,2.55,10.29,6.07,10.29,12.86C18.01,20.56,9,21.24,9,26.37z"
+                        />
+                      </svg>
+                    </div>
+                    <span>
+                      Brown
+                    </span>
+                  </label>
+                </div>
+                <div
+                  className="red block extended"
+                >
+                  <label
+                    className=""
+                    htmlFor="hair-red-MOCK-GUID"
+                  >
+                    <input
+                      aria-label="Red or auburn for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="hair-red-MOCK-GUID"
+                      name="hair-red-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="Red"
+                    />
+                    <div
+                      className="hair-icon red"
+                    >
+                      <svg
+                        alt="Scalable vector graphic"
+                        enableBackground="new 0 0 18 32"
+                        focusable="false"
+                        tabIndex="-1"
+                        viewBox="0 0 18 32"
+                      >
+                        <path
+                          d="M9,26.37c0,1.41,0.7,3.28,1.35,4.5l-0.08-0.02l0.02,0.02C4.74,28.32,0,24.8,0,18.01c0-7.7,9-8.38,9-13.5 C9,3.1,8.3,1.23,7.68,0l0.06,0.02L7.72,0c5.55,2.55,10.29,6.07,10.29,12.86C18.01,20.56,9,21.24,9,26.37z"
+                        />
+                      </svg>
+                    </div>
+                    <span>
+                      Red or auburn
+                    </span>
+                  </label>
+                </div>
+                <div
+                  className="blonde block extended"
+                >
+                  <label
+                    className=""
+                    htmlFor="hair-blonde-MOCK-GUID"
+                  >
+                    <input
+                      aria-label="Blonde or strawberry for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="hair-blonde-MOCK-GUID"
+                      name="hair-blonde-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="Blonde"
+                    />
+                    <div
+                      className="hair-icon blonde"
+                    >
+                      <svg
+                        alt="Scalable vector graphic"
+                        enableBackground="new 0 0 18 32"
+                        focusable="false"
+                        tabIndex="-1"
+                        viewBox="0 0 18 32"
+                      >
+                        <path
+                          d="M9,26.37c0,1.41,0.7,3.28,1.35,4.5l-0.08-0.02l0.02,0.02C4.74,28.32,0,24.8,0,18.01c0-7.7,9-8.38,9-13.5 C9,3.1,8.3,1.23,7.68,0l0.06,0.02L7.72,0c5.55,2.55,10.29,6.07,10.29,12.86C18.01,20.56,9,21.24,9,26.37z"
+                        />
+                      </svg>
+                    </div>
+                    <span>
+                      Blonde or strawberry
+                    </span>
+                  </label>
+                </div>
+                <div
+                  className="sandy block extended"
+                >
+                  <label
+                    className=""
+                    htmlFor="hair-sandy-MOCK-GUID"
+                  >
+                    <input
+                      aria-label="Sandy for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="hair-sandy-MOCK-GUID"
+                      name="hair-sandy-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="Sandy"
+                    />
+                    <div
+                      className="hair-icon sandy"
+                    >
+                      <svg
+                        alt="Scalable vector graphic"
+                        enableBackground="new 0 0 18 32"
+                        focusable="false"
+                        tabIndex="-1"
+                        viewBox="0 0 18 32"
+                      >
+                        <path
+                          d="M9,26.37c0,1.41,0.7,3.28,1.35,4.5l-0.08-0.02l0.02,0.02C4.74,28.32,0,24.8,0,18.01c0-7.7,9-8.38,9-13.5 C9,3.1,8.3,1.23,7.68,0l0.06,0.02L7.72,0c5.55,2.55,10.29,6.07,10.29,12.86C18.01,20.56,9,21.24,9,26.37z"
+                        />
+                      </svg>
+                    </div>
+                    <span>
+                      Sandy
+                    </span>
+                  </label>
+                </div>
+                <div
+                  className="gray block extended"
+                >
+                  <label
+                    className=""
+                    htmlFor="hair-gray-MOCK-GUID"
+                  >
+                    <input
+                      aria-label="Gray or partially gray for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="hair-gray-MOCK-GUID"
+                      name="hair-gray-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="Gray"
+                    />
+                    <div
+                      className="hair-icon gray"
+                    >
+                      <svg
+                        alt="Scalable vector graphic"
+                        enableBackground="new 0 0 18 32"
+                        focusable="false"
+                        tabIndex="-1"
+                        viewBox="0 0 18 32"
+                      >
+                        <path
+                          d="M9,26.37c0,1.41,0.7,3.28,1.35,4.5l-0.08-0.02l0.02,0.02C4.74,28.32,0,24.8,0,18.01c0-7.7,9-8.38,9-13.5 C9,3.1,8.3,1.23,7.68,0l0.06,0.02L7.72,0c5.55,2.55,10.29,6.07,10.29,12.86C18.01,20.56,9,21.24,9,26.37z"
+                        />
+                      </svg>
+                    </div>
+                    <span>
+                      Gray or partially gray
+                    </span>
+                  </label>
+                </div>
+                <div
+                  className="white block extended"
+                >
+                  <label
+                    className=""
+                    htmlFor="hair-white-MOCK-GUID"
+                  >
+                    <input
+                      aria-label="White for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="hair-white-MOCK-GUID"
+                      name="hair-white-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="White"
+                    />
+                    <div
+                      className="hair-icon white"
+                    >
+                      <svg
+                        alt="Scalable vector graphic"
+                        enableBackground="new 0 0 18 32"
+                        focusable="false"
+                        tabIndex="-1"
+                        viewBox="0 0 18 32"
+                      >
+                        <path
+                          d="M9,26.37c0,1.41,0.7,3.28,1.35,4.5l-0.08-0.02l0.02,0.02C4.74,28.32,0,24.8,0,18.01c0-7.7,9-8.38,9-13.5 C9,3.1,8.3,1.23,7.68,0l0.06,0.02L7.72,0c5.55,2.55,10.29,6.07,10.29,12.86C18.01,20.56,9,21.24,9,26.37z"
+                        />
+                      </svg>
+                    </div>
+                    <span>
+                      White
+                    </span>
+                  </label>
+                </div>
+                <div
+                  className="bald block extended"
+                >
+                  <label
+                    className=""
+                    htmlFor="hair-bald-MOCK-GUID"
+                  >
+                    <input
+                      aria-label="Bald for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="hair-bald-MOCK-GUID"
+                      name="hair-bald-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="Bald"
+                    />
+                    <div
+                      className="hair-icon bald"
+                    >
+                      <svg
+                        alt="Scalable vector graphic"
+                        focusable="false"
+                        tabIndex="-1"
+                        viewBox="0 0 18.01 30.87"
+                      >
+                        <path
+                          d="M11.571,30.953h-1.328L10.04,30.9c-0.377-0.188-0.754-0.378-1.226-0.566l0.371-0.928 c0.018,0.007,0.035,0.014,0.051,0.021c-0.007-0.018-0.014-0.034-0.021-0.052l0.928-0.371c0.173,0.431,0.351,0.877,0.569,1.095 L11.571,30.953z"
+                        />
+                        <path
+                          d="M6.4,28.932c-0.853-0.538-1.63-1.108-2.31-1.696l0.653-0.756c0.643,0.555,1.379,1.095,2.189,1.606L6.4,28.932 z M2.102,25.136c-0.599-0.789-1.088-1.638-1.456-2.521L1.57,22.23c0.334,0.806,0.782,1.58,1.329,2.302L2.102,25.136z M-0.118,19.807c-0.086-0.607-0.13-1.244-0.13-1.893c0-0.352,0.018-0.688,0.053-1.013l0.994,0.107 c-0.031,0.289-0.047,0.591-0.047,0.905c0,0.602,0.041,1.19,0.121,1.752L-0.118,19.807z M1.53,14.525l-0.891-0.454 c0.418-0.819,0.987-1.591,1.739-2.36l0.715,0.699C2.413,13.105,1.901,13.797,1.53,14.525z M5.152,10.626L4.537,9.838l0.451-0.35 c0.61-0.472,1.186-0.918,1.697-1.38L7.355,8.85c-0.54,0.488-1.13,0.946-1.756,1.43L5.152,10.626z M9.168,6.477L8.243,6.095 C8.416,5.677,8.5,5.25,8.5,4.791c0-0.332-0.05-0.744-0.138-1.13l0.975-0.222C9.44,3.895,9.5,4.388,9.5,4.791 C9.5,5.375,9.388,5.943,9.168,6.477z"
+                        />
+                        <path
+                          d="M7.855,1.963C7.666,1.491,7.478,1.018,7.289,0.64L6.928-0.083h0.927l0.203,0.053 c0.381,0.19,0.757,0.379,1.226,0.566L8.912,1.464C8.838,1.435,8.767,1.405,8.697,1.376C8.726,1.448,8.755,1.52,8.784,1.592 L7.855,1.963z"
+                        />
+                        <path
+                          d="M8.667,27.461C8.556,27.004,8.5,26.539,8.5,26.079c0-0.576,0.104-1.134,0.31-1.656l0.931,0.365 C9.579,25.2,9.5,25.622,9.5,26.079c0,0.381,0.046,0.767,0.138,1.147L8.667,27.461z M11.267,22.762l-0.676-0.738 c0.563-0.516,1.186-0.994,1.845-1.501l0.361-0.278l0.611,0.791l-0.363,0.28C12.404,21.809,11.798,22.274,11.267,22.762z M15.579,19.179l-0.709-0.705c0.687-0.688,1.203-1.375,1.581-2.1l0.887,0.463C16.913,17.652,16.337,18.418,15.579,19.179z M18.191,14.012l-0.994-0.112c0.034-0.301,0.052-0.615,0.052-0.943c0-0.585-0.038-1.162-0.111-1.714l0.99-0.133 c0.08,0.596,0.121,1.217,0.121,1.847C18.249,13.323,18.229,13.675,18.191,14.012z M16.469,8.668 c-0.326-0.812-0.763-1.59-1.299-2.315l0.803-0.595c0.588,0.793,1.066,1.646,1.424,2.538L16.469,8.668z M13.345,4.394 c-0.638-0.558-1.372-1.099-2.182-1.61l0.533-0.846c0.854,0.539,1.63,1.112,2.307,1.703L13.345,4.394z"
+                        />
+                      </svg>
+                    </div>
+                    <span>
+                      Bald
+                    </span>
+                  </label>
+                </div>
+                <div
+                  className="blue block extended"
+                >
+                  <label
+                    className=""
+                    htmlFor="hair-blue-MOCK-GUID"
+                  >
+                    <input
+                      aria-label="Blue for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="hair-blue-MOCK-GUID"
+                      name="hair-blue-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="Blue"
+                    />
+                    <div
+                      className="hair-icon blue"
+                    >
+                      <svg
+                        alt="Scalable vector graphic"
+                        enableBackground="new 0 0 18 32"
+                        focusable="false"
+                        tabIndex="-1"
+                        viewBox="0 0 18 32"
+                      >
+                        <path
+                          d="M9,26.37c0,1.41,0.7,3.28,1.35,4.5l-0.08-0.02l0.02,0.02C4.74,28.32,0,24.8,0,18.01c0-7.7,9-8.38,9-13.5 C9,3.1,8.3,1.23,7.68,0l0.06,0.02L7.72,0c5.55,2.55,10.29,6.07,10.29,12.86C18.01,20.56,9,21.24,9,26.37z"
+                        />
+                      </svg>
+                    </div>
+                    <span>
+                      Blue
+                    </span>
+                  </label>
+                </div>
+                <div
+                  className="green block extended"
+                >
+                  <label
+                    className=""
+                    htmlFor="hair-green-MOCK-GUID"
+                  >
+                    <input
+                      aria-label="Green for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="hair-green-MOCK-GUID"
+                      name="hair-green-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="Green"
+                    />
+                    <div
+                      className="hair-icon green"
+                    >
+                      <svg
+                        alt="Scalable vector graphic"
+                        enableBackground="new 0 0 18 32"
+                        focusable="false"
+                        tabIndex="-1"
+                        viewBox="0 0 18 32"
+                      >
+                        <path
+                          d="M9,26.37c0,1.41,0.7,3.28,1.35,4.5l-0.08-0.02l0.02,0.02C4.74,28.32,0,24.8,0,18.01c0-7.7,9-8.38,9-13.5 C9,3.1,8.3,1.23,7.68,0l0.06,0.02L7.72,0c5.55,2.55,10.29,6.07,10.29,12.86C18.01,20.56,9,21.24,9,26.37z"
+                        />
+                      </svg>
+                    </div>
+                    <span>
+                      Green
+                    </span>
+                  </label>
+                </div>
+                <div
+                  className="orange block extended"
+                >
+                  <label
+                    className=""
+                    htmlFor="hair-orange-MOCK-GUID"
+                  >
+                    <input
+                      aria-label="Orange for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="hair-orange-MOCK-GUID"
+                      name="hair-orange-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="Orange"
+                    />
+                    <div
+                      className="hair-icon orange"
+                    >
+                      <svg
+                        alt="Scalable vector graphic"
+                        enableBackground="new 0 0 18 32"
+                        focusable="false"
+                        tabIndex="-1"
+                        viewBox="0 0 18 32"
+                      >
+                        <path
+                          d="M9,26.37c0,1.41,0.7,3.28,1.35,4.5l-0.08-0.02l0.02,0.02C4.74,28.32,0,24.8,0,18.01c0-7.7,9-8.38,9-13.5 C9,3.1,8.3,1.23,7.68,0l0.06,0.02L7.72,0c5.55,2.55,10.29,6.07,10.29,12.86C18.01,20.56,9,21.24,9,26.37z"
+                        />
+                      </svg>
+                    </div>
+                    <span>
+                      Orange
+                    </span>
+                  </label>
+                </div>
+                <div
+                  className="pink block extended"
+                >
+                  <label
+                    className=""
+                    htmlFor="hair-pink-MOCK-GUID"
+                  >
+                    <input
+                      aria-label="Pink for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="hair-pink-MOCK-GUID"
+                      name="hair-pink-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="Pink"
+                    />
+                    <div
+                      className="hair-icon pink"
+                    >
+                      <svg
+                        alt="Scalable vector graphic"
+                        enableBackground="new 0 0 18 32"
+                        focusable="false"
+                        tabIndex="-1"
+                        viewBox="0 0 18 32"
+                      >
+                        <path
+                          d="M9,26.37c0,1.41,0.7,3.28,1.35,4.5l-0.08-0.02l0.02,0.02C4.74,28.32,0,24.8,0,18.01c0-7.7,9-8.38,9-13.5 C9,3.1,8.3,1.23,7.68,0l0.06,0.02L7.72,0c5.55,2.55,10.29,6.07,10.29,12.86C18.01,20.56,9,21.24,9,26.37z"
+                        />
+                      </svg>
+                    </div>
+                    <span>
+                      Pink
+                    </span>
+                  </label>
+                </div>
+                <div
+                  className="purple block extended"
+                >
+                  <label
+                    className=""
+                    htmlFor="hair-purple-MOCK-GUID"
+                  >
+                    <input
+                      aria-label="Purple for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="hair-purple-MOCK-GUID"
+                      name="hair-purple-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="Purple"
+                    />
+                    <div
+                      className="hair-icon purple"
+                    >
+                      <svg
+                        alt="Scalable vector graphic"
+                        enableBackground="new 0 0 18 32"
+                        focusable="false"
+                        tabIndex="-1"
+                        viewBox="0 0 18 32"
+                      >
+                        <path
+                          d="M9,26.37c0,1.41,0.7,3.28,1.35,4.5l-0.08-0.02l0.02,0.02C4.74,28.32,0,24.8,0,18.01c0-7.7,9-8.38,9-13.5 C9,3.1,8.3,1.23,7.68,0l0.06,0.02L7.72,0c5.55,2.55,10.29,6.07,10.29,12.86C18.01,20.56,9,21.24,9,26.37z"
+                        />
+                      </svg>
+                    </div>
+                    <span>
+                      Purple
+                    </span>
+                  </label>
+                </div>
+                <div
+                  className="unknown block extended"
+                >
+                  <label
+                    className=""
+                    htmlFor="hair-unknown-MOCK-GUID"
+                  >
+                    <input
+                      aria-label="Unspecified or unknown for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="hair-unknown-MOCK-GUID"
+                      name="hair-unknown-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="Unknown"
+                    />
+                    <div
+                      className="hair-icon unknown"
+                    >
+                      <svg
+                        alt="Scalable vector graphic"
+                        focusable="false"
+                        tabIndex="-1"
+                        viewBox="0 0 30.86 36.84"
+                      >
+                        <path
+                          d="M15.43,34.25C6.91,34.25,0,27.34,0,18.82C0,10.3,6.91,3.39,15.43,3.39s15.43,6.91,15.43,15.43 C30.87,27.34,23.95,34.25,15.43,34.25z M15.84,8.53c-3.28,0-5.73,1.41-7.46,4.28c-0.18,0.28-0.1,0.64,0.16,0.84l2.65,2.01 c0.1,0.08,0.24,0.12,0.38,0.12c0.18,0,0.38-0.08,0.5-0.24c0.94-1.21,1.35-1.57,1.73-1.85c0.34-0.24,1-0.48,1.73-0.48 c1.29,0,2.47,0.82,2.47,1.71c0,1.04-0.54,1.57-1.77,2.13c-1.43,0.64-3.38,2.31-3.38,4.26v0.72c0,0.36,0.28,0.64,0.64,0.64h3.86 c0.36,0,0.64-0.28,0.64-0.64c0-0.46,0.58-1.45,1.53-1.99c1.53-0.87,3.62-2.03,3.62-5.08C23.15,11.28,19.29,8.53,15.84,8.53z M18.01,24.61c0-0.36-0.28-0.64-0.64-0.64H13.5c-0.36,0-0.64,0.28-0.64,0.64v3.86c0,0.36,0.28,0.64,0.64,0.64h3.86 c0.36,0,0.64-0.28,0.64-0.64V24.61z"
+                        />
+                      </svg>
+                    </div>
+                    <span>
+                      Unspecified or unknown
+                    </span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </span>
+        </span>
+      </div>
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages error-messages"
+          role="alert"
+        >
+          <div
+            aria-live="polite"
+            className="message error"
+            role="alert"
+          >
+            <i
+              aria-hidden="true"
+              className="fa fa-exclamation"
+            />
+            <div
+              data-i18n="error.required"
+            >
+              <h5>
+                Your response is required
+              </h5>
+              
+              
+            </div>
+          </div>
+        </span>
+      </div>
+    </div>
+    <div
+      aria-label="Eye color"
+      className="field required"
+      data-uuid="field-MOCK-GUID"
+    >
+      <a
+        aria-hidden="true"
+        className="anchor"
+        id="field-MOCK-GUID"
+        name="field-MOCK-GUID"
+      />
+      <h3
+        className="title h3"
+      >
+        Eye color
+      </h3>
+      <span
+        className="icon"
+      >
+        <a
+          aria-label="Show help for Eye color"
+          className="toggle h3  adjust-for-big-buttons"
+          href="javascript:;"
+          onClick={[Function]}
+          title="Show help for Eye color"
+        >
+          <svg
+            alt="Scalable vector graphic"
+            focusable="false"
+            height="14.57px"
+            tabIndex="-1"
+            viewBox="0 0 14.57 14.57"
+            width="14.57px"
+          >
+            <g>
+              <path
+                className="eapp-help-icon"
+                d="M13.59,3.63c0.65,1.12,0.98,2.34,0.98,3.66s-0.33,2.54-0.98,3.66c-0.65,1.12-1.54,2-2.65,2.65 s-2.33,0.98-3.66,0.98c-1.32,0-2.54-0.33-3.66-0.98s-2-1.54-2.65-2.65C0.33,9.83,0,8.61,0,7.29s0.33-2.54,0.98-3.66 c0.65-1.12,1.54-2,2.65-2.65S5.96,0,7.29,0c1.32,0,2.54,0.33,3.66,0.98S12.94,2.51,13.59,3.63z M10.93,5.46 c0-0.56-0.18-1.07-0.53-1.55c-0.35-0.47-0.79-0.84-1.31-1.1C8.56,2.56,8.03,2.43,7.48,2.43c-1.54,0-2.71,0.67-3.52,2.02 C3.86,4.6,3.89,4.73,4.03,4.85L5.28,5.8c0.04,0.04,0.1,0.06,0.18,0.06c0.1,0,0.18-0.04,0.24-0.11c0.33-0.43,0.61-0.72,0.82-0.87 C6.73,4.71,7,4.64,7.33,4.64c0.3,0,0.57,0.08,0.81,0.25C8.38,5.05,8.5,5.24,8.5,5.45c0,0.24-0.06,0.43-0.19,0.58 C8.18,6.17,7.97,6.31,7.67,6.45C7.27,6.63,6.9,6.9,6.57,7.27c-0.33,0.37-0.5,0.77-0.5,1.19V8.8c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.09,0.22,0.09H8.2c0.09,0,0.16-0.03,0.22-0.09C8.47,8.96,8.5,8.89,8.5,8.8c0-0.12,0.07-0.28,0.2-0.47 c0.14-0.19,0.31-0.35,0.52-0.47c0.2-0.11,0.36-0.21,0.46-0.27s0.25-0.18,0.44-0.33c0.18-0.15,0.32-0.31,0.42-0.46 c0.1-0.15,0.19-0.34,0.27-0.57C10.89,6,10.93,5.74,10.93,5.46z M8.5,11.84v-1.82c0-0.09-0.03-0.16-0.08-0.22 C8.36,9.74,8.29,9.71,8.2,9.71H6.38c-0.09,0-0.16,0.03-0.22,0.08C6.1,9.86,6.07,9.93,6.07,10.02v1.82c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.08,0.22,0.08H8.2c0.09,0,0.16-0.03,0.22-0.08C8.47,12,8.5,11.93,8.5,11.84z"
+              />
+            </g>
+          </svg>
+        </a>
+      </span>
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages help-messages"
+        />
+      </div>
+      <div
+        className="table"
+      >
+        <span
+          className="content"
+        >
+          <span
+            className="component"
+          >
+            <div
+              className=" eye-colors"
+            >
+              <label />
+              <div
+                className="blocks option-list eapp-extend-labels usa-input-error"
+              >
+                <div
+                  className="brown block extended"
+                >
+                  <label
+                    className=""
+                    htmlFor="eye-brown-MOCK-GUID"
+                  >
+                    <input
+                      aria-label="Brown for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="eye-brown-MOCK-GUID"
+                      name="eye-brown-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="Brown"
+                    />
+                    <div
+                      className="eye-icon brown"
+                    >
+                      <svg
+                        alt="Scalable vector graphic"
+                        enableBackground="new 0 0 36 36.84"
+                        focusable="false"
+                        tabIndex="-1"
+                        viewBox="0 0 36 36.84"
+                      >
+                        <path
+                          d="M35.61,21.49c-3.7,6.09-10.47,10.19-17.6,10.19S4.1,27.56,0.4,21.49C0.16,21.07,0,20.61,0,20.11 c0-0.5,0.16-0.96,0.4-1.39c3.7-6.07,10.47-10.19,17.6-10.19s13.91,4.12,17.6,10.19c0.24,0.42,0.4,0.88,0.4,1.39 C36.01,20.61,35.85,21.07,35.61,21.49z M25.78,13.01c0.8,1.37,1.23,2.93,1.23,4.52c0,4.96-4.04,9-9,9s-9-4.04-9-9 c0-1.59,0.42-3.16,1.23-4.52c-3.13,1.61-5.75,4.14-7.66,7.09c3.44,5.3,8.98,9,15.43,9s12-3.7,15.43-9 C31.53,17.15,28.92,14.62,25.78,13.01z M18.01,11.42c-3.36,0-6.11,2.75-6.11,6.11c0,0.52,0.44,0.96,0.96,0.96s0.96-0.44,0.96-0.96 c0-2.29,1.89-4.18,4.18-4.18c0.52,0,0.96-0.44,0.96-0.96C18.97,11.87,18.53,11.42,18.01,11.42z"
+                        />
+                      </svg>
+                    </div>
+                    <span>
+                      Brown
+                    </span>
+                  </label>
+                </div>
+                <div
+                  className="hazel block extended"
+                >
+                  <label
+                    className=""
+                    htmlFor="eye-hazel-MOCK-GUID"
+                  >
+                    <input
+                      aria-label="Hazel for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="eye-hazel-MOCK-GUID"
+                      name="eye-hazel-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="Hazel"
+                    />
+                    <div
+                      className="eye-icon hazel"
+                    >
+                      <svg
+                        alt="Scalable vector graphic"
+                        enableBackground="new 0 0 36 36.84"
+                        focusable="false"
+                        tabIndex="-1"
+                        viewBox="0 0 36 36.84"
+                      >
+                        <path
+                          d="M35.61,21.49c-3.7,6.09-10.47,10.19-17.6,10.19S4.1,27.56,0.4,21.49C0.16,21.07,0,20.61,0,20.11 c0-0.5,0.16-0.96,0.4-1.39c3.7-6.07,10.47-10.19,17.6-10.19s13.91,4.12,17.6,10.19c0.24,0.42,0.4,0.88,0.4,1.39 C36.01,20.61,35.85,21.07,35.61,21.49z M25.78,13.01c0.8,1.37,1.23,2.93,1.23,4.52c0,4.96-4.04,9-9,9s-9-4.04-9-9 c0-1.59,0.42-3.16,1.23-4.52c-3.13,1.61-5.75,4.14-7.66,7.09c3.44,5.3,8.98,9,15.43,9s12-3.7,15.43-9 C31.53,17.15,28.92,14.62,25.78,13.01z M18.01,11.42c-3.36,0-6.11,2.75-6.11,6.11c0,0.52,0.44,0.96,0.96,0.96s0.96-0.44,0.96-0.96 c0-2.29,1.89-4.18,4.18-4.18c0.52,0,0.96-0.44,0.96-0.96C18.97,11.87,18.53,11.42,18.01,11.42z"
+                        />
+                      </svg>
+                    </div>
+                    <span>
+                      Hazel
+                    </span>
+                  </label>
+                </div>
+                <div
+                  className="blue block extended"
+                >
+                  <label
+                    className=""
+                    htmlFor="eye-blue-MOCK-GUID"
+                  >
+                    <input
+                      aria-label="Blue for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="eye-blue-MOCK-GUID"
+                      name="eye-blue-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="Blue"
+                    />
+                    <div
+                      className="eye-icon blue"
+                    >
+                      <svg
+                        alt="Scalable vector graphic"
+                        enableBackground="new 0 0 36 36.84"
+                        focusable="false"
+                        tabIndex="-1"
+                        viewBox="0 0 36 36.84"
+                      >
+                        <path
+                          d="M35.61,21.49c-3.7,6.09-10.47,10.19-17.6,10.19S4.1,27.56,0.4,21.49C0.16,21.07,0,20.61,0,20.11 c0-0.5,0.16-0.96,0.4-1.39c3.7-6.07,10.47-10.19,17.6-10.19s13.91,4.12,17.6,10.19c0.24,0.42,0.4,0.88,0.4,1.39 C36.01,20.61,35.85,21.07,35.61,21.49z M25.78,13.01c0.8,1.37,1.23,2.93,1.23,4.52c0,4.96-4.04,9-9,9s-9-4.04-9-9 c0-1.59,0.42-3.16,1.23-4.52c-3.13,1.61-5.75,4.14-7.66,7.09c3.44,5.3,8.98,9,15.43,9s12-3.7,15.43-9 C31.53,17.15,28.92,14.62,25.78,13.01z M18.01,11.42c-3.36,0-6.11,2.75-6.11,6.11c0,0.52,0.44,0.96,0.96,0.96s0.96-0.44,0.96-0.96 c0-2.29,1.89-4.18,4.18-4.18c0.52,0,0.96-0.44,0.96-0.96C18.97,11.87,18.53,11.42,18.01,11.42z"
+                        />
+                      </svg>
+                    </div>
+                    <span>
+                      Blue
+                    </span>
+                  </label>
+                </div>
+                <div
+                  className="green block extended"
+                >
+                  <label
+                    className=""
+                    htmlFor="eye-green-MOCK-GUID"
+                  >
+                    <input
+                      aria-label="Green for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="eye-green-MOCK-GUID"
+                      name="eye-green-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="Green"
+                    />
+                    <div
+                      className="eye-icon green"
+                    >
+                      <svg
+                        alt="Scalable vector graphic"
+                        enableBackground="new 0 0 36 36.84"
+                        focusable="false"
+                        tabIndex="-1"
+                        viewBox="0 0 36 36.84"
+                      >
+                        <path
+                          d="M35.61,21.49c-3.7,6.09-10.47,10.19-17.6,10.19S4.1,27.56,0.4,21.49C0.16,21.07,0,20.61,0,20.11 c0-0.5,0.16-0.96,0.4-1.39c3.7-6.07,10.47-10.19,17.6-10.19s13.91,4.12,17.6,10.19c0.24,0.42,0.4,0.88,0.4,1.39 C36.01,20.61,35.85,21.07,35.61,21.49z M25.78,13.01c0.8,1.37,1.23,2.93,1.23,4.52c0,4.96-4.04,9-9,9s-9-4.04-9-9 c0-1.59,0.42-3.16,1.23-4.52c-3.13,1.61-5.75,4.14-7.66,7.09c3.44,5.3,8.98,9,15.43,9s12-3.7,15.43-9 C31.53,17.15,28.92,14.62,25.78,13.01z M18.01,11.42c-3.36,0-6.11,2.75-6.11,6.11c0,0.52,0.44,0.96,0.96,0.96s0.96-0.44,0.96-0.96 c0-2.29,1.89-4.18,4.18-4.18c0.52,0,0.96-0.44,0.96-0.96C18.97,11.87,18.53,11.42,18.01,11.42z"
+                        />
+                      </svg>
+                    </div>
+                    <span>
+                      Green
+                    </span>
+                  </label>
+                </div>
+                <div
+                  className="gray block extended"
+                >
+                  <label
+                    className=""
+                    htmlFor="eye-gray-MOCK-GUID"
+                  >
+                    <input
+                      aria-label="Gray for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="eye-gray-MOCK-GUID"
+                      name="eye-gray-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="Gray"
+                    />
+                    <div
+                      className="eye-icon gray"
+                    >
+                      <svg
+                        alt="Scalable vector graphic"
+                        enableBackground="new 0 0 36 36.84"
+                        focusable="false"
+                        tabIndex="-1"
+                        viewBox="0 0 36 36.84"
+                      >
+                        <path
+                          d="M35.61,21.49c-3.7,6.09-10.47,10.19-17.6,10.19S4.1,27.56,0.4,21.49C0.16,21.07,0,20.61,0,20.11 c0-0.5,0.16-0.96,0.4-1.39c3.7-6.07,10.47-10.19,17.6-10.19s13.91,4.12,17.6,10.19c0.24,0.42,0.4,0.88,0.4,1.39 C36.01,20.61,35.85,21.07,35.61,21.49z M25.78,13.01c0.8,1.37,1.23,2.93,1.23,4.52c0,4.96-4.04,9-9,9s-9-4.04-9-9 c0-1.59,0.42-3.16,1.23-4.52c-3.13,1.61-5.75,4.14-7.66,7.09c3.44,5.3,8.98,9,15.43,9s12-3.7,15.43-9 C31.53,17.15,28.92,14.62,25.78,13.01z M18.01,11.42c-3.36,0-6.11,2.75-6.11,6.11c0,0.52,0.44,0.96,0.96,0.96s0.96-0.44,0.96-0.96 c0-2.29,1.89-4.18,4.18-4.18c0.52,0,0.96-0.44,0.96-0.96C18.97,11.87,18.53,11.42,18.01,11.42z"
+                        />
+                      </svg>
+                    </div>
+                    <span>
+                      Gray
+                    </span>
+                  </label>
+                </div>
+                <div
+                  className="maroon block extended"
+                >
+                  <label
+                    className=""
+                    htmlFor="eye-maroon-MOCK-GUID"
+                  >
+                    <input
+                      aria-label="Maroon for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="eye-maroon-MOCK-GUID"
+                      name="eye-maroon-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="Maroon"
+                    />
+                    <div
+                      className="eye-icon maroon"
+                    >
+                      <svg
+                        alt="Scalable vector graphic"
+                        enableBackground="new 0 0 36 36.84"
+                        focusable="false"
+                        tabIndex="-1"
+                        viewBox="0 0 36 36.84"
+                      >
+                        <path
+                          d="M35.61,21.49c-3.7,6.09-10.47,10.19-17.6,10.19S4.1,27.56,0.4,21.49C0.16,21.07,0,20.61,0,20.11 c0-0.5,0.16-0.96,0.4-1.39c3.7-6.07,10.47-10.19,17.6-10.19s13.91,4.12,17.6,10.19c0.24,0.42,0.4,0.88,0.4,1.39 C36.01,20.61,35.85,21.07,35.61,21.49z M25.78,13.01c0.8,1.37,1.23,2.93,1.23,4.52c0,4.96-4.04,9-9,9s-9-4.04-9-9 c0-1.59,0.42-3.16,1.23-4.52c-3.13,1.61-5.75,4.14-7.66,7.09c3.44,5.3,8.98,9,15.43,9s12-3.7,15.43-9 C31.53,17.15,28.92,14.62,25.78,13.01z M18.01,11.42c-3.36,0-6.11,2.75-6.11,6.11c0,0.52,0.44,0.96,0.96,0.96s0.96-0.44,0.96-0.96 c0-2.29,1.89-4.18,4.18-4.18c0.52,0,0.96-0.44,0.96-0.96C18.97,11.87,18.53,11.42,18.01,11.42z"
+                        />
+                      </svg>
+                    </div>
+                    <span>
+                      Maroon
+                    </span>
+                  </label>
+                </div>
+                <div
+                  className="black block extended"
+                >
+                  <label
+                    className=""
+                    htmlFor="eye-black-MOCK-GUID"
+                  >
+                    <input
+                      aria-label="Black for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="eye-black-MOCK-GUID"
+                      name="eye-black-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="Black"
+                    />
+                    <div
+                      className="eye-icon black"
+                    >
+                      <svg
+                        alt="Scalable vector graphic"
+                        enableBackground="new 0 0 36 36.84"
+                        focusable="false"
+                        tabIndex="-1"
+                        viewBox="0 0 36 36.84"
+                      >
+                        <path
+                          d="M35.61,21.49c-3.7,6.09-10.47,10.19-17.6,10.19S4.1,27.56,0.4,21.49C0.16,21.07,0,20.61,0,20.11 c0-0.5,0.16-0.96,0.4-1.39c3.7-6.07,10.47-10.19,17.6-10.19s13.91,4.12,17.6,10.19c0.24,0.42,0.4,0.88,0.4,1.39 C36.01,20.61,35.85,21.07,35.61,21.49z M25.78,13.01c0.8,1.37,1.23,2.93,1.23,4.52c0,4.96-4.04,9-9,9s-9-4.04-9-9 c0-1.59,0.42-3.16,1.23-4.52c-3.13,1.61-5.75,4.14-7.66,7.09c3.44,5.3,8.98,9,15.43,9s12-3.7,15.43-9 C31.53,17.15,28.92,14.62,25.78,13.01z M18.01,11.42c-3.36,0-6.11,2.75-6.11,6.11c0,0.52,0.44,0.96,0.96,0.96s0.96-0.44,0.96-0.96 c0-2.29,1.89-4.18,4.18-4.18c0.52,0,0.96-0.44,0.96-0.96C18.97,11.87,18.53,11.42,18.01,11.42z"
+                        />
+                      </svg>
+                    </div>
+                    <span>
+                      Black
+                    </span>
+                  </label>
+                </div>
+                <div
+                  className="multi block extended"
+                >
+                  <label
+                    className=""
+                    htmlFor="eye-multi-MOCK-GUID"
+                  >
+                    <input
+                      aria-label="Multicolored for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="eye-multi-MOCK-GUID"
+                      name="eye-multi-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="Multicolored"
+                    />
+                    <div
+                      className="eye-icon multi"
+                    >
+                      <img
+                        alt="Scalable vector graphic"
+                        className="svg"
+                        src="/img/eye-multicolor.svg"
+                      />
+                    </div>
+                    <span>
+                      Multicolored
+                    </span>
+                  </label>
+                </div>
+                <div
+                  className="pink block extended"
+                >
+                  <label
+                    className=""
+                    htmlFor="eye-pink-MOCK-GUID"
+                  >
+                    <input
+                      aria-label="Pink for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="eye-pink-MOCK-GUID"
+                      name="eye-pink-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="Pink"
+                    />
+                    <div
+                      className="eye-icon pink"
+                    >
+                      <svg
+                        alt="Scalable vector graphic"
+                        enableBackground="new 0 0 36 36.84"
+                        focusable="false"
+                        tabIndex="-1"
+                        viewBox="0 0 36 36.84"
+                      >
+                        <path
+                          d="M35.61,21.49c-3.7,6.09-10.47,10.19-17.6,10.19S4.1,27.56,0.4,21.49C0.16,21.07,0,20.61,0,20.11 c0-0.5,0.16-0.96,0.4-1.39c3.7-6.07,10.47-10.19,17.6-10.19s13.91,4.12,17.6,10.19c0.24,0.42,0.4,0.88,0.4,1.39 C36.01,20.61,35.85,21.07,35.61,21.49z M25.78,13.01c0.8,1.37,1.23,2.93,1.23,4.52c0,4.96-4.04,9-9,9s-9-4.04-9-9 c0-1.59,0.42-3.16,1.23-4.52c-3.13,1.61-5.75,4.14-7.66,7.09c3.44,5.3,8.98,9,15.43,9s12-3.7,15.43-9 C31.53,17.15,28.92,14.62,25.78,13.01z M18.01,11.42c-3.36,0-6.11,2.75-6.11,6.11c0,0.52,0.44,0.96,0.96,0.96s0.96-0.44,0.96-0.96 c0-2.29,1.89-4.18,4.18-4.18c0.52,0,0.96-0.44,0.96-0.96C18.97,11.87,18.53,11.42,18.01,11.42z"
+                        />
+                      </svg>
+                    </div>
+                    <span>
+                      Pink
+                    </span>
+                  </label>
+                </div>
+                <div
+                  className="unknown block extended"
+                >
+                  <label
+                    className=""
+                    htmlFor="eye-unknown-MOCK-GUID"
+                  >
+                    <input
+                      aria-label="Unknown for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="eye-unknown-MOCK-GUID"
+                      name="eye-unknown-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="Unknown"
+                    />
+                    <div
+                      className="eye-icon unknown"
+                    >
+                      <svg
+                        alt="Scalable vector graphic"
+                        focusable="false"
+                        tabIndex="-1"
+                        viewBox="0 0 30.86 36.84"
+                      >
+                        <path
+                          d="M15.43,34.25C6.91,34.25,0,27.34,0,18.82C0,10.3,6.91,3.39,15.43,3.39s15.43,6.91,15.43,15.43 C30.87,27.34,23.95,34.25,15.43,34.25z M15.84,8.53c-3.28,0-5.73,1.41-7.46,4.28c-0.18,0.28-0.1,0.64,0.16,0.84l2.65,2.01 c0.1,0.08,0.24,0.12,0.38,0.12c0.18,0,0.38-0.08,0.5-0.24c0.94-1.21,1.35-1.57,1.73-1.85c0.34-0.24,1-0.48,1.73-0.48 c1.29,0,2.47,0.82,2.47,1.71c0,1.04-0.54,1.57-1.77,2.13c-1.43,0.64-3.38,2.31-3.38,4.26v0.72c0,0.36,0.28,0.64,0.64,0.64h3.86 c0.36,0,0.64-0.28,0.64-0.64c0-0.46,0.58-1.45,1.53-1.99c1.53-0.87,3.62-2.03,3.62-5.08C23.15,11.28,19.29,8.53,15.84,8.53z M18.01,24.61c0-0.36-0.28-0.64-0.64-0.64H13.5c-0.36,0-0.64,0.28-0.64,0.64v3.86c0,0.36,0.28,0.64,0.64,0.64h3.86 c0.36,0,0.64-0.28,0.64-0.64V24.61z"
+                        />
+                      </svg>
+                    </div>
+                    <span>
+                      Unknown
+                    </span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </span>
+        </span>
+      </div>
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages error-messages"
+          role="alert"
+        >
+          <div
+            aria-live="polite"
+            className="message error"
+            role="alert"
+          >
+            <i
+              aria-hidden="true"
+              className="fa fa-exclamation"
+            />
+            <div
+              data-i18n="error.required"
+            >
+              <h5>
+                Your response is required
+              </h5>
+              
+              
+            </div>
+          </div>
+        </span>
+      </div>
+    </div>
+    <div
+      aria-label="Select your sex"
+      className="field required"
+      data-uuid="field-MOCK-GUID"
+    >
+      <a
+        aria-hidden="true"
+        className="anchor"
+        id="field-MOCK-GUID"
+        name="field-MOCK-GUID"
+      />
+      <h3
+        className="title h3"
+      >
+        Select your sex
+      </h3>
+      <span
+        className="icon"
+      >
+        <a
+          aria-label="Show help for Select your sex"
+          className="toggle h3  adjust-for-big-buttons"
+          href="javascript:;"
+          onClick={[Function]}
+          title="Show help for Select your sex"
+        >
+          <svg
+            alt="Scalable vector graphic"
+            focusable="false"
+            height="14.57px"
+            tabIndex="-1"
+            viewBox="0 0 14.57 14.57"
+            width="14.57px"
+          >
+            <g>
+              <path
+                className="eapp-help-icon"
+                d="M13.59,3.63c0.65,1.12,0.98,2.34,0.98,3.66s-0.33,2.54-0.98,3.66c-0.65,1.12-1.54,2-2.65,2.65 s-2.33,0.98-3.66,0.98c-1.32,0-2.54-0.33-3.66-0.98s-2-1.54-2.65-2.65C0.33,9.83,0,8.61,0,7.29s0.33-2.54,0.98-3.66 c0.65-1.12,1.54-2,2.65-2.65S5.96,0,7.29,0c1.32,0,2.54,0.33,3.66,0.98S12.94,2.51,13.59,3.63z M10.93,5.46 c0-0.56-0.18-1.07-0.53-1.55c-0.35-0.47-0.79-0.84-1.31-1.1C8.56,2.56,8.03,2.43,7.48,2.43c-1.54,0-2.71,0.67-3.52,2.02 C3.86,4.6,3.89,4.73,4.03,4.85L5.28,5.8c0.04,0.04,0.1,0.06,0.18,0.06c0.1,0,0.18-0.04,0.24-0.11c0.33-0.43,0.61-0.72,0.82-0.87 C6.73,4.71,7,4.64,7.33,4.64c0.3,0,0.57,0.08,0.81,0.25C8.38,5.05,8.5,5.24,8.5,5.45c0,0.24-0.06,0.43-0.19,0.58 C8.18,6.17,7.97,6.31,7.67,6.45C7.27,6.63,6.9,6.9,6.57,7.27c-0.33,0.37-0.5,0.77-0.5,1.19V8.8c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.09,0.22,0.09H8.2c0.09,0,0.16-0.03,0.22-0.09C8.47,8.96,8.5,8.89,8.5,8.8c0-0.12,0.07-0.28,0.2-0.47 c0.14-0.19,0.31-0.35,0.52-0.47c0.2-0.11,0.36-0.21,0.46-0.27s0.25-0.18,0.44-0.33c0.18-0.15,0.32-0.31,0.42-0.46 c0.1-0.15,0.19-0.34,0.27-0.57C10.89,6,10.93,5.74,10.93,5.46z M8.5,11.84v-1.82c0-0.09-0.03-0.16-0.08-0.22 C8.36,9.74,8.29,9.71,8.2,9.71H6.38c-0.09,0-0.16,0.03-0.22,0.08C6.1,9.86,6.07,9.93,6.07,10.02v1.82c0,0.09,0.03,0.16,0.09,0.22 c0.06,0.06,0.13,0.08,0.22,0.08H8.2c0.09,0,0.16-0.03,0.22-0.08C8.47,12,8.5,11.93,8.5,11.84z"
+              />
+            </g>
+          </svg>
+        </a>
+      </span>
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages help-messages"
+        />
+      </div>
+      <div
+        className="table"
+      >
+        <span
+          className="content"
+        >
+          <span
+            className="component shrink"
+          >
+            <div
+              className=" sex"
+            >
+              <label />
+              <div
+                className="blocks  usa-input-error"
+              >
+                <div
+                  className="female block extended"
+                >
+                  <label
+                    className=""
+                    htmlFor="sex-MOCK-GUID"
+                  >
+                    <input
+                      aria-label="Female for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="sex-MOCK-GUID"
+                      name="sex-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="Female"
+                    />
+                    <div
+                      className="sex-icon"
+                    >
+                      <svg
+                        alt="Scalable vector graphic"
+                        focusable="false"
+                        tabIndex="-1"
+                        viewBox="0 0 50.81 79.19"
+                      >
+                        <path
+                          d="M50.81,25.4C50.81,11.37,39.43,0,25.4,0S0,11.37,0,25.4c0,12.32,8.77,22.59,20.4,24.91v9.09h-9.79v10h9.79v9.79 h10V69.4h9.79v-10H30.4v-9.09C42.04,47.99,50.81,37.72,50.81,25.4z M10,25.4C10,16.91,16.91,10,25.4,10s15.4,6.91,15.4,15.4 s-6.91,15.4-15.4,15.4S10,33.9,10,25.4z"
+                        />
+                      </svg>
+                    </div>
+                    <span>
+                      Female
+                    </span>
+                  </label>
+                </div>
+                <div
+                  className="male block extended"
+                >
+                  <label
+                    className=""
+                    htmlFor="sex-MOCK-GUID"
+                  >
+                    <input
+                      aria-label="Male for null"
+                      checked={false}
+                      className="usa-input-success"
+                      disabled={false}
+                      id="sex-MOCK-GUID"
+                      name="sex-MOCK-GUID"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      type="radio"
+                      value="Male"
+                    />
+                    <div
+                      className="sex-icon"
+                    >
+                      <svg
+                        alt="Scalable vector graphic"
+                        focusable="false"
+                        tabIndex="-1"
+                        viewBox="-10 -10 80 80"
+                      >
+                        <path
+                          d="M62.77,0.12V0H37.69v10h8.64l-6.4,6.4c-4.35-3.04-9.43-4.56-14.52-4.56c-6.5,0-13,2.48-17.96,7.44 c-9.92,9.92-9.92,26.01,0,35.93c4.96,4.96,11.46,7.44,17.96,7.44c6.5,0,13-2.48,17.96-7.44c8.58-8.58,9.73-21.76,3.48-31.58 l6.05-6.05v7.64h10V0.12H62.77z M36.3,48.14c-2.91,2.91-6.78,4.51-10.89,4.51c-4.11,0-7.98-1.6-10.89-4.51 C11.6,45.23,10,41.36,10,37.24c0-4.11,1.6-7.98,4.51-10.89s6.78-4.51,10.89-4.51c4.11,0,7.98,1.6,10.89,4.51s4.51,6.78,4.51,10.89 C40.81,41.36,39.21,45.23,36.3,48.14z"
+                        />
+                      </svg>
+                    </div>
+                    <span>
+                      Male
+                    </span>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <a
+              className="comments-button add"
+              href="javascript:;;"
+              onClick={[Function]}
+            >
+              <span>
+                Add a comment
+              </span>
+              <i
+                className="fa fa-plus-circle"
+              />
+            </a>
+          </span>
+        </span>
+      </div>
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages error-messages"
+          role="alert"
+        >
+          <div
+            aria-live="polite"
+            className="message error"
+            role="alert"
+          >
+            <i
+              aria-hidden="true"
+              className="fa fa-exclamation"
+            />
+            <div
+              data-i18n="error.required"
+            >
+              <h5>
+                Your response is required
+              </h5>
+              
+              
+            </div>
+          </div>
+        </span>
+      </div>
+    </div>
+  </div>
+  <hr
+    className="section-divider"
+  />
+  <div
+    aria-label="Add a comment to clarify any of your responses in the information about you section"
+    className="field   section-comment"
+    data-uuid="field-MOCK-GUID"
+  >
+    <a
+      aria-hidden="true"
+      className="anchor"
+      id="field-MOCK-GUID"
+      name="field-MOCK-GUID"
+    />
+    <h4
+      className="title h4"
+    >
+      Add a comment to clarify any of your responses in the information about you section
+      <span
+        className="optional"
+      >
+        (Optional)
+      </span>
+    </h4>
+    <span
+      className="icon"
+    />
+    <div
+      className="table expand"
+    >
+      <span
+        aria-live="polite"
+        className="messages help-messages"
+      />
+    </div>
+    <div
+      className="table"
+    >
+      <span
+        className="content"
+      >
+        <span
+          className="component"
+        >
+          <div
+            className=""
+          >
+            <input
+              aria-describedby="Comments-error"
+              aria-label={null}
+              autoCapitalize={true}
+              autoComplete={true}
+              autoCorrect={true}
+              className=""
+              id="Comments-MOCK-GUID"
+              maxLength={255}
+              name="Comments"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              pattern=".*"
+              spellCheck={true}
+              type="text"
+              value=""
+            />
+          </div>
+        </span>
+      </span>
+    </div>
+    <div
+      className="table expand"
+    >
+      <span
+        aria-live="polite"
+        className="messages error-messages"
+        role="alert"
+      />
+    </div>
+  </div>
+</div>
+`;

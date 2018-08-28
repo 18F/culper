@@ -19,21 +19,31 @@ describe('The Divorce component', () => {
       Status: { value: 'Divorced' },
       BirthPlace: { country: { value: 'United States' } },
       Deceased: { value: 'No' },
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
 
     const component = mount(<Divorce {...expected} />)
     expect(component.find('.divorce').length).toEqual(1)
 
     component.find('.divorce .first input').simulate('change')
-    component.find('.birthdate .month input').simulate('change', { target: { value: '12' } })
+    component
+      .find('.birthdate .month input')
+      .simulate('change', { target: { value: '12' } })
     component.find('.birthplace .city input').simulate('change')
-    component.find('.citizenship input').simulate('change', { target: { value: 'Belg' } })
+    component
+      .find('.citizenship input')
+      .simulate('change', { target: { value: 'Belg' } })
     component.find('.citizenship input').simulate('keydown', { keyCode: 13 })
     component.find('.telephone .home input').simulate('change')
-    component.find('.recognized .month input').simulate('change', { target: { value: '12' } })
+    component
+      .find('.recognized .month input')
+      .simulate('change', { target: { value: '12' } })
     component.find('.location.birthplace .city input').simulate('change')
-    component.find('.date-divorced .month input').simulate('change', { target: { value: '12' } })
+    component
+      .find('.date-divorced .month input')
+      .simulate('change', { target: { value: '12' } })
     component.find('.status .divorced input').simulate('change')
     component.find('.deceased .widowed input').simulate('change')
     component.find('.address-deceased .city input').simulate('change')

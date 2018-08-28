@@ -1,26 +1,61 @@
 import React from 'react'
 import configureMockStore from 'redux-mock-store'
-import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 import { MemoryRouter } from 'react-router'
 import Section from './Section'
 import { mount } from 'enzyme'
+import { testSnapshot } from '../test-helpers'
+import navigation from '../../config/navigation'
+
+// give a fake GUID so the field IDs don't differ between snapshots
+// https://github.com/facebook/jest/issues/936#issuecomment-404246102
+jest.mock('../Form/ValidationElement/helpers', () =>
+  Object.assign(require.requireActual('../Form/ValidationElement/helpers'), {
+    newGuid: jest.fn().mockReturnValue('MOCK-GUID')
+  })
+)
+
+const shouldSkip = (section, subsection) => {
+  return (
+    section.exclude ||
+    // these need special handling, which we will come back to
+    (section.url === 'foreign' && subsection.url === 'activities') ||
+    (section.url === 'substance' && subsection.url === 'drugs') ||
+    (section.url === 'substance' && subsection.url === 'alcohol') ||
+    (section.url === 'psychological' && subsection.url === 'review')
+  )
+}
 
 describe('The section component', () => {
-  // Setup
-  const middlewares = [ thunk ]
-  const mockStore = configureMockStore(middlewares)
+  const mockStore = configureMockStore()
 
-  it('hidden when not authenticated', () => {
-    const store = mockStore({ authentication: [] })
-    const component = mount(<Provider store={store}><MemoryRouter><Section /></MemoryRouter></Provider>)
-    expect(component.find('div').length).toEqual(0)
+  it('is visible', () => {
+    const component = mount(
+      <MemoryRouter>
+        <Section />
+      </MemoryRouter>
+    )
+    expect(component.find('div').length > 0).toBe(true)
   })
 
-  it('visible when authenticated', () => {
-    window.token = 'fake-token'
-    const store = mockStore({ authentication: { authenticated: true, token: 'fake-token' } })
-    const component = mount(<Provider store={store}><MemoryRouter><Section /></MemoryRouter></Provider>)
-    expect(component.find('div').length > 0).toBe(true)
+  navigation.forEach(section => {
+    section.subsections.forEach(subsection => {
+      if (shouldSkip(section, subsection)) {
+        return
+      }
+      window.token = 'fake-token'
+      it(`renders ${section.url}.${subsection.url}`, () => {
+        const store = mockStore({
+          authentication: { authenticated: true, token: 'fake-token' }
+        })
+        testSnapshot(
+          <Provider store={store}>
+            <MemoryRouter>
+              <Section section={section.url} subsection={subsection.url} />
+            </MemoryRouter>
+          </Provider>
+        )
+      })
+    })
   })
 })

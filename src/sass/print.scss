@@ -107,7 +107,6 @@
     .section-view hr.section-divider {
       margin-bottom: 1rem;
     }
-
   }
 
   // The very last page needs the footer at the very bottom just like every
@@ -184,7 +183,6 @@
 
   /* Set heights for various header elements */
   .header-container {
-
     .usa-banner-header {
       display: none;
     }
@@ -354,7 +352,7 @@
   }
 
   /* Make accordion summary links black */
-  .accordion .items .summary-container .summary  a {
+  .accordion .items .summary-container .summary a {
     color: #000 !important;
   }
 

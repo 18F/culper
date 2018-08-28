@@ -3,13 +3,16 @@ import { i18n } from '../../../../config'
 import schema from '../../../../schema'
 import validate from '../../../../validators'
 import { Summary, DateSummary } from '../../../Summary'
-import { DelinquentValidator, DelinquentItemValidator } from '../../../../validators'
+import {
+  DelinquentValidator,
+  DelinquentItemValidator
+} from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion } from '../../../Form'
 import DelinquentItem from './DelinquentItem'
 
 export default class Delinquent extends SubsectionElement {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.updateBranch = this.updateBranch.bind(this)
@@ -17,7 +20,7 @@ export default class Delinquent extends SubsectionElement {
     this.summary = this.summary.bind(this)
   }
 
-  update (queue) {
+  update(queue) {
     this.props.onUpdate({
       HasDelinquent: this.props.HasDelinquent,
       List: this.props.List,
@@ -28,7 +31,7 @@ export default class Delinquent extends SubsectionElement {
   /**
    * Updates triggered by the branching component.
    */
-  updateBranch (values) {
+  updateBranch(values) {
     this.update({
       HasDelinquent: values,
       List: values.value === 'Yes' ? this.props.List : {}
@@ -39,7 +42,7 @@ export default class Delinquent extends SubsectionElement {
    * Dispatch callback initiated from the collection to notify of any new
    * updates to the items.
    */
-  updateList (values) {
+  updateList(values) {
     this.update({
       List: values
     })
@@ -48,10 +51,10 @@ export default class Delinquent extends SubsectionElement {
   /**
    * Assists in rendering the summary section.
    */
-  summary (item, index) {
-    const obj = (item.Item || {})
-    const date = (obj.Date || {})
-    const from = DateSummary({date: date})
+  summary(item, index) {
+    const obj = item.Item || {}
+    const date = obj.Date || {}
+    const from = DateSummary({ date: date })
     const name = (obj.Name || {}).value || ''
     const amount = (obj.Amount || {}).value || ''
     const text = `${name}${amount ? ', $' + amount : ''}`.trim()
@@ -65,7 +68,7 @@ export default class Delinquent extends SubsectionElement {
     })
   }
 
-  message () {
+  message() {
     return (
       <div>
         <ul>
@@ -78,19 +81,22 @@ export default class Delinquent extends SubsectionElement {
     )
   }
 
-  render () {
+  render() {
     return (
-      <div className="section-content delinquent" {...super.dataAttributes(this.props)}>
-        <Branch name="has_delinquent"
-                label={i18n.t('financial.delinquent.title')}
-                labelSize="h2"
-                className="delinquent-branch eapp-field-wrap"
-                {...this.props.HasDelinquent}
-                warning={true}
-                onUpdate={this.updateBranch}
-                required={this.props.required}
-                scrollIntoView={this.props.scrollIntoView}
-                onError={this.handleError}>
+      <div
+        className="section-content delinquent"
+        {...super.dataAttributes(this.props)}>
+        <Branch
+          name="has_delinquent"
+          label={i18n.t('financial.delinquent.title')}
+          labelSize="h2"
+          className="delinquent-branch eapp-field-wrap"
+          {...this.props.HasDelinquent}
+          warning={true}
+          onUpdate={this.updateBranch}
+          required={this.props.required}
+          scrollIntoView={this.props.scrollIntoView}
+          onError={this.handleError}>
           {i18n.m('financial.delinquent.para.details')}
           <ul>
             <li>{i18n.m('financial.delinquent.para.alimony')}</li>
@@ -100,27 +106,30 @@ export default class Delinquent extends SubsectionElement {
           </ul>
         </Branch>
         <Show when={(this.props.HasDelinquent || {}).value === 'Yes'}>
-          <Accordion {...this.props.List}
-                     defaultState={this.props.defaultState}
-                     scrollToBottom={this.props.scrollToBottom}
-                     onUpdate={this.updateList}
-                     onError={this.handleError}
-                     summary={this.summary}
-                     description={i18n.t('financial.delinquent.collection.summary.title')}
-                     appendTitle={i18n.t('financial.delinquent.collection.appendTitle')}
-                     appendMessage={this.message()}
-                     validator={DelinquentItemValidator}
-                     required={this.props.required}
-                     scrollIntoView={this.props.scrollIntoView}
-                     appendLabel={i18n.t('financial.delinquent.collection.append')}>
-            <DelinquentItem name="Item"
-                            bind={true}
-                            dispatch={this.props.dispatch}
-                            addressBooks={this.props.addressBooks}
-                            required={this.props.required}
-                            scrollIntoView={this.props.scrollIntoView}
-                            />
-
+          <Accordion
+            {...this.props.List}
+            defaultState={this.props.defaultState}
+            scrollToBottom={this.props.scrollToBottom}
+            onUpdate={this.updateList}
+            onError={this.handleError}
+            summary={this.summary}
+            description={i18n.t(
+              'financial.delinquent.collection.summary.title'
+            )}
+            appendTitle={i18n.t('financial.delinquent.collection.appendTitle')}
+            appendMessage={this.message()}
+            validator={DelinquentItemValidator}
+            required={this.props.required}
+            scrollIntoView={this.props.scrollIntoView}
+            appendLabel={i18n.t('financial.delinquent.collection.append')}>
+            <DelinquentItem
+              name="Item"
+              bind={true}
+              dispatch={this.props.dispatch}
+              addressBooks={this.props.addressBooks}
+              required={this.props.required}
+              scrollIntoView={this.props.scrollIntoView}
+            />
           </Accordion>
         </Show>
       </div>
@@ -131,12 +140,14 @@ export default class Delinquent extends SubsectionElement {
 Delinquent.defaultProps = {
   HasDelinquent: {},
   List: {},
-  onUpdate: (queue) => {},
-  onError: (value, arr) => { return arr },
+  onUpdate: queue => {},
+  onError: (value, arr) => {
+    return arr
+  },
   section: 'financial',
   subsection: 'delinquent',
   dispatch: () => {},
-  validator: (data) => {
+  validator: data => {
     return validate(schema('financial.delinquent', data))
   },
   defaultState: true

@@ -7,28 +7,30 @@ describe('Schema for financial delinquent', () => {
       HasDelinquent: { value: 'Yes' },
       List: {
         branch: { value: 'No' },
-        items: [{
-          Item: {
-            Name: {},
-            Infractions: {},
-            AccountNumber: {},
-            PropertyType: {},
-            Amount: {
-              value: ''
-            },
-            AmountEstimated: {},
-            Reason: {},
-            Status: {},
-            Date: {},
-            Resolved: {},
-            ResolvedNotApplicable: {},
-            CourtName: {},
-            CourtAddress: {
-              country: null
-            },
-            Description: {}
+        items: [
+          {
+            Item: {
+              Name: {},
+              Infractions: {},
+              AccountNumber: {},
+              PropertyType: {},
+              Amount: {
+                value: ''
+              },
+              AmountEstimated: {},
+              Reason: {},
+              Status: {},
+              Date: {},
+              Resolved: {},
+              ResolvedNotApplicable: {},
+              CourtName: {},
+              CourtAddress: {
+                country: null
+              },
+              Description: {}
+            }
           }
-        }]
+        ]
       }
     }
 

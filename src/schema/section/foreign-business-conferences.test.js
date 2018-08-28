@@ -7,31 +7,35 @@ describe('Schema for financial taxes', () => {
       HasForeignConferences: { value: 'Yes' },
       List: {
         branch: { value: 'No' },
-        items: [{
-          Item: {
-            Description: {},
-            Sponsor: {},
-            City: {},
-            Country: {},
-            Dates: {
-              from: {},
-              to: {},
-              present: null
-            },
-            Purpose: {},
-            Contacts: {
-              List: {
-                branch: null,
-                items: [{
-                  Item: {
-                    Has: {},
-                    Explanation: {}
-                  }
-                }]
+        items: [
+          {
+            Item: {
+              Description: {},
+              Sponsor: {},
+              City: {},
+              Country: {},
+              Dates: {
+                from: {},
+                to: {},
+                present: null
+              },
+              Purpose: {},
+              Contacts: {
+                List: {
+                  branch: null,
+                  items: [
+                    {
+                      Item: {
+                        Has: {},
+                        Explanation: {}
+                      }
+                    }
+                  ]
+                }
               }
             }
           }
-        }]
+        ]
       }
     }
 

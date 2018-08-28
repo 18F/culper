@@ -1,7 +1,9 @@
-import ForeignBusinessConferencesValidator, { ConferencesValidator } from './foreignbusinessconferences'
+import ForeignBusinessConferencesValidator, {
+  ConferencesValidator
+} from './foreignbusinessconferences'
 import { battery } from './helpers'
 
-describe('Foreign business conferences component validation', function () {
+describe('Foreign business conferences component validation', function() {
   it('validate foreign business conferences description', () => {
     const tests = [
       {
@@ -68,8 +70,7 @@ describe('Foreign business conferences component validation', function () {
   it('validate foreign business conferences country', () => {
     const tests = [
       {
-        state: {
-        },
+        state: {},
         expected: false
       },
       {
@@ -216,7 +217,7 @@ describe('Foreign business conferences component validation', function () {
                 {
                   Item: {
                     Has: { value: 'Yes' },
-                    Explanation: {value: 'This is the explanation'}
+                    Explanation: { value: 'This is the explanation' }
                   }
                 }
               ]

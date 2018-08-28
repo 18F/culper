@@ -1,9 +1,17 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Branch, Name, DateRange, Field, Textarea, Show } from '../../../Form'
+import {
+  ValidationElement,
+  Branch,
+  Name,
+  DateRange,
+  Field,
+  Textarea,
+  Show
+} from '../../../Form'
 
 export default class Alias extends ValidationElement {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.update = this.update.bind(this)
@@ -13,7 +21,7 @@ export default class Alias extends ValidationElement {
     this.updateReason = this.updateReason.bind(this)
   }
 
-  update (queue) {
+  update(queue) {
     this.props.onUpdate({
       Name: this.props.Name,
       MaidenName: this.props.MaidenName,
@@ -23,84 +31,89 @@ export default class Alias extends ValidationElement {
     })
   }
 
-  updateName (values) {
+  updateName(values) {
     this.update({
       Name: values
     })
   }
 
-  updateMaidenName (values) {
+  updateMaidenName(values) {
     this.update({
       MaidenName: values
     })
   }
 
-  updateDates (values) {
+  updateDates(values) {
     this.update({
       Dates: values
     })
   }
 
-  updateReason (values) {
+  updateReason(values) {
     this.update({
       Reason: values
     })
   }
 
-  render () {
+  render() {
     return (
       <div className="relative-alias">
-        <Field title={i18n.t('relationships.relatives.heading.alias.title')}
-               titleSize="h3"
-               optional={true}
-               filterErrors={Name.requiredErrorsOnly}
-               scrollIntoView={this.props.scrollIntoView}>
+        <Field
+          title={i18n.t('relationships.relatives.heading.alias.title')}
+          titleSize="h3"
+          optional={true}
+          filterErrors={Name.requiredErrorsOnly}
+          scrollIntoView={this.props.scrollIntoView}>
           {i18n.m('relationships.relatives.para.alias')}
-          <Name name="Name"
-                className="alias-name"
-                {...this.props.Name}
-                onUpdate={this.updateName}
-                onError={this.props.onError}
-                required={this.props.required}
-                scrollIntoView={this.props.scrollIntoView}
-                />
+          <Name
+            name="Name"
+            className="alias-name"
+            {...this.props.Name}
+            onUpdate={this.updateName}
+            onError={this.props.onError}
+            required={this.props.required}
+            scrollIntoView={this.props.scrollIntoView}
+          />
         </Field>
 
         <Show when={this.props.hideMaiden === false}>
-          <Branch name="MaidenName"
-                  label={i18n.t('relationships.relatives.heading.alias.maiden')}
-                  labelSize="h4"
-                  className="alias-maiden"
-                  {...this.props.MaidenName}
-                  onUpdate={this.updateMaidenName}
-                  required={this.props.required}
-                  scrollIntoView={this.props.scrollIntoView}
-                  onError={this.props.onError}>
-          </Branch>
+          <Branch
+            name="MaidenName"
+            label={i18n.t('relationships.relatives.heading.alias.maiden')}
+            labelSize="h4"
+            className="alias-maiden"
+            {...this.props.MaidenName}
+            onUpdate={this.updateMaidenName}
+            required={this.props.required}
+            scrollIntoView={this.props.scrollIntoView}
+            onError={this.props.onError}
+          />
         </Show>
 
-        <Field optional={true}
-               scrollIntoView={this.props.scrollIntoView}>
-          <DateRange name="Dates"
-                     className="alias-dates"
-                     {...this.props.Dates}
-                     prefix="relative"
-                     onUpdate={this.updateDates}
-                     onError={this.props.onError}
-                     required={this.props.required}
-                     />
+        <Field optional={true} scrollIntoView={this.props.scrollIntoView}>
+          <DateRange
+            name="Dates"
+            className="alias-dates"
+            {...this.props.Dates}
+            prefix="relative"
+            onUpdate={this.updateDates}
+            onError={this.props.onError}
+            required={this.props.required}
+          />
         </Field>
 
-        <Field title={i18n.t('relationships.relatives.heading.alias.reason')}
-               scrollIntoView={this.props.scrollIntoView}
-               titleSize="h4">
-          <Textarea name="Reason"
-                    className="alias-reason"
-                    {...this.props.Reason}
-                    onUpdate={this.updateReason}
-                    onError={this.props.onError}
-                    required={this.props.required}
-                    />
+        <Field
+          title={i18n.t('relationships.relatives.heading.alias.reason')}
+          scrollIntoView={this.props.scrollIntoView}
+          titleSize="h4">
+          <Textarea
+            name="Reason"
+            className="alias-reason"
+            {...this.props.Reason}
+            onUpdate={this.updateReason}
+            onError={this.props.onError}
+            required={this.props.required}
+          />
         </Field>
       </div>
     )
@@ -113,6 +126,8 @@ Alias.defaultProps = {
   Dates: {},
   Reason: {},
   hideMaiden: false,
-  onUpdate: (queue) => {},
-  onError: (value, arr) => { return arr }
+  onUpdate: queue => {},
+  onError: (value, arr) => {
+    return arr
+  }
 }

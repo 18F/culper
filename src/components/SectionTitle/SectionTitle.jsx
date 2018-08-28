@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { navigation } from '../../config'
 
 class SectionTitle extends React.Component {
-  render () {
+  render() {
     if (this.props.hidden) {
       return null
     }
@@ -25,25 +25,36 @@ class SectionTitle extends React.Component {
  * Creates an array of breadcrumbs
  */
 const breadcrumbs = (urls, node) => {
-  return (node.subsections || []).reduce((a, b) => {
-    if (!urls.includes(b.url)) {
-      return a
-    }
+  return (node.subsections || []).reduce(
+    (a, b) => {
+      if (!urls.includes(b.url)) {
+        return a
+      }
 
-    return a.concat(breadcrumbs(urls, b))
-  }, [node.title || node.name])
+      return a.concat(breadcrumbs(urls, b))
+    },
+    [node.title || node.name]
+  )
 }
 
 /**
  * Takes an array of breadcrumbs and formats it in to a pretty trail
  */
-const trail = (crumbs) => {
+const trail = crumbs => {
   return crumbs.map((crumb, i, arr) => {
     if (arr.length === i + 1) {
-      return <span key={`crumb-${i}`} className="title-text">{crumb}</span>
+      return (
+        <span key={`crumb-${i}`} className="title-text">
+          {crumb}
+        </span>
+      )
     }
 
-    return <span key={`crumb-${i}`} className="crumb">{crumb} &gt; </span>
+    return (
+      <span key={`crumb-${i}`} className="crumb">
+        {crumb} &gt;{' '}
+      </span>
+    )
   })
 }
 
@@ -53,7 +64,7 @@ const trail = (crumbs) => {
  * to the authentication reducer. When actions are dispatched, this
  * method is executed which causes a re-render.
  */
-function mapStateToProps (state) {
+function mapStateToProps(state) {
   const section = state.section || {}
   return {
     section: section

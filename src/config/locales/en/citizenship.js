@@ -1,14 +1,16 @@
 export const citizenship = {
   intro: {
     title: 'Section 4: Citizenship',
-    body: 'You will be asked questions about your citizenship status and history and be asked to provide details if necessary.'
+    body:
+      'You will be asked questions about your citizenship status and history and be asked to provide details if necessary.'
   },
   tour: {
     para: 'Take a guided tour through the section'
   },
   review: {
     para: 'View all the sections associated with citizenship at once',
-    comments: 'Add a comment to clarify any of your responses in the citizenship section'
+    comments:
+      'Add a comment to clarify any of your responses in the citizenship section'
   },
   destination: {
     intro: 'Citizenship intro',
@@ -31,22 +33,28 @@ export const citizenship = {
       documentname: 'Provide the name in which document was issued',
       certificatenumber: {
         foreignborn: 'Provide your Certificate of Citizenship number',
-        naturalized: 'Provide your Certificate of Naturalization number (N550 or N570)',
+        naturalized:
+          'Provide your Certificate of Naturalization number (N550 or N570)',
         derived: 'Provide your Certificate of Citizenship number (N560 or N561)'
       },
       certificateissued: {
         foreignborn: 'Provide the date the certificate was issued',
-        naturalized: 'Provide the date the Certificate of Naturalization was issued',
+        naturalized:
+          'Provide the date the Certificate of Naturalization was issued',
         derived: 'Provide the date the document was issued'
       },
       certificatename: {
         foreignborn: 'Provide the name in which the certificate was issued',
-        naturalized: 'Provide the name in which the Certificate of Naturalization was issued',
+        naturalized:
+          'Provide the name in which the Certificate of Naturalization was issued',
         derived: 'Provide the name in which the document was issued'
       },
-      certificatecourtname: 'Provide the name of the court that issued the Certificate of Naturalization',
-      certificatecourtaddress: 'Provide the address of the court that issued the Certificate of Naturalization',
-      bornonmilitaryinstallation: 'Were you born on a U.S. military installation?',
+      certificatecourtname:
+        'Provide the name of the court that issued the Certificate of Naturalization',
+      certificatecourtaddress:
+        'Provide the address of the court that issued the Certificate of Naturalization',
+      bornonmilitaryinstallation:
+        'Were you born on a U.S. military installation?',
       militarybase: 'Provide the name of the base',
       entrydate: 'Provide the date of entry into the U.S.',
       entrylocation: 'Provide your place of entry in the U.S.',
@@ -56,16 +64,20 @@ export const citizenship = {
       },
       hasalienregistration: 'Do/did you have a U.S. alien registration number?',
       alienregistrationnumber: {
-        naturalized: 'Provide your U.S. alien registration number on Certificate of Naturalization USCIS, CIS, or INS registration, I-551, I-766',
-        derived: 'Provide your alien registration number (on Certificate of Citizenship - utilize USCIC, CIS, or INS registration number)',
+        naturalized:
+          'Provide your U.S. alien registration number on Certificate of Naturalization USCIS, CIS, or INS registration, I-551, I-766',
+        derived:
+          'Provide your alien registration number (on Certificate of Citizenship - utilize USCIC, CIS, or INS registration number)',
         notcitizen: 'Provide your alien registration number (I-551, I-766)'
       },
-      alienregistrationexpiration: 'Provide document expiration date (I-776 ONLY)',
+      alienregistrationexpiration:
+        'Provide document expiration date (I-776 ONLY)',
       basis: {
         naturalized: 'Provide the basis of naturalization',
         derived: 'Provide the basis of derived citizenship'
       },
-      permanentresidentcardnumber: 'Provide your Permanent Resident Card number (I-551)',
+      permanentresidentcardnumber:
+        'Provide your Permanent Resident Card number (I-551)',
       residencestatus: 'Provide your residence status',
       documentexpiration: 'Provide document expiration date',
       documenttype: 'Provide type of document issued'
@@ -73,8 +85,10 @@ export const citizenship = {
     label: {
       explanation: 'Explanation',
       citizenshipstatus: {
-        citizen: 'I am a U.S. citizen or national by birth in the U.S. or U.S. territory/commonwealth',
-        foreignborn: 'I am a U.S. citizen or national by birth, born to U.S. parent(s), in a foreign country',
+        citizen:
+          'I am a U.S. citizen or national by birth in the U.S. or U.S. territory/commonwealth',
+        foreignborn:
+          'I am a U.S. citizen or national by birth, born to U.S. parent(s), in a foreign country',
         naturalized: 'I am a naturalized U.S. citizen',
         derived: 'I am a derived U.S. citizen',
         notcitizen: 'I am not a U.S. citizen'
@@ -136,7 +150,8 @@ export const citizenship = {
       },
       certificateissued: {
         title: 'Estimate the date if unsure',
-        message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+        message:
+          'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
         note: ''
       },
       certificatename: {
@@ -156,7 +171,8 @@ export const citizenship = {
       },
       entrydate: {
         title: 'Estimate the date if unsure',
-        message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+        message:
+          'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
         note: ''
       },
       entrylocation: {
@@ -190,9 +206,12 @@ export const citizenship = {
         note: ''
       },
       certificatecourtaddress: {
-        title: 'Try looking up the court name, this could help you find the address',
-        message: 'If you can only find a phone number try calling and asking for the address.',
-        note: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
+        title:
+          'Try looking up the court name, this could help you find the address',
+        message:
+          'If you can only find a phone number try calling and asking for the address.',
+        note:
+          'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
       },
       basis: {
         naturalized: {
@@ -231,30 +250,41 @@ export const citizenship = {
   multiple: {
     heading: {
       title: 'Dual/multiple citizenship',
-      hasmultiple: 'Do you now or have you EVER held dual/multiple citizenships?',
+      hasmultiple:
+        'Do you now or have you EVER held dual/multiple citizenships?',
       citizenship: {
         country: 'Provide country of citizenship',
-        period: 'During what period of time did you hold citizenship with this country?',
-        dates: 'Provide the date range that you held this citizenship, beginning with the date it was acquired through its termination or "Present," whichever is appropriate',
-        how: 'How did you acquire this non-U.S. citizenship you now have or previously had?',
-        renounced: 'Have you taken any action to renounce your foreign citizenship?',
+        period:
+          'During what period of time did you hold citizenship with this country?',
+        dates:
+          'Provide the date range that you held this citizenship, beginning with the date it was acquired through its termination or "Present," whichever is appropriate',
+        how:
+          'How did you acquire this non-U.S. citizenship you now have or previously had?',
+        renounced:
+          'Have you taken any action to renounce your foreign citizenship?',
         renouncedexplanation: 'Provide explanation',
         current: 'Do you currently hold citizenship with this country?',
         currentexplanation: 'Provide explanation'
       },
-      hasforeignpassport: 'Have you EVER been issued a passport (or identity card for travel) by a country other than the U.S.?',
+      hasforeignpassport:
+        'Have you EVER been issued a passport (or identity card for travel) by a country other than the U.S.?',
       passport: {
         title: 'Foreign passport information',
-        country: 'Provide the country in which the passport (or identity card) was issued',
+        country:
+          'Provide the country in which the passport (or identity card) was issued',
         issued: 'Provide the date the passport (or identity card) was issued',
-        location: 'Provide the place the passport (or identity card) was issued',
-        name: 'Provide the name in which passport (or identity card) was issued',
+        location:
+          'Provide the place the passport (or identity card) was issued',
+        name:
+          'Provide the name in which passport (or identity card) was issued',
         number: 'Provide the passport (or identity card) number',
         expiration: 'Provide the passport (or identity card) expiration date',
-        used: 'Have you EVER used this passport (or identity card) for foreign travel?'
+        used:
+          'Have you EVER used this passport (or identity card) for foreign travel?'
       },
       travel: {
-        country: 'Provide the country to which you traveled on this passport (or identity card)',
+        country:
+          'Provide the country to which you traveled on this passport (or identity card)',
         dates: 'Provide the dates involved'
       }
     },
@@ -274,7 +304,8 @@ export const citizenship = {
           item: 'Country',
           unknown: 'Provide passport details below'
         },
-        appendTitle: 'Do you have an additional foreign passport (or identity card) to report?',
+        appendTitle:
+          'Do you have an additional foreign passport (or identity card) to report?',
         append: 'Add another foreign passport'
       },
       travel: {
@@ -289,7 +320,8 @@ export const citizenship = {
     help: {
       hasmultiple: {
         title: 'Need help with multiple citizenships?',
-        message: 'If you have ever had a non-U.S. citizenship then select "yes"',
+        message:
+          'If you have ever had a non-U.S. citizenship then select "yes"',
         note: ''
       },
       citizenship: {
@@ -300,7 +332,8 @@ export const citizenship = {
         },
         dates: {
           title: 'Tell us the full date range you held this citizenship',
-          message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
+          message:
+            'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
         how: {
@@ -331,7 +364,8 @@ export const citizenship = {
       },
       hasforeignpassport: {
         title: 'Need help with foreign passports or identity cards?',
-        message: 'If you have ever had a foreign passport or identity card then select "yes"',
+        message:
+          'If you have ever had a foreign passport or identity card then select "yes"',
         note: ''
       },
       passport: {
@@ -347,7 +381,8 @@ export const citizenship = {
         },
         location: {
           title: 'Need help with the place it was issued?',
-          message: 'Provide the location the passport (or identity card) was issued',
+          message:
+            'Provide the location the passport (or identity card) was issued',
           note: ''
         },
         name: {
@@ -379,7 +414,8 @@ export const citizenship = {
         },
         dates: {
           title: 'Not sure of the exact dates?',
-          message: 'Give us your best guess and check the "Estimated" checkbox.',
+          message:
+            'Give us your best guess and check the "Estimated" checkbox.',
           note: ''
         }
       }

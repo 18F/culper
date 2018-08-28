@@ -8,14 +8,14 @@ import General from './General'
 import Medical from './Medical'
 
 export default class ReleaseOfGeneralAndMedical extends SubsectionElement {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.update = this.update.bind(this)
     this.updateGeneral = this.updateGeneral.bind(this)
     this.updateMedical = this.updateMedical.bind(this)
   }
 
-  update (queue) {
+  update(queue) {
     this.props.onUpdate({
       General: this.props.General,
       Medical: this.props.Medical,
@@ -23,34 +23,37 @@ export default class ReleaseOfGeneralAndMedical extends SubsectionElement {
     })
   }
 
-  updateGeneral (values) {
+  updateGeneral(values) {
     this.update({ General: values })
   }
 
-  updateMedical (values) {
+  updateMedical(values) {
     this.update({ Medical: values })
   }
 
-  render () {
+  render() {
     return (
       <div className="general-medical-release">
-        <Verify identification={this.props.Identification}
-                history={this.props.History}
-                />
+        <Verify
+          identification={this.props.Identification}
+          history={this.props.History}
+        />
         <hr />
-        <General {...this.props.General}
-                 LegalName={this.props.LegalName}
-                 onUpdate={this.updateGeneral}
-                 onError={this.handleError}
-                 />
+        <General
+          {...this.props.General}
+          LegalName={this.props.LegalName}
+          onUpdate={this.updateGeneral}
+          onError={this.handleError}
+        />
         <Show when={!hideHippa(this.props.Application)}>
           <div>
             <hr />
-            <Medical {...this.props.Medical}
-                     LegalName={this.props.LegalName}
-                     onUpdate={this.updateMedical}
-                     onError={this.handleError}
-                     />
+            <Medical
+              {...this.props.Medical}
+              LegalName={this.props.LegalName}
+              onUpdate={this.updateMedical}
+              onError={this.handleError}
+            />
           </div>
         </Show>
       </div>
@@ -68,7 +71,7 @@ ReleaseOfGeneralAndMedical.defaultProps = {
   section: 'releases',
   subsection: 'general',
   dispatch: () => {},
-  validator: (data) => {
+  validator: data => {
     const general = new SignatureValidator(data.General || {}).isValid()
     if (hideHippa(data.Application)) {
       return general
@@ -77,6 +80,8 @@ ReleaseOfGeneralAndMedical.defaultProps = {
     const medical = new SignatureValidator(data.Medical || {}).isValid()
     return general && medical
   },
-  onUpdate: (queue) => {},
-  onError: (value, arr) => { return arr }
+  onUpdate: queue => {},
+  onError: (value, arr) => {
+    return arr
+  }
 }

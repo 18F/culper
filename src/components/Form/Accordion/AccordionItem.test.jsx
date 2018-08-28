@@ -14,7 +14,8 @@ describe('The accordion item component', () => {
         <div>
           <Text name="Test" bind={true} />
         </div>
-      </AccordionItem>)
+      </AccordionItem>
+    )
     component.find('input').simulate('change')
     expect(updates).toBe(1)
   })

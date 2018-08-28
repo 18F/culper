@@ -2,11 +2,18 @@ import React from 'react'
 import { withRouter } from 'react-router'
 import { api } from '../../services'
 import { saveSection } from '../../components/SavedIndicator/persistence-helpers'
-import { clearErrors, updateApplication } from '../../actions/ApplicationActions'
+import {
+  clearErrors,
+  updateApplication
+} from '../../actions/ApplicationActions'
 import AuthenticatedView from '../AuthenticatedView'
 import { Section, SavedIndicator, TimeoutWarning } from '../../components'
 import { env } from '../../config'
-import { findPosition, parseFormUrl } from '../../components/Navigation/navigation-helpers'
+import {
+  didRouteChange,
+  findPosition,
+  parseFormUrl
+} from '../../components/Navigation/navigation-helpers'
 import { tokenError } from '../../actions/AuthActions'
 import { updateSection } from '../../actions/SectionActions'
 
@@ -18,28 +25,27 @@ import { updateSection } from '../../actions/SectionActions'
 //     display the subsection only.
 class Form extends React.Component {
   constructor(props) {
-    super(props);
-    this.state = { refreshPending: false };
+    super(props)
+    this.state = { refreshPending: false }
   }
 
-  componentWillMount () {
+  componentWillMount() {
     this.defaultRedirect()
   }
 
   componentDidUpdate(prevProps) {
     this.defaultRedirect()
 
-    // https://stackoverflow.com/a/44410281/358804
-    if (this.props.location !== prevProps.location) {
-      this.onRouteChanged(prevProps.location);
+    if (didRouteChange(this.props.location, prevProps.location)) {
+      this.onRouteChanged(prevProps.location)
     }
   }
 
-  getParams () {
+  getParams() {
     return this.props.params || this.props.match.params
   }
 
-  defaultRedirect () {
+  defaultRedirect() {
     const params = this.getParams()
     if (!params.section) {
       this.props.history.push('form/identification/intro')
@@ -56,15 +62,22 @@ class Form extends React.Component {
   }
 
   updateSettings() {
-    this.props.dispatch(updateApplication('Settings', 'mobileNavigation', false))
+    this.props.dispatch(
+      updateApplication('Settings', 'mobileNavigation', false)
+    )
   }
 
-  save (section, subsection) {
+  save(section, subsection) {
     window.scroll(0, findPosition(document.getElementById('scrollTo')))
-    saveSection(this.props.application, section, subsection, this.props.dispatch)
+    saveSection(
+      this.props.application,
+      section,
+      subsection,
+      this.props.dispatch
+    )
   }
 
-  fetchSectionAnswers() {
+  refreshToken() {
     if (env.IsTest()) {
       return
     }
@@ -80,19 +93,24 @@ class Form extends React.Component {
     }
 
     this.setState({ refreshPending: true })
-    api.refresh().then(r => {
-      this.setState({ refreshPending: false })
-      api.setToken(r.data)
-      if (r.data === '') {
+    api
+      .refresh()
+      .then(r => {
+        this.setState({ refreshPending: false })
+        api.setToken(r.data)
+        if (r.data === '') {
+          this.props.dispatch(tokenError())
+        } else {
+          this.props.dispatch(
+            updateApplication('Settings', 'lastRefresh', new Date().getTime())
+          )
+        }
+      })
+      .catch(() => {
+        this.setState({ refreshPending: false })
+        api.setToken('')
         this.props.dispatch(tokenError())
-      } else {
-        this.props.dispatch(updateApplication('Settings', 'lastRefresh', new Date().getTime()))
-      }
-    }).catch(() => {
-      this.setState({ refreshPending: false })
-      api.setToken('')
-      this.props.dispatch(tokenError())
-    })
+      })
   }
 
   onRouteChanged(prevLocation) {
@@ -102,13 +120,13 @@ class Form extends React.Component {
 
     this.clearErrors()
     this.updateSettings()
-    this.fetchSectionAnswers()
+    this.refreshToken()
 
     const prevLoc = parseFormUrl(prevLocation.pathname)
     this.save(prevLoc.section, prevLoc.subsection)
   }
 
-  render () {
+  render() {
     const params = this.getParams()
     if (!params.section) {
       return null

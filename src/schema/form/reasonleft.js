@@ -7,17 +7,19 @@ import { collection } from './collection'
 export const reasonleft = (data = {}) => {
   return general('reasonleft', {
     Comments: textarea(data.Comments),
-    Reasons: collection(((data.Reasons || {}).items || []).map(y => {
-      const yitem = y.Item || {}
-      return {
-        Item: {
-          Has: branch(yitem.Has),
-          Reason: textarea(yitem.Reason),
-          Text: textarea(yitem.Text),
-          Date: datecontrol(yitem.Date)
+    Reasons: collection(
+      ((data.Reasons || {}).items || []).map(y => {
+        const yitem = y.Item || {}
+        return {
+          Item: {
+            Has: branch(yitem.Has),
+            Reason: textarea(yitem.Reason),
+            Text: textarea(yitem.Text),
+            Date: datecontrol(yitem.Date)
+          }
         }
-      }
-    })),
+      })
+    ),
     ReasonDescription: textarea(data.ReasonDescription)
   })
 }

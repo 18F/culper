@@ -10,9 +10,13 @@ describe('The legal associations overthrow component', () => {
 
   it('can select "yes"', () => {
     let updates = 0
-    const onUpdate = () => { updates++ }
+    const onUpdate = () => {
+      updates++
+    }
     const component = mount(<MembershipOverthrow onUpdate={onUpdate} />)
-    component.find('.legal-associations-overthrow-has-overthrow .yes input').simulate('change')
+    component
+      .find('.legal-associations-overthrow-has-overthrow .yes input')
+      .simulate('change')
     expect(updates).toBe(1)
   })
 

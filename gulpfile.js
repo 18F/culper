@@ -34,12 +34,14 @@ var paths = {
 }
 
 gulp.task('clean', clean)
-gulp.task('copy', ['clean'], copy)
-gulp.task('fonts', ['clean'], fonts)
-gulp.task('images', ['clean'], images)
-gulp.task('lint', [], sasslint(paths.sass.local, paths.sass.rules))
-gulp.task('build', ['clean', 'copy', 'fonts', 'images'])
-gulp.task('default', ['build'])
+gulp.task('copy', copy)
+gulp.task('fonts', fonts)
+gulp.task('images', images)
+gulp.task('lint', sasslint(paths.sass.local, paths.sass.rules))
+gulp.task('build',
+  gulp.series('clean',
+    gulp.parallel('copy', 'fonts', 'images')))
+gulp.task('default', gulp.series('build'))
 
 function clean () {
   'use strict'

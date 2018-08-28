@@ -1,34 +1,38 @@
 import LocationValidator from './location'
-import { validAccordion, validBranch, validDateField, validGenericTextfield } from './helpers'
+import {
+  validAccordion,
+  validBranch,
+  validDateField,
+  validGenericTextfield
+} from './helpers'
 
 export default class NonCriminalCourtActionsValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.hasCourtActions = (data.HasCourtActions || {}).value
     this.list = data.List || {}
   }
 
-  validHasCourtActions () {
+  validHasCourtActions() {
     return validBranch(this.hasCourtActions)
   }
 
-  validNonCriminalCourtActions () {
+  validNonCriminalCourtActions() {
     if (this.validHasCourtActions() && this.hasCourtActions === 'No') {
       return true
     }
 
-    return validAccordion(this.list, (item) => {
+    return validAccordion(this.list, item => {
       return new NonCriminalCourtActionValidator(item).isValid()
     })
   }
 
-  isValid () {
-    return this.validHasCourtActions() &&
-      this.validNonCriminalCourtActions()
+  isValid() {
+    return this.validHasCourtActions() && this.validNonCriminalCourtActions()
   }
 }
 
 export class NonCriminalCourtActionValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.civilActionDate = data.CivilActionDate
     this.courtName = data.CourtName
     this.courtAddress = data.CourtAddress
@@ -37,12 +41,14 @@ export class NonCriminalCourtActionValidator {
     this.principalPartyNames = data.PrincipalPartyNames
   }
 
-  isValid () {
-    return validDateField(this.civilActionDate) &&
+  isValid() {
+    return (
+      validDateField(this.civilActionDate) &&
       validGenericTextfield(this.courtName) &&
       new LocationValidator(this.courtAddress).isValid() &&
       validGenericTextfield(this.natureOfAction) &&
       validGenericTextfield(this.resultsOfAction) &&
       validGenericTextfield(this.principalPartyNames)
+    )
   }
 }

@@ -14,27 +14,45 @@ describe('The Hospitalizations component', () => {
     const props = {
       Hospitalized: { value: 'Yes' },
       List: {
-        items: [{
-          Admission: 'Voluntary'
-        }]
+        items: [
+          {
+            Admission: 'Voluntary'
+          }
+        ]
       },
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
     const component = mount(<Hospitalizations {...props} />)
     expect(component.find('.hospitalization').length).toBe(1)
     updates = 0
-    component.find({type: 'radio', value: 'Voluntary'}).simulate('change')
-    component.find('.explanation textarea').simulate('change', { target: { value: 'Testing' } })
-    component.find('.facility input').simulate('change', { target: { value: 'Testing' } })
+    component.find({ type: 'radio', value: 'Voluntary' }).simulate('change')
+    component
+      .find('.explanation textarea')
+      .simulate('change', { target: { value: 'Testing' } })
+    component
+      .find('.facility input')
+      .simulate('change', { target: { value: 'Testing' } })
     expect(updates).toBe(3)
   })
 
   it('Loads data', () => {
     let updates = 0
-    const onUpdate = () => { updates++ }
-    const component = mount(<Hospitalizations onUpdate={onUpdate} List={List} Hospitalized={ { value: 'Yes' } } />)
+    const onUpdate = () => {
+      updates++
+    }
+    const component = mount(
+      <Hospitalizations
+        onUpdate={onUpdate}
+        List={List}
+        Hospitalized={{ value: 'Yes' }}
+      />
+    )
     updates = 0
-    component.find('.facility input').simulate('change', { target: { value: 'Testing' } })
+    component
+      .find('.facility input')
+      .simulate('change', { target: { value: 'Testing' } })
     expect(updates).toBe(1)
   })
 })

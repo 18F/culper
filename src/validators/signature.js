@@ -1,23 +1,23 @@
 import { validGenericTextfield, validDateField } from './helpers'
 
 export default class SignatureValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.signature = data.Signature || {}
   }
 
-  validSignature () {
+  validSignature() {
     return this.validSignatureName() && this.validSignatureDate()
   }
 
-  validSignatureName () {
+  validSignatureName() {
     return !!this.signature.Name && validGenericTextfield(this.signature.Name)
   }
 
-  validSignatureDate () {
+  validSignatureDate() {
     return !!this.signature.Date && validDateField(this.signature.Date)
   }
 
-  isValid () {
+  isValid() {
     return this.validSignature()
   }
 }

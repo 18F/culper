@@ -1,0 +1,2045 @@
+<?xml version="1.0"?>
+<XMP version="3.00">
+  <SubmittedRequestInfo>
+    <RequestInfo>
+      <Request>
+        <Form>
+          <Name>SF86</Name>
+          <Version>2017-07</Version>
+        </Form>
+        <Applicant>
+          <Name>Aretha Louise Franklin</Name>
+          <SSN>555555544</SSN>
+        </Applicant>
+        <Responses>
+          <FormInstanceSpecific>
+            <ESigCertificationResponses Version="1" Type="Pooled" LastSummaryID="201" LastDynamicListID="201">
+              <UserFinalizedCert>
+                <Answer>Yes</Answer>
+              </UserFinalizedCert>
+              <UserOptedToESig>
+                <Answer>Yes</Answer>
+              </UserOptedToESig>
+            </ESigCertificationResponses>
+            <UserPreferences Version="1" Type="Pooled" LastSummaryID="201" LastDynamicListID="201">
+              <DisplayNavigation/>
+            </UserPreferences>
+          </FormInstanceSpecific>
+          <Pooled>
+            <IdentifyingInformation Type="Pooled" Version="1">
+              <Birth>
+                <Date>
+                  <Month>03</Month>
+                  <Day>25</Day>
+                  <Year>1960</Year>
+                </Date>
+                <Place>
+                  <City>Memphis</City>
+                  <State>TN</State>
+                  <County>Shelby</County>
+                  <Country>United States</Country>
+                </Place>
+              </Birth>
+              <EyeColor>Hazel</EyeColor>
+              <FullName>
+                <LegalName>
+                  <Last>Franklin</Last>
+                  <First>Aretha</First>
+                  <Middle>Louise</Middle>
+                </LegalName>
+              </FullName>
+              <HairColor>Black</HairColor>
+              <Height>
+                <Feet>5</Feet>
+                <Inches>4</Inches>
+              </Height>
+              <OtherNamesUsed>
+                <Answer>No</Answer>
+              </OtherNamesUsed>
+              <SSN>
+                <FirstThree>555</FirstThree>
+                <NextTwo>55</NextTwo>
+                <LastFour>5544</LastFour>
+              </SSN>
+              <Sex>Female</Sex>
+              <Weight>
+                <Pounds>167</Pounds>
+              </Weight>
+            </IdentifyingInformation>
+            <ContactInformation Version="1" Type="Pooled">
+              <HomeEmail>
+                <Email>email@email.com</Email>
+              </HomeEmail>
+              <HomeTelephone>
+                <Telephone>
+                  <Number>5025554523</Number>
+                  <Time>Both</Time>
+                </Telephone>
+              </HomeTelephone>
+            </ContactInformation>
+            <PersonalReferences>
+              <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              <References>
+                <Reference ID="0">
+                  <Address>
+                    <Street>100 E MAIN ST </Street>
+                    <City>LOUISVILLE</City>
+                    <State>KY</State>
+                    <ZipCode>40202</ZipCode>
+                  </Address>
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>01</Month>
+                        <Year>2010</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Present"/>
+                    </To>
+                  </DateRange>
+                  <Email DoNotKnow="True"/>
+                  <LegalName>
+                    <Last>Booker</Last>
+                    <First>Caleb</First>
+                    <Middle Type="IO">J</Middle>
+                  </LegalName>
+                  <RelationshipType Schoolmate="True"/>
+                  <Telephone>
+                    <Home>
+            
+
+
+
+          </Home>
+                    <Mobile>
+                      <Number>5027893456</Number>
+                      <Time>Both</Time>
+                    </Mobile>
+                  </Telephone>
+                  <Title NotApplicable="True"/>
+                </Reference>
+                <Reference ID="1">
+                  <Address>
+                    <Street>567 E BURNETT AVE </Street>
+                    <City>LOUISVILLE</City>
+                    <State>KY</State>
+                    <ZipCode>40217</ZipCode>
+                  </Address>
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>03</Month>
+                        <Year>1980</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Present"/>
+                    </To>
+                  </DateRange>
+                  <Email DoNotKnow="True"/>
+                  <LegalName>
+                    <Last>Tam</Last>
+                    <First>tim</First>
+                    <Middle Type="IO">t</Middle>
+                  </LegalName>
+                  <RelationshipType Neighbor="True"/>
+                  <Telephone>
+                    <Home>
+            
+
+
+
+          </Home>
+                    <Mobile>
+                      <Number>3334442233</Number>
+                      <Time>Both</Time>
+                    </Mobile>
+                  </Telephone>
+                  <Title NotApplicable="True"/>
+                </Reference>
+                <Reference ID="2">
+                  <Address>
+                    <Street>33 S MAIN ST </Street>
+                    <City>MEMPHIS</City>
+                    <State>TN</State>
+                    <ZipCode>37010</ZipCode>
+                  </Address>
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>06</Month>
+                        <Year>2000</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Present"/>
+                    </To>
+                  </DateRange>
+                  <Email DoNotKnow="True"/>
+                  <LegalName>
+                    <Last>Gov</Last>
+                    <First>Sash</First>
+                    <Middle>Man</Middle>
+                  </LegalName>
+                  <RelationshipType Neighbor="True"/>
+                  <Telephone>
+                    <Home>
+            
+
+
+
+          </Home>
+                    <Mobile>
+                      <Number>4442342567</Number>
+                      <Time>Both</Time>
+                    </Mobile>
+                  </Telephone>
+                  <Title NotApplicable="True"/>
+                </Reference>
+              </References>
+            </PersonalReferences>
+            <RelativesAndAssociates>
+              <ApplicableRelativeTypes Mother01="True" Father02="True"/>
+              <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              <Relatives>
+                <Relative ID="0">
+                  <Address>
+                    <Street>33 Salem st </Street>
+                    <City>Salem</City>
+                    <State>OR</State>
+                    <ZipCode>97005</ZipCode>
+                  </Address>
+                  <Birth>
+                    <Date Type="Estimated">
+                      <Month>04</Month>
+                      <Day>05</Day>
+                      <Year>1921</Year>
+                    </Date>
+                    <Place>
+                      <City>Salem</City>
+                      <State>OR</State>
+                      <Country>United States</Country>
+                    </Place>
+                  </Birth>
+                  <CountriesOfCitizenship>
+                    <Citizenship ID="0">
+                      <Country>United States</Country>
+                    </Citizenship>
+                  </CountriesOfCitizenship>
+                  <Deceased>
+                    <Answer>No</Answer>
+                  </Deceased>
+                  <LegalName>
+                    <Last>Simmons</Last>
+                    <First>Jim</First>
+                    <Middle>Don</Middle>
+                  </LegalName>
+                  <OtherNamesUsed>
+                    <Answer>No</Answer>
+                  </OtherNamesUsed>
+                  <Type>02Father</Type>
+                </Relative>
+                <Relative ID="1">
+                  <Birth>
+                    <Date Type="Estimated">
+                      <Month>05</Month>
+                      <Day>05</Day>
+                      <Year>1923</Year>
+                    </Date>
+                    <Place>
+                      <City>Beaverton</City>
+                      <State>OR</State>
+                      <Country>United States</Country>
+                    </Place>
+                  </Birth>
+                  <CountriesOfCitizenship>
+                    <Citizenship ID="0">
+                      <Country>United States</Country>
+                    </Citizenship>
+                  </CountriesOfCitizenship>
+                  <Deceased>
+                    <Answer>Yes</Answer>
+                  </Deceased>
+                  <LegalName>
+                    <Last>Wilson</Last>
+                    <First>Gail</First>
+                    <Middle Type="IO">A</Middle>
+                  </LegalName>
+                  <MothersMaidenName>
+                    <FullName>
+                      <LegalName SameAsListed="True"/>
+                    </FullName>
+                  </MothersMaidenName>
+                  <OtherNamesUsed>
+                    <Answer>No</Answer>
+                  </OtherNamesUsed>
+                  <Type>01Mother</Type>
+                </Relative>
+              </Relatives>
+            </RelativesAndAssociates>
+            <Spouse Version="1" Type="Pooled">
+              <Cohabitants>
+                <Answer>No</Answer>
+              </Cohabitants>
+              <MaritalStatus>NeverMarried</MaritalStatus>
+            </Spouse>
+            <ResidenceHistory>
+              <Residencies>
+                <Residency ID="0">
+                  <Address>
+                    <Street>22 elm st </Street>
+                    <City>Memphis</City>
+                    <State>TN</State>
+                    <ZipCode>37010</ZipCode>
+                  </Address>
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>01</Month>
+                        <Year>1990</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Present"/>
+                    </To>
+                  </DateRange>
+                  <ResidenceType>Own</ResidenceType>
+                  <Verifier>
+                    <Address>
+                      <Street>28 Elm st </Street>
+                      <City>Memphis</City>
+                      <State>TN</State>
+                      <ZipCode>37010</ZipCode>
+                    </Address>
+                    <Email DoNotKnow="True"/>
+                    <LastContact>
+                      <Date Type="Estimated">
+                        <Month>06</Month>
+                        <Year>2001</Year>
+                      </Date>
+                    </LastContact>
+                    <LegalName>
+                      <Last>Miller</Last>
+                      <First>Steve</First>
+                      <Middle Type="NMN"/>
+                    </LegalName>
+                    <RelationshipTypes Neighbor="True"/>
+                    <Telephone>
+                      <Day>
+                        <Number>5554442134</Number>
+                        <Time>Both</Time>
+                      </Day>
+                      <Evening>
+                        <Number>5677554321</Number>
+                        <Time>Both</Time>
+                      </Evening>
+                      <Mobile DoNotKnow="True">
+
+
+</Mobile>
+                    </Telephone>
+                  </Verifier>
+                </Residency>
+              </Residencies>
+              <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+            </ResidenceHistory>
+            <EmploymentActivities Type="Pooled" Version="1">
+              <Employments>
+                <Employment ID="0">
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>02</Month>
+                        <Year>1980</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Present"/>
+                    </To>
+                  </DateRange>
+                  <Type>NonGovernment</Type>
+                  <WorkHours>FullTime</WorkHours>
+                  <CivilEmployment>
+                    <Employer>Job</Employer>
+                    <PositionTitle>Manager</PositionTitle>
+                    <EmployersLocation>
+                      <Address>
+                        <Street>1227 E BURNETT AVE </Street>
+                        <City>LOUISVILLE</City>
+                        <State>KY</State>
+                        <ZipCode>40217</ZipCode>
+                      </Address>
+                      <Telephone>
+                        <Number>4444443322</Number>
+                        <Time>Both</Time>
+                      </Telephone>
+                    </EmployersLocation>
+                    <PreviousEmployments NotApplicable="True"/>
+                  </CivilEmployment>
+                  <Incidents>
+                    <Answer>No</Answer>
+                  </Incidents>
+                  <JobLocation>
+                    <Answer>No</Answer>
+                  </JobLocation>
+                  <Supervisor>
+                    <Name>Willow</Name>
+                    <Title>Boss</Title>
+                    <Address>
+                      <Street>1228 E Burnett Ave </Street>
+                      <City>Louisville</City>
+                      <State>KY</State>
+                      <ZipCode>40217</ZipCode>
+                    </Address>
+                    <Email DoNotKnow="True"/>
+                    <Telephone>
+                      <Number>5554322213</Number>
+                      <Time>Both</Time>
+                    </Telephone>
+                  </Supervisor>
+                </Employment>
+              </Employments>
+              <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+            </EmploymentActivities>
+            <EmploymentRecord Version="1" Type="Pooled">
+              <Fired>
+                <Answer>No</Answer>
+              </Fired>
+            </EmploymentRecord>
+            <Education>
+              <AttendedAnySchools>
+                <Answer>No</Answer>
+              </AttendedAnySchools>
+              <ReceivedDegreeOrDiploma>
+                <Answer>No</Answer>
+              </ReceivedDegreeOrDiploma>
+              <SchoolsAttended>
+    
+  </SchoolsAttended>
+            </Education>
+            <FormerFederalServiceActivities>
+              <HadFormerFederalCivilianEmployment>
+                <Answer>No</Answer>
+              </HadFormerFederalCivilianEmployment>
+              <FederalServices>
+  </FederalServices>
+            </FormerFederalServiceActivities>
+            <Citizenship Version="1" Type="Pooled">
+              <Status>USByBirth</Status>
+              <USCitizen>
+                <ProofOfUSCitizenship>
+      
+      
+      
+    </ProofOfUSCitizenship>
+              </USCitizen>
+            </Citizenship>
+            <DualCitizenship Version="1" Type="Pooled">
+              <DualCitizenships>
+    
+  </DualCitizenships>
+              <HeldDualCitizenship>
+                <Answer>No</Answer>
+              </HeldDualCitizenship>
+            </DualCitizenship>
+            <USPassport Type="Pooled" Version="1">
+              <DoPossessUSPassport>
+                <Answer>No</Answer>
+              </DoPossessUSPassport>
+            </USPassport>
+            <MilitaryHistory Version="1" Type="Pooled">
+              <ForeignService>
+                <Answer>No</Answer>
+              </ForeignService>
+              <ForeignMilitaryService>
+  
+  
+  
+</ForeignMilitaryService>
+              <Answer>No</Answer>
+            </MilitaryHistory>
+            <SelectiveServiceRegistration Version="1" Type="Pooled">
+              <Registered>
+                <Answer>Yes</Answer>
+              </Registered>
+              <Registration>
+                <Number>55555555</Number>
+              </Registration>
+              <RegistrationRequired>
+                <Answer>Yes</Answer>
+              </RegistrationRequired>
+            </SelectiveServiceRegistration>
+            <FinancialRecord Type="Pooled" Version="1">
+              <Bankruptcy>
+                <Activities>
+                  <Activity ID="0">
+                    <AccountNumber>55543435</AccountNumber>
+                    <Amount>500000</Amount>
+                    <Authority>
+                      <Address>
+                        <Street>66 street st </Street>
+                        <City>Memphis</City>
+                        <State>CO</State>
+                        <ZipCode>80011</ZipCode>
+                      </Address>
+                      <Court>the peoples court</Court>
+                    </Authority>
+                    <DischargeDate>
+                      <Month>02</Month>
+                      <Year>1990</Year>
+                    </DischargeDate>
+                    <DischargedOfAllDebts>
+                      <Answer>Yes</Answer>
+                    </DischargedOfAllDebts>
+                    <Explanation>I had more debts</Explanation>
+                    <FiledDate Type="Estimated">
+                      <Month>01</Month>
+                      <Year>1990</Year>
+                    </FiledDate>
+                    <Record>
+                      <Name>
+                        <Last>Miller</Last>
+                        <First>Stephen</First>
+                        <Middle>Louise</Middle>
+                      </Name>
+                    </Record>
+                    <Type>Chapter12</Type>
+                  </Activity>
+                  <Activity ID="1">
+                    <AccountNumber>32e534657687</AccountNumber>
+                    <Amount>42257</Amount>
+                    <Authority>
+                      <Address>
+                        <Street>67 W St </Street>
+                        <City>Crazytown</City>
+                        <State>KS</State>
+                        <ZipCode>67428</ZipCode>
+                      </Address>
+                      <Court>Big Court</Court>
+                    </Authority>
+                    <DischargeDate>
+                      <Month>01</Month>
+                      <Year>1980</Year>
+                    </DischargeDate>
+                    <DischargedOfAllDebts>
+                      <Answer>Yes</Answer>
+                    </DischargedOfAllDebts>
+                    <Explanation>I did it</Explanation>
+                    <FiledDate Type="Estimated">
+                      <Month>06</Month>
+                      <Year>1979</Year>
+                    </FiledDate>
+                    <Record>
+                      <Name>
+                        <Last>Tipper</Last>
+                        <First>Bob</First>
+                        <Middle Type="IO">t</Middle>
+                      </Name>
+                    </Record>
+                    <Type>Chapter7</Type>
+                  </Activity>
+                  <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+                </Activities>
+                <Answer>Yes</Answer>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </Bankruptcy>
+              <ViolatedCorporateCardAgreement>
+                <Answer>Yes</Answer>
+                <Incidents>
+                  <Incident ID="0">
+                    <Actions>getting help</Actions>
+                    <Agency>
+                      <Address>
+                        <Street>66 street st </Street>
+                        <City>Salem</City>
+                        <State>PR</State>
+                        <ZipCode>00979</ZipCode>
+                      </Address>
+                      <Name>helpers</Name>
+                    </Agency>
+                    <Amount Estimated="false">4322</Amount>
+                    <Date>
+                      <Month>03</Month>
+                      <Year>1999</Year>
+                    </Date>
+                    <Reason>needed it</Reason>
+                  </Incident>
+                  <Incident ID="1">
+                    <Actions>getting more help</Actions>
+                    <Agency>
+                      <Address>
+                        <Street>22 elm st </Street>
+                        <City>APO</City>
+                        <State>AA</State>
+                        <ZipCode>34052</ZipCode>
+                      </Address>
+                      <Name>path</Name>
+                    </Agency>
+                    <Amount Estimated="false">3333</Amount>
+                    <Date>
+                      <Month>05</Month>
+                      <Year>1990</Year>
+                    </Date>
+                    <Reason>needed help</Reason>
+                  </Incident>
+                </Incidents>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </ViolatedCorporateCardAgreement>
+              <UtilizingOrSeekingCreditCounseling>
+                <Answer>Yes</Answer>
+                <Incidents>
+                  <Incident ID="0">
+                    <Actions>getting credit help</Actions>
+                    <Explanation>too many credit cards</Explanation>
+                    <Organization>
+                      <Location>
+                        <City>Memphis</City>
+                        <State>OH</State>
+                      </Location>
+                      <Name>Dr. Bob</Name>
+                      <Telephone>
+                        <Number>5027894523</Number>
+                        <Time>Both</Time>
+                      </Telephone>
+                    </Organization>
+                  </Incident>
+                  <Incident ID="1">
+                    <Actions>OK i needed help with my credit</Actions>
+                    <Explanation>getting the help</Explanation>
+                    <Organization>
+                      <Location>
+                        <City>Portland</City>
+                        <State>CT</State>
+                      </Location>
+                      <Name>OK school</Name>
+                      <Telephone>
+                        <Number>5677894523</Number>
+                        <Time>Both</Time>
+                      </Telephone>
+                    </Organization>
+                  </Incident>
+                </Incidents>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </UtilizingOrSeekingCreditCounseling>
+              <DelinquencyInvolvingEnforcement>
+                <Answer>Yes</Answer>
+                <Incidents>
+                  <Incident ID="0">
+                    <AccountNumber>234234</AccountNumber>
+                    <Agency>
+                      <Name>Dr. Bob</Name>
+                    </Agency>
+                    <Amount Estimated="false">23424</Amount>
+                    <Court>
+                      <Address>
+                        <Street>110 Main ST. </Street>
+                        <City>Salem</City>
+                        <State>TN</State>
+                        <ZipCode>37010</ZipCode>
+                      </Address>
+                      <Name>Place 1</Name>
+                    </Court>
+                    <DateBegan>
+                      <Month>01</Month>
+                      <Year>1979</Year>
+                    </DateBegan>
+                    <DateResolved>
+                      <Month>01</Month>
+                      <Year>1999</Year>
+                    </DateResolved>
+                    <Description>working on it</Description>
+                    <IssueType>
+                      <Answer>Yes</Answer>
+                      <Options Alimony="True" Lien="True"/>
+                    </IssueType>
+                    <PropertyType>Home</PropertyType>
+                    <Reason> gamblin'</Reason>
+                    <Status>still in trouble</Status>
+                  </Incident>
+                  <Incident ID="1">
+                    <AccountNumber>4355</AccountNumber>
+                    <Agency>
+                      <Name>OK school</Name>
+                    </Agency>
+                    <Amount Estimated="false">333</Amount>
+                    <Court>
+                      <Address>
+                        <Street>222 elm street </Street>
+                        <City>LOUISVILLE</City>
+                        <State>FL</State>
+                        <ZipCode>32803</ZipCode>
+                      </Address>
+                      <Name>name</Name>
+                    </Court>
+                    <DateBegan>
+                      <Month>03</Month>
+                      <Year>1979</Year>
+                    </DateBegan>
+                    <DateResolved>
+                      <Month>05</Month>
+                      <Year>1979</Year>
+                    </DateResolved>
+                    <Description>owe payments</Description>
+                    <IssueType>
+                      <Answer>Yes</Answer>
+                      <Options Alimony="True"/>
+                    </IssueType>
+                    <PropertyType>car</PropertyType>
+                    <Reason>in trouble </Reason>
+                    <Status>unresolved</Status>
+                  </Incident>
+                </Incidents>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </DelinquencyInvolvingEnforcement>
+              <ProblemsDueToGambling>
+                <Answer>Yes</Answer>
+                <Incidents>
+                  <Incident ID="0">
+                    <Actions>nope</Actions>
+                    <Amount>5655</Amount>
+                    <DateRange>
+                      <From>
+                        <Date>
+                          <Month>01</Month>
+                          <Year>1990</Year>
+                        </Date>
+                      </From>
+                      <To>
+                        <Date>
+                          <Month>01</Month>
+                          <Year>1990</Year>
+                        </Date>
+                      </To>
+                    </DateRange>
+                    <Description>missed rent</Description>
+                  </Incident>
+                  <Incident ID="1">
+                    <Actions>not yet... maybe soon</Actions>
+                    <Amount>78000</Amount>
+                    <DateRange>
+                      <From>
+                        <Date>
+                          <Month>04</Month>
+                          <Year>1979</Year>
+                        </Date>
+                      </From>
+                      <To>
+                        <Date>
+                          <Month>09</Month>
+                          <Year>1979</Year>
+                        </Date>
+                      </To>
+                    </DateRange>
+                    <Description>sold the farm</Description>
+                  </Incident>
+                </Incidents>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </ProblemsDueToGambling>
+              <DelinquencyInvolvingRoutineAccounts>
+                <Answer>Yes</Answer>
+                <Incidents>
+                  <Incident ID="0">
+                    <AccountNumber>234234</AccountNumber>
+                    <Agency>
+                      <Name>Dr. Bob</Name>
+                    </Agency>
+                    <Amount Estimated="false">234234</Amount>
+                    <DateBegan Type="Estimated">
+                      <Month>05</Month>
+                      <Year>1990</Year>
+                    </DateBegan>
+                    <DateResolved NotResolved="True">
+        
+      </DateResolved>
+                    <Description>no actions taken</Description>
+                    <IssueType>
+                      <Answer>Yes</Answer>
+                      <Option Property="True"/>
+                    </IssueType>
+                    <PropertyType>boat</PropertyType>
+                    <Reason>lost a bet</Reason>
+                    <Status>unresolved</Status>
+                  </Incident>
+                  <Incident ID="1">
+                    <AccountNumber>3456777</AccountNumber>
+                    <Agency>
+                      <Name>Dr. Bob</Name>
+                    </Agency>
+                    <Amount Estimated="false">34647</Amount>
+                    <DateBegan Type="Estimated">
+                      <Month>06</Month>
+                      <Year>1965</Year>
+                    </DateBegan>
+                    <DateResolved NotResolved="True">
+        
+      </DateResolved>
+                    <Description>none taken</Description>
+                    <IssueType>
+                      <Answer>Yes</Answer>
+                      <Option Loan="True"/>
+                    </IssueType>
+                    <PropertyType>farm</PropertyType>
+                    <Reason>ran out of money</Reason>
+                    <Status>unresolved</Status>
+                  </Incident>
+                </Incidents>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </DelinquencyInvolvingRoutineAccounts>
+              <UnpaidTaxes>
+                <Answer>Yes</Answer>
+                <Incidents>
+                  <Incident ID="0">
+                    <Actions>paid it</Actions>
+                    <Agency>state</Agency>
+                    <Amount Estimated="false">5699</Amount>
+                    <DateFailedToPay>
+                      <Year>1979</Year>
+                    </DateFailedToPay>
+                    <DateSatisfied Type="Estimated">
+                      <Month>01</Month>
+                      <Year>1979</Year>
+                    </DateSatisfied>
+                    <Reason>forgot</Reason>
+                    <TaxType>all of them</TaxType>
+                    <Type>Both</Type>
+                  </Incident>
+                  <Incident ID="1">
+                    <Actions>ok ok</Actions>
+                    <Agency>local</Agency>
+                    <Amount Estimated="false">345</Amount>
+                    <DateFailedToPay>
+                      <Year>1999</Year>
+                    </DateFailedToPay>
+                    <DateSatisfied NotApplicable="True"/>
+                    <Reason>no money</Reason>
+                    <TaxType>local</TaxType>
+                    <Type>File</Type>
+                  </Incident>
+                </Incidents>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </UnpaidTaxes>
+            </FinancialRecord>
+            <ForeignContacts>
+              <ContactWithForeignNationalBoundByAffectionInfluenceObligation>
+                <Answer>No</Answer>
+              </ContactWithForeignNationalBoundByAffectionInfluenceObligation>
+              <Contacts>
+    
+  </Contacts>
+            </ForeignContacts>
+            <ForeignFinancialInterests Version="1" Type="Pooled">
+              <DirectInterests>
+                <Answer>No</Answer>
+              </DirectInterests>
+              <IndirectInterests>
+                <Answer>No</Answer>
+              </IndirectInterests>
+              <RealEstateHoldings>
+                <Answer>No</Answer>
+              </RealEstateHoldings>
+              <ForeignFinancialBenefits>
+                <Answer>No</Answer>
+              </ForeignFinancialBenefits>
+              <ForeignNationalsSupported>
+                <Answer>No</Answer>
+              </ForeignNationalsSupported>
+            </ForeignFinancialInterests>
+            <ForeignBusinessActivities Version="1" Type="Pooled">
+              <ForeignPassports>
+                <Answer>No</Answer>
+              </ForeignPassports>
+              <SupportActivities>
+                <Answer>No</Answer>
+              </SupportActivities>
+              <Consultancies>
+                <Answer>No</Answer>
+              </Consultancies>
+              <ForeignJobOffer>
+                <Answer>No</Answer>
+              </ForeignJobOffer>
+              <ForeignJobOffers>
+  
+</ForeignJobOffers>
+              <OtherForeignEmployment>
+                <Answer>No</Answer>
+              </OtherForeignEmployment>
+              <OtherForeignEmployments>
+  
+</OtherForeignEmployments>
+              <Meetings>
+                <Answer>No</Answer>
+              </Meetings>
+              <GovernmentContacts>
+                <Answer>No</Answer>
+              </GovernmentContacts>
+              <SponsoredVisits>
+                <Answer>No</Answer>
+              </SponsoredVisits>
+              <ForeignPoliticalOffice>
+                <Answer>No</Answer>
+              </ForeignPoliticalOffice>
+              <ForeignPoliticalOffices>
+  
+</ForeignPoliticalOffices>
+              <VotedInForeignElection>
+                <Answer>No</Answer>
+              </VotedInForeignElection>
+              <VotedInForeignElections>
+  
+</VotedInForeignElections>
+            </ForeignBusinessActivities>
+            <ForeignTravels>
+              <CountriesVisited>
+                <Answer>No</Answer>
+              </CountriesVisited>
+            </ForeignTravels>
+            <UseOfAlcohol Version="1" Type="Pooled">
+              <EverReceivedCounseling>
+                <Answer>Yes</Answer>
+                <Consultations>
+                  <Consultation ID="0">
+                    <Agency>
+                      <Address SameAsAbove="True">
+                        <Street> </Street>
+                      </Address>
+                      <Name>OK</Name>
+                    </Agency>
+                    <BeginDate>
+                      <Month>01</Month>
+                      <Year>1979</Year>
+                    </BeginDate>
+                    <CompletedTreatmentProgram>
+                      <Answer>Yes</Answer>
+                    </CompletedTreatmentProgram>
+                    <Doctor>
+                      <Address>
+                        <Street>66 street st </Street>
+                        <City>Crazytown</City>
+                        <State>OH</State>
+                        <ZipCode>45777</ZipCode>
+                      </Address>
+                      <Name>James Smith</Name>
+                    </Doctor>
+                    <EndDate>
+                      <Month>02</Month>
+                      <Year>1979</Year>
+                    </EndDate>
+                    <Explanation>ok ok ok </Explanation>
+                  </Consultation>
+                  <Consultation ID="1">
+                    <Agency>
+                      <Address SameAsAbove="False">
+                        <Street>324 crazy Rd. </Street>
+                        <City>Salem</City>
+                        <State>FL</State>
+                        <ZipCode>32803</ZipCode>
+                      </Address>
+                      <Name>The place</Name>
+                    </Agency>
+                    <BeginDate>
+                      <Month>02</Month>
+                      <Year>1990</Year>
+                    </BeginDate>
+                    <CompletedTreatmentProgram>
+                      <Answer>Yes</Answer>
+                    </CompletedTreatmentProgram>
+                    <Doctor>
+                      <Address>
+                        <Street>222 elm street </Street>
+                        <City>Anytown</City>
+                        <State>TN</State>
+                        <ZipCode>37010</ZipCode>
+                      </Address>
+                      <Name>James Smith</Name>
+                    </Doctor>
+                    <EndDate>
+                      <Month>05</Month>
+                      <Year>1990</Year>
+                    </EndDate>
+                    <Explanation>i did it!</Explanation>
+                  </Consultation>
+                </Consultations>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </EverReceivedCounseling>
+              <NegativeImpact>
+                <Answer>Yes</Answer>
+                <Incidents>
+                  <Incident ID="0">
+                    <Date>
+                      <Month>06</Month>
+                      <Year>1990</Year>
+                    </Date>
+                    <Circumstances>was stressed</Circumstances>
+                    <Impact>hurt family</Impact>
+                    <DateRange>
+                      <From>
+                        <Date>
+                          <Month>01</Month>
+                          <Year>1990</Year>
+                        </Date>
+                      </From>
+                      <To>
+                        <Date>
+                          <Month>08</Month>
+                          <Year>1990</Year>
+                        </Date>
+                      </To>
+                    </DateRange>
+                  </Incident>
+                  <Incident ID="1">
+                    <Date Type="Estimated">
+                      <Month>05</Month>
+                      <Year>1979</Year>
+                    </Date>
+                    <Circumstances>Job </Circumstances>
+                    <Impact>Fired</Impact>
+                    <DateRange>
+                      <From>
+                        <Date>
+                          <Month>04</Month>
+                          <Year>1979</Year>
+                        </Date>
+                      </From>
+                      <To>
+                        <Date>
+                          <Month>04</Month>
+                          <Year>1980</Year>
+                        </Date>
+                      </To>
+                    </DateRange>
+                  </Incident>
+                </Incidents>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </NegativeImpact>
+              <OrderedAdvisedOrAskedToSeekCounseling>
+                <Answer>Yes</Answer>
+                <Consultations>
+                  <Consultation ID="0">
+                    <ActionToSeekCounselingTaken>
+                      <Answer>Yes</Answer>
+                    </ActionToSeekCounselingTaken>
+                    <CompletedTreatmentProgram>
+                      <Answer>Yes</Answer>
+                    </CompletedTreatmentProgram>
+                    <CounselingOrderedBy>
+                      <Answer Employer="True"/>
+                    </CounselingOrderedBy>
+                    <DateRange>
+                      <From>
+                        <Date>
+                          <Month>01</Month>
+                          <Year>1990</Year>
+                        </Date>
+                      </From>
+                      <To>
+                        <Date>
+                          <Month>06</Month>
+                          <Year>1990</Year>
+                        </Date>
+                      </To>
+                    </DateRange>
+                    <Doctor>
+                      <Name>James Smith</Name>
+                      <Address>
+                        <Street>222 elm street </Street>
+                        <City>Anytown</City>
+                        <State>CO</State>
+                        <ZipCode>80011</ZipCode>
+                      </Address>
+                      <Telephone>
+                        <Number>5025553456</Number>
+                        <Time>Both</Time>
+                      </Telephone>
+                    </Doctor>
+                  </Consultation>
+                  <Consultation ID="1">
+                    <ActionToSeekCounselingTaken>
+                      <Answer>Yes</Answer>
+                    </ActionToSeekCounselingTaken>
+                    <CompletedTreatmentProgram>
+                      <Answer>Yes</Answer>
+                    </CompletedTreatmentProgram>
+                    <CounselingOrderedBy>
+                      <Answer MedicalProfessional="True"/>
+                    </CounselingOrderedBy>
+                    <DateRange>
+                      <From>
+                        <Date>
+                          <Month>01</Month>
+                          <Year>1990</Year>
+                        </Date>
+                      </From>
+                      <To>
+                        <Date Type="Estimated">
+                          <Month>01</Month>
+                          <Year>1991</Year>
+                        </Date>
+                      </To>
+                    </DateRange>
+                    <Doctor>
+                      <Name>Dr Jim</Name>
+                      <Address>
+                        <Street>110 Main ST. </Street>
+                        <City>Anytown</City>
+                        <State>GA</State>
+                        <ZipCode>30002</ZipCode>
+                      </Address>
+                      <Telephone>
+                        <Number>4355674523</Number>
+                        <Time>Both</Time>
+                      </Telephone>
+                    </Doctor>
+                  </Consultation>
+                </Consultations>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </OrderedAdvisedOrAskedToSeekCounseling>
+              <SoughtCounseling>
+                <Answer>Yes</Answer>
+                <Consultations>
+                  <Consultation ID="0">
+                    <DateRange>
+                      <From>
+                        <Date>
+                          <Month>01</Month>
+                          <Year>1979</Year>
+                        </Date>
+                      </From>
+                      <To>
+                        <Date Type="Estimated">
+                          <Month>06</Month>
+                          <Year>1980</Year>
+                        </Date>
+                      </To>
+                    </DateRange>
+                    <Doctor>
+                      <Name>James Smith</Name>
+                      <Address>
+                        <Street>22 elm st </Street>
+                        <City>Anytown</City>
+                        <State>OR</State>
+                        <ZipCode>97005</ZipCode>
+                      </Address>
+                      <Telephone>
+                        <Number>5677895512</Number>
+                        <Time>Both</Time>
+                      </Telephone>
+                    </Doctor>
+                    <CompletedTreatmentProgram>
+                      <Answer>Yes</Answer>
+                    </CompletedTreatmentProgram>
+                  </Consultation>
+                  <Consultation ID="1">
+                    <DateRange>
+                      <From>
+                        <Date>
+                          <Month>03</Month>
+                          <Year>2000</Year>
+                        </Date>
+                      </From>
+                      <To>
+                        <Date>
+                          <Month>01</Month>
+                          <Year>2001</Year>
+                        </Date>
+                      </To>
+                    </DateRange>
+                    <Doctor>
+                      <Name>James Smith</Name>
+                      <Address>
+                        <Street>66 street st </Street>
+                        <City>Memphis</City>
+                        <State>OH</State>
+                        <ZipCode>45777</ZipCode>
+                      </Address>
+                      <Telephone>
+                        <Number>5677892213</Number>
+                        <Time>Both</Time>
+                      </Telephone>
+                    </Doctor>
+                    <CompletedTreatmentProgram>
+                      <Answer>Yes</Answer>
+                    </CompletedTreatmentProgram>
+                  </Consultation>
+                </Consultations>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </SoughtCounseling>
+            </UseOfAlcohol>
+            <IllegalDrugUse Version="1" Type="Pooled">
+              <InvolvementWhilePossessingASecurityClearance>
+                <Answer>Yes</Answer>
+                <Involvements>
+                  <Involvement ID="0">
+                    <Description>high level involvement</Description>
+                    <DateRange>
+                      <From>
+                        <Date>
+                          <Month>06</Month>
+                          <Year>1979</Year>
+                        </Date>
+                      </From>
+                      <To>
+                        <Date>
+                          <Month>09</Month>
+                          <Year>1979</Year>
+                        </Date>
+                      </To>
+                    </DateRange>
+                    <NumberOfTimesUsed>4</NumberOfTimesUsed>
+                  </Involvement>
+                  <Involvement ID="1">
+                    <Description>not very</Description>
+                    <DateRange>
+                      <From>
+                        <Date>
+                          <Month>01</Month>
+                          <Year>1990</Year>
+                        </Date>
+                      </From>
+                      <To>
+                        <Date>
+                          <Month>04</Month>
+                          <Year>1990</Year>
+                        </Date>
+                      </To>
+                    </DateRange>
+                    <NumberOfTimesUsed>67</NumberOfTimesUsed>
+                  </Involvement>
+                </Involvements>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </InvolvementWhilePossessingASecurityClearance>
+              <MisuseOfPrescriptionDrugs>
+                <Answer>Yes</Answer>
+                <Instances>
+                  <Instance ID="0">
+                    <DrugsUsed>pain pills</DrugsUsed>
+                    <DateRange>
+                      <From>
+                        <Date>
+                          <Month>01</Month>
+                          <Year>1990</Year>
+                        </Date>
+                      </From>
+                      <To>
+                        <Date Type="Estimated">
+                          <Month>07</Month>
+                          <Year>1990</Year>
+                        </Date>
+                      </To>
+                    </DateRange>
+                    <Circumstances>needed relief</Circumstances>
+                    <InvolvementWhileEmployedAsLawEnforcement>
+                      <Answer>Yes</Answer>
+                    </InvolvementWhileEmployedAsLawEnforcement>
+                    <InvolvementWhilePossessingASecurityClearance>
+                      <Answer>Yes</Answer>
+                    </InvolvementWhilePossessingASecurityClearance>
+                  </Instance>
+                  <Instance ID="1">
+                    <DrugsUsed>oxy</DrugsUsed>
+                    <DateRange>
+                      <From>
+                        <Date>
+                          <Month>01</Month>
+                          <Year>1990</Year>
+                        </Date>
+                      </From>
+                      <To>
+                        <Date Type="Estimated">
+                          <Month>07</Month>
+                          <Year>1990</Year>
+                        </Date>
+                      </To>
+                    </DateRange>
+                    <Circumstances>don't have a good reason</Circumstances>
+                    <InvolvementWhileEmployedAsLawEnforcement>
+                      <Answer>Yes</Answer>
+                    </InvolvementWhileEmployedAsLawEnforcement>
+                    <InvolvementWhilePossessingASecurityClearance>
+                      <Answer>Yes</Answer>
+                    </InvolvementWhilePossessingASecurityClearance>
+                  </Instance>
+                </Instances>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </MisuseOfPrescriptionDrugs>
+              <OrderedAdvisedOrAskedToSeekCounseling>
+                <Answer>Yes</Answer>
+                <Consultations>
+                  <Consultation ID="0">
+                    <ActionToSeekCounselingTaken>
+                      <Answer>Yes</Answer>
+                    </ActionToSeekCounselingTaken>
+                    <DidNotReceiveTreatment>
+        
+        
+      </DidNotReceiveTreatment>
+                    <CounselingOrderedBy>
+                      <Answer Court="True"/>
+                      <Explanation>explanation here</Explanation>
+                    </CounselingOrderedBy>
+                    <Drug>
+                      <Type>Cocaine</Type>
+                    </Drug>
+                    <Doctor>
+                      <Name>
+                        <Last>Smith</Last>
+                        <First>Jim</First>
+                      </Name>
+                      <Address>
+                        <Street>324 crazy Rd. </Street>
+                        <City>Memphis</City>
+                        <State>CO</State>
+                        <ZipCode>80011</ZipCode>
+                      </Address>
+                      <Telephone>
+                        <Number>4442334321</Number>
+                        <Time>Both</Time>
+                      </Telephone>
+                    </Doctor>
+                    <DateRange>
+                      <From>
+                        <Date>
+                          <Month>01</Month>
+                          <Year>1990</Year>
+                        </Date>
+                      </From>
+                      <To>
+                        <Date>
+                          <Month>09</Month>
+                          <Year>1990</Year>
+                        </Date>
+                      </To>
+                    </DateRange>
+                    <SuccessfullyCompletedTreatmentProgram>
+                      <Answer>No</Answer>
+                    </SuccessfullyCompletedTreatmentProgram>
+                    <UnsuccessfulTreatment>
+                      <Explanation>Got kicket out</Explanation>
+                    </UnsuccessfulTreatment>
+                  </Consultation>
+                  <Consultation ID="1">
+                    <ActionToSeekCounselingTaken>
+                      <Answer>Yes</Answer>
+                    </ActionToSeekCounselingTaken>
+                    <DidNotReceiveTreatment>
+        
+        
+      </DidNotReceiveTreatment>
+                    <CounselingOrderedBy>
+                      <Answer None="True"/>
+                      <Explanation>explain here ok</Explanation>
+                    </CounselingOrderedBy>
+                    <Drug>
+                      <Type>THC</Type>
+                    </Drug>
+                    <Doctor>
+                      <Name>
+                        <Last>Simmons</Last>
+                        <First>Rachel</First>
+                      </Name>
+                      <Address>
+                        <Street>222 elm street </Street>
+                        <City>Portland</City>
+                        <State>WA</State>
+                        <ZipCode>98001</ZipCode>
+                      </Address>
+                      <Telephone>
+                        <Number>4435672213</Number>
+                        <Time>Both</Time>
+                      </Telephone>
+                    </Doctor>
+                    <DateRange>
+                      <From>
+                        <Date>
+                          <Month>04</Month>
+                          <Year>1990</Year>
+                        </Date>
+                      </From>
+                      <To>
+                        <Date>
+                          <Month>07</Month>
+                          <Year>1990</Year>
+                        </Date>
+                      </To>
+                    </DateRange>
+                    <SuccessfullyCompletedTreatmentProgram>
+                      <Answer>Yes</Answer>
+                    </SuccessfullyCompletedTreatmentProgram>
+                    <UnsuccessfulTreatment>
+        
+        
+      </UnsuccessfulTreatment>
+                  </Consultation>
+                </Consultations>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </OrderedAdvisedOrAskedToSeekCounseling>
+              <InvolvementWhileEmployedAsLawEnforcement>
+                <Answer>Yes</Answer>
+                <Involvements>
+                  <Involvement ID="0">
+                    <Description>heroin weekly</Description>
+                    <DateRange>
+                      <From>
+                        <Date>
+                          <Month>01</Month>
+                          <Year>1990</Year>
+                        </Date>
+                      </From>
+                      <To>
+                        <Date Type="Estimated">
+                          <Month>09</Month>
+                          <Year>1990</Year>
+                        </Date>
+                      </To>
+                    </DateRange>
+                    <NumberOfTimes>88</NumberOfTimes>
+                  </Involvement>
+                  <Involvement ID="1">
+                    <Description>pills</Description>
+                    <DateRange>
+                      <From>
+                        <Date>
+                          <Month>06</Month>
+                          <Year>1979</Year>
+                        </Date>
+                      </From>
+                      <To>
+                        <Date Type="Estimated">
+                          <Month>08</Month>
+                          <Year>1979</Year>
+                        </Date>
+                      </To>
+                    </DateRange>
+                    <NumberOfTimes>44</NumberOfTimes>
+                  </Involvement>
+                </Involvements>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </InvolvementWhileEmployedAsLawEnforcement>
+              <IllegalDrugActivity>
+                <Answer>Yes</Answer>
+                <Activities>
+                  <Activity ID="0">
+                    <Drug>
+                      <Type>Cocaine</Type>
+                    </Drug>
+                    <FirstInvolvementDate>
+                      <Month>06</Month>
+                      <Year>1990</Year>
+                    </FirstInvolvementDate>
+                    <MostRecentInvolvementDate>
+                      <Month>09</Month>
+                      <Year>1990</Year>
+                    </MostRecentInvolvementDate>
+                    <Nature>weekly</Nature>
+                    <InvolvedWhileEmployedAsLawEnforcementOfficerProsecutorOrCourtOfficial>
+                      <Answer>Yes</Answer>
+                    </InvolvedWhileEmployedAsLawEnforcementOfficerProsecutorOrCourtOfficial>
+                    <InvolvedWhilePossessingASecurityClearance>
+                      <Answer>Yes</Answer>
+                    </InvolvedWhilePossessingASecurityClearance>
+                    <IntendToEngageInFutureActivities>
+                      <Answer>Yes</Answer>
+                      <Explanation>I need the money</Explanation>
+                    </IntendToEngageInFutureActivities>
+                    <Reason>make money</Reason>
+                  </Activity>
+                  <Activity ID="1">
+                    <Drug>
+                      <Type>THC</Type>
+                    </Drug>
+                    <FirstInvolvementDate>
+                      <Month>03</Month>
+                      <Year>1999</Year>
+                    </FirstInvolvementDate>
+                    <MostRecentInvolvementDate>
+                      <Month>03</Month>
+                      <Year>1999</Year>
+                    </MostRecentInvolvementDate>
+                    <Nature>monthly</Nature>
+                    <InvolvedWhileEmployedAsLawEnforcementOfficerProsecutorOrCourtOfficial>
+                      <Answer>Yes</Answer>
+                    </InvolvedWhileEmployedAsLawEnforcementOfficerProsecutorOrCourtOfficial>
+                    <InvolvedWhilePossessingASecurityClearance>
+                      <Answer>Yes</Answer>
+                    </InvolvedWhilePossessingASecurityClearance>
+                    <IntendToEngageInFutureActivities>
+                      <Answer>Yes</Answer>
+                      <Explanation>make more money</Explanation>
+                    </IntendToEngageInFutureActivities>
+                    <Reason>make money</Reason>
+                  </Activity>
+                </Activities>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </IllegalDrugActivity>
+              <IllegalUse>
+                <Answer>Yes</Answer>
+                <Instances>
+                  <Instance ID="0">
+                    <DrugUsed>
+                      <Type>Narcotics</Type>
+                    </DrugUsed>
+                    <FirstUseDate>
+                      <Month>04</Month>
+                      <Year>1979</Year>
+                    </FirstUseDate>
+                    <MostRecentUseDate>
+                      <Month>01</Month>
+                      <Year>1999</Year>
+                    </MostRecentUseDate>
+                    <Nature>sometimes</Nature>
+                    <UseWhileEmployedAsLawEnforcementOfficerProsecutorOrCourtOfficial>
+                      <Answer>Yes</Answer>
+                    </UseWhileEmployedAsLawEnforcementOfficerProsecutorOrCourtOfficial>
+                    <UseWhilePossessingASecurityClearance>
+                      <Answer>Yes</Answer>
+                    </UseWhilePossessingASecurityClearance>
+                    <IntendToUseInFuture>
+                      <Answer>Yes</Answer>
+                      <Explanation>it's bad</Explanation>
+                    </IntendToUseInFuture>
+                  </Instance>
+                  <Instance ID="1">
+                    <DrugUsed>
+                      <Type>Hallucinogenic</Type>
+                    </DrugUsed>
+                    <FirstUseDate>
+                      <Month>05</Month>
+                      <Year>1999</Year>
+                    </FirstUseDate>
+                    <MostRecentUseDate>
+                      <Month>01</Month>
+                      <Year>2017</Year>
+                    </MostRecentUseDate>
+                    <Nature>sometimes</Nature>
+                    <UseWhileEmployedAsLawEnforcementOfficerProsecutorOrCourtOfficial>
+                      <Answer>Yes</Answer>
+                    </UseWhileEmployedAsLawEnforcementOfficerProsecutorOrCourtOfficial>
+                    <UseWhilePossessingASecurityClearance>
+                      <Answer>Yes</Answer>
+                    </UseWhilePossessingASecurityClearance>
+                    <IntendToUseInFuture>
+                      <Answer>Yes</Answer>
+                      <Explanation>not interested any more</Explanation>
+                    </IntendToUseInFuture>
+                  </Instance>
+                </Instances>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </IllegalUse>
+              <VoluntaryTreatment>
+                <Answer>Yes</Answer>
+                <Consultations>
+                  <Consultation ID="0">
+                    <Drug>
+                      <Type>Cocaine</Type>
+                    </Drug>
+                    <Doctor>
+                      <Name>
+                        <Last>Williams</Last>
+                        <First>Ace</First>
+                      </Name>
+                      <Address>
+                        <Street>2222 elm street </Street>
+                        <City>Anytown</City>
+                        <State>SC</State>
+                        <ZipCode>29401</ZipCode>
+                      </Address>
+                      <Telephone>
+                        <Number>5025552213</Number>
+                        <Time>Both</Time>
+                      </Telephone>
+                    </Doctor>
+                    <DateRange>
+                      <From>
+                        <Date>
+                          <Month>04</Month>
+                          <Year>1980</Year>
+                        </Date>
+                      </From>
+                      <To>
+                        <Date>
+                          <Month>06</Month>
+                          <Year>1981</Year>
+                        </Date>
+                      </To>
+                    </DateRange>
+                    <SuccessfullyCompletedTreatmentProgram>
+                      <Answer>Yes</Answer>
+                    </SuccessfullyCompletedTreatmentProgram>
+                    <UnsuccessfulTreatment>
+        
+        
+      </UnsuccessfulTreatment>
+                  </Consultation>
+                  <Consultation ID="1">
+                    <Drug>
+                      <Type>Depressants</Type>
+                    </Drug>
+                    <Doctor>
+                      <Name>
+                        <Last>Smith</Last>
+                        <First>Jim</First>
+                      </Name>
+                      <Address>
+                        <Street>127 E BURNETT AVE </Street>
+                        <City>Memphis</City>
+                        <State>GA</State>
+                        <ZipCode>30002</ZipCode>
+                      </Address>
+                      <Telephone>
+                        <Number>4352255252</Number>
+                        <Time>Both</Time>
+                      </Telephone>
+                    </Doctor>
+                    <DateRange>
+                      <From>
+                        <Date>
+                          <Month>05</Month>
+                          <Year>1990</Year>
+                        </Date>
+                      </From>
+                      <To>
+                        <Date>
+                          <Month>05</Month>
+                          <Year>1990</Year>
+                        </Date>
+                      </To>
+                    </DateRange>
+                    <SuccessfullyCompletedTreatmentProgram>
+                      <Answer>Yes</Answer>
+                    </SuccessfullyCompletedTreatmentProgram>
+                    <UnsuccessfulTreatment>
+        
+        
+      </UnsuccessfulTreatment>
+                  </Consultation>
+                </Consultations>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </VoluntaryTreatment>
+            </IllegalDrugUse>
+            <PoliceRecord Version="1" Type="Pooled">
+              <Past7Years>
+                <Answer>No</Answer>
+                <Offenses>
+    
+  </Offenses>
+              </Past7Years>
+              <Ever>
+                <Offenses>
+                  <Answer>No</Answer>
+                </Offenses>
+              </Ever>
+              <RestrainingOrders>
+                <Answer>No</Answer>
+              </RestrainingOrders>
+            </PoliceRecord>
+            <CivilCourtRecord Version="1" Type="Pooled">
+              <CivilCourtAction>
+                <Answer>No</Answer>
+              </CivilCourtAction>
+              <CourtActions>
+    
+  </CourtActions>
+            </CivilCourtRecord>
+            <InformationSystemUse Version="1" Type="Pooled">
+              <IllegalEntry>
+                <Answer>No</Answer>
+                <Incidents>
+    
+  </Incidents>
+              </IllegalEntry>
+              <IllegalUse>
+                <Answer>No</Answer>
+                <Incidents>
+    
+  </Incidents>
+              </IllegalUse>
+              <IllegallyAlteredInformation>
+                <Answer>No</Answer>
+                <Incidents>
+    
+  </Incidents>
+              </IllegallyAlteredInformation>
+            </InformationSystemUse>
+            <AssociationRecord Version="1" Type="Pooled">
+              <ActivitiesToOverthrowTheUSGovernment>
+                <Activities>
+    
+  </Activities>
+                <Answer>No</Answer>
+              </ActivitiesToOverthrowTheUSGovernment>
+              <AdvocatedTerrorism>
+                <Answer>No</Answer>
+                <Instances>
+    
+  </Instances>
+              </AdvocatedTerrorism>
+              <BeenInOrganizationAdvocatingViolence>
+                <Answer>No</Answer>
+                <Organizations>
+    
+  </Organizations>
+              </BeenInOrganizationAdvocatingViolence>
+              <BeenInOrganizationDedicatedToTerrorism>
+                <Answer>No</Answer>
+                <Organizations>
+    
+  </Organizations>
+              </BeenInOrganizationDedicatedToTerrorism>
+              <EngagedInTerrorism>
+                <Answer>No</Answer>
+                <TerroristActs>
+    
+  </TerroristActs>
+              </EngagedInTerrorism>
+              <TerrorismAssociations>
+                <Answer>No</Answer>
+              </TerrorismAssociations>
+              <TerroristOrganizationMember>
+                <Answer>No</Answer>
+                <Organizations>
+    
+  </Organizations>
+              </TerroristOrganizationMember>
+            </AssociationRecord>
+            <InvestigationRecord Version="1" Type="Pooled">
+              <ClearanceDenied>
+                <Answer>No</Answer>
+              </ClearanceDenied>
+              <GovernmentDebarment>
+                <Answer>No</Answer>
+              </GovernmentDebarment>
+              <PriorInvestigation>
+                <Answer>No</Answer>
+              </PriorInvestigation>
+            </InvestigationRecord>
+            <MedicalRecord2 Version="1" Type="Pooled">
+              <DeclaredAsMentallyIncompetent>
+                <Answer>Yes</Answer>
+                <DeclaredAsMentallyIncompetentOccurrence ID="0">
+                  <Court>
+                    <Name>Place 1</Name>
+                    <Address>
+                      <Street>555 State st </Street>
+                      <City>Emotional town</City>
+                      <State>CO</State>
+                      <ZipCode>80011</ZipCode>
+                    </Address>
+                  </Court>
+                  <Date Type="Estimated">
+                    <Month>04</Month>
+                    <Year>1990</Year>
+                  </Date>
+                  <Appealed>
+                    <Answer>No</Answer>
+                  </Appealed>
+                </DeclaredAsMentallyIncompetentOccurrence>
+                <DeclaredAsMentallyIncompetentOccurrence ID="1">
+                  <Court>
+                    <Name>dfa</Name>
+                    <Address>
+                      <Street>5646 E St </Street>
+                      <City>Anytown</City>
+                      <State>TX</State>
+                      <ZipCode>73301</ZipCode>
+                    </Address>
+                  </Court>
+                  <Date Type="Estimated">
+                    <Month>05</Month>
+                    <Year>1979</Year>
+                  </Date>
+                  <Appealed>
+                    <Answer>No</Answer>
+                  </Appealed>
+                </DeclaredAsMentallyIncompetentOccurrence>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </DeclaredAsMentallyIncompetent>
+              <OrderedToConsult>
+                <Answer>Yes</Answer>
+                <OrderedToConsultOccurrence ID="0">
+                  <Court>
+                    <Name>name</Name>
+                    <Address>
+                      <Street>55 W St </Street>
+                      <City>Detroit</City>
+                      <State>MI</State>
+                      <ZipCode>48823</ZipCode>
+                    </Address>
+                  </Court>
+                  <Date>
+                    <Month>04</Month>
+                    <Year>1999</Year>
+                  </Date>
+                  <FinalDisposition>Final disposition info</FinalDisposition>
+                  <Appealed>
+                    <Answer>No</Answer>
+                  </Appealed>
+                </OrderedToConsultOccurrence>
+                <OrderedToConsultOccurrence ID="1">
+                  <Court>
+                    <Name>Place 2</Name>
+                    <Address>
+                      <Street>22 elm st </Street>
+                      <City>Memphis</City>
+                      <State>TN</State>
+                      <ZipCode>37010</ZipCode>
+                    </Address>
+                  </Court>
+                  <Date Type="Estimated">
+                    <Month>06</Month>
+                    <Year>1979</Year>
+                  </Date>
+                  <FinalDisposition>Final 4</FinalDisposition>
+                  <Appealed>
+                    <Answer>No</Answer>
+                  </Appealed>
+                </OrderedToConsultOccurrence>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </OrderedToConsult>
+              <Hospitalized>
+                <Answer>Yes</Answer>
+                <HospitalizedOccurrence ID="0">
+                  <AdmissionType>Voluntary</AdmissionType>
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>06</Month>
+                        <Year>1979</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date>
+                        <Month>07</Month>
+                        <Year>1979</Year>
+                      </Date>
+                    </To>
+                  </DateRange>
+                  <Facility>
+                    <Name>facility 9</Name>
+                    <Address>
+                      <Street>44454 Y St </Street>
+                      <City>sunny</City>
+                      <State>CA</State>
+                      <ZipCode>90001</ZipCode>
+                    </Address>
+                  </Facility>
+                  <Explanation>Explanation here</Explanation>
+                </HospitalizedOccurrence>
+                <HospitalizedOccurrence ID="1">
+                  <AdmissionType>Involuntary</AdmissionType>
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>01</Month>
+                        <Year>1990</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date>
+                        <Month>01</Month>
+                        <Year>2000</Year>
+                      </Date>
+                    </To>
+                  </DateRange>
+                  <Facility>
+                    <Name>The best facility </Name>
+                    <Address>
+                      <Street>4535 O St </Street>
+                      <City>Omaha</City>
+                      <State>MI</State>
+                      <ZipCode>48823</ZipCode>
+                    </Address>
+                  </Facility>
+                  <Explanation>explanation here 2</Explanation>
+                </HospitalizedOccurrence>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </Hospitalized>
+              <Diagnosed>
+                <Answer>Yes</Answer>
+                <DiagnosedOccurrence ID="0">
+                  <Diagnosis>PsychoticDisorder</Diagnosis>
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>01</Month>
+                        <Year>2017</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date>
+                        <Month>01</Month>
+                        <Year>2017</Year>
+                      </Date>
+                    </To>
+                  </DateRange>
+                  <HealthCareProfessional>
+                    <Name>Dr. Bob</Name>
+                    <Telephone>
+                      <Number>5555515512</Number>
+                      <Time>Both</Time>
+                    </Telephone>
+                    <Address>
+                      <Street>324 crazy Rd. </Street>
+                      <City>Crazytown</City>
+                      <State>CA</State>
+                      <ZipCode>90001</ZipCode>
+                    </Address>
+                  </HealthCareProfessional>
+                  <TreatmentFacility>
+                    <Name>FoobAr</Name>
+                    <Telephone>
+                      <Number>1231123212</Number>
+                      <Time>Both</Time>
+                    </Telephone>
+                    <Address>
+                      <Street>2nd try rd. </Street>
+                      <City>crazy</City>
+                      <State>CA</State>
+                      <ZipCode>90001</ZipCode>
+                    </Address>
+                  </TreatmentFacility>
+                  <TreatmentEffective>
+                    <Answer>Yes</Answer>
+                  </TreatmentEffective>
+                </DiagnosedOccurrence>
+                <DiagnosedOccurrence ID="1">
+                  <Diagnosis>Schizophrenia</Diagnosis>
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>01</Month>
+                        <Year>1979</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Estimated">
+                        <Month>06</Month>
+                        <Year>1979</Year>
+                      </Date>
+                    </To>
+                  </DateRange>
+                  <HealthCareProfessional>
+                    <Name>Jack Thipper</Name>
+                    <Telephone>
+                      <Number>5025552213</Number>
+                      <Time>Both</Time>
+                    </Telephone>
+                    <Address>
+                      <Street>68678 M St </Street>
+                      <City>Anytown</City>
+                      <State>FL</State>
+                      <ZipCode>32803</ZipCode>
+                    </Address>
+                  </HealthCareProfessional>
+                  <TreatmentFacility>
+                    <Name>Alice Coltrane </Name>
+                    <Telephone>
+                      <Number>5025552213</Number>
+                      <Time>Both</Time>
+                    </Telephone>
+                    <Address>
+                      <Street>444 A st </Street>
+                      <City>Anytown</City>
+                      <State>OH</State>
+                      <ZipCode>45777</ZipCode>
+                    </Address>
+                  </TreatmentFacility>
+                  <TreatmentEffective>
+                    <Answer>Yes</Answer>
+                  </TreatmentEffective>
+                </DiagnosedOccurrence>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </Diagnosed>
+              <CurrentlyInTreatment>
+                <Answer>Yes</Answer>
+                <TreatmentOccurrence ID="0">
+                  <HealthCareProfessional>
+                    <Name>Dr. Bob</Name>
+                    <Telephone>
+                      <Number>5677892213</Number>
+                      <Time>Both</Time>
+                    </Telephone>
+                    <Address>
+                      <Street>110 Main ST. </Street>
+                      <City>Any</City>
+                      <State>MA</State>
+                      <ZipCode>01254</ZipCode>
+                    </Address>
+                  </HealthCareProfessional>
+                </TreatmentOccurrence>
+                <TreatmentOccurrence ID="1">
+                  <HealthCareProfessional>
+                    <Name>Dr. Bob</Name>
+                    <Telephone>
+                      <Number>5674325512</Number>
+                      <Time>Both</Time>
+                    </Telephone>
+                    <Address>
+                      <Street>66 street st </Street>
+                      <City>Memphis</City>
+                      <State>SC</State>
+                      <ZipCode>29401</ZipCode>
+                    </Address>
+                  </HealthCareProfessional>
+                </TreatmentOccurrence>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </CurrentlyInTreatment>
+              <AlteredTreatment>
+                <Answer>Yes</Answer>
+              </AlteredTreatment>
+            </MedicalRecord2>
+            <FormInstructions Type="Pooled" Version="1">
+              <ReadAndUnderstoodStatementOfUnderstanding>
+                <Answer>Yes</Answer>
+              </ReadAndUnderstoodStatementOfUnderstanding>
+            </FormInstructions>
+          </Pooled>
+        </Responses>
+      </Request>
+    </RequestInfo>
+  </SubmittedRequestInfo>
+  <AgencyUsageBlock>
+    <TypeOfInvestigation>
+      <Type>64</Type>
+      <Service>B</Service>
+    </TypeOfInvestigation>
+    <SensitivityLevel>
+      <Code>2</Code>
+    </SensitivityLevel>
+    <Access>
+      <Code>2</Code>
+    </Access>
+    <Action>
+      <Nature>MIL</Nature>
+    </Action>
+    <Position>
+      <Title>Military</Title>
+    </Position>
+    <SON>957B</SON>
+    <LocationOPF>
+      <Code>None</Code>
+    </LocationOPF>
+    <SOI>NV00</SOI>
+    <LocationSEC>
+      <Code>None</Code>
+    </LocationSEC>
+    <InvestigativeRequirement>I</InvestigativeRequirement>
+    <ApplicantAffiliation>MIL</ApplicantAffiliation>
+    <IPAC>DOD-NAVY</IPAC>
+    <RequestingOfficials>
+      <Requestor>
+        <Name>AARON Strohl Laney</Name>
+        <Email>eml152dummy@MailDomain.com</Email>
+        <Telephone>
+          <Number>1 (763) 323-2004</Number>
+        </Telephone>
+      </Requestor>
+      <SecondRequestor>
+        <Name>JAMES Strohl Laney</Name>
+        <Email>eml153dummy@MailDomain.com</Email>
+        <Telephone>
+          <Number>1 (298) 723-1913</Number>
+        </Telephone>
+      </SecondRequestor>
+    </RequestingOfficials>
+  </AgencyUsageBlock>
+</XMP>

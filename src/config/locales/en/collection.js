@@ -5,5 +5,6 @@ export const collection = {
   warning: 'Are you sure you would like to remove this item?',
   open: 'Open',
   close: 'Close',
-  incomplete: 'There is a problem with this item, please open it and fix the issue(s).'
+  incomplete:
+    'There is a problem with this item, please open it and fix the issue(s).'
 }

@@ -123,7 +123,12 @@ func (service SubmitHandler) transmit(w http.ResponseWriter, r *http.Request, ac
 
 	// Generate an XML package and send to the external webservice.
 	service.Log.Info(api.GeneratingPackage, api.LogFields{})
-	xml := api.Package(service.Database, service.XML, account.ID, false)
+	xml, err := api.Package(service.Database, service.XML, account.ID, false)
+	if err != nil {
+		service.Log.WarnError(api.WebserviceCannotGenerateInboundXML, err, api.LogFields{})
+		return err
+	}
+
 	data, err := api.ApplicationData(service.Database, account.ID, false)
 	if err != nil {
 		service.Log.WarnError(api.WebserviceCannotGetApplicationData, err, api.LogFields{})

@@ -1,12 +1,9 @@
 import axios from 'axios'
+import Cookies from 'js-cookie'
 import env from '../config/environment'
 
 export const getQueryValue = (queryString, key) => {
   return getSplitValue(key, queryString.substring(1), '&', '=')
-}
-
-export const getCookieValue = (key) => {
-  return getSplitValue(key, document.cookie, ';', '=')
 }
 
 const getSplitValue = (key, raw, delim1, delim2) => {
@@ -28,139 +25,121 @@ const getSplitValue = (key, raw, delim1, delim2) => {
   return null
 }
 
-export const deleteCookie = (name) => {
+export const deleteCookie = name => {
   const domain = process.env.COOKIE_DOMAIN || window.location.hostname
-  // TODO complain if cookie not present
-  document.cookie = `${name}=; domain=${domain}; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;`
+  Cookies.remove(name, { domain })
+  if (Cookies.get(name)) {
+    console.warn(
+      `${name} cookie couldn't be removed - check that domain matches, etc.`
+    )
+  }
 }
 
 class Api {
-  constructor () {
+  constructor() {
     this.proxy = axios.create({
       baseURL: env ? env.ApiBaseURL() : '/api',
       timeout: 10000
     })
   }
 
-  getToken () {
-    // Look for token in local storage
-    let token = null
-    if (this.supportForLocalStorage()) {
-      token = window.localStorage.getItem('token')
-    }
-
-    // Look for token as cookie
-    if (token === null) {
-      token = getCookieValue('token')
-    }
-
-    // Look for token in query string
-    if (token === null) {
-      token = getQueryValue(window.location.search, 'token')
-    }
-
-    if (token === null && env && env.IsTest()) {
-      token = window.token
-    }
-
-    return token
+  getToken() {
+    return window.token
   }
 
-  setToken (token) {
-    if (this.supportForLocalStorage()) {
-      window.localStorage.setItem('token', token)
-    } else {
-      document.cookie = 'token=' + token
-    }
+  setToken(token) {
+    window.token = token
   }
 
-  bearerToken () {
-    return { 'Authorization': `Bearer ${this.getToken()}` }
+  bearerToken() {
+    return { Authorization: `Bearer ${this.getToken()}` }
   }
 
-  supportForLocalStorage () {
-    try {
-      return 'localStorage' in window && window['localStorage'] !== null
-    } catch (e) {
-      return false
-    }
-  }
-
-  information () {
+  information() {
     return this.proxy.get('/')
   }
 
-  get (endpoint, secure = true, headers = {}) {
-    const h = secure ? { headers: { ...headers, ...this.bearerToken() } } : headers
+  get(endpoint, secure = true, headers = {}) {
+    const h = secure
+      ? { headers: { ...headers, ...this.bearerToken() } }
+      : headers
     return this.proxy.get(endpoint, h)
   }
 
-  post (endpoint, params = {}, secure = true, headers = {}) {
-    const h = secure ? { headers: { ...headers, ...this.bearerToken() } } : headers
+  post(endpoint, params = {}, secure = true, headers = {}) {
+    const h = secure
+      ? { headers: { ...headers, ...this.bearerToken() } }
+      : headers
     return this.proxy.post(endpoint, params, h)
   }
 
-  saml () {
+  saml() {
     return this.get(env.EndpointSaml(), false)
   }
 
-  login (username, password) {
-    return this.post(env.EndpointBasicAuthentication(), { username: username, password: password }, false)
+  login(username, password) {
+    return this.post(
+      env.EndpointBasicAuthentication(),
+      { username: username, password: password },
+      false
+    )
   }
 
-  logout () {
+  logout() {
     return this.get(env.EndpointLogout())
   }
 
-  refresh () {
+  refresh() {
     return this.post(env.EndpointRefresh())
   }
 
-  save (payload) {
+  save(payload) {
     return this.post(env.EndpointSave(), payload)
   }
 
-  section (type) {
+  section(type) {
     return this.get(env.EndpointSection(type))
   }
 
-  status () {
+  status() {
     return this.get(env.EndpointStatus())
   }
 
-  submit () {
+  submit() {
     return this.post(env.EndpointSubmit())
   }
 
-  form () {
+  form() {
     return this.get(env.EndpointForm())
   }
 
-  hash () {
+  hash() {
     return this.get(env.EndpointFormHash())
   }
 
-  validate (payload) {
+  validate(payload) {
     return this.post(env.EndpointValidate(), payload)
   }
 
-  listAttachments () {
+  listAttachments() {
     return this.get(env.EndpointAttachment())
   }
 
-  saveAttachment (formData) {
+  saveAttachment(formData) {
     return this.post(env.EndpointAttachment(), formData)
   }
 
-  updateAttachment (id, description) {
-    return this.post(env.EndpointAttachmentUpdate(id), { description: description })
+  updateAttachment(id, description) {
+    return this.post(env.EndpointAttachmentUpdate(id), {
+      description: description
+    })
   }
 
-  getAttachment (id) {
+  getAttachment(id) {
     return this.get(env.EndpointAttachmentGet(id))
   }
 
-  deleteAttachment (id) {
+  deleteAttachment(id) {
     return this.post(env.EndpointAttachmentDelete(id))
   }
 }

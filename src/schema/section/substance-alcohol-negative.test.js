@@ -7,18 +7,20 @@ describe('Schema for financial taxes', () => {
       HasImpacts: { value: 'Yes' },
       List: {
         branch: { value: 'No' },
-        items: [{
-          Item: {
-            Occurred: {},
-            Circumstances: {},
-            NegativeImpact: {},
-            Used: {
-              from: {},
-              to: {},
-              present: null
+        items: [
+          {
+            Item: {
+              Occurred: {},
+              Circumstances: {},
+              NegativeImpact: {},
+              Used: {
+                from: {},
+                to: {},
+                present: null
+              }
             }
           }
-        }]
+        ]
       }
     }
 

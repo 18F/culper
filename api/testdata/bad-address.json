@@ -1,0 +1,6 @@
+{
+  "type": "location",
+  "props": {
+    "layout": "Address"
+  }
+}

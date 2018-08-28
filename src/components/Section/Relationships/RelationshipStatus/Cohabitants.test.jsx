@@ -17,28 +17,32 @@ describe('The cohabitants component', () => {
     const expected = {
       name: 'cohabitants',
       HasCohabitant: { value: 'Yes' },
-      CohabitantList: [{
-        Cohabitant: {
-          SameSpouse: true,
-          spouse: {
-            first: 'Foo',
-            middle: 'FB',
-            last: 'Far'
-          },
-          Name: {
-            first: 'Foo',
-            firstInitialOnly: false,
-            middle: 'FB',
-            middleInitialOnly: false,
-            noMiddleName: false,
-            last: 'Bar',
-            lastInitialOnly: false,
-            suffix: ''
-          },
-          SSN: {}
+      CohabitantList: [
+        {
+          Cohabitant: {
+            SameSpouse: true,
+            spouse: {
+              first: 'Foo',
+              middle: 'FB',
+              last: 'Far'
+            },
+            Name: {
+              first: 'Foo',
+              firstInitialOnly: false,
+              middle: 'FB',
+              middleInitialOnly: false,
+              noMiddleName: false,
+              last: 'Bar',
+              lastInitialOnly: false,
+              suffix: ''
+            },
+            SSN: {}
+          }
         }
-      }],
-      onUpdate: () => { updates++ }
+      ],
+      onUpdate: () => {
+        updates++
+      }
     }
 
     const component = mount(<Cohabitants {...expected} />)

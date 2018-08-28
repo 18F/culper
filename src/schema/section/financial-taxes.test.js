@@ -7,25 +7,27 @@ describe('Schema for financial taxes', () => {
       HasTaxes: { value: 'Yes' },
       List: {
         branch: { value: 'No' },
-        items: [{
-          Item: {
-            Failure: {},
-            Year: {
-              value: ''
-            },
-            YearEstimated: {},
-            Reason: {},
-            Agency: {},
-            TaxType: {},
-            Amount: {
-              value: ''
-            },
-            AmountEstimated: {},
-            Date: {},
-            DateNotApplicable: {},
-            Description: {}
+        items: [
+          {
+            Item: {
+              Failure: {},
+              Year: {
+                value: ''
+              },
+              YearEstimated: {},
+              Reason: {},
+              Agency: {},
+              TaxType: {},
+              Amount: {
+                value: ''
+              },
+              AmountEstimated: {},
+              Date: {},
+              DateNotApplicable: {},
+              Description: {}
+            }
           }
-        }]
+        ]
       }
     }
 

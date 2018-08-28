@@ -1,0 +1,6 @@
+proseWrap: never
+singleQuote: true
+
+# these options are here for legacy reasons, i.e. the bulk of the code was originally written that way
+jsxBracketSameLine: true
+semi: false

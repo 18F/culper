@@ -5,7 +5,7 @@ const reBook = '^[a-zA-Z]{1}[0-9]{6,9}$'
 const reCard = '^[cC]{1}[0-9]{8}$'
 
 export default class PassportValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.name = data.Name
     this.number = data.Number
     this.card = data.Card
@@ -16,7 +16,7 @@ export default class PassportValidator {
     this.card = data.Card
   }
 
-  validHasPassports () {
+  validHasPassports() {
     if (!this.hasPassports) {
       return false
     }
@@ -28,7 +28,7 @@ export default class PassportValidator {
     return true
   }
 
-  validName () {
+  validName() {
     if (this.hasPassports === 'No') {
       return true
     }
@@ -36,7 +36,7 @@ export default class PassportValidator {
     return new NameValidator(this.name).isValid()
   }
 
-  validPassportNumber () {
+  validPassportNumber() {
     if (this.hasPassports === 'No') {
       return true
     }
@@ -53,7 +53,7 @@ export default class PassportValidator {
     return true
   }
 
-  validDates () {
+  validDates() {
     if (this.hasPassports === 'No') {
       return true
     }
@@ -66,10 +66,12 @@ export default class PassportValidator {
     return new DateRangeValidator(range).isValid()
   }
 
-  isValid () {
-    return this.validHasPassports() &&
+  isValid() {
+    return (
+      this.validHasPassports() &&
       this.validName() &&
       this.validPassportNumber() &&
       this.validDates()
+    )
   }
 }

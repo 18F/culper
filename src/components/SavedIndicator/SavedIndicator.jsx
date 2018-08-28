@@ -7,7 +7,7 @@ import { saveSection } from './persistence-helpers'
 import { formIsLocked } from '../../validators'
 
 class SavedIndicator extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
@@ -23,19 +23,19 @@ class SavedIndicator extends React.Component {
     this.mouseLeave = this.mouseLeave.bind(this)
   }
 
-  componentWillReceiveProps (next) {
-    this.setState({elapsed: 0})
+  componentWillReceiveProps(next) {
+    this.setState({ elapsed: 0 })
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.timer = window.setInterval(this.tick, this.state.interval)
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     window.clearInterval(this.timer)
   }
 
-  save () {
+  save() {
     const application = this.props.app
     const section = this.props.section.section
     const subsection = this.props.section.subsection
@@ -51,34 +51,34 @@ class SavedIndicator extends React.Component {
     // is clicked within the "Review and submit" section to provide comfort to
     // the end user.
     if (this.isRoute('form/package')) {
-      self.setState({elapsed: 0})
+      self.setState({ elapsed: 0 })
       return
     }
 
     saveSection(application, section, subsection, this.props.dispatch, () => {
-      self.setState({animate: false})
+      self.setState({ animate: false })
     })
   }
 
-  mouseEnter (event) {
-    this.setState({hover: true})
+  mouseEnter(event) {
+    this.setState({ hover: true })
   }
 
-  mouseLeave (event) {
-    this.setState({hover: false})
+  mouseLeave(event) {
+    this.setState({ hover: false })
   }
 
-  tick () {
+  tick() {
     const currentTick = new Date().getTime()
     let s = currentTick
     if (this.props && this.props.saved) {
       s = this.props.saved.getTime()
     }
 
-    this.setState({elapsed: currentTick - s})
+    this.setState({ elapsed: currentTick - s })
   }
 
-  calculateTime () {
+  calculateTime() {
     // If there has been no time elapsed...
     if (!this.state.elapsed) {
       return i18n.t('saved.now')
@@ -113,7 +113,7 @@ class SavedIndicator extends React.Component {
     return `${timespan} ${unit} ${i18n.t('saved.ago')}`
   }
 
-  allowed () {
+  allowed() {
     return !formIsLocked(this.props.app) && !this.isRoute('form/package/print')
   }
 
@@ -121,14 +121,18 @@ class SavedIndicator extends React.Component {
     return (window.location.pathname || '').indexOf(route) !== -1
   }
 
-  render () {
+  render() {
     if (!this.allowed()) {
       return null
     }
 
     const klass = `saved-indicator ${this.state.animate ? 'active' : ''}`.trim()
-    const klassCircle = `spinner-icon ${this.state.animate ? 'spin' : ''}`.trim()
-    const klassIcon = `fa fa-floppy-o ${this.state.animate ? 'invert' : ''}`.trim()
+    const klassCircle = `spinner-icon ${
+      this.state.animate ? 'spin' : ''
+    }`.trim()
+    const klassIcon = `fa fa-floppy-o ${
+      this.state.animate ? 'invert' : ''
+    }`.trim()
 
     // Determine the appropriate response for screen readers.
     let talkback = null
@@ -136,23 +140,25 @@ class SavedIndicator extends React.Component {
       if (this.state.hover) {
         talkback = i18n.t('saved.action')
       } else {
-        talkback = `${i18n.t('saved.saved')} ${this.calculateTime()}. ${i18n.t('saved.action')}?`
+        talkback = `${i18n.t('saved.saved')} ${this.calculateTime()}. ${i18n.t(
+          'saved.action'
+        )}?`
       }
     } else {
       talkback = i18n.t('saved.saving')
     }
 
     return (
-      <button className={klass}
-              aria-label={talkback}
-              title={talkback}
-              onClick={this.save}
-              onMouseEnter={this.mouseEnter}
-              onMouseLeave={this.mouseLeave}>
-
+      <button
+        className={klass}
+        aria-label={talkback}
+        title={talkback}
+        onClick={this.save}
+        onMouseEnter={this.mouseEnter}
+        onMouseLeave={this.mouseLeave}>
         <div className="spinner">
-          <div className={klassCircle}></div>
-          <i className={klassIcon} aria-hidden="true"></i>
+          <div className={klassCircle} />
+          <i className={klassIcon} aria-hidden="true" />
         </div>
 
         <span className="spinner-label">
@@ -172,7 +178,7 @@ class SavedIndicator extends React.Component {
   }
 }
 
-function mapStateToProps (state) {
+function mapStateToProps(state) {
   const section = state.section || {}
   const app = state.application || {}
   const settings = app.Settings || {}

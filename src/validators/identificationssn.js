@@ -1,7 +1,7 @@
 import { validSSN } from './helpers'
 
 export default class IdentificationSSNValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.ssn = data.ssn || {}
     this.verified = data.verified || false
 
@@ -10,7 +10,7 @@ export default class IdentificationSSNValidator {
     }
   }
 
-  isValid () {
+  isValid() {
     return validSSN(this.ssn) && this.verified
   }
 }

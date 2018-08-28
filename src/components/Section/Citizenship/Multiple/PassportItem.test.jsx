@@ -9,15 +9,31 @@ describe('The passport item component', () => {
       name: 'passportItem',
       Used: { value: 'Yes' },
       Countries: { branch: { value: 'Yes' }, items: [{ Item: { Dates: {} } }] },
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
     const component = mount(<PassportItem {...expected} />)
-    component.find('.passport-country .country input').simulate('change', { target: { name: 'Country', value: 'United States' } })
-    component.find('.passport-issued .day input').first().simulate('change', { target: { name: 'day', value: '1' } })
+    component.find('.passport-country .country input').simulate('change', {
+      target: { name: 'Country', value: 'United States' }
+    })
+    component
+      .find('.passport-issued .day input')
+      .first()
+      .simulate('change', { target: { name: 'day', value: '1' } })
     component.find('.passport-location .city input').simulate('change')
-    component.find('.passport-name input').first().simulate('change')
-    component.find('.passport-number input').first().simulate('change')
-    component.find('.passport-expiration .day input').first().simulate('change', { target: { name: 'day', value: '1' } })
+    component
+      .find('.passport-name input')
+      .first()
+      .simulate('change')
+    component
+      .find('.passport-number input')
+      .first()
+      .simulate('change')
+    component
+      .find('.passport-expiration .day input')
+      .first()
+      .simulate('change', { target: { name: 'day', value: '1' } })
     component.find('.passport-used .yes input').simulate('change')
     expect(updates).toBe(8)
   })

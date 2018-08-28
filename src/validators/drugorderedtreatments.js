@@ -1,35 +1,39 @@
 import DateRangeValidator from './daterange'
 import LocationValidator from './location'
-import { validAccordion, validPhoneNumber, validBranch, validGenericTextfield } from './helpers'
+import {
+  validAccordion,
+  validPhoneNumber,
+  validBranch,
+  validGenericTextfield
+} from './helpers'
 
 export default class DrugOrderedTreatmentsValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.involved = (data.TreatmentOrdered || {}).value
     this.list = data.List
   }
 
-  validTreatmentOrdered () {
+  validTreatmentOrdered() {
     return validBranch(this.involved)
   }
 
-  validDrugOrderedTreatments () {
+  validDrugOrderedTreatments() {
     if (this.validTreatmentOrdered() && this.involved === 'No') {
       return true
     }
 
-    return validAccordion(this.list, (item) => {
+    return validAccordion(this.list, item => {
       return new DrugOrderedTreatmentValidator(item).isValid()
     })
   }
 
-  isValid () {
-    return this.validTreatmentOrdered() &&
-      this.validDrugOrderedTreatments()
+  isValid() {
+    return this.validTreatmentOrdered() && this.validDrugOrderedTreatments()
   }
 }
 
 export class DrugOrderedTreatmentValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.orderedBy = data.OrderedBy
     this.explanation = data.Explanation
     this.actionTaken = (data.ActionTaken || {}).value
@@ -43,34 +47,35 @@ export class DrugOrderedTreatmentValidator {
     this.noTreatmentExplanation = data.NoTreatmentExplanation
   }
 
-  validActionTaken () {
+  validActionTaken() {
     switch (this.actionTaken) {
-    case 'Yes':
-      return validGenericTextfield(this.treatmentProvider) &&
-        new LocationValidator(this.treatmentProviderAddress).isValid() &&
-        validPhoneNumber(this.treatmentProviderTelephone) &&
-        new DateRangeValidator(this.treatmentDates).isValid() &&
-        this.validTreatmentCompleted()
-    case 'No':
-      return validGenericTextfield(this.noActionTakenExplanation)
-    default:
-      return false
+      case 'Yes':
+        return (
+          validGenericTextfield(this.treatmentProvider) &&
+          new LocationValidator(this.treatmentProviderAddress).isValid() &&
+          validPhoneNumber(this.treatmentProviderTelephone) &&
+          new DateRangeValidator(this.treatmentDates).isValid() &&
+          this.validTreatmentCompleted()
+        )
+      case 'No':
+        return validGenericTextfield(this.noActionTakenExplanation)
+      default:
+        return false
     }
   }
 
-  validTreatmentCompleted () {
+  validTreatmentCompleted() {
     switch (this.treatmentCompleted) {
-    case 'Yes':
-      return true
-    case 'No':
-      return validGenericTextfield(this.noTreatmentExplanation)
-    default:
-      return false
+      case 'Yes':
+        return true
+      case 'No':
+        return validGenericTextfield(this.noTreatmentExplanation)
+      default:
+        return false
     }
   }
 
-  isValid () {
-    return validGenericTextfield(this.explanation) &&
-      this.validActionTaken()
+  isValid() {
+    return validGenericTextfield(this.explanation) && this.validActionTaken()
   }
 }

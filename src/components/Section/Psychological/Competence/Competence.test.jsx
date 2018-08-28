@@ -15,7 +15,9 @@ describe('The Competence component', () => {
       List: {
         items: [{}]
       },
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
     const component = mount(<Competence {...props} />)
     updates = 0

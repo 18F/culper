@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default class StickyHeader extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
@@ -10,22 +10,27 @@ export default class StickyHeader extends React.Component {
     this.onScroll = this.onScroll.bind(this)
   }
 
-  componentDidMount () {
-    this.props.events.forEach(e => this.props.window().addEventListener(e, this.onScroll))
+  componentDidMount() {
+    this.props.events.forEach(e =>
+      this.props.window().addEventListener(e, this.onScroll)
+    )
     this.onScroll()
   }
 
-  componentWillUnmount () {
-    this.props.events.forEach(e => this.props.window().removeEventListener(e, this.onScroll))
+  componentWillUnmount() {
+    this.props.events.forEach(e =>
+      this.props.window().removeEventListener(e, this.onScroll)
+    )
   }
 
-  documentScrollTop () {
+  documentScrollTop() {
     const doc = this.props.document().documentElement
-    let st = (this.props.window().pageYOffset || doc.scrollTop) - (doc.clientTop || 0)
+    let st =
+      (this.props.window().pageYOffset || doc.scrollTop) - (doc.clientTop || 0)
     return st
   }
 
-  elementOffset () {
+  elementOffset() {
     if (!this.refs.content) {
       return 0
     }
@@ -35,7 +40,7 @@ export default class StickyHeader extends React.Component {
     return elOffset + this.props.offset
   }
 
-  onScroll (event) {
+  onScroll(event) {
     // Obtain document scroll top which is a representation of the position
     // of the top of the page
     let documentScrollTop = this.documentScrollTop()
@@ -59,26 +64,25 @@ export default class StickyHeader extends React.Component {
     }
   }
 
-  render () {
+  render() {
     const stickyClass = this.state.stick ? this.props.stickyClass : ''
     const classes = [stickyClass, this.props.className].join(' ')
     return (
       <div className={classes} ref="content">
-        { this.props.children }
+        {this.props.children}
       </div>
     )
   }
 }
 
 StickyHeader.defaultProps = {
-  window: () => { return window },
-  document: () => { return document },
+  window: () => {
+    return window
+  },
+  document: () => {
+    return document
+  },
   stickyClass: '',
   offset: 110,
-  events: [
-    'scroll',
-    'resize',
-    'pageshow',
-    'load'
-  ]
+  events: ['scroll', 'resize', 'pageshow', 'load']
 }

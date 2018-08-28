@@ -25,8 +25,7 @@ defineSupportCode(({Given, Then, When}) => {
   When(/^I navigate to the history (.*?) section$/, (subsection) => {
     subcontext = subsection
     const section = 'history'
-    const sectionTitle = 'Your history'
-    navigateToSection(sectionTitle)
+    navigateToSection(section)
     return navigateToSubsection(section, subsection)
   })
 
@@ -94,25 +93,21 @@ const completeEmployment = (promise) => {
     .then(() => { return setText('.employment .supervisor .field .supervisor-email input', 'supervisor@test.com') })
     .then(() => { return setDomesticAddress('.employment .supervisor-address .address', '13709 Walsingham Rd', 'Largo', 'FL', '33774') })
     .then(() => { return setDomesticTelephone('.employment .telephone.supervisor-telephone', '703', '333', '4444', 'Cell') })
-    .then(() => { return setOption('.employment .activity .field .no.block label') })
+    .then(() => { return setOption('.employment .activity .field .no.block label')})
     .then(() => { return setOption('.employment .reason-leaving .reason-options .branch .option-list .yes.block') })
     .then(() => { return setOption('.employment .reason-leaving .reason-options .employment-left .block') })
-    .then(() => { return setText('.employment .reason-leaving .explanation-left textarea', 'Reason for leaving text 1') })
+    .then(() => { return setText('.employment .reason-leaving .reason-options .explanation-left textarea', 'Reason for leaving text 1')})
     .then(() => { return setText('.employment .reason-leaving .date-left .datecontrol .month input', '1') })
     .then(() => { return setText('.employment .reason-leaving .date-left .datecontrol .day input', '1') })
-    .then(() => { return setText('.employment .reason-leaving .date-left .datecontrol .year input', getCurrentYear()) })
-    .then(() => { return setOption('.employment .reason-leaving .reason-options .branch .no.block') })
-    .then(() => { return setOption('.employment .reason-leaving .field .yes.block label') })
-    .then(() => { return setOption('.employment .reason-leaving .employment-left.option-list .block label') })
-    .then(() => { return setText('.employment .reason-leaving .explanation-left textarea', 'Reason for leaving text 2') })
-    .then(() => { return setText('.employment .date-left .datecontrol .month input', '1') })
-    .then(() => { return setText('.employment .date-left .datecontrol .day input', '1') })
-    .then(() => { return setText('.employment .date-left .datecontrol .year input', getCurrentYear()) })
-    .then(() => { return setOptionIndex('.employment .reason-leaving .reason-options .no.block label', 1) })
-    .then(() => { return setOption('.employment .reprimand-branch .branch .option-list .yes.block') })
+    .then(() => { return setText('.employment .reason-leaving .date-left .datecontrol .year input', getCurrentYear())})
+    .then(() => { return setOption('.employment .reason-leaving .reason-options .branch.last-branch .no.block')})
+    .then(() => { return setOption('.employment .reprimand-branch .field .yes.block label')})
     .then(() => { return setText('.employment .reprimand-branch .explanation-left textarea', 'Reason for reprimand text') })
     .then(() => { return setText('.employment .reprimand-branch .date-left .datecontrol .month input', '1') })
     .then(() => { return setText('.employment .reprimand-branch .date-left .datecontrol .year input', getCurrentYear()) })
+    .then(() => { return setOption('.employment .reprimand-branch .branch.last-branch .no.block label')})
+    .then(() => { return setOption('.employment .addendum .option-list .no.block label')})
+    .then(() => { return setOption('.employment .employment-record .option-list .no.block label')})
     .then(() => { return checkValue('.history .stats .fraction .completed', range) })
 }
 
@@ -161,7 +156,7 @@ const completeFederal = (promise) => {
 }
 
 const navigateToSection = (section) => {
-  const selector = '.section a[title="' + section + '"]'
+  const selector = '.usa-sidenav-list a[aria-controls="/form/' + section + '"]'
   return client
     .assert.visible(selector)
     .click(selector)
@@ -170,7 +165,7 @@ const navigateToSection = (section) => {
 }
 
 const navigateToSubsection = (section, subsection) => {
-  const selector = '.subsection a[href="/form/' + section + '/' + subsection + '"]'
+  const selector = '.usa-sidenav-sub_list a[href="/form/' + section + '/' + subsection + '"]'
   return client
     .assert.visible(selector)
     .click(selector)

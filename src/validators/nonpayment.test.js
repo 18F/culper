@@ -1,6 +1,6 @@
 import NonpaymentValidator, { NonpaymentItemValidator } from './nonpayment'
 
-describe('nonpayment component validation', function () {
+describe('nonpayment component validation', function() {
   it('validate name', () => {
     const tests = [
       {
@@ -22,7 +22,9 @@ describe('nonpayment component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new NonpaymentItemValidator(test.state, null).validName()).toBe(test.expected)
+      expect(new NonpaymentItemValidator(test.state, null).validName()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -49,7 +51,9 @@ describe('nonpayment component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new NonpaymentItemValidator(test.state, null).validInfractions()).toBe(test.expected)
+      expect(
+        new NonpaymentItemValidator(test.state, null).validInfractions()
+      ).toBe(test.expected)
     })
   })
 
@@ -74,7 +78,9 @@ describe('nonpayment component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new NonpaymentItemValidator(test.state, null).validAccountNumber()).toBe(test.expected)
+      expect(
+        new NonpaymentItemValidator(test.state, null).validAccountNumber()
+      ).toBe(test.expected)
     })
   })
 
@@ -99,7 +105,9 @@ describe('nonpayment component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new NonpaymentItemValidator(test.state, null).validPropertyType()).toBe(test.expected)
+      expect(
+        new NonpaymentItemValidator(test.state, null).validPropertyType()
+      ).toBe(test.expected)
     })
   })
 
@@ -140,7 +148,9 @@ describe('nonpayment component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new NonpaymentItemValidator(test.state, null).validAmount()).toBe(test.expected)
+      expect(new NonpaymentItemValidator(test.state, null).validAmount()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -165,7 +175,9 @@ describe('nonpayment component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new NonpaymentItemValidator(test.state, null).validReason()).toBe(test.expected)
+      expect(new NonpaymentItemValidator(test.state, null).validReason()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -190,7 +202,9 @@ describe('nonpayment component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new NonpaymentItemValidator(test.state, null).validStatus()).toBe(test.expected)
+      expect(new NonpaymentItemValidator(test.state, null).validStatus()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -217,7 +231,9 @@ describe('nonpayment component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new NonpaymentItemValidator(test.state, null).validDate()).toBe(test.expected)
+      expect(new NonpaymentItemValidator(test.state, null).validDate()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -277,7 +293,9 @@ describe('nonpayment component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new NonpaymentItemValidator(test.state, null).validResolved()).toBe(test.expected)
+      expect(
+        new NonpaymentItemValidator(test.state, null).validResolved()
+      ).toBe(test.expected)
     })
   })
 
@@ -302,7 +320,9 @@ describe('nonpayment component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new NonpaymentItemValidator(test.state, null).validDescription()).toBe(test.expected)
+      expect(
+        new NonpaymentItemValidator(test.state, null).validDescription()
+      ).toBe(test.expected)
     })
   })
 
@@ -335,7 +355,9 @@ describe('nonpayment component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new NonpaymentValidator(test.state, null).validHasNonpayment()).toBe(test.expected)
+      expect(
+        new NonpaymentValidator(test.state, null).validHasNonpayment()
+      ).toBe(test.expected)
     })
   })
 
@@ -428,7 +450,9 @@ describe('nonpayment component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new NonpaymentValidator(test.state, null).isValid()).toBe(test.expected)
+      expect(new NonpaymentValidator(test.state, null).isValid()).toBe(
+        test.expected
+      )
     })
   })
 })

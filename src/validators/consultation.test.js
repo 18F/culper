@@ -1,7 +1,7 @@
 import ConsultationValidator from './consultation'
 import Location from '../components/Form/Location'
 
-describe('Consultation validation', function () {
+describe('Consultation validation', function() {
   it('validates competence', () => {
     const tests = [
       {
@@ -110,7 +110,9 @@ describe('Consultation validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new ConsultationValidator(test.state, null).isValid()).toBe(test.expected)
+      expect(new ConsultationValidator(test.state, null).isValid()).toBe(
+        test.expected
+      )
     })
   })
 })

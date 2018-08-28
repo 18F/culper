@@ -7,14 +7,16 @@ describe('Schema for financial taxes', () => {
       HasForeignVoting: { value: 'Yes' },
       List: {
         branch: { value: 'No' },
-        items: [{
-          Item: {
-            Date: {},
-            Country: {},
-            Reason: {},
-            Eligibility: {}
+        items: [
+          {
+            Item: {
+              Date: {},
+              Country: {},
+              Reason: {},
+              Eligibility: {}
+            }
           }
-        }]
+        ]
       }
     }
 

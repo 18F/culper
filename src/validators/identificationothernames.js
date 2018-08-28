@@ -3,7 +3,7 @@ import { validAccordion, validGenericTextfield } from './helpers'
 import DateRangeValidator from './daterange'
 
 export default class OtherNamesValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.hasOtherNames = (data.HasOtherNames || {}).value
     this.list = data.List || {}
   }
@@ -11,7 +11,7 @@ export default class OtherNamesValidator {
   /**
    * Validates that proper values were included for branching
    */
-  validHasOtherNames () {
+  validHasOtherNames() {
     if (!this.hasOtherNames) {
       return false
     }
@@ -26,12 +26,12 @@ export default class OtherNamesValidator {
   /**
    * Checks if any of the other names is valid
    */
-  validOtherNames () {
+  validOtherNames() {
     if (this.hasOtherNames === 'No') {
       return true
     }
 
-    return validAccordion(this.list, (item) => {
+    return validAccordion(this.list, item => {
       return new OtherNameValidator(item).isValid()
     })
   }
@@ -39,9 +39,8 @@ export default class OtherNamesValidator {
   /**
    * Validates the branching hasOtherNames property and all other name values
    */
-  isValid () {
-    return this.validHasOtherNames() &&
-      this.validOtherNames()
+  isValid() {
+    return this.validHasOtherNames() && this.validOtherNames()
   }
 }
 
@@ -49,7 +48,7 @@ export default class OtherNamesValidator {
  * Validates a single instance of an other name
  */
 export class OtherNameValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.name = data.Name
     this.maidenName = data.MaidenName
     this.datesUsed = data.DatesUsed
@@ -59,14 +58,14 @@ export class OtherNameValidator {
   /**
    * Validates a name
    */
-  validName () {
+  validName() {
     return new NameValidator(this.name).isValid()
   }
 
   /**
    * Validates a maiden name
    */
-  validMaidenName () {
+  validMaidenName() {
     if (!this.maidenName || !this.maidenName.value) {
       return false
     }
@@ -76,21 +75,23 @@ export class OtherNameValidator {
   /**
    * Validates the other names dates used
    */
-  validDatesUsed () {
+  validDatesUsed() {
     return new DateRangeValidator(this.datesUsed).isValid()
   }
 
-  validReason () {
+  validReason() {
     return validGenericTextfield(this.reason)
   }
 
   /**
    * Validates all portions of an other name
    */
-  isValid () {
-    return this.validName() &&
+  isValid() {
+    return (
+      this.validName() &&
       this.validMaidenName() &&
       this.validDatesUsed() &&
       this.validReason()
+    )
   }
 }

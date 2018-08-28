@@ -6,7 +6,7 @@ import SubsectionElement from '../../SubsectionElement'
 import { Field, Height, Weight, HairColor, EyeColor, Sex } from '../../../Form'
 
 export default class Physical extends SubsectionElement {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
@@ -19,7 +19,7 @@ export default class Physical extends SubsectionElement {
     }
   }
 
-  handleUpdate (field, values) {
+  handleUpdate(field, values) {
     this.setState({ [field]: values }, () => {
       if (this.props.onUpdate) {
         this.props.onUpdate({
@@ -34,84 +34,96 @@ export default class Physical extends SubsectionElement {
     })
   }
 
-  render () {
-    const klass = `section-content physical ${this.props.className || ''}`.trim()
+  render() {
+    const klass = `section-content physical ${this.props.className ||
+      ''}`.trim()
 
     return (
       <div className={klass} {...super.dataAttributes(this.props)}>
-        <Field title={i18n.t('identification.traits.title')}
-               titleSize="h2"
-               optional={true}
-               className="no-margin-bottom"
-               />
+        <Field
+          title={i18n.t('identification.traits.title')}
+          titleSize="h2"
+          optional={true}
+          className="no-margin-bottom"
+        />
 
-        <Field title={i18n.t('identification.traits.heading.height')}
-               help="identification.traits.help.height"
-               adjustFor='labels'
-               scrollIntoView={this.props.scrollIntoView}
-               shrink={true}>
-          <Height name="height"
-                  {...this.props.Height}
-                  onUpdate={this.handleUpdate.bind(this, 'Height')}
-                  onError={this.handleError}
-                  required={this.props.required}
-                  />
+        <Field
+          title={i18n.t('identification.traits.heading.height')}
+          help="identification.traits.help.height"
+          adjustFor="labels"
+          scrollIntoView={this.props.scrollIntoView}
+          shrink={true}>
+          <Height
+            name="height"
+            {...this.props.Height}
+            onUpdate={this.handleUpdate.bind(this, 'Height')}
+            onError={this.handleError}
+            required={this.props.required}
+          />
         </Field>
 
-        <Field title={i18n.t('identification.traits.heading.weight')}
-               help="identification.traits.help.weight"
-               adjustFor="labels"
-               scrollIntoView={this.props.scrollIntoView}
-               shrink={true}>
-          <Weight name="weight"
-                  {...this.props.Weight}
-                  onUpdate={this.handleUpdate.bind(this, 'Weight')}
-                  onError={this.handleError}
-                  required={this.props.required}
-                  />
+        <Field
+          title={i18n.t('identification.traits.heading.weight')}
+          help="identification.traits.help.weight"
+          adjustFor="labels"
+          scrollIntoView={this.props.scrollIntoView}
+          shrink={true}>
+          <Weight
+            name="weight"
+            {...this.props.Weight}
+            onUpdate={this.handleUpdate.bind(this, 'Weight')}
+            onError={this.handleError}
+            required={this.props.required}
+          />
         </Field>
 
-        <Field title={i18n.t('identification.traits.heading.hair')}
-               adjustFor="big-buttons"
-               scrollIntoView={this.props.scrollIntoView}
-               help="identification.traits.help.hair">
-          <HairColor name="hair"
-                     help="identification.traits.help.hair"
-                     className=""
-                     {...this.props.HairColor}
-                     onUpdate={this.handleUpdate.bind(this, 'HairColor')}
-                     onError={this.handleError}
-                     required={this.props.required}
-                     />
+        <Field
+          title={i18n.t('identification.traits.heading.hair')}
+          adjustFor="big-buttons"
+          scrollIntoView={this.props.scrollIntoView}
+          help="identification.traits.help.hair">
+          <HairColor
+            name="hair"
+            help="identification.traits.help.hair"
+            className=""
+            {...this.props.HairColor}
+            onUpdate={this.handleUpdate.bind(this, 'HairColor')}
+            onError={this.handleError}
+            required={this.props.required}
+          />
         </Field>
 
-        <Field title={i18n.t('identification.traits.heading.eye')}
-               adjustFor="big-buttons"
-               scrollIntoView={this.props.scrollIntoView}
-               help="identification.traits.help.eye">
-          <EyeColor name="eye"
-                    className=""
-                    {...this.props.EyeColor}
-                    onUpdate={this.handleUpdate.bind(this, 'EyeColor')}
-                    onError={this.handleError}
-                    required={this.props.required}
-                    />
+        <Field
+          title={i18n.t('identification.traits.heading.eye')}
+          adjustFor="big-buttons"
+          scrollIntoView={this.props.scrollIntoView}
+          help="identification.traits.help.eye">
+          <EyeColor
+            name="eye"
+            className=""
+            {...this.props.EyeColor}
+            onUpdate={this.handleUpdate.bind(this, 'EyeColor')}
+            onError={this.handleError}
+            required={this.props.required}
+          />
         </Field>
 
-        <Field title={i18n.t('identification.traits.heading.sex')}
-               help="identification.traits.help.sex"
-               adjustFor="big-buttons"
-               shrink={true}
-               onUpdate={this.handleUpdate.bind(this, 'Comments')}
-               commentsValue={this.state.Comments}
-               scrollIntoView={this.props.scrollIntoView}
-               comments={true}>
-          <Sex name="sex"
-               {...this.props.Sex}
-               onUpdate={this.handleUpdate.bind(this, 'Sex')}
-               onError={this.handleError}
-               required={this.props.required}
-               />
+        <Field
+          title={i18n.t('identification.traits.heading.sex')}
+          help="identification.traits.help.sex"
+          adjustFor="big-buttons"
+          shrink={true}
+          onUpdate={this.handleUpdate.bind(this, 'Comments')}
+          commentsValue={this.state.Comments}
+          scrollIntoView={this.props.scrollIntoView}
+          comments={true}>
+          <Sex
+            name="sex"
+            {...this.props.Sex}
+            onUpdate={this.handleUpdate.bind(this, 'Sex')}
+            onError={this.handleError}
+            required={this.props.required}
+          />
         </Field>
       </div>
     )
@@ -125,11 +137,13 @@ Physical.defaultProps = {
   EyeColor: '',
   Sex: '',
   Comments: {},
-  onError: (value, arr) => { return arr },
+  onError: (value, arr) => {
+    return arr
+  },
   section: 'identification',
   subsection: 'physical',
   dispatch: () => {},
-  validator: (data) => {
+  validator: data => {
     return validate(schema('identification.physical', data))
   },
   required: false

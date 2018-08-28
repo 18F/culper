@@ -1,7 +1,12 @@
-import { validGenericTextfield, validCurrency, validDateField, validBranch } from './helpers'
+import {
+  validGenericTextfield,
+  validCurrency,
+  validDateField,
+  validBranch
+} from './helpers'
 
 export default class ForeignBenefitValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.interestTypes = (data.InterestTypes || {}).values || []
     this.benefitType = (data.BenefitType || {}).value
     this.otherBenefitType = data.OtherBenefitType
@@ -12,53 +17,59 @@ export default class ForeignBenefitValidator {
     this.otherBenefit = data.OtherBenefit
   }
 
-  validInterestTypes () {
+  validInterestTypes() {
     return !!this.interestTypes && !!this.interestTypes.length
   }
 
-  validBenefitType () {
+  validBenefitType() {
     switch (this.benefitType) {
-    case 'Educational':
-    case 'Medical':
-    case 'Retirement':
-      return true
-    case 'Other':
-      return validGenericTextfield(this.otherBenefitType)
-    default:
-      return false
+      case 'Educational':
+      case 'Medical':
+      case 'Retirement':
+        return true
+      case 'Other':
+        return validGenericTextfield(this.otherBenefitType)
+      default:
+        return false
     }
   }
 
-  validBenefitFrequency () {
-    return !!this.benefitFrequency &&
-      ['OneTime', 'Future', 'Continuing', 'Other'].includes(this.benefitFrequency)
+  validBenefitFrequency() {
+    return (
+      !!this.benefitFrequency &&
+      ['OneTime', 'Future', 'Continuing', 'Other'].includes(
+        this.benefitFrequency
+      )
+    )
   }
 
-  validBenefit () {
+  validBenefit() {
     switch (this.benefitFrequency) {
-    case 'OneTime':
-      return new OneTimeBenefitValidator(this.oneTimeBenefit).isValid()
-    case 'Future':
-      return new FutureBenefitValidator(this.futureBenefit).isValid()
-    case 'Continuing':
-      return new ContinuingBenefitValidator(this.continuingBenefit).isValid()
-    case 'Other':
-      return validGenericTextfield(this.otherBenefit)
-    default:
-      return false
+      case 'OneTime':
+        return new OneTimeBenefitValidator(this.oneTimeBenefit).isValid()
+      case 'Future':
+        return new FutureBenefitValidator(this.futureBenefit).isValid()
+      case 'Continuing':
+        return new ContinuingBenefitValidator(this.continuingBenefit).isValid()
+      case 'Other':
+        return validGenericTextfield(this.otherBenefit)
+      default:
+        return false
     }
   }
 
-  isValid () {
-    return this.validInterestTypes() &&
+  isValid() {
+    return (
+      this.validInterestTypes() &&
       this.validBenefitType() &&
       this.validBenefitFrequency() &&
       this.validBenefit()
+    )
   }
 }
 
 export class OneTimeBenefitValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.received = data.Received
     this.country = data.Country
     this.value = data.Value
@@ -67,27 +78,27 @@ export class OneTimeBenefitValidator {
     this.obligatedExplanation = data.ObligatedExplanation
   }
 
-  validReceived () {
+  validReceived() {
     return !!this.received && validDateField(this.received)
   }
 
-  validCountry () {
+  validCountry() {
     return !!this.country && validGenericTextfield(this.country)
   }
 
-  validValue () {
+  validValue() {
     return !!this.value && validCurrency(this.value)
   }
 
-  validReason () {
+  validReason() {
     return !!this.reason && validGenericTextfield(this.reason)
   }
 
-  validObligated () {
+  validObligated() {
     return validBranch(this.obligated)
   }
 
-  validObligatedExplanation () {
+  validObligatedExplanation() {
     if (!this.validObligated()) {
       return false
     }
@@ -97,18 +108,20 @@ export class OneTimeBenefitValidator {
     return validGenericTextfield(this.obligatedExplanation)
   }
 
-  isValid () {
-    return this.validReceived() &&
+  isValid() {
+    return (
+      this.validReceived() &&
       this.validCountry() &&
       this.validValue() &&
       this.validReason() &&
       this.validObligated() &&
       this.validObligatedExplanation()
+    )
   }
 }
 
 export class FutureBenefitValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.began = data.Began
     this.frequency = (data.Frequency || {}).value
     this.otherFrequency = data.OtherFrequency
@@ -119,41 +132,41 @@ export class FutureBenefitValidator {
     this.obligatedExplanation = data.ObligatedExplanation
   }
 
-  validBegan () {
+  validBegan() {
     return !!this.began && validDateField(this.began)
   }
 
-  validFrequency () {
+  validFrequency() {
     switch (this.frequency) {
-    case 'Annually':
-    case 'Quarterly':
-    case 'Monthly':
-    case 'Weekly':
-      return true
-    case 'Other':
-      return validGenericTextfield(this.otherFrequency)
-    default:
-      return false
+      case 'Annually':
+      case 'Quarterly':
+      case 'Monthly':
+      case 'Weekly':
+        return true
+      case 'Other':
+        return validGenericTextfield(this.otherFrequency)
+      default:
+        return false
     }
   }
 
-  validCountry () {
+  validCountry() {
     return !!this.country && validGenericTextfield(this.country)
   }
 
-  validValue () {
+  validValue() {
     return !!this.value && validCurrency(this.value)
   }
 
-  validReason () {
+  validReason() {
     return !!this.reason && validGenericTextfield(this.reason)
   }
 
-  validObligated () {
+  validObligated() {
     return validBranch(this.obligated)
   }
 
-  validObligatedExplanation () {
+  validObligatedExplanation() {
     if (!this.validObligated()) {
       return false
     }
@@ -163,19 +176,21 @@ export class FutureBenefitValidator {
     return validGenericTextfield(this.obligatedExplanation)
   }
 
-  isValid () {
-    return this.validBegan() &&
+  isValid() {
+    return (
+      this.validBegan() &&
       this.validFrequency() &&
       this.validCountry() &&
       this.validValue() &&
       this.validReason() &&
       this.validObligated() &&
       this.validObligatedExplanation()
+    )
   }
 }
 
 export class ContinuingBenefitValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.began = data.Began
     this.end = data.End
     this.frequency = (data.Frequency || {}).value
@@ -187,45 +202,45 @@ export class ContinuingBenefitValidator {
     this.obligatedExplanation = data.ObligatedExplanation
   }
 
-  validBegan () {
+  validBegan() {
     return !!this.began && validDateField(this.began)
   }
 
-  validEnd () {
+  validEnd() {
     return !!this.end && validDateField(this.end)
   }
 
-  validFrequency () {
+  validFrequency() {
     switch (this.frequency) {
-    case 'Annually':
-    case 'Quarterly':
-    case 'Monthly':
-    case 'Weekly':
-      return true
-    case 'Other':
-      return validGenericTextfield(this.otherFrequency)
-    default:
-      return false
+      case 'Annually':
+      case 'Quarterly':
+      case 'Monthly':
+      case 'Weekly':
+        return true
+      case 'Other':
+        return validGenericTextfield(this.otherFrequency)
+      default:
+        return false
     }
   }
 
-  validCountry () {
+  validCountry() {
     return !!this.country && validGenericTextfield(this.country)
   }
 
-  validValue () {
+  validValue() {
     return !!this.value && validCurrency(this.value)
   }
 
-  validReason () {
+  validReason() {
     return !!this.reason && validGenericTextfield(this.reason)
   }
 
-  validObligated () {
+  validObligated() {
     return validBranch(this.obligated)
   }
 
-  validObligatedExplanation () {
+  validObligatedExplanation() {
     if (!this.validObligated()) {
       return false
     }
@@ -235,8 +250,9 @@ export class ContinuingBenefitValidator {
     return validGenericTextfield(this.obligatedExplanation)
   }
 
-  isValid () {
-    return this.validBegan() &&
+  isValid() {
+    return (
+      this.validBegan() &&
       this.validEnd() &&
       this.validFrequency() &&
       this.validCountry() &&
@@ -244,5 +260,6 @@ export class ContinuingBenefitValidator {
       this.validReason() &&
       this.validObligated() &&
       this.validObligatedExplanation()
+    )
   }
 }

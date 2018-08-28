@@ -1,7 +1,7 @@
 import PassportValidator from './passport'
 
-describe('Passport component validation', function () {
-  it('should validate has passport branch', function () {
+describe('Passport component validation', function() {
+  it('should validate has passport branch', function() {
     const tests = [
       {
         data: {
@@ -30,11 +30,13 @@ describe('Passport component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new PassportValidator(test.data, null).validHasPassports()).toBe(test.expected)
+      expect(new PassportValidator(test.data, null).validHasPassports()).toBe(
+        test.expected
+      )
     })
   })
 
-  it('should validate passport number', function () {
+  it('should validate passport number', function() {
     const tests = [
       {
         data: {
@@ -73,11 +75,13 @@ describe('Passport component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new PassportValidator(test.data, null).validPassportNumber()).toBe(test.expected)
+      expect(new PassportValidator(test.data, null).validPassportNumber()).toBe(
+        test.expected
+      )
     })
   })
 
-  it('should validate passport issue and expiration dates', function () {
+  it('should validate passport issue and expiration dates', function() {
     const tests = [
       {
         data: {
@@ -181,11 +185,13 @@ describe('Passport component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new PassportValidator(test.data, null).validDates()).toBe(test.expected)
+      expect(new PassportValidator(test.data, null).validDates()).toBe(
+        test.expected
+      )
     })
   })
 
-  it('should validate full passport information', function () {
+  it('should validate full passport information', function() {
     const tests = [
       {
         data: {
@@ -224,7 +230,9 @@ describe('Passport component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new PassportValidator(test.data, null).isValid()).toBe(test.expected)
+      expect(new PassportValidator(test.data, null).isValid()).toBe(
+        test.expected
+      )
     })
   })
 })

@@ -68,6 +68,7 @@ const (
 	WebserviceMissingCallerInfoAgencyID        = "Missing Caller Info Agency ID"
 	WebserviceMissingCallerInfoAgencySSN       = "Missing Caller Info Agency SSN"
 	WebserviceMissingCallerInfoAgencyPseudoSSN = "Missing Caller Info Agency Pseudo SSN"
+	WebserviceCannotGenerateInboundXML         = "Unable to generate XML from Form Application Data"
 	WebserviceCannotGetApplicationData         = "Unable to retrieve Form Application Data"
 	WebserviceMissingAgencyID                  = "Missing Agency ID"
 	WebserviceErrorCreatingImportRequest       = "Unable to create import request"

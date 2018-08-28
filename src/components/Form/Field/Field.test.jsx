@@ -73,7 +73,9 @@ describe('The field component', () => {
     let updates = 0
     const expected = {
       comments: true,
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
     const component = mount(<Field {...expected} />)
     expect(component.find('textarea').length).toEqual(0)

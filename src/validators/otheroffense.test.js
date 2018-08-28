@@ -1,7 +1,7 @@
 import OtherOffenseValidator from './otheroffense'
 import Location from '../components/Form/Location'
 
-describe('OtherOffense validation', function () {
+describe('OtherOffense validation', function() {
   it('validates date', () => {
     const tests = [
       {
@@ -24,7 +24,9 @@ describe('OtherOffense validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new OtherOffenseValidator(test.state, null).validDate()).toBe(test.expected)
+      expect(new OtherOffenseValidator(test.state, null).validDate()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -49,7 +51,9 @@ describe('OtherOffense validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new OtherOffenseValidator(test.state, null).validDescription()).toBe(test.expected)
+      expect(
+        new OtherOffenseValidator(test.state, null).validDescription()
+      ).toBe(test.expected)
     })
   })
 
@@ -76,7 +80,9 @@ describe('OtherOffense validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new OtherOffenseValidator(test.state, null).validViolence()).toBe(test.expected)
+      expect(new OtherOffenseValidator(test.state, null).validViolence()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -103,7 +109,9 @@ describe('OtherOffense validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new OtherOffenseValidator(test.state, null).validFirearms()).toBe(test.expected)
+      expect(new OtherOffenseValidator(test.state, null).validFirearms()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -130,7 +138,9 @@ describe('OtherOffense validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new OtherOffenseValidator(test.state, null).validSubstances()).toBe(test.expected)
+      expect(
+        new OtherOffenseValidator(test.state, null).validSubstances()
+      ).toBe(test.expected)
     })
   })
 
@@ -147,7 +157,9 @@ describe('OtherOffense validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new OtherOffenseValidator(test.state, null).validCourtName()).toBe(test.expected)
+      expect(new OtherOffenseValidator(test.state, null).validCourtName()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -169,7 +181,9 @@ describe('OtherOffense validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new OtherOffenseValidator(test.state, null).validCourtAddress()).toBe(test.expected)
+      expect(
+        new OtherOffenseValidator(test.state, null).validCourtAddress()
+      ).toBe(test.expected)
     })
   })
 
@@ -184,7 +198,9 @@ describe('OtherOffense validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new OtherOffenseValidator(test.state, null).validChargeType()).toBe(test.expected)
+      expect(
+        new OtherOffenseValidator(test.state, null).validChargeType()
+      ).toBe(test.expected)
     })
   })
 
@@ -201,7 +217,9 @@ describe('OtherOffense validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new OtherOffenseValidator(test.state, null).validCourtCharge()).toBe(test.expected)
+      expect(
+        new OtherOffenseValidator(test.state, null).validCourtCharge()
+      ).toBe(test.expected)
     })
   })
 
@@ -218,7 +236,9 @@ describe('OtherOffense validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new OtherOffenseValidator(test.state, null).validCourtOutcome()).toBe(test.expected)
+      expect(
+        new OtherOffenseValidator(test.state, null).validCourtOutcome()
+      ).toBe(test.expected)
     })
   })
 
@@ -238,7 +258,9 @@ describe('OtherOffense validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new OtherOffenseValidator(test.state, null).validCourtDate()).toBe(test.expected)
+      expect(new OtherOffenseValidator(test.state, null).validCourtDate()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -304,7 +326,9 @@ describe('OtherOffense validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new OtherOffenseValidator(test.state, null).validSentenced()).toBe(test.expected)
+      expect(new OtherOffenseValidator(test.state, null).validSentenced()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -437,7 +461,9 @@ describe('OtherOffense validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new OtherOffenseValidator(test.state, null).isValid()).toBe(test.expected)
+      expect(new OtherOffenseValidator(test.state, null).isValid()).toBe(
+        test.expected
+      )
     })
   })
 })

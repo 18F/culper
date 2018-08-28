@@ -6,33 +6,34 @@ import { Field } from '../../Form'
 import Signature from './Signature'
 
 export default class AdditionalComments extends SubsectionElement {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.update = this.update.bind(this)
     this.updateSignature = this.updateSignature.bind(this)
   }
 
-  update (queue) {
+  update(queue) {
     this.props.onUpdate({
       Signature: this.props.Signature,
       ...queue
     })
   }
 
-  updateSignature (values) {
+  updateSignature(values) {
     this.update({ Signature: values })
   }
 
-  render () {
+  render() {
     return (
       <div className="additional-comments">
-        { i18n.m('releases.additionalComments.certificationContents') }
-        <Signature {...this.props.Signature}
-                   LegalName={this.props.LegalName}
-                   onUpdate={this.updateSignature}
-                   onError={this.handleError}
-                   />
+        {i18n.m('releases.additionalComments.certificationContents')}
+        <Signature
+          {...this.props.Signature}
+          LegalName={this.props.LegalName}
+          onUpdate={this.updateSignature}
+          onError={this.handleError}
+        />
       </div>
     )
   }
@@ -44,9 +45,11 @@ AdditionalComments.defaultProps = {
   section: 'releases',
   subsection: 'comments',
   dispatch: () => {},
-  validator: (data) => {
+  validator: data => {
     return new SignatureValidator(data).isValid()
   },
-  onUpdate: (queue) => {},
-  onError: (value, arr) => { return arr }
+  onUpdate: queue => {},
+  onError: (value, arr) => {
+    return arr
+  }
 }

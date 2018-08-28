@@ -6,43 +6,46 @@ import SubsectionElement from '../../SubsectionElement'
 import { Name, Field } from '../../../Form'
 
 export default class ApplicantName extends SubsectionElement {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.update = this.update.bind(this)
     this.updateName = this.updateName.bind(this)
   }
 
-  update (queue) {
+  update(queue) {
     this.props.onUpdate({
       Name: this.props.Name,
       ...queue
     })
   }
 
-  updateName (values) {
+  updateName(values) {
     this.update({
       Name: values
     })
   }
 
-  render () {
-    const klass = `section-content applicant-name ${this.props.className || ''}`.trim()
+  render() {
+    const klass = `section-content applicant-name ${this.props.className ||
+      ''}`.trim()
 
     return (
       <div className={klass} {...super.dataAttributes(this.props)}>
-        <Field title={i18n.t('identification.name.title')}
-               titleSize="h2"
-               optional={true}
-               filterErrors={Name.requiredErrorsOnly}
-               scrollIntoView={this.props.scrollIntoView}>
-          <Name name="name"
-                {...this.props.Name}
-                dispatch={this.props.dispatch}
-                onUpdate={this.updateName}
-                onError={this.handleError}
-                required={this.props.required}
-                scrollIntoView={this.props.scrollIntoView}
-                />
+        <Field
+          title={i18n.t('identification.name.title')}
+          titleSize="h2"
+          optional={true}
+          filterErrors={Name.requiredErrorsOnly}
+          scrollIntoView={this.props.scrollIntoView}>
+          <Name
+            name="name"
+            {...this.props.Name}
+            dispatch={this.props.dispatch}
+            onUpdate={this.updateName}
+            onError={this.handleError}
+            required={this.props.required}
+            scrollIntoView={this.props.scrollIntoView}
+          />
         </Field>
       </div>
     )
@@ -51,13 +54,15 @@ export default class ApplicantName extends SubsectionElement {
 
 ApplicantName.defaultProps = {
   Name: {},
-  onUpdate: (queue) => {},
-  onError: (value, arr) => { return arr },
+  onUpdate: queue => {},
+  onError: (value, arr) => {
+    return arr
+  },
   section: 'identification',
   subsection: 'name',
   dispatch: () => {},
   required: false,
-  validator: (data) => {
+  validator: data => {
     return validate(schema('identification.name', data))
   }
 }

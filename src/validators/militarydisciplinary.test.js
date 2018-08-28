@@ -1,6 +1,8 @@
-import MilitaryDisciplinaryValidator, { hideDisciplinaryProcedures } from './militarydisciplinary'
+import MilitaryDisciplinaryValidator, {
+  hideDisciplinaryProcedures
+} from './militarydisciplinary'
 
-describe('Military disciplinary validation', function () {
+describe('Military disciplinary validation', function() {
   it('only display disciplinary procedures if military history is present', () => {
     const tests = [
       {
@@ -65,11 +67,13 @@ describe('Military disciplinary validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new MilitaryDisciplinaryValidator(test.state, null).validDisciplinary()).toBe(test.expected)
+      expect(
+        new MilitaryDisciplinaryValidator(test.state, null).validDisciplinary()
+      ).toBe(test.expected)
     })
   })
 
-  it('handle overall validity', function () {
+  it('handle overall validity', function() {
     const tests = [
       {
         state: {
@@ -139,7 +143,9 @@ describe('Military disciplinary validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new MilitaryDisciplinaryValidator(test.state, null).isValid()).toBe(test.expected)
+      expect(
+        new MilitaryDisciplinaryValidator(test.state, null).isValid()
+      ).toBe(test.expected)
     })
   })
 })

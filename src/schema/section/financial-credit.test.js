@@ -7,17 +7,19 @@ describe('Schema for financial credit', () => {
       HasCreditCounseling: { value: 'Yes' },
       List: {
         branch: { value: 'No' },
-        items: [{
-          Item: {
-            Explanation: {},
-            Name: {},
-            Telephone: {},
-            Location: {
-              country: null
-            },
-            Description: {}
+        items: [
+          {
+            Item: {
+              Explanation: {},
+              Name: {},
+              Telephone: {},
+              Location: {
+                country: null
+              },
+              Description: {}
+            }
           }
-        }]
+        ]
       }
     }
 

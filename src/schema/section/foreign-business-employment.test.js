@@ -7,18 +7,20 @@ describe('Schema for financial taxes', () => {
       HasForeignEmployment: { value: 'Yes' },
       List: {
         branch: { value: 'No' },
-        items: [{
-          Item: {
-            Name: {},
-            Description: {},
-            Date: {},
-            Address: {
-              country: null
-            },
-            Accepted: {},
-            Explanation: {}
+        items: [
+          {
+            Item: {
+              Name: {},
+              Description: {},
+              Date: {},
+              Address: {
+                country: null
+              },
+              Accepted: {},
+              Explanation: {}
+            }
           }
-        }]
+        ]
       }
     }
 

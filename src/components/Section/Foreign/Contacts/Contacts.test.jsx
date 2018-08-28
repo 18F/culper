@@ -16,7 +16,7 @@ describe('The contacts component', () => {
     const expected = {
       name: 'foreign-contacts',
       HasForeignContacts: { value: 'Yes' },
-      List: { branch: {}, items: [{ Item: { Name: {} } }]}
+      List: { branch: {}, items: [{ Item: { Name: {} } }] }
     }
     const component = mount(<Contacts {...expected} />)
     expect(component.find('.accordion').length).toBe(1)

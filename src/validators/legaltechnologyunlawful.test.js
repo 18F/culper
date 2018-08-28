@@ -1,8 +1,10 @@
-import LegalTechnologyUnlawfulValidator, { UnlawfulValidator } from './legaltechnologyunlawful'
+import LegalTechnologyUnlawfulValidator, {
+  UnlawfulValidator
+} from './legaltechnologyunlawful'
 import { battery } from './helpers'
 import Location from '../components/Form/Location'
 
-describe('Legal technology unlawful component validation', function () {
+describe('Legal technology unlawful component validation', function() {
   it('validate date', () => {
     const tests = [
       {

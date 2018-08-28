@@ -1,7 +1,8 @@
 import React from 'react'
+import { newGuid, flattenObject, mergeError, triageErrors } from './helpers'
 
 export default class ValidationElement extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.handleChange = this.handleChange.bind(this)
@@ -11,7 +12,7 @@ export default class ValidationElement extends React.Component {
     this.handleValidation = this.handleValidation.bind(this)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     let event = {
       target: {
         id: this.props.id || '',
@@ -19,7 +20,7 @@ export default class ValidationElement extends React.Component {
         value: this.props.value,
         checked: this.props.checked
       },
-      persist: function () {},
+      persist: function() {},
       fake: true
     }
 
@@ -29,7 +30,7 @@ export default class ValidationElement extends React.Component {
   /**
    * Handle the change event.
    */
-  handleChange (event) {
+  handleChange(event) {
     if (this.props.onChange) {
       this.props.onChange(event)
     }
@@ -38,7 +39,7 @@ export default class ValidationElement extends React.Component {
   /**
    * Handle the focus event.
    */
-  handleFocus (event) {
+  handleFocus(event) {
     if (this.props.onFocus) {
       this.props.onFocus(event)
     }
@@ -47,7 +48,7 @@ export default class ValidationElement extends React.Component {
   /**
    * Handle the blur event.
    */
-  handleBlur (event) {
+  handleBlur(event) {
     this.handleValidation(event)
     if (this.props.onBlur) {
       this.props.onBlur(event)
@@ -57,7 +58,7 @@ export default class ValidationElement extends React.Component {
   /**
    * Handle the validation event.
    */
-  handleValidation (event) {
+  handleValidation(event) {
     if (this.props.onValidate) {
       this.props.onValidate(event)
     }
@@ -66,111 +67,26 @@ export default class ValidationElement extends React.Component {
   /**
    * Handle the key down event.
    */
-  handleKeyDown (event) {
+  handleKeyDown(event) {
     if (this.props.onKeyDown) {
       this.props.onKeyDown(event)
     }
   }
 
-  flattenObject (obj) {
+  flattenObject(obj) {
     let o = flattenObject(obj)
     return o
   }
 
-  mergeError (previous, error) {
+  mergeError(previous, error) {
     return mergeError(previous, error)
   }
 
-  triageErrors (section, previous, codes) {
+  triageErrors(section, previous, codes) {
     return triageErrors(section, previous, codes)
   }
 
-  guid () {
+  guid() {
     return newGuid()
   }
-}
-
-export const newGuid = () => {
-  const s4 = () => {
-    return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1)
-  }
-
-  return `${s4()}${s4()}-${s4()}-${s4()}-${s4()}-${s4()}${s4()}${s4()}`
-}
-
-export const flattenObject = (obj) => {
-  let s = ''
-  let what = Object.prototype.toString.call(obj)
-  switch (what) {
-    case '[object Object]':
-      for (let p in obj) {
-        if (!obj.hasOwnProperty(p)) {
-          continue
-        }
-        s += (s.length === 0 ? '' : '.') + p + '.' + flattenObject(obj[p])
-      }
-      break
-    case '[object String]':
-      s += (s.length === 0 ? '' : '.') + obj
-      break
-    case '[object Array]':
-      obj.forEach((x) => {
-        s += (s.length === 0 ? '' : '.') + flattenObject(x)
-      })
-      break
-  }
-
-  return s
-}
-
-export const mergeError = (previous, error) => {
-  let codes = []
-  let errorString = flattenObject(error)
-
-  // Clean up any errors which are no longer valid
-  previous.forEach((c) => {
-    if (errorString && errorString.endsWith('.') && c.indexOf(errorString) > -1) {
-      return
-    }
-
-    codes.push(c)
-  })
-
-  // Add the error if it does not already exist
-  if (errorString && errorString.length && !errorString.endsWith('.') && !codes.includes(errorString)) {
-    codes.push(errorString)
-  }
-  return codes
-}
-
-export const triageErrors = (section, previous, codes) => {
-  let arr = []
-
-  // First we need to persist any error messages stored in the same section
-  // but not necessarily within the same scope
-  previous.forEach((e) => {
-    for (let subsection in codes) {
-      if (!codes.hasOwnProperty(subsection)) continue
-      if (e.indexOf(`${subsection}.`) === -1) {
-        arr.push(e.replace(`${section}.`, ''))
-      }
-    }
-  })
-
-  for (let subsection in codes) {
-    // skip loop if the property is from prototype
-    if (!codes.hasOwnProperty(subsection)) continue
-
-    if (codes[subsection]) {
-      for (let prop in codes[subsection]) {
-        if (!codes[subsection].hasOwnProperty(prop)) continue
-
-        let e = `${subsection}.` + flattenObject(codes[subsection][prop])
-        if (!arr.includes(e)) {
-          arr.push(e)
-        }
-      }
-    }
-  }
-  return arr
 }

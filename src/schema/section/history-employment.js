@@ -3,7 +3,7 @@ import * as form from '../form'
 export const historyEmployment = (data = {}) => {
   const items = ((data.List || {}).items || []).map(x => {
     const xitem = x.Item || {}
-    const reprimand = (xitem.Reprimand || {})
+    const reprimand = xitem.Reprimand || {}
     return {
       Item: {
         EmploymentActivity: form.employmentactivity(xitem.EmploymentActivity),
@@ -13,30 +13,34 @@ export const historyEmployment = (data = {}) => {
         Title: form.text(xitem.Title),
         DutyStation: form.text(xitem.DutyStation),
         Address: form.location(xitem.Address),
-        Additional: form.collection(((xitem.Additional || {}).items || []).map(y => {
-          const yitem = y.Item || {}
-          return {
-            Item: {
-              Has: form.branch(yitem.Has),
-              Position: form.text(yitem.Position),
-              Supervisor: form.text(yitem.Supervisor),
-              DatesEmployed: form.daterange(yitem.DatesEmployed)
+        Additional: form.collection(
+          ((xitem.Additional || {}).items || []).map(y => {
+            const yitem = y.Item || {}
+            return {
+              Item: {
+                Has: form.branch(yitem.Has),
+                Position: form.text(yitem.Position),
+                Supervisor: form.text(yitem.Supervisor),
+                DatesEmployed: form.daterange(yitem.DatesEmployed)
+              }
             }
-          }
-        })),
+          })
+        ),
         Telephone: form.telephone(xitem.Telephone),
         PhysicalAddress: form.physicaladdress(xitem.PhysicalAddress),
         ReasonLeft: form.reasonleft(xitem.ReasonLeft),
-        Reprimand: form.collection(((reprimand || {}).items || []).map(y => {
-          const yitem = y.Item || {}
-          return {
-            Item: {
-              Has: form.branch(yitem.Has),
-              Text: form.textarea(yitem.Text),
-              Date: form.datecontrol(yitem.Date)
+        Reprimand: form.collection(
+          ((reprimand || {}).items || []).map(y => {
+            const yitem = y.Item || {}
+            return {
+              Item: {
+                Has: form.branch(yitem.Has),
+                Text: form.textarea(yitem.Text),
+                Date: form.datecontrol(yitem.Date)
+              }
             }
-          }
-        })),
+          })
+        ),
         Supervisor: form.supervisor(xitem.Supervisor),
         ReferenceName: form.name(xitem.ReferenceName),
         ReferencePhone: form.telephone(xitem.ReferencePhone),

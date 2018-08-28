@@ -4,7 +4,13 @@ import { sectionData } from '../Section/sectionData'
 import schema from '../../schema'
 import { api } from '../../services'
 
-export const saveSection = (application, section, subsection, dispatch, done) => {
+export const saveSection = (
+  application,
+  section,
+  subsection,
+  dispatch,
+  done
+) => {
   const pending = sectionData(section, subsection, application) || []
   if (pending.length === 0) {
     if (done) {
@@ -31,7 +37,9 @@ export const saveSection = (application, section, subsection, dispatch, done) =>
     })
     .catch(() => {
       if (console && console.warn) {
-        console.warn(`Failed to save data for the "${section}" section and "${subsection}" subsection`)
+        console.warn(
+          `Failed to save data for the "${section}" section and "${subsection}" subsection`
+        )
       }
 
       if (done) {

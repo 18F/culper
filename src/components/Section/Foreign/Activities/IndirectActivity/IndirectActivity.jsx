@@ -4,12 +4,15 @@ import schema from '../../../../../schema'
 import validate from '../../../../../validators'
 import { Summary } from '../../../../Summary'
 import { Accordion, Branch, Show } from '../../../../Form'
-import { ForeignIndirectActivityValidator, ForeignIndirectInterestValidator } from '../../../../../validators'
+import {
+  ForeignIndirectActivityValidator,
+  ForeignIndirectInterestValidator
+} from '../../../../../validators'
 import SubsectionElement from '../../../SubsectionElement'
 import IndirectInterest from './IndirectInterest'
 
 export default class IndirectActivity extends SubsectionElement {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.update = this.update.bind(this)
@@ -17,7 +20,7 @@ export default class IndirectActivity extends SubsectionElement {
     this.updateList = this.updateList.bind(this)
   }
 
-  update (queue) {
+  update(queue) {
     this.props.onUpdate({
       List: this.props.List,
       HasInterests: this.props.HasInterests,
@@ -25,25 +28,27 @@ export default class IndirectActivity extends SubsectionElement {
     })
   }
 
-  updateList (values) {
+  updateList(values) {
     this.update({
       List: values
     })
   }
 
-  updateHasInterests (values) {
+  updateHasInterests(values) {
     this.update({
       HasInterests: values,
       List: values.value === 'Yes' ? this.props.List : []
     })
   }
 
-  summary (item, index) {
+  summary(item, index) {
     const o = (item || {}).Item || {}
     const firstname = (o.Firstname || {}).value ? o.Firstname.value : ''
     const lastname = (o.Lastname || {}).value ? o.Lastname.value : ''
     const name = `${firstname} ${lastname}`.trim()
-    const interestType = (o.InterestType || {}).value ? o.InterestType.value : ''
+    const interestType = (o.InterestType || {}).value
+      ? o.InterestType.value
+      : ''
     const cost = (o.Cost || {}).value ? '$' + o.Cost.value : ''
     const summary = [interestType, name].reduce((prev, next) => {
       if (prev && next) {
@@ -61,41 +66,52 @@ export default class IndirectActivity extends SubsectionElement {
     })
   }
 
-  render () {
+  render() {
     return (
-      <div className="section-content indirect" {...super.dataAttributes(this.props)}>
-        <Branch name="has_interests"
-                label={i18n.t('foreign.activities.indirect.heading.title')}
-                labelSize="h2"
-                {...this.props.HasInterests}
-                help="foreign.activities.indirect.help.indirectControl"
-                warning={true}
-                onError={this.handleError}
-                required={this.props.required}
-                onUpdate={this.updateHasInterests}
-                scrollIntoView={this.props.scrollIntoView}>
-        </Branch>
+      <div
+        className="section-content indirect"
+        {...super.dataAttributes(this.props)}>
+        <Branch
+          name="has_interests"
+          label={i18n.t('foreign.activities.indirect.heading.title')}
+          labelSize="h2"
+          {...this.props.HasInterests}
+          help="foreign.activities.indirect.help.indirectControl"
+          warning={true}
+          onError={this.handleError}
+          required={this.props.required}
+          onUpdate={this.updateHasInterests}
+          scrollIntoView={this.props.scrollIntoView}
+        />
 
         <Show when={this.props.HasInterests.value === 'Yes'}>
-          <Accordion defaultState={this.props.defaultState}
-                     {...this.props.List}
-                     scrollToBottom={this.props.scrollToBottom}
-                     summary={this.summary}
-                     onUpdate={this.updateList}
-                     onError={this.handleError}
-                     validator={ForeignIndirectInterestValidator}
-                     description={i18n.t('foreign.activities.indirect.collection.description')}
-                     appendTitle={i18n.t('foreign.activities.indirect.collection.appendTitle')}
-                     appendLabel={i18n.t('foreign.activities.indirect.collection.appendLabel')}
-                     required={this.props.required}
-                     scrollIntoView={this.props.scrollIntoView}>
-            <IndirectInterest name="Item"
-                              addressBooks={this.props.addressBooks}
-                              dispatch={this.props.dispatch}
-                              bind={true}
-                              required={this.props.required}
-                              scrollIntoView={this.props.scrollIntoView}
-                              />
+          <Accordion
+            defaultState={this.props.defaultState}
+            {...this.props.List}
+            scrollToBottom={this.props.scrollToBottom}
+            summary={this.summary}
+            onUpdate={this.updateList}
+            onError={this.handleError}
+            validator={ForeignIndirectInterestValidator}
+            description={i18n.t(
+              'foreign.activities.indirect.collection.description'
+            )}
+            appendTitle={i18n.t(
+              'foreign.activities.indirect.collection.appendTitle'
+            )}
+            appendLabel={i18n.t(
+              'foreign.activities.indirect.collection.appendLabel'
+            )}
+            required={this.props.required}
+            scrollIntoView={this.props.scrollIntoView}>
+            <IndirectInterest
+              name="Item"
+              addressBooks={this.props.addressBooks}
+              dispatch={this.props.dispatch}
+              bind={true}
+              required={this.props.required}
+              scrollIntoView={this.props.scrollIntoView}
+            />
           </Accordion>
         </Show>
       </div>
@@ -108,13 +124,15 @@ IndirectActivity.defaultProps = {
   HasInterests: {},
   List: {},
   defaultState: true,
-  onUpdate: (queue) => {},
-  onError: (value, arr) => { return arr },
+  onUpdate: queue => {},
+  onError: (value, arr) => {
+    return arr
+  },
   section: 'foreign',
   subsection: 'activities/indirect',
   addressBooks: {},
-  dispatch: (action) => {},
-  validator: (data) => {
+  dispatch: action => {},
+  validator: data => {
     return validate(schema('foreign.activities.indirect', data))
   },
   scrollToBottom: ''

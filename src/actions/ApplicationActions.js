@@ -3,8 +3,8 @@ import { api } from '../services'
 import schema, { unschema } from '../schema'
 import validate from '../validators'
 
-export function getApplicationState (done) {
-  return function (dispatch, getState) {
+export function getApplicationState(done) {
+  return function(dispatch, getState) {
     let locked = false
     let formData = {}
     api
@@ -27,7 +27,13 @@ export function getApplicationState (done) {
           formData = r.data
           for (const section in formData) {
             for (const subsection in formData[section]) {
-              dispatch(updateApplication(section, subsection, unschema(formData[section][subsection])))
+              dispatch(
+                updateApplication(
+                  section,
+                  subsection,
+                  unschema(formData[section][subsection])
+                )
+              )
             }
           }
         })
@@ -50,7 +56,7 @@ export function getApplicationState (done) {
   }
 }
 
-export function updateApplication (section, property, values) {
+export function updateApplication(section, property, values) {
   return {
     type: `${section}.${property}`,
     section: section,
@@ -59,7 +65,7 @@ export function updateApplication (section, property, values) {
   }
 }
 
-export function validateApplication (dispatch, application = {}) {
+export function validateApplication(dispatch, application = {}) {
   navigationWalker((path, child) => {
     if (path.length && path[0].store && child.store && child.validator) {
       const sectionName = path[0].url
@@ -82,19 +88,25 @@ export function validateApplication (dispatch, application = {}) {
         valid = null
       }
 
-      dispatch(reportCompletion(sectionName.toLowerCase(), subsectionName.toLowerCase(), valid))
+      dispatch(
+        reportCompletion(
+          sectionName.toLowerCase(),
+          subsectionName.toLowerCase(),
+          valid
+        )
+      )
     }
   })
 }
 
-// Special action which should only be called from the clearErrorsMiddleware. It provides a way to flush all errors for a section+subsection upon entry so it may be stored with the re-validated data.
-export function clearErrors (property, subsection) {
+// Special action that provides a way to flush all errors for a section+subsection upon entry so it may be stored with the re-validated data.
+export function clearErrors(property, subsection) {
   const section = 'Errors'
   return {
     type: `${section}.${property}`,
-    section: section,
-    property: property,
-    subsection: subsection,
+    section,
+    property,
+    subsection,
     clear: true
   }
 }
@@ -103,26 +115,41 @@ export function clearErrors (property, subsection) {
  * This is a generic function to report any errors for a particular
  * section.
  */
-export function reportErrors (section, subsection, codes) {
+export function reportErrors(section, subsection, codes) {
+  // set the section and subsection, in case not otherwise set
+  codes = codes.map(err => {
+    return {
+      ...err,
+      section: err.section || section,
+      subsection: err.subsection || subsection
+    }
+  })
   return updateApplication('Errors', section, codes)
 }
 
-export function reportCompletion (section, subsection, status) {
-  return updateApplication('Completed', section, [{ code: `${section}/${subsection}`.trim(), section: section, subsection: subsection, valid: status }])
+export function reportCompletion(section, subsection, status) {
+  return updateApplication('Completed', section, [
+    {
+      code: `${section}/${subsection}`.trim(),
+      section: section,
+      subsection: subsection,
+      valid: status
+    }
+  ])
 }
 
-export function updateIdentificationApplicantName (values) {
+export function updateIdentificationApplicantName(values) {
   return updateApplication('Identification', 'ApplicantName', values)
 }
 
-export function updateIdentificationBirthPlace (values) {
+export function updateIdentificationBirthPlace(values) {
   return updateApplication('Identification', 'ApplicantBirthPlace', values)
 }
 
-export function updateIdentificationBirthDate (values) {
+export function updateIdentificationBirthDate(values) {
   return updateApplication('Identification', 'ApplicantBirthDate', values)
 }
 
-export function updateIdentificationSSN (values) {
+export function updateIdentificationSSN(values) {
   return updateApplication('Identification', 'ApplicantSSN', values)
 }

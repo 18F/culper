@@ -21,18 +21,18 @@ export const renderSuggestion = (suggestion, search) => {
     if (rx.test(text)) {
       let lastIndex = rx.lastIndex
       let firstIndex = lastIndex - search.query.length
-      text = text.slice(0, lastIndex) + '**' + text.slice(lastIndex + Math.abs(0))
-      text = text.slice(0, firstIndex) + '**' + text.slice(firstIndex + Math.abs(0))
+      text =
+        text.slice(0, lastIndex) + '**' + text.slice(lastIndex + Math.abs(0))
+      text =
+        text.slice(0, firstIndex) + '**' + text.slice(firstIndex + Math.abs(0))
     }
   }
 
-  return (
-    <ReactMarkdown source={text} />
-  )
+  return <ReactMarkdown source={text} />
 }
 
 export default class Dropdown extends ValidationElement {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
@@ -48,12 +48,16 @@ export default class Dropdown extends ValidationElement {
     this.update = this.update.bind(this)
     this.handleKeyDown = this.handleKeyDown.bind(this)
     this.onSuggestionChange = this.onSuggestionChange.bind(this)
-    this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(this)
-    this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this)
+    this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(
+      this
+    )
+    this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(
+      this
+    )
     this.onSuggestionSelected = this.onSuggestionSelected.bind(this)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     if (this.props.children) {
       let arr = []
       for (let child of this.props.children) {
@@ -65,7 +69,7 @@ export default class Dropdown extends ValidationElement {
         }
       }
 
-      this.setState({options: arr}, () => {
+      this.setState({ options: arr }, () => {
         // Force validation. Particularly on first render we need to revalidate the
         // value.
         let event = {
@@ -74,7 +78,7 @@ export default class Dropdown extends ValidationElement {
             name: this.props.name,
             value: this.state.value
           },
-          persist: function () {},
+          persist: function() {},
           fake: true
         }
 
@@ -83,17 +87,25 @@ export default class Dropdown extends ValidationElement {
     }
   }
 
-  errors (value) {
-    return this.props.onError(value, this.constructor.errors.map(err => {
-      return {
-        code: err.code,
-        valid: err.func(value, {...this.props, options: this.state.options}),
-        uid: this.state.uid
-      }
-    })) || []
+  errors(value) {
+    return (
+      this.props.onError(
+        value,
+        this.constructor.errors.map(err => {
+          return {
+            code: err.code,
+            valid: err.func(value, {
+              ...this.props,
+              options: this.state.options
+            }),
+            uid: this.state.uid
+          }
+        })
+      ) || []
+    )
   }
 
-  componentWillReceiveProps (next) {
+  componentWillReceiveProps(next) {
     if (next.receiveProps) {
       let updates = {}
 
@@ -116,7 +128,7 @@ export default class Dropdown extends ValidationElement {
     }
   }
 
-  update (queue) {
+  update(queue) {
     this.props.onUpdate({
       name: this.props.name,
       value: this.props.value,
@@ -129,7 +141,7 @@ export default class Dropdown extends ValidationElement {
   /**
    * Execute validation checks on the value.
    */
-  handleValidation (event) {
+  handleValidation(event) {
     const errors = this.errors(this.state.value)
     this.setState({
       error: errors.some(x => x.valid === false),
@@ -140,7 +152,7 @@ export default class Dropdown extends ValidationElement {
   /**
    * Handle the focus event.
    */
-  handleFocus (event) {
+  handleFocus(event) {
     event.persist()
     this.setState({ focus: true }, () => {
       super.handleFocus(event)
@@ -150,7 +162,7 @@ export default class Dropdown extends ValidationElement {
   /**
    * Handle the blur event.
    */
-  handleBlur (event) {
+  handleBlur(event) {
     event.persist()
     this.setState({ focus: false }, () => {
       super.handleBlur(event)
@@ -160,18 +172,18 @@ export default class Dropdown extends ValidationElement {
   /**
    * Handle the key up event.
    */
-  handleKeyDown (event) {
+  handleKeyDown(event) {
     autotab(event, this.props.maxlength, this.props.tabBack, this.props.tabNext)
   }
 
   /**
    * Prevents clipboard events from making changes to the value of the elements
    */
-  disallowClipboard (event) {
+  disallowClipboard(event) {
     event.preventDefault()
   }
 
-  getSuggestions (value) {
+  getSuggestions(value) {
     const inputValue = value.trim().toLowerCase()
     const inputLength = inputValue.length
     let suggestions = []
@@ -216,17 +228,22 @@ export default class Dropdown extends ValidationElement {
         })
         .filter(opt => {
           return opt.text.toLowerCase().slice(0, inputLength) === inputValue
-        }))
+        })
+    )
 
     return suggestions
   }
 
-  onSuggestionChange (event, change) {
-    const option = this.state.options.filter(v => {
-      return v.text === change.newValue
-    }).shift()
+  onSuggestionChange(event, change) {
+    const option = this.state.options
+      .filter(v => {
+        return v.text === change.newValue
+      })
+      .shift()
 
-    const value = this.props.beforeChange(option ? option.value : change.newValue)
+    const value = this.props.beforeChange(
+      option ? option.value : change.newValue
+    )
     const e = {
       ...event,
       target: {
@@ -236,25 +253,25 @@ export default class Dropdown extends ValidationElement {
       }
     }
 
-    this.setState({value: value}, () => {
+    this.setState({ value: value }, () => {
       super.handleChange(e)
-      this.update({value: value})
+      this.update({ value: value })
     })
   }
 
-  onSuggestionsFetchRequested (query) {
+  onSuggestionsFetchRequested(query) {
     this.setState({
       suggestions: this.getSuggestions(query.value)
     })
   }
 
-  onSuggestionsClearRequested (value) {
+  onSuggestionsClearRequested(value) {
     this.setState({
       suggestions: []
     })
   }
 
-  onSuggestionSelected (event, options) {
+  onSuggestionSelected(event, options) {
     const value = (options.suggestion || {}).value || this.state.value
     let future = {
       focus: false,
@@ -271,21 +288,23 @@ export default class Dropdown extends ValidationElement {
       this.props.onSuggestionSelected(event, options)
       this.handleValidation(event)
       this.props.tabNext()
-      this.update({value: value})
+      this.update({ value: value })
     })
   }
 
   /**
    * Style classes applied to the wrapper.
    */
-  divClass () {
-    return `dropdown ${this.props.className || ''} ${!this.props.disabled && this.state.error ? 'usa-input-error' : ''}`.trim()
+  divClass() {
+    return `dropdown ${this.props.className || ''} ${
+      !this.props.disabled && this.state.error ? 'usa-input-error' : ''
+    }`.trim()
   }
 
   /**
    * Style classes applied to the label element.
    */
-  labelClass () {
+  labelClass() {
     if (this.props.disabled) {
       return 'disabled'
     }
@@ -296,29 +315,36 @@ export default class Dropdown extends ValidationElement {
   /**
    * Style classes applied to the input element.
    */
-  inputClass () {
+  inputClass() {
     if (this.props.disabled) {
       return null
     }
 
-    return `${this.state.focus ? 'usa-input-focus' : ''} ${this.state.valid ? 'usa-input-success' : ''}`.trim()
+    return `${this.state.focus ? 'usa-input-focus' : ''} ${
+      this.state.valid ? 'usa-input-success' : ''
+    }`.trim()
   }
 
   /**
    * Generated name for the error message.
    */
-  errorName () {
+  errorName() {
     return `${this.props.name || ''}-error`
   }
 
-  render () {
-    const option = this.state.options.filter(v => {
-      return [v.text.toLowerCase(), v.value.toLowerCase()].includes(this.state.value.toLowerCase())
-    }).shift()
+  render() {
+    const option = this.state.options
+      .filter(v => {
+        return [v.text.toLowerCase(), v.value.toLowerCase()].includes(
+          this.state.value.toLowerCase()
+        )
+      })
+      .shift()
 
-    const value = (option && !this.state.focus)
-          ? this.props.displayText(option.value, option.text)
-          : this.state.value
+    const value =
+      option && !this.state.focus
+        ? this.props.displayText(option.value, option.text)
+        : this.state.value
 
     const inputProps = {
       id: this.state.uid,
@@ -336,28 +362,33 @@ export default class Dropdown extends ValidationElement {
       onKeyDown: this.handleKeyDown,
       onCopy: this.props.clipboard ? this.props.onCopy : this.disallowClipboard,
       onCut: this.props.clipboard ? this.props.onCut : this.disallowClipboard,
-      onPaste: this.props.clipboard ? this.props.onPaste : this.disallowClipboard,
-      'aria-label': this.props.ariaLabel || this.props.label || ariaLabel(this.refs.autosuggest),
+      onPaste: this.props.clipboard
+        ? this.props.onPaste
+        : this.disallowClipboard,
+      'aria-label':
+        this.props.ariaLabel ||
+        this.props.label ||
+        ariaLabel(this.refs.autosuggest),
       'aria-describedby': this.errorName()
     }
 
     return (
       <div className={this.divClass()}>
-        <label className={this.labelClass()}
-               htmlFor={this.state.uid}>
+        <label className={this.labelClass()} htmlFor={this.state.uid}>
           {this.props.label}
         </label>
-        <Autosuggest id={this.state.uid}
-                     suggestions={this.state.suggestions}
-                     onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-                     onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-                     onSuggestionSelected={this.onSuggestionSelected}
-                     getSuggestionValue={getSuggestionValue}
-                     renderSuggestion={renderSuggestion}
-                     inputProps={inputProps}
-                     highlightFirstSuggestion={true}
-                     ref="autosuggest"
-                     />
+        <Autosuggest
+          id={this.state.uid}
+          suggestions={this.state.suggestions}
+          onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+          onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+          onSuggestionSelected={this.onSuggestionSelected}
+          getSuggestionValue={getSuggestionValue}
+          renderSuggestion={renderSuggestion}
+          inputProps={inputProps}
+          highlightFirstSuggestion={true}
+          ref="autosuggest"
+        />
       </div>
     )
   }
@@ -380,13 +411,17 @@ Dropdown.defaultProps = {
   clipboard: true,
   tabNext: () => {},
   tabBack: () => {},
-  beforeChange: (value) => { return value },
+  beforeChange: value => {
+    return value
+  },
   displayText: (value, text) => {
     return value
   },
   onSuggestionSelected: (event, options) => {},
-  onUpdate: (queue) => {},
-  onError: (value, arr) => { return arr }
+  onUpdate: queue => {},
+  onError: (value, arr) => {
+    return arr
+  }
 }
 
 Dropdown.errors = [
@@ -407,7 +442,10 @@ Dropdown.errors = [
       }
 
       return props.options.some(x => {
-        return x.text.toLowerCase() === value.toLowerCase() || x.value.toLowerCase() === value.toLowerCase()
+        return (
+          x.text.toLowerCase() === value.toLowerCase() ||
+          x.value.toLowerCase() === value.toLowerCase()
+        )
       })
     }
   }

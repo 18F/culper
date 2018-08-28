@@ -13,26 +13,43 @@ const applicationState = {
 describe('The citizenship section', () => {
   // Setup
   window.token = 'fake-token'
-  const middlewares = [ thunk ]
+  const middlewares = [thunk]
   const mockStore = configureMockStore(middlewares)
 
   it('hidden when not authenticated', () => {
     window.token = ''
-    const store = mockStore({ authentication: [], application: applicationState })
-    const component = mount(<Provider store={store}><Citizenship /></Provider>)
+    const store = mockStore({
+      authentication: [],
+      application: applicationState
+    })
+    const component = mount(
+      <Provider store={store}>
+        <Citizenship />
+      </Provider>
+    )
     expect(component.find('div').length).toEqual(0)
     window.token = 'fake-token'
   })
 
   it('visible when authenticated', () => {
-    const store = mockStore({ authentication: { authenticated: true, application: applicationState } })
-    const component = mount(<Provider store={store}><Citizenship /></Provider>)
+    const store = mockStore({
+      authentication: { authenticated: true, application: applicationState }
+    })
+    const component = mount(
+      <Provider store={store}>
+        <Citizenship />
+      </Provider>
+    )
     expect(component.find('div').length).toBeGreaterThan(0)
   })
 
   it('can review all subsections', () => {
     const store = mockStore({ authentication: { authenticated: true } })
-    const component = mount(<Provider store={store}><Citizenship subsection="review" /></Provider>)
+    const component = mount(
+      <Provider store={store}>
+        <Citizenship subsection="review" />
+      </Provider>
+    )
     expect(component.find('div').length).toBeGreaterThan(0)
   })
 
@@ -40,8 +57,12 @@ describe('The citizenship section', () => {
     const sections = ['status', 'multiple']
     const store = mockStore({ authentication: { authenticated: true } })
 
-    sections.forEach((section) => {
-      const component = mount(<Provider store={store}><Citizenship subsection={section} /></Provider>)
+    sections.forEach(section => {
+      const component = mount(
+        <Provider store={store}>
+          <Citizenship subsection={section} />
+        </Provider>
+      )
       expect(component.find('div').length).toBeGreaterThan(0)
     })
   })

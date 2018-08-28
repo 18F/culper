@@ -10,7 +10,9 @@ describe('The CoOwners component', () => {
 
   it('Performs updates', () => {
     let updates = 0
-    const onUpdate = () => { updates++ }
+    const onUpdate = () => {
+      updates++
+    }
 
     // Start with countries so we don't have to worry about simulating multi-select
     const countries = {

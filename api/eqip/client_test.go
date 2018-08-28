@@ -2,19 +2,68 @@ package eqip
 
 import (
 	"io/ioutil"
+	"log"
 	"net/http"
 	"net/http/httptest"
+	"path"
+	"strings"
 	"testing"
 )
 
-func TestImportRequestResponse(t *testing.T) {
-	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		b, err := ioutil.ReadFile("./testdata/validImportRequestResponse.xml")
+func newServer(t *testing.T, filepath string) *httptest.Server {
+	return httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		b, err := ioutil.ReadFile(path.Join("testdata", filepath))
 		if err != nil {
 			t.Fatal(err)
 		}
+		w.WriteHeader(http.StatusOK)
 		w.Write(b)
 	}))
+}
+
+func TestImportRequestTls(t *testing.T) {
+	ts := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	}))
+	defer ts.Close()
+	// Don't log TLS server errors to stderr
+	ts.Config.ErrorLog = log.New(ioutil.Discard, "", 0)
+
+	client := NewClient(ts.URL, testPrivateKeyPath)
+	importReq := ImportRequest{}
+	_, err := client.ImportRequest(&importReq)
+	if err == nil || !strings.Contains(err.Error(), "x509") {
+		t.Fatalf("Expected x509 error to be returned")
+	}
+}
+
+func TestImportRequestHttp(t *testing.T) {
+	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusInternalServerError)
+	}))
+	defer ts.Close()
+
+	client := NewClient(ts.URL, testPrivateKeyPath)
+	importReq := ImportRequest{}
+	_, err := client.ImportRequest(&importReq)
+	if err == nil || !strings.Contains(err.Error(), http.StatusText(http.StatusInternalServerError)) {
+		t.Fatalf("Expected HTTP error to be returned")
+	}
+}
+
+func TestMalformedResponse(t *testing.T) {
+	ts := newServer(t, "malformedResponse.xml")
+	defer ts.Close()
+
+	client := NewClient(ts.URL, testPrivateKeyPath)
+	importReq := ImportRequest{}
+	_, err := client.ImportRequest(&importReq)
+	if err == nil {
+		t.Fatalf("Expected SOAP parsing error to be returned")
+	}
+}
+
+func TestImportRequestResponse(t *testing.T) {
+	ts := newServer(t, "validImportRequestResponse.xml")
 	defer ts.Close()
 
 	client := NewClient(ts.URL, testPrivateKeyPath)
@@ -50,13 +99,7 @@ func TestImportRequestResponse(t *testing.T) {
 }
 
 func TestImportRequestEqipException(t *testing.T) {
-	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		b, err := ioutil.ReadFile("./testdata/eqipWSException.xml")
-		if err != nil {
-			t.Fatal(err)
-		}
-		w.Write(b)
-	}))
+	ts := newServer(t, "eqipWSException.xml")
 	defer ts.Close()
 
 	client := NewClient(ts.URL, testPrivateKeyPath)
@@ -94,13 +137,7 @@ func TestImportRequestEqipException(t *testing.T) {
 }
 
 func TestIsAlive(t *testing.T) {
-	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		b, err := ioutil.ReadFile("./testdata/isAliveResponse.xml")
-		if err != nil {
-			t.Fatal(err)
-		}
-		w.Write(b)
-	}))
+	ts := newServer(t, "isAliveResponse.xml")
 	defer ts.Close()
 
 	client := NewClient(ts.URL, testPrivateKeyPath)

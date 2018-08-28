@@ -21,7 +21,7 @@ describe('The employment activity component', () => {
     }
 
     const component = mount(<EmploymentActivity {...expected} />)
-    const selected = component.find({type: 'radio', value: 'ActiveMilitary'})
+    const selected = component.find({ type: 'radio', value: 'ActiveMilitary' })
     selected.simulate('change')
     selected.simulate('blur')
     selected.simulate('focus')
@@ -29,8 +29,10 @@ describe('The employment activity component', () => {
     expect(blur).toBe(1)
     expect(focus).toBe(1)
 
-    component.find({type: 'radio', value: 'Other'}).simulate('change')
-    component.find('textarea').simulate('change', { target: { value: 'Hello' } })
+    component.find({ type: 'radio', value: 'Other' }).simulate('change')
+    component
+      .find('textarea')
+      .simulate('change', { target: { value: 'Hello' } })
     expect(counter).toBe(3)
   })
 })

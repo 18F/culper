@@ -1,9 +1,15 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Field, DateControl, Text, Textarea } from '../../../Form'
+import {
+  ValidationElement,
+  Field,
+  DateControl,
+  Text,
+  Textarea
+} from '../../../Form'
 
 export default class RevokedItem extends ValidationElement {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.update = this.update.bind(this)
     this.updateDate = this.updateDate.bind(this)
@@ -11,7 +17,7 @@ export default class RevokedItem extends ValidationElement {
     this.updateExplanation = this.updateExplanation.bind(this)
   }
 
-  update (queue) {
+  update(queue) {
     this.props.onUpdate({
       Date: this.props.Date,
       Agency: this.props.Agency,
@@ -20,63 +26,69 @@ export default class RevokedItem extends ValidationElement {
     })
   }
 
-  updateDate (values) {
+  updateDate(values) {
     this.update({
       Date: values
     })
   }
 
-  updateAgency (values) {
+  updateAgency(values) {
     this.update({
       Agency: values
     })
   }
 
-  updateExplanation (values) {
+  updateExplanation(values) {
     this.update({
       Explanation: values
     })
   }
 
-  render () {
+  render() {
     return (
       <div>
-        <Field title={i18n.t('legal.investigations.revoked.heading.date')}
-               help="legal.investigations.revoked.help.date"
-               adjustFor="datecontrol"
-               scrollIntoView={this.props.scrollIntoView}>
-          <DateControl name="Date"
-                       {...this.props.Date}
-                       onUpdate={this.updateDate}
-                       onError={this.props.onError}
-                       className="legal-investigations-revoked-date"
-                       required={this.props.required}
-                       />
+        <Field
+          title={i18n.t('legal.investigations.revoked.heading.date')}
+          help="legal.investigations.revoked.help.date"
+          adjustFor="datecontrol"
+          scrollIntoView={this.props.scrollIntoView}>
+          <DateControl
+            name="Date"
+            {...this.props.Date}
+            onUpdate={this.updateDate}
+            onError={this.props.onError}
+            className="legal-investigations-revoked-date"
+            required={this.props.required}
+          />
         </Field>
 
-        <Field title={i18n.t('legal.investigations.revoked.heading.agency')}
-               adjustFor="text"
-               scrollIntoView={this.props.scrollIntoView}>
-          <Text name="Agency"
-                {...this.props.Agency}
-                onUpdate={this.updateAgency}
-                onError={this.props.onError}
-                className="legal-investigations-revoked-agency"
-                required={this.props.required}
-                />
+        <Field
+          title={i18n.t('legal.investigations.revoked.heading.agency')}
+          adjustFor="text"
+          scrollIntoView={this.props.scrollIntoView}>
+          <Text
+            name="Agency"
+            {...this.props.Agency}
+            onUpdate={this.updateAgency}
+            onError={this.props.onError}
+            className="legal-investigations-revoked-agency"
+            required={this.props.required}
+          />
         </Field>
 
-        <Field title={i18n.t('legal.investigations.revoked.heading.explanation')}
-               help="legal.investigations.revoked.help.explanation"
-               adjustFor="textarea"
-               scrollIntoView={this.props.scrollIntoView}>
-          <Textarea name="Explanation"
-                    {...this.props.Explanation}
-                    onUpdate={this.updateExplanation}
-                    onError={this.props.onError}
-                    className="legal-investigations-revoked-explanation"
-                    required={this.props.required}
-                    />
+        <Field
+          title={i18n.t('legal.investigations.revoked.heading.explanation')}
+          help="legal.investigations.revoked.help.explanation"
+          adjustFor="textarea"
+          scrollIntoView={this.props.scrollIntoView}>
+          <Textarea
+            name="Explanation"
+            {...this.props.Explanation}
+            onUpdate={this.updateExplanation}
+            onError={this.props.onError}
+            className="legal-investigations-revoked-explanation"
+            required={this.props.required}
+          />
         </Field>
       </div>
     )
@@ -84,6 +96,8 @@ export default class RevokedItem extends ValidationElement {
 }
 
 RevokedItem.defaultProps = {
-  onUpdate: (queue) => {},
-  onError: (value, arr) => { return arr }
+  onUpdate: queue => {},
+  onError: (value, arr) => {
+    return arr
+  }
 }

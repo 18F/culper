@@ -7,20 +7,22 @@ describe('Schema for financial taxes', () => {
       HasFederalService: { value: 'Yes' },
       List: {
         branch: { value: 'No' },
-        items: [{
-          Item: {
-            Dates: {
-              from: {},
-              to: {},
-              present: null
-            },
-            Name: {},
-            Position: {},
-            Address: {
-              country: null
+        items: [
+          {
+            Item: {
+              Dates: {
+                from: {},
+                to: {},
+                present: null
+              },
+              Name: {},
+              Position: {},
+              Address: {
+                country: null
+              }
             }
           }
-        }]
+        ]
       }
     }
 

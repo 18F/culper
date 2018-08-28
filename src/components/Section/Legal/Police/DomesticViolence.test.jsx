@@ -17,7 +17,9 @@ describe('The DomesticViolence  component', () => {
     let updates = 0
     const expected = {
       name: 'sentence',
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
     const component = mount(<DomesticViolence {...expected} />)
 

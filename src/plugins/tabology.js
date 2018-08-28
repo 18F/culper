@@ -31,14 +31,14 @@ const tabology = () => {
 
   const modalElements = document.querySelectorAll(modalFocusable.join(', '))
   for (const mel of modalElements) {
-    mel.dataset.modal = true
+    mel.setAttribute('data-modal', true)
   }
 
   const elements = document.querySelectorAll(focusable.join(', '))
   if (tabable) {
     for (const tel of elements) {
       // Skip items found in the modal
-      if (tel.dataset.modal) {
+      if (tel.getAttribute('data-modal')) {
         continue
       }
 
@@ -51,14 +51,17 @@ const tabology = () => {
   } else {
     for (const utel of elements) {
       // Skip items found in the modal
-      if (utel.dataset.modal) {
+      if (utel.getAttribute('data-modal')) {
         continue
       }
 
       // Store the origina `tabindex` value if
       //  - one was present
       //  - it has not been previously stored
-      if (utel.hasAttribute('tabindex') && `${utel.dataset.tabindex || ''}`.length !== 0) {
+      if (
+        utel.hasAttribute('tabindex') &&
+        `${utel.dataset.tabindex || ''}`.length !== 0
+      ) {
         utel.dataset.tabindex = utel.getAttribute('tabindex') || ''
       }
 

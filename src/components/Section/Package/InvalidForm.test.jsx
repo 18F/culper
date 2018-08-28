@@ -6,7 +6,7 @@ import InvalidForm from './InvalidForm'
 describe('The Invalid form submission component', () => {
   it('renders errors', () => {
     const expected = {
-      'Identification': {
+      Identification: {
         errors: 1,
         section: {
           title: 'Identification',
@@ -19,13 +19,19 @@ describe('The Invalid form submission component', () => {
             }
           ]
         },
-        subsections: [{
-          name: 'Full name',
-          url: 'name'
-        }]
+        subsections: [
+          {
+            name: 'Full name',
+            url: 'name'
+          }
+        ]
       }
     }
-    const component = mount(<MemoryRouter><InvalidForm {...expected} /></MemoryRouter>)
+    const component = mount(
+      <MemoryRouter>
+        <InvalidForm {...expected} />
+      </MemoryRouter>
+    )
     expect(component.find('.invalid-form').length).toBe(1)
   })
 })

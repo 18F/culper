@@ -1,9 +1,13 @@
-import { validGenericTextfield, validGenericMonthYear, validNotApplicable } from './helpers'
+import {
+  validGenericTextfield,
+  validGenericMonthYear,
+  validNotApplicable
+} from './helpers'
 import ForeignCoOwnersValidator from './foreigncoowner'
 import LocationValidator from './location'
 
 export default class ForeignRealEstateInterestValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     data = data || {}
     this.interestTypes = (data.InterestTypes || {}).values || []
     this.realEstateType = data.RealEstateType || {}
@@ -16,42 +20,43 @@ export default class ForeignRealEstateInterestValidator {
     this.coOwners = data.CoOwners || {}
   }
 
-  validInterestTypes () {
+  validInterestTypes() {
     return !!(this.interestTypes && this.interestTypes.length)
   }
 
-  validRealEstateType () {
+  validRealEstateType() {
     return validGenericTextfield(this.realEstateType)
   }
 
-  validAddress () {
+  validAddress() {
     return new LocationValidator(this.address).isValid()
   }
 
-  validAcquired () {
+  validAcquired() {
     return validGenericMonthYear(this.acquired)
   }
 
-  validHowAcquired () {
+  validHowAcquired() {
     return validGenericTextfield(this.howAcquired)
   }
 
-  validCost () {
+  validCost() {
     return validGenericTextfield(this.cost)
   }
 
-  validSoldNotApplicable () {
+  validSoldNotApplicable() {
     return validNotApplicable(this.soldNotApplicable, () => {
       return validGenericMonthYear(this.sold)
     })
   }
 
-  validCoOwners () {
+  validCoOwners() {
     return new ForeignCoOwnersValidator(this.coOwners).isValid()
   }
 
-  isValid () {
-    return this.validInterestTypes() &&
+  isValid() {
+    return (
+      this.validInterestTypes() &&
       this.validRealEstateType() &&
       this.validAddress() &&
       this.validAcquired() &&
@@ -59,5 +64,6 @@ export default class ForeignRealEstateInterestValidator {
       this.validCost() &&
       this.validSoldNotApplicable() &&
       this.validCoOwners()
+    )
   }
 }

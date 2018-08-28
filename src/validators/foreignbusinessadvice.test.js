@@ -1,7 +1,9 @@
-import ForeignBusinessAdviceValidator, { AdviceValidator } from './foreignbusinessadvice'
+import ForeignBusinessAdviceValidator, {
+  AdviceValidator
+} from './foreignbusinessadvice'
 import { battery } from './helpers'
 
-describe('Foreign business advice component validation', function () {
+describe('Foreign business advice component validation', function() {
   it('validate foreign business advice description', () => {
     const tests = [
       {

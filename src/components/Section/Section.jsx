@@ -1,6 +1,5 @@
 import React from 'react'
 import { withRouter } from 'react-router'
-import AuthenticatedView from '../../views/AuthenticatedView'
 import Identification from './Identification'
 import Financial from './Financial'
 import Relationships from './Relationships'
@@ -10,66 +9,67 @@ import Military from './Military'
 import History from './History'
 import Legal from './Legal'
 import Psychological from './Psychological'
-import SubstanceUse from './SubstanceUse'
+import Substance from './SubstanceUse'
 import Package from './Package'
 import { SectionViews, SectionView } from './SectionView'
+import navigation from '../../config/navigation'
+import { getComponentByName } from './generators'
+
+const storeToComponentMap = {
+  Identification,
+  Financial,
+  Relationships,
+  Citizenship,
+  Foreign,
+  Military,
+  History,
+  Legal,
+  Psychological,
+  Substance,
+  Package
+}
 
 class Section extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.update = this.update.bind(this)
   }
 
   // TODO: See if this is necessary. Removing this makes the first section not expand in navigation ATM.
-  componentDidMount () {
+  componentDidMount() {
     this.update(this.props)
   }
 
-  update (props) {
+  update(props) {
     const subsection = props.subsection || 'intro'
     const path = `/form/${props.section}/${subsection}`
     this.props.history.push(path)
   }
 
-  render () {
-    return (
-      <SectionViews current={this.props.section} dispatch={this.props.dispatch}>
-        <SectionView name="identification">
-          <Identification subsection={this.props.subsection} update={this.update} />
+  getComponent(section) {
+    // workaround for the fact that the Package section doesn't have an associated store
+    const name = section.url === 'package' ? 'Package' : section.store
+    return getComponentByName(storeToComponentMap, name)
+  }
+
+  createSections() {
+    return navigation.map(section => {
+      const SectionComponent = this.getComponent(section)
+      return (
+        <SectionView key={section.url} name={section.url}>
+          <SectionComponent
+            subsection={this.props.subsection}
+            update={this.update}
+          />
         </SectionView>
-        <SectionView name="financial">
-          <Financial subsection={this.props.subsection} update={this.update} />
-        </SectionView>
-        <SectionView name="relationships">
-          <Relationships subsection={this.props.subsection} update={this.update} />
-        </SectionView>
-        <SectionView name="citizenship">
-          <Citizenship subsection={this.props.subsection} update={this.update} />
-        </SectionView>
-        <SectionView name="military">
-          <Military subsection={this.props.subsection} update={this.update} />
-        </SectionView>
-        <SectionView name="history">
-          <History subsection={this.props.subsection} update={this.update} />
-        </SectionView>
-        <SectionView name="foreign">
-          <Foreign subsection={this.props.subsection} update={this.update} />
-        </SectionView>
-        <SectionView name="legal">
-          <Legal subsection={this.props.subsection} update={this.update} />
-        </SectionView>
-        <SectionView name="psychological">
-          <Psychological subsection={this.props.subsection} update={this.update} />
-        </SectionView>
-        <SectionView name="substance">
-          <SubstanceUse subsection={this.props.subsection} update={this.update} />
-        </SectionView>
-        <SectionView name="package">
-          <Package subsection={this.props.subsection} update={this.update} />
-        </SectionView>
-      </SectionViews>
-    )
+      )
+    })
+  }
+
+  render() {
+    const sections = this.createSections()
+    return <SectionViews current={this.props.section}>{sections}</SectionViews>
   }
 }
 
-export default withRouter(AuthenticatedView(Section))
+export default withRouter(Section)

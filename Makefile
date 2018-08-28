@@ -86,9 +86,21 @@ specs:
 #
 # Coverage
 #
-coverage:
-	$(info Running code coverage)
-	@docker-compose run --rm js yarn coverage
+.PHONY: coverage
+# Run coverage-go first – it removes its backend coverage data
+# afterwards, so coverage-js will not label its report data as
+# belonging to the frontend.
+coverage: coverage-go coverage-js
+coverage-js:
+	$(info Running code coverage for JS)
+	@docker-compose run --rm \
+        -e "CODECOV_TOKEN=${CODECOV_TOKEN}" \
+        js yarn coverage
+coverage-go:
+	$(info Running code coverage for Go)
+	@docker-compose run --rm \
+        -e "CODECOV_TOKEN=${CODECOV_TOKEN}" \
+        api make coverage
 
 #
 # Building
@@ -220,6 +232,7 @@ start:
 stop:
 	docker-compose stop
 run:
+	docker-compose rm -f api css js
 	$(info Running local development server)
 	docker-compose up --abort-on-container-exit --build
 identity:

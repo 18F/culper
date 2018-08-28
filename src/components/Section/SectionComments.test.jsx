@@ -16,12 +16,14 @@ describe('Section comments', () => {
     let comments = ''
     const props = {
       title: 'Test section comments',
-      onUpdate: (queue) => {
+      onUpdate: queue => {
         comments = queue.Comments.value
       }
     }
     const component = mount(<SectionComments {...props} />)
-    component.find('.section-comment input').simulate('change', { target: { value: 'no comment' } })
+    component
+      .find('.section-comment input')
+      .simulate('change', { target: { value: 'no comment' } })
     expect(comments).toBe('no comment')
   })
 

@@ -8,17 +8,19 @@ export const psychologicalCompetence = (data = {}) => {
         CourtAddress: form.location(xitem.CourtAddress),
         CourtName: form.text(xitem.CourtName),
         Occurred: form.datecontrol(xitem.Occurred),
-        Appeals: form.collection(((xitem.Appeals || {}).items || []).map(y => {
-          const yitem = y.Item || {}
-          return {
-            Item: {
-              Has: form.branch(yitem.Has),
-              CourtName: form.text(yitem.CourtName),
-              CourtAddress: form.location(yitem.CourtAddress),
-              Disposition: form.text(yitem.Disposition)
+        Appeals: form.collection(
+          ((xitem.Appeals || {}).items || []).map(y => {
+            const yitem = y.Item || {}
+            return {
+              Item: {
+                Has: form.branch(yitem.Has),
+                CourtName: form.text(yitem.CourtName),
+                CourtAddress: form.location(yitem.CourtAddress),
+                Disposition: form.text(yitem.Disposition)
+              }
             }
-          }
-        }))
+          })
+        )
       }
     }
   })

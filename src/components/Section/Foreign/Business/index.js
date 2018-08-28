@@ -7,4 +7,14 @@ import Contact from './Contact'
 import Sponsorship from './Sponsorship'
 import Political from './Political'
 import Voting from './Voting'
-export { Advice, Family, Employment, Ventures, Conferences, Contact, Sponsorship, Political, Voting }
+export {
+  Advice,
+  Family,
+  Employment,
+  Ventures,
+  Conferences,
+  Contact,
+  Sponsorship,
+  Political,
+  Voting
+}

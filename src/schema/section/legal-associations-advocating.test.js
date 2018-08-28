@@ -7,16 +7,18 @@ describe('Schema for financial taxes', () => {
       HasAdvocated: { value: 'Yes' },
       List: {
         branch: { value: 'No' },
-        items: [{
-          Item: {
-            Reasons: {},
-            Dates: {
-              from: {},
-              to: {},
-              present: null
+        items: [
+          {
+            Item: {
+              Reasons: {},
+              Dates: {
+                from: {},
+                to: {},
+                present: null
+              }
             }
           }
-        }]
+        ]
       }
     }
 

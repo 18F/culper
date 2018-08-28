@@ -1,29 +1,33 @@
 import NameValidator from './name'
-import { validAccordion, validGenericTextfield, validDateField } from './helpers'
+import {
+  validAccordion,
+  validGenericTextfield,
+  validDateField
+} from './helpers'
 
 export default class ForeignBusinessFamilyValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.hasForeignFamily = (data.HasForeignFamily || {}).value
     this.list = data.List || {}
   }
 
-  validList () {
+  validList() {
     if (this.hasForeignFamily === 'No') {
       return true
     }
 
-    return validAccordion(this.list, (item) => {
+    return validAccordion(this.list, item => {
       return new FamilyValidator(item).isValid()
     })
   }
 
-  isValid () {
+  isValid() {
     return this.validList()
   }
 }
 
 export class FamilyValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.name = data.Name
     this.agency = data.Agency
     this.country = data.Country
@@ -31,31 +35,33 @@ export class FamilyValidator {
     this.circumstances = data.Circumstances
   }
 
-  validName () {
+  validName() {
     return !!this.name && new NameValidator(this.name).isValid()
   }
 
-  validAgency () {
+  validAgency() {
     return !!this.agency && validGenericTextfield(this.agency)
   }
 
-  validCountry () {
+  validCountry() {
     return !!this.country && validGenericTextfield(this.country)
   }
 
-  validDate () {
+  validDate() {
     return !!this.date && validDateField(this.date)
   }
 
-  validCircumstances () {
+  validCircumstances() {
     return !!this.circumstances && validGenericTextfield(this.circumstances)
   }
 
-  isValid () {
-    return this.validName() &&
+  isValid() {
+    return (
+      this.validName() &&
       this.validAgency() &&
       this.validCountry() &&
       this.validDate() &&
       this.validCircumstances()
+    )
   }
 }

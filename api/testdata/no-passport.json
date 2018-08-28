@@ -1,0 +1,61 @@
+{
+  "type": "foreign.passport",
+  "props": {
+    "HasPassports": {
+      "type": "branch",
+      "props": {
+        "value": "No"
+      }
+    },
+    "Name": {
+      "type": "name",
+      "props": {
+        "first": "",
+        "firstInitialOnly": false,
+        "middle": "",
+        "middleInitialOnly": false,
+        "noMiddleName": false,
+        "last": "",
+        "lastInitialOnly": false,
+        "suffix": "",
+        "suffixOther": ""
+      }
+    },
+    "Card": {
+      "type": "radio",
+      "props": {
+        "value": "Book"
+      }
+    },
+    "Number": {
+      "type": "text",
+      "props": {
+        "value": ""
+      }
+    },
+    "Issued": {
+      "type": "datecontrol",
+      "props": {
+        "month": "",
+        "day": "",
+        "year": "",
+        "estimated": false
+      }
+    },
+    "Expiration": {
+      "type": "datecontrol",
+      "props": {
+        "month": "",
+        "day": "",
+        "year": "",
+        "estimated": false
+      }
+    },
+    "Comments": {
+      "type": "textarea",
+      "props": {
+        "value": ""
+      }
+    }
+  }
+}

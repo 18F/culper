@@ -1,8 +1,11 @@
-import CitizenshipPassportsValidator, { PassportItemValidator, TravelItemValidator } from './citizenship-passports'
+import CitizenshipPassportsValidator, {
+  PassportItemValidator,
+  TravelItemValidator
+} from './citizenship-passports'
 import { battery } from './helpers'
 import Location from '../components/Form/Location'
 
-describe('citizenship multiple component validation', function () {
+describe('citizenship multiple component validation', function() {
   it('can validate multiple passports', () => {
     const tests = [
       {

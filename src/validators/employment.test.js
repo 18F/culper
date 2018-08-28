@@ -1,8 +1,8 @@
 import HistoryEmploymentValidator, { EmploymentValidator } from './employment'
 import Location from '../components/Form/Location'
 
-describe('Employment component validation', function () {
-  it('should validate active military, national guard and USPHS', function () {
+describe('Employment component validation', function() {
+  it('should validate active military, national guard and USPHS', function() {
     const tests = [
       {
         data: {
@@ -235,7 +235,7 @@ describe('Employment component validation', function () {
     })
   })
 
-  it('should validate federal employment, state government, federal contractor, non-government and other', function () {
+  it('should validate federal employment, state government, federal contractor, non-government and other', function() {
     const tests = [
       {
         data: {
@@ -521,7 +521,7 @@ describe('Employment component validation', function () {
     })
   })
 
-  it('should validate self employment', function () {
+  it('should validate self employment', function() {
     const tests = [
       {
         data: {
@@ -653,7 +653,7 @@ describe('Employment component validation', function () {
     })
   })
 
-  it('should validate unemployment', function () {
+  it('should validate unemployment', function() {
     const tests = [
       {
         data: {
@@ -723,7 +723,7 @@ describe('Employment component validation', function () {
     })
   })
 
-  it('should validate additional activity', function () {
+  it('should validate additional activity', function() {
     const tests = [
       {
         data: {
@@ -858,7 +858,9 @@ describe('Employment component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new EmploymentValidator(test.data).validAdditionalActivity()).toBe(test.expected)
+      expect(new EmploymentValidator(test.data).validAdditionalActivity()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -908,7 +910,9 @@ describe('Employment component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new EmploymentValidator(test.data).validPhysicalAddress()).toBe(test.expected)
+      expect(new EmploymentValidator(test.data).validPhysicalAddress()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -933,7 +937,9 @@ describe('Employment component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new EmploymentValidator(test.data).validAddress()).toBe(test.expected)
+      expect(new EmploymentValidator(test.data).validAddress()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -961,7 +967,9 @@ describe('Employment component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new EmploymentValidator(test.data).validTitle()).toBe(test.expected)
+      expect(new EmploymentValidator(test.data).validTitle()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -981,7 +989,9 @@ describe('Employment component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new EmploymentValidator(test.data).validStatus()).toBe(test.expected)
+      expect(new EmploymentValidator(test.data).validStatus()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -1002,7 +1012,9 @@ describe('Employment component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new EmploymentValidator(test.data).validTelephone()).toBe(test.expected)
+      expect(new EmploymentValidator(test.data).validTelephone()).toBe(
+        test.expected
+      )
     })
   })
   it('can validate supervisor', () => {
@@ -1044,7 +1056,9 @@ describe('Employment component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new EmploymentValidator(test.data).validSupervisor()).toBe(test.expected)
+      expect(new EmploymentValidator(test.data).validSupervisor()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -1305,7 +1319,9 @@ describe('Employment component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new EmploymentValidator(test.data).validReasonLeft()).toBe(test.expected)
+      expect(new EmploymentValidator(test.data).validReasonLeft()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -1376,8 +1392,7 @@ describe('Employment component validation', function () {
           EmploymentActivity: {
             value: 'ActiveMilitary'
           },
-          Reprimand: {
-          }
+          Reprimand: {}
         },
         expected: false
       },
@@ -1496,7 +1511,9 @@ describe('Employment component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new EmploymentValidator(test.data).validReprimand()).toBe(test.expected)
+      expect(new EmploymentValidator(test.data).validReprimand()).toBe(
+        test.expected
+      )
     })
   })
 
@@ -1678,7 +1695,9 @@ describe('Employment component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new HistoryEmploymentValidator(test.data).isValid()).toBe(test.expected)
+      expect(new HistoryEmploymentValidator(test.data).isValid()).toBe(
+        test.expected
+      )
     })
   })
 })

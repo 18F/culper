@@ -15,14 +15,16 @@ describe('The reprimand component', () => {
     let updates = 0
     const expected = {
       name: 'bad_dog',
-      items: [{ Item: {Has: { value: 'Yes' }}}],
+      items: [{ Item: { Has: { value: 'Yes' } } }],
       onUpdate: () => {
         updates++
       }
     }
     const component = mount(<Reprimand {...expected} />)
-    component.find({name: 'Text'}).simulate('change')
-    component.find({name: 'month'}).simulate('change', {target: { value: '1' }})
+    component.find({ name: 'Text' }).simulate('change')
+    component
+      .find({ name: 'month' })
+      .simulate('change', { target: { value: '1' } })
     expect(updates).toBe(2)
   })
 

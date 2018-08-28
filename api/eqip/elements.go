@@ -20,9 +20,14 @@ type ImportRequest struct {
 	Content       Base64Content
 }
 
+// When processing templates, indicates that execution should stop immediately.
+const missingKeyIsError = "missingkey=error"
+const missingKeyIsEmpty = "missingkey=zero"
+
 // XML returns an xml representation of an ImportRequest
 func (a ImportRequest) XML() string {
-	tmpl := template.Must(template.New("import-request.xml").Parse(importRequestTemplate))
+	tmpl := template.Must(template.New("import-request.xml").
+		Option(missingKeyIsError).Parse(importRequestTemplate))
 	var output bytes.Buffer
 	err := tmpl.Execute(&output, a)
 	if err != nil {
@@ -92,7 +97,8 @@ type UserTemplate string
 
 // Load will use the application data in the user template.
 func (t *UserTemplate) Load(app map[string]interface{}) error {
-	tmpl := template.Must(template.New("user.xml").Parse(userTemplate))
+	tmpl := template.Must(template.New("user.xml").
+		Option(missingKeyIsEmpty).Parse(userTemplate))
 	var output bytes.Buffer
 	if err := tmpl.Execute(&output, app); err != nil {
 		return err
@@ -125,7 +131,8 @@ func (b *Base64Content) Compress(content string) error {
 
 // NewSOAPEnvelopeTemplate populates the envelope element for a SOAP request
 func NewSOAPEnvelopeTemplate(action RequestBody, unsigned, signed string) (io.Reader, error) {
-	tmpl := template.Must(template.New("envelope.xml").Parse(envelopeTemplate))
+	tmpl := template.Must(template.New("envelope.xml").
+		Option(missingKeyIsError).Parse(envelopeTemplate))
 	var output bytes.Buffer
 	err := tmpl.Execute(&output, struct {
 		RequestBody RequestBody
@@ -257,7 +264,8 @@ type IsAlive struct{}
 
 // XML returns the xml representation of IsAlive
 func (a IsAlive) XML() string {
-	tmpl := template.Must(template.New("is-alive.xml").Parse(isAliveTemplate))
+	tmpl := template.Must(template.New("is-alive.xml").
+		Option(missingKeyIsError).Parse(isAliveTemplate))
 	var output bytes.Buffer
 	err := tmpl.Execute(&output, nil)
 	if err != nil {

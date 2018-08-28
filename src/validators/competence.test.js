@@ -1,7 +1,7 @@
 import CompetenceValidator from './competence'
 import Location from '../components/Form/Location'
 
-describe('Competence validation', function () {
+describe('Competence validation', function() {
   it('validates competence', () => {
     const tests = [
       {

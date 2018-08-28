@@ -1,7 +1,7 @@
 import { extractApplicantBirthdate } from './extractors'
 
-describe('Extractors', function () {
-  it('should return a date', function () {
+describe('Extractors', function() {
+  it('should return a date', function() {
     const tests = [
       {
         state: {

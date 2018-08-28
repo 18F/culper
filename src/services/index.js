@@ -1,2 +1,2 @@
-import { api, getQueryValue, getCookieValue, deleteCookie } from './api'
-export { api, getQueryValue, getCookieValue, deleteCookie }
+import { api, getQueryValue, deleteCookie } from './api'
+export { api, getQueryValue, deleteCookie }

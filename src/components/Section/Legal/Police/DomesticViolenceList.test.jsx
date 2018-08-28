@@ -18,7 +18,9 @@ describe('The DomesticViolenceList  component', () => {
     let updates = 0
     const expected = {
       name: 'sentence',
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
     const component = mount(<DomesticViolenceList {...expected} />)
     component.find('.has-domestic-violence .yes input').simulate('change')

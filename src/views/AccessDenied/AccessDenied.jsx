@@ -3,12 +3,15 @@ import { connect } from 'react-redux'
 import { i18n } from '../../config'
 
 class AccessDenied extends React.Component {
-  render () {
+  render() {
     return (
       <div className="login eapp-core" id="login">
         <div id="seal-header" className="seal-header text-center">
           <div className="content">
-            <img src="/img/US-OfficeOfPersonnelManagement-Seal.svg" alt="U.S. Office of Personnel Management" />
+            <img
+              src="/img/US-OfficeOfPersonnelManagement-Seal.svg"
+              alt="U.S. Office of Personnel Management"
+            />
             <h2>{i18n.t('login.title')}</h2>
           </div>
         </div>
@@ -36,7 +39,7 @@ AccessDenied.defaultProps = {}
  * to the authentication reducer. When actions are dispatched, this
  * method is executed which causes a re-render.
  */
-function mapStateToProps (state) {
+function mapStateToProps(state) {
   return {}
 }
 

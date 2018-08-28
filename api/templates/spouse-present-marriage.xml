@@ -27,17 +27,20 @@
         {{ location $Item.BirthPlace }}
       </Place>
     </Birth>
-    {{with $foreignBornDocument := $Item.ForeignBornDocument.props}}
+    {{- with $doc := $Item.ForeignBornDocument.props}}
+    {{- if text $doc.DocumentType | ne ""}}
     <Citizenship>
       <ProofOfStatus>
         <Comment></Comment>
-        <DocumentExpiration Type="{{dateEstimated $foreignBornDocument.DocumentExpiration}}">{{date $foreignBornDocument.DocumentExpiration}}</DocumentExpiration>
-        <DocumentNumber>{{text $foreignBornDocument.DocumentNumber}}</DocumentNumber>
-        <Type>{{text $foreignBornDocument.DocumentType}}</Type>
-        <TypeOtherExplanation>{{text $foreignBornDocument.OtherExplanation}}</TypeOtherExplanation>
+        <DocumentExpiration Type="{{dateEstimated $doc.DocumentExpiration}}">{{date $doc.DocumentExpiration}}</DocumentExpiration>
+        <DocumentNumber>{{text $doc.DocumentNumber}}</DocumentNumber>
+        <Type>{{text $doc.DocumentType | foreignDocType}}</Type>
+        <TypeOtherExplanation>{{text $doc.OtherExplanation}}</TypeOtherExplanation>
       </ProofOfStatus>
     </Citizenship>
-    {{end}}
+    {{- end}}
+    {{- end}}
+
     <ContinueComment></ContinueComment>
     <CountriesOfCitizenship>
       {{range $cindex, $country := $Item.Citizenship.props.value}}
@@ -56,7 +59,6 @@
         {{date $Item.EnteredCivilUnion}}
       </Date>
       <Place>
-        {{$Item.Location}}
         {{location $Item.Location}}
       </Place>
     </Marriage>
@@ -66,6 +68,7 @@
     <OtherNamesUsed>
       {{range $oindex, $othername := $Item.OtherNames.props.items}}
       {{with $other := $othername.Item}}
+      {{- if branch $other.Has | eq "Yes"}}
       <OtherName ID="{{$oindex}}">
         {{daterange $other.DatesUsed}}
         <LegalName>
@@ -73,6 +76,7 @@
         </LegalName>
         <Maiden>{{if branch $other.MaidenName | eq "Yes"}}True{{else}}False{{end}}</Maiden>
       </OtherName>
+      {{end}}
       {{end}}
       {{end}}
     </OtherNamesUsed>

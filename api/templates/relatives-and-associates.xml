@@ -55,6 +55,8 @@
     {{range $index, $item := .props.List.props.items}}
     {{with $Item := $item.Item}}
     <Relative ID="{{$index}}">
+      {{- $deceased := eq (branch $Item.IsDeceased) "Yes" }}
+      {{if not $deceased }}
       {{if locationIsPostOffice $Item.Address}}
       <APOFPO>
         <Address>{{location $Item.Address}}</Address>
@@ -66,6 +68,8 @@
       <Address>{{location $Item.Address}}</Address>
       {{end}}
       <AddressComment></AddressComment>
+      {{end}}
+
       <Birth>
         <Date Type="{{dateEstimated $Item.Birthdate}}">
           {{ date $Item.Birthdate }}
@@ -75,14 +79,15 @@
       {{- $birthCountry := $Item.Birthplace.props.country }}
       {{- $foreignPOB := ne $birthCountry "United States" }}
       {{- $usCitizen := citizenshipHas $Item.Citizenship "United States" }}
-      {{- $deceased := eq (branch $Item.IsDeceased) "Yes" }}
-      {{- $usAddress := eq $Item.Address.props.country "United States" }}
+      {{- $usAddress := addressIn $Item.Address "United States" }}
 
-      {{- if or (and $usCitizen $foreignPOB $deceased) (and $usAddress $foreignPOB $usAddress) (and $foreignPOB $usCitizen) }}
+      {{- if or (and $usCitizen $foreignPOB $deceased) (and $usCitizen $foreignPOB $usAddress) (and $usAddress (not $usCitizen) (not $deceased)) }}
       <Citizenship>
         <ProofOfStatus>
           <Comment></Comment>
-          <DocumentExpiration Type="{{dateEstimated $Item.Expiration}}">{{date $Item.Explanation}}</DocumentExpiration>
+          {{- if $Item.Expiration.props.month }}
+          <DocumentExpiration Type="{{dateEstimated $Item.Expiration}}">{{date $Item.Expiration}}</DocumentExpiration>
+          {{end}}
           <DocumentNumber>{{text $Item.DocumentNumber}}</DocumentNumber>
           <NaturalizedCertificate>
             <Court>
@@ -90,7 +95,7 @@
               <Name>{{text $Item.CourtName}}</Name>
             </Court>
           </NaturalizedCertificate>
-          <Type>{{text $Item.Document}}</Type>
+          <Type>{{text $Item.Document | relativeForeignDocType}}</Type>
           <TypeOtherExplanation>{{text $Item.DocumentComments}}</TypeOtherExplanation>
         </ProofOfStatus>
       </Citizenship>
@@ -168,6 +173,8 @@
           </FullName>
         </MothersMaidenName>
         {{end}}
+        {{with $rtype := text $Item.Relation | relationshipType}}
+        {{if or (eq $rtype "02Father") (eq $rtype "06Child") (eq $rtype "07Stepchild") (eq $rtype "08Brother") (eq $rtype "09Sister") (eq $rtype "12HalfBrother") (eq $rtype "13HalfSister") (eq $rtype "10Stepbrother") (eq $rtype "11Stepsister") (eq $rtype "03Stepmother") (eq $rtype "04Stepfather") (eq $rtype "01Mother")}}
         <OtherNamesUsed>
           <Answer>{{branchcollectionHas $Item.Aliases}}</Answer>
           <AnswerComment></AnswerComment>
@@ -194,6 +201,8 @@
           <SummaryComment></SummaryComment>
           {{end}}
         </OtherNamesUsed>
+        {{end}}
+        {{end}}
         <Type>{{text $Item.Relation | relationshipType}}</Type>
       </Relative>
       {{end}}

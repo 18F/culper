@@ -1,0 +1,11 @@
+{
+  "type": "location",
+  "props": {
+    "layout": "Address",
+    "street": "110 Main ST.",
+    "city": "Monterey",
+    "state": "CA",
+    "zipcode": "93940",
+    "country": "United States"
+  }
+}

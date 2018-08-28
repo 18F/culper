@@ -6,7 +6,9 @@ describe('The Valid form submission component', () => {
   it('renders releases', () => {
     let updates = 0
     const expected = {
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
     const component = mount(<ValidForm {...expected} />)
     expect(component.find('.valid-form').length).toBe(1)
@@ -17,7 +19,9 @@ describe('The Valid form submission component', () => {
   it('renders releases with hippa ', () => {
     let updates = 0
     const expected = {
-      onUpdate: () => { updates++ },
+      onUpdate: () => {
+        updates++
+      },
       hideHippa: false
     }
     const component = mount(<ValidForm {...expected} />)

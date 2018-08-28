@@ -8,10 +8,10 @@ $breakpoints: (
   1123px: 0.36,
   1060px: 0.46,
   1000px: 0.08,
-  800px:  0.08,
-  730px:  0.36,
-  600px:  0.62,
-  452px:  0.76
+  800px: 0.08,
+  730px: 0.36,
+  600px: 0.62,
+  452px: 0.76
 );
 
 @mixin truncate-at($width) {
@@ -159,14 +159,15 @@ $breakpoints: (
     display: table;
     width: 100%;
 
-    .left, .right {
+    .left,
+    .right {
       display: table-cell;
       position: relative;
       cursor: pointer;
       text-decoration: none;
       overflow: hidden;
       vertical-align: top;
-      transition: box-shadow .3s, color .3s;
+      transition: box-shadow 0.3s, color 0.3s;
       box-shadow: 0 0 0 0 rgba(32, 84, 146, 0.6);
 
       &:hover {
@@ -215,7 +216,7 @@ $breakpoints: (
       }
 
       // All but the first anchor
-      > a:nth-child(n+2) {
+      > a:nth-child(n + 2) {
         display: block;
         line-height: 1.8rem;
         padding-bottom: 3rem;
@@ -320,7 +321,8 @@ $breakpoints: (
     }
   }
 
-  .details.open, .details.close {
+  .details.open,
+  .details.close {
     &.animate {
       animation-duration: 0.5s;
       animation-fill-mode: forwards;

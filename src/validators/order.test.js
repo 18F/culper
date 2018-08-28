@@ -1,7 +1,7 @@
 import OrderValidator from './order'
 import Location from '../components/Form/Location'
 
-describe('Order validation', function () {
+describe('Order validation', function() {
   it('validates court', () => {
     const tests = [
       {
@@ -58,7 +58,9 @@ describe('Order validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new OrderValidator(test.data).validDisposition()).toBe(test.expected)
+      expect(new OrderValidator(test.data).validDisposition()).toBe(
+        test.expected
+      )
     })
   })
 

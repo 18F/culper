@@ -10,7 +10,9 @@ describe('The BenefitActivity component', () => {
 
   it('Selects if has benefit', () => {
     let updates = 0
-    const onUpdate = () => { updates++ }
+    const onUpdate = () => {
+      updates++
+    }
     const component = mount(<BenefitActivity onUpdate={onUpdate} />)
     component.find('.has-benefits .yes input').simulate('change')
     expect(updates).toBe(1)
@@ -19,7 +21,9 @@ describe('The BenefitActivity component', () => {
   it('Renders populated benefit activity and performs update', () => {
     let updates = 0
     const expected = {
-      onUpdate: () => { updates++ },
+      onUpdate: () => {
+        updates++
+      },
       HasBenefits: { value: 'Yes' },
       List: {
         items: [
@@ -58,7 +62,10 @@ describe('The BenefitActivity component', () => {
 
     const component = mount(<BenefitActivity {...expected} />)
     expect(component.find('.benefit-activity').length).toBe(1)
-    component.find('.benefit-frequency input').first().simulate('change')
+    component
+      .find('.benefit-frequency input')
+      .first()
+      .simulate('change')
     expect(updates).toBe(2)
   })
 

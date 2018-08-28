@@ -1,7 +1,9 @@
-import ForeignBusinessFamilyValidator, { FamilyValidator } from './foreignbusinessfamily'
+import ForeignBusinessFamilyValidator, {
+  FamilyValidator
+} from './foreignbusinessfamily'
 import { battery } from './helpers'
 
-describe('Foreign business family component validation', function () {
+describe('Foreign business family component validation', function() {
   it('validate foreign business family name', () => {
     const tests = [
       {

@@ -1,7 +1,7 @@
 import DrugUsesValidator from './druguses'
 
-describe('Drug Use Validation', function () {
-  it('should validate drug usage', function () {
+describe('Drug Use Validation', function() {
+  it('should validate drug usage', function() {
     const tests = [
       {
         state: {
@@ -30,7 +30,7 @@ describe('Drug Use Validation', function () {
           UsedDrugs: { value: 'Yes' },
           List: {
             branch: { value: 'Nope' },
-            items: [{DrugUse: {}}]
+            items: [{ DrugUse: {} }]
           }
         },
         expected: false
@@ -40,7 +40,7 @@ describe('Drug Use Validation', function () {
           UsedDrugs: { value: 'Yes' },
           List: {
             branch: { value: 'No' },
-            items: [{DrugUse: {}}]
+            items: [{ DrugUse: {} }]
           }
         },
         expected: false

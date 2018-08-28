@@ -4,7 +4,7 @@ import ValidationElement from '../ValidationElement'
 import Text from '../Text'
 
 export default class Street extends ValidationElement {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
@@ -14,13 +14,13 @@ export default class Street extends ValidationElement {
     this.handleError = this.handleError.bind(this)
   }
 
-  componentWillReceiveProps (nextProps) {
+  componentWillReceiveProps(nextProps) {
     this.setState({
       value: nextProps.value
     })
   }
 
-  handleError (value, arr) {
+  handleError(value, arr) {
     arr = arr.map(err => {
       return {
         code: `street.${err.code}`,
@@ -33,12 +33,14 @@ export default class Street extends ValidationElement {
     return this.props.onError(value, arr)
   }
 
-  label () {
+  label() {
     if (this.props.label && this.props.optional) {
       return (
         <span>
           {this.props.label}
-          <span className="optional">{i18n.t('address.us.street2.optional')}</span>
+          <span className="optional">
+            {i18n.t('address.us.street2.optional')}
+          </span>
         </span>
       )
     }
@@ -46,20 +48,21 @@ export default class Street extends ValidationElement {
     return this.props.label
   }
 
-  render () {
+  render() {
     return (
-      <Text name={this.props.name}
-            className={this.props.className}
-            label={this.label()}
-            placeholder={this.props.placeholder}
-            value={this.state.value}
-            onUpdate={this.props.onUpdate}
-            onError={this.handleError}
-            onFocus={this.props.onFocus}
-            onBlur={this.props.onBlur}
-            required={this.props.required}
-            disabled={this.props.disabled}
-            />
+      <Text
+        name={this.props.name}
+        className={this.props.className}
+        label={this.label()}
+        placeholder={this.props.placeholder}
+        value={this.state.value}
+        onUpdate={this.props.onUpdate}
+        onError={this.handleError}
+        onFocus={this.props.onFocus}
+        onBlur={this.props.onBlur}
+        required={this.props.required}
+        disabled={this.props.disabled}
+      />
     )
   }
 }
@@ -68,8 +71,10 @@ Street.defaultProps = {
   value: '',
   label: '',
   optional: false,
-  onUpdate: (queue) => {},
-  onError: (value, arr) => { return arr }
+  onUpdate: queue => {},
+  onError: (value, arr) => {
+    return arr
+  }
 }
 
 Street.errors = []

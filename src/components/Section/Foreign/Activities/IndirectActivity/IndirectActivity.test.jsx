@@ -10,7 +10,9 @@ describe('The IndirectActivity component', () => {
 
   it('Updates with yes', () => {
     let updates = 0
-    const onUpdate = () => { updates++ }
+    const onUpdate = () => {
+      updates++
+    }
     const component = mount(<IndirectActivity onUpdate={onUpdate} />)
     expect(component.find('.indirect').length).toBe(1)
     component.find('.branch .no input').simulate('change')
@@ -48,14 +50,16 @@ describe('The IndirectActivity component', () => {
     const expected = {
       HasInterests: { value: 'Yes' },
       List: {
-        items: [{
-          Item: {
-            InterestType: {
-              value: 'Foo'
-            },
-            open: true
+        items: [
+          {
+            Item: {
+              InterestType: {
+                value: 'Foo'
+              },
+              open: true
+            }
           }
-        }]
+        ]
       }
     }
     const component = mount(<IndirectActivity {...expected} />)

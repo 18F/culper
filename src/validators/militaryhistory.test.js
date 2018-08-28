@@ -1,6 +1,6 @@
 import MilitaryHistoryValidator from './militaryhistory'
 
-describe('Military history validation', function () {
+describe('Military history validation', function() {
   it('handle whether subject has served in the military', () => {
     const tests = [
       {
@@ -24,11 +24,13 @@ describe('Military history validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new MilitaryHistoryValidator(test.state, null).validServed()).toBe(test.expected)
+      expect(new MilitaryHistoryValidator(test.state, null).validServed()).toBe(
+        test.expected
+      )
     })
   })
 
-  it('handle overall validity', function () {
+  it('handle overall validity', function() {
     const tests = [
       {
         state: {
@@ -290,7 +292,9 @@ describe('Military history validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new MilitaryHistoryValidator(test.state, null).isValid()).toBe(test.expected)
+      expect(new MilitaryHistoryValidator(test.state, null).isValid()).toBe(
+        test.expected
+      )
     })
   })
 })

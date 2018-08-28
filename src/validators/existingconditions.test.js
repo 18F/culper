@@ -1,7 +1,7 @@
 import ExistingConditionsValidator from './existingconditions'
 import Location from '../components/Form/Location'
 
-describe('Diagnosis validation', function () {
+describe('Diagnosis validation', function() {
   it('validates did not follow', () => {
     const tests = [
       {
@@ -36,7 +36,9 @@ describe('Diagnosis validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new ExistingConditionsValidator(test.state, null).validDidNotFollow()).toBe(test.expected)
+      expect(
+        new ExistingConditionsValidator(test.state, null).validDidNotFollow()
+      ).toBe(test.expected)
     })
   })
 
@@ -139,7 +141,7 @@ describe('Diagnosis validation', function () {
           ReceivedTreatment: { value: 'Yes' },
           TreatmentList: {
             branch: { value: 'No' },
-            items: [{Treatment: {}}]
+            items: [{ Treatment: {} }]
           }
         },
         expected: false
@@ -168,7 +170,12 @@ describe('Diagnosis validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new ExistingConditionsValidator(test.state, test.props).validTreatmentList()).toBe(test.expected)
+      expect(
+        new ExistingConditionsValidator(
+          test.state,
+          test.props
+        ).validTreatmentList()
+      ).toBe(test.expected)
     })
   })
 
@@ -267,7 +274,9 @@ describe('Diagnosis validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new ExistingConditionsValidator(test.state, null).isValid()).toBe(test.expected)
+      expect(new ExistingConditionsValidator(test.state, null).isValid()).toBe(
+        test.expected
+      )
     })
   })
 })

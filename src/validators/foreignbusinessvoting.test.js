@@ -1,7 +1,9 @@
-import ForeignBusinessVotingValidator, { VotingValidator } from './foreignbusinessvoting'
+import ForeignBusinessVotingValidator, {
+  VotingValidator
+} from './foreignbusinessvoting'
 import { battery } from './helpers'
 
-describe('Foreign business voting component validation', function () {
+describe('Foreign business voting component validation', function() {
   it('validate foreign business voting dates', () => {
     const tests = [
       {

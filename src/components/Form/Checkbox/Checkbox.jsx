@@ -3,7 +3,7 @@ import ValidationElement from '../ValidationElement'
 import { ariaLabel } from '../Generic'
 
 export default class Checkbox extends ValidationElement {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
@@ -19,7 +19,7 @@ export default class Checkbox extends ValidationElement {
     this.handleKeyPress = this.handleKeyPress.bind(this)
   }
 
-  componentWillReceiveProps (newProps) {
+  componentWillReceiveProps(newProps) {
     this.setState({
       checked: newProps.checked
     })
@@ -28,9 +28,9 @@ export default class Checkbox extends ValidationElement {
   /**
    * Update the value of the checkbox
    */
-  update () {
+  update() {
     const checked = !this.state.checked
-    const value =  this.props.value
+    const value = this.props.value
     this.setState({ checked: checked }, () => {
       if (this.props.onUpdate) {
         this.props.onUpdate({
@@ -47,14 +47,14 @@ export default class Checkbox extends ValidationElement {
   /**
    * Handle the change event.
    */
-  handleChange (event) {
+  handleChange(event) {
     this.update()
   }
 
   /**
    * Handle the key press event.
    */
-  handleKeyPress (event) {
+  handleKeyPress(event) {
     const allowedKeys = [' ', 'Enter']
     if (allowedKeys.includes(event.key)) {
       event.preventDefault()
@@ -66,7 +66,7 @@ export default class Checkbox extends ValidationElement {
   /**
    * Handle the focus event.
    */
-  handleFocus (event) {
+  handleFocus(event) {
     event.persist()
     this.setState({ focus: true }, () => {
       super.handleFocus(event)
@@ -76,36 +76,43 @@ export default class Checkbox extends ValidationElement {
   /**
    * Handle the blur event.
    */
-  handleBlur (event) {
+  handleBlur(event) {
     event.persist()
     this.setState({ focus: false }, () => {
       super.handleBlur(event)
     })
   }
 
-  handleError (value, arr = []) {
-    const errors = this.props.onError(value, this.constructor.errors.map(err => {
-      return {
-        code: err.code,
-        valid: value ? err.func(value, this.props) : null,
-        uid: this.state.uid
-      }
-    })) || []
+  handleError(value, arr = []) {
+    const errors =
+      this.props.onError(
+        value,
+        this.constructor.errors.map(err => {
+          return {
+            code: err.code,
+            valid: value ? err.func(value, this.props) : null,
+            uid: this.state.uid
+          }
+        })
+      ) || []
 
-    this.setState({ error: errors.some(x => !x.valid), valid: errors.every(x => x.valid) })
+    this.setState({
+      error: errors.some(x => !x.valid),
+      valid: errors.every(x => x.valid)
+    })
   }
 
   /**
    * Execute validation checks on the value.
    */
-  handleValidation (event) {
+  handleValidation(event) {
     this.handleError(this.state.checked)
   }
 
   /**
    * Style classes applied to the wrapper.
    */
-  divClass () {
+  divClass() {
     let klass = `${this.props.className || ''} block`
 
     if (this.props.children) {
@@ -126,7 +133,7 @@ export default class Checkbox extends ValidationElement {
   /**
    * Style classes applied to the label element.
    */
-  labelClass () {
+  labelClass() {
     let klass = 'checkbox'
 
     if (this.state.error) {
@@ -147,7 +154,7 @@ export default class Checkbox extends ValidationElement {
   /**
    * Style classes applied to the input element.
    */
-  inputClass () {
+  inputClass() {
     let klass = ''
 
     if (this.state.valid) {
@@ -157,28 +164,30 @@ export default class Checkbox extends ValidationElement {
     return klass.trim()
   }
 
-  render () {
-    const speech = this.props.ariaLabel ? this.props.ariaLabel : `${this.props.label} for ${ariaLabel(this.refs.checkbox)}`
+  render() {
+    const speech = this.props.ariaLabel
+      ? this.props.ariaLabel
+      : `${this.props.label} for ${ariaLabel(this.refs.checkbox)}`
     if (this.props.toggle === 'false') {
       return (
         <div className={this.divClass()}>
-          <input className={this.inputClass()}
-                 id={this.state.uid}
-                 name={this.props.name}
-                 type="checkbox"
-                 ref="checkbox"
-                 disabled={this.props.disabled}
-                 readOnly={this.props.readonly}
-                 value={this.props.value}
-                 onChange={this.handleChange}
-                 onKeyDown={this.handleKeyPress}
-                 onFocus={this.handleFocus}
-                 onBlur={this.handleBlur}
-                 checked={this.state.checked}
-                 aria-label={speech}
-                 />
-          <label className={this.labelClass()}
-                 htmlFor={this.state.uid}>
+          <input
+            className={this.inputClass()}
+            id={this.state.uid}
+            name={this.props.name}
+            type="checkbox"
+            ref="checkbox"
+            disabled={this.props.disabled}
+            readOnly={this.props.readonly}
+            value={this.props.value}
+            onChange={this.handleChange}
+            onKeyDown={this.handleKeyPress}
+            onFocus={this.handleFocus}
+            onBlur={this.handleBlur}
+            checked={this.state.checked}
+            aria-label={speech}
+          />
+          <label className={this.labelClass()} htmlFor={this.state.uid}>
             {this.props.children}
             <span>{this.props.label}</span>
           </label>
@@ -188,23 +197,23 @@ export default class Checkbox extends ValidationElement {
 
     return (
       <div className={this.divClass()}>
-        <label className={this.labelClass()}
-               htmlFor={this.state.uid}>
-          <input className={this.inputClass()}
-                 id={this.state.uid}
-                 name={this.props.name}
-                 type="checkbox"
-                 ref="checkbox"
-                 disabled={this.props.disabled}
-                 readOnly={this.props.readonly}
-                 value={this.props.value}
-                 onChange={this.handleChange}
-                 onKeyDown={this.handleKeyPress}
-                 onFocus={this.handleFocus}
-                 onBlur={this.handleBlur}
-                 checked={this.state.checked}
-                 aria-label={speech}
-                 />
+        <label className={this.labelClass()} htmlFor={this.state.uid}>
+          <input
+            className={this.inputClass()}
+            id={this.state.uid}
+            name={this.props.name}
+            type="checkbox"
+            ref="checkbox"
+            disabled={this.props.disabled}
+            readOnly={this.props.readonly}
+            value={this.props.value}
+            onChange={this.handleChange}
+            onKeyDown={this.handleKeyPress}
+            onFocus={this.handleFocus}
+            onBlur={this.handleBlur}
+            checked={this.state.checked}
+            aria-label={speech}
+          />
           {this.props.children}
           <span>{this.props.label}</span>
         </label>
@@ -219,7 +228,9 @@ Checkbox.defaultProps = {
   focus: false,
   error: false,
   valid: false,
-  onError: (value, arr) => { return arr }
+  onError: (value, arr) => {
+    return arr
+  }
 }
 
 Checkbox.errors = []

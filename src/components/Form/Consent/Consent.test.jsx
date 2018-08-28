@@ -12,7 +12,9 @@ describe('The Consenst component', () => {
   it('dispatch fired on "I agree"', () => {
     let dispatched = 0
     const props = {
-      dispatch: () => { dispatched++ }
+      dispatch: () => {
+        dispatched++
+      }
     }
     const component = mount(<Consent {...props} />)
     expect(component.find('button').length).toBe(1)
@@ -33,7 +35,11 @@ describe('The Consenst component', () => {
         }
       }
     })
-    const component = mount(<Provider store={store}><ReduxConsent /></Provider>)
+    const component = mount(
+      <Provider store={store}>
+        <ReduxConsent />
+      </Provider>
+    )
     expect(component.find('.consent-acceptance').length).toBe(0)
     expect(component.find('.modal').length).toBe(0)
   })
@@ -50,7 +56,11 @@ describe('The Consenst component', () => {
         }
       }
     })
-    const component = mount(<Provider store={store}><ReduxConsent /></Provider>)
+    const component = mount(
+      <Provider store={store}>
+        <ReduxConsent />
+      </Provider>
+    )
     expect(component.find('.consent-acceptance').length).toBe(1)
     window.token = 'fake-token'
   })

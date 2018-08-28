@@ -56,7 +56,12 @@ describe('The AddressSuggestion component', () => {
     ]
 
     tests.forEach(test => {
-      const component = mount(<AddressSuggestion suggestion={test.suggestion} current={test.current} />)
+      const component = mount(
+        <AddressSuggestion
+          suggestion={test.suggestion}
+          current={test.current}
+        />
+      )
       expect(component.find('.highlight').length).toBe(test.expected)
     })
   })

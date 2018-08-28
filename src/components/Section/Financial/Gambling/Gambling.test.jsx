@@ -65,7 +65,9 @@ describe('The gambling component', () => {
       name: 'gambling',
       List: gamblingData,
       HasGamblingDebt: { value: 'Yes' },
-      onUpdate: () => { update++ }
+      onUpdate: () => {
+        update++
+      }
     }
     const component = mount(<Gambling {...expected} />)
     update = 0

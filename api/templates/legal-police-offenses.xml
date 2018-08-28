@@ -34,7 +34,10 @@
           <Description>{{text $sentence.Description}}</Description>
           <Imprisonment>
             <YearOrMore>
-              <DateRange NotApplicable="{{notApplicable $sentence.IncarcerationDatesNA}}">
+              {{if notApplicable $sentence.IncarcerationDatesNA | eq "True"}}
+              <DateRange NotApplicable="True" />
+              {{else}}
+              <DateRange>
                 <From>
                   <Date Type="{{dateEstimated $sentence.IncarcerationDates.props.from}}">
                     {{monthYear $sentence.IncarcerationDates.props.from}}
@@ -46,6 +49,7 @@
                   </Date>
                 </To>
               </DateRange>
+              {{end}}
             </YearOrMore>
           </Imprisonment>
           <Incarcerated>
@@ -57,18 +61,22 @@
             <Answer>{{branch $sentence.ExceedsYear}}</Answer>
           </MoreThanYear>
           <Probation>
-            <DateRange NotApplicable="{{notApplicable $sentence.ProbationDatesNA}}">
+            {{if notApplicable $sentence.ProbationDatesNA | eq "True"}}
+            <DateRange NotApplicable="True" />
+            {{else}}
+            <DateRange>
               <From>
                 <Date Type="{{dateEstimated $sentence.ProbationDates.props.from}}">
-                  {{monthYear $sentence.ProbationDatesNA.props.from}}
+                  {{monthYear $sentence.ProbationDates.props.from}}
                 </Date>
               </From>
               <To>
                 <Date Type="{{dateEstimated $sentence.ProbationDates.props.to}}">
-                  {{monthYear $sentence.ProbationDatesNA.props.to}}
+                  {{monthYear $sentence.ProbationDates.props.to}}
                 </Date>
               </To>
             </DateRange>
+            {{end}}
           </Probation>
           {{end}}
         </Sentenced>

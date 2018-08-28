@@ -19,7 +19,10 @@ describe('The MaidenName component', () => {
       onChange: () => {}
     }
     const component = mount(<MaidenName {...expected} />)
-    component.find('input').first().simulate('blur')
+    component
+      .find('input')
+      .first()
+      .simulate('blur')
     expect(hit > 0).toEqual(true)
   })
 
@@ -32,12 +35,15 @@ describe('The MaidenName component', () => {
       error: true,
       focus: false,
       valid: false,
-      onUpdate: function (queue) {
+      onUpdate: function(queue) {
         changes++
       }
     }
     const component = mount(<MaidenName {...expected} />)
-    component.find('input').first().simulate('change')
+    component
+      .find('input')
+      .first()
+      .simulate('change')
     expect(changes).toEqual(1)
   })
 })

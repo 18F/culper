@@ -1,8 +1,12 @@
-import { validGenericTextfield, validGenericMonthYear, validNotApplicable } from './helpers'
+import {
+  validGenericTextfield,
+  validGenericMonthYear,
+  validNotApplicable
+} from './helpers'
 import ForeignCoOwnersValidator from './foreigncoowner'
 
 export default class ForeignDirectInterestValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.interestTypes = (data.InterestTypes || {}).values || []
     this.interestType = data.InterestType
     this.acquired = data.Acquired
@@ -15,48 +19,49 @@ export default class ForeignDirectInterestValidator {
     this.coOwners = data.CoOwners
   }
 
-  validInterestTypes () {
+  validInterestTypes() {
     return !!(this.interestTypes && this.interestTypes.length)
   }
 
-  validInterestType () {
+  validInterestType() {
     return validGenericTextfield(this.interestType)
   }
 
-  validAcquired () {
+  validAcquired() {
     return validGenericMonthYear(this.acquired)
   }
 
-  validHowAcquired () {
+  validHowAcquired() {
     return validGenericTextfield(this.howAcquired)
   }
 
-  validCost () {
+  validCost() {
     return validGenericTextfield(this.cost)
   }
 
-  validValue () {
+  validValue() {
     return validGenericTextfield(this.value)
   }
 
-  validRelinquishedNotApplicable () {
+  validRelinquishedNotApplicable() {
     return validNotApplicable(this.relinquishedNotApplicable, () => {
       return validGenericMonthYear(this.relinquished)
     })
   }
 
-  validCoOwners () {
+  validCoOwners() {
     return new ForeignCoOwnersValidator(this.coOwners).isValid()
   }
 
-  validExplanation () {
+  validExplanation() {
     return validNotApplicable(this.relinquishedNotApplicable, () => {
       return validGenericTextfield(this.explanation)
     })
   }
 
-  isValid () {
-    return this.validInterestTypes() &&
+  isValid() {
+    return (
+      this.validInterestTypes() &&
       this.validInterestType() &&
       this.validAcquired() &&
       this.validHowAcquired() &&
@@ -65,5 +70,6 @@ export default class ForeignDirectInterestValidator {
       this.validRelinquishedNotApplicable() &&
       this.validCoOwners() &&
       this.validExplanation()
+    )
   }
 }

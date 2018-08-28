@@ -16,7 +16,9 @@ describe('The multiple component', () => {
     let updates = 0
     const expected = {
       name: 'multiple',
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
     const component = mount(<Passports {...expected} />)
     component.find('.has-foreignpassport .yes input').simulate('change')

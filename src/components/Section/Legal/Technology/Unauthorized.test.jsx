@@ -10,9 +10,13 @@ describe('The legal technology unauthorized access component', () => {
 
   it('can select "yes"', () => {
     let updates = 0
-    const onUpdate = () => { updates++ }
+    const onUpdate = () => {
+      updates++
+    }
     const component = mount(<Unauthorized onUpdate={onUpdate} />)
-    component.find('.legal-technology-unauthorized-has-unauthorized .yes input').simulate('change')
+    component
+      .find('.legal-technology-unauthorized-has-unauthorized .yes input')
+      .simulate('change')
     expect(updates).toBe(1)
   })
 

@@ -32,7 +32,9 @@ describe('The date range component', () => {
       error: true,
       focus: false,
       valid: false,
-      onUpdate: () => { updates++ },
+      onUpdate: () => {
+        updates++
+      },
       from: {
         date: new Date('1/1/2000')
       },
@@ -51,23 +53,27 @@ describe('The date range component', () => {
       receiveProps: true
     }
     const component = mount(<DateRange {...props} />)
-    component.setProps({to: {date: new Date()}})
+    component.setProps({ to: { date: new Date() } })
   })
 
   it('can update date field', () => {
     let updates = 0
     const props = {
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
     const component = mount(<DateRange {...props} />)
-    component.find('.to .day input').simulate('change', { target: { value: '15' } })
+    component
+      .find('.to .day input')
+      .simulate('change', { target: { value: '15' } })
     expect(updates).toBeGreaterThan(0)
   })
 
   it('can click on present', () => {
     let updates = 0
     const props = {
-      onUpdate: (values) => {
+      onUpdate: values => {
         if (values.to && values.to.date) {
           updates++
         }

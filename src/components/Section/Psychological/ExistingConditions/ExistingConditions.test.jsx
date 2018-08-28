@@ -14,14 +14,20 @@ describe('The ExistingConditions component', () => {
       HasCondition: { value: 'Yes' },
       ReceivedTreatment: { value: 'No' },
       DidNotFollow: { value: 'Yes' },
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
     const component = mount(<ExistingConditions {...props} />)
     component.find('.hascondition .yes input').simulate('change')
     component.find('.didnotfollow .yes input').simulate('change')
-    component.find('.existing-condition-didnotfollow-explanation textarea').simulate('change')
+    component
+      .find('.existing-condition-didnotfollow-explanation textarea')
+      .simulate('change')
     component.find('.treatment-list .no input').simulate('change')
-    component.find('.existing-condition-explanation textarea').simulate('change')
+    component
+      .find('.existing-condition-explanation textarea')
+      .simulate('change')
     component.find('.treatment.yes input').simulate('change')
     expect(updates).toBe(6)
   })
@@ -33,12 +39,16 @@ describe('The ExistingConditions component', () => {
       ReceivedTreatment: { value: 'Yes' },
       TreatmentList: [{}],
       DidNotFollow: { value: 'Yes' },
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
     const component = mount(<ExistingConditions {...props} />)
     component.find('.hascondition .yes input').simulate('change')
     component.find('.didnotfollow .yes input').simulate('change')
-    component.find('.existing-condition-didnotfollow-explanation textarea').simulate('change')
+    component
+      .find('.existing-condition-didnotfollow-explanation textarea')
+      .simulate('change')
     component.find('.treatment-list .no input').simulate('change')
     component.find('.treatment.yes input').simulate('change')
     expect(updates).toBe(6)
@@ -51,8 +61,13 @@ describe('The ExistingConditions component', () => {
       DidNotFollow: { value: 'No' }
     }
     const component = mount(<ExistingConditions {...props} />)
-    expect(component.find('.existing-condition-explanation textarea').length).toBe(0)
+    expect(
+      component.find('.existing-condition-explanation textarea').length
+    ).toBe(0)
     expect(component.find('.accordion').length).toBe(0)
-    expect(component.find('.existing-condition-didnotfollow-explanation textarea').length).toBe(0)
+    expect(
+      component.find('.existing-condition-didnotfollow-explanation textarea')
+        .length
+    ).toBe(0)
   })
 })

@@ -2,7 +2,7 @@ import { ExistingConditionsDiagnosisValidator } from './diagnosis'
 import { validAccordion, validGenericTextfield, validBranch } from './helpers'
 
 export default class ExistingConditionsValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.hasCondition = (data.HasCondition || {}).value
     this.receivedTreatment = (data.ReceivedTreatment || {}).value
     this.explanation = data.Explanation
@@ -11,38 +11,40 @@ export default class ExistingConditionsValidator {
     this.didNotFollowExplanation = data.DidNotFollowExplanation
   }
 
-  validDidNotFollow () {
+  validDidNotFollow() {
     if (!validBranch(this.didNotFollow)) {
       return false
     }
 
-    if (this.didNotFollow === 'Yes' && !validGenericTextfield(this.didNotFollowExplanation)) {
+    if (
+      this.didNotFollow === 'Yes' &&
+      !validGenericTextfield(this.didNotFollowExplanation)
+    ) {
       return false
     }
 
     return true
   }
 
-  validTreatmentList () {
+  validTreatmentList() {
     switch (this.receivedTreatment) {
-    case 'No':
-      return validGenericTextfield(this.explanation)
-    case 'Decline':
-      return true
-    case 'Yes':
-      return validAccordion(this.treatmentList, (item) => {
-        return new ExistingConditionsDiagnosisValidator(item).isValid()
-      })
-    default:
-      return false
+      case 'No':
+        return validGenericTextfield(this.explanation)
+      case 'Decline':
+        return true
+      case 'Yes':
+        return validAccordion(this.treatmentList, item => {
+          return new ExistingConditionsDiagnosisValidator(item).isValid()
+        })
+      default:
+        return false
     }
   }
 
-  isValid () {
+  isValid() {
     if (this.hasCondition === 'No') {
       return true
     }
-    return this.validDidNotFollow() &&
-      this.validTreatmentList()
+    return this.validDidNotFollow() && this.validTreatmentList()
   }
 }

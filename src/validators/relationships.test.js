@@ -1,7 +1,7 @@
 import RelationshipsValidator from './relationships'
 
-describe('Psychologicalvalidation', function () {
-  it('Should validate completion status', function () {
+describe('Psychologicalvalidation', function() {
+  it('Should validate completion status', function() {
     const tests = [
       {
         data: {
@@ -100,7 +100,9 @@ describe('Psychologicalvalidation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new RelationshipsValidator(test.data).completionStatus(test.Status)).toBe(test.expected)
+      expect(
+        new RelationshipsValidator(test.data).completionStatus(test.Status)
+      ).toBe(test.expected)
     })
   })
 })

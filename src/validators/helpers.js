@@ -1,20 +1,20 @@
 import { daysAgo, today } from '../components/Section/History/dateranges'
 
-export const validGenericMonthYear = (obj) => {
+export const validGenericMonthYear = obj => {
   if (!obj || !obj.month || !obj.year) {
     return false
   }
   return true
 }
 
-export const validGenericTextfield = (obj) => {
+export const validGenericTextfield = obj => {
   if (!obj || !obj.value) {
     return false
   }
   return true
 }
 
-export const validCurrency = (obj) => {
+export const validCurrency = obj => {
   if (!obj || !obj.value || isNaN(obj.value)) {
     return false
   }
@@ -24,15 +24,17 @@ export const validCurrency = (obj) => {
 /**
  * Checks if a status exists in a set of completed fields
  */
-export const hasStatus = (completed) => (property, status, val) => {
-  return (completed[property] && completed[property].status === val) ||
+export const hasStatus = completed => (property, status, val) => {
+  return (
+    (completed[property] && completed[property].status === val) ||
     (status && status[property] && status[property].status === val)
+  )
 }
 
 /**
  * Checks if a status exists for all properties for a given value
  */
-export const allHaveStatus = (completed) => (properties, status, val) => {
+export const allHaveStatus = completed => (properties, status, val) => {
   for (let property of properties) {
     if (!hasStatus(completed)(property, status, val)) {
       return false
@@ -44,7 +46,7 @@ export const allHaveStatus = (completed) => (properties, status, val) => {
 /**
  * Checks if any status contains the specified value for all properties
  */
-export const anyHasStatus = (completed) => (properties, status, val) => {
+export const anyHasStatus = completed => (properties, status, val) => {
   for (let property of properties) {
     if (hasStatus(completed)(property, status, val)) {
       return true
@@ -56,7 +58,7 @@ export const anyHasStatus = (completed) => (properties, status, val) => {
 /**
  * Validates a phone number
  */
-export const validPhoneNumber = (phone) => {
+export const validPhoneNumber = phone => {
   if (!phone) {
     return false
   }
@@ -75,14 +77,14 @@ export const validPhoneNumber = (phone) => {
 
   const trimmed = `${parseInt(phone.number, 10)}`
   switch (phone.type) {
-  case 'Domestic':
-    return trimmed.length === 10
-  case 'DSN':
-    return trimmed.length === 7
-  case 'International':
-    return trimmed.length > 10
-  default:
-    return false
+    case 'Domestic':
+      return trimmed.length === 10
+    case 'DSN':
+      return trimmed.length === 7
+    case 'International':
+      return trimmed.length > 10
+    default:
+      return false
   }
 }
 
@@ -129,14 +131,19 @@ export const withinSevenYears = (from, to) => {
   const fromDate = buildDate(from)
   const toDate = buildDate(to)
 
-  if ((fromDate && fromDate >= sevenYearsAgo) || (toDate && toDate >= sevenYearsAgo)) {
+  if (
+    (fromDate && fromDate >= sevenYearsAgo) ||
+    (toDate && toDate >= sevenYearsAgo)
+  ) {
     return true
   }
   return false
 }
 
 export const validAccordion = (collection, valid, ignoreBranch = false) => {
-  const branch = ignoreBranch ? { value: 'No' } : (collection || {}).branch || {}
+  const branch = ignoreBranch
+    ? { value: 'No' }
+    : (collection || {}).branch || {}
   const items = (collection || {}).items || []
   if (branch.value !== 'No') {
     return false
@@ -155,7 +162,7 @@ export const validAccordion = (collection, valid, ignoreBranch = false) => {
  * Helper for testing components using the branch collection
  */
 export class BranchCollection {
-  constructor (collection = [], key = 'Has') {
+  constructor(collection = [], key = 'Has') {
     this.collection = collection
     this.key = key
   }
@@ -163,8 +170,12 @@ export class BranchCollection {
   /**
    * Returns if the collection is empty
    */
-  empty () {
-    if (!this.collection || !this.collection.items || !this.collection.items.length) {
+  empty() {
+    if (
+      !this.collection ||
+      !this.collection.items ||
+      !this.collection.items.length
+    ) {
       return true
     }
     return false
@@ -175,21 +186,21 @@ export class BranchCollection {
    * Since users are required to mark an answer, an empty collection does not mean it's valid. It must have
    * at least one Yes/No item
    */
-  validKeyValues () {
+  validKeyValues() {
     return !this.empty() && (this.hasNo() || this.hasYes())
   }
 
   /**
    * Checks if an item has been marked with No
    */
-  hasNo () {
+  hasNo() {
     return this.hasKeyValue('No')
   }
 
   /**
    * Checks if an item has been marked with Yes
    */
-  hasYes () {
+  hasYes() {
     return this.hasKeyValue('Yes')
   }
 
@@ -199,7 +210,7 @@ export class BranchCollection {
    * @param isValidFunc - Function that is excuted and returns whether the item is valid. This
    * is meant to be passed in by callers of this method.
    */
-  each (isValidFunc) {
+  each(isValidFunc) {
     if (this.empty()) {
       return false
     }
@@ -219,7 +230,7 @@ export class BranchCollection {
   /**
    * Helper function that checks if a given key exists at the root level of a branch collection item
    */
-  hasKeyValue (value) {
+  hasKeyValue(value) {
     if (this.empty()) {
       return false
     }
@@ -237,7 +248,7 @@ export class BranchCollection {
  * Checks if a branch value is within the set of possible valid yes/no values.
  */
 export const validBranch = (value, yesValue = 'Yes', noValue = 'No') => {
-  return (value === yesValue || value === noValue)
+  return value === yesValue || value === noValue
 }
 
 export const battery = (tests, validator, fn) => {
@@ -255,7 +266,7 @@ export const battery = (tests, validator, fn) => {
   })
 }
 
-export const validSSN = (ssn) => {
+export const validSSN = ssn => {
   if (ssn.notApplicable === true) {
     return true
   }
@@ -267,20 +278,26 @@ export const validSSN = (ssn) => {
     return false
   }
 
-  return !!ssn.first && !!ssn.middle && !!ssn.last &&
-    ssn.first.length === 3 && ssn.middle.length === 2 && ssn.last.length === 4
+  return (
+    !!ssn.first &&
+    !!ssn.middle &&
+    !!ssn.last &&
+    ssn.first.length === 3 &&
+    ssn.middle.length === 2 &&
+    ssn.last.length === 4
+  )
 }
 
-export const nameIsEmpty = (name) => {
+export const nameIsEmpty = name => {
   switch (true) {
-  case !name:
-  case !name.first && !name.middle && !name.last:
-    return true
-  default:
-    return false
+    case !name:
+    case !name.first && !name.middle && !name.last:
+      return true
+    default:
+      return false
   }
 }
-export const buildDate = (date) => {
+export const buildDate = date => {
   if (!date) {
     return null
   }

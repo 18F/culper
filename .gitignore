@@ -41,9 +41,6 @@ package-lock.json
 # Optional REPL history
 .node_repl_history
 
-# ReactJS caches
-__snapshots__/
-
 # Go vendoring
 # We will just track the vendor.json file to rehydrate packages during development
 # For release all vendored packages should be frozen
@@ -85,6 +82,7 @@ TAGS
 xmlsec1
 
 # Test artifacts
+/api/coverage.txt
 /jest*
 /specs/reports
 /specs/screenshots

@@ -1,24 +1,25 @@
 export default class BirthPlaceValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     if (data.location) {
       data = data.location
     }
     this.domestic = this.domestic
-    this.country = data.country && data.country.value ? data.country.value : data.country
+    this.country =
+      data.country && data.country.value ? data.country.value : data.country
     this.city = data.city
     this.state = data.state
     this.county = data.county
     this.hideCounty = (data || {}).hideCounty || false
   }
 
-  isDomestic (domestic) {
+  isDomestic(domestic) {
     return this.domestic === 'Yes' || this.country === 'United States'
   }
 
   /**
    * Validates that the information is a valid domestic location
    */
-  validDomestic () {
+  validDomestic() {
     if (this.country !== 'United States') {
       return false
     }
@@ -43,7 +44,7 @@ export default class BirthPlaceValidator {
   /**
    * Validates that the information is a valid international location
    */
-  validInternational () {
+  validInternational() {
     if (this.country === 'United States') {
       return false
     }
@@ -54,7 +55,7 @@ export default class BirthPlaceValidator {
   /**
    * Validates a birthplace
    */
-  isValid () {
+  isValid() {
     if (this.isDomestic()) {
       return this.validDomestic()
     } else {

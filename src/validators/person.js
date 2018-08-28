@@ -1,10 +1,14 @@
 import DateRangeValidator from './daterange'
 import LocationValidator from './location'
 import NameValidator from './name'
-import { validGenericTextfield, validPhoneNumber, validNotApplicable } from './helpers'
+import {
+  validGenericTextfield,
+  validPhoneNumber,
+  validNotApplicable
+} from './helpers'
 
 export default class PersonValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.name = data.Name
     this.dates = data.Dates
     this.rank = data.Rank
@@ -18,26 +22,34 @@ export default class PersonValidator {
     this.address = data.Address
   }
 
-  validName () {
+  validName() {
     return new NameValidator(this.name).isValid()
   }
 
-  validDates () {
+  validDates() {
     return new DateRangeValidator(this.dates).isValid()
   }
 
-  validRank () {
+  validRank() {
     return validNotApplicable(this.rankNotApplicable, () => {
       return validGenericTextfield(this.rank)
     })
   }
 
-  validRelationship () {
+  validRelationship() {
     if (!this.relationship || !this.relationship.length) {
       return false
     }
     for (let r of this.relationship) {
-      if (!['Neighbor', 'Friend', 'WorkAssociate', 'Schoolmate', 'Other'].includes(r)) {
+      if (
+        ![
+          'Neighbor',
+          'Friend',
+          'WorkAssociate',
+          'Schoolmate',
+          'Other'
+        ].includes(r)
+      ) {
         return false
       }
     }
@@ -47,27 +59,32 @@ export default class PersonValidator {
     return true
   }
 
-  validPhones () {
-    return validPhoneNumber(this.mobileTelephone) && validPhoneNumber(this.otherTelephone)
+  validPhones() {
+    return (
+      validPhoneNumber(this.mobileTelephone) &&
+      validPhoneNumber(this.otherTelephone)
+    )
   }
 
-  validEmail () {
+  validEmail() {
     return validNotApplicable(this.emailNotApplicable, () => {
       return validGenericTextfield(this.email)
     })
   }
 
-  validAddress () {
+  validAddress() {
     return new LocationValidator(this.address).isValid()
   }
 
-  isValid () {
-    return this.validName() &&
+  isValid() {
+    return (
+      this.validName() &&
       this.validDates() &&
       this.validRank() &&
       this.validRelationship() &&
       this.validPhones() &&
       this.validEmail() &&
       this.validAddress()
+    )
   }
 }

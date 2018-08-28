@@ -1,55 +1,61 @@
 import LocationValidator from './location'
-import { validAccordion, validGenericTextfield, validDateField } from './helpers'
+import {
+  validAccordion,
+  validGenericTextfield,
+  validDateField
+} from './helpers'
 
 export default class LegalTechnologyUnauthorizedValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.hasUnauthorized = (data.HasUnauthorized || {}).value
     this.list = data.List || {}
   }
 
-  validList () {
+  validList() {
     if (this.hasUnauthorized === 'No') {
       return true
     }
 
-    return validAccordion(this.list, (item) => {
+    return validAccordion(this.list, item => {
       return new UnauthorizedValidator(item).isValid()
     })
   }
 
-  isValid () {
+  isValid() {
     return this.validList()
   }
 }
 
 export class UnauthorizedValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.date = data.Date
     this.incident = data.Incident
     this.location = data.Location
     this.action = data.Action
   }
 
-  validDate () {
+  validDate() {
     return !!this.date && validDateField(this.date)
   }
 
-  validIncident () {
+  validIncident() {
     return !!this.incident && validGenericTextfield(this.incident)
   }
 
-  validLocation () {
+  validLocation() {
     return !!this.location && new LocationValidator(this.location).isValid()
   }
 
-  validAction () {
+  validAction() {
     return !!this.action && validGenericTextfield(this.action)
   }
 
-  isValid () {
-    return this.validDate() &&
+  isValid() {
+    return (
+      this.validDate() &&
       this.validIncident() &&
       this.validLocation() &&
       this.validAction()
+    )
   }
 }

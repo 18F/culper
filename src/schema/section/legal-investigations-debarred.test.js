@@ -7,13 +7,15 @@ describe('Schema for financial taxes', () => {
       HasDebarment: { value: 'Yes' },
       List: {
         branch: { value: 'No' },
-        items: [{
-          Item: {
-            Agency: {},
-            Date: {},
-            Explanation: {}
+        items: [
+          {
+            Item: {
+              Agency: {},
+              Date: {},
+              Explanation: {}
+            }
           }
-        }]
+        ]
       }
     }
 

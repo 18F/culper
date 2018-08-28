@@ -50,12 +50,11 @@ defineSupportCode(({Given, Then, When}) => {
 
   const goToLoginPage = () => {
     return client
-      .url(client.launch_url + '/#/login')
+      .url(client.launch_url)
       .waitForElementVisible('body', 1000)
       .assert.visible('.consent-legal')
       .saveScreenshot('./screenshots/Authentication/00-consent.png')
       .click('.consent-acceptance')
-      .pause(500)
       .saveScreenshot('./screenshots/Authentication/01-login.png')
   }
 
@@ -65,7 +64,7 @@ defineSupportCode(({Given, Then, When}) => {
       .setValue('input[type="password"]', password)
       .saveScreenshot('./screenshots/Authentication/02-credentials.png')
       .click('.auth.basic button[type="submit"]')
-      .pause(1000)
+      .waitForElementVisible('.introduction-modal', 5000)
       .saveScreenshot('./screenshots/Authentication/03-submitted.png')
   }
 
@@ -74,7 +73,6 @@ defineSupportCode(({Given, Then, When}) => {
       .assert.urlContains('/form')
       .saveScreenshot('./screenshots/Authentication/08-accept-introduction.png')
       .click('.introduction-acceptance .yes label')
-      .pause(500)
   }
 
   const haveAccess = () => {
@@ -86,7 +84,8 @@ defineSupportCode(({Given, Then, When}) => {
   const logout = () => {
     return client
       .isVisible('a.logout', (result) => {
-        client.click('a.logout').pause(1000)
+        client.click('a.logout')
+        .waitForElementVisible('.consent-acceptance', 5000)
       })
       .end()
   }

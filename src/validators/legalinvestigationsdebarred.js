@@ -1,48 +1,50 @@
-import { validAccordion, validGenericTextfield, validDateField } from './helpers'
+import {
+  validAccordion,
+  validGenericTextfield,
+  validDateField
+} from './helpers'
 
 export default class LegalInvestigationsDebarredValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.hasDebarment = (data.HasDebarment || {}).value
     this.list = data.List || {}
   }
 
-  validList () {
+  validList() {
     if (this.hasDebarment === 'No') {
       return true
     }
 
-    return validAccordion(this.list, (item) => {
+    return validAccordion(this.list, item => {
       return new DebarredValidator(item).isValid()
     })
   }
 
-  isValid () {
+  isValid() {
     return this.validList()
   }
 }
 
 export class DebarredValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.agency = data.Agency
     this.date = data.Date
     this.explanation = data.Explanation
   }
 
-  validAgency () {
+  validAgency() {
     return !!this.agency && validGenericTextfield(this.agency)
   }
 
-  validDate () {
+  validDate() {
     return !!this.date && validDateField(this.date)
   }
 
-  validExplanation () {
+  validExplanation() {
     return !!this.explanation && validGenericTextfield(this.explanation)
   }
 
-  isValid () {
-    return this.validAgency() &&
-      this.validDate() &&
-      this.validExplanation()
+  isValid() {
+    return this.validAgency() && this.validDate() && this.validExplanation()
   }
 }

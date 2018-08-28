@@ -13,7 +13,9 @@ export const substanceAlcoholAdditional = (data = {}) => {
         TreatmentBeganDate: form.datecontrol(xitem.TreatmentBeganDate),
         TreatmentEndDate: form.datecontrol(xitem.TreatmentEndDate),
         CompletedTreatment: form.branch(xitem.CompletedTreatment),
-        NoCompletedTreatmentExplanation: form.textarea(xitem.NoCompletedTreatmentExplanation)
+        NoCompletedTreatmentExplanation: form.textarea(
+          xitem.NoCompletedTreatmentExplanation
+        )
       }
     }
   })

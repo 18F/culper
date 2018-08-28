@@ -21,32 +21,47 @@ describe('The civil union component', () => {
       BirthPlace: { country: { value: 'Germany' } },
       AddressSeparated: { country: { value: 'United States' } },
       ForeignBornDocument: { DocumentType: { value: 'Other' } },
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
 
     const component = mount(<CivilUnion {...expected} />)
     expect(component.find('.civil-union').length).toEqual(1)
     updates = 0
     component.find('.civil .name .first input').simulate('change')
-    component.find('.birthdate .month input').simulate('change', { target: { value: '12' } })
+    component
+      .find('.birthdate .month input')
+      .simulate('change', { target: { value: '12' } })
     component.find('.birthplace .city input').simulate('change')
-    component.find('.foreign-born-documents input').first().simulate('change')
+    component
+      .find('.foreign-born-documents input')
+      .first()
+      .simulate('change')
     component.find('.foreign-born-documents .other input').simulate('change')
     component.find('.foreign-born-documents textarea').simulate('change')
     component.find('.foreign-born-document-number input').simulate('change')
-    component.find('.foreign-born-documents .month input').simulate('change', { target: { value: '12' } })
+    component
+      .find('.foreign-born-documents .month input')
+      .simulate('change', { target: { value: '12' } })
     component.find('.ssn .first input').simulate('change')
     component.find('.othername .no input').simulate('change')
-    component.find('.entered .month input').simulate('change', { target: { value: '12' } })
+    component
+      .find('.entered .month input')
+      .simulate('change', { target: { value: '12' } })
     component.find('.civilunion-location .yes input').simulate('change')
     component.find('.address .mailing input').simulate('change')
     component.find('.phonetype .cell input').simulate('change')
     component.find('.email input').simulate('change')
     component.find('.separated .yes input').simulate('change')
     component.find('.divorced .yes input').simulate('change')
-    component.find('.dateseparated .month input').simulate('change', { target: { value: '12' } })
+    component
+      .find('.dateseparated .month input')
+      .simulate('change', { target: { value: '12' } })
     component.find('.address-separated .city input').simulate('change')
-    component.find('.address-separated input[name="AddressSeparatedNotApplicable"]').simulate('change')
+    component
+      .find('.address-separated input[name="AddressSeparatedNotApplicable"]')
+      .simulate('change')
     expect(updates).toBe(20)
   })
 
@@ -54,7 +69,9 @@ describe('The civil union component', () => {
     let updates = 0
     const expected = {
       name: 'cohabitant',
-      onUpdate: () => { updates++ },
+      onUpdate: () => {
+        updates++
+      },
       currentAddress: {
         address: '123 Some Rd',
         city: 'Arlington',
@@ -68,6 +85,8 @@ describe('The civil union component', () => {
     component.find('.current-address.button input').simulate('change')
     expect(updates).toBe(1)
     component.find('.current-address.button input').simulate('change')
-    expect(component.find('.current-address.button label.checked').length).toEqual(0)
+    expect(
+      component.find('.current-address.button label.checked').length
+    ).toEqual(0)
   })
 })

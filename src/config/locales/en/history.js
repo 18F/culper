@@ -1,7 +1,8 @@
 export const history = {
   intro: {
     title: 'Section 2: Your history',
-    body: 'You will be asked questions about your history and be asked to provide details if necessary. This section includes where you have lived, where you have worked, and where you went to school.'
+    body:
+      'You will be asked questions about your history and be asked to provide details if necessary. This section includes where you have lived, where you have worked, and where you went to school.'
   },
   tour: {
     para: 'Take a guided tour through the section'
@@ -10,12 +11,15 @@ export const history = {
     title: 'Full section view',
     para: 'View all the sections associated with your history at once',
     button: 'Show me the full section',
-    comments: 'Add a comment to clarify any of your responses in the your history section'
+    comments:
+      'Add a comment to clarify any of your responses in the your history section'
   },
   timeline: {
-    title: 'Let\'s cover your last 10 years',
-    para1: 'List the places where you have lived and worked beginning with your present residence or employer and working back 10 years. **Residences and employers for the entire period must be accounted for without breaks.**',
-    para2: 'You will also list any school attended in the last 10 years and all diplomas & degrees earned at any point in your life.',
+    title: "Let's cover your last 10 years",
+    para1:
+      'List the places where you have lived and worked beginning with your present residence or employer and working back 10 years. **Residences and employers for the entire period must be accounted for without breaks.**',
+    para2:
+      'You will also list any school attended in the last 10 years and all diplomas & degrees earned at any point in your life.',
     start: {
       residence: {
         title: 'Start with your present residence',
@@ -30,7 +34,8 @@ export const history = {
       exiting: 'Before you leave this section'
     },
     para: {
-      exiting: '**The full 10 year period of residence and employment history is not covered.** Your SF86 cannot be submitted until all 10 years are covered with no gaps.<br><br>We will mark the gaps and highlight them for you when you come back.'
+      exiting:
+        '**The full 10 year period of residence and employment history is not covered.** Your SF86 cannot be submitted until all 10 years are covered with no gaps.<br><br>We will mark the gaps and highlight them for you when you come back.'
     }
   },
   destination: {
@@ -44,11 +49,16 @@ export const history = {
   },
   residence: {
     title: 'Where you have lived',
-    info: 'List the places where you have lived beginning with your present residence and working back 10 years.',
-    info2: 'Residences for the entire period must be accounted for without breaks.',
-    info3a: ' - **Indicate the actual physical location of your residence**, not a Post Office box or a permanent residence when you were not physically located there.',
-    info3b: ' - **If you split your time between one or more residences during a time period**, you must list all residences.',
-    info3c: ' - **Do not list residences before your 18th birthday** unless to provide a minimum of 2 years residence history.',
+    info:
+      'List the places where you have lived beginning with your present residence and working back 10 years.',
+    info2:
+      'Residences for the entire period must be accounted for without breaks.',
+    info3a:
+      ' - **Indicate the actual physical location of your residence**, not a Post Office box or a permanent residence when you were not physically located there.',
+    info3b:
+      ' - **If you split your time between one or more residences during a time period**, you must list all residences.',
+    info3c:
+      ' - **Do not list residences before your 18th birthday** unless to provide a minimum of 2 years residence history.',
     summary: {
       title: 'Where you have lived',
       unit: 'Years covered',
@@ -60,7 +70,7 @@ export const history = {
         title: 'Summary of places you have lived',
         item: 'Address',
         unknown: 'Provide residence details',
-        incomplete: 'This residence\'s information is incomplete',
+        incomplete: "This residence's information is incomplete",
         item2: 'Person'
       },
       append: 'Add another residence',
@@ -68,27 +78,34 @@ export const history = {
     },
     gap: {
       title: 'Residence gap',
-      para: 'There is a gap in your residence history. The entire 10 year period must be covered with no gaps',
+      para:
+        'There is a gap in your residence history. The entire 10 year period must be covered with no gaps',
       btnText: 'Add an address'
     },
     heading: {
-      done: 'Done! Now let\'s add more',
+      done: "Done! Now let's add more",
       exiting: 'Before you leave this section',
       details: 'Enter your residence information',
       dates: 'Provide dates of residence',
       address: 'Provide the street address',
-      comments: 'If you need to provide additional comments about this information enter them below',
+      comments:
+        'If you need to provide additional comments about this information enter them below',
       role: 'Is/was this residence',
       reference: 'Add a person that knows you'
     },
     para: {
-      done: 'Use the button below to save your history entry and start another.',
-      exiting: '**The full 10 year period of residence history is not covered.** Your SF86 cannot be submitted until all 10 years are covered with no gaps.<br><br>We will mark the gaps and highlight them for you when you come back.',
-      details: 'Indicate the actual physical location of your residence, not a Post Office box or a permanent residence when you were not physically located there. If you split your time between one or more residences during a time period, you must list all residences. Do not list residences before your 18th birthday unless to provide a minimum of 2 years residence history.',
-      reference: 'For any address in the last 3 years, provide a person who knew you at the address, and who preferably still lives in that area. Do not list people who knew you well for residences completely outside this 3-year period, and do not list your spouse, cohabitant or other relatives.'
+      done:
+        'Use the button below to save your history entry and start another.',
+      exiting:
+        '**The full 10 year period of residence history is not covered.** Your SF86 cannot be submitted until all 10 years are covered with no gaps.<br><br>We will mark the gaps and highlight them for you when you come back.',
+      details:
+        'Indicate the actual physical location of your residence, not a Post Office box or a permanent residence when you were not physically located there. If you split your time between one or more residences during a time period, you must list all residences. Do not list residences before your 18th birthday unless to provide a minimum of 2 years residence history.',
+      reference:
+        'For any address in the last 3 years, provide a person who knew you at the address, and who preferably still lives in that area. Do not list people who knew you well for residences completely outside this 3-year period, and do not list your spouse, cohabitant or other relatives.'
     },
     label: {
-      dates: 'You are not required to list temporary locations of less than 90 days that did not serve as your permanent or mailing address.',
+      dates:
+        'You are not required to list temporary locations of less than 90 days that did not serve as your permanent or mailing address.',
       address: 'This address is',
       comments: 'Add optional comment',
       role: {
@@ -102,12 +119,14 @@ export const history = {
     help: {
       dates: {
         title: 'Estimate the date if unsure',
-        message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
+        message:
+          'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
         note: ''
       },
       address: {
         title: 'Acronyms:',
-        message: 'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
+        message:
+          'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
         note: ''
       },
       role: {
@@ -117,7 +136,8 @@ export const history = {
       },
       comments: {
         title: 'Need help providing additional information?',
-        message: 'If you need to provide any additional comments about this information enter them below',
+        message:
+          'If you need to provide any additional comments about this information enter them below',
         note: ''
       }
     }
@@ -130,7 +150,8 @@ export const history = {
     },
     gap: {
       title: 'Employment gap',
-      para: 'There is a gap in your employment. The entire 10 year period must be covered with no gaps',
+      para:
+        'There is a gap in your employment. The entire 10 year period must be covered with no gaps',
       btnText: 'Add an employer'
     },
     heading: {
@@ -138,9 +159,12 @@ export const history = {
       exiting: 'Before you leave this section'
     },
     para: {
-      exiting: '**The full 10 year period of employment history is not covered.** Your SF86 cannot be submitted until all 10 years are covered with no gaps.<br><br>We will mark the gaps and highlight them for you when you come back.',
-      employment: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.',
-      employment2: 'Do not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
+      exiting:
+        '**The full 10 year period of employment history is not covered.** Your SF86 cannot be submitted until all 10 years are covered with no gaps.<br><br>We will mark the gaps and highlight them for you when you come back.',
+      employment:
+        'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.',
+      employment2:
+        'Do not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
     },
     default: {
       noDate: {
@@ -153,13 +177,14 @@ export const history = {
         summary: {
           title: 'Summary of your work history',
           employer: 'Employer',
-          incomplete: 'This employer\'s information is incomplete',
+          incomplete: "This employer's information is incomplete",
           unknown: 'Provide employer details',
           item2: 'Title'
         }
       },
       employmentRecord: {
-        title: 'Have any of the following happened to you in the last seven (7) years at employment activities that you have not previously listed?',
+        title:
+          'Have any of the following happened to you in the last seven (7) years at employment activities that you have not previously listed?',
         list: [
           '- Fired from a job?',
           '- Quit a job after being told you would be fired?',
@@ -167,13 +192,15 @@ export const history = {
           '- Left a job by mutual agreement following notice of unsatisfactory performance?',
           '- Received a written warning, been officially reprimanded, suspended, or disciplined for misconduct in the workplace, such as violation of security policy?'
         ],
-        para: 'If you answer "Yes", you will be required to add an additional employment record above.'
+        para:
+          'If you answer "Yes", you will be required to add an additional employment record above.'
       },
       activity: {
         title: 'Government employment',
         help: {
           title: 'Specifics:',
-          message: 'Non-government employment represents all employment outside of the government excluding self-employment. If you were self employed, please choose self-employment. ',
+          message:
+            'Non-government employment represents all employment outside of the government excluding self-employment. If you were self employed, please choose self-employment. ',
           note: ''
         },
         other: {
@@ -203,19 +230,23 @@ export const history = {
       },
       reasonOptions: {
         title: 'Reason for leaving employment',
-        message: 'For this employment have any of the following happened to you in the last seven (7) years?'
+        message:
+          'For this employment have any of the following happened to you in the last seven (7) years?'
       },
       left: {
         title: 'Provide the reason for leaving the employment activity',
-        branch: 'For this employment have any of the following happened to you in the last seven (7) years?',
-        append: 'In the last seven (7) years do you have another reason for leaving to report for this employment?',
+        branch:
+          'For this employment have any of the following happened to you in the last seven (7) years?',
+        append:
+          'In the last seven (7) years do you have another reason for leaving to report for this employment?',
         list: [
           '- Fired',
           '- Quit after being told you would be fired',
           '- Left by mutual agreement following charges or allegations of misconduct',
           '- Left by mutual agreement following notice of unsatisfactory performance'
         ],
-        comments: 'Provide any additional comments for why you left this employment activity',
+        comments:
+          'Provide any additional comments for why you left this employment activity',
         fired: {
           option: 'Fired',
           text: 'Provide the reason for being fired',
@@ -229,32 +260,40 @@ export const history = {
         charges: {
           option: 'Misconduct',
           text: 'Provide the charges or allegations of misconduct',
-          date: 'Provide the date you left following the charges or allegations of misconduct'
+          date:
+            'Provide the date you left following the charges or allegations of misconduct'
         },
         performance: {
           option: 'Unsatisfactory performance',
           text: 'Provide the reason(s) for unsatisfactory performance',
-          date: 'Provide the date you left by mutual agreement following a notice of unsatisfactory performance'
+          date:
+            'Provide the date you left by mutual agreement following a notice of unsatisfactory performance'
         }
       },
       reprimand: {
-        label: 'For this employment, in the last seven (7) years have you received a written warning, been officially reprimanded, suspended, or disciplined for misconduct in the workplace, such as a violation of security policy?',
-        append: 'Do you have another instance of discipline or a warning to provide?',
+        label:
+          'For this employment, in the last seven (7) years have you received a written warning, been officially reprimanded, suspended, or disciplined for misconduct in the workplace, such as a violation of security policy?',
+        append:
+          'Do you have another instance of discipline or a warning to provide?',
         description: {
-          label: 'Provide the reason(s) for being warned, reprimanded, suspended or disciplined'
+          label:
+            'Provide the reason(s) for being warned, reprimanded, suspended or disciplined'
         },
         date: {
-          label: 'Provide the month and year you were warned, reprimanded, suspended or disciplined'
+          label:
+            'Provide the month and year you were warned, reprimanded, suspended or disciplined'
         },
         help: {
           title: 'Have you received a written warning',
-          message: 'Explain if you have you received a written warning, been officially reprimanded, suspended, or disciplined for misconduct in the workplace, such as a violation of security policy'
+          message:
+            'Explain if you have you received a written warning, been officially reprimanded, suspended, or disciplined for misconduct in the workplace, such as a violation of security policy'
         }
       },
       datesEmployed: {
         help: {
           title: 'Estimate the date if unsure',
-          message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
+          message:
+            'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
           note: ''
         }
       },
@@ -262,7 +301,8 @@ export const history = {
         label: 'This address is',
         help: {
           title: 'Acronyms:',
-          message: 'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
+          message:
+            'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
           note: ''
         }
       },
@@ -302,20 +342,23 @@ export const history = {
       physicalAddress: {
         help: {
           title: 'Are/were you working from another location?',
-          message: 'Are/were you physically working from an different location than your employer\'s address? If so answer "Yes".',
+          message:
+            'Are/were you physically working from an different location than your employer\'s address? If so answer "Yes".',
           note: ''
         },
         address: {
           label: 'This address is',
           help: {
             title: 'Acronyms:',
-            message: 'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
+            message:
+              'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
             note: ''
           }
         },
         heading: {
           telephone: 'Provide telephone number',
-          address: 'Provide the work address where you are/were physically located'
+          address:
+            'Provide the work address where you are/were physically located'
         }
       },
       additionalActivity: {
@@ -352,7 +395,8 @@ export const history = {
         datesEmployed: {
           help: {
             title: 'Need help with the dates of employment?',
-            message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
+            message:
+              'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
             note: ''
           }
         }
@@ -386,7 +430,8 @@ export const history = {
           label: 'This address is',
           help: {
             title: 'Tell us where your supervisor works/worked',
-            message: 'Provide the physical address of this supervisor\'s work location.',
+            message:
+              "Provide the physical address of this supervisor's work location.",
             note: ''
           }
         },
@@ -407,7 +452,7 @@ export const history = {
       },
       heading: {
         employment: 'List where you have worked',
-        done: 'Done! Now let\'s add more',
+        done: "Done! Now let's add more",
         exiting: 'Before you leave this section',
         activity: 'Select your employment activity',
         datesEmployed: 'Provide dates of employment',
@@ -418,14 +463,19 @@ export const history = {
         address: 'Provide the address of employer',
         supervisor: 'Your Supervisor',
         telephone: 'Provide your employment telephone number',
-        physicalAddress: 'Is/was your physical work address different than your employer\'s address?',
+        physicalAddress:
+          "Is/was your physical work address different than your employer's address?",
         additionalActivity: 'Additional periods of activity with this employer'
       },
       para: {
-        done: 'Use the button below to save your history entry and start another.',
-        exiting: '**The full 10 year period of employment history is not covered.** Your SF86 cannot be submitted until all 10 years are covered with no gaps.<br><br>We will mark the gaps and highlight them for you when you come back.',
-        employment: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station. \n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.',
-        additionalActivity: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
+        done:
+          'Use the button below to save your history entry and start another.',
+        exiting:
+          '**The full 10 year period of employment history is not covered.** Your SF86 cannot be submitted until all 10 years are covered with no gaps.<br><br>We will mark the gaps and highlight them for you when you come back.',
+        employment:
+          'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station. \n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.',
+        additionalActivity:
+          'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
       }
     },
     activemilitary: {
@@ -436,7 +486,8 @@ export const history = {
         telephone: 'Provide your employment telephone number',
         supervisor: 'Your Supervisor',
         reference: 'Provide a reference',
-        physicalAddress: 'Is/was your physical work address different than your employer\'s address?',
+        physicalAddress:
+          "Is/was your physical work address different than your employer's address?",
         additionalActivity: 'Additional periods of activity with this employer',
         dutyStation: 'Provide your assigned duty station during this period'
       },
@@ -459,7 +510,8 @@ export const history = {
         label: 'This address is',
         help: {
           title: 'Acronyms:',
-          message: 'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
+          message:
+            'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
           note: ''
         }
       },
@@ -492,7 +544,8 @@ export const history = {
           label: 'Supervisor email',
           help: {
             title: 'Provide the email of this supervisor',
-            message: 'Only provide an active email address where this supervisor can be reached.',
+            message:
+              'Only provide an active email address where this supervisor can be reached.',
             note: ''
           }
         },
@@ -500,7 +553,8 @@ export const history = {
           label: 'This address is',
           help: {
             title: 'Acronyms:',
-            message: 'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
+            message:
+              'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
             note: ''
           }
         },
@@ -562,7 +616,8 @@ export const history = {
         label: 'Duty station'
       },
       para: {
-        additionalActivity: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
+        additionalActivity:
+          'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
       }
     },
     nationalguard: {
@@ -573,7 +628,8 @@ export const history = {
         telephone: 'Provide your employment telephone number',
         supervisor: 'Your Supervisor',
         reference: 'Provide a reference',
-        physicalAddress: 'Is/was your physical work address different than your employer\'s address?',
+        physicalAddress:
+          "Is/was your physical work address different than your employer's address?",
         additionalActivity: 'Additional periods of activity with this employer',
         dutyStation: 'Provide your assigned duty station during this period'
       },
@@ -596,7 +652,8 @@ export const history = {
         label: 'This address is',
         help: {
           title: 'Acronyms:',
-          message: 'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
+          message:
+            'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
           note: ''
         }
       },
@@ -637,7 +694,8 @@ export const history = {
           label: 'This address is',
           help: {
             title: 'Tell us where your supervisor works/worked',
-            message: 'Provide the physical address of this supervisor\'s work location.',
+            message:
+              "Provide the physical address of this supervisor's work location.",
             note: ''
           }
         },
@@ -699,7 +757,8 @@ export const history = {
         label: 'Duty station'
       },
       para: {
-        additionalActivity: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
+        additionalActivity:
+          'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
       }
     },
     usphs: {
@@ -710,7 +769,8 @@ export const history = {
         telephone: 'Provide your employment telephone number',
         supervisor: 'Your Supervisor',
         reference: 'Provide a reference',
-        physicalAddress: 'Is/was your physical work address different than your employer\'s address?',
+        physicalAddress:
+          "Is/was your physical work address different than your employer's address?",
         additionalActivity: 'Additional periods of activity with this employer',
         dutyStation: 'Provide your assigned duty station during this period'
       },
@@ -733,7 +793,8 @@ export const history = {
         label: 'This address is',
         help: {
           title: 'Acronyms:',
-          message: 'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
+          message:
+            'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
           note: ''
         }
       },
@@ -774,7 +835,8 @@ export const history = {
           label: 'This address is',
           help: {
             title: 'Tell us where your supervisor works/worked',
-            message: 'Provide the physical address of this supervisor\'s work location.',
+            message:
+              "Provide the physical address of this supervisor's work location.",
             note: ''
           }
         },
@@ -836,7 +898,8 @@ export const history = {
         label: 'Duty station'
       },
       para: {
-        additionalActivity: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
+        additionalActivity:
+          'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
       }
     },
     otherfederal: {
@@ -847,11 +910,13 @@ export const history = {
         address: 'Provide the address of employment',
         telephone: 'Provide your employment telephone number',
         reference: 'Provide a reference',
-        physicalAddress: 'Is/was your physical work address different than your employer\'s address?',
+        physicalAddress:
+          "Is/was your physical work address different than your employer's address?",
         additionalActivity: 'Additional periods of activity with this employer'
       },
       para: {
-        additionalActivity: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
+        additionalActivity:
+          'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
       },
       employer: {
         label: 'Employer name',
@@ -880,7 +945,8 @@ export const history = {
         label: 'This address is',
         help: {
           title: 'Acronyms:',
-          message: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
+          message:
+            'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
           note: ''
         }
       },
@@ -895,7 +961,8 @@ export const history = {
       physicalAddress: {
         help: {
           title: 'Are/were you working from another location?',
-          message: 'Are/were you physically working from an different location than your employer\'s address? If so answer "Yes".',
+          message:
+            'Are/were you physically working from an different location than your employer\'s address? If so answer "Yes".',
           note: ''
         },
         address: {
@@ -954,11 +1021,13 @@ export const history = {
         address: 'Provide the address of employment',
         telephone: 'Provide your employment telephone number',
         reference: 'Provide a reference',
-        physicalAddress: 'Is/was your physical work address different than your employer\'s address?',
+        physicalAddress:
+          "Is/was your physical work address different than your employer's address?",
         additionalActivity: 'Additional periods of activity with this employer'
       },
       para: {
-        additionalActivity: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
+        additionalActivity:
+          'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
       },
       employer: {
         label: 'Employer name',
@@ -987,7 +1056,8 @@ export const history = {
         label: 'This address is',
         help: {
           title: 'Acronyms:',
-          message: 'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
+          message:
+            'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
           note: ''
         }
       },
@@ -1002,7 +1072,8 @@ export const history = {
       physicalAddress: {
         help: {
           title: 'Are/were you working from another location?',
-          message: 'Are/were you physically working from an different location than your employer\'s address? If so answer "Yes".',
+          message:
+            'Are/were you physically working from an different location than your employer\'s address? If so answer "Yes".',
           note: ''
         },
         address: {
@@ -1061,11 +1132,13 @@ export const history = {
         address: 'Provide the address of employment',
         telephone: 'Provide your employment telephone number',
         reference: 'Provide a reference',
-        physicalAddress: 'Is/was your physical work address different than your employer\'s address?',
+        physicalAddress:
+          "Is/was your physical work address different than your employer's address?",
         additionalActivity: 'Additional periods of activity with this employer'
       },
       para: {
-        additionalActivity: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
+        additionalActivity:
+          'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
       },
       employer: {
         label: 'Employer name',
@@ -1094,7 +1167,8 @@ export const history = {
         label: 'This address is',
         help: {
           title: 'Acronyms:',
-          message: 'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
+          message:
+            'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
           note: ''
         }
       },
@@ -1109,7 +1183,8 @@ export const history = {
       physicalAddress: {
         help: {
           title: 'Are/were you working from another location?',
-          message: 'Are/were you physically working from an different location than your employer\'s address? If so answer "Yes".',
+          message:
+            'Are/were you physically working from an different location than your employer\'s address? If so answer "Yes".',
           note: ''
         },
         address: {
@@ -1168,11 +1243,13 @@ export const history = {
         address: 'Provide the address of employment',
         telephone: 'Provide your employment telephone number',
         reference: 'Provide a reference',
-        physicalAddress: 'Is/was your physical work address different than your employer\'s address?',
+        physicalAddress:
+          "Is/was your physical work address different than your employer's address?",
         additionalActivity: 'Additional periods of activity with this employer'
       },
       para: {
-        additionalActivity: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
+        additionalActivity:
+          'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
       },
       employer: {
         label: 'Employer name',
@@ -1201,7 +1278,8 @@ export const history = {
         label: 'This address is',
         help: {
           title: 'Acronyms:',
-          message: 'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
+          message:
+            'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
           note: ''
         }
       },
@@ -1216,7 +1294,8 @@ export const history = {
       physicalAddress: {
         help: {
           title: 'Are/were you working from another location?',
-          message: 'Are/were you physically working from an different location than your employer\'s address? If so answer "Yes".',
+          message:
+            'Are/were you physically working from an different location than your employer\'s address? If so answer "Yes".',
           note: ''
         },
         address: {
@@ -1274,8 +1353,10 @@ export const history = {
         status: 'Select the employment status for this position',
         address: 'Provide the address of employment',
         telephone: 'Provide your employment telephone number',
-        reference: 'Provide the name of someone that can verify your self-employment',
-        physicalAddress: 'Is your physical work address different than your employment address?',
+        reference:
+          'Provide the name of someone that can verify your self-employment',
+        physicalAddress:
+          'Is your physical work address different than your employment address?',
         additionalActivity: 'Additional periods of activity with this employer'
       },
       employer: {
@@ -1305,7 +1386,8 @@ export const history = {
         label: 'This address is',
         help: {
           title: 'Acronyms:',
-          message: 'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
+          message:
+            'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
           note: ''
         }
       },
@@ -1320,7 +1402,8 @@ export const history = {
       physicalAddress: {
         help: {
           title: 'Are/were you working from another location?',
-          message: 'Are/were you physically working from an different location than your employer\'s address? If so answer "Yes".',
+          message:
+            'Are/were you physically working from an different location than your employer\'s address? If so answer "Yes".',
           note: ''
         },
         address: {
@@ -1371,12 +1454,14 @@ export const history = {
         }
       },
       para: {
-        additionalActivity: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
+        additionalActivity:
+          'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
       }
     },
     unemployment: {
       heading: {
-        reference: 'Provide the name of someone who can verify your unemployment activities and means of support'
+        reference:
+          'Provide the name of someone who can verify your unemployment activities and means of support'
       }
     },
     other: {
@@ -1386,8 +1471,10 @@ export const history = {
         status: 'Select the employment status for this position',
         address: 'Provide the address of employment',
         telephone: 'Provide your employment telephone number',
-        reference: 'Provide the name of someone who can verify your unemployment activities and means of support',
-        physicalAddress: 'Is/was your physical work address different than your employer\'s address?',
+        reference:
+          'Provide the name of someone who can verify your unemployment activities and means of support',
+        physicalAddress:
+          "Is/was your physical work address different than your employer's address?",
         additionalActivity: 'Additional periods of activity with this employer'
       },
       activity: {
@@ -1428,7 +1515,8 @@ export const history = {
         label: 'This address is',
         help: {
           title: 'Acronyms:',
-          message: 'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
+          message:
+            'APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
           note: ''
         }
       },
@@ -1443,7 +1531,8 @@ export const history = {
       physicalAddress: {
         help: {
           title: 'Are/were you working from another location?',
-          message: 'Are/were you physically working from an different location than your employer\'s address? If so answer "Yes".',
+          message:
+            'Are/were you physically working from an different location than your employer\'s address? If so answer "Yes".',
           note: ''
         },
         address: {
@@ -1494,13 +1583,15 @@ export const history = {
         }
       },
       para: {
-        additionalActivity: 'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
+        additionalActivity:
+          'List all of your employment activities, including unemployment and self-employment, beginning with the present and working back 10 years. The entire period must be accounted for without breaks. If the employment activity was military duty, list separate employment activity periods to show each change of military duty station.\n\nDo not list employment before your 18th birthday unless to provide a minimum of 2 years employment history.'
       }
     }
   },
   education: {
     title: 'List the places you went to school',
-    info: 'Do not list education before your 18th birthday, unless to provide a minimum of two years education history.',
+    info:
+      'Do not list education before your 18th birthday, unless to provide a minimum of two years education history.',
     summary: {
       title: 'Where you went to school',
       schools: 'Schools attended',
@@ -1514,11 +1605,12 @@ export const history = {
           title: 'Summary of education',
           item: 'School',
           unknown: 'Provide your education details',
-          incomplete: 'This education\'s information is incomplete',
+          incomplete: "This education's information is incomplete",
           item2: 'Diploma'
         },
         append: 'Add another school',
-        appendTitle: 'Do you have additional education (include education within the last 10 years, as well as degrees or diplomas more than 10 years ago)?'
+        appendTitle:
+          'Do you have additional education (include education within the last 10 years, as well as degrees or diplomas more than 10 years ago)?'
       },
       diploma: {
         summary: {
@@ -1530,7 +1622,7 @@ export const history = {
       }
     },
     heading: {
-      done: 'Done! Now let\'s add more',
+      done: "Done! Now let's add more",
       exiting: 'Before you leave this section',
       degrees: 'Degrees/diplomas',
       degree: 'Did you receive a degree/diploma?',
@@ -1539,7 +1631,8 @@ export const history = {
       dates: 'Provide dates of attendance',
       name: 'Provide the name of the school',
       address: 'Provide the street address of the school',
-      comments: 'If you need to provide additional comments about this information enter them below',
+      comments:
+        'If you need to provide additional comments about this information enter them below',
       type: 'Select the most appropriate code to describe your school',
       reference: 'Add a person that knows you',
       diploma: 'Provide type of degree(s)/diploma(s) received',
@@ -1547,12 +1640,14 @@ export const history = {
     },
     para: {
       exiting: '',
-      reference: 'For any school in the last 3 years, provide a person who knew you at the address, and who preferably still lives in that area. Do not list people who knew you well for education completely outside this 3-year period, and do not list your spouse, cohabitant or other relatives.'
+      reference:
+        'For any school in the last 3 years, provide a person who knew you at the address, and who preferably still lives in that area. Do not list people who knew you well for education completely outside this 3-year period, and do not list your spouse, cohabitant or other relatives.'
     },
     label: {
       attendance: 'Have you attended any schools in the last 10 years?',
       degree10: 'Have you received a degree or diploma more than 10 years ago?',
-      dates: 'You are not required to list temporary locations of less than 90 days that did not serve as your permanent or mailing address.',
+      dates:
+        'You are not required to list temporary locations of less than 90 days that did not serve as your permanent or mailing address.',
       name: 'School name',
       address: 'This address is',
       comments: 'Add optional comment',
@@ -1565,9 +1660,9 @@ export const history = {
       diploma: {
         received: 'Type of degree(s)/diploma(s) received',
         highschool: 'High School Diploma',
-        associate: 'Associate\'s',
-        bachelor: 'Bachelor\'s',
-        master: 'Master\'s',
+        associate: "Associate's",
+        bachelor: "Bachelor's",
+        master: "Master's",
         doctorate: 'Doctorate',
         professional: 'Professional Degree (eg. MD, DVM, JD)',
         other: 'Other',
@@ -1577,23 +1672,29 @@ export const history = {
     help: {
       attendance: {
         title: 'Including all schools you attended',
-        message: 'If within the last 10 years you have attended a high school, college, vocational, or correspondence course answer "Yes".',
+        message:
+          'If within the last 10 years you have attended a high school, college, vocational, or correspondence course answer "Yes".',
         note: ''
       },
       degree10: {
         title: 'Any degree/diploma you have received in your life',
-        message: 'If you a degree or diploma from any point in your life answer "Yes".',
+        message:
+          'If you a degree or diploma from any point in your life answer "Yes".',
         note: ''
       },
       dates: {
         title: 'Estimate the date if unsure',
-        message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
+        message:
+          'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
         note: ''
       },
       address: {
-        title: 'For correspondence/distance/extension/online schools, provide the address where the records are maintained',
-        message: 'For assistance determining the school address, refer to [https://ope.ed.gov/accreditation/search.aspx](https://ope.ed.gov/accreditation/search.aspx).',
-        note: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
+        title:
+          'For correspondence/distance/extension/online schools, provide the address where the records are maintained',
+        message:
+          'For assistance determining the school address, refer to [https://ope.ed.gov/accreditation/search.aspx](https://ope.ed.gov/accreditation/search.aspx).',
+        note:
+          'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
       },
       type: {
         title: 'Need help with the school code?',
@@ -1602,12 +1703,14 @@ export const history = {
       },
       comments: {
         title: 'Need help providing more information?',
-        message: 'If you need to provide any additional comments about this information enter them below',
+        message:
+          'If you need to provide any additional comments about this information enter them below',
         note: ''
       },
       degree: {
         title: 'Need help with a degree or diploma?',
-        message: 'If you have received one or more degrees or diplomas from this school please provide the required information',
+        message:
+          'If you have received one or more degrees or diplomas from this school please provide the required information',
         note: ''
       },
       diploma: {
@@ -1617,16 +1720,19 @@ export const history = {
       },
       date: {
         title: 'Estimate the date if unsure',
-        message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+        message:
+          'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
         note: ''
       }
     }
   },
   federal: {
     heading: {
-      branch: 'Do you have former federal civilian employment, excluding military service, NOT indicated previously, to report?',
+      branch:
+        'Do you have former federal civilian employment, excluding military service, NOT indicated previously, to report?',
       dates: 'Provide dates of federal civilian employment',
-      name: 'Provide the name of the federal agency for which you are/were employed',
+      name:
+        'Provide the name of the federal agency for which you are/were employed',
       position: 'Provide your position title',
       address: 'Provide the location of the agency'
     },
@@ -1638,7 +1744,8 @@ export const history = {
       },
       dates: {
         title: 'Estimate the date if unsure',
-        message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
+        message:
+          'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
         note: ''
       },
       name: {
@@ -1652,8 +1759,10 @@ export const history = {
         note: ''
       },
       address: {
-        title: 'Try looking up the agency name, this could help you find the address',
-        message: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
+        title:
+          'Try looking up the agency name, this could help you find the address',
+        message:
+          'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
         note: ''
       }
     },
@@ -1665,7 +1774,8 @@ export const history = {
         nodates: 'NA',
         unknown: 'Provide federal service below'
       },
-      appendTitle: 'Do you have additional former federal civilian employment, excluding military service, NOT indicated previously, to report?',
+      appendTitle:
+        'Do you have additional former federal civilian employment, excluding military service, NOT indicated previously, to report?',
       append: 'Add another former federal service'
     }
   }

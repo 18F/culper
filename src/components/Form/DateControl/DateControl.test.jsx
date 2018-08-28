@@ -50,7 +50,9 @@ describe('The date component', () => {
     component.find('.day input').simulate('focus')
     expect(component.find('label').length).toEqual(children)
     expect(component.find('.day input').length).toEqual(1)
-    expect(component.find('.day input').hasClass('usa-input-focus')).toEqual(true)
+    expect(component.find('.day input').hasClass('usa-input-focus')).toEqual(
+      true
+    )
     expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
 
@@ -65,7 +67,9 @@ describe('The date component', () => {
     expect(component.find('label').length).toEqual(children)
     expect(component.find('.day input').length).toEqual(1)
     expect(component.find('.day input').nodes[0].value).toEqual('28')
-    expect(component.find('.day input').hasClass('usa-input-success')).toEqual(true)
+    expect(component.find('.day input').hasClass('usa-input-success')).toEqual(
+      true
+    )
     expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
 
@@ -149,12 +153,18 @@ describe('The date component', () => {
       focus: false,
       onValidate: (event, status, error) => {},
       receiveProps: true,
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
     const component = mount(<DateControl {...expected} />)
-    component.find('.month input').simulate('change', { target: { value: '1' } })
+    component
+      .find('.month input')
+      .simulate('change', { target: { value: '1' } })
     component.find('.day input').simulate('change', { target: { value: '10' } })
-    component.find('.year input').simulate('change', { target: { value: '1999' } })
+    component
+      .find('.year input')
+      .simulate('change', { target: { value: '1999' } })
     expect(updates).toBe(3)
   })
 
@@ -178,7 +188,7 @@ describe('The date component', () => {
     component.find('.year input').simulate('change')
     component.find('.year input').simulate('blur')
     expect(errors).toBeGreaterThan(2)
-    component.setProps({value: '1-1-2009'})
+    component.setProps({ value: '1-1-2009' })
     expect(errors).toBeGreaterThan(2)
   })
 
@@ -227,7 +237,9 @@ describe('The date component', () => {
       error: false,
       focus: false,
       valid: false,
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
     const component = mount(<DateControl {...expected} />)
     component.find('input[type="checkbox"]').simulate('change')
@@ -301,8 +313,12 @@ describe('The date component', () => {
   it('does not loops when invalid date', () => {
     const component = mount(<DateControl />)
     expect(component.find('.datecontrol').length).toBe(1)
-    component.find('.month input').simulate('change', { target: { name: 'month', value: '13' } })
-    component.find('.month input').simulate('change', { target: { name: 'month', value: 'g' } })
+    component
+      .find('.month input')
+      .simulate('change', { target: { name: 'month', value: '13' } })
+    component
+      .find('.month input')
+      .simulate('change', { target: { name: 'month', value: 'g' } })
   })
 
   it('can hide estimated option', () => {
@@ -314,42 +330,60 @@ describe('The date component', () => {
   it('can autotab forward', () => {
     let tabbed = false
     const expected = {
-      tab: () => { tabbed = true }
+      tab: () => {
+        tabbed = true
+      }
     }
 
     // Month
     let component = mount(<DateControl {...expected} />)
-    component.find('.month input').simulate('keydown', { keyCode: 8, target: { value: '' } })
+    component
+      .find('.month input')
+      .simulate('keydown', { keyCode: 8, target: { value: '' } })
     expect(tabbed).toBe(false)
-    component.find('.month input').simulate('keydown', { keyCode: 48, target: { value: '12' } })
+    component
+      .find('.month input')
+      .simulate('keydown', { keyCode: 48, target: { value: '12' } })
     expect(tabbed).toBe(true)
 
     // Day
     tabbed = false
     component = mount(<DateControl {...expected} />)
-    component.find('.day input').simulate('keydown', { keyCode: 48, target: { value: '12' } })
+    component
+      .find('.day input')
+      .simulate('keydown', { keyCode: 48, target: { value: '12' } })
     expect(tabbed).toBe(true)
   })
 
   it('can autotab backward', () => {
     let tabbed = false
     const expected = {
-      tab: () => { tabbed = true }
+      tab: () => {
+        tabbed = true
+      }
     }
 
     // Year
     let component = mount(<DateControl {...expected} />)
-    component.find('.year input').simulate('keydown', { keyCode: 48, target: { value: '1' } })
+    component
+      .find('.year input')
+      .simulate('keydown', { keyCode: 48, target: { value: '1' } })
     expect(tabbed).toBe(false)
-    component.find('.year input').simulate('keydown', { keyCode: 8, target: { value: '' } })
+    component
+      .find('.year input')
+      .simulate('keydown', { keyCode: 8, target: { value: '' } })
     expect(tabbed).toBe(true)
 
     // Day
     tabbed = false
     component = mount(<DateControl {...expected} />)
-    component.find('.day input').simulate('keydown', { keyCode: 48, target: { value: '1' } })
+    component
+      .find('.day input')
+      .simulate('keydown', { keyCode: 48, target: { value: '1' } })
     expect(tabbed).toBe(false)
-    component.find('.day input').simulate('keydown', { keyCode: 8, target: { value: '' } })
+    component
+      .find('.day input')
+      .simulate('keydown', { keyCode: 8, target: { value: '' } })
     expect(tabbed).toBe(true)
   })
 
@@ -366,7 +400,9 @@ describe('The date component', () => {
     }
 
     let component = mount(<DateControl {...props} />)
-    component.find('.estimated input').simulate('change', { target: { checked: true } })
+    component
+      .find('.estimated input')
+      .simulate('change', { target: { checked: true } })
     expect(toggled).toBe(true)
   })
 })

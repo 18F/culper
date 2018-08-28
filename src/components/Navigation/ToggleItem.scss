@@ -1,22 +1,21 @@
 .toggle-item {
   // expand/collapse indicators
-
-  .fa-angle-down,
-  .fa-angle-up {
-    margin-left: 0.5rem;
+  .section-name::after {
     color: $eapp-grey-darker;
+    display: inline;
+    font-family: FontAwesome;
+    margin-left: 0.5rem;
   }
 
-  .fa-angle-up {
-    display: none;
+  [aria-expanded='false'] {
+    .section-name::after {
+      content: '\f107';
+    }
   }
 
   [aria-expanded='true'] {
-    .fa-angle-down {
-      display: none;
-    }
-    .fa-angle-up {
-      display: inline-block;
+    .section-name::after {
+      content: '\f106';
     }
   }
 }

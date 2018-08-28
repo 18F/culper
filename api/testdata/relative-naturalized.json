@@ -1,0 +1,310 @@
+{
+  "type": "relationships.relatives",
+  "props": {
+    "List": {
+      "type": "collection",
+      "props": {
+        "branch": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "items": [
+          {
+            "Item": {
+              "Address": {
+                "type": "location",
+                "props": {
+                  "layout": "Address",
+                  "street": "318 1st St.",
+                  "city": "San Jose",
+                  "state": "CA",
+                  "zipcode": "94088",
+                  "country": "United States"
+                }
+              },
+              "Aliases": {
+                "type": "collection",
+                "props": {
+                  "branch": {
+                    "type": ""
+                  },
+                  "items": [
+                    {
+                      "Item": {
+                        "Dates": {
+                          "type": "daterange",
+                          "props": {
+                            "from": {
+                              "type": "datecontrol",
+                              "props": {
+                                "month": "",
+                                "day": "",
+                                "year": "",
+                                "estimated": false
+                              }
+                            },
+                            "to": {
+                              "type": "datecontrol",
+                              "props": {
+                                "month": "",
+                                "day": "",
+                                "year": "",
+                                "estimated": false
+                              }
+                            },
+                            "present": false
+                          }
+                        },
+                        "Has": {
+                          "type": "branch",
+                          "props": {
+                            "value": "No"
+                          }
+                        },
+                        "MaidenName": {
+                          "type": "branch",
+                          "props": {
+                            "value": ""
+                          }
+                        },
+                        "Name": {
+                          "type": "name",
+                          "props": {
+                            "first": "",
+                            "firstInitialOnly": false,
+                            "middle": "",
+                            "middleInitialOnly": false,
+                            "noMiddleName": false,
+                            "last": "",
+                            "lastInitialOnly": false,
+                            "suffix": "",
+                            "suffixOther": ""
+                          }
+                        },
+                        "Reason": {
+                          "type": "textarea",
+                          "props": {
+                            "value": ""
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "Birthdate": {
+                "type": "datecontrol",
+                "props": {
+                  "month": "01",
+                  "day": "04",
+                  "year": "1980",
+                  "estimated": false
+                }
+              },
+              "Birthplace": {
+                "type": "location",
+                "props": {
+                  "layout": "Birthplace without County",
+                  "city": "Victoria",
+                  "country": "Canada"
+                }
+              },
+              "Citizenship": {
+                "type": "country",
+                "props": {
+                  "value": [
+                    "United States"
+                  ]
+                }
+              },
+              "CitizenshipDocumentation": {
+                "type": "radio",
+                "props": {
+                  "value": "FS",
+                  "checked": true
+                }
+              },
+              "CourtAddress": {
+                "type": "location",
+                "props": {
+                  "layout": "US Address",
+                  "street": "1343 Law St.",
+                  "city": "San Jose",
+                  "state": "CA",
+                  "zipcode": "94088",
+                  "country": "United States"
+                }
+              },
+              "CourtName": {
+                "type": "text",
+                "props": {
+                  "value": "People's Court"
+                }
+              },
+              "Document": {
+                "type": "radio",
+                "props": {
+                  "value": ""
+                }
+              },
+              "DocumentComments": {
+                "type": "textarea",
+                "props": {
+                  "value": ""
+                }
+              },
+              "DocumentNumber": {
+                "type": "text",
+                "props": {
+                  "value": "123435"
+                }
+              },
+              "Employer": {
+                "type": "text",
+                "props": {
+                  "value": ""
+                }
+              },
+              "EmployerAddress": {
+                "type": "location",
+                "props": {
+                  "layout": ""
+                }
+              },
+              "EmployerAddressNotApplicable": {
+                "type": "notapplicable",
+                "props": {
+                  "applicable": true
+                }
+              },
+              "EmployerNotApplicable": {
+                "type": "notapplicable",
+                "props": {
+                  "applicable": false
+                }
+              },
+              "EmployerRelationship": {
+                "type": "textarea",
+                "props": {
+                  "value": ""
+                }
+              },
+              "EmployerRelationshipNotApplicable": {
+                "type": "notapplicable",
+                "props": {
+                  "applicable": true
+                }
+              },
+              "Expiration": {
+                "type": "datecontrol",
+                "props": {
+                  "month": "",
+                  "day": "",
+                  "year": "",
+                  "estimated": false
+                }
+              },
+              "FirstContact": {
+                "type": "datecontrol",
+                "props": {
+                  "month": "",
+                  "day": "",
+                  "year": "",
+                  "estimated": false
+                }
+              },
+              "Frequency": {
+                "type": "radio",
+                "props": {
+                  "value": ""
+                }
+              },
+              "HasAffiliation": {
+                "type": "branch",
+                "props": {
+                  "value": ""
+                }
+              },
+              "IsDeceased": {
+                "type": "branch",
+                "props": {
+                  "value": "No"
+                }
+              },
+              "LastContact": {
+                "type": "datecontrol",
+                "props": {
+                  "month": "",
+                  "day": "",
+                  "year": "",
+                  "estimated": false
+                }
+              },
+              "MaidenName": {
+                "type": "name",
+                "props": {
+                  "first": "",
+                  "firstInitialOnly": false,
+                  "middle": "",
+                  "middleInitialOnly": false,
+                  "noMiddleName": false,
+                  "last": "",
+                  "lastInitialOnly": false,
+                  "suffix": "",
+                  "suffixOther": ""
+                }
+              },
+              "MaidenSameAsListed": {
+                "type": "branch",
+                "props": {
+                  "value": ""
+                }
+              },
+              "Methods": {
+                "type": "checkboxgroup",
+                "props": {
+                  "values": null
+                }
+              },
+              "MethodsComments": {
+                "type": "textarea",
+                "props": {
+                  "value": ""
+                }
+              },
+              "Name": {
+                "type": "name",
+                "props": {
+                  "first": "Henry",
+                  "firstInitialOnly": false,
+                  "middle": "",
+                  "middleInitialOnly": false,
+                  "noMiddleName": true,
+                  "last": "Jones",
+                  "lastInitialOnly": false,
+                  "suffix": "",
+                  "suffixOther": ""
+                }
+              },
+              "Relation": {
+                "type": "radio",
+                "props": {
+                  "value": "Brother",
+                  "checked": true
+                }
+              },
+              "ResidenceDocumentNumber": {
+                "type": "text",
+                "props": {
+                  "value": ""
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

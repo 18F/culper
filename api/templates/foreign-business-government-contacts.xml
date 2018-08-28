@@ -32,6 +32,7 @@
       <AnswerComment></AnswerComment>
       {{range $sindex, $contact := $Item.SubsequentContacts.props.List.props.items}}
       {{with $Contact := $contact.Item}}
+      {{- if branch $Contact.Has | eq "Yes"}}
       <Contact ID="{{$sindex}}">
         <Comment></Comment>
         <Date Type="{{dateEstimated $Contact.Recent}}">
@@ -42,6 +43,7 @@
       </Contact>
       <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
       <SummaryComment></SummaryComment>
+      {{end}}
       {{end}}
       {{end}}
     </SubsequentForeignContacts>

@@ -11,22 +11,28 @@ export const historyEducation = (data = {}) => {
         Address: form.location(xitem.Address),
         Comments: form.textarea(xitem.Comments),
         ReferenceName: form.name(xitem.ReferenceName),
-        ReferenceNameNotApplicable: form.notapplicable(xitem.ReferenceNameNotApplicable),
+        ReferenceNameNotApplicable: form.notapplicable(
+          xitem.ReferenceNameNotApplicable
+        ),
         ReferencePhone: form.telephone(xitem.ReferencePhone),
-        ReferenceEmailNotApplicable: form.notapplicable(xitem.ReferenceEmailNotApplicable),
+        ReferenceEmailNotApplicable: form.notapplicable(
+          xitem.ReferenceEmailNotApplicable
+        ),
         ReferenceEmail: form.email(xitem.ReferenceEmail),
         ReferenceAddress: form.location(xitem.ReferenceAddress),
-        Diplomas: form.collection(((xitem.Diplomas || {}).items || []).map(y => {
-          const yitem = y.Item || {}
-          return {
-            Item: {
-              Has: form.branch(yitem.Has),
-              Diploma: form.radio(yitem.Diploma),
-              DiplomaOther: form.text(yitem.DiplomaOther),
-              Date: form.datecontrol(yitem.Date)
+        Diplomas: form.collection(
+          ((xitem.Diplomas || {}).items || []).map(y => {
+            const yitem = y.Item || {}
+            return {
+              Item: {
+                Has: form.branch(yitem.Has),
+                Diploma: form.radio(yitem.Diploma),
+                DiplomaOther: form.text(yitem.DiplomaOther),
+                Date: form.datecontrol(yitem.Date)
+              }
             }
-          }
-        }))
+          })
+        )
       }
     }
   })

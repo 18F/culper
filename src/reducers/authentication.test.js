@@ -1,40 +1,35 @@
 import authentication from './authentication'
-import AuthConstants from '../actions/AuthConstants'
+import { handleLoginError, handleLoginSuccess } from '../actions/AuthActions'
 
-describe('Authentication Reducer', function () {
+describe('Authentication Reducer', function() {
   const defaultState = {
     authenticated: false,
     token: null
   }
 
-  it('should return the initial state', function () {
+  it('should return the initial state', function() {
     expect(authentication(undefined, {})).toEqual(defaultState)
   })
 
-  it('should handle login success', function () {
+  it('should handle login success', function() {
     const expectedState = {
       authenticated: true,
       token: 'faketoken',
       error: ''
     }
 
-    const action = {
-      type: AuthConstants.LOGIN_SUCCESS,
-      token: 'faketoken'
-    }
+    const action = handleLoginSuccess('faketoken')
     expect(authentication(defaultState, action)).toEqual(expectedState)
   })
 
-  it('should handle login error', function () {
+  it('should handle login error', function() {
     const expectedState = {
       authenticated: false,
       token: null,
       error: undefined
     }
 
-    const action = {
-      type: AuthConstants.LOGIN_ERROR
-    }
+    const action = handleLoginError()
     expect(authentication(defaultState, action)).toEqual(expectedState)
   })
 })

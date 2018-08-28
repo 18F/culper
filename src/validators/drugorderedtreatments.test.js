@@ -1,8 +1,10 @@
-import DrugOrderedTreatmentsValidator, { DrugOrderedTreatmentValidator } from './drugorderedtreatments'
+import DrugOrderedTreatmentsValidator, {
+  DrugOrderedTreatmentValidator
+} from './drugorderedtreatments'
 import Location from '../components/Form/Location'
 
-describe('Drug Ordered Treatment Validation', function () {
-  it('should validate drug ordered treatments', function () {
+describe('Drug Ordered Treatment Validation', function() {
+  it('should validate drug ordered treatments', function() {
     const tests = [
       {
         state: {
@@ -31,7 +33,7 @@ describe('Drug Ordered Treatment Validation', function () {
           TreatmentOrdered: { value: 'Yes' },
           List: {
             branch: { value: 'Nope' },
-            items: [{OrderedTreatment: {}}]
+            items: [{ OrderedTreatment: {} }]
           }
         },
         expected: false
@@ -41,7 +43,7 @@ describe('Drug Ordered Treatment Validation', function () {
           TreatmentOrdered: { value: 'Yes' },
           List: {
             branch: { value: 'No' },
-            items: [{OrderedTreatment: {}}]
+            items: [{ OrderedTreatment: {} }]
           }
         },
         expected: false
@@ -204,11 +206,13 @@ describe('Drug Ordered Treatment Validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new DrugOrderedTreatmentsValidator(test.state).isValid()).toBe(test.expected)
+      expect(new DrugOrderedTreatmentsValidator(test.state).isValid()).toBe(
+        test.expected
+      )
     })
   })
 
-  it('should validate treatment completed', function () {
+  it('should validate treatment completed', function() {
     const tests = [
       {
         state: {
@@ -234,7 +238,9 @@ describe('Drug Ordered Treatment Validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new DrugOrderedTreatmentValidator(test.state).validTreatmentCompleted()).toBe(test.expected)
+      expect(
+        new DrugOrderedTreatmentValidator(test.state).validTreatmentCompleted()
+      ).toBe(test.expected)
     })
   })
 })

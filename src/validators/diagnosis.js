@@ -3,7 +3,7 @@ import TreatmentValidator from './treatment'
 import { validGenericTextfield } from './helpers'
 
 export default class DiagnosisValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     this.condition = (data.Condition || {}).value
     this.diagnosed = data.Diagnosed || {}
     this.treatment = data.Treatment || {}
@@ -13,7 +13,7 @@ export default class DiagnosisValidator {
     this.prefix = (data || {}).prefix
   }
 
-  validEffective () {
+  validEffective() {
     if (this.prefix === 'existingConditions.diagnosis') {
       return true
     }
@@ -29,17 +29,19 @@ export default class DiagnosisValidator {
     return true
   }
 
-  isValid () {
-    return !!this.condition &&
+  isValid() {
+    return (
+      !!this.condition &&
       new DateRangeValidator(this.diagnosed).isValid() &&
       new TreatmentValidator(this.treatment).isValid() &&
       new TreatmentValidator(this.treatmentFacility).isValid() &&
       this.validEffective()
+    )
   }
 }
 
 export class ExistingConditionsDiagnosisValidator extends DiagnosisValidator {
-  constructor (data = {}) {
+  constructor(data = {}) {
     super(data)
     this.condition = data.Condition || ''
     this.diagnosed = data.Diagnosed || {}

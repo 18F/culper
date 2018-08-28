@@ -16,7 +16,9 @@ export const relationshipsMarital = (data = {}) => {
         Status: form.radio(xitem.Status),
         Deceased: form.radio(xitem.Deceased),
         DeceasedAddress: form.location(xitem.DeceasedAddress),
-        DeceasedAddressNotApplicable: form.notapplicable(xitem.DeceasedAddressNotApplicable)
+        DeceasedAddressNotApplicable: form.notapplicable(
+          xitem.DeceasedAddressNotApplicable
+        )
       }
     }
   })

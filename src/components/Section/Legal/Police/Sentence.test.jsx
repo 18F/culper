@@ -19,7 +19,9 @@ describe('The Sentence  component', () => {
     let updates = 0
     const expected = {
       name: 'sentence',
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
     const component = mount(<Sentence {...expected} />)
 
@@ -39,7 +41,10 @@ describe('The Sentence  component', () => {
     ]
 
     selectors.forEach(selector => {
-      component.find(selector).first().simulate('change', { target: { value: '1' } })
+      component
+        .find(selector)
+        .first()
+        .simulate('change', { target: { value: '1' } })
     })
 
     selectors = [
@@ -48,7 +53,10 @@ describe('The Sentence  component', () => {
     ]
 
     selectors.forEach(selector => {
-      component.find(selector).first().simulate('change')
+      component
+        .find(selector)
+        .first()
+        .simulate('change')
     })
 
     expect(updates).toEqual(7)

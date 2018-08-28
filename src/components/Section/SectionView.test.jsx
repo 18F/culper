@@ -7,7 +7,7 @@ import { mount } from 'enzyme'
 
 describe('The  SectionView component', () => {
   // Setup
-  const middlewares = [ thunk ]
+  const middlewares = [thunk]
   const mockStore = configureMockStore(middlewares)
 
   it('renders contents based on current param', () => {
@@ -46,7 +46,7 @@ describe('The  SectionView component', () => {
 
   it('handles navigation to section', () => {
     let props = {}
-    const update = (p) => {
+    const update = p => {
       props = p
     }
     const store = mockStore({ authentication: { authenticated: true } })
@@ -66,7 +66,7 @@ describe('The  SectionView component', () => {
 
   it('handles navigation to subsection', () => {
     let props = {}
-    const update = (p) => {
+    const update = p => {
       props = p
     }
     const store = mockStore({ authentication: { authenticated: true } })
@@ -86,7 +86,7 @@ describe('The  SectionView component', () => {
 
   it('handles navigation to sub-subsection', () => {
     let props = {}
-    const update = (p) => {
+    const update = p => {
       props = p
     }
     const store = mockStore({ authentication: { authenticated: true } })

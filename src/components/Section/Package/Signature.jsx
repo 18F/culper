@@ -4,7 +4,7 @@ import { ValidationElement, Show } from '../../Form'
 import { NameSummary, NameText, DateSummary } from '../../Summary'
 
 export default class Signature extends ValidationElement {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.update = this.update.bind(this)
@@ -13,7 +13,7 @@ export default class Signature extends ValidationElement {
     this.handleError = this.handleError.bind(this)
   }
 
-  update (queue) {
+  update(queue) {
     this.props.onUpdate({
       Name: this.props.Name,
       Date: this.props.Date,
@@ -21,7 +21,7 @@ export default class Signature extends ValidationElement {
     })
   }
 
-  addSignature () {
+  addSignature() {
     const now = new Date()
     this.update({
       Name: {
@@ -29,21 +29,21 @@ export default class Signature extends ValidationElement {
       },
       Date: {
         date: now,
-        month: `${now.getMonth()+1}`,
+        month: `${now.getMonth() + 1}`,
         day: `${now.getDate()}`,
         year: `${now.getFullYear()}`
       }
     })
   }
 
-  removeSignature () {
+  removeSignature() {
     this.update({
       Name: {},
       Date: {}
     })
   }
 
-  handleError (value, arr) {
+  handleError(value, arr) {
     arr = arr.map(err => {
       return {
         code: `signature.${err.code}`,
@@ -55,35 +55,44 @@ export default class Signature extends ValidationElement {
     return this.props.onError(value, arr)
   }
 
-  name (formatted = true) {
+  name(formatted = true) {
     if ((this.props.Name || {}).value) {
-      return formatted
-        ? <span className="title-case">{this.props.Name.value}</span>
-        : this.props.Name.value
+      return formatted ? (
+        <span className="title-case">{this.props.Name.value}</span>
+      ) : (
+        this.props.Name.value
+      )
     }
 
     const legalName = (this.props.LegalName || {}).Name
     return formatted ? NameSummary(legalName) : NameText(legalName)
   }
 
-  render () {
+  render() {
     const name = this.name()
     const signed = this.props.Date && this.props.Date.date
-    const button = <button className="add" onClick={this.addSignature}>{i18n.t('signature.add')}</button>
+    const button = (
+      <button className="add" onClick={this.addSignature}>
+        {i18n.t('signature.add')}
+      </button>
+    )
     const nameSummary = signed ? name : button
     const dateSummary = signed ? DateSummary(this.props.Date, '', true) : ''
     return (
       <div className="signature">
         <span className="name wet">{nameSummary}</span>
-        <span className="spacer"></span>
+        <span className="spacer" />
         <span className="date wet">{dateSummary}</span>
         <span className="name muted">{i18n.t('signature.name')}</span>
-        <span className="spacer"></span>
+        <span className="spacer" />
         <span className="date muted">{i18n.t('signature.date')}</span>
         <Show when={signed}>
-          <a href="javascript:;;" onClick={this.removeSignature} className="remove">
+          <a
+            href="javascript:;;"
+            onClick={this.removeSignature}
+            className="remove">
             <span>{i18n.t('signature.remove')}</span>
-            <i className="fa fa-times-circle"></i>
+            <i className="fa fa-times-circle" />
           </a>
         </Show>
       </div>
@@ -95,6 +104,8 @@ Signature.defaultProps = {
   Name: {},
   Date: {},
   LegalName: {},
-  onUpdate: (queue) => {},
-  onError: (value, arr) => { return arr }
+  onUpdate: queue => {},
+  onError: (value, arr) => {
+    return arr
+  }
 }

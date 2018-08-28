@@ -1,9 +1,16 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { Field, Radio, RadioGroup, Show, Textarea, DateControl } from '../../../Form'
+import {
+  Field,
+  Radio,
+  RadioGroup,
+  Show,
+  Textarea,
+  DateControl
+} from '../../../Form'
 
 export default class ReasonOptions extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
@@ -17,7 +24,7 @@ export default class ReasonOptions extends React.Component {
     this.updateDate = this.updateDate.bind(this)
   }
 
-  onUpdate (name, values) {
+  onUpdate(name, values) {
     this.setState({ [name]: values }, () => {
       if (this.props.onUpdate) {
         this.props.onUpdate({
@@ -30,19 +37,19 @@ export default class ReasonOptions extends React.Component {
     })
   }
 
-  updateReason (values) {
+  updateReason(values) {
     this.onUpdate('Reason', values)
   }
 
-  updateText (values) {
+  updateText(values) {
     this.onUpdate('Text', values)
   }
 
-  updateDate (values) {
+  updateDate(values) {
     this.onUpdate('Date', values)
   }
 
-  labelText () {
+  labelText() {
     switch ((this.state.Reason || {}).value) {
       case 'Fired':
         return i18n.t('history.employment.default.left.fired.text')
@@ -57,7 +64,7 @@ export default class ReasonOptions extends React.Component {
     return null
   }
 
-  labelDate () {
+  labelDate() {
     switch ((this.state.Reason || {}).value) {
       case 'Fired':
         return i18n.t('history.employment.default.left.fired.date')
@@ -72,61 +79,74 @@ export default class ReasonOptions extends React.Component {
     return null
   }
 
-  render () {
+  render() {
     const text = this.labelText()
     const date = this.labelDate()
     return (
       <div className={this.props.className}>
-        <Field title="Select the type of incident"
-               adjustFor="big-buttons"
-               shrink={true}
-               scrollIntoView={this.props.scrollIntoView}>
-          <RadioGroup className="employment-left option-list" selectedValue={(this.state.Reason || {}).value} required={this.props.required} onError={this.props.onError}>
-            <Radio name="employment_left"
-                   label={i18n.m('history.employment.default.left.fired.option')}
-                   value="Fired"
-                   onUpdate={this.updateReason}
-                   onError={this.props.onError}
-                   />
-            <Radio name="employment_quit"
-                   label={i18n.m('history.employment.default.left.quit.option')}
-                   value="Quit"
-                   onUpdate={this.updateReason}
-                   onError={this.props.onError}
-                   />
-            <Radio name="employment_charges"
-                   label={i18n.m('history.employment.default.left.charges.option')}
-                   value="Charges"
-                   onUpdate={this.updateReason}
-                   onError={this.props.onError}
-                   />
-            <Radio name="employment_performance"
-                   label={i18n.m('history.employment.default.left.performance.option')}
-                   value="Performance"
-                   onUpdate={this.updateReason}
-                   onError={this.props.onError}
-                   />
+        <Field
+          title="Select the type of incident"
+          adjustFor="big-buttons"
+          shrink={true}
+          scrollIntoView={this.props.scrollIntoView}>
+          <RadioGroup
+            className="employment-left option-list"
+            selectedValue={(this.state.Reason || {}).value}
+            required={this.props.required}
+            onError={this.props.onError}>
+            <Radio
+              name="employment_left"
+              label={i18n.m('history.employment.default.left.fired.option')}
+              value="Fired"
+              onUpdate={this.updateReason}
+              onError={this.props.onError}
+            />
+            <Radio
+              name="employment_quit"
+              label={i18n.m('history.employment.default.left.quit.option')}
+              value="Quit"
+              onUpdate={this.updateReason}
+              onError={this.props.onError}
+            />
+            <Radio
+              name="employment_charges"
+              label={i18n.m('history.employment.default.left.charges.option')}
+              value="Charges"
+              onUpdate={this.updateReason}
+              onError={this.props.onError}
+            />
+            <Radio
+              name="employment_performance"
+              label={i18n.m(
+                'history.employment.default.left.performance.option'
+              )}
+              value="Performance"
+              onUpdate={this.updateReason}
+              onError={this.props.onError}
+            />
           </RadioGroup>
           <Show when={(this.state.Reason || {}).value}>
             <div>
               <div className="explanation-left">
-                <Textarea name="Text"
-                          label={text}
-                          maxlength="100"
-                          {...this.state.Text}
-                          onUpdate={this.updateText}
-                          onError={this.props.onError}
-                          required={this.props.required}
-                          />
+                <Textarea
+                  name="Text"
+                  label={text}
+                  maxlength="100"
+                  {...this.state.Text}
+                  onUpdate={this.updateText}
+                  onError={this.props.onError}
+                  required={this.props.required}
+                />
               </div>
               <div className="date-left">
                 <label>{date}</label>
-                <DateControl name="Date"
-                             {...this.state.Date}
-                             onUpdate={this.updateDate}
-                             onError={this.props.onError}
-                             required={this.props.required}
-                             />
+                <DateControl
+                  name="Date"
+                  {...this.state.Date}
+                  onUpdate={this.updateDate}
+                  onError={this.props.onError}
+                  required={this.props.required}
+                />
               </div>
             </div>
           </Show>
@@ -137,5 +157,7 @@ export default class ReasonOptions extends React.Component {
 }
 
 ReasonOptions.defaultProps = {
-  onError: (value, arr) => { return arr }
+  onError: (value, arr) => {
+    return arr
+  }
 }

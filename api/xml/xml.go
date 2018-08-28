@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"html/template"
 	"path"
+	"regexp"
 	"strings"
 
 	"github.com/18F/e-QIP-prototype/api"
@@ -17,77 +18,109 @@ type Service struct {
 }
 
 // DefaultTemplate returns a template given data.
-func (service Service) DefaultTemplate(templateName string, data map[string]interface{}) template.HTML {
+func (service Service) DefaultTemplate(templateName string, data map[string]interface{}) (template.HTML, error) {
 	// fmap is a mapping of functions to be used within the XML template execution.
 	// These can be helper functions for formatting or even to process complex structure
 	// types.
 	fmap := template.FuncMap{
-		"branch":               branch,
-		"branchToBool":         branchToBool,
-		"branchcollectionHas":  branchcollectionHas,
-		"branchAny":            branchAny,
-		"checkbox":             checkbox,
-		"checkboxHas":          checkboxHas,
-		"checkboxTrueFalse":    checkboxTrueFalse,
-		"citizenshipStatus":    citizenshipStatus,
-		"country":              countryValue,
-		"countryComments":      countryComments,
-		"citizenshipHas":       citizenshipHas,
-		"date":                 date,
-		"dateEstimated":        dateEstimated,
-		"daterange":            daterange,
-		"daysInRange":          daysInRange,
-		"degreeType":           degreeType,
-		"diagnosisType":        diagnosisType,
-		"foreignDocType":       foreignDocType,
-		"monthYearDaterange":   monthYearDaterange,
-		"email":                email,
-		"employmentType":       employmentType,
-		"hasRelativeType":      hasRelativeType,
-		"location":             location,
-		"locationIsPostOffice": locationIsPostOffice,
-		"maritalStatus":        maritalStatus,
-		"militaryStatus":       militaryStatus,
-		"monthYear":            monthYear,
-		"name":                 name,
-		"nameLastFirst":        nameLastFirst,
-		"notApplicable":        notApplicable,
-		"number":               number,
-		"radio":                radio,
-		"schoolType":           schoolType,
-		"relationshipType":     relationshipType,
-		"telephone":            telephone,
-		"telephoneNoNumber":    telephoneNoNumber,
-		"text":                 text,
-		"textarea":             textarea,
-		"treatment":            treatment,
-		"tmpl":                 service.DefaultTemplate,
+		"addressIn":              addressIn,
+		"branch":                 branch,
+		"branchToBool":           branchToBool,
+		"branchcollectionHas":    branchcollectionHas,
+		"branchAny":              branchAny,
+		"checkbox":               checkbox,
+		"checkboxHas":            checkboxHas,
+		"checkboxTrueFalse":      checkboxTrueFalse,
+		"citizenshipStatus":      citizenshipStatus,
+		"country":                countryValue,
+		"countryComments":        countryComments,
+		"citizenshipHas":         citizenshipHas,
+		"date":                   date,
+		"dateEstimated":          dateEstimated,
+		"daterange":              daterange,
+		"daysInRange":            daysInRange,
+		"degreeType":             degreeType,
+		"derivedBasis":           derivedBasis,
+		"naturalizedBasis":       naturalizedBasis,
+		"diagnosisType":          diagnosisType,
+		"dischargeType":          dischargeType,
+		"doctorFirstName":        doctorFirstName,
+		"doctorLastName":         doctorLastName,
+		"foreignDocType":         foreignDocType,
+		"foreignAffiliation":     foreignAffiliation,
+		"frequencyType":          frequencyType,
+		"monthYearDaterange":     monthYearDaterange,
+		"email":                  email,
+		"employmentType":         employmentType,
+		"hasRelativeType":        hasRelativeType,
+		"location":               location,
+		"locationIsPostOffice":   locationIsPostOffice,
+		"maritalStatus":          maritalStatus,
+		"militaryStatus":         militaryStatus,
+		"monthYear":              monthYear,
+		"name":                   name,
+		"nameLastFirst":          nameLastFirst,
+		"notApplicable":          notApplicable,
+		"number":                 number,
+		"padDigits":              padDigits,
+		"radio":                  radio,
+		"schoolType":             schoolType,
+		"relationshipType":       relationshipType,
+		"relativeForeignDocType": relativeForeignDocType,
+		"telephone":              telephone,
+		"telephoneNoNumber":      telephoneNoNumber,
+		"text":                   text,
+		"textarea":               textarea,
+		"toUpper":                toUpper,
+		"treatment":              treatment,
+		"tmpl":                   service.DefaultTemplate,
 	}
 	return xmlTemplateWithFuncs(templateName, data, fmap)
 }
 
-func xmlTemplate(name string, data map[string]interface{}) template.HTML {
+// XXX
+// Work-around for sloppy template logic where empty elements
+// are generated in scenarios where no element is applicable.
+// For example, UnemployedComment when not unemployed. See:
+// https://github.com/18F/e-QIP-prototype/issues/717
+func applyBulkFixes(xml string) string {
+	replaceWithEmpty := []string{
+		"<[a-zA-Z_]+></[a-zA-Z_]+>", // empty elements
+		" DoNotKnow=\"False\"",
+		" DoNotKnow=\"\"",
+		" Type=\"\"",
+		" Estimated=\"\"",
+	}
+
+	x := xml
+	for _, n := range replaceWithEmpty {
+		re := regexp.MustCompile(n)
+		x = re.ReplaceAllString(x, "")
+	}
+
+	return x
+}
+
+func xmlTemplate(name string, data map[string]interface{}) (template.HTML, error) {
 	path := path.Join("templates", name)
 	tmpl := template.Must(template.New(name).ParseFiles(path))
 	var output bytes.Buffer
 	if err := tmpl.Execute(&output, data); err != nil {
-		// service.Log.WarnError("Failed to execute XML template", err, api.LogFields{"name": name})
-		return template.HTML("")
+		return template.HTML(""), err
 	}
-	return template.HTML(output.String())
+	return template.HTML(applyBulkFixes(output.String())), nil
 }
 
 // xmlTemplateWithFuncs executes an XML template with mapped functions to be used with the
 // given entity.
-func xmlTemplateWithFuncs(name string, data map[string]interface{}, fmap template.FuncMap) template.HTML {
+func xmlTemplateWithFuncs(name string, data map[string]interface{}, fmap template.FuncMap) (template.HTML, error) {
 	path := path.Join("templates", name)
 	tmpl := template.Must(template.New(name).Funcs(fmap).ParseFiles(path))
 	var output bytes.Buffer
 	if err := tmpl.Execute(&output, data); err != nil {
-		// service.Log.WarnError("Failed to execute XML template", err, api.LogFields{"name": name})
-		return template.HTML("")
+		return template.HTML(""), err
 	}
-	return template.HTML(output.String())
+	return template.HTML(applyBulkFixes(output.String())), nil
 }
 
 func getInterfaceAsBytes(anon interface{}) []byte {
@@ -106,6 +139,43 @@ func simpleValue(data map[string]interface{}) string {
 	if ok {
 		return (props.(map[string]interface{}))["value"].(string)
 	}
+	return ""
+}
+
+// XXX
+// Temporary measure to work-around issue where eApp has one field
+// where user is prompted to enter as "Last name, First name" but
+// e-QIP has two separate XML elements.
+// See: https://github.com/18F/e-QIP-prototype/issues/715
+func doctorLastName(data map[string]interface{}) string {
+	fullName := simpleValue(data)
+	if fullName == "" {
+		// Shouldn't get here as UI should enforce non-empty field
+		return ""
+	}
+
+	commaDelim := strings.SplitN(fullName, ",", 2)
+	if len(commaDelim) == 2 {
+		return strings.TrimSpace(commaDelim[0])
+	}
+
+	return fullName
+}
+
+// XXX
+// See comment on doctorLastName()
+func doctorFirstName(data map[string]interface{}) string {
+	fullName := simpleValue(data)
+	if fullName == "" {
+		// Shouldn't get here as UI should enforce non-empty field
+		return ""
+	}
+
+	commaDelim := strings.SplitN(fullName, ",", 2)
+	if len(commaDelim) == 2 {
+		return strings.TrimSpace(commaDelim[1])
+	}
+
 	return ""
 }
 
@@ -239,24 +309,33 @@ func hasRelativeType(data map[string]interface{}, target string) string {
 // relationshipType translates our enums to eqip specific enums
 func relationshipType(str string) string {
 	types := map[string]string{
-		"Mother":       "01",
-		"Father":       "02",
-		"Stepmother":   "03",
-		"Stepfather":   "04",
-		"FosterParent": "05",
-		"Child":        "06",
-		"Stepchild":    "07",
-		"Brother":      "08",
-		"Sister":       "09",
-		"Stepbrother":  "10",
-		"Stepsister":   "11",
-		"HalfBrother":  "12",
-		"HalfSister":   "13",
-		"FatherInLaw":  "14",
-		"MotherInLaw":  "15",
-		"Guardian":     "16",
+		"Mother":        "01Mother",
+		"Father":        "02Father",
+		"Stepmother":    "03Stepmother",
+		"Stepfather":    "04Stepfather",
+		"FosterParent":  "05FosterParent",
+		"Child":         "06Child",
+		"Stepchild":     "07Stepchild",
+		"Brother":       "08Brother",
+		"Sister":        "09Sister",
+		"Stepbrother":   "10Stepbrother",
+		"Stepsister":    "11Stepsister",
+		"Half-brother":  "12HalfBrother",
+		"Half-sister":   "13HalfSister",
+		"Father-in-law": "14FatherInLaw",
+		"Mother-in-law": "15MotherInLaw",
+		"Guardian":      "16Guardian",
 	}
-	return fmt.Sprintf("%s%s", types[str], str)
+	return types[str]
+}
+
+func foreignAffiliation(str string) string {
+	types := map[string]string{
+		"Yes":          "Yes",
+		"No":           "No",
+		"I don't know": "IDontKnow",
+	}
+	return types[str]
 }
 
 // citizenshipStatus translates our enums to eqip specific enums
@@ -305,6 +384,29 @@ func diagnosisType(t string) string {
 		"Antisocial personality disorder": "AntisocialPersonalityDisorder",
 	}
 	return alias[t]
+}
+
+// relativeForeignDocType translates our enums to eqip specific enums
+// XXX https://github.com/18F/e-QIP-prototype/issues/680
+func relativeForeignDocType(docType string) string {
+	alias := map[string]string{
+		"FS":                     "FS240or545",
+		"DS":                     "DS1350",
+		"NaturalizedAlien":       "NaturalizedAlienRegistration",
+		"NaturalizedPermanent":   "NaturalizedPermanentResident",
+		"NaturalizedCertificate": "NaturalizationCertificate",
+		"DerivedAlien":           "DerivedAlienRegistration",
+		"DerivedPermanent":       "DerivedPermanentResident",
+		"DerivedCertificate":     "DerivedCitizenshipCertificate",
+		"Permanent":              "NonCitizenI551",
+		"Employment":             "NonCitizenI766",
+		"Arrival":                "NonCitizenI94",
+		"Visa":                   "NonCitizenVisa",
+		"F1":                     "NonCitizenI20",
+		"J1":                     "NonCitizenDS2019",
+		"Other":                  "Other",
+	}
+	return alias[docType]
 }
 
 // foreignDocType translates our enums to eqip specific enums
@@ -366,6 +468,25 @@ func maritalStatus(status string) string {
 		"Widowed":      "Widowed",
 	}
 	return alias[status]
+}
+
+// addressIn returns true if Location entity (Address) is in the specified country
+func addressIn(location map[string]interface{}, country string) bool {
+	props, ok := location["props"]
+	if !ok {
+		return false
+	}
+
+	c, ok := (props.(map[string]interface{}))["country"]
+	if !ok {
+		return false
+	}
+
+	if c == country {
+		return true
+	}
+
+	return false
 }
 
 func citizenshipHas(data map[string]interface{}, country string) bool {
@@ -469,7 +590,6 @@ func checkboxTrueFalse(data map[string]interface{}) string {
 func locationIsPostOffice(data map[string]interface{}) string {
 	// Deserialize the initial payload from a JSON structure
 	payload := &api.Payload{}
-	// entity, err := payload.UnmarshalEntity(getInterfaceAsBytes(data))
 	entity, err := payload.UnmarshalEntity(getInterfaceAsBytes(data))
 	if err != nil {
 		return ""
@@ -503,19 +623,19 @@ func countryComments(data map[string]interface{}) string {
 
 // Put "complex" XML structures here where they output from another template
 
-func telephone(data map[string]interface{}) template.HTML {
+func telephone(data map[string]interface{}) (template.HTML, error) {
 	return xmlTemplate("telephone.xml", data)
 }
 
-func name(data map[string]interface{}) template.HTML {
+func name(data map[string]interface{}) (template.HTML, error) {
 	return xmlTemplate("name.xml", data)
 }
 
-func nameLastFirst(data map[string]interface{}) template.HTML {
+func nameLastFirst(data map[string]interface{}) (template.HTML, error) {
 	return xmlTemplate("name-last-first.xml", data)
 }
 
-func daterange(data map[string]interface{}) template.HTML {
+func daterange(data map[string]interface{}) (template.HTML, error) {
 	fmap := template.FuncMap{
 		"date":          date,
 		"dateEstimated": dateEstimated,
@@ -523,7 +643,7 @@ func daterange(data map[string]interface{}) template.HTML {
 	return xmlTemplateWithFuncs("date-range.xml", data, fmap)
 }
 
-func monthYearDaterange(data map[string]interface{}) template.HTML {
+func monthYearDaterange(data map[string]interface{}) (template.HTML, error) {
 	fmap := template.FuncMap{
 		"date":          monthYear,
 		"dateEstimated": dateEstimated,
@@ -531,85 +651,149 @@ func monthYearDaterange(data map[string]interface{}) template.HTML {
 	return xmlTemplateWithFuncs("date-range.xml", data, fmap)
 }
 
-func date(data map[string]interface{}) template.HTML {
-	return xmlTemplate("date-month-day-year.xml", data)
+func date(data map[string]interface{}) (template.HTML, error) {
+	fmap := template.FuncMap{
+		"padDigits": padDigits,
+	}
+	return xmlTemplateWithFuncs("date-month-day-year.xml", data, fmap)
 }
 
-func monthYear(data map[string]interface{}) template.HTML {
-	return xmlTemplate("date-month-year.xml", data)
+func monthYear(data map[string]interface{}) (template.HTML, error) {
+	fmap := template.FuncMap{
+		"padDigits": padDigits,
+	}
+	return xmlTemplateWithFuncs("date-month-year.xml", data, fmap)
 }
 
 // location assumes the data comes in as the props
-func location(data map[string]interface{}) template.HTML {
+func location(data map[string]interface{}) (template.HTML, error) {
 	// Deserialize the initial payload from a JSON structure
 	payload := &api.Payload{}
 	// entity, err := payload.UnmarshalEntity(getInterfaceAsBytes(data))
 	entity, err := payload.UnmarshalEntity(getInterfaceAsBytes(data))
 	if err != nil {
-		return template.HTML("")
+		return template.HTML(""), err
 	}
 
 	location := entity.(*api.Location)
 	domestic := location.IsDomestic()
 	postoffice := location.IsPostOffice()
 
+	// XXX
+	// Work-around issue in UI where it does not
+	// normalize case of state abbrevations. See:
+	// https://github.com/18F/e-QIP-prototype/issues/716
+	fmap := template.FuncMap{
+		"toUpper": toUpper,
+	}
+
 	switch location.Layout {
 	case api.LayoutBirthPlace:
 		if domestic {
-			return xmlTemplate("location-city-state-county.xml", data)
+			return xmlTemplateWithFuncs("location-city-state-county.xml", data, fmap)
 		}
-		return xmlTemplate("location-city-county.xml", data)
+		return xmlTemplate("location-city-country.xml", data)
 	case api.LayoutBirthPlaceWithoutCounty:
 		if domestic {
-			return xmlTemplate("location-city-state.xml", data)
+			return xmlTemplateWithFuncs("location-city-state.xml", data, fmap)
 		}
 		return xmlTemplate("location-city-country.xml", data)
 	case api.LayoutCountry:
 		return xmlTemplate("location-country.xml", data)
 	case api.LayoutUSCityStateInternationalCity:
 		if domestic {
-			return xmlTemplate("location-city-state.xml", data)
+			return xmlTemplateWithFuncs("location-city-state.xml", data, fmap)
 		}
 		return xmlTemplate("location-city-country.xml", data)
 	case api.LayoutUSCityStateInternationalCityCountry:
 		if domestic {
-			return xmlTemplate("location-city-state.xml", data)
+			return xmlTemplateWithFuncs("location-city-state.xml", data, fmap)
 		}
 		return xmlTemplate("location-city-country.xml", data)
 	case api.LayoutCityState:
-		return xmlTemplate("location-city-state.xml", data)
+		return xmlTemplateWithFuncs("location-city-state.xml", data, fmap)
 	case api.LayoutStreetCityCountry:
 		return xmlTemplate("location-street-city-country.xml", data)
 	case api.LayoutCityCountry:
 		return xmlTemplate("location-city-country.xml", data)
 	case api.LayoutUSCityStateZipcodeInternationalCity:
 		if domestic {
-			return xmlTemplate("location-city-state-zipcode.xml", data)
+			return xmlTemplateWithFuncs("location-city-state-zipcode.xml", data, fmap)
 		}
 		return xmlTemplate("location-city-country.xml", data)
 	case api.LayoutCityStateCountry:
-		return xmlTemplate("location-city-state-country.xml", data)
+		return xmlTemplateWithFuncs("location-city-state-country.xml", data, fmap)
 	case api.LayoutUSAddress:
-		return xmlTemplate("location-street-city-state-zipcode.xml", data)
+		return xmlTemplateWithFuncs("location-street-city-state-zipcode.xml", data, fmap)
 	case api.LayoutStreetCity:
 		return xmlTemplate("location-street-city.xml", data)
 	default:
 		if domestic || postoffice {
-			return xmlTemplate("location-street-city-state-zipcode.xml", data)
+			return xmlTemplateWithFuncs("location-street-city-state-zipcode.xml", data, fmap)
 		}
 		return xmlTemplate("location-street-city-country.xml", data)
 	}
 }
 
-func countryValue(data map[string]interface{}) template.HTML {
+func countryValue(data map[string]interface{}) (template.HTML, error) {
 	return xmlTemplate("country.xml", data)
 }
 
-func treatment(data map[string]interface{}) template.HTML {
+func treatment(data map[string]interface{}) (template.HTML, error) {
 	fmap := template.FuncMap{
 		"text":      text,
 		"telephone": telephone,
 		"location":  location,
 	}
 	return xmlTemplateWithFuncs("treatment.xml", data, fmap)
+}
+
+func padDigits(digits string) string {
+	if digits == "" {
+		return ""
+	}
+
+	return fmt.Sprintf("%02s", digits)
+}
+
+func toUpper(state string) string {
+	return strings.ToUpper(state)
+}
+
+func derivedBasis(v string) string {
+	basis := map[string]string{
+		"Individual": "ByOperationofLaw",
+		"Other":      "Other",
+	}
+	return basis[v]
+}
+
+func naturalizedBasis(v string) string {
+	basis := map[string]string{
+		"Individual": "BasedOnMyOwnIndividualNaturalizationApplication",
+		"Other":      "Other",
+	}
+	return basis[v]
+}
+
+func dischargeType(v string) string {
+	basis := map[string]string{
+		"Honorable":    "Honorable",
+		"Dishonorable": "Dishonorable",
+		"LessThan":     "OtherThanHonorable",
+		"General":      "General",
+		"BadConduct":   "BadConduct",
+		"Other":        "Other",
+	}
+	return basis[v]
+}
+
+func frequencyType(v string) string {
+	basis := map[string]string{
+		"OneTime":    "Onetime",
+		"Future":     "Future",
+		"Continuing": "Continuing",
+		"Other":      "Other",
+	}
+	return basis[v]
 }

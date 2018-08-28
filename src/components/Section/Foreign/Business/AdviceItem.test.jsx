@@ -7,7 +7,9 @@ describe('The advice item component', () => {
     let updates = 0
     const expected = {
       name: 'foreign-business-advice',
-      onUpdate: () => { updates++ }
+      onUpdate: () => {
+        updates++
+      }
     }
     const component = mount(<AdviceItem {...expected} />)
     component.find('.advice-description textarea').simulate('change')
@@ -15,7 +17,9 @@ describe('The advice item component', () => {
     component.find('.advice-organization input').simulate('change')
     component.find('.advice-dates .to .day input').simulate('change')
     component.find('.advice-compensation textarea').simulate('change')
-    component.find('.advice-country .react-autosuggest__container input').simulate('change', { target: { value: 'C' } })
+    component
+      .find('.advice-country .react-autosuggest__container input')
+      .simulate('change', { target: { value: 'C' } })
     expect(updates).toBe(6)
   })
 })
