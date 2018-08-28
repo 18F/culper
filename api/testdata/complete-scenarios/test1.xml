@@ -28,7 +28,7 @@
           <Pooled>
             <IdentifyingInformation Type="Pooled" Version="1">
               <Birth>
-                <Date Type="">
+                <Date>
                   <Month>05</Month>
                   <Day>01</Day>
                   <Year>1960</Year>
@@ -95,7 +95,7 @@
                   </Address>
                   <DateRange>
                     <From>
-                      <Date Type="">
+                      <Date>
                         <Month>01</Month>
                         <Year>2000</Year>
                       </Date>
@@ -112,13 +112,13 @@
                   </LegalName>
                   <RelationshipType Friend="True"/>
                   <Telephone>
-                    <Home DoNotKnow="">
+                    <Home>
             
 
 
 
           </Home>
-                    <Mobile DoNotKnow="">
+                    <Mobile>
                       <Number>8319999123</Number>
                       <Time>Both</Time>
                     </Mobile>
@@ -134,7 +134,7 @@
                   </Address>
                   <DateRange>
                     <From>
-                      <Date Type="">
+                      <Date>
                         <Month>02</Month>
                         <Year>2002</Year>
                       </Date>
@@ -151,13 +151,13 @@
                   </LegalName>
                   <RelationshipType Neighbor="True"/>
                   <Telephone>
-                    <Home DoNotKnow="">
+                    <Home>
             
 
 
 
           </Home>
-                    <Mobile DoNotKnow="">
+                    <Mobile>
                       <Number>8319991230</Number>
                       <Time>Both</Time>
                     </Mobile>
@@ -173,7 +173,7 @@
                   </Address>
                   <DateRange>
                     <From>
-                      <Date Type="">
+                      <Date>
                         <Month>03</Month>
                         <Year>2003</Year>
                       </Date>
@@ -190,13 +190,13 @@
                   </LegalName>
                   <RelationshipType Neighbor="True"/>
                   <Telephone>
-                    <Home DoNotKnow="">
+                    <Home>
             
 
 
 
           </Home>
-                    <Mobile DoNotKnow="">
+                    <Mobile>
                       <Number>8311311231</Number>
                       <Time>Both</Time>
                     </Mobile>
@@ -211,7 +211,7 @@
               <Relatives>
                 <Relative ID="0">
                   <Birth>
-                    <Date Type="">
+                    <Date>
                       <Month>02</Month>
                       <Day>03</Day>
                       <Year>1930</Year>
@@ -247,7 +247,7 @@
                 </Relative>
                 <Relative ID="1">
                   <Birth>
-                    <Date Type="">
+                    <Date>
                       <Month>03</Month>
                       <Day>03</Day>
                       <Year>1931</Year>
@@ -295,7 +295,7 @@
                   </Address>
                   <DateRange>
                     <From>
-                      <Date Type="">
+                      <Date>
                         <Month>01</Month>
                         <Year>2007</Year>
                       </Date>
@@ -314,7 +314,7 @@
                     </Address>
                     <Email DoNotKnow="True"/>
                     <LastContact>
-                      <Date Type="">
+                      <Date>
                         <Month>08</Month>
                         <Year>2018</Year>
                       </Date>
@@ -349,7 +349,7 @@
                 <Employment ID="0">
                   <DateRange>
                     <From>
-                      <Date Type="">
+                      <Date>
                         <Month>01</Month>
                         <Year>2000</Year>
                       </Date>

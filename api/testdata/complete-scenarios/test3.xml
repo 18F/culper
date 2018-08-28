@@ -1,0 +1,2188 @@
+<?xml version="1.0"?>
+<XMP version="3.00">
+  <SubmittedRequestInfo>
+    <RequestInfo>
+      <Request>
+        <Form>
+          <Name>SF86</Name>
+          <Version>2017-07</Version>
+        </Form>
+        <Applicant>
+          <Name>Xavier James Thompson</Name>
+          <SSN>312458912</SSN>
+        </Applicant>
+        <Responses>
+          <FormInstanceSpecific>
+            <ESigCertificationResponses Version="1" Type="Pooled" LastSummaryID="201" LastDynamicListID="201">
+              <UserFinalizedCert>
+                <Answer>Yes</Answer>
+              </UserFinalizedCert>
+              <UserOptedToESig>
+                <Answer>Yes</Answer>
+              </UserOptedToESig>
+            </ESigCertificationResponses>
+            <UserPreferences Version="1" Type="Pooled" LastSummaryID="201" LastDynamicListID="201">
+              <DisplayNavigation/>
+            </UserPreferences>
+          </FormInstanceSpecific>
+          <Pooled>
+            <IdentifyingInformation Type="Pooled" Version="1">
+              <Birth>
+                <Date>
+                  <Month>03</Month>
+                  <Day>08</Day>
+                  <Year>1981</Year>
+                </Date>
+                <Place>
+                  <City>New York</City>
+                  <State>NY</State>
+                  <County>kings</County>
+                  <Country>United States</Country>
+                </Place>
+              </Birth>
+              <EyeColor>Brown</EyeColor>
+              <FullName>
+                <LegalName>
+                  <Last>Thompson</Last>
+                  <First>Xavier</First>
+                  <Middle>James</Middle>
+                  <Suffix>VII</Suffix>
+                </LegalName>
+              </FullName>
+              <HairColor>Black</HairColor>
+              <Height>
+                <Feet>6</Feet>
+                <Inches>11</Inches>
+              </Height>
+              <OtherNamesUsed>
+                <Answer>No</Answer>
+              </OtherNamesUsed>
+              <SSN>
+                <FirstThree>312</FirstThree>
+                <NextTwo>45</NextTwo>
+                <LastFour>8912</LastFour>
+              </SSN>
+              <Sex>Male</Sex>
+              <Weight>
+                <Pounds>160</Pounds>
+              </Weight>
+            </IdentifyingInformation>
+            <ContactInformation Version="1" Type="Pooled">
+              <HomeEmail>
+                <Email>rgf@gmaol.com</Email>
+              </HomeEmail>
+              <HomeTelephone>
+                <Telephone>
+                  <Number>1231235555</Number>
+                  <Time>Both</Time>
+                </Telephone>
+              </HomeTelephone>
+            </ContactInformation>
+            <PersonalReferences>
+              <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              <References>
+                <Reference ID="0">
+                  <Address>
+                    <Street>1600 pennsulvenia Ave </Street>
+                    <City>jamaica plain</City>
+                    <State>MA</State>
+                    <ZipCode>02130</ZipCode>
+                  </Address>
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>02</Month>
+                        <Year>2007</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Present"/>
+                    </To>
+                  </DateRange>
+                  <Email>yty@gmail.com</Email>
+                  <LegalName>
+                    <Last>bob</Last>
+                    <First>bob</First>
+                    <Middle>bo</Middle>
+                  </LegalName>
+                  <RelationshipType Friend="True"/>
+                  <Telephone>
+                    <Home>
+                      <Number>5556566666</Number>
+                      <Time>Night</Time>
+                    </Home>
+                    <Mobile>
+                      <Number>2345234534</Number>
+                      <Time>Both</Time>
+                    </Mobile>
+                  </Telephone>
+                  <Title NotApplicable="True"/>
+                </Reference>
+                <Reference ID="1">
+                  <Address>
+                    <Street>800 New Street </Street>
+                    <City>New York</City>
+                    <State>NY</State>
+                    <ZipCode>10005</ZipCode>
+                  </Address>
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>07</Month>
+                        <Year>2000</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Present"/>
+                    </To>
+                  </DateRange>
+                  <Email DoNotKnow="True"/>
+                  <LegalName>
+                    <Last>Smith</Last>
+                    <First>kurt</First>
+                    <Middle>Criag</Middle>
+                    <Suffix>II</Suffix>
+                  </LegalName>
+                  <RelationshipType Other="True"/>
+                  <RelationshipTypeOtherExplanation>college friend</RelationshipTypeOtherExplanation>
+                  <Telephone>
+                    <Home>
+                      <Number>5551235555</Number>
+                      <Time>Both</Time>
+                    </Home>
+                    <Mobile>
+                      <Number>5551235555</Number>
+                      <Time>Both</Time>
+                    </Mobile>
+                  </Telephone>
+                  <Title NotApplicable="True"/>
+                </Reference>
+                <Reference ID="2">
+                  <Address>
+                    <Street>800 New Street </Street>
+                    <City>New York</City>
+                    <State>NY</State>
+                    <ZipCode>10005</ZipCode>
+                  </Address>
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>01</Month>
+                        <Year>2000</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Present"/>
+                    </To>
+                  </DateRange>
+                  <Email DoNotKnow="True"/>
+                  <LegalName>
+                    <Last>roberts</Last>
+                    <First>kevin</First>
+                    <Middle Type="NMN"/>
+                    <Suffix>VII</Suffix>
+                  </LegalName>
+                  <RelationshipType Neighbor="True"/>
+                  <Telephone>
+                    <Home>
+            
+
+
+
+          </Home>
+                    <Mobile>
+                      <Number>5036563231</Number>
+                      <Time>Both</Time>
+                    </Mobile>
+                  </Telephone>
+                  <Title NotApplicable="True"/>
+                </Reference>
+              </References>
+            </PersonalReferences>
+            <RelativesAndAssociates>
+              <ApplicableRelativeTypes Mother01="True" Father02="True" Stepsister11="True" FatherInLaw14="True" MotherInLaw15="True"/>
+              <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              <Relatives>
+                <Relative ID="0">
+                  <Address>
+                    <Street>800 New Street </Street>
+                    <City>New York</City>
+                    <State>MA</State>
+                    <ZipCode>02130</ZipCode>
+                  </Address>
+                  <Birth>
+                    <Date>
+                      <Month>01</Month>
+                      <Day>12</Day>
+                      <Year>1980</Year>
+                    </Date>
+                    <Place>
+                      <City>New York</City>
+                      <State>NY</State>
+                      <Country>United States</Country>
+                    </Place>
+                  </Birth>
+                  <CountriesOfCitizenship>
+                    <Citizenship ID="0">
+                      <Country>United States</Country>
+                    </Citizenship>
+                  </CountriesOfCitizenship>
+                  <Deceased>
+                    <Answer>No</Answer>
+                  </Deceased>
+                  <LegalName>
+                    <Last>Smith</Last>
+                    <First>Yellow</First>
+                    <Middle>Flag</Middle>
+                    <Suffix>VII</Suffix>
+                  </LegalName>
+                  <MothersMaidenName>
+                    <FullName>
+                      <LegalName SameAsListed="True"/>
+                    </FullName>
+                  </MothersMaidenName>
+                  <OtherNamesUsed>
+                    <Answer>No</Answer>
+                  </OtherNamesUsed>
+                  <Type>01Mother</Type>
+                </Relative>
+                <Relative ID="1">
+                  <Address>
+                    <Street>65 DEER ST </Street>
+                    <City>BOSTON</City>
+                    <State>MA</State>
+                    <ZipCode>02125</ZipCode>
+                  </Address>
+                  <Birth>
+                    <Date>
+                      <Month>03</Month>
+                      <Day>12</Day>
+                      <Year>1980</Year>
+                    </Date>
+                    <Place>
+                      <City>New York</City>
+                      <State>WA</State>
+                      <Country>United States</Country>
+                    </Place>
+                  </Birth>
+                  <CountriesOfCitizenship>
+                    <Citizenship ID="0">
+                      <Country>United States</Country>
+                    </Citizenship>
+                  </CountriesOfCitizenship>
+                  <Deceased>
+                    <Answer>No</Answer>
+                  </Deceased>
+                  <LegalName>
+                    <Last>Sara</Last>
+                    <First>SAarah</First>
+                    <Middle>Sarah</Middle>
+                    <Suffix>IX</Suffix>
+                  </LegalName>
+                  <OtherNamesUsed>
+                    <Answer>No</Answer>
+                  </OtherNamesUsed>
+                  <Type>02Father</Type>
+                </Relative>
+                <Relative ID="2">
+                  <Address>
+                    <Street>65 DEER ST </Street>
+                    <City>BOSTON</City>
+                    <State>MA</State>
+                    <ZipCode>02125</ZipCode>
+                  </Address>
+                  <Birth>
+                    <Date>
+                      <Month>03</Month>
+                      <Day>08</Day>
+                      <Year>2000</Year>
+                    </Date>
+                    <Place>
+                      <City>manhattan</City>
+                      <State>NY</State>
+                      <Country>United States</Country>
+                    </Place>
+                  </Birth>
+                  <CountriesOfCitizenship>
+                    <Citizenship ID="0">
+                      <Country>United States</Country>
+                    </Citizenship>
+                  </CountriesOfCitizenship>
+                  <Deceased>
+                    <Answer>No</Answer>
+                  </Deceased>
+                  <LegalName>
+                    <Last>King</Last>
+                    <First>Jones</First>
+                    <Middle>Flag</Middle>
+                    <Suffix>II</Suffix>
+                  </LegalName>
+                  <OtherNamesUsed>
+                    <Answer>No</Answer>
+                  </OtherNamesUsed>
+                  <Type>11Stepsister</Type>
+                </Relative>
+                <Relative ID="3">
+                  <Birth>
+                    <Date>
+                      <Month>03</Month>
+                      <Day>03</Day>
+                      <Year>1980</Year>
+                    </Date>
+                    <Place>
+                      <City>Monterey</City>
+                      <State>CA</State>
+                      <Country>United States</Country>
+                    </Place>
+                  </Birth>
+                  <CountriesOfCitizenship>
+                    <Citizenship ID="0">
+                      <Country>United States</Country>
+                    </Citizenship>
+                  </CountriesOfCitizenship>
+                  <Deceased>
+                    <Answer>Yes</Answer>
+                  </Deceased>
+                  <LegalName>
+                    <Last>Ross</Last>
+                    <First>Susan</First>
+                    <Middle Type="NMN"/>
+                  </LegalName>
+                  <Type>15MotherInLaw</Type>
+                </Relative>
+                <Relative ID="4">
+                  <Birth>
+                    <Date>
+                      <Month>09</Month>
+                      <Day>01</Day>
+                      <Year>1970</Year>
+                    </Date>
+                    <Place>
+                      <City>Monterey</City>
+                      <State>CA</State>
+                      <Country>United States</Country>
+                    </Place>
+                  </Birth>
+                  <CountriesOfCitizenship>
+                    <Citizenship ID="0">
+                      <Country>United States</Country>
+                    </Citizenship>
+                  </CountriesOfCitizenship>
+                  <Deceased>
+                    <Answer>Yes</Answer>
+                  </Deceased>
+                  <LegalName>
+                    <Last>Newheart</Last>
+                    <First>Bo</First>
+                    <Middle>Tim</Middle>
+                  </LegalName>
+                  <Type>14FatherInLaw</Type>
+                </Relative>
+              </Relatives>
+            </RelativesAndAssociates>
+            <Spouse Version="1" Type="Pooled">
+              <Cohabitants>
+                <Answer>Yes</Answer>
+                <Cohabitant ID="0">
+                  <Birth>
+                    <Date>
+                      <Month>03</Month>
+                      <Day>12</Day>
+                      <Year>2000</Year>
+                    </Date>
+                    <Place>
+                      <City>flagstaff</City>
+                      <State>AR</State>
+                      <Country>United States</Country>
+                    </Place>
+                  </Birth>
+                  <CohabitationDate>
+                    <Date>
+                      <Month>03</Month>
+                      <Day>12</Day>
+                      <Year>2000</Year>
+                    </Date>
+                  </CohabitationDate>
+                  <CountriesOfCitizenship>
+                    <Citizenship ID="0">
+                      <Country>United States</Country>
+                    </Citizenship>
+                  </CountriesOfCitizenship>
+                  <LegalName>
+                    <Last>Jones</Last>
+                    <First>walt</First>
+                    <Middle>Criag</Middle>
+                    <Suffix>Sr</Suffix>
+                  </LegalName>
+                  <OtherNamesUsed NotApplicable="True"/>
+                  <SSN>
+                    <FirstThree>111</FirstThree>
+                    <NextTwo>11</NextTwo>
+                    <LastFour>1111</LastFour>
+                  </SSN>
+                </Cohabitant>
+                <Cohabitant ID="1">
+                  <Birth>
+                    <Date>
+                      <Month>08</Month>
+                      <Day>12</Day>
+                      <Year>2000</Year>
+                    </Date>
+                    <Place>
+                      <City>Boston</City>
+                      <State>MA</State>
+                      <Country>United States</Country>
+                    </Place>
+                  </Birth>
+                  <CohabitationDate>
+                    <Date>
+                      <Month>08</Month>
+                      <Day>12</Day>
+                      <Year>2000</Year>
+                    </Date>
+                  </CohabitationDate>
+                  <CountriesOfCitizenship>
+                    <Citizenship ID="0">
+                      <Country>United States</Country>
+                    </Citizenship>
+                  </CountriesOfCitizenship>
+                  <LegalName>
+                    <Last>King</Last>
+                    <First>Danah</First>
+                    <Middle>Joy</Middle>
+                    <Suffix>VII</Suffix>
+                  </LegalName>
+                  <OtherNamesUsed NotApplicable="True"/>
+                  <SSN>
+                    <FirstThree>777</FirstThree>
+                    <NextTwo>77</NextTwo>
+                    <LastFour>7777</LastFour>
+                  </SSN>
+                </Cohabitant>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </Cohabitants>
+              <HaveFormerSpouse>
+                <Answer>No</Answer>
+              </HaveFormerSpouse>
+              <MaritalStatus>Married</MaritalStatus>
+              <PresentMarriage>
+                <CurrentSpouse>
+                  <Address UseMyCurrentAddress="False">
+                    <Street>65 DEER ST </Street>
+                    <City>BOSTON</City>
+                    <State>MA</State>
+                    <ZipCode>02125</ZipCode>
+                  </Address>
+                  <Birth>
+                    <Date>
+                      <Month>03</Month>
+                      <Day>12</Day>
+                      <Year>1990</Year>
+                    </Date>
+                    <Place>
+                      <City>jamaica plain</City>
+                      <State>MA</State>
+                      <County>kings</County>
+                      <Country>United States</Country>
+                    </Place>
+                  </Birth>
+                  <CountriesOfCitizenship>
+                    <Citizenship ID="0">
+                      <Country>United States</Country>
+                    </Citizenship>
+                  </CountriesOfCitizenship>
+                  <Email>af@bj.com</Email>
+                  <LegalName>
+                    <Last>york</Last>
+                    <First>robin</First>
+                    <Middle>love</Middle>
+                    <Suffix>VII</Suffix>
+                  </LegalName>
+                  <Marriage>
+                    <Date>
+                      <Month>01</Month>
+                      <Day>03</Day>
+                      <Year>2000</Year>
+                    </Date>
+                    <Place>
+                      <City>10 causeway st</City>
+                      <State>MA</State>
+                      <County>boston</County>
+                      <Country>United States</Country>
+                    </Place>
+                  </Marriage>
+                  <OtherNamesUsed NotApplicable="True"/>
+                  <SSN NotApplicable="false">
+                    <FirstThree>
+        111
+      </FirstThree>
+                    <NextTwo>
+        11
+      </NextTwo>
+                    <LastFour>
+        1111
+      </LastFour>
+                  </SSN>
+                  <Separated>
+                    <Answer>No</Answer>
+                  </Separated>
+                  <Separation>
+                    <Date>
+                      <Month>02</Month>
+                      <Day>01</Day>
+                      <Year>2000</Year>
+                    </Date>
+                    <LocationOfRecord>
+                      <Place NotApplicable="False">
+                        <City>jamaica plain</City>
+                        <State>MD</State>
+                        <ZipCode>12345</ZipCode>
+                      </Place>
+                    </LocationOfRecord>
+                  </Separation>
+                  <Telephone>
+                    <Number>1231231123</Number>
+                    <Time>Both</Time>
+                  </Telephone>
+                </CurrentSpouse>
+              </PresentMarriage>
+            </Spouse>
+            <ResidenceHistory>
+              <Residencies>
+                <Residency ID="0">
+                  <Address>
+                    <Street>123 VARICK ST </Street>
+                    <City>NEW YORK</City>
+                    <State>NY</State>
+                    <ZipCode>10013</ZipCode>
+                  </Address>
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>12</Month>
+                        <Year>2007</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Present"/>
+                    </To>
+                  </DateRange>
+                  <ResidenceType>Own</ResidenceType>
+                  <Verifier>
+                    <Address>
+                      <Street>145 VARICK ST </Street>
+                      <City>NEW YORK</City>
+                      <State>NY</State>
+                      <ZipCode>10013</ZipCode>
+                    </Address>
+                    <Email>hj@adfg.com</Email>
+                    <LastContact>
+                      <Date Type="Estimated">
+                        <Month>07</Month>
+                        <Year>2018</Year>
+                      </Date>
+                    </LastContact>
+                    <LegalName>
+                      <Last>Smith</Last>
+                      <First>Joe</First>
+                      <Middle>Criag</Middle>
+                      <Suffix>II</Suffix>
+                    </LegalName>
+                    <RelationshipTypes Neighbor="True" Friend="True"/>
+                    <Telephone>
+                      <Day>
+                        <Number>1223444444</Number>
+                        <Time>Night</Time>
+                      </Day>
+                      <Evening>
+                        <Number>2342342344</Number>
+                        <Time>Day</Time>
+                      </Evening>
+                      <Mobile>
+                        <Number>2334333333</Number>
+                        <Time>Both</Time>
+                      </Mobile>
+                    </Telephone>
+                  </Verifier>
+                </Residency>
+              </Residencies>
+              <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+            </ResidenceHistory>
+            <EmploymentActivities Type="Pooled" Version="1">
+              <Employments>
+                <Employment ID="0">
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>05</Month>
+                        <Year>1990</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Present"/>
+                    </To>
+                  </DateRange>
+                  <Type>ActiveMilitaryDuty</Type>
+                  <WorkHours>FullTime</WorkHours>
+                  <MilitaryService>
+                    <DutyStation>
+                      <DutyLocation>duty</DutyLocation>
+                      <Address>
+                        <Street>89 E 42ND ST </Street>
+                        <City>NEW YORK</City>
+                        <State>NY</State>
+                        <ZipCode>10017</ZipCode>
+                      </Address>
+                      <Telephone>
+                        <Number>1234213412</Number>
+                        <Time>Both</Time>
+                      </Telephone>
+                    </DutyStation>
+                    <Rank>bus</Rank>
+                  </MilitaryService>
+                  <Incidents>
+                    <Answer>No</Answer>
+                  </Incidents>
+                  <Supervisor>
+                    <Name>Bob Villa</Name>
+                    <Title>Chief Driver</Title>
+                    <Address>
+                      <Street>87 W 90TH ST </Street>
+                      <City>NEW YORK</City>
+                      <State>NY</State>
+                      <ZipCode>10024</ZipCode>
+                    </Address>
+                    <Email DoNotKnow="True"/>
+                    <Telephone>
+                      <Number>4317839981</Number>
+                      <Time>Day</Time>
+                    </Telephone>
+                  </Supervisor>
+                </Employment>
+              </Employments>
+              <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+            </EmploymentActivities>
+            <EmploymentRecord Version="1" Type="Pooled">
+              <Fired>
+                <Answer>No</Answer>
+              </Fired>
+            </EmploymentRecord>
+            <Education>
+              <AttendedAnySchools>
+                <Answer>No</Answer>
+              </AttendedAnySchools>
+              <ReceivedDegreeOrDiploma>
+                <Answer>No</Answer>
+              </ReceivedDegreeOrDiploma>
+              <SchoolsAttended>
+    
+  </SchoolsAttended>
+            </Education>
+            <FormerFederalServiceActivities>
+              <HadFormerFederalCivilianEmployment>
+                <Answer>No</Answer>
+              </HadFormerFederalCivilianEmployment>
+              <FederalServices>
+  </FederalServices>
+            </FormerFederalServiceActivities>
+            <Citizenship Version="1" Type="Pooled">
+              <Status>USByBirth</Status>
+              <USCitizen>
+                <ProofOfUSCitizenship>
+                  <USPassport>
+                    <DateExpired>
+                      <Date Type="Estimated">
+                        <Month>03</Month>
+                        <Day>07</Day>
+                        <Year>2020</Year>
+                      </Date>
+                    </DateExpired>
+                    <DateIssued>
+                      <Date>
+                        <Month>01</Month>
+                        <Day>06</Day>
+                        <Year>2017</Year>
+                      </Date>
+                    </DateIssued>
+                    <IssuedLegalName>
+                      <Last>Thompson</Last>
+                      <First>Xavier</First>
+                      <Middle>James</Middle>
+                    </IssuedLegalName>
+                    <PassportNumber>c23456789</PassportNumber>
+                  </USPassport>
+                </ProofOfUSCitizenship>
+              </USCitizen>
+            </Citizenship>
+            <DualCitizenship Version="1" Type="Pooled">
+              <DualCitizenships>
+    
+  </DualCitizenships>
+              <HeldDualCitizenship>
+                <Answer>No</Answer>
+              </HeldDualCitizenship>
+            </DualCitizenship>
+            <USPassport Type="Pooled" Version="1">
+              <DoPossessUSPassport>
+                <Answer>Yes</Answer>
+              </DoPossessUSPassport>
+            </USPassport>
+            <MilitaryHistory Version="1" Type="Pooled">
+              <ForeignService>
+                <Answer>No</Answer>
+              </ForeignService>
+              <ForeignMilitaryService>
+  
+  
+  
+</ForeignMilitaryService>
+              <Answer>No</Answer>
+            </MilitaryHistory>
+            <SelectiveServiceRegistration Version="1" Type="Pooled">
+              <Registered>
+    
+    
+  </Registered>
+              <Registration>
+    
+  </Registration>
+              <RegistrationRequired>
+                <Answer>No</Answer>
+              </RegistrationRequired>
+            </SelectiveServiceRegistration>
+            <FinancialRecord Type="Pooled" Version="1">
+              <Bankruptcy>
+                <Activities>
+    
+  </Activities>
+                <Answer>No</Answer>
+              </Bankruptcy>
+              <ViolatedCorporateCardAgreement>
+                <Answer>No</Answer>
+                <Incidents>
+    
+  </Incidents>
+              </ViolatedCorporateCardAgreement>
+              <UtilizingOrSeekingCreditCounseling>
+                <Answer>No</Answer>
+                <Incidents>
+    
+  </Incidents>
+              </UtilizingOrSeekingCreditCounseling>
+              <DelinquencyInvolvingEnforcement>
+                <Answer>No</Answer>
+                <Incidents>
+    
+  </Incidents>
+              </DelinquencyInvolvingEnforcement>
+              <ProblemsDueToGambling>
+                <Answer>No</Answer>
+                <Incidents>
+    
+  </Incidents>
+              </ProblemsDueToGambling>
+              <DelinquencyInvolvingRoutineAccounts>
+                <Answer>No</Answer>
+                <Incidents>
+    
+  </Incidents>
+              </DelinquencyInvolvingRoutineAccounts>
+              <UnpaidTaxes>
+                <Answer>No</Answer>
+                <Incidents>
+    
+  </Incidents>
+              </UnpaidTaxes>
+            </FinancialRecord>
+            <ForeignContacts>
+              <ContactWithForeignNationalBoundByAffectionInfluenceObligation>
+                <Answer>Yes</Answer>
+              </ContactWithForeignNationalBoundByAffectionInfluenceObligation>
+              <Contacts>
+                <Contact ID="0">
+                  <Address>
+                    <Street>800 New Street </Street>
+                    <City>Boston</City>
+                    <State>MA</State>
+                    <ZipCode>02130</ZipCode>
+                  </Address>
+                  <Birth>
+                    <Date DoNotKnow="True">
+          
+        </Date>
+                    <Place>
+                      <City>New York</City>
+                      <Country>France</Country>
+                    </Place>
+                  </Birth>
+                  <Citizenships>
+                    <Citizenship ID="0">
+                      <Country>France</Country>
+                    </Citizenship>
+                  </Citizenships>
+                  <Contact>
+                    <Frequency>Weekly</Frequency>
+                    <Nature Business="True"/>
+                    <Type Telephone="True"/>
+                  </Contact>
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>01</Month>
+                        <Year>1990</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date>
+                        <Month>12</Month>
+                        <Year>2000</Year>
+                      </Date>
+                    </To>
+                  </DateRange>
+                  <Employer>
+                    <Address>
+                      <Street>123 Seasame Street </Street>
+                      <City>Denver</City>
+                      <Country>France</Country>
+                    </Address>
+                    <Name>bank</Name>
+                  </Employer>
+                  <ForeignAffiliation>
+                    <Answer>Yes</Answer>
+                    <Relationship>works in defense</Relationship>
+                  </ForeignAffiliation>
+                  <FullName>
+                    <LegalName>
+                      <Last>Smith</Last>
+                      <First>John</First>
+                      <Middle>Criag</Middle>
+                    </LegalName>
+                  </FullName>
+                </Contact>
+                <Contact ID="1">
+                  <Address>
+                    <Street>800 New Street </Street>
+                    <City>Boston</City>
+                    <State>MA</State>
+                    <ZipCode>02130</ZipCode>
+                  </Address>
+                  <Birth>
+                    <Date>
+                      <Month>12</Month>
+                      <Day>01</Day>
+                      <Year>1980</Year>
+                    </Date>
+                    <Place>
+                      <City>New York</City>
+                      <Country>Jamaica</Country>
+                    </Place>
+                  </Birth>
+                  <Citizenships>
+                    <Citizenship ID="0">
+                      <Country>Jamaica</Country>
+                    </Citizenship>
+                  </Citizenships>
+                  <Contact>
+                    <Frequency>Daily</Frequency>
+                    <Nature Personal="True"/>
+                    <Type WrittenCorrespondence="True"/>
+                  </Contact>
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>01</Month>
+                        <Year>2000</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date>
+                        <Month>01</Month>
+                        <Year>2000</Year>
+                      </Date>
+                    </To>
+                  </DateRange>
+                  <Employer>
+                    <Address>
+                      <Street>1600 pennsulvenia Ave </Street>
+                      <City>Boston</City>
+                      <State>MA</State>
+                      <ZipCode>02130</ZipCode>
+                    </Address>
+                    <Name>radio boston</Name>
+                  </Employer>
+                  <ForeignAffiliation>
+                    <Answer>IDontKnow</Answer>
+                  </ForeignAffiliation>
+                  <FullName>
+                    <LegalName>
+                      <Last>Peterson</Last>
+                      <First>Yellow</First>
+                      <Middle>Rob</Middle>
+                    </LegalName>
+                  </FullName>
+                </Contact>
+              </Contacts>
+              <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+            </ForeignContacts>
+            <ForeignFinancialInterests Version="1" Type="Pooled">
+              <DirectInterests>
+                <Answer>Yes</Answer>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+                <DirectInterest ID="0">
+                  <Coowners>
+                    <Answer>Yes</Answer>
+                    <Coowner ID="0">
+                      <Address>
+                        <Street>800 New Street </Street>
+                        <City>Boston</City>
+                        <State>MA</State>
+                        <ZipCode>02130</ZipCode>
+                      </Address>
+                      <CountriesOfCitizenship>
+                        <Citizenship ID="0">
+                          <Country>Morocco</Country>
+                        </Citizenship>
+                      </CountriesOfCitizenship>
+                      <LegalName>
+                        <Last>pyrad</Last>
+                        <First>COmmon</First>
+                        <Middle Type="NMN"/>
+                        <Suffix>Jr</Suffix>
+                      </LegalName>
+                      <Relationship>natural</Relationship>
+                    </Coowner>
+                    <Coowner ID="1">
+                      <Address>
+                        <Street>Apple St </Street>
+                        <City>Berlin</City>
+                        <Country>Germany</Country>
+                      </Address>
+                      <CountriesOfCitizenship>
+                        <Citizenship ID="0">
+                          <Country>Germany</Country>
+                        </Citizenship>
+                      </CountriesOfCitizenship>
+                      <LegalName>
+                        <Last>Frank</Last>
+                        <First>Geoff</First>
+                        <Middle>Frank</Middle>
+                        <Suffix>II</Suffix>
+                      </LegalName>
+                      <Relationship>pals</Relationship>
+                    </Coowner>
+                    <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+                  </Coowners>
+                  <Cost Estimated="true">8</Cost>
+                  <CurrentValue Estimated="true">5</CurrentValue>
+                  <DateAcquired>
+                    <Month>04</Month>
+                    <Day>04</Day>
+                    <Year>1999</Year>
+                  </DateAcquired>
+                  <DateRelinquished NotApplicable="True"/>
+                  <HowAcquired>found</HowAcquired>
+                  <Members Cohabitant="True" DependentChildren="True"/>
+                  <TypeOfFinancialInterest>Money Honey</TypeOfFinancialInterest>
+                </DirectInterest>
+                <DirectInterest ID="1">
+                  <Coowners>
+                    <Answer>No</Answer>
+                  </Coowners>
+                  <Cost>567</Cost>
+                  <CurrentValue Estimated="true">5647</CurrentValue>
+                  <DateAcquired>
+                    <Month>05</Month>
+                    <Day>05</Day>
+                    <Year>1999</Year>
+                  </DateAcquired>
+                  <DateRelinquished>
+                    <Month>01</Month>
+                    <Day>06</Day>
+                    <Year>1995</Year>
+                  </DateRelinquished>
+                  <Explanation>dont know</Explanation>
+                  <HowAcquired>gift</HowAcquired>
+                  <Members Yourself="True"/>
+                  <TypeOfFinancialInterest>gains</TypeOfFinancialInterest>
+                </DirectInterest>
+                <DirectInterest ID="2">
+                  <Coowners>
+                    <Answer>Yes</Answer>
+                    <Coowner ID="0">
+                      <Address>
+                        <Street>123 Seasame Street </Street>
+                        <City>New York</City>
+                        <State>NY</State>
+                        <ZipCode>10005</ZipCode>
+                      </Address>
+                      <CountriesOfCitizenship>
+                        <Citizenship ID="0">
+                          <Country>United States</Country>
+                        </Citizenship>
+                      </CountriesOfCitizenship>
+                      <LegalName>
+                        <Last>yest</Last>
+                        <First>robert</First>
+                        <Middle>yellow</Middle>
+                      </LegalName>
+                      <Relationship>co owner </Relationship>
+                    </Coowner>
+                    <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+                  </Coowners>
+                  <Cost>4</Cost>
+                  <CurrentValue>55</CurrentValue>
+                  <DateAcquired>
+                    <Month>03</Month>
+                    <Day>27</Day>
+                    <Year>2009</Year>
+                  </DateAcquired>
+                  <DateRelinquished NotApplicable="True"/>
+                  <HowAcquired>purchase</HowAcquired>
+                  <Members Spouse="True"/>
+                  <TypeOfFinancialInterest>Money Trouble Bubble</TypeOfFinancialInterest>
+                </DirectInterest>
+              </DirectInterests>
+              <IndirectInterests>
+                <Answer>Yes</Answer>
+                <IndirectInterest ID="0"><ControllingParty><LegalName><Last>Hoyel</Last><First>bug</First></LegalName></ControllingParty><Coowners><Answer>Yes</Answer><Coowner ID="0"><Address><Street>123 Seasame Street </Street><City>New York</City><State>NY</State><ZipCode>10005</ZipCode></Address><CountriesOfCitizenship><Citizenship ID="0"><Country>Heard Island and McDonald Islands</Country></Citizenship></CountriesOfCitizenship><LegalName><Last>yellow</Last><First>royal</First><Middle>royale</Middle><Suffix>VII</Suffix></LegalName><Relationship>common</Relationship></Coowner><HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer></Coowners><Cost>8</Cost><CurrentValue>9</CurrentValue><DateAcquired><Month>01</Month><Day>01</Day><Year>1990</Year></DateAcquired><DateSold><Month>01</Month><Day>01</Day><Year>1999</Year></DateSold>&gt;
+    
+    <HowAcquired>etc gift purchase</HowAcquired><Members Yourself="True" Spouse="True" DependentChildren="True"/><Relationship>yellow flag</Relationship><SoldExplanation>disposed of gross amount </SoldExplanation><TypeOfFinancialInterest>house</TypeOfFinancialInterest></IndirectInterest>
+                <IndirectInterest ID="1">
+                  <ControllingParty>
+                    <LegalName>
+                      <Last>Hoyel</Last>
+                      <First>robert</First>
+                    </LegalName>
+                  </ControllingParty>
+                  <Coowners>
+                    <Answer>No</Answer>
+                  </Coowners>
+                  <Cost>6</Cost>
+                  <CurrentValue>5</CurrentValue>
+                  <DateAcquired>
+                    <Month>01</Month>
+                    <Day>01</Day>
+                    <Year>2000</Year>
+                  </DateAcquired>
+                  <DateSold NotApplicable="True"/>
+                  <HowAcquired>gift</HowAcquired>
+                  <Members DependentChildren="True"/>
+                  <Relationship>unclear</Relationship>
+                  <TypeOfFinancialInterest>Money Honey</TypeOfFinancialInterest>
+                </IndirectInterest>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </IndirectInterests>
+              <RealEstateHoldings>
+                <Answer>Yes</Answer>
+                <RealEstateHolding ID="0">
+                  <Coowner>
+    </Coowner>
+                  <Coowners>
+                    <Answer>Yes</Answer>
+                    <Coowner ID="0">
+                      <Address>
+                        <Street>800 New Street </Street>
+                        <City>New York</City>
+                        <State>NY</State>
+                        <ZipCode>10005</ZipCode>
+                      </Address>
+                      <CountriesOfCitizenship>
+                        <Citizenship ID="0">
+                          <Country>France</Country>
+                        </Citizenship>
+                      </CountriesOfCitizenship>
+                      <LegalName>
+                        <Last>jones</Last>
+                        <First>royal</First>
+                        <Middle Type="NMN"/>
+                      </LegalName>
+                      <Relationship>pals</Relationship>
+                    </Coowner>
+                    <Coowner ID="1">
+                      <Address>
+                        <Street>89 E 42ND ST </Street>
+                        <City>NEW YORK</City>
+                        <State>NY</State>
+                        <ZipCode>10005</ZipCode>
+                      </Address>
+                      <CountriesOfCitizenship>
+                        <Citizenship ID="0">
+                          <Country>United States</Country>
+                        </Citizenship>
+                      </CountriesOfCitizenship>
+                      <LegalName>
+                        <Last>Smith</Last>
+                        <First>Yellow</First>
+                        <Middle>Ryan</Middle>
+                      </LegalName>
+                      <Relationship>lovers</Relationship>
+                    </Coowner>
+                    <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+                  </Coowners>
+                  <Cost>800000</Cost>
+                  <DateAcquired>
+                    <Month>01</Month>
+                    <Day>12</Day>
+                    <Year>2000</Year>
+                  </DateAcquired>
+                  <HowAcquired>purchase</HowAcquired>
+                  <Location>
+                    <Address>
+                      <Street>123 causeway st </Street>
+                      <City>jamaica plain</City>
+                      <Country>France</Country>
+                    </Address>
+                  </Location>
+                  <Members Cohabitant="True"/>
+                  <Type>home</Type>
+                </RealEstateHolding>
+                <RealEstateHolding ID="1">
+                  <Coowner>
+    </Coowner>
+                  <Coowners>
+                    <Answer>No</Answer>
+                  </Coowners>
+                  <Cost>3456748</Cost>
+                  <DateAcquired>
+                    <Month>02</Month>
+                    <Day>12</Day>
+                    <Year>2000</Year>
+                  </DateAcquired>
+                  <HowAcquired>gift</HowAcquired>
+                  <Location>
+                    <Address>
+                      <Street>54 jones st </Street>
+                      <City>Paris</City>
+                      <Country>France</Country>
+                    </Address>
+                  </Location>
+                  <Members Spouse="True"/>
+                  <Type>home</Type>
+                </RealEstateHolding>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </RealEstateHoldings>
+              <ForeignFinancialBenefits>
+                <Answer>Yes</Answer>
+                <ForeignFinancialBenefit ID="0">
+                  <Members Yourself="True"/>
+                  <Country>France</Country>
+                  <DateReceived>
+                    <Month>01</Month>
+                    <Day>12</Day>
+                    <Year>1999</Year>
+                  </DateReceived>
+                  <FrequencyType>Onetime</FrequencyType>
+                  <ObligatedToCountry>
+                    <Answer>Yes</Answer>
+                    <Explanation>obligated by blood</Explanation>
+                  </ObligatedToCountry>
+                  <Reason>gift</Reason>
+                  <Type>Retirement</Type>
+                  <Value>5</Value>
+                </ForeignFinancialBenefit>
+                <ForeignFinancialBenefit ID="1">
+                  <Members DependentChildren="True"/>
+                  <Country>France</Country>
+                  <DateReceived>
+                    <Month>01</Month>
+                    <Day>01</Day>
+                    <Year>2018</Year>
+                  </DateReceived>
+                  <FrequencyType>Onetime</FrequencyType>
+                  <ObligatedToCountry>
+                    <Answer>No</Answer>
+                  </ObligatedToCountry>
+                  <Reason>award</Reason>
+                  <Type>Medical</Type>
+                  <Value>4444555</Value>
+                </ForeignFinancialBenefit>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </ForeignFinancialBenefits>
+              <ForeignNationalsSupported>
+                <Answer>Yes</Answer>
+                <ForeignNationalSupported ID="0">
+                  <Address>
+                    <Street>1600 pennsulvenia Ave </Street>
+                    <City>New York</City>
+                    <State>NY</State>
+                    <ZipCode>10005</ZipCode>
+                  </Address>
+                  <Amount>98999999</Amount>
+                  <CountriesOfCitizenship>
+                    <Citizenship ID="0">
+                      <Country>Hungary</Country>
+                    </Citizenship>
+                  </CountriesOfCitizenship>
+                  <Frequency>once</Frequency>
+                  <LegalName>
+                    <Last>Smith</Last>
+                    <First>Robert</First>
+                    <Middle>Criag</Middle>
+                    <Suffix>Sr</Suffix>
+                  </LegalName>
+                  <Relationship>friends</Relationship>
+                </ForeignNationalSupported>
+                <ForeignNationalSupported ID="1">
+                  <Address>
+                    <Street>1600 pennsulvenia Ave </Street>
+                    <City>New York</City>
+                    <State>NY</State>
+                    <ZipCode>10005</ZipCode>
+                  </Address>
+                  <Amount>09876</Amount>
+                  <CountriesOfCitizenship>
+                    <Citizenship ID="0">
+                      <Country>Kazakhstan</Country>
+                    </Citizenship>
+                  </CountriesOfCitizenship>
+                  <Frequency>weekly</Frequency>
+                  <LegalName>
+                    <Last>paris</Last>
+                    <First>royal</First>
+                    <Middle Type="NMN"/>
+                    <Suffix>Sr</Suffix>
+                  </LegalName>
+                  <Relationship>best friends</Relationship>
+                </ForeignNationalSupported>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </ForeignNationalsSupported>
+            </ForeignFinancialInterests>
+            <ForeignBusinessActivities Version="1" Type="Pooled">
+              <ForeignPassports>
+                <Answer>No</Answer>
+              </ForeignPassports>
+              <SupportActivities>
+                <Answer>Yes</Answer>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+                <SupportActivity ID="0">
+                  <Country>Chile</Country>
+                  <DateRange>
+                    <From>
+                      <Date Type="Estimated">
+                        <Month>01</Month>
+                        <Year>1990</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Estimated">
+                        <Month>01</Month>
+                        <Year>2000</Year>
+                      </Date>
+                    </To>
+                  </DateRange>
+                  <DescribeCompensation>none</DescribeCompensation>
+                  <Explanation>advice </Explanation>
+                  <LegalName>
+                    <Last Type="IO">c</Last>
+                    <First>George</First>
+                    <Middle>Rob</Middle>
+                    <Suffix>X</Suffix>
+                  </LegalName>
+                  <Organization>Robert</Organization>
+                </SupportActivity>
+                <SupportActivity ID="1">
+                  <Country>Romania</Country>
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>03</Month>
+                        <Year>2000</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Present"/>
+                    </To>
+                  </DateRange>
+                  <DescribeCompensation>gains</DescribeCompensation>
+                  <Explanation>advice column</Explanation>
+                  <LegalName>
+                    <Last>Smith</Last>
+                    <First>material</First>
+                    <Middle Type="NMN"/>
+                    <Suffix>VI</Suffix>
+                  </LegalName>
+                  <Organization>bank</Organization>
+                </SupportActivity>
+              </SupportActivities>
+              <Consultancies>
+                <Answer>Yes</Answer>
+                <Consultancy ID="0">
+                  <Agency>
+                    <Country>Gabon</Country>
+                    <Name>agency</Name>
+                  </Agency>
+                  <Circumstances>no</Circumstances>
+                  <Date Type="Estimated">
+                    <Month>03</Month>
+                    <Year>2000</Year>
+                  </Date>
+                  <LegalName>
+                    <Last>Smith</Last>
+                    <First>Robert</First>
+                    <Middle Type="NMN"/>
+                    <Suffix>Sr</Suffix>
+                  </LegalName>
+                </Consultancy>
+                <Consultancy ID="1">
+                  <Agency>
+                    <Country>Denmark</Country>
+                    <Name>agency2</Name>
+                  </Agency>
+                  <Circumstances>in a pickle</Circumstances>
+                  <Date>
+                    <Month>01</Month>
+                    <Year>2000</Year>
+                  </Date>
+                  <LegalName>
+                    <Last>we</Last>
+                    <First>Fed</First>
+                    <Middle>Ryan</Middle>
+                    <Suffix>VII</Suffix>
+                  </LegalName>
+                </Consultancy>
+                <Consultancy ID="2">
+                  <Agency>
+                    <Country>Haiti</Country>
+                    <Name>agency 5</Name>
+                  </Agency>
+                  <Circumstances>nope</Circumstances>
+                  <Date>
+                    <Month>03</Month>
+                    <Year>2000</Year>
+                  </Date>
+                  <LegalName>
+                    <Last>roberstas</Last>
+                    <First>welk</First>
+                    <Middle Type="NMN"/>
+                    <Suffix>I</Suffix>
+                  </LegalName>
+                </Consultancy>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </Consultancies>
+              <ForeignJobOffer>
+                <Answer>Yes</Answer>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </ForeignJobOffer>
+              <ForeignJobOffers>
+                <ForeignJobOffer ID="0">
+                  <AcceptOffer>
+                    <Answer>Yes</Answer>
+                    <Explanation>seemed like a good idea</Explanation>
+                  </AcceptOffer>
+                  <Location>
+                    <Place>
+                      <City>New York</City>
+                      <State>NY</State>
+                      <ZipCode>10006</ZipCode>
+                    </Place>
+                  </Location>
+                  <OfferDate Type="Estimated">
+                    <Month>09</Month>
+                    <Year>2000</Year>
+                  </OfferDate>
+                  <OfferorLegalName>
+                    <Last>ok</Last>
+                    <First>John</First>
+                    <Middle>Criag</Middle>
+                    <Suffix>VI</Suffix>
+                  </OfferorLegalName>
+                  <PositionDescription>its a good one</PositionDescription>
+                </ForeignJobOffer>
+                <ForeignJobOffer ID="1">
+                  <AcceptOffer>
+                    <Answer>No</Answer>
+                    <Explanation>not good enough!</Explanation>
+                  </AcceptOffer>
+                  <Location>
+                    <Place>
+                      <City>berlin</City>
+                      <Country>Germany</Country>
+                    </Place>
+                  </Location>
+                  <OfferDate>
+                    <Month>12</Month>
+                    <Year>1999</Year>
+                  </OfferDate>
+                  <OfferorLegalName>
+                    <Last Type="IO">u</Last>
+                    <First Type="IO">g</First>
+                    <Middle Type="IO">k</Middle>
+                    <Suffix>IX</Suffix>
+                  </OfferorLegalName>
+                  <PositionDescription>offered</PositionDescription>
+                </ForeignJobOffer>
+                <ForeignJobOffer ID="2">
+                  <AcceptOffer>
+                    <Answer>No</Answer>
+                    <Explanation>would you</Explanation>
+                  </AcceptOffer>
+                  <Location>
+                    <Place>
+                      <City>jamaica plain</City>
+                      <State>MA</State>
+                      <ZipCode>02103</ZipCode>
+                    </Place>
+                  </Location>
+                  <OfferDate>
+                    <Month>12</Month>
+                    <Year>2004</Year>
+                  </OfferDate>
+                  <OfferorLegalName>
+                    <Last>Rush</Last>
+                    <First>Paula</First>
+                    <Middle>Ro</Middle>
+                  </OfferorLegalName>
+                  <PositionDescription>how come?</PositionDescription>
+                </ForeignJobOffer>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </ForeignJobOffers>
+              <OtherForeignEmployment>
+                <Answer>Yes</Answer>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </OtherForeignEmployment>
+              <OtherForeignEmployments>
+                <OtherForeignEmployment ID="0">
+                  <CompensationDescription>apples </CompensationDescription>
+                  <DateRange>
+                    <From>
+                      <Date Type="Estimated">
+                        <Month>01</Month>
+                        <Year>2000</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Present"/>
+                    </To>
+                  </DateRange>
+                  <Description>grand scheme</Description>
+                  <FinancialSupport>one million dollars</FinancialSupport>
+                  <NatureOfAssociation>co-owner</NatureOfAssociation>
+                  <Partner>
+                    <Address>
+                      <Street>great </Street>
+                      <City>scott</City>
+                      <State>NY</State>
+                      <ZipCode>10003</ZipCode>
+                    </Address>
+                    <CountriesOfCitizenship>
+                      <Citizenship ID="0">
+                        <Country>Yemen</Country>
+                      </Citizenship>
+                    </CountriesOfCitizenship>
+                    <LegalName>
+                      <Last>roberts</Last>
+                      <First>sara</First>
+                      <Middle Type="NMN"/>
+                      <Suffix>VIII</Suffix>
+                    </LegalName>
+                  </Partner>
+                  <PositionHeld>king</PositionHeld>
+                  <Relationship>friends</Relationship>
+                  <ServiceProvided>guidance</ServiceProvided>
+                </OtherForeignEmployment>
+                <OtherForeignEmployment ID="1">
+                  <CompensationDescription>all of it </CompensationDescription>
+                  <DateRange>
+                    <From>
+                      <Date Type="Estimated">
+                        <Month>07</Month>
+                        <Year>2000</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Present"/>
+                    </To>
+                  </DateRange>
+                  <Description>unclear</Description>
+                  <FinancialSupport>a lot</FinancialSupport>
+                  <NatureOfAssociation>unclear</NatureOfAssociation>
+                  <Partner>
+                    <Address>
+                      <Street>front st </Street>
+                      <City>Berlin</City>
+                      <Country>Sweden</Country>
+                    </Address>
+                    <CountriesOfCitizenship>
+                      <Citizenship ID="0">
+                        <Country>Swaziland</Country>
+                      </Citizenship>
+                    </CountriesOfCitizenship>
+                    <LegalName>
+                      <Last>Bluth</Last>
+                      <First>robert</First>
+                      <Middle>george</Middle>
+                    </LegalName>
+                  </Partner>
+                  <PositionHeld>volunteer</PositionHeld>
+                  <Relationship>not sure</Relationship>
+                  <ServiceProvided>none</ServiceProvided>
+                </OtherForeignEmployment>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </OtherForeignEmployments>
+              <Meetings>
+                <Answer>Yes</Answer>
+                <Meeting ID="0">
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>01</Month>
+                        <Year>2000</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Estimated">
+                        <Month>01</Month>
+                        <Year>2000</Year>
+                      </Date>
+                    </To>
+                  </DateRange>
+                  <Location>
+                    <Place>
+                      <City>berlin</City>
+                      <Country>United Kingdom</Country>
+                    </Place>
+                  </Location>
+                  <NameAndDescription>the moon</NameAndDescription>
+                  <Organization>monsoon</Organization>
+                  <Purpose>concert for bangladesh</Purpose>
+                  <SubsequentForeignContacts>
+                    <Answer>Yes</Answer>
+                    <Contact ID="0">
+                      <Explanation>we did it twice</Explanation>
+                    </Contact>
+                    <Contact ID="1">
+                      <Explanation>we got great press</Explanation>
+                    </Contact>
+                    <Contact ID="2">
+                      <Explanation>got coffee in berlin</Explanation>
+                    </Contact>
+                    <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+                  </SubsequentForeignContacts>
+                </Meeting>
+                <Meeting ID="1">
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>09</Month>
+                        <Year>2000</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date>
+                        <Month>10</Month>
+                        <Year>2012</Year>
+                      </Date>
+                    </To>
+                  </DateRange>
+                  <Location>
+                    <Place>
+                      <City>berlin</City>
+                      <Country>Germany</Country>
+                    </Place>
+                  </Location>
+                  <NameAndDescription>apples for argentina</NameAndDescription>
+                  <Organization>applegrand</Organization>
+                  <Purpose>promote apples </Purpose>
+                  <SubsequentForeignContacts>
+                    <Answer>No</Answer>
+                  </SubsequentForeignContacts>
+                </Meeting>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </Meetings>
+              <GovernmentContacts>
+                <Answer>Yes</Answer>
+                <GovernmentContact ID="0">
+                  <Circumstances>it was for profit and fun </Circumstances>
+                  <CountriesInvolved>
+                    <CountryInvolved ID="0">
+                      <Country>Bolivia</Country>
+                    </CountryInvolved>
+                  </CountriesInvolved>
+                  <Date>
+                    <Month>09</Month>
+                    <Year>2000</Year>
+                  </Date>
+                  <EstablishmentType>embassy</EstablishmentType>
+                  <ForeignRepresentativesInvolved>robert, george, smith</ForeignRepresentativesInvolved>
+                  <LegalName>
+                    <Last>Smith</Last>
+                    <First>welk</First>
+                    <Middle>Criag</Middle>
+                    <Suffix>VII</Suffix>
+                  </LegalName>
+                  <Location>
+                    <Place>
+                      <City>jamaica plain</City>
+                      <State>NY</State>
+                      <ZipCode>10005</ZipCode>
+                    </Place>
+                  </Location>
+                  <SubsequentForeignContacts>
+                    <Answer>No</Answer>
+                  </SubsequentForeignContacts>
+                </GovernmentContact>
+                <GovernmentContact ID="1">
+                  <Circumstances>random </Circumstances>
+                  <CountriesInvolved>
+                    <CountryInvolved ID="0">
+                      <Country>India</Country>
+                    </CountryInvolved>
+                  </CountriesInvolved>
+                  <Date>
+                    <Month>09</Month>
+                    <Year>2000</Year>
+                  </Date>
+                  <EstablishmentType>service</EstablishmentType>
+                  <ForeignRepresentativesInvolved>george paul</ForeignRepresentativesInvolved>
+                  <LegalName>
+                    <Last>richard</Last>
+                    <First>Robert</First>
+                    <Middle Type="NMN"/>
+                  </LegalName>
+                  <Location>
+                    <Place>
+                      <City>jamaica plain</City>
+                      <Country>Ukraine</Country>
+                    </Place>
+                  </Location>
+                  <SubsequentForeignContacts>
+                    <Answer>No</Answer>
+                  </SubsequentForeignContacts>
+                </GovernmentContact>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </GovernmentContacts>
+              <SponsoredVisits>
+                <Answer>Yes</Answer>
+                <SponsoredVisit ID="0">
+                  <AddressWhileInUS>
+                    <Address>
+                      <Street>1600 pennsulvenia Ave </Street>
+                      <City>New York</City>
+                      <State>NY</State>
+                      <ZipCode>10005</ZipCode>
+                    </Address>
+                  </AddressWhileInUS>
+                  <Birth>
+                    <Date>
+                      <Month>06</Month>
+                      <Year>2000</Year>
+                    </Date>
+                    <Place>
+                      <City>New York</City>
+                      <Country>Uganda</Country>
+                    </Place>
+                  </Birth>
+                  <CountriesOfCitizenship>
+                    <Citizenship ID="0">
+                      <Country>Iceland</Country>
+                    </Citizenship>
+                  </CountriesOfCitizenship>
+                  <CurrentAddress>
+                    <Address>
+                      <Street>800 New Street </Street>
+                      <City>New York</City>
+                      <State>NY</State>
+                      <ZipCode>10005</ZipCode>
+                    </Address>
+                  </CurrentAddress>
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>07</Month>
+                        <Year>2000</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Present"/>
+                    </To>
+                  </DateRange>
+                  <Name>
+                    <Last Type="IO">o</Last>
+                    <First Type="IO">g</First>
+                    <Middle Type="NMN"/>
+                  </Name>
+                  <Organization>
+                    <Address NotApplicable="False">
+                      <Street>123 Seasame Street </Street>
+                      <City>New York</City>
+                      <State>MA</State>
+                      <ZipCode>02130</ZipCode>
+                    </Address>
+                    <Name NotApplicable="True"/>
+                  </Organization>
+                  <Purpose>hospital</Purpose>
+                  <SponsorshipPurpose>support</SponsorshipPurpose>
+                </SponsoredVisit>
+                <SponsoredVisit ID="1">
+                  <AddressWhileInUS>
+                    <Address>
+                      <Street>800 New Street </Street>
+                      <City>New York</City>
+                      <State>NY</State>
+                      <ZipCode>10005</ZipCode>
+                    </Address>
+                  </AddressWhileInUS>
+                  <Birth>
+                    <Date>
+                      <Month>08</Month>
+                      <Year>2000</Year>
+                    </Date>
+                    <Place>
+                      <City>jamaica plain</City>
+                      <State>NY</State>
+                      <ZipCode>10005</ZipCode>
+                      <Country>United States</Country>
+                    </Place>
+                  </Birth>
+                  <CountriesOfCitizenship>
+                    <Citizenship ID="0">
+                      <Country>Kiribati</Country>
+                    </Citizenship>
+                  </CountriesOfCitizenship>
+                  <CurrentAddress>
+                    <Address>
+                      <Street>123 Seasame Street </Street>
+                      <City>New York</City>
+                      <Country>Jamaica</Country>
+                    </Address>
+                  </CurrentAddress>
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>09</Month>
+                        <Year>2000</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Present"/>
+                    </To>
+                  </DateRange>
+                  <Name>
+                    <Last>rob</Last>
+                    <First>young</First>
+                    <Middle>paul</Middle>
+                  </Name>
+                  <Organization>
+                    <Address NotApplicable="False">
+                      <Street>1600 pennsulvenia Ave </Street>
+                      <City>New York</City>
+                      <Country>Kazakhstan</Country>
+                    </Address>
+                    <Name NotApplicable="True"/>
+                  </Organization>
+                  <Purpose>hospitol</Purpose>
+                  <SponsorshipPurpose>seemed like a good idea</SponsorshipPurpose>
+                </SponsoredVisit>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </SponsoredVisits>
+              <ForeignPoliticalOffice>
+                <Answer>Yes</Answer>
+              </ForeignPoliticalOffice>
+              <ForeignPoliticalOffices>
+                <ForeignPoliticalOffice ID="0">
+                  <Country>Jan Mayen</Country>
+                  <CurrentEligibility>eligible</CurrentEligibility>
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>01</Month>
+                        <Year>2000</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date>
+                        <Month>08</Month>
+                        <Year>2000</Year>
+                      </Date>
+                    </To>
+                  </DateRange>
+                  <Position>king</Position>
+                  <Reason>activity</Reason>
+                </ForeignPoliticalOffice>
+                <ForeignPoliticalOffice ID="1">
+                  <Country>Lebanon</Country>
+                  <CurrentEligibility>not eligible</CurrentEligibility>
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>01</Month>
+                        <Year>2000</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Estimated">
+                        <Month>03</Month>
+                        <Year>2000</Year>
+                      </Date>
+                    </To>
+                  </DateRange>
+                  <Position>rick the ruler</Position>
+                  <Reason>pride greed etc</Reason>
+                </ForeignPoliticalOffice>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </ForeignPoliticalOffices>
+              <VotedInForeignElection>
+                <Answer>Yes</Answer>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </VotedInForeignElection>
+              <VotedInForeignElections>
+                <ForeignElection ID="0">
+                  <Country>Nauru</Country>
+                  <CurrentVotingEligibility>on Thursdays</CurrentVotingEligibility>
+                  <Date>
+                    <Month>01</Month>
+                    <Year>2000</Year>
+                  </Date>
+                  <Reason>elect the best</Reason>
+                </ForeignElection>
+                <ForeignElection ID="1">
+                  <Country>Macau</Country>
+                  <CurrentVotingEligibility>one a week</CurrentVotingEligibility>
+                  <Date>
+                    <Month>01</Month>
+                    <Year>1999</Year>
+                  </Date>
+                  <Reason>never</Reason>
+                </ForeignElection>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </VotedInForeignElections>
+            </ForeignBusinessActivities>
+            <ForeignTravels>
+              <CountriesVisited>
+                <Answer>Yes</Answer>
+              </CountriesVisited>
+              <SolelyForUSGovernment>
+                <Answer>No</Answer>
+              </SolelyForUSGovernment>
+              <Travels>
+                <Travel ID="0">
+                  <ContactedByForeignMilitaryOrganization>
+                    <Answer>Yes</Answer>
+                    <Explanation>got a beer with them</Explanation>
+                  </ContactedByForeignMilitaryOrganization>
+                  <ContactedByPersonAttemptingToObtainInformation>
+                    <Answer>Yes</Answer>
+                    <Explanation>cell phone communication</Explanation>
+                  </ContactedByPersonAttemptingToObtainInformation>
+                  <ContactedByPersonWithInterestInYourJob>
+                    <Answer>Yes</Answer>
+                    <Explanation>seemed like they were everywhere</Explanation>
+                  </ContactedByPersonWithInterestInYourJob>
+                  <Country>Ukraine</Country>
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>01</Month>
+                        <Year>1999</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Present"/>
+                    </To>
+                  </DateRange>
+                  <Detained>
+                    <Answer>Yes</Answer>
+                    <Explanation>unsure</Explanation>
+                  </Detained>
+                  <Duration>
+                    <NumberOfDaysRange>SixToTen</NumberOfDaysRange>
+                  </Duration>
+                  <InvolvedInCounterintelligence>
+                    <Answer>Yes</Answer>
+                    <Explanation>accidentally </Explanation>
+                  </InvolvedInCounterintelligence>
+                  <PoliceEncounter>
+                    <Answer>Yes</Answer>
+                    <Explanation>asked for direction</Explanation>
+                  </PoliceEncounter>
+                  <PurposeOfVisit VolunteerActivities="True"/>
+                  <Threatened>
+                    <Answer>Yes</Answer>
+                    <Explanation>bribed</Explanation>
+                  </Threatened>
+                </Travel>
+                <Travel ID="1">
+                  <ContactedByForeignMilitaryOrganization>
+                    <Answer>Yes</Answer>
+                    <Explanation>potato</Explanation>
+                  </ContactedByForeignMilitaryOrganization>
+                  <ContactedByPersonAttemptingToObtainInformation>
+                    <Answer>Yes</Answer>
+                    <Explanation>airplane trip</Explanation>
+                  </ContactedByPersonAttemptingToObtainInformation>
+                  <ContactedByPersonWithInterestInYourJob>
+                    <Answer>Yes</Answer>
+                    <Explanation>work stuff</Explanation>
+                  </ContactedByPersonWithInterestInYourJob>
+                  <Country>Russia</Country>
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>01</Month>
+                        <Year>2000</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Present"/>
+                    </To>
+                  </DateRange>
+                  <Detained>
+                    <Answer>Yes</Answer>
+                    <Explanation>jhgljhg</Explanation>
+                  </Detained>
+                  <Duration>
+                    <NumberOfDaysRange>ElevenToTwenty</NumberOfDaysRange>
+                  </Duration>
+                  <InvolvedInCounterintelligence>
+                    <Answer>No</Answer>
+                  </InvolvedInCounterintelligence>
+                  <PoliceEncounter>
+                    <Answer>No</Answer>
+                  </PoliceEncounter>
+                  <PurposeOfVisit TradeShow="True"/>
+                  <Threatened>
+                    <Answer>No</Answer>
+                  </Threatened>
+                </Travel>
+              </Travels>
+              <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+            </ForeignTravels>
+            <UseOfAlcohol Version="1" Type="Pooled">
+              <EverReceivedCounseling>
+                <Answer>No</Answer>
+                <Consultations>
+    
+  </Consultations>
+              </EverReceivedCounseling>
+              <NegativeImpact>
+                <Answer>No</Answer>
+                <Incidents>
+    
+  </Incidents>
+              </NegativeImpact>
+              <OrderedAdvisedOrAskedToSeekCounseling>
+                <Answer>No</Answer>
+                <Consultations>
+    
+  </Consultations>
+              </OrderedAdvisedOrAskedToSeekCounseling>
+              <SoughtCounseling>
+                <Answer>No</Answer>
+                <Consultations>
+    
+  </Consultations>
+              </SoughtCounseling>
+            </UseOfAlcohol>
+            <IllegalDrugUse Version="1" Type="Pooled">
+              <InvolvementWhilePossessingASecurityClearance>
+                <Answer>No</Answer>
+                <Involvements>
+    
+  </Involvements>
+              </InvolvementWhilePossessingASecurityClearance>
+              <MisuseOfPrescriptionDrugs>
+                <Answer>No</Answer>
+                <Instances>
+    
+  </Instances>
+              </MisuseOfPrescriptionDrugs>
+              <OrderedAdvisedOrAskedToSeekCounseling>
+                <Answer>No</Answer>
+                <Consultations>
+    
+  </Consultations>
+              </OrderedAdvisedOrAskedToSeekCounseling>
+              <InvolvementWhileEmployedAsLawEnforcement>
+                <Answer>No</Answer>
+                <Involvements>
+    
+  </Involvements>
+              </InvolvementWhileEmployedAsLawEnforcement>
+              <IllegalDrugActivity>
+                <Answer>No</Answer>
+                <Activities>
+    
+  </Activities>
+              </IllegalDrugActivity>
+              <IllegalUse>
+                <Answer>No</Answer>
+                <Instances>
+    
+  </Instances>
+              </IllegalUse>
+              <VoluntaryTreatment>
+                <Answer>No</Answer>
+                <Consultations>
+    
+  </Consultations>
+              </VoluntaryTreatment>
+            </IllegalDrugUse>
+            <PoliceRecord Version="1" Type="Pooled">
+              <Past7Years>
+                <Answer>No</Answer>
+                <Offenses>
+    
+  </Offenses>
+              </Past7Years>
+              <Ever>
+                <Offenses>
+                  <Answer>No</Answer>
+                </Offenses>
+              </Ever>
+              <RestrainingOrders>
+                <Answer>No</Answer>
+              </RestrainingOrders>
+            </PoliceRecord>
+            <CivilCourtRecord Version="1" Type="Pooled">
+              <CivilCourtAction>
+                <Answer>No</Answer>
+              </CivilCourtAction>
+              <CourtActions>
+    
+  </CourtActions>
+            </CivilCourtRecord>
+            <InformationSystemUse Version="1" Type="Pooled">
+              <IllegalEntry>
+                <Answer>No</Answer>
+                <Incidents>
+    
+  </Incidents>
+              </IllegalEntry>
+              <IllegalUse>
+                <Answer>No</Answer>
+                <Incidents>
+    
+  </Incidents>
+              </IllegalUse>
+              <IllegallyAlteredInformation>
+                <Answer>No</Answer>
+                <Incidents>
+    
+  </Incidents>
+              </IllegallyAlteredInformation>
+            </InformationSystemUse>
+            <AssociationRecord Version="1" Type="Pooled">
+              <ActivitiesToOverthrowTheUSGovernment>
+                <Activities>
+    
+  </Activities>
+                <Answer>No</Answer>
+              </ActivitiesToOverthrowTheUSGovernment>
+              <AdvocatedTerrorism>
+                <Answer>No</Answer>
+                <Instances>
+    
+  </Instances>
+              </AdvocatedTerrorism>
+              <BeenInOrganizationAdvocatingViolence>
+                <Answer>No</Answer>
+                <Organizations>
+    
+  </Organizations>
+              </BeenInOrganizationAdvocatingViolence>
+              <BeenInOrganizationDedicatedToTerrorism>
+                <Answer>No</Answer>
+                <Organizations>
+    
+  </Organizations>
+              </BeenInOrganizationDedicatedToTerrorism>
+              <EngagedInTerrorism>
+                <Answer>No</Answer>
+                <TerroristActs>
+    
+  </TerroristActs>
+              </EngagedInTerrorism>
+              <TerrorismAssociations>
+                <Answer>No</Answer>
+              </TerrorismAssociations>
+              <TerroristOrganizationMember>
+                <Answer>No</Answer>
+                <Organizations>
+    
+  </Organizations>
+              </TerroristOrganizationMember>
+            </AssociationRecord>
+            <InvestigationRecord Version="1" Type="Pooled">
+              <ClearanceDenied>
+                <Answer>No</Answer>
+              </ClearanceDenied>
+              <GovernmentDebarment>
+                <Answer>No</Answer>
+              </GovernmentDebarment>
+              <PriorInvestigation>
+                <Answer>No</Answer>
+              </PriorInvestigation>
+            </InvestigationRecord>
+            <MedicalRecord2 Version="1" Type="Pooled">
+              <DeclaredAsMentallyIncompetent>
+                <Answer>No</Answer>
+              </DeclaredAsMentallyIncompetent>
+              <OrderedToConsult>
+                <Answer>No</Answer>
+              </OrderedToConsult>
+              <Hospitalized>
+                <Answer>No</Answer>
+              </Hospitalized>
+              <Diagnosed>
+                <Answer>No</Answer>
+              </Diagnosed>
+              <AdverselyAffected>
+                <Answer>No</Answer>
+              </AdverselyAffected>
+            </MedicalRecord2>
+            <FormInstructions Type="Pooled" Version="1">
+              <ReadAndUnderstoodStatementOfUnderstanding>
+                <Answer>Yes</Answer>
+              </ReadAndUnderstoodStatementOfUnderstanding>
+            </FormInstructions>
+          </Pooled>
+        </Responses>
+      </Request>
+    </RequestInfo>
+  </SubmittedRequestInfo>
+  <AgencyUsageBlock>
+    <TypeOfInvestigation>
+      <Type>64</Type>
+      <Service>B</Service>
+    </TypeOfInvestigation>
+    <SensitivityLevel>
+      <Code>2</Code>
+    </SensitivityLevel>
+    <Access>
+      <Code>2</Code>
+    </Access>
+    <Action>
+      <Nature>MIL</Nature>
+    </Action>
+    <Position>
+      <Title>Military</Title>
+    </Position>
+    <SON>957B</SON>
+    <LocationOPF>
+      <Code>None</Code>
+    </LocationOPF>
+    <SOI>NV00</SOI>
+    <LocationSEC>
+      <Code>None</Code>
+    </LocationSEC>
+    <InvestigativeRequirement>I</InvestigativeRequirement>
+    <ApplicantAffiliation>MIL</ApplicantAffiliation>
+    <IPAC>DOD-NAVY</IPAC>
+    <RequestingOfficials>
+      <Requestor>
+        <Name>AARON Strohl Laney</Name>
+        <Email>eml152dummy@MailDomain.com</Email>
+        <Telephone>
+          <Number>1 (763) 323-2004</Number>
+        </Telephone>
+      </Requestor>
+      <SecondRequestor>
+        <Name>JAMES Strohl Laney</Name>
+        <Email>eml153dummy@MailDomain.com</Email>
+        <Telephone>
+          <Number>1 (298) 723-1913</Number>
+        </Telephone>
+      </SecondRequestor>
+    </RequestingOfficials>
+  </AgencyUsageBlock>
+</XMP>

@@ -28,7 +28,7 @@
           <Pooled>
             <IdentifyingInformation Type="Pooled" Version="1">
               <Birth>
-                <Date Type="">
+                <Date>
                   <Month>01</Month>
                   <Day>21</Day>
                   <Year>1919</Year>
@@ -93,7 +93,7 @@
                   </Address>
                   <DateRange>
                     <From>
-                      <Date Type="">
+                      <Date>
                         <Month>01</Month>
                         <Year>2009</Year>
                       </Date>
@@ -110,11 +110,11 @@
                   </LegalName>
                   <RelationshipType WorkAssociate="True"/>
                   <Telephone>
-                    <Home DoNotKnow="">
+                    <Home>
                       <Number>9999999991</Number>
                       <Time>Both</Time>
                     </Home>
-                    <Mobile DoNotKnow="">
+                    <Mobile>
             
 
 
@@ -132,7 +132,7 @@
                   </Address>
                   <DateRange>
                     <From>
-                      <Date Type="">
+                      <Date>
                         <Month>09</Month>
                         <Year>2009</Year>
                       </Date>
@@ -149,13 +149,13 @@
                   </LegalName>
                   <RelationshipType WorkAssociate="True"/>
                   <Telephone>
-                    <Home DoNotKnow="">
+                    <Home>
             
 
 
 
           </Home>
-                    <Mobile DoNotKnow="">
+                    <Mobile>
                       <Number>2341222211</Number>
                       <Time>Both</Time>
                     </Mobile>
@@ -171,7 +171,7 @@
                   </Address>
                   <DateRange>
                     <From>
-                      <Date Type="">
+                      <Date>
                         <Month>09</Month>
                         <Year>2012</Year>
                       </Date>
@@ -188,13 +188,13 @@
                   </LegalName>
                   <RelationshipType WorkAssociate="True"/>
                   <Telephone>
-                    <Home DoNotKnow="">
+                    <Home>
             
 
 
 
           </Home>
-                    <Mobile DoNotKnow="">
+                    <Mobile>
                       <Number>8281881291</Number>
                       <Time>Both</Time>
                     </Mobile>
@@ -209,7 +209,7 @@
               <Relatives>
                 <Relative ID="0">
                   <Birth>
-                    <Date Type="">
+                    <Date>
                       <Month>09</Month>
                       <Day>09</Day>
                       <Year>1890</Year>
@@ -295,7 +295,7 @@
                   </Address>
                   <DateRange>
                     <From>
-                      <Date Type="">
+                      <Date>
                         <Month>01</Month>
                         <Year>2007</Year>
                       </Date>
@@ -350,7 +350,7 @@
                 <Employment ID="0">
                   <DateRange>
                     <From>
-                      <Date Type="">
+                      <Date>
                         <Month>09</Month>
                         <Year>2007</Year>
                       </Date>
@@ -446,7 +446,7 @@
                   <DegreesAwarded>
                     <DegreeAwarded ID="0">
                       <DateAwarded>
-                        <Date Type="">
+                        <Date>
                           <Month>05</Month>
                           <Year>2004</Year>
                         </Date>
@@ -469,7 +469,7 @@
               <Alien>
                 <AlienRegistration>
                   <DateEnteredUS>
-                    <Date Type="">
+                    <Date>
                       <Month>09</Month>
                       <Day>09</Day>
                       <Year>1990</Year>
@@ -505,7 +505,7 @@
                     <Basis>BasedOnMyOwnIndividualNaturalizationApplication</Basis>
                     <CertificateNumber>9109210258982</CertificateNumber>
                     <DateIssued>
-                      <Date Type="">
+                      <Date>
                         <Month>09</Month>
                         <Day>10</Day>
                         <Year>1990</Year>
@@ -555,7 +555,7 @@
       </CurrentlyHoldCitizenship>
                   <DateRange>
                     <From>
-                      <Date Type="">
+                      <Date>
                         <Month>09</Month>
                         <Year>1920</Year>
                       </Date>
@@ -579,7 +579,7 @@
       </CurrentlyHoldCitizenship>
                   <DateRange>
                     <From>
-                      <Date Type="">
+                      <Date>
                         <Month>09</Month>
                         <Year>1920</Year>
                       </Date>
@@ -625,7 +625,7 @@ Cuba</Authority>
                 <Charge ID="1">
                   <Authority>A scary building made of stones and gargoyles located in the mystical rainforests of Georgia</Authority>
                   <DateCharged>
-                    <Date Type="">
+                    <Date>
                       <Month>06</Month>
                       <Year>2009</Year>
                     </Date>
@@ -646,13 +646,13 @@ Cuba</Authority>
                   <Country>China</Country>
                   <DateRange>
                     <From>
-                      <Date Type="">
+                      <Date>
                         <Month>02</Month>
                         <Year>2010</Year>
                       </Date>
                     </From>
                     <To>
-                      <Date Type="">
+                      <Date>
                         <Month>04</Month>
                         <Year>2015</Year>
                       </Date>
@@ -672,7 +672,7 @@ Cuba</Authority>
                       </Address>
                       <DateRange>
                         <From>
-                          <Date Type="">
+                          <Date>
                             <Month>09</Month>
                             <Year>2009</Year>
                           </Date>
@@ -728,7 +728,7 @@ Cuba</Authority>
                   <Branch>Army</Branch>
                   <DateRange>
                     <From>
-                      <Date Type="">
+                      <Date>
                         <Month>09</Month>
                         <Year>2017</Year>
                       </Date>
@@ -789,13 +789,13 @@ Cuba</Authority>
                   <Branch>Navy</Branch>
                   <DateRange>
                     <From>
-                      <Date Type="">
+                      <Date>
                         <Month>12</Month>
                         <Year>2006</Year>
                       </Date>
                     </From>
                     <To>
-                      <Date Type="">
+                      <Date>
                         <Month>07</Month>
                         <Year>2009</Year>
                       </Date>
@@ -910,13 +910,13 @@ Cuba</Authority>
                       <Country>United States</Country>
                       <DateRange>
                         <From>
-                          <Date Type="">
+                          <Date>
                             <Month>10</Month>
                             <Year>1970</Year>
                           </Date>
                         </From>
                         <To>
-                          <Date Type="">
+                          <Date>
                             <Month>11</Month>
                             <Year>1970</Year>
                           </Date>
@@ -927,7 +927,7 @@ Cuba</Authority>
                       <Country>Saint Barthelemy</Country>
                       <DateRange>
                         <From>
-                          <Date Type="">
+                          <Date>
                             <Month>09</Month>
                             <Year>1950</Year>
                           </Date>
@@ -942,14 +942,14 @@ Cuba</Authority>
                     </CountryTraveled>
                   </CountriesTraveled>
                   <ExpirationDate>
-                    <Date Type="">
+                    <Date>
                       <Month>09</Month>
                       <Day>09</Day>
                       <Year>1950</Year>
                     </Date>
                   </ExpirationDate>
                   <IssueDate>
-                    <Date Type="">
+                    <Date>
                       <Month>09</Month>
                       <Day>09</Day>
                       <Year>1930</Year>
@@ -974,14 +974,14 @@ Cuba</Authority>
                 </ForeignPassport>
                 <ForeignPassport ID="1">
                   <ExpirationDate>
-                    <Date Type="">
+                    <Date>
                       <Month>09</Month>
                       <Day>09</Day>
                       <Year>1940</Year>
                     </Date>
                   </ExpirationDate>
                   <IssueDate>
-                    <Date Type="">
+                    <Date>
                       <Month>09</Month>
                       <Day>09</Day>
                       <Year>1920</Year>
@@ -1171,7 +1171,7 @@ Cuba</Authority>
                       <State>TX</State>
                       <ZipCode>73301</ZipCode>
                     </Address>
-                    <Date Type="">
+                    <Date>
                       <Month>04</Month>
                       <Year>2015</Year>
                     </Date>
@@ -1191,7 +1191,7 @@ Cuba</Authority>
                       <State>CA</State>
                       <ZipCode>93943</ZipCode>
                     </Address>
-                    <Date Type="">
+                    <Date>
                       <Month>09</Month>
                       <Year>2004</Year>
                     </Date>
@@ -1205,7 +1205,7 @@ Cuba</Authority>
                       <State>IL</State>
                       <ZipCode>60415</ZipCode>
                     </Address>
-                    <Date Type="">
+                    <Date>
                       <Month>06</Month>
                       <Year>1990</Year>
                     </Date>
@@ -1238,7 +1238,7 @@ Cuba</Authority>
                       <State>MI</State>
                       <ZipCode>48002</ZipCode>
                     </Address>
-                    <Date Type="">
+                    <Date>
                       <Month>05</Month>
                       <Year>2018</Year>
                     </Date>

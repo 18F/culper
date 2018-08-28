@@ -28,7 +28,7 @@
           <Pooled>
             <IdentifyingInformation Type="Pooled" Version="1">
               <Birth>
-                <Date Type="">
+                <Date>
                   <Month>03</Month>
                   <Day>25</Day>
                   <Year>1960</Year>
@@ -89,7 +89,7 @@
                   </Address>
                   <DateRange>
                     <From>
-                      <Date Type="">
+                      <Date>
                         <Month>01</Month>
                         <Year>2010</Year>
                       </Date>
@@ -106,13 +106,13 @@
                   </LegalName>
                   <RelationshipType Schoolmate="True"/>
                   <Telephone>
-                    <Home DoNotKnow="">
+                    <Home>
             
 
 
 
           </Home>
-                    <Mobile DoNotKnow="">
+                    <Mobile>
                       <Number>5027893456</Number>
                       <Time>Both</Time>
                     </Mobile>
@@ -128,7 +128,7 @@
                   </Address>
                   <DateRange>
                     <From>
-                      <Date Type="">
+                      <Date>
                         <Month>03</Month>
                         <Year>1980</Year>
                       </Date>
@@ -145,13 +145,13 @@
                   </LegalName>
                   <RelationshipType Neighbor="True"/>
                   <Telephone>
-                    <Home DoNotKnow="">
+                    <Home>
             
 
 
 
           </Home>
-                    <Mobile DoNotKnow="">
+                    <Mobile>
                       <Number>3334442233</Number>
                       <Time>Both</Time>
                     </Mobile>
@@ -167,7 +167,7 @@
                   </Address>
                   <DateRange>
                     <From>
-                      <Date Type="">
+                      <Date>
                         <Month>06</Month>
                         <Year>2000</Year>
                       </Date>
@@ -184,13 +184,13 @@
                   </LegalName>
                   <RelationshipType Neighbor="True"/>
                   <Telephone>
-                    <Home DoNotKnow="">
+                    <Home>
             
 
 
 
           </Home>
-                    <Mobile DoNotKnow="">
+                    <Mobile>
                       <Number>4442342567</Number>
                       <Time>Both</Time>
                     </Mobile>
@@ -295,7 +295,7 @@
                   </Address>
                   <DateRange>
                     <From>
-                      <Date Type="">
+                      <Date>
                         <Month>01</Month>
                         <Year>1990</Year>
                       </Date>
@@ -349,7 +349,7 @@
                 <Employment ID="0">
                   <DateRange>
                     <From>
-                      <Date Type="">
+                      <Date>
                         <Month>02</Month>
                         <Year>1980</Year>
                       </Date>
@@ -475,7 +475,7 @@
                 <Activities>
                   <Activity ID="0">
                     <AccountNumber>55543435</AccountNumber>
-                    <Amount Estimated="">500000</Amount>
+                    <Amount>500000</Amount>
                     <Authority>
                       <Address>
                         <Street>66 street st </Street>
@@ -485,7 +485,7 @@
                       </Address>
                       <Court>the peoples court</Court>
                     </Authority>
-                    <DischargeDate Type="">
+                    <DischargeDate>
                       <Month>02</Month>
                       <Year>1990</Year>
                     </DischargeDate>
@@ -508,7 +508,7 @@
                   </Activity>
                   <Activity ID="1">
                     <AccountNumber>32e534657687</AccountNumber>
-                    <Amount Estimated="">42257</Amount>
+                    <Amount>42257</Amount>
                     <Authority>
                       <Address>
                         <Street>67 W St </Street>
@@ -518,7 +518,7 @@
                       </Address>
                       <Court>Big Court</Court>
                     </Authority>
-                    <DischargeDate Type="">
+                    <DischargeDate>
                       <Month>01</Month>
                       <Year>1980</Year>
                     </DischargeDate>
@@ -559,7 +559,7 @@
                       <Name>helpers</Name>
                     </Agency>
                     <Amount Estimated="false">4322</Amount>
-                    <Date Type="">
+                    <Date>
                       <Month>03</Month>
                       <Year>1999</Year>
                     </Date>
@@ -577,7 +577,7 @@
                       <Name>path</Name>
                     </Agency>
                     <Amount Estimated="false">3333</Amount>
-                    <Date Type="">
+                    <Date>
                       <Month>05</Month>
                       <Year>1990</Year>
                     </Date>
@@ -640,11 +640,11 @@
                       </Address>
                       <Name>Place 1</Name>
                     </Court>
-                    <DateBegan Type="">
+                    <DateBegan>
                       <Month>01</Month>
                       <Year>1979</Year>
                     </DateBegan>
-                    <DateResolved Type="">
+                    <DateResolved>
                       <Month>01</Month>
                       <Year>1999</Year>
                     </DateResolved>
@@ -672,11 +672,11 @@
                       </Address>
                       <Name>name</Name>
                     </Court>
-                    <DateBegan Type="">
+                    <DateBegan>
                       <Month>03</Month>
                       <Year>1979</Year>
                     </DateBegan>
-                    <DateResolved Type="">
+                    <DateResolved>
                       <Month>05</Month>
                       <Year>1979</Year>
                     </DateResolved>
@@ -700,13 +700,13 @@
                     <Amount>5655</Amount>
                     <DateRange>
                       <From>
-                        <Date Type="">
+                        <Date>
                           <Month>01</Month>
                           <Year>1990</Year>
                         </Date>
                       </From>
                       <To>
-                        <Date Type="">
+                        <Date>
                           <Month>01</Month>
                           <Year>1990</Year>
                         </Date>
@@ -719,13 +719,13 @@
                     <Amount>78000</Amount>
                     <DateRange>
                       <From>
-                        <Date Type="">
+                        <Date>
                           <Month>04</Month>
                           <Year>1979</Year>
                         </Date>
                       </From>
                       <To>
-                        <Date Type="">
+                        <Date>
                           <Month>09</Month>
                           <Year>1979</Year>
                         </Date>
@@ -749,7 +749,7 @@
                       <Month>05</Month>
                       <Year>1990</Year>
                     </DateBegan>
-                    <DateResolved Type="" NotResolved="True">
+                    <DateResolved NotResolved="True">
         
       </DateResolved>
                     <Description>no actions taken</Description>
@@ -771,7 +771,7 @@
                       <Month>06</Month>
                       <Year>1965</Year>
                     </DateBegan>
-                    <DateResolved Type="" NotResolved="True">
+                    <DateResolved NotResolved="True">
         
       </DateResolved>
                     <Description>none taken</Description>
@@ -793,7 +793,7 @@
                     <Actions>paid it</Actions>
                     <Agency>state</Agency>
                     <Amount Estimated="false">5699</Amount>
-                    <DateFailedToPay Type="">
+                    <DateFailedToPay>
                       <Year>1979</Year>
                     </DateFailedToPay>
                     <DateSatisfied Type="Estimated">
@@ -808,7 +808,7 @@
                     <Actions>ok ok</Actions>
                     <Agency>local</Agency>
                     <Amount Estimated="false">345</Amount>
-                    <DateFailedToPay Type="">
+                    <DateFailedToPay>
                       <Year>1999</Year>
                     </DateFailedToPay>
                     <DateSatisfied NotApplicable="True"/>
@@ -905,7 +905,7 @@
                       </Address>
                       <Name>OK</Name>
                     </Agency>
-                    <BeginDate Type="">
+                    <BeginDate>
                       <Month>01</Month>
                       <Year>1979</Year>
                     </BeginDate>
@@ -921,7 +921,7 @@
                       </Address>
                       <Name>James Smith</Name>
                     </Doctor>
-                    <EndDate Type="">
+                    <EndDate>
                       <Month>02</Month>
                       <Year>1979</Year>
                     </EndDate>
@@ -937,7 +937,7 @@
                       </Address>
                       <Name>The place</Name>
                     </Agency>
-                    <BeginDate Type="">
+                    <BeginDate>
                       <Month>02</Month>
                       <Year>1990</Year>
                     </BeginDate>
@@ -953,7 +953,7 @@
                       </Address>
                       <Name>James Smith</Name>
                     </Doctor>
-                    <EndDate Type="">
+                    <EndDate>
                       <Month>05</Month>
                       <Year>1990</Year>
                     </EndDate>
@@ -966,7 +966,7 @@
                 <Answer>Yes</Answer>
                 <Incidents>
                   <Incident ID="0">
-                    <Date Type="">
+                    <Date>
                       <Month>06</Month>
                       <Year>1990</Year>
                     </Date>
@@ -974,13 +974,13 @@
                     <Impact>hurt family</Impact>
                     <DateRange>
                       <From>
-                        <Date Type="">
+                        <Date>
                           <Month>01</Month>
                           <Year>1990</Year>
                         </Date>
                       </From>
                       <To>
-                        <Date Type="">
+                        <Date>
                           <Month>08</Month>
                           <Year>1990</Year>
                         </Date>
@@ -996,13 +996,13 @@
                     <Impact>Fired</Impact>
                     <DateRange>
                       <From>
-                        <Date Type="">
+                        <Date>
                           <Month>04</Month>
                           <Year>1979</Year>
                         </Date>
                       </From>
                       <To>
-                        <Date Type="">
+                        <Date>
                           <Month>04</Month>
                           <Year>1980</Year>
                         </Date>
@@ -1027,13 +1027,13 @@
                     </CounselingOrderedBy>
                     <DateRange>
                       <From>
-                        <Date Type="">
+                        <Date>
                           <Month>01</Month>
                           <Year>1990</Year>
                         </Date>
                       </From>
                       <To>
-                        <Date Type="">
+                        <Date>
                           <Month>06</Month>
                           <Year>1990</Year>
                         </Date>
@@ -1065,7 +1065,7 @@
                     </CounselingOrderedBy>
                     <DateRange>
                       <From>
-                        <Date Type="">
+                        <Date>
                           <Month>01</Month>
                           <Year>1990</Year>
                         </Date>
@@ -1100,7 +1100,7 @@
                   <Consultation ID="0">
                     <DateRange>
                       <From>
-                        <Date Type="">
+                        <Date>
                           <Month>01</Month>
                           <Year>1979</Year>
                         </Date>
@@ -1132,13 +1132,13 @@
                   <Consultation ID="1">
                     <DateRange>
                       <From>
-                        <Date Type="">
+                        <Date>
                           <Month>03</Month>
                           <Year>2000</Year>
                         </Date>
                       </From>
                       <To>
-                        <Date Type="">
+                        <Date>
                           <Month>01</Month>
                           <Year>2001</Year>
                         </Date>
@@ -1173,13 +1173,13 @@
                     <Description>high level involvement</Description>
                     <DateRange>
                       <From>
-                        <Date Type="">
+                        <Date>
                           <Month>06</Month>
                           <Year>1979</Year>
                         </Date>
                       </From>
                       <To>
-                        <Date Type="">
+                        <Date>
                           <Month>09</Month>
                           <Year>1979</Year>
                         </Date>
@@ -1191,13 +1191,13 @@
                     <Description>not very</Description>
                     <DateRange>
                       <From>
-                        <Date Type="">
+                        <Date>
                           <Month>01</Month>
                           <Year>1990</Year>
                         </Date>
                       </From>
                       <To>
-                        <Date Type="">
+                        <Date>
                           <Month>04</Month>
                           <Year>1990</Year>
                         </Date>
@@ -1215,7 +1215,7 @@
                     <DrugsUsed>pain pills</DrugsUsed>
                     <DateRange>
                       <From>
-                        <Date Type="">
+                        <Date>
                           <Month>01</Month>
                           <Year>1990</Year>
                         </Date>
@@ -1239,7 +1239,7 @@
                     <DrugsUsed>oxy</DrugsUsed>
                     <DateRange>
                       <From>
-                        <Date Type="">
+                        <Date>
                           <Month>01</Month>
                           <Year>1990</Year>
                         </Date>
@@ -1283,7 +1283,7 @@
                     <Doctor>
                       <Name>
                         <Last>Smith</Last>
-                        <First Type="">Jim</First>
+                        <First>Jim</First>
                       </Name>
                       <Address>
                         <Street>324 crazy Rd. </Street>
@@ -1298,13 +1298,13 @@
                     </Doctor>
                     <DateRange>
                       <From>
-                        <Date Type="">
+                        <Date>
                           <Month>01</Month>
                           <Year>1990</Year>
                         </Date>
                       </From>
                       <To>
-                        <Date Type="">
+                        <Date>
                           <Month>09</Month>
                           <Year>1990</Year>
                         </Date>
@@ -1335,7 +1335,7 @@
                     <Doctor>
                       <Name>
                         <Last>Simmons</Last>
-                        <First Type="">Rachel</First>
+                        <First>Rachel</First>
                       </Name>
                       <Address>
                         <Street>222 elm street </Street>
@@ -1350,13 +1350,13 @@
                     </Doctor>
                     <DateRange>
                       <From>
-                        <Date Type="">
+                        <Date>
                           <Month>04</Month>
                           <Year>1990</Year>
                         </Date>
                       </From>
                       <To>
-                        <Date Type="">
+                        <Date>
                           <Month>07</Month>
                           <Year>1990</Year>
                         </Date>
@@ -1380,7 +1380,7 @@
                     <Description>heroin weekly</Description>
                     <DateRange>
                       <From>
-                        <Date Type="">
+                        <Date>
                           <Month>01</Month>
                           <Year>1990</Year>
                         </Date>
@@ -1398,7 +1398,7 @@
                     <Description>pills</Description>
                     <DateRange>
                       <From>
-                        <Date Type="">
+                        <Date>
                           <Month>06</Month>
                           <Year>1979</Year>
                         </Date>
@@ -1422,11 +1422,11 @@
                     <Drug>
                       <Type>Cocaine</Type>
                     </Drug>
-                    <FirstInvolvementDate Type="">
+                    <FirstInvolvementDate>
                       <Month>06</Month>
                       <Year>1990</Year>
                     </FirstInvolvementDate>
-                    <MostRecentInvolvementDate Type="">
+                    <MostRecentInvolvementDate>
                       <Month>09</Month>
                       <Year>1990</Year>
                     </MostRecentInvolvementDate>
@@ -1447,11 +1447,11 @@
                     <Drug>
                       <Type>THC</Type>
                     </Drug>
-                    <FirstInvolvementDate Type="">
+                    <FirstInvolvementDate>
                       <Month>03</Month>
                       <Year>1999</Year>
                     </FirstInvolvementDate>
-                    <MostRecentInvolvementDate Type="">
+                    <MostRecentInvolvementDate>
                       <Month>03</Month>
                       <Year>1999</Year>
                     </MostRecentInvolvementDate>
@@ -1478,11 +1478,11 @@
                     <DrugUsed>
                       <Type>Narcotics</Type>
                     </DrugUsed>
-                    <FirstUseDate Type="">
+                    <FirstUseDate>
                       <Month>04</Month>
                       <Year>1979</Year>
                     </FirstUseDate>
-                    <MostRecentUseDate Type="">
+                    <MostRecentUseDate>
                       <Month>01</Month>
                       <Year>1999</Year>
                     </MostRecentUseDate>
@@ -1502,11 +1502,11 @@
                     <DrugUsed>
                       <Type>Hallucinogenic</Type>
                     </DrugUsed>
-                    <FirstUseDate Type="">
+                    <FirstUseDate>
                       <Month>05</Month>
                       <Year>1999</Year>
                     </FirstUseDate>
-                    <MostRecentUseDate Type="">
+                    <MostRecentUseDate>
                       <Month>01</Month>
                       <Year>2017</Year>
                     </MostRecentUseDate>
@@ -1535,7 +1535,7 @@
                     <Doctor>
                       <Name>
                         <Last>Williams</Last>
-                        <First Type="">Ace</First>
+                        <First>Ace</First>
                       </Name>
                       <Address>
                         <Street>2222 elm street </Street>
@@ -1550,13 +1550,13 @@
                     </Doctor>
                     <DateRange>
                       <From>
-                        <Date Type="">
+                        <Date>
                           <Month>04</Month>
                           <Year>1980</Year>
                         </Date>
                       </From>
                       <To>
-                        <Date Type="">
+                        <Date>
                           <Month>06</Month>
                           <Year>1981</Year>
                         </Date>
@@ -1577,7 +1577,7 @@
                     <Doctor>
                       <Name>
                         <Last>Smith</Last>
-                        <First Type="">Jim</First>
+                        <First>Jim</First>
                       </Name>
                       <Address>
                         <Street>127 E BURNETT AVE </Street>
@@ -1592,13 +1592,13 @@
                     </Doctor>
                     <DateRange>
                       <From>
-                        <Date Type="">
+                        <Date>
                           <Month>05</Month>
                           <Year>1990</Year>
                         </Date>
                       </From>
                       <To>
-                        <Date Type="">
+                        <Date>
                           <Month>05</Month>
                           <Year>1990</Year>
                         </Date>
@@ -1765,7 +1765,7 @@
                       <ZipCode>48823</ZipCode>
                     </Address>
                   </Court>
-                  <Date Type="">
+                  <Date>
                     <Month>04</Month>
                     <Year>1999</Year>
                   </Date>
@@ -1801,13 +1801,13 @@
                   <AdmissionType>Voluntary</AdmissionType>
                   <DateRange>
                     <From>
-                      <Date Type="">
+                      <Date>
                         <Month>06</Month>
                         <Year>1979</Year>
                       </Date>
                     </From>
                     <To>
-                      <Date Type="">
+                      <Date>
                         <Month>07</Month>
                         <Year>1979</Year>
                       </Date>
@@ -1828,13 +1828,13 @@
                   <AdmissionType>Involuntary</AdmissionType>
                   <DateRange>
                     <From>
-                      <Date Type="">
+                      <Date>
                         <Month>01</Month>
                         <Year>1990</Year>
                       </Date>
                     </From>
                     <To>
-                      <Date Type="">
+                      <Date>
                         <Month>01</Month>
                         <Year>2000</Year>
                       </Date>
@@ -1859,13 +1859,13 @@
                   <Diagnosis>PsychoticDisorder</Diagnosis>
                   <DateRange>
                     <From>
-                      <Date Type="">
+                      <Date>
                         <Month>01</Month>
                         <Year>2017</Year>
                       </Date>
                     </From>
                     <To>
-                      <Date Type="">
+                      <Date>
                         <Month>01</Month>
                         <Year>2017</Year>
                       </Date>
@@ -1905,7 +1905,7 @@
                   <Diagnosis>Schizophrenia</Diagnosis>
                   <DateRange>
                     <From>
-                      <Date Type="">
+                      <Date>
                         <Month>01</Month>
                         <Year>1979</Year>
                       </Date>

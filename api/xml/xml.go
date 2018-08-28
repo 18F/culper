@@ -48,6 +48,7 @@ func (service Service) DefaultTemplate(templateName string, data map[string]inte
 		"doctorLastName":         doctorLastName,
 		"foreignDocType":         foreignDocType,
 		"foreignAffiliation":     foreignAffiliation,
+		"frequencyType":          frequencyType,
 		"monthYearDaterange":     monthYearDaterange,
 		"email":                  email,
 		"employmentType":         employmentType,
@@ -83,13 +84,21 @@ func (service Service) DefaultTemplate(templateName string, data map[string]inte
 // For example, UnemployedComment when not unemployed. See:
 // https://github.com/18F/e-QIP-prototype/issues/717
 func applyBulkFixes(xml string) string {
-	re := regexp.MustCompile("<[a-zA-Z_]+></[a-zA-Z_]+>")
-	s1 := re.ReplaceAllString(xml, "")
+	replaceWithEmpty := []string{
+		"<[a-zA-Z_]+></[a-zA-Z_]+>", // empty elements
+		" DoNotKnow=\"False\"",
+		" DoNotKnow=\"\"",
+		" Type=\"\"",
+		" Estimated=\"\"",
+	}
 
-	re = regexp.MustCompile(" DoNotKnow=\"False\"")
-	s2 := re.ReplaceAllString(s1, "")
+	x := xml
+	for _, n := range replaceWithEmpty {
+		re := regexp.MustCompile(n)
+		x = re.ReplaceAllString(x, "")
+	}
 
-	return s2
+	return x
 }
 
 func xmlTemplate(name string, data map[string]interface{}) (template.HTML, error) {
@@ -775,6 +784,16 @@ func dischargeType(v string) string {
 		"General":      "General",
 		"BadConduct":   "BadConduct",
 		"Other":        "Other",
+	}
+	return basis[v]
+}
+
+func frequencyType(v string) string {
+	basis := map[string]string{
+		"OneTime":    "Onetime",
+		"Future":     "Future",
+		"Continuing": "Continuing",
+		"Other":      "Other",
 	}
 	return basis[v]
 }

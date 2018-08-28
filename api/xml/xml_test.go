@@ -256,6 +256,15 @@ func TestScenario2(t *testing.T) {
 	executeScenario(t, "test2")
 }
 
+// `test3` is a "blow out" of these SF-86 questions:
+// #20a Foreign Activities
+// #20b Foreign Business, Professional
+// #20c Foreign Countries you have visited
+// #17 Marital/Relationship
+func TestScenario3(t *testing.T) {
+	executeScenario(t, "test3")
+}
+
 // `test4` is a "blow out" of these SF-86 questions:
 // #10 Dual/Multiple Citizenship
 // #15 Military history
