@@ -651,7 +651,7 @@
                     <Description>working on it</Description>
                     <IssueType>
                       <Answer>Yes</Answer>
-                      <Options Alimony="True" Lien="True"/>
+                      <Options Alimony="True" Judgment="True" Lien="True"/>
                     </IssueType>
                     <PropertyType>Home</PropertyType>
                     <Reason> gamblin'</Reason>
@@ -1023,7 +1023,7 @@
                       <Answer>Yes</Answer>
                     </CompletedTreatmentProgram>
                     <CounselingOrderedBy>
-                      <Answer Employer="True"/>
+                      <Answer Employer="True" Court="True"/>
                     </CounselingOrderedBy>
                     <DateRange>
                       <From>
