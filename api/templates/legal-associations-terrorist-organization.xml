@@ -15,9 +15,13 @@
       {{monthYearDaterange $Item.Dates}}
       <Description>{{text $Item.Reasons}}</Description>
       <Name>{{text $Item.Organization}}</Name>
-      <PositionsHeld NoPositionsHeld="{{notApplicable $Item.PositionsNotApplicable}}">
+      {{if notApplicable $Item.PositionsNotApplicable | eq "True"}}
+      <PositionsHeld NoPositionsHeld="True" />
+      {{else}}
+      <PositionsHeld>
         {{text $Item.Positions}}
       </PositionsHeld>
+      {{end}}
     </Organization>
     {{end}}
     {{end}}
