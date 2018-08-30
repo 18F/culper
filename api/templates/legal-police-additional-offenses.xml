@@ -80,11 +80,11 @@
         </Imprisonment>
         <Incarcerated>
           <YearOrMore>
-            <Answer>{{branch $sentence.Incarcerated}}</Answer>
+            <Answer>{{branchToAnswer $sentence.Incarcerated}}</Answer>
           </YearOrMore>
         </Incarcerated>
         <MoreThanYear>
-          <Answer>{{branch $sentence.ExceedsYear}}</Answer>
+          <Answer>{{branchToAnswer $sentence.ExceedsYear}}</Answer>
         </MoreThanYear>
         <Probation>
           {{if notApplicable $sentence.ProbationDatesNA | eq "True"}}
