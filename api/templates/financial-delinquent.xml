@@ -28,12 +28,13 @@
       <Description>{{textarea $Item.Description}}</Description>
       <IssueType>
         <Answer>{{if checkbox $Item.Infractions}}Yes{{else}}No{{end}}</Answer>
+        <!-- Note: Judgement with an 'e' and Judgment without an 'e' -->
         <Options
           {{ if (checkboxHas $Item.Infractions "Alimony") | eq "True" }}
-          Alimony="{{checkboxHas $Item.Infractions "Alimony"}}"
+          Alimony="True"
           {{end}}
-          {{ if (checkboxHas $Item.Infractions "Judgment") | eq "True" }}
-          Judgment="{{checkboxHas $Item.Infractions "Judgment"}}"
+          {{ if (checkboxHas $Item.Infractions "Judgement") | eq "True" }}
+          Judgment="True"
           {{end}}
           {{ if (checkboxHas $Item.Infractions "Lien") | eq "True" }}
           Lien="True"
