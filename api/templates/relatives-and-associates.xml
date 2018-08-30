@@ -66,6 +66,13 @@
       </APOFPO>
       {{else}}
       <Address>{{location $Item.Address}}</Address>
+      <!-- XXX Work-around for https://github.com/18F/e-QIP-prototype/issues/753 -->
+      {{- $usAddress := addressIn $Item.Address "United States" }}
+      {{if not $usAddress}}
+      <APOFPO>
+        <Answer>No</Answer>
+      </APOFPO>
+      {{end}}
       {{end}}
       <AddressComment></AddressComment>
       {{end}}
