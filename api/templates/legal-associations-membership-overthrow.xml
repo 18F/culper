@@ -10,7 +10,7 @@
       </Address>
       <Comment></Comment>
       <Contributions NoContributionsMade="{{notApplicable $Item.ContributionsNotApplicable}}">{{text $Item.Contributions}}</Contributions>
-      {{daterange $Item.Dates}}
+      {{monthYearDaterange $Item.Dates}}
       <Description>{{text $Item.Reason}}</Description>
       <Name>{{text $Item.Organization}}</Name>
       <PositionsHeld NoPositionHeld="{{notApplicable $Item.PositionsNotApplicable}}">{{text $Item.Position}}</PositionsHeld>
