@@ -7,7 +7,7 @@
   <SponsoredVisit ID="{{$index}}">
     <AddressWhileInUS>
       <Address>
-        {{location $Item.Address}}
+        {{location $Item.Residence}}
       </Address>
     </AddressWhileInUS>
     <Birth>
@@ -34,7 +34,7 @@
     </CountriesOfCitizenship>
     <CurrentAddress>
       <Address>
-        {{location $Item.Residence}}
+        {{location $Item.Address}}
       </Address>
     </CurrentAddress>
     {{monthYearDaterange $Item.Dates}}
