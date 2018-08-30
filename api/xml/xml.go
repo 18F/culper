@@ -314,7 +314,7 @@ func relationshipType(str string) string {
 		"Father":        "02Father",
 		"Stepmother":    "03Stepmother",
 		"Stepfather":    "04Stepfather",
-		"FosterParent":  "05FosterParent",
+		"Fosterparent":  "05FosterParent",
 		"Child":         "06Child",
 		"Stepchild":     "07Stepchild",
 		"Brother":       "08Brother",
