@@ -4,8 +4,8 @@
   {{range $index, $item := .props.List.props.items}}
   {{with $Item := $item.Item}}
   <Investigation ID="{{$index}}">
-    <Agency>{{text $Item.Agency}}</Agency>
-    <ClearanceLevel>{{text $Item.Clearance}}</ClearanceLevel>
+    <Agency>{{radio $Item.Agency | agencyType}}</Agency>
+    <ClearanceLevel>{{radio $Item.ClearanceLevel.props.Level | clearanceType}}</ClearanceLevel>
     <EntryComment></EntryComment>
     <GrantedDate>
       <Date Type="{{dateEstimated $Item.Granted}}" DoNotKnow="{{notApplicable $Item.GrantedNotApplicable}}">
@@ -20,7 +20,7 @@
     <IssuingAgency>
       <Name>{{text $Item.Issued}}</Name>
     </IssuingAgency>
-    <OtherAgency></OtherAgency>
+    <OtherAgency>{{text $Item.ClearanceLevel.props.Explanation}}{{text $Item.AgencyExplanation}}</OtherAgency>
     <OtherClearanceLevel></OtherClearanceLevel>
   </Investigation>
   {{end}}

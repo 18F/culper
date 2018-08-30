@@ -24,6 +24,7 @@ func (service Service) DefaultTemplate(templateName string, data map[string]inte
 	// types.
 	fmap := template.FuncMap{
 		"addressIn":              addressIn,
+		"agencyType":             agencyType,
 		"branch":                 branch,
 		"branchToAnswer":         branchToAnswer,
 		"branchToBool":           branchToBool,
@@ -36,6 +37,7 @@ func (service Service) DefaultTemplate(templateName string, data map[string]inte
 		"country":                countryValue,
 		"countryComments":        countryComments,
 		"citizenshipHas":         citizenshipHas,
+		"clearanceType":          clearanceType,
 		"date":                   date,
 		"dateEstimated":          dateEstimated,
 		"daterange":              daterange,
@@ -834,6 +836,34 @@ func severanceType(v string) string {
 		"Quit":        "QuitKnowingWouldBeFired",
 		"Charges":     "AllegedMisconduct",
 		"Performance": "UnsatisfactoryPerformance",
+	}
+	return basis[v]
+}
+
+func agencyType(v string) string {
+	basis := map[string]string{
+		"U.S. Department of Defense":           "Defense",
+		"U.S. Department of State":             "State",
+		"U.S. Office of Personnel Management":  "OPM",
+		"Federal Bureau of Investigation":      "FBI",
+		"U.S. Department of Treasury":          "Treasury",
+		"U.S. Department of Homeland Security": "HomelandSecurity",
+		"Foreign government":                   "ForeignGovernment",
+		"Other":                                "Other",
+	}
+	return basis[v]
+}
+
+func clearanceType(v string) string {
+	basis := map[string]string{
+		"Confidential":                        "Confidential",
+		"Secret":                              "Secret",
+		"Top Secret":                          "TopSecret",
+		"Sensitive Compartmented Information": "SCI",
+		"Q": "Q",
+		"L": "L",
+		"Issued by foreign country": "Foreign",
+		"Other":                     "Other",
 	}
 	return basis[v]
 }
