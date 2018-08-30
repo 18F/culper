@@ -60,7 +60,7 @@
           {{with $Previous := $additional.Item}}
           {{- if branch $Previous.Has | eq "Yes"}}
           <PreviousEmployment ID="{{$eindex}}">
-            {{daterange $Previous.DatesEmployed}}
+            {{monthYearDaterange $Previous.DatesEmployed}}
             <PositionTitle>{{text $Previous.Position}}</PositionTitle>
             <Supervisor>{{text $Previous.Supervisor}}</Supervisor>
           </PreviousEmployment>
@@ -105,7 +105,7 @@
         <Dismissal ID="{{$lindex}}">
           <Date Type="{{dateEstimated $Dismissal.Date}}">{{monthYear $Dismissal.Date}}</Date>
           <Reason>{{textarea $Item.ReasonLeft.props.ReasonDescription}}</Reason>
-          <SeveranceType>{{radio $Dismissal.Reason}}</SeveranceType>
+          <SeveranceType>{{radio $Dismissal.Reason | severanceType}}</SeveranceType>
           <SeveranceTypeComment>{{textarea $Dismissal.Text}}</SeveranceTypeComment>
           <Comment></Comment>
         </Dismissal>

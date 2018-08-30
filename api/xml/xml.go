@@ -65,6 +65,7 @@ func (service Service) DefaultTemplate(templateName string, data map[string]inte
 		"padDigits":              padDigits,
 		"radio":                  radio,
 		"schoolType":             schoolType,
+		"severanceType":          severanceType,
 		"relationshipType":       relationshipType,
 		"relativeForeignDocType": relativeForeignDocType,
 		"telephone":              telephone,
@@ -794,6 +795,16 @@ func frequencyType(v string) string {
 		"Future":     "Future",
 		"Continuing": "Continuing",
 		"Other":      "Other",
+	}
+	return basis[v]
+}
+
+func severanceType(v string) string {
+	basis := map[string]string{
+		"Fired":       "Fired",
+		"Quit":        "QuitKnowingWouldBeFired",
+		"Charges":     "AllegedMisconduct",
+		"Performance": "UnsatisfactoryPerformance",
 	}
 	return basis[v]
 }
