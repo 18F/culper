@@ -26,11 +26,14 @@
           {{if (checkboxHas $Item.Seekers "MentalHealthProfessional") | eq "True"}}
           MentalHealthProfessional="True"
           {{end}}
-          {{if (checkboxHas $Item.Seekers "Judge") | eq "True"}}
+          {{if (checkboxHas $Item.Seekers "CourtOfficial") | eq "True"}}
           Court="True"
           {{end}}
-          {{if (checkboxHas $Item.Seekers "None") | eq "True"}}
+          {{if (checkboxHas $Item.Seekers "NotOrdered") | eq "True"}}
           None="True"
+          {{end}}
+          {{if (checkboxHas $Item.Seekers "Other") | eq "True"}}
+          Other="True"
           {{end}}
           />
         <Comment></Comment>
