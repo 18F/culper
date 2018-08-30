@@ -153,11 +153,21 @@
           {{monthYear $Item.LastContact}}
         </LastContactDate>
         <MethodsOfContact
-            InPerson="{{checkboxHas $Item.Methods "In person"}}"
-            Telephone="{{checkboxHas $Item.Methods "Telephone"}}"
-            ElectronicCorrespondence="{{checkboxHas $Item.Methods "Electronic"}}"
-            WrittenCorrespondence="{{checkboxHas $Item.Methods "Written"}}"
-            Other="{{checkboxHas $Item.Methods "Other"}}"
+          {{if (checkboxHas $Item.Methods "In person") | eq "True"}}
+          InPerson="True"
+          {{end}}
+          {{if (checkboxHas $Item.Methods "Telephone") | eq "True"}}
+          Telephone="True"
+          {{end}}
+          {{if (checkboxHas $Item.Methods "Electronic") | eq "True"}}
+          ElectronicCorrespondence="True"
+          {{end}}
+          {{if (checkboxHas $Item.Methods "Written") | eq "True"}}
+          WrittenCorrespondence="True"
+          {{end}}
+          {{if (checkboxHas $Item.Methods "Other") | eq "True"}}
+          Other="True"
+          {{end}}
             />
           <MethodsOfContactTypeOtherExplanation>{{text $Item.MethodsComments}}</MethodsOfContactTypeOtherExplanation>
         </ForeignRelative>
