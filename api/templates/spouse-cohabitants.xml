@@ -35,8 +35,8 @@
     {{- end}}
     {{- end}}
     <CohabitationDate>
-      <Date Type="{{dateEstimated $Item.Birthdate}}">
-        {{date $Item.Birthdate}}
+      <Date Type="{{dateEstimated $Item.CohabitationBegan}}">
+        {{date $Item.CohabitationBegan}}
       </Date>
     </CohabitationDate>
     <ContinueComment></ContinueComment>
