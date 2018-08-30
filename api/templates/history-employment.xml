@@ -96,7 +96,7 @@
       {{- end}}
       {{- end}}
 
-      {{- if not $isPresent}}
+      {{- if and (not $isPresent) (radio $Item.EmploymentActivity | ne "Unemployment")}}
       <Dismissals>
         <Answer>{{branchcollectionHas $Item.ReasonLeft.props.Reasons}}</Answer>
         {{- range $lindex, $left := $Item.ReasonLeft.props.Reasons.props.items}}
@@ -120,6 +120,7 @@
       </Dismissals>
       {{end}}
 
+      {{- if radio $Item.EmploymentActivity | ne "Unemployment"}}
       <Incidents>
         <Answer>{{branchcollectionHas $Item.Reprimand}}</Answer>
         {{- range $rindex, $reprimand := $Item.Reprimand.props.items}}
@@ -139,8 +140,9 @@
         <Comment></Comment>
         {{end}}
       </Incidents>
+      {{end}}
 
-      {{- if radio $Item.EmploymentActivity | ne "ActiveMilitary"}}
+      {{- if and (radio $Item.EmploymentActivity | ne "ActiveMilitary") (radio $Item.EmploymentActivity | ne "Unemployment") (radio $Item.EmploymentActivity | ne "NationalGuard") (radio $Item.EmploymentActivity | ne "USPHS")}}
       <JobLocation>
         <Answer>{{branch $Item.PhysicalAddress.props.HasDifferentAddress}}</Answer>
         <AnswerComment></AnswerComment>
@@ -152,7 +154,7 @@
       </JobLocation>
       {{- end}}
 
-      {{- if not $isPresent}}
+      {{- if and (not $isPresent) (radio $Item.EmploymentActivity | ne "Unemployment")}}
       <LeftJob>
         <Comment>{{textarea $Item.ReasonLeft.props.Comments}}</Comment>
         <Reason>{{textarea $Item.ReasonLeft.props.ReasonDescription}}</Reason>

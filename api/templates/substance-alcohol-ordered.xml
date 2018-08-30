@@ -39,12 +39,14 @@
         <Comment></Comment>
         <Explanation>{{text $Item.OtherSeeker}}</Explanation>
       </CounselingOrderedBy>
+      {{if branch $Item.ActionTaken | eq "Yes" }}
       {{monthYearDaterange $Item.CounselingDates}}
       <Doctor>
         <Name>{{text $Item.TreatmentProviderName}}</Name>
         <Address>{{location $Item.TreatmentProviderAddress}}</Address>
         <Telephone>{{telephone $Item.TreatmentProviderTelephone}}</Telephone>
       </Doctor>
+      {{end}}
       <Comment></Comment>
     </Consultation>
     {{end}}

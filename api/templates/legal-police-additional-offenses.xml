@@ -78,6 +78,7 @@
             {{end}}
           </YearOrMore>
         </Imprisonment>
+        {{if branch $Item.WasSentenced | eq "Yes"}}
         <Incarcerated>
           <YearOrMore>
             <Answer>{{branchToAnswer $sentence.Incarcerated}}</Answer>
@@ -104,6 +105,7 @@
           </DateRange>
           {{end}}
         </Probation>
+        {{end}}
         {{end}}
       </Sentenced>
     </Offense>

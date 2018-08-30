@@ -8,6 +8,7 @@
       <AppearedInCourt>
         <Answer>{{branchToAnswer $Item.WasCharged}}</Answer>
         <AnswerComment></AnswerComment>
+        {{if branchToAnswer $Item.WasCharged | eq "Yes"}}
         <Charges>
           <Charge>
             <Charge>{{text $Item.CourtCharge}}</Charge>
@@ -58,6 +59,7 @@
               {{end}}
             </YearOrMore>
           </Imprisonment>
+          {{if branch $Item.WasSentenced | eq "Yes"}}
           <Incarcerated>
             <YearOrMore>
               <Answer>{{branchToAnswer $sentence.Incarcerated}}</Answer>
@@ -85,7 +87,9 @@
             {{end}}
           </Probation>
           {{end}}
+          {{end}}
         </Sentenced>
+        {{end}}
       </AppearedInCourt>
       <Arrested>
         <Answer>{{branch $Item.WasCited}}</Answer>
@@ -105,11 +109,13 @@
         </Location>
         <Name>{{text $Item.CitedBy}}</Name>
       </ArrestingAgency>
+      {{if and (branchToAnswer $Item.WasCharged | eq "Yes") (branch $Item.WasSentenced | ne "Yes")}}
       <AwaitingTrial>
         <Answer>{{branchToAnswer $Item.AwaitingTrial}}</Answer>
         <AnswerComment></AnswerComment>
         <Explanation>{{text $Item.AwaitingTrialExplanation}}</Explanation>
       </AwaitingTrial>
+      {{end}}
       <Date Type="{{dateEstimated $Item.Date}}">
         {{monthYear $Item.Date}}
       </Date>
