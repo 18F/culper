@@ -184,7 +184,7 @@
         <MothersMaidenName>
           <Comment></Comment>
           <FullName>
-            {{- if eq (branchToBool $Item.MaidenSameAsListed.props) "True"}}
+            {{- if eq (branchToBool $Item.MaidenSameAsListed) "True"}}
             <LegalName SameAsListed="True" />
             {{- else }}
             <LegalName>

@@ -604,9 +604,12 @@ func locationIsPostOffice(data map[string]interface{}) string {
 }
 
 func branchToBool(data map[string]interface{}) string {
-	val, ok := data["value"]
-	if ok && val == "Yes" {
-		return "True"
+	props, ok := data["props"]
+	if ok {
+		val, ok := (props.(map[string]interface{}))["value"]
+		if ok && val == "Yes" {
+			return "True"
+		}
 	}
 	return "False"
 }

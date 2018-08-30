@@ -37,9 +37,15 @@
       </InvolveFollowingOffenses>
       <OffenseDescription>{{text $Item.Description}}</OffenseDescription>
       <OffenseType
-          Domestic="{{branchToBool $Item.InvolvedViolence}}"
-          Firearms="{{branchToBool $Item.InvolvedFirearms}}"
-          Alcohol="{{branchToBool $Item.InvoledSubstances}}"
+          {{if branchToBool $Item.InvolvedViolence | eq "True"}}
+          Domestic="True"
+          {{end}}
+          {{if branchToBool $Item.InvolvedFirearms | eq "True"}}
+          Firearms="True"
+          {{end}}
+          {{if branchToBool $Item.InvolvedSubstances | eq "True"}}
+          Alcohol="True"
+          {{end}}
           />
       <Sentenced>
         <Answer>{{branch $Item.WasSentenced}}</Answer>
