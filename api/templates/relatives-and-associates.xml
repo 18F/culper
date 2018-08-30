@@ -102,7 +102,11 @@
               <Name>{{text $Item.CourtName}}</Name>
             </Court>
           </NaturalizedCertificate>
+          {{- if text $Item.Document }}
           <Type>{{text $Item.Document | relativeForeignDocType}}</Type>
+          {{else if text $Item.CitizenshipDocumentation}}
+          <Type>{{text $Item.CitizenshipDocumentation | relativeForeignDocType}}</Type>
+          {{end}}
           <TypeOtherExplanation>{{text $Item.DocumentComments}}</TypeOtherExplanation>
         </ProofOfStatus>
       </Citizenship>
