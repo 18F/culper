@@ -13,7 +13,9 @@
         <AddressComment></AddressComment>
       </APOFPO>
       {{else}}
-      <Address>{{location $Item.Address}}</Address>
+      <Address DoNotKnow="{{notApplicable $Item.AddressNotApplicable}}">
+        {{location $Item.Address}}
+      </Address>
       {{end}}
       <Birth>
         <Date Type="{{dateEstimated $Item.Birthdate}}" DoNotKnow="{{notApplicable $Item.BirthdateNotApplicable}}">
