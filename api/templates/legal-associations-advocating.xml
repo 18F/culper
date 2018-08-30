@@ -7,7 +7,7 @@
     <Instance ID="{{$index}}">
       <Comment></Comment>
       {{monthYearDaterange $Item.Dates}}
-      <Reason>{{text $Item.Reason}}</Reason>
+      <Reason>{{text $Item.Reasons}}</Reason>
     </Instance>
     {{end}}
     {{end}}
