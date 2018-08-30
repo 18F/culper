@@ -22,7 +22,13 @@
         <Court>
           <Location>
             <Place>
-              {{location $Item.CourtAddress}}
+              <!-- XXX https://github.com/18F/e-QIP-prototype/issues/755 -->
+              {{- $usAddress := addressIn $Item.CourtAddress "United States" }}
+              {{if $usAddress}}
+              {{locationOverrideLayout $Item.CourtAddress "US City, State, Zipcode International city"}}
+              {{else}}
+              {{locationOverrideLayout $Item.CourtAddress "City, Country"}}
+              {{end}}
             </Place>
           </Location>
           <Name>{{text $Item.CourtName}}</Name>
@@ -88,7 +94,13 @@
         <Comment></Comment>
         <Location>
           <Place>
-            {{location $Item.AgencyAddress}}
+            <!-- XXX https://github.com/18F/e-QIP-prototype/issues/755 -->
+            {{- $usAddress := addressIn $Item.AgencyAddress "United States" }}
+            {{if $usAddress}}
+            {{locationOverrideLayout $Item.AgencyAddress "US City, State, Zipcode International city"}}
+            {{else}}
+            {{locationOverrideLayout $Item.AgencyAddress "City, Country"}}
+            {{end}}
           </Place>
         </Location>
         <Name>{{text $Item.CitedBy}}</Name>
@@ -106,7 +118,13 @@
       </InvolveFollowingOffenses>
       <Location>
         <Place>
-          {{location $Item.Address}}
+          <!-- XXX https://github.com/18F/e-QIP-prototype/issues/755 -->
+          {{- $usAddress := addressIn $Item.Address "United States" }}
+          {{if $usAddress}}
+          {{locationOverrideLayout $Item.Address "US City, State, Zipcode International city"}}
+          {{else}}
+          {{locationOverrideLayout $Item.Address "City, Country"}}
+          {{end}}
         </Place>
       </Location>
       <NotConvicted>

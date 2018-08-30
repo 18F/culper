@@ -55,6 +55,7 @@ func (service Service) DefaultTemplate(templateName string, data map[string]inte
 		"hasRelativeType":        hasRelativeType,
 		"location":               location,
 		"locationIsPostOffice":   locationIsPostOffice,
+		"locationOverrideLayout": locationOverrideLayout,
 		"maritalStatus":          maritalStatus,
 		"militaryStatus":         militaryStatus,
 		"monthYear":              monthYear,
@@ -669,8 +670,12 @@ func monthYear(data map[string]interface{}) (template.HTML, error) {
 	return xmlTemplateWithFuncs("date-month-year.xml", data, fmap)
 }
 
-// location assumes the data comes in as the props
 func location(data map[string]interface{}) (template.HTML, error) {
+	return locationOverrideLayout(data, "")
+}
+
+// location assumes the data comes in as the props
+func locationOverrideLayout(data map[string]interface{}, override string) (template.HTML, error) {
 	// Deserialize the initial payload from a JSON structure
 	payload := &api.Payload{}
 	// entity, err := payload.UnmarshalEntity(getInterfaceAsBytes(data))
@@ -691,7 +696,16 @@ func location(data map[string]interface{}) (template.HTML, error) {
 		"toUpper": toUpper,
 	}
 
-	switch location.Layout {
+	// XXX
+	// Work-around issue in UI where it does not
+	// collect the address in the correct layout. See:
+	// https://github.com/18F/e-QIP-prototype/issues/755
+	layout := location.Layout
+	if override != "" {
+		layout = override
+	}
+
+	switch layout {
 	case api.LayoutBirthPlace:
 		if domestic {
 			return xmlTemplateWithFuncs("location-city-state-county.xml", data, fmap)
