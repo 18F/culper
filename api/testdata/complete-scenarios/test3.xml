@@ -588,7 +588,7 @@
                       <Middle>Criag</Middle>
                       <Suffix>II</Suffix>
                     </LegalName>
-                    <RelationshipTypes Neighbor="True" Friend="True"/>
+                    <RelationshipTypes Neighbor="True" Friend="True" Landlord="True" WorkAssociate="True"/>
                     <Telephone>
                       <Day>
                         <Number>1223444444</Number>
