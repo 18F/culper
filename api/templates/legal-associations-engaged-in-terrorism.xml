@@ -6,7 +6,7 @@
     {{with $Item := $item.Item}}
     <Act ID="{{$index}}">
       <Comment></Comment>
-      {{daterange $Item.Dates}}
+      {{monthYearDaterange $Item.Dates}}
       <Reason>{{text $Item.Reasons}}</Reason>
     </Act>
     {{end}}

@@ -24,7 +24,9 @@ func (service Service) DefaultTemplate(templateName string, data map[string]inte
 	// types.
 	fmap := template.FuncMap{
 		"addressIn":              addressIn,
+		"agencyType":             agencyType,
 		"branch":                 branch,
+		"branchToAnswer":         branchToAnswer,
 		"branchToBool":           branchToBool,
 		"branchcollectionHas":    branchcollectionHas,
 		"branchAny":              branchAny,
@@ -35,6 +37,7 @@ func (service Service) DefaultTemplate(templateName string, data map[string]inte
 		"country":                countryValue,
 		"countryComments":        countryComments,
 		"citizenshipHas":         citizenshipHas,
+		"clearanceType":          clearanceType,
 		"date":                   date,
 		"dateEstimated":          dateEstimated,
 		"daterange":              daterange,
@@ -55,6 +58,7 @@ func (service Service) DefaultTemplate(templateName string, data map[string]inte
 		"hasRelativeType":        hasRelativeType,
 		"location":               location,
 		"locationIsPostOffice":   locationIsPostOffice,
+		"locationOverrideLayout": locationOverrideLayout,
 		"maritalStatus":          maritalStatus,
 		"militaryStatus":         militaryStatus,
 		"monthYear":              monthYear,
@@ -65,6 +69,7 @@ func (service Service) DefaultTemplate(templateName string, data map[string]inte
 		"padDigits":              padDigits,
 		"radio":                  radio,
 		"schoolType":             schoolType,
+		"severanceType":          severanceType,
 		"relationshipType":       relationshipType,
 		"relativeForeignDocType": relativeForeignDocType,
 		"telephone":              telephone,
@@ -313,7 +318,7 @@ func relationshipType(str string) string {
 		"Father":        "02Father",
 		"Stepmother":    "03Stepmother",
 		"Stepfather":    "04Stepfather",
-		"FosterParent":  "05FosterParent",
+		"Fosterparent":  "05FosterParent",
 		"Child":         "06Child",
 		"Stepchild":     "07Stepchild",
 		"Brother":       "08Brother",
@@ -603,11 +608,25 @@ func locationIsPostOffice(data map[string]interface{}) string {
 }
 
 func branchToBool(data map[string]interface{}) string {
-	val, ok := data["value"]
-	if ok && val == "Yes" {
-		return "True"
+	props, ok := data["props"]
+	if ok {
+		val, ok := (props.(map[string]interface{}))["value"]
+		if ok && val == "Yes" {
+			return "True"
+		}
 	}
 	return "False"
+}
+
+func branchToAnswer(data map[string]interface{}) string {
+	props, ok := data["props"]
+	if ok {
+		val, ok := (props.(map[string]interface{}))["value"]
+		if ok && val == "Yes" {
+			return "Yes"
+		}
+	}
+	return "No"
 }
 
 func countryComments(data map[string]interface{}) string {
@@ -665,8 +684,12 @@ func monthYear(data map[string]interface{}) (template.HTML, error) {
 	return xmlTemplateWithFuncs("date-month-year.xml", data, fmap)
 }
 
-// location assumes the data comes in as the props
 func location(data map[string]interface{}) (template.HTML, error) {
+	return locationOverrideLayout(data, "")
+}
+
+// location assumes the data comes in as the props
+func locationOverrideLayout(data map[string]interface{}, override string) (template.HTML, error) {
 	// Deserialize the initial payload from a JSON structure
 	payload := &api.Payload{}
 	// entity, err := payload.UnmarshalEntity(getInterfaceAsBytes(data))
@@ -687,7 +710,16 @@ func location(data map[string]interface{}) (template.HTML, error) {
 		"toUpper": toUpper,
 	}
 
-	switch location.Layout {
+	// XXX
+	// Work-around issue in UI where it does not
+	// collect the address in the correct layout. See:
+	// https://github.com/18F/e-QIP-prototype/issues/755
+	layout := location.Layout
+	if override != "" {
+		layout = override
+	}
+
+	switch layout {
 	case api.LayoutBirthPlace:
 		if domestic {
 			return xmlTemplateWithFuncs("location-city-state-county.xml", data, fmap)
@@ -794,6 +826,44 @@ func frequencyType(v string) string {
 		"Future":     "Future",
 		"Continuing": "Continuing",
 		"Other":      "Other",
+	}
+	return basis[v]
+}
+
+func severanceType(v string) string {
+	basis := map[string]string{
+		"Fired":       "Fired",
+		"Quit":        "QuitKnowingWouldBeFired",
+		"Charges":     "AllegedMisconduct",
+		"Performance": "UnsatisfactoryPerformance",
+	}
+	return basis[v]
+}
+
+func agencyType(v string) string {
+	basis := map[string]string{
+		"U.S. Department of Defense":           "Defense",
+		"U.S. Department of State":             "State",
+		"U.S. Office of Personnel Management":  "OPM",
+		"Federal Bureau of Investigation":      "FBI",
+		"U.S. Department of Treasury":          "Treasury",
+		"U.S. Department of Homeland Security": "HomelandSecurity",
+		"Foreign government":                   "ForeignGovernment",
+		"Other":                                "Other",
+	}
+	return basis[v]
+}
+
+func clearanceType(v string) string {
+	basis := map[string]string{
+		"Confidential":                        "Confidential",
+		"Secret":                              "Secret",
+		"Top Secret":                          "TopSecret",
+		"Sensitive Compartmented Information": "SCI",
+		"Q": "Q",
+		"L": "L",
+		"Issued by foreign country": "Foreign",
+		"Other":                     "Other",
 	}
 	return basis[v]
 }

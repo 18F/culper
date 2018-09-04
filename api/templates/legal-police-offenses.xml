@@ -6,8 +6,9 @@
     {{with $Item := $item.Item}}
     <Offense ID="{{$index}}">
       <AppearedInCourt>
-        <Answer>{{branch $Item.WasCharged}}</Answer>
+        <Answer>{{branchToAnswer $Item.WasCharged}}</Answer>
         <AnswerComment></AnswerComment>
+        {{if branchToAnswer $Item.WasCharged | eq "Yes"}}
         <Charges>
           <Charge>
             <Charge>{{text $Item.CourtCharge}}</Charge>
@@ -22,7 +23,13 @@
         <Court>
           <Location>
             <Place>
-              {{location $Item.CourtAddress}}
+              <!-- XXX https://github.com/18F/e-QIP-prototype/issues/755 -->
+              {{- $usAddress := addressIn $Item.CourtAddress "United States" }}
+              {{if $usAddress}}
+              {{locationOverrideLayout $Item.CourtAddress "US City, State, Zipcode International city"}}
+              {{else}}
+              {{locationOverrideLayout $Item.CourtAddress "City, Country"}}
+              {{end}}
             </Place>
           </Location>
           <Name>{{text $Item.CourtName}}</Name>
@@ -52,13 +59,14 @@
               {{end}}
             </YearOrMore>
           </Imprisonment>
+          {{if branch $Item.WasSentenced | eq "Yes"}}
           <Incarcerated>
             <YearOrMore>
-              <Answer>{{branch $sentence.Incarcerated}}</Answer>
+              <Answer>{{branchToAnswer $sentence.Incarcerated}}</Answer>
             </YearOrMore>
           </Incarcerated>
           <MoreThanYear>
-            <Answer>{{branch $sentence.ExceedsYear}}</Answer>
+            <Answer>{{branchToAnswer $sentence.ExceedsYear}}</Answer>
           </MoreThanYear>
           <Probation>
             {{if notApplicable $sentence.ProbationDatesNA | eq "True"}}
@@ -79,7 +87,9 @@
             {{end}}
           </Probation>
           {{end}}
+          {{end}}
         </Sentenced>
+        {{end}}
       </AppearedInCourt>
       <Arrested>
         <Answer>{{branch $Item.WasCited}}</Answer>
@@ -88,16 +98,24 @@
         <Comment></Comment>
         <Location>
           <Place>
-            {{location $Item.AgencyAddress}}
+            <!-- XXX https://github.com/18F/e-QIP-prototype/issues/755 -->
+            {{- $usAddress := addressIn $Item.AgencyAddress "United States" }}
+            {{if $usAddress}}
+            {{locationOverrideLayout $Item.AgencyAddress "US City, State, Zipcode International city"}}
+            {{else}}
+            {{locationOverrideLayout $Item.AgencyAddress "City, Country"}}
+            {{end}}
           </Place>
         </Location>
         <Name>{{text $Item.CitedBy}}</Name>
       </ArrestingAgency>
+      {{if and (branchToAnswer $Item.WasCharged | eq "Yes") (branch $Item.WasSentenced | ne "Yes")}}
       <AwaitingTrial>
-        <Answer>{{branch $Item.AwaitingTrial}}</Answer>
+        <Answer>{{branchToAnswer $Item.AwaitingTrial}}</Answer>
         <AnswerComment></AnswerComment>
         <Explanation>{{text $Item.AwaitingTrialExplanation}}</Explanation>
       </AwaitingTrial>
+      {{end}}
       <Date Type="{{dateEstimated $Item.Date}}">
         {{monthYear $Item.Date}}
       </Date>
@@ -106,7 +124,13 @@
       </InvolveFollowingOffenses>
       <Location>
         <Place>
-          {{location $Item.Address}}
+          <!-- XXX https://github.com/18F/e-QIP-prototype/issues/755 -->
+          {{- $usAddress := addressIn $Item.Address "United States" }}
+          {{if $usAddress}}
+          {{locationOverrideLayout $Item.Address "US City, State, Zipcode International city"}}
+          {{else}}
+          {{locationOverrideLayout $Item.Address "City, Country"}}
+          {{end}}
         </Place>
       </Location>
       <NotConvicted>
@@ -116,9 +140,15 @@
       <OffenseComment></OffenseComment>
       <OffenseDescription>{{text $Item.Description}}</OffenseDescription>
       <OffenseType
-          Domestic="{{branchToBool $Item.InvolvedViolence}}"
-          Firearms="{{branchToBool $Item.InvolvedFirearms}}"
-          Alcohol="{{branchToBool $Item.InvoledSubstances}}"
+          {{if branchToBool $Item.InvolvedViolence | eq "True"}}
+          Domestic="True"
+          {{end}}
+          {{if branchToBool $Item.InvolvedFirearms | eq "True"}}
+          Firearms="True"
+          {{end}}
+          {{if branchToBool $Item.InvolvedSubstances | eq "True"}}
+          Alcohol="True"
+          {{end}}
           />
     </Offense>
     {{end}}

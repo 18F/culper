@@ -274,6 +274,11 @@ func TestScenario4(t *testing.T) {
 	executeScenario(t, "test4")
 }
 
+// `test5` is a "blow out" of the whole form
+func TestScenario5(t *testing.T) {
+	executeScenario(t, "test5")
+}
+
 // `test6` is a basic smoke test, a bare bones application
 func TestScenario6(t *testing.T) {
 	executeScenario(t, "test6")
