@@ -27,6 +27,11 @@ export const relationships = {
         unknown: 'Click to provide details',
         item: 'Relative'
       },
+      required: {
+        heading: 'Mother and father must be provided',
+        para:
+          'If you do not know your mother or father, please enter "I don\'t know" and provide a comment explaining your relationship.'
+      },
       appendTitle: 'Do you have an additional relative to enter?',
       append: 'Add another relative'
     },

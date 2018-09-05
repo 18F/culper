@@ -1744,6 +1744,97 @@ describe('Relatives validation', function() {
                     layout: Location.ADDRESS
                   }
                 }
+              },
+              {
+                Item: {
+                  Relation: {
+                    value: 'Father'
+                  },
+                  Name: {
+                    first: 'Foo',
+                    firstInitialOnly: false,
+                    middle: 'J',
+                    middleInitialOnly: true,
+                    noMiddleName: false,
+                    last: 'Bar',
+                    lastInitialOnly: false,
+                    suffix: 'Jr'
+                  },
+                  Birthdate: {
+                    day: '1',
+                    month: '1',
+                    year: '2016',
+                    date: new Date('1/1/2016')
+                  },
+                  Birthplace: {
+                    city: 'Arlington',
+                    state: 'VA',
+                    country: { value: ['United States'] },
+                    layout: Location.BIRTHPLACE_WITHOUT_COUNTY
+                  },
+                  Citizenship: {
+                    value: ['United States']
+                  },
+                  MaidenName: {
+                    first: 'Foo',
+                    firstInitialOnly: false,
+                    middle: 'J',
+                    middleInitialOnly: true,
+                    noMiddleName: false,
+                    last: 'Bar',
+                    lastInitialOnly: false,
+                    suffix: 'Jr'
+                  },
+                  Aliases: {
+                    items: [
+                      {
+                        Item: {
+                          Has: {
+                            value: 'Yes'
+                          },
+                          Name: {
+                            first: 'Foo',
+                            firstInitialOnly: false,
+                            middle: 'J',
+                            middleInitialOnly: true,
+                            noMiddleName: false,
+                            last: 'Bar',
+                            lastInitialOnly: false,
+                            suffix: 'Jr'
+                          },
+                          MaidenName: { value: 'No' },
+                          Dates: {
+                            from: {
+                              month: '1',
+                              day: '1',
+                              year: '2010',
+                              date: new Date('1/1/2010')
+                            },
+                            to: {
+                              month: '1',
+                              day: '1',
+                              year: '2012',
+                              date: new Date('1/1/2012')
+                            },
+                            present: false
+                          },
+                          Reason: {
+                            value: 'The reason'
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  IsDeceased: { value: 'No' },
+                  Address: {
+                    country: { value: 'United States' },
+                    street: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'VA',
+                    zipcode: '22202',
+                    layout: Location.ADDRESS
+                  }
+                }
               }
             ]
           }
