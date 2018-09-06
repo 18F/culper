@@ -4437,7 +4437,9 @@
                       "layout": "Address",
                       "street": "123 Seasame Street",
                       "city": "New York",
-                      "country": "Jamaica"
+                      "state": "NY",
+                      "zipcode": "10005",
+                      "country": "United States"
                     }
                   },
                   "Sponsorship": {
