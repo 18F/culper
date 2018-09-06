@@ -1,7 +1,7 @@
 {{if text .props.Status | ne "NeverMarried"}}
 <PresentMarriage>
   {{with $Item := .props.CivilUnion.props}}
-  <CurrentSpouse>
+  <CurrentSpouse ID="1">
     {{if locationIsPostOffice $Item.Address}}
     <APOFPO>
       <Address>{{location $Item.Address}}</Address>
