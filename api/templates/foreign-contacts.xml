@@ -1,4 +1,4 @@
-<ForeignContacts>
+<ForeignContacts Version="1" Type="Pooled">
   <Comment></Comment>
   <ContactWithForeignNationalBoundByAffectionInfluenceObligation>
     <Answer>{{branch .props.HasForeignContacts}}</Answer>

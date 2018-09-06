@@ -1,4 +1,4 @@
-<RelativesAndAssociates>
+<RelativesAndAssociates Version="1" Type="Pooled">
   <ApplicableRelativeTypes
     {{- if (hasRelativeType .props.List "Mother") | eq "True"}}
     Mother01="True"

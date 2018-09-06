@@ -1,4 +1,4 @@
-<ForeignTravels>
+<ForeignTravels Version="1" Type="Pooled">
   <Comment></Comment>
   <CountriesVisited>
     <Answer>{{branch .props.HasForeignTravelOutside}}</Answer>

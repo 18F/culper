@@ -1,4 +1,4 @@
-<ResidenceHistory>
+<ResidenceHistory Version="1" Type="Pooled">
   <Residencies>
     {{range $index, $item := .props.List.props.items}}
     {{with $Item := $item.Item}}
