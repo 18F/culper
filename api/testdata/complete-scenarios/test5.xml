@@ -3475,7 +3475,27 @@
                     </Place>
                   </Location>
                   <SubsequentForeignContacts>
-                    <Answer>No</Answer>
+                    <Answer>Yes</Answer>
+                    <Contact ID="0">
+                      <Date>
+                        <Month>08</Month>
+                        <Day>01</Day>
+                        <Year>2018</Year>
+                      </Date>
+                      <FutureContactPlans>Weekly</FutureContactPlans>
+                      <Purpose>More chatting</Purpose>
+                    </Contact>
+                    <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+                    <Contact ID="1">
+                      <Date>
+                        <Month>08</Month>
+                        <Day>20</Day>
+                        <Year>2018</Year>
+                      </Date>
+                      <FutureContactPlans>Weekly</FutureContactPlans>
+                      <Purpose>Exchange notes</Purpose>
+                    </Contact>
+                    <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
                   </SubsequentForeignContacts>
                 </GovernmentContact>
                 <GovernmentContact ID="1">

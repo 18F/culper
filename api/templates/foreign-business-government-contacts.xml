@@ -28,9 +28,9 @@
       </Place>
     </Location>
     <SubsequentForeignContacts>
-      <Answer>{{branchcollectionHas $Item.SubsequentContacts.props.List}}</Answer>
+      <Answer>{{branchcollectionHas $Item.SubsequentContacts}}</Answer>
       <AnswerComment></AnswerComment>
-      {{range $sindex, $contact := $Item.SubsequentContacts.props.List.props.items}}
+      {{range $sindex, $contact := $Item.SubsequentContacts.props.items}}
       {{with $Contact := $contact.Item}}
       {{- if branch $Contact.Has | eq "Yes"}}
       <Contact ID="{{$sindex}}">

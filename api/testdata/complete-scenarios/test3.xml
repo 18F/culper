@@ -1654,7 +1654,17 @@
                     </Place>
                   </Location>
                   <SubsequentForeignContacts>
-                    <Answer>No</Answer>
+                    <Answer>Yes</Answer>
+                    <Contact ID="0">
+                      <Date>
+                        <Month>01</Month>
+                        <Day>12</Day>
+                        <Year>1990</Year>
+                      </Date>
+                      <FutureContactPlans>date</FutureContactPlans>
+                      <Purpose>went to school together</Purpose>
+                    </Contact>
+                    <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
                   </SubsequentForeignContacts>
                 </GovernmentContact>
                 <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
