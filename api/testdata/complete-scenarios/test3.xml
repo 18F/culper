@@ -1127,6 +1127,7 @@
                     <Day>12</Day>
                     <Year>2000</Year>
                   </DateAcquired>
+                  <DateSold NotApplicable="True"/>
                   <HowAcquired>purchase</HowAcquired>
                   <Location>
                     <Address>
@@ -1150,6 +1151,11 @@
                     <Day>12</Day>
                     <Year>2000</Year>
                   </DateAcquired>
+                  <DateSold>
+                    <Month>03</Month>
+                    <Day>12</Day>
+                    <Year>2000</Year>
+                  </DateSold>
                   <HowAcquired>gift</HowAcquired>
                   <Location>
                     <Address>

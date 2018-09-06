@@ -41,6 +41,13 @@
       {{date $Item.Acquired}}
     </DateAcquired>
     <EntryComment></EntryComment>
+    {{if notApplicable $Item.SoldNotApplicable | eq "True"}}
+    <DateSold NotApplicable="True" />
+    {{else}}
+    <DateSold Type="{{dateEstimated $Item.Sold}}">
+      {{date $Item.Sold}}
+    </DateSold>
+    {{end}}
     <HowAcquired>{{text $Item.HowAcquired}}</HowAcquired>
     <Location>
       <Address>

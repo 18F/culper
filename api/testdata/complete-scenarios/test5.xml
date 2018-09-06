@@ -2878,6 +2878,11 @@
                     <Day>01</Day>
                     <Year>2018</Year>
                   </DateAcquired>
+                  <DateSold>
+                    <Month>05</Month>
+                    <Day>09</Day>
+                    <Year>2018</Year>
+                  </DateSold>
                   <HowAcquired>Purchase</HowAcquired>
                   <Location>
                     <Address>
@@ -2901,6 +2906,11 @@
                     <Day>01</Day>
                     <Year>2018</Year>
                   </DateAcquired>
+                  <DateSold>
+                    <Month>04</Month>
+                    <Day>02</Day>
+                    <Year>2018</Year>
+                  </DateSold>
                   <HowAcquired>Purchase</HowAcquired>
                   <Location>
                     <Address>
