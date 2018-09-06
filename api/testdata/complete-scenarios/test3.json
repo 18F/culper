@@ -6934,7 +6934,7 @@
                   "CohabitationBegan": {
                     "type": "datecontrol",
                     "props": {
-                      "month": "01",
+                      "month": "04",
                       "day": "12",
                       "year": "2000",
                       "estimated": false
@@ -7099,7 +7099,7 @@
                   "CohabitationBegan": {
                     "type": "datecontrol",
                     "props": {
-                      "month": "01",
+                      "month": "09",
                       "day": "12",
                       "year": "2000",
                       "estimated": false
