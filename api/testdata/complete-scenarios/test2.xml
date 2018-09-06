@@ -1732,7 +1732,34 @@
                     <Year>1990</Year>
                   </Date>
                   <Appealed>
-                    <Answer>No</Answer>
+                    <Answer>Yes</Answer>
+                    <Appeal ID="0">
+                      <Court>
+                        <Name>Super court</Name>
+                        <Address>
+                          <Street>667 Main St </Street>
+                          <City>Asheville</City>
+                          <State>NC</State>
+                          <ZipCode>27007</ZipCode>
+                        </Address>
+                      </Court>
+                      <FinalDisposition>Final disposition info</FinalDisposition>
+                    </Appeal>
+                    <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+                    <Appeal ID="1">
+                      <Court>
+                        <Name>mega court</Name>
+                        <Address>
+                          <Street>111 main st </Street>
+                          <City>Akron</City>
+                          <State>OH</State>
+                          <ZipCode>45777</ZipCode>
+                        </Address>
+                      </Court>
+                      <FinalDisposition>final final disp</FinalDisposition>
+                    </Appeal>
+                    <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+                    <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
                   </Appealed>
                 </DeclaredAsMentallyIncompetentOccurrence>
                 <DeclaredAsMentallyIncompetentOccurrence ID="1">

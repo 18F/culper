@@ -5307,7 +5307,47 @@
                     <Year>2010</Year>
                   </Date>
                   <Appealed>
-                    <Answer>No</Answer>
+                    <Answer>Yes</Answer>
+                    <Appeal ID="0">
+                      <Court>
+                        <Name>Appeal Mental Court</Name>
+                        <Address>
+                          <Street>903 12th St. </Street>
+                          <City>Monterey</City>
+                          <State>CA</State>
+                          <ZipCode>93940</ZipCode>
+                        </Address>
+                      </Court>
+                      <FinalDisposition>Healthy</FinalDisposition>
+                    </Appeal>
+                    <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+                    <Appeal ID="1">
+                      <Court>
+                        <Name>Super Appeal Court</Name>
+                        <Address>
+                          <Street>999 123rd Ave. </Street>
+                          <City>Monterey</City>
+                          <State>CA</State>
+                          <ZipCode>93940</ZipCode>
+                        </Address>
+                      </Court>
+                      <FinalDisposition>Healthy</FinalDisposition>
+                    </Appeal>
+                    <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+                    <Appeal ID="2">
+                      <Court>
+                        <Name>Super Squared Appeal Court</Name>
+                        <Address>
+                          <Street>7371 3rd Ave. </Street>
+                          <City>Monterey</City>
+                          <State>CA</State>
+                          <ZipCode>93940</ZipCode>
+                        </Address>
+                      </Court>
+                      <FinalDisposition>Healthy</FinalDisposition>
+                    </Appeal>
+                    <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+                    <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
                   </Appealed>
                 </DeclaredAsMentallyIncompetentOccurrence>
                 <DeclaredAsMentallyIncompetentOccurrence ID="1">
