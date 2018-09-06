@@ -400,7 +400,7 @@
                   </Birth>
                   <CohabitationDate>
                     <Date>
-                      <Month>01</Month>
+                      <Month>04</Month>
                       <Day>12</Day>
                       <Year>2000</Year>
                     </Date>
@@ -438,7 +438,7 @@
                   </Birth>
                   <CohabitationDate>
                     <Date>
-                      <Month>01</Month>
+                      <Month>09</Month>
                       <Day>12</Day>
                       <Year>2000</Year>
                     </Date>
@@ -1046,9 +1046,55 @@
               </DirectInterests>
               <IndirectInterests>
                 <Answer>Yes</Answer>
-                <IndirectInterest ID="0"><ControllingParty><LegalName><Last>Hoyel</Last><First>bug</First></LegalName></ControllingParty><Coowners><Answer>Yes</Answer><Coowner ID="0"><Address><Street>123 Seasame Street </Street><City>New York</City><State>NY</State><ZipCode>10005</ZipCode></Address><CountriesOfCitizenship><Citizenship ID="0"><Country>Heard Island and McDonald Islands</Country></Citizenship></CountriesOfCitizenship><LegalName><Last>yellow</Last><First>royal</First><Middle>royale</Middle><Suffix>VII</Suffix></LegalName><Relationship>common</Relationship></Coowner><HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer></Coowners><Cost>8</Cost><CurrentValue>9</CurrentValue><DateAcquired><Month>01</Month><Day>01</Day><Year>1990</Year></DateAcquired><DateSold><Month>01</Month><Day>01</Day><Year>1999</Year></DateSold>&gt;
-    
-    <HowAcquired>etc gift purchase</HowAcquired><Members Yourself="True" Spouse="True" DependentChildren="True"/><Relationship>yellow flag</Relationship><SoldExplanation>disposed of gross amount </SoldExplanation><TypeOfFinancialInterest>house</TypeOfFinancialInterest></IndirectInterest>
+                <IndirectInterest ID="0">
+                  <ControllingParty>
+                    <LegalName>
+                      <Last>Hoyel</Last>
+                      <First>bug</First>
+                    </LegalName>
+                  </ControllingParty>
+                  <Coowners>
+                    <Answer>Yes</Answer>
+                    <Coowner ID="0">
+                      <Address>
+                        <Street>123 Seasame Street </Street>
+                        <City>New York</City>
+                        <State>NY</State>
+                        <ZipCode>10005</ZipCode>
+                      </Address>
+                      <CountriesOfCitizenship>
+                        <Citizenship ID="0">
+                          <Country>Heard Island and McDonald Islands</Country>
+                        </Citizenship>
+                      </CountriesOfCitizenship>
+                      <LegalName>
+                        <Last>yellow</Last>
+                        <First>royal</First>
+                        <Middle>royale</Middle>
+                        <Suffix>VII</Suffix>
+                      </LegalName>
+                      <Relationship>common</Relationship>
+                    </Coowner>
+                    <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+                  </Coowners>
+                  <Cost>8</Cost>
+                  <CurrentValue>9</CurrentValue>
+                  <DateAcquired>
+                    <Month>01</Month>
+                    <Day>01</Day>
+                    <Year>1990</Year>
+                  </DateAcquired>
+                  <DateSold>
+                    <Month>01</Month>
+                    <Day>01</Day>
+                    <Year>1999</Year>
+                  </DateSold>
+                  <HowAcquired>etc gift purchase</HowAcquired>
+                  <Members Yourself="True" Spouse="True" DependentChildren="True"/>
+                  <Relationship>yellow flag</Relationship>
+                  <SoldExplanation>disposed of gross amount </SoldExplanation>
+                  <TypeOfFinancialInterest>house</TypeOfFinancialInterest>
+                </IndirectInterest>
                 <IndirectInterest ID="1">
                   <ControllingParty>
                     <LegalName>
@@ -1127,7 +1173,6 @@
                     <Day>12</Day>
                     <Year>2000</Year>
                   </DateAcquired>
-                  <DateSold NotApplicable="True"/>
                   <HowAcquired>purchase</HowAcquired>
                   <Location>
                     <Address>
@@ -1736,7 +1781,8 @@
                     <Address>
                       <Street>123 Seasame Street </Street>
                       <City>New York</City>
-                      <Country>Jamaica</Country>
+                      <State>NY</State>
+                      <ZipCode>10005</ZipCode>
                     </Address>
                   </AddressWhileInUS>
                   <Birth>
