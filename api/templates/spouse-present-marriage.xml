@@ -96,6 +96,7 @@
       <Answer>{{branch $Item.Separated}}</Answer>
       <AnswerComment></AnswerComment>
     </Separated>
+    {{if branch $Item.Separated | eq "Yes"}}
     <Separation>
       <Comment></Comment>
       <Date Type="{{dateEstimated $Item.DateSeparated}}">
@@ -111,6 +112,7 @@
         {{end}}
       </LocationOfRecord>
     </Separation>
+    {{end}}
     <Telephone>
       {{telephone $Item.Telephone}}
     </Telephone>
