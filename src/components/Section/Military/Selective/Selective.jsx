@@ -15,6 +15,10 @@ export default class Selective extends SubsectionElement {
     this.updateRegistered = this.updateRegistered.bind(this)
     this.updateRegistrationNumber = this.updateRegistrationNumber.bind(this)
     this.updateExplanation = this.updateExplanation.bind(this)
+
+    this.state = {
+      registrationNumber: ''
+    }
   }
 
   update(queue) {
@@ -52,9 +56,16 @@ export default class Selective extends SubsectionElement {
   }
 
   updateRegistrationNumber(value) {
-    this.update({
-      RegistrationNumber: value
-    })
+    const valueWithDashes = value.value.replace(/[^0-9-]/g, '')
+    const valueJustNumbers = value.value.replace(/\D/g, '')
+
+    this.setState({ RegistrationNumber: valueWithDashes })
+
+    if (valueJustNumbers !== this.props.RegistrationNumber.value) {
+      this.update({
+        RegistrationNumber: { ...value, value: valueJustNumbers }
+      })
+    }
   }
 
   updateExplanation(value) {
@@ -110,7 +121,8 @@ export default class Selective extends SubsectionElement {
                     name="RegistrationNumber"
                     className="registration-number"
                     label={i18n.t('military.selective.label.number')}
-                    {...this.props.RegistrationNumber}
+                    name={this.props.RegistrationNumber.name}
+                    value={this.state.RegistrationNumber}
                     onUpdate={this.updateRegistrationNumber}
                     onError={this.handleError}
                     required={this.props.required}
