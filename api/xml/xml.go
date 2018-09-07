@@ -725,9 +725,19 @@ func locationOverrideLayout(data map[string]interface{}, override string) (templ
 			return xmlTemplateWithFuncs("location-city-state-county.xml", data, fmap)
 		}
 		return xmlTemplate("location-city-country.xml", data)
+	case api.LayoutBirthPlaceNoUS:
+		if domestic {
+			return xmlTemplateWithFuncs("location-city-state-county-no-country.xml", data, fmap)
+		}
+		return xmlTemplate("location-city-country.xml", data)
 	case api.LayoutBirthPlaceWithoutCounty:
 		if domestic {
 			return xmlTemplateWithFuncs("location-city-state.xml", data, fmap)
+		}
+		return xmlTemplate("location-city-country.xml", data)
+	case api.LayoutBirthPlaceWithoutCountyNoUS:
+		if domestic {
+			return xmlTemplateWithFuncs("location-city-state-no-country.xml", data, fmap)
 		}
 		return xmlTemplate("location-city-country.xml", data)
 	case api.LayoutCountry:

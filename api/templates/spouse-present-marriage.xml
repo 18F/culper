@@ -59,7 +59,7 @@
         {{date $Item.EnteredCivilUnion}}
       </Date>
       <Place>
-        {{location $Item.Location}}
+        {{locationOverrideLayout $Item.Location "Birthplace CountriesNoUS"}}
       </Place>
     </Marriage>
     {{ if eq (branchcollectionHas $Item.OtherNames) "No" }}
@@ -82,17 +82,15 @@
     </OtherNamesUsed>
     {{end}}
     {{with $ssn := $Item.SSN}}
-    <SSN NotApplicable="{{ $ssn.props.notApplicable }}">
-      <FirstThree>
-        {{ $ssn.props.first }}
-      </FirstThree>
-      <NextTwo>
-        {{ $ssn.props.middle }}
-      </NextTwo>
-      <LastFour>
-        {{ $ssn.props.last }}
-      </LastFour>
+    {{if $ssn.props.notApplicable }}
+    <SSN NotApplicable="True" />
+    {{else}}
+    <SSN>
+      <FirstThree>{{ $ssn.props.first }}</FirstThree>
+      <NextTwo>{{ $ssn.props.middle }}</NextTwo>
+      <LastFour>{{ $ssn.props.last }}</LastFour>
     </SSN>
+    {{end}}
     {{end}}
     <Separated>
       <Answer>{{branch $Item.Separated}}</Answer>
@@ -104,9 +102,13 @@
         {{date $Item.DateSeparated}}
       </Date>
       <LocationOfRecord>
-        <Place NotApplicable="{{notApplicable $Item.AddressSeparatedNotApplicable}}">
+        {{if notApplicable $Item.AddressSeparatedNotApplicable | eq "True"}}
+        <Place NotApplicable="True"/>
+        {{else}}
+        <Place>
           {{location $Item.AddressSeparated}}
         </Place>
+        {{end}}
       </LocationOfRecord>
     </Separation>
     <Telephone>

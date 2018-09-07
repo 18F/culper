@@ -673,7 +673,7 @@
               </HaveFormerSpouse>
               <MaritalStatus>Married</MaritalStatus>
               <PresentMarriage>
-                <CurrentSpouse>
+                <CurrentSpouse ID="1">
                   <Address UseMyCurrentAddress="True">
                     <Street> </Street>
                   </Address>
@@ -711,7 +711,6 @@
                       <City>Santa Cruz</City>
                       <State>CA</State>
                       <County>Santa Cruz</County>
-                      <Country>United States</Country>
                     </Place>
                   </Marriage>
                   <OtherNamesUsed>
@@ -764,16 +763,10 @@
                       <Maiden>False</Maiden>
                     </OtherName>
                   </OtherNamesUsed>
-                  <SSN NotApplicable="false">
-                    <FirstThree>
-        391
-      </FirstThree>
-                    <NextTwo>
-        03
-      </NextTwo>
-                    <LastFour>
-        1431
-      </LastFour>
+                  <SSN>
+                    <FirstThree>391</FirstThree>
+                    <NextTwo>03</NextTwo>
+                    <LastFour>1431</LastFour>
                   </SSN>
                   <Separated>
                     <Answer>Yes</Answer>
@@ -785,7 +778,7 @@
                       <Year>2018</Year>
                     </Date>
                     <LocationOfRecord>
-                      <Place NotApplicable="False">
+                      <Place>
                         <City>Monterey</City>
                         <State>CA</State>
                         <ZipCode>93940</ZipCode>

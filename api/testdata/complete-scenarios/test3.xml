@@ -418,9 +418,9 @@
                   </LegalName>
                   <OtherNamesUsed NotApplicable="True"/>
                   <SSN>
-                    <FirstThree>111</FirstThree>
+                    <FirstThree>511</FirstThree>
                     <NextTwo>11</NextTwo>
-                    <LastFour>1111</LastFour>
+                    <LastFour>1511</LastFour>
                   </SSN>
                 </Cohabitant>
                 <Cohabitant ID="1">
@@ -468,7 +468,7 @@
               </HaveFormerSpouse>
               <MaritalStatus>Married</MaritalStatus>
               <PresentMarriage>
-                <CurrentSpouse>
+                <CurrentSpouse ID="1">
                   <Address UseMyCurrentAddress="False">
                     <Street>65 DEER ST </Street>
                     <City>BOSTON</City>
@@ -507,23 +507,16 @@
                       <Year>2000</Year>
                     </Date>
                     <Place>
-                      <City>10 causeway st</City>
+                      <City>Random Town</City>
                       <State>MA</State>
-                      <County>boston</County>
-                      <Country>United States</Country>
+                      <County>Boston</County>
                     </Place>
                   </Marriage>
                   <OtherNamesUsed NotApplicable="True"/>
-                  <SSN NotApplicable="false">
-                    <FirstThree>
-        111
-      </FirstThree>
-                    <NextTwo>
-        11
-      </NextTwo>
-                    <LastFour>
-        1111
-      </LastFour>
+                  <SSN>
+                    <FirstThree>311</FirstThree>
+                    <NextTwo>31</NextTwo>
+                    <LastFour>1311</LastFour>
                   </SSN>
                   <Separated>
                     <Answer>No</Answer>
@@ -535,7 +528,7 @@
                       <Year>2000</Year>
                     </Date>
                     <LocationOfRecord>
-                      <Place NotApplicable="False">
+                      <Place>
                         <City>jamaica plain</City>
                         <State>MD</State>
                         <ZipCode>12345</ZipCode>
