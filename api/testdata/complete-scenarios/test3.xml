@@ -521,20 +521,6 @@
                   <Separated>
                     <Answer>No</Answer>
                   </Separated>
-                  <Separation>
-                    <Date>
-                      <Month>02</Month>
-                      <Day>01</Day>
-                      <Year>2000</Year>
-                    </Date>
-                    <LocationOfRecord>
-                      <Place>
-                        <City>jamaica plain</City>
-                        <State>MD</State>
-                        <ZipCode>12345</ZipCode>
-                      </Place>
-                    </LocationOfRecord>
-                  </Separation>
                   <Telephone>
                     <Number>1231231123</Number>
                     <Time>Both</Time>
