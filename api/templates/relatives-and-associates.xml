@@ -204,7 +204,7 @@
           {{- if eq (branch $Alias.Has) "Yes" }}
           <OtherName ID="{{$oindex}}">
             <Comment></Comment>
-            {{ daterange $Alias.Dates }}
+            {{monthYearDaterange $Alias.Dates }}
             <LegalName>
               {{ name $Alias.Name }}
             </LegalName>

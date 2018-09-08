@@ -719,22 +719,20 @@
                         <From>
                           <Date>
                             <Month>05</Month>
-                            <Day>02</Day>
                             <Year>1992</Year>
                           </Date>
                         </From>
                         <To>
                           <Date>
                             <Month>05</Month>
-                            <Day>06</Day>
                             <Year>2010</Year>
                           </Date>
                         </To>
                       </DateRange>
                       <LegalName>
-                        <Last/>
-                        <First/>
-                        <Middle/>
+                        <Last>Ebert</Last>
+                        <First>Joan</First>
+                        <Middle>Mary</Middle>
                       </LegalName>
                       <Maiden>True</Maiden>
                     </OtherName>
@@ -743,22 +741,20 @@
                         <From>
                           <Date>
                             <Month>08</Month>
-                            <Day>01</Day>
                             <Year>2000</Year>
                           </Date>
                         </From>
                         <To>
                           <Date>
                             <Month>08</Month>
-                            <Day>09</Day>
                             <Year>2001</Year>
                           </Date>
                         </To>
                       </DateRange>
                       <LegalName>
-                        <Last/>
-                        <First/>
-                        <Middle/>
+                        <Last>Rover</Last>
+                        <First>Red</First>
+                        <Middle Type="NMN"/>
                       </LegalName>
                       <Maiden>False</Maiden>
                     </OtherName>
