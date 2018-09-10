@@ -37,10 +37,6 @@
     </Activity>
     {{end}}
     {{end}}
-
-    {{- if branch .props.HasBankruptcy | eq "Yes"}}
-    <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
-    {{end}}
   </Activities>
   <Answer>{{branch .props.HasBankruptcy}}</Answer>
 
