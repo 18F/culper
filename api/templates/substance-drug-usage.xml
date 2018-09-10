@@ -4,7 +4,7 @@
   <Instances>
     {{range $index, $item := .props.List.props.items}}
     {{with $Item := $item.Item}}
-    <Instance ID="{{$index}}">
+    <Instance ID="{{inc $index}}">
       <DrugUsed>
         <Explanation></Explanation>
         <Type>{{radio $Item.DrugType}}</Type>

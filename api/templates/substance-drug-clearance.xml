@@ -4,7 +4,7 @@
   <Involvements>
     {{range $index, $item := .props.List.props.items}}
     {{with $Item := $item.Item}}
-    <Involvement ID="{{$index}}">
+    <Involvement ID="{{inc $index}}">
       <Description>{{textarea $Item.Description}}</Description>
       {{monthYearDaterange $Item.InvolvementDates}}
       <NumberOfTimesUsed>{{text $Item.EstimatedUse}}</NumberOfTimesUsed>

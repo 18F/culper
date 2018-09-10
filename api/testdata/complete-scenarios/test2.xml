@@ -82,7 +82,7 @@
             <PersonalReferences Version="1" Type="Pooled">
               <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
               <References>
-                <Reference ID="0">
+                <Reference ID="1">
                   <Address>
                     <Street>100 E MAIN ST </Street>
                     <City>LOUISVILLE</City>
@@ -121,7 +121,7 @@
                   </Telephone>
                   <Title NotApplicable="True"/>
                 </Reference>
-                <Reference ID="1">
+                <Reference ID="2">
                   <Address>
                     <Street>567 E BURNETT AVE </Street>
                     <City>LOUISVILLE</City>
@@ -160,7 +160,7 @@
                   </Telephone>
                   <Title NotApplicable="True"/>
                 </Reference>
-                <Reference ID="2">
+                <Reference ID="3">
                   <Address>
                     <Street>33 S MAIN ST </Street>
                     <City>MEMPHIS</City>
@@ -205,7 +205,7 @@
               <ApplicableRelativeTypes Mother01="True" Father02="True"/>
               <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
               <Relatives>
-                <Relative ID="0">
+                <Relative ID="1">
                   <Address>
                     <Street>33 Salem st </Street>
                     <City>Salem</City>
@@ -225,7 +225,7 @@
                     </Place>
                   </Birth>
                   <CountriesOfCitizenship>
-                    <Citizenship ID="0">
+                    <Citizenship ID="1">
                       <Country>United States</Country>
                     </Citizenship>
                   </CountriesOfCitizenship>
@@ -242,7 +242,7 @@
                   </OtherNamesUsed>
                   <Type>02Father</Type>
                 </Relative>
-                <Relative ID="1">
+                <Relative ID="2">
                   <Birth>
                     <Date Type="Estimated">
                       <Month>05</Month>
@@ -256,7 +256,7 @@
                     </Place>
                   </Birth>
                   <CountriesOfCitizenship>
-                    <Citizenship ID="0">
+                    <Citizenship ID="1">
                       <Country>United States</Country>
                     </Citizenship>
                   </CountriesOfCitizenship>
@@ -288,7 +288,7 @@
             </Spouse>
             <ResidenceHistory Version="1" Type="Pooled">
               <Residencies>
-                <Residency ID="0">
+                <Residency ID="1">
                   <Address>
                     <Street>22 elm st </Street>
                     <City>Memphis</City>
@@ -348,7 +348,7 @@
             </ResidenceHistory>
             <EmploymentActivities Type="Pooled" Version="1">
               <Employments>
-                <Employment ID="0">
+                <Employment ID="1">
                   <DateRange>
                     <From>
                       <Date>
@@ -475,7 +475,7 @@
             <FinancialRecord Type="Pooled" Version="1">
               <Bankruptcy>
                 <Activities>
-                  <Activity ID="0">
+                  <Activity ID="1">
                     <AccountNumber>55543435</AccountNumber>
                     <Amount>500000</Amount>
                     <Authority>
@@ -508,7 +508,7 @@
                     </Record>
                     <Type>Chapter12</Type>
                   </Activity>
-                  <Activity ID="1">
+                  <Activity ID="2">
                     <AccountNumber>32e534657687</AccountNumber>
                     <Amount>42257</Amount>
                     <Authority>
@@ -549,7 +549,7 @@
               <ViolatedCorporateCardAgreement>
                 <Answer>Yes</Answer>
                 <Incidents>
-                  <Incident ID="0">
+                  <Incident ID="1">
                     <Actions>getting help</Actions>
                     <Agency>
                       <Address>
@@ -560,14 +560,14 @@
                       </Address>
                       <Name>helpers</Name>
                     </Agency>
-                    <Amount Estimated="false">4322</Amount>
+                    <Amount>4322</Amount>
                     <Date>
                       <Month>03</Month>
                       <Year>1999</Year>
                     </Date>
                     <Reason>needed it</Reason>
                   </Incident>
-                  <Incident ID="1">
+                  <Incident ID="2">
                     <Actions>getting more help</Actions>
                     <Agency>
                       <Address>
@@ -578,7 +578,7 @@
                       </Address>
                       <Name>path</Name>
                     </Agency>
-                    <Amount Estimated="false">3333</Amount>
+                    <Amount>3333</Amount>
                     <Date>
                       <Month>05</Month>
                       <Year>1990</Year>
@@ -591,7 +591,7 @@
               <UtilizingOrSeekingCreditCounseling>
                 <Answer>Yes</Answer>
                 <Incidents>
-                  <Incident ID="0">
+                  <Incident ID="1">
                     <Actions>getting credit help</Actions>
                     <Explanation>too many credit cards</Explanation>
                     <Organization>
@@ -606,7 +606,7 @@
                       </Telephone>
                     </Organization>
                   </Incident>
-                  <Incident ID="1">
+                  <Incident ID="2">
                     <Actions>OK i needed help with my credit</Actions>
                     <Explanation>getting the help</Explanation>
                     <Organization>
@@ -627,12 +627,12 @@
               <DelinquencyInvolvingEnforcement>
                 <Answer>Yes</Answer>
                 <Incidents>
-                  <Incident ID="0">
+                  <Incident ID="1">
                     <AccountNumber>234234</AccountNumber>
                     <Agency>
                       <Name>Dr. Bob</Name>
                     </Agency>
-                    <Amount Estimated="false">23424</Amount>
+                    <Amount>23424</Amount>
                     <Court>
                       <Address>
                         <Street>110 Main ST. </Street>
@@ -659,12 +659,12 @@
                     <Reason> gamblin'</Reason>
                     <Status>still in trouble</Status>
                   </Incident>
-                  <Incident ID="1">
+                  <Incident ID="2">
                     <AccountNumber>4355</AccountNumber>
                     <Agency>
                       <Name>OK school</Name>
                     </Agency>
-                    <Amount Estimated="false">333</Amount>
+                    <Amount>333</Amount>
                     <Court>
                       <Address>
                         <Street>222 elm street </Street>
@@ -697,7 +697,7 @@
               <ProblemsDueToGambling>
                 <Answer>Yes</Answer>
                 <Incidents>
-                  <Incident ID="0">
+                  <Incident ID="1">
                     <Actions>nope</Actions>
                     <Amount>5655</Amount>
                     <DateRange>
@@ -716,7 +716,7 @@
                     </DateRange>
                     <Description>missed rent</Description>
                   </Incident>
-                  <Incident ID="1">
+                  <Incident ID="2">
                     <Actions>not yet... maybe soon</Actions>
                     <Amount>78000</Amount>
                     <DateRange>
@@ -741,12 +741,12 @@
               <DelinquencyInvolvingRoutineAccounts>
                 <Answer>Yes</Answer>
                 <Incidents>
-                  <Incident ID="0">
+                  <Incident ID="1">
                     <AccountNumber>234234</AccountNumber>
                     <Agency>
                       <Name>Dr. Bob</Name>
                     </Agency>
-                    <Amount Estimated="false">234234</Amount>
+                    <Amount>234234</Amount>
                     <DateBegan Type="Estimated">
                       <Month>05</Month>
                       <Year>1990</Year>
@@ -763,12 +763,12 @@
                     <Reason>lost a bet</Reason>
                     <Status>unresolved</Status>
                   </Incident>
-                  <Incident ID="1">
+                  <Incident ID="2">
                     <AccountNumber>3456777</AccountNumber>
                     <Agency>
                       <Name>Dr. Bob</Name>
                     </Agency>
-                    <Amount Estimated="false">34647</Amount>
+                    <Amount>34647</Amount>
                     <DateBegan Type="Estimated">
                       <Month>06</Month>
                       <Year>1965</Year>
@@ -791,10 +791,10 @@
               <UnpaidTaxes>
                 <Answer>Yes</Answer>
                 <Incidents>
-                  <Incident ID="0">
+                  <Incident ID="1">
                     <Actions>paid it</Actions>
                     <Agency>state</Agency>
-                    <Amount Estimated="false">5699</Amount>
+                    <Amount>5699</Amount>
                     <DateFailedToPay>
                       <Year>1979</Year>
                     </DateFailedToPay>
@@ -806,10 +806,10 @@
                     <TaxType>all of them</TaxType>
                     <Type>Both</Type>
                   </Incident>
-                  <Incident ID="1">
+                  <Incident ID="2">
                     <Actions>ok ok</Actions>
                     <Agency>local</Agency>
-                    <Amount Estimated="false">345</Amount>
+                    <Amount>345</Amount>
                     <DateFailedToPay>
                       <Year>1999</Year>
                     </DateFailedToPay>
@@ -900,7 +900,7 @@
               <EverReceivedCounseling>
                 <Answer>Yes</Answer>
                 <Consultations>
-                  <Consultation ID="0">
+                  <Consultation ID="1">
                     <Agency>
                       <Address SameAsAbove="True">
                         <Street> </Street>
@@ -929,7 +929,7 @@
                     </EndDate>
                     <Explanation>ok ok ok </Explanation>
                   </Consultation>
-                  <Consultation ID="1">
+                  <Consultation ID="2">
                     <Agency>
                       <Address SameAsAbove="False">
                         <Street>324 crazy Rd. </Street>
@@ -967,7 +967,7 @@
               <NegativeImpact>
                 <Answer>Yes</Answer>
                 <Incidents>
-                  <Incident ID="0">
+                  <Incident ID="1">
                     <Date>
                       <Month>06</Month>
                       <Year>1990</Year>
@@ -989,7 +989,7 @@
                       </To>
                     </DateRange>
                   </Incident>
-                  <Incident ID="1">
+                  <Incident ID="2">
                     <Date Type="Estimated">
                       <Month>05</Month>
                       <Year>1979</Year>
@@ -1017,7 +1017,7 @@
               <OrderedAdvisedOrAskedToSeekCounseling>
                 <Answer>Yes</Answer>
                 <Consultations>
-                  <Consultation ID="0">
+                  <Consultation ID="1">
                     <ActionToSeekCounselingTaken>
                       <Answer>Yes</Answer>
                     </ActionToSeekCounselingTaken>
@@ -1055,7 +1055,7 @@
                       </Telephone>
                     </Doctor>
                   </Consultation>
-                  <Consultation ID="1">
+                  <Consultation ID="2">
                     <ActionToSeekCounselingTaken>
                       <Answer>Yes</Answer>
                     </ActionToSeekCounselingTaken>
@@ -1099,7 +1099,7 @@
               <SoughtCounseling>
                 <Answer>Yes</Answer>
                 <Consultations>
-                  <Consultation ID="0">
+                  <Consultation ID="1">
                     <DateRange>
                       <From>
                         <Date>
@@ -1131,7 +1131,7 @@
                       <Answer>Yes</Answer>
                     </CompletedTreatmentProgram>
                   </Consultation>
-                  <Consultation ID="1">
+                  <Consultation ID="2">
                     <DateRange>
                       <From>
                         <Date>
@@ -1171,7 +1171,7 @@
               <InvolvementWhilePossessingASecurityClearance>
                 <Answer>Yes</Answer>
                 <Involvements>
-                  <Involvement ID="0">
+                  <Involvement ID="1">
                     <Description>high level involvement</Description>
                     <DateRange>
                       <From>
@@ -1189,7 +1189,7 @@
                     </DateRange>
                     <NumberOfTimesUsed>4</NumberOfTimesUsed>
                   </Involvement>
-                  <Involvement ID="1">
+                  <Involvement ID="2">
                     <Description>not very</Description>
                     <DateRange>
                       <From>
@@ -1213,7 +1213,7 @@
               <MisuseOfPrescriptionDrugs>
                 <Answer>Yes</Answer>
                 <Instances>
-                  <Instance ID="0">
+                  <Instance ID="1">
                     <DrugsUsed>pain pills</DrugsUsed>
                     <DateRange>
                       <From>
@@ -1237,7 +1237,7 @@
                       <Answer>Yes</Answer>
                     </InvolvementWhilePossessingASecurityClearance>
                   </Instance>
-                  <Instance ID="1">
+                  <Instance ID="2">
                     <DrugsUsed>oxy</DrugsUsed>
                     <DateRange>
                       <From>
@@ -1267,7 +1267,7 @@
               <OrderedAdvisedOrAskedToSeekCounseling>
                 <Answer>Yes</Answer>
                 <Consultations>
-                  <Consultation ID="0">
+                  <Consultation ID="1">
                     <ActionToSeekCounselingTaken>
                       <Answer>Yes</Answer>
                     </ActionToSeekCounselingTaken>
@@ -1319,7 +1319,7 @@
                       <Explanation>Got kicket out</Explanation>
                     </UnsuccessfulTreatment>
                   </Consultation>
-                  <Consultation ID="1">
+                  <Consultation ID="2">
                     <ActionToSeekCounselingTaken>
                       <Answer>Yes</Answer>
                     </ActionToSeekCounselingTaken>
@@ -1378,7 +1378,7 @@
               <InvolvementWhileEmployedAsLawEnforcement>
                 <Answer>Yes</Answer>
                 <Involvements>
-                  <Involvement ID="0">
+                  <Involvement ID="1">
                     <Description>heroin weekly</Description>
                     <DateRange>
                       <From>
@@ -1396,7 +1396,7 @@
                     </DateRange>
                     <NumberOfTimes>88</NumberOfTimes>
                   </Involvement>
-                  <Involvement ID="1">
+                  <Involvement ID="2">
                     <Description>pills</Description>
                     <DateRange>
                       <From>
@@ -1420,7 +1420,7 @@
               <IllegalDrugActivity>
                 <Answer>Yes</Answer>
                 <Activities>
-                  <Activity ID="0">
+                  <Activity ID="1">
                     <Drug>
                       <Type>Cocaine</Type>
                     </Drug>
@@ -1445,7 +1445,7 @@
                     </IntendToEngageInFutureActivities>
                     <Reason>make money</Reason>
                   </Activity>
-                  <Activity ID="1">
+                  <Activity ID="2">
                     <Drug>
                       <Type>THC</Type>
                     </Drug>
@@ -1476,7 +1476,7 @@
               <IllegalUse>
                 <Answer>Yes</Answer>
                 <Instances>
-                  <Instance ID="0">
+                  <Instance ID="1">
                     <DrugUsed>
                       <Type>Narcotics</Type>
                     </DrugUsed>
@@ -1500,7 +1500,7 @@
                       <Explanation>it's bad</Explanation>
                     </IntendToUseInFuture>
                   </Instance>
-                  <Instance ID="1">
+                  <Instance ID="2">
                     <DrugUsed>
                       <Type>Hallucinogenic</Type>
                     </DrugUsed>
@@ -1530,7 +1530,7 @@
               <VoluntaryTreatment>
                 <Answer>Yes</Answer>
                 <Consultations>
-                  <Consultation ID="0">
+                  <Consultation ID="1">
                     <Drug>
                       <Type>Cocaine</Type>
                     </Drug>
@@ -1572,7 +1572,7 @@
         
       </UnsuccessfulTreatment>
                   </Consultation>
-                  <Consultation ID="1">
+                  <Consultation ID="2">
                     <Drug>
                       <Type>Depressants</Type>
                     </Drug>
@@ -1717,7 +1717,7 @@
             <MedicalRecord2 Version="1" Type="Pooled">
               <DeclaredAsMentallyIncompetent>
                 <Answer>Yes</Answer>
-                <DeclaredAsMentallyIncompetentOccurrence ID="0">
+                <DeclaredAsMentallyIncompetentOccurrence ID="1">
                   <Court>
                     <Name>Place 1</Name>
                     <Address>
@@ -1733,7 +1733,7 @@
                   </Date>
                   <Appealed>
                     <Answer>Yes</Answer>
-                    <Appeal ID="0">
+                    <Appeal ID="1">
                       <Court>
                         <Name>Super court</Name>
                         <Address>
@@ -1746,7 +1746,7 @@
                       <FinalDisposition>Final disposition info</FinalDisposition>
                     </Appeal>
                     <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
-                    <Appeal ID="1">
+                    <Appeal ID="2">
                       <Court>
                         <Name>mega court</Name>
                         <Address>
@@ -1762,7 +1762,7 @@
                     <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
                   </Appealed>
                 </DeclaredAsMentallyIncompetentOccurrence>
-                <DeclaredAsMentallyIncompetentOccurrence ID="1">
+                <DeclaredAsMentallyIncompetentOccurrence ID="2">
                   <Court>
                     <Name>dfa</Name>
                     <Address>
@@ -1784,7 +1784,7 @@
               </DeclaredAsMentallyIncompetent>
               <OrderedToConsult>
                 <Answer>Yes</Answer>
-                <OrderedToConsultOccurrence ID="0">
+                <OrderedToConsultOccurrence ID="1">
                   <Court>
                     <Name>name</Name>
                     <Address>
@@ -1803,7 +1803,7 @@
                     <Answer>No</Answer>
                   </Appealed>
                 </OrderedToConsultOccurrence>
-                <OrderedToConsultOccurrence ID="1">
+                <OrderedToConsultOccurrence ID="2">
                   <Court>
                     <Name>Place 2</Name>
                     <Address>
@@ -1826,7 +1826,7 @@
               </OrderedToConsult>
               <Hospitalized>
                 <Answer>Yes</Answer>
-                <HospitalizedOccurrence ID="0">
+                <HospitalizedOccurrence ID="1">
                   <AdmissionType>Voluntary</AdmissionType>
                   <DateRange>
                     <From>
@@ -1853,7 +1853,7 @@
                   </Facility>
                   <Explanation>Explanation here</Explanation>
                 </HospitalizedOccurrence>
-                <HospitalizedOccurrence ID="1">
+                <HospitalizedOccurrence ID="2">
                   <AdmissionType>Involuntary</AdmissionType>
                   <DateRange>
                     <From>
@@ -1884,7 +1884,7 @@
               </Hospitalized>
               <Diagnosed>
                 <Answer>Yes</Answer>
-                <DiagnosedOccurrence ID="0">
+                <DiagnosedOccurrence ID="1">
                   <Diagnosis>PsychoticDisorder</Diagnosis>
                   <DateRange>
                     <From>
@@ -1930,7 +1930,7 @@
                     <Answer>Yes</Answer>
                   </TreatmentEffective>
                 </DiagnosedOccurrence>
-                <DiagnosedOccurrence ID="1">
+                <DiagnosedOccurrence ID="2">
                   <Diagnosis>Schizophrenia</Diagnosis>
                   <DateRange>
                     <From>
@@ -1980,7 +1980,7 @@
               </Diagnosed>
               <CurrentlyInTreatment>
                 <Answer>Yes</Answer>
-                <TreatmentOccurrence ID="0">
+                <TreatmentOccurrence ID="1">
                   <HealthCareProfessional>
                     <Name>Dr. Bob</Name>
                     <Telephone>
@@ -1995,7 +1995,7 @@
                     </Address>
                   </HealthCareProfessional>
                 </TreatmentOccurrence>
-                <TreatmentOccurrence ID="1">
+                <TreatmentOccurrence ID="2">
                   <HealthCareProfessional>
                     <Name>Dr. Bob</Name>
                     <Telephone>

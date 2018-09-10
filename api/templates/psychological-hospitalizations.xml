@@ -3,7 +3,7 @@
   <AnswerComment></AnswerComment>
   {{range $index, $item := .props.List.props.items}}
   {{with $Item := $item.Item}}
-  <HospitalizedOccurrence ID="{{$index}}">
+  <HospitalizedOccurrence ID="{{inc $index}}">
     <AdmissionType>{{radio $Item.Admission}}</AdmissionType>
     {{monthYearDaterange $Item.TreatmentDate}}
     <Facility>

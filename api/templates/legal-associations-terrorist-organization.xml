@@ -4,7 +4,7 @@
   <Organizations>
     {{range $index, $item := .props.List.props.items}}
     {{with $Item := $item.Item}}
-    <Organization ID="{{$index}}">
+    <Organization ID="{{inc $index}}">
       <Address>
         {{location $Item.Address}}
       </Address>

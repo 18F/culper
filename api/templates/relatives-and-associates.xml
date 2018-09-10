@@ -54,7 +54,7 @@
   <Relatives>
     {{range $index, $item := .props.List.props.items}}
     {{with $Item := $item.Item}}
-    <Relative ID="{{$index}}">
+    <Relative ID="{{inc $index}}">
       {{- $deceased := eq (branch $Item.IsDeceased) "Yes" }}
       {{if not $deceased }}
       {{if locationIsPostOffice $Item.Address}}
@@ -114,7 +114,7 @@
 
       <CountriesOfCitizenship>
         {{- range $index, $country := $Item.Citizenship.props.value}}
-        <Citizenship ID="{{$index}}">
+        <Citizenship ID="{{inc $index}}">
           <Country>{{ $country }}</Country>
         </Citizenship>
         {{- end}}
@@ -202,7 +202,7 @@
           {{- range $oindex, $othername := $Item.Aliases.props.items}}
           {{- with $Alias := $othername.Item}}
           {{- if eq (branch $Alias.Has) "Yes" }}
-          <OtherName ID="{{$oindex}}">
+          <OtherName ID="{{inc $oindex}}">
             <Comment></Comment>
             {{monthYearDaterange $Alias.Dates }}
             <LegalName>

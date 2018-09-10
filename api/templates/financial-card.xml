@@ -4,7 +4,7 @@
   <Incidents>
     {{range $index, $item := .props.List.props.items}}
     {{with $Item := $item.Item}}
-    <Incident ID="{{$index}}">
+    <Incident ID="{{inc $index}}">
       <Actions>{{textarea $Item.Description}}</Actions>
       <Agency>
         <Address>{{location $Item.Address}}</Address>

@@ -3,7 +3,7 @@
   <Comment></Comment>
   {{range $index, $item := .props.List.props.items}}
   {{with $Item := $item.Item}}
-  <RestrainingOrder ID="{{$index}}">
+  <RestrainingOrder ID="{{inc $index}}">
     <Comment></Comment>
     <Court>
       <Location>

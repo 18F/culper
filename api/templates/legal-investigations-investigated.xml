@@ -3,7 +3,7 @@
   <Comment></Comment>
   {{range $index, $item := .props.List.props.items}}
   {{with $Item := $item.Item}}
-  <Investigation ID="{{$index}}">
+  <Investigation ID="{{inc $index}}">
     <Agency>{{radio $Item.Agency | agencyType}}</Agency>
     <ClearanceLevel>{{radio $Item.ClearanceLevel.props.Level | clearanceType}}</ClearanceLevel>
     <EntryComment></EntryComment>

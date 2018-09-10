@@ -8,7 +8,7 @@
   {{end}}
   {{range $index, $item := .props.List.props.items}}
   {{with $Item := $item.Item}}
-  <SupportActivity ID="{{$index}}">
+  <SupportActivity ID="{{inc $index}}">
     {{country $Item.Country}}
     {{monthYearDaterange $Item.Dates}}
     <DescribeCompensation>{{text $Item.Compensation}}</DescribeCompensation>

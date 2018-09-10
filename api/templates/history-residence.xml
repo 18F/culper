@@ -2,7 +2,7 @@
   <Residencies>
     {{range $index, $item := .props.List.props.items}}
     {{with $Item := $item.Item}}
-    <Residency ID="{{$index}}">
+    <Residency ID="{{inc $index}}">
       {{if locationIsPostOffice $Item.Address}}
       <APOFPO>
         <Address>{{location $Item.Address}}</Address>
