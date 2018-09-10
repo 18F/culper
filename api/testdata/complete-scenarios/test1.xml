@@ -330,15 +330,12 @@
                     <Telephone>
                       <Day>
                         <Number>8311239382</Number>
-                        <Time>Day</Time>
                       </Day>
                       <Evening>
                         <Number>8311239381</Number>
-                        <Time>Night</Time>
                       </Evening>
                       <Mobile>
                         <Number>8311231223</Number>
-                        <Time>Both</Time>
                       </Mobile>
                     </Telephone>
                   </Verifier>

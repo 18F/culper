@@ -903,15 +903,12 @@
                     <Telephone>
                       <Day>
                         <Number>8315550555</Number>
-                        <Time>Both</Time>
                       </Day>
                       <Evening>
                         <Number>8315550555</Number>
-                        <Time>Both</Time>
                       </Evening>
                       <Mobile>
                         <Number>8315550555</Number>
-                        <Time>Both</Time>
                       </Mobile>
                     </Telephone>
                   </Verifier>

@@ -330,14 +330,11 @@
                     <Telephone>
                       <Day>
                         <Number>5554442134</Number>
-                        <Time>Both</Time>
                       </Day>
                       <Evening>
                         <Number>5677554321</Number>
-                        <Time>Both</Time>
                       </Evening>
                       <Mobile DoNotKnow="True">
-
 
 </Mobile>
                     </Telephone>

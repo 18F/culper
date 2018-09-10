@@ -573,15 +573,12 @@
                     <Telephone>
                       <Day>
                         <Number>1223444444</Number>
-                        <Time>Night</Time>
                       </Day>
                       <Evening>
                         <Number>2342342344</Number>
-                        <Time>Day</Time>
                       </Evening>
                       <Mobile>
                         <Number>2334333333</Number>
-                        <Time>Both</Time>
                       </Mobile>
                     </Telephone>
                   </Verifier>
