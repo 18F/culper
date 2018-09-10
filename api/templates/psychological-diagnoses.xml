@@ -3,7 +3,7 @@
   <AnswerComment></AnswerComment>
   {{range $index, $item := .props.DiagnosisList.props.items}}
   {{with $Item := $item.Item}}
-  <DiagnosedOccurrence ID="{{$index}}">
+  <DiagnosedOccurrence ID="{{inc $index}}">
     <Diagnosis>{{radio $Item.Condition | diagnosisType }}</Diagnosis>
     {{monthYearDaterange $Item.Diagnosed}}
     <HealthCareProfessional>{{treatment $Item.Treatment.props}}</HealthCareProfessional>
@@ -29,7 +29,7 @@
   <AnswerComment></AnswerComment>
   {{range $index, $item := .props.TreatmentList.props.items}}
   {{with $Item := $item.Item}}
-  <TreatmentOccurrence ID="{{$index}}">
+  <TreatmentOccurrence ID="{{inc $index}}">
     <HealthCareProfessional>{{treatment $Item}}</HealthCareProfessional>
   </TreatmentOccurrence>
   {{end}}

@@ -3,7 +3,7 @@
   <AnswerComment></AnswerComment>
   {{range $index, $item := .props.List.props.items}}
   {{with $Item := $item.Item}}
-  <ForeignFinancialBenefit ID="{{$index}}">
+  <ForeignFinancialBenefit ID="{{inc $index}}">
     <!-- Applies to all -->
     <Members
       {{if (checkboxHas $Item.InterestTypes "Yourself") | eq "True"}}

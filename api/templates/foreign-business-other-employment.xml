@@ -10,7 +10,7 @@
 <OtherForeignEmployments>
   {{range $index, $item := .props.List.props.items}}
   {{with $Item := $item.Item}}
-  <OtherForeignEmployment ID="{{$index}}">
+  <OtherForeignEmployment ID="{{inc $index}}">
     <Comment></Comment>
     <CompensationDescription>{{text $Item.Compensation}}</CompensationDescription>
     {{monthYearDaterange $Item.Dates}}
@@ -23,7 +23,7 @@
       </Address>
       <CountriesOfCitizenship>
         {{range $cindex, $country := $Item.Citizenship.props.value}}
-        <Citizenship ID="{{$cindex}}">
+        <Citizenship ID="{{inc $cindex}}">
           <Country>{{$country}}</Country>
         </Citizenship>
         {{end}}

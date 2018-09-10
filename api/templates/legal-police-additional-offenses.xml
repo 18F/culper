@@ -4,7 +4,7 @@
     <Comment></Comment>
     {{range $index, $item := .props.List.props.items}}
     {{with $Item := $item.Item}}
-    <Offense ID="{{$index}}">
+    <Offense ID="{{inc $index}}">
       <AwaitingTrial>
         <Answer>{{branch $Item.AwaitingTrial}}</Answer>
         <AnswerComment></AnswerComment>

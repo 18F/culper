@@ -4,7 +4,7 @@
   <Offenses>
     {{range $index, $item := .props.List.props.items}}
     {{with $Item := $item.Item}}
-    <Offense ID="{{$index}}">
+    <Offense ID="{{inc $index}}">
       <AppearedInCourt>
         <Answer>{{branchToAnswer $Item.WasCharged}}</Answer>
         <AnswerComment></AnswerComment>

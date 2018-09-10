@@ -2,7 +2,7 @@
   <DualCitizenships>
     {{range $index, $item := .props.List.props.items}}
     {{with $Item := $item.Item}}
-    <Citizenship ID="{{$index}}">
+    <Citizenship ID="{{inc $index}}">
       {{country $Item.Country}}
       <CountryOfCitizenshipDetailComment>{{countryComments $Item.Country}}</CountryOfCitizenshipDetailComment>
       <CurrentlyHoldCitizenship>

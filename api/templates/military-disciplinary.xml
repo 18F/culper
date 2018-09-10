@@ -4,7 +4,7 @@
   <Answer>{{branch .Disciplinary.props.HasDisciplinary}}</Answer>
   {{range $index, $item := .Disciplinary.props.List.props.items}}
   {{with $Item := $item.Item}}
-  <Charge ID="{{$index}}">
+  <Charge ID="{{inc $index}}">
     <Authority>{{textarea $Item.Court}}</Authority>
     <DateCharged>
       <Date Type="{{dateEstimated $Item.Date}}">{{monthYear $Item.Date}}</Date>

@@ -4,7 +4,7 @@
   <Consultations>
     {{range $index, $item := .props.List.props.items}}
     {{with $Item := $item.Item}}
-    <Consultation ID="{{$index}}">
+    <Consultation ID="{{inc $index}}">
       {{monthYearDaterange $Item.CounselingDates}}
       <Doctor>
         <Name>{{text $Item.TreatmentProviderName}}</Name>

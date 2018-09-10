@@ -88,7 +88,7 @@
             <PersonalReferences Version="1" Type="Pooled">
               <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
               <References>
-                <Reference ID="0">
+                <Reference ID="1">
                   <Address>
                     <Street>123 1st St. </Street>
                     <City>Monterey</City>
@@ -127,7 +127,7 @@
                   </Telephone>
                   <Title NotApplicable="True"/>
                 </Reference>
-                <Reference ID="1">
+                <Reference ID="2">
                   <Address>
                     <Street>89 9th St. </Street>
                     <City>Monterey</City>
@@ -166,7 +166,7 @@
                   </Telephone>
                   <Title NotApplicable="True"/>
                 </Reference>
-                <Reference ID="2">
+                <Reference ID="3">
                   <Address>
                     <Street>78 32nd St. </Street>
                     <City>Monterey</City>
@@ -211,7 +211,7 @@
               <ApplicableRelativeTypes Mother01="True" Father02="True"/>
               <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
               <Relatives>
-                <Relative ID="0">
+                <Relative ID="1">
                   <Birth>
                     <Date>
                       <Month>02</Month>
@@ -225,7 +225,7 @@
                     </Place>
                   </Birth>
                   <CountriesOfCitizenship>
-                    <Citizenship ID="0">
+                    <Citizenship ID="1">
                       <Country>United States</Country>
                     </Citizenship>
                   </CountriesOfCitizenship>
@@ -247,7 +247,7 @@
                   </OtherNamesUsed>
                   <Type>01Mother</Type>
                 </Relative>
-                <Relative ID="1">
+                <Relative ID="2">
                   <Birth>
                     <Date>
                       <Month>03</Month>
@@ -261,7 +261,7 @@
                     </Place>
                   </Birth>
                   <CountriesOfCitizenship>
-                    <Citizenship ID="0">
+                    <Citizenship ID="1">
                       <Country>United States</Country>
                     </Citizenship>
                   </CountriesOfCitizenship>
@@ -288,7 +288,7 @@
             </Spouse>
             <ResidenceHistory Version="1" Type="Pooled">
               <Residencies>
-                <Residency ID="0">
+                <Residency ID="1">
                   <Address>
                     <Street>418 English Ave. </Street>
                     <City>Monterey</City>
@@ -348,7 +348,7 @@
             </ResidenceHistory>
             <EmploymentActivities Type="Pooled" Version="1">
               <Employments>
-                <Employment ID="0">
+                <Employment ID="1">
                   <DateRange>
                     <From>
                       <Date>

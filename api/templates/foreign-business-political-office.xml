@@ -6,7 +6,7 @@
 <ForeignPoliticalOffices>
   {{range $index, $item := .props.List.props.items}}
   {{with $Item := $item.Item}}
-  <ForeignPoliticalOffice ID="{{$index}}">
+  <ForeignPoliticalOffice ID="{{inc $index}}">
     <Comment></Comment>
     {{country $Item.Country}}
     <CurrentEligibility>{{text $Item.Eligibility}}</CurrentEligibility>

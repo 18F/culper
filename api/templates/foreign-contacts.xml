@@ -6,7 +6,7 @@
   <Contacts>
     {{range $index, $item := .props.List.props.items}}
     {{with $Item := $item.Item}}
-    <Contact ID="{{$index}}">
+    <Contact ID="{{inc $index}}">
       {{if locationIsPostOffice $Item.Address}}
       <APOFPO>
         <Address>{{location $Item.Address}}</Address>
@@ -34,7 +34,7 @@
       </Birth>
       <Citizenships>
         {{range $index, $country := $Item.Citizenship.props.value}}
-        <Citizenship ID="{{$index}}">
+        <Citizenship ID="{{inc $index}}">
           <Country>{{$country}}</Country>
         </Citizenship>
         {{end}}
@@ -113,7 +113,7 @@
         {{range $oindex, $othername := $Item.Aliases.props.items}}
         {{with $Alias := $othername.Item}}
         {{- if branch $Alias.Has | eq "Yes"}}
-        <OtherName ID="{{$oindex}}">
+        <OtherName ID="{{inc $oindex}}">
           <Name>
             {{name $Alias.Alias}}
           </Name>

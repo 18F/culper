@@ -4,7 +4,7 @@
   <Consultations>
     {{range $index, $item := .props.List.props.items}}
     {{with $Item := $item.Item}}
-    <Consultation ID="{{$index}}">
+    <Consultation ID="{{inc $index}}">
       <Drug>
         <Type>{{radio $Item.DrugType}}</Type>
         <Explanation></Explanation>

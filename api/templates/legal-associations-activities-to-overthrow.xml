@@ -2,7 +2,7 @@
   <Activities>
     {{range $index, $item := .props.List.props.items}}
     {{with $Item := $item.Item}}
-    <Activity ID="{{$index}}">
+    <Activity ID="{{inc $index}}">
       <Comment></Comment>
       {{monthYearDaterange $Item.Dates}}
       <Reason>{{text $Item.Reasons}}</Reason>

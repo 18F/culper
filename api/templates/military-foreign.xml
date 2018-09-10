@@ -5,7 +5,7 @@
   {{- range $index, $item := .props.List.props.items}}
   {{- with $Item := $item.Item}}
   {{- if branch $Item.Has | eq "Yes"}}
-  <Service ID="{{$index}}">
+  <Service ID="{{inc $index}}">
     <AssociationDescription>{{textarea $Item.Circumstances}}</AssociationDescription>
     <Branch>{{text $Item.Division}}</Branch>
     {{country $Item.Country}}
@@ -20,7 +20,7 @@
       <AnswerComment></AnswerComment>
       {{range $cindex, $citem := $Item.List.props.items}}
       {{with $Contact := $citem.Item}}
-      <Contact ID="{{$cindex}}">
+      <Contact ID="{{inc $cindex}}">
         <Address>{{location $Contact.Address}}</Address>
         <Comment></Comment>
         {{monthYearDaterange $Contact.Dates}}

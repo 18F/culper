@@ -44,7 +44,7 @@
     <ContinueComment></ContinueComment>
     <CountriesOfCitizenship>
       {{range $cindex, $country := $Item.Citizenship.props.value}}
-      <Citizenship ID="{{$cindex}}">
+      <Citizenship ID="{{inc $cindex}}">
         <Country>{{$country}}</Country>
       </Citizenship>
       {{end}}
@@ -69,7 +69,7 @@
       {{range $oindex, $othername := $Item.OtherNames.props.items}}
       {{with $other := $othername.Item}}
       {{- if branch $other.Has | eq "Yes"}}
-      <OtherName ID="{{$oindex}}">
+      <OtherName ID="{{inc $oindex}}">
         {{monthYearDaterange $other.DatesUsed}}
         <LegalName>
           {{name $other.Name}}
