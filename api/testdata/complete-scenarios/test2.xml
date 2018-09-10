@@ -560,7 +560,7 @@
                       </Address>
                       <Name>helpers</Name>
                     </Agency>
-                    <Amount Estimated="false">4322</Amount>
+                    <Amount>4322</Amount>
                     <Date>
                       <Month>03</Month>
                       <Year>1999</Year>
@@ -578,7 +578,7 @@
                       </Address>
                       <Name>path</Name>
                     </Agency>
-                    <Amount Estimated="false">3333</Amount>
+                    <Amount>3333</Amount>
                     <Date>
                       <Month>05</Month>
                       <Year>1990</Year>
@@ -632,7 +632,7 @@
                     <Agency>
                       <Name>Dr. Bob</Name>
                     </Agency>
-                    <Amount Estimated="false">23424</Amount>
+                    <Amount>23424</Amount>
                     <Court>
                       <Address>
                         <Street>110 Main ST. </Street>
@@ -664,7 +664,7 @@
                     <Agency>
                       <Name>OK school</Name>
                     </Agency>
-                    <Amount Estimated="false">333</Amount>
+                    <Amount>333</Amount>
                     <Court>
                       <Address>
                         <Street>222 elm street </Street>
@@ -746,7 +746,7 @@
                     <Agency>
                       <Name>Dr. Bob</Name>
                     </Agency>
-                    <Amount Estimated="false">234234</Amount>
+                    <Amount>234234</Amount>
                     <DateBegan Type="Estimated">
                       <Month>05</Month>
                       <Year>1990</Year>
@@ -768,7 +768,7 @@
                     <Agency>
                       <Name>Dr. Bob</Name>
                     </Agency>
-                    <Amount Estimated="false">34647</Amount>
+                    <Amount>34647</Amount>
                     <DateBegan Type="Estimated">
                       <Month>06</Month>
                       <Year>1965</Year>
@@ -794,7 +794,7 @@
                   <Incident ID="1">
                     <Actions>paid it</Actions>
                     <Agency>state</Agency>
-                    <Amount Estimated="false">5699</Amount>
+                    <Amount>5699</Amount>
                     <DateFailedToPay>
                       <Year>1979</Year>
                     </DateFailedToPay>
@@ -809,7 +809,7 @@
                   <Incident ID="2">
                     <Actions>ok ok</Actions>
                     <Agency>local</Agency>
-                    <Amount Estimated="false">345</Amount>
+                    <Amount>345</Amount>
                     <DateFailedToPay>
                       <Year>1999</Year>
                     </DateFailedToPay>

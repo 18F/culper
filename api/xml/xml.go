@@ -97,6 +97,7 @@ func applyBulkFixes(xml string) string {
 		" DoNotKnow=\"\"",
 		" Type=\"\"",
 		" Estimated=\"\"",
+		" Estimated=\"false\"",
 	}
 
 	x := xml

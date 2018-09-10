@@ -2261,7 +2261,7 @@
                       </Address>
                       <Name>General Services Administration</Name>
                     </Agency>
-                    <Amount Estimated="false">20</Amount>
+                    <Amount>20</Amount>
                     <Date>
                       <Month>03</Month>
                       <Year>2014</Year>
@@ -2279,7 +2279,7 @@
                       </Address>
                       <Name>Safeway</Name>
                     </Agency>
-                    <Amount Estimated="false">30</Amount>
+                    <Amount>30</Amount>
                     <Date>
                       <Month>01</Month>
                       <Year>2016</Year>
@@ -2333,7 +2333,7 @@
                     <Agency>
                       <Name>Blockbuster</Name>
                     </Agency>
-                    <Amount Estimated="false">55</Amount>
+                    <Amount>55</Amount>
                     <Court>
                       <Address>
                         <Street>323 7th St. </Street>
@@ -2365,7 +2365,7 @@
                     <Agency>
                       <Name>EPA</Name>
                     </Agency>
-                    <Amount Estimated="false">9999</Amount>
+                    <Amount>9999</Amount>
                     <Court>
                       <Address>
                         <Street>389 5th Ave. </Street>
@@ -2447,7 +2447,7 @@
                     <Agency>
                       <Name>James Stewart</Name>
                     </Agency>
-                    <Amount Estimated="false">9000</Amount>
+                    <Amount>9000</Amount>
                     <DateBegan>
                       <Month>04</Month>
                       <Year>2018</Year>
@@ -2470,7 +2470,7 @@
                     <Agency>
                       <Name>Huxley Inc.</Name>
                     </Agency>
-                    <Amount Estimated="false">10000</Amount>
+                    <Amount>10000</Amount>
                     <DateBegan>
                       <Month>06</Month>
                       <Year>2018</Year>
@@ -2496,7 +2496,7 @@
                   <Incident ID="1">
                     <Actions>Have not tried.</Actions>
                     <Agency>IRS</Agency>
-                    <Amount Estimated="false">9910</Amount>
+                    <Amount>9910</Amount>
                     <DateFailedToPay>
                       <Year>2012</Year>
                     </DateFailedToPay>
@@ -2508,7 +2508,7 @@
                   <Incident ID="2">
                     <Actions>Multiple payments</Actions>
                     <Agency>Board of Equalization</Agency>
-                    <Amount Estimated="false">90313</Amount>
+                    <Amount>90313</Amount>
                     <DateFailedToPay>
                       <Year>2013</Year>
                     </DateFailedToPay>
