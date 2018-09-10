@@ -3825,9 +3825,7 @@
                 <Consultations>
                   <Consultation ID="1">
                     <Agency>
-                      <Address SameAsAbove="True">
-                        <Street> </Street>
-                      </Address>
+                      <Address SameAsAbove="True"/>
                       <Name>Best Agency</Name>
                     </Agency>
                     <BeginDate>
@@ -3854,7 +3852,7 @@
                   </Consultation>
                   <Consultation ID="2">
                     <Agency>
-                      <Address SameAsAbove="False">
+                      <Address>
                         <Street>389 Agency Ave. </Street>
                         <City>Monterey</City>
                         <State>CA</State>
