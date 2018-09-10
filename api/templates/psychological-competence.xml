@@ -10,9 +10,9 @@
     </Court>
     <Date Type="{{dateEstimated $Item.Occurred}}">{{monthYear $Item.Occurred}}</Date>
     <Appealed>
-      <Answer>{{branchcollectionHas $Item.Appeals.props.List}}</Answer>
+      <Answer>{{branchcollectionHas $Item.Appeals}}</Answer>
       <AnswerComment></AnswerComment>
-      {{ if branchcollectionHas $Item.Appeals.props.List | eq "Yes"}}
+      {{ if branchcollectionHas $Item.Appeals | eq "Yes"}}
       {{range $aindex, $appeal := $Item.Appeals.props.items}}
       {{with $Appeal := $appeal.Item}}
       {{if branch $Appeal.Has | eq "Yes"}}

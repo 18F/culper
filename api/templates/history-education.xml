@@ -1,4 +1,4 @@
-<Education>
+<Education Version="1" Type="Pooled">
   <AttendedAnySchools>
     <Answer>{{branch .props.HasAttended}}</Answer>
     {{if or (branch .props.HasAttended | eq "Yes") (branch .props.HasDegree10 | eq "Yes")}}

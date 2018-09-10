@@ -9,7 +9,6 @@
           <Version>2017-07</Version>
         </Form>
         <Applicant>
-          <Name>{{$name.first}} {{$name.middle}} {{$name.last}}</Name>
           {{if $ssn.notApplicable}}
           <SSN NotApplicable="True" />
           {{else}}
@@ -17,8 +16,9 @@
           {{end}}
         </Applicant>
         <Responses>
-          <AgencyInstructionsForApplicant></AgencyInstructionsForApplicant>
+          <AgencyInstructionsForApplicant/>
           <FormInstanceSpecific>
+            <AgencyInstructionsForApplicant/>
             <ESigCertificationResponses Version="1" Type="Pooled" LastSummaryID="201" LastDynamicListID="201">
               <UserFinalizedCert>
                 <Answer>Yes</Answer>
@@ -30,6 +30,8 @@
             <UserPreferences Version="1" Type="Pooled" LastSummaryID="201" LastDynamicListID="201">
               <DisplayNavigation/>
             </UserPreferences>
+            <!-- TODO https://github.com/18F/e-QIP-prototype/issues/759 -->
+            <ValidationResponses Version="1" Type="FormInstanceSpecific" />
           </FormInstanceSpecific>
           <Pooled>
             {{tmpl "identification.xml" .}}

@@ -1,4 +1,4 @@
-<ResidenceHistory>
+<ResidenceHistory Version="1" Type="Pooled">
   <Residencies>
     {{range $index, $item := .props.List.props.items}}
     {{with $Item := $item.Item}}
@@ -44,10 +44,10 @@
           {{if eq (checkboxHas $Item.ReferenceRelationship "Friend") "True"}}
           Friend="True"
           {{end}}
-          {{if eq (checkboxHas $Item.ReferenceRelationship "Schoolmate") "True"}}
-          Schoolmate="True"
+          {{if eq (checkboxHas $Item.ReferenceRelationship "Landlord") "True"}}
+          Landlord="True"
           {{end}}
-          {{if eq (checkboxHas $Item.ReferenceRelationship "WorkAssociate") "True"}}
+          {{if eq (checkboxHas $Item.ReferenceRelationship "Business") "True"}}
           WorkAssociate="True"
           {{end}}
           {{if eq (checkboxHas $Item.ReferenceRelationship "Other") "True"}}
