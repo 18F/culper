@@ -76,6 +76,7 @@ func (service Service) DefaultTemplate(templateName string, data map[string]inte
 		"relativeForeignDocType": relativeForeignDocType,
 		"telephone":              telephone,
 		"telephoneNoNumber":      telephoneNoNumber,
+		"telephoneNoTimeOfDay":   telephoneNoTimeOfDay,
 		"text":                   text,
 		"textarea":               textarea,
 		"toUpper":                toUpper,
@@ -647,6 +648,10 @@ func countryComments(data map[string]interface{}) string {
 
 func telephone(data map[string]interface{}) (template.HTML, error) {
 	return xmlTemplate("telephone.xml", data)
+}
+
+func telephoneNoTimeOfDay(data map[string]interface{}) (template.HTML, error) {
+	return xmlTemplate("telephone-no-time-of-day.xml", data)
 }
 
 func name(data map[string]interface{}) (template.HTML, error) {

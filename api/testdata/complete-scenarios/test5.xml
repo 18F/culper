@@ -903,15 +903,12 @@
                     <Telephone>
                       <Day>
                         <Number>8315550555</Number>
-                        <Time>Both</Time>
                       </Day>
                       <Evening>
                         <Number>8315550555</Number>
-                        <Time>Both</Time>
                       </Evening>
                       <Mobile>
                         <Number>8315550555</Number>
-                        <Time>Both</Time>
                       </Mobile>
                     </Telephone>
                   </Verifier>
@@ -2242,7 +2239,6 @@
                     </Record>
                     <Type>Chapter11</Type>
                   </Activity>
-                  <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
                 </Activities>
                 <Answer>Yes</Answer>
                 <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
@@ -3826,9 +3822,7 @@
                 <Consultations>
                   <Consultation ID="1">
                     <Agency>
-                      <Address SameAsAbove="True">
-                        <Street> </Street>
-                      </Address>
+                      <Address SameAsAbove="True"/>
                       <Name>Best Agency</Name>
                     </Agency>
                     <BeginDate>
@@ -3855,7 +3849,7 @@
                   </Consultation>
                   <Consultation ID="2">
                     <Agency>
-                      <Address SameAsAbove="False">
+                      <Address>
                         <Street>389 Agency Ave. </Street>
                         <City>Monterey</City>
                         <State>CA</State>

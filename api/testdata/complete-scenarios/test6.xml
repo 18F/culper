@@ -329,15 +329,12 @@
                     <Telephone>
                       <Day>
                         <Number>7245555551</Number>
-                        <Time>Both</Time>
                       </Day>
                       <Evening>
                         <Number>7245555551</Number>
-                        <Time>Both</Time>
                       </Evening>
                       <Mobile>
                         <Number>7245555551</Number>
-                        <Time>Both</Time>
                       </Mobile>
                     </Telephone>
                   </Verifier>

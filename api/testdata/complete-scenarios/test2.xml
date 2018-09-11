@@ -330,14 +330,11 @@
                     <Telephone>
                       <Day>
                         <Number>5554442134</Number>
-                        <Time>Both</Time>
                       </Day>
                       <Evening>
                         <Number>5677554321</Number>
-                        <Time>Both</Time>
                       </Evening>
                       <Mobile DoNotKnow="True">
-
 
 </Mobile>
                     </Telephone>
@@ -541,7 +538,6 @@
                     </Record>
                     <Type>Chapter7</Type>
                   </Activity>
-                  <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
                 </Activities>
                 <Answer>Yes</Answer>
                 <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
@@ -572,9 +568,9 @@
                     <Agency>
                       <Address>
                         <Street>22 elm st </Street>
-                        <City>APO</City>
-                        <State>AA</State>
-                        <ZipCode>34052</ZipCode>
+                        <City>Pacific Grove</City>
+                        <State>CA</State>
+                        <ZipCode>93950</ZipCode>
                       </Address>
                       <Name>path</Name>
                     </Agency>
@@ -902,9 +898,7 @@
                 <Consultations>
                   <Consultation ID="1">
                     <Agency>
-                      <Address SameAsAbove="True">
-                        <Street> </Street>
-                      </Address>
+                      <Address SameAsAbove="True"/>
                       <Name>OK</Name>
                     </Agency>
                     <BeginDate>
@@ -931,7 +925,7 @@
                   </Consultation>
                   <Consultation ID="2">
                     <Agency>
-                      <Address SameAsAbove="False">
+                      <Address>
                         <Street>324 crazy Rd. </Street>
                         <City>Salem</City>
                         <State>FL</State>

@@ -1,0 +1,24 @@
+<!--
+According to all the found usages of the <Telephone> element
+it appears the <International> child element is optional and only
+has one valid enumerable value.
+
+    <xs:element name="International" minOccurs="0">
+      <xs:simpleType>
+        <xs:restriction base="xs:normalizedString">
+          <xs:enumeration value="International"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:element>
+
+Also, here are some additional findings:
+ - some <Telephone> elements do not have a <Time>
+ - there is no reference to the `type` of phone number (i.e. home, work, cell)
+-->
+{{- if .props.type | eq "International"}}
+<International>International</International>
+{{- end}}
+<Number>{{.props.number}}</Number>
+{{- if ne .props.extension ""}}
+<Extension>{{.props.extension}}</Extension>
+{{- end}}
