@@ -41,7 +41,11 @@ export default class SelectiveServiceValidator {
 
   validRegistrationNumber() {
     if (this.wasBornAfter === 'Yes' && this.hasRegistered === 'Yes') {
-      return validGenericTextfield(this.registrationNumber)
+      return !!(
+        this.registrationNumber &&
+        this.registrationNumber.value &&
+        /^\d*$/g.test(this.registrationNumber.value)
+      )
     }
 
     return true

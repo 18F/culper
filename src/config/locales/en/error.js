@@ -119,6 +119,13 @@ export const error = {
       message: 'The social security number is considered invalid.'
     }
   },
+  selective: {
+    pattern: {
+      title: 'Oops, there’s a problem.',
+      message: 'Your Selective Service Number should only be numbers.',
+      note: ''
+    }
+  },
   date: {
     month: {
       notfound: {
