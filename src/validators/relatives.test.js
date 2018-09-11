@@ -1635,23 +1635,6 @@ describe('Relatives validation', function() {
       {
         data: {
           List: {
-            branch: { value: 'Nope' },
-            items: [
-              {
-                Item: {
-                  Relation: {
-                    value: 'Mother'
-                  }
-                }
-              }
-            ]
-          }
-        },
-        expected: false
-      },
-      {
-        data: {
-          List: {
             branch: { value: 'No' },
             items: [
               {
@@ -1845,6 +1828,75 @@ describe('Relatives validation', function() {
 
     tests.forEach(test => {
       expect(new RelativesValidator(test.data).isValid()).toBe(test.expected)
+    })
+  })
+
+  it('validates that a mother and father have been provided', () => {
+    const tests = [
+      {
+        data: {
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Relation: {
+                    value: 'Mother'
+                  }
+                }
+              }
+            ]
+          }
+        },
+        expected: false
+      },
+      {
+        data: {
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Relation: {
+                    value: 'Father'
+                  }
+                }
+              }
+            ]
+          }
+        },
+        expected: false
+      },
+      {
+        data: {
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Relation: {
+                    value: 'Mother'
+                  }
+                }
+              },
+              {
+                Item: {
+                  Relation: {
+                    value: 'Father'
+                  }
+                }
+              }
+            ]
+          }
+        },
+        expected: true
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(new RelativesValidator(test.data).validMinimumRelations()).toBe(
+        test.expected
+      )
     })
   })
 })
