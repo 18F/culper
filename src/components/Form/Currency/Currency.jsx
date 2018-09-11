@@ -42,7 +42,7 @@ Currency.defaultProps = {
   disabled: false,
   value: '',
   min: '1',
-  max: '',
+  max: '2147483647',
   onError: (value, arr) => {
     return arr
   }

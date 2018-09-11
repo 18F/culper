@@ -777,6 +777,10 @@ export const error = {
     }
   },
   currency: {
+    max: {
+      title: 'Currency value is too large',
+      message: 'Currency amounts over $2,147,483,647 are not supported.'
+    },
     min: {
       title: 'There is a problem with the losses',
       message: 'The reported losses should have a dollar value.',
