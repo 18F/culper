@@ -3,7 +3,7 @@
   <AnswerComment></AnswerComment>
   {{range $index, $item := .props.List.props.items}}
   {{with $Item := $item.Item}}
-  <ForeignNationalSupported ID="{{$index}}">
+  <ForeignNationalSupported ID="{{inc $index}}">
     <Address>
       {{location $Item.Address}}
     </Address>
@@ -11,7 +11,7 @@
     <Comment></Comment>
     <CountriesOfCitizenship>
       {{range $cindex, $country := $Item.Citizenship.props.value}}
-      <Citizenship ID="{{$cindex}}">
+      <Citizenship ID="{{inc $cindex}}">
         <Country>{{$country}}</Country>
       </Citizenship>
       {{end}}

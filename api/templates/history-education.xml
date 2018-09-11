@@ -1,4 +1,4 @@
-<Education>
+<Education Version="1" Type="Pooled">
   <AttendedAnySchools>
     <Answer>{{branch .props.HasAttended}}</Answer>
     {{if or (branch .props.HasAttended | eq "Yes") (branch .props.HasDegree10 | eq "Yes")}}
@@ -15,7 +15,7 @@
   <SchoolsAttended>
     {{range $index, $item := .props.List.props.items}}
     {{with $Item := $item.Item}}
-    <SchoolAttended ID="{{$index}}">
+    <SchoolAttended ID="{{inc $index}}">
       {{monthYearDaterange $Item.Dates}}
       <Type>{{radio $Item.Type | schoolType}}</Type>
       <Name>{{text $Item.Name}}</Name>
@@ -30,7 +30,7 @@
         {{- range $dindex, $diploma := $Item.Diplomas.props.items}}
         {{- with $Diploma := $diploma.Item}}
         {{- if branch $Diploma.Has | eq "Yes"}}
-        <DegreeAwarded ID="{{$dindex}}">
+        <DegreeAwarded ID="{{inc $dindex}}">
           <DateAwarded>
             <Date Type="{{dateEstimated $Diploma.Date}}">{{monthYear $Diploma.Date}}</Date>
           </DateAwarded>

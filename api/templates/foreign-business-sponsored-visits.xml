@@ -4,10 +4,10 @@
   <Comment></Comment>
   {{range $index, $item := .props.List.props.items}}
   {{with $Item := $item.Item}}
-  <SponsoredVisit ID="{{$index}}">
+  <SponsoredVisit ID="{{inc $index}}">
     <AddressWhileInUS>
       <Address>
-        {{location $Item.Address}}
+        {{location $Item.Residence}}
       </Address>
     </AddressWhileInUS>
     <Birth>
@@ -27,14 +27,14 @@
     </Birth>
     <CountriesOfCitizenship>
       {{range $cindex, $country := $Item.Citizenship.props.value}}
-      <Citizenship ID="{{$cindex}}">
+      <Citizenship ID="{{inc $cindex}}">
         <Country>{{$country}}</Country>
       </Citizenship>
       {{end}}
     </CountriesOfCitizenship>
     <CurrentAddress>
       <Address>
-        {{location $Item.Residence}}
+        {{location $Item.Address}}
       </Address>
     </CurrentAddress>
     {{monthYearDaterange $Item.Dates}}

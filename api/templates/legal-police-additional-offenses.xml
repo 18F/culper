@@ -4,7 +4,7 @@
     <Comment></Comment>
     {{range $index, $item := .props.List.props.items}}
     {{with $Item := $item.Item}}
-    <Offense ID="{{$index}}">
+    <Offense ID="{{inc $index}}">
       <AwaitingTrial>
         <Answer>{{branch $Item.AwaitingTrial}}</Answer>
         <AnswerComment></AnswerComment>
@@ -24,7 +24,13 @@
       <Court>
         <Location>
           <Place>
-            {{location $Item.CourtAddress}}
+            <!-- XXX https://github.com/18F/e-QIP-prototype/issues/755 -->
+            {{- $usAddress := addressIn $Item.CourtAddress "United States" }}
+            {{if $usAddress}}
+            {{locationOverrideLayout $Item.CourtAddress "US City, State, Zipcode International city"}}
+            {{else}}
+            {{locationOverrideLayout $Item.CourtAddress "City, Country"}}
+            {{end}}
           </Place>
         </Location>
         <Name>{{text $Item.CourtName}}</Name>
@@ -37,9 +43,15 @@
       </InvolveFollowingOffenses>
       <OffenseDescription>{{text $Item.Description}}</OffenseDescription>
       <OffenseType
-          Domestic="{{branchToBool $Item.InvolvedViolence}}"
-          Firearms="{{branchToBool $Item.InvolvedFirearms}}"
-          Alcohol="{{branchToBool $Item.InvoledSubstances}}"
+          {{if branchToBool $Item.InvolvedViolence | eq "True"}}
+          Domestic="True"
+          {{end}}
+          {{if branchToBool $Item.InvolvedFirearms | eq "True"}}
+          Firearms="True"
+          {{end}}
+          {{if branchToBool $Item.InvolvedSubstances | eq "True"}}
+          Alcohol="True"
+          {{end}}
           />
       <Sentenced>
         <Answer>{{branch $Item.WasSentenced}}</Answer>
@@ -66,13 +78,14 @@
             {{end}}
           </YearOrMore>
         </Imprisonment>
+        {{if branch $Item.WasSentenced | eq "Yes"}}
         <Incarcerated>
           <YearOrMore>
-            <Answer>{{branch $sentence.Incarcerated}}</Answer>
+            <Answer>{{branchToAnswer $sentence.Incarcerated}}</Answer>
           </YearOrMore>
         </Incarcerated>
         <MoreThanYear>
-          <Answer>{{branch $sentence.ExceedsYear}}</Answer>
+          <Answer>{{branchToAnswer $sentence.ExceedsYear}}</Answer>
         </MoreThanYear>
         <Probation>
           {{if notApplicable $sentence.ProbationDatesNA | eq "True"}}
@@ -92,6 +105,7 @@
           </DateRange>
           {{end}}
         </Probation>
+        {{end}}
         {{end}}
       </Sentenced>
     </Offense>

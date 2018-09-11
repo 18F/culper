@@ -4,7 +4,7 @@
   <Comment></Comment>
   {{range $index, $item := .props.List.props.items}}
   {{with $Item := $item.Item}}
-  <Meeting ID="{{$index}}">
+  <Meeting ID="{{inc $index}}">
     {{monthYearDaterange $Item.Dates}}
     <EntryComment></EntryComment>
     <Location>
@@ -22,7 +22,7 @@
       {{range $cindex, $contact := $Item.Contacts.props.List.props.items}}
       {{with $Contact := $contact.Item}}
       {{if branch $Contact.Has | eq "Yes"}}
-      <Contact ID="{{$cindex}}">
+      <Contact ID="{{inc $cindex}}">
         <Comment></Comment>
         <Explanation>{{text $Contact.Explanation}}</Explanation>
       </Contact>

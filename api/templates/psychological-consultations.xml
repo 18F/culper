@@ -3,7 +3,7 @@
   <AnswerComment></AnswerComment>
   {{range $index, $item := .props.List.props.items}}
   {{with $Item := $item.Item}}
-  <OrderedToConsultOccurrence ID="{{$index}}">
+  <OrderedToConsultOccurrence ID="{{inc $index}}">
     <Court>
       <Name>{{text $Item.CourtName}}</Name>
       <Address>{{location $Item.CourtAddress}}</Address>
@@ -17,7 +17,7 @@
       {{range $aindex, $appeal := $Item.Appeals.props.items}}
       {{with $Appeal := $appeal.Item}}
       {{if branch $Appeal.Has | eq "Yes"}}
-      <Appeal ID="{{$aindex}}">
+      <Appeal ID="{{inc $aindex}}">
         <Court>
           <Name>{{text $Appeal.CourtName}}</Name>
           <Address>{{location $Appeal.CourtAddress}}</Address>

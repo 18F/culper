@@ -3,7 +3,7 @@
     {{- range $index, $item := .props.List.props.items}}
     {{- with $Item := $item.Item}}
     {{- $isPresent := $Item.Dates.props.present}}
-    <Employment ID="{{$index}}">
+    <Employment ID="{{inc $index}}">
       {{- monthYearDaterange $Item.Dates}}
       <Type>{{radio $Item.EmploymentActivity | employmentType}}</Type>
       <EmploymentTypeOtherExplanation>{{$Item.EmploymentActivity.props.otherExplanation}}</EmploymentTypeOtherExplanation>
@@ -59,8 +59,8 @@
           {{range $eindex, $additional := $Item.Additional.props.items}}
           {{with $Previous := $additional.Item}}
           {{- if branch $Previous.Has | eq "Yes"}}
-          <PreviousEmployment ID="{{$eindex}}">
-            {{daterange $Previous.DatesEmployed}}
+          <PreviousEmployment ID="{{inc $eindex}}">
+            {{monthYearDaterange $Previous.DatesEmployed}}
             <PositionTitle>{{text $Previous.Position}}</PositionTitle>
             <Supervisor>{{text $Previous.Supervisor}}</Supervisor>
           </PreviousEmployment>
@@ -96,16 +96,16 @@
       {{- end}}
       {{- end}}
 
-      {{- if not $isPresent}}
+      {{- if and (not $isPresent) (radio $Item.EmploymentActivity | ne "Unemployment")}}
       <Dismissals>
         <Answer>{{branchcollectionHas $Item.ReasonLeft.props.Reasons}}</Answer>
         {{- range $lindex, $left := $Item.ReasonLeft.props.Reasons.props.items}}
         {{- with $Dismissal := $left.Item}}
         {{- if eq (branch $Dismissal.Has) "Yes"}}
-        <Dismissal ID="{{$lindex}}">
+        <Dismissal ID="{{inc $lindex}}">
           <Date Type="{{dateEstimated $Dismissal.Date}}">{{monthYear $Dismissal.Date}}</Date>
           <Reason>{{textarea $Item.ReasonLeft.props.ReasonDescription}}</Reason>
-          <SeveranceType>{{radio $Dismissal.Reason}}</SeveranceType>
+          <SeveranceType>{{radio $Dismissal.Reason | severanceType}}</SeveranceType>
           <SeveranceTypeComment>{{textarea $Dismissal.Text}}</SeveranceTypeComment>
           <Comment></Comment>
         </Dismissal>
@@ -120,12 +120,13 @@
       </Dismissals>
       {{end}}
 
+      {{- if radio $Item.EmploymentActivity | ne "Unemployment"}}
       <Incidents>
         <Answer>{{branchcollectionHas $Item.Reprimand}}</Answer>
         {{- range $rindex, $reprimand := $Item.Reprimand.props.items}}
         {{- with $Reprimand := $reprimand.Item}}
         {{- if eq (branch $Reprimand.Has) "Yes"}}
-        <Incident ID="{{$rindex}}">
+        <Incident ID="{{inc $rindex}}">
           <Date Type="{{dateEstimated $Reprimand.Date}}">{{monthYear $Reprimand.Date}}</Date>
           <Reason>{{textarea $Reprimand.Text}}</Reason>
           <Comment></Comment>
@@ -139,8 +140,9 @@
         <Comment></Comment>
         {{end}}
       </Incidents>
+      {{end}}
 
-      {{- if radio $Item.EmploymentActivity | ne "ActiveMilitary"}}
+      {{- if and (radio $Item.EmploymentActivity | ne "ActiveMilitary") (radio $Item.EmploymentActivity | ne "Unemployment") (radio $Item.EmploymentActivity | ne "NationalGuard") (radio $Item.EmploymentActivity | ne "USPHS")}}
       <JobLocation>
         <Answer>{{branch $Item.PhysicalAddress.props.HasDifferentAddress}}</Answer>
         <AnswerComment></AnswerComment>
@@ -152,7 +154,7 @@
       </JobLocation>
       {{- end}}
 
-      {{- if not $isPresent}}
+      {{- if and (not $isPresent) (radio $Item.EmploymentActivity | ne "Unemployment")}}
       <LeftJob>
         <Comment>{{textarea $Item.ReasonLeft.props.Comments}}</Comment>
         <Reason>{{textarea $Item.ReasonLeft.props.ReasonDescription}}</Reason>

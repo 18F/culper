@@ -2,7 +2,7 @@
   <Answer>{{branch .props.HasCohabitant}}</Answer>
   {{range $index, $item := .props.CohabitantList.props.items}}
   {{with $Item := $item.Item}}
-  <Cohabitant ID="{{$index}}">
+  <Cohabitant ID="{{inc $index}}">
     <Birth>
       <Date Type="{{dateEstimated $Item.Birthdate}}">
         {{ date $Item.Birthdate }}
@@ -35,14 +35,14 @@
     {{- end}}
     {{- end}}
     <CohabitationDate>
-      <Date Type="{{dateEstimated $Item.Birthdate}}">
-        {{date $Item.Birthdate}}
+      <Date Type="{{dateEstimated $Item.CohabitationBegan}}">
+        {{date $Item.CohabitationBegan}}
       </Date>
     </CohabitationDate>
     <ContinueComment></ContinueComment>
     <CountriesOfCitizenship>
       {{range $cindex, $country := $Item.Citizenship.props.value}}
-      <Citizenship ID="{{$cindex}}">
+      <Citizenship ID="{{inc $cindex}}">
         <Country>{{$country}}</Country>
       </Citizenship>
       {{end}}
@@ -58,7 +58,7 @@
       {{- range $oindex, $othername := $Item.OtherNames.props.items}}
       {{- with $other := $othername.Item}}
       {{- if branch $other.Has | eq "Yes"}}
-      <OtherName ID="{{$oindex}}">
+      <OtherName ID="{{inc $oindex}}">
         {{monthYearDaterange $other.DatesUsed}}
         <LegalName>
           {{name $other.OtherName}}

@@ -9,7 +9,7 @@
 <VotedInForeignElections>
   {{range $index, $item := .props.List.props.items}}
   {{with $Item := $item.Item}}
-  <ForeignElection ID="{{$index}}">
+  <ForeignElection ID="{{inc $index}}">
     <Comment></Comment>
     {{country $Item.Country}}
     <CurrentVotingEligibility>{{text $Item.Eligibility}}</CurrentVotingEligibility>

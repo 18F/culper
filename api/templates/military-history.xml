@@ -3,7 +3,7 @@
 <MilitaryService>
   {{range $index, $item := .props.List.props.items}}
   {{with $Item := $item.Item}}
-  <Service ID="{{$index}}">
+  <Service ID="{{inc $index}}">
     <Branch>{{radio $Item.Service}}</Branch>
     <Comment></Comment>
     {{monthYearDaterange $Item.Dates}}

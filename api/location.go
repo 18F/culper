@@ -23,6 +23,12 @@ const (
 	LayoutStreetCity                          = "Street, City"
 )
 
+// Special layout flags for e-QIP integration for Country elements with CountriesNoUS type
+const (
+	LayoutBirthPlaceWithoutCountyNoUS = "Birthplace without County CountriesNoUS"
+	LayoutBirthPlaceNoUS              = "Birthplace CountriesNoUS"
+)
+
 // Location is a basic input.
 type Location struct {
 	ID              int    `json:"-"`

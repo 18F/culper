@@ -4,7 +4,7 @@
   <Consultations>
     {{range $index, $item := .props.List.props.items}}
     {{with $Item := $item.Item}}
-    <Consultation ID="{{$index}}">
+    <Consultation ID="{{inc $index}}">
       <ActionToSeekCounselingTaken>
         <Answer>{{branch $Item.ActionTaken}}</Answer>
       </ActionToSeekCounselingTaken>
@@ -37,6 +37,7 @@
         <Explanation></Explanation>
         <Type>{{radio $Item.DrugType}}</Type>
       </Drug>
+      {{if branch $Item.ActionTaken | eq "Yes"}}
       <Doctor>
         <Name>
           <Last>{{doctorLastName $Item.TreatmentProvider}}</Last>
@@ -46,6 +47,7 @@
         <Telephone>{{telephone $Item.TreatmentProviderTelephone}}</Telephone>
       </Doctor>
       {{monthYearDaterange $Item.TreatmentDates}}
+      {{end}}
       <SuccessfullyCompletedTreatmentProgram>
         <Answer>{{branch $Item.TreatmentCompleted}}</Answer>
       </SuccessfullyCompletedTreatmentProgram>

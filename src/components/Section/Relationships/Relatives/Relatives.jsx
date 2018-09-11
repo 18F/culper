@@ -49,6 +49,10 @@ export default class Relatives extends SubsectionElement {
     })
   }
 
+  validRelations() {
+    return new RelativesValidator(this.props).validMinimumRelations()
+  }
+
   render() {
     return (
       <div
@@ -61,6 +65,11 @@ export default class Relatives extends SubsectionElement {
           className="no-margin-bottom">
           {i18n.m('relationships.relatives.para.opportunity')}
         </Field>
+
+        <Field
+          errors={[{ code: 'validRelation', valid: this.validRelations() }]}
+          className={this.validRelations() && 'hidden'}
+        />
 
         <Accordion
           {...this.props.List}

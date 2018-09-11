@@ -1,11 +1,11 @@
-<FormerFederalServiceActivities>
+<FormerFederalServiceActivities Version="1" Type="Pooled">
   <HadFormerFederalCivilianEmployment>
     <Answer>{{branch .props.HasFederalService}}</Answer>
   </HadFormerFederalCivilianEmployment>
   <FederalServices>
     {{- range $index, $item := .props.List.props.items}}
     {{- with $Item := $item.Item}}
-    <FederalService ID="{{$index}}">
+    <FederalService ID="{{inc $index}}">
       <Agency>
         <Location><Place>{{location $Item.Address}}</Place></Location>
         <Name>{{text $Item.Name}}</Name>

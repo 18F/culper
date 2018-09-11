@@ -3,7 +3,7 @@
   <AnswerComment></AnswerComment>
   {{range $index, $item := .props.List.props.items}}
   {{with $Item := $item.Item}}
-  <RealEstateHolding ID="{{$index}}">
+  <RealEstateHolding ID="{{inc $index}}">
     <Coowner>
     </Coowner>
     <Coowners>
@@ -13,14 +13,14 @@
       {{range $cindex, $coowner := $Item.CoOwners.props.List.props.items}}
       {{with $Coowner := $coowner.Item}}
       {{if branch $Coowner.Has | eq "Yes"}}
-      <Coowner ID="{{$cindex}}">
+      <Coowner ID="{{inc $cindex}}">
         <Address>
           {{location $Coowner.Address}}
         </Address>
         <Comment></Comment>
         <CountriesOfCitizenship>
           {{range $ccindex, $country := $Coowner.Countries.props.value}}
-          <Citizenship ID="{{$ccindex}}">
+          <Citizenship ID="{{inc $ccindex}}">
             <Country>{{$country}}</Country>
           </Citizenship>
           {{end}}
@@ -41,6 +41,11 @@
       {{date $Item.Acquired}}
     </DateAcquired>
     <EntryComment></EntryComment>
+    {{if notApplicable $Item.SoldNotApplicable | eq "False"}}
+    <DateSold Type="{{dateEstimated $Item.Sold}}">
+      {{date $Item.Sold}}
+    </DateSold>
+    {{end}}
     <HowAcquired>{{text $Item.HowAcquired}}</HowAcquired>
     <Location>
       <Address>

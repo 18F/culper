@@ -4437,7 +4437,9 @@
                       "layout": "Address",
                       "street": "123 Seasame Street",
                       "city": "New York",
-                      "country": "Jamaica"
+                      "state": "NY",
+                      "zipcode": "10005",
+                      "country": "United States"
                     }
                   },
                   "Sponsorship": {
@@ -6934,7 +6936,7 @@
                   "CohabitationBegan": {
                     "type": "datecontrol",
                     "props": {
-                      "month": "01",
+                      "month": "04",
                       "day": "12",
                       "year": "2000",
                       "estimated": false
@@ -7060,9 +7062,9 @@
                   "SSN": {
                     "type": "ssn",
                     "props": {
-                      "first": "111",
+                      "first": "511",
                       "middle": "11",
-                      "last": "1111",
+                      "last": "1511",
                       "notApplicable": false
                     }
                   }
@@ -7099,7 +7101,7 @@
                   "CohabitationBegan": {
                     "type": "datecontrol",
                     "props": {
-                      "month": "01",
+                      "month": "09",
                       "day": "12",
                       "year": "2000",
                       "estimated": false
@@ -7388,9 +7390,9 @@
               "type": "location",
               "props": {
                 "layout": "Birthplace",
-                "city": "10 causeway st",
-                "state": "ma",
-                "county": "boston",
+                "city": "Random Town",
+                "state": "MA",
+                "county": "Boston",
                 "country": "United States"
               }
             },
@@ -7475,9 +7477,9 @@
             "SSN": {
               "type": "ssn",
               "props": {
-                "first": "111",
-                "middle": "11",
-                "last": "1111",
+                "first": "311",
+                "middle": "31",
+                "last": "1311",
                 "notApplicable": false
               }
             },

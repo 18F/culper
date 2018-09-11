@@ -70,6 +70,16 @@ describe('date control validator', function() {
           month: '1',
           day: '1',
           year: '2005',
+          maxDate: new Date('1/1/2005'),
+          maxDateEqualTo: true
+        },
+        expected: true
+      },
+      {
+        data: {
+          month: '1',
+          day: '1',
+          year: '2005',
           maxDate: null
         },
         expected: true
@@ -148,6 +158,17 @@ describe('date control validator', function() {
           hideDay: true
         },
         expected: false
+      },
+      {
+        data: {
+          month: '1',
+          day: '1',
+          year: '2004',
+          minDate: new Date('1/1/2004'),
+          minDateEqualTo: true,
+          hideDay: true
+        },
+        expected: true
       }
     ]
 

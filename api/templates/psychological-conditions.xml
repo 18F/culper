@@ -13,7 +13,7 @@
     {{end}}
     {{range $index, $item := .props.TreatmentList.props.items}}
     {{with $Item := $item.Item}}
-    <TreatmentOccurrence ID="{{$index}}">
+    <TreatmentOccurrence ID="{{inc $index}}">
       <Condition>{{radio $Item.Condition}}</Condition>
       {{daterange $Item.Diagnosed}}
       <HealthCareProfessional>{{treatment $Item.Treatment.props}}</HealthCareProfessional>

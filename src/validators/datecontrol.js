@@ -21,7 +21,9 @@ export default class DateControlValidator {
     this.year = data.year
     this.hideDay = data.hideDay
     this.maxDate = data.maxDate
+    this.maxDateEqualTo = data.maxDateEqualTo || false
     this.minDate = data.minDate
+    this.minDateEqualTo = data.minDateEqualTo || false
     this.noMaxDate = data.noMaxDate
     this.relationship = data.relationship || ''
     context = context || getContext()
@@ -58,6 +60,11 @@ export default class DateControlValidator {
     }
 
     const date = new Date(`${this.month}/${this.day}/${this.year}`)
+
+    if (this.maxDateEqualTo) {
+      return date <= this.maxDate
+    }
+
     return date < this.maxDate
   }
 
@@ -73,6 +80,11 @@ export default class DateControlValidator {
     }
 
     const date = new Date(`${this.month}/${this.day}/${this.year}`)
+
+    if (this.minDateEqualTo) {
+      return date >= this.minDate
+    }
+
     return date > this.minDate
   }
 
