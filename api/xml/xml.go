@@ -11,15 +11,24 @@ import (
 	"strings"
 
 	"github.com/18F/e-QIP-prototype/api"
+	"github.com/benbjohnson/clock"
 )
 
 // Service is an implementation of handling XML.
 type Service struct {
-	Log api.LogService
+	Log   api.LogService
+	Clock clock.Clock
 }
 
 // DefaultTemplate returns a template given data.
 func (service Service) DefaultTemplate(templateName string, data map[string]interface{}) (template.HTML, error) {
+
+	// now returns the server's local time in yyyy-MM-dd
+	now := func() string {
+		t := service.Clock.Now()
+		return fmt.Sprintf("%d-%02d-%02d", t.Year(), t.Month(), t.Day())
+	}
+
 	// fmap is a mapping of functions to be used within the XML template execution.
 	// These can be helper functions for formatting or even to process complex structure
 	// types.
@@ -67,6 +76,7 @@ func (service Service) DefaultTemplate(templateName string, data map[string]inte
 		"name":                   name,
 		"nameLastFirst":          nameLastFirst,
 		"notApplicable":          notApplicable,
+		"now":                    now,
 		"number":                 number,
 		"padDigits":              padDigits,
 		"radio":                  radio,
