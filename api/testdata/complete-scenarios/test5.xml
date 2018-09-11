@@ -5303,7 +5303,6 @@
                       </Court>
                       <FinalDisposition>Healthy</FinalDisposition>
                     </Appeal>
-                    <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
                     <Appeal ID="2">
                       <Court>
                         <Name>Super Appeal Court</Name>
@@ -5316,7 +5315,6 @@
                       </Court>
                       <FinalDisposition>Healthy</FinalDisposition>
                     </Appeal>
-                    <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
                     <Appeal ID="3">
                       <Court>
                         <Name>Super Squared Appeal Court</Name>
@@ -5329,7 +5327,6 @@
                       </Court>
                       <FinalDisposition>Healthy</FinalDisposition>
                     </Appeal>
-                    <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
                     <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
                   </Appealed>
                 </DeclaredAsMentallyIncompetentOccurrence>

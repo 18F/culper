@@ -1739,7 +1739,6 @@
                       </Court>
                       <FinalDisposition>Final disposition info</FinalDisposition>
                     </Appeal>
-                    <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
                     <Appeal ID="2">
                       <Court>
                         <Name>mega court</Name>
@@ -1752,7 +1751,6 @@
                       </Court>
                       <FinalDisposition>final final disp</FinalDisposition>
                     </Appeal>
-                    <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
                     <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
                   </Appealed>
                 </DeclaredAsMentallyIncompetentOccurrence>

@@ -25,10 +25,10 @@
         <Comment></Comment>
       </Appeal>
       {{end}}
+      {{end}}
+      {{end}}
       <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
       <SummaryComment></SummaryComment>
-      {{end}}
-      {{end}}
       {{end}}
     </Appealed>
     <Comment></Comment>
