@@ -5,7 +5,7 @@ import validate from '../../../../validators'
 import { Summary, NameSummary } from '../../../Summary'
 import { RelativesValidator, RelativeValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
-import { Field, Accordion, Show } from '../../../Form'
+import { Field, Accordion } from '../../../Form'
 import Relative from './Relative'
 
 export default class Relatives extends SubsectionElement {
@@ -66,25 +66,10 @@ export default class Relatives extends SubsectionElement {
           {i18n.m('relationships.relatives.para.opportunity')}
         </Field>
 
-        <Show when={!this.validRelations()}>
-          <div className="field">
-            <div className="table expand">
-              <span className="messages error-messages">
-                <div className="message error">
-                  <i className="fa fa-exclamation" />
-                  <h3>
-                    {i18n.t(
-                      'relationships.relatives.collection.required.heading'
-                    )}
-                  </h3>
-                  <p>
-                    {i18n.t('relationships.relatives.collection.required.para')}
-                  </p>
-                </div>
-              </span>
-            </div>
-          </div>
-        </Show>
+        <Field
+          errors={[{ code: 'validRelation', valid: this.validRelations() }]}
+          className={this.validRelations() && 'hidden'}
+        />
 
         <Accordion
           {...this.props.List}

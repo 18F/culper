@@ -1044,5 +1044,10 @@ export const error = {
   submission: {
     message:
       'There was a problem submitting your SF-86. Please contact support for additional information.'
+  },
+  validRelation: {
+    title: 'Mother and father must be provided',
+    message:
+      'If you do not know your mother or father, please enter "I don\'t know" and provide a comment explaining your relationship.'
   }
 }
