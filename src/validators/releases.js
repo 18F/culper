@@ -13,38 +13,20 @@ export const hideReleases = (store = {}) => {
 
 export const hideHippa = (store = {}) => {
   const psych = store.Psychological || {}
+  const flagged = (question) => {
+    return question && question.value === 'Yes'
+  }
+
   const tests = [
-    {
-      affirmative: (psych, store) => {
-        return (psych.Competence || {}).IsIncompetent.value !== 'Yes'
-      }
-    },
-    {
-      affirmative: (psych, store) => {
-        return (psych.Consultations || {}).Consulted.value !== 'Yes'
-      }
-    },
-    {
-      affirmative: (psych, store) => {
-        return (psych.Diagnoses || {}).Diagnosed.value !== 'Yes'
-      }
-    },
-    {
-      affirmative: (psych, store) => {
-        return (psych.Hospitalizations || {}).Hospitalized.value !== 'Yes'
-      }
-    },
-    {
-      affirmative: (psych, store) => {
-        return (
-          hideExistingConditions(store) ||
-          (psych.ExistingConditions || {}).HasCondition.value !== 'Yes'
-        )
-      }
-    }
+    (psych.Competence || {}).IsIncompetent,
+    (psych.Consultations || {}).Consulted,
+    (psych.Diagnoses || {}).Diagnosed,
+    (psych.Hospitalizations || {}).Hospitalized,
+    (psych.ExistingConditions || {}).HasCondition
   ]
 
-  return tests.every(x => x.affirmative(psych, store))
+  const showHippa = tests.some(x => flagged(x))
+  return !showHippa
 }
 
 export const formIsSigned = (store = {}) => {
