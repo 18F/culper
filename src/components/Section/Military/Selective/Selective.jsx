@@ -111,6 +111,8 @@ export default class Selective extends SubsectionElement {
                     className="registration-number"
                     label={i18n.t('military.selective.label.number')}
                     {...this.props.RegistrationNumber}
+                    pattern="^\d*$"
+                    prefix="selective"
                     onUpdate={this.updateRegistrationNumber}
                     onError={this.handleError}
                     required={this.props.required}

@@ -162,6 +162,16 @@ describe('Selective service validation', function() {
           WasBornAfter: { value: 'Yes' },
           HasRegistered: { value: 'Yes' },
           RegistrationNumber: {
+            value: '123abc7890'
+          }
+        },
+        expected: false
+      },
+      {
+        state: {
+          WasBornAfter: { value: 'Yes' },
+          HasRegistered: { value: 'Yes' },
+          RegistrationNumber: {
             value: '1234567890'
           }
         },
