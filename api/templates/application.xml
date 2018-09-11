@@ -53,6 +53,7 @@
         </Responses>
       </Request>
     </RequestInfo>
+    <DateSubmitted>{{now}}</DateSubmitted>
   </SubmittedRequestInfo>
   <AgencyUsageBlock>
     <TypeOfInvestigation>

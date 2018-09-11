@@ -11,11 +11,13 @@ import (
 	"regexp"
 	"strings"
 	"testing"
+	"time"
 
 	"github.com/18F/e-QIP-prototype/api"
 	"github.com/18F/e-QIP-prototype/api/mock"
 	"github.com/Jeffail/gabs"
 	"github.com/antchfx/xmlquery"
+	"github.com/benbjohnson/clock"
 )
 
 const dataDir = "testdata"
@@ -126,7 +128,7 @@ func TestPackage(t *testing.T) {
 	}
 
 	logger := &mock.LogService{}
-	service := Service{Log: logger}
+	service := Service{Log: logger, Clock: mockedClock()}
 
 	re := regexp.MustCompile("map\\[")
 	for _, test := range tests {
@@ -148,6 +150,16 @@ func TestPackage(t *testing.T) {
 				test.Schema, snippet)
 		}
 	}
+}
+
+func mockedClock() clock.Clock {
+	// Epoch seconds for September 10, 2018 UTC;
+	// It is not a special date, just used in test fixtures.
+	const base = 1536540831
+
+	c := clock.NewMock()
+	c.Add(base * time.Second)
+	return c
 }
 
 func TestAddressIn(t *testing.T) {
@@ -454,7 +466,7 @@ func loadFormData(t *testing.T, form map[string]interface{}, filepath string) {
 // applyForm generates an XML snippet given the path to an XML template and form data.
 func applyForm(t *testing.T, template string, data map[string]interface{}) string {
 	logger := &mock.LogService{}
-	service := Service{Log: logger}
+	service := Service{Log: logger, Clock: mockedClock()}
 
 	snippet, err := service.DefaultTemplate(template, data)
 	if err != nil {
