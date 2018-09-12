@@ -4966,9 +4966,7 @@
                     </DateRange>
                     <Description>Nature and Reason 3</Description>
                     <Name>Bad Dudes</Name>
-                    <PositionsHeld NoPositionsHeld="False">
-        Sketch artist
-      </PositionsHeld>
+                    <PositionsHeld>Sketch artist</PositionsHeld>
                   </Organization>
                   <Organization ID="2">
                     <Address>
@@ -4994,9 +4992,7 @@
                     </DateRange>
                     <Description>Nature and Reason X</Description>
                     <Name>Bad Folks</Name>
-                    <PositionsHeld NoPositionsHeld="False">
-        Secretary
-      </PositionsHeld>
+                    <PositionsHeld>Secretary</PositionsHeld>
                   </Organization>
                 </Organizations>
                 <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
@@ -5154,7 +5150,7 @@
                     </DateRange>
                     <Description>Nature and Reason 2</Description>
                     <Name>ZZZ</Name>
-                    <PositionsHeld NoPositionsHeld="True"/>
+                    <PositionsHeld NoPositionHeld="True"/>
                   </Organization>
                 </Organizations>
                 <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>

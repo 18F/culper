@@ -18,7 +18,7 @@
       <Description>{{text $Item.Reasons}}</Description>
       <Name>{{text $Item.Organization}}</Name>
       {{if notApplicable $Item.PositionsNotApplicable | eq "True"}}
-      <PositionsHeld NoPositionsHeld="True" />
+      <PositionsHeld NoPositionHeld="True" />
       {{else}}
       <PositionsHeld>
         {{text $Item.Positions}}
