@@ -121,21 +121,21 @@
               <HomeEmail>
                 <Email>kirk1@example.com</Email>
               </HomeEmail>
-              <HomeEmail>
+              <WorkEmail>
                 <Email>kirk2@example.com</Email>
-              </HomeEmail>
+              </WorkEmail>
               <HomeTelephone>
                 <Telephone>
                   <Number>5555555551</Number>
                   <Time>Both</Time>
                 </Telephone>
               </HomeTelephone>
-              <HomeTelephone>
+              <MobileTelephone>
                 <Telephone>
                   <Number>5555555552</Number>
                   <Time>Night</Time>
                 </Telephone>
-              </HomeTelephone>
+              </MobileTelephone>
             </ContactInformation>
             <PersonalReferences Version="1" Type="Pooled">
               <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
