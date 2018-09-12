@@ -123,7 +123,7 @@
 
           </Mobile>
                   </Telephone>
-                  <Title NotApplicable="False">Brevet Colonel</Title>
+                  <Title>Brevet Colonel</Title>
                 </Reference>
                 <Reference ID="2">
                   <Address>
@@ -162,7 +162,7 @@
                       <Time>Both</Time>
                     </Mobile>
                   </Telephone>
-                  <Title NotApplicable="False">Commander</Title>
+                  <Title>Commander</Title>
                 </Reference>
                 <Reference ID="3">
                   <Address>

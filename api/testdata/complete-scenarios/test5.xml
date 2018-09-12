@@ -177,7 +177,7 @@
                       <Time>Both</Time>
                     </Mobile>
                   </Telephone>
-                  <Title NotApplicable="False">Park Ranger</Title>
+                  <Title>Park Ranger</Title>
                 </Reference>
                 <Reference ID="2">
                   <Address>
@@ -216,7 +216,7 @@
                       <Time>Both</Time>
                     </Mobile>
                   </Telephone>
-                  <Title NotApplicable="False">Head Zoologist</Title>
+                  <Title>Head Zoologist</Title>
                 </Reference>
                 <Reference ID="3">
                   <Address>

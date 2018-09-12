@@ -40,7 +40,11 @@
             {{telephone $Item.MobileTelephone}}
           </Mobile>
         </Telephone>
-        <Title NotApplicable="{{notApplicable $Item.RankNotApplicable}}">{{text $Item.Rank}}</Title>
+        {{if notApplicable $Item.RankNotApplicable | eq "True"}}
+        <Title NotApplicable="True"></Title>
+        {{else}}
+        <Title>{{text $Item.Rank}}</Title>
+        {{end}}
       </Reference>
       {{end}}
       {{end}}
