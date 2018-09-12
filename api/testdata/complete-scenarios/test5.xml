@@ -4949,9 +4949,7 @@
                       <State>CA</State>
                       <ZipCode>93940</ZipCode>
                     </Address>
-                    <Contributions NoContributionsMade="False">
-        50
-      </Contributions>
+                    <Contributions>50</Contributions>
                     <DateRange>
                       <From>
                         <Date>
@@ -4979,9 +4977,7 @@
                       <State>CA</State>
                       <ZipCode>93940</ZipCode>
                     </Address>
-                    <Contributions NoContributionsMade="False">
-        3234
-      </Contributions>
+                    <Contributions>3234</Contributions>
                     <DateRange>
                       <From>
                         <Date>
@@ -5014,9 +5010,7 @@
                       <City>Madrid</City>
                       <Country>Spain</Country>
                     </Address>
-                    <Contributions NoContributionsMade="True">
-        
-      </Contributions>
+                    <Contributions NoContributionsMade="True"/>
                     <DateRange>
                       <From>
                         <Date>
@@ -5040,9 +5034,7 @@
                       <City>Rome</City>
                       <Country>Italy</Country>
                     </Address>
-                    <Contributions NoContributionsMade="False">
-        Intelligence
-      </Contributions>
+                    <Contributions>Intelligence</Contributions>
                     <DateRange>
                       <From>
                         <Date>
@@ -5117,7 +5109,7 @@
                       <City>Berlin</City>
                       <Country>Germany</Country>
                     </Address>
-                    <Contributions NoContributionsMade="False">3000</Contributions>
+                    <Contributions>3000</Contributions>
                     <DateRange>
                       <From>
                         <Date>
