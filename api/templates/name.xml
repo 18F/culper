@@ -1,4 +1,4 @@
-<Last {{if .props.lastInitialOnly}}Type="IO"{{end}}>{{.props.last}}</Last>
+<Last>{{.props.last}}</Last>
 <First {{if .props.firstInitialOnly}}Type="IO"{{end}}>{{.props.first}}</First>
 <Middle {{if .props.middleInitialOnly}}Type="IO"{{else if .props.noMiddleName}}Type="NMN"{{end}}>{{.props.middle}}</Middle>
 <Suffix>{{.props.suffix}}</Suffix>

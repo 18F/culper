@@ -1302,7 +1302,7 @@
                   <DescribeCompensation>none</DescribeCompensation>
                   <Explanation>advice </Explanation>
                   <LegalName>
-                    <Last Type="IO">c</Last>
+                    <Last>c</Last>
                     <First>George</First>
                     <Middle>Rob</Middle>
                     <Suffix>X</Suffix>
@@ -1433,7 +1433,7 @@
                     <Year>1999</Year>
                   </OfferDate>
                   <OfferorLegalName>
-                    <Last Type="IO">u</Last>
+                    <Last>u</Last>
                     <First Type="IO">g</First>
                     <Middle Type="IO">k</Middle>
                     <Suffix>IX</Suffix>
@@ -1736,7 +1736,7 @@
                     </To>
                   </DateRange>
                   <Name>
-                    <Last Type="IO">o</Last>
+                    <Last>o</Last>
                     <First Type="IO">g</First>
                     <Middle Type="NMN"/>
                   </Name>
