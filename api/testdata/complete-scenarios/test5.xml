@@ -4483,7 +4483,7 @@
                     <AppearedInCourt>
                       <Answer>Yes</Answer>
                       <Charges>
-                        <Charge>
+                        <Charge ID="1">
                           <Charge>Battery</Charge>
                           <Date>
                             <Month>01</Month>
@@ -4633,7 +4633,7 @@
                       <Explanation>It's all done.</Explanation>
                     </AwaitingTrial>
                     <Charges>
-                      <Charge>
+                      <Charge ID="1">
                         <Charge>Break and Enter</Charge>
                         <Date>
                           <Month>01</Month>

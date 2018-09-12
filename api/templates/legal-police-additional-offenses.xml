@@ -11,7 +11,9 @@
         <Explanation>{{text $Item.AwaitingTrialExplanation}}</Explanation>
       </AwaitingTrial>
       <Charges>
-        <Charge>
+        <!-- XXX We don't collect more than one -->
+        <!-- See https://github.com/18F/e-QIP-prototype/issues/782 -->
+        <Charge ID="1">
           <Charge>{{text $Item.CourtCharge}}</Charge>
           <Date Type="{{dateEstimated $Item.Date}}">
             {{monthYear $Item.Date}}
