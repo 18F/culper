@@ -898,6 +898,16 @@
                       <Middle>Rob</Middle>
                     </LegalName>
                   </FullName>
+                  <OtherNamesUsed>
+                    <OtherName ID="1">
+                      <Name>
+                        <Last>Smith</Last>
+                        <First>we</First>
+                        <Middle>Criag</Middle>
+                        <Suffix>VII</Suffix>
+                      </Name>
+                    </OtherName>
+                  </OtherNamesUsed>
                 </Contact>
               </Contacts>
               <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>

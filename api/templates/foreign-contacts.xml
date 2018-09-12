@@ -108,7 +108,7 @@
           {{name $Item.Name}}
         </LegalName>
       </FullName>
-      {{- if $Item.Aliases.props.branch.type}}
+      {{if branchcollectionHas $Item.Aliases | eq "Yes"}}
       <OtherNamesUsed>
         {{range $oindex, $othername := $Item.Aliases.props.items}}
         {{with $Alias := $othername.Item}}
