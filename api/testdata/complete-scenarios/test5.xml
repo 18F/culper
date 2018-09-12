@@ -389,7 +389,7 @@
                   <Citizenship>
                     <ProofOfStatus>
                       <DocumentNumber>7893142313</DocumentNumber>
-                      <NaturalizedCertificate>
+                      <NaturalizationCertificate>
                         <Court>
                           <Address>
                             <Street>7 Grace Hopper Ave. </Street>
@@ -399,7 +399,7 @@
                           </Address>
                           <Name>Judy's court</Name>
                         </Court>
-                      </NaturalizedCertificate>
+                      </NaturalizationCertificate>
                       <Type>DerivedCitizenshipCertificate</Type>
                     </ProofOfStatus>
                   </Citizenship>
