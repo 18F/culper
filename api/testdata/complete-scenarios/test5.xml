@@ -3707,7 +3707,6 @@
                   </Date>
                   <Reason> Asked to vote as honorary voter</Reason>
                 </ForeignElection>
-                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
               </VotedInForeignElections>
             </ForeignBusinessActivities>
             <ForeignTravels Version="1" Type="Pooled">

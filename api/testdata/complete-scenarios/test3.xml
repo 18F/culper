@@ -1882,7 +1882,6 @@
                   </Date>
                   <Reason>never</Reason>
                 </ForeignElection>
-                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
               </VotedInForeignElections>
             </ForeignBusinessActivities>
             <ForeignTravels Version="1" Type="Pooled">
