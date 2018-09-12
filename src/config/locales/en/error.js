@@ -1060,5 +1060,9 @@ export const error = {
     title: 'Mother and father must be provided',
     message:
       'If you do not know your mother or father, please enter "I don\'t know" and provide a comment explaining your relationship.'
+  },
+  validPhoneTypes: {
+    title: 'There is a problem with your phone numbers',
+    message: 'Please provide only one of each type of phone number.'
   }
 }

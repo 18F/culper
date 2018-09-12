@@ -805,16 +805,6 @@ export default class Telephone extends ValidationElement {
                 onUpdate={this.updateNumberType}
                 onError={this.handleErrorNumberType}
               />
-              <Radio
-                name="numbertype-other"
-                className="phonetype-option other"
-                label={i18n.t('telephone.numberType.other')}
-                value="Other"
-                ariaLabel={i18n.t('telephone.aria.other')}
-                disabled={this.props.noNumber}
-                onUpdate={this.updateNumberType}
-                onError={this.handleErrorNumberType}
-              />
             </RadioGroup>
           </div>
         </Show>
@@ -833,7 +823,7 @@ Telephone.defaultProps = {
   number: '',
   extension: '',
   noNumber: false,
-  showNumberType: true,
+  showNumberType: false,
   allowNotApplicable: true,
   tab: input => {
     input.focus()
