@@ -469,7 +469,7 @@
               <MaritalStatus>Married</MaritalStatus>
               <PresentMarriage>
                 <CurrentSpouse ID="1">
-                  <Address UseMyCurrentAddress="False">
+                  <Address>
                     <Street>65 DEER ST </Street>
                     <City>BOSTON</City>
                     <State>MA</State>
@@ -898,6 +898,16 @@
                       <Middle>Rob</Middle>
                     </LegalName>
                   </FullName>
+                  <OtherNamesUsed>
+                    <OtherName ID="1">
+                      <Name>
+                        <Last>Smith</Last>
+                        <First>we</First>
+                        <Middle>Criag</Middle>
+                        <Suffix>VII</Suffix>
+                      </Name>
+                    </OtherName>
+                  </OtherNamesUsed>
                 </Contact>
               </Contacts>
               <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
@@ -1302,7 +1312,7 @@
                   <DescribeCompensation>none</DescribeCompensation>
                   <Explanation>advice </Explanation>
                   <LegalName>
-                    <Last Type="IO">c</Last>
+                    <Last>c</Last>
                     <First>George</First>
                     <Middle>Rob</Middle>
                     <Suffix>X</Suffix>
@@ -1433,7 +1443,7 @@
                     <Year>1999</Year>
                   </OfferDate>
                   <OfferorLegalName>
-                    <Last Type="IO">u</Last>
+                    <Last>u</Last>
                     <First Type="IO">g</First>
                     <Middle Type="IO">k</Middle>
                     <Suffix>IX</Suffix>
@@ -1463,7 +1473,6 @@
                   </OfferorLegalName>
                   <PositionDescription>how come?</PositionDescription>
                 </ForeignJobOffer>
-                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
               </ForeignJobOffers>
               <OtherForeignEmployment>
                 <Answer>Yes</Answer>
@@ -1546,7 +1555,6 @@
                   <Relationship>not sure</Relationship>
                   <ServiceProvided>none</ServiceProvided>
                 </OtherForeignEmployment>
-                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
               </OtherForeignEmployments>
               <Meetings>
                 <Answer>Yes</Answer>
@@ -1736,12 +1744,12 @@
                     </To>
                   </DateRange>
                   <Name>
-                    <Last Type="IO">o</Last>
+                    <Last>o</Last>
                     <First Type="IO">g</First>
                     <Middle Type="NMN"/>
                   </Name>
                   <Organization>
-                    <Address NotApplicable="False">
+                    <Address>
                       <Street>123 Seasame Street </Street>
                       <City>New York</City>
                       <State>MA</State>
@@ -1803,7 +1811,7 @@
                     <Middle>paul</Middle>
                   </Name>
                   <Organization>
-                    <Address NotApplicable="False">
+                    <Address>
                       <Street>1600 pennsulvenia Ave </Street>
                       <City>New York</City>
                       <Country>Kazakhstan</Country>
@@ -1884,7 +1892,6 @@
                   </Date>
                   <Reason>never</Reason>
                 </ForeignElection>
-                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
               </VotedInForeignElections>
             </ForeignBusinessActivities>
             <ForeignTravels Version="1" Type="Pooled">

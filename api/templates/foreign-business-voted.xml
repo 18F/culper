@@ -20,8 +20,4 @@
   </ForeignElection>
   {{end}}
   {{end}}
-  {{- if branch .props.HasForeignVoting | eq "Yes"}}
-  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
-  <SummaryComment></SummaryComment>
-  {{end}}
 </VotedInForeignElections>

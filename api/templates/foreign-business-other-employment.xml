@@ -38,8 +38,4 @@
   </OtherForeignEmployment>
   {{end}}
   {{end}}
-  {{- if branch .props.HasForeignVentures | eq "Yes"}}
-  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
-  <SummaryComment></SummaryComment>
-  {{end}}
 </OtherForeignEmployments>

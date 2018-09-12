@@ -31,8 +31,4 @@
   </ForeignJobOffer>
   {{end}}
   {{end}}
-  {{- if branch .props.HasForeignEmployment | eq "Yes"}}
-  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
-  <SummaryComment></SummaryComment>
-  {{end}}
 </ForeignJobOffers>
