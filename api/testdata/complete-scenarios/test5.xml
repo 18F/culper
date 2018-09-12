@@ -674,9 +674,7 @@
               <MaritalStatus>Married</MaritalStatus>
               <PresentMarriage>
                 <CurrentSpouse ID="1">
-                  <Address UseMyCurrentAddress="True">
-                    <Street> </Street>
-                  </Address>
+                  <Address UseMyCurrentAddress="True"/>
                   <Birth>
                     <Date>
                       <Month>05</Month>

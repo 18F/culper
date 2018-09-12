@@ -469,7 +469,7 @@
               <MaritalStatus>Married</MaritalStatus>
               <PresentMarriage>
                 <CurrentSpouse ID="1">
-                  <Address UseMyCurrentAddress="False">
+                  <Address>
                     <Street>65 DEER ST </Street>
                     <City>BOSTON</City>
                     <State>MA</State>
