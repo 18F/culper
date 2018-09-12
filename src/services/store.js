@@ -18,7 +18,7 @@ switch (process.env.NODE_ENV) {
     store = createStore(rootReducer, applyMiddleware(...middleware))
     break
   default:
-    if (urlParams.has('logger')) {
+    if (!urlParams.has('no-redux-logger')) {
       middleware.push(createLogger())
     }
     store = createStore(
