@@ -1063,6 +1063,6 @@ export const error = {
   },
   validPhoneTypes: {
     title: 'There is a problem with your phone numbers',
-    message: 'Please provide only one of each type of phone number.'
+    message: 'Please provide only one of each phone number type.'
   }
 }
