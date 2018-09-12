@@ -82,6 +82,7 @@ func (service Service) DefaultTemplate(templateName string, data map[string]inte
 		"radio":                  radio,
 		"schoolType":             schoolType,
 		"severanceType":          severanceType,
+		"suffixType":             suffixType,
 		"relationshipType":       relationshipType,
 		"relativeForeignDocType": relativeForeignDocType,
 		"telephone":              telephone,
@@ -665,7 +666,10 @@ func telephoneNoTimeOfDay(data map[string]interface{}) (template.HTML, error) {
 }
 
 func name(data map[string]interface{}) (template.HTML, error) {
-	return xmlTemplate("name.xml", data)
+	fmap := template.FuncMap{
+		"suffixType": suffixType,
+	}
+	return xmlTemplateWithFuncs("name.xml", data, fmap)
 }
 
 func nameLastFirst(data map[string]interface{}) (template.HTML, error) {
@@ -894,6 +898,13 @@ func clearanceType(v string) string {
 		"Other":                     "Other",
 	}
 	return basis[v]
+}
+
+func suffixType(s string) string {
+	if s == "Other" {
+		return "__Other__"
+	}
+	return s
 }
 
 // inc adds 1 to a
