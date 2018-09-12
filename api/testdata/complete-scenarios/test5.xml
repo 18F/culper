@@ -4664,9 +4664,6 @@
                     <OffenseType Domestic="True" Firearms="True" Alcohol="True"/>
                     <Sentenced>
                       <Answer>No</Answer>
-                      <Imprisonment>
-                        <DateRange NotApplicable="True"/>
-                      </Imprisonment>
                     </Sentenced>
                   </Offense>
                   <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>

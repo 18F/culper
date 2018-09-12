@@ -39,6 +39,7 @@
         <Sentenced>
           <Answer>{{branch $Item.WasSentenced}}</Answer>
           <Comment></Comment>
+          {{if branch $Item.WasSentenced | eq "Yes"}}
           {{ with $sentence := $Item.Sentence.props }}
           <Description>{{text $sentence.Description}}</Description>
           <Imprisonment>
@@ -61,7 +62,6 @@
               {{end}}
             </YearOrMore>
           </Imprisonment>
-          {{if branch $Item.WasSentenced | eq "Yes"}}
           <Incarcerated>
             <YearOrMore>
               <Answer>{{branchToAnswer $sentence.Incarcerated}}</Answer>
