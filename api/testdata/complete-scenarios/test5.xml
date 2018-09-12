@@ -4665,9 +4665,7 @@
                     <Sentenced>
                       <Answer>No</Answer>
                       <Imprisonment>
-                        <YearOrMore>
-                          <DateRange NotApplicable="True"/>
-                        </YearOrMore>
+                        <DateRange NotApplicable="True"/>
                       </Imprisonment>
                     </Sentenced>
                   </Offense>
