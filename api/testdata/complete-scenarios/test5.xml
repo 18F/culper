@@ -3567,7 +3567,7 @@
                       <State>CA</State>
                       <ZipCode>93940</ZipCode>
                     </Address>
-                    <Name NotApplicable="False">Students in America</Name>
+                    <Name>Students in America</Name>
                   </Organization>
                   <Purpose>Learn about the U.S.</Purpose>
                   <SponsorshipPurpose>Teach about the U.S.</SponsorshipPurpose>
@@ -3629,7 +3629,7 @@
                       <State>CA</State>
                       <ZipCode>93940</ZipCode>
                     </Address>
-                    <Name NotApplicable="False">Students in California</Name>
+                    <Name>Students in California</Name>
                   </Organization>
                   <Purpose>Learn about California</Purpose>
                   <SponsorshipPurpose>Educate about California</SponsorshipPurpose>
