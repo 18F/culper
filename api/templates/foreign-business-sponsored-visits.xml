@@ -43,9 +43,13 @@
       {{name $Item.Name}}
     </Name>
     <Organization>
-      <Address NotApplicable="{{notApplicable $Item.OrganizationAddressNotApplicable}}">
+      {{if notApplicable $Item.OrganizationAddressNotApplicable | eq "True"}}
+      <Address NotApplicable="True"/>
+      {{else}}
+      <Address>
         {{location $Item.OrganizationAddress}}
       </Address>
+      {{end}}
       <Name NotApplicable="{{notApplicable $Item.OrganizationNotApplicable}}">{{text $Item.Organization}}</Name>
     </Organization>
     <Purpose>{{text $Item.Stay}}</Purpose>

@@ -3563,7 +3563,7 @@
                     <Middle>Margaret</Middle>
                   </Name>
                   <Organization>
-                    <Address NotApplicable="False">
+                    <Address>
                       <Street>32 5th St. </Street>
                       <City>Monterey</City>
                       <State>CA</State>
@@ -3625,7 +3625,7 @@
                     <Middle Type="NMN"/>
                   </Name>
                   <Organization>
-                    <Address NotApplicable="False">
+                    <Address>
                       <Street>332 Fremont st. </Street>
                       <City>Monterey</City>
                       <State>CA</State>
