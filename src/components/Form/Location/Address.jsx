@@ -12,7 +12,7 @@ import ApoFpo from '../ApoFpo'
 import Show from '../Show'
 import Suggestions from '../Suggestions'
 import { AddressSuggestion } from './AddressSuggestion'
-import { countryString } from '../../../validators/location'
+import LocationValidator, { countryString } from '../../../validators/location'
 import { countryValueResolver } from './Location'
 
 export default class Address extends ValidationElement {
@@ -37,6 +37,7 @@ export default class Address extends ValidationElement {
     this.closeAddressBook = this.closeAddressBook.bind(this)
     this.renderAddressBookItem = this.renderAddressBookItem.bind(this)
     this.selectAddressBookItem = this.selectAddressBookItem.bind(this)
+    this.zipcodeInstate = this.zipcodeInstate.bind(this)
     this.handleError = this.handleError.bind(this)
     this.storeErrors = this.storeErrors.bind(this)
     this.errors = []
@@ -210,6 +211,7 @@ export default class Address extends ValidationElement {
 
     // Update the properties
     if (!same || blur) {
+      this.zipcodeInstate(same.state, same.zipcode)
       this.props.onUpdate(next, delay)
     }
   }
@@ -336,6 +338,15 @@ export default class Address extends ValidationElement {
     })
   }
 
+  zipcodeInstate() {
+    if (this.props.state && this.props.zipcode) {
+      const location = new LocationValidator(this.props)
+      return location.validZipcodeState()
+    }
+
+    return true
+  }
+
   handleError(value, arr) {
     arr = arr.map(err => {
       return {
@@ -377,6 +388,7 @@ export default class Address extends ValidationElement {
   render() {
     const book = this.props.addressBooks[this.props.addressBook] || []
     const country = countryString(this.props.country)
+    const instateZipcode = this.zipcodeInstate()
     return (
       <div className="address">
         <Show when={!this.props.disableToggle}>
@@ -516,6 +528,7 @@ export default class Address extends ValidationElement {
                     className="zipcode required"
                     label={this.props.zipcodeLabel}
                     value={this.props.zipcode}
+                    status={instateZipcode}
                     onUpdate={this.updateZipcode}
                     onError={this.handleError}
                     onFocus={this.focusZipcode}
@@ -658,6 +671,7 @@ export default class Address extends ValidationElement {
                     className="zipcode required"
                     label={this.props.postOfficeZipcodeLabel}
                     value={this.props.zipcode}
+                    status={instateZipcode}
                     onUpdate={this.updateZipcode}
                     onError={this.handleError}
                     onFocus={this.focusZipcode}

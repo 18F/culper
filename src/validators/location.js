@@ -1,5 +1,6 @@
 import { api } from '../services/api'
 import Layouts from '../components/Form/Location/Layouts'
+import { zipcodes } from '../config'
 
 export const isInternational = location => {
   return !['United States', 'POSTOFFICE'].includes(
@@ -162,8 +163,18 @@ export default class LocationValidator {
     if (!this.zipcode) {
       return false
     }
+
     const withoutDashes = this.zipcode.replace('-', '').length
     return withoutDashes === 5 || withoutDashes === 9
+  }
+
+  validZipcodeState() {
+    if (!zipcodes[this.state]) {
+      return true
+    }
+
+    const zip5Digit = this.zipcode.substring(0, 5)
+    return zipcodes[this.state].indexOf(zip5Digit) !== -1
   }
 
   validCounty() {
