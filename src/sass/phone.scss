@@ -9,6 +9,10 @@
     visibility: visible;
   }
 
+  .section-view {
+    max-width: 100% !important;
+  }
+
   .mobile-hidden {
     display: none !important;
     visibility: hidden;
