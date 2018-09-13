@@ -70,18 +70,18 @@
               <HomeEmail>
                 <Email>dcmccallum@nyanderie.com</Email>
               </HomeEmail>
-              <HomeTelephone>
+              <MobileTelephone>
                 <Telephone>
                   <Number>9999999999</Number>
                   <Time>Night</Time>
                 </Telephone>
-              </HomeTelephone>
-              <MobileTelephone>
+              </MobileTelephone>
+              <WorkTelephone>
                 <Telephone>
                   <Number>9483821938</Number>
                   <Time>Both</Time>
                 </Telephone>
-              </MobileTelephone>
+              </WorkTelephone>
             </ContactInformation>
             <PersonalReferences Version="1" Type="Pooled">
               <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>

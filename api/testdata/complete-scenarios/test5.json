@@ -1173,7 +1173,7 @@
                     "props": {
                       "timeOfDay": "Day",
                       "type": "Domestic",
-                      "numberType": "Work",
+                      "numberType": "",
                       "number": "8313213234",
                       "extension": "",
                       "noNumber": false
@@ -1214,7 +1214,7 @@
                     "props": {
                       "timeOfDay": "Day",
                       "type": "Domestic",
-                      "numberType": "Work",
+                      "numberType": "",
                       "number": "5552133123",
                       "extension": "",
                       "noNumber": false
@@ -7099,7 +7099,7 @@
                     "props": {
                       "timeOfDay": "Both",
                       "type": "Domestic",
-                      "numberType": "Cell",
+                      "numberType": "",
                       "number": "1247181232",
                       "extension": "",
                       "noNumber": false
@@ -7444,7 +7444,7 @@
                         "props": {
                           "timeOfDay": "Day",
                           "type": "Domestic",
-                          "numberType": "Work",
+                          "numberType": "",
                           "number": "7778311113",
                           "extension": "",
                           "noNumber": false
@@ -7457,7 +7457,7 @@
                     "props": {
                       "timeOfDay": "Day",
                       "type": "Domestic",
-                      "numberType": "Work",
+                      "numberType": "",
                       "number": "8318318831",
                       "extension": "",
                       "noNumber": false
@@ -7783,7 +7783,7 @@
                         "props": {
                           "timeOfDay": "Day",
                           "type": "Domestic",
-                          "numberType": "Work",
+                          "numberType": "",
                           "number": "7778311113",
                           "extension": "",
                           "noNumber": false
@@ -7796,7 +7796,7 @@
                     "props": {
                       "timeOfDay": "Day",
                       "type": "Domestic",
-                      "numberType": "Work",
+                      "numberType": "",
                       "number": "8313333333",
                       "extension": "",
                       "noNumber": false
@@ -8075,7 +8075,7 @@
                         "props": {
                           "timeOfDay": "Day",
                           "type": "Domestic",
-                          "numberType": "Work",
+                          "numberType": "",
                           "number": "7778311113",
                           "extension": "",
                           "noNumber": false
@@ -8088,7 +8088,7 @@
                     "props": {
                       "timeOfDay": "Day",
                       "type": "Domestic",
-                      "numberType": "Work",
+                      "numberType": "",
                       "number": "8316662331",
                       "extension": "",
                       "noNumber": false
@@ -8367,7 +8367,7 @@
                         "props": {
                           "timeOfDay": "Day",
                           "type": "Domestic",
-                          "numberType": "Work",
+                          "numberType": "",
                           "number": "7778311113",
                           "extension": "",
                           "noNumber": false
@@ -8380,7 +8380,7 @@
                     "props": {
                       "timeOfDay": "Day",
                       "type": "Domestic",
-                      "numberType": "Work",
+                      "numberType": "",
                       "number": "8316561234",
                       "extension": "",
                       "noNumber": false
@@ -8659,7 +8659,7 @@
                         "props": {
                           "timeOfDay": "Day",
                           "type": "Domestic",
-                          "numberType": "Work",
+                          "numberType": "",
                           "number": "7778311113",
                           "extension": "",
                           "noNumber": false
@@ -8672,7 +8672,7 @@
                     "props": {
                       "timeOfDay": "Day",
                       "type": "Domestic",
-                      "numberType": "Work",
+                      "numberType": "",
                       "number": "8316565555",
                       "extension": "",
                       "noNumber": false
@@ -8998,7 +8998,7 @@
                         "props": {
                           "timeOfDay": "Day",
                           "type": "Domestic",
-                          "numberType": "Work",
+                          "numberType": "",
                           "number": "7778311113",
                           "extension": "",
                           "noNumber": false
@@ -9011,7 +9011,7 @@
                     "props": {
                       "timeOfDay": "Day",
                       "type": "Domestic",
-                      "numberType": "Work",
+                      "numberType": "",
                       "number": "8311117777",
                       "extension": "",
                       "noNumber": false
@@ -9541,7 +9541,7 @@
                         "props": {
                           "timeOfDay": "Day",
                           "type": "Domestic",
-                          "numberType": "Work",
+                          "numberType": "",
                           "number": "7778311113",
                           "extension": "",
                           "noNumber": false
@@ -9554,7 +9554,7 @@
                     "props": {
                       "timeOfDay": "Day",
                       "type": "Domestic",
-                      "numberType": "Work",
+                      "numberType": "",
                       "number": "8311433421",
                       "extension": "",
                       "noNumber": false
@@ -9881,7 +9881,7 @@
                         "props": {
                           "timeOfDay": "Day",
                           "type": "Domestic",
-                          "numberType": "Work",
+                          "numberType": "",
                           "number": "7778311113",
                           "extension": "",
                           "noNumber": false
@@ -9894,7 +9894,7 @@
                     "props": {
                       "timeOfDay": "Day",
                       "type": "Domestic",
-                      "numberType": "Work",
+                      "numberType": "",
                       "number": "4325555531",
                       "extension": "",
                       "noNumber": false
@@ -10088,7 +10088,7 @@
                     "props": {
                       "timeOfDay": "Day",
                       "type": "Domestic",
-                      "numberType": "Work",
+                      "numberType": "",
                       "number": "8314444444",
                       "extension": "4",
                       "noNumber": false
@@ -10178,7 +10178,7 @@
                         "props": {
                           "timeOfDay": "Day",
                           "type": "Domestic",
-                          "numberType": "Work",
+                          "numberType": "",
                           "number": "7778311113",
                           "extension": "",
                           "noNumber": false
@@ -10191,7 +10191,7 @@
                     "props": {
                       "timeOfDay": "Day",
                       "type": "Domestic",
-                      "numberType": "Work",
+                      "numberType": "",
                       "number": "8311112222",
                       "extension": "2",
                       "noNumber": false
@@ -10380,7 +10380,7 @@
                     "props": {
                       "timeOfDay": "Both",
                       "type": "Domestic",
-                      "numberType": "Cell",
+                      "numberType": "",
                       "number": "5033331111",
                       "extension": "",
                       "noNumber": false
@@ -10470,7 +10470,7 @@
                         "props": {
                           "timeOfDay": "Day",
                           "type": "Domestic",
-                          "numberType": "Work",
+                          "numberType": "",
                           "number": "7778311113",
                           "extension": "",
                           "noNumber": false
@@ -11191,7 +11191,7 @@
                     "props": {
                       "timeOfDay": "Both",
                       "type": "Domestic",
-                      "numberType": "Cell",
+                      "numberType": "",
                       "number": "8315550555",
                       "extension": "",
                       "noNumber": false
@@ -11202,7 +11202,7 @@
                     "props": {
                       "timeOfDay": "Both",
                       "type": "Domestic",
-                      "numberType": "Cell",
+                      "numberType": "",
                       "number": "8315550555",
                       "extension": "",
                       "noNumber": false
@@ -11213,7 +11213,7 @@
                     "props": {
                       "timeOfDay": "Both",
                       "type": "Domestic",
-                      "numberType": "Cell",
+                      "numberType": "",
                       "number": "8315550555",
                       "extension": "",
                       "noNumber": false
@@ -15378,7 +15378,7 @@
                         "props": {
                           "timeOfDay": "Day",
                           "type": "Domestic",
-                          "numberType": "Work",
+                          "numberType": "",
                           "number": "2222124313",
                           "extension": "",
                           "noNumber": false
@@ -15411,7 +15411,7 @@
                         "props": {
                           "timeOfDay": "Day",
                           "type": "Domestic",
-                          "numberType": "Work",
+                          "numberType": "",
                           "number": "8313332312",
                           "extension": "",
                           "noNumber": false
@@ -15491,7 +15491,7 @@
                         "props": {
                           "timeOfDay": "Day",
                           "type": "Domestic",
-                          "numberType": "Work",
+                          "numberType": "",
                           "number": "8313313331",
                           "extension": "",
                           "noNumber": false
@@ -15524,7 +15524,7 @@
                         "props": {
                           "timeOfDay": "Day",
                           "type": "Domestic",
-                          "numberType": "Work",
+                          "numberType": "",
                           "number": "8313331002",
                           "extension": "",
                           "noNumber": false
@@ -15588,7 +15588,7 @@
                     "props": {
                       "timeOfDay": "Day",
                       "type": "Domestic",
-                      "numberType": "Work",
+                      "numberType": "",
                       "number": "7833013134",
                       "extension": "",
                       "noNumber": false
@@ -15620,7 +15620,7 @@
                     "props": {
                       "timeOfDay": "Day",
                       "type": "Domestic",
-                      "numberType": "Work",
+                      "numberType": "",
                       "number": "4443313324",
                       "extension": "",
                       "noNumber": false
@@ -16586,7 +16586,7 @@
               "props": {
                 "timeOfDay": "Both",
                 "type": "Domestic",
-                "numberType": "Cell",
+                "numberType": "",
                 "number": "8313122123",
                 "extension": "",
                 "noNumber": false
@@ -16793,7 +16793,7 @@
                     "props": {
                       "timeOfDay": "Both",
                       "type": "Domestic",
-                      "numberType": "Cell",
+                      "numberType": "",
                       "number": "8311231291",
                       "extension": "",
                       "noNumber": false
@@ -16906,7 +16906,7 @@
                     "props": {
                       "timeOfDay": "Both",
                       "type": "Domestic",
-                      "numberType": "Cell",
+                      "numberType": "",
                       "number": "1248889312",
                       "extension": "",
                       "noNumber": false
@@ -17019,7 +17019,7 @@
                     "props": {
                       "timeOfDay": "Both",
                       "type": "Domestic",
-                      "numberType": "Cell",
+                      "numberType": "",
                       "number": "1341214444",
                       "extension": "",
                       "noNumber": false
@@ -19666,7 +19666,7 @@
                     "props": {
                       "timeOfDay": "Day",
                       "type": "Domestic",
-                      "numberType": "NA",
+                      "numberType": "",
                       "number": "8317777731",
                       "extension": "",
                       "noNumber": false
@@ -19879,7 +19879,7 @@
                     "props": {
                       "timeOfDay": "Day",
                       "type": "Domestic",
-                      "numberType": "NA",
+                      "numberType": "",
                       "number": "8313121931",
                       "extension": "",
                       "noNumber": false
@@ -20361,7 +20361,7 @@
                     "props": {
                       "timeOfDay": "Day",
                       "type": "Domestic",
-                      "numberType": "NA",
+                      "numberType": "",
                       "number": "8313212222",
                       "extension": "",
                       "noNumber": false
@@ -20429,7 +20429,7 @@
                     "props": {
                       "timeOfDay": "Day",
                       "type": "Domestic",
-                      "numberType": "NA",
+                      "numberType": "",
                       "number": "7169323213",
                       "extension": "",
                       "noNumber": false
@@ -20527,7 +20527,7 @@
                     "props": {
                       "timeOfDay": "Day",
                       "type": "Domestic",
-                      "numberType": "NA",
+                      "numberType": "",
                       "number": "8313939313",
                       "extension": "",
                       "noNumber": false
@@ -20601,7 +20601,7 @@
                     "props": {
                       "timeOfDay": "Day",
                       "type": "Domestic",
-                      "numberType": "NA",
+                      "numberType": "",
                       "number": "8313213321",
                       "extension": "",
                       "noNumber": false

@@ -1753,7 +1753,7 @@
                     "props": {
                       "timeOfDay": "Both",
                       "type": "Domestic",
-                      "numberType": "Work",
+                      "numberType": "",
                       "number": "8219990391",
                       "extension": "",
                       "noNumber": false
@@ -1851,7 +1851,7 @@
                     "props": {
                       "timeOfDay": "Both",
                       "type": "Domestic",
-                      "numberType": "Work",
+                      "numberType": "",
                       "number": "9991342901",
                       "extension": "",
                       "noNumber": false
@@ -2021,7 +2021,7 @@
                     "props": {
                       "timeOfDay": "Both",
                       "type": "Domestic",
-                      "numberType": "Home",
+                      "numberType": "",
                       "number": "9822843881",
                       "extension": "",
                       "noNumber": false
@@ -4131,7 +4131,7 @@
                     "props": {
                       "timeOfDay": "Both",
                       "type": "Domestic",
-                      "numberType": "Work",
+                      "numberType": "",
                       "number": "9999999991",
                       "extension": "",
                       "noNumber": false
@@ -4220,7 +4220,7 @@
                     "props": {
                       "timeOfDay": "Both",
                       "type": "Domestic",
-                      "numberType": "Work",
+                      "numberType": "",
                       "number": "2341222211",
                       "extension": "",
                       "noNumber": false
@@ -4334,7 +4334,7 @@
                     "props": {
                       "timeOfDay": "Both",
                       "type": "Domestic",
-                      "numberType": "Work",
+                      "numberType": "",
                       "number": "8281881291",
                       "extension": "",
                       "noNumber": false
