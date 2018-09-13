@@ -2,7 +2,7 @@
   <Activities>
     {{range $index, $item := .props.List.props.items}}
     {{with $Item := $item.Item}}
-    <Activity ID="{{$index}}">
+    <Activity ID="{{inc $index}}">
       <AccountNumber>{{text $Item.CourtNumber}}</AccountNumber>
       <Amount Estimated="{{checkboxTrueFalse $Item.TotalAmountEstimated}}">{{number $Item.TotalAmount}}</Amount>
       <Authority>
@@ -36,10 +36,6 @@
       <Type>{{radio $Item.PetitionType}}</Type>
     </Activity>
     {{end}}
-    {{end}}
-
-    {{- if branch .props.HasBankruptcy | eq "Yes"}}
-    <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
     {{end}}
   </Activities>
   <Answer>{{branch .props.HasBankruptcy}}</Answer>

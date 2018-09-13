@@ -449,7 +449,9 @@ DateControl.defaultProps = {
   prefix: '',
   noMaxDate: false,
   maxDate: null,
+  maxDateEqualTo: false,
   minDate: null,
+  minDateEqualTo: false,
   relationship: '',
   toggleFocus: (w, changed, el, day, month) => {
     day.focus()

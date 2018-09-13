@@ -4,11 +4,11 @@
   <Comment></Comment>
   {{range $index, $item := .props.List.props.items}}
   {{with $Item := $item.Item}}
-  <GovernmentContact ID="{{$index}}">
+  <GovernmentContact ID="{{inc $index}}">
     <Circumstances>{{text $Item.Purpose}}</Circumstances>
     <CountriesInvolved>
       {{range $cindex, $country := $Item.Governments.props.value}}
-      <CountryInvolved ID="{{$cindex}}">
+      <CountryInvolved ID="{{inc $cindex}}">
         <Country>{{$country}}</Country>
       </CountryInvolved>
       {{end}}
@@ -28,12 +28,12 @@
       </Place>
     </Location>
     <SubsequentForeignContacts>
-      <Answer>{{branchcollectionHas $Item.SubsequentContacts.props.List}}</Answer>
+      <Answer>{{branchcollectionHas $Item.SubsequentContacts}}</Answer>
       <AnswerComment></AnswerComment>
-      {{range $sindex, $contact := $Item.SubsequentContacts.props.List.props.items}}
+      {{range $sindex, $contact := $Item.SubsequentContacts.props.items}}
       {{with $Contact := $contact.Item}}
       {{- if branch $Contact.Has | eq "Yes"}}
-      <Contact ID="{{$sindex}}">
+      <Contact ID="{{inc $sindex}}">
         <Comment></Comment>
         <Date Type="{{dateEstimated $Contact.Recent}}">
           {{date $Contact.Recent}}

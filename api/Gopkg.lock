@@ -29,6 +29,12 @@
   revision = "077bca4d2caaf391ee780136adae00f59153dcd2"
 
 [[projects]]
+  branch = "master"
+  name = "github.com/benbjohnson/clock"
+  packages = ["."]
+  revision = "7dc76406b6d3c05b5f71a86293cbcf3c4ea03b19"
+
+[[projects]]
   name = "github.com/cloudfoundry-community/go-cfenv"
   packages = ["."]
   revision = "f920e9562d5f951cbf11785728f67258c38a10d0"
@@ -184,6 +190,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "bc249c5c15cec503ae3a3cbdfba74ed9fc94f7fd922b07344b0d2fe58bfad4ac"
+  inputs-digest = "5e347fdaca74b603908898c8b19aae45e8e28db32a99ae14154d964778fb9d48"
   solver-name = "gps-cdcl"
   solver-version = 1

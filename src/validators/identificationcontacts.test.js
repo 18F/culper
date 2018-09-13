@@ -195,7 +195,7 @@ describe('Contact Information validation', function() {
                   Telephone: {
                     noNumber: false,
                     number: '7031112222',
-                    numberType: 'Home',
+                    numberType: 'Work',
                     type: 'Domestic',
                     timeOfDay: 'Both',
                     extension: ''
@@ -215,6 +215,86 @@ describe('Contact Information validation', function() {
           test.state,
           null
         ).isValid()
+      ).toBe(test.expected)
+    })
+  })
+
+  it('should validate unique phone types', function() {
+    const tests = [
+      {
+        state: {
+          PhoneNumbers: {
+            items: [
+              {
+                Item: {
+                  Telephone: {
+                    noNumber: false,
+                    number: '7031112222',
+                    numberType: 'Home',
+                    type: 'Domestic',
+                    timeOfDay: 'Both',
+                    extension: ''
+                  }
+                }
+              },
+              {
+                Item: {
+                  Telephone: {
+                    noNumber: false,
+                    number: '7031112222',
+                    numberType: 'Home',
+                    type: 'Domestic',
+                    timeOfDay: 'Both',
+                    extension: ''
+                  }
+                }
+              }
+            ]
+          }
+        },
+        expected: false
+      },
+      {
+        state: {
+          PhoneNumbers: {
+            items: [
+              {
+                Item: {
+                  Telephone: {
+                    noNumber: false,
+                    number: '7031112222',
+                    numberType: 'Home',
+                    type: 'Domestic',
+                    timeOfDay: 'Both',
+                    extension: ''
+                  }
+                }
+              },
+              {
+                Item: {
+                  Telephone: {
+                    noNumber: false,
+                    number: '7031112222',
+                    numberType: 'Work',
+                    type: 'Domestic',
+                    timeOfDay: 'Both',
+                    extension: ''
+                  }
+                }
+              }
+            ]
+          }
+        },
+        expected: true
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(
+        new IdentificationContactInformationValidator(
+          test.state,
+          null
+        ).validPhoneTypes()
       ).toBe(test.expected)
     })
   })

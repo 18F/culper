@@ -1,10 +1,10 @@
-<PersonalReferences>
+<PersonalReferences Version="1" Type="Pooled">
   <Comment></Comment>
   <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
   <References>
     {{range $index, $item := .props.List.props.items}}
     {{with $Item := $item.Item}}
-    <Reference ID="{{$index}}">
+    <Reference ID="{{inc $index}}">
       <Address>
         {{location $Item.Address}}
       </Address>
@@ -40,7 +40,11 @@
             {{telephone $Item.MobileTelephone}}
           </Mobile>
         </Telephone>
-        <Title NotApplicable="{{notApplicable $Item.RankNotApplicable}}">{{text $Item.Rank}}</Title>
+        {{if notApplicable $Item.RankNotApplicable | eq "True"}}
+        <Title NotApplicable="True"></Title>
+        {{else}}
+        <Title>{{text $Item.Rank}}</Title>
+        {{end}}
       </Reference>
       {{end}}
       {{end}}

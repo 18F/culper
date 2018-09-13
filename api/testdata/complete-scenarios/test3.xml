@@ -8,11 +8,12 @@
           <Version>2017-07</Version>
         </Form>
         <Applicant>
-          <Name>Xavier James Thompson</Name>
           <SSN>312458912</SSN>
         </Applicant>
         <Responses>
+          <AgencyInstructionsForApplicant/>
           <FormInstanceSpecific>
+            <AgencyInstructionsForApplicant/>
             <ESigCertificationResponses Version="1" Type="Pooled" LastSummaryID="201" LastDynamicListID="201">
               <UserFinalizedCert>
                 <Answer>Yes</Answer>
@@ -24,6 +25,7 @@
             <UserPreferences Version="1" Type="Pooled" LastSummaryID="201" LastDynamicListID="201">
               <DisplayNavigation/>
             </UserPreferences>
+            <ValidationResponses Version="1" Type="FormInstanceSpecific"/>
           </FormInstanceSpecific>
           <Pooled>
             <IdentifyingInformation Type="Pooled" Version="1">
@@ -78,10 +80,10 @@
                 </Telephone>
               </HomeTelephone>
             </ContactInformation>
-            <PersonalReferences>
+            <PersonalReferences Version="1" Type="Pooled">
               <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
               <References>
-                <Reference ID="0">
+                <Reference ID="1">
                   <Address>
                     <Street>1600 pennsulvenia Ave </Street>
                     <City>jamaica plain</City>
@@ -118,7 +120,7 @@
                   </Telephone>
                   <Title NotApplicable="True"/>
                 </Reference>
-                <Reference ID="1">
+                <Reference ID="2">
                   <Address>
                     <Street>800 New Street </Street>
                     <City>New York</City>
@@ -157,7 +159,7 @@
                   </Telephone>
                   <Title NotApplicable="True"/>
                 </Reference>
-                <Reference ID="2">
+                <Reference ID="3">
                   <Address>
                     <Street>800 New Street </Street>
                     <City>New York</City>
@@ -199,11 +201,11 @@
                 </Reference>
               </References>
             </PersonalReferences>
-            <RelativesAndAssociates>
+            <RelativesAndAssociates Version="1" Type="Pooled">
               <ApplicableRelativeTypes Mother01="True" Father02="True" Stepsister11="True" FatherInLaw14="True" MotherInLaw15="True"/>
               <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
               <Relatives>
-                <Relative ID="0">
+                <Relative ID="1">
                   <Address>
                     <Street>800 New Street </Street>
                     <City>New York</City>
@@ -223,7 +225,7 @@
                     </Place>
                   </Birth>
                   <CountriesOfCitizenship>
-                    <Citizenship ID="0">
+                    <Citizenship ID="1">
                       <Country>United States</Country>
                     </Citizenship>
                   </CountriesOfCitizenship>
@@ -246,7 +248,7 @@
                   </OtherNamesUsed>
                   <Type>01Mother</Type>
                 </Relative>
-                <Relative ID="1">
+                <Relative ID="2">
                   <Address>
                     <Street>65 DEER ST </Street>
                     <City>BOSTON</City>
@@ -266,7 +268,7 @@
                     </Place>
                   </Birth>
                   <CountriesOfCitizenship>
-                    <Citizenship ID="0">
+                    <Citizenship ID="1">
                       <Country>United States</Country>
                     </Citizenship>
                   </CountriesOfCitizenship>
@@ -284,7 +286,7 @@
                   </OtherNamesUsed>
                   <Type>02Father</Type>
                 </Relative>
-                <Relative ID="2">
+                <Relative ID="3">
                   <Address>
                     <Street>65 DEER ST </Street>
                     <City>BOSTON</City>
@@ -304,7 +306,7 @@
                     </Place>
                   </Birth>
                   <CountriesOfCitizenship>
-                    <Citizenship ID="0">
+                    <Citizenship ID="1">
                       <Country>United States</Country>
                     </Citizenship>
                   </CountriesOfCitizenship>
@@ -322,7 +324,7 @@
                   </OtherNamesUsed>
                   <Type>11Stepsister</Type>
                 </Relative>
-                <Relative ID="3">
+                <Relative ID="4">
                   <Birth>
                     <Date>
                       <Month>03</Month>
@@ -336,7 +338,7 @@
                     </Place>
                   </Birth>
                   <CountriesOfCitizenship>
-                    <Citizenship ID="0">
+                    <Citizenship ID="1">
                       <Country>United States</Country>
                     </Citizenship>
                   </CountriesOfCitizenship>
@@ -350,7 +352,7 @@
                   </LegalName>
                   <Type>15MotherInLaw</Type>
                 </Relative>
-                <Relative ID="4">
+                <Relative ID="5">
                   <Birth>
                     <Date>
                       <Month>09</Month>
@@ -364,7 +366,7 @@
                     </Place>
                   </Birth>
                   <CountriesOfCitizenship>
-                    <Citizenship ID="0">
+                    <Citizenship ID="1">
                       <Country>United States</Country>
                     </Citizenship>
                   </CountriesOfCitizenship>
@@ -383,7 +385,7 @@
             <Spouse Version="1" Type="Pooled">
               <Cohabitants>
                 <Answer>Yes</Answer>
-                <Cohabitant ID="0">
+                <Cohabitant ID="1">
                   <Birth>
                     <Date>
                       <Month>03</Month>
@@ -398,13 +400,13 @@
                   </Birth>
                   <CohabitationDate>
                     <Date>
-                      <Month>03</Month>
+                      <Month>04</Month>
                       <Day>12</Day>
                       <Year>2000</Year>
                     </Date>
                   </CohabitationDate>
                   <CountriesOfCitizenship>
-                    <Citizenship ID="0">
+                    <Citizenship ID="1">
                       <Country>United States</Country>
                     </Citizenship>
                   </CountriesOfCitizenship>
@@ -416,12 +418,12 @@
                   </LegalName>
                   <OtherNamesUsed NotApplicable="True"/>
                   <SSN>
-                    <FirstThree>111</FirstThree>
+                    <FirstThree>511</FirstThree>
                     <NextTwo>11</NextTwo>
-                    <LastFour>1111</LastFour>
+                    <LastFour>1511</LastFour>
                   </SSN>
                 </Cohabitant>
-                <Cohabitant ID="1">
+                <Cohabitant ID="2">
                   <Birth>
                     <Date>
                       <Month>08</Month>
@@ -436,13 +438,13 @@
                   </Birth>
                   <CohabitationDate>
                     <Date>
-                      <Month>08</Month>
+                      <Month>09</Month>
                       <Day>12</Day>
                       <Year>2000</Year>
                     </Date>
                   </CohabitationDate>
                   <CountriesOfCitizenship>
-                    <Citizenship ID="0">
+                    <Citizenship ID="1">
                       <Country>United States</Country>
                     </Citizenship>
                   </CountriesOfCitizenship>
@@ -466,8 +468,8 @@
               </HaveFormerSpouse>
               <MaritalStatus>Married</MaritalStatus>
               <PresentMarriage>
-                <CurrentSpouse>
-                  <Address UseMyCurrentAddress="False">
+                <CurrentSpouse ID="1">
+                  <Address>
                     <Street>65 DEER ST </Street>
                     <City>BOSTON</City>
                     <State>MA</State>
@@ -487,7 +489,7 @@
                     </Place>
                   </Birth>
                   <CountriesOfCitizenship>
-                    <Citizenship ID="0">
+                    <Citizenship ID="1">
                       <Country>United States</Country>
                     </Citizenship>
                   </CountriesOfCitizenship>
@@ -505,41 +507,20 @@
                       <Year>2000</Year>
                     </Date>
                     <Place>
-                      <City>10 causeway st</City>
+                      <City>Random Town</City>
                       <State>MA</State>
-                      <County>boston</County>
-                      <Country>United States</Country>
+                      <County>Boston</County>
                     </Place>
                   </Marriage>
                   <OtherNamesUsed NotApplicable="True"/>
-                  <SSN NotApplicable="false">
-                    <FirstThree>
-        111
-      </FirstThree>
-                    <NextTwo>
-        11
-      </NextTwo>
-                    <LastFour>
-        1111
-      </LastFour>
+                  <SSN>
+                    <FirstThree>311</FirstThree>
+                    <NextTwo>31</NextTwo>
+                    <LastFour>1311</LastFour>
                   </SSN>
                   <Separated>
                     <Answer>No</Answer>
                   </Separated>
-                  <Separation>
-                    <Date>
-                      <Month>02</Month>
-                      <Day>01</Day>
-                      <Year>2000</Year>
-                    </Date>
-                    <LocationOfRecord>
-                      <Place NotApplicable="False">
-                        <City>jamaica plain</City>
-                        <State>MD</State>
-                        <ZipCode>12345</ZipCode>
-                      </Place>
-                    </LocationOfRecord>
-                  </Separation>
                   <Telephone>
                     <Number>1231231123</Number>
                     <Time>Both</Time>
@@ -547,9 +528,9 @@
                 </CurrentSpouse>
               </PresentMarriage>
             </Spouse>
-            <ResidenceHistory>
+            <ResidenceHistory Version="1" Type="Pooled">
               <Residencies>
-                <Residency ID="0">
+                <Residency ID="1">
                   <Address>
                     <Street>123 VARICK ST </Street>
                     <City>NEW YORK</City>
@@ -588,19 +569,16 @@
                       <Middle>Criag</Middle>
                       <Suffix>II</Suffix>
                     </LegalName>
-                    <RelationshipTypes Neighbor="True" Friend="True"/>
+                    <RelationshipTypes Neighbor="True" Friend="True" Landlord="True" WorkAssociate="True"/>
                     <Telephone>
                       <Day>
                         <Number>1223444444</Number>
-                        <Time>Night</Time>
                       </Day>
                       <Evening>
                         <Number>2342342344</Number>
-                        <Time>Day</Time>
                       </Evening>
                       <Mobile>
                         <Number>2334333333</Number>
-                        <Time>Both</Time>
                       </Mobile>
                     </Telephone>
                   </Verifier>
@@ -610,7 +588,7 @@
             </ResidenceHistory>
             <EmploymentActivities Type="Pooled" Version="1">
               <Employments>
-                <Employment ID="0">
+                <Employment ID="1">
                   <DateRange>
                     <From>
                       <Date>
@@ -667,7 +645,7 @@
                 <Answer>No</Answer>
               </Fired>
             </EmploymentRecord>
-            <Education>
+            <Education Version="1" Type="Pooled">
               <AttendedAnySchools>
                 <Answer>No</Answer>
               </AttendedAnySchools>
@@ -678,7 +656,7 @@
     
   </SchoolsAttended>
             </Education>
-            <FormerFederalServiceActivities>
+            <FormerFederalServiceActivities Version="1" Type="Pooled">
               <HadFormerFederalCivilianEmployment>
                 <Answer>No</Answer>
               </HadFormerFederalCivilianEmployment>
@@ -794,12 +772,12 @@
   </Incidents>
               </UnpaidTaxes>
             </FinancialRecord>
-            <ForeignContacts>
+            <ForeignContacts Version="1" Type="Pooled">
               <ContactWithForeignNationalBoundByAffectionInfluenceObligation>
                 <Answer>Yes</Answer>
               </ContactWithForeignNationalBoundByAffectionInfluenceObligation>
               <Contacts>
-                <Contact ID="0">
+                <Contact ID="1">
                   <Address>
                     <Street>800 New Street </Street>
                     <City>Boston</City>
@@ -816,7 +794,7 @@
                     </Place>
                   </Birth>
                   <Citizenships>
-                    <Citizenship ID="0">
+                    <Citizenship ID="1">
                       <Country>France</Country>
                     </Citizenship>
                   </Citizenships>
@@ -859,7 +837,7 @@
                     </LegalName>
                   </FullName>
                 </Contact>
-                <Contact ID="1">
+                <Contact ID="2">
                   <Address>
                     <Street>800 New Street </Street>
                     <City>Boston</City>
@@ -878,7 +856,7 @@
                     </Place>
                   </Birth>
                   <Citizenships>
-                    <Citizenship ID="0">
+                    <Citizenship ID="1">
                       <Country>Jamaica</Country>
                     </Citizenship>
                   </Citizenships>
@@ -920,6 +898,16 @@
                       <Middle>Rob</Middle>
                     </LegalName>
                   </FullName>
+                  <OtherNamesUsed>
+                    <OtherName ID="1">
+                      <Name>
+                        <Last>Smith</Last>
+                        <First>we</First>
+                        <Middle>Criag</Middle>
+                        <Suffix>VII</Suffix>
+                      </Name>
+                    </OtherName>
+                  </OtherNamesUsed>
                 </Contact>
               </Contacts>
               <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
@@ -928,10 +916,10 @@
               <DirectInterests>
                 <Answer>Yes</Answer>
                 <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
-                <DirectInterest ID="0">
+                <DirectInterest ID="1">
                   <Coowners>
                     <Answer>Yes</Answer>
-                    <Coowner ID="0">
+                    <Coowner ID="1">
                       <Address>
                         <Street>800 New Street </Street>
                         <City>Boston</City>
@@ -939,7 +927,7 @@
                         <ZipCode>02130</ZipCode>
                       </Address>
                       <CountriesOfCitizenship>
-                        <Citizenship ID="0">
+                        <Citizenship ID="1">
                           <Country>Morocco</Country>
                         </Citizenship>
                       </CountriesOfCitizenship>
@@ -951,14 +939,14 @@
                       </LegalName>
                       <Relationship>natural</Relationship>
                     </Coowner>
-                    <Coowner ID="1">
+                    <Coowner ID="2">
                       <Address>
                         <Street>Apple St </Street>
                         <City>Berlin</City>
                         <Country>Germany</Country>
                       </Address>
                       <CountriesOfCitizenship>
-                        <Citizenship ID="0">
+                        <Citizenship ID="1">
                           <Country>Germany</Country>
                         </Citizenship>
                       </CountriesOfCitizenship>
@@ -984,7 +972,7 @@
                   <Members Cohabitant="True" DependentChildren="True"/>
                   <TypeOfFinancialInterest>Money Honey</TypeOfFinancialInterest>
                 </DirectInterest>
-                <DirectInterest ID="1">
+                <DirectInterest ID="2">
                   <Coowners>
                     <Answer>No</Answer>
                   </Coowners>
@@ -1005,10 +993,10 @@
                   <Members Yourself="True"/>
                   <TypeOfFinancialInterest>gains</TypeOfFinancialInterest>
                 </DirectInterest>
-                <DirectInterest ID="2">
+                <DirectInterest ID="3">
                   <Coowners>
                     <Answer>Yes</Answer>
-                    <Coowner ID="0">
+                    <Coowner ID="1">
                       <Address>
                         <Street>123 Seasame Street </Street>
                         <City>New York</City>
@@ -1016,7 +1004,7 @@
                         <ZipCode>10005</ZipCode>
                       </Address>
                       <CountriesOfCitizenship>
-                        <Citizenship ID="0">
+                        <Citizenship ID="1">
                           <Country>United States</Country>
                         </Citizenship>
                       </CountriesOfCitizenship>
@@ -1044,10 +1032,56 @@
               </DirectInterests>
               <IndirectInterests>
                 <Answer>Yes</Answer>
-                <IndirectInterest ID="0"><ControllingParty><LegalName><Last>Hoyel</Last><First>bug</First></LegalName></ControllingParty><Coowners><Answer>Yes</Answer><Coowner ID="0"><Address><Street>123 Seasame Street </Street><City>New York</City><State>NY</State><ZipCode>10005</ZipCode></Address><CountriesOfCitizenship><Citizenship ID="0"><Country>Heard Island and McDonald Islands</Country></Citizenship></CountriesOfCitizenship><LegalName><Last>yellow</Last><First>royal</First><Middle>royale</Middle><Suffix>VII</Suffix></LegalName><Relationship>common</Relationship></Coowner><HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer></Coowners><Cost>8</Cost><CurrentValue>9</CurrentValue><DateAcquired><Month>01</Month><Day>01</Day><Year>1990</Year></DateAcquired><DateSold><Month>01</Month><Day>01</Day><Year>1999</Year></DateSold>&gt;
-    
-    <HowAcquired>etc gift purchase</HowAcquired><Members Yourself="True" Spouse="True" DependentChildren="True"/><Relationship>yellow flag</Relationship><SoldExplanation>disposed of gross amount </SoldExplanation><TypeOfFinancialInterest>house</TypeOfFinancialInterest></IndirectInterest>
                 <IndirectInterest ID="1">
+                  <ControllingParty>
+                    <LegalName>
+                      <Last>Hoyel</Last>
+                      <First>bug</First>
+                    </LegalName>
+                  </ControllingParty>
+                  <Coowners>
+                    <Answer>Yes</Answer>
+                    <Coowner ID="1">
+                      <Address>
+                        <Street>123 Seasame Street </Street>
+                        <City>New York</City>
+                        <State>NY</State>
+                        <ZipCode>10005</ZipCode>
+                      </Address>
+                      <CountriesOfCitizenship>
+                        <Citizenship ID="1">
+                          <Country>Heard Island and McDonald Islands</Country>
+                        </Citizenship>
+                      </CountriesOfCitizenship>
+                      <LegalName>
+                        <Last>yellow</Last>
+                        <First>royal</First>
+                        <Middle>royale</Middle>
+                        <Suffix>VII</Suffix>
+                      </LegalName>
+                      <Relationship>common</Relationship>
+                    </Coowner>
+                    <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+                  </Coowners>
+                  <Cost>8</Cost>
+                  <CurrentValue>9</CurrentValue>
+                  <DateAcquired>
+                    <Month>01</Month>
+                    <Day>01</Day>
+                    <Year>1990</Year>
+                  </DateAcquired>
+                  <DateSold>
+                    <Month>01</Month>
+                    <Day>01</Day>
+                    <Year>1999</Year>
+                  </DateSold>
+                  <HowAcquired>etc gift purchase</HowAcquired>
+                  <Members Yourself="True" Spouse="True" DependentChildren="True"/>
+                  <Relationship>yellow flag</Relationship>
+                  <SoldExplanation>disposed of gross amount </SoldExplanation>
+                  <TypeOfFinancialInterest>house</TypeOfFinancialInterest>
+                </IndirectInterest>
+                <IndirectInterest ID="2">
                   <ControllingParty>
                     <LegalName>
                       <Last>Hoyel</Last>
@@ -1074,12 +1108,12 @@
               </IndirectInterests>
               <RealEstateHoldings>
                 <Answer>Yes</Answer>
-                <RealEstateHolding ID="0">
+                <RealEstateHolding ID="1">
                   <Coowner>
     </Coowner>
                   <Coowners>
                     <Answer>Yes</Answer>
-                    <Coowner ID="0">
+                    <Coowner ID="1">
                       <Address>
                         <Street>800 New Street </Street>
                         <City>New York</City>
@@ -1087,7 +1121,7 @@
                         <ZipCode>10005</ZipCode>
                       </Address>
                       <CountriesOfCitizenship>
-                        <Citizenship ID="0">
+                        <Citizenship ID="1">
                           <Country>France</Country>
                         </Citizenship>
                       </CountriesOfCitizenship>
@@ -1098,7 +1132,7 @@
                       </LegalName>
                       <Relationship>pals</Relationship>
                     </Coowner>
-                    <Coowner ID="1">
+                    <Coowner ID="2">
                       <Address>
                         <Street>89 E 42ND ST </Street>
                         <City>NEW YORK</City>
@@ -1106,7 +1140,7 @@
                         <ZipCode>10005</ZipCode>
                       </Address>
                       <CountriesOfCitizenship>
-                        <Citizenship ID="0">
+                        <Citizenship ID="1">
                           <Country>United States</Country>
                         </Citizenship>
                       </CountriesOfCitizenship>
@@ -1136,7 +1170,7 @@
                   <Members Cohabitant="True"/>
                   <Type>home</Type>
                 </RealEstateHolding>
-                <RealEstateHolding ID="1">
+                <RealEstateHolding ID="2">
                   <Coowner>
     </Coowner>
                   <Coowners>
@@ -1148,6 +1182,11 @@
                     <Day>12</Day>
                     <Year>2000</Year>
                   </DateAcquired>
+                  <DateSold>
+                    <Month>03</Month>
+                    <Day>12</Day>
+                    <Year>2000</Year>
+                  </DateSold>
                   <HowAcquired>gift</HowAcquired>
                   <Location>
                     <Address>
@@ -1163,7 +1202,7 @@
               </RealEstateHoldings>
               <ForeignFinancialBenefits>
                 <Answer>Yes</Answer>
-                <ForeignFinancialBenefit ID="0">
+                <ForeignFinancialBenefit ID="1">
                   <Members Yourself="True"/>
                   <Country>France</Country>
                   <DateReceived>
@@ -1180,7 +1219,7 @@
                   <Type>Retirement</Type>
                   <Value>5</Value>
                 </ForeignFinancialBenefit>
-                <ForeignFinancialBenefit ID="1">
+                <ForeignFinancialBenefit ID="2">
                   <Members DependentChildren="True"/>
                   <Country>France</Country>
                   <DateReceived>
@@ -1200,7 +1239,7 @@
               </ForeignFinancialBenefits>
               <ForeignNationalsSupported>
                 <Answer>Yes</Answer>
-                <ForeignNationalSupported ID="0">
+                <ForeignNationalSupported ID="1">
                   <Address>
                     <Street>1600 pennsulvenia Ave </Street>
                     <City>New York</City>
@@ -1209,7 +1248,7 @@
                   </Address>
                   <Amount>98999999</Amount>
                   <CountriesOfCitizenship>
-                    <Citizenship ID="0">
+                    <Citizenship ID="1">
                       <Country>Hungary</Country>
                     </Citizenship>
                   </CountriesOfCitizenship>
@@ -1222,7 +1261,7 @@
                   </LegalName>
                   <Relationship>friends</Relationship>
                 </ForeignNationalSupported>
-                <ForeignNationalSupported ID="1">
+                <ForeignNationalSupported ID="2">
                   <Address>
                     <Street>1600 pennsulvenia Ave </Street>
                     <City>New York</City>
@@ -1231,7 +1270,7 @@
                   </Address>
                   <Amount>09876</Amount>
                   <CountriesOfCitizenship>
-                    <Citizenship ID="0">
+                    <Citizenship ID="1">
                       <Country>Kazakhstan</Country>
                     </Citizenship>
                   </CountriesOfCitizenship>
@@ -1254,7 +1293,7 @@
               <SupportActivities>
                 <Answer>Yes</Answer>
                 <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
-                <SupportActivity ID="0">
+                <SupportActivity ID="1">
                   <Country>Chile</Country>
                   <DateRange>
                     <From>
@@ -1273,14 +1312,14 @@
                   <DescribeCompensation>none</DescribeCompensation>
                   <Explanation>advice </Explanation>
                   <LegalName>
-                    <Last Type="IO">c</Last>
+                    <Last>c</Last>
                     <First>George</First>
                     <Middle>Rob</Middle>
                     <Suffix>X</Suffix>
                   </LegalName>
                   <Organization>Robert</Organization>
                 </SupportActivity>
-                <SupportActivity ID="1">
+                <SupportActivity ID="2">
                   <Country>Romania</Country>
                   <DateRange>
                     <From>
@@ -1306,7 +1345,7 @@
               </SupportActivities>
               <Consultancies>
                 <Answer>Yes</Answer>
-                <Consultancy ID="0">
+                <Consultancy ID="1">
                   <Agency>
                     <Country>Gabon</Country>
                     <Name>agency</Name>
@@ -1323,7 +1362,7 @@
                     <Suffix>Sr</Suffix>
                   </LegalName>
                 </Consultancy>
-                <Consultancy ID="1">
+                <Consultancy ID="2">
                   <Agency>
                     <Country>Denmark</Country>
                     <Name>agency2</Name>
@@ -1340,7 +1379,7 @@
                     <Suffix>VII</Suffix>
                   </LegalName>
                 </Consultancy>
-                <Consultancy ID="2">
+                <Consultancy ID="3">
                   <Agency>
                     <Country>Haiti</Country>
                     <Name>agency 5</Name>
@@ -1364,7 +1403,7 @@
                 <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
               </ForeignJobOffer>
               <ForeignJobOffers>
-                <ForeignJobOffer ID="0">
+                <ForeignJobOffer ID="1">
                   <AcceptOffer>
                     <Answer>Yes</Answer>
                     <Explanation>seemed like a good idea</Explanation>
@@ -1388,7 +1427,7 @@
                   </OfferorLegalName>
                   <PositionDescription>its a good one</PositionDescription>
                 </ForeignJobOffer>
-                <ForeignJobOffer ID="1">
+                <ForeignJobOffer ID="2">
                   <AcceptOffer>
                     <Answer>No</Answer>
                     <Explanation>not good enough!</Explanation>
@@ -1404,14 +1443,14 @@
                     <Year>1999</Year>
                   </OfferDate>
                   <OfferorLegalName>
-                    <Last Type="IO">u</Last>
+                    <Last>u</Last>
                     <First Type="IO">g</First>
                     <Middle Type="IO">k</Middle>
                     <Suffix>IX</Suffix>
                   </OfferorLegalName>
                   <PositionDescription>offered</PositionDescription>
                 </ForeignJobOffer>
-                <ForeignJobOffer ID="2">
+                <ForeignJobOffer ID="3">
                   <AcceptOffer>
                     <Answer>No</Answer>
                     <Explanation>would you</Explanation>
@@ -1434,14 +1473,13 @@
                   </OfferorLegalName>
                   <PositionDescription>how come?</PositionDescription>
                 </ForeignJobOffer>
-                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
               </ForeignJobOffers>
               <OtherForeignEmployment>
                 <Answer>Yes</Answer>
                 <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
               </OtherForeignEmployment>
               <OtherForeignEmployments>
-                <OtherForeignEmployment ID="0">
+                <OtherForeignEmployment ID="1">
                   <CompensationDescription>apples </CompensationDescription>
                   <DateRange>
                     <From>
@@ -1465,7 +1503,7 @@
                       <ZipCode>10003</ZipCode>
                     </Address>
                     <CountriesOfCitizenship>
-                      <Citizenship ID="0">
+                      <Citizenship ID="1">
                         <Country>Yemen</Country>
                       </Citizenship>
                     </CountriesOfCitizenship>
@@ -1480,7 +1518,7 @@
                   <Relationship>friends</Relationship>
                   <ServiceProvided>guidance</ServiceProvided>
                 </OtherForeignEmployment>
-                <OtherForeignEmployment ID="1">
+                <OtherForeignEmployment ID="2">
                   <CompensationDescription>all of it </CompensationDescription>
                   <DateRange>
                     <From>
@@ -1503,7 +1541,7 @@
                       <Country>Sweden</Country>
                     </Address>
                     <CountriesOfCitizenship>
-                      <Citizenship ID="0">
+                      <Citizenship ID="1">
                         <Country>Swaziland</Country>
                       </Citizenship>
                     </CountriesOfCitizenship>
@@ -1517,11 +1555,10 @@
                   <Relationship>not sure</Relationship>
                   <ServiceProvided>none</ServiceProvided>
                 </OtherForeignEmployment>
-                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
               </OtherForeignEmployments>
               <Meetings>
                 <Answer>Yes</Answer>
-                <Meeting ID="0">
+                <Meeting ID="1">
                   <DateRange>
                     <From>
                       <Date>
@@ -1547,19 +1584,19 @@
                   <Purpose>concert for bangladesh</Purpose>
                   <SubsequentForeignContacts>
                     <Answer>Yes</Answer>
-                    <Contact ID="0">
+                    <Contact ID="1">
                       <Explanation>we did it twice</Explanation>
                     </Contact>
-                    <Contact ID="1">
+                    <Contact ID="2">
                       <Explanation>we got great press</Explanation>
                     </Contact>
-                    <Contact ID="2">
+                    <Contact ID="3">
                       <Explanation>got coffee in berlin</Explanation>
                     </Contact>
                     <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
                   </SubsequentForeignContacts>
                 </Meeting>
-                <Meeting ID="1">
+                <Meeting ID="2">
                   <DateRange>
                     <From>
                       <Date>
@@ -1591,10 +1628,10 @@
               </Meetings>
               <GovernmentContacts>
                 <Answer>Yes</Answer>
-                <GovernmentContact ID="0">
+                <GovernmentContact ID="1">
                   <Circumstances>it was for profit and fun </Circumstances>
                   <CountriesInvolved>
-                    <CountryInvolved ID="0">
+                    <CountryInvolved ID="1">
                       <Country>Bolivia</Country>
                     </CountryInvolved>
                   </CountriesInvolved>
@@ -1621,10 +1658,10 @@
                     <Answer>No</Answer>
                   </SubsequentForeignContacts>
                 </GovernmentContact>
-                <GovernmentContact ID="1">
+                <GovernmentContact ID="2">
                   <Circumstances>random </Circumstances>
                   <CountriesInvolved>
-                    <CountryInvolved ID="0">
+                    <CountryInvolved ID="1">
                       <Country>India</Country>
                     </CountryInvolved>
                   </CountriesInvolved>
@@ -1646,17 +1683,27 @@
                     </Place>
                   </Location>
                   <SubsequentForeignContacts>
-                    <Answer>No</Answer>
+                    <Answer>Yes</Answer>
+                    <Contact ID="1">
+                      <Date>
+                        <Month>01</Month>
+                        <Day>12</Day>
+                        <Year>1990</Year>
+                      </Date>
+                      <FutureContactPlans>date</FutureContactPlans>
+                      <Purpose>went to school together</Purpose>
+                    </Contact>
+                    <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
                   </SubsequentForeignContacts>
                 </GovernmentContact>
                 <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
               </GovernmentContacts>
               <SponsoredVisits>
                 <Answer>Yes</Answer>
-                <SponsoredVisit ID="0">
+                <SponsoredVisit ID="1">
                   <AddressWhileInUS>
                     <Address>
-                      <Street>1600 pennsulvenia Ave </Street>
+                      <Street>800 New Street </Street>
                       <City>New York</City>
                       <State>NY</State>
                       <ZipCode>10005</ZipCode>
@@ -1673,13 +1720,13 @@
                     </Place>
                   </Birth>
                   <CountriesOfCitizenship>
-                    <Citizenship ID="0">
+                    <Citizenship ID="1">
                       <Country>Iceland</Country>
                     </Citizenship>
                   </CountriesOfCitizenship>
                   <CurrentAddress>
                     <Address>
-                      <Street>800 New Street </Street>
+                      <Street>1600 pennsulvenia Ave </Street>
                       <City>New York</City>
                       <State>NY</State>
                       <ZipCode>10005</ZipCode>
@@ -1697,12 +1744,12 @@
                     </To>
                   </DateRange>
                   <Name>
-                    <Last Type="IO">o</Last>
+                    <Last>o</Last>
                     <First Type="IO">g</First>
                     <Middle Type="NMN"/>
                   </Name>
                   <Organization>
-                    <Address NotApplicable="False">
+                    <Address>
                       <Street>123 Seasame Street </Street>
                       <City>New York</City>
                       <State>MA</State>
@@ -1713,10 +1760,10 @@
                   <Purpose>hospital</Purpose>
                   <SponsorshipPurpose>support</SponsorshipPurpose>
                 </SponsoredVisit>
-                <SponsoredVisit ID="1">
+                <SponsoredVisit ID="2">
                   <AddressWhileInUS>
                     <Address>
-                      <Street>800 New Street </Street>
+                      <Street>123 Seasame Street </Street>
                       <City>New York</City>
                       <State>NY</State>
                       <ZipCode>10005</ZipCode>
@@ -1735,15 +1782,16 @@
                     </Place>
                   </Birth>
                   <CountriesOfCitizenship>
-                    <Citizenship ID="0">
+                    <Citizenship ID="1">
                       <Country>Kiribati</Country>
                     </Citizenship>
                   </CountriesOfCitizenship>
                   <CurrentAddress>
                     <Address>
-                      <Street>123 Seasame Street </Street>
+                      <Street>800 New Street </Street>
                       <City>New York</City>
-                      <Country>Jamaica</Country>
+                      <State>NY</State>
+                      <ZipCode>10005</ZipCode>
                     </Address>
                   </CurrentAddress>
                   <DateRange>
@@ -1763,7 +1811,7 @@
                     <Middle>paul</Middle>
                   </Name>
                   <Organization>
-                    <Address NotApplicable="False">
+                    <Address>
                       <Street>1600 pennsulvenia Ave </Street>
                       <City>New York</City>
                       <Country>Kazakhstan</Country>
@@ -1779,7 +1827,7 @@
                 <Answer>Yes</Answer>
               </ForeignPoliticalOffice>
               <ForeignPoliticalOffices>
-                <ForeignPoliticalOffice ID="0">
+                <ForeignPoliticalOffice ID="1">
                   <Country>Jan Mayen</Country>
                   <CurrentEligibility>eligible</CurrentEligibility>
                   <DateRange>
@@ -1799,7 +1847,7 @@
                   <Position>king</Position>
                   <Reason>activity</Reason>
                 </ForeignPoliticalOffice>
-                <ForeignPoliticalOffice ID="1">
+                <ForeignPoliticalOffice ID="2">
                   <Country>Lebanon</Country>
                   <CurrentEligibility>not eligible</CurrentEligibility>
                   <DateRange>
@@ -1826,7 +1874,7 @@
                 <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
               </VotedInForeignElection>
               <VotedInForeignElections>
-                <ForeignElection ID="0">
+                <ForeignElection ID="1">
                   <Country>Nauru</Country>
                   <CurrentVotingEligibility>on Thursdays</CurrentVotingEligibility>
                   <Date>
@@ -1835,7 +1883,7 @@
                   </Date>
                   <Reason>elect the best</Reason>
                 </ForeignElection>
-                <ForeignElection ID="1">
+                <ForeignElection ID="2">
                   <Country>Macau</Country>
                   <CurrentVotingEligibility>one a week</CurrentVotingEligibility>
                   <Date>
@@ -1844,10 +1892,9 @@
                   </Date>
                   <Reason>never</Reason>
                 </ForeignElection>
-                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
               </VotedInForeignElections>
             </ForeignBusinessActivities>
-            <ForeignTravels>
+            <ForeignTravels Version="1" Type="Pooled">
               <CountriesVisited>
                 <Answer>Yes</Answer>
               </CountriesVisited>
@@ -1855,7 +1902,7 @@
                 <Answer>No</Answer>
               </SolelyForUSGovernment>
               <Travels>
-                <Travel ID="0">
+                <Travel ID="1">
                   <ContactedByForeignMilitaryOrganization>
                     <Answer>Yes</Answer>
                     <Explanation>got a beer with them</Explanation>
@@ -1901,7 +1948,7 @@
                     <Explanation>bribed</Explanation>
                   </Threatened>
                 </Travel>
-                <Travel ID="1">
+                <Travel ID="2">
                   <ContactedByForeignMilitaryOrganization>
                     <Answer>Yes</Answer>
                     <Explanation>potato</Explanation>
@@ -2139,6 +2186,7 @@
         </Responses>
       </Request>
     </RequestInfo>
+    <DateSubmitted>2018-09-10</DateSubmitted>
   </SubmittedRequestInfo>
   <AgencyUsageBlock>
     <TypeOfInvestigation>

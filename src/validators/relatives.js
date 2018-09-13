@@ -18,8 +18,29 @@ export default class RelativesValidator {
     })
   }
 
+  validMinimumRelations() {
+    const requiredRelations = ['Father', 'Mother']
+
+    if ((this.list.branch || {}).value === 'No') {
+      if (this.list.items && this.list.items.length > 0) {
+        let relations = []
+        for (const item of this.list.items) {
+          if (!item || !item.Item || !item.Item.Relation) {
+            continue
+          }
+          relations.push(item.Item.Relation.value)
+        }
+        if (relations.length > 0) {
+          return requiredRelations.every(r => relations.includes(r))
+        }
+      }
+      return false
+    }
+    return true
+  }
+
   isValid() {
-    return this.validItems()
+    return this.validItems() && this.validMinimumRelations()
   }
 }
 
@@ -159,7 +180,12 @@ export class RelativeValidator {
 
   validAliases() {
     const items = this.aliases.items || []
-    const nonImmediateFamily = ['Fosterparent', 'Father-in-law', 'Mother-in-law', 'Guardian']
+    const nonImmediateFamily = [
+      'Fosterparent',
+      'Father-in-law',
+      'Mother-in-law',
+      'Guardian'
+    ]
 
     if (nonImmediateFamily.includes(this.relation)) {
       return true

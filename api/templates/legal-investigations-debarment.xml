@@ -10,7 +10,7 @@
   <Comment></Comment>
   {{range $index, $item := .props.List.props.items}}
   {{with $Item := $item.Item}}
-  <GovernmentDebarment ID="{{$index}}">
+  <GovernmentDebarment ID="{{inc $index}}">
     <Agency>{{text $Item.Agency}}</Agency>
     <Comment></Comment>
     <Date Type="{{dateEstimated $Item.Date}}">

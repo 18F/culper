@@ -6,7 +6,7 @@
   <CourtActions>
     {{range $index, $item := .props.List.props.items}}
     {{with $Item := $item.Item}}
-    <CourtAction ID="{{$index}}">
+    <CourtAction ID="{{inc $index}}">
       <Court>
         <Address>
           {{location $Item.CourtAddress}}

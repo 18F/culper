@@ -4,9 +4,13 @@
   <Consultations>
     {{range $index, $item := .props.List.props.items}}
     {{with $Item := $item.Item}}
-    <Consultation ID="{{$index}}">
+    <Consultation ID="{{inc $index}}">
       <Agency>
-        <Address SameAsAbove="{{if branch $Item.UseSameAddress | eq "Yes"}}True{{else}}False{{end}}">{{location $Item.AgencyAddress}}</Address>
+        {{if branch $Item.UseSameAddress | eq "Yes"}}
+        <Address SameAsAbove="True"/>
+        {{else}}
+        <Address>{{location $Item.AgencyAddress}}</Address>
+        {{end}}
         <Name>{{text $Item.AgencyName}}</Name>
       </Agency>
       <BeginDate Type="{{dateEstimated $Item.TreatmentBeginDate}}">{{monthYear $Item.TreatmentBeganDate}}</BeginDate>

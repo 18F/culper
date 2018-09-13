@@ -30,7 +30,7 @@
     </AlienRegistration>
     <Citizenships>
       {{range $cindex, $country := $citizenship.PriorCitizenship.props.value}}
-      <Citizenship ID="{{$cindex}}">
+      <Citizenship ID="{{inc $cindex}}">
         <Country>{{$country}}</Country>
       </Citizenship>
       {{end}}

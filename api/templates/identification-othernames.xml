@@ -5,7 +5,7 @@
   <OtherNames>
     {{range $index, $item := .props.List.props.items}}
     {{with $Item := $item.Item}}
-    <OtherName ID="{{$index}}">
+    <OtherName ID="{{inc $index}}">
       <LegalName>{{name $Item.Name}}</LegalName>
       {{monthYearDaterange $Item.DatesUsed}}
       <Maiden>{{branch $Item.MaidenName}}</Maiden>

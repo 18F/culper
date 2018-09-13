@@ -624,10 +624,10 @@
                     "props": {
                       "layout": "Address",
                       "street": "22 elm st",
-                      "city": "APO",
-                      "state": "AA",
-                      "zipcode": "34052",
-                      "country": "POSTOFFICE",
+                      "city": "Pacific Grove",
+                      "state": "CA",
+                      "zipcode": "93950",
+                      "country": "United States",
                       "validated": true
                     }
                   },

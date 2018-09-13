@@ -3,7 +3,7 @@
   <AnswerComment></AnswerComment>
   {{range $index, $item := .props.List.props.items}}
   {{with $Item := $item.Item}}
-  <IndirectInterest ID="{{$index}}">
+  <IndirectInterest ID="{{inc $index}}">
     <Comment></Comment>
     <ControllingParty>
       {{with $first := text $Item.Firstname}}
@@ -20,14 +20,14 @@
       {{range $cindex, $coowner := $Item.CoOwners.props.List.props.items}}
       {{with $Coowner := $coowner.Item}}
       {{if branch $Coowner.Has | eq "Yes"}}
-      <Coowner ID="{{$cindex}}">
+      <Coowner ID="{{inc $cindex}}">
         <Address>
           {{location $Coowner.Address}}
         </Address>
         <Comment></Comment>
         <CountriesOfCitizenship>
           {{range $ccindex, $country := $Coowner.Countries.props.value}}
-          <Citizenship ID="{{$ccindex}}">
+          <Citizenship ID="{{inc $ccindex}}">
             <Country>{{$country}}</Country>
           </Citizenship>
           {{end}}
@@ -53,7 +53,7 @@
     {{else}}
     <DateSold Type="{{dateEstimated $Item.Sold}}">
       {{date $Item.Sold}}
-    </DateSold>>
+    </DateSold>
     {{end}}
     <HowAcquired>{{text $Item.HowAcquired}}</HowAcquired>
     <Members

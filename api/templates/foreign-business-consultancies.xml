@@ -4,7 +4,7 @@
   <Comment></Comment>
   {{range $index, $item := .props.List.props.items}}
   {{with $Item := $item.Item}}
-  <Consultancy ID="{{$index}}">
+  <Consultancy ID="{{inc $index}}">
     <Agency>
       {{country $Item.Country}}
       <Name>{{text $Item.Agency}}</Name>

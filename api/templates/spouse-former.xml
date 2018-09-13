@@ -3,7 +3,7 @@
 <FormerSpouses>
   {{range $index, $item := .props.items}}
   {{with $Item := $item.Item}}
-  <FormerSpouse ID="{{$index}}">
+  <FormerSpouse ID="{{inc $index}}">
     <Address DoNotKnow="{{notApplicable $Item.DeceasedAddressNotApplicable}}">
       {{location $Item.Address}}
     </Address>
@@ -17,7 +17,7 @@
     </Birth>
     <CountriesOfCitizenship>
       {{range $cindex, $country := $Item.Citizenship.value}}
-      <Citizenship ID="{{$cindex}}">
+      <Citizenship ID="{{inc $cindex}}">
         <Country>{{$country}}</Country>
       </Citizenship>
       {{end}}

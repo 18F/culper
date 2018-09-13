@@ -16,6 +16,7 @@ import (
 	"github.com/18F/e-QIP-prototype/api/saml"
 	"github.com/18F/e-QIP-prototype/api/usps"
 	"github.com/18F/e-QIP-prototype/api/xml"
+	"github.com/benbjohnson/clock"
 	"github.com/gorilla/mux"
 )
 
@@ -26,12 +27,13 @@ var (
 func main() {
 	cloudfoundry.Configure()
 	logger := &log.Service{Log: log.NewLogger()}
+	localClock := clock.New()
 	settings := env.Native{}
 	settings.Configure()
 	database := &postgresql.Service{Log: logger, Env: settings}
 	database.Configure()
 	token := jwt.Service{Env: settings}
-	xmlsvc := xml.Service{Log: logger}
+	xmlsvc := xml.Service{Log: logger, Clock: localClock}
 	pdfsvc := pdf.Service{Log: logger, Env: settings}
 	samlsvc := &saml.Service{Log: logger, Env: settings}
 	api.Geocode = usps.Geocoder{Log: logger, Env: settings}

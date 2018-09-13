@@ -4,7 +4,7 @@
   <Consultations>
     {{range $index, $item := .props.List.props.items}}
     {{with $Item := $item.Item}}
-    <Consultation ID="{{$index}}">
+    <Consultation ID="{{inc $index}}">
       <ActionToSeekCounselingTaken>
         <Answer>{{branch $Item.ActionTaken}}</Answer>
       </ActionToSeekCounselingTaken>
@@ -26,22 +26,27 @@
           {{if (checkboxHas $Item.Seekers "MentalHealthProfessional") | eq "True"}}
           MentalHealthProfessional="True"
           {{end}}
-          {{if (checkboxHas $Item.Seekers "Judge") | eq "True"}}
+          {{if (checkboxHas $Item.Seekers "CourtOfficial") | eq "True"}}
           Court="True"
           {{end}}
-          {{if (checkboxHas $Item.Seekers "None") | eq "True"}}
+          {{if (checkboxHas $Item.Seekers "NotOrdered") | eq "True"}}
           None="True"
+          {{end}}
+          {{if (checkboxHas $Item.Seekers "Other") | eq "True"}}
+          Other="True"
           {{end}}
           />
         <Comment></Comment>
         <Explanation>{{text $Item.OtherSeeker}}</Explanation>
       </CounselingOrderedBy>
+      {{if branch $Item.ActionTaken | eq "Yes" }}
       {{monthYearDaterange $Item.CounselingDates}}
       <Doctor>
         <Name>{{text $Item.TreatmentProviderName}}</Name>
         <Address>{{location $Item.TreatmentProviderAddress}}</Address>
         <Telephone>{{telephone $Item.TreatmentProviderTelephone}}</Telephone>
       </Doctor>
+      {{end}}
       <Comment></Comment>
     </Consultation>
     {{end}}
