@@ -118,7 +118,7 @@ export default class Telephone extends ValidationElement {
       name: this.props.name,
       timeOfDay: this.props.timeOfDay,
       type: this.props.type || 'Domestic',
-      numberType: this.props.showNumberType ? this.props.numberType : 'NA',
+      numberType: this.props.numberType,
       number: this.getFormattedNumber(),
       extension: this.props.extension,
       noNumber: this.props.noNumber || false,
