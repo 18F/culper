@@ -4,10 +4,10 @@
   <Instances>
     {{range $index, $item := .props.List.props.items}}
     {{with $Item := $item.Item}}
-    <Instance ID="{{$index}}">
+    <Instance ID="{{inc $index}}">
       <Comment></Comment>
-      {{daterange $Item.Dates}}
-      <Reason>{{text $Item.Reason}}</Reason>
+      {{monthYearDaterange $Item.Dates}}
+      <Reason>{{text $Item.Reasons}}</Reason>
     </Instance>
     {{end}}
     {{end}}

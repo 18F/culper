@@ -91,6 +91,12 @@ export default class ContactInformation extends SubsectionElement {
     return callback()
   }
 
+  uniquePhoneTypes() {
+    return new IdentificationContactInformationValidator(
+      this.props
+    ).validPhoneTypes()
+  }
+
   render() {
     const klass = `${this.props.className || ''}`.trim()
     let emails = this.props.Emails
@@ -200,6 +206,11 @@ export default class ContactInformation extends SubsectionElement {
           {i18n.m('identification.contacts.para.phoneNumber')}
         </Field>
 
+        <Field
+          errors={[{ code: 'validPhoneTypes', valid: this.uniquePhoneTypes() }]}
+          className={this.uniquePhoneTypes() && 'hidden'}
+        />
+
         <div className={klass + ' telephone-collection'}>
           <Accordion
             {...phoneNumbers}
@@ -228,6 +239,7 @@ export default class ContactInformation extends SubsectionElement {
                   placeholder={i18n.t(
                     'identification.contacts.placeholder.telephone'
                   )}
+                  showNumberType={true}
                   allowNotApplicable={false}
                   bind={true}
                 />

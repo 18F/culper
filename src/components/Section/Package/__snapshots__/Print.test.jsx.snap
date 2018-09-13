@@ -1449,6 +1449,49 @@ exports[`The print section renders properly 1`] = `
             </div>
           </div>
           <div
+            aria-label=""
+            className="field required  hidden"
+            data-uuid="field-MOCK-GUID"
+          >
+            <a
+              aria-hidden="true"
+              className="anchor"
+              id="field-MOCK-GUID"
+              name="field-MOCK-GUID"
+            />
+            <span
+              className="icon"
+            />
+            <div
+              className="table expand"
+            >
+              <span
+                aria-live="polite"
+                className="messages help-messages"
+              />
+            </div>
+            <div
+              className="table"
+            >
+              <span
+                className="content"
+              >
+                <span
+                  className="component"
+                />
+              </span>
+            </div>
+            <div
+              className="table expand"
+            >
+              <span
+                aria-live="polite"
+                className="messages error-messages"
+                role="alert"
+              />
+            </div>
+          </div>
+          <div
             className=" telephone-collection"
           >
             <div>
@@ -5452,6 +5495,49 @@ exports[`The print section renders properly 1`] = `
                     </p>
                   </div>
                 </span>
+              </span>
+            </div>
+            <div
+              className="table expand"
+            >
+              <span
+                aria-live="polite"
+                className="messages error-messages"
+                role="alert"
+              />
+            </div>
+          </div>
+          <div
+            aria-label=""
+            className="field required  hidden"
+            data-uuid="field-MOCK-GUID"
+          >
+            <a
+              aria-hidden="true"
+              className="anchor"
+              id="field-MOCK-GUID"
+              name="field-MOCK-GUID"
+            />
+            <span
+              className="icon"
+            />
+            <div
+              className="table expand"
+            >
+              <span
+                aria-live="polite"
+                className="messages help-messages"
+              />
+            </div>
+            <div
+              className="table"
+            >
+              <span
+                className="content"
+              >
+                <span
+                  className="component"
+                />
               </span>
             </div>
             <div

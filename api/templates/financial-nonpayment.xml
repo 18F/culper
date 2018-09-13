@@ -4,7 +4,7 @@
   <Incidents>
     {{range $index, $item := .props.List.props.items}}
     {{with $Item := $item.Item}}
-    <Incident ID="{{$index}}">
+    <Incident ID="{{inc $index}}">
       <AccountNumber>{{text $Item.AccountNumber}}</AccountNumber>
       <Agency>
         <Name>{{text $Item.Name}}</Name>

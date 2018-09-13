@@ -4,9 +4,9 @@
   <TerroristActs>
     {{range $index, $item := .props.List.props.items}}
     {{with $Item := $item.Item}}
-    <Act ID="{{$index}}">
+    <Act ID="{{inc $index}}">
       <Comment></Comment>
-      {{daterange $Item.Dates}}
+      {{monthYearDaterange $Item.Dates}}
       <Reason>{{text $Item.Reasons}}</Reason>
     </Act>
     {{end}}

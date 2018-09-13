@@ -36,7 +36,6 @@ describe('The Divorce component', () => {
       .find('.citizenship input')
       .simulate('change', { target: { value: 'Belg' } })
     component.find('.citizenship input').simulate('keydown', { keyCode: 13 })
-    component.find('.telephone .home input').simulate('change')
     component
       .find('.recognized .month input')
       .simulate('change', { target: { value: '12' } })
@@ -48,6 +47,6 @@ describe('The Divorce component', () => {
     component.find('.deceased .widowed input').simulate('change')
     component.find('.address-deceased .city input').simulate('change')
     component.find('.deceased-notapplicable .button input').simulate('change')
-    expect(updates).toBe(12)
+    expect(updates).toBe(11)
   })
 })

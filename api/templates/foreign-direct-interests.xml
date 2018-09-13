@@ -6,23 +6,23 @@
 
   {{range $index, $item := .props.List.props.items}}
   {{with $Item := $item.Item}}
-  <DirectInterest ID="{{$index}}">
+  <DirectInterest ID="{{inc $index}}">
     <Comment></Comment>
     <Coowners>
       <Answer>{{branchcollectionHas $Item.CoOwners.props.List}}</Answer>
       <AnswerComment></AnswerComment>
       {{ if branchcollectionHas $Item.CoOwners.props.List | eq "Yes"}}
-      {{range $cindex, $coowner := $Item.CoOwners.props.List.items}}
+      {{range $cindex, $coowner := $Item.CoOwners.props.List.props.items}}
       {{with $Coowner := $coowner.Item}}
       {{if branch $Coowner.Has | eq "Yes"}}
-      <Coowner ID="{{$cindex}}">
+      <Coowner ID="{{inc $cindex}}">
         <Address>
           {{location $Coowner.Address}}
         </Address>
         <Comment></Comment>
         <CountriesOfCitizenship>
           {{range $index, $country := $Coowner.Countries.props.value}}
-          <Citizenship ID="{{$index}}">
+          <Citizenship ID="{{inc $index}}">
             <Country>{{$country}}</Country>
           </Citizenship>
           {{end}}

@@ -4,10 +4,10 @@
   <Comment></Comment>
   {{range $index, $item := .props.List.props.items}}
   {{with $Item := $item.Item}}
-  <SponsoredVisit ID="{{$index}}">
+  <SponsoredVisit ID="{{inc $index}}">
     <AddressWhileInUS>
       <Address>
-        {{location $Item.Address}}
+        {{location $Item.Residence}}
       </Address>
     </AddressWhileInUS>
     <Birth>
@@ -27,14 +27,14 @@
     </Birth>
     <CountriesOfCitizenship>
       {{range $cindex, $country := $Item.Citizenship.props.value}}
-      <Citizenship ID="{{$cindex}}">
+      <Citizenship ID="{{inc $cindex}}">
         <Country>{{$country}}</Country>
       </Citizenship>
       {{end}}
     </CountriesOfCitizenship>
     <CurrentAddress>
       <Address>
-        {{location $Item.Residence}}
+        {{location $Item.Address}}
       </Address>
     </CurrentAddress>
     {{monthYearDaterange $Item.Dates}}
@@ -43,10 +43,18 @@
       {{name $Item.Name}}
     </Name>
     <Organization>
-      <Address NotApplicable="{{notApplicable $Item.OrganizationAddressNotApplicable}}">
+      {{if notApplicable $Item.OrganizationAddressNotApplicable | eq "True"}}
+      <Address NotApplicable="True"/>
+      {{else}}
+      <Address>
         {{location $Item.OrganizationAddress}}
       </Address>
-      <Name NotApplicable="{{notApplicable $Item.OrganizationNotApplicable}}">{{text $Item.Organization}}</Name>
+      {{end}}
+      {{if notApplicable $Item.OrganizationNotApplicable | eq "True"}}
+      <Name NotApplicable="True"></Name>
+      {{else}}
+      <Name>{{text $Item.Organization}}</Name>
+      {{end}}
     </Organization>
     <Purpose>{{text $Item.Stay}}</Purpose>
     <SponsorshipPurpose>{{text $Item.Sponsorship}}</SponsorshipPurpose>

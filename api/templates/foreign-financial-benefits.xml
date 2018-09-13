@@ -3,15 +3,22 @@
   <AnswerComment></AnswerComment>
   {{range $index, $item := .props.List.props.items}}
   {{with $Item := $item.Item}}
-  <ForeignFinancialBenefit ID="{{$index}}">
+  <ForeignFinancialBenefit ID="{{inc $index}}">
     <!-- Applies to all -->
     <Members
-      Yourself="{{checkboxHas $Item.InterestTypes "Yourself"}}"
-      Spouse="{{checkboxHas $Item.InterestTypes "Spouse"}}"
-      Cohabitant="{{checkboxHas $Item.InterestTypes "Cohabitant"}}"
-      DependentChildren="{{checkboxHas $Item.InterestTypes "DependentChildren"}}"
+      {{if (checkboxHas $Item.InterestTypes "Yourself") | eq "True"}}
+      Yourself="True"
+      {{end}}
+      {{if (checkboxHas $Item.InterestTypes "Spouse") | eq "True"}}
+      Spouse="True"
+      {{end}}
+      {{if (checkboxHas $Item.InterestTypes "Cohabitant") | eq "True"}}
+      Cohabitant="True"
+      {{end}}
+      {{if (checkboxHas $Item.InterestTypes "DependentChildren") | eq "True"}}
+      DependentChildren="True"
+      {{end}}
       />
-
     {{if radio $Item.BenefitFrequency | eq "OneTime"}}
     {{with $Benefit := $Item.OneTimeBenefit.props}}
     <BenefitComment></BenefitComment>
@@ -22,14 +29,16 @@
       {{date $Benefit.Received}}
     </DateReceived>
     <FrequencyReceivedType>{{checkbox $Benefit.BenefitFrequency}}</FrequencyReceivedType>
-    <FrequencyType>{{checkbox $Benefit.Frequency}}</FrequencyType>
+    <FrequencyType>{{radio $Item.BenefitFrequency | frequencyType}}</FrequencyType>
     <FrequencyTypeOtherExplanation>{{text $Benefit.OtherFrequency}}</FrequencyTypeOtherExplanation>
     <ObligatedToCountry>
       <Answer>{{branch $Benefit.Obligated}}</Answer>
+      {{if branch $Benefit.Obligated | eq "Yes"}}
       <Explanation>{{text $Benefit.ObligatedExplanation}}</Explanation>
+      {{end}}
     </ObligatedToCountry>
     <Reason>{{text $Benefit.Reason}}</Reason>
-    <Type>{{checkbox $Benefit.BenefitType}}</Type>
+    <Type>{{radio $Item.BenefitType}}</Type>
     <Value Estimated="{{$Benefit.Value.props.checked}}">{{text $Benefit.Value}}</Value>
     {{end}}
     {{end}}
@@ -44,14 +53,16 @@
     <ContinueComment></ContinueComment>
     {{country $Benefit.Country}}
     <FrequencyReceivedType>{{checkbox $Benefit.BenefitFrequency}}</FrequencyReceivedType>
-    <FrequencyType>{{checkbox $Benefit.Frequency}}</FrequencyType>
+    <FrequencyType>{{radio $Item.BenefitFrequency | frequencyType}}</FrequencyType>
     <FrequencyTypeOtherExplanation>{{text $Benefit.OtherFrequency}}</FrequencyTypeOtherExplanation>
     <ObligatedToCountry>
       <Answer>{{branch $Benefit.Obligated}}</Answer>
+      {{if branch $Benefit.Obligated | eq "Yes"}}
       <Explanation>{{text $Benefit.ObligatedExplanation}}</Explanation>
+      {{end}}
     </ObligatedToCountry>
     <Reason>{{text $Benefit.Reason}}</Reason>
-    <Type>{{checkbox $Benefit.BenefitType}}</Type>
+    <Type>{{radio $Item.BenefitType}}</Type>
     <Value Estimated="{{$Benefit.Value.props.checked}}">{{text $Benefit.Value}}</Value>
     {{end}}
     {{end}}
@@ -69,20 +80,24 @@
       {{date $Benefit.End}}
     </EndDate>
     <FrequencyReceivedType>{{checkbox $Benefit.BenefitFrequency}}</FrequencyReceivedType>
-    <FrequencyType>{{checkbox $Benefit.Frequency}}</FrequencyType>
+    <FrequencyType>{{radio $Item.BenefitFrequency | frequencyType}}</FrequencyType>
     <FrequencyTypeOtherExplanation>{{text $Benefit.OtherFrequency}}</FrequencyTypeOtherExplanation>
     <ObligatedToCountry>
       <Answer>{{branch $Benefit.Obligated}}</Answer>
+      {{if branch $Benefit.Obligated | eq "Yes"}}
       <Explanation>{{text $Benefit.ObligatedExplanation}}</Explanation>
+      {{end}}
     </ObligatedToCountry>
     <Reason>{{text $Benefit.Reason}}</Reason>
+    <Type>{{radio $Item.BenefitType}}</Type>
     <Value Estimated="{{$Benefit.Value.props.checked}}">{{text $Benefit.Value}}</Value>
     {{end}}
     {{end}}
 
     {{if radio $Item.BenefitFrequency | eq "Other"}}
     {{with $Benefit := $Item.OtherBenefit.props}}
-    <Type>{{checkbox $Benefit.BenefitType}}</Type>
+    <FrequencyType>{{radio $Item.BenefitFrequency | frequencyType}}</FrequencyType>
+    <Type>{{radio $Item.BenefitType}}</Type>
     <TypeOtherExplanation>{{text $Benefit.OtherBenefit}}</TypeOtherExplanation>
     {{end}}
     {{end}}

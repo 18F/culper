@@ -51,7 +51,6 @@ describe('The civil union component', () => {
       .simulate('change', { target: { value: '12' } })
     component.find('.civilunion-location .yes input').simulate('change')
     component.find('.address .mailing input').simulate('change')
-    component.find('.phonetype .cell input').simulate('change')
     component.find('.email input').simulate('change')
     component.find('.separated .yes input').simulate('change')
     component.find('.divorced .yes input').simulate('change')
@@ -62,7 +61,7 @@ describe('The civil union component', () => {
     component
       .find('.address-separated input[name="AddressSeparatedNotApplicable"]')
       .simulate('change')
-    expect(updates).toBe(20)
+    expect(updates).toBe(19)
   })
 
   it('renders current address', () => {

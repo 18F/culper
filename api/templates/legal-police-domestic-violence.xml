@@ -3,12 +3,18 @@
   <Comment></Comment>
   {{range $index, $item := .props.List.props.items}}
   {{with $Item := $item.Item}}
-  <RestrainingOrder ID="{{$index}}">
+  <RestrainingOrder ID="{{inc $index}}">
     <Comment></Comment>
     <Court>
       <Location>
         <Place>
-          {{location $Item.CourtAddress}}
+          <!-- XXX https://github.com/18F/e-QIP-prototype/issues/755 -->
+          {{- $usAddress := addressIn $Item.CourtAddress "United States" }}
+          {{if $usAddress}}
+          {{locationOverrideLayout $Item.CourtAddress "US City, State, Zipcode International city"}}
+          {{else}}
+          {{locationOverrideLayout $Item.CourtAddress "City, Country"}}
+          {{end}}
         </Place>
       </Location>
       <Name>{{text $Item.CourtName}}</Name>

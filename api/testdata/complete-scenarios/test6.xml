@@ -1,0 +1,905 @@
+<?xml version="1.0"?>
+<XMP version="3.00">
+  <SubmittedRequestInfo>
+    <RequestInfo>
+      <Request>
+        <Form>
+          <Name>SF86</Name>
+          <Version>2017-07</Version>
+        </Form>
+        <Applicant>
+          <SSN>288770930</SSN>
+        </Applicant>
+        <Responses>
+          <AgencyInstructionsForApplicant/>
+          <FormInstanceSpecific>
+            <AgencyInstructionsForApplicant/>
+            <ESigCertificationResponses Version="1" Type="Pooled" LastSummaryID="201" LastDynamicListID="201">
+              <UserFinalizedCert>
+                <Answer>Yes</Answer>
+              </UserFinalizedCert>
+              <UserOptedToESig>
+                <Answer>Yes</Answer>
+              </UserOptedToESig>
+            </ESigCertificationResponses>
+            <UserPreferences Version="1" Type="Pooled" LastSummaryID="201" LastDynamicListID="201">
+              <DisplayNavigation/>
+            </UserPreferences>
+            <ValidationResponses Version="1" Type="FormInstanceSpecific"/>
+          </FormInstanceSpecific>
+          <Pooled>
+            <IdentifyingInformation Type="Pooled" Version="1">
+              <Birth>
+                <Date>
+                  <Month>10</Month>
+                  <Day>29</Day>
+                  <Year>1983</Year>
+                </Date>
+                <Place>
+                  <City>Pittsburgh</City>
+                  <State>PA</State>
+                  <County>Alleghany</County>
+                  <Country>United States</Country>
+                </Place>
+              </Birth>
+              <EyeColor>Blue</EyeColor>
+              <FullName>
+                <LegalName>
+                  <Last>Chris</Last>
+                  <First>Ian</First>
+                  <Middle Type="NMN"/>
+                </LegalName>
+              </FullName>
+              <HairColor>Black</HairColor>
+              <Height>
+                <Feet>6</Feet>
+                <Inches>6</Inches>
+              </Height>
+              <OtherNamesUsed>
+                <Answer>No</Answer>
+              </OtherNamesUsed>
+              <SSN>
+                <FirstThree>288</FirstThree>
+                <NextTwo>77</NextTwo>
+                <LastFour>0930</LastFour>
+              </SSN>
+              <Sex>Male</Sex>
+              <Weight>
+                <Pounds>245</Pounds>
+              </Weight>
+            </IdentifyingInformation>
+            <ContactInformation Version="1" Type="Pooled">
+              <HomeEmail>
+                <Email>ian.chris@testmail.com</Email>
+              </HomeEmail>
+              <HomeTelephone>
+                <Telephone>
+                  <Number>7248978772</Number>
+                  <Time>Both</Time>
+                </Telephone>
+              </HomeTelephone>
+            </ContactInformation>
+            <PersonalReferences Version="1" Type="Pooled">
+              <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              <References>
+                <Reference ID="1">
+                  <Address>
+                    <Street>320 Washington Ave </Street>
+                    <City>Wheeling</City>
+                    <State>WV</State>
+                    <ZipCode>26003</ZipCode>
+                  </Address>
+                  <DateRange>
+                    <From>
+                      <Date Type="Estimated">
+                        <Month>08</Month>
+                        <Year>2002</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Present"/>
+                    </To>
+                  </DateRange>
+                  <Email>elyse.miller@testemail.com</Email>
+                  <LegalName>
+                    <Last>Miller</Last>
+                    <First>Elyse</First>
+                    <Middle Type="NMN"/>
+                  </LegalName>
+                  <RelationshipType Neighbor="True" Friend="True" Schoolmate="True"/>
+                  <Telephone>
+                    <Home>
+            
+
+
+
+          </Home>
+                    <Mobile>
+                      <Number>7245555553</Number>
+                      <Time>Both</Time>
+                    </Mobile>
+                  </Telephone>
+                  <Title NotApplicable="True"/>
+                </Reference>
+                <Reference ID="2">
+                  <Address>
+                    <Street>317 WASHINGTON AVE </Street>
+                    <City>WHEELING</City>
+                    <State>WV</State>
+                    <ZipCode>26003</ZipCode>
+                  </Address>
+                  <DateRange>
+                    <From>
+                      <Date Type="Estimated">
+                        <Month>02</Month>
+                        <Year>1990</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Present"/>
+                    </To>
+                  </DateRange>
+                  <Email>Mm@testemail.com</Email>
+                  <LegalName>
+                    <Last>Miller</Last>
+                    <First>Melissa</First>
+                    <Middle Type="NMN"/>
+                  </LegalName>
+                  <RelationshipType Neighbor="True" Friend="True"/>
+                  <Telephone>
+                    <Home>
+            
+
+
+
+          </Home>
+                    <Mobile>
+                      <Number>7245555554</Number>
+                      <Time>Both</Time>
+                    </Mobile>
+                  </Telephone>
+                  <Title NotApplicable="True"/>
+                </Reference>
+                <Reference ID="3">
+                  <Address>
+                    <Street>320 Washington Ave </Street>
+                    <City>Wheeling</City>
+                    <State>WV</State>
+                    <ZipCode>26003</ZipCode>
+                  </Address>
+                  <DateRange>
+                    <From>
+                      <Date Type="Estimated">
+                        <Month>04</Month>
+                        <Year>2015</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Present"/>
+                    </To>
+                  </DateRange>
+                  <Email DoNotKnow="True"/>
+                  <LegalName>
+                    <Last>Camera</Last>
+                    <First>Dave</First>
+                    <Middle Type="NMN"/>
+                    <Suffix>Jr</Suffix>
+                  </LegalName>
+                  <RelationshipType Friend="True"/>
+                  <Telephone>
+                    <Home>
+            
+
+
+
+          </Home>
+                    <Mobile>
+                      <Number>7245555555</Number>
+                      <Time>Both</Time>
+                    </Mobile>
+                  </Telephone>
+                  <Title NotApplicable="True"/>
+                </Reference>
+              </References>
+            </PersonalReferences>
+            <RelativesAndAssociates Version="1" Type="Pooled">
+              <ApplicableRelativeTypes Mother01="True" Father02="True"/>
+              <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              <Relatives>
+                <Relative ID="1">
+                  <Birth>
+                    <Date>
+                      <Month>09</Month>
+                      <Day>30</Day>
+                      <Year>1950</Year>
+                    </Date>
+                    <Place>
+                      <City>Pittsburgh</City>
+                      <State>PA</State>
+                      <Country>United States</Country>
+                    </Place>
+                  </Birth>
+                  <CountriesOfCitizenship>
+                    <Citizenship ID="1">
+                      <Country>United States</Country>
+                    </Citizenship>
+                  </CountriesOfCitizenship>
+                  <Deceased>
+                    <Answer>Yes</Answer>
+                  </Deceased>
+                  <LegalName>
+                    <Last>Chris</Last>
+                    <First>Ann Marie</First>
+                    <Middle Type="NMN"/>
+                  </LegalName>
+                  <MothersMaidenName>
+                    <FullName>
+                      <LegalName>
+                        <Last>Booth</Last>
+                        <First>Ann Marie</First>
+                        <Middle Type="NMN"/>
+                      </LegalName>
+                    </FullName>
+                  </MothersMaidenName>
+                  <OtherNamesUsed>
+                    <Answer>No</Answer>
+                  </OtherNamesUsed>
+                  <Type>01Mother</Type>
+                </Relative>
+                <Relative ID="2">
+                  <Birth>
+                    <Date>
+                      <Month>04</Month>
+                      <Day>05</Day>
+                      <Year>1957</Year>
+                    </Date>
+                    <Place>
+                      <City>Pittsburgh</City>
+                      <State>PA</State>
+                      <Country>United States</Country>
+                    </Place>
+                  </Birth>
+                  <CountriesOfCitizenship>
+                    <Citizenship ID="1">
+                      <Country>United States</Country>
+                    </Citizenship>
+                  </CountriesOfCitizenship>
+                  <Deceased>
+                    <Answer>Yes</Answer>
+                  </Deceased>
+                  <LegalName>
+                    <Last>Chris</Last>
+                    <First>Ed</First>
+                    <Middle Type="NMN"/>
+                  </LegalName>
+                  <OtherNamesUsed>
+                    <Answer>No</Answer>
+                  </OtherNamesUsed>
+                  <Type>02Father</Type>
+                </Relative>
+              </Relatives>
+            </RelativesAndAssociates>
+            <Spouse Version="1" Type="Pooled">
+              <Cohabitants>
+                <Answer>No</Answer>
+              </Cohabitants>
+              <MaritalStatus>NeverMarried</MaritalStatus>
+            </Spouse>
+            <ResidenceHistory Version="1" Type="Pooled">
+              <Residencies>
+                <Residency ID="1">
+                  <Address>
+                    <Street>316 Washington Ave </Street>
+                    <City>Wheeling</City>
+                    <State>WV</State>
+                    <ZipCode>26003</ZipCode>
+                  </Address>
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>12</Month>
+                        <Year>1990</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Present"/>
+                    </To>
+                  </DateRange>
+                  <ResidenceType>Own</ResidenceType>
+                  <Verifier>
+                    <Address>
+                      <Street>317 WASHINGTON AVE </Street>
+                      <City>WHEELING</City>
+                      <State>WV</State>
+                      <ZipCode>26003</ZipCode>
+                    </Address>
+                    <Email DoNotKnow="True"/>
+                    <LastContact>
+                      <Date>
+                        <Month>08</Month>
+                        <Year>2018</Year>
+                      </Date>
+                    </LastContact>
+                    <LegalName>
+                      <Last>Emily</Last>
+                      <First>Ashley</First>
+                      <Middle Type="NMN"/>
+                    </LegalName>
+                    <RelationshipTypes Neighbor="True" Friend="True"/>
+                    <Telephone>
+                      <Day>
+                        <Number>7245555551</Number>
+                      </Day>
+                      <Evening>
+                        <Number>7245555551</Number>
+                      </Evening>
+                      <Mobile>
+                        <Number>7245555551</Number>
+                      </Mobile>
+                    </Telephone>
+                  </Verifier>
+                </Residency>
+              </Residencies>
+              <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+            </ResidenceHistory>
+            <EmploymentActivities Type="Pooled" Version="1">
+              <Employments>
+                <Employment ID="1">
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>06</Month>
+                        <Year>2006</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Present"/>
+                    </To>
+                  </DateRange>
+                  <Type>OtherFederal</Type>
+                  <WorkHours>FullTime</WorkHours>
+                  <CivilEmployment>
+                    <Employer>FBI</Employer>
+                    <PositionTitle>Analyst</PositionTitle>
+                    <EmployersLocation>
+                      <Address>
+                        <Street>345 NATIONAL RD </Street>
+                        <City>WHEELING</City>
+                        <State>WV</State>
+                        <ZipCode>26003</ZipCode>
+                      </Address>
+                      <Telephone>
+                        <Number>3163170345</Number>
+                        <Time>Both</Time>
+                      </Telephone>
+                    </EmployersLocation>
+                    <PreviousEmployments NotApplicable="True"/>
+                  </CivilEmployment>
+                  <Incidents>
+                    <Answer>No</Answer>
+                  </Incidents>
+                  <JobLocation>
+                    <Answer>No</Answer>
+                  </JobLocation>
+                  <Supervisor>
+                    <Name>Gail Shannon</Name>
+                    <Title>Lead Analyst</Title>
+                    <Address>
+                      <Street>345 NATIONAL RD </Street>
+                      <City>WHEELING</City>
+                      <State>WV</State>
+                      <ZipCode>26003</ZipCode>
+                    </Address>
+                    <Email>gail.shannon@testemail.gov</Email>
+                    <Telephone>
+                      <Number>3163170345</Number>
+                      <Extension>067</Extension>
+                      <Time>Both</Time>
+                    </Telephone>
+                  </Supervisor>
+                </Employment>
+              </Employments>
+              <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+            </EmploymentActivities>
+            <EmploymentRecord Version="1" Type="Pooled">
+              <Fired>
+                <Answer>No</Answer>
+              </Fired>
+            </EmploymentRecord>
+            <Education Version="1" Type="Pooled">
+              <AttendedAnySchools>
+                <Answer>No</Answer>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </AttendedAnySchools>
+              <ReceivedDegreeOrDiploma>
+                <Answer>Yes</Answer>
+              </ReceivedDegreeOrDiploma>
+              <SchoolsAttended>
+                <SchoolAttended ID="1">
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>08</Month>
+                        <Year>2002</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date>
+                        <Month>05</Month>
+                        <Year>2006</Year>
+                      </Date>
+                    </To>
+                  </DateRange>
+                  <Type>College</Type>
+                  <Name>Wheeling College</Name>
+                  <Address>
+                    <Street>318 Washington Ave </Street>
+                    <City>Wheeling</City>
+                    <State>WV</State>
+                    <ZipCode>26003</ZipCode>
+                  </Address>
+                  <DegreeReceived>
+                    <Answer>Yes</Answer>
+                  </DegreeReceived>
+                  <DegreesAwarded>
+                    <DegreeAwarded ID="1">
+                      <DateAwarded>
+                        <Date>
+                          <Month>05</Month>
+                          <Year>2006</Year>
+                        </Date>
+                      </DateAwarded>
+                      <Degree>Bachelor</Degree>
+                    </DegreeAwarded>
+                  </DegreesAwarded>
+                </SchoolAttended>
+                <SchoolAttended ID="2">
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>08</Month>
+                        <Year>1998</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date>
+                        <Month>05</Month>
+                        <Year>2002</Year>
+                      </Date>
+                    </To>
+                  </DateRange>
+                  <Type>HighSchool</Type>
+                  <Name>Wheeling Central Catholic</Name>
+                  <Address>
+                    <Street>319 Washington Ave </Street>
+                    <City>Wheeling</City>
+                    <State>WV</State>
+                    <ZipCode>26003</ZipCode>
+                  </Address>
+                  <DegreeReceived>
+                    <Answer>Yes</Answer>
+                  </DegreeReceived>
+                  <DegreesAwarded>
+                    <DegreeAwarded ID="1">
+                      <DateAwarded>
+                        <Date>
+                          <Month>05</Month>
+                          <Year>2002</Year>
+                        </Date>
+                      </DateAwarded>
+                      <Degree>HighSchool</Degree>
+                    </DegreeAwarded>
+                  </DegreesAwarded>
+                </SchoolAttended>
+              </SchoolsAttended>
+            </Education>
+            <FormerFederalServiceActivities Version="1" Type="Pooled">
+              <HadFormerFederalCivilianEmployment>
+                <Answer>No</Answer>
+              </HadFormerFederalCivilianEmployment>
+              <FederalServices>
+  </FederalServices>
+            </FormerFederalServiceActivities>
+            <Citizenship Version="1" Type="Pooled">
+              <Status>USByBirth</Status>
+              <USCitizen>
+                <ProofOfUSCitizenship>
+      
+      
+      
+    </ProofOfUSCitizenship>
+              </USCitizen>
+            </Citizenship>
+            <DualCitizenship Version="1" Type="Pooled">
+              <DualCitizenships>
+    
+  </DualCitizenships>
+              <HeldDualCitizenship>
+                <Answer>No</Answer>
+              </HeldDualCitizenship>
+            </DualCitizenship>
+            <USPassport Type="Pooled" Version="1">
+              <DoPossessUSPassport>
+                <Answer>No</Answer>
+              </DoPossessUSPassport>
+            </USPassport>
+            <MilitaryHistory Version="1" Type="Pooled">
+              <ForeignService>
+                <Answer>No</Answer>
+              </ForeignService>
+              <ForeignMilitaryService>
+  
+  
+  
+</ForeignMilitaryService>
+              <Answer>No</Answer>
+            </MilitaryHistory>
+            <SelectiveServiceRegistration Version="1" Type="Pooled">
+              <Registered>
+                <Answer>Yes</Answer>
+              </Registered>
+              <Registration>
+                <Number>1234567</Number>
+              </Registration>
+              <RegistrationRequired>
+                <Answer>Yes</Answer>
+              </RegistrationRequired>
+            </SelectiveServiceRegistration>
+            <FinancialRecord Type="Pooled" Version="1">
+              <Bankruptcy>
+                <Activities>
+    
+  </Activities>
+                <Answer>No</Answer>
+              </Bankruptcy>
+              <ViolatedCorporateCardAgreement>
+                <Answer>No</Answer>
+                <Incidents>
+    
+  </Incidents>
+              </ViolatedCorporateCardAgreement>
+              <UtilizingOrSeekingCreditCounseling>
+                <Answer>No</Answer>
+                <Incidents>
+    
+  </Incidents>
+              </UtilizingOrSeekingCreditCounseling>
+              <DelinquencyInvolvingEnforcement>
+                <Answer>No</Answer>
+                <Incidents>
+    
+  </Incidents>
+              </DelinquencyInvolvingEnforcement>
+              <ProblemsDueToGambling>
+                <Answer>No</Answer>
+                <Incidents>
+    
+  </Incidents>
+              </ProblemsDueToGambling>
+              <DelinquencyInvolvingRoutineAccounts>
+                <Answer>No</Answer>
+                <Incidents>
+    
+  </Incidents>
+              </DelinquencyInvolvingRoutineAccounts>
+              <UnpaidTaxes>
+                <Answer>No</Answer>
+                <Incidents>
+    
+  </Incidents>
+              </UnpaidTaxes>
+            </FinancialRecord>
+            <ForeignContacts Version="1" Type="Pooled">
+              <ContactWithForeignNationalBoundByAffectionInfluenceObligation>
+                <Answer>No</Answer>
+              </ContactWithForeignNationalBoundByAffectionInfluenceObligation>
+              <Contacts>
+    
+  </Contacts>
+            </ForeignContacts>
+            <ForeignFinancialInterests Version="1" Type="Pooled">
+              <DirectInterests>
+                <Answer>No</Answer>
+              </DirectInterests>
+              <IndirectInterests>
+                <Answer>No</Answer>
+              </IndirectInterests>
+              <RealEstateHoldings>
+                <Answer>No</Answer>
+              </RealEstateHoldings>
+              <ForeignFinancialBenefits>
+                <Answer>No</Answer>
+              </ForeignFinancialBenefits>
+              <ForeignNationalsSupported>
+                <Answer>No</Answer>
+              </ForeignNationalsSupported>
+            </ForeignFinancialInterests>
+            <ForeignBusinessActivities Version="1" Type="Pooled">
+              <ForeignPassports>
+                <Answer>No</Answer>
+              </ForeignPassports>
+              <SupportActivities>
+                <Answer>No</Answer>
+              </SupportActivities>
+              <Consultancies>
+                <Answer>No</Answer>
+              </Consultancies>
+              <ForeignJobOffer>
+                <Answer>No</Answer>
+              </ForeignJobOffer>
+              <ForeignJobOffers>
+  
+</ForeignJobOffers>
+              <OtherForeignEmployment>
+                <Answer>No</Answer>
+              </OtherForeignEmployment>
+              <OtherForeignEmployments>
+  
+</OtherForeignEmployments>
+              <Meetings>
+                <Answer>No</Answer>
+              </Meetings>
+              <GovernmentContacts>
+                <Answer>No</Answer>
+              </GovernmentContacts>
+              <SponsoredVisits>
+                <Answer>No</Answer>
+              </SponsoredVisits>
+              <ForeignPoliticalOffice>
+                <Answer>No</Answer>
+              </ForeignPoliticalOffice>
+              <ForeignPoliticalOffices>
+  
+</ForeignPoliticalOffices>
+              <VotedInForeignElection>
+                <Answer>No</Answer>
+              </VotedInForeignElection>
+              <VotedInForeignElections>
+  
+</VotedInForeignElections>
+            </ForeignBusinessActivities>
+            <ForeignTravels Version="1" Type="Pooled">
+              <CountriesVisited>
+                <Answer>No</Answer>
+              </CountriesVisited>
+            </ForeignTravels>
+            <UseOfAlcohol Version="1" Type="Pooled">
+              <EverReceivedCounseling>
+                <Answer>No</Answer>
+                <Consultations>
+    
+  </Consultations>
+              </EverReceivedCounseling>
+              <NegativeImpact>
+                <Answer>No</Answer>
+                <Incidents>
+    
+  </Incidents>
+              </NegativeImpact>
+              <OrderedAdvisedOrAskedToSeekCounseling>
+                <Answer>No</Answer>
+                <Consultations>
+    
+  </Consultations>
+              </OrderedAdvisedOrAskedToSeekCounseling>
+              <SoughtCounseling>
+                <Answer>No</Answer>
+                <Consultations>
+    
+  </Consultations>
+              </SoughtCounseling>
+            </UseOfAlcohol>
+            <IllegalDrugUse Version="1" Type="Pooled">
+              <InvolvementWhilePossessingASecurityClearance>
+                <Answer>No</Answer>
+                <Involvements>
+    
+  </Involvements>
+              </InvolvementWhilePossessingASecurityClearance>
+              <MisuseOfPrescriptionDrugs>
+                <Answer>No</Answer>
+                <Instances>
+    
+  </Instances>
+              </MisuseOfPrescriptionDrugs>
+              <OrderedAdvisedOrAskedToSeekCounseling>
+                <Answer>No</Answer>
+                <Consultations>
+    
+  </Consultations>
+              </OrderedAdvisedOrAskedToSeekCounseling>
+              <InvolvementWhileEmployedAsLawEnforcement>
+                <Answer>No</Answer>
+                <Involvements>
+    
+  </Involvements>
+              </InvolvementWhileEmployedAsLawEnforcement>
+              <IllegalDrugActivity>
+                <Answer>No</Answer>
+                <Activities>
+    
+  </Activities>
+              </IllegalDrugActivity>
+              <IllegalUse>
+                <Answer>No</Answer>
+                <Instances>
+    
+  </Instances>
+              </IllegalUse>
+              <VoluntaryTreatment>
+                <Answer>No</Answer>
+                <Consultations>
+    
+  </Consultations>
+              </VoluntaryTreatment>
+            </IllegalDrugUse>
+            <PoliceRecord Version="1" Type="Pooled">
+              <Past7Years>
+                <Answer>No</Answer>
+                <Offenses>
+    
+  </Offenses>
+              </Past7Years>
+              <Ever>
+                <Offenses>
+                  <Answer>No</Answer>
+                </Offenses>
+              </Ever>
+              <RestrainingOrders>
+                <Answer>No</Answer>
+              </RestrainingOrders>
+            </PoliceRecord>
+            <CivilCourtRecord Version="1" Type="Pooled">
+              <CivilCourtAction>
+                <Answer>No</Answer>
+              </CivilCourtAction>
+              <CourtActions>
+    
+  </CourtActions>
+            </CivilCourtRecord>
+            <InformationSystemUse Version="1" Type="Pooled">
+              <IllegalEntry>
+                <Answer>No</Answer>
+                <Incidents>
+    
+  </Incidents>
+              </IllegalEntry>
+              <IllegalUse>
+                <Answer>No</Answer>
+                <Incidents>
+    
+  </Incidents>
+              </IllegalUse>
+              <IllegallyAlteredInformation>
+                <Answer>No</Answer>
+                <Incidents>
+    
+  </Incidents>
+              </IllegallyAlteredInformation>
+            </InformationSystemUse>
+            <AssociationRecord Version="1" Type="Pooled">
+              <ActivitiesToOverthrowTheUSGovernment>
+                <Activities>
+    
+  </Activities>
+                <Answer>No</Answer>
+              </ActivitiesToOverthrowTheUSGovernment>
+              <AdvocatedTerrorism>
+                <Answer>No</Answer>
+                <Instances>
+    
+  </Instances>
+              </AdvocatedTerrorism>
+              <BeenInOrganizationAdvocatingViolence>
+                <Answer>No</Answer>
+                <Organizations>
+    
+  </Organizations>
+              </BeenInOrganizationAdvocatingViolence>
+              <BeenInOrganizationDedicatedToTerrorism>
+                <Answer>No</Answer>
+                <Organizations>
+    
+  </Organizations>
+              </BeenInOrganizationDedicatedToTerrorism>
+              <EngagedInTerrorism>
+                <Answer>No</Answer>
+                <TerroristActs>
+    
+  </TerroristActs>
+              </EngagedInTerrorism>
+              <TerrorismAssociations>
+                <Answer>No</Answer>
+              </TerrorismAssociations>
+              <TerroristOrganizationMember>
+                <Answer>No</Answer>
+                <Organizations>
+    
+  </Organizations>
+              </TerroristOrganizationMember>
+            </AssociationRecord>
+            <InvestigationRecord Version="1" Type="Pooled">
+              <ClearanceDenied>
+                <Answer>No</Answer>
+              </ClearanceDenied>
+              <GovernmentDebarment>
+                <Answer>No</Answer>
+              </GovernmentDebarment>
+              <PriorInvestigation>
+                <Answer>No</Answer>
+              </PriorInvestigation>
+            </InvestigationRecord>
+            <MedicalRecord2 Version="1" Type="Pooled">
+              <DeclaredAsMentallyIncompetent>
+                <Answer>No</Answer>
+              </DeclaredAsMentallyIncompetent>
+              <OrderedToConsult>
+                <Answer>No</Answer>
+              </OrderedToConsult>
+              <Hospitalized>
+                <Answer>No</Answer>
+              </Hospitalized>
+              <Diagnosed>
+                <Answer>No</Answer>
+              </Diagnosed>
+              <AdverselyAffected>
+                <Answer>No</Answer>
+              </AdverselyAffected>
+            </MedicalRecord2>
+            <FormInstructions Type="Pooled" Version="1">
+              <ReadAndUnderstoodStatementOfUnderstanding>
+                <Answer>Yes</Answer>
+              </ReadAndUnderstoodStatementOfUnderstanding>
+            </FormInstructions>
+          </Pooled>
+        </Responses>
+      </Request>
+    </RequestInfo>
+    <DateSubmitted>2018-09-10</DateSubmitted>
+  </SubmittedRequestInfo>
+  <AgencyUsageBlock>
+    <TypeOfInvestigation>
+      <Type>64</Type>
+      <Service>B</Service>
+    </TypeOfInvestigation>
+    <SensitivityLevel>
+      <Code>2</Code>
+    </SensitivityLevel>
+    <Access>
+      <Code>2</Code>
+    </Access>
+    <Action>
+      <Nature>MIL</Nature>
+    </Action>
+    <Position>
+      <Title>Military</Title>
+    </Position>
+    <SON>957B</SON>
+    <LocationOPF>
+      <Code>None</Code>
+    </LocationOPF>
+    <SOI>NV00</SOI>
+    <LocationSEC>
+      <Code>None</Code>
+    </LocationSEC>
+    <InvestigativeRequirement>I</InvestigativeRequirement>
+    <ApplicantAffiliation>MIL</ApplicantAffiliation>
+    <IPAC>DOD-NAVY</IPAC>
+    <RequestingOfficials>
+      <Requestor>
+        <Name>AARON Strohl Laney</Name>
+        <Email>eml152dummy@MailDomain.com</Email>
+        <Telephone>
+          <Number>1 (763) 323-2004</Number>
+        </Telephone>
+      </Requestor>
+      <SecondRequestor>
+        <Name>JAMES Strohl Laney</Name>
+        <Email>eml153dummy@MailDomain.com</Email>
+        <Telephone>
+          <Number>1 (298) 723-1913</Number>
+        </Telephone>
+      </SecondRequestor>
+    </RequestingOfficials>
+  </AgencyUsageBlock>
+</XMP>

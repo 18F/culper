@@ -79,6 +79,12 @@ describe('Helpers for validators', function() {
           value: 'f'
         },
         expected: false
+      },
+      {
+        Field: {
+          value: '2147483648'
+        },
+        expected: false
       }
     ]
 

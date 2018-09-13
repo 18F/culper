@@ -3,13 +3,17 @@
 <Citizenship Version="1" Type="Pooled">
   <Status>{{radio $citizenship.CitizenshipStatus | citizenshipStatus}}</Status>
   <StatusComment></StatusComment>
-  {{if radio $citizenship.CitizenshipStatus | eq "NotCitizen"}}
+  {{if or (radio $citizenship.CitizenshipStatus | eq "NotCitizen") (radio $citizenship.CitizenshipStatus | eq "Naturalized")}}
   <Alien>
     <AlienRegistration>
       <Comment></Comment>
       <DateEnteredUS>
         <Date Type="{{dateEstimated $citizenship.EntryDate}}">{{date $citizenship.EntryDate}}</Date>
       </DateEnteredUS>
+      <Place>{{location $citizenship.EntryLocation}}</Place>
+      <RegistrationNumber>{{text $citizenship.AlienRegistrationNumber}}</RegistrationNumber>
+      <RegistrationNumberComment></RegistrationNumberComment>
+      {{if radio $citizenship.CitizenshipStatus | eq "NotCitizen"}}
       <DocumentExpiration Type="{{dateEstimated $citizenship.DocumentExpiration}}">{{date $citizenship.DocumentExpiration}}</DocumentExpiration>
       <DocumentIssued>
         <Date Type="{{dateEstimated $citizenship.DocumentIssued}}">{{date $citizenship.DocumentIssued}}</Date>
@@ -18,17 +22,15 @@
       <DocumentNumber>{{text $citizenship.DocumentNumber}}</DocumentNumber>
       <DocumentType>{{radio $citizenship.DocumentType}}</DocumentType>
       <DocumentTypeExplanation>{{textarea $citizenship.Explanation}}</DocumentTypeExplanation>
-      <Place>{{location $citizenship.EntryLocation}}</Place>
-      <RegistrationNumber>{{text $citizenship.AlienRegistrationNumber}}</RegistrationNumber>
-      <RegistrationNumberComment></RegistrationNumberComment>
       <ResidenceStatus>{{text $citizenship.ResidenceStatus}}</ResidenceStatus>
       <VisaExpiration>
         <Date Type="{{dateEstimated $citizenship.AlienRegistrationExpiration}}">{{date $citizenship.AlienRegistrationExpiration}}</Date>
       </VisaExpiration>
+      {{end}}
     </AlienRegistration>
     <Citizenships>
       {{range $cindex, $country := $citizenship.PriorCitizenship.props.value}}
-      <Citizenship ID="{{$cindex}}">
+      <Citizenship ID="{{inc $cindex}}">
         <Country>{{$country}}</Country>
       </Citizenship>
       {{end}}
@@ -43,7 +45,7 @@
     {{if radio $citizenship.CitizenshipStatus | eq "Derived"}}
     <Derived>
       <AlienRegistrationNumber>{{text $citizenship.AlienRegistrationNumber}}</AlienRegistrationNumber>
-      <Basis>{{radio $citizenship.Basis}}</Basis>
+      <Basis>{{radio $citizenship.Basis | derivedBasis}}</Basis>
       <CitizenshipCertificateNumber>{{text $citizenship.CertificateNumber}}</CitizenshipCertificateNumber>
       <Comment></Comment>
       <DocumentIssued>
@@ -88,7 +90,7 @@
           <Court>{{text $citizenship.CertificateCourtName}}</Court>
           <Place>{{location $citizenship.CertificateCourtAddress}}</Place>
         </Authority>
-        <Basis>{{radio $citizenship.Basis}}</Basis>
+        <Basis>{{radio $citizenship.Basis | naturalizedBasis}}</Basis>
         <BasisExplanation>{{textarea $citizenship.Explanation}}</BasisExplanation>
         <CertificateNumber>{{text $citizenship.CertificateNumber}}</CertificateNumber>
         <DateIssued>

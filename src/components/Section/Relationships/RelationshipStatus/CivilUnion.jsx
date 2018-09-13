@@ -325,6 +325,7 @@ export default class CivilUnion extends ValidationElement {
                   bind={true}
                   prefix="relative"
                   minDate={(this.props.Birthdate || {}).date}
+                  minDateEqualTo={true}
                   className="datesused"
                   onError={this.props.onError}
                   required={this.props.required}

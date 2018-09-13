@@ -119,6 +119,13 @@ export const error = {
       message: 'The social security number is considered invalid.'
     }
   },
+  selective: {
+    pattern: {
+      title: 'Oops, there’s a problem.',
+      message: 'Your Selective Service Number should only be numbers.',
+      note: ''
+    }
+  },
   date: {
     month: {
       notfound: {
@@ -777,6 +784,10 @@ export const error = {
     }
   },
   currency: {
+    max: {
+      title: 'Currency value is too large',
+      message: 'Currency amounts over $2,147,483,647 are not supported.'
+    },
     min: {
       title: 'There is a problem with the losses',
       message: 'The reported losses should have a dollar value.',
@@ -1044,5 +1055,14 @@ export const error = {
   submission: {
     message:
       'There was a problem submitting your SF-86. Please contact support for additional information.'
+  },
+  validRelation: {
+    title: 'Mother and father must be provided',
+    message:
+      'If you do not know your mother or father, please enter "I don\'t know" and provide a comment explaining your relationship.'
+  },
+  validPhoneTypes: {
+    title: 'There is a problem with your phone numbers',
+    message: 'Please provide only one of each phone number type.'
   }
 }

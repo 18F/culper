@@ -9,7 +9,7 @@
 <VotedInForeignElections>
   {{range $index, $item := .props.List.props.items}}
   {{with $Item := $item.Item}}
-  <ForeignElection ID="{{$index}}">
+  <ForeignElection ID="{{inc $index}}">
     <Comment></Comment>
     {{country $Item.Country}}
     <CurrentVotingEligibility>{{text $Item.Eligibility}}</CurrentVotingEligibility>
@@ -19,9 +19,5 @@
     <Reason>{{text $Item.Reason}}</Reason>
   </ForeignElection>
   {{end}}
-  {{end}}
-  {{- if branch .props.HasForeignVoting | eq "Yes"}}
-  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
-  <SummaryComment></SummaryComment>
   {{end}}
 </VotedInForeignElections>

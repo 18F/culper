@@ -2,19 +2,26 @@ package xml
 
 import (
 	"bufio"
+	"bytes"
 	"encoding/json"
 	"io/ioutil"
 	"os"
+	"os/exec"
 	"path"
 	"regexp"
 	"strings"
 	"testing"
+	"time"
 
 	"github.com/18F/e-QIP-prototype/api"
 	"github.com/18F/e-QIP-prototype/api/mock"
 	"github.com/Jeffail/gabs"
 	"github.com/antchfx/xmlquery"
+	"github.com/benbjohnson/clock"
 )
+
+const dataDir = "testdata"
+const scenarioDir = "complete-scenarios"
 
 func TestPackage(t *testing.T) {
 	application := applicationData(t)
@@ -121,7 +128,7 @@ func TestPackage(t *testing.T) {
 	}
 
 	logger := &mock.LogService{}
-	service := Service{Log: logger}
+	service := Service{Log: logger, Clock: mockedClock()}
 
 	re := regexp.MustCompile("map\\[")
 	for _, test := range tests {
@@ -143,6 +150,16 @@ func TestPackage(t *testing.T) {
 				test.Schema, snippet)
 		}
 	}
+}
+
+func mockedClock() clock.Clock {
+	// Epoch seconds for September 10, 2018 UTC;
+	// It is not a special date, just used in test fixtures.
+	const base = 1536540831
+
+	c := clock.NewMock()
+	c.Add(base * time.Second)
+	return c
 }
 
 func TestAddressIn(t *testing.T) {
@@ -237,6 +254,99 @@ func TestDocumentExpiration(t *testing.T) {
 	assertHasNone(t, template, xpath, snippet)
 }
 
+// `test1` is a basic smoke test, a bare bones application
+func TestScenario1(t *testing.T) {
+	executeScenario(t, "test1")
+}
+
+// `test2` is a "blow out" of these SF-86 questions:
+// #21 Psychological/Emotional
+// #23 Illegal Use of Drugs/Activity
+// #24 Use of Alcohol
+// #26 Financial Record
+func TestScenario2(t *testing.T) {
+	executeScenario(t, "test2")
+}
+
+// `test3` is a "blow out" of these SF-86 questions:
+// #20a Foreign Activities
+// #20b Foreign Business, Professional
+// #20c Foreign Countries you have visited
+// #17 Marital/Relationship
+func TestScenario3(t *testing.T) {
+	executeScenario(t, "test3")
+}
+
+// `test4` is a "blow out" of these SF-86 questions:
+// #10 Dual/Multiple Citizenship
+// #15 Military history
+// #27 Use of information technology systems
+// #28 Involvement in non-criminal court actions
+func TestScenario4(t *testing.T) {
+	executeScenario(t, "test4")
+}
+
+// `test5` is a "blow out" of the whole form
+func TestScenario5(t *testing.T) {
+	executeScenario(t, "test5")
+}
+
+// `test6` is a basic smoke test, a bare bones application
+func TestScenario6(t *testing.T) {
+	executeScenario(t, "test6")
+}
+
+// executeScenario generates XML from JSON test fixtures for a complete
+// applicant scenario and compares the result with XML reference files.
+// It is a coarse and unforgiving test; anything less than an exact match,
+// including formatting whitespace, will result in a test failure.
+func executeScenario(t *testing.T, name string) {
+	form := readSectionData(t, path.Join(scenarioDir, name+".json"))
+	snippet := applyForm(t, "application.xml", form)
+	formatted := formatXML(t, snippet)
+	reference := readReference(t, name+".xml")
+
+	if !bytes.Equal(formatted, reference) {
+		outfile := writeXML(t, name, formatted)
+		t.Fatalf("Generated XML `%s` does not match reference XML for `%s`",
+			outfile, name)
+	}
+}
+
+func writeXML(t *testing.T, name string, snippet []byte) string {
+	tmpfile, err := ioutil.TempFile(path.Join(dataDir, scenarioDir), name+".xml.")
+	if err != nil {
+		t.Fatalf("Error saving generated XML: %s", err.Error())
+	}
+	defer tmpfile.Close()
+	_, err = tmpfile.Write(snippet)
+	if err != nil {
+		t.Fatalf("Error saving generated XML: %s", err.Error())
+	}
+
+	return tmpfile.Name()
+}
+
+func readReference(t *testing.T, name string) []byte {
+	reference, err := ioutil.ReadFile(path.Join(dataDir, scenarioDir, name))
+	if err != nil {
+		t.Fatalf("Error reading reference XML `%s`: %s", name, err.Error())
+	}
+	return reference
+}
+
+func formatXML(t *testing.T, snippet string) []byte {
+	cmd := exec.Command("xmllint", "--format", "-")
+	cmd.Stdin = strings.NewReader(snippet)
+	var out bytes.Buffer
+	cmd.Stdout = &out
+	err := cmd.Run()
+	if err != nil {
+		t.Fatal(err)
+	}
+	return out.Bytes()
+}
+
 // applicationData loads a fully-populated, valid SF-86 form with test data
 func applicationData(t *testing.T) map[string]interface{} {
 	return newForm(t,
@@ -317,7 +427,7 @@ func applicationData(t *testing.T) map[string]interface{} {
 
 // readSectionData reads in a sub-section of test data, returning a partial form.
 func readSectionData(t *testing.T, filepath string) map[string]interface{} {
-	b, err := ioutil.ReadFile(path.Join("testdata", filepath))
+	b, err := ioutil.ReadFile(path.Join(dataDir, filepath))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -356,7 +466,7 @@ func loadFormData(t *testing.T, form map[string]interface{}, filepath string) {
 // applyForm generates an XML snippet given the path to an XML template and form data.
 func applyForm(t *testing.T, template string, data map[string]interface{}) string {
 	logger := &mock.LogService{}
-	service := Service{Log: logger}
+	service := Service{Log: logger, Clock: mockedClock()}
 
 	snippet, err := service.DefaultTemplate(template, data)
 	if err != nil {

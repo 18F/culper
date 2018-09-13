@@ -1,4 +1,4 @@
-<ForeignTravels>
+<ForeignTravels Version="1" Type="Pooled">
   <Comment></Comment>
   <CountriesVisited>
     <Answer>{{branch .props.HasForeignTravelOutside}}</Answer>
@@ -14,7 +14,7 @@
   <Travels>
     {{range $index, $item := .props.List.props.items}}
     {{with $Item := $item.Item}}
-    <Travel ID="{{$index}}">
+    <Travel ID="{{inc $index}}">
       <ContactedByForeignMilitaryOrganization>
         <Answer>{{branch $Item.Contacted}}</Answer>
         <Explanation>{{text $Item.ContactedExplanation}}</Explanation>

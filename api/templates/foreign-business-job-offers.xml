@@ -10,7 +10,7 @@
 <ForeignJobOffers>
   {{range $index, $item := .props.List.props.items}}
   {{with $Item := $item.Item}}
-  <ForeignJobOffer ID="{{$index}}">
+  <ForeignJobOffer ID="{{inc $index}}">
     <AcceptOffer>
       <Answer>{{text $Item.Accepted}}</Answer>
       <Explanation>{{text $Item.Explanation}}</Explanation>
@@ -30,9 +30,5 @@
     <PositionDescription>{{text $Item.Description}}</PositionDescription>
   </ForeignJobOffer>
   {{end}}
-  {{end}}
-  {{- if branch .props.HasForeignEmployment | eq "Yes"}}
-  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
-  <SummaryComment></SummaryComment>
   {{end}}
 </ForeignJobOffers>

@@ -1,0 +1,1375 @@
+<?xml version="1.0"?>
+<XMP version="3.00">
+  <SubmittedRequestInfo>
+    <RequestInfo>
+      <Request>
+        <Form>
+          <Name>SF86</Name>
+          <Version>2017-07</Version>
+        </Form>
+        <Applicant>
+          <SSN>124993910</SSN>
+        </Applicant>
+        <Responses>
+          <AgencyInstructionsForApplicant/>
+          <FormInstanceSpecific>
+            <AgencyInstructionsForApplicant/>
+            <ESigCertificationResponses Version="1" Type="Pooled" LastSummaryID="201" LastDynamicListID="201">
+              <UserFinalizedCert>
+                <Answer>Yes</Answer>
+              </UserFinalizedCert>
+              <UserOptedToESig>
+                <Answer>Yes</Answer>
+              </UserOptedToESig>
+            </ESigCertificationResponses>
+            <UserPreferences Version="1" Type="Pooled" LastSummaryID="201" LastDynamicListID="201">
+              <DisplayNavigation/>
+            </UserPreferences>
+            <ValidationResponses Version="1" Type="FormInstanceSpecific"/>
+          </FormInstanceSpecific>
+          <Pooled>
+            <IdentifyingInformation Type="Pooled" Version="1">
+              <Birth>
+                <Date>
+                  <Month>01</Month>
+                  <Day>21</Day>
+                  <Year>1919</Year>
+                </Date>
+                <Place>
+                  <City>Glasgow</City>
+                  <Country>United Kingdom</Country>
+                </Place>
+              </Birth>
+              <EyeColor>Brown</EyeColor>
+              <FullName>
+                <LegalName>
+                  <Last>McCallum</Last>
+                  <First>Daniel</First>
+                  <Middle>Craig</Middle>
+                </LegalName>
+              </FullName>
+              <HairColor>Brown</HairColor>
+              <Height>
+                <Feet>6</Feet>
+                <Inches>2</Inches>
+              </Height>
+              <OtherNamesUsed>
+                <Answer>No</Answer>
+              </OtherNamesUsed>
+              <SSN>
+                <FirstThree>124</FirstThree>
+                <NextTwo>99</NextTwo>
+                <LastFour>3910</LastFour>
+              </SSN>
+              <Sex>Male</Sex>
+              <Weight>
+                <Pounds>215</Pounds>
+              </Weight>
+            </IdentifyingInformation>
+            <ContactInformation Version="1" Type="Pooled">
+              <HomeEmail>
+                <Email>dcmccallum@nyanderie.com</Email>
+              </HomeEmail>
+              <HomeTelephone>
+                <Telephone>
+                  <Number>9999999999</Number>
+                  <Time>Night</Time>
+                </Telephone>
+              </HomeTelephone>
+              <MobileTelephone>
+                <Telephone>
+                  <Number>9483821938</Number>
+                  <Time>Both</Time>
+                </Telephone>
+              </MobileTelephone>
+            </ContactInformation>
+            <PersonalReferences Version="1" Type="Pooled">
+              <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              <References>
+                <Reference ID="1">
+                  <Address>
+                    <Street>90 West St </Street>
+                    <City>New York</City>
+                    <State>NY</State>
+                    <ZipCode>11201</ZipCode>
+                  </Address>
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>01</Month>
+                        <Year>2009</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Present"/>
+                    </To>
+                  </DateRange>
+                  <Email>hhaupt@army.mil</Email>
+                  <LegalName>
+                    <Last>Haupt</Last>
+                    <First>Herman</First>
+                    <Middle Type="NMN"/>
+                  </LegalName>
+                  <RelationshipType WorkAssociate="True"/>
+                  <Telephone>
+                    <Home>
+                      <Number>9999999991</Number>
+                      <Time>Both</Time>
+                    </Home>
+                    <Mobile>
+            
+
+
+
+          </Mobile>
+                  </Telephone>
+                  <Title>Brevet Colonel</Title>
+                </Reference>
+                <Reference ID="2">
+                  <Address>
+                    <Street>9019 Main St </Street>
+                    <City>St. Louis</City>
+                    <State>MO</State>
+                    <ZipCode>63101</ZipCode>
+                  </Address>
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>09</Month>
+                        <Year>2009</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Present"/>
+                    </To>
+                  </DateRange>
+                  <Email>dodge@unionpacific.com</Email>
+                  <LegalName>
+                    <Last>Dodge</Last>
+                    <First>Henry</First>
+                    <Middle Type="NMN"/>
+                  </LegalName>
+                  <RelationshipType WorkAssociate="True"/>
+                  <Telephone>
+                    <Home>
+            
+
+
+
+          </Home>
+                    <Mobile>
+                      <Number>2341222211</Number>
+                      <Time>Both</Time>
+                    </Mobile>
+                  </Telephone>
+                  <Title>Commander</Title>
+                </Reference>
+                <Reference ID="3">
+                  <Address>
+                    <Street>9013 Park Avenue </Street>
+                    <City>New York</City>
+                    <State>NY</State>
+                    <ZipCode>11201</ZipCode>
+                  </Address>
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>09</Month>
+                        <Year>2012</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Present"/>
+                    </To>
+                  </DateRange>
+                  <Email>vanderbilt@money.com</Email>
+                  <LegalName>
+                    <Last>Vanderbilt</Last>
+                    <First>Cornelius</First>
+                    <Middle Type="NMN"/>
+                  </LegalName>
+                  <RelationshipType WorkAssociate="True"/>
+                  <Telephone>
+                    <Home>
+            
+
+
+
+          </Home>
+                    <Mobile>
+                      <Number>8281881291</Number>
+                      <Time>Both</Time>
+                    </Mobile>
+                  </Telephone>
+                  <Title NotApplicable="True"/>
+                </Reference>
+              </References>
+            </PersonalReferences>
+            <RelativesAndAssociates Version="1" Type="Pooled">
+              <ApplicableRelativeTypes Mother01="True" Father02="True"/>
+              <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              <Relatives>
+                <Relative ID="1">
+                  <Birth>
+                    <Date>
+                      <Month>09</Month>
+                      <Day>09</Day>
+                      <Year>1890</Year>
+                    </Date>
+                    <Place>
+                      <City>Glasgow</City>
+                      <Country>United Kingdom</Country>
+                    </Place>
+                  </Birth>
+                  <CountriesOfCitizenship>
+                    <Citizenship ID="1">
+                      <Country>United Kingdom</Country>
+                    </Citizenship>
+                  </CountriesOfCitizenship>
+                  <Deceased>
+                    <Answer>Yes</Answer>
+                  </Deceased>
+                  <LegalName>
+                    <Last>McCallum</Last>
+                    <First>Mary</First>
+                    <Middle>Craig</Middle>
+                  </LegalName>
+                  <MothersMaidenName>
+                    <FullName>
+                      <LegalName>
+                        <Last>Craig</Last>
+                        <First>Mary</First>
+                        <Middle Type="NMN"/>
+                      </LegalName>
+                    </FullName>
+                  </MothersMaidenName>
+                  <OtherNamesUsed>
+                    <Answer>No</Answer>
+                  </OtherNamesUsed>
+                  <Type>01Mother</Type>
+                </Relative>
+                <Relative ID="2">
+                  <Birth>
+                    <Date Type="Estimated">
+                      <Month>09</Month>
+                      <Day>09</Day>
+                      <Year>1890</Year>
+                    </Date>
+                    <Place>
+                      <City>Glasgow</City>
+                      <Country>United Kingdom</Country>
+                    </Place>
+                  </Birth>
+                  <CountriesOfCitizenship>
+                    <Citizenship ID="1">
+                      <Country>United Kingdom</Country>
+                    </Citizenship>
+                  </CountriesOfCitizenship>
+                  <Deceased>
+                    <Answer>Yes</Answer>
+                  </Deceased>
+                  <LegalName>
+                    <Last>McCallum</Last>
+                    <First>Peter</First>
+                    <Middle Type="NMN"/>
+                  </LegalName>
+                  <OtherNamesUsed>
+                    <Answer>No</Answer>
+                  </OtherNamesUsed>
+                  <Type>02Father</Type>
+                </Relative>
+              </Relatives>
+            </RelativesAndAssociates>
+            <Spouse Version="1" Type="Pooled">
+              <Cohabitants>
+                <Answer>No</Answer>
+              </Cohabitants>
+              <MaritalStatus>NeverMarried</MaritalStatus>
+            </Spouse>
+            <ResidenceHistory Version="1" Type="Pooled">
+              <Residencies>
+                <Residency ID="1">
+                  <Address>
+                    <Street>12 HENRY ST # 1A</Street>
+                    <City>BROOKLYN</City>
+                    <State>NY</State>
+                    <ZipCode>11201</ZipCode>
+                  </Address>
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>01</Month>
+                        <Year>2007</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Present"/>
+                    </To>
+                  </DateRange>
+                  <ResidenceType>Rent</ResidenceType>
+                  <Verifier>
+                    <Address>
+                      <Street>12 HENRY ST # 2B</Street>
+                      <City>BROOKLYN</City>
+                      <State>NY</State>
+                      <ZipCode>11201</ZipCode>
+                    </Address>
+                    <Email DoNotKnow="True"/>
+                    <LastContact>
+                      <Date Type="Estimated">
+                        <Month>09</Month>
+                        <Year>2017</Year>
+                      </Date>
+                    </LastContact>
+                    <LegalName>
+                      <Last>Bascom</Last>
+                      <First>William</First>
+                      <Middle Type="NMN"/>
+                    </LegalName>
+                    <RelationshipOtherExplanation>Brother in law</RelationshipOtherExplanation>
+                    <RelationshipTypes Neighbor="True" Other="True"/>
+                    <Telephone>
+                      <Day DoNotKnow="True">
+
+</Day>
+                      <Evening>
+                        <Number>9822843881</Number>
+                      </Evening>
+                      <Mobile DoNotKnow="True">
+
+</Mobile>
+                    </Telephone>
+                  </Verifier>
+                </Residency>
+              </Residencies>
+              <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+            </ResidenceHistory>
+            <EmploymentActivities Type="Pooled" Version="1">
+              <Employments>
+                <Employment ID="1">
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>09</Month>
+                        <Year>2007</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Present"/>
+                    </To>
+                  </DateRange>
+                  <Type>SelfEmployed</Type>
+                  <WorkHours>FullTime</WorkHours>
+                  <SelfEmployment>
+                    <Occupation>Proprietor</Occupation>
+                    <Business>
+                      <Name>McCallum Bridge Company</Name>
+                      <Address>
+                        <Street>110 West Side Highway </Street>
+                        <City>New York</City>
+                        <State>NY</State>
+                        <ZipCode>10017</ZipCode>
+                      </Address>
+                      <Telephone>
+                        <Number>9991342901</Number>
+                        <Time>Both</Time>
+                      </Telephone>
+                    </Business>
+                  </SelfEmployment>
+                  <Incidents>
+                    <Answer>No</Answer>
+                  </Incidents>
+                  <JobLocation>
+                    <Answer>No</Answer>
+                  </JobLocation>
+                  <Verifier>
+                    <LegalName>
+                      <Last>Post</Last>
+                      <First>Simeon</First>
+                    </LegalName>
+                    <Address>
+                      <Street>12 Main st </Street>
+                      <City>Rochester</City>
+                      <State>NY</State>
+                      <ZipCode>11201</ZipCode>
+                    </Address>
+                    <Telephone>
+                      <Number>8219990391</Number>
+                      <Time>Both</Time>
+                    </Telephone>
+                  </Verifier>
+                </Employment>
+              </Employments>
+              <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+            </EmploymentActivities>
+            <EmploymentRecord Version="1" Type="Pooled">
+              <Fired>
+                <Answer>No</Answer>
+              </Fired>
+            </EmploymentRecord>
+            <Education Version="1" Type="Pooled">
+              <AttendedAnySchools>
+                <Answer>No</Answer>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </AttendedAnySchools>
+              <ReceivedDegreeOrDiploma>
+                <Answer>Yes</Answer>
+              </ReceivedDegreeOrDiploma>
+              <SchoolsAttended>
+                <SchoolAttended ID="1">
+                  <DateRange>
+                    <From>
+                      <Date Type="Estimated">
+                        <Month>09</Month>
+                        <Year>2000</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Estimated">
+                        <Month>05</Month>
+                        <Year>2004</Year>
+                      </Date>
+                    </To>
+                  </DateRange>
+                  <Type>College</Type>
+                  <Name>People's College</Name>
+                  <Address>
+                    <Street>124 Main St </Street>
+                    <City>Havanna</City>
+                    <State>NY</State>
+                    <ZipCode>11201</ZipCode>
+                  </Address>
+                  <DegreeReceived>
+                    <Answer>Yes</Answer>
+                  </DegreeReceived>
+                  <DegreesAwarded>
+                    <DegreeAwarded ID="1">
+                      <DateAwarded>
+                        <Date>
+                          <Month>05</Month>
+                          <Year>2004</Year>
+                        </Date>
+                      </DateAwarded>
+                      <Degree>Bachelor</Degree>
+                    </DegreeAwarded>
+                  </DegreesAwarded>
+                </SchoolAttended>
+              </SchoolsAttended>
+            </Education>
+            <FormerFederalServiceActivities Version="1" Type="Pooled">
+              <HadFormerFederalCivilianEmployment>
+                <Answer>No</Answer>
+              </HadFormerFederalCivilianEmployment>
+              <FederalServices>
+  </FederalServices>
+            </FormerFederalServiceActivities>
+            <Citizenship Version="1" Type="Pooled">
+              <Status>USNotByBirth</Status>
+              <Alien>
+                <AlienRegistration>
+                  <DateEnteredUS>
+                    <Date>
+                      <Month>09</Month>
+                      <Day>09</Day>
+                      <Year>1990</Year>
+                    </Date>
+                  </DateEnteredUS>
+                  <Place>
+                    <City>New York</City>
+                    <State>NY</State>
+                  </Place>
+                  <RegistrationNumber>109201910</RegistrationNumber>
+                </AlienRegistration>
+                <Citizenships>
+                  <Citizenship ID="1">
+                    <Country>United Kingdom</Country>
+                  </Citizenship>
+                </Citizenships>
+                <HaveAlienRegistrationNumber>
+                  <Answer>Yes</Answer>
+                </HaveAlienRegistrationNumber>
+              </Alien>
+              <USCitizen>
+                <ProofOfUSCitizenship>
+                  <NaturalizationCertificate>
+                    <Authority>
+                      <Court>Ellis Island</Court>
+                      <Place>
+                        <Street>9019 Ellis Island </Street>
+                        <City>New York</City>
+                        <State>NY</State>
+                        <ZipCode>11201</ZipCode>
+                      </Place>
+                    </Authority>
+                    <Basis>BasedOnMyOwnIndividualNaturalizationApplication</Basis>
+                    <CertificateNumber>9109210258982</CertificateNumber>
+                    <DateIssued>
+                      <Date>
+                        <Month>09</Month>
+                        <Day>10</Day>
+                        <Year>1990</Year>
+                      </Date>
+                    </DateIssued>
+                    <IssuedLegalName>
+                      <Last>McCallum</Last>
+                      <First>Daniel</First>
+                      <Middle>Craig</Middle>
+                    </IssuedLegalName>
+                  </NaturalizationCertificate>
+                </ProofOfUSCitizenship>
+              </USCitizen>
+            </Citizenship>
+            <DualCitizenship Version="1" Type="Pooled">
+              <DualCitizenships>
+                <Citizenship ID="1">
+                  <Country>United Kingdom</Country>
+                  <CurrentlyHoldCitizenship>
+        
+        
+        
+      </CurrentlyHoldCitizenship>
+                  <DateRange>
+                    <From>
+                      <Date Type="Estimated">
+                        <Month>09</Month>
+                        <Year>1920</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Present"/>
+                    </To>
+                  </DateRange>
+                  <HowAcquired>I was born in the United Kingdom</HowAcquired>
+                  <TakenActionToRenounceCitizenship>
+                    <Answer>No</Answer>
+                    <Explanation>I'm proud of my Scottish roots</Explanation>
+                  </TakenActionToRenounceCitizenship>
+                </Citizenship>
+                <Citizenship ID="2">
+                  <Country>Zimbabwe</Country>
+                  <CurrentlyHoldCitizenship>
+        
+        
+        
+      </CurrentlyHoldCitizenship>
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>09</Month>
+                        <Year>1920</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Present"/>
+                    </To>
+                  </DateRange>
+                  <HowAcquired>My mother is Zimbabwean and that citizenship is conferred by parental lineage.</HowAcquired>
+                  <TakenActionToRenounceCitizenship>
+                    <Answer>Yes</Answer>
+                    <Explanation>I've never been there and feel no affiliation to the country.</Explanation>
+                  </TakenActionToRenounceCitizenship>
+                </Citizenship>
+                <Citizenship ID="3">
+                  <Country>China</Country>
+                  <CurrentlyHoldCitizenship>
+        
+        
+        
+      </CurrentlyHoldCitizenship>
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>09</Month>
+                        <Year>1920</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Present"/>
+                    </To>
+                  </DateRange>
+                  <HowAcquired>My father was born in China and citizenship is passed through lineage.</HowAcquired>
+                  <TakenActionToRenounceCitizenship>
+                    <Answer>Yes</Answer>
+                    <Explanation>My father was born in China, but I have never been and feel no affiliation. I've recently submitted my paperwork. </Explanation>
+                  </TakenActionToRenounceCitizenship>
+                </Citizenship>
+              </DualCitizenships>
+              <HeldDualCitizenship>
+                <Answer>Yes</Answer>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </HeldDualCitizenship>
+            </DualCitizenship>
+            <USPassport Type="Pooled" Version="1">
+              <DoPossessUSPassport>
+                <Answer>No</Answer>
+              </DoPossessUSPassport>
+            </USPassport>
+            <MilitaryHistory Version="1" Type="Pooled">
+              <Charges>
+                <Answer>Yes</Answer>
+                <Charge ID="1">
+                  <Authority>Navy court
+Guantanamo Bay
+Cuba</Authority>
+                  <DateCharged>
+                    <Date Type="Estimated">
+                      <Month>07</Month>
+                      <Year>2009</Year>
+                    </Date>
+                  </DateCharged>
+                  <Description>Abandoning my post when I jumped off the aircraft carrier after seeing a tarantula crawling through the porthole  </Description>
+                  <Name>Captain's mast</Name>
+                  <Outcome>Guilty, obviously</Outcome>
+                </Charge>
+                <Charge ID="2">
+                  <Authority>A scary building made of stones and gargoyles located in the mystical rainforests of Georgia</Authority>
+                  <DateCharged>
+                    <Date>
+                      <Month>06</Month>
+                      <Year>2009</Year>
+                    </Date>
+                  </DateCharged>
+                  <Description>Mischief: Before I saw the huge spider, I was caught stealing frozen pizzas from the kitchen and cooking them on the heat shield where they launch the planes</Description>
+                  <Name>Captain's mast</Name>
+                  <Outcome>Reduction in rank</Outcome>
+                </Charge>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </Charges>
+              <ForeignService>
+                <Answer>Yes</Answer>
+              </ForeignService>
+              <ForeignMilitaryService>
+                <Service ID="1">
+                  <AssociationDescription>I worked as a consultant to the PLA's cybersecurity division working on offensive capabilities.</AssociationDescription>
+                  <Branch>PLA Unit 61398</Branch>
+                  <Country>China</Country>
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>02</Month>
+                        <Year>2010</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date>
+                        <Month>04</Month>
+                        <Year>2015</Year>
+                      </Date>
+                    </To>
+                  </DateRange>
+                  <LeavingDescription>I thought it was too easy.</LeavingDescription>
+                  <Name>PLA Unit 61398</Name>
+                  <Organization>Intelligence</Organization>
+                  <Position>Computer scientist</Position>
+                  <Contacts>
+                    <Answer>Yes</Answer>
+                    <Contact ID="1">
+                      <Address>
+                        <Street>123 Main St </Street>
+                        <City>Beijing</City>
+                        <Country>China</Country>
+                      </Address>
+                      <DateRange>
+                        <From>
+                          <Date>
+                            <Month>09</Month>
+                            <Year>2009</Year>
+                          </Date>
+                        </From>
+                        <To>
+                          <Date Type="Present"/>
+                        </To>
+                      </DateRange>
+                      <FrequencyOfContact>Literally he's my best friend on snapchat</FrequencyOfContact>
+                      <LegalName>
+                        <Last>Stealer</Last>
+                        <First>Jim</First>
+                        <Middle>Computer</Middle>
+                        <Suffix>X</Suffix>
+                      </LegalName>
+                      <Title>Hacker in chief</Title>
+                    </Contact>
+                    <Contact ID="2">
+                      <Address>
+                        <Street>Kashyyyk Kashyyyk</Street>
+                        <City>Kashyyyk</City>
+                        <Country>Kazakhstan</Country>
+                      </Address>
+                      <DateRange>
+                        <From>
+                          <Date Type="Estimated">
+                            <Month>09</Month>
+                            <Year>2004</Year>
+                          </Date>
+                        </From>
+                        <To>
+                          <Date Type="Present"/>
+                        </To>
+                      </DateRange>
+                      <FrequencyOfContact>He texts me CONSTANTLY</FrequencyOfContact>
+                      <LegalName>
+                        <Last>Bacca</Last>
+                        <First>Chew</First>
+                        <Middle Type="NMN"/>
+                        <Suffix>__Other__</Suffix>
+                        <Suffix_Other>Wookie Clan Sr.</Suffix_Other>
+                      </LegalName>
+                      <Title>Side kick</Title>
+                    </Contact>
+                    <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+                  </Contacts>
+                </Service>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </ForeignMilitaryService>
+              <Answer>Yes</Answer>
+              <MilitaryService>
+                <Service ID="1">
+                  <Branch>Army</Branch>
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>09</Month>
+                        <Year>2017</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Present"/>
+                    </To>
+                  </DateRange>
+                  <Rank>Officer</Rank>
+                  <ServiceNumber>8482091</ServiceNumber>
+                  <Status>Active</Status>
+                  <WasDischarged>
+                    <Answer>Yes</Answer>
+                  </WasDischarged>
+                  <Discharge>
+                    <Date Type="Estimated">
+                      <Month>07</Month>
+                      <Year>2018</Year>
+                    </Date>
+                    <Type>Honorable</Type>
+                  </Discharge>
+                </Service>
+                <Service ID="2">
+                  <Branch>CoastGuard</Branch>
+                  <DateRange>
+                    <From>
+                      <Date Type="Estimated">
+                        <Month>09</Month>
+                        <Year>2016</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Estimated">
+                        <Month>09</Month>
+                        <Year>2017</Year>
+                      </Date>
+                    </To>
+                  </DateRange>
+                  <Rank>Officer</Rank>
+                  <ServiceNumber>8098310</ServiceNumber>
+                  <Status>Active</Status>
+                  <WasDischarged>
+                    <Answer>Yes</Answer>
+                  </WasDischarged>
+                  <Discharge>
+                    <Date Type="Estimated">
+                      <Month>11</Month>
+                      <Year>2017</Year>
+                    </Date>
+                    <Type>Other</Type>
+                    <Explanation>Mustered out of service</Explanation>
+                  </Discharge>
+                  <OtherThanHonorable>
+                    <Reason>the war ended</Reason>
+                  </OtherThanHonorable>
+                </Service>
+                <Service ID="3">
+                  <Branch>Navy</Branch>
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>12</Month>
+                        <Year>2006</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date>
+                        <Month>07</Month>
+                        <Year>2009</Year>
+                      </Date>
+                    </To>
+                  </DateRange>
+                  <Rank>Officer</Rank>
+                  <ServiceNumber>09920323029334324235</ServiceNumber>
+                  <Status>InactiveReserve</Status>
+                  <WasDischarged>
+                    <Answer>Yes</Answer>
+                  </WasDischarged>
+                  <Discharge>
+                    <Date Type="Estimated">
+                      <Month>07</Month>
+                      <Year>2009</Year>
+                    </Date>
+                    <Type>OtherThanHonorable</Type>
+                  </Discharge>
+                  <OtherThanHonorable>
+                    <Reason>I jumped off a ship b/c I saw a huge spider</Reason>
+                  </OtherThanHonorable>
+                </Service>
+              </MilitaryService>
+              <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+            </MilitaryHistory>
+            <SelectiveServiceRegistration Version="1" Type="Pooled">
+              <Registered>
+                <Answer>Yes</Answer>
+              </Registered>
+              <Registration>
+                <Number>102910920192019</Number>
+              </Registration>
+              <RegistrationRequired>
+                <Answer>Yes</Answer>
+              </RegistrationRequired>
+            </SelectiveServiceRegistration>
+            <FinancialRecord Type="Pooled" Version="1">
+              <Bankruptcy>
+                <Activities>
+    
+  </Activities>
+                <Answer>No</Answer>
+              </Bankruptcy>
+              <ViolatedCorporateCardAgreement>
+                <Answer>No</Answer>
+                <Incidents>
+    
+  </Incidents>
+              </ViolatedCorporateCardAgreement>
+              <UtilizingOrSeekingCreditCounseling>
+                <Answer>No</Answer>
+                <Incidents>
+    
+  </Incidents>
+              </UtilizingOrSeekingCreditCounseling>
+              <DelinquencyInvolvingEnforcement>
+                <Answer>No</Answer>
+                <Incidents>
+    
+  </Incidents>
+              </DelinquencyInvolvingEnforcement>
+              <ProblemsDueToGambling>
+                <Answer>No</Answer>
+                <Incidents>
+    
+  </Incidents>
+              </ProblemsDueToGambling>
+              <DelinquencyInvolvingRoutineAccounts>
+                <Answer>No</Answer>
+                <Incidents>
+    
+  </Incidents>
+              </DelinquencyInvolvingRoutineAccounts>
+              <UnpaidTaxes>
+                <Answer>No</Answer>
+                <Incidents>
+    
+  </Incidents>
+              </UnpaidTaxes>
+            </FinancialRecord>
+            <ForeignContacts Version="1" Type="Pooled">
+              <ContactWithForeignNationalBoundByAffectionInfluenceObligation>
+                <Answer>No</Answer>
+              </ContactWithForeignNationalBoundByAffectionInfluenceObligation>
+              <Contacts>
+    
+  </Contacts>
+            </ForeignContacts>
+            <ForeignFinancialInterests Version="1" Type="Pooled">
+              <DirectInterests>
+                <Answer>No</Answer>
+              </DirectInterests>
+              <IndirectInterests>
+                <Answer>No</Answer>
+              </IndirectInterests>
+              <RealEstateHoldings>
+                <Answer>No</Answer>
+              </RealEstateHoldings>
+              <ForeignFinancialBenefits>
+                <Answer>No</Answer>
+              </ForeignFinancialBenefits>
+              <ForeignNationalsSupported>
+                <Answer>No</Answer>
+              </ForeignNationalsSupported>
+            </ForeignFinancialInterests>
+            <ForeignBusinessActivities Version="1" Type="Pooled">
+              <ForeignPassports>
+                <Answer>Yes</Answer>
+                <ForeignPassport ID="1">
+                  <CountriesTraveled>
+                    <CountryTraveled ID="1">
+                      <Country>United States</Country>
+                      <DateRange>
+                        <From>
+                          <Date>
+                            <Month>10</Month>
+                            <Year>1970</Year>
+                          </Date>
+                        </From>
+                        <To>
+                          <Date>
+                            <Month>11</Month>
+                            <Year>1970</Year>
+                          </Date>
+                        </To>
+                      </DateRange>
+                    </CountryTraveled>
+                    <CountryTraveled ID="2">
+                      <Country>Saint Barthelemy</Country>
+                      <DateRange>
+                        <From>
+                          <Date>
+                            <Month>09</Month>
+                            <Year>1950</Year>
+                          </Date>
+                        </From>
+                        <To>
+                          <Date Type="Estimated">
+                            <Month>09</Month>
+                            <Year>1950</Year>
+                          </Date>
+                        </To>
+                      </DateRange>
+                    </CountryTraveled>
+                  </CountriesTraveled>
+                  <ExpirationDate>
+                    <Date>
+                      <Month>09</Month>
+                      <Day>09</Day>
+                      <Year>1950</Year>
+                    </Date>
+                  </ExpirationDate>
+                  <IssueDate>
+                    <Date>
+                      <Month>09</Month>
+                      <Day>09</Day>
+                      <Year>1930</Year>
+                    </Date>
+                  </IssueDate>
+                  <IssuingGovernment>
+                    <Country>United Kingdom</Country>
+                    <Place>
+                      <City>Glasgow</City>
+                      <Country>United Kingdom</Country>
+                    </Place>
+                  </IssuingGovernment>
+                  <Name>
+                    <Last>McCallum</Last>
+                    <First>Daniel</First>
+                    <Middle>Craig</Middle>
+                  </Name>
+                  <PassportNumber>12901485</PassportNumber>
+                  <UsedPassportForTravel>
+                    <Answer>Yes</Answer>
+                  </UsedPassportForTravel>
+                </ForeignPassport>
+                <ForeignPassport ID="2">
+                  <ExpirationDate>
+                    <Date>
+                      <Month>09</Month>
+                      <Day>09</Day>
+                      <Year>1940</Year>
+                    </Date>
+                  </ExpirationDate>
+                  <IssueDate>
+                    <Date>
+                      <Month>09</Month>
+                      <Day>09</Day>
+                      <Year>1920</Year>
+                    </Date>
+                  </IssueDate>
+                  <IssuingGovernment>
+                    <Country>Zimbabwe</Country>
+                    <Place>
+                      <City>Glasgow</City>
+                      <Country>United Kingdom</Country>
+                    </Place>
+                  </IssuingGovernment>
+                  <Name>
+                    <Last>McCallum</Last>
+                    <First>Daniel</First>
+                    <Middle>Craig</Middle>
+                  </Name>
+                  <PassportNumber>12-3192309</PassportNumber>
+                  <UsedPassportForTravel>
+                    <Answer>No</Answer>
+                  </UsedPassportForTravel>
+                </ForeignPassport>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </ForeignPassports>
+              <SupportActivities>
+                <Answer>No</Answer>
+              </SupportActivities>
+              <Consultancies>
+                <Answer>No</Answer>
+              </Consultancies>
+              <ForeignJobOffer>
+                <Answer>No</Answer>
+              </ForeignJobOffer>
+              <ForeignJobOffers>
+  
+</ForeignJobOffers>
+              <OtherForeignEmployment>
+                <Answer>No</Answer>
+              </OtherForeignEmployment>
+              <OtherForeignEmployments>
+  
+</OtherForeignEmployments>
+              <Meetings>
+                <Answer>No</Answer>
+              </Meetings>
+              <GovernmentContacts>
+                <Answer>No</Answer>
+              </GovernmentContacts>
+              <SponsoredVisits>
+                <Answer>No</Answer>
+              </SponsoredVisits>
+              <ForeignPoliticalOffice>
+                <Answer>No</Answer>
+              </ForeignPoliticalOffice>
+              <ForeignPoliticalOffices>
+  
+</ForeignPoliticalOffices>
+              <VotedInForeignElection>
+                <Answer>No</Answer>
+              </VotedInForeignElection>
+              <VotedInForeignElections>
+  
+</VotedInForeignElections>
+            </ForeignBusinessActivities>
+            <ForeignTravels Version="1" Type="Pooled">
+              <CountriesVisited>
+                <Answer>No</Answer>
+              </CountriesVisited>
+            </ForeignTravels>
+            <UseOfAlcohol Version="1" Type="Pooled">
+              <EverReceivedCounseling>
+                <Answer>No</Answer>
+                <Consultations>
+    
+  </Consultations>
+              </EverReceivedCounseling>
+              <NegativeImpact>
+                <Answer>No</Answer>
+                <Incidents>
+    
+  </Incidents>
+              </NegativeImpact>
+              <OrderedAdvisedOrAskedToSeekCounseling>
+                <Answer>No</Answer>
+                <Consultations>
+    
+  </Consultations>
+              </OrderedAdvisedOrAskedToSeekCounseling>
+              <SoughtCounseling>
+                <Answer>No</Answer>
+                <Consultations>
+    
+  </Consultations>
+              </SoughtCounseling>
+            </UseOfAlcohol>
+            <IllegalDrugUse Version="1" Type="Pooled">
+              <InvolvementWhilePossessingASecurityClearance>
+                <Answer>No</Answer>
+                <Involvements>
+    
+  </Involvements>
+              </InvolvementWhilePossessingASecurityClearance>
+              <MisuseOfPrescriptionDrugs>
+                <Answer>No</Answer>
+                <Instances>
+    
+  </Instances>
+              </MisuseOfPrescriptionDrugs>
+              <OrderedAdvisedOrAskedToSeekCounseling>
+                <Answer>No</Answer>
+                <Consultations>
+    
+  </Consultations>
+              </OrderedAdvisedOrAskedToSeekCounseling>
+              <InvolvementWhileEmployedAsLawEnforcement>
+                <Answer>No</Answer>
+                <Involvements>
+    
+  </Involvements>
+              </InvolvementWhileEmployedAsLawEnforcement>
+              <IllegalDrugActivity>
+                <Answer>No</Answer>
+                <Activities>
+    
+  </Activities>
+              </IllegalDrugActivity>
+              <IllegalUse>
+                <Answer>No</Answer>
+                <Instances>
+    
+  </Instances>
+              </IllegalUse>
+              <VoluntaryTreatment>
+                <Answer>No</Answer>
+                <Consultations>
+    
+  </Consultations>
+              </VoluntaryTreatment>
+            </IllegalDrugUse>
+            <PoliceRecord Version="1" Type="Pooled">
+              <Past7Years>
+                <Answer>No</Answer>
+                <Offenses>
+    
+  </Offenses>
+              </Past7Years>
+              <Ever>
+                <Offenses>
+                  <Answer>No</Answer>
+                </Offenses>
+              </Ever>
+              <RestrainingOrders>
+                <Answer>No</Answer>
+              </RestrainingOrders>
+            </PoliceRecord>
+            <CivilCourtRecord Version="1" Type="Pooled">
+              <CivilCourtAction>
+                <Answer>No</Answer>
+              </CivilCourtAction>
+              <CourtActions>
+    
+  </CourtActions>
+            </CivilCourtRecord>
+            <InformationSystemUse Version="1" Type="Pooled">
+              <IllegalEntry>
+                <Answer>Yes</Answer>
+                <Incidents>
+                  <Incident ID="1">
+                    <Action>No one caught me!!!! AHHHH HAHAHAHAHA</Action>
+                    <Address>
+                      <Street>20 20th St </Street>
+                      <City>New York</City>
+                      <State>NY</State>
+                      <ZipCode>10001</ZipCode>
+                    </Address>
+                    <Date Type="Estimated">
+                      <Month>09</Month>
+                      <Year>2013</Year>
+                    </Date>
+                    <Nature>One time I threw a SQL injection prompt into my local baker's invoicing system so I could drop all my outstanding charges for double mocha frappachinos</Nature>
+                  </Incident>
+                  <Incident ID="2">
+                    <Action>Welllll so the catfisher figured out my phishing technique and called the local sheriff who found me hiding in the bathroom of an internet cafe.</Action>
+                    <Address>
+                      <Street>124 Creepwalk </Street>
+                      <City>Yolo</City>
+                      <State>TX</State>
+                      <ZipCode>73301</ZipCode>
+                    </Address>
+                    <Date>
+                      <Month>04</Month>
+                      <Year>2015</Year>
+                    </Date>
+                    <Nature>I spear phished a catfisher to figure out their real identity.</Nature>
+                  </Incident>
+                </Incidents>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </IllegalEntry>
+              <IllegalUse>
+                <Answer>Yes</Answer>
+                <Incidents>
+                  <Incident ID="1">
+                    <Action>Look it was a program that went wild. We were trying to get more votes for Boaty McBoatface to help support our friends in the UK.</Action>
+                    <Address>
+                      <Street>7 Grace Hopper Ave. </Street>
+                      <City>Monterey</City>
+                      <State>CA</State>
+                      <ZipCode>93943</ZipCode>
+                    </Address>
+                    <Date>
+                      <Month>09</Month>
+                      <Year>2004</Year>
+                    </Date>
+                    <Nature>Raised a botnet to vote for Boaty McBoatface on US government computers</Nature>
+                  </Incident>
+                  <Incident ID="2">
+                    <Action>DOD was like, hey we wont' charge you, you're on our team now buddy.</Action>
+                    <Address>
+                      <Street>2901 Ridge St </Street>
+                      <City>Winnetka</City>
+                      <State>IL</State>
+                      <ZipCode>60415</ZipCode>
+                    </Address>
+                    <Date>
+                      <Month>06</Month>
+                      <Year>1990</Year>
+                    </Date>
+                    <Nature>You know that movie "War Games"?   That was me.</Nature>
+                  </Incident>
+                </Incidents>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </IllegalUse>
+              <IllegallyAlteredInformation>
+                <Answer>Yes</Answer>
+                <Incidents>
+                  <Incident ID="1">
+                    <Action>The hotel manager took pity on me because it was, in fact, our honey moon, and didn't call the cops.</Action>
+                    <Address>
+                      <Street>91 Beach St </Street>
+                      <City>Port Au Prince</City>
+                      <Country>Haiti</Country>
+                    </Address>
+                    <Date Type="Estimated">
+                      <Month>04</Month>
+                      <Year>2018</Year>
+                    </Date>
+                    <Nature>I was on vacation and decided that I wanted an extra night free so I went behind the counter at the hotel and comp'ed myself. </Nature>
+                  </Incident>
+                  <Incident ID="2">
+                    <Action>The catfisher came back this time and I was fed up with it. So I went to their house and accessed their computer without their knowledge and proceeded to delete their OS so they could stop tricking me into talking to them.</Action>
+                    <Address>
+                      <Street>145 Main St </Street>
+                      <City>Traverse City</City>
+                      <State>MI</State>
+                      <ZipCode>48002</ZipCode>
+                    </Address>
+                    <Date>
+                      <Month>05</Month>
+                      <Year>2018</Year>
+                    </Date>
+                    <Nature>Broke into someone's house and deleted their operating system.</Nature>
+                  </Incident>
+                </Incidents>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </IllegallyAlteredInformation>
+            </InformationSystemUse>
+            <AssociationRecord Version="1" Type="Pooled">
+              <ActivitiesToOverthrowTheUSGovernment>
+                <Activities>
+    
+  </Activities>
+                <Answer>No</Answer>
+              </ActivitiesToOverthrowTheUSGovernment>
+              <AdvocatedTerrorism>
+                <Answer>No</Answer>
+                <Instances>
+    
+  </Instances>
+              </AdvocatedTerrorism>
+              <BeenInOrganizationAdvocatingViolence>
+                <Answer>No</Answer>
+                <Organizations>
+    
+  </Organizations>
+              </BeenInOrganizationAdvocatingViolence>
+              <BeenInOrganizationDedicatedToTerrorism>
+                <Answer>No</Answer>
+                <Organizations>
+    
+  </Organizations>
+              </BeenInOrganizationDedicatedToTerrorism>
+              <EngagedInTerrorism>
+                <Answer>No</Answer>
+                <TerroristActs>
+    
+  </TerroristActs>
+              </EngagedInTerrorism>
+              <TerrorismAssociations>
+                <Answer>No</Answer>
+              </TerrorismAssociations>
+              <TerroristOrganizationMember>
+                <Answer>No</Answer>
+                <Organizations>
+    
+  </Organizations>
+              </TerroristOrganizationMember>
+            </AssociationRecord>
+            <InvestigationRecord Version="1" Type="Pooled">
+              <ClearanceDenied>
+                <Answer>No</Answer>
+              </ClearanceDenied>
+              <GovernmentDebarment>
+                <Answer>No</Answer>
+              </GovernmentDebarment>
+              <PriorInvestigation>
+                <Answer>No</Answer>
+              </PriorInvestigation>
+            </InvestigationRecord>
+            <MedicalRecord2 Version="1" Type="Pooled">
+              <DeclaredAsMentallyIncompetent>
+                <Answer>No</Answer>
+              </DeclaredAsMentallyIncompetent>
+              <OrderedToConsult>
+                <Answer>No</Answer>
+              </OrderedToConsult>
+              <Hospitalized>
+                <Answer>No</Answer>
+              </Hospitalized>
+              <Diagnosed>
+                <Answer>No</Answer>
+              </Diagnosed>
+              <AdverselyAffected>
+                <Answer>No</Answer>
+              </AdverselyAffected>
+            </MedicalRecord2>
+            <FormInstructions Type="Pooled" Version="1">
+              <ReadAndUnderstoodStatementOfUnderstanding>
+                <Answer>Yes</Answer>
+              </ReadAndUnderstoodStatementOfUnderstanding>
+            </FormInstructions>
+          </Pooled>
+        </Responses>
+      </Request>
+    </RequestInfo>
+    <DateSubmitted>2018-09-10</DateSubmitted>
+  </SubmittedRequestInfo>
+  <AgencyUsageBlock>
+    <TypeOfInvestigation>
+      <Type>64</Type>
+      <Service>B</Service>
+    </TypeOfInvestigation>
+    <SensitivityLevel>
+      <Code>2</Code>
+    </SensitivityLevel>
+    <Access>
+      <Code>2</Code>
+    </Access>
+    <Action>
+      <Nature>MIL</Nature>
+    </Action>
+    <Position>
+      <Title>Military</Title>
+    </Position>
+    <SON>957B</SON>
+    <LocationOPF>
+      <Code>None</Code>
+    </LocationOPF>
+    <SOI>NV00</SOI>
+    <LocationSEC>
+      <Code>None</Code>
+    </LocationSEC>
+    <InvestigativeRequirement>I</InvestigativeRequirement>
+    <ApplicantAffiliation>MIL</ApplicantAffiliation>
+    <IPAC>DOD-NAVY</IPAC>
+    <RequestingOfficials>
+      <Requestor>
+        <Name>AARON Strohl Laney</Name>
+        <Email>eml152dummy@MailDomain.com</Email>
+        <Telephone>
+          <Number>1 (763) 323-2004</Number>
+        </Telephone>
+      </Requestor>
+      <SecondRequestor>
+        <Name>JAMES Strohl Laney</Name>
+        <Email>eml153dummy@MailDomain.com</Email>
+        <Telephone>
+          <Number>1 (298) 723-1913</Number>
+        </Telephone>
+      </SecondRequestor>
+    </RequestingOfficials>
+  </AgencyUsageBlock>
+</XMP>

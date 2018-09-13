@@ -51,13 +51,7 @@ describe('People validator', function() {
                       year: '2009',
                       date: new Date('1/1/2009')
                     },
-                    to: {
-                      month: '1',
-                      day: '1',
-                      year: currentYear,
-                      date: new Date(`1/1/${currentYear}`)
-                    },
-                    present: false
+                    present: true
                   },
                   Rank: {
                     value: 'Some rank'

@@ -6,25 +6,37 @@ import (
 	"fmt"
 	"html/template"
 	"path"
+	"reflect"
 	"regexp"
 	"strings"
 
 	"github.com/18F/e-QIP-prototype/api"
+	"github.com/benbjohnson/clock"
 )
 
 // Service is an implementation of handling XML.
 type Service struct {
-	Log api.LogService
+	Log   api.LogService
+	Clock clock.Clock
 }
 
 // DefaultTemplate returns a template given data.
 func (service Service) DefaultTemplate(templateName string, data map[string]interface{}) (template.HTML, error) {
+
+	// now returns the server's local time in yyyy-MM-dd
+	now := func() string {
+		t := service.Clock.Now()
+		return fmt.Sprintf("%d-%02d-%02d", t.Year(), t.Month(), t.Day())
+	}
+
 	// fmap is a mapping of functions to be used within the XML template execution.
 	// These can be helper functions for formatting or even to process complex structure
 	// types.
 	fmap := template.FuncMap{
 		"addressIn":              addressIn,
+		"agencyType":             agencyType,
 		"branch":                 branch,
+		"branchToAnswer":         branchToAnswer,
 		"branchToBool":           branchToBool,
 		"branchcollectionHas":    branchcollectionHas,
 		"branchAny":              branchAny,
@@ -35,36 +47,47 @@ func (service Service) DefaultTemplate(templateName string, data map[string]inte
 		"country":                countryValue,
 		"countryComments":        countryComments,
 		"citizenshipHas":         citizenshipHas,
+		"clearanceType":          clearanceType,
 		"date":                   date,
 		"dateEstimated":          dateEstimated,
 		"daterange":              daterange,
 		"daysInRange":            daysInRange,
 		"degreeType":             degreeType,
+		"derivedBasis":           derivedBasis,
+		"naturalizedBasis":       naturalizedBasis,
 		"diagnosisType":          diagnosisType,
+		"dischargeType":          dischargeType,
 		"doctorFirstName":        doctorFirstName,
 		"doctorLastName":         doctorLastName,
 		"foreignDocType":         foreignDocType,
 		"foreignAffiliation":     foreignAffiliation,
+		"frequencyType":          frequencyType,
 		"monthYearDaterange":     monthYearDaterange,
 		"email":                  email,
 		"employmentType":         employmentType,
 		"hasRelativeType":        hasRelativeType,
+		"inc":                    inc,
 		"location":               location,
 		"locationIsPostOffice":   locationIsPostOffice,
+		"locationOverrideLayout": locationOverrideLayout,
 		"maritalStatus":          maritalStatus,
 		"militaryStatus":         militaryStatus,
 		"monthYear":              monthYear,
 		"name":                   name,
 		"nameLastFirst":          nameLastFirst,
 		"notApplicable":          notApplicable,
+		"now":                    now,
 		"number":                 number,
 		"padDigits":              padDigits,
 		"radio":                  radio,
 		"schoolType":             schoolType,
+		"severanceType":          severanceType,
+		"suffixType":             suffixType,
 		"relationshipType":       relationshipType,
 		"relativeForeignDocType": relativeForeignDocType,
 		"telephone":              telephone,
 		"telephoneNoNumber":      telephoneNoNumber,
+		"telephoneNoTimeOfDay":   telephoneNoTimeOfDay,
 		"text":                   text,
 		"textarea":               textarea,
 		"toUpper":                toUpper,
@@ -80,13 +103,22 @@ func (service Service) DefaultTemplate(templateName string, data map[string]inte
 // For example, UnemployedComment when not unemployed. See:
 // https://github.com/18F/e-QIP-prototype/issues/717
 func applyBulkFixes(xml string) string {
-	re := regexp.MustCompile("<[a-zA-Z_]+></[a-zA-Z_]+>")
-	s1 := re.ReplaceAllString(xml, "")
+	replaceWithEmpty := []string{
+		"<[a-zA-Z_]+></[a-zA-Z_]+>", // empty elements
+		" DoNotKnow=\"False\"",
+		" DoNotKnow=\"\"",
+		" Type=\"\"",
+		" Estimated=\"\"",
+		" Estimated=\"false\"",
+	}
 
-	re = regexp.MustCompile(" DoNotKnow=\"False\"")
-	s2 := re.ReplaceAllString(s1, "")
+	x := xml
+	for _, n := range replaceWithEmpty {
+		re := regexp.MustCompile(n)
+		x = re.ReplaceAllString(x, "")
+	}
 
-	return s2
+	return x
 }
 
 func xmlTemplate(name string, data map[string]interface{}) (template.HTML, error) {
@@ -301,7 +333,7 @@ func relationshipType(str string) string {
 		"Father":        "02Father",
 		"Stepmother":    "03Stepmother",
 		"Stepfather":    "04Stepfather",
-		"FosterParent":  "05FosterParent",
+		"Fosterparent":  "05FosterParent",
 		"Child":         "06Child",
 		"Stepchild":     "07Stepchild",
 		"Brother":       "08Brother",
@@ -591,11 +623,25 @@ func locationIsPostOffice(data map[string]interface{}) string {
 }
 
 func branchToBool(data map[string]interface{}) string {
-	val, ok := data["value"]
-	if ok && val == "Yes" {
-		return "True"
+	props, ok := data["props"]
+	if ok {
+		val, ok := (props.(map[string]interface{}))["value"]
+		if ok && val == "Yes" {
+			return "True"
+		}
 	}
 	return "False"
+}
+
+func branchToAnswer(data map[string]interface{}) string {
+	props, ok := data["props"]
+	if ok {
+		val, ok := (props.(map[string]interface{}))["value"]
+		if ok && val == "Yes" {
+			return "Yes"
+		}
+	}
+	return "No"
 }
 
 func countryComments(data map[string]interface{}) string {
@@ -615,8 +661,15 @@ func telephone(data map[string]interface{}) (template.HTML, error) {
 	return xmlTemplate("telephone.xml", data)
 }
 
+func telephoneNoTimeOfDay(data map[string]interface{}) (template.HTML, error) {
+	return xmlTemplate("telephone-no-time-of-day.xml", data)
+}
+
 func name(data map[string]interface{}) (template.HTML, error) {
-	return xmlTemplate("name.xml", data)
+	fmap := template.FuncMap{
+		"suffixType": suffixType,
+	}
+	return xmlTemplateWithFuncs("name.xml", data, fmap)
 }
 
 func nameLastFirst(data map[string]interface{}) (template.HTML, error) {
@@ -653,8 +706,12 @@ func monthYear(data map[string]interface{}) (template.HTML, error) {
 	return xmlTemplateWithFuncs("date-month-year.xml", data, fmap)
 }
 
-// location assumes the data comes in as the props
 func location(data map[string]interface{}) (template.HTML, error) {
+	return locationOverrideLayout(data, "")
+}
+
+// location assumes the data comes in as the props
+func locationOverrideLayout(data map[string]interface{}, override string) (template.HTML, error) {
 	// Deserialize the initial payload from a JSON structure
 	payload := &api.Payload{}
 	// entity, err := payload.UnmarshalEntity(getInterfaceAsBytes(data))
@@ -675,15 +732,34 @@ func location(data map[string]interface{}) (template.HTML, error) {
 		"toUpper": toUpper,
 	}
 
-	switch location.Layout {
+	// XXX
+	// Work-around issue in UI where it does not
+	// collect the address in the correct layout. See:
+	// https://github.com/18F/e-QIP-prototype/issues/755
+	layout := location.Layout
+	if override != "" {
+		layout = override
+	}
+
+	switch layout {
 	case api.LayoutBirthPlace:
 		if domestic {
 			return xmlTemplateWithFuncs("location-city-state-county.xml", data, fmap)
 		}
-		return xmlTemplate("location-city-county.xml", data)
+		return xmlTemplate("location-city-country.xml", data)
+	case api.LayoutBirthPlaceNoUS:
+		if domestic {
+			return xmlTemplateWithFuncs("location-city-state-county-no-country.xml", data, fmap)
+		}
+		return xmlTemplate("location-city-country.xml", data)
 	case api.LayoutBirthPlaceWithoutCounty:
 		if domestic {
 			return xmlTemplateWithFuncs("location-city-state.xml", data, fmap)
+		}
+		return xmlTemplate("location-city-country.xml", data)
+	case api.LayoutBirthPlaceWithoutCountyNoUS:
+		if domestic {
+			return xmlTemplateWithFuncs("location-city-state-no-country.xml", data, fmap)
 		}
 		return xmlTemplate("location-city-country.xml", data)
 	case api.LayoutCountry:
@@ -746,4 +822,137 @@ func padDigits(digits string) string {
 
 func toUpper(state string) string {
 	return strings.ToUpper(state)
+}
+
+func derivedBasis(v string) string {
+	basis := map[string]string{
+		"Individual": "ByOperationofLaw",
+		"Other":      "Other",
+	}
+	return basis[v]
+}
+
+func naturalizedBasis(v string) string {
+	basis := map[string]string{
+		"Individual": "BasedOnMyOwnIndividualNaturalizationApplication",
+		"Other":      "Other",
+	}
+	return basis[v]
+}
+
+func dischargeType(v string) string {
+	basis := map[string]string{
+		"Honorable":    "Honorable",
+		"Dishonorable": "Dishonorable",
+		"LessThan":     "OtherThanHonorable",
+		"General":      "General",
+		"BadConduct":   "BadConduct",
+		"Other":        "Other",
+	}
+	return basis[v]
+}
+
+func frequencyType(v string) string {
+	basis := map[string]string{
+		"OneTime":    "Onetime",
+		"Future":     "Future",
+		"Continuing": "Continuing",
+		"Other":      "Other",
+	}
+	return basis[v]
+}
+
+func severanceType(v string) string {
+	basis := map[string]string{
+		"Fired":       "Fired",
+		"Quit":        "QuitKnowingWouldBeFired",
+		"Charges":     "AllegedMisconduct",
+		"Performance": "UnsatisfactoryPerformance",
+	}
+	return basis[v]
+}
+
+func agencyType(v string) string {
+	basis := map[string]string{
+		"U.S. Department of Defense":           "Defense",
+		"U.S. Department of State":             "State",
+		"U.S. Office of Personnel Management":  "OPM",
+		"Federal Bureau of Investigation":      "FBI",
+		"U.S. Department of Treasury":          "Treasury",
+		"U.S. Department of Homeland Security": "HomelandSecurity",
+		"Foreign government":                   "ForeignGovernment",
+		"Other":                                "Other",
+	}
+	return basis[v]
+}
+
+func clearanceType(v string) string {
+	basis := map[string]string{
+		"Confidential":                        "Confidential",
+		"Secret":                              "Secret",
+		"Top Secret":                          "TopSecret",
+		"Sensitive Compartmented Information": "SCI",
+		"Q": "Q",
+		"L": "L",
+		"Issued by foreign country": "Foreign",
+		"Other":                     "Other",
+	}
+	return basis[v]
+}
+
+func suffixType(s string) string {
+	if s == "Other" {
+		return "__Other__"
+	}
+	return s
+}
+
+// inc adds 1 to a
+func inc(a interface{}) (interface{}, error) {
+	return add(a, 1)
+}
+
+// add returns the sum of a and b.
+// Snagged from https://github.com/hashicorp/consul-template/blob/de2ebf4/template_functions.go
+func add(b, a interface{}) (interface{}, error) {
+	av := reflect.ValueOf(a)
+	bv := reflect.ValueOf(b)
+
+	switch av.Kind() {
+	case reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64:
+		switch bv.Kind() {
+		case reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64:
+			return av.Int() + bv.Int(), nil
+		case reflect.Uint, reflect.Uint8, reflect.Uint16, reflect.Uint32, reflect.Uint64:
+			return av.Int() + int64(bv.Uint()), nil
+		case reflect.Float32, reflect.Float64:
+			return float64(av.Int()) + bv.Float(), nil
+		default:
+			return nil, fmt.Errorf("add: unknown type for %q (%T)", bv, b)
+		}
+	case reflect.Uint, reflect.Uint8, reflect.Uint16, reflect.Uint32, reflect.Uint64:
+		switch bv.Kind() {
+		case reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64:
+			return int64(av.Uint()) + bv.Int(), nil
+		case reflect.Uint, reflect.Uint8, reflect.Uint16, reflect.Uint32, reflect.Uint64:
+			return av.Uint() + bv.Uint(), nil
+		case reflect.Float32, reflect.Float64:
+			return float64(av.Uint()) + bv.Float(), nil
+		default:
+			return nil, fmt.Errorf("add: unknown type for %q (%T)", bv, b)
+		}
+	case reflect.Float32, reflect.Float64:
+		switch bv.Kind() {
+		case reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64:
+			return av.Float() + float64(bv.Int()), nil
+		case reflect.Uint, reflect.Uint8, reflect.Uint16, reflect.Uint32, reflect.Uint64:
+			return av.Float() + float64(bv.Uint()), nil
+		case reflect.Float32, reflect.Float64:
+			return av.Float() + bv.Float(), nil
+		default:
+			return nil, fmt.Errorf("add: unknown type for %q (%T)", bv, b)
+		}
+	default:
+		return nil, fmt.Errorf("add: unknown type for %q (%T)", av, a)
+	}
 }

@@ -3,20 +3,20 @@
   <AnswerComment></AnswerComment>
   {{range $index, $item := .props.List.props.items}}
   {{with $Item := $item.Item}}
-  <DeclaredAsMentallyIncompetentOccurrence ID="{{$index}}">
+  <DeclaredAsMentallyIncompetentOccurrence ID="{{inc $index}}">
     <Court>
       <Name>{{text $Item.CourtName}}</Name>
       <Address>{{location $Item.CourtAddress}}</Address>
     </Court>
     <Date Type="{{dateEstimated $Item.Occurred}}">{{monthYear $Item.Occurred}}</Date>
     <Appealed>
-      <Answer>{{branchcollectionHas $Item.Appeals.props.List}}</Answer>
+      <Answer>{{branchcollectionHas $Item.Appeals}}</Answer>
       <AnswerComment></AnswerComment>
-      {{ if branchcollectionHas $Item.Appeals.props.List | eq "Yes"}}
+      {{ if branchcollectionHas $Item.Appeals | eq "Yes"}}
       {{range $aindex, $appeal := $Item.Appeals.props.items}}
       {{with $Appeal := $appeal.Item}}
       {{if branch $Appeal.Has | eq "Yes"}}
-      <Appeal ID="{{$aindex}}">
+      <Appeal ID="{{inc $aindex}}">
         <Court>
           <Name>{{text $Appeal.CourtName}}</Name>
           <Address>{{location $Appeal.CourtAddress}}</Address>
@@ -25,10 +25,10 @@
         <Comment></Comment>
       </Appeal>
       {{end}}
+      {{end}}
+      {{end}}
       <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
       <SummaryComment></SummaryComment>
-      {{end}}
-      {{end}}
       {{end}}
     </Appealed>
     <Comment></Comment>

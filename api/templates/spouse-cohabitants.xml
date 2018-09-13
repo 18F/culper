@@ -2,7 +2,7 @@
   <Answer>{{branch .props.HasCohabitant}}</Answer>
   {{range $index, $item := .props.CohabitantList.props.items}}
   {{with $Item := $item.Item}}
-  <Cohabitant ID="{{$index}}">
+  <Cohabitant ID="{{inc $index}}">
     <Birth>
       <Date Type="{{dateEstimated $Item.Birthdate}}">
         {{ date $Item.Birthdate }}
@@ -11,6 +11,15 @@
         {{ location $Item.BirthPlace }}
       </Place>
     </Birth>
+
+    {{- $birthCountry := $Item.BirthPlace.props.country }}
+    {{- $foreignPOB := ne $birthCountry "United States" }}
+    {{- $usCitizen := citizenshipHas $Item.Citizenship "United States" }}
+
+    <!--XXX
+        See https://github.com/18F/e-QIP-prototype/issues/733 and
+        compare with similar logic for applicant XML --> 
+    {{- if or (and $usCitizen $foreignPOB) (not $usCitizen) }}
     {{- with $doc := $Item.ForeignBornDocument.props}}
     {{- if text $doc.DocumentType | ne ""}}
     <Citizenship>
@@ -24,15 +33,16 @@
     </Citizenship>
     {{- end}}
     {{- end}}
+    {{- end}}
     <CohabitationDate>
-      <Date Type="{{dateEstimated $Item.Birthdate}}">
-        {{date $Item.Birthdate}}
+      <Date Type="{{dateEstimated $Item.CohabitationBegan}}">
+        {{date $Item.CohabitationBegan}}
       </Date>
     </CohabitationDate>
     <ContinueComment></ContinueComment>
     <CountriesOfCitizenship>
       {{range $cindex, $country := $Item.Citizenship.props.value}}
-      <Citizenship ID="{{$cindex}}">
+      <Citizenship ID="{{inc $cindex}}">
         <Country>{{$country}}</Country>
       </Citizenship>
       {{end}}
@@ -48,12 +58,14 @@
       {{- range $oindex, $othername := $Item.OtherNames.props.items}}
       {{- with $other := $othername.Item}}
       {{- if branch $other.Has | eq "Yes"}}
-      <OtherName ID="{{$oindex}}">
+      <OtherName ID="{{inc $oindex}}">
         {{monthYearDaterange $other.DatesUsed}}
         <LegalName>
           {{name $other.OtherName}}
         </LegalName>
-        <Maiden>{{if branch $other.MaidenName | eq "Yes"}}True{{else}}False{{end}}</Maiden>
+        {{if branch $other.MaidenName | eq "Yes"}}
+        <Maiden>True</Maiden>
+        {{end}}
       </OtherName>
       {{- end}}
       {{- end}}

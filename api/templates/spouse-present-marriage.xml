@@ -1,7 +1,7 @@
 {{if text .props.Status | ne "NeverMarried"}}
 <PresentMarriage>
   {{with $Item := .props.CivilUnion.props}}
-  <CurrentSpouse>
+  <CurrentSpouse ID="1">
     {{if locationIsPostOffice $Item.Address}}
     <APOFPO>
       <Address>{{location $Item.Address}}</Address>
@@ -15,9 +15,14 @@
       </PhysicalLocation>
     </APOFPO>
     {{else}}
-    <Address UseMyCurrentAddress="{{notApplicable $Item.UseCurrentAddress}}">
+    <!-- UseCurrentAddress as an NotApplicable input is awkward -->
+    {{if notApplicable $Item.UseCurrentAddress | eq "True"}}
+    <Address UseMyCurrentAddress="True"/>
+    {{else}}
+    <Address>
       {{location $Item.Address}}
     </Address>
+    {{end}}
     {{end}}
     <Birth>
       <Date Type="{{dateEstimated $Item.Birthdate}}">
@@ -44,7 +49,7 @@
     <ContinueComment></ContinueComment>
     <CountriesOfCitizenship>
       {{range $cindex, $country := $Item.Citizenship.props.value}}
-      <Citizenship ID="{{$cindex}}">
+      <Citizenship ID="{{inc $cindex}}">
         <Country>{{$country}}</Country>
       </Citizenship>
       {{end}}
@@ -59,7 +64,7 @@
         {{date $Item.EnteredCivilUnion}}
       </Date>
       <Place>
-        {{location $Item.Location}}
+        {{locationOverrideLayout $Item.Location "Birthplace CountriesNoUS"}}
       </Place>
     </Marriage>
     {{ if eq (branchcollectionHas $Item.OtherNames) "No" }}
@@ -69,12 +74,14 @@
       {{range $oindex, $othername := $Item.OtherNames.props.items}}
       {{with $other := $othername.Item}}
       {{- if branch $other.Has | eq "Yes"}}
-      <OtherName ID="{{$oindex}}">
-        {{daterange $other.DatesUsed}}
+      <OtherName ID="{{inc $oindex}}">
+        {{monthYearDaterange $other.DatesUsed}}
         <LegalName>
-          {{name $other.OtherName}}
+          {{name $other.Name}}
         </LegalName>
-        <Maiden>{{if branch $other.MaidenName | eq "Yes"}}True{{else}}False{{end}}</Maiden>
+        {{if branch $other.MaidenName | eq "Yes"}}
+        <Maiden>True</Maiden>
+        {{end}}
       </OtherName>
       {{end}}
       {{end}}
@@ -82,33 +89,37 @@
     </OtherNamesUsed>
     {{end}}
     {{with $ssn := $Item.SSN}}
-    <SSN NotApplicable="{{ $ssn.props.notApplicable }}">
-      <FirstThree>
-        {{ $ssn.props.first }}
-      </FirstThree>
-      <NextTwo>
-        {{ $ssn.props.middle }}
-      </NextTwo>
-      <LastFour>
-        {{ $ssn.props.last }}
-      </LastFour>
+    {{if $ssn.props.notApplicable }}
+    <SSN NotApplicable="True" />
+    {{else}}
+    <SSN>
+      <FirstThree>{{ $ssn.props.first }}</FirstThree>
+      <NextTwo>{{ $ssn.props.middle }}</NextTwo>
+      <LastFour>{{ $ssn.props.last }}</LastFour>
     </SSN>
+    {{end}}
     {{end}}
     <Separated>
       <Answer>{{branch $Item.Separated}}</Answer>
       <AnswerComment></AnswerComment>
     </Separated>
+    {{if branch $Item.Separated | eq "Yes"}}
     <Separation>
       <Comment></Comment>
       <Date Type="{{dateEstimated $Item.DateSeparated}}">
         {{date $Item.DateSeparated}}
       </Date>
       <LocationOfRecord>
-        <Place NotApplicable="{{notApplicable $Item.AddressSeparatedNotApplicable}}">
+        {{if notApplicable $Item.AddressSeparatedNotApplicable | eq "True"}}
+        <Place NotApplicable="True"/>
+        {{else}}
+        <Place>
           {{location $Item.AddressSeparated}}
         </Place>
+        {{end}}
       </LocationOfRecord>
     </Separation>
+    {{end}}
     <Telephone>
       {{telephone $Item.Telephone}}
     </Telephone>

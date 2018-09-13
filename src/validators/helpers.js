@@ -18,7 +18,7 @@ export const validCurrency = obj => {
   if (!obj || !obj.value || isNaN(obj.value)) {
     return false
   }
-  return true
+  return +obj.value < 2147483648
 }
 
 /**

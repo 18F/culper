@@ -69,6 +69,10 @@
  branch = "master"
  name = "github.com/antchfx/xmlquery"
 
+[[constraint]]
+ branch = "master"
+ name = "github.com/benbjohnson/clock"
+
 [prune]
   go-tests = true
   unused-packages = true

@@ -4,14 +4,14 @@
   {{- range $index, $item := .props.Passports.props.items}}
   {{- with $Item := $item.Item}}
   {{- if branch $Item.Has | eq "Yes"}}
-  <ForeignPassport ID="{{$index}}">
+  <ForeignPassport ID="{{inc $index}}">
     {{if branch $Item.Used | eq "Yes"}}
     <CountriesTraveled>
-      {{range $tindex, $travel := .props.Passports.props.items}}
+      {{range $tindex, $travel := $Item.Countries.props.items}}
       {{with $Travel := $travel.Item}}
-      <CountryTraveled ID="{{$tindex}}">
+      <CountryTraveled ID="{{inc $tindex}}">
         {{country $Travel.Country}}
-        {{daterange $Travel.Dates}}
+        {{monthYearDaterange $Travel.Dates}}
       </CountryTraveled>
       {{end}}
       {{end}}

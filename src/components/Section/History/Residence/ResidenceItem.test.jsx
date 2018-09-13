@@ -99,9 +99,6 @@ describe('The residence component', () => {
     component.find('.reference-name .first input').simulate('change')
     component.find('.reference-last-contact .month input').simulate('change')
     component.find('.reference-relationship-neighbor input').simulate('change')
-    component.find('.reference-phone-evening .home input').simulate('change')
-    component.find('.reference-phone-day .home input').simulate('change')
-    component.find('.reference-phone-mobile .home input').simulate('change')
     component.find('.reference-email input').simulate('change')
     component
       .find('.reference-address .street input')
