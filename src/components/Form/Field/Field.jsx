@@ -433,11 +433,6 @@ export default class Field extends ValidationElement {
             {this.helpMessage()}
           </span>
         </div>
-        <div className="table expand">
-          <span className="messages error-messages" ref="errorMessages" role="alert" aria-live="polite">
-            {this.errorMessages()}
-          </span>
-        </div>
         <div className="table">
           <span className="content">
             <span className={klassComponent}>
