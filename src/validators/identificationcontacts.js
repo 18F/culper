@@ -46,11 +46,26 @@ export default class IdentificationContactInformationValidator {
     return successful >= required
   }
 
+  validPhoneTypes() {
+    let types = []
+    for (const phoneNumber of this.phoneNumbers) {
+      if (!phoneNumber || !phoneNumber.Item || !phoneNumber.Item.Telephone) {
+        continue
+      }
+      types.push(phoneNumber.Item.Telephone.numberType)
+    }
+
+    const uniqueTypes = [...new Set(types)]
+    return uniqueTypes.length === types.length
+  }
+
   /**
    * Validates emails and phone numbers
    */
   isValid() {
-    return this.validEmails() && this.validPhoneNumbers()
+    return (
+      this.validEmails() && this.validPhoneNumbers() && this.validPhoneTypes()
+    )
   }
 }
 
