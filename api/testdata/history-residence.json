@@ -52,7 +52,7 @@
                   "value": "my comments"
                 }
               },
-              "ReferenceFullName": {
+              "ReferenceName": {
                 "type": "name",
                 "props": {
                   "first": "John",

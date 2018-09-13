@@ -78,12 +78,12 @@
                   <Time>Both</Time>
                 </Telephone>
               </HomeTelephone>
-              <HomeTelephone>
+              <MobileTelephone>
                 <Telephone>
                   <Number>8316563242</Number>
                   <Time>Day</Time>
                 </Telephone>
-              </HomeTelephone>
+              </MobileTelephone>
             </ContactInformation>
             <PersonalReferences Version="1" Type="Pooled">
               <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>

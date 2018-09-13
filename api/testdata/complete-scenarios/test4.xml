@@ -76,12 +76,12 @@
                   <Time>Night</Time>
                 </Telephone>
               </HomeTelephone>
-              <HomeTelephone>
+              <MobileTelephone>
                 <Telephone>
                   <Number>9483821938</Number>
                   <Time>Both</Time>
                 </Telephone>
-              </HomeTelephone>
+              </MobileTelephone>
             </ContactInformation>
             <PersonalReferences Version="1" Type="Pooled">
               <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
@@ -123,7 +123,7 @@
 
           </Mobile>
                   </Telephone>
-                  <Title NotApplicable="False">Brevet Colonel</Title>
+                  <Title>Brevet Colonel</Title>
                 </Reference>
                 <Reference ID="2">
                   <Address>
@@ -162,7 +162,7 @@
                       <Time>Both</Time>
                     </Mobile>
                   </Telephone>
-                  <Title NotApplicable="False">Commander</Title>
+                  <Title>Commander</Title>
                 </Reference>
                 <Reference ID="3">
                   <Address>
@@ -711,7 +711,7 @@ Cuba</Authority>
                         <Last>Bacca</Last>
                         <First>Chew</First>
                         <Middle Type="NMN"/>
-                        <Suffix>Other</Suffix>
+                        <Suffix>__Other__</Suffix>
                         <Suffix_Other>Wookie Clan Sr.</Suffix_Other>
                       </LegalName>
                       <Title>Side kick</Title>

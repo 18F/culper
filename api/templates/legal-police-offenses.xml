@@ -10,7 +10,9 @@
         <AnswerComment></AnswerComment>
         {{if branchToAnswer $Item.WasCharged | eq "Yes"}}
         <Charges>
-          <Charge>
+          <!-- XXX We don't collect more than one -->
+          <!-- See https://github.com/18F/e-QIP-prototype/issues/782 -->
+          <Charge ID="1">
             <Charge>{{text $Item.CourtCharge}}</Charge>
             <Date Type="{{dateEstimated $Item.CourtDate}}">
               {{monthYear $Item.CourtDate}}
@@ -37,6 +39,7 @@
         <Sentenced>
           <Answer>{{branch $Item.WasSentenced}}</Answer>
           <Comment></Comment>
+          {{if branch $Item.WasSentenced | eq "Yes"}}
           {{ with $sentence := $Item.Sentence.props }}
           <Description>{{text $sentence.Description}}</Description>
           <Imprisonment>
@@ -59,7 +62,6 @@
               {{end}}
             </YearOrMore>
           </Imprisonment>
-          {{if branch $Item.WasSentenced | eq "Yes"}}
           <Incarcerated>
             <YearOrMore>
               <Answer>{{branchToAnswer $sentence.Incarcerated}}</Answer>

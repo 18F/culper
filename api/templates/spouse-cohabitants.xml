@@ -63,7 +63,9 @@
         <LegalName>
           {{name $other.OtherName}}
         </LegalName>
-        <Maiden>{{if branch $other.MaidenName | eq "Yes"}}True{{else}}False{{end}}</Maiden>
+        {{if branch $other.MaidenName | eq "Yes"}}
+        <Maiden>True</Maiden>
+        {{end}}
       </OtherName>
       {{- end}}
       {{- end}}
