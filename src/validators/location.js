@@ -232,7 +232,11 @@ export default class LocationValidator {
         return this.validFields(['street', 'city'])
       case Layouts.ADDRESS:
         if (this.isDomestic() || this.isPostOffice()) {
-          return this.validFields(['street', 'city', 'state', 'zipcode'])
+          if (this.validFields(['street', 'city', 'state', 'zipcode'])) {
+            return this.validZipcodeState()
+          }
+
+          return false
         }
         return this.validFields(['street', 'city', 'country'])
       default:
