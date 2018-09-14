@@ -35,9 +35,7 @@
                   "Country": {
                     "type": "country",
                     "props": {
-                      "value": [
-                        "United Kingdom"
-                      ]
+                      "value": ["United Kingdom"]
                     }
                   },
                   "Current": {
@@ -101,9 +99,7 @@
                   "Country": {
                     "type": "country",
                     "props": {
-                      "value": [
-                        "Zimbabwe"
-                      ]
+                      "value": ["Zimbabwe"]
                     }
                   },
                   "Current": {
@@ -145,7 +141,8 @@
                   "How": {
                     "type": "textarea",
                     "props": {
-                      "value": "My mother is Zimbabwean and that citizenship is conferred by parental lineage."
+                      "value":
+                        "My mother is Zimbabwean and that citizenship is conferred by parental lineage."
                     }
                   },
                   "Renounced": {
@@ -157,7 +154,8 @@
                   "RenouncedExplanation": {
                     "type": "textarea",
                     "props": {
-                      "value": "I've never been there and feel no affiliation to the country."
+                      "value":
+                        "I've never been there and feel no affiliation to the country."
                     }
                   }
                 }
@@ -167,9 +165,7 @@
                   "Country": {
                     "type": "country",
                     "props": {
-                      "value": [
-                        "China"
-                      ]
+                      "value": ["China"]
                     }
                   },
                   "Current": {
@@ -211,7 +207,8 @@
                   "How": {
                     "type": "textarea",
                     "props": {
-                      "value": "My father was born in China and citizenship is passed through lineage."
+                      "value":
+                        "My father was born in China and citizenship is passed through lineage."
                     }
                   },
                   "Renounced": {
@@ -223,7 +220,8 @@
                   "RenouncedExplanation": {
                     "type": "textarea",
                     "props": {
-                      "value": "My father was born in China, but I have never been and feel no affiliation. I've recently submitted my paperwork. "
+                      "value":
+                        "My father was born in China, but I have never been and feel no affiliation. I've recently submitted my paperwork. "
                     }
                   }
                 }
@@ -257,9 +255,7 @@
                             "Country": {
                               "type": "country",
                               "props": {
-                                "value": [
-                                  "United States"
-                                ]
+                                "value": ["United States"]
                               }
                             },
                             "Dates": {
@@ -293,9 +289,7 @@
                             "Country": {
                               "type": "country",
                               "props": {
-                                "value": [
-                                  "Saint Barthelemy"
-                                ]
+                                "value": ["Saint Barthelemy"]
                               }
                             },
                             "Dates": {
@@ -330,9 +324,7 @@
                   "Country": {
                     "type": "country",
                     "props": {
-                      "value": [
-                        "United Kingdom"
-                      ]
+                      "value": ["United Kingdom"]
                     }
                   },
                   "Expiration": {
@@ -409,9 +401,7 @@
                   "Country": {
                     "type": "country",
                     "props": {
-                      "value": [
-                        "Zimbabwe"
-                      ]
+                      "value": ["Zimbabwe"]
                     }
                   },
                   "Expiration": {
@@ -705,9 +695,7 @@
         "PriorCitizenship": {
           "type": "country",
           "props": {
-            "value": [
-              "United Kingdom"
-            ]
+            "value": ["United Kingdom"]
           }
         },
         "HasAlienRegistration": {
@@ -2041,10 +2029,7 @@
                   "ReferenceRelationship": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": [
-                        "Neighbor",
-                        "Other"
-                      ]
+                      "values": ["Neighbor", "Other"]
                     }
                   },
                   "ReferenceRelationshipComments": {
@@ -2162,24 +2147,16 @@
     "Contacts": {
       "type": "identification.contacts",
       "props": {
-        "Emails": {
-          "type": "collection",
+        "HomeEmail": {
+          "type": "email",
           "props": {
-            "branch": {
-              "type": ""
-            },
-            "items": [
-              {
-                "Item": {
-                  "Email": {
-                    "type": "email",
-                    "props": {
-                      "value": "dcmccallum@nyanderie.com"
-                    }
-                  }
-                }
-              }
-            ]
+            "value": "dcmccallum@nyanderie.com"
+          }
+        },
+        "WorkEmail": {
+          "type": "email",
+          "props": {
+            "value": ""
           }
         },
         "PhoneNumbers": {
@@ -2426,7 +2403,8 @@
                   "Action": {
                     "type": "textarea",
                     "props": {
-                      "value": "The hotel manager took pity on me because it was, in fact, our honey moon, and didn't call the cops."
+                      "value":
+                        "The hotel manager took pity on me because it was, in fact, our honey moon, and didn't call the cops."
                     }
                   },
                   "Date": {
@@ -2441,7 +2419,8 @@
                   "Incident": {
                     "type": "textarea",
                     "props": {
-                      "value": "I was on vacation and decided that I wanted an extra night free so I went behind the counter at the hotel and comp'ed myself. "
+                      "value":
+                        "I was on vacation and decided that I wanted an extra night free so I went behind the counter at the hotel and comp'ed myself. "
                     }
                   },
                   "Location": {
@@ -2460,7 +2439,8 @@
                   "Action": {
                     "type": "textarea",
                     "props": {
-                      "value": "The catfisher came back this time and I was fed up with it. So I went to their house and accessed their computer without their knowledge and proceeded to delete their OS so they could stop tricking me into talking to them."
+                      "value":
+                        "The catfisher came back this time and I was fed up with it. So I went to their house and accessed their computer without their knowledge and proceeded to delete their OS so they could stop tricking me into talking to them."
                     }
                   },
                   "Date": {
@@ -2475,7 +2455,8 @@
                   "Incident": {
                     "type": "textarea",
                     "props": {
-                      "value": "Broke into someone's house and deleted their operating system."
+                      "value":
+                        "Broke into someone's house and deleted their operating system."
                     }
                   },
                   "Location": {
@@ -2716,7 +2697,8 @@
                   "Incident": {
                     "type": "textarea",
                     "props": {
-                      "value": "One time I threw a SQL injection prompt into my local baker's invoicing system so I could drop all my outstanding charges for double mocha frappachinos"
+                      "value":
+                        "One time I threw a SQL injection prompt into my local baker's invoicing system so I could drop all my outstanding charges for double mocha frappachinos"
                     }
                   },
                   "Location": {
@@ -2737,7 +2719,8 @@
                   "Action": {
                     "type": "textarea",
                     "props": {
-                      "value": "Welllll so the catfisher figured out my phishing technique and called the local sheriff who found me hiding in the bathroom of an internet cafe."
+                      "value":
+                        "Welllll so the catfisher figured out my phishing technique and called the local sheriff who found me hiding in the bathroom of an internet cafe."
                     }
                   },
                   "Date": {
@@ -2752,7 +2735,8 @@
                   "Incident": {
                     "type": "textarea",
                     "props": {
-                      "value": "I spear phished a catfisher to figure out their real identity."
+                      "value":
+                        "I spear phished a catfisher to figure out their real identity."
                     }
                   },
                   "Location": {
@@ -2797,7 +2781,8 @@
                   "Action": {
                     "type": "textarea",
                     "props": {
-                      "value": "Look it was a program that went wild. We were trying to get more votes for Boaty McBoatface to help support our friends in the UK."
+                      "value":
+                        "Look it was a program that went wild. We were trying to get more votes for Boaty McBoatface to help support our friends in the UK."
                     }
                   },
                   "Date": {
@@ -2812,7 +2797,8 @@
                   "Incident": {
                     "type": "textarea",
                     "props": {
-                      "value": "Raised a botnet to vote for Boaty McBoatface on US government computers"
+                      "value":
+                        "Raised a botnet to vote for Boaty McBoatface on US government computers"
                     }
                   },
                   "Location": {
@@ -2833,7 +2819,8 @@
                   "Action": {
                     "type": "textarea",
                     "props": {
-                      "value": "DOD was like, hey we wont' charge you, you're on our team now buddy."
+                      "value":
+                        "DOD was like, hey we wont' charge you, you're on our team now buddy."
                     }
                   },
                   "Date": {
@@ -2848,7 +2835,8 @@
                   "Incident": {
                     "type": "textarea",
                     "props": {
-                      "value": "You know that movie \"War Games\"?   That was me."
+                      "value":
+                        "You know that movie \"War Games\"?   That was me."
                     }
                   },
                   "Location": {
@@ -2878,7 +2866,8 @@
         "Comments": {
           "type": "text",
           "props": {
-            "value": "Look, I know I'm a weird bird, but trust me I really need this TS-SCI"
+            "value":
+              "Look, I know I'm a weird bird, but trust me I really need this TS-SCI"
           }
         }
       }
@@ -2928,7 +2917,8 @@
                   "Offenses": {
                     "type": "textarea",
                     "props": {
-                      "value": "Abandoning my post when I jumped off the aircraft carrier after seeing a tarantula crawling through the porthole  "
+                      "value":
+                        "Abandoning my post when I jumped off the aircraft carrier after seeing a tarantula crawling through the porthole  "
                     }
                   },
                   "Outcome": {
@@ -2944,7 +2934,8 @@
                   "Court": {
                     "type": "textarea",
                     "props": {
-                      "value": "A scary building made of stones and gargoyles located in the mystical rainforests of Georgia"
+                      "value":
+                        "A scary building made of stones and gargoyles located in the mystical rainforests of Georgia"
                     }
                   },
                   "Date": {
@@ -2965,7 +2956,8 @@
                   "Offenses": {
                     "type": "textarea",
                     "props": {
-                      "value": "Mischief: Before I saw the huge spider, I was caught stealing frozen pizzas from the kitchen and cooking them on the heat shield where they launch the planes"
+                      "value":
+                        "Mischief: Before I saw the huge spider, I was caught stealing frozen pizzas from the kitchen and cooking them on the heat shield where they launch the planes"
                     }
                   },
                   "Outcome": {
@@ -2996,15 +2988,14 @@
                   "Circumstances": {
                     "type": "textarea",
                     "props": {
-                      "value": "I worked as a consultant to the PLA's cybersecurity division working on offensive capabilities."
+                      "value":
+                        "I worked as a consultant to the PLA's cybersecurity division working on offensive capabilities."
                     }
                   },
                   "Country": {
                     "type": "country",
                     "props": {
-                      "value": [
-                        "China"
-                      ]
+                      "value": ["China"]
                     }
                   },
                   "Dates": {
@@ -3091,7 +3082,8 @@
                             "Frequency": {
                               "type": "text",
                               "props": {
-                                "value": "Literally he's my best friend on snapchat"
+                                "value":
+                                  "Literally he's my best friend on snapchat"
                               }
                             },
                             "Has": {
@@ -4152,9 +4144,7 @@
                   "Relationship": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": [
-                        "WorkAssociate"
-                      ]
+                      "values": ["WorkAssociate"]
                     }
                   },
                   "RelationshipOther": {
@@ -4266,9 +4256,7 @@
                   "Relationship": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": [
-                        "WorkAssociate"
-                      ]
+                      "values": ["WorkAssociate"]
                     }
                   },
                   "RelationshipOther": {
@@ -4380,9 +4368,7 @@
                   "Relationship": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": [
-                        "WorkAssociate"
-                      ]
+                      "values": ["WorkAssociate"]
                     }
                   },
                   "RelationshipOther": {
@@ -4509,9 +4495,7 @@
                   "Citizenship": {
                     "type": "country",
                     "props": {
-                      "value": [
-                        "United Kingdom"
-                      ]
+                      "value": ["United Kingdom"]
                     }
                   },
                   "CitizenshipDocumentation": {
@@ -4790,9 +4774,7 @@
                   "Citizenship": {
                     "type": "country",
                     "props": {
-                      "value": [
-                        "United Kingdom"
-                      ]
+                      "value": ["United Kingdom"]
                     }
                   },
                   "CitizenshipDocumentation": {

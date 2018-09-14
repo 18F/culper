@@ -9,7 +9,6 @@ import { testSnapshot } from '../../test-helpers'
 const applicationState = {
   Identification: {
     Contacts: {
-      Emails: { items: [] },
       PhoneNumbers: { items: [] }
     }
   }

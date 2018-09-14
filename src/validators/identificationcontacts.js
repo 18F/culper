@@ -8,18 +8,6 @@ export default class IdentificationContactInformationValidator {
   }
 
   /**
-   * Validates a collection of emails
-   */
-  validEmails() {
-    console.log(this.homeEmail)
-    console.log(this.workEmail)
-    return (
-      validGenericTextfield(this.homeEmail) &&
-      validGenericTextfield(this.workEmail)
-    )
-  }
-
-  /**
    * Validates a collection of phone numbers
    */
   validPhoneNumbers() {
@@ -56,10 +44,7 @@ export default class IdentificationContactInformationValidator {
    * Validates emails and phone numbers
    */
   isValid() {
-    console.log(this.validEmails())
-    return (
-      this.validEmails() && this.validPhoneNumbers() && this.validPhoneTypes()
-    )
+    return this.validPhoneNumbers() && this.validPhoneTypes()
   }
 }
 

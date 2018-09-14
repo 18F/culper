@@ -1820,10 +1820,7 @@
                   "ReferenceRelationship": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": [
-                        "Neighbor",
-                        "Friend"
-                      ]
+                      "values": ["Neighbor", "Friend"]
                     }
                   },
                   "ReferenceRelationshipComments": {
@@ -1943,24 +1940,16 @@
     "Contacts": {
       "type": "identification.contacts",
       "props": {
-        "Emails": {
-          "type": "collection",
+        "HomeEmail": {
+          "type": "email",
           "props": {
-            "branch": {
-              "type": ""
-            },
-            "items": [
-              {
-                "Item": {
-                  "Email": {
-                    "type": "email",
-                    "props": {
-                      "value": "ian.chris@testmail.com"
-                    }
-                  }
-                }
-              }
-            ]
+            "value": "ian.chris@testmail.com"
+          }
+        },
+        "WorkEmail": {
+          "type": "email",
+          "props": {
+            "value": ""
           }
         },
         "PhoneNumbers": {
@@ -3101,11 +3090,7 @@
                   "Relationship": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": [
-                        "Neighbor",
-                        "Friend",
-                        "Schoolmate"
-                      ]
+                      "values": ["Neighbor", "Friend", "Schoolmate"]
                     }
                   },
                   "RelationshipOther": {
@@ -3216,10 +3201,7 @@
                   "Relationship": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": [
-                        "Neighbor",
-                        "Friend"
-                      ]
+                      "values": ["Neighbor", "Friend"]
                     }
                   },
                   "RelationshipOther": {
@@ -3331,9 +3313,7 @@
                   "Relationship": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": [
-                        "Friend"
-                      ]
+                      "values": ["Friend"]
                     }
                   },
                   "RelationshipOther": {
@@ -3461,9 +3441,7 @@
                   "Citizenship": {
                     "type": "country",
                     "props": {
-                      "value": [
-                        "United States"
-                      ]
+                      "value": ["United States"]
                     }
                   },
                   "CitizenshipDocumentation": {
@@ -3743,9 +3721,7 @@
                   "Citizenship": {
                     "type": "country",
                     "props": {
-                      "value": [
-                        "United States"
-                      ]
+                      "value": ["United States"]
                     }
                   },
                   "CitizenshipDocumentation": {

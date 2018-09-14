@@ -10,8 +10,8 @@ export const identificationContacts = (data = {}) => {
     }
   })
   return {
-    HomeEmail: form.text(data.HomeEmail),
-    WorkEmail: form.text(data.WorkEmail),
+    HomeEmail: form.email(data.HomeEmail),
+    WorkEmail: form.email(data.WorkEmail),
     PhoneNumbers: form.collection(phoneNumbers)
   }
 }

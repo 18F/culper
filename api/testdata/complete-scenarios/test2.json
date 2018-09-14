@@ -869,11 +869,7 @@
                   "Infractions": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": [
-                        "Alimony",
-                        "Judgement",
-                        "Lien"
-                      ]
+                      "values": ["Alimony", "Judgement", "Lien"]
                     }
                   },
                   "Name": {
@@ -973,9 +969,7 @@
                   "Infractions": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": [
-                        "Alimony"
-                      ]
+                      "values": ["Alimony"]
                     }
                   },
                   "Name": {
@@ -1197,9 +1191,7 @@
                   "Infractions": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": [
-                        "Repossession"
-                      ]
+                      "values": ["Repossession"]
                     }
                   },
                   "Name": {
@@ -1281,9 +1273,7 @@
                   "Infractions": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": [
-                        "Defaulted"
-                      ]
+                      "values": ["Defaulted"]
                     }
                   },
                   "Name": {
@@ -2526,9 +2516,7 @@
                   "ReferenceRelationship": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": [
-                        "Neighbor"
-                      ]
+                      "values": ["Neighbor"]
                     }
                   },
                   "ReferenceRelationshipComments": {
@@ -2648,24 +2636,16 @@
     "Contacts": {
       "type": "identification.contacts",
       "props": {
-        "Emails": {
-          "type": "collection",
+        "HomeEmail": {
+          "type": "email",
           "props": {
-            "branch": {
-              "type": ""
-            },
-            "items": [
-              {
-                "Item": {
-                  "Email": {
-                    "type": "email",
-                    "props": {
-                      "value": "email@email.com"
-                    }
-                  }
-                }
-              }
-            ]
+            "value": "email@email.com"
+          }
+        },
+        "WorkEmail": {
+          "type": "email",
+          "props": {
+            "value": ""
           }
         },
         "PhoneNumbers": {
@@ -4726,9 +4706,7 @@
             "Citizenship": {
               "type": "country",
               "props": {
-                "value": [
-                  "United States"
-                ]
+                "value": ["United States"]
               }
             },
             "DateSeparated": {
@@ -5045,9 +5023,7 @@
                   "Relationship": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": [
-                        "Schoolmate"
-                      ]
+                      "values": ["Schoolmate"]
                     }
                   },
                   "RelationshipOther": {
@@ -5159,9 +5135,7 @@
                   "Relationship": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": [
-                        "Neighbor"
-                      ]
+                      "values": ["Neighbor"]
                     }
                   },
                   "RelationshipOther": {
@@ -5273,9 +5247,7 @@
                   "Relationship": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": [
-                        "Neighbor"
-                      ]
+                      "values": ["Neighbor"]
                     }
                   },
                   "RelationshipOther": {
@@ -5409,9 +5381,7 @@
                   "Citizenship": {
                     "type": "country",
                     "props": {
-                      "value": [
-                        "United States"
-                      ]
+                      "value": ["United States"]
                     }
                   },
                   "CitizenshipDocumentation": {
@@ -5691,9 +5661,7 @@
                   "Citizenship": {
                     "type": "country",
                     "props": {
-                      "value": [
-                        "United States"
-                      ]
+                      "value": ["United States"]
                     }
                   },
                   "CitizenshipDocumentation": {
@@ -6592,10 +6560,7 @@
                   "Seekers": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": [
-                        "Employer",
-                        "CourtOfficial"
-                      ]
+                      "values": ["Employer", "CourtOfficial"]
                     }
                   },
                   "TreatmentProviderAddress": {
@@ -6688,9 +6653,7 @@
                   "Seekers": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": [
-                        "MedicalProfessional"
-                      ]
+                      "values": ["MedicalProfessional"]
                     }
                   },
                   "TreatmentProviderAddress": {
@@ -6783,9 +6746,7 @@
                   "OrderedBy": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": [
-                        "Judge"
-                      ]
+                      "values": ["Judge"]
                     }
                   },
                   "TreatmentCompleted": {
@@ -6884,9 +6845,7 @@
                   "OrderedBy": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": [
-                        "None"
-                      ]
+                      "values": ["None"]
                     }
                   },
                   "TreatmentCompleted": {

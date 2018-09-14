@@ -1454,9 +1454,7 @@
                   "ReferenceRelationship": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": [
-                        "Neighbor"
-                      ]
+                      "values": ["Neighbor"]
                     }
                   },
                   "ReferenceRelationshipComments": {
@@ -1576,24 +1574,16 @@
     "Contacts": {
       "type": "identification.contacts",
       "props": {
-        "Emails": {
-          "type": "collection",
+        "HomeEmail": {
+          "type": "email",
           "props": {
-            "branch": {
-              "type": ""
-            },
-            "items": [
-              {
-                "Item": {
-                  "Email": {
-                    "type": "email",
-                    "props": {
-                      "value": "henry@example.com"
-                    }
-                  }
-                }
-              }
-            ]
+            "value": "henry@example.com"
+          }
+        },
+        "WorkEmail": {
+          "type": "email",
+          "props": {
+            "value": ""
           }
         },
         "PhoneNumbers": {
@@ -2757,9 +2747,7 @@
                   "Relationship": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": [
-                        "Friend"
-                      ]
+                      "values": ["Friend"]
                     }
                   },
                   "RelationshipOther": {
@@ -2870,9 +2858,7 @@
                   "Relationship": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": [
-                        "Neighbor"
-                      ]
+                      "values": ["Neighbor"]
                     }
                   },
                   "RelationshipOther": {
@@ -2983,9 +2969,7 @@
                   "Relationship": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": [
-                        "Neighbor"
-                      ]
+                      "values": ["Neighbor"]
                     }
                   },
                   "RelationshipOther": {
@@ -3113,9 +3097,7 @@
                   "Citizenship": {
                     "type": "country",
                     "props": {
-                      "value": [
-                        "United States"
-                      ]
+                      "value": ["United States"]
                     }
                   },
                   "CitizenshipDocumentation": {
@@ -3395,9 +3377,7 @@
                   "Citizenship": {
                     "type": "country",
                     "props": {
-                      "value": [
-                        "United States"
-                      ]
+                      "value": ["United States"]
                     }
                   },
                   "CitizenshipDocumentation": {
