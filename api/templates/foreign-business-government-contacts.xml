@@ -41,11 +41,13 @@
         <FutureContactPlans>{{text $Contact.Future}}</FutureContactPlans>
         <Purpose>{{text $Contact.Subsequent}}</Purpose>
       </Contact>
+      {{end}}
+      {{end}}
+      {{end}}
+      {{if branchcollectionHas $Item.SubsequentContacts | eq "Yes"}}
       <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+      {{end}}
       <SummaryComment></SummaryComment>
-      {{end}}
-      {{end}}
-      {{end}}
     </SubsequentForeignContacts>
   </GovernmentContact>
   {{end}}
