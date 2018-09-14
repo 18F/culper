@@ -84,6 +84,30 @@ describe('The Address component', () => {
     expect(component.find('.usa-input-error').length).toBe(2)
   })
 
+  it('Invalidates wrong zipcode for state', () => {
+    const props = {
+      city: 'Arlington',
+      country: 'United States',
+      state: 'VA',
+      street: '123 Main St.',
+      zipcode: '90210'
+    }
+    const component = mount(<Address {...props} />)
+    expect(component.find('.zipcode .usa-input-error').length).toBe(1)
+  })
+
+  it('Validates correct zipcode for state', () => {
+    const props = {
+      city: 'Beverly Hills',
+      country: 'United States',
+      state: 'CA',
+      street: '1 Great Teen Drama Dr',
+      zipcode: '90210'
+    }
+    const component = mount(<Address {...props} />)
+    expect(component.find('.zipcode .usa-input-error').length).toBe(0)
+  })
+
   it('clears city switching from APO/FPO', () => {
     let city = 'APO'
     const props = {

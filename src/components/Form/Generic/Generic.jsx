@@ -325,6 +325,7 @@ Generic.defaultProps = {
   focus: false,
   error: false,
   valid: false,
+  status: true,
   pattern: '.*',
   minlength: 0,
   maxlength: 255,
@@ -369,8 +370,19 @@ Generic.errors = [
       if (!value) {
         return null
       }
+
       const re = new RegExp(props.pattern)
       return re.test(value)
+    }
+  },
+  {
+    code: 'status',
+    func: (value, props) => {
+      if (!value) {
+        return null
+      }
+
+      return props.status
     }
   }
 ]
