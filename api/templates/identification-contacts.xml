@@ -16,18 +16,17 @@
   {{- end}}
   {{- range $index, $item := .props.PhoneNumbers.props.items}}
   {{- with $Item := $item.Item}}
-  <!-- XXX See https://github.com/18F/e-QIP-prototype/issues/761 -->
-  {{if $index | eq 0}}
+  {{if $Item.Telephone.props.numberType | eq "Home"}}
   <HomeTelephone>
     <Telephone>{{- telephone $Item.Telephone -}}</Telephone>
   </HomeTelephone>
   {{end}}
-  {{if $index | eq 1}}
+  {{if $Item.Telephone.props.numberType | eq "Cell"}}
   <MobileTelephone>
     <Telephone>{{- telephone $Item.Telephone -}}</Telephone>
   </MobileTelephone>
   {{end}}
-  {{if $index | eq 2}}
+  {{if $Item.Telephone.props.numberType | eq "Work"}}
   <WorkTelephone>
     <Telephone>{{- telephone $Item.Telephone -}}</Telephone>
   </WorkTelephone>
