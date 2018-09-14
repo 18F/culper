@@ -433,15 +433,6 @@ export default class Field extends ValidationElement {
             {this.helpMessage()}
           </span>
         </div>
-        <div className="table">
-          <span className="content">
-            <span className={klassComponent}>
-              {this.children(this.props.children)}
-              {this.comments()}
-              {this.commentsButton()}
-            </span>
-          </span>
-        </div>
         <div className="table expand">
           <span
             className="messages error-messages"
@@ -449,6 +440,15 @@ export default class Field extends ValidationElement {
             role="alert"
             aria-live="polite">
             {this.errorMessages()}
+          </span>
+        </div>
+        <div className="table">
+          <span className="content">
+            <span className={klassComponent}>
+              {this.children(this.props.children)}
+              {this.comments()}
+              {this.commentsButton()}
+            </span>
           </span>
         </div>
       </div>
