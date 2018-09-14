@@ -56,15 +56,6 @@ exports[`The attachments component renders properly 1`] = `
       />
     </div>
     <div
-      className="table expand"
-    >
-      <span
-        aria-live="polite"
-        className="messages error-messages"
-        role="alert"
-      />
-    </div>
-    <div
       className="table"
     >
       <span
@@ -241,15 +232,6 @@ exports[`The attachments component renders properly 1`] = `
         <span
           aria-live="polite"
           className="messages help-messages"
-        />
-      </div>
-      <div
-        className="table expand"
-      >
-        <span
-          aria-live="polite"
-          className="messages error-messages"
-          role="alert"
         />
       </div>
       <div

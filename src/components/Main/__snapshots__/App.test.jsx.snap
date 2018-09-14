@@ -569,15 +569,6 @@ exports[`Renders homepage 1`] = `
                 />
               </div>
               <div
-                className="table expand"
-              >
-                <span
-                  aria-live="polite"
-                  className="messages error-messages"
-                  role="alert"
-                />
-              </div>
-              <div
                 className="table"
               >
                 <span

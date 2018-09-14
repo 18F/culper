@@ -47,15 +47,6 @@ exports[`The section component renders citizenship.intro 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        />
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -226,15 +217,6 @@ exports[`The section component renders citizenship.multiple 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        />
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -280,15 +262,6 @@ exports[`The section component renders citizenship.multiple 1`] = `
                         <span
                           aria-live="polite"
                           className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
                         />
                       </div>
                       <div
@@ -518,15 +491,6 @@ exports[`The section component renders citizenship.passports 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        />
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -576,15 +540,6 @@ exports[`The section component renders citizenship.passports 1`] = `
                             <span
                               aria-live="polite"
                               className="messages help-messages"
-                            />
-                          </div>
-                          <div
-                            className="table expand"
-                          >
-                            <span
-                              aria-live="polite"
-                              className="messages error-messages"
-                              role="alert"
                             />
                           </div>
                           <div
@@ -829,15 +784,6 @@ exports[`The section component renders citizenship.review 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        />
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -884,37 +830,6 @@ exports[`The section component renders citizenship.review 1`] = `
                           aria-live="polite"
                           className="messages help-messages"
                         />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
                       </div>
                       <div
                         className="table"
@@ -1156,15 +1071,6 @@ exports[`The section component renders citizenship.review 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        />
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -1211,37 +1117,6 @@ exports[`The section component renders citizenship.review 1`] = `
                           aria-live="polite"
                           className="messages help-messages"
                         />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
                       </div>
                       <div
                         className="table"
@@ -1385,15 +1260,6 @@ exports[`The section component renders citizenship.review 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        />
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -1444,37 +1310,6 @@ exports[`The section component renders citizenship.review 1`] = `
                               aria-live="polite"
                               className="messages help-messages"
                             />
-                          </div>
-                          <div
-                            className="table expand"
-                          >
-                            <span
-                              aria-live="polite"
-                              className="messages error-messages"
-                              role="alert"
-                            >
-                              <div
-                                aria-live="polite"
-                                className="message error usa-alert usa-alert-error"
-                                role="alert"
-                              >
-                                <div
-                                  className="usa-alert-body"
-                                >
-                                  <div
-                                    data-i18n="error.required"
-                                  >
-                                    <h5
-                                      className="usa-alert-heading"
-                                    >
-                                      Your response is required
-                                    </h5>
-                                    
-                                    
-                                  </div>
-                                </div>
-                              </div>
-                            </span>
                           </div>
                           <div
                             className="table"
@@ -1617,15 +1452,6 @@ exports[`The section component renders citizenship.review 1`] = `
                       <span
                         aria-live="polite"
                         className="messages help-messages"
-                      />
-                    </div>
-                    <div
-                      className="table expand"
-                    >
-                      <span
-                        aria-live="polite"
-                        className="messages error-messages"
-                        role="alert"
                       />
                     </div>
                     <div
@@ -1816,15 +1642,6 @@ exports[`The section component renders citizenship.status 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        />
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -1870,15 +1687,6 @@ exports[`The section component renders citizenship.status 1`] = `
                         <span
                           aria-live="polite"
                           className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
                         />
                       </div>
                       <div
@@ -2230,15 +2038,6 @@ exports[`The section component renders financial.bankruptcy 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        />
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -2462,15 +2261,6 @@ exports[`The section component renders financial.card 1`] = `
                         <span
                           aria-live="polite"
                           className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
                         />
                       </div>
                       <div
@@ -2700,15 +2490,6 @@ exports[`The section component renders financial.credit 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        />
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -2932,15 +2713,6 @@ exports[`The section component renders financial.delinquent 1`] = `
                         <span
                           aria-live="polite"
                           className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
                         />
                       </div>
                       <div
@@ -3215,15 +2987,6 @@ exports[`The section component renders financial.gambling 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        />
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -3445,15 +3208,6 @@ exports[`The section component renders financial.intro 1`] = `
                       />
                     </div>
                     <div
-                      className="table expand"
-                    >
-                      <span
-                        aria-live="polite"
-                        className="messages error-messages"
-                        role="alert"
-                      />
-                    </div>
-                    <div
                       className="table"
                     >
                       <span
@@ -3620,15 +3374,6 @@ exports[`The section component renders financial.nonpayment 1`] = `
                         <span
                           aria-live="polite"
                           className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
                         />
                       </div>
                       <div
@@ -3975,37 +3720,6 @@ exports[`The section component renders financial.review 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -4145,37 +3859,6 @@ exports[`The section component renders financial.review 1`] = `
                           aria-live="polite"
                           className="messages help-messages"
                         />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
                       </div>
                       <div
                         className="table"
@@ -4319,37 +4002,6 @@ exports[`The section component renders financial.review 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -4489,37 +4141,6 @@ exports[`The section component renders financial.review 1`] = `
                           aria-live="polite"
                           className="messages help-messages"
                         />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
                       </div>
                       <div
                         className="table"
@@ -4663,37 +4284,6 @@ exports[`The section component renders financial.review 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -4833,37 +4423,6 @@ exports[`The section component renders financial.review 1`] = `
                           aria-live="polite"
                           className="messages help-messages"
                         />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
                       </div>
                       <div
                         className="table"
@@ -5050,37 +4609,6 @@ exports[`The section component renders financial.review 1`] = `
                           aria-live="polite"
                           className="messages help-messages"
                         />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
                       </div>
                       <div
                         className="table"
@@ -5304,15 +4832,6 @@ exports[`The section component renders financial.review 1`] = `
                       />
                     </div>
                     <div
-                      className="table expand"
-                    >
-                      <span
-                        aria-live="polite"
-                        className="messages error-messages"
-                        role="alert"
-                      />
-                    </div>
-                    <div
                       className="table"
                     >
                       <span
@@ -5497,15 +5016,6 @@ exports[`The section component renders financial.taxes 1`] = `
                         <span
                           aria-live="polite"
                           className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
                         />
                       </div>
                       <div
@@ -5732,15 +5242,6 @@ exports[`The section component renders foreign.business 1`] = `
                         <span
                           aria-live="polite"
                           className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
                         />
                       </div>
                       <div
@@ -5985,15 +5486,6 @@ exports[`The section component renders foreign.contacts 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        />
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -6221,15 +5713,6 @@ exports[`The section component renders foreign.intro 1`] = `
                       />
                     </div>
                     <div
-                      className="table expand"
-                    >
-                      <span
-                        aria-live="polite"
-                        className="messages error-messages"
-                        role="alert"
-                      />
-                    </div>
-                    <div
                       className="table"
                     >
                       <span
@@ -6399,15 +5882,6 @@ exports[`The section component renders foreign.passport 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        />
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -6466,15 +5940,6 @@ exports[`The section component renders foreign.passport 1`] = `
                         <span
                           aria-live="polite"
                           className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
                         />
                       </div>
                       <div
@@ -6717,15 +6182,6 @@ exports[`The section component renders foreign.review 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        />
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -6785,37 +6241,6 @@ exports[`The section component renders foreign.review 1`] = `
                           aria-live="polite"
                           className="messages help-messages"
                         />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
                       </div>
                       <div
                         className="table"
@@ -6962,37 +6387,6 @@ exports[`The section component renders foreign.review 1`] = `
                           aria-live="polite"
                           className="messages help-messages"
                         />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
                       </div>
                       <div
                         className="table"
@@ -7164,37 +6558,6 @@ exports[`The section component renders foreign.review 1`] = `
                           aria-live="polite"
                           className="messages help-messages"
                         />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
                       </div>
                       <div
                         className="table"
@@ -7375,37 +6738,6 @@ exports[`The section component renders foreign.review 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -7545,37 +6877,6 @@ exports[`The section component renders foreign.review 1`] = `
                           aria-live="polite"
                           className="messages help-messages"
                         />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
                       </div>
                       <div
                         className="table"
@@ -7719,37 +7020,6 @@ exports[`The section component renders foreign.review 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -7891,37 +7161,6 @@ exports[`The section component renders foreign.review 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -8061,37 +7300,6 @@ exports[`The section component renders foreign.review 1`] = `
                           aria-live="polite"
                           className="messages help-messages"
                         />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
                       </div>
                       <div
                         className="table"
@@ -8243,37 +7451,6 @@ exports[`The section component renders foreign.review 1`] = `
                           aria-live="polite"
                           className="messages help-messages"
                         />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
                       </div>
                       <div
                         className="table"
@@ -8432,37 +7609,6 @@ exports[`The section component renders foreign.review 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -8602,37 +7748,6 @@ exports[`The section component renders foreign.review 1`] = `
                           aria-live="polite"
                           className="messages help-messages"
                         />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
                       </div>
                       <div
                         className="table"
@@ -8780,37 +7895,6 @@ exports[`The section component renders foreign.review 1`] = `
                           aria-live="polite"
                           className="messages help-messages"
                         />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
                       </div>
                       <div
                         className="table"
@@ -8963,37 +8047,6 @@ exports[`The section component renders foreign.review 1`] = `
                           aria-live="polite"
                           className="messages help-messages"
                         />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
                       </div>
                       <div
                         className="table"
@@ -9172,37 +8225,6 @@ exports[`The section component renders foreign.review 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -9342,37 +8364,6 @@ exports[`The section component renders foreign.review 1`] = `
                           aria-live="polite"
                           className="messages help-messages"
                         />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
                       </div>
                       <div
                         className="table"
@@ -9516,37 +8507,6 @@ exports[`The section component renders foreign.review 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -9688,37 +8648,6 @@ exports[`The section component renders foreign.review 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -9857,15 +8786,6 @@ exports[`The section component renders foreign.review 1`] = `
                       <span
                         aria-live="polite"
                         className="messages help-messages"
-                      />
-                    </div>
-                    <div
-                      className="table expand"
-                    >
-                      <span
-                        aria-live="polite"
-                        className="messages error-messages"
-                        role="alert"
                       />
                     </div>
                     <div
@@ -10053,15 +8973,6 @@ exports[`The section component renders foreign.travel 1`] = `
                         <span
                           aria-live="polite"
                           className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
                         />
                       </div>
                       <div
@@ -10288,15 +9199,6 @@ exports[`The section component renders history.education 1`] = `
                       />
                     </div>
                     <div
-                      className="table expand"
-                    >
-                      <span
-                        aria-live="polite"
-                        className="messages error-messages"
-                        role="alert"
-                      />
-                    </div>
-                    <div
                       className="table"
                     >
                       <span
@@ -10372,15 +9274,6 @@ exports[`The section component renders history.education 1`] = `
                       <span
                         aria-live="polite"
                         className="messages help-messages"
-                      />
-                    </div>
-                    <div
-                      className="table expand"
-                    >
-                      <span
-                        aria-live="polite"
-                        className="messages error-messages"
-                        role="alert"
                       />
                     </div>
                     <div
@@ -10606,15 +9499,6 @@ exports[`The section component renders history.employment 1`] = `
                       />
                     </div>
                     <div
-                      className="table expand"
-                    >
-                      <span
-                        aria-live="polite"
-                        className="messages error-messages"
-                        role="alert"
-                      />
-                    </div>
-                    <div
                       className="table"
                     >
                       <span
@@ -10753,15 +9637,6 @@ exports[`The section component renders history.employment 1`] = `
                           />
                         </div>
                         <div
-                          className="table expand"
-                        >
-                          <span
-                            aria-live="polite"
-                            className="messages error-messages"
-                            role="alert"
-                          />
-                        </div>
-                        <div
                           className="table"
                         >
                           <span
@@ -10873,15 +9748,6 @@ exports[`The section component renders history.employment 1`] = `
                         <span
                           aria-live="polite"
                           className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
                         />
                       </div>
                       <div
@@ -11040,15 +9906,6 @@ exports[`The section component renders history.employment 1`] = `
                         <span
                           aria-live="polite"
                           className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
                         />
                       </div>
                       <div
@@ -11263,15 +10120,6 @@ exports[`The section component renders history.federal 1`] = `
                         <span
                           aria-live="polite"
                           className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
                         />
                       </div>
                       <div
@@ -11498,15 +10346,6 @@ exports[`The section component renders history.intro 1`] = `
                       />
                     </div>
                     <div
-                      className="table expand"
-                    >
-                      <span
-                        aria-live="polite"
-                        className="messages error-messages"
-                        role="alert"
-                      />
-                    </div>
-                    <div
                       className="table"
                     >
                       <span
@@ -11673,15 +10512,6 @@ exports[`The section component renders history.residence 1`] = `
                       />
                     </div>
                     <div
-                      className="table expand"
-                    >
-                      <span
-                        aria-live="polite"
-                        className="messages error-messages"
-                        role="alert"
-                      />
-                    </div>
-                    <div
                       className="table"
                     >
                       <span
@@ -11845,15 +10675,6 @@ exports[`The section component renders history.residence 1`] = `
                           />
                         </div>
                         <div
-                          className="table expand"
-                        >
-                          <span
-                            aria-live="polite"
-                            className="messages error-messages"
-                            role="alert"
-                          />
-                        </div>
-                        <div
                           className="table"
                         >
                           <span
@@ -11969,15 +10790,6 @@ exports[`The section component renders history.residence 1`] = `
                         <span
                           aria-live="polite"
                           className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
                         />
                       </div>
                       <div
@@ -12323,37 +11135,6 @@ exports[`The section component renders history.review 1`] = `
                           />
                         </div>
                         <div
-                          className="table expand"
-                        >
-                          <span
-                            aria-live="polite"
-                            className="messages error-messages"
-                            role="alert"
-                          >
-                            <div
-                              aria-live="polite"
-                              className="message error usa-alert usa-alert-error"
-                              role="alert"
-                            >
-                              <div
-                                className="usa-alert-body"
-                              >
-                                <div
-                                  data-i18n="error.required"
-                                >
-                                  <h5
-                                    className="usa-alert-heading"
-                                  >
-                                    Your response is required
-                                  </h5>
-                                  
-                                  
-                                </div>
-                              </div>
-                            </div>
-                          </span>
-                        </div>
-                        <div
                           className="table"
                         >
                           <span
@@ -12522,37 +11303,6 @@ exports[`The section component renders history.review 1`] = `
                           />
                         </div>
                         <div
-                          className="table expand"
-                        >
-                          <span
-                            aria-live="polite"
-                            className="messages error-messages"
-                            role="alert"
-                          >
-                            <div
-                              aria-live="polite"
-                              className="message error usa-alert usa-alert-error"
-                              role="alert"
-                            >
-                              <div
-                                className="usa-alert-body"
-                              >
-                                <div
-                                  data-i18n="error.required"
-                                >
-                                  <h5
-                                    className="usa-alert-heading"
-                                  >
-                                    Your response is required
-                                  </h5>
-                                  
-                                  
-                                </div>
-                              </div>
-                            </div>
-                          </span>
-                        </div>
-                        <div
                           className="table"
                         >
                           <span
@@ -12687,37 +11437,6 @@ exports[`The section component renders history.review 1`] = `
                           aria-live="polite"
                           className="messages help-messages"
                         />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
                       </div>
                       <div
                         className="table"
@@ -12907,15 +11626,6 @@ exports[`The section component renders history.review 1`] = `
                       />
                     </div>
                     <div
-                      className="table expand"
-                    >
-                      <span
-                        aria-live="polite"
-                        className="messages error-messages"
-                        role="alert"
-                      />
-                    </div>
-                    <div
                       className="table"
                     >
                       <span
@@ -12991,15 +11701,6 @@ exports[`The section component renders history.review 1`] = `
                       <span
                         aria-live="polite"
                         className="messages help-messages"
-                      />
-                    </div>
-                    <div
-                      className="table expand"
-                    >
-                      <span
-                        aria-live="polite"
-                        className="messages error-messages"
-                        role="alert"
                       />
                     </div>
                     <div
@@ -13145,37 +11846,6 @@ exports[`The section component renders history.review 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -13314,15 +11984,6 @@ exports[`The section component renders history.review 1`] = `
                       <span
                         aria-live="polite"
                         className="messages help-messages"
-                      />
-                    </div>
-                    <div
-                      className="table expand"
-                    >
-                      <span
-                        aria-live="polite"
-                        className="messages error-messages"
-                        role="alert"
                       />
                     </div>
                     <div
@@ -13534,15 +12195,6 @@ exports[`The section component renders identification.birthdate 1`] = `
                         <span
                           aria-live="polite"
                           className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
                         />
                       </div>
                       <div
@@ -13852,15 +12504,6 @@ exports[`The section component renders identification.birthplace 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        />
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -14099,15 +12742,6 @@ exports[`The section component renders identification.contacts 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        />
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -14177,15 +12811,6 @@ exports[`The section component renders identification.contacts 1`] = `
                         <span
                           aria-live="polite"
                           className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
                         />
                       </div>
                       <div
@@ -14295,15 +12920,6 @@ exports[`The section component renders identification.contacts 1`] = `
                         <span
                           aria-live="polite"
                           className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
                         />
                       </div>
                       <div
@@ -14550,15 +13166,6 @@ exports[`The section component renders identification.intro 1`] = `
                       />
                     </div>
                     <div
-                      className="table expand"
-                    >
-                      <span
-                        aria-live="polite"
-                        className="messages error-messages"
-                        role="alert"
-                      />
-                    </div>
-                    <div
                       className="table"
                     >
                       <span
@@ -14698,15 +13305,6 @@ exports[`The section component renders identification.name 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        />
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -14767,15 +13365,6 @@ exports[`The section component renders identification.name 1`] = `
                                   <span
                                     aria-live="polite"
                                     className="messages help-messages"
-                                  />
-                                </div>
-                                <div
-                                  className="table expand"
-                                >
-                                  <span
-                                    aria-live="polite"
-                                    className="messages error-messages"
-                                    role="alert"
                                   />
                                 </div>
                                 <div
@@ -14901,15 +13490,6 @@ exports[`The section component renders identification.name 1`] = `
                                   <span
                                     aria-live="polite"
                                     className="messages help-messages"
-                                  />
-                                </div>
-                                <div
-                                  className="table expand"
-                                >
-                                  <span
-                                    aria-live="polite"
-                                    className="messages error-messages"
-                                    role="alert"
                                   />
                                 </div>
                                 <div
@@ -15063,15 +13643,6 @@ exports[`The section component renders identification.name 1`] = `
                                   />
                                 </div>
                                 <div
-                                  className="table expand"
-                                >
-                                  <span
-                                    aria-live="polite"
-                                    className="messages error-messages"
-                                    role="alert"
-                                  />
-                                </div>
-                                <div
                                   className="table"
                                 >
                                   <span
@@ -15199,15 +13770,6 @@ exports[`The section component renders identification.name 1`] = `
                                   <span
                                     aria-live="polite"
                                     className="messages help-messages"
-                                  />
-                                </div>
-                                <div
-                                  className="table expand"
-                                >
-                                  <span
-                                    aria-live="polite"
-                                    className="messages error-messages"
-                                    role="alert"
                                   />
                                 </div>
                                 <div
@@ -15769,15 +14331,6 @@ exports[`The section component renders identification.othernames 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        />
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -15829,15 +14382,6 @@ exports[`The section component renders identification.othernames 1`] = `
                         <span
                           aria-live="polite"
                           className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
                         />
                       </div>
                       <div
@@ -16067,15 +14611,6 @@ exports[`The section component renders identification.physical 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        />
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -16145,15 +14680,6 @@ exports[`The section component renders identification.physical 1`] = `
                         <span
                           aria-live="polite"
                           className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
                         />
                       </div>
                       <div
@@ -16304,15 +14830,6 @@ exports[`The section component renders identification.physical 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        />
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -16422,15 +14939,6 @@ exports[`The section component renders identification.physical 1`] = `
                         <span
                           aria-live="polite"
                           className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
                         />
                       </div>
                       <div
@@ -17111,15 +15619,6 @@ exports[`The section component renders identification.physical 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        />
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -17615,15 +16114,6 @@ exports[`The section component renders identification.physical 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        />
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -17905,43 +16395,6 @@ exports[`The section component renders identification.review 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.name.first.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Oops, there’s a problem.
-                                </h5>
-                                <span>
-                                  <div>
-                                    <p>
-                                      If your first name is a single letter, please select the "Initial only" checkbox and type the letter. 100 character limit.
-                                    </p>
-                                  </div>
-                                </span>
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -18002,15 +16455,6 @@ exports[`The section component renders identification.review 1`] = `
                                   <span
                                     aria-live="polite"
                                     className="messages help-messages"
-                                  />
-                                </div>
-                                <div
-                                  className="table expand"
-                                >
-                                  <span
-                                    aria-live="polite"
-                                    className="messages error-messages"
-                                    role="alert"
                                   />
                                 </div>
                                 <div
@@ -18136,15 +16580,6 @@ exports[`The section component renders identification.review 1`] = `
                                   <span
                                     aria-live="polite"
                                     className="messages help-messages"
-                                  />
-                                </div>
-                                <div
-                                  className="table expand"
-                                >
-                                  <span
-                                    aria-live="polite"
-                                    className="messages error-messages"
-                                    role="alert"
                                   />
                                 </div>
                                 <div
@@ -18298,15 +16733,6 @@ exports[`The section component renders identification.review 1`] = `
                                   />
                                 </div>
                                 <div
-                                  className="table expand"
-                                >
-                                  <span
-                                    aria-live="polite"
-                                    className="messages error-messages"
-                                    role="alert"
-                                  />
-                                </div>
-                                <div
                                   className="table"
                                 >
                                   <span
@@ -18434,15 +16860,6 @@ exports[`The section component renders identification.review 1`] = `
                                   <span
                                     aria-live="polite"
                                     className="messages help-messages"
-                                  />
-                                </div>
-                                <div
-                                  className="table expand"
-                                >
-                                  <span
-                                    aria-live="polite"
-                                    className="messages error-messages"
-                                    role="alert"
                                   />
                                 </div>
                                 <div
@@ -18925,15 +17342,6 @@ exports[`The section component renders identification.review 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        />
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -18986,37 +17394,6 @@ exports[`The section component renders identification.review 1`] = `
                           aria-live="polite"
                           className="messages help-messages"
                         />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
                       </div>
                       <div
                         className="table"
@@ -19160,15 +17537,6 @@ exports[`The section component renders identification.review 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        />
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -19238,15 +17606,6 @@ exports[`The section component renders identification.review 1`] = `
                         <span
                           aria-live="polite"
                           className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
                         />
                       </div>
                       <div
@@ -19356,15 +17715,6 @@ exports[`The section component renders identification.review 1`] = `
                         <span
                           aria-live="polite"
                           className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
                         />
                       </div>
                       <div
@@ -19531,47 +17881,6 @@ exports[`The section component renders identification.review 1`] = `
                           aria-live="polite"
                           className="messages help-messages"
                         />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.date.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                <span>
-                                  <div>
-                                    <p>
-                                      All parts of the date are required even if it is 
-                                      <strong>
-                                        estimated
-                                      </strong>
-                                      .
-                                    </p>
-                                  </div>
-                                </span>
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
                       </div>
                       <div
                         className="table"
@@ -19805,37 +18114,6 @@ exports[`The section component renders identification.review 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.location.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -20011,37 +18289,6 @@ exports[`The section component renders identification.review 1`] = `
                           aria-live="polite"
                           className="messages help-messages"
                         />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.ssn.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
                       </div>
                       <div
                         className="table"
@@ -20241,15 +18488,6 @@ exports[`The section component renders identification.review 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        />
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -20320,37 +18558,6 @@ exports[`The section component renders identification.review 1`] = `
                           aria-live="polite"
                           className="messages help-messages"
                         />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.height.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
                       </div>
                       <div
                         className="table"
@@ -20522,37 +18729,6 @@ exports[`The section component renders identification.review 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.weight.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -20685,37 +18861,6 @@ exports[`The section component renders identification.review 1`] = `
                           aria-live="polite"
                           className="messages help-messages"
                         />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
                       </div>
                       <div
                         className="table"
@@ -21417,37 +19562,6 @@ exports[`The section component renders identification.review 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -21965,37 +20079,6 @@ exports[`The section component renders identification.review 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -22176,15 +20259,6 @@ exports[`The section component renders identification.review 1`] = `
                       <span
                         aria-live="polite"
                         className="messages help-messages"
-                      />
-                    </div>
-                    <div
-                      className="table expand"
-                    >
-                      <span
-                        aria-live="polite"
-                        className="messages error-messages"
-                        role="alert"
                       />
                     </div>
                     <div
@@ -22396,15 +20470,6 @@ exports[`The section component renders identification.ssn 1`] = `
                         <span
                           aria-live="polite"
                           className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
                         />
                       </div>
                       <div
@@ -22700,15 +20765,6 @@ exports[`The section component renders legal.associations 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        />
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -22935,15 +20991,6 @@ exports[`The section component renders legal.court 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        />
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -23165,15 +21212,6 @@ exports[`The section component renders legal.intro 1`] = `
                       />
                     </div>
                     <div
-                      className="table expand"
-                    >
-                      <span
-                        aria-live="polite"
-                        className="messages error-messages"
-                        role="alert"
-                      />
-                    </div>
-                    <div
                       className="table"
                     >
                       <span
@@ -23340,15 +21378,6 @@ exports[`The section component renders legal.investigations 1`] = `
                         <span
                           aria-live="polite"
                           className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
                         />
                       </div>
                       <div
@@ -23604,15 +21633,6 @@ exports[`The section component renders legal.review 1`] = `
                       />
                     </div>
                     <div
-                      className="table expand"
-                    >
-                      <span
-                        aria-live="polite"
-                        className="messages error-messages"
-                        role="alert"
-                      />
-                    </div>
-                    <div
                       className="table"
                     >
                       <span
@@ -23682,37 +21702,6 @@ exports[`The section component renders legal.review 1`] = `
                           aria-live="polite"
                           className="messages help-messages"
                         />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
                       </div>
                       <div
                         className="table"
@@ -23904,37 +21893,6 @@ exports[`The section component renders legal.review 1`] = `
                           aria-live="polite"
                           className="messages help-messages"
                         />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
                       </div>
                       <div
                         className="table"
@@ -24131,37 +22089,6 @@ exports[`The section component renders legal.review 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -24303,37 +22230,6 @@ exports[`The section component renders legal.review 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -24473,37 +22369,6 @@ exports[`The section component renders legal.review 1`] = `
                           aria-live="polite"
                           className="messages help-messages"
                         />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
                       </div>
                       <div
                         className="table"
@@ -24653,37 +22518,6 @@ exports[`The section component renders legal.review 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -24823,37 +22657,6 @@ exports[`The section component renders legal.review 1`] = `
                           aria-live="polite"
                           className="messages help-messages"
                         />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
                       </div>
                       <div
                         className="table"
@@ -25007,37 +22810,6 @@ exports[`The section component renders legal.review 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -25179,37 +22951,6 @@ exports[`The section component renders legal.review 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -25349,37 +23090,6 @@ exports[`The section component renders legal.review 1`] = `
                           aria-live="polite"
                           className="messages help-messages"
                         />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
                       </div>
                       <div
                         className="table"
@@ -25533,37 +23243,6 @@ exports[`The section component renders legal.review 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -25703,37 +23382,6 @@ exports[`The section component renders legal.review 1`] = `
                           aria-live="polite"
                           className="messages help-messages"
                         />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
                       </div>
                       <div
                         className="table"
@@ -25877,37 +23525,6 @@ exports[`The section component renders legal.review 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -26047,37 +23664,6 @@ exports[`The section component renders legal.review 1`] = `
                           aria-live="polite"
                           className="messages help-messages"
                         />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
                       </div>
                       <div
                         className="table"
@@ -26221,37 +23807,6 @@ exports[`The section component renders legal.review 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -26391,37 +23946,6 @@ exports[`The section component renders legal.review 1`] = `
                           aria-live="polite"
                           className="messages help-messages"
                         />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
                       </div>
                       <div
                         className="table"
@@ -26565,37 +24089,6 @@ exports[`The section component renders legal.review 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -26734,15 +24227,6 @@ exports[`The section component renders legal.review 1`] = `
                       <span
                         aria-live="polite"
                         className="messages help-messages"
-                      />
-                    </div>
-                    <div
-                      className="table expand"
-                    >
-                      <span
-                        aria-live="polite"
-                        className="messages error-messages"
-                        role="alert"
                       />
                     </div>
                     <div
@@ -26940,15 +24424,6 @@ exports[`The section component renders legal.technology 1`] = `
                         <span
                           aria-live="polite"
                           className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
                         />
                       </div>
                       <div
@@ -27178,15 +24653,6 @@ exports[`The section component renders military.disciplinary 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        />
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -27412,15 +24878,6 @@ exports[`The section component renders military.foreign 1`] = `
                             <span
                               aria-live="polite"
                               className="messages help-messages"
-                            />
-                          </div>
-                          <div
-                            className="table expand"
-                          >
-                            <span
-                              aria-live="polite"
-                              className="messages error-messages"
-                              role="alert"
                             />
                           </div>
                           <div
@@ -27676,15 +25133,6 @@ exports[`The section component renders military.history 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        />
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -27906,15 +25354,6 @@ exports[`The section component renders military.intro 1`] = `
                       />
                     </div>
                     <div
-                      className="table expand"
-                    >
-                      <span
-                        aria-live="polite"
-                        className="messages error-messages"
-                        role="alert"
-                      />
-                    </div>
-                    <div
                       className="table"
                     >
                       <span
@@ -28122,37 +25561,6 @@ exports[`The section component renders military.review 1`] = `
                           />
                         </div>
                         <div
-                          className="table expand"
-                        >
-                          <span
-                            aria-live="polite"
-                            className="messages error-messages"
-                            role="alert"
-                          >
-                            <div
-                              aria-live="polite"
-                              className="message error usa-alert usa-alert-error"
-                              role="alert"
-                            >
-                              <div
-                                className="usa-alert-body"
-                              >
-                                <div
-                                  data-i18n="error.required"
-                                >
-                                  <h5
-                                    className="usa-alert-heading"
-                                  >
-                                    Your response is required
-                                  </h5>
-                                  
-                                  
-                                </div>
-                              </div>
-                            </div>
-                          </span>
-                        </div>
-                        <div
                           className="table"
                         >
                           <span
@@ -28319,37 +25727,6 @@ exports[`The section component renders military.review 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -28493,37 +25870,6 @@ exports[`The section component renders military.review 1`] = `
                             />
                           </div>
                           <div
-                            className="table expand"
-                          >
-                            <span
-                              aria-live="polite"
-                              className="messages error-messages"
-                              role="alert"
-                            >
-                              <div
-                                aria-live="polite"
-                                className="message error usa-alert usa-alert-error"
-                                role="alert"
-                              >
-                                <div
-                                  className="usa-alert-body"
-                                >
-                                  <div
-                                    data-i18n="error.required"
-                                  >
-                                    <h5
-                                      className="usa-alert-heading"
-                                    >
-                                      Your response is required
-                                    </h5>
-                                    
-                                    
-                                  </div>
-                                </div>
-                              </div>
-                            </span>
-                          </div>
-                          <div
                             className="table"
                           >
                             <span
@@ -28664,15 +26010,6 @@ exports[`The section component renders military.review 1`] = `
                       <span
                         aria-live="polite"
                         className="messages help-messages"
-                      />
-                    </div>
-                    <div
-                      className="table expand"
-                    >
-                      <span
-                        aria-live="polite"
-                        className="messages error-messages"
-                        role="alert"
                       />
                     </div>
                     <div
@@ -28884,15 +26221,6 @@ exports[`The section component renders military.selective 1`] = `
                         <span
                           aria-live="polite"
                           className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
                         />
                       </div>
                       <div
@@ -29122,15 +26450,6 @@ exports[`The section component renders psychological.competence 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        />
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -29354,15 +26673,6 @@ exports[`The section component renders psychological.conditions 1`] = `
                         <span
                           aria-live="polite"
                           className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
                         />
                       </div>
                       <div
@@ -29595,15 +26905,6 @@ exports[`The section component renders psychological.consultations 1`] = `
                         <span
                           aria-live="polite"
                           className="messages help-messages"
-                        />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
                         />
                       </div>
                       <div
@@ -29856,15 +27157,6 @@ exports[`The section component renders psychological.diagnoses 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        />
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -30097,15 +27389,6 @@ exports[`The section component renders psychological.hospitalizations 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        />
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -30327,15 +27610,6 @@ exports[`The section component renders psychological.intro 1`] = `
                       />
                     </div>
                     <div
-                      className="table expand"
-                    >
-                      <span
-                        aria-live="polite"
-                        className="messages error-messages"
-                        role="alert"
-                      />
-                    </div>
-                    <div
                       className="table"
                     >
                       <span
@@ -30517,15 +27791,6 @@ exports[`The section component renders relationships.intro 1`] = `
                       <span
                         aria-live="polite"
                         className="messages help-messages"
-                      />
-                    </div>
-                    <div
-                      className="table expand"
-                    >
-                      <span
-                        aria-live="polite"
-                        className="messages error-messages"
-                        role="alert"
                       />
                     </div>
                     <div
@@ -30812,15 +28077,6 @@ exports[`The section component renders relationships.people 1`] = `
                           />
                         </div>
                         <div
-                          className="table expand"
-                        >
-                          <span
-                            aria-live="polite"
-                            className="messages error-messages"
-                            role="alert"
-                          />
-                        </div>
-                        <div
                           className="table"
                         >
                           <span
@@ -31048,15 +28304,6 @@ exports[`The section component renders relationships.relatives 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        />
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -31167,15 +28414,6 @@ exports[`The section component renders relationships.relatives 1`] = `
                           <span
                             aria-live="polite"
                             className="messages help-messages"
-                          />
-                        </div>
-                        <div
-                          className="table expand"
-                        >
-                          <span
-                            aria-live="polite"
-                            className="messages error-messages"
-                            role="alert"
                           />
                         </div>
                         <div
@@ -31417,37 +28655,6 @@ exports[`The section component renders relationships.review 1`] = `
                           aria-live="polite"
                           className="messages help-messages"
                         />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
                       </div>
                       <div
                         className="table"
@@ -31775,37 +28982,6 @@ exports[`The section component renders relationships.review 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -32061,37 +29237,6 @@ exports[`The section component renders relationships.review 1`] = `
                           />
                         </div>
                         <div
-                          className="table expand"
-                        >
-                          <span
-                            aria-live="polite"
-                            className="messages error-messages"
-                            role="alert"
-                          >
-                            <div
-                              aria-live="polite"
-                              className="message error usa-alert usa-alert-error"
-                              role="alert"
-                            >
-                              <div
-                                className="usa-alert-body"
-                              >
-                                <div
-                                  data-i18n="error.required"
-                                >
-                                  <h5
-                                    className="usa-alert-heading"
-                                  >
-                                    Your response is required
-                                  </h5>
-                                  
-                                  
-                                </div>
-                              </div>
-                            </div>
-                          </span>
-                        </div>
-                        <div
                           className="table"
                         >
                           <span
@@ -32234,15 +29379,6 @@ exports[`The section component renders relationships.review 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        />
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -32354,37 +29490,6 @@ exports[`The section component renders relationships.review 1`] = `
                             aria-live="polite"
                             className="messages help-messages"
                           />
-                        </div>
-                        <div
-                          className="table expand"
-                        >
-                          <span
-                            aria-live="polite"
-                            className="messages error-messages"
-                            role="alert"
-                          >
-                            <div
-                              aria-live="polite"
-                              className="message error usa-alert usa-alert-error"
-                              role="alert"
-                            >
-                              <div
-                                className="usa-alert-body"
-                              >
-                                <div
-                                  data-i18n="error.required"
-                                >
-                                  <h5
-                                    className="usa-alert-heading"
-                                  >
-                                    Your response is required
-                                  </h5>
-                                  
-                                  
-                                </div>
-                              </div>
-                            </div>
-                          </span>
                         </div>
                         <div
                           className="table"
@@ -32526,15 +29631,6 @@ exports[`The section component renders relationships.review 1`] = `
                       <span
                         aria-live="polite"
                         className="messages help-messages"
-                      />
-                    </div>
-                    <div
-                      className="table expand"
-                    >
-                      <span
-                        aria-live="polite"
-                        className="messages error-messages"
-                        role="alert"
                       />
                     </div>
                     <div
@@ -32738,15 +29834,6 @@ exports[`The section component renders substance.intro 1`] = `
                       />
                     </div>
                     <div
-                      className="table expand"
-                    >
-                      <span
-                        aria-live="polite"
-                        className="messages error-messages"
-                        role="alert"
-                      />
-                    </div>
-                    <div
                       className="table"
                     >
                       <span
@@ -32929,37 +30016,6 @@ exports[`The section component renders substance.review 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -33107,37 +30163,6 @@ exports[`The section component renders substance.review 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -33277,37 +30302,6 @@ exports[`The section component renders substance.review 1`] = `
                           aria-live="polite"
                           className="messages help-messages"
                         />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
                       </div>
                       <div
                         className="table"
@@ -33451,37 +30445,6 @@ exports[`The section component renders substance.review 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -33621,37 +30584,6 @@ exports[`The section component renders substance.review 1`] = `
                           aria-live="polite"
                           className="messages help-messages"
                         />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
                       </div>
                       <div
                         className="table"
@@ -33795,37 +30727,6 @@ exports[`The section component renders substance.review 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -33965,37 +30866,6 @@ exports[`The section component renders substance.review 1`] = `
                           aria-live="polite"
                           className="messages help-messages"
                         />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
                       </div>
                       <div
                         className="table"
@@ -34139,37 +31009,6 @@ exports[`The section component renders substance.review 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -34309,37 +31148,6 @@ exports[`The section component renders substance.review 1`] = `
                           aria-live="polite"
                           className="messages help-messages"
                         />
-                      </div>
-                      <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
                       </div>
                       <div
                         className="table"
@@ -34483,37 +31291,6 @@ exports[`The section component renders substance.review 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -34655,37 +31432,6 @@ exports[`The section component renders substance.review 1`] = `
                         />
                       </div>
                       <div
-                        className="table expand"
-                      >
-                        <span
-                          aria-live="polite"
-                          className="messages error-messages"
-                          role="alert"
-                        >
-                          <div
-                            aria-live="polite"
-                            className="message error usa-alert usa-alert-error"
-                            role="alert"
-                          >
-                            <div
-                              className="usa-alert-body"
-                            >
-                              <div
-                                data-i18n="error.required"
-                              >
-                                <h5
-                                  className="usa-alert-heading"
-                                >
-                                  Your response is required
-                                </h5>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                      <div
                         className="table"
                       >
                         <span
@@ -34824,15 +31570,6 @@ exports[`The section component renders substance.review 1`] = `
                       <span
                         aria-live="polite"
                         className="messages help-messages"
-                      />
-                    </div>
-                    <div
-                      className="table expand"
-                    >
-                      <span
-                        aria-live="polite"
-                        className="messages error-messages"
-                        role="alert"
                       />
                     </div>
                     <div
