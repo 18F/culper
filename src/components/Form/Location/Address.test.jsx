@@ -86,7 +86,10 @@ describe('The Address component', () => {
 
   it('Invalidates wrong zipcode for state', () => {
     const props = {
+      city: 'Arlington',
+      country: 'United States',
       state: 'VA',
+      street: '123 Main St.',
       zipcode: '90210'
     }
     const component = mount(<Address {...props} />)
@@ -95,7 +98,10 @@ describe('The Address component', () => {
 
   it('Validates correct zipcode for state', () => {
     const props = {
+      city: 'Beverly Hills',
+      country: 'United States',
       state: 'CA',
+      street: '1 Great Teen Drama Dr',
       zipcode: '90210'
     }
     const component = mount(<Address {...props} />)

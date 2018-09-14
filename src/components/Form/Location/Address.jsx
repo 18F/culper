@@ -211,7 +211,6 @@ export default class Address extends ValidationElement {
 
     // Update the properties
     if (!same || blur) {
-      this.zipcodeInstate(same.state, same.zipcode)
       this.props.onUpdate(next, delay)
     }
   }
@@ -339,12 +338,13 @@ export default class Address extends ValidationElement {
   }
 
   zipcodeInstate() {
-    if (this.props.state && this.props.zipcode) {
-      const location = new LocationValidator(this.props)
-      return location.validZipcodeState()
-    }
+    const validator = new LocationValidator(this.props)
 
-    return true
+    if (validator.isDomestic() || validator.isPostOffice()) {
+      if (validator.validFields(['street', 'city', 'state', 'zipcode'])) {
+        return validator.validZipcodeState()
+      }
+    }
   }
 
   handleError(value, arr) {
