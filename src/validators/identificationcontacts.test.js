@@ -5,41 +5,27 @@ describe('Contact Information validation', function() {
     const tests = [
       {
         state: {
-          Emails: { items: [] }
+          HomeEmail: {},
+          WorkEmail: {}
         },
         expected: true
       },
       {
         state: {
-          Emails: {
-            items: [
-              {
-                Item: {
-                  Email: {
-                    value: 'foobar@local.dev'
-                  }
-                }
-              }
-            ]
+          HomeEmail: {
+            value: 'foobar2@local.dev'
+          },
+          WorkEmail: {
+            value: 'foobar2@local.dev'
           }
         },
         expected: true
       },
       {
         state: {
-          Emails: {
-            items: [
-              {
-                Item: {}
-              },
-              {
-                Item: {
-                  Email: {
-                    value: 'foobar@local.dev'
-                  }
-                }
-              }
-            ]
+          HomeEmail: {},
+          WorkEmail: {
+            value: 'foobar2@local.dev'
           }
         },
         expected: true
@@ -158,23 +144,11 @@ describe('Contact Information validation', function() {
     const tests = [
       {
         state: {
-          Emails: {
-            items: [
-              {
-                Item: {
-                  Email: {
-                    value: 'foobar2@local.dev'
-                  }
-                }
-              },
-              {
-                Item: {
-                  Email: {
-                    value: 'foobar2@local.dev'
-                  }
-                }
-              }
-            ]
+          HomeEmail: {
+            value: 'foobar2@local.dev'
+          },
+          WorkEmail: {
+            value: 'foobar2@local.dev'
           },
           PhoneNumbers: {
             items: [

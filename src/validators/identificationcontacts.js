@@ -2,7 +2,8 @@ import { validGenericTextfield, validPhoneNumber } from './helpers'
 
 export default class IdentificationContactInformationValidator {
   constructor(data = {}) {
-    this.emails = (data.Emails || { items: [] }).items
+    this.homeEmail = data.HomeEmail
+    this.workEmail = data.WorkEmail
     this.phoneNumbers = (data.PhoneNumbers || { items: [] }).items
   }
 
@@ -10,20 +11,12 @@ export default class IdentificationContactInformationValidator {
    * Validates a collection of emails
    */
   validEmails() {
-    const required = 0
-    if (!this.emails || this.emails.length < required) {
-      return false
-    }
-
-    let successful = 0
-    for (const email of this.emails) {
-      if (!new ContactEmailValidator(email.Item).isValid()) {
-        continue
-      }
-      successful++
-    }
-
-    return successful >= required
+    console.log(this.homeEmail)
+    console.log(this.workEmail)
+    return (
+      validGenericTextfield(this.homeEmail) &&
+      validGenericTextfield(this.workEmail)
+    )
   }
 
   /**
@@ -63,19 +56,10 @@ export default class IdentificationContactInformationValidator {
    * Validates emails and phone numbers
    */
   isValid() {
+    console.log(this.validEmails())
     return (
       this.validEmails() && this.validPhoneNumbers() && this.validPhoneTypes()
     )
-  }
-}
-
-export class ContactEmailValidator {
-  constructor(data = {}) {
-    this.email = data.Email
-  }
-
-  isValid() {
-    return validGenericTextfield(this.email)
   }
 }
 
