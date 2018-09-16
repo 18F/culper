@@ -340,11 +340,7 @@ export default class Address extends ValidationElement {
   zipcodeInstate() {
     const validator = new LocationValidator(this.props)
 
-    if (validator.isDomestic() || validator.isPostOffice()) {
-      if (validator.validFields(['street', 'city', 'state', 'zipcode'])) {
-        return validator.validZipcodeState()
-      }
-    }
+    return validator.validZipcodeState()
   }
 
   handleError(value, arr) {
