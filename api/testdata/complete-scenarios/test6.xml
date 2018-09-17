@@ -72,12 +72,12 @@
               <HomeEmail>
                 <Email>ian.chris@testmail.com</Email>
               </HomeEmail>
-              <HomeTelephone>
+              <MobileTelephone>
                 <Telephone>
                   <Number>7248978772</Number>
                   <Time>Both</Time>
                 </Telephone>
-              </HomeTelephone>
+              </MobileTelephone>
             </ContactInformation>
             <PersonalReferences Version="1" Type="Pooled">
               <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>

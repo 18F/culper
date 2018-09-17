@@ -1,61 +1,6 @@
 import IdentificationContactInformationValidator from './identificationcontacts'
 
 describe('Contact Information validation', function() {
-  it('should validate emails', function() {
-    const tests = [
-      {
-        state: {
-          Emails: { items: [] }
-        },
-        expected: true
-      },
-      {
-        state: {
-          Emails: {
-            items: [
-              {
-                Item: {
-                  Email: {
-                    value: 'foobar@local.dev'
-                  }
-                }
-              }
-            ]
-          }
-        },
-        expected: true
-      },
-      {
-        state: {
-          Emails: {
-            items: [
-              {
-                Item: {}
-              },
-              {
-                Item: {
-                  Email: {
-                    value: 'foobar@local.dev'
-                  }
-                }
-              }
-            ]
-          }
-        },
-        expected: true
-      }
-    ]
-
-    tests.forEach(test => {
-      expect(
-        new IdentificationContactInformationValidator(
-          test.state,
-          null
-        ).validEmails()
-      ).toBe(test.expected)
-    })
-  })
-
   it('should validate phone numbers', function() {
     const tests = [
       {
@@ -158,23 +103,11 @@ describe('Contact Information validation', function() {
     const tests = [
       {
         state: {
-          Emails: {
-            items: [
-              {
-                Item: {
-                  Email: {
-                    value: 'foobar2@local.dev'
-                  }
-                }
-              },
-              {
-                Item: {
-                  Email: {
-                    value: 'foobar2@local.dev'
-                  }
-                }
-              }
-            ]
+          HomeEmail: {
+            value: 'foobar2@local.dev'
+          },
+          WorkEmail: {
+            value: 'foobar2@local.dev'
           },
           PhoneNumbers: {
             items: [

@@ -7,7 +7,8 @@ describe('The ContactInformation component', () => {
     let blurs = 0
     const expected = {
       name: 'input-focus',
-      Emails: { items: [{}] },
+      HomeEmail: {},
+      WorkEmail: {},
       PhoneNumbers: { items: [{}] },
       onBlur: function(event) {
         blurs++
@@ -103,54 +104,10 @@ describe('The ContactInformation component', () => {
     ).toEqual('+001 1234567890')
   })
 
-  it('formats emails appropriately', () => {
-    const expected = {
-      Emails: {
-        items: [
-          {
-            Item: {
-              Email: {
-                value: 'test@abc.com'
-              }
-            }
-          },
-          {
-            Item: {}
-          }
-        ]
-      }
-    }
-    const component = mount(<ContactInformation {...expected} />)
-    expect(component.find('.index').length).toEqual(2)
-    expect(
-      component
-        .find('.summary strong')
-        .at(0)
-        .text()
-    ).toEqual('test@abc.com')
-    expect(
-      component
-        .find('.summary strong')
-        .at(1)
-        .text()
-    ).toEqual('Provide your email address below')
-  })
-
   it('should filter empty items out leaving only the minimum visible', () => {
-    let emails = {}
     let phoneNumbers = {}
     const expected = {
       shouldFilterEmptyItems: true,
-      Emails: {
-        items: [
-          {},
-          {
-            Item: {
-              Email: { value: 'test@abc.com' }
-            }
-          }
-        ]
-      },
       PhoneNumbers: {
         items: [
           {},
@@ -167,17 +124,11 @@ describe('The ContactInformation component', () => {
       }
     }
     const component = mount(<ContactInformation {...expected} />)
-    expect(component.find('.index').length).toEqual(1 + 1)
+    expect(component.find('.index').length).toEqual(1)
     expect(
       component
         .find('.summary strong')
         .at(0)
-        .text()
-    ).toEqual('test@abc.com')
-    expect(
-      component
-        .find('.summary strong')
-        .at(1)
         .text()
     ).toEqual('+001 1234567890')
   })

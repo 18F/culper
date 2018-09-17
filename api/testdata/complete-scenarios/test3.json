@@ -5551,7 +5551,7 @@
                         "props": {
                           "timeOfDay": "Day",
                           "type": "Domestic",
-                          "numberType": "Work",
+                          "numberType": "",
                           "number": "4317839981",
                           "extension": "",
                           "noNumber": false
@@ -5564,7 +5564,7 @@
                     "props": {
                       "timeOfDay": "Both",
                       "type": "Domestic",
-                      "numberType": "Home",
+                      "numberType": "",
                       "number": "1234213412",
                       "extension": "",
                       "noNumber": false
@@ -5721,7 +5721,7 @@
                     "props": {
                       "timeOfDay": "Night",
                       "type": "Domestic",
-                      "numberType": "Cell",
+                      "numberType": "",
                       "number": "1223444444",
                       "extension": "",
                       "noNumber": false
@@ -5732,7 +5732,7 @@
                     "props": {
                       "timeOfDay": "Day",
                       "type": "Domestic",
-                      "numberType": "Work",
+                      "numberType": "",
                       "number": "2342342344",
                       "extension": "",
                       "noNumber": false
@@ -5743,7 +5743,7 @@
                     "props": {
                       "timeOfDay": "Both",
                       "type": "Domestic",
-                      "numberType": "Home",
+                      "numberType": "",
                       "number": "2334333333",
                       "extension": "",
                       "noNumber": false
@@ -5877,24 +5877,16 @@
     "Contacts": {
       "type": "identification.contacts",
       "props": {
-        "Emails": {
-          "type": "collection",
+        "HomeEmail": {
+          "type": "email",
           "props": {
-            "branch": {
-              "type": ""
-            },
-            "items": [
-              {
-                "Item": {
-                  "Email": {
-                    "type": "email",
-                    "props": {
-                      "value": "rgf@gmaol.com"
-                    }
-                  }
-                }
-              }
-            ]
+            "value": "rgf@gmaol.com"
+          }
+        },
+        "WorkEmail": {
+          "type": "email",
+          "props": {
+            "value": ""
           }
         },
         "PhoneNumbers": {
@@ -7494,7 +7486,7 @@
               "props": {
                 "timeOfDay": "Both",
                 "type": "Domestic",
-                "numberType": "Other",
+                "numberType": "",
                 "number": "1231231123",
                 "extension": "",
                 "noNumber": false
@@ -7689,7 +7681,7 @@
                     "props": {
                       "timeOfDay": "Both",
                       "type": "Domestic",
-                      "numberType": "Home",
+                      "numberType": "",
                       "number": "2345234534",
                       "extension": "",
                       "noNumber": false
@@ -7714,7 +7706,7 @@
                     "props": {
                       "timeOfDay": "Night",
                       "type": "Domestic",
-                      "numberType": "Home",
+                      "numberType": "",
                       "number": "5556566666",
                       "extension": "",
                       "noNumber": false
@@ -7803,7 +7795,7 @@
                     "props": {
                       "timeOfDay": "Both",
                       "type": "Domestic",
-                      "numberType": "Work",
+                      "numberType": "",
                       "number": "5551235555",
                       "extension": "",
                       "noNumber": false
@@ -7828,7 +7820,7 @@
                     "props": {
                       "timeOfDay": "Both",
                       "type": "Domestic",
-                      "numberType": "Home",
+                      "numberType": "",
                       "number": "5551235555",
                       "extension": "",
                       "noNumber": false
@@ -7916,7 +7908,7 @@
                     "props": {
                       "timeOfDay": "Both",
                       "type": "Domestic",
-                      "numberType": "Cell",
+                      "numberType": "",
                       "number": "5036563231",
                       "extension": "",
                       "noNumber": false

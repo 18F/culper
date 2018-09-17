@@ -602,16 +602,19 @@ func (entity *IdentificationSSN) Find(context DatabaseService) error {
 
 // IdentificationContacts represents the payload for the identification contact information section.
 type IdentificationContacts struct {
-	PayloadEmails       Payload `json:"Emails" sql:"-"`
+	PayloadHomeEmail       Payload `json:"HomeEmail" sql:"-"`
+	PayloadWorkEmail       Payload `json:"WorkEmail" sql:"-"`
 	PayloadPhoneNumbers Payload `json:"PhoneNumbers" sql:"-"`
 
 	// Validator specific fields
-	Emails       *Collection `json:"-"`
+	HomeEmail       *Email `json:"-"`
+	WorkEmail       *Email `json:"-"`
 	PhoneNumbers *Collection `json:"-"`
 
 	// Persister specific fields
 	ID             int `json:"-"`
-	EmailsID       int `json:"-" pg:", fk:Emails"`
+	HomeEmailID       int `json:"-" pg:", fk:HomeEmail"`
+	WorkEmailID       int `json:"-" pg:", fk:WorkEmail"`
 	PhoneNumbersID int `json:"-" pg:", fk:PhoneNumbers"`
 }
 
@@ -622,11 +625,17 @@ func (entity *IdentificationContacts) Unmarshal(raw []byte) error {
 		return err
 	}
 
-	emails, err := entity.PayloadEmails.Entity()
+	homeEmail, err := entity.PayloadHomeEmail.Entity()
 	if err != nil {
 		return err
 	}
-	entity.Emails = emails.(*Collection)
+	entity.HomeEmail = homeEmail.(*Email)
+
+	workEmail, err := entity.PayloadWorkEmail.Entity()
+	if err != nil {
+		return err
+	}
+	entity.WorkEmail = workEmail.(*Email)
 
 	phoneNumbers, err := entity.PayloadPhoneNumbers.Entity()
 	if err != nil {
@@ -639,8 +648,11 @@ func (entity *IdentificationContacts) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *IdentificationContacts) Marshal() Payload {
-	if entity.Emails != nil {
-		entity.PayloadEmails = entity.Emails.Marshal()
+	if entity.HomeEmail != nil {
+		entity.PayloadHomeEmail = entity.HomeEmail.Marshal()
+	}
+	if entity.WorkEmail != nil {
+		entity.PayloadWorkEmail = entity.WorkEmail.Marshal()
 	}
 	if entity.PhoneNumbers != nil {
 		entity.PayloadPhoneNumbers = entity.PhoneNumbers.Marshal()
@@ -652,8 +664,12 @@ func (entity *IdentificationContacts) Marshal() Payload {
 func (entity *IdentificationContacts) Valid() (bool, error) {
 	var stack ErrorStack
 
-	if ok, err := entity.Emails.Valid(); !ok {
-		stack.Append("Emails", err)
+	if ok, err := entity.HomeEmail.Valid(); !ok {
+		stack.Append("HomeEmail", err)
+	}
+
+	if ok, err := entity.WorkEmail.Valid(); !ok {
+		stack.Append("WorkEmail", err)
 	}
 
 	if ok, err := entity.PhoneNumbers.Valid(); !ok {
@@ -675,11 +691,17 @@ func (entity *IdentificationContacts) Save(context DatabaseService, account int)
 		return entity.ID, err
 	}
 
-	emailsID, err := entity.Emails.Save(context, account)
+	homeEmailID, err := entity.HomeEmail.Save(context, account)
 	if err != nil {
-		return emailsID, err
+		return homeEmailID, err
 	}
-	entity.EmailsID = emailsID
+	entity.HomeEmailID = homeEmailID
+
+	workEmailID, err := entity.WorkEmail.Save(context, account)
+	if err != nil {
+		return workEmailID, err
+	}
+	entity.WorkEmailID = workEmailID
 
 	phoneNumbersID, err := entity.PhoneNumbers.Save(context, account)
 	if err != nil {
@@ -712,7 +734,11 @@ func (entity *IdentificationContacts) Delete(context DatabaseService, account in
 		}
 	}
 
-	if _, err := entity.Emails.Delete(context, account); err != nil {
+	if _, err := entity.HomeEmail.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err := entity.WorkEmail.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
@@ -737,9 +763,16 @@ func (entity *IdentificationContacts) Get(context DatabaseService, account int) 
 		}
 	}
 
-	if entity.EmailsID != 0 {
-		entity.Emails = &Collection{ID: entity.EmailsID}
-		if _, err := entity.Emails.Get(context, account); err != nil {
+	if entity.HomeEmailID != 0 {
+		entity.HomeEmail = &Email{ID: entity.HomeEmailID}
+		if _, err := entity.HomeEmail.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	if entity.WorkEmailID != 0 {
+		entity.WorkEmail = &Email{ID: entity.WorkEmailID}
+		if _, err := entity.WorkEmail.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
@@ -768,11 +801,16 @@ func (entity *IdentificationContacts) SetID(id int) {
 func (entity *IdentificationContacts) Find(context DatabaseService) error {
 	context.Find(&IdentificationContacts{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*IdentificationContacts)
-		if entity.Emails == nil {
-			entity.Emails = &Collection{}
+		if entity.HomeEmail == nil {
+			entity.HomeEmail = &Email{}
 		}
-		entity.EmailsID = previous.EmailsID
-		entity.Emails.ID = previous.EmailsID
+		entity.HomeEmail.ID = previous.HomeEmailID
+		entity.HomeEmailID = previous.HomeEmailID
+		if entity.WorkEmail == nil {
+			entity.WorkEmail = &Email{}
+		}
+		entity.WorkEmail.ID = previous.WorkEmailID
+		entity.WorkEmailID = previous.WorkEmailID
 		if entity.PhoneNumbers == nil {
 			entity.PhoneNumbers = &Collection{}
 		}

@@ -391,4 +391,45 @@ describe('the location component', function() {
       )
     })
   })
+
+  it.only('should validate zipcode is in correct state if in US', function() {
+    const tests = [
+      {
+        state: {
+          country: { value: 'United States' },
+          street: '1 Great Teen Drama Dr.',
+          city: 'Beverly Hills',
+          state: 'CA',
+          zipcode: '90210'
+        },
+        expected: true
+      },
+      {
+        state: {
+          country: { value: 'United States' },
+          street: '1234 Some Rd',
+          city: 'Arlington',
+          state: 'VA',
+          zipcode: '90210'
+        },
+        expected: false
+      },
+      {
+        state: {
+          country: { value: 'Outside US' },
+          street: '1234 Some Rd',
+          city: 'City',
+          state: 'NOTUS',
+          zipcode: '12321'
+        },
+        expected: true
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(
+        new LocationValidator(test.state, null).validZipcodeState()
+      ).toEqual(test.expected)
+    })
+  })
 })
