@@ -19,11 +19,7 @@ describe('The Invalid section submission component', () => {
         ]
       }
     }
-    const component = mount(
-      <MemoryRouter>
-        <InvalidSection {...expected} />
-      </MemoryRouter>
-    )
-    expect(component.find('.error-messages').length).toBe(1)
+    const component = mount(<MemoryRouter><InvalidSection {...expected} /></MemoryRouter>)
+    expect(component.find('.usa-alert-error').length).toBe(1)
   })
 })

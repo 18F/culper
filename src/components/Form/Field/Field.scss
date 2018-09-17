@@ -127,6 +127,7 @@
   > .table {
     display: table;
     width: 100%;
+    margin-top: 0.25rem;
 
     &.expand {
       width: 100%;
@@ -209,14 +210,6 @@
       display: table-row;
 
       > .message {
-        width: 100%;
-        max-width: 64rem;
-        margin: 1.3rem 0 1.3rem;
-        padding: 0.5rem 3rem 1.3rem 3rem;
-        background: $eapp-blue-lightest;
-        border: 2px solid $eapp-blue-lighter;
-        border-radius: 6px;
-
         h1,
         h2,
         h3,
@@ -225,7 +218,6 @@
         h6 {
           margin-top: 0;
           font-family: $eapp-sans;
-          font-size: 13pt;
           padding: 0;
         }
 
@@ -262,15 +254,6 @@
         .close {
           display: block;
           margin-top: 1rem;
-        }
-
-        &.error {
-          background: $eapp-red-lightest;
-          border-color: $eapp-red-light;
-
-          > i {
-            background-color: $eapp-red;
-          }
         }
       }
     }

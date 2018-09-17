@@ -33,8 +33,7 @@ describe('The attachments component', () => {
       errorMessage: 'This is a test'
     }
     const component = mount(<Attachments {...props} />)
-    const msg = component.find('.upload-error .message.error p').text()
-    expect(msg).toBe(props.errorMessage)
+    expect(component.find('.upload-error .usa-alert-error p').text()).toBe(props.errorMessage)
   })
 
   it('displays for fax', () => {

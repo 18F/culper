@@ -35,6 +35,43 @@ exports[`The identification section renders the IdentificationSections component
         />
       </div>
       <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages error-messages"
+          role="alert"
+        >
+          <div
+            aria-live="polite"
+            className="message error usa-alert usa-alert-error"
+            role="alert"
+          >
+            <div
+              className="usa-alert-body"
+            >
+              <div
+                data-i18n="error.name.first.required"
+              >
+                <h5
+                  className="usa-alert-heading"
+                >
+                  Oops, there’s a problem.
+                </h5>
+                <span>
+                  <div>
+                    <p>
+                      If your first name is a single letter, please select the "Initial only" checkbox and type the letter. 100 character limit.
+                    </p>
+                  </div>
+                </span>
+                
+              </div>
+            </div>
+          </div>
+        </span>
+      </div>
+      <div
         className="table"
       >
         <span
@@ -95,6 +132,15 @@ exports[`The identification section renders the IdentificationSections component
                   <span
                     aria-live="polite"
                     className="messages help-messages"
+                  />
+                </div>
+                <div
+                  className="table expand"
+                >
+                  <span
+                    aria-live="polite"
+                    className="messages error-messages"
+                    role="alert"
                   />
                 </div>
                 <div
@@ -161,15 +207,6 @@ exports[`The identification section renders the IdentificationSections component
                     </span>
                   </span>
                 </div>
-                <div
-                  className="table expand"
-                >
-                  <span
-                    aria-live="polite"
-                    className="messages error-messages"
-                    role="alert"
-                  />
-                </div>
               </div>
               <div
                 aria-label="Middle name"
@@ -220,6 +257,15 @@ exports[`The identification section renders the IdentificationSections component
                   <span
                     aria-live="polite"
                     className="messages help-messages"
+                  />
+                </div>
+                <div
+                  className="table expand"
+                >
+                  <span
+                    aria-live="polite"
+                    className="messages error-messages"
+                    role="alert"
                   />
                 </div>
                 <div
@@ -311,15 +357,6 @@ exports[`The identification section renders the IdentificationSections component
                     </span>
                   </span>
                 </div>
-                <div
-                  className="table expand"
-                >
-                  <span
-                    aria-live="polite"
-                    className="messages error-messages"
-                    role="alert"
-                  />
-                </div>
               </div>
               <div
                 aria-label="Last name"
@@ -370,6 +407,15 @@ exports[`The identification section renders the IdentificationSections component
                   <span
                     aria-live="polite"
                     className="messages help-messages"
+                  />
+                </div>
+                <div
+                  className="table expand"
+                >
+                  <span
+                    aria-live="polite"
+                    className="messages error-messages"
+                    role="alert"
                   />
                 </div>
                 <div
@@ -436,15 +482,6 @@ exports[`The identification section renders the IdentificationSections component
                     </span>
                   </span>
                 </div>
-                <div
-                  className="table expand"
-                >
-                  <span
-                    aria-live="polite"
-                    className="messages error-messages"
-                    role="alert"
-                  />
-                </div>
               </div>
               <div
                 aria-label="Suffix"
@@ -500,6 +537,15 @@ exports[`The identification section renders the IdentificationSections component
                   <span
                     aria-live="polite"
                     className="messages help-messages"
+                  />
+                </div>
+                <div
+                  className="table expand"
+                >
+                  <span
+                    aria-live="polite"
+                    className="messages error-messages"
+                    role="alert"
                   />
                 </div>
                 <div
@@ -869,53 +915,9 @@ exports[`The identification section renders the IdentificationSections component
                     </span>
                   </span>
                 </div>
-                <div
-                  className="table expand"
-                >
-                  <span
-                    aria-live="polite"
-                    className="messages error-messages"
-                    role="alert"
-                  />
-                </div>
               </div>
             </div>
           </span>
-        </span>
-      </div>
-      <div
-        className="table expand"
-      >
-        <span
-          aria-live="polite"
-          className="messages error-messages"
-          role="alert"
-        >
-          <div
-            aria-live="polite"
-            className="message error"
-            role="alert"
-          >
-            <i
-              aria-hidden="true"
-              className="fa fa-exclamation"
-            />
-            <div
-              data-i18n="error.name.first.required"
-            >
-              <h5>
-                Oops, there’s a problem.
-              </h5>
-              <span>
-                <div>
-                  <p>
-                    If your first name is a single letter, please select the "Initial only" checkbox and type the letter. 100 character limit.
-                  </p>
-                </div>
-              </span>
-              
-            </div>
-          </div>
         </span>
       </div>
     </div>
@@ -980,6 +982,15 @@ exports[`The identification section renders the IdentificationSections component
         />
       </div>
       <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages error-messages"
+          role="alert"
+        />
+      </div>
+      <div
         className="table"
       >
         <span
@@ -995,15 +1006,6 @@ exports[`The identification section renders the IdentificationSections component
             </div>
           </span>
         </span>
-      </div>
-      <div
-        className="table expand"
-      >
-        <span
-          aria-live="polite"
-          className="messages error-messages"
-          role="alert"
-        />
       </div>
     </div>
     <div
@@ -1032,6 +1034,37 @@ exports[`The identification section renders the IdentificationSections component
           aria-live="polite"
           className="messages help-messages"
         />
+      </div>
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages error-messages"
+          role="alert"
+        >
+          <div
+            aria-live="polite"
+            className="message error usa-alert usa-alert-error"
+            role="alert"
+          >
+            <div
+              className="usa-alert-body"
+            >
+              <div
+                data-i18n="error.required"
+              >
+                <h5
+                  className="usa-alert-heading"
+                >
+                  Your response is required
+                </h5>
+                
+                
+              </div>
+            </div>
+          </div>
+        </span>
       </div>
       <div
         className="table"
@@ -1106,35 +1139,6 @@ exports[`The identification section renders the IdentificationSections component
           </span>
         </span>
       </div>
-      <div
-        className="table expand"
-      >
-        <span
-          aria-live="polite"
-          className="messages error-messages"
-          role="alert"
-        >
-          <div
-            aria-live="polite"
-            className="message error"
-            role="alert"
-          >
-            <i
-              aria-hidden="true"
-              className="fa fa-exclamation"
-            />
-            <div
-              data-i18n="error.required"
-            >
-              <h5>
-                Your response is required
-              </h5>
-              
-              
-            </div>
-          </div>
-        </span>
-      </div>
     </div>
   </div>
   <hr
@@ -1173,6 +1177,15 @@ exports[`The identification section renders the IdentificationSections component
         />
       </div>
       <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages error-messages"
+          role="alert"
+        />
+      </div>
+      <div
         className="table"
       >
         <span
@@ -1182,15 +1195,6 @@ exports[`The identification section renders the IdentificationSections component
             className="component"
           />
         </span>
-      </div>
-      <div
-        className="table expand"
-      >
-        <span
-          aria-live="polite"
-          className="messages error-messages"
-          role="alert"
-        />
       </div>
     </div>
     <div
@@ -1245,6 +1249,15 @@ exports[`The identification section renders the IdentificationSections component
         />
       </div>
       <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages error-messages"
+          role="alert"
+        />
+      </div>
+      <div
         className="table"
       >
         <span
@@ -1260,15 +1273,6 @@ exports[`The identification section renders the IdentificationSections component
             </div>
           </span>
         </span>
-      </div>
-      <div
-        className="table expand"
-      >
-        <span
-          aria-live="polite"
-          className="messages error-messages"
-          role="alert"
-        />
       </div>
     </div>
     <div
@@ -1296,6 +1300,15 @@ exports[`The identification section renders the IdentificationSections component
         <span
           aria-live="polite"
           className="messages help-messages"
+        />
+      </div>
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages error-messages"
+          role="alert"
         />
       </div>
       <div
@@ -1334,15 +1347,6 @@ exports[`The identification section renders the IdentificationSections component
           </span>
         </span>
       </div>
-      <div
-        className="table expand"
-      >
-        <span
-          aria-live="polite"
-          className="messages error-messages"
-          role="alert"
-        />
-      </div>
     </div>
     <div
       aria-label="Work email address"
@@ -1369,6 +1373,15 @@ exports[`The identification section renders the IdentificationSections component
         <span
           aria-live="polite"
           className="messages help-messages"
+        />
+      </div>
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages error-messages"
+          role="alert"
         />
       </div>
       <div
@@ -1406,15 +1419,6 @@ exports[`The identification section renders the IdentificationSections component
             </div>
           </span>
         </span>
-      </div>
-      <div
-        className="table expand"
-      >
-        <span
-          aria-live="polite"
-          className="messages error-messages"
-          role="alert"
-        />
       </div>
     </div>
     <div
@@ -1469,6 +1473,15 @@ exports[`The identification section renders the IdentificationSections component
         />
       </div>
       <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages error-messages"
+          role="alert"
+        />
+      </div>
+      <div
         className="table"
       >
         <span
@@ -1488,15 +1501,6 @@ exports[`The identification section renders the IdentificationSections component
             </div>
           </span>
         </span>
-      </div>
-      <div
-        className="table expand"
-      >
-        <span
-          aria-live="polite"
-          className="messages error-messages"
-          role="alert"
-        />
       </div>
     </div>
     <div
@@ -1522,6 +1526,15 @@ exports[`The identification section renders the IdentificationSections component
         />
       </div>
       <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages error-messages"
+          role="alert"
+        />
+      </div>
+      <div
         className="table"
       >
         <span
@@ -1531,15 +1544,6 @@ exports[`The identification section renders the IdentificationSections component
             className="component"
           />
         </span>
-      </div>
-      <div
-        className="table expand"
-      >
-        <span
-          aria-live="polite"
-          className="messages error-messages"
-          role="alert"
-        />
       </div>
     </div>
     <div
@@ -1632,6 +1636,47 @@ exports[`The identification section renders the IdentificationSections component
           aria-live="polite"
           className="messages help-messages"
         />
+      </div>
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages error-messages"
+          role="alert"
+        >
+          <div
+            aria-live="polite"
+            className="message error usa-alert usa-alert-error"
+            role="alert"
+          >
+            <div
+              className="usa-alert-body"
+            >
+              <div
+                data-i18n="error.date.required"
+              >
+                <h5
+                  className="usa-alert-heading"
+                >
+                  Your response is required
+                </h5>
+                <span>
+                  <div>
+                    <p>
+                      All parts of the date are required even if it is 
+                      <strong>
+                        estimated
+                      </strong>
+                      .
+                    </p>
+                  </div>
+                </span>
+                
+              </div>
+            </div>
+          </div>
+        </span>
       </div>
       <div
         className="table"
@@ -1786,45 +1831,6 @@ exports[`The identification section renders the IdentificationSections component
           </span>
         </span>
       </div>
-      <div
-        className="table expand"
-      >
-        <span
-          aria-live="polite"
-          className="messages error-messages"
-          role="alert"
-        >
-          <div
-            aria-live="polite"
-            className="message error"
-            role="alert"
-          >
-            <i
-              aria-hidden="true"
-              className="fa fa-exclamation"
-            />
-            <div
-              data-i18n="error.date.required"
-            >
-              <h5>
-                Your response is required
-              </h5>
-              <span>
-                <div>
-                  <p>
-                    All parts of the date are required even if it is 
-                    <strong>
-                      estimated
-                    </strong>
-                    .
-                  </p>
-                </div>
-              </span>
-              
-            </div>
-          </div>
-        </span>
-      </div>
     </div>
   </div>
   <hr
@@ -1861,6 +1867,37 @@ exports[`The identification section renders the IdentificationSections component
           aria-live="polite"
           className="messages help-messages"
         />
+      </div>
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages error-messages"
+          role="alert"
+        >
+          <div
+            aria-live="polite"
+            className="message error usa-alert usa-alert-error"
+            role="alert"
+          >
+            <div
+              className="usa-alert-body"
+            >
+              <div
+                data-i18n="error.location.required"
+              >
+                <h5
+                  className="usa-alert-heading"
+                >
+                  Your response is required
+                </h5>
+                
+                
+              </div>
+            </div>
+          </div>
+        </span>
       </div>
       <div
         className="table"
@@ -1947,35 +1984,6 @@ exports[`The identification section renders the IdentificationSections component
           </span>
         </span>
       </div>
-      <div
-        className="table expand"
-      >
-        <span
-          aria-live="polite"
-          className="messages error-messages"
-          role="alert"
-        >
-          <div
-            aria-live="polite"
-            className="message error"
-            role="alert"
-          >
-            <i
-              aria-hidden="true"
-              className="fa fa-exclamation"
-            />
-            <div
-              data-i18n="error.location.required"
-            >
-              <h5>
-                Your response is required
-              </h5>
-              
-              
-            </div>
-          </div>
-        </span>
-      </div>
     </div>
   </div>
   <hr
@@ -2036,6 +2044,37 @@ exports[`The identification section renders the IdentificationSections component
           aria-live="polite"
           className="messages help-messages"
         />
+      </div>
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages error-messages"
+          role="alert"
+        >
+          <div
+            aria-live="polite"
+            className="message error usa-alert usa-alert-error"
+            role="alert"
+          >
+            <div
+              className="usa-alert-body"
+            >
+              <div
+                data-i18n="error.ssn.required"
+              >
+                <h5
+                  className="usa-alert-heading"
+                >
+                  Your response is required
+                </h5>
+                
+                
+              </div>
+            </div>
+          </div>
+        </span>
       </div>
       <div
         className="table"
@@ -2166,35 +2205,6 @@ exports[`The identification section renders the IdentificationSections component
           </span>
         </span>
       </div>
-      <div
-        className="table expand"
-      >
-        <span
-          aria-live="polite"
-          className="messages error-messages"
-          role="alert"
-        >
-          <div
-            aria-live="polite"
-            className="message error"
-            role="alert"
-          >
-            <i
-              aria-hidden="true"
-              className="fa fa-exclamation"
-            />
-            <div
-              data-i18n="error.ssn.required"
-            >
-              <h5>
-                Your response is required
-              </h5>
-              
-              
-            </div>
-          </div>
-        </span>
-      </div>
     </div>
   </div>
   <hr
@@ -2233,6 +2243,15 @@ exports[`The identification section renders the IdentificationSections component
         />
       </div>
       <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages error-messages"
+          role="alert"
+        />
+      </div>
+      <div
         className="table"
       >
         <span
@@ -2242,15 +2261,6 @@ exports[`The identification section renders the IdentificationSections component
             className="component"
           />
         </span>
-      </div>
-      <div
-        className="table expand"
-      >
-        <span
-          aria-live="polite"
-          className="messages error-messages"
-          role="alert"
-        />
       </div>
     </div>
     <div
@@ -2303,6 +2313,37 @@ exports[`The identification section renders the IdentificationSections component
           aria-live="polite"
           className="messages help-messages"
         />
+      </div>
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages error-messages"
+          role="alert"
+        >
+          <div
+            aria-live="polite"
+            className="message error usa-alert usa-alert-error"
+            role="alert"
+          >
+            <div
+              className="usa-alert-body"
+            >
+              <div
+                data-i18n="error.height.required"
+              >
+                <h5
+                  className="usa-alert-heading"
+                >
+                  Your response is required
+                </h5>
+                
+                
+              </div>
+            </div>
+          </div>
+        </span>
       </div>
       <div
         className="table"
@@ -2390,35 +2431,6 @@ exports[`The identification section renders the IdentificationSections component
           </span>
         </span>
       </div>
-      <div
-        className="table expand"
-      >
-        <span
-          aria-live="polite"
-          className="messages error-messages"
-          role="alert"
-        >
-          <div
-            aria-live="polite"
-            className="message error"
-            role="alert"
-          >
-            <i
-              aria-hidden="true"
-              className="fa fa-exclamation"
-            />
-            <div
-              data-i18n="error.height.required"
-            >
-              <h5>
-                Your response is required
-              </h5>
-              
-              
-            </div>
-          </div>
-        </span>
-      </div>
     </div>
     <div
       aria-label="Weight"
@@ -2472,6 +2484,37 @@ exports[`The identification section renders the IdentificationSections component
         />
       </div>
       <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages error-messages"
+          role="alert"
+        >
+          <div
+            aria-live="polite"
+            className="message error usa-alert usa-alert-error"
+            role="alert"
+          >
+            <div
+              className="usa-alert-body"
+            >
+              <div
+                data-i18n="error.weight.required"
+              >
+                <h5
+                  className="usa-alert-heading"
+                >
+                  Your response is required
+                </h5>
+                
+                
+              </div>
+            </div>
+          </div>
+        </span>
+      </div>
+      <div
         className="table"
       >
         <span
@@ -2520,35 +2563,6 @@ exports[`The identification section renders the IdentificationSections component
               </div>
             </div>
           </span>
-        </span>
-      </div>
-      <div
-        className="table expand"
-      >
-        <span
-          aria-live="polite"
-          className="messages error-messages"
-          role="alert"
-        >
-          <div
-            aria-live="polite"
-            className="message error"
-            role="alert"
-          >
-            <i
-              aria-hidden="true"
-              className="fa fa-exclamation"
-            />
-            <div
-              data-i18n="error.weight.required"
-            >
-              <h5>
-                Your response is required
-              </h5>
-              
-              
-            </div>
-          </div>
         </span>
       </div>
     </div>
@@ -2602,6 +2616,37 @@ exports[`The identification section renders the IdentificationSections component
           aria-live="polite"
           className="messages help-messages"
         />
+      </div>
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages error-messages"
+          role="alert"
+        >
+          <div
+            aria-live="polite"
+            className="message error usa-alert usa-alert-error"
+            role="alert"
+          >
+            <div
+              className="usa-alert-body"
+            >
+              <div
+                data-i18n="error.required"
+              >
+                <h5
+                  className="usa-alert-heading"
+                >
+                  Your response is required
+                </h5>
+                
+                
+              </div>
+            </div>
+          </div>
+        </span>
       </div>
       <div
         className="table"
@@ -3219,35 +3264,6 @@ exports[`The identification section renders the IdentificationSections component
           </span>
         </span>
       </div>
-      <div
-        className="table expand"
-      >
-        <span
-          aria-live="polite"
-          className="messages error-messages"
-          role="alert"
-        >
-          <div
-            aria-live="polite"
-            className="message error"
-            role="alert"
-          >
-            <i
-              aria-hidden="true"
-              className="fa fa-exclamation"
-            />
-            <div
-              data-i18n="error.required"
-            >
-              <h5>
-                Your response is required
-              </h5>
-              
-              
-            </div>
-          </div>
-        </span>
-      </div>
     </div>
     <div
       aria-label="Eye color"
@@ -3299,6 +3315,37 @@ exports[`The identification section renders the IdentificationSections component
           aria-live="polite"
           className="messages help-messages"
         />
+      </div>
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages error-messages"
+          role="alert"
+        >
+          <div
+            aria-live="polite"
+            className="message error usa-alert usa-alert-error"
+            role="alert"
+          >
+            <div
+              className="usa-alert-body"
+            >
+              <div
+                data-i18n="error.required"
+              >
+                <h5
+                  className="usa-alert-heading"
+                >
+                  Your response is required
+                </h5>
+                
+                
+              </div>
+            </div>
+          </div>
+        </span>
       </div>
       <div
         className="table"
@@ -3734,35 +3781,6 @@ exports[`The identification section renders the IdentificationSections component
           </span>
         </span>
       </div>
-      <div
-        className="table expand"
-      >
-        <span
-          aria-live="polite"
-          className="messages error-messages"
-          role="alert"
-        >
-          <div
-            aria-live="polite"
-            className="message error"
-            role="alert"
-          >
-            <i
-              aria-hidden="true"
-              className="fa fa-exclamation"
-            />
-            <div
-              data-i18n="error.required"
-            >
-              <h5>
-                Your response is required
-              </h5>
-              
-              
-            </div>
-          </div>
-        </span>
-      </div>
     </div>
     <div
       aria-label="Select your sex"
@@ -3814,6 +3832,37 @@ exports[`The identification section renders the IdentificationSections component
           aria-live="polite"
           className="messages help-messages"
         />
+      </div>
+      <div
+        className="table expand"
+      >
+        <span
+          aria-live="polite"
+          className="messages error-messages"
+          role="alert"
+        >
+          <div
+            aria-live="polite"
+            className="message error usa-alert usa-alert-error"
+            role="alert"
+          >
+            <div
+              className="usa-alert-body"
+            >
+              <div
+                data-i18n="error.required"
+              >
+                <h5
+                  className="usa-alert-heading"
+                >
+                  Your response is required
+                </h5>
+                
+                
+              </div>
+            </div>
+          </div>
+        </span>
       </div>
       <div
         className="table"
@@ -3930,35 +3979,6 @@ exports[`The identification section renders the IdentificationSections component
           </span>
         </span>
       </div>
-      <div
-        className="table expand"
-      >
-        <span
-          aria-live="polite"
-          className="messages error-messages"
-          role="alert"
-        >
-          <div
-            aria-live="polite"
-            className="message error"
-            role="alert"
-          >
-            <i
-              aria-hidden="true"
-              className="fa fa-exclamation"
-            />
-            <div
-              data-i18n="error.required"
-            >
-              <h5>
-                Your response is required
-              </h5>
-              
-              
-            </div>
-          </div>
-        </span>
-      </div>
     </div>
   </div>
   <hr
@@ -3997,6 +4017,15 @@ exports[`The identification section renders the IdentificationSections component
       />
     </div>
     <div
+      className="table expand"
+    >
+      <span
+        aria-live="polite"
+        className="messages error-messages"
+        role="alert"
+      />
+    </div>
+    <div
       className="table"
     >
       <span
@@ -4030,15 +4059,6 @@ exports[`The identification section renders the IdentificationSections component
           </div>
         </span>
       </span>
-    </div>
-    <div
-      className="table expand"
-    >
-      <span
-        aria-live="polite"
-        className="messages error-messages"
-        role="alert"
-      />
     </div>
   </div>
 </div>

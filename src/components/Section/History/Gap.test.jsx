@@ -91,7 +91,7 @@ describe('The gap component', () => {
       }
     }
     const component = mount(<Gap {...expected} />)
-    expect(component.find('h3').text()).toEqual('Employment gap')
+    expect(component.find('h5').text()).toEqual('Employment gap - ')
     expect(component.find('button').text()).toEqual('Add an employer')
     expect(component.find('p').text()).toEqual(
       'There is a gap in your employment. The entire 10 year period must be covered with no gaps.'
@@ -116,7 +116,7 @@ describe('The gap component', () => {
       }
     }
     const component = mount(<Gap {...expected} />)
-    expect(component.find('h3').text()).toEqual('Residence gap')
+    expect(component.find('h5').text()).toEqual('Residence gap - ')
     expect(component.find('button').text()).toEqual('Add an address')
     expect(component.find('p').text()).toEqual(
       'There is a gap in your residence history. The entire 10 year period must be covered with no gaps'
