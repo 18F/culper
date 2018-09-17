@@ -5877,24 +5877,16 @@
     "Contacts": {
       "type": "identification.contacts",
       "props": {
-        "Emails": {
-          "type": "collection",
+        "HomeEmail": {
+          "type": "email",
           "props": {
-            "branch": {
-              "type": ""
-            },
-            "items": [
-              {
-                "Item": {
-                  "Email": {
-                    "type": "email",
-                    "props": {
-                      "value": "rgf@gmaol.com"
-                    }
-                  }
-                }
-              }
-            ]
+            "value": "rgf@gmaol.com"
+          }
+        },
+        "WorkEmail": {
+          "type": "email",
+          "props": {
+            "value": ""
           }
         },
         "PhoneNumbers": {

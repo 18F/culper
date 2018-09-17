@@ -2648,24 +2648,16 @@
     "Contacts": {
       "type": "identification.contacts",
       "props": {
-        "Emails": {
-          "type": "collection",
+        "HomeEmail": {
+          "type": "email",
           "props": {
-            "branch": {
-              "type": ""
-            },
-            "items": [
-              {
-                "Item": {
-                  "Email": {
-                    "type": "email",
-                    "props": {
-                      "value": "email@email.com"
-                    }
-                  }
-                }
-              }
-            ]
+            "value": "email@email.com"
+          }
+        },
+        "WorkEmail": {
+          "type": "email",
+          "props": {
+            "value": ""
           }
         },
         "PhoneNumbers": {

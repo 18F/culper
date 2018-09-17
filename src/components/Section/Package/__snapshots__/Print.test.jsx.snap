@@ -1336,34 +1336,149 @@ exports[`The print section renders properly 1`] = `
             </div>
           </div>
           <div
-            className=" email-collection"
+            aria-label="Home email address"
+            className="field"
+            data-uuid="field-MOCK-GUID"
           >
-            <div>
-              <div
-                className="accordion"
+            <a
+              aria-hidden="true"
+              className="anchor"
+              id="field-MOCK-GUID"
+              name="field-MOCK-GUID"
+            />
+            <label
+              className="title label"
+            >
+              Home email address
+            </label>
+            <span
+              className="icon"
+            />
+            <div
+              className="table expand"
+            >
+              <span
+                aria-live="polite"
+                className="messages help-messages"
+              />
+            </div>
+            <div
+              className="table"
+            >
+              <span
+                className="content"
               >
-                <strong
-                  className="aria-description"
+                <span
+                  className="component"
                 >
-                  Summary of email addresses
-                </strong>
-                <div
-                  className="items"
-                />
-                <div
-                  className="append-button"
-                >
-                  <button
-                    className="add usa-button-outline"
-                    onClick={[Function]}
+                  <div
+                    className="email email-home"
                   >
-                    Add another email
-                    <i
-                      className="fa fa-plus-circle"
+                    <input
+                      aria-describedby="HomeEmail-error"
+                      aria-label={null}
+                      autoCapitalize={false}
+                      autoComplete={true}
+                      autoCorrect={false}
+                      className=""
+                      id="HomeEmail-MOCK-GUID"
+                      maxLength={255}
+                      name="HomeEmail"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      pattern={/\\^\\(\\[A-z0-9_\\.-\\]\\+\\)@\\(\\[A-z0-9\\.-\\]\\+\\)\\\\\\.\\+\\(\\[A-z\\.\\]\\{2,63\\}\\)\\$/}
+                      placeholder="Enter an email address"
+                      spellCheck={false}
+                      type="text"
+                      value=""
                     />
-                  </button>
-                </div>
-              </div>
+                  </div>
+                </span>
+              </span>
+            </div>
+            <div
+              className="table expand"
+            >
+              <span
+                aria-live="polite"
+                className="messages error-messages"
+                role="alert"
+              />
+            </div>
+          </div>
+          <div
+            aria-label="Work email address"
+            className="field"
+            data-uuid="field-MOCK-GUID"
+          >
+            <a
+              aria-hidden="true"
+              className="anchor"
+              id="field-MOCK-GUID"
+              name="field-MOCK-GUID"
+            />
+            <label
+              className="title label"
+            >
+              Work email address
+            </label>
+            <span
+              className="icon"
+            />
+            <div
+              className="table expand"
+            >
+              <span
+                aria-live="polite"
+                className="messages help-messages"
+              />
+            </div>
+            <div
+              className="table"
+            >
+              <span
+                className="content"
+              >
+                <span
+                  className="component"
+                >
+                  <div
+                    className="email email-work"
+                  >
+                    <input
+                      aria-describedby="WorkEmail-error"
+                      aria-label={null}
+                      autoCapitalize={false}
+                      autoComplete={true}
+                      autoCorrect={false}
+                      className=""
+                      id="WorkEmail-MOCK-GUID"
+                      maxLength={255}
+                      name="WorkEmail"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      pattern={/\\^\\(\\[A-z0-9_\\.-\\]\\+\\)@\\(\\[A-z0-9\\.-\\]\\+\\)\\\\\\.\\+\\(\\[A-z\\.\\]\\{2,63\\}\\)\\$/}
+                      placeholder="Enter an email address"
+                      spellCheck={false}
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                </span>
+              </span>
+            </div>
+            <div
+              className="table expand"
+            >
+              <span
+                aria-live="polite"
+                className="messages error-messages"
+                role="alert"
+              />
             </div>
           </div>
           <div

@@ -1,19 +1,14 @@
 <ContactInformation Version="1" Type="Pooled">
-  {{- range $index, $item := .props.Emails.props.items}}
-  {{- with $Item := $item.Item}}
-  <!-- XXX See https://github.com/18F/e-QIP-prototype/issues/781 -->
-  {{if $index  | eq 0}}
+  {{- if text .props.HomeEmail -}}
   <HomeEmail>
-    <Email>{{text $Item.Email}}</Email>
+    <Email>{{text .props.HomeEmail}}</Email>
   </HomeEmail>
   {{end}}
-  {{if $index  | eq 1}}
+  {{- if text .props.WorkEmail -}}
   <WorkEmail>
-    <Email>{{text $Item.Email}}</Email>
+    <Email>{{text .props.WorkEmail}}</Email>
   </WorkEmail>
   {{end}}
-  {{- end}}
-  {{- end}}
   {{- range $index, $item := .props.PhoneNumbers.props.items}}
   {{- with $Item := $item.Item}}
   {{if $Item.Telephone.props.numberType | eq "Home"}}
