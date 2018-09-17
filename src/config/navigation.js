@@ -30,6 +30,8 @@ const navigation = [
     showNumber: false,
     exclude: true,
     subsections: [
+      /* XXX See: https://github.com/18F/e-QIP-prototype/issues/795
+                  https://github.com/18F/e-QIP-prototype/issues/787
       {
         name: 'Attachments',
         url: 'attachments',
@@ -38,6 +40,7 @@ const navigation = [
           return !env.AttachmentsEnabled()
         }
       },
+      */
       {
         name: 'Review',
         url: 'review',
