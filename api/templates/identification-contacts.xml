@@ -1,10 +1,14 @@
 <ContactInformation Version="1" Type="Pooled">
+  {{- if text .props.HomeEmail -}}
   <HomeEmail>
-    <Email>{{text .HomeEmail}}</Email>
+    <Email>{{text .props.HomeEmail}}</Email>
   </HomeEmail>
+  {{end}}
+  {{- if text .props.WorkEmail -}}
   <WorkEmail>
-    <Email>{{text .WorkEmail}}</Email>
+    <Email>{{text .props.WorkEmail}}</Email>
   </WorkEmail>
+  {{end}}
   {{- range $index, $item := .props.PhoneNumbers.props.items}}
   {{- with $Item := $item.Item}}
   {{if $Item.Telephone.props.numberType | eq "Home"}}
