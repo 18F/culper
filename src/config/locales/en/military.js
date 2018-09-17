@@ -73,6 +73,7 @@ export const military = {
       officer: 'Officer or enlisted',
       number: 'Provide your service number',
       dates: 'Provide your dates of service',
+      servicestate: 'State of service',
       discharged:
         'Were you discharged from this instance of U.S. military service, to include Reserves, or National Guard?',
       details: 'Discharge details',

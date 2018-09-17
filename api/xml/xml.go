@@ -774,6 +774,8 @@ func locationOverrideLayout(data map[string]interface{}, override string) (templ
 			return xmlTemplateWithFuncs("location-city-state.xml", data, fmap)
 		}
 		return xmlTemplate("location-city-country.xml", data)
+	case api.LayoutState:
+		return xmlTemplateWithFuncs("location-state.xml", data, fmap)
 	case api.LayoutCityState:
 		return xmlTemplateWithFuncs("location-city-state.xml", data, fmap)
 	case api.LayoutStreetCityCountry:

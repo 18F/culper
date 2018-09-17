@@ -613,6 +613,8 @@ export default class Location extends ValidationElement {
             required={this.props.required}
           />
         )
+      case Location.STATE:
+        return this.renderFields(['state'])
       case Location.CITY_STATE:
         return this.renderFields(['city', 'state'])
       case Location.STREET_CITY_COUNTRY:
@@ -795,6 +797,7 @@ Location.COUNTRY = Layouts.COUNTRY
 Location.US_CITY_STATE_INTERNATIONAL_CITY_COUNTRY =
   Layouts.US_CITY_STATE_INTERNATIONAL_CITY_COUNTRY
 Location.BIRTHPLACE_WITHOUT_COUNTY = Layouts.BIRTHPLACE_WITHOUT_COUNTY
+Location.STATE = Layouts.STATE
 Location.CITY_STATE = Layouts.CITY_STATE
 Location.STREET_CITY_COUNTRY = Layouts.STREET_CITY_COUNTRY
 Location.CITY_COUNTRY = Layouts.CITY_COUNTRY

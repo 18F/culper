@@ -7,6 +7,7 @@ import {
   RadioGroup,
   Radio,
   Svg,
+  Location,
   DateRange,
   DateControl,
   Text,
@@ -24,6 +25,7 @@ export default class MilitaryService extends ValidationElement {
     this.updateOfficer = this.updateOfficer.bind(this)
     this.updateServiceNumber = this.updateServiceNumber.bind(this)
     this.updateDates = this.updateDates.bind(this)
+    this.updateServiceState = this.updateServiceState.bind(this)
     this.updateDischarged = this.updateDischarged.bind(this)
     this.updateDischargeType = this.updateDischargeType.bind(this)
     this.updateDischargeTypeOther = this.updateDischargeTypeOther.bind(this)
@@ -38,6 +40,7 @@ export default class MilitaryService extends ValidationElement {
       Officer: this.props.Officer,
       ServiceNumber: this.props.ServiceNumber,
       Dates: this.props.Dates,
+      ServiceState: this.props.ServiceState,
       HasBeenDischarged: this.props.HasBeenDischarged,
       DischargeType: this.props.DischargeType,
       DischargeTypeOther: this.props.DischargeTypeOther,
@@ -74,6 +77,12 @@ export default class MilitaryService extends ValidationElement {
   updateDates(value) {
     this.update({
       Dates: value
+    })
+  }
+
+  updateServiceState(value) {
+    this.update({
+      ServiceState: value
     })
   }
 
@@ -310,6 +319,28 @@ export default class MilitaryService extends ValidationElement {
           />
         </Field>
 
+        <Show
+          when={
+            (this.props.Service || {}).value &&
+            ((this.props.Service || {}).value === 'AirNationalGuard' ||
+              (this.props.Service || {}).value === 'ArmyNationalGuard')
+          }>
+          <Field
+            title={i18n.t('military.history.heading.servicestate')}
+            adjustFor="label"
+            scrollIntoView={this.props.scrollIntoView}>
+            <Location
+              name="ServiceState"
+              className="service-state"
+              {...this.props.ServiceState}
+              layout={Location.STATE}
+              onUpdate={this.updateServiceState}
+              onError={this.props.onError}
+              required={this.props.required}
+            />
+          </Field>
+        </Show>
+
         <Branch
           name="has_beendischarged"
           label={i18n.t('military.history.heading.discharged')}
@@ -470,6 +501,7 @@ MilitaryService.defaultProps = {
   Officer: {},
   ServiceNumber: {},
   Dates: {},
+  ServiceState: {},
   Discharged: {},
   DischargeType: {},
   DischargeTypeOther: {},

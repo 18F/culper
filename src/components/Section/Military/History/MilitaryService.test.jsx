@@ -13,6 +13,7 @@ describe('The military service component', () => {
     expect(component.find('.officer').length).toEqual(1)
     expect(component.find('.service-number').length).toEqual(1)
     expect(component.find('.daterange').length).toEqual(1)
+    expect(component.find('.service-state').length).toEqual(0)
     expect(component.find('.discharged').length).toEqual(1)
     expect(component.find('.discharge-type').length).toEqual(0)
     expect(component.find('.discharge-type-otherex').length).toEqual(0)
@@ -42,6 +43,24 @@ describe('The military service component', () => {
     expect(component.find('.discharge-type-otherex').length).toEqual(0)
     expect(component.find('.discharge-reason').length).toEqual(0)
     expect(component.find('.discharge-date').length).toEqual(1)
+  })
+
+  it('state of service field is not shown for non-guard service', () => {
+    const expected = {
+      name: 'military-service',
+      Service: { value: 'Army' }
+    }
+    const component = mount(<MilitaryService {...expected} />)
+    expect(component.find('.service-state').length).toEqual(0)
+  })
+
+  it('state of service field is not shown for non-guard service', () => {
+    const expected = {
+      name: 'military-service',
+      Service: { value: 'ArmyNationalGuard' }
+    }
+    const component = mount(<MilitaryService {...expected} />)
+    expect(component.find('.service-state').length).toEqual(1)
   })
 
   it('selecting other for discharge type presents textbox', () => {

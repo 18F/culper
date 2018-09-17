@@ -7,9 +7,11 @@
     <Branch>{{radio $Item.Service}}</Branch>
     <Comment></Comment>
     {{monthYearDaterange $Item.Dates}}
-    <!-- <GuardLocation> -->
-    <!--   <State>DQ</State> -->
-    <!-- </GuardLocation> -->
+    {{if or (radio $Item.Service | eq "ArmyNationalGuard") (radio $Item.Service | eq "ArmyNationalGuard")}}
+    <GuardLocation>
+      <Place>{{location $Item.GuardLocation}}</Place>
+    </GuardLocation>
+    {{end}}
     {{if radio $Item.Officer | eq "NotApplicable"}}
     <Rank NotApplicable="True" />
     {{else}}

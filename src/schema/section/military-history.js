@@ -10,6 +10,7 @@ export const militaryHistory = (data = {}) => {
         Officer: form.radio(xitem.Officer),
         ServiceNumber: form.text(xitem.ServiceNumber),
         Dates: form.daterange(xitem.Dates),
+        ServiceState: form.location(xitem.ServiceNumber),
         HasBeenDischarged: form.branch(xitem.HasBeenDischarged),
         DischargeType: form.radio(xitem.DischargeType),
         DischargeTypeOther: form.text(xitem.DischargeTypeOther),

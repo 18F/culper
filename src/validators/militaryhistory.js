@@ -1,4 +1,5 @@
 import DateRangeValidator from './daterange'
+import LocationValidator from './location'
 import {
   validAccordion,
   validGenericTextfield,
@@ -41,6 +42,7 @@ export class MilitaryServiceValidator {
     this.officer = (data.Officer || {}).value
     this.serviceNumber = data.ServiceNumber || {}
     this.dates = data.Dates || {}
+    this.serviceState = data.ServiceState || {}
     this.hasBeenDischarged = (data.HasBeenDischarged || {}).value
     this.dischargeType = (data.DischargeType || {}).value
     this.dischargeTypeOther = data.DischargeTypeOther || {}
@@ -70,6 +72,10 @@ export class MilitaryServiceValidator {
 
   validDates() {
     return new DateRangeValidator(this.dates, null).isValid()
+  }
+
+  validServiceState() {
+    new LocationValidator(this.serviceState).isValid()
   }
 
   validHasBeenDischarged() {
@@ -130,6 +136,7 @@ export class MilitaryServiceValidator {
       this.validOfficer() &&
       this.validServiceNumber() &&
       this.validDates() &&
+      this.validServiceState() &&
       this.validHasBeenDischarged() &&
       this.validDischargeType() &&
       this.validDischargeTypeOther() &&
