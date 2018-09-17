@@ -35,7 +35,9 @@
                   "Country": {
                     "type": "country",
                     "props": {
-                      "value": ["Canada"]
+                      "value": [
+                        "Canada"
+                      ]
                     }
                   },
                   "Current": {
@@ -99,7 +101,9 @@
                   "Country": {
                     "type": "country",
                     "props": {
-                      "value": ["Mexico"]
+                      "value": [
+                        "Mexico"
+                      ]
                     }
                   },
                   "Current": {
@@ -187,7 +191,9 @@
                             "Country": {
                               "type": "country",
                               "props": {
-                                "value": ["Cuba"]
+                                "value": [
+                                  "Cuba"
+                                ]
                               }
                             },
                             "Dates": {
@@ -221,7 +227,9 @@
                             "Country": {
                               "type": "country",
                               "props": {
-                                "value": ["North Korea"]
+                                "value": [
+                                  "North Korea"
+                                ]
                               }
                             },
                             "Dates": {
@@ -256,7 +264,9 @@
                   "Country": {
                     "type": "country",
                     "props": {
-                      "value": ["Canada"]
+                      "value": [
+                        "Canada"
+                      ]
                     }
                   },
                   "Expiration": {
@@ -333,7 +343,9 @@
                             "Country": {
                               "type": "country",
                               "props": {
-                                "value": ["Iran"]
+                                "value": [
+                                  "Iran"
+                                ]
                               }
                             },
                             "Dates": {
@@ -367,7 +379,9 @@
                             "Country": {
                               "type": "country",
                               "props": {
-                                "value": ["Jordan"]
+                                "value": [
+                                  "Jordan"
+                                ]
                               }
                             },
                             "Dates": {
@@ -402,7 +416,9 @@
                   "Country": {
                     "type": "country",
                     "props": {
-                      "value": ["Mexico"]
+                      "value": [
+                        "Mexico"
+                      ]
                     }
                   },
                   "Expiration": {
@@ -1285,7 +1301,9 @@
                   "Infractions": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": ["Judgement"]
+                      "values": [
+                        "Judgement"
+                      ]
                     }
                   },
                   "Name": {
@@ -1303,8 +1321,7 @@
                   "Reason": {
                     "type": "textarea",
                     "props": {
-                      "value":
-                        "Didn't return videos before the store closed down."
+                      "value": "Didn't return videos before the store closed down."
                     }
                   },
                   "Resolved": {
@@ -1385,7 +1402,9 @@
                   "Infractions": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": ["Federal"]
+                      "values": [
+                        "Federal"
+                      ]
                     }
                   },
                   "Name": {
@@ -1607,7 +1626,9 @@
                   "Infractions": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": ["Collections"]
+                      "values": [
+                        "Collections"
+                      ]
                     }
                   },
                   "Name": {
@@ -1689,7 +1710,9 @@
                   "Infractions": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": ["Repossession"]
+                      "values": [
+                        "Repossession"
+                      ]
                     }
                   },
                   "Name": {
@@ -1940,7 +1963,9 @@
                   "Country": {
                     "type": "country",
                     "props": {
-                      "value": ["Japan"]
+                      "value": [
+                        "Japan"
+                      ]
                     }
                   },
                   "Dates": {
@@ -2006,7 +2031,9 @@
                   "Country": {
                     "type": "country",
                     "props": {
-                      "value": ["Germany"]
+                      "value": [
+                        "Germany"
+                      ]
                     }
                   },
                   "Dates": {
@@ -2264,7 +2291,10 @@
                   "InterestTypes": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": ["Spouse", "Yourself"]
+                      "values": [
+                        "Spouse",
+                        "Yourself"
+                      ]
                     }
                   },
                   "OneTimeBenefit": {
@@ -2312,7 +2342,9 @@
                       "Country": {
                         "type": "country",
                         "props": {
-                          "value": ["Canada"]
+                          "value": [
+                            "Canada"
+                          ]
                         }
                       },
                       "Value": {
@@ -2540,7 +2572,9 @@
                   "InterestTypes": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": ["Cohabitant"]
+                      "values": [
+                        "Cohabitant"
+                      ]
                     }
                   },
                   "OneTimeBenefit": {
@@ -2588,7 +2622,9 @@
                       "Country": {
                         "type": "country",
                         "props": {
-                          "value": ["Canada"]
+                          "value": [
+                            "Canada"
+                          ]
                         }
                       },
                       "Value": {
@@ -2695,8 +2731,7 @@
                                 "Explanation": {
                                   "type": "textarea",
                                   "props": {
-                                    "value":
-                                      "I met Joe Brown, researcher at University of Waterloo. "
+                                    "value": "I met Joe Brown, researcher at University of Waterloo. "
                                   }
                                 },
                                 "Has": {
@@ -2712,8 +2747,7 @@
                                 "Explanation": {
                                   "type": "textarea",
                                   "props": {
-                                    "value":
-                                      "I met Cindy Hartnell, researcher at UVic."
+                                    "value": "I met Cindy Hartnell, researcher at UVic."
                                   }
                                 },
                                 "Has": {
@@ -2748,7 +2782,9 @@
                   "Country": {
                     "type": "country",
                     "props": {
-                      "value": ["Canada"]
+                      "value": [
+                        "Canada"
+                      ]
                     }
                   },
                   "Dates": {
@@ -2837,7 +2873,9 @@
                   "Country": {
                     "type": "country",
                     "props": {
-                      "value": ["United Kingdom"]
+                      "value": [
+                        "United Kingdom"
+                      ]
                     }
                   },
                   "Dates": {
@@ -2928,7 +2966,9 @@
                   "Governments": {
                     "type": "country",
                     "props": {
-                      "value": ["Canada"]
+                      "value": [
+                        "Canada"
+                      ]
                     }
                   },
                   "Location": {
@@ -3092,7 +3132,9 @@
                   "Governments": {
                     "type": "country",
                     "props": {
-                      "value": ["Mexico"]
+                      "value": [
+                        "Mexico"
+                      ]
                     }
                   },
                   "Location": {
@@ -3280,7 +3322,9 @@
                   "Citizenship": {
                     "type": "country",
                     "props": {
-                      "value": ["Greece"]
+                      "value": [
+                        "Greece"
+                      ]
                     }
                   },
                   "Employer": {
@@ -3352,7 +3396,9 @@
                   "Methods": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": ["In person"]
+                      "values": [
+                        "In person"
+                      ]
                     }
                   },
                   "MethodsExplanation": {
@@ -3390,7 +3436,9 @@
                   "Relationship": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": ["Professional"]
+                      "values": [
+                        "Professional"
+                      ]
                     }
                   },
                   "RelationshipExplanation": {
@@ -3490,7 +3538,9 @@
                   "Citizenship": {
                     "type": "country",
                     "props": {
-                      "value": ["France"]
+                      "value": [
+                        "France"
+                      ]
                     }
                   },
                   "Employer": {
@@ -3560,7 +3610,10 @@
                   "Methods": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": ["In person", "Electronic"]
+                      "values": [
+                        "In person",
+                        "Electronic"
+                      ]
                     }
                   },
                   "MethodsExplanation": {
@@ -3598,7 +3651,9 @@
                   "Relationship": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": ["Personal"]
+                      "values": [
+                        "Personal"
+                      ]
                     }
                   },
                   "RelationshipExplanation": {
@@ -3670,7 +3725,9 @@
                                 "Countries": {
                                   "type": "country",
                                   "props": {
-                                    "value": ["United States"]
+                                    "value": [
+                                      "United States"
+                                    ]
                                   }
                                 },
                                 "Has": {
@@ -3717,7 +3774,9 @@
                                 "Countries": {
                                   "type": "country",
                                   "props": {
-                                    "value": ["United States"]
+                                    "value": [
+                                      "United States"
+                                    ]
                                   }
                                 },
                                 "Has": {
@@ -3828,7 +3887,9 @@
                   "InterestTypes": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": ["Yourself"]
+                      "values": [
+                        "Yourself"
+                      ]
                     }
                   },
                   "Relinquished": {
@@ -3961,7 +4022,9 @@
                   "InterestTypes": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": ["Yourself"]
+                      "values": [
+                        "Yourself"
+                      ]
                     }
                   },
                   "Relinquished": {
@@ -4168,7 +4231,9 @@
                   "Country": {
                     "type": "country",
                     "props": {
-                      "value": ["United Kingdom"]
+                      "value": [
+                        "United Kingdom"
+                      ]
                     }
                   },
                   "Date": {
@@ -4207,14 +4272,15 @@
                   "Circumstances": {
                     "type": "textarea",
                     "props": {
-                      "value":
-                        "There was a garbage strike and asked for my help to clean up the streets."
+                      "value": "There was a garbage strike and asked for my help to clean up the streets."
                     }
                   },
                   "Country": {
                     "type": "country",
                     "props": {
-                      "value": ["Italy"]
+                      "value": [
+                        "Italy"
+                      ]
                     }
                   },
                   "Date": {
@@ -4301,7 +4367,9 @@
                                 "Countries": {
                                   "type": "country",
                                   "props": {
-                                    "value": ["United Kingdom"]
+                                    "value": [
+                                      "United Kingdom"
+                                    ]
                                   }
                                 },
                                 "Has": {
@@ -4346,7 +4414,9 @@
                                 "Countries": {
                                   "type": "country",
                                   "props": {
-                                    "value": ["United Kingdom"]
+                                    "value": [
+                                      "United Kingdom"
+                                    ]
                                   }
                                 },
                                 "Has": {
@@ -4463,7 +4533,9 @@
                   "InterestTypes": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": ["Yourself"]
+                      "values": [
+                        "Yourself"
+                      ]
                     }
                   },
                   "Lastname": {
@@ -4614,7 +4686,9 @@
                   "InterestTypes": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": ["Yourself"]
+                      "values": [
+                        "Yourself"
+                      ]
                     }
                   },
                   "Lastname": {
@@ -4748,7 +4822,9 @@
                   "Country": {
                     "type": "country",
                     "props": {
-                      "value": ["Canada"]
+                      "value": [
+                        "Canada"
+                      ]
                     }
                   },
                   "Dates": {
@@ -4800,7 +4876,9 @@
                   "Country": {
                     "type": "country",
                     "props": {
-                      "value": ["Canada"]
+                      "value": [
+                        "Canada"
+                      ]
                     }
                   },
                   "Dates": {
@@ -4915,7 +4993,9 @@
                                 "Countries": {
                                   "type": "country",
                                   "props": {
-                                    "value": ["Canada"]
+                                    "value": [
+                                      "Canada"
+                                    ]
                                   }
                                 },
                                 "Has": {
@@ -4960,7 +5040,9 @@
                                 "Countries": {
                                   "type": "country",
                                   "props": {
-                                    "value": ["Canada"]
+                                    "value": [
+                                      "Canada"
+                                    ]
                                   }
                                 },
                                 "Has": {
@@ -5059,7 +5141,9 @@
                   "InterestTypes": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": ["Yourself"]
+                      "values": [
+                        "Yourself"
+                      ]
                     }
                   },
                   "RealEstateType": {
@@ -5195,7 +5279,9 @@
                   "InterestTypes": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": ["Yourself"]
+                      "values": [
+                        "Yourself"
+                      ]
                     }
                   },
                   "RealEstateType": {
@@ -5296,7 +5382,9 @@
                   "Citizenship": {
                     "type": "country",
                     "props": {
-                      "value": ["Canada"]
+                      "value": [
+                        "Canada"
+                      ]
                     }
                   },
                   "Dates": {
@@ -5429,7 +5517,9 @@
                   "Citizenship": {
                     "type": "country",
                     "props": {
-                      "value": ["Canada"]
+                      "value": [
+                        "Canada"
+                      ]
                     }
                   },
                   "Dates": {
@@ -5576,7 +5666,9 @@
                   "Citizenship": {
                     "type": "country",
                     "props": {
-                      "value": ["Zimbabwe"]
+                      "value": [
+                        "Zimbabwe"
+                      ]
                     }
                   },
                   "Frequency": {
@@ -5635,7 +5727,9 @@
                   "Citizenship": {
                     "type": "country",
                     "props": {
-                      "value": ["Germany"]
+                      "value": [
+                        "Germany"
+                      ]
                     }
                   },
                   "Frequency": {
@@ -5725,7 +5819,9 @@
                   "Country": {
                     "type": "country",
                     "props": {
-                      "value": ["Greece"]
+                      "value": [
+                        "Greece"
+                      ]
                     }
                   },
                   "Dates": {
@@ -5755,7 +5851,9 @@
                   "Days": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": ["6-10"]
+                      "values": [
+                        "6-10"
+                      ]
                     }
                   },
                   "Encounter": {
@@ -5779,14 +5877,15 @@
                   "InterestExplanation": {
                     "type": "textarea",
                     "props": {
-                      "value":
-                        "I was contacted by someone interested in my job."
+                      "value": "I was contacted by someone interested in my job."
                     }
                   },
                   "Purpose": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": ["Tourism"]
+                      "values": [
+                        "Tourism"
+                      ]
                     }
                   },
                   "Questioned": {
@@ -5810,8 +5909,7 @@
                   "SensitiveExplanation": {
                     "type": "textarea",
                     "props": {
-                      "value":
-                        "I was contacted by someone who wanted FOUO information."
+                      "value": "I was contacted by someone who wanted FOUO information."
                     }
                   },
                   "Threatened": {
@@ -5857,7 +5955,9 @@
                   "Country": {
                     "type": "country",
                     "props": {
-                      "value": ["Vatican City"]
+                      "value": [
+                        "Vatican City"
+                      ]
                     }
                   },
                   "Dates": {
@@ -5887,7 +5987,9 @@
                   "Days": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": ["6-10"]
+                      "values": [
+                        "6-10"
+                      ]
                     }
                   },
                   "Encounter": {
@@ -5917,7 +6019,9 @@
                   "Purpose": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": ["Volunteer"]
+                      "values": [
+                        "Volunteer"
+                      ]
                     }
                   },
                   "Questioned": {
@@ -6002,7 +6106,9 @@
                   "Citizenship": {
                     "type": "country",
                     "props": {
-                      "value": ["Canada"]
+                      "value": [
+                        "Canada"
+                      ]
                     }
                   },
                   "Compensation": {
@@ -6101,7 +6207,9 @@
                   "Citizenship": {
                     "type": "country",
                     "props": {
-                      "value": ["United Kingdom"]
+                      "value": [
+                        "United Kingdom"
+                      ]
                     }
                   },
                   "Compensation": {
@@ -6209,7 +6317,9 @@
                   "Country": {
                     "type": "country",
                     "props": {
-                      "value": ["Canada"]
+                      "value": [
+                        "Canada"
+                      ]
                     }
                   },
                   "Date": {
@@ -6240,7 +6350,9 @@
                   "Country": {
                     "type": "country",
                     "props": {
-                      "value": ["Japan"]
+                      "value": [
+                        "Japan"
+                      ]
                     }
                   },
                   "Date": {
@@ -11110,7 +11222,9 @@
                   "ReferenceRelationship": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": ["Neighbor"]
+                      "values": [
+                        "Neighbor"
+                      ]
                     }
                   },
                   "ReferenceRelationshipComments": {
@@ -13686,8 +13800,7 @@
                   "Incident": {
                     "type": "textarea",
                     "props": {
-                      "value":
-                        "Denial of service attack on Department of Energy"
+                      "value": "Denial of service attack on Department of Energy"
                     }
                   },
                   "Location": {
@@ -13936,7 +14049,9 @@
                   "Country": {
                     "type": "country",
                     "props": {
-                      "value": ["Canada"]
+                      "value": [
+                        "Canada"
+                      ]
                     }
                   },
                   "Dates": {
@@ -14170,7 +14285,9 @@
                   "Country": {
                     "type": "country",
                     "props": {
-                      "value": ["Canada"]
+                      "value": [
+                        "Canada"
+                      ]
                     }
                   },
                   "Dates": {
@@ -15728,7 +15845,10 @@
                   "Citizenship": {
                     "type": "country",
                     "props": {
-                      "value": ["Canada", "United States"]
+                      "value": [
+                        "Canada",
+                        "United States"
+                      ]
                     }
                   },
                   "CohabitationBegan": {
@@ -15891,7 +16011,9 @@
                   "Citizenship": {
                     "type": "country",
                     "props": {
-                      "value": ["United States"]
+                      "value": [
+                        "United States"
+                      ]
                     }
                   },
                   "CohabitationBegan": {
@@ -16157,7 +16279,9 @@
             "Citizenship": {
               "type": "country",
               "props": {
-                "value": ["United States"]
+                "value": [
+                  "United States"
+                ]
               }
             },
             "DateSeparated": {
@@ -16503,7 +16627,9 @@
                   "Citizenship": {
                     "type": "country",
                     "props": {
-                      "value": ["United States"]
+                      "value": [
+                        "United States"
+                      ]
                     }
                   },
                   "DateDivorced": {
@@ -16695,7 +16821,9 @@
                   "Relationship": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": ["Neighbor"]
+                      "values": [
+                        "Neighbor"
+                      ]
                     }
                   },
                   "RelationshipOther": {
@@ -16806,7 +16934,9 @@
                   "Relationship": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": ["Friend"]
+                      "values": [
+                        "Friend"
+                      ]
                     }
                   },
                   "RelationshipOther": {
@@ -16917,7 +17047,9 @@
                   "Relationship": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": ["Neighbor"]
+                      "values": [
+                        "Neighbor"
+                      ]
                     }
                   },
                   "RelationshipOther": {
@@ -17050,7 +17182,9 @@
                   "Citizenship": {
                     "type": "country",
                     "props": {
-                      "value": ["United States"]
+                      "value": [
+                        "United States"
+                      ]
                     }
                   },
                   "CitizenshipDocumentation": {
@@ -17332,7 +17466,9 @@
                   "Citizenship": {
                     "type": "country",
                     "props": {
-                      "value": ["United Kingdom"]
+                      "value": [
+                        "United Kingdom"
+                      ]
                     }
                   },
                   "CitizenshipDocumentation": {
@@ -17479,7 +17615,9 @@
                   "Methods": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": ["Telephone"]
+                      "values": [
+                        "Telephone"
+                      ]
                     }
                   },
                   "MethodsComments": {
@@ -17620,7 +17758,10 @@
                   "Citizenship": {
                     "type": "country",
                     "props": {
-                      "value": ["United Kingdom", "United States"]
+                      "value": [
+                        "United Kingdom",
+                        "United States"
+                      ]
                     }
                   },
                   "CitizenshipDocumentation": {
@@ -17850,7 +17991,9 @@
                   "Citizenship": {
                     "type": "country",
                     "props": {
-                      "value": ["United States"]
+                      "value": [
+                        "United States"
+                      ]
                     }
                   },
                   "CitizenshipDocumentation": {
@@ -18135,7 +18278,9 @@
                   "Citizenship": {
                     "type": "country",
                     "props": {
-                      "value": ["United States"]
+                      "value": [
+                        "United States"
+                      ]
                     }
                   },
                   "CitizenshipDocumentation": {
@@ -18354,7 +18499,9 @@
                   "Citizenship": {
                     "type": "country",
                     "props": {
-                      "value": ["United States"]
+                      "value": [
+                        "United States"
+                      ]
                     }
                   },
                   "CitizenshipDocumentation": {
@@ -18573,7 +18720,9 @@
                   "Citizenship": {
                     "type": "country",
                     "props": {
-                      "value": ["United States"]
+                      "value": [
+                        "United States"
+                      ]
                     }
                   },
                   "CitizenshipDocumentation": {
@@ -19472,7 +19621,9 @@
                   "Seekers": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": ["MentalHealthProfessional"]
+                      "values": [
+                        "MentalHealthProfessional"
+                      ]
                     }
                   },
                   "TreatmentProviderAddress": {
@@ -19564,7 +19715,9 @@
                   "Seekers": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": ["CourtOfficial"]
+                      "values": [
+                        "CourtOfficial"
+                      ]
                     }
                   },
                   "TreatmentProviderAddress": {
@@ -19651,7 +19804,9 @@
                   "OrderedBy": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": ["Employer"]
+                      "values": [
+                        "Employer"
+                      ]
                     }
                   },
                   "TreatmentCompleted": {
@@ -19749,7 +19904,9 @@
                   "OrderedBy": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": ["MedicalProfessional"]
+                      "values": [
+                        "MedicalProfessional"
+                      ]
                     }
                   },
                   "TreatmentCompleted": {

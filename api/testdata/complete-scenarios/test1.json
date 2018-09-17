@@ -1454,7 +1454,9 @@
                   "ReferenceRelationship": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": ["Neighbor"]
+                      "values": [
+                        "Neighbor"
+                      ]
                     }
                   },
                   "ReferenceRelationshipComments": {
@@ -2747,7 +2749,9 @@
                   "Relationship": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": ["Friend"]
+                      "values": [
+                        "Friend"
+                      ]
                     }
                   },
                   "RelationshipOther": {
@@ -2858,7 +2862,9 @@
                   "Relationship": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": ["Neighbor"]
+                      "values": [
+                        "Neighbor"
+                      ]
                     }
                   },
                   "RelationshipOther": {
@@ -2969,7 +2975,9 @@
                   "Relationship": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": ["Neighbor"]
+                      "values": [
+                        "Neighbor"
+                      ]
                     }
                   },
                   "RelationshipOther": {
@@ -3097,7 +3105,9 @@
                   "Citizenship": {
                     "type": "country",
                     "props": {
-                      "value": ["United States"]
+                      "value": [
+                        "United States"
+                      ]
                     }
                   },
                   "CitizenshipDocumentation": {
@@ -3377,7 +3387,9 @@
                   "Citizenship": {
                     "type": "country",
                     "props": {
-                      "value": ["United States"]
+                      "value": [
+                        "United States"
+                      ]
                     }
                   },
                   "CitizenshipDocumentation": {
