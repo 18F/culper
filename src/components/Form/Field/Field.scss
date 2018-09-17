@@ -4,6 +4,7 @@
 .field {
   border-left: 0.75rem solid transparent;
   margin-left: -0.75rem;
+  margin-bottom: 3rem;
 
   &.with-comments {
     border-left: 0.75rem solid $eapp-grey-light;
@@ -13,8 +14,8 @@
 
   > .anchor {
     display: block;
-    margin-top: -7rem;
-    padding-top: 7rem;
+    margin-top: -3rem;
+    padding-top: 3rem;
   }
 
   > .title {

@@ -15,20 +15,10 @@
   }
 
   .eapp-structure-wrap .eapp-structure-row .eapp-structure-right {
-    padding: 0;
-
-    > .title,
-    .eapp-form {
-      width: 62%;
-      margin-left: 18rem;
-      margin-right: 18rem;
-    }
-
     // Saved indicator
     .saved-indicator {
       position: static;
       width: 100%;
-      z-index: -1;
     }
   }
 }
@@ -43,28 +33,7 @@
     margin: 0;
   }
 
-  .section-view {
-    max-width: 100% !important;
-
-    .top-btns,
-    .bottom-btns {
-      margin: 4.6rem 0 !important;
-      padding: 0 !important;
-    }
-  }
-
   .eapp-status-icon {
     margin-right: 1rem;
-  }
-
-  .eapp-structure-wrap .eapp-structure-row .eapp-structure-right {
-    > .title,
-    .eapp-form {
-      width: 100%;
-      margin-left: 0;
-      margin-right: 0;
-      padding-left: 1rem;
-      padding-right: 1rem;
-    }
   }
 }
