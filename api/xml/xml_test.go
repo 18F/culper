@@ -59,7 +59,6 @@ func TestPackage(t *testing.T) {
 		{Schema: "relatives-and-associates.xml", Data: r("relationships-relatives.json")},
 		{Schema: "spouse-cohabitants.xml", Data: r("relationships-status-cohabitant.json")},
 		{Schema: "spouse-former.xml", Data: r("spouse-former.json")},
-		{Schema: "spouse-have-former.xml", Data: r("spouse-former.json")},
 		{Schema: "spouse-marital-status.xml", Data: r("spouse-marital-status.json")},
 		{Schema: "spouse-present-marriage.xml", Data: r("spouse-present-marriage.json")},
 		{Schema: "personal-references.xml", Data: r("relationships-people.json")},

@@ -667,8 +667,63 @@
                 </Cohabitant>
                 <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
               </Cohabitants>
+              <FormerSpouses>
+                <FormerSpouse ID="1">
+                  <Birth>
+                    <Date>
+                      <Month>01</Month>
+                      <Day>01</Day>
+                      <Year>1990</Year>
+                    </Date>
+                    <Place>
+                      <City>Monterey</City>
+                      <State>CA</State>
+                      <Country>United States</Country>
+                    </Place>
+                  </Birth>
+                  <CountriesOfCitizenship>
+                    <Citizenship ID="1">
+                      <Country>United States</Country>
+                    </Citizenship>
+                  </CountriesOfCitizenship>
+                  <Deceased>
+                    <Answer>IDontKnow</Answer>
+                  </Deceased>
+                  <DivorcedAnnulledComment2/>
+                  <LegalName>
+                    <Last>Xan</Last>
+                    <First>Eileen</First>
+                    <Middle>Selena</Middle>
+                  </LegalName>
+                  <Marriage>
+                    <Date>
+                      <Month>01</Month>
+                      <Day>02</Day>
+                      <Year>2002</Year>
+                    </Date>
+                    <Place>
+                      <City>Monterey</City>
+                      <State>CA</State>
+                    </Place>
+                  </Marriage>
+                  <Separation Type="Divorced">
+                    <Date>
+                      <Month>01</Month>
+                      <Day>02</Day>
+                      <Year>2003</Year>
+                    </Date>
+                    <DivorceRecordLocation>
+                      <Place>
+                        <City>Unknown</City>
+                        <State>CA</State>
+                      </Place>
+                    </DivorceRecordLocation>
+                  </Separation>
+                  <Telephone DoNotKnow="True"/>
+                </FormerSpouse>
+              </FormerSpouses>
               <HaveFormerSpouse>
-                <Answer>No</Answer>
+                <Answer>Yes</Answer>
               </HaveFormerSpouse>
               <MaritalStatus>Married</MaritalStatus>
               <PresentMarriage>
