@@ -16,7 +16,7 @@
         <Charge ID="1">
           <Charge>{{text $Item.CourtCharge}}</Charge>
           <Date Type="{{dateEstimated $Item.Date}}">
-            {{monthYear $Item.Date}}
+            {{monthYear $Item.CourtDate}}
           </Date>
           <Outcome>{{text $Item.CourtOutcome}}</Outcome>
           <Type>{{text $Item.ChargeType}}</Type>
