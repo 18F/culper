@@ -80,11 +80,6 @@ export default class CitizenshipItem extends ValidationElement {
   }
 
   render() {
-    const d = this.props.Dates || {}
-    const to = d.to || {}
-    const from = d.from || {}
-    const showCurrentQuestion = to.date && from.date && !d.present
-
     return (
       <div className="citizenship-item">
         <Field
@@ -163,37 +158,33 @@ export default class CitizenshipItem extends ValidationElement {
           />
         </Field>
 
-        <Show when={showCurrentQuestion}>
-          <div>
-            <Branch
-              name="Current"
-              label={i18n.t('citizenship.multiple.heading.citizenship.current')}
-              labelSize="h3"
-              className="citizenship-current no-margin-bottom"
-              {...this.props.Current}
-              onUpdate={this.updateCurrent}
-              onError={this.props.onError}
-              required={this.props.required}
-              scrollIntoView={this.props.scrollIntoView}
-            />
+        <Branch
+          name="Current"
+          label={i18n.t('citizenship.multiple.heading.citizenship.current')}
+          labelSize="h3"
+          className="citizenship-current no-margin-bottom"
+          {...this.props.Current}
+          onUpdate={this.updateCurrent}
+          onError={this.props.onError}
+          required={this.props.required}
+          scrollIntoView={this.props.scrollIntoView}
+        />
 
-            <Field
-              title={i18n.t(
-                'citizenship.multiple.heading.citizenship.currentexplanation'
-              )}
-              titleSize="label"
-              scrollIntoView={this.props.scrollIntoView}>
-              <Textarea
-                name="CurrentExplanation"
-                {...this.props.CurrentExplanation}
-                className="citizenship-current-explanation"
-                onUpdate={this.updateCurrentExplanation}
-                onError={this.props.onError}
-                required={this.props.required}
-              />
-            </Field>
-          </div>
-        </Show>
+        <Field
+          title={i18n.t(
+            'citizenship.multiple.heading.citizenship.currentexplanation'
+          )}
+          titleSize="label"
+          scrollIntoView={this.props.scrollIntoView}>
+          <Textarea
+            name="CurrentExplanation"
+            {...this.props.CurrentExplanation}
+            className="citizenship-current-explanation"
+            onUpdate={this.updateCurrentExplanation}
+            onError={this.props.onError}
+            required={this.props.required}
+          />
+        </Field>
       </div>
     )
   }
