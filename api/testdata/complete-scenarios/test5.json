@@ -16597,11 +16597,9 @@
                   "Address": {
                     "type": "location",
                     "props": {
-                      "layout": "Address",
-                      "street": "758 1st St.",
+                      "layout": "Birthplace without County",
                       "city": "Monterey",
                       "state": "CA",
-                      "zipcode": "93940",
                       "country": "United States"
                     }
                   },

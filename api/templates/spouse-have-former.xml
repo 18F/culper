@@ -1,7 +1,0 @@
-<HaveFormerSpouse>
-  {{- if len .props.items | gt 0}}
-  <Answer>Yes</Answer>
-  {{else}}
-  <Answer>No</Answer>
-  {{- end}}
-</HaveFormerSpouse>

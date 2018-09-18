@@ -52,6 +52,7 @@ func (service Service) DefaultTemplate(templateName string, data map[string]inte
 		"dateEstimated":          dateEstimated,
 		"daterange":              daterange,
 		"daysInRange":            daysInRange,
+		"deceased":               deceased,
 		"degreeType":             degreeType,
 		"derivedBasis":           derivedBasis,
 		"naturalizedBasis":       naturalizedBasis,
@@ -354,6 +355,15 @@ func foreignAffiliation(str string) string {
 		"Yes":          "Yes",
 		"No":           "No",
 		"I don't know": "IDontKnow",
+	}
+	return types[str]
+}
+
+func deceased(str string) string {
+	types := map[string]string{
+		"Yes": "Yes",
+		"No":  "No",
+		"DK":  "IDontKnow",
 	}
 	return types[str]
 }

@@ -1,29 +1,30 @@
-{{- if .props.items }}
-{{- if len .props.items | gt 0}}
 <FormerSpouses>
   {{range $index, $item := .props.items}}
   {{with $Item := $item.Item}}
   <FormerSpouse ID="{{inc $index}}">
+    {{if branch $Item.Deceased | eq "No" }}
     <Address DoNotKnow="{{notApplicable $Item.DeceasedAddressNotApplicable}}">
-      {{location $Item.Address}}
+      {{location $Item.DeceasedAddress}}
     </Address>
+    {{end}}
     <Birth>
       <Date Type="{{dateEstimated $Item.Birthdate}}">
-        {{ date $Item.Birthdate }}
+        {{date $Item.Birthdate}}
       </Date>
       <Place>
-        {{ location $Item.BirthPlace }}
+        <!-- XXX Work-around for https://github.com/18F/e-QIP-prototype/issues/811 -->
+        {{locationOverrideLayout $Item.BirthPlace "Birthplace without County"}}
       </Place>
     </Birth>
     <CountriesOfCitizenship>
-      {{range $cindex, $country := $Item.Citizenship.value}}
+      {{range $cindex, $country := $Item.Citizenship.props.value}}
       <Citizenship ID="{{inc $cindex}}">
         <Country>{{$country}}</Country>
       </Citizenship>
       {{end}}
     </CountriesOfCitizenship>
     <Deceased>
-      <Answer>{{branch $Item.Deceased}}</Answer>
+      <Answer>{{radio $Item.Deceased | deceased}}</Answer>
     </Deceased>
     <DivorcedAnnulledComment></DivorcedAnnulledComment>
     <DivorcedAnnulledComment2></DivorcedAnnulledComment2>
@@ -32,25 +33,32 @@
       {{name $Item.Name}}
     </LegalName>
     <Marriage>
-      <Date Type="{{dateEstimated $Item.Birthdate}}">
-        {{date $Item.Birthdate}}
+      <Date Type="{{dateEstimated $Item.Recognized}}">
+        {{date $Item.Recognized}}
       </Date>
       <Place>
-        {{location $Item.BirthPlace}}
+        {{locationOverrideLayout $Item.Address "Birthplace without County CountriesNoUS"}}
       </Place>
     </Marriage>
-    <!-- Possible values: Divorced, Widowed, Anulled -->
+    <!-- Possible values: Divorced, Widowed, Annulled -->
     <Separation Type="{{text $Item.Status}}">
       <Date Type="{{dateEstimated $Item.DateDivorced}}">
         {{ date $Item.DateDivorced }}
       </Date>
+      {{if or (text $Item.Status | eq "Divorced") (text $Item.Status | eq "Annulled") }}
       <DivorceRecordLocation>
+        <!-- XXX Placeholder text as work-around for https://github.com/18F/e-QIP-prototype/issues/808 -->
         <Place>
-          {{location $Item.DeceasedAddress}}
+          <City>Unknown</City><State>CA</State>
         </Place>
       </DivorceRecordLocation>
+      {{end}}
     </Separation>
+    {{if telephoneNoNumber $Item.Telephone | eq "True"}}
+    <Telephone DoNotKnow="True"></Telephone>
+    {{else}}
     <Telephone>{{telephone $Item.Telephone}}</Telephone>
+    {{end}}
   </FormerSpouse>
   {{end}}
   {{end}}
@@ -61,5 +69,3 @@
   <Comment></Comment>
   {{end}}
 </FormerSpouses>
-{{end}}
-{{end}}
