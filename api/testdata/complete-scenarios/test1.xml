@@ -448,6 +448,9 @@
               </DoPossessUSPassport>
             </USPassport>
             <MilitaryHistory Version="1" Type="Pooled">
+              <Charges>
+                <Answer>No</Answer>
+              </Charges>
               <ForeignService>
                 <Answer>No</Answer>
               </ForeignService>
@@ -456,7 +459,33 @@
   
   
 </ForeignMilitaryService>
-              <Answer>No</Answer>
+              <Answer>Yes</Answer>
+              <MilitaryService>
+                <Service ID="1">
+                  <Branch>AirNationalGuard</Branch>
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>09</Month>
+                        <Year>2017</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Present"/>
+                    </To>
+                  </DateRange>
+                  <GuardLocation>
+                    <State>CA</State>
+                  </GuardLocation>
+                  <Rank>Officer</Rank>
+                  <ServiceNumber>333123654</ServiceNumber>
+                  <Status>InactiveReserve</Status>
+                  <WasDischarged>
+                    <Answer>No</Answer>
+                  </WasDischarged>
+                </Service>
+              </MilitaryService>
+              <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
             </MilitaryHistory>
             <SelectiveServiceRegistration Version="1" Type="Pooled">
               <Registered>

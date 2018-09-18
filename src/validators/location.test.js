@@ -53,6 +53,13 @@ describe('the location component', function() {
       },
       {
         data: {
+          state: 'AZ',
+          layout: Location.STATE
+        },
+        expected: true
+      },
+      {
+        data: {
           city: 'Arlington',
           state: 'VA',
           layout: Location.CITY_STATE

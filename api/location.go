@@ -14,6 +14,7 @@ const (
 	LayoutCountry                             = "Country"
 	LayoutUSCityStateInternationalCity        = "US City, State, International city"
 	LayoutUSCityStateInternationalCityCountry = "US City, State, International city country"
+	LayoutState                               = "State"
 	LayoutCityState                           = "City, State"
 	LayoutStreetCityCountry                   = "Street, City, Country"
 	LayoutCityCountry                         = "City, Country"
@@ -135,6 +136,8 @@ func (entity *Location) Valid() (bool, error) {
 		} else {
 			stack = validateFields(entity, "city", "country")
 		}
+	case LayoutState:
+		stack = validateFields(entity, "state")
 	case LayoutCityState:
 		stack = validateFields(entity, "city", "state")
 	case LayoutStreetCityCountry:

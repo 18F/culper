@@ -167,6 +167,10 @@ describe('The Address component', () => {
         selectors: ['.street', '.street2', '.city', '.state', '.zipcode']
       },
       {
+        props: { layout: Location.STATE },
+        selectors: ['.state']
+      },
+      {
         props: { layout: Location.CITY_STATE },
         selectors: ['.city', '.state']
       },
