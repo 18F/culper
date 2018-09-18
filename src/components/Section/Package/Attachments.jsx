@@ -286,15 +286,12 @@ export default class Attachments extends React.Component {
           <Show when={this.state.errorMessage}>
             <div className="field upload-error">
               <div className="table expand">
-                <span className="messages error-messages">
-                  <div className="message error">
-                    <i className="fa fa-exclamation" />
-                    <h3>
-                      {i18n.t('application.attachments.upload.error.title')}
-                    </h3>
+                <div className="usa-alert usa-alert-error" role="alert">
+                  <div className="usa-alert-body">
+                    <h5 className="usa-alert-heading">{i18n.t('application.attachments.upload.error.title')}</h5>
                     <p>{this.state.errorMessage}</p>
                   </div>
-                </span>
+                </div>
               </div>
             </div>
           </Show>

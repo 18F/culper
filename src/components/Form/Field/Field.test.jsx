@@ -17,8 +17,8 @@ describe('The field component', () => {
     }
     const component = mount(<Field {...expected} />)
     component.find('.icon .toggle').simulate('click')
-    expect(component.find('.message').length).toEqual(1)
-    expect(component.find('.message').text().length).toBeGreaterThan(0)
+    expect(component.find('.usa-alert-info').length).toEqual(1)
+    expect(component.find('.usa-alert-info').text().length).toBeGreaterThan(0)
   })
 
   it('help can toggle', () => {
@@ -27,9 +27,9 @@ describe('The field component', () => {
     }
     const component = mount(<Field {...expected} />)
     component.find('.icon .toggle').simulate('click')
-    expect(component.find('.message').length).toEqual(1)
+    expect(component.find('.usa-alert-info').length).toEqual(1)
     component.find('.icon .toggle').simulate('click')
-    expect(component.find('.message').length).toEqual(0)
+    expect(component.find('.usa-alert-info').length).toEqual(0)
   })
 
   it('help can display an error', () => {

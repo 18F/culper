@@ -1,61 +1,6 @@
 import IdentificationContactInformationValidator from './identificationcontacts'
 
 describe('Contact Information validation', function() {
-  it('should validate emails', function() {
-    const tests = [
-      {
-        state: {
-          Emails: { items: [] }
-        },
-        expected: true
-      },
-      {
-        state: {
-          Emails: {
-            items: [
-              {
-                Item: {
-                  Email: {
-                    value: 'foobar@local.dev'
-                  }
-                }
-              }
-            ]
-          }
-        },
-        expected: true
-      },
-      {
-        state: {
-          Emails: {
-            items: [
-              {
-                Item: {}
-              },
-              {
-                Item: {
-                  Email: {
-                    value: 'foobar@local.dev'
-                  }
-                }
-              }
-            ]
-          }
-        },
-        expected: true
-      }
-    ]
-
-    tests.forEach(test => {
-      expect(
-        new IdentificationContactInformationValidator(
-          test.state,
-          null
-        ).validEmails()
-      ).toBe(test.expected)
-    })
-  })
-
   it('should validate phone numbers', function() {
     const tests = [
       {
@@ -158,24 +103,59 @@ describe('Contact Information validation', function() {
     const tests = [
       {
         state: {
-          Emails: {
+          HomeEmail: {
+            value: 'foobar2@local.dev'
+          },
+          WorkEmail: {
+            value: 'foobar2@local.dev'
+          },
+          PhoneNumbers: {
             items: [
               {
                 Item: {
-                  Email: {
-                    value: 'foobar2@local.dev'
+                  Telephone: {
+                    noNumber: false,
+                    number: '7031112222',
+                    numberType: 'Home',
+                    type: 'Domestic',
+                    timeOfDay: 'Both',
+                    extension: ''
                   }
                 }
               },
               {
                 Item: {
-                  Email: {
-                    value: 'foobar2@local.dev'
+                  Telephone: {
+                    noNumber: false,
+                    number: '7031112222',
+                    numberType: 'Work',
+                    type: 'Domestic',
+                    timeOfDay: 'Both',
+                    extension: ''
                   }
                 }
               }
             ]
-          },
+          }
+        },
+        expected: true
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(
+        new IdentificationContactInformationValidator(
+          test.state,
+          null
+        ).isValid()
+      ).toBe(test.expected)
+    })
+  })
+
+  it('should validate unique phone types', function() {
+    const tests = [
+      {
+        state: {
           PhoneNumbers: {
             items: [
               {
@@ -205,6 +185,39 @@ describe('Contact Information validation', function() {
             ]
           }
         },
+        expected: false
+      },
+      {
+        state: {
+          PhoneNumbers: {
+            items: [
+              {
+                Item: {
+                  Telephone: {
+                    noNumber: false,
+                    number: '7031112222',
+                    numberType: 'Home',
+                    type: 'Domestic',
+                    timeOfDay: 'Both',
+                    extension: ''
+                  }
+                }
+              },
+              {
+                Item: {
+                  Telephone: {
+                    noNumber: false,
+                    number: '7031112222',
+                    numberType: 'Work',
+                    type: 'Domestic',
+                    timeOfDay: 'Both',
+                    extension: ''
+                  }
+                }
+              }
+            ]
+          }
+        },
         expected: true
       }
     ]
@@ -214,7 +227,7 @@ describe('Contact Information validation', function() {
         new IdentificationContactInformationValidator(
           test.state,
           null
-        ).isValid()
+        ).validPhoneTypes()
       ).toBe(test.expected)
     })
   })

@@ -14,15 +14,19 @@ import { Gap } from '../Gap'
 const byline = (item, index, initial, translation, required, validator) => {
   // If item is required and not currently opened and is not valid, show message
   switch (true) {
-    case required && !item.open && !validator(item.Item):
-    case !item.open && !initial && item.Item && !validator(item.Item):
-      return (
-        <div className={`byline ${openState(item, initial)} fade in`.trim()}>
-          <div className="incomplete">{i18n.m(translation)}</div>
+  case required && !item.open && !validator(item.Item):
+  case !item.open && !initial && item.Item && !validator(item.Item):
+    return (
+      <div className={`byline ${openState(item, initial)} fade in`.trim()}>
+        <div className="usa-alert usa-alert-error" role="alert">
+          <div className="usa-alert-body">
+            <h5 className="usa-alert-heading">{i18n.m(translation)}</h5>
+          </div>
         </div>
-      )
-    default:
-      return null
+      </div>
+    )
+  default:
+    return null
   }
 }
 

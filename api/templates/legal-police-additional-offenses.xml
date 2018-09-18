@@ -11,7 +11,9 @@
         <Explanation>{{text $Item.AwaitingTrialExplanation}}</Explanation>
       </AwaitingTrial>
       <Charges>
-        <Charge>
+        <!-- XXX We don't collect more than one -->
+        <!-- See https://github.com/18F/e-QIP-prototype/issues/782 -->
+        <Charge ID="1">
           <Charge>{{text $Item.CourtCharge}}</Charge>
           <Date Type="{{dateEstimated $Item.Date}}">
             {{monthYear $Item.Date}}
@@ -55,30 +57,28 @@
           />
       <Sentenced>
         <Answer>{{branch $Item.WasSentenced}}</Answer>
+        {{if branch $Item.WasSentenced | eq "Yes"}}
         {{ with $sentence := $Item.Sentence.props }}
         <Description>{{text $sentence.Description}}</Description>
         <DetailsComment></DetailsComment>
         <Imprisonment>
-          <YearOrMore>
-            {{if notApplicable $sentence.IncarcerationDatesNA | eq "True"}}
-            <DateRange NotApplicable="True" />
-            {{else}}
-            <DateRange>
-              <From>
-                <Date Type="{{dateEstimated $sentence.IncarcerationDates.props.from}}">
-                  {{monthYear $sentence.IncarcerationDates.props.from}}
-                </Date>
-              </From>
-              <To>
-                <Date Type="{{dateEstimated $sentence.IncarcerationDates.props.to}}">
-                  {{monthYear $sentence.IncarcerationDates.props.to}}
-                </Date>
-              </To>
-            </DateRange>
-            {{end}}
-          </YearOrMore>
+          {{if notApplicable $sentence.IncarcerationDatesNA | eq "True"}}
+          <DateRange NotApplicable="True" />
+          {{else}}
+          <DateRange>
+            <From>
+              <Date Type="{{dateEstimated $sentence.IncarcerationDates.props.from}}">
+                {{monthYear $sentence.IncarcerationDates.props.from}}
+              </Date>
+            </From>
+            <To>
+              <Date Type="{{dateEstimated $sentence.IncarcerationDates.props.to}}">
+                {{monthYear $sentence.IncarcerationDates.props.to}}
+              </Date>
+            </To>
+          </DateRange>
+          {{end}}
         </Imprisonment>
-        {{if branch $Item.WasSentenced | eq "Yes"}}
         <Incarcerated>
           <YearOrMore>
             <Answer>{{branchToAnswer $sentence.Incarcerated}}</Answer>

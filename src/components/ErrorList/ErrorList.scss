@@ -1,5 +1,62 @@
 .error-list {
-  .field > .table > .messages > .message a {
-    cursor: pointer;
+  margin-bottom: 2rem;
+}
+
+.usa-alert {
+  background-size: 4.2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 1.4rem;
+  background-position: 1.4rem 1.7rem;
+  border-radius: 6px;
+  margin-top: .5rem;
+  margin-bottom: .5rem;
+
+  &::before {
+    content: none;
+  }
+
+  .usa-alert-heading {
+    margin-bottom: 1.5rem;
+    font-size: inherit;
+  }
+
+  .usa-alert-body {
+    padding-left: 4rem;
+    padding-right: 4rem;
+
+    h4,
+    h5,
+    h6 {
+      margin: 0;
+      font-family: $font-sans;
+      font-size: inherit;
+    }
+
+    ul {
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+      padding-left: 3.5rem;
+    }
+
+    p:last-of-type {
+      margin-bottom: 0;
+      margin-top: 0;
+    }
+  }
+
+  &.usa-alert-error {
+    background-image: url('../img/error.svg');
+    background-size: 2rem;
+  }
+
+  &.usa-alert-info {
+    background-image: url('../img/help-icon-v2-01.svg');
+    background-size: 2rem;
+
+    .close {
+      margin-top: 2rem;
+      display: inline-block;
+    }
   }
 }

@@ -140,7 +140,6 @@ export default class VoluntaryTreatment extends ValidationElement {
           <Telephone
             name="TreatmentProviderTelephone"
             {...this.props.TreatmentProviderTelephone}
-            showNumberType={false}
             onUpdate={this.updateTreatmentProviderTelephone}
             onError={this.props.onError}
             required={this.props.required}

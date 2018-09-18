@@ -59,6 +59,7 @@ export default class Text extends ValidationElement {
         type="text"
         className={this.props.className}
         disabled={this.props.disabled}
+        status={this.props.status}
         minlength={this.props.minlength}
         maxlength={this.props.maxlength}
         pattern={this.props.pattern}
@@ -88,6 +89,7 @@ Text.defaultProps = {
   value: '',
   prefix: '',
   required: false,
+  status: true,
   prefilter: value => {
     return value
   },

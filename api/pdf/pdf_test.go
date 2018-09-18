@@ -14,14 +14,17 @@ import (
 )
 
 const (
-	packageDir  = "pdf"
-	testdataDir = packageDir + "/testdata"
+	packageDir    = "pdf"
+	testdataDir   = packageDir + "/testdata"
+	fileExtension = ".pdf"
 )
 
 func TestPackage(t *testing.T) {
 	// Change working dir to parent so code under test is
 	// executed in same working directory as in production.
 	os.Chdir("..")
+	// Restore working dir
+	defer os.Chdir(packageDir)
 
 	application := applicationData(t)
 	logger := &mock.LogService{}
@@ -39,25 +42,28 @@ func TestPackage(t *testing.T) {
 			t.Fatalf("Error creating PDF from %s: %s", p.Template, err.Error())
 		}
 
-		rpath := path.Join(testdataDir, p.Name+".pdf")
+		rpath := path.Join(testdataDir, p.Name+fileExtension)
 		reference, err := ioutil.ReadFile(rpath)
 		if err != nil {
 			t.Fatalf("Error reading reference PDF: %s", err.Error())
 		}
 
 		if !bytes.Equal(created, reference) {
-			tmpfile, err := ioutil.TempFile("", p.Name)
+			tmpfile, err := ioutil.TempFile(testdataDir, p.Name+fileExtension)
 			if err != nil {
-				t.Fatalf("Error saving generated PDF: %s", err.Error())
+				t.Fatalf("Error creating generated PDF: %s", err.Error())
+			}
+			defer tmpfile.Close()
+
+			_, err = tmpfile.Write(created)
+			if err != nil {
+				t.Fatalf("Error writing generated PDF: %s", err.Error())
 			}
 
 			t.Errorf("Generated PDF (%s) does not match reference PDF (%s)",
 				tmpfile.Name(), rpath)
 		}
 	}
-
-	// Restore working dir
-	os.Chdir(packageDir)
 }
 
 func applicationData(t *testing.T) map[string]interface{} {

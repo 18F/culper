@@ -121,15 +121,15 @@
               <HomeEmail>
                 <Email>kirk1@example.com</Email>
               </HomeEmail>
-              <HomeEmail>
+              <WorkEmail>
                 <Email>kirk2@example.com</Email>
-              </HomeEmail>
-              <HomeTelephone>
+              </WorkEmail>
+              <MobileTelephone>
                 <Telephone>
                   <Number>5555555551</Number>
                   <Time>Both</Time>
                 </Telephone>
-              </HomeTelephone>
+              </MobileTelephone>
               <HomeTelephone>
                 <Telephone>
                   <Number>5555555552</Number>
@@ -177,7 +177,7 @@
                       <Time>Both</Time>
                     </Mobile>
                   </Telephone>
-                  <Title NotApplicable="False">Park Ranger</Title>
+                  <Title>Park Ranger</Title>
                 </Reference>
                 <Reference ID="2">
                   <Address>
@@ -216,7 +216,7 @@
                       <Time>Both</Time>
                     </Mobile>
                   </Telephone>
-                  <Title NotApplicable="False">Head Zoologist</Title>
+                  <Title>Head Zoologist</Title>
                 </Reference>
                 <Reference ID="3">
                   <Address>
@@ -389,7 +389,7 @@
                   <Citizenship>
                     <ProofOfStatus>
                       <DocumentNumber>7893142313</DocumentNumber>
-                      <NaturalizedCertificate>
+                      <NaturalizationCertificate>
                         <Court>
                           <Address>
                             <Street>7 Grace Hopper Ave. </Street>
@@ -399,7 +399,7 @@
                           </Address>
                           <Name>Judy's court</Name>
                         </Court>
-                      </NaturalizedCertificate>
+                      </NaturalizationCertificate>
                       <Type>DerivedCitizenshipCertificate</Type>
                     </ProofOfStatus>
                   </Citizenship>
@@ -657,7 +657,6 @@
                         <First>Bazooka</First>
                         <Middle Type="NMN"/>
                       </LegalName>
-                      <Maiden>False</Maiden>
                     </OtherName>
                   </OtherNamesUsed>
                   <SSN>
@@ -674,9 +673,7 @@
               <MaritalStatus>Married</MaritalStatus>
               <PresentMarriage>
                 <CurrentSpouse ID="1">
-                  <Address UseMyCurrentAddress="True">
-                    <Street> </Street>
-                  </Address>
+                  <Address UseMyCurrentAddress="True"/>
                   <Birth>
                     <Date>
                       <Month>05</Month>
@@ -756,7 +753,6 @@
                         <First>Red</First>
                         <Middle Type="NMN"/>
                       </LegalName>
-                      <Maiden>False</Maiden>
                     </OtherName>
                   </OtherNamesUsed>
                   <SSN>
@@ -3276,7 +3272,6 @@
                   </OfferorLegalName>
                   <PositionDescription>Golf cart maintenance technican</PositionDescription>
                 </ForeignJobOffer>
-                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
               </ForeignJobOffers>
               <OtherForeignEmployment>
                 <Answer>Yes</Answer>
@@ -3363,7 +3358,6 @@
                   <Relationship>Associate</Relationship>
                   <ServiceProvided>Bowled balls</ServiceProvided>
                 </OtherForeignEmployment>
-                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
               </OtherForeignEmployments>
               <Meetings>
                 <Answer>Yes</Answer>
@@ -3470,7 +3464,6 @@
                       <FutureContactPlans>Weekly</FutureContactPlans>
                       <Purpose>More chatting</Purpose>
                     </Contact>
-                    <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
                     <Contact ID="2">
                       <Date>
                         <Month>08</Month>
@@ -3567,13 +3560,13 @@
                     <Middle>Margaret</Middle>
                   </Name>
                   <Organization>
-                    <Address NotApplicable="False">
+                    <Address>
                       <Street>32 5th St. </Street>
                       <City>Monterey</City>
                       <State>CA</State>
                       <ZipCode>93940</ZipCode>
                     </Address>
-                    <Name NotApplicable="False">Students in America</Name>
+                    <Name>Students in America</Name>
                   </Organization>
                   <Purpose>Learn about the U.S.</Purpose>
                   <SponsorshipPurpose>Teach about the U.S.</SponsorshipPurpose>
@@ -3629,13 +3622,13 @@
                     <Middle Type="NMN"/>
                   </Name>
                   <Organization>
-                    <Address NotApplicable="False">
+                    <Address>
                       <Street>332 Fremont st. </Street>
                       <City>Monterey</City>
                       <State>CA</State>
                       <ZipCode>93940</ZipCode>
                     </Address>
-                    <Name NotApplicable="False">Students in California</Name>
+                    <Name>Students in California</Name>
                   </Organization>
                   <Purpose>Learn about California</Purpose>
                   <SponsorshipPurpose>Educate about California</SponsorshipPurpose>
@@ -3711,7 +3704,6 @@
                   </Date>
                   <Reason> Asked to vote as honorary voter</Reason>
                 </ForeignElection>
-                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
               </VotedInForeignElections>
             </ForeignBusinessActivities>
             <ForeignTravels Version="1" Type="Pooled">
@@ -4490,7 +4482,7 @@
                     <AppearedInCourt>
                       <Answer>Yes</Answer>
                       <Charges>
-                        <Charge>
+                        <Charge ID="1">
                           <Charge>Battery</Charge>
                           <Date>
                             <Month>01</Month>
@@ -4640,7 +4632,7 @@
                       <Explanation>It's all done.</Explanation>
                     </AwaitingTrial>
                     <Charges>
-                      <Charge>
+                      <Charge ID="1">
                         <Charge>Break and Enter</Charge>
                         <Date>
                           <Month>01</Month>
@@ -4671,11 +4663,6 @@
                     <OffenseType Domestic="True" Firearms="True" Alcohol="True"/>
                     <Sentenced>
                       <Answer>No</Answer>
-                      <Imprisonment>
-                        <YearOrMore>
-                          <DateRange NotApplicable="True"/>
-                        </YearOrMore>
-                      </Imprisonment>
                     </Sentenced>
                   </Offense>
                   <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
@@ -4958,9 +4945,7 @@
                       <State>CA</State>
                       <ZipCode>93940</ZipCode>
                     </Address>
-                    <Contributions NoContributionsMade="False">
-        50
-      </Contributions>
+                    <Contributions>50</Contributions>
                     <DateRange>
                       <From>
                         <Date>
@@ -4977,9 +4962,7 @@
                     </DateRange>
                     <Description>Nature and Reason 3</Description>
                     <Name>Bad Dudes</Name>
-                    <PositionsHeld NoPositionsHeld="False">
-        Sketch artist
-      </PositionsHeld>
+                    <PositionsHeld>Sketch artist</PositionsHeld>
                   </Organization>
                   <Organization ID="2">
                     <Address>
@@ -4988,9 +4971,7 @@
                       <State>CA</State>
                       <ZipCode>93940</ZipCode>
                     </Address>
-                    <Contributions NoContributionsMade="False">
-        3234
-      </Contributions>
+                    <Contributions>3234</Contributions>
                     <DateRange>
                       <From>
                         <Date>
@@ -5007,9 +4988,7 @@
                     </DateRange>
                     <Description>Nature and Reason X</Description>
                     <Name>Bad Folks</Name>
-                    <PositionsHeld NoPositionsHeld="False">
-        Secretary
-      </PositionsHeld>
+                    <PositionsHeld>Secretary</PositionsHeld>
                   </Organization>
                 </Organizations>
                 <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
@@ -5023,9 +5002,7 @@
                       <City>Madrid</City>
                       <Country>Spain</Country>
                     </Address>
-                    <Contributions NoContributionsMade="True">
-        
-      </Contributions>
+                    <Contributions NoContributionsMade="True"/>
                     <DateRange>
                       <From>
                         <Date>
@@ -5049,9 +5026,7 @@
                       <City>Rome</City>
                       <Country>Italy</Country>
                     </Address>
-                    <Contributions NoContributionsMade="False">
-        Intelligence
-      </Contributions>
+                    <Contributions>Intelligence</Contributions>
                     <DateRange>
                       <From>
                         <Date>
@@ -5126,7 +5101,7 @@
                       <City>Berlin</City>
                       <Country>Germany</Country>
                     </Address>
-                    <Contributions NoContributionsMade="False">3000</Contributions>
+                    <Contributions>3000</Contributions>
                     <DateRange>
                       <From>
                         <Date>
@@ -5171,7 +5146,7 @@
                     </DateRange>
                     <Description>Nature and Reason 2</Description>
                     <Name>ZZZ</Name>
-                    <PositionsHeld NoPositionsHeld="True"/>
+                    <PositionsHeld NoPositionHeld="True"/>
                   </Organization>
                 </Organizations>
                 <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>

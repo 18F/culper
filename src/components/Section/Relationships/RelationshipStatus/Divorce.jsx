@@ -223,8 +223,8 @@ export default class Divorce extends React.Component {
             name="address"
             className="location"
             {...this.props.Address}
-            layout={Location.ADDRESS}
-            geocode={true}
+            layout={Location.BIRTHPLACE_WITHOUT_COUNTY}
+            label={i18n.t('relationships.civilUnion.label.location')}
             onUpdate={this.updateAddress}
             onError={this.props.onError}
             required={this.props.required}

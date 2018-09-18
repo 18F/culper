@@ -1,16 +1,31 @@
 <ContactInformation Version="1" Type="Pooled">
-  {{- range $index, $item := .props.Emails.props.items}}
-  {{- with $Item := $item.Item}}
+  {{- if text .props.HomeEmail -}}
   <HomeEmail>
-    <Email>{{text $Item.Email}}</Email>
+    <Email>{{text .props.HomeEmail}}</Email>
   </HomeEmail>
-  {{- end}}
-  {{- end}}
+  {{end}}
+  {{- if text .props.WorkEmail -}}
+  <WorkEmail>
+    <Email>{{text .props.WorkEmail}}</Email>
+  </WorkEmail>
+  {{end}}
   {{- range $index, $item := .props.PhoneNumbers.props.items}}
   {{- with $Item := $item.Item}}
+  {{if $Item.Telephone.props.numberType | eq "Home"}}
   <HomeTelephone>
     <Telephone>{{- telephone $Item.Telephone -}}</Telephone>
   </HomeTelephone>
+  {{end}}
+  {{if $Item.Telephone.props.numberType | eq "Cell"}}
+  <MobileTelephone>
+    <Telephone>{{- telephone $Item.Telephone -}}</Telephone>
+  </MobileTelephone>
+  {{end}}
+  {{if $Item.Telephone.props.numberType | eq "Work"}}
+  <WorkTelephone>
+    <Telephone>{{- telephone $Item.Telephone -}}</Telephone>
+  </WorkTelephone>
+  {{end}}
   {{- end}}
   {{- end}}
 </ContactInformation>

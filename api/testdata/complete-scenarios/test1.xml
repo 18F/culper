@@ -72,18 +72,18 @@
               <HomeEmail>
                 <Email>henry@example.com</Email>
               </HomeEmail>
-              <HomeTelephone>
+              <MobileTelephone>
                 <Telephone>
                   <Number>8316561234</Number>
                   <Time>Both</Time>
                 </Telephone>
-              </HomeTelephone>
-              <HomeTelephone>
+              </MobileTelephone>
+              <WorkTelephone>
                 <Telephone>
                   <Number>8316563242</Number>
                   <Time>Day</Time>
                 </Telephone>
-              </HomeTelephone>
+              </WorkTelephone>
             </ContactInformation>
             <PersonalReferences Version="1" Type="Pooled">
               <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>

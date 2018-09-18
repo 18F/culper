@@ -164,7 +164,7 @@ export const identification = {
       email: {
         title: 'Email addresses are not required',
         message:
-          'More than 2 email addresses are not required but may assist in the completion of your background investigation.',
+          'Email addresses are not required but may assist in the completion of your background investigation.',
         note: 'Email format example: name@example.com'
       },
       phoneNumber: {
@@ -176,9 +176,6 @@ export const identification = {
     },
     collection: {
       summary: {
-        title: 'Summary of email addresses',
-        email: 'Email',
-        unknownEmail: 'Provide your email address below',
         unknownPhone: 'Provide your telephone number below',
         phoneNumber: 'Phone number'
       },
@@ -187,11 +184,12 @@ export const identification = {
           title: 'Summary of phone numbers'
         },
         append: 'Add another phone number'
-      },
-      append: 'Add another email'
+      }
     },
     heading: {
       email: 'Your email addresses',
+      emailHome: 'Home email address',
+      emailWork: 'Work email address',
       phoneNumber: 'Your phone numbers',
       comments: 'Add optional comments'
     },

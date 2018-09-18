@@ -53,7 +53,7 @@
             "props": {
               "timeOfDay": "Both",
               "type": "Domestic",
-              "numberType": "Cell",
+              "numberType": "",
               "number": "2128675309",
               "extension": "",
               "noNumber": false

@@ -52,7 +52,7 @@
                   "value": "my comments"
                 }
               },
-              "ReferenceFullName": {
+              "ReferenceName": {
                 "type": "name",
                 "props": {
                   "first": "John",
@@ -99,7 +99,7 @@
                 "props": {
                   "timeOfDay": "Both",
                   "type": "Domestic",
-                  "numberType": "Cell",
+                  "numberType": "",
                   "number": "2128675309",
                   "extension": "",
                   "noNumber": false
@@ -110,7 +110,7 @@
                 "props": {
                   "timeOfDay": "Both",
                   "type": "Domestic",
-                  "numberType": "Cell",
+                  "numberType": "",
                   "number": "2128675309",
                   "extension": "",
                   "noNumber": false
@@ -121,7 +121,7 @@
                 "props": {
                   "timeOfDay": "Both",
                   "type": "Domestic",
-                  "numberType": "Cell",
+                  "numberType": "",
                   "number": "2128675309",
                   "extension": "",
                   "noNumber": false

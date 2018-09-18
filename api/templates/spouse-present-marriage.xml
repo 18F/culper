@@ -15,9 +15,14 @@
       </PhysicalLocation>
     </APOFPO>
     {{else}}
-    <Address UseMyCurrentAddress="{{notApplicable $Item.UseCurrentAddress}}">
+    <!-- UseCurrentAddress as an NotApplicable input is awkward -->
+    {{if notApplicable $Item.UseCurrentAddress | eq "True"}}
+    <Address UseMyCurrentAddress="True"/>
+    {{else}}
+    <Address>
       {{location $Item.Address}}
     </Address>
+    {{end}}
     {{end}}
     <Birth>
       <Date Type="{{dateEstimated $Item.Birthdate}}">
@@ -74,7 +79,9 @@
         <LegalName>
           {{name $other.Name}}
         </LegalName>
-        <Maiden>{{if branch $other.MaidenName | eq "Yes"}}True{{else}}False{{end}}</Maiden>
+        {{if branch $other.MaidenName | eq "Yes"}}
+        <Maiden>True</Maiden>
+        {{end}}
       </OtherName>
       {{end}}
       {{end}}

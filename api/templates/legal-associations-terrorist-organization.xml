@@ -9,9 +9,11 @@
         {{location $Item.Address}}
       </Address>
       <Comment></Comment>
-      <Contributions NoContributionsMade="{{notApplicable $Item.ContributionsNotApplicable}}">
-        {{text $Item.Contributions}}
-      </Contributions>
+      {{if notApplicable $Item.ContributionsNotApplicable | eq "True"}}
+      <Contributions NoContributionsMade="True"></Contributions>
+      {{else}}
+      <Contributions>{{text $Item.Contributions}}</Contributions>
+      {{end}}
       {{monthYearDaterange $Item.Dates}}
       <Description>{{text $Item.Reasons}}</Description>
       <Name>{{text $Item.Organization}}</Name>

@@ -4,7 +4,6 @@ import DateRangeValidator from './daterange'
 import BankruptcyValidator, { BankruptcyItemValidator } from './bankruptcy'
 import BirthPlaceValidator from './birthplace'
 import IdentificationContactInformationValidator, {
-  ContactEmailValidator,
   ContactPhoneNumberValidator
 } from './identificationcontacts'
 import IdentificationValidator from './identification'
@@ -224,7 +223,6 @@ export {
   BankruptcyItemValidator,
   BirthPlaceValidator,
   IdentificationContactInformationValidator,
-  ContactEmailValidator,
   ContactPhoneNumberValidator,
   IdentificationValidator,
   NameValidator,

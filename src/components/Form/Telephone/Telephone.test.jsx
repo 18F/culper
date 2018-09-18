@@ -5,7 +5,6 @@ import Telephone from './Telephone'
 describe('The Telephone component', () => {
   it('renders DSN fields', () => {
     const component = mount(<Telephone name="phone" type="DSN" />)
-    expect(component.find('.phonetype').length).toBe(1)
     expect(component.find('.nonumber').length).toBeGreaterThan(0)
     expect(component.find('.domestic-number').length).toEqual(1)
     expect(component.find('.international-number').length).toEqual(1)
@@ -105,6 +104,7 @@ describe('The Telephone component', () => {
     const expected = {
       name: 'telephone-component',
       numberType: 'Work',
+      showNumberType: true,
       onUpdate: values => {
         numberType = values.numberType
       }
@@ -120,6 +120,7 @@ describe('The Telephone component', () => {
     const expected = {
       name: 'telephone-component',
       type: 'Domestic',
+      showNumberType: true,
       onUpdate: values => {
         updated++
       }
@@ -149,6 +150,7 @@ describe('The Telephone component', () => {
     const expected = {
       name: 'telephone-component',
       type: 'DSN',
+      showNumberType: true,
       onUpdate: values => {
         updated++
       }
@@ -172,6 +174,7 @@ describe('The Telephone component', () => {
     const expected = {
       name: 'telephone-component',
       type: 'International',
+      showNumberType: true,
       onUpdate: values => {
         updated++
       }

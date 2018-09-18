@@ -149,31 +149,33 @@ class SavedIndicator extends React.Component {
     }
 
     return (
-      <button
-        className={klass}
-        aria-label={talkback}
-        title={talkback}
-        onClick={this.save}
-        onMouseEnter={this.mouseEnter}
-        onMouseLeave={this.mouseLeave}>
-        <div className="spinner">
-          <div className={klassCircle} />
-          <i className={klassIcon} aria-hidden="true" />
-        </div>
+      <div className="saved-indicator-container">
+        <button
+          className={klass}
+          aria-label={talkback}
+          title={talkback}
+          onClick={this.save}
+          onMouseEnter={this.mouseEnter}
+          onMouseLeave={this.mouseLeave}>
+          <div className="spinner">
+            <div className={klassCircle} />
+            <i className={klassIcon} aria-hidden="true" />
+          </div>
 
-        <span className="spinner-label">
-          <Show when={this.state.animate}>
-            <strong className="one-line">{i18n.t('saved.saving')}</strong>
-          </Show>
-          <Show when={!this.state.animate && this.state.hover}>
-            <strong className="one-line">{i18n.t('saved.action')}</strong>
-          </Show>
-          <Show when={!this.state.animate && !this.state.hover}>
-            <strong>{i18n.t('saved.saved')}</strong>
-            <span className="time">{this.calculateTime()}</span>
-          </Show>
-        </span>
-      </button>
+          <span className="spinner-label">
+            <Show when={this.state.animate}>
+              <strong className="one-line">{i18n.t('saved.saving')}</strong>
+            </Show>
+            <Show when={!this.state.animate && this.state.hover}>
+              <strong className="one-line">{i18n.t('saved.action')}</strong>
+            </Show>
+            <Show when={!this.state.animate && !this.state.hover}>
+              <strong>{i18n.t('saved.saved')}</strong>
+              <span className="time">{this.calculateTime()}</span>
+            </Show>
+          </span>
+        </button>
+      </div>
     )
   }
 }

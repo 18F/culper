@@ -1,14 +1,6 @@
 import * as form from '../form'
 
 export const identificationContacts = (data = {}) => {
-  const emails = ((data.Emails || {}).items || []).map(x => {
-    const xitem = x.Item || {}
-    return {
-      Item: {
-        Email: form.email(xitem.Email)
-      }
-    }
-  })
   const phoneNumbers = ((data.PhoneNumbers || {}).items || []).map(x => {
     const xitem = x.Item || {}
     return {
@@ -18,7 +10,8 @@ export const identificationContacts = (data = {}) => {
     }
   })
   return {
-    Emails: form.collection(emails),
+    HomeEmail: form.email(data.HomeEmail),
+    WorkEmail: form.email(data.WorkEmail),
     PhoneNumbers: form.collection(phoneNumbers)
   }
 }

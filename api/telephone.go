@@ -10,6 +10,7 @@ var (
 	formatTelephoneDomestic      = regexp.MustCompile("\\d{3}-?\\d{3}-?\\d{4}")
 	formatTelephoneInternational = regexp.MustCompile("\\d{3}-?\\d{4}-?\\d{4}")
 	formatTelephoneDSN           = regexp.MustCompile("\\d{3}-?\\d{4}")
+	formatNumberType             = regexp.MustCompile("(Home|Work|Cell|NA|^$)")
 )
 
 // Telephone is a basic input.
@@ -64,8 +65,8 @@ func (entity *Telephone) Valid() (bool, error) {
 		}
 	}
 
-	if strings.TrimSpace(entity.NumberType) == "" {
-		stack.Append("Telephone", ErrFieldRequired{"Telephone number type is required"})
+	if ok := formatNumberType.MatchString(entity.NumberType); !ok {
+		stack.Append("Telephone", ErrFieldInvalid{"Number type is not properly formatted"})
 	}
 
 	return !stack.HasErrors(), stack

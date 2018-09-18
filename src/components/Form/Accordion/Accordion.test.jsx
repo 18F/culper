@@ -338,7 +338,7 @@ describe('The accordion component', () => {
       </Accordion>
     )
     expect(component.find('.svg.incomplete').length).toEqual(1)
-    expect(component.find('.byline .incomplete').length).toEqual(1)
+    expect(component.find('.byline .usa-alert-error').length).toEqual(1)
   })
 
   it('can support caption', () => {

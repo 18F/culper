@@ -1,27 +1,16 @@
 {
   "type": "identification.contacts",
   "props": {
-    "Emails": {
-      "type": "collection",
+    "HomeEmail": {
+      "type": "email",
       "props": {
-        "items": [
-          {
-            "Item": {
-              "Email": {
-                "type": "email",
-                "props": {
-                  "value": "test@abc.com"
-                }
-              }
-            }
-          }
-        ],
-        "branch": {
-          "type": "branch",
-          "props": {
-            "value": "No"
-          }
-        }
+        "value": "test@abc.com"
+      }
+    },
+    "WorkEmail": {
+      "type": "email",
+      "props": {
+        "value": "test@abc.com"
       }
     },
     "PhoneNumbers": {

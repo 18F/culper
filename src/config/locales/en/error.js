@@ -698,6 +698,11 @@ export const error = {
           message: 'The ZIP Code should be either 5 or 9 digits.',
           note:
             'Note: A 9 digit zip code should be in the following format #####-####.'
+        },
+        status: {
+          title: 'There is a problem with the ZIP Code',
+          message: 'The ZIP Code must be from the state in the address.',
+          note: 'Note: Please make sure you also entered the correct state code.'
         }
       },
       country: {
@@ -1060,5 +1065,9 @@ export const error = {
     title: 'Mother and father must be provided',
     message:
       'If you do not know your mother or father, please enter "I don\'t know" and provide a comment explaining your relationship.'
+  },
+  validPhoneTypes: {
+    title: 'There is a problem with your phone numbers',
+    message: 'Please provide only one of each phone number type.'
   }
 }

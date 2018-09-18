@@ -96,12 +96,12 @@
           <DocumentExpiration Type="{{dateEstimated $Item.Expiration}}">{{date $Item.Expiration}}</DocumentExpiration>
           {{end}}
           <DocumentNumber>{{text $Item.DocumentNumber}}</DocumentNumber>
-          <NaturalizedCertificate>
+          <NaturalizationCertificate>
             <Court>
               <Address>{{location $Item.CourtAddress}}</Address>
               <Name>{{text $Item.CourtName}}</Name>
             </Court>
-          </NaturalizedCertificate>
+          </NaturalizationCertificate>
           {{- if text $Item.Document }}
           <Type>{{text $Item.Document | relativeForeignDocType}}</Type>
           {{else if text $Item.CitizenshipDocumentation}}
