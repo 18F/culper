@@ -8,9 +8,7 @@
     <Comment></Comment>
     {{monthYearDaterange $Item.Dates}}
     {{if or (radio $Item.Service | eq "ArmyNationalGuard") (radio $Item.Service | eq "ArmyNationalGuard")}}
-    <GuardLocation>
-      <Place>{{location $Item.GuardLocation}}</Place>
-    </GuardLocation>
+    <GuardLocation>{{location $Item.GuardLocation}}</GuardLocation>
     {{end}}
     {{if radio $Item.Officer | eq "NotApplicable"}}
     <Rank NotApplicable="True" />

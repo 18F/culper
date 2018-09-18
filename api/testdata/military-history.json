@@ -72,6 +72,20 @@
                   "present": false
                 }
               },
+              "ServiceState": {
+                "type": "location",
+                "props": {
+                  "layout": "State",
+                  "street": "",
+                  "street2": "",
+                  "city": "",
+                  "state": "AZ",
+                  "zipcode": "",
+                  "county": "",
+                  "country": "",
+                  "validated": false
+                }
+              },
               "HasBeenDischarged": {
                 "type": "branch",
                 "props": {

@@ -1,4 +1,5 @@
 import MilitaryHistoryValidator from './militaryhistory'
+import Location from '../components/Form/Location'
 
 describe('Military history validation', function() {
   it('handle whether subject has served in the military', () => {
@@ -67,6 +68,10 @@ describe('Military history validation', function() {
                     },
                     present: false
                   },
+                  ServiceState: {
+                    state: 'AZ',
+                    layout: Location.STATE
+                  },
                   HasBeenDischarged: { value: 'Yes' }
                 }
               }
@@ -103,6 +108,10 @@ describe('Military history validation', function() {
                       date: new Date('1/1/2012')
                     },
                     present: false
+                  },
+                  ServiceState: {
+                    state: 'AZ',
+                    layout: Location.STATE
                   },
                   HasBeenDischarged: { value: 'Yes' },
                   DischargeType: { value: 'Other' },
@@ -154,6 +163,10 @@ describe('Military history validation', function() {
                     },
                     present: false
                   },
+                  ServiceState: {
+                    state: 'AZ',
+                    layout: Location.STATE
+                  },
                   HasBeenDischarged: { value: 'Yes' },
                   DischargeType: { value: 'Honorable' },
                   DischargeDate: {
@@ -197,6 +210,10 @@ describe('Military history validation', function() {
                       date: new Date('1/1/2012')
                     },
                     present: false
+                  },
+                  ServiceState: {
+                    state: 'AZ',
+                    layout: Location.STATE
                   },
                   HasBeenDischarged: { value: 'Yes' },
                   DischargeType: { value: 'General' },
@@ -244,6 +261,10 @@ describe('Military history validation', function() {
                       date: new Date('1/1/2012')
                     },
                     present: false
+                  },
+                  ServiceState: {
+                    state: 'AZ',
+                    layout: Location.STATE
                   },
                   HasBeenDischarged: { value: 'No' }
                 }

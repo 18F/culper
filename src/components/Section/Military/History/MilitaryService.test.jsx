@@ -54,7 +54,7 @@ describe('The military service component', () => {
     expect(component.find('.service-state').length).toEqual(0)
   })
 
-  it('state of service field is not shown for non-guard service', () => {
+  it('state of service field is shown for guard service', () => {
     const expected = {
       name: 'military-service',
       Service: { value: 'ArmyNationalGuard' }

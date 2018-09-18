@@ -75,7 +75,11 @@ export class MilitaryServiceValidator {
   }
 
   validServiceState() {
-    new LocationValidator(this.serviceState).isValid()
+    if (['AirNationalGuard', 'ArmyNationalGuard'].includes(this.service)) {
+      return new LocationValidator(this.serviceState).isValid()
+    }
+
+    return true
   }
 
   validHasBeenDischarged() {
