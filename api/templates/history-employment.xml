@@ -104,9 +104,9 @@
         {{- if eq (branch $Dismissal.Has) "Yes"}}
         <Dismissal ID="{{inc $lindex}}">
           <Date Type="{{dateEstimated $Dismissal.Date}}">{{monthYear $Dismissal.Date}}</Date>
-          <Reason>{{textarea $Item.ReasonLeft.props.ReasonDescription}}</Reason>
+          <Reason>{{textarea $Dismissal.Text}}</Reason>
           <SeveranceType>{{radio $Dismissal.Reason | severanceType}}</SeveranceType>
-          <SeveranceTypeComment>{{textarea $Dismissal.Text}}</SeveranceTypeComment>
+          <SeveranceTypeComment></SeveranceTypeComment>
           <Comment></Comment>
         </Dismissal>
         {{- end}}
