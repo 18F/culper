@@ -3,6 +3,34 @@ import { mount } from 'enzyme'
 import CitizenshipItem from './CitizenshipItem'
 
 describe('The citizenship item component', () => {
+  it('display display question for current citizenship if NOT present', () => {
+    const props = {
+      Dates: {
+        from: {},
+        to: {},
+        present: true
+      }
+    }
+    const component = mount(<CitizenshipItem {...props} />)
+    expect(component.find('.citizenship-current').length).toBe(0)
+  })
+
+  it('display display question for current citizenship if NOT present', () => {
+    const props = {
+      Dates: {
+        from: {
+          date: new Date('1/1/2009')
+        },
+        to: {
+          date: new Date('1/1/2010')
+        },
+        present: false
+      }
+    }
+    const component = mount(<CitizenshipItem {...props} />)
+    expect(component.find('.citizenship-current').length).toBe(1)
+  })
+
   it('can trigger updates', () => {
     let updates = 0
     const expected = {
