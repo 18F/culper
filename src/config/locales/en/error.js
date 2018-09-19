@@ -639,6 +639,12 @@ export const error = {
           title: 'There is a problem with the ZIP Code',
           message: 'The ZIP Code should be either 5 or 9 digits.',
           note: ''
+        },
+        status: {
+          title: 'There is a problem with the ZIP Code',
+          message: 'The ZIP Code must be from the state in the address.',
+          note:
+            'Note: Please make sure you also entered the correct state code.'
         }
       },
       country: {
@@ -702,7 +708,8 @@ export const error = {
         status: {
           title: 'There is a problem with the ZIP Code',
           message: 'The ZIP Code must be from the state in the address.',
-          note: 'Note: Please make sure you also entered the correct state code.'
+          note:
+            'Note: Please make sure you also entered the correct state code.'
         }
       },
       country: {

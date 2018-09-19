@@ -13,6 +13,7 @@ export const relationshipsMarital = (data = {}) => {
         Recognized: form.datecontrol(xitem.Recognized),
         Address: form.location(xitem.Address),
         DateDivorced: form.datecontrol(xitem.DateDivorced),
+        DivorceLocation: form.location(xitem.DivorceLocation),
         Status: form.radio(xitem.Status),
         Deceased: form.radio(xitem.Deceased),
         DeceasedAddress: form.location(xitem.DeceasedAddress),

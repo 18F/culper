@@ -43,10 +43,11 @@ describe('The Divorce component', () => {
     component
       .find('.date-divorced .month input')
       .simulate('change', { target: { value: '12' } })
+    component.find('.divorce-location .city input').simulate('change')
     component.find('.status .divorced input').simulate('change')
     component.find('.deceased .widowed input').simulate('change')
     component.find('.address-deceased .city input').simulate('change')
     component.find('.deceased-notapplicable .button input').simulate('change')
-    expect(updates).toBe(11)
+    expect(updates).toBe(12)
   })
 })
