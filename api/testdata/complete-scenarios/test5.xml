@@ -689,7 +689,6 @@
                   <Deceased>
                     <Answer>IDontKnow</Answer>
                   </Deceased>
-                  <DivorcedAnnulledComment2/>
                   <LegalName>
                     <Last>Xan</Last>
                     <First>Eileen</First>
@@ -716,11 +715,13 @@
                       <Place>
                         <City>Unknown</City>
                         <State>CA</State>
+                        <ZipCode>93940</ZipCode>
                       </Place>
                     </DivorceRecordLocation>
                   </Separation>
                   <Telephone DoNotKnow="True"/>
                 </FormerSpouse>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
               </FormerSpouses>
               <HaveFormerSpouse>
                 <Answer>Yes</Answer>

@@ -105,7 +105,7 @@ func (service Service) DefaultTemplate(templateName string, data map[string]inte
 // https://github.com/18F/e-QIP-prototype/issues/717
 func applyBulkFixes(xml string) string {
 	replaceWithEmpty := []string{
-		"<[a-zA-Z_]+></[a-zA-Z_]+>", // empty elements
+		"<[a-zA-Z_0-9]+></[a-zA-Z_0-9]+>", // empty elements
 		" DoNotKnow=\"False\"",
 		" DoNotKnow=\"\"",
 		" Type=\"\"",
