@@ -1408,16 +1408,18 @@
                         <Month>04</Month>
                         <Year>2009</Year>
                       </Date>
-                      <Reason>Reason 9 for quitting</Reason>
+                      <Reason>Because 9</Reason>
                       <SeveranceType>QuitKnowingWouldBeFired</SeveranceType>
+                      <SeveranceTypeComment>Reason 9 for quitting</SeveranceTypeComment>
                     </Dismissal>
                     <Dismissal ID="2">
                       <Date>
                         <Month>06</Month>
                         <Year>2009</Year>
                       </Date>
-                      <Reason>Reason 9 for Misconduct</Reason>
+                      <Reason>Because 9</Reason>
                       <SeveranceType>AllegedMisconduct</SeveranceType>
+                      <SeveranceTypeComment>Reason 9 for Misconduct</SeveranceTypeComment>
                     </Dismissal>
                     <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
                   </Dismissals>
@@ -4689,7 +4691,7 @@
                       <Charge ID="1">
                         <Charge>Break and Enter</Charge>
                         <Date>
-                          <Month>02</Month>
+                          <Month>01</Month>
                           <Year>2000</Year>
                         </Date>
                         <Outcome>Not Guilty</Outcome>
