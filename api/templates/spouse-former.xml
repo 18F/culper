@@ -49,7 +49,7 @@
       <DivorceRecordLocation>
         <!-- XXX Placeholder text as work-around for https://github.com/18F/e-QIP-prototype/issues/808 -->
         <Place>
-          <City>Unknown</City><State>CA</State>
+          <City>Unknown</City><State>CA</State><ZipCode>93940</ZipCode>
         </Place>
       </DivorceRecordLocation>
       {{end}}
@@ -63,9 +63,7 @@
   {{end}}
   {{end}}
 
-  {{if branch .props.branch | eq "Yes"}}
   <HaveAdditionalEntryAnswer>{{branch .props.branch}}</HaveAdditionalEntryAnswer>
   <SummaryComment></SummaryComment>
   <Comment></Comment>
-  {{end}}
 </FormerSpouses>

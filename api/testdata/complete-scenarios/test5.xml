@@ -689,7 +689,6 @@
                   <Deceased>
                     <Answer>IDontKnow</Answer>
                   </Deceased>
-                  <DivorcedAnnulledComment2/>
                   <LegalName>
                     <Last>Xan</Last>
                     <First>Eileen</First>
@@ -716,11 +715,13 @@
                       <Place>
                         <City>Unknown</City>
                         <State>CA</State>
+                        <ZipCode>93940</ZipCode>
                       </Place>
                     </DivorceRecordLocation>
                   </Separation>
                   <Telephone DoNotKnow="True"/>
                 </FormerSpouse>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
               </FormerSpouses>
               <HaveFormerSpouse>
                 <Answer>Yes</Answer>
@@ -1407,18 +1408,16 @@
                         <Month>04</Month>
                         <Year>2009</Year>
                       </Date>
-                      <Reason>Because 9</Reason>
+                      <Reason>Reason 9 for quitting</Reason>
                       <SeveranceType>QuitKnowingWouldBeFired</SeveranceType>
-                      <SeveranceTypeComment>Reason 9 for quitting</SeveranceTypeComment>
                     </Dismissal>
                     <Dismissal ID="2">
                       <Date>
                         <Month>06</Month>
                         <Year>2009</Year>
                       </Date>
-                      <Reason>Because 9</Reason>
+                      <Reason>Reason 9 for Misconduct</Reason>
                       <SeveranceType>AllegedMisconduct</SeveranceType>
-                      <SeveranceTypeComment>Reason 9 for Misconduct</SeveranceTypeComment>
                     </Dismissal>
                     <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
                   </Dismissals>
@@ -4690,7 +4689,7 @@
                       <Charge ID="1">
                         <Charge>Break and Enter</Charge>
                         <Date>
-                          <Month>01</Month>
+                          <Month>02</Month>
                           <Year>2000</Year>
                         </Date>
                         <Outcome>Not Guilty</Outcome>
