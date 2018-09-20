@@ -87,6 +87,17 @@
               "date": "2017-07-25T00:00:00Z"
             }
           },
+          "DivorceLocation": {
+            "type": "location",
+            "props": {
+              "layout": "US City, State, International city",
+              "city": "Arlington",
+              "state": "VA",
+              "zipcode": "22202",
+              "country": "United States",
+              "validated": false
+            }
+          },
           "Status": {
             "type": "radio",
             "props": {

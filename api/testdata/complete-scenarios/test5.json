@@ -16639,6 +16639,16 @@
                       "estimated": false
                     }
                   },
+                  "DivorceLocation": {
+                    "type": "location",
+                    "props": {
+                      "layout": "US City, State, International city",
+                      "city": "Monterey",
+                      "state": "CA",
+                      "zipcode": "93940",
+                      "country": "United States"
+                    }
+                  },
                   "Deceased": {
                     "type": "radio",
                     "props": {

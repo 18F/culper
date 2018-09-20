@@ -7548,6 +7548,12 @@
                       "estimated": false
                     }
                   },
+                  "DivorceLocation": {
+                    "type": "location",
+                    "props": {
+                      "layout": ""
+                    }
+                  },
                   "Deceased": {
                     "type": "radio",
                     "props": {
