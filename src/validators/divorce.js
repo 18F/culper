@@ -12,6 +12,7 @@ export default class DivorceValidator {
     this.recognized = data.Recognized || {}
     this.address = data.Address || {}
     this.dateDivorced = data.DateDivorced || {}
+    this.divorceLocation = data.DivorceLocation || {}
     this.status = data.Status || {}
     this.deceased = data.Deceased || {}
     this.deceasedAddress = data.DeceasedAddress || {}
@@ -20,6 +21,15 @@ export default class DivorceValidator {
   validStatus() {
     const statusValue = this.status.value || ''
     return ['Divorced', 'Widowed', 'Annulled'].includes(statusValue)
+  }
+
+  validDivorceLocation() {
+    const statusValue = this.status.value || ''
+    if (statusValue === 'Widowed') {
+      return true
+    }
+
+    return new LocationValidator(this.divorceLocation).isValid()
   }
 
   validDeceased() {
@@ -54,6 +64,7 @@ export default class DivorceValidator {
       validDateField(this.recognized) &&
       new LocationValidator(this.address).isValid() &&
       validDateField(this.dateDivorced) &&
+      this.validDivorceLocation() &&
       this.validStatus() &&
       this.validDeceased()
     )

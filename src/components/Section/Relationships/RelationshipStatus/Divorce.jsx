@@ -25,6 +25,7 @@ export default class Divorce extends React.Component {
     this.updateRecognized = this.updateRecognized.bind(this)
     this.updateAddress = this.updateAddress.bind(this)
     this.updateDateDivorced = this.updateDateDivorced.bind(this)
+    this.updateDivorceLocation = this.updateDivorceLocation.bind(this)
     this.updateStatus = this.updateStatus.bind(this)
     this.updateDeceased = this.updateDeceased.bind(this)
     this.updateDeceasedAddress = this.updateDeceasedAddress.bind(this)
@@ -43,6 +44,7 @@ export default class Divorce extends React.Component {
       Recognized: this.props.Recognized,
       Address: this.props.Address,
       DateDivorced: this.props.DateDivorced,
+      DivorceLocation: this.props.DivorceLocation,
       Status: this.props.Status,
       Deceased: this.props.Deceased,
       DeceasedAddress: this.props.DeceasedAddress,
@@ -95,6 +97,12 @@ export default class Divorce extends React.Component {
   updateDateDivorced(values) {
     this.update({
       DateDivorced: values
+    })
+  }
+
+  updateDivorceLocation(values) {
+    this.update({
+      DivorceLocation: values
     })
   }
 
@@ -287,6 +295,24 @@ export default class Divorce extends React.Component {
             (this.props.Status || {}).value
           )}>
           <div>
+            <Field
+              title={i18n.t(
+                'relationships.civilUnion.divorce.heading.divorceLocation'
+              )}
+              optional={true}
+              scrollIntoView={this.props.scrollIntoView}
+              adjustFor="labels">
+              <Location
+                className="divorce-location"
+                {...this.props.DivorceLocation}
+                layout={Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY}
+                label={i18n.t('relationships.civilUnion.label.location')}
+                onUpdate={this.updateDivorceLocation}
+                onError={this.props.onError}
+                required={this.props.required}
+              />
+            </Field>
+
             <Field
               title={i18n.t(
                 'relationships.civilUnion.divorce.heading.deceased'

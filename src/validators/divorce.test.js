@@ -69,6 +69,43 @@ describe('Divorce validation', function() {
     })
   })
 
+  it('validates divorce location', () => {
+    const tests = [
+      {
+        state: {
+          Status: { value: 'Widowed' },
+          DivorceLocation: {}
+        },
+        expected: true
+      },
+      {
+        state: {
+          Status: { value: 'Divorced' },
+          DivorceLocation: {}
+        },
+        expected: false
+      },
+      {
+        state: {
+          Status: { value: 'Divorced' },
+          DivorceLocation: {
+            country: { value: 'United States' },
+            city: 'Arlington',
+            state: 'VA',
+            zipcode: '22202',
+            layout: Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY
+          }
+        },
+        expected: true
+      }
+    ]
+    tests.forEach(test => {
+      expect(
+        new DivorceValidator(test.state, null).validDivorceLocation()
+      ).toBe(test.expected)
+    })
+  })
+
   it('validates divorced', () => {
     const tests = [
       {
