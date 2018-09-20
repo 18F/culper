@@ -219,7 +219,7 @@ export default class Passport extends SubsectionElement {
                     `foreign.passport.placeholder.bookNumber`
                   )}
                   pattern={this.props.reBook}
-                  maxlength="10"
+                  maxlength="9"
                   className="number passport-number"
                   ref="number"
                   prefix="passport"
@@ -282,7 +282,7 @@ Passport.defaultProps = {
   Comments: {},
   HasPassports: {},
   suggestedNames: [],
-  reBook: '^[a-zA-Z]{1}[0-9]{6,9}$',
+  reBook: '^[a-zA-Z0-9]{6,9}$',
   onUpdate: queue => {},
   onError: (value, arr) => {
     return arr

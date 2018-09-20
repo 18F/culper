@@ -1,7 +1,7 @@
 import NameValidator from './name'
 import DateRangeValidator from './daterange'
 
-const reBook = '^[a-zA-Z]{1}[0-9]{6,9}$'
+const reBook = '^[a-zA-Z0-9]{6,9}$'
 
 export default class PassportValidator {
   constructor(data = {}) {
