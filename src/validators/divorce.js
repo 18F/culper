@@ -12,7 +12,7 @@ export default class DivorceValidator {
     this.recognized = data.Recognized || {}
     this.address = data.Address || {}
     this.dateDivorced = data.DateDivorced || {}
-    this.divorceLocation = data.DateDivorced || {}
+    this.divorceLocation = data.DivorceLocation || {}
     this.status = data.Status || {}
     this.deceased = data.Deceased || {}
     this.deceasedAddress = data.DeceasedAddress || {}

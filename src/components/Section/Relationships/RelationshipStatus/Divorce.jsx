@@ -303,8 +303,7 @@ export default class Divorce extends React.Component {
               scrollIntoView={this.props.scrollIntoView}
               adjustFor="labels">
               <Location
-                name="divorce-location"
-                className="location"
+                className="divorce-location"
                 {...this.props.DivorceLocation}
                 layout={Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY}
                 label={i18n.t('relationships.civilUnion.label.location')}

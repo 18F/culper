@@ -18,6 +18,7 @@ describe('The Divorce component', () => {
       name: 'cohabitant',
       Status: { value: 'Divorced' },
       BirthPlace: { country: { value: 'United States' } },
+      DivorceLocation: { country: { value: 'United States' } },
       Deceased: { value: 'No' },
       onUpdate: () => {
         updates++
@@ -43,8 +44,8 @@ describe('The Divorce component', () => {
     component
       .find('.date-divorced .month input')
       .simulate('change', { target: { value: '12' } })
-    component.find('.divorce-location .city input').simulate('change')
     component.find('.status .divorced input').simulate('change')
+    component.find('.divorce-location .city input').simulate('change')
     component.find('.deceased .widowed input').simulate('change')
     component.find('.address-deceased .city input').simulate('change')
     component.find('.deceased-notapplicable .button input').simulate('change')
