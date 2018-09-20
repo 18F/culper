@@ -76,7 +76,7 @@ export const foreign = {
       number: {
         title: 'Passport',
         message:
-          'Passports will start with the letter A.',
+          'U.S. Passport numbers must be between six and nine alphanumeric characters (letters and numbers).',
         note: ''
       },
       issued: {

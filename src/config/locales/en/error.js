@@ -783,7 +783,7 @@ export const error = {
     pattern: {
       title: 'There is a problem with the passport number',
       message: [
-        'For passport books the number will start with a letter and then 6 to 9 digits.'
+        'U.S. Passport numbers must be between six and nine alphanumeric characters (letters and numbers).'
       ],
       note: ''
     },
