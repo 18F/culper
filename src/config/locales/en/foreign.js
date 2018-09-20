@@ -74,9 +74,9 @@ export const foreign = {
     },
     help: {
       number: {
-        title: 'Passport or Passport Card',
+        title: 'Passport',
         message:
-          'Passports will start with the letter A. Passport Cards will start with the letter C. For Passport Cards select the Passport card option first.',
+          'Passports will start with the letter A.',
         note: ''
       },
       issued: {

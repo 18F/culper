@@ -134,12 +134,6 @@ export default class Passport extends SubsectionElement {
   }
 
   render() {
-    const passportType = (this.props.Card || {}).value || 'Book'
-    let re = this.props.reBook
-    if (passportType === 'Card') {
-      re = this.props.reCard
-    }
-
     return (
       <div
         className="section-content passport"
@@ -215,38 +209,16 @@ export default class Passport extends SubsectionElement {
               shrink={true}
               scrollIntoView={this.props.scrollIntoView}>
               <div>
-                <RadioGroup
-                  className="option-list"
-                  onError={this.handleError}
-                  required={this.props.required}
-                  selectedValue={(this.props.Card || {}).value}>
-                  <Radio
-                    name="passport-book"
-                    className="passport-book"
-                    label={i18n.t('foreign.passport.label.book')}
-                    value="Book"
-                    onUpdate={this.updateCard}
-                    onError={this.handleError}
-                  />
-                  <Radio
-                    name="passport-card"
-                    className="passport-card"
-                    label={i18n.t('foreign.passport.label.card')}
-                    value="Card"
-                    onUpdate={this.updateCard}
-                    onError={this.handleError}
-                  />
-                </RadioGroup>
                 <Text
                   name="number"
                   {...this.props.Number}
                   label={i18n.t(
-                    `foreign.passport.label.${passportType.toLowerCase()}Number`
+                    `foreign.passport.label.bookNumber`
                   )}
                   placeholder={i18n.t(
-                    `foreign.passport.placeholder.${passportType.toLowerCase()}Number`
+                    `foreign.passport.placeholder.bookNumber`
                   )}
-                  pattern={re}
+                  pattern={this.props.reBook}
                   maxlength="9"
                   className="number passport-number"
                   ref="number"
@@ -311,7 +283,6 @@ Passport.defaultProps = {
   HasPassports: {},
   suggestedNames: [],
   reBook: '^[a-zA-Z]{1}[0-9]{6,9}$',
-  reCard: '^[cC]{1}[0-9]{8}$',
   onUpdate: queue => {},
   onError: (value, arr) => {
     return arr

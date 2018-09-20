@@ -2,7 +2,6 @@ import NameValidator from './name'
 import DateRangeValidator from './daterange'
 
 const reBook = '^[a-zA-Z]{1}[0-9]{6,9}$'
-const reCard = '^[cC]{1}[0-9]{8}$'
 
 export default class PassportValidator {
   constructor(data = {}) {
@@ -45,7 +44,7 @@ export default class PassportValidator {
       return false
     }
 
-    let re = this.card === 'Card' ? new RegExp(reCard) : new RegExp(reBook)
+    let re = new RegExp(reBook)
     if (!re.test(this.number.value)) {
       return false
     }

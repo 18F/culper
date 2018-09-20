@@ -41,29 +41,11 @@ describe('Passport component validation', function() {
       {
         data: {
           Number: {
-            value: 'C1234567'
+            value: 'A1234567'
           },
           Card: 'Book'
         },
         expected: true
-      },
-      {
-        data: {
-          Number: {
-            value: 'C12345678'
-          },
-          Card: 'Card'
-        },
-        expected: true
-      },
-      {
-        data: {
-          Number: {
-            value: 'C1234567'
-          },
-          Card: 'Card'
-        },
-        expected: false
       },
       {
         data: {
