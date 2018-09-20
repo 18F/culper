@@ -1,6 +1,6 @@
 import { api } from '../services/api'
 import Layouts from '../components/Form/Location/Layouts'
-import { zipcodes } from '../config'
+import { isZipcodeState, zipcodes } from '../config'
 
 export const isInternational = location => {
   return !['United States', 'POSTOFFICE'].includes(
@@ -169,12 +169,13 @@ export default class LocationValidator {
   }
 
   validZipcodeState() {
-    if (!zipcodes[this.state]) {
+    if (!zipcodes[this.state] || !this.validZipcode()) {
       return true
     }
 
-    const zip5Digit = this.zipcode.substring(0, 5)
-    return zipcodes[this.state].indexOf(zip5Digit) !== -1
+    return isZipcodeState(this.state, this.zipcode)
+    // const zip3Digit = this.zipcode.substring(0, 3)
+    // return zipcodes[this.state].includes(zip3Digit)
   }
 
   validCounty() {
@@ -212,7 +213,7 @@ export default class LocationValidator {
         return this.validFields(['city', 'country'])
       case Layouts.US_CITY_STATE_ZIP_INTERNATIONAL_CITY:
         if (this.isDomestic()) {
-          return this.validFields(['city', 'state', 'zipcode'])
+          return this.validFields(['city', 'state', 'zipcode', 'zipcodeState'])
         }
         return this.validFields(['city', 'country'])
       case Layouts.STATE:
@@ -229,16 +230,24 @@ export default class LocationValidator {
         }
         return this.validFields(['city', 'country'])
       case Layouts.US_ADDRESS:
-        return this.validFields(['street', 'city', 'state', 'zipcode'])
+        return this.validFields([
+          'street',
+          'city',
+          'state',
+          'zipcode',
+          'zipcodeState'
+        ])
       case Layouts.STREET_CITY:
         return this.validFields(['street', 'city'])
       case Layouts.ADDRESS:
         if (this.isDomestic() || this.isPostOffice()) {
-          if (this.validFields(['street', 'city', 'state', 'zipcode'])) {
-            return this.validZipcodeState()
-          }
-
-          return false
+          return this.validFields([
+            'street',
+            'city',
+            'state',
+            'zipcode',
+            'zipcodeState'
+          ])
         }
         return this.validFields(['street', 'city', 'country'])
       default:
@@ -264,6 +273,9 @@ export default class LocationValidator {
           break
         case 'zipcode':
           valid = valid && this.validZipcode()
+          break
+        case 'zipcodeState':
+          valid = valid && this.validZipcodeState()
           break
         case 'county':
           valid = valid && this.validCounty()
