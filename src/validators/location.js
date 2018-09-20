@@ -1,6 +1,6 @@
 import { api } from '../services/api'
 import Layouts from '../components/Form/Location/Layouts'
-import { zipcodes } from '../config'
+import { isZipcodeState, zipcodes } from '../config'
 
 export const isInternational = location => {
   return !['United States', 'POSTOFFICE'].includes(
@@ -173,8 +173,9 @@ export default class LocationValidator {
       return true
     }
 
-    const zip3Digit = this.zipcode.substring(0, 3)
-    return zipcodes[this.state].includes(zip3Digit)
+    return isZipcodeState(this.state, this.zipcode)
+    // const zip3Digit = this.zipcode.substring(0, 3)
+    // return zipcodes[this.state].includes(zip3Digit)
   }
 
   validCounty() {
@@ -227,12 +228,24 @@ export default class LocationValidator {
         }
         return this.validFields(['city', 'country'])
       case Layouts.US_ADDRESS:
-        return this.validFields(['street', 'city', 'state', 'zipcode', 'zipcodeState'])
+        return this.validFields([
+          'street',
+          'city',
+          'state',
+          'zipcode',
+          'zipcodeState'
+        ])
       case Layouts.STREET_CITY:
         return this.validFields(['street', 'city'])
       case Layouts.ADDRESS:
         if (this.isDomestic() || this.isPostOffice()) {
-          return this.validFields(['street', 'city', 'state', 'zipcode', 'zipcodeState']);
+          return this.validFields([
+            'street',
+            'city',
+            'state',
+            'zipcode',
+            'zipcodeState'
+          ])
         }
         return this.validFields(['street', 'city', 'country'])
       default:

@@ -1,4 +1,4 @@
-export default {
+export const zipcodes = {
   AA: ['340'],
   AE: ['090', '091', '092', '093', '094', '095', '096', '097', '098', '099'],
   AP: ['962', '963', '964', '965', '966'],
@@ -24,7 +24,6 @@ export default {
     '368',
     '369'
   ],
-  AP: ['962', '963', '965'],
   AR: [
     '716',
     '717',
@@ -41,6 +40,7 @@ export default {
     '728',
     '729'
   ],
+  AS: ['967'],
   AZ: [
     '850',
     '851',
@@ -555,7 +555,6 @@ export default {
   NV: ['889', '890', '891', '893', '894', '895', '897', '898'],
   NY: [
     '005',
-    '063',
     '100',
     '101',
     '102',
@@ -733,7 +732,6 @@ export default {
   ],
   TX: [
     '733',
-    '739',
     '750',
     '751',
     '752',
@@ -816,6 +814,7 @@ export default {
     '245',
     '246'
   ],
+  VI: ['008'],
   VT: ['050', '051', '052', '053', '054', '056', '057', '058', '059'],
   WA: [
     '980',
@@ -889,7 +888,30 @@ export default {
     '828',
     '829',
     '830',
-    '831',
-    '834'
+    '831'
   ]
+}
+
+const crossStateZips = {
+  MD: ['20588'],
+  NY: ['06390'],
+  TX: ['73960'],
+  VA: ['20598'],
+  WY: ['83414']
+}
+
+export const isZipcodeState = (stateCode = '', zipCode = '') => {
+  if (!zipcodes[stateCode]) return false
+
+  const zip3Digit = zipCode.substring(0, 3)
+  const zip5Digit = zipCode.substring(0, 5)
+
+  if (
+    crossStateZips[stateCode] &&
+    crossStateZips[stateCode].includes(zip5Digit)
+  ) {
+    return true
+  }
+
+  return zipcodes[stateCode].includes(zip3Digit)
 }
