@@ -114,14 +114,7 @@ export default class ToggleableLocation extends ValidationElement {
   zipcodeInstate() {
     const validator = new LocationValidator(this.props)
 
-    if (
-      validator.isDomestic() &&
-      validator.layout === Layouts.US_CITY_STATE_ZIP_INTERNATIONAL_CITY
-    ) {
-      if (validator.validFields(['city', 'state', 'zipcode'])) {
-        return validator.validZipcodeState()
-      }
-    }
+    return validator.validZipcodeState()
   }
 
   render() {
