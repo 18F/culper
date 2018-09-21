@@ -776,6 +776,9 @@ export const error = {
     }
   },
   passport: {
+    length: {
+      title: ''
+    },
     required: {
       title: 'Your response is required',
       message: ''

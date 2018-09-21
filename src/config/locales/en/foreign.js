@@ -58,10 +58,6 @@ export const foreign = {
       book: 'Passport',
       card: 'Passport card'
     },
-    placeholder: {
-      bookNumber: 'A########',
-      cardNumber: 'C########'
-    },
     name: 'Provide the name in which passport was first issued',
     number: 'Provide your U.S. passport number',
     card: 'Passport card',

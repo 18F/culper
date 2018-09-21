@@ -265,9 +265,6 @@ export default class Passport extends SubsectionElement {
                   label={i18n.t(
                     `foreign.passport.label.bookNumber`
                   )}
-                  placeholder={i18n.t(
-                    `foreign.passport.placeholder.bookNumber`
-                  )}
                   pattern={numberRegEx}
                   maxlength={numberLength}
                   className="number passport-number"
