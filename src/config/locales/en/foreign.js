@@ -54,13 +54,10 @@ export const foreign = {
     },
     label: {
       bookNumber: 'Passport number',
-      cardNumber: 'Passport card number',
-      book: 'Passport',
-      card: 'Passport card'
+      book: 'Passport'
     },
     name: 'Provide the name in which passport was first issued',
     number: 'Provide your U.S. passport number',
-    card: 'Passport card',
     issued: 'Provide the issue date of the passport',
     expiration: 'Provide the expiration date of the passport',
     comment: {
@@ -77,12 +74,12 @@ export const foreign = {
       },
       issued: {
         title: 'Use the exact date',
-        message: 'Enter the date on your passport or passport card.',
+        message: 'Enter the date on your passport.',
         note: ''
       },
       expiration: {
         title: 'Use the exact date',
-        message: 'Enter the date on your passport or passport card.',
+        message: 'Enter the date on your passport.',
         note: ''
       }
     },
