@@ -54,17 +54,10 @@ export const foreign = {
     },
     label: {
       bookNumber: 'Passport number',
-      cardNumber: 'Passport card number',
-      book: 'Passport',
-      card: 'Passport card'
-    },
-    placeholder: {
-      bookNumber: 'A########',
-      cardNumber: 'C########'
+      book: 'Passport'
     },
     name: 'Provide the name in which passport was first issued',
     number: 'Provide your U.S. passport number',
-    card: 'Passport card',
     issued: 'Provide the issue date of the passport',
     expiration: 'Provide the expiration date of the passport',
     comment: {
@@ -74,19 +67,19 @@ export const foreign = {
     },
     help: {
       number: {
-        title: 'Passport or Passport Card',
+        title: 'Passport',
         message:
-          'Passports will start with the letter A. Passport Cards will start with the letter C. For Passport Cards select the Passport card option first.',
+          'U.S. Passport numbers must be nine alphanumeric characters (letters and numbers).',
         note: ''
       },
       issued: {
         title: 'Use the exact date',
-        message: 'Enter the date on your passport or passport card.',
+        message: 'Enter the date on your passport.',
         note: ''
       },
       expiration: {
         title: 'Use the exact date',
-        message: 'Enter the date on your passport or passport card.',
+        message: 'Enter the date on your passport.',
         note: ''
       }
     },

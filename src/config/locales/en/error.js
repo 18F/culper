@@ -776,6 +776,9 @@ export const error = {
     }
   },
   passport: {
+    length: {
+      title: ''
+    },
     required: {
       title: 'Your response is required',
       message: ''
@@ -783,8 +786,7 @@ export const error = {
     pattern: {
       title: 'There is a problem with the passport number',
       message: [
-        'For passport books the number will start with a letter and then 6 to 9 digits.',
-        'For passport cards the number begins with a "C" and followed by 8 digits.'
+        'U.S. Passport numbers must be nine alphanumeric characters (letters and numbers).'
       ],
       note: ''
     },

@@ -40,38 +40,87 @@ describe('Passport component validation', function() {
     const tests = [
       {
         data: {
-          Number: {
-            value: 'C1234567'
-          },
-          Card: 'Book'
-        },
-        expected: true
-      },
-      {
-        data: {
-          Number: {
-            value: 'C12345678'
-          },
-          Card: 'Card'
-        },
-        expected: true
-      },
-      {
-        data: {
-          Number: {
-            value: 'C1234567'
-          },
-          Card: 'Card'
-        },
-        expected: false
-      },
-      {
-        data: {
           Number: '',
           Card: 'Book'
         },
         expected: false
-      }
+      },
+      {
+        data: {
+          Issued: {
+            date: new Date('1/1/2015'),
+            day: '1',
+            month: '1',
+            year: '2015',
+            estimated: false
+          },
+          Number: '',
+          Card: 'Book'
+        },
+        expected: false
+      },
+      {
+        data: {
+          Issued: {
+            date: new Date('1/1/1989'),
+            day: '1',
+            month: '1',
+            year: '1989',
+            estimated: false
+          },
+          Number: '',
+          Card: 'Book'
+        },
+        expected: false
+      },
+      {
+        data: {
+          Issued: {
+            date: new Date('1/1/2015'),
+            day: '1',
+            month: '1',
+            year: '2015',
+            estimated: false
+          },
+          Number: {
+            value: '123456789abcdefg'
+          },
+          Card: 'Book'
+        },
+        expected: false
+      },
+      {
+        data: {
+          Issued: {
+            date: new Date('1/1/2015'),
+            day: '1',
+            month: '1',
+            year: '2015',
+            estimated: false
+          },
+          Number: {
+            value: '123456789'
+          },
+          Card: 'Book'
+        },
+        expected: true
+      },
+      {
+        data: {
+          Issued: {
+            date: new Date('1/1/1989'),
+            day: '1',
+            month: '1',
+            year: '1989',
+            estimated: false
+          },
+          Number: {
+            value: '123456789abcdefg'
+          },
+          Card: 'Book'
+        },
+        expected: true
+      },
     ]
 
     tests.forEach(test => {
@@ -207,7 +256,7 @@ describe('Passport component validation', function() {
           },
           HasPassports: { value: 'Yes' },
           Number: {
-            value: 'C1234567'
+            value: '123456789'
           },
           Card: 'Book',
           Issued: {
