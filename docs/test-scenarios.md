@@ -5,6 +5,10 @@ Multiple test scenarios in JSON format are archived under:
 
 The `*.json` files contain the same JSON structures that the user interface generates and saves to the database. Each file represents a complete, valid SF-86 application that can be loaded into eApp and submitted to e-QIP.
 
+## Prerequisites
+
+Run `make build-cmd` to build `api/bin/form` and `api/bin/load-scenario`.
+
 ## Generating new test JSON files
 
 1. Sign into eApp with one of the test accounts (e.g., `test01`). 
