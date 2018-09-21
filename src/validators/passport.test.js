@@ -256,7 +256,7 @@ describe('Passport component validation', function() {
           },
           HasPassports: { value: 'Yes' },
           Number: {
-            value: 'C1234567'
+            value: '123456789'
           },
           Card: 'Book',
           Issued: {

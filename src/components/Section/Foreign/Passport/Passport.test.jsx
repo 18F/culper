@@ -94,7 +94,7 @@ describe('The passport component', () => {
       },
       Number: {
         name: 'number',
-        value: 'C1234567'
+        value: '123456789'
       }
     }
     const component = mount(<Passport {...data} name={'passport'} />)
