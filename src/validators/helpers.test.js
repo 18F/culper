@@ -248,6 +248,19 @@ describe('Helpers for validators', function() {
         phone: {
           noNumber: '',
           number: '1234567',
+          timeOfDay: 'Both',
+          type: 'DSN',
+          extension: ''
+        },
+        options: {
+          numberType: false
+        },
+        expected: true
+      },
+      {
+        phone: {
+          noNumber: '',
+          number: '1234567',
           numberType: 'Home',
           timeOfDay: 'Both',
           type: 'Unknown',
@@ -291,7 +304,7 @@ describe('Helpers for validators', function() {
     ]
 
     tests.forEach(test => {
-      expect(validPhoneNumber(test.phone)).toBe(test.expected)
+      expect(validPhoneNumber(test.phone, test.options)).toBe(test.expected)
     })
   })
 

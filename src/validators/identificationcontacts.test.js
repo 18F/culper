@@ -83,6 +83,30 @@ describe('Contact Information validation', function() {
       },
       {
         state: {
+          PhoneNumbers: {
+            items: [
+              {
+                Item: {
+                  Telephone: {
+                    noNumber: false,
+                    number: '7031112222',
+                    numberType: '',
+                    type: 'Domestic',
+                    timeOfDay: 'Both',
+                    extension: ''
+                  }
+                }
+              },
+              {
+                Telephone: {}
+              }
+            ]
+          }
+        },
+        expected: false
+      },
+      {
+        state: {
           PhoneNumbers: { items: [] }
         },
         expected: false
