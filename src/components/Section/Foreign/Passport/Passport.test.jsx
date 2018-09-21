@@ -106,7 +106,7 @@ describe('The passport component', () => {
     component.find('.passport-expiration .day input').simulate('change')
   })
 
-  it('can render with regular expression for passport card', () => {
+  it('can render with regular expression for passport book', () => {
     const props = {
       HasPassports: { value: 'Yes' },
       Issued: {

@@ -52,7 +52,7 @@ export default class PassportValidator {
       let re = new RegExp(reBook)
 
       // Before 1/1/1990 allow alphanumeric of any length
-      if (issueDate < cutoffDate) {
+      if (issueDate && issueDate < cutoffDate) {
         re = new RegExp('^[a-zA-Z0-9]*$')
         if (!re.test(this.number.value)) {
           return false

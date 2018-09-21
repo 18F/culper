@@ -139,7 +139,7 @@ export default class Passport extends SubsectionElement {
       const cutoffDate = new Date('1/1/1990 00:00')
       const issueDate = extractDate(this.props.Issued)
 
-      if (issueDate < cutoffDate) {
+      if (issueDate && issueDate < cutoffDate) {
         return true
       }
     }
