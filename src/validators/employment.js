@@ -164,7 +164,7 @@ export class EmploymentValidator {
   validReference() {
     return (
       new NameValidator(this.referenceName).isValid() &&
-      validPhoneNumber(this.referencePhone, { numberType: false }) &&
+      validPhoneNumber(this.referencePhone) &&
       new LocationValidator(this.referenceAddress).isValid()
     )
   }
