@@ -16,8 +16,8 @@ import (
 //
 // See api/testdata/complete-scenarios/*.json for examples.
 func main() {
-	if len(os.Args) < 2 {
-		log.Fatalf("usage: load test-case.json")
+	if len(os.Args) != 2 {
+		log.Fatalf("usage: load-scenario test-case.json")
 	}
 
 	form, err := cmd.ReadSectionData(os.Args[1])
