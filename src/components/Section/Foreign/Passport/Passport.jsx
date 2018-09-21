@@ -14,6 +14,7 @@ import {
   Radio,
   RadioGroup
 } from '../../../Form'
+import { extractDate } from '../../History/dateranges'
 
 export default class Passport extends SubsectionElement {
   constructor(props) {
@@ -133,7 +134,23 @@ export default class Passport extends SubsectionElement {
     return this.props.suggestedNames.length
   }
 
+  passportBeforeCutoff() {
+    if (this.props.Issued) {
+      const cutoffDate = new Date('1/1/1990 00:00')
+      const issueDate = extractDate(this.props.Issued)
+
+      if (issueDate < cutoffDate) {
+        return true
+      }
+    }
+
+    return false
+  }
+
   render() {
+    const numberLength = this.passportBeforeCutoff() ? '255' : '9'
+    const numberRegEx = this.passportBeforeCutoff() ? '^[a-zA-Z0-9]*$' : this.props.reBook
+
     return (
       <div
         className="section-content passport"
@@ -202,35 +219,6 @@ export default class Passport extends SubsectionElement {
             </Field>
 
             <Field
-              title={i18n.t('foreign.passport.number')}
-              help="foreign.passport.help.number"
-              errorPrefix="passport"
-              adjustFor="buttons"
-              shrink={true}
-              scrollIntoView={this.props.scrollIntoView}>
-              <div>
-                <Text
-                  name="number"
-                  {...this.props.Number}
-                  label={i18n.t(
-                    `foreign.passport.label.bookNumber`
-                  )}
-                  placeholder={i18n.t(
-                    `foreign.passport.placeholder.bookNumber`
-                  )}
-                  pattern={this.props.reBook}
-                  maxlength="9"
-                  className="number passport-number"
-                  ref="number"
-                  prefix="passport"
-                  onUpdate={this.updateNumber}
-                  onError={this.handleError}
-                  required={this.props.required}
-                />
-              </div>
-            </Field>
-
-            <Field
               title={i18n.t('foreign.passport.issued')}
               help="foreign.passport.help.issued"
               adjustFor="labels"
@@ -261,6 +249,35 @@ export default class Passport extends SubsectionElement {
                 onError={this.handleError}
                 required={this.props.required}
               />
+            </Field>
+
+            <Field
+              title={i18n.t('foreign.passport.number')}
+              help="foreign.passport.help.number"
+              errorPrefix="passport"
+              adjustFor="buttons"
+              shrink={true}
+              scrollIntoView={this.props.scrollIntoView}>
+              <div>
+                <Text
+                  name="number"
+                  {...this.props.Number}
+                  label={i18n.t(
+                    `foreign.passport.label.bookNumber`
+                  )}
+                  placeholder={i18n.t(
+                    `foreign.passport.placeholder.bookNumber`
+                  )}
+                  pattern={numberRegEx}
+                  maxlength={numberLength}
+                  className="number passport-number"
+                  ref="number"
+                  prefix="passport"
+                  onUpdate={this.updateNumber}
+                  onError={this.handleError}
+                  required={this.props.required}
+                />
+              </div>
             </Field>
           </div>
         </Show>

@@ -1,5 +1,6 @@
 import NameValidator from './name'
 import DateRangeValidator from './daterange'
+import { extractDate } from '../components/Section/History/dateranges'
 
 const reBook = '^[a-zA-Z0-9]{6,9}$'
 
@@ -44,9 +45,24 @@ export default class PassportValidator {
       return false
     }
 
-    let re = new RegExp(reBook)
-    if (!re.test(this.number.value)) {
-      return false
+    if (this.issued) {
+      const cutoffDate = new Date('1/1/1990 00:00')
+      const issueDate = extractDate(this.issued)
+
+      let re = new RegExp(reBook)
+
+      // Before 1/1/1990 allow alphanumeric of any length
+      if (issueDate < cutoffDate) {
+        re = new RegExp('^[a-zA-Z0-9]*$')
+        if (!re.test(this.number.value)) {
+          return false
+        }
+      }
+
+      // After 1/1/1990 enforce default regex
+      if (!re.test(this.number.value)) {
+        return false
+      }
     }
 
     return true

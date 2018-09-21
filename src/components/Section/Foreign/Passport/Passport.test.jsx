@@ -109,6 +109,13 @@ describe('The passport component', () => {
   it('can render with regular expression for passport card', () => {
     const props = {
       HasPassports: { value: 'Yes' },
+      Issued: {
+        day: '1',
+        estimated: false,
+        month: '1',
+        name: 'issued',
+        year: '2003'
+      },
       Card: { value: 'Book' },
       reBook: 'test'
     }

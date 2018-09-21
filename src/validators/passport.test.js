@@ -40,8 +40,66 @@ describe('Passport component validation', function() {
     const tests = [
       {
         data: {
+          Number: '',
+          Card: 'Book'
+        },
+        expected: false
+      },
+      {
+        data: {
+          Issued: {
+            date: new Date('1/1/2015'),
+            day: '1',
+            month: '1',
+            year: '2015',
+            estimated: false
+          },
+          Number: '',
+          Card: 'Book'
+        },
+        expected: false
+      },
+      {
+        data: {
+          Issued: {
+            date: new Date('1/1/1989'),
+            day: '1',
+            month: '1',
+            year: '1989',
+            estimated: false
+          },
+          Number: '',
+          Card: 'Book'
+        },
+        expected: false
+      },
+      {
+        data: {
+          Issued: {
+            date: new Date('1/1/2015'),
+            day: '1',
+            month: '1',
+            year: '2015',
+            estimated: false
+          },
           Number: {
-            value: 'A1234567'
+            value: '123456789abcdefg'
+          },
+          Card: 'Book'
+        },
+        expected: false
+      },
+      {
+        data: {
+          Issued: {
+            date: new Date('1/1/2015'),
+            day: '1',
+            month: '1',
+            year: '2015',
+            estimated: false
+          },
+          Number: {
+            value: '123456789'
           },
           Card: 'Book'
         },
@@ -49,11 +107,20 @@ describe('Passport component validation', function() {
       },
       {
         data: {
-          Number: '',
+          Issued: {
+            date: new Date('1/1/1989'),
+            day: '1',
+            month: '1',
+            year: '1989',
+            estimated: false
+          },
+          Number: {
+            value: '123456789abcdefg'
+          },
           Card: 'Book'
         },
-        expected: false
-      }
+        expected: true
+      },
     ]
 
     tests.forEach(test => {
