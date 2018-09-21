@@ -296,7 +296,7 @@ Passport.defaultProps = {
   Comments: {},
   HasPassports: {},
   suggestedNames: [],
-  reBook: '^[a-zA-Z0-9]{6,9}$',
+  reBook: '^[a-zA-Z0-9]{9}$',
   onUpdate: queue => {},
   onError: (value, arr) => {
     return arr

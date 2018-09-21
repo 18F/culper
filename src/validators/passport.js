@@ -2,7 +2,7 @@ import NameValidator from './name'
 import DateRangeValidator from './daterange'
 import { extractDate } from '../components/Section/History/dateranges'
 
-const reBook = '^[a-zA-Z0-9]{6,9}$'
+const reBook = '^[a-zA-Z0-9]{9}$'
 
 export default class PassportValidator {
   constructor(data = {}) {

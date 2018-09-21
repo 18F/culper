@@ -72,7 +72,7 @@ export const foreign = {
       number: {
         title: 'Passport',
         message:
-          'U.S. Passport numbers must be between six and nine alphanumeric characters (letters and numbers).',
+          'U.S. Passport numbers must be nine alphanumeric characters (letters and numbers).',
         note: ''
       },
       issued: {
