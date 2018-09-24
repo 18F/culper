@@ -25,7 +25,7 @@ Note: The files in [`api/testdata/complete-scenarios`](../api/testdata/complete-
 
 1. Clear the database of existing form data using `purge-all-user-data.sql`, replacing `CONTAINERID` with the container id for PostgreSQL. This will purge **ALL** user form data, but leave accounts and passwords intact. All accounts are unlocked.
 ```
-docker cp purge-all-user-data.sql CONTAINERID:/tmp
+docker cp api/bin/purge-all-user-data.sql CONTAINERID:/tmp
 docker exec --user postgres -it CONTAINERID psql -f /tmp/purge-all-user-data.sql
 ```
 
