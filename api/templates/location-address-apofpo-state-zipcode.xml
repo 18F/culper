@@ -1,0 +1,4 @@
+<Address>{{.props.street}}</Address>
+<ApoFpo>{{.props.city}}</ApoFpo>
+<State>{{toUpper .props.state}}</State>
+<ZipCode>{{.props.zipcode}}</ZipCode>

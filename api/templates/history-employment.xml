@@ -11,7 +11,7 @@
       <WorkHours>{{radio $Item.Status}}</WorkHours>
       {{- if locationIsPostOffice $Item.Address}}
       <APOFPO>
-        <Address>{{location $Item.Address}}</Address>
+        <Address>{{militaryAddress $Item.Address}}</Address>
         <AddressComment></AddressComment>
       </APOFPO>
       {{end}}
@@ -168,7 +168,7 @@
         <Title>{{text $supervisor.Title}}</Title>
         {{if locationIsPostOffice $supervisor.Address}}
         <APOFPO>
-          <Address>{{location $supervisor.Address}}</Address>
+          <Address>{{militaryAddress $supervisor.Address}}</Address>
           <AddressComment></AddressComment>
         </APOFPO>
         {{else}}
@@ -186,7 +186,7 @@
         <LegalName>{{nameLastFirst $Item.ReferenceName}}</LegalName>
         {{if locationIsPostOffice $Item.ReferenceAddress}}
         <APOFPO>
-          <Address>{{location $Item.ReferenceAddress}}</Address>
+          <Address>{{militaryAddress $Item.ReferenceAddress}}</Address>
           <AddressComment></AddressComment>
         </APOFPO>
         {{else}}

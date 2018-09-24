@@ -59,7 +59,7 @@
       {{if not $deceased }}
       {{if locationIsPostOffice $Item.Address}}
       <APOFPO>
-        <Address>{{location $Item.Address}}</Address>
+        <Address>{{militaryAddress $Item.Address}}</Address>
         <AddressComment></AddressComment>
         <Answer></Answer>
         <AnswerComment></AnswerComment>

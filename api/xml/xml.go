@@ -73,6 +73,7 @@ func (service Service) DefaultTemplate(templateName string, data map[string]inte
 		"locationIsPostOffice":   locationIsPostOffice,
 		"locationOverrideLayout": locationOverrideLayout,
 		"maritalStatus":          maritalStatus,
+		"militaryAddress":        militaryAddress,
 		"militaryStatus":         militaryStatus,
 		"monthYear":              monthYear,
 		"name":                   name,
@@ -721,6 +722,10 @@ func location(data map[string]interface{}) (template.HTML, error) {
 	return locationOverrideLayout(data, "")
 }
 
+func militaryAddress(data map[string]interface{}) (template.HTML, error) {
+	return locationOverrideLayout(data, api.LayoutMilitaryAddress)
+}
+
 // location assumes the data comes in as the props
 func locationOverrideLayout(data map[string]interface{}, override string) (template.HTML, error) {
 	// Deserialize the initial payload from a JSON structure
@@ -804,6 +809,8 @@ func locationOverrideLayout(data map[string]interface{}, override string) (templ
 		return xmlTemplateWithFuncs("location-street-city-state-zipcode.xml", data, fmap)
 	case api.LayoutStreetCity:
 		return xmlTemplate("location-street-city.xml", data)
+	case api.LayoutMilitaryAddress:
+		return xmlTemplateWithFuncs("location-address-apofpo-state-zipcode.xml", data, fmap)
 	default:
 		if domestic || postoffice {
 			return xmlTemplateWithFuncs("location-street-city-state-zipcode.xml", data, fmap)
