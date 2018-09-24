@@ -66,6 +66,7 @@ func (service Service) DefaultTemplate(templateName string, data map[string]inte
 		"monthYearDaterange":     monthYearDaterange,
 		"email":                  email,
 		"employmentType":         employmentType,
+		"hairType":               hairType,
 		"hasRelativeType":        hasRelativeType,
 		"inc":                    inc,
 		"location":               location,
@@ -908,6 +909,26 @@ func clearanceType(v string) string {
 		"L": "L",
 		"Issued by foreign country": "Foreign",
 		"Other":                     "Other",
+	}
+	return basis[v]
+}
+
+func hairType(v string) string {
+	basis := map[string]string{
+		"Bald":    "Bald",
+		"Black":   "Black",
+		"Blonde":  "Blonde or Strawberry",
+		"Blue":    "Blue",
+		"Brown":   "Brown",
+		"Gray":    "Gray or Partially Gray",
+		"Green":   "Green",
+		"Orange":  "Orange",
+		"Pink":    "Pink",
+		"Purple":  "Purple",
+		"Red":     "Red or Auburn",
+		"Sandy":   "Sandy",
+		"Unknown": "Unspecified or unknown",
+		"White":   "White",
 	}
 	return basis[v]
 }
