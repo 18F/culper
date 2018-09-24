@@ -33,10 +33,7 @@
         <Comment></Comment>
         <Explanation>{{textarea $Item.Explanation}}</Explanation>
       </CounselingOrderedBy>
-      <Drug>
-        <Explanation></Explanation>
-        <Type>{{radio $Item.DrugType}}</Type>
-      </Drug>
+      {{tmpl "drug.xml" $Item.DrugType}}
       {{if branch $Item.ActionTaken | eq "Yes"}}
       <Doctor>
         <Name>

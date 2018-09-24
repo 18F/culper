@@ -13830,7 +13830,7 @@ his hands he would greedily devour, and his family and friends
 watched h</Explanation>
                     </CounselingOrderedBy>
                     <Drug>
-                      <Type>No American can study the character and career of Abraham Lincoln
+                      <Explanation>No American can study the character and career of Abraham Lincoln
 without being carried away by sentimental emotions. We are
 always inclined to idealize that which we love,--a state of mind
 very unfavorable to the exercise of sober critical judgment. It
@@ -13897,7 +13897,8 @@ Progress, a short history of the United States, and Weems's Life
 of Washington. To the town constable's he went to read the
 Revised Statutes of Indiana. Every printed page that fell into
 his hands he would greedily devour, and his family and friends
-watched h</Type>
+watched h</Explanation>
+                      <Type>Other</Type>
                     </Drug>
                     <Doctor>
                       <Name>
@@ -14081,7 +14082,7 @@ his hands he would greedily devour, and his family and friends
 watched h</Explanation>
                     </CounselingOrderedBy>
                     <Drug>
-                      <Type>No American can study the character and career of Abraham Lincoln
+                      <Explanation>No American can study the character and career of Abraham Lincoln
 without being carried away by sentimental emotions. We are
 always inclined to idealize that which we love,--a state of mind
 very unfavorable to the exercise of sober critical judgment. It
@@ -14148,7 +14149,8 @@ Progress, a short history of the United States, and Weems's Life
 of Washington. To the town constable's he went to read the
 Revised Statutes of Indiana. Every printed page that fell into
 his hands he would greedily devour, and his family and friends
-watched h</Type>
+watched h</Explanation>
+                      <Type>Other</Type>
                     </Drug>
                     <Doctor>
                       <Name>
@@ -14428,7 +14430,7 @@ watched h</Description>
                 <Activities>
                   <Activity ID="1">
                     <Drug>
-                      <Type>No American can study the character and career of Abraham Lincoln
+                      <Explanation>No American can study the character and career of Abraham Lincoln
 without being carried away by sentimental emotions. We are
 always inclined to idealize that which we love,--a state of mind
 very unfavorable to the exercise of sober critical judgment. It
@@ -14495,7 +14497,8 @@ Progress, a short history of the United States, and Weems's Life
 of Washington. To the town constable's he went to read the
 Revised Statutes of Indiana. Every printed page that fell into
 his hands he would greedily devour, and his family and friends
-watched h</Type>
+watched h</Explanation>
+                      <Type>Other</Type>
                     </Drug>
                     <FirstInvolvementDate>
                       <Month>01</Month>
@@ -15140,7 +15143,7 @@ watched h</Explanation>
                 <Consultations>
                   <Consultation ID="1">
                     <Drug>
-                      <Type>No American can study the character and career of Abraham Lincoln
+                      <Explanation>No American can study the character and career of Abraham Lincoln
 without being carried away by sentimental emotions. We are
 always inclined to idealize that which we love,--a state of mind
 very unfavorable to the exercise of sober critical judgment. It
@@ -15207,7 +15210,8 @@ Progress, a short history of the United States, and Weems's Life
 of Washington. To the town constable's he went to read the
 Revised Statutes of Indiana. Every printed page that fell into
 his hands he would greedily devour, and his family and friends
-watched h</Type>
+watched h</Explanation>
+                      <Type>Other</Type>
                     </Drug>
                     <Doctor>
                       <Name>

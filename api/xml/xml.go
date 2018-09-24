@@ -60,6 +60,7 @@ func (service Service) DefaultTemplate(templateName string, data map[string]inte
 		"dischargeType":          dischargeType,
 		"doctorFirstName":        doctorFirstName,
 		"doctorLastName":         doctorLastName,
+		"drugType":               drugType,
 		"foreignDocType":         foreignDocType,
 		"foreignAffiliation":     foreignAffiliation,
 		"frequencyType":          frequencyType,
@@ -945,6 +946,17 @@ func suffixType(s string) string {
 		return "__Other__"
 	}
 	return s
+}
+
+// XXX
+// Work-around for https://github.com/18F/e-QIP-prototype/issues/858
+func drugType(d string) string {
+	switch d {
+	case "Cocaine", "THC", "Ketamine", "Narcotics", "Stimulants", "Depressants", "Hallucinogenic", "Steroids", "Inhalants":
+		return d
+	default:
+		return "Other"
+	}
 }
 
 // inc adds 1 to a
