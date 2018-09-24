@@ -898,7 +898,7 @@
                     "type": "datecontrol",
                     "props": {
                       "month": "01",
-                      "day": "",
+                      "day": "1",
                       "year": "1999",
                       "estimated": false
                     }
