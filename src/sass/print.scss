@@ -246,10 +246,10 @@
   /* Get rid of accordion gray background */
   .accordion {
     background-color: #fff;
-// Open accordion contents on print 
+// Open accordion contents on print
     .details.close.static {
       max-height: 0;
-      visibility:initial;
+      visibility: initial;
     }
 
   }
