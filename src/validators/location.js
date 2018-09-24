@@ -170,12 +170,10 @@ export default class LocationValidator {
 
   validZipcodeState() {
     if (!zipcodes[this.state] || !this.validZipcode()) {
-      return true
+      return false
     }
 
     return isZipcodeState(this.state, this.zipcode)
-    // const zip3Digit = this.zipcode.substring(0, 3)
-    // return zipcodes[this.state].includes(zip3Digit)
   }
 
   validCounty() {

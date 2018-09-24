@@ -423,13 +423,13 @@ describe('the location component', function() {
       },
       {
         state: {
-          country: { value: 'Outside US' },
+          country: { value: 'United States' },
           street: '1234 Some Rd',
           city: 'City',
-          state: 'NOTUS',
+          state: 'DQ',
           zipcode: '12321'
         },
-        expected: true
+        expected: false
       }
     ]
 
