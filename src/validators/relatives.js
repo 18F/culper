@@ -85,6 +85,10 @@ export class RelativeValidator {
     )
   }
 
+  currentResident() {
+    return countryString((this.address || {}).country || {}) === 'United States'
+  }
+
   requiresCitizenshipDocumentation() {
     const relations = [
       'Father',
@@ -278,7 +282,11 @@ export class RelativeValidator {
   }
 
   validDocument() {
-    if (this.citizen() || this.isDeceased === 'Yes') {
+    if (
+      this.citizen() ||
+      !this.currentResident() ||
+      this.isDeceased === 'Yes'
+    ) {
       return true
     }
 
@@ -298,7 +306,11 @@ export class RelativeValidator {
   }
 
   validResidenceDocumentNumber() {
-    if (this.citizen() || this.isDeceased === 'Yes') {
+    if (
+      this.citizen() ||
+      !this.currentResident() ||
+      this.isDeceased === 'Yes'
+    ) {
       return true
     }
 
@@ -309,7 +321,11 @@ export class RelativeValidator {
   }
 
   validExpiration() {
-    if (this.citizen() || this.isDeceased === 'Yes') {
+    if (
+      this.citizen() ||
+      !this.currentResident() ||
+      this.isDeceased === 'Yes'
+    ) {
       return true
     }
 

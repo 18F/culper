@@ -386,7 +386,7 @@
               "DivorceLocation": {
                 "type": "location",
                 "props": {
-                  "layout": "US City, State, International city",
+                  "layout": "US City, State, Zipcode International city",
                   "street": "",
                   "street2": "",
                   "city": "Arlington",

@@ -1033,6 +1033,14 @@ describe('Relatives validation', function() {
             value: ['Germany']
           },
           IsDeceased: { value: 'No' },
+          Address: {
+            street: '1234 Some Rd',
+            city: 'Arlington',
+            zipcode: '22202',
+            state: 'VA',
+            country: { value: 'United States' },
+            layout: Location.US_ADDRESS
+          },
           Document: {
             value: ''
           }
@@ -1048,9 +1056,37 @@ describe('Relatives validation', function() {
             value: ['Germany']
           },
           IsDeceased: { value: 'No' },
+          Address: {
+            street: '1234 Some Rd',
+            city: 'Arlington',
+            zipcode: '22202',
+            state: 'VA',
+            country: { value: 'United States' },
+            layout: Location.US_ADDRESS
+          },
           Document: {
             value: 'Employment'
           }
+        },
+        expected: true
+      },
+      {
+        data: {
+          Relation: {
+            value: 'Father'
+          },
+          Citizenship: {
+            value: ['Germany']
+          },
+          IsDeceased: { value: 'No' },
+          Address: {
+            street: '1234 Some Rd',
+            city: 'Munich',
+            zipcode: '22202',
+            country: { value: 'Germany' },
+            layout: Location.ADDRESS
+          },
+          Document: {}
         },
         expected: true
       }
@@ -1095,6 +1131,14 @@ describe('Relatives validation', function() {
             value: ['Germany']
           },
           IsDeceased: { value: 'No' },
+          Address: {
+            street: '1234 Some Rd',
+            city: 'Arlington',
+            zipcode: '22202',
+            state: 'VA',
+            country: { value: 'United States' },
+            layout: Location.US_ADDRESS
+          },
           ResidenceDocumentNumber: {}
         },
         expected: false
@@ -1108,9 +1152,37 @@ describe('Relatives validation', function() {
             value: ['Germany']
           },
           IsDeceased: { value: 'No' },
+          Address: {
+            street: '1234 Some Rd',
+            city: 'Arlington',
+            zipcode: '22202',
+            state: 'VA',
+            country: { value: 'United States' },
+            layout: Location.US_ADDRESS
+          },
           ResidenceDocumentNumber: {
             value: '000000000'
           }
+        },
+        expected: true
+      },
+      {
+        data: {
+          Relation: {
+            value: 'Father'
+          },
+          Citizenship: {
+            value: ['Germany']
+          },
+          IsDeceased: { value: 'No' },
+          Address: {
+            street: '1234 Some Rd',
+            city: 'Munich',
+            zipcode: '22202',
+            country: { value: 'Germany' },
+            layout: Location.ADDRESS
+          },
+          ResidenceDocumentNumber: {}
         },
         expected: true
       }
@@ -1155,6 +1227,14 @@ describe('Relatives validation', function() {
             value: ['Germany']
           },
           IsDeceased: { value: 'No' },
+          Address: {
+            street: '1234 Some Rd',
+            city: 'Arlington',
+            zipcode: '22202',
+            state: 'VA',
+            country: { value: 'United States' },
+            layout: Location.US_ADDRESS
+          },
           Expiration: {}
         },
         expected: false
@@ -1168,12 +1248,40 @@ describe('Relatives validation', function() {
             value: ['Germany']
           },
           IsDeceased: { value: 'No' },
+          Address: {
+            street: '1234 Some Rd',
+            city: 'Arlington',
+            zipcode: '22202',
+            state: 'VA',
+            country: { value: 'United States' },
+            layout: Location.US_ADDRESS
+          },
           Expiration: {
             day: '1',
             month: '1',
             year: '2016',
             date: new Date('1/1/2016')
           }
+        },
+        expected: true
+      },
+      {
+        data: {
+          Relation: {
+            value: 'Father'
+          },
+          Citizenship: {
+            value: ['Germany']
+          },
+          IsDeceased: { value: 'No' },
+          Address: {
+            street: '1234 Some Rd',
+            city: 'Munich',
+            zipcode: '22202',
+            country: { value: 'Germany' },
+            layout: Location.ADDRESS
+          },
+          Expiration: {}
         },
         expected: true
       }
