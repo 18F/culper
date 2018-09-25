@@ -1805,7 +1805,6 @@
                       </Court>
                       <FinalDisposition>Final disposition info 2</FinalDisposition>
                     </Appeal>
-                    <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
                     <Appeal ID="2">
                       <Court>
                         <Name>court 2</Name>
@@ -1818,7 +1817,6 @@
                       </Court>
                       <FinalDisposition>final disposition 2</FinalDisposition>
                     </Appeal>
-                    <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
                     <Appeal ID="3">
                       <Court>
                         <Name>admin agency 1</Name>
@@ -1831,7 +1829,6 @@
                       </Court>
                       <FinalDisposition>final disposition 3</FinalDisposition>
                     </Appeal>
-                    <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
                     <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
                   </Appealed>
                 </OrderedToConsultOccurrence>

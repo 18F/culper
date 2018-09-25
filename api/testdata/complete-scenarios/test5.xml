@@ -5412,7 +5412,6 @@
                       </Court>
                       <FinalDisposition>Not Healthy</FinalDisposition>
                     </Appeal>
-                    <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
                     <Appeal ID="2">
                       <Court>
                         <Name>Appeal Squared Agency</Name>
@@ -5425,7 +5424,6 @@
                       </Court>
                       <FinalDisposition>Healthy</FinalDisposition>
                     </Appeal>
-                    <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
                     <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
                   </Appealed>
                 </OrderedToConsultOccurrence>
