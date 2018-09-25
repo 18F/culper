@@ -1792,7 +1792,47 @@
                   </Date>
                   <FinalDisposition>Final disposition info</FinalDisposition>
                   <Appealed>
-                    <Answer>No</Answer>
+                    <Answer>Yes</Answer>
+                    <Appeal ID="1">
+                      <Court>
+                        <Name>Place 1</Name>
+                        <Address>
+                          <Street>546 t st </Street>
+                          <City>Anytown</City>
+                          <State>CA</State>
+                          <ZipCode>90001</ZipCode>
+                        </Address>
+                      </Court>
+                      <FinalDisposition>Final disposition info 2</FinalDisposition>
+                    </Appeal>
+                    <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+                    <Appeal ID="2">
+                      <Court>
+                        <Name>court 2</Name>
+                        <Address>
+                          <Street>324 crazy Rd. </Street>
+                          <City>Memphis</City>
+                          <State>TN</State>
+                          <ZipCode>37010</ZipCode>
+                        </Address>
+                      </Court>
+                      <FinalDisposition>final disposition 2</FinalDisposition>
+                    </Appeal>
+                    <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+                    <Appeal ID="3">
+                      <Court>
+                        <Name>admin agency 1</Name>
+                        <Address>
+                          <Street>222 elm street </Street>
+                          <City>Portland</City>
+                          <State>OR</State>
+                          <ZipCode>97005</ZipCode>
+                        </Address>
+                      </Court>
+                      <FinalDisposition>final disposition 3</FinalDisposition>
+                    </Appeal>
+                    <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+                    <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
                   </Appealed>
                 </OrderedToConsultOccurrence>
                 <OrderedToConsultOccurrence ID="2">
