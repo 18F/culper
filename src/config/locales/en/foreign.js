@@ -594,7 +594,8 @@ export const foreign = {
         benefitTypes: {
           educational: 'Educational',
           medical: 'Medical',
-          retirement: 'Retirement social welfare',
+          retirement: 'Retirement',
+          socialWelfare: 'Social Welfare',
           other: 'Other such benefit (Provide explanation)'
         },
         benefitFrequency: {
