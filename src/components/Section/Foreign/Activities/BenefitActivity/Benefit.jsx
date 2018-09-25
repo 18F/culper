@@ -194,6 +194,15 @@ export default class Benefit extends ValidationElement {
             <Radio
               name="benefit_type"
               label={i18n.m(
+                'foreign.activities.benefit.label.benefitTypes.socialWelfare'
+              )}
+              value="Social Welfare"
+              onUpdate={this.updateBenefitType}
+              onError={this.props.onError}
+            />
+            <Radio
+              name="benefit_type"
+              label={i18n.m(
                 'foreign.activities.benefit.label.benefitTypes.other'
               )}
               value="Other"
