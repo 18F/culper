@@ -41,6 +41,7 @@ export const relationshipsRelatives = (data = {}) => {
         Methods: form.checkboxgroup(xitem.Methods),
         MethodsComments: form.textarea(xitem.MethodsComments),
         Frequency: form.radio(xitem.Frequency),
+        FrequencyComments: form.radio(xitem.FrequencyComments),
         EmployerNotApplicable: form.notapplicable(xitem.EmployerNotApplicable),
         EmployerAddressNotApplicable: form.notapplicable(
           xitem.EmployerAddressNotApplicable

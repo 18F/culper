@@ -243,7 +243,7 @@ export default class Relative extends ValidationElement {
 
   updateMethods(values) {
     let method = values.value
-    let selected = [...(this.props.Methods || [])]
+    let selected = [...((this.props.Methods || {}).values || [])]
 
     if (selected.includes(method)) {
       // Remove the relation if it was previously selected
@@ -253,9 +253,16 @@ export default class Relative extends ValidationElement {
       selected.push(method)
     }
 
-    this.update({
-      Methods: { values: selected }
-    })
+    if (selected.includes('Other')) {
+      this.update({
+        Methods: { values: selected }
+      })
+    } else {
+      this.update({
+        Methods: { values: selected },
+        MethodsComments: {}
+      })
+    }
   }
 
   updateMethodsComments(values) {
@@ -265,9 +272,16 @@ export default class Relative extends ValidationElement {
   }
 
   updateFrequency(values) {
-    this.update({
-      Frequency: values
-    })
+    if ((values || {}).value !== 'Other') {
+      this.update({
+        Frequency: values,
+        FrequencyComments: {}
+      })
+    } else {
+      this.update({
+        Frequency: values
+      })
+    }
   }
 
   updateFrequencyComments(values) {
@@ -336,6 +350,10 @@ export default class Relative extends ValidationElement {
       'Stepmother',
       'Stepfather'
     ].includes((this.props.Relation || {}).value)
+    const otherMethods = ((this.props.Methods || {}).values || []).some(
+      x => x === 'Other'
+    )
+    const otherFrequency = (this.props.Frequency || {}).value === 'Other'
 
     return (
       <div className="relative-item">
@@ -1052,12 +1070,11 @@ export default class Relative extends ValidationElement {
 
             <Field
               title={i18n.t('relationships.relatives.heading.address.methods')}
-              comments={true}
+              comments={otherMethods}
               commentsName="MethodsComments"
               commentsValue={this.props.MethodsComments}
-              commentsActive={((this.props.Methods || {}).values || []).some(
-                x => x === 'Other'
-              )}
+              commentsActive={otherMethods}
+              commentsRequired={otherMethods}
               onUpdate={this.updateMethodsComments}
               onError={this.props.onError}
               adjustFor="big-buttons"
@@ -1127,10 +1144,11 @@ export default class Relative extends ValidationElement {
               title={i18n.t(
                 'relationships.relatives.heading.address.frequency'
               )}
-              comments={true}
+              comments={otherFrequency}
               commentsName="FrequencyComments"
               commentsValue={this.props.FrequencyComments}
-              commentsActive={this.props.Frequency.value === 'Other'}
+              commentsActive={otherFrequency}
+              commentsRequired={otherFrequency}
               onUpdate={this.updateFrequencyComments}
               onError={this.props.onError}
               scrollIntoView={this.props.scrollIntoView}

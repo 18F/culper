@@ -55,6 +55,7 @@ describe('Schema for financial taxes', () => {
               Methods: {},
               MethodsComments: {},
               Frequency: {},
+              FrequencyComments: {},
               EmployerNotApplicable: {},
               EmployerAddressNotApplicable: {},
               EmployerRelationshipNotApplicable: {},
