@@ -196,7 +196,7 @@ export default class Benefit extends ValidationElement {
               label={i18n.m(
                 'foreign.activities.benefit.label.benefitTypes.socialWelfare'
               )}
-              value="Social Welfare"
+              value="SocialWelfare"
               onUpdate={this.updateBenefitType}
               onError={this.props.onError}
             />
