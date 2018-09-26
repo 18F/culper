@@ -18,6 +18,7 @@ import {
 } from '../../../Form'
 import { DiplomaItem } from './Diploma'
 import { today, daysAgo } from '../dateranges'
+import { buildDate } from '../../../../validators/helpers'
 
 // We need to determine how far back 3 years ago was
 const threeYearsAgo = daysAgo(today, 365 * 3)
@@ -189,8 +190,8 @@ export default class EducationItem extends ValidationElement {
     // Certain elements are present if the date range of the attendance was
     // within the last 3 years.
     const dates = this.props.Dates || {}
-    const from = (dates.from || {}).date
-    const to = (dates.to || {}).date
+    const from = buildDate(dates.from)
+    const to = buildDate(dates.to)
 
     return (
       <div className="education">

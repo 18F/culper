@@ -26,10 +26,14 @@ describe('The education component', () => {
       name: 'education',
       Dates: {
         from: {
-          date: new Date()
+          month: '1',
+          day: '1',
+          year: '2015'
         },
         to: {
-          date: new Date()
+          month: `${new Date().getMonth()}`,
+          day: `${new Date().getDate()}`,
+          year: `${new Date().getFullYear()}`
         }
       }
     }
