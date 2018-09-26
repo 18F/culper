@@ -511,7 +511,7 @@
                     <Authority>
                       <Address>
                         <Street>67 W St </Street>
-                        <City>Crazytown</City>
+                        <City>Topeka</City>
                         <State>KS</State>
                         <ZipCode>67428</ZipCode>
                       </Address>
@@ -911,7 +911,7 @@
                     <Doctor>
                       <Address>
                         <Street>66 street st </Street>
-                        <City>Crazytown</City>
+                        <City>Cleveland</City>
                         <State>OH</State>
                         <ZipCode>45777</ZipCode>
                       </Address>
@@ -926,7 +926,7 @@
                   <Consultation ID="2">
                     <Agency>
                       <Address>
-                        <Street>324 crazy Rd. </Street>
+                        <Street>583 South Rd. </Street>
                         <City>Salem</City>
                         <State>FL</State>
                         <ZipCode>32803</ZipCode>
@@ -1282,7 +1282,7 @@
                         <First>Jim</First>
                       </Name>
                       <Address>
-                        <Street>324 crazy Rd. </Street>
+                        <Street>389 5th Ave. </Street>
                         <City>Memphis</City>
                         <State>CO</State>
                         <ZipCode>80011</ZipCode>
@@ -1936,8 +1936,8 @@
                       <Time>Both</Time>
                     </Telephone>
                     <Address>
-                      <Street>324 crazy Rd. </Street>
-                      <City>Crazytown</City>
+                      <Street>908 Western Blvd. </Street>
+                      <City>Los Angeles</City>
                       <State>CA</State>
                       <ZipCode>90001</ZipCode>
                     </Address>
@@ -1949,8 +1949,8 @@
                       <Time>Both</Time>
                     </Telephone>
                     <Address>
-                      <Street>2nd try rd. </Street>
-                      <City>crazy</City>
+                      <Street>12 Brown Ave. </Street>
+                      <City>Los Angeles</City>
                       <State>CA</State>
                       <ZipCode>90001</ZipCode>
                     </Address>
