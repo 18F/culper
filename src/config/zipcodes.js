@@ -901,17 +901,19 @@ const crossStateZips = {
 }
 
 export const isZipcodeState = (stateCode = '', zipCode = '') => {
-  if (!zipcodes[stateCode]) return false
+  const code = stateCode.toUpperCase()
+
+  if (!zipcodes[code]) return false
 
   const zip3Digit = zipCode.substring(0, 3)
   const zip5Digit = zipCode.substring(0, 5)
 
   if (
-    crossStateZips[stateCode] &&
-    crossStateZips[stateCode].includes(zip5Digit)
+    crossStateZips[code] &&
+    crossStateZips[code].includes(zip5Digit)
   ) {
     return true
   }
 
-  return zipcodes[stateCode].includes(zip3Digit)
+  return zipcodes[code].includes(zip3Digit)
 }
