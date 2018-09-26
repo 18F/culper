@@ -398,7 +398,7 @@ export const foreign = {
         summary: 'Provide your real estate purchase here',
         description: 'Summary of financial purchase',
         appendTitle:
-          'Do you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children have any additional foreign financial interests?',
+          'Do you have an additional instance of you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children EVER having owned, or anticipate owning, or planning to purchase real estate in a foreign country?',
         appendLabel: 'Add another real estate purchase',
         itemType: 'Purchase'
       },
