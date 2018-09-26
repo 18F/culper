@@ -5,10 +5,10 @@ export const login = {
     generic: 'The username or password was incorrect.'
   },
   saml: {
-    title: 'Log in with CAC/PIV',
+    title: 'Log in',
     para:
-      'This option is for users with a computer configured for CAC or PIV use.\nWhen prompted for a certificate, select the one with "EMAIL" in the name.',
-    button: 'Log in with CAC/PIV'
+      '\n',
+    button: 'Log in'
   },
   basic: {
     button: 'Log In',
@@ -37,7 +37,7 @@ export const login = {
       "Looks like your access hasn't been approved for this form.",
       'If this message was received in error contact [email@gov.gov](mailto:email@gov.gov) or try loggin in again below.'
     ],
-    button: 'Log in with CAC'
+    button: 'Log in'
   },
   locked: {
     title: 'Your form has been submitted and is locked',
