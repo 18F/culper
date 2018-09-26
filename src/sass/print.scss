@@ -246,6 +246,12 @@
   /* Get rid of accordion gray background */
   .accordion {
     background-color: #fff;
+    // Open accordion contents on print
+    .details.close.static {
+      max-height: 100%;
+      visibility: initial;
+    }
+
   }
 
   /* Remove background from options and checkboxes */
