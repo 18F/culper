@@ -8,8 +8,8 @@ class TokenRefresh extends React.Component {
       <div className="token-error login eapp-core" id="login">
         <div id="seal-header" className="seal-header">
           <img
-            src="/img/US-OfficeOfPersonnelManagement-Seal.svg"
-            alt="U.S. Office of Personnel Management"
+            src="/img/nbis-seal.png"
+            alt="National Background Investigation Services"
           />
           <h3>{i18n.t('login.token.heading')}</h3>
         </div>
