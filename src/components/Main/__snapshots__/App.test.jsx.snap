@@ -775,7 +775,7 @@ exports[`Renders homepage 1`] = `
                   <img
                     alt="National Background Investigation Services"
                     className="eapp-logo-icon"
-                    src="/img/nbis-seal.png"
+                    src="/img/nbis-seal-small.png"
                   />
                   <span
                     className="eapp-logo-text"

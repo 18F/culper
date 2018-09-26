@@ -182,7 +182,7 @@ class App extends React.Component {
                       <div className="text-center">
                         <img
                           className="eapp-logo-icon"
-                          src="/img/nbis-seal.png"
+                          src="/img/nbis-seal-small.png"
                           alt="National Background Investigation Services"
                         />
                         <span className="eapp-logo-text">SF86</span>
