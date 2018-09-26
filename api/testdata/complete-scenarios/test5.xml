@@ -5399,7 +5399,32 @@
                   </Date>
                   <FinalDisposition>Healthy</FinalDisposition>
                   <Appealed>
-                    <Answer>No</Answer>
+                    <Answer>Yes</Answer>
+                    <Appeal ID="1">
+                      <Court>
+                        <Name>Appeal Court</Name>
+                        <Address>
+                          <Street>9931 3rd Ave. </Street>
+                          <City>Salinas</City>
+                          <State>CA</State>
+                          <ZipCode>93902</ZipCode>
+                        </Address>
+                      </Court>
+                      <FinalDisposition>Not Healthy</FinalDisposition>
+                    </Appeal>
+                    <Appeal ID="2">
+                      <Court>
+                        <Name>Appeal Squared Agency</Name>
+                        <Address>
+                          <Street>111 Florence Rd. </Street>
+                          <City>Salinas</City>
+                          <State>CA</State>
+                          <ZipCode>93901</ZipCode>
+                        </Address>
+                      </Court>
+                      <FinalDisposition>Healthy</FinalDisposition>
+                    </Appeal>
+                    <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
                   </Appealed>
                 </OrderedToConsultOccurrence>
                 <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
