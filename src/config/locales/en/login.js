@@ -5,9 +5,6 @@ export const login = {
     generic: 'The username or password was incorrect.'
   },
   saml: {
-    title: 'Log in',
-    para:
-      '\n',
     button: 'Log in'
   },
   basic: {
