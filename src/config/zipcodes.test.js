@@ -24,6 +24,11 @@ describe('The zipcodes lookup', () => {
         expected: true
       },
       {
+        state: 'ct',
+        zipcode: '06389',
+        expected: true
+      },
+      {
         state: 'CA',
         zipcode: '06389',
         expected: false
