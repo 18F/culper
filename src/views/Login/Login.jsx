@@ -247,8 +247,8 @@ export class Login extends React.Component {
           aria-disabled={modalOpen}>
           <div className="content">
             <img
-              src="/img/US-OfficeOfPersonnelManagement-Seal.svg"
-              alt="U.S. Office of Personnel Management"
+              src="/img/nbis-seal.png"
+              alt="National Background Investigation Services"
             />
             <h2>{i18n.t('login.title')}</h2>
           </div>

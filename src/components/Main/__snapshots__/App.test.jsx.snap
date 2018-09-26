@@ -773,9 +773,9 @@ exports[`Renders homepage 1`] = `
                   className="text-center"
                 >
                   <img
-                    alt="Office of Personnet Management"
+                    alt="National Background Investigation Services"
                     className="eapp-logo-icon"
-                    src="/img/US-OfficeOfPersonnelManagement-Seal.svg"
+                    src="/img/nbis-seal-small.png"
                   />
                   <span
                     className="eapp-logo-text"
