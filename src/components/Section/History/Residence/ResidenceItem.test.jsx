@@ -19,14 +19,12 @@ describe('The residence component', () => {
         from: {
           month: '1',
           day: '1',
-          year: '2000',
-          date: new Date('1/1/2000')
+          year: '2000'
         },
         to: {
-          month: `${new Date().getMonth() + 1}`,
+          month: `${new Date().getMonth()}`,
           day: `${new Date().getDate()}`,
-          year: `${new Date()}.getFullYear()}`,
-          date: new Date()
+          year: `${new Date().getFullYear()}`
         }
       },
       ReferenceEmail: {
