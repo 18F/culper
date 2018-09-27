@@ -4051,7 +4051,7 @@
                       "layout": "Address",
                       "street": "90 West St",
                       "city": "New York",
-                      "state": "ny",
+                      "state": "NY",
                       "zipcode": "11201",
                       "country": "United States",
                       "validated": true
@@ -4165,7 +4165,7 @@
                       "layout": "Address",
                       "street": "9019 Main St",
                       "city": "St. Louis",
-                      "state": "Mo",
+                      "state": "MO",
                       "zipcode": "63101",
                       "country": "United States",
                       "validated": true

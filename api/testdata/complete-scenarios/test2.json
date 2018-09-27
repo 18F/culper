@@ -4312,7 +4312,7 @@
                           "layout": "Address",
                           "street": "44 elm st",
                           "city": "Frankfort",
-                          "state": "ky",
+                          "state": "KY",
                           "zipcode": "40217",
                           "country": "United States",
                           "validated": true
@@ -4460,7 +4460,7 @@
                           "layout": "Address",
                           "street": "77 main st",
                           "city": "Austin",
-                          "state": "Tx",
+                          "state": "TX",
                           "zipcode": "73301",
                           "country": "United States",
                           "validated": true
@@ -5676,7 +5676,7 @@
                     "props": {
                       "layout": "Birthplace without County",
                       "city": "Beaverton",
-                      "state": "Or",
+                      "state": "OR",
                       "country": "United States"
                     }
                   },
@@ -6596,7 +6596,7 @@
                       "layout": "Address",
                       "street": "222 elm street",
                       "city": "Anytown",
-                      "state": "co",
+                      "state": "CO",
                       "zipcode": "80011",
                       "country": "United States",
                       "validated": true
