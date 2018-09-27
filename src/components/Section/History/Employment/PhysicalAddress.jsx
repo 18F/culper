@@ -99,6 +99,7 @@ export default class PhysicalAddress extends ValidationElement {
               geocode={true}
               addressBooks={this.props.addressBooks}
               addressBook={this.props.addressBook}
+              showPostOffice={true}
               dispatch={this.props.dispatch}
               onUpdate={this.updateAddress}
               onError={this.props.onError}
