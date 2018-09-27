@@ -295,6 +295,11 @@ func TestScenario6(t *testing.T) {
 	executeScenario(t, "test6")
 }
 
+// `test7` is a "blow out" of the whole form from NBIB team
+func TestScenario7(t *testing.T) {
+	executeScenario(t, "test7")
+}
+
 // executeScenario generates XML from JSON test fixtures for a complete
 // applicant scenario and compares the result with XML reference files.
 // It is a coarse and unforgiving test; anything less than an exact match,

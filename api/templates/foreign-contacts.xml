@@ -9,7 +9,7 @@
     <Contact ID="{{inc $index}}">
       {{if locationIsPostOffice $Item.Address}}
       <APOFPO>
-        <Address>{{location $Item.Address}}</Address>
+        <Address>{{militaryAddress $Item.Address}}</Address>
         <AddressComment></AddressComment>
       </APOFPO>
       {{else}}

@@ -4274,10 +4274,6 @@
                       <Answer MedicalProfessional="True"/>
                       <Explanation>Doctor said I needed to go</Explanation>
                     </CounselingOrderedBy>
-                    <Drug>
-        
-        
-      </Drug>
                     <SuccessfullyCompletedTreatmentProgram>
         
       </SuccessfullyCompletedTreatmentProgram>

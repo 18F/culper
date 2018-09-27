@@ -5,10 +5,7 @@
     {{range $index, $item := .props.List.props.items}}
     {{with $Item := $item.Item}}
     <Consultation ID="{{inc $index}}">
-      <Drug>
-        <Type>{{radio $Item.DrugType}}</Type>
-        <Explanation></Explanation>
-      </Drug>
+      {{tmpl "drug.xml" $Item.DrugType}}
       <Doctor>
         <Name>
           <Last>{{doctorLastName $Item.TreatmentProvider}}</Last>

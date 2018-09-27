@@ -24,10 +24,13 @@ const (
 	LayoutStreetCity                          = "Street, City"
 )
 
-// Special layout flags for e-QIP integration for Country elements with CountriesNoUS type
+// Special layout flags for e-QIP integration for...
 const (
+	// Country elements with CountriesNoUS type
 	LayoutBirthPlaceWithoutCountyNoUS = "Birthplace without County CountriesNoUS"
 	LayoutBirthPlaceNoUS              = "Birthplace CountriesNoUS"
+	// APOFPO elements
+	LayoutMilitaryAddress = "Military Address"
 )
 
 // Location is a basic input.

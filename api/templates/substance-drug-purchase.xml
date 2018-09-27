@@ -5,10 +5,7 @@
     {{range $index, $item := .props.List.props.items}}
     {{with $Item := $item.Item}}
     <Activity ID="{{inc $index}}">
-      <Drug>
-        <Explanation></Explanation>
-        <Type>{{radio $Item.DrugType}}</Type>
-      </Drug>
+      {{tmpl "drug.xml" $Item.DrugType}}
       <FirstInvolvementDate Type="{{dateEstimated $Item.FirstInvolvement}}">{{monthYear $Item.FirstInvolvement}}</FirstInvolvementDate>
       <MostRecentInvolvementDate Type="{{dateEstimated $Item.RecentInvolvement}}">{{monthYear $Item.RecentInvolvement}}</MostRecentInvolvementDate>
       <Nature>{{textarea $Item.NatureOfInvolvement}}</Nature>
