@@ -169,7 +169,9 @@ export default class LocationValidator {
   }
 
   validZipcodeState() {
-    if (!zipcodes[this.state] || !this.validZipcode()) {
+    const code = (this.state || '').toUpperCase()
+
+    if (!zipcodes[code] || !this.validZipcode()) {
       return false
     }
 
