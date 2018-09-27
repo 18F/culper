@@ -11,11 +11,15 @@
         <Explanation>{{textarea $Item.CurrentExplanation}}</Explanation>
       </CurrentlyHoldCitizenship>
       {{monthYearDaterange $Item.Dates}}
+      {{range $cindex, $country := $Item.Country.props.value}}
+      {{if $country | ne "United States"}}
       <HowAcquired>{{textarea $Item.How}}</HowAcquired>
       <TakenActionToRenounceCitizenship>
         <Answer>{{branch $Item.Renounced}}</Answer>
         <Explanation>{{textarea $Item.RenouncedExplanation}}</Explanation>
       </TakenActionToRenounceCitizenship>
+      {{end}}
+      {{end}}
     </Citizenship>
     {{end}}
     {{end}}

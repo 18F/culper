@@ -85,6 +85,10 @@ export class RelativeValidator {
     )
   }
 
+  currentResident() {
+    return countryString((this.address || {}).country || {}) === 'United States'
+  }
+
   requiresCitizenshipDocumentation() {
     const relations = [
       'Father',
@@ -278,7 +282,11 @@ export class RelativeValidator {
   }
 
   validDocument() {
-    if (this.citizen() || this.isDeceased === 'Yes') {
+    if (
+      this.citizen() ||
+      !this.currentResident() ||
+      this.isDeceased === 'Yes'
+    ) {
       return true
     }
 
@@ -298,7 +306,11 @@ export class RelativeValidator {
   }
 
   validResidenceDocumentNumber() {
-    if (this.citizen() || this.isDeceased === 'Yes') {
+    if (
+      this.citizen() ||
+      !this.currentResident() ||
+      this.isDeceased === 'Yes'
+    ) {
       return true
     }
 
@@ -309,7 +321,11 @@ export class RelativeValidator {
   }
 
   validExpiration() {
-    if (this.citizen() || this.isDeceased === 'Yes') {
+    if (
+      this.citizen() ||
+      !this.currentResident() ||
+      this.isDeceased === 'Yes'
+    ) {
       return true
     }
 
@@ -321,11 +337,11 @@ export class RelativeValidator {
       return true
     }
 
-    if (this.address && !isInternational(this.address)) {
-      return true
-    }
-
-    return !!this.firstContact && validDateField(this.firstContact)
+    return (
+      !!this.firstContact &&
+      validDateField(this.firstContact) &&
+      this.validAddress(this.address)
+    )
   }
 
   validLastContact() {
@@ -333,11 +349,11 @@ export class RelativeValidator {
       return true
     }
 
-    if (this.address && !isInternational(this.address)) {
-      return true
-    }
-
-    return !!this.lastContact && validDateField(this.lastContact)
+    return (
+      !!this.lastContact &&
+      validDateField(this.lastContact) &&
+      this.validAddress(this.address)
+    )
   }
 
   validMethods() {
@@ -345,15 +361,12 @@ export class RelativeValidator {
       return true
     }
 
-    if (this.address && !isInternational(this.address)) {
-      return true
-    }
-
     return (
       this.methods.length > 0 &&
       ((this.methods.some(x => x === 'Other') &&
         !!this.methodsComments &&
-        this.methodsComments.length > 0) ||
+        this.methodsComments.length > 0 &&
+        this.validAddress(this.address)) ||
         this.methods.every(x => x !== 'Other'))
     )
   }
@@ -363,16 +376,13 @@ export class RelativeValidator {
       return true
     }
 
-    if (this.address && !isInternational(this.address)) {
-      return true
-    }
-
     return (
       !!this.frequency &&
       this.frequency.length > 0 &&
       ((this.frequency === 'Other' &&
         !!this.frequencyComments &&
-        this.frequencyComments.length > 0) ||
+        this.frequencyComments.length > 0 &&
+        this.validAddress(this.address)) ||
         this.frequency !== 'Other')
     )
   }

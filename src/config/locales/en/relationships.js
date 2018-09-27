@@ -403,6 +403,8 @@ export const relationships = {
         birthplace: "Provide this person's place of birth",
         dateDivorced:
           'Provide the date divorced/dissolved, annulled or widowed',
+        divorceLocation:
+          'Provide where the record of divorce/dissolution or annulment is located',
         recognized:
           'Provide the date your civil marriage, civil union, or domestic partnership was legally recognized',
         deceased: 'Is this person deceased?',

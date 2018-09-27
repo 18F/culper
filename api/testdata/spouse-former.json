@@ -72,15 +72,10 @@
           "Address": {
             "type": "location",
             "props": {
-              "layout": "Address",
-              "street": "123 Some Rd",
-              "street2": "",
+              "layout": "Birthplace without County",
               "city": "Arlington",
               "state": "VA",
-              "zipcode": "22202",
-              "county": "",
-              "country": "United States",
-              "validated": false
+              "country": "United States"
             }
           },
           "DateDivorced": {
@@ -91,6 +86,16 @@
               "year": "2017",
               "estimated": false,
               "date": "2017-07-25T00:00:00Z"
+            }
+          },
+          "DivorceLocation": {
+            "type": "location",
+            "props": {
+              "layout": "US City, State, Zipcode International city",
+              "city": "Arlington",
+              "state": "VA",
+              "zipcode": "22202",
+              "country": "United States"
             }
           },
           "Status": {

@@ -88,4 +88,20 @@ describe('The civil union component', () => {
       component.find('.current-address.button label.checked').length
     ).toEqual(0)
   })
+
+  it('should not ask for foreign born documentation if from the United States', () => {
+    const expected = {
+      BirthPlace: { country: 'United States' }
+    }
+    const component = mount(<CivilUnion {...expected} />)
+    expect(component.find('.foreign-born-documents').length).toEqual(0)
+  })
+
+  it('should ask for foreign born documentation if not from the United States', () => {
+    const expected = {
+      BirthPlace: { country: 'Canada' }
+    }
+    const component = mount(<CivilUnion {...expected} />)
+    expect(component.find('.foreign-born-documents').length).toEqual(1)
+  })
 })

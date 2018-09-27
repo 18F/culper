@@ -512,10 +512,53 @@
             </Citizenship>
             <DualCitizenship Version="1" Type="Pooled">
               <DualCitizenships>
-    
-  </DualCitizenships>
+                <Citizenship ID="1">
+                  <Country>Canada</Country>
+                  <CurrentlyHoldCitizenship>
+        
+        
+        
+      </CurrentlyHoldCitizenship>
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>11</Month>
+                        <Year>2010</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Present"/>
+                    </To>
+                  </DateRange>
+                  <HowAcquired>By donation</HowAcquired>
+                  <TakenActionToRenounceCitizenship>
+                    <Answer>No</Answer>
+                    <Explanation>Prefer to keep it</Explanation>
+                  </TakenActionToRenounceCitizenship>
+                </Citizenship>
+                <Citizenship ID="2">
+                  <Country>United States</Country>
+                  <CurrentlyHoldCitizenship>
+        
+        
+        
+      </CurrentlyHoldCitizenship>
+                  <DateRange>
+                    <From>
+                      <Date Type="Estimated">
+                        <Month>10</Month>
+                        <Year>1983</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Present"/>
+                    </To>
+                  </DateRange>
+                </Citizenship>
+              </DualCitizenships>
               <HeldDualCitizenship>
-                <Answer>No</Answer>
+                <Answer>Yes</Answer>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
               </HeldDualCitizenship>
             </DualCitizenship>
             <USPassport Type="Pooled" Version="1">

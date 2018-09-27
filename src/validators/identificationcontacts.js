@@ -54,6 +54,6 @@ export class ContactPhoneNumberValidator {
   }
 
   isValid() {
-    return validPhoneNumber(this.phoneNumber)
+    return validPhoneNumber(this.phoneNumber, { numberType: true })
   }
 }

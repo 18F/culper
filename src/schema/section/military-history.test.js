@@ -19,6 +19,9 @@ describe('Schema for financial taxes', () => {
                 to: {},
                 present: null
               },
+              ServiceState: {
+                country: null
+              },
               HasBeenDischarged: {},
               DischargeType: {},
               DischargeTypeOther: {},

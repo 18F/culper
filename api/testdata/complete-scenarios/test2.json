@@ -442,7 +442,7 @@
                     "props": {
                       "layout": "Address",
                       "street": "67 W St",
-                      "city": "Crazytown",
+                      "city": "Topeka",
                       "state": "KS",
                       "zipcode": "67428",
                       "country": "United States",
@@ -898,7 +898,7 @@
                     "type": "datecontrol",
                     "props": {
                       "month": "01",
-                      "day": "",
+                      "day": "1",
                       "year": "1999",
                       "estimated": false
                     }
@@ -3658,7 +3658,7 @@
                               "type": "location",
                               "props": {
                                 "layout": "Address",
-                                "street": "324 crazy Rd.",
+                                "street": "142 Song St.",
                                 "city": "Memphis",
                                 "state": "TN",
                                 "zipcode": "37010",
@@ -3959,8 +3959,8 @@
                         "type": "location",
                         "props": {
                           "layout": "Address",
-                          "street": "324 crazy Rd.",
-                          "city": "Crazytown",
+                          "street": "908 Western Blvd.",
+                          "city": "Los Angeles",
                           "state": "CA",
                           "zipcode": "90001",
                           "country": "United States",
@@ -3993,8 +3993,8 @@
                         "type": "location",
                         "props": {
                           "layout": "Address",
-                          "street": "2nd try rd.",
-                          "city": "crazy",
+                          "street": "12 Brown Ave.",
+                          "city": "Los Angeles",
                           "state": "CA",
                           "zipcode": "90001",
                           "country": "United States",
@@ -6820,7 +6820,7 @@
                     "type": "location",
                     "props": {
                       "layout": "Address",
-                      "street": "324 crazy Rd.",
+                      "street": "389 5th Ave.",
                       "city": "Memphis",
                       "state": "CO",
                       "zipcode": "80011",
@@ -7143,7 +7143,7 @@
                     "props": {
                       "layout": "Address",
                       "street": "66 street st",
-                      "city": "Crazytown",
+                      "city": "Cleveland",
                       "state": "OH",
                       "zipcode": "45777",
                       "country": "United States",
@@ -7170,7 +7170,7 @@
                     "type": "location",
                     "props": {
                       "layout": "Address",
-                      "street": "324 crazy Rd.",
+                      "street": "583 South Rd.",
                       "city": "Salem",
                       "state": "FL",
                       "zipcode": "32803",

@@ -72,6 +72,9 @@ describe('Schema for financial taxes', () => {
                 country: null
               },
               DateDivorced: {},
+              DivorceLocation: {
+                country: null
+              },
               Status: {},
               Deceased: {},
               DeceasedAddress: {

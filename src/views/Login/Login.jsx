@@ -125,8 +125,6 @@ export class Login extends React.Component {
             name="SAMLRequest"
             value={this.state.saml.Base64XML}
           />
-          <h2>{i18n.t('login.saml.title')}</h2>
-          {i18n.m('login.saml.para')}
           <button type="submit" className="usa-button-big">
             <span>{i18n.t('login.saml.button')}</span>
           </button>
@@ -249,8 +247,8 @@ export class Login extends React.Component {
           aria-disabled={modalOpen}>
           <div className="content">
             <img
-              src="/img/US-OfficeOfPersonnelManagement-Seal.svg"
-              alt="U.S. Office of Personnel Management"
+              src="/img/nbis-seal.png"
+              alt="National Background Investigation Services"
             />
             <h2>{i18n.t('login.title')}</h2>
           </div>

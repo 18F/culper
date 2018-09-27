@@ -52,6 +52,7 @@ func (service Service) DefaultTemplate(templateName string, data map[string]inte
 		"dateEstimated":          dateEstimated,
 		"daterange":              daterange,
 		"daysInRange":            daysInRange,
+		"deceased":               deceased,
 		"degreeType":             degreeType,
 		"derivedBasis":           derivedBasis,
 		"naturalizedBasis":       naturalizedBasis,
@@ -104,7 +105,7 @@ func (service Service) DefaultTemplate(templateName string, data map[string]inte
 // https://github.com/18F/e-QIP-prototype/issues/717
 func applyBulkFixes(xml string) string {
 	replaceWithEmpty := []string{
-		"<[a-zA-Z_]+></[a-zA-Z_]+>", // empty elements
+		"<[a-zA-Z_0-9]+></[a-zA-Z_0-9]+>", // empty elements
 		" DoNotKnow=\"False\"",
 		" DoNotKnow=\"\"",
 		" Type=\"\"",
@@ -354,6 +355,15 @@ func foreignAffiliation(str string) string {
 		"Yes":          "Yes",
 		"No":           "No",
 		"I don't know": "IDontKnow",
+	}
+	return types[str]
+}
+
+func deceased(str string) string {
+	types := map[string]string{
+		"Yes": "Yes",
+		"No":  "No",
+		"DK":  "IDontKnow",
 	}
 	return types[str]
 }
@@ -774,6 +784,8 @@ func locationOverrideLayout(data map[string]interface{}, override string) (templ
 			return xmlTemplateWithFuncs("location-city-state.xml", data, fmap)
 		}
 		return xmlTemplate("location-city-country.xml", data)
+	case api.LayoutState:
+		return xmlTemplateWithFuncs("location-state.xml", data, fmap)
 	case api.LayoutCityState:
 		return xmlTemplateWithFuncs("location-city-state.xml", data, fmap)
 	case api.LayoutStreetCityCountry:

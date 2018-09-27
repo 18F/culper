@@ -44,7 +44,7 @@ describe('Employment component validation', function() {
           Telephone: {
             noNumber: '',
             number: '2028675309',
-            numberType: 'Cell',
+            numberType: '',
             type: 'Domestic',
             timeOfDay: 'Day'
           },
@@ -66,7 +66,7 @@ describe('Employment component validation', function() {
             Telephone: {
               noNumber: '',
               number: '2021112222',
-              numberType: 'Cell',
+              numberType: '',
               timeOfDay: 'Day',
               type: 'Domestic'
             },
@@ -156,7 +156,7 @@ describe('Employment component validation', function() {
           Telephone: {
             noNumber: '',
             number: '2028675309',
-            numberType: 'Cell',
+            numberType: '',
             type: 'Domestic',
             timeOfDay: 'Day'
           },
@@ -178,7 +178,7 @@ describe('Employment component validation', function() {
             Telephone: {
               noNumber: '',
               number: '2021112222',
-              numberType: 'Cell',
+              numberType: '',
               type: 'Domestic',
               timeOfDay: 'Day'
             },
@@ -289,7 +289,7 @@ describe('Employment component validation', function() {
           Telephone: {
             noNumber: '',
             number: '2028675309',
-            numberType: 'Cell',
+            numberType: '',
             type: 'Domestic',
             timeOfDay: 'Day'
           },
@@ -311,7 +311,7 @@ describe('Employment component validation', function() {
             Telephone: {
               noNumber: '',
               number: '2021112222',
-              numberType: 'Cell',
+              numberType: '',
               type: 'Domestic',
               timeOfDay: 'Day'
             },
@@ -412,7 +412,7 @@ describe('Employment component validation', function() {
           Telephone: {
             noNumber: '',
             number: '2028675309',
-            numberType: 'Cell',
+            numberType: '',
             type: 'Domestic',
             timeOfDay: 'Day'
           },
@@ -434,7 +434,7 @@ describe('Employment component validation', function() {
             Telephone: {
               noNumber: '',
               number: '2021112222',
-              numberType: 'Cell',
+              numberType: '',
               type: 'Domestic',
               timeOfDay: 'Day'
             },
@@ -574,7 +574,7 @@ describe('Employment component validation', function() {
           Telephone: {
             noNumber: '',
             number: '2028675309',
-            numberType: 'Cell',
+            numberType: '',
             type: 'Domestic',
             timeOfDay: 'Day'
           },
@@ -612,7 +612,6 @@ describe('Employment component validation', function() {
           ReferencePhone: {
             noNumber: '',
             number: '7031112222',
-            numberType: 'Home',
             type: 'Domestic',
             timeOfDay: 'Both',
             extension: ''
@@ -700,7 +699,6 @@ describe('Employment component validation', function() {
           ReferencePhone: {
             noNumber: '',
             number: '7031112222',
-            numberType: 'Home',
             timeOfDay: 'Both',
             type: 'Domestic',
             extension: ''
@@ -1002,7 +1000,7 @@ describe('Employment component validation', function() {
           Telephone: {
             noNumber: '',
             number: '2028675309',
-            numberType: 'Cell',
+            numberType: '',
             type: 'Domestic',
             timeOfDay: 'Day'
           }
@@ -1045,7 +1043,7 @@ describe('Employment component validation', function() {
             Telephone: {
               noNumber: '',
               number: '2028675309',
-              numberType: 'Cell',
+              numberType: '',
               type: 'Domestic',
               timeOfDay: 'Day'
             }
@@ -1560,7 +1558,7 @@ describe('Employment component validation', function() {
             Telephone: {
               noNumber: '',
               number: '2028675309',
-              numberType: 'Cell',
+              numberType: '',
               type: 'Domestic',
               timeOfDay: 'Day'
             },
@@ -1582,7 +1580,7 @@ describe('Employment component validation', function() {
               Telephone: {
                 noNumber: '',
                 number: '2021112222',
-                numberType: 'Cell',
+                numberType: '',
                 type: 'Domestic',
                 timeOfDay: 'Day'
               },

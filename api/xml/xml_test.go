@@ -3,7 +3,6 @@ package xml
 import (
 	"bufio"
 	"bytes"
-	"encoding/json"
 	"io/ioutil"
 	"os"
 	"os/exec"
@@ -14,6 +13,7 @@ import (
 	"time"
 
 	"github.com/18F/e-QIP-prototype/api"
+	"github.com/18F/e-QIP-prototype/api/cmd"
 	"github.com/18F/e-QIP-prototype/api/mock"
 	"github.com/Jeffail/gabs"
 	"github.com/antchfx/xmlquery"
@@ -59,7 +59,6 @@ func TestPackage(t *testing.T) {
 		{Schema: "relatives-and-associates.xml", Data: r("relationships-relatives.json")},
 		{Schema: "spouse-cohabitants.xml", Data: r("relationships-status-cohabitant.json")},
 		{Schema: "spouse-former.xml", Data: r("spouse-former.json")},
-		{Schema: "spouse-have-former.xml", Data: r("spouse-former.json")},
 		{Schema: "spouse-marital-status.xml", Data: r("spouse-marital-status.json")},
 		{Schema: "spouse-present-marriage.xml", Data: r("spouse-present-marriage.json")},
 		{Schema: "personal-references.xml", Data: r("relationships-people.json")},
@@ -427,13 +426,8 @@ func applicationData(t *testing.T) map[string]interface{} {
 
 // readSectionData reads in a sub-section of test data, returning a partial form.
 func readSectionData(t *testing.T, filepath string) map[string]interface{} {
-	b, err := ioutil.ReadFile(path.Join(dataDir, filepath))
+	js, err := cmd.ReadSectionData(path.Join(dataDir, filepath))
 	if err != nil {
-		t.Fatal(err)
-	}
-
-	var js map[string]interface{}
-	if err := json.Unmarshal(b, &js); err != nil {
 		t.Fatal(err)
 	}
 	return js

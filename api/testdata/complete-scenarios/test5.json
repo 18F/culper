@@ -109,13 +109,13 @@
                   "Current": {
                     "type": "branch",
                     "props": {
-                      "value": ""
+                      "value": "Yes"
                     }
                   },
                   "CurrentExplanation": {
                     "type": "textarea",
                     "props": {
-                      "value": ""
+                      "value": "No explanation 1"
                     }
                   },
                   "Dates": {
@@ -139,7 +139,7 @@
                           "estimated": false
                         }
                       },
-                      "present": true
+                      "present": false
                     }
                   },
                   "How": {
@@ -14708,6 +14708,12 @@
                       "value": "555123431"
                     }
                   },
+                  "ServiceState": {
+                    "type": "location",
+                    "props": {
+                      "layout": ""
+                    }
+                  },
                   "Status": {
                     "type": "radio",
                     "props": {
@@ -14795,6 +14801,12 @@
                     "type": "text",
                     "props": {
                       "value": "2132123"
+                    }
+                  },
+                  "ServiceState": {
+                    "type": "location",
+                    "props": {
+                      "layout": ""
                     }
                   },
                   "Status": {
@@ -16597,11 +16609,9 @@
                   "Address": {
                     "type": "location",
                     "props": {
-                      "layout": "Address",
-                      "street": "758 1st St.",
+                      "layout": "Birthplace without County",
                       "city": "Monterey",
                       "state": "CA",
-                      "zipcode": "93940",
                       "country": "United States"
                     }
                   },
@@ -16639,6 +16649,16 @@
                       "day": "02",
                       "year": "2003",
                       "estimated": false
+                    }
+                  },
+                  "DivorceLocation": {
+                    "type": "location",
+                    "props": {
+                      "layout": "US City, State, Zipcode International city",
+                      "city": "Monterey",
+                      "state": "CA",
+                      "zipcode": "93940",
+                      "country": "United States"
                     }
                   },
                   "Deceased": {

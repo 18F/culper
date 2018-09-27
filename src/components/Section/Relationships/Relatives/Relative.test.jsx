@@ -128,6 +128,9 @@ describe('The relative component', () => {
 
     const component = mount(<Relative {...expected} />)
     expect(component.find('.relative-document').length).toEqual(1)
+    expect(
+      component.find('.relative-first-contact .datecontrol').length
+    ).toEqual(1)
   })
 
   it('display items if not deceased and not a citizen and lives abroad', () => {

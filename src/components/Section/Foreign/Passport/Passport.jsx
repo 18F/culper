@@ -14,6 +14,7 @@ import {
   Radio,
   RadioGroup
 } from '../../../Form'
+import { extractDate } from '../../History/dateranges'
 
 export default class Passport extends SubsectionElement {
   constructor(props) {
@@ -133,12 +134,22 @@ export default class Passport extends SubsectionElement {
     return this.props.suggestedNames.length
   }
 
-  render() {
-    const passportType = (this.props.Card || {}).value || 'Book'
-    let re = this.props.reBook
-    if (passportType === 'Card') {
-      re = this.props.reCard
+  passportBeforeCutoff() {
+    if (this.props.Issued) {
+      const cutoffDate = new Date('1/1/1990 00:00')
+      const issueDate = extractDate(this.props.Issued)
+
+      if (issueDate && issueDate < cutoffDate) {
+        return true
+      }
     }
+
+    return false
+  }
+
+  render() {
+    const numberLength = this.passportBeforeCutoff() ? '255' : '9'
+    const numberRegEx = this.passportBeforeCutoff() ? '^[a-zA-Z0-9]*$' : this.props.reBook
 
     return (
       <div
@@ -208,57 +219,6 @@ export default class Passport extends SubsectionElement {
             </Field>
 
             <Field
-              title={i18n.t('foreign.passport.number')}
-              help="foreign.passport.help.number"
-              errorPrefix="passport"
-              adjustFor="buttons"
-              shrink={true}
-              scrollIntoView={this.props.scrollIntoView}>
-              <div>
-                <RadioGroup
-                  className="option-list"
-                  onError={this.handleError}
-                  required={this.props.required}
-                  selectedValue={(this.props.Card || {}).value}>
-                  <Radio
-                    name="passport-book"
-                    className="passport-book"
-                    label={i18n.t('foreign.passport.label.book')}
-                    value="Book"
-                    onUpdate={this.updateCard}
-                    onError={this.handleError}
-                  />
-                  <Radio
-                    name="passport-card"
-                    className="passport-card"
-                    label={i18n.t('foreign.passport.label.card')}
-                    value="Card"
-                    onUpdate={this.updateCard}
-                    onError={this.handleError}
-                  />
-                </RadioGroup>
-                <Text
-                  name="number"
-                  {...this.props.Number}
-                  label={i18n.t(
-                    `foreign.passport.label.${passportType.toLowerCase()}Number`
-                  )}
-                  placeholder={i18n.t(
-                    `foreign.passport.placeholder.${passportType.toLowerCase()}Number`
-                  )}
-                  pattern={re}
-                  maxlength="9"
-                  className="number passport-number"
-                  ref="number"
-                  prefix="passport"
-                  onUpdate={this.updateNumber}
-                  onError={this.handleError}
-                  required={this.props.required}
-                />
-              </div>
-            </Field>
-
-            <Field
               title={i18n.t('foreign.passport.issued')}
               help="foreign.passport.help.issued"
               adjustFor="labels"
@@ -290,6 +250,32 @@ export default class Passport extends SubsectionElement {
                 required={this.props.required}
               />
             </Field>
+
+            <Field
+              title={i18n.t('foreign.passport.number')}
+              help="foreign.passport.help.number"
+              errorPrefix="passport"
+              adjustFor="buttons"
+              shrink={true}
+              scrollIntoView={this.props.scrollIntoView}>
+              <div>
+                <Text
+                  name="number"
+                  {...this.props.Number}
+                  label={i18n.t(
+                    `foreign.passport.label.bookNumber`
+                  )}
+                  pattern={numberRegEx}
+                  maxlength={numberLength}
+                  className="number passport-number"
+                  ref="number"
+                  prefix="passport"
+                  onUpdate={this.updateNumber}
+                  onError={this.handleError}
+                  required={this.props.required}
+                />
+              </div>
+            </Field>
           </div>
         </Show>
       </div>
@@ -310,8 +296,7 @@ Passport.defaultProps = {
   Comments: {},
   HasPassports: {},
   suggestedNames: [],
-  reBook: '^[a-zA-Z]{1}[0-9]{6,9}$',
-  reCard: '^[cC]{1}[0-9]{8}$',
+  reBook: '^[a-zA-Z0-9]{9}$',
   onUpdate: queue => {},
   onError: (value, arr) => {
     return arr

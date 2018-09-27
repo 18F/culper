@@ -105,7 +105,7 @@ coverage-go:
 #
 # Building
 #
-build: build-frontend build-go reset-permissions
+build: build-frontend build-go build-cmd reset-permissions
 build-css:
 	$(info Compiling CSS)
 	@docker-compose run --rm css yarn build-css
@@ -116,6 +116,10 @@ build-frontend: build-css build-js
 build-go:
 	$(info Compiling Go application)
 	@docker-compose run --rm api make build
+build-cmd:
+	$(info Compiling Go commands)
+	docker-compose run --rm api make cmd
+
 
 #
 # Packaging

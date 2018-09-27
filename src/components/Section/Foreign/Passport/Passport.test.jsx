@@ -8,7 +8,6 @@ describe('The passport component', () => {
       name: 'passport'
     }
     const component = mount(<Passport name={expected.name} />)
-    expect(component.find('.passport-card').length).toEqual(0)
     expect(component.find('.first input').length).toEqual(0)
     expect(component.find('.number input').length).toEqual(0)
     expect(component.find('.month input').length).toEqual(0)
@@ -21,7 +20,6 @@ describe('The passport component', () => {
       HasPassports: { value: 'Yes' }
     }
     const component = mount(<Passport {...expected} />)
-    expect(component.find('.passport-card').length).toEqual(1)
     expect(component.find('.number input').length).toEqual(1)
     expect(component.find('.month input').length).toEqual(2)
     expect(component.find('.usa-input-error-label').length).toEqual(0)
@@ -33,7 +31,6 @@ describe('The passport component', () => {
       HasPassports: { value: 'No' }
     }
     const component = mount(<Passport name={expected.name} HasPassport="No" />)
-    expect(component.find('.passport-card').length).toEqual(0)
     expect(component.find('.first input').length).toEqual(0)
     expect(component.find('.number input').length).toEqual(0)
     expect(component.find('.month input').length).toEqual(0)
@@ -97,28 +94,30 @@ describe('The passport component', () => {
       },
       Number: {
         name: 'number',
-        value: 'C1234567'
+        value: '123456789'
       }
     }
     const component = mount(<Passport {...data} name={'passport'} />)
     expect(component.find('.usa-input-error-label').length).toEqual(0)
     component.find('.branch .yes input').simulate('change')
     component.find('.name .first input').simulate('change')
-    component.find('.passport-book input').simulate('change')
     component.find('.passport-number input').simulate('change')
     component.find('.passport-issued .day input').simulate('change')
     component.find('.passport-expiration .day input').simulate('change')
-    component.find('.passport-card input').simulate('change')
-    expect(component.find('.passport-book input').hasClass('selected')).toBe(
-      true
-    )
   })
 
-  it('can render with regular expression for passport card', () => {
+  it('can render with regular expression for passport book', () => {
     const props = {
       HasPassports: { value: 'Yes' },
-      Card: { value: 'Card' },
-      reCard: 'test'
+      Issued: {
+        day: '1',
+        estimated: false,
+        month: '1',
+        name: 'issued',
+        year: '2003'
+      },
+      Card: { value: 'Book' },
+      reBook: 'test'
     }
     const component = mount(<Passport {...props} />)
     expect(component.find('.number').length).toBe(1)

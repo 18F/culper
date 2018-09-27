@@ -3,6 +3,7 @@ package cmd
 import (
 	"bufio"
 	"bytes"
+	"crypto/tls"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
@@ -44,6 +45,7 @@ func (wc *WebClient) GetInformation() {
 }
 
 func (wc *WebClient) preflight() {
+	http.DefaultTransport.(*http.Transport).TLSClientConfig = &tls.Config{InsecureSkipVerify: true}
 	if wc.token == "" {
 		wc.GetInformation()
 		wc.Authenticate()
@@ -55,19 +57,23 @@ func (wc *WebClient) Authenticate() {
 	data := json.RawMessage(`{ "username": "` + wc.Username + `", "password": "` + wc.Password + `" }`)
 	req, err := http.NewRequest("POST", wc.Address+"/auth/basic", bytes.NewBuffer(data))
 	if err != nil {
-		return
+		log.Fatal(err)
 	}
 	req.Header.Add("Content-Type", "application/json")
 
 	resp, err := wc.Client.Do(req)
-	if err != nil || resp.StatusCode < 200 || resp.StatusCode > 299 {
-		return
+	if err != nil {
+		log.Fatal(err)
 	}
 	defer resp.Body.Close()
 
+	if resp.StatusCode < 200 || resp.StatusCode > 299 {
+		log.Fatalf("Bad response code: %d", resp.StatusCode)
+	}
+
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		return
+		log.Fatal(err)
 	}
 	wc.token = strings.Trim(strings.TrimSpace(string(body)), "\"")
 }
@@ -77,16 +83,14 @@ func (wc *WebClient) Save(payload json.RawMessage) {
 	wc.preflight()
 	req, err := http.NewRequest("POST", wc.Address+"/me/save", bytes.NewBuffer(payload))
 	if err != nil {
-		log.Println("Error creating request for saving payload.", err)
-		return
+		log.Fatalln("Error creating request for saving payload.", err)
 	}
 	req.Header.Add("Authorization", "Bearer "+wc.token)
 	req.Header.Add("Content-Type", "application/json")
 
 	resp, err := wc.Client.Do(req)
 	if err != nil || resp.StatusCode < 200 || resp.StatusCode > 299 {
-		log.Println("Error or bad response while saving payload.", err)
-		return
+		log.Fatalln("Error or bad response while saving payload.", err)
 	}
 	defer resp.Body.Close()
 }
@@ -96,21 +100,19 @@ func (wc *WebClient) Form() json.RawMessage {
 	wc.preflight()
 	req, err := http.NewRequest("GET", wc.Address+"/me/form", nil)
 	if err != nil {
-		log.Println("Error creating request for submitting application.", err)
-		return []byte{}
+		log.Fatalln("Error creating request for submitting application.", err)
 	}
 	req.Header.Add("Authorization", "Bearer "+wc.token)
 
 	resp, err := wc.Client.Do(req)
 	if err != nil || resp.StatusCode < 200 || resp.StatusCode > 299 {
-		log.Println("Error or bad response while submitting application.", err)
-		return []byte{}
+		log.Fatalln("Error or bad response while submitting application.", err)
 	}
 	defer resp.Body.Close()
 
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		return []byte{}
+		log.Fatalln(err)
 	}
 	return body
 }
@@ -120,15 +122,13 @@ func (wc *WebClient) Submit() {
 	wc.preflight()
 	req, err := http.NewRequest("GET", wc.Address+"/me/form/submit", nil)
 	if err != nil {
-		log.Println("Error creating request for submitting application.", err)
-		return
+		log.Fatalln("Error creating request for submitting application.", err)
 	}
 	req.Header.Add("Authorization", "Bearer "+wc.token)
 
 	resp, err := wc.Client.Do(req)
 	if err != nil || resp.StatusCode < 200 || resp.StatusCode > 299 {
-		log.Println("Error or bad response while submitting application.", err)
-		return
+		log.Fatalln("Error or bad response while submitting application.", err)
 	}
 	defer resp.Body.Close()
 }
@@ -138,15 +138,13 @@ func (wc *WebClient) Logout() {
 	wc.preflight()
 	req, err := http.NewRequest("GET", wc.Address+"/me/logout", nil)
 	if err != nil {
-		log.Println("Error creating request for logging out.", err)
-		return
+		log.Fatalln("Error creating request for logging out.", err)
 	}
 	req.Header.Add("Authorization", "Bearer "+wc.token)
 
 	resp, err := wc.Client.Do(req)
 	if err != nil || resp.StatusCode < 200 || resp.StatusCode > 299 {
-		log.Println("Error or bad response while logging out.", err)
-		return
+		log.Fatalln("Error or bad response while logging out.", err)
 	}
 	defer resp.Body.Close()
 }

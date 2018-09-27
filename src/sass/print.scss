@@ -246,6 +246,12 @@
   /* Get rid of accordion gray background */
   .accordion {
     background-color: #fff;
+    // Open accordion contents on print
+    .details.close.static {
+      max-height: 100%;
+      visibility: initial;
+    }
+
   }
 
   /* Remove background from options and checkboxes */
@@ -256,11 +262,12 @@
 
   /* Set selected checkboxes with thick border */
   .block label.checked {
-    border: 3px solid black;
+    border: 1px solid transparent;
     background-color: #fff;
     color: #000;
     font-weight: 600;
     opacity: 1;
+    outline: 3px solid #000;
   }
 
   /* Get rid of left blue border within accordion */

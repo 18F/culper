@@ -1,9 +1,13 @@
 <Spouse Version="1" Type="Pooled">
   {{tmpl "spouse-cohabitants.xml" .Relationships.Cohabitants}}
-  {{- if radio .Relationships.Marital.props.Status | ne "NeverMarried"}}
+  {{$status := radio .Relationships.Marital.props.Status}}
+  {{$divorced := branch .Relationships.Marital.props.CivilUnion.props.Divorced}}
+  {{if or ($status | eq "Annulled") ($status | eq "Divorced") ($status | eq "Widowed") ($divorced | eq "Yes")}}
   {{tmpl "spouse-former.xml" .Relationships.Marital.props.DivorcedList}}
-  {{tmpl "spouse-have-former.xml" .Relationships.Marital.props.DivorcedList}}
-  {{- end}}
+  <HaveFormerSpouse><Answer>Yes</Answer></HaveFormerSpouse>
+  {{else if $status | ne "NeverMarried"}}
+  <HaveFormerSpouse><Answer>No</Answer></HaveFormerSpouse>
+  {{end}}
   {{tmpl "spouse-marital-status.xml" .Relationships.Marital.props.Status}}
   {{tmpl "spouse-present-marriage.xml" .Relationships.Marital}}
 </Spouse>

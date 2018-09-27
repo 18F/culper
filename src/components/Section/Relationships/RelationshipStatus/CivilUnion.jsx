@@ -186,10 +186,8 @@ export default class CivilUnion extends ValidationElement {
   }
 
   render() {
-    const birthCountry = ((this.props.BirthPlace || {}).country || {}).value
-    const showForeignBornDocumentation = birthCountry
-      ? birthCountry !== 'United States'
-      : false
+    const showForeignBornDocumentation =
+      ((this.props.BirthPlace || {}).country || {}) !== 'United States'
     return (
       <div className="civil-union">
         <div>

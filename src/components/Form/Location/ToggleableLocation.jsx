@@ -11,7 +11,8 @@ import Show from '../Show'
 import Radio from '../Radio'
 import RadioGroup from '../RadioGroup'
 import { country, countryValueResolver } from './Location'
-import { countryString } from '../../../validators/location'
+import LocationValidator, { countryString } from '../../../validators/location'
+import Layouts from './Layouts'
 
 const mappingWarning = property => {
   if (!env.IsTest()) {
@@ -32,6 +33,7 @@ export default class ToggleableLocation extends ValidationElement {
     this.updateCountry = this.updateCountry.bind(this)
     this.updateToggle = this.updateToggle.bind(this)
     this.updateZipcode = this.updateZipcode.bind(this)
+    this.zipcodeInstate = this.zipcodeInstate.bind(this)
     this.onError = this.onError.bind(this)
 
     this.state = {
@@ -109,7 +111,14 @@ export default class ToggleableLocation extends ValidationElement {
     }
   }
 
+  zipcodeInstate() {
+    const validator = new LocationValidator(this.props)
+
+    return validator.validZipcodeState()
+  }
+
   render() {
+    const instateZipcode = this.zipcodeInstate()
     const domesticFields = this.props.domesticFields.map(field => {
       const key = `domestic-${field}`
       switch (field) {
@@ -201,6 +210,7 @@ export default class ToggleableLocation extends ValidationElement {
                 label={this.props.zipcodeLabel}
                 placeholder={this.props.zipcodePlaceholder}
                 value={this.props.zipcode}
+                status={instateZipcode}
                 onUpdate={this.updateZipcode}
                 onError={this.onError}
                 onFocus={this.props.onFocus}

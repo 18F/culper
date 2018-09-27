@@ -471,7 +471,7 @@ describe('Offense validation', function() {
         state: {
           WasCited: { value: 'Yes' },
           WasCharged: { value: 'Yes' },
-          ChargeType: 'Felony'
+          ChargeType: { value: 'Felony' }
         },
         expected: true
       }

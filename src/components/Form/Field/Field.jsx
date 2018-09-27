@@ -242,8 +242,10 @@ export default class Field extends ValidationElement {
         name={this.props.commentsName}
         value={this.state.commentsValue}
         className="comments"
+        onError={this.props.onError}
         onUpdate={this.props.onUpdate}
         onValidate={this.props.onValidate}
+        required={this.props.commentsRequired}
       />
     )
   }
@@ -471,6 +473,7 @@ Field.defaultProps = {
   commentsActive: false,
   commentsAdd: 'comments.add',
   commentsRemove: 'comments.remove',
+  commentsRequired: false,
   optional: false,
   optionalText: '',
   validate: true,

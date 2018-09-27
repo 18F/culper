@@ -17,16 +17,152 @@
         "HasMultiple": {
           "type": "branch",
           "props": {
-            "value": "No"
+            "value": "Yes"
           }
         },
         "List": {
           "type": "collection",
           "props": {
             "branch": {
-              "type": ""
+              "type": "branch",
+              "props": {
+                "value": "No"
+              }
             },
-            "items": []
+            "items": [
+              {
+                "Item": {
+                  "Country": {
+                    "type": "country",
+                    "props": {
+                      "value": [
+                        "Canada"
+                      ]
+                    }
+                  },
+                  "Current": {
+                    "type": "branch",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "CurrentExplanation": {
+                    "type": "textarea",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Dates": {
+                    "type": "daterange",
+                    "props": {
+                      "from": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "11",
+                          "day": "12",
+                          "year": "2010",
+                          "estimated": false
+                        }
+                      },
+                      "to": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "9",
+                          "day": "19",
+                          "year": "2018",
+                          "estimated": false
+                        }
+                      },
+                      "present": true
+                    }
+                  },
+                  "How": {
+                    "type": "textarea",
+                    "props": {
+                      "value": "By donation"
+                    }
+                  },
+                  "Renounced": {
+                    "type": "branch",
+                    "props": {
+                      "value": "No"
+                    }
+                  },
+                  "RenouncedExplanation": {
+                    "type": "textarea",
+                    "props": {
+                      "value": "Prefer to keep it"
+                    }
+                  }
+                }
+              },
+              {
+                "Item": {
+                  "Country": {
+                    "type": "country",
+                    "props": {
+                      "value": [
+                        "United States"
+                      ]
+                    }
+                  },
+                  "Current": {
+                    "type": "branch",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "CurrentExplanation": {
+                    "type": "textarea",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Dates": {
+                    "type": "daterange",
+                    "props": {
+                      "from": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "10",
+                          "day": "30",
+                          "year": "1983",
+                          "estimated": true
+                        }
+                      },
+                      "to": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "9",
+                          "day": "19",
+                          "year": "2018",
+                          "estimated": false
+                        }
+                      },
+                      "present": true
+                    }
+                  },
+                  "How": {
+                    "type": "textarea",
+                    "props": {
+                      "value": "Should not be submitted"
+                    }
+                  },
+                  "Renounced": {
+                    "type": "branch",
+                    "props": {
+                      "value": "No"
+                    }
+                  },
+                  "RenouncedExplanation": {
+                    "type": "textarea",
+                    "props": {
+                      "value": "Should not be submitted"
+                    }
+                  }
+                }
+              }
+            ]
           }
         }
       }
@@ -1820,7 +1956,10 @@
                   "ReferenceRelationship": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": ["Neighbor", "Friend"]
+                      "values": [
+                        "Neighbor",
+                        "Friend"
+                      ]
                     }
                   },
                   "ReferenceRelationshipComments": {
@@ -3090,7 +3229,11 @@
                   "Relationship": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": ["Neighbor", "Friend", "Schoolmate"]
+                      "values": [
+                        "Neighbor",
+                        "Friend",
+                        "Schoolmate"
+                      ]
                     }
                   },
                   "RelationshipOther": {
@@ -3201,7 +3344,10 @@
                   "Relationship": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": ["Neighbor", "Friend"]
+                      "values": [
+                        "Neighbor",
+                        "Friend"
+                      ]
                     }
                   },
                   "RelationshipOther": {
@@ -3313,7 +3459,9 @@
                   "Relationship": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": ["Friend"]
+                      "values": [
+                        "Friend"
+                      ]
                     }
                   },
                   "RelationshipOther": {
@@ -3441,7 +3589,9 @@
                   "Citizenship": {
                     "type": "country",
                     "props": {
-                      "value": ["United States"]
+                      "value": [
+                        "United States"
+                      ]
                     }
                   },
                   "CitizenshipDocumentation": {
@@ -3721,7 +3871,9 @@
                   "Citizenship": {
                     "type": "country",
                     "props": {
-                      "value": ["United States"]
+                      "value": [
+                        "United States"
+                      ]
                     }
                   },
                   "CitizenshipDocumentation": {
@@ -3903,124 +4055,6 @@
                 }
               }
             ]
-          }
-        }
-      }
-    }
-  },
-  "Submission": {
-    "Releases": {
-      "type": "submission",
-      "props": {
-        "AdditionalComments": {
-          "type": "submission.additionalcomments",
-          "props": {
-            "Signature": {
-              "type": "signature",
-              "props": {
-                "Name": {
-                  "type": "text",
-                  "props": {
-                    "value": "Ian  Chris"
-                  }
-                },
-                "Date": {
-                  "type": "datecontrol",
-                  "props": {
-                    "month": "8",
-                    "day": "24",
-                    "year": "2018",
-                    "estimated": false
-                  }
-                }
-              }
-            }
-          }
-        },
-        "General": {
-          "type": "submission.general",
-          "props": {
-            "Signature": {
-              "type": "signature",
-              "props": {
-                "Name": {
-                  "type": "text",
-                  "props": {
-                    "value": "Ian  Chris"
-                  }
-                },
-                "Date": {
-                  "type": "datecontrol",
-                  "props": {
-                    "month": "8",
-                    "day": "24",
-                    "year": "2018",
-                    "estimated": false
-                  }
-                }
-              }
-            }
-          }
-        },
-        "Medical": {
-          "type": "submission.medical",
-          "props": {
-            "Signature": {
-              "type": "signature",
-              "props": {
-                "Name": {
-                  "type": "text",
-                  "props": {
-                    "value": ""
-                  }
-                },
-                "Date": {
-                  "type": "datecontrol",
-                  "props": {
-                    "month": "",
-                    "day": "",
-                    "year": "",
-                    "estimated": false
-                  }
-                }
-              }
-            }
-          }
-        },
-        "Credit": {
-          "type": "submission.credit",
-          "props": {
-            "Signature": {
-              "type": "signature",
-              "props": {
-                "Name": {
-                  "type": "text",
-                  "props": {
-                    "value": "Ian  Chris"
-                  }
-                },
-                "Date": {
-                  "type": "datecontrol",
-                  "props": {
-                    "month": "8",
-                    "day": "24",
-                    "year": "2018",
-                    "estimated": false
-                  }
-                }
-              }
-            }
-          }
-        },
-        "Attachments": {
-          "type": "submission.attachments",
-          "props": {
-            "Method": {
-              "type": "text",
-              "props": {
-                "value": ""
-              }
-            }
           }
         }
       }

@@ -667,8 +667,64 @@
                 </Cohabitant>
                 <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
               </Cohabitants>
+              <FormerSpouses>
+                <FormerSpouse ID="1">
+                  <Birth>
+                    <Date>
+                      <Month>01</Month>
+                      <Day>01</Day>
+                      <Year>1990</Year>
+                    </Date>
+                    <Place>
+                      <City>Monterey</City>
+                      <State>CA</State>
+                      <Country>United States</Country>
+                    </Place>
+                  </Birth>
+                  <CountriesOfCitizenship>
+                    <Citizenship ID="1">
+                      <Country>United States</Country>
+                    </Citizenship>
+                  </CountriesOfCitizenship>
+                  <Deceased>
+                    <Answer>IDontKnow</Answer>
+                  </Deceased>
+                  <LegalName>
+                    <Last>Xan</Last>
+                    <First>Eileen</First>
+                    <Middle>Selena</Middle>
+                  </LegalName>
+                  <Marriage>
+                    <Date>
+                      <Month>01</Month>
+                      <Day>02</Day>
+                      <Year>2002</Year>
+                    </Date>
+                    <Place>
+                      <City>Monterey</City>
+                      <State>CA</State>
+                    </Place>
+                  </Marriage>
+                  <Separation Type="Divorced">
+                    <Date>
+                      <Month>01</Month>
+                      <Day>02</Day>
+                      <Year>2003</Year>
+                    </Date>
+                    <DivorceRecordLocation>
+                      <Place>
+                        <City>Monterey</City>
+                        <State>CA</State>
+                        <ZipCode>93940</ZipCode>
+                      </Place>
+                    </DivorceRecordLocation>
+                  </Separation>
+                  <Telephone DoNotKnow="True"/>
+                </FormerSpouse>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </FormerSpouses>
               <HaveFormerSpouse>
-                <Answer>No</Answer>
+                <Answer>Yes</Answer>
               </HaveFormerSpouse>
               <MaritalStatus>Married</MaritalStatus>
               <PresentMarriage>
@@ -1352,18 +1408,16 @@
                         <Month>04</Month>
                         <Year>2009</Year>
                       </Date>
-                      <Reason>Because 9</Reason>
+                      <Reason>Reason 9 for quitting</Reason>
                       <SeveranceType>QuitKnowingWouldBeFired</SeveranceType>
-                      <SeveranceTypeComment>Reason 9 for quitting</SeveranceTypeComment>
                     </Dismissal>
                     <Dismissal ID="2">
                       <Date>
                         <Month>06</Month>
                         <Year>2009</Year>
                       </Date>
-                      <Reason>Because 9</Reason>
+                      <Reason>Reason 9 for Misconduct</Reason>
                       <SeveranceType>AllegedMisconduct</SeveranceType>
-                      <SeveranceTypeComment>Reason 9 for Misconduct</SeveranceTypeComment>
                     </Dismissal>
                     <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
                   </Dismissals>
@@ -1860,10 +1914,9 @@
                 <Citizenship ID="2">
                   <Country>Mexico</Country>
                   <CurrentlyHoldCitizenship>
-        
-        
-        
-      </CurrentlyHoldCitizenship>
+                    <Answer>Yes</Answer>
+                    <Explanation>No explanation 1</Explanation>
+                  </CurrentlyHoldCitizenship>
                   <DateRange>
                     <From>
                       <Date>
@@ -1872,7 +1925,10 @@
                       </Date>
                     </From>
                     <To>
-                      <Date Type="Present"/>
+                      <Date>
+                        <Month>08</Month>
+                        <Year>2018</Year>
+                      </Date>
                     </To>
                   </DateRange>
                   <HowAcquired>Special order by Mexican government</HowAcquired>
@@ -4635,7 +4691,7 @@
                       <Charge ID="1">
                         <Charge>Break and Enter</Charge>
                         <Date>
-                          <Month>01</Month>
+                          <Month>02</Month>
                           <Year>2000</Year>
                         </Date>
                         <Outcome>Not Guilty</Outcome>
@@ -5343,7 +5399,32 @@
                   </Date>
                   <FinalDisposition>Healthy</FinalDisposition>
                   <Appealed>
-                    <Answer>No</Answer>
+                    <Answer>Yes</Answer>
+                    <Appeal ID="1">
+                      <Court>
+                        <Name>Appeal Court</Name>
+                        <Address>
+                          <Street>9931 3rd Ave. </Street>
+                          <City>Salinas</City>
+                          <State>CA</State>
+                          <ZipCode>93902</ZipCode>
+                        </Address>
+                      </Court>
+                      <FinalDisposition>Not Healthy</FinalDisposition>
+                    </Appeal>
+                    <Appeal ID="2">
+                      <Court>
+                        <Name>Appeal Squared Agency</Name>
+                        <Address>
+                          <Street>111 Florence Rd. </Street>
+                          <City>Salinas</City>
+                          <State>CA</State>
+                          <ZipCode>93901</ZipCode>
+                        </Address>
+                      </Court>
+                      <FinalDisposition>Healthy</FinalDisposition>
+                    </Appeal>
+                    <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
                   </Appealed>
                 </OrderedToConsultOccurrence>
                 <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>

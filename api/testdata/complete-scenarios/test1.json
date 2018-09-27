@@ -1309,7 +1309,10 @@
           "type": "collection",
           "props": {
             "branch": {
-              "type": ""
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
             },
             "items": []
           }
@@ -2067,7 +2070,7 @@
         "HasDisciplinary": {
           "type": "branch",
           "props": {
-            "value": ""
+            "value": "No"
           }
         },
         "List": {
@@ -2199,7 +2202,7 @@
         "HasServed": {
           "type": "branch",
           "props": {
-            "value": "No"
+            "value": "Yes"
           }
         },
         "List": {
@@ -2208,10 +2211,106 @@
             "branch": {
               "type": "branch",
               "props": {
-                "value": ""
+                "value": "No"
               }
             },
-            "items": []
+            "items": [
+              {
+                "Item": {
+                  "Dates": {
+                    "type": "daterange",
+                    "props": {
+                      "from": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "09",
+                          "day": "08",
+                          "year": "2017",
+                          "estimated": false
+                        }
+                      },
+                      "to": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "9",
+                          "day": "18",
+                          "year": "2018",
+                          "estimated": false
+                        }
+                      },
+                      "present": true
+                    }
+                  },
+                  "DischargeDate": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "",
+                      "day": "",
+                      "year": "",
+                      "estimated": false
+                    }
+                  },
+                  "DischargeReason": {
+                    "type": "textarea",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "DischargeType": {
+                    "type": "radio",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "DischargeTypeOther": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "HasBeenDischarged": {
+                    "type": "branch",
+                    "props": {
+                      "value": "No"
+                    }
+                  },
+                  "Officer": {
+                    "type": "radio",
+                    "props": {
+                      "value": "Officer",
+                      "checked": true
+                    }
+                  },
+                  "Service": {
+                    "type": "radio",
+                    "props": {
+                      "value": "AirNationalGuard",
+                      "checked": true
+                    }
+                  },
+                  "ServiceNumber": {
+                    "type": "text",
+                    "props": {
+                      "value": "333123654"
+                    }
+                  },
+                  "ServiceState": {
+                    "type": "location",
+                    "props": {
+                      "layout": "State",
+                      "state": "CA"
+                    }
+                  },
+                  "Status": {
+                    "type": "radio",
+                    "props": {
+                      "value": "InactiveReserve",
+                      "checked": true
+                    }
+                  }
+                }
+              }
+            ]
           }
         }
       }
@@ -2421,7 +2520,10 @@
           "type": "collection",
           "props": {
             "branch": {
-              "type": ""
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
             },
             "items": []
           }
@@ -3571,124 +3673,6 @@
                 }
               }
             ]
-          }
-        }
-      }
-    }
-  },
-  "Submission": {
-    "Releases": {
-      "type": "submission",
-      "props": {
-        "AdditionalComments": {
-          "type": "submission.additionalcomments",
-          "props": {
-            "Signature": {
-              "type": "signature",
-              "props": {
-                "Name": {
-                  "type": "text",
-                  "props": {
-                    "value": "Heinrich Ernest Mendosa"
-                  }
-                },
-                "Date": {
-                  "type": "datecontrol",
-                  "props": {
-                    "month": "8",
-                    "day": "20",
-                    "year": "2018",
-                    "estimated": false
-                  }
-                }
-              }
-            }
-          }
-        },
-        "General": {
-          "type": "submission.general",
-          "props": {
-            "Signature": {
-              "type": "signature",
-              "props": {
-                "Name": {
-                  "type": "text",
-                  "props": {
-                    "value": "Heinrich Ernest Mendosa"
-                  }
-                },
-                "Date": {
-                  "type": "datecontrol",
-                  "props": {
-                    "month": "8",
-                    "day": "20",
-                    "year": "2018",
-                    "estimated": false
-                  }
-                }
-              }
-            }
-          }
-        },
-        "Medical": {
-          "type": "submission.medical",
-          "props": {
-            "Signature": {
-              "type": "signature",
-              "props": {
-                "Name": {
-                  "type": "text",
-                  "props": {
-                    "value": ""
-                  }
-                },
-                "Date": {
-                  "type": "datecontrol",
-                  "props": {
-                    "month": "",
-                    "day": "",
-                    "year": "",
-                    "estimated": false
-                  }
-                }
-              }
-            }
-          }
-        },
-        "Credit": {
-          "type": "submission.credit",
-          "props": {
-            "Signature": {
-              "type": "signature",
-              "props": {
-                "Name": {
-                  "type": "text",
-                  "props": {
-                    "value": "Heinrich Ernest Mendosa"
-                  }
-                },
-                "Date": {
-                  "type": "datecontrol",
-                  "props": {
-                    "month": "8",
-                    "day": "20",
-                    "year": "2018",
-                    "estimated": false
-                  }
-                }
-              }
-            }
-          }
-        },
-        "Attachments": {
-          "type": "submission.attachments",
-          "props": {
-            "Method": {
-              "type": "text",
-              "props": {
-                "value": ""
-              }
-            }
           }
         }
       }

@@ -58,14 +58,15 @@ export const anyHasStatus = completed => (properties, status, val) => {
 /**
  * Validates a phone number
  */
-export const validPhoneNumber = phone => {
+export const validPhoneNumber = (phone, opts = { numberType: false }) => {
+  // console.log(phone)
   if (!phone) {
     return false
   }
   if (phone.noNumber) {
     return true
   }
-  if (!phone.numberType) {
+  if (!phone.numberType && opts.numberType) {
     return false
   }
   if (!phone.timeOfDay) {

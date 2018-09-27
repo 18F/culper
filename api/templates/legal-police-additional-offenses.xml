@@ -15,8 +15,8 @@
         <!-- See https://github.com/18F/e-QIP-prototype/issues/782 -->
         <Charge ID="1">
           <Charge>{{text $Item.CourtCharge}}</Charge>
-          <Date Type="{{dateEstimated $Item.Date}}">
-            {{monthYear $Item.Date}}
+          <Date Type="{{dateEstimated $Item.CourtDate}}">
+            {{monthYear $Item.CourtDate}}
           </Date>
           <Outcome>{{text $Item.CourtOutcome}}</Outcome>
           <Type>{{text $Item.ChargeType}}</Type>

@@ -19,14 +19,13 @@ import {
   Email
 } from '../../../Form'
 import { today, daysAgo } from '../dateranges'
+import { buildDate } from '../../../../validators/helpers'
 
 // We need to determine how far back 3 years ago was
 const threeYearsAgo = daysAgo(today, 365 * 3)
 const withinThreeYears = (from, to, present) => {
   return (
-    present ||
-    (from && from.date >= threeYearsAgo) ||
-    (to && to.date >= threeYearsAgo)
+    present || (from && from >= threeYearsAgo) || (to && to >= threeYearsAgo)
   )
 }
 
@@ -239,8 +238,8 @@ export default class ResidenceItem extends ValidationElement {
     // Certain elements are present if the date range of the residency was
     // within the last 3 years.
     const dates = this.props.Dates || {}
-    const from = dates.from
-    const to = dates.to
+    const from = buildDate(dates.from)
+    const to = buildDate(dates.to)
 
     return (
       <div className="residence">

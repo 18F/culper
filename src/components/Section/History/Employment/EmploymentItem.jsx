@@ -492,6 +492,7 @@ export default class EmploymentItem extends ValidationElement {
                   name="ReferencePhone"
                   className="reference-phone"
                   {...this.props.ReferencePhone}
+                  allowNotApplicable={false}
                   onUpdate={this.updateReferencePhone}
                   onError={this.props.onError}
                   required={this.props.required}

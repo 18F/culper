@@ -115,7 +115,7 @@ export default class OffenseValidator {
 
     return (
       !!this.chargeType &&
-      ['Felony', 'Misdemeanor', 'Other'].includes(this.chargeType)
+      ['Felony', 'Misdemeanor', 'Other'].includes(this.chargeType.value)
     )
   }
 

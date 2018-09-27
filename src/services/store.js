@@ -5,7 +5,6 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import { createLogger } from 'redux-logger'
 
 const middleware = [thunk]
-const urlParams = new URLSearchParams(window.location.search)
 
 // Creates a redux store that defines the state tree for the application.
 // See rootReducer for all sub-states.
@@ -18,9 +17,7 @@ switch (process.env.NODE_ENV) {
     store = createStore(rootReducer, applyMiddleware(...middleware))
     break
   default:
-    if (!urlParams.has('no-redux-logger')) {
-      middleware.push(createLogger())
-    }
+    middleware.push(createLogger())
     store = createStore(
       rootReducer,
       composeWithDevTools(applyMiddleware(...middleware))
