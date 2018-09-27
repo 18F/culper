@@ -19564,7 +19564,32 @@ watched h</OtherAgency>
                   </Date>
                   <FinalDisposition>"It has long been a grave question whether any government not too strong for the liberties of its people can be strong enough to maintain its existence in great emergencies. On this point, the present rebellion brought our republic to a severe test, and t</FinalDisposition>
                   <Appealed>
-                    <Answer>No</Answer>
+                    <Answer>Yes</Answer>
+                    <Appeal ID="1">
+                      <Court>
+                        <Name>"It has long been a grave question whether any government not too strong for the liberties of its people can be strong enough to maintain its existence in great emergencies. On this point, the present rebellion brought our republic to a severe test, and t</Name>
+                        <Address>
+                          <Street>"It has long been a grave question whether any government not too strong for the liberties of its people can be strong enough to maintain its existence in great emergencies. On this point, the present rebellion brought our republic to a severe test, and t "It has long been a grave question whether any government not too strong for the liberties of its people can be strong enough to maintain its existence in great emergencies. On this point, the present rebellion brought our republic to a severe test, and t</Street>
+                          <City>"It has long been a grave question whether any government not too strong for the liberties of its pe</City>
+                          <State>DC</State>
+                          <ZipCode>20288</ZipCode>
+                        </Address>
+                      </Court>
+                      <FinalDisposition>"It has long been a grave question whether any government not too strong for the liberties of its people can be strong enough to maintain its existence in great emergencies. On this point, the present rebellion brought our republic to a severe test, and t</FinalDisposition>
+                    </Appeal>
+                    <Appeal ID="2">
+                      <Court>
+                        <Name>"It has long been a grave question whether any government not too strong for the liberties of its people can be strong enough to maintain its existence in great emergencies. On this point, the present rebellion brought our republic to a severe test, and t</Name>
+                        <Address>
+                          <Street>"It has long been a grave question whether any government not too strong for the liberties of its people can be strong enough to maintain its existence in great emergencies. On this point, the present rebellion brought our republic to a severe test, and t "It has long been a grave question whether any government not too strong for the liberties of its people can be strong enough to maintain its existence in great emergencies. On this point, the present rebellion brought our republic to a severe test, and t</Street>
+                          <City>"It has long been a grave question whether any government not too strong for the liberties of its pe</City>
+                          <State>DC</State>
+                          <ZipCode>20288</ZipCode>
+                        </Address>
+                      </Court>
+                      <FinalDisposition>"It has long been a grave question whether any government not too strong for the liberties of its people can be strong enough to maintain its existence in great emergencies. On this point, the present rebellion brought our republic to a severe test, and t</FinalDisposition>
+                    </Appeal>
+                    <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
                   </Appealed>
                 </OrderedToConsultOccurrence>
                 <OrderedToConsultOccurrence ID="2">
@@ -19583,7 +19608,20 @@ watched h</OtherAgency>
                   </Date>
                   <FinalDisposition>"It has long been a grave question whether any government not too strong for the liberties of its people can be strong enough to maintain its existence in great emergencies. On this point, the present rebellion brought our republic to a severe test, and t</FinalDisposition>
                   <Appealed>
-                    <Answer>No</Answer>
+                    <Answer>Yes</Answer>
+                    <Appeal ID="1">
+                      <Court>
+                        <Name>"It has long been a grave question whether any government not too strong for the liberties of its people can be strong enough to maintain its existence in great emergencies. On this point, the present rebellion brought our republic to a severe test, and t</Name>
+                        <Address>
+                          <Street>"It has long been a grave question whether any government not too strong for the liberties of its people can be strong enough to maintain its existence in great emergencies. On this point, the present rebellion brought our republic to a severe test, and t "It has long been a grave question whether any government not too strong for the liberties of its people can be strong enough to maintain its existence in great emergencies. On this point, the present rebellion brought our republic to a severe test, and t</Street>
+                          <City>"It has long been a grave question whether any government not too strong for the liberties of its pe</City>
+                          <State>DC</State>
+                          <ZipCode>20288</ZipCode>
+                        </Address>
+                      </Court>
+                      <FinalDisposition>"It has long been a grave question whether any government not too strong for the liberties of its people can be strong enough to maintain its existence in great emergencies. On this point, the present rebellion brought our republic to a severe test, and t</FinalDisposition>
+                    </Appeal>
+                    <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
                   </Appealed>
                 </OrderedToConsultOccurrence>
                 <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
