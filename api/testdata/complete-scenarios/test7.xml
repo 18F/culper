@@ -966,8 +966,8 @@ hand. It is impossible to conceive of </ReasonForChange>
                   <Address>
                     <Street>FIL ADDRESS XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO FIL ADDRESS APT XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO</Street>
                     <City>FIL ADDRESS CITY XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO</City>
-                    <State>DQ</State>
-                    <ZipCode>55555</ZipCode>
+                    <State>CA</State>
+                    <ZipCode>93940</ZipCode>
                   </Address>
                   <Birth>
                     <Date Type="Estimated">
@@ -1030,8 +1030,9 @@ hand. It is impossible to conceive of </ReasonForChange>
           </Name>
                     </Employer>
                     <FirstContactDate>
-          
-        </FirstContactDate>
+                      <Month>01</Month>
+                      <Year>2010</Year>
+                    </FirstContactDate>
                     <ForeignAffiliation>
                       <Relationship>"It has long been a grave question whether any government not too
 strong for the liberties of its people can be strong enough to
@@ -1102,10 +1103,13 @@ he also accepted human nature as it is, and worked with keen,
 practical good sense to achieve results with the instruments at
 hand. It is impossible to conceive of </Relationship>
                     </ForeignAffiliation>
+                    <FrequencyOfContact>Quarterly</FrequencyOfContact>
                     <LastContactDate Type="Estimated">
-          
-        </LastContactDate>
-                    <MethodsOfContact/>
+                      <Month>02</Month>
+                      <Year>2018</Year>
+                    </LastContactDate>
+                    <MethodsOfContact InPerson="True" Telephone="True" Other="True"/>
+                    <MethodsOfContactTypeOtherExplanation>FIL Other method of contact</MethodsOfContactTypeOtherExplanation>
                   </ForeignRelative>
                   <LegalName>
                     <Last>FIL LAST XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO</Last>

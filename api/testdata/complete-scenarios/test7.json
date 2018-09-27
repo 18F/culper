@@ -15202,6 +15202,12 @@
                       "checked": true
                     }
                   },
+                  "FrequencyComments": {
+                    "type": "radio",
+                    "props": {
+                      "value": ""
+                    }
+                  },
                   "HasAffiliation": {
                     "type": "branch",
                     "props": {
@@ -15561,6 +15567,12 @@
                       "value": ""
                     }
                   },
+                  "FrequencyComments": {
+                    "type": "radio",
+                    "props": {
+                      "value": ""
+                    }
+                  },
                   "HasAffiliation": {
                     "type": "branch",
                     "props": {
@@ -15652,10 +15664,9 @@
                       "street": "FIL ADDRESS XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO",
                       "street2": "FIL ADDRESS APT XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO",
                       "city": "FIL ADDRESS CITY XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO",
-                      "state": "DQ",
-                      "zipcode": "55555",
-                      "country": "United States",
-                      "validated": true
+                      "state": "CA",
+                      "zipcode": "93940",
+                      "country": "United States"
                     }
                   },
                   "Aliases": {
@@ -15789,13 +15800,20 @@
                   "FirstContact": {
                     "type": "datecontrol",
                     "props": {
-                      "month": "",
-                      "day": "",
-                      "year": "",
+                      "month": "01",
+                      "day": "03",
+                      "year": "2010",
                       "estimated": false
                     }
                   },
                   "Frequency": {
+                    "type": "radio",
+                    "props": {
+                      "value": "Quarterly",
+                      "checked": true
+                    }
+                  },
+                  "FrequencyComments": {
                     "type": "radio",
                     "props": {
                       "value": ""
@@ -15816,10 +15834,10 @@
                   "LastContact": {
                     "type": "datecontrol",
                     "props": {
-                      "month": "",
-                      "day": "",
-                      "year": "",
-                      "estimated": false
+                      "month": "02",
+                      "day": "03",
+                      "year": "2018",
+                      "estimated": true
                     }
                   },
                   "MaidenName": {
@@ -15845,13 +15863,17 @@
                   "Methods": {
                     "type": "checkboxgroup",
                     "props": {
-                      "values": null
+                      "values": [
+                        "Telephone",
+                        "In person",
+                        "Other"
+                      ]
                     }
                   },
                   "MethodsComments": {
                     "type": "textarea",
                     "props": {
-                      "value": ""
+                      "value": "FIL Other method of contact"
                     }
                   },
                   "Name": {
