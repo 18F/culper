@@ -1869,9 +1869,9 @@ thou</Reason>
               <Status>DerivedUSCitizen</Status>
               <USCitizen>
                 <Derived>
-                  <AlienRegistrationNumber>777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777700</AlienRegistrationNumber>
+                  <AlienRegistrationNumber>777777777777777777777777777777</AlienRegistrationNumber>
                   <Basis>Other</Basis>
-                  <CitizenshipCertificateNumber>999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999911</CitizenshipCertificateNumber>
+                  <CitizenshipCertificateNumber>999999999999999999999999999999</CitizenshipCertificateNumber>
                   <DocumentIssued>
                     <Date Type="Estimated">
                       <Month>01</Month>
@@ -1953,7 +1953,7 @@ sense of fealty to a lofty ideal; but throughout his entire life,
 he also accepted human nature as it is, and worked with keen,
 practical good sense to achieve results with the instruments at
 hand. It is impossible to conceive of </Explanation>
-                  <PermanentResidentCardNumber>888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888811</PermanentResidentCardNumber>
+                  <PermanentResidentCardNumber>888888888888888888888888888888</PermanentResidentCardNumber>
                 </Derived>
                 <ProofOfUSCitizenship>
                   <USPassport>
