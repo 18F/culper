@@ -762,7 +762,7 @@ export class HistorySections extends React.Component {
       return false
     }
     return (
-      <div>
+      <div className="history">
         <Residence
           {...this.props.Residence}
           defaultState={false}

@@ -4135,7 +4135,9 @@ exports[`The print section renders properly 1`] = `
       >
         Your history
       </h3>
-      <div>
+      <div
+        className="history"
+      >
         <div
           className="section-content residence"
           data-section="history"
