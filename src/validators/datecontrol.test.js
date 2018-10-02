@@ -28,6 +28,25 @@ describe('date control validator', function() {
           hideDay: true
         },
         expected: true
+      },
+      {
+        data: {
+          month: '',
+          day: '1',
+          year: '2005',
+          hideMonth: true
+        },
+        expected: true
+      },
+      {
+        data: {
+          month: '',
+          day: '',
+          year: '2005',
+          hideMonth: true,
+          hideDay: true
+        },
+        expected: true
       }
     ]
 
@@ -166,6 +185,50 @@ describe('date control validator', function() {
           year: '2004',
           minDate: new Date('1/1/2004'),
           minDateEqualTo: true,
+          hideDay: true
+        },
+        expected: true
+      },
+      {
+        data: {
+          month: '1',
+          day: '1',
+          year: '2004',
+          minDate: new Date('1/1/2004'),
+          hideMonth: true
+        },
+        expected: false
+      },
+      {
+        data: {
+          month: '1',
+          day: '1',
+          year: '2004',
+          minDate: new Date('1/1/2004'),
+          minDateEqualTo: true,
+          hideMonth: true
+        },
+        expected: true
+      },
+      {
+        data: {
+          month: '1',
+          day: '1',
+          year: '2004',
+          minDate: new Date('1/1/2004'),
+          hideMonth: true,
+          hideDay: true
+        },
+        expected: false
+      },
+      {
+        data: {
+          month: '1',
+          day: '1',
+          year: '2004',
+          minDate: new Date('1/1/2004'),
+          minDateEqualTo: true,
+          hideMonth: true,
           hideDay: true
         },
         expected: true

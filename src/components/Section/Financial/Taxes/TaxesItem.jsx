@@ -136,12 +136,13 @@ export default class TaxesItem extends ValidationElement {
         <Field
           title={i18n.t('financial.taxes.heading.year')}
           scrollIntoView={this.props.scrollIntoView}>
-          <Number
+          <DateControl
             name="Year"
             {...this.props.Year}
             className="taxes-year"
-            placeholder={i18n.t('date.placeholder.year')}
-            prefix="date"
+            hideMonth={true}
+            hideDay={true}
+            showEstimated={false}
             min={minYearFiled.minDate.getFullYear()}
             required={this.props.required}
             onUpdate={this.updateYear}

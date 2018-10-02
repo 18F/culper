@@ -13,7 +13,7 @@ describe('The taxes item component', () => {
     }
     const component = mount(<TaxesItem {...expected} />)
     component
-      .find('.taxes-year input[type="text"]')
+      .find('.taxes-year .year input')
       .simulate('change', { target: { value: '2000' } })
     component
       .find('.taxes-reason textarea')
