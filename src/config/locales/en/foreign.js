@@ -498,7 +498,7 @@ export const foreign = {
             hasCoOwners:
               'Are/were/will there any co-owners of this foreign real estate?',
             hasCoOwnersAppend:
-              'Are there any additional co-owners for this foreign financial interest controlled on your behalf to report?'
+              'Are there any additional co-owners for this foreign real estate?'
           }
         }
       }
