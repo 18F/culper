@@ -14,16 +14,15 @@
     {{range $index, $item := .props.TreatmentList.props.items}}
     {{with $Item := $item.Item}}
     <TreatmentOccurrence ID="{{inc $index}}">
-      <Condition>{{radio $Item.Condition}}</Condition>
-      {{daterange $Item.Diagnosed}}
+      {{monthYearDaterange $Item.Diagnosed}}
       <HealthCareProfessional>{{treatment $Item.Treatment.props}}</HealthCareProfessional>
       <TreatmentFacility>{{treatment $Item.TreatmentFacility.props}}</TreatmentFacility>
       <Comment></Comment>
     </TreatmentOccurrence>
+    {{end}}
+    {{end}}
     <HaveAdditionalEntryAnswer>{{branch .props.TreatmentList.props.branch}}</HaveAdditionalEntryAnswer>
     <SummaryComment></SummaryComment>
-    {{end}}
-    {{end}}
   </Treatment>
   <NotFollowedTreatment>
     <Answer>{{branch .props.DidNotFollow}}</Answer>

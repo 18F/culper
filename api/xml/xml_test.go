@@ -300,6 +300,11 @@ func TestScenario7(t *testing.T) {
 	executeScenario(t, "test7")
 }
 
+// `test8` is for 21E, explicitly answering "No" to 21A, 21B, 21C, and 21D
+func TestScenario8(t *testing.T) {
+	executeScenario(t, "test8")
+}
+
 // executeScenario generates XML from JSON test fixtures for a complete
 // applicant scenario and compares the result with XML reference files.
 // It is a coarse and unforgiving test; anything less than an exact match,
