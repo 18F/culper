@@ -378,6 +378,7 @@ export default class Divorce extends React.Component {
                     {...this.props.DeceasedAddress}
                     layout={Location.ADDRESS}
                     geocode={true}
+                    showPostOffice={true}
                     onUpdate={this.updateDeceasedAddress}
                     onError={this.props.onError}
                     required={this.props.required}

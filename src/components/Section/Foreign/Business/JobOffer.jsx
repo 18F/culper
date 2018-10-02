@@ -128,6 +128,7 @@ export default class JobOffer extends ValidationElement {
             label={i18n.t('foreign.business.employment.label.address')}
             layout={Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY}
             className="employment-address"
+            showPostOffice={true}
             onUpdate={this.updateAddress}
             onError={this.props.onError}
             required={this.props.required}

@@ -725,6 +725,7 @@ export default class ForeignNational extends ValidationElement {
               geocode={true}
               addressBooks={this.props.addressBooks}
               addressBook="Company"
+              showPostOffice={true}
               dispatch={this.props.dispatch}
               onUpdate={this.updateEmployerAddress}
               onError={this.props.onError}

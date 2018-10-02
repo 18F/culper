@@ -1262,6 +1262,7 @@ export default class Relative extends ValidationElement {
                   layout={Location.ADDRESS}
                   geocode={true}
                   className="relative-employer-address"
+                  showPostOffice={true}
                   onError={this.props.onError}
                   onUpdate={this.updateEmployerAddress}
                   required={this.props.required}
