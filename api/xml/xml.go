@@ -96,6 +96,7 @@ func (service Service) DefaultTemplate(templateName string, data map[string]inte
 		"textarea":               textarea,
 		"toUpper":                toUpper,
 		"treatment":              treatment,
+		"treatmentAnswerType":    treatmentAnswerType,
 		"tmpl":                   service.DefaultTemplate,
 	}
 	return xmlTemplateWithFuncs(templateName, data, fmap)
@@ -944,6 +945,13 @@ func hairType(v string) string {
 func suffixType(s string) string {
 	if s == "Other" {
 		return "__Other__"
+	}
+	return s
+}
+
+func treatmentAnswerType(s string) string {
+	if s == "Decline" {
+		return "IDeclineToAnswer"
 	}
 	return s
 }

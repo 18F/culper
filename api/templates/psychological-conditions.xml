@@ -3,7 +3,7 @@
   <AnswerComment></AnswerComment>
   {{if branch .props.HasCondition | eq "Yes"}}
   <Treatment>
-    <Answer>{{radio .props.ReceivedTreatment}}</Answer>
+    <Answer>{{radio .props.ReceivedTreatment | treatmentAnswerType}}</Answer>
     <AnswerComment></AnswerComment>
     {{if radio .props.ReceivedTreatment | eq "No"}}
     <DidNotReceiveTreatment>
