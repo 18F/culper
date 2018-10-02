@@ -77,6 +77,7 @@ export class AppealItem extends ValidationElement {
             geocode={true}
             addressBooks={this.props.addressBooks}
             addressBook="Court"
+            showPostOffice={true}
             onUpdate={this.updateCourtAddress}
             onError={this.props.onError}
             required={this.props.required}

@@ -143,6 +143,7 @@ export default class VenturesItem extends ValidationElement {
             onError={this.props.onError}
             className="ventures-address"
             layout={Location.ADDRESS}
+            showPostOffice={true}
             addressBooks={this.props.addressBooks}
             addressBook="ForeignNational"
             dispatch={this.props.dispatch}

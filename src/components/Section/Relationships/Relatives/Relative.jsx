@@ -680,6 +680,7 @@ export default class Relative extends ValidationElement {
               dispatch={this.props.dispatch}
               layout={Location.ADDRESS}
               geocode={true}
+              showPostOffice={true}
               onUpdate={this.updateAddress}
               onError={this.props.onError}
               required={this.props.required}
@@ -1258,10 +1259,10 @@ export default class Relative extends ValidationElement {
                 <Location
                   name="EmployerAddress"
                   {...this.props.EmployerAddress}
-                  showPostOffice={false}
                   layout={Location.ADDRESS}
                   geocode={true}
                   className="relative-employer-address"
+                  showPostOffice={true}
                   onError={this.props.onError}
                   onUpdate={this.updateEmployerAddress}
                   required={this.props.required}

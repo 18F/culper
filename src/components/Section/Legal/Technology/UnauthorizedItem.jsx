@@ -98,6 +98,7 @@ export default class UnauthorizedItem extends ValidationElement {
             className="legal-technology-unauthorized-location"
             layout={Location.ADDRESS}
             geocode={true}
+            showPostOffice={true}
             addressBooks={this.props.addressBooks}
             addressBook="Incident"
             dispatch={this.props.dispatch}

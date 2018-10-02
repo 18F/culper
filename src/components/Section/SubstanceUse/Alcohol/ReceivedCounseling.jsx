@@ -173,6 +173,7 @@ export default class ReceivedCounseling extends ValidationElement {
             {...this.props.TreatmentProviderAddress}
             layout={Location.ADDRESS}
             geocode={true}
+            showPostOffice={true}
             onUpdate={this.updateTreatmentProviderAddress}
             onError={this.props.onError}
             required={this.props.required}
@@ -221,6 +222,7 @@ export default class ReceivedCounseling extends ValidationElement {
               {...this.props.AgencyAddress}
               layout={Location.ADDRESS}
               geocode={true}
+              showPostOffice={true}
               onUpdate={this.updateAgencyAddress}
               required={this.props.required}
               onError={this.props.onError}

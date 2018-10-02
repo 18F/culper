@@ -697,7 +697,7 @@ Address.defaultProps = {
   onError: (value, arr) => {
     return arr
   },
-  showPostOffice: true,
+  showPostOffice: false,
   streetLabel: i18n.t('address.us.street.label'),
   postOfficeStreetPlaceholder: i18n.t('address.apoFpo.street.placeholder'),
   postOfficeStateLabel: i18n.t('address.apoFpo.apoFpo.label'),

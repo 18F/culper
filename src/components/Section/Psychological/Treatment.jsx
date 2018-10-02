@@ -84,6 +84,7 @@ export default class Treatment extends ValidationElement {
             geocode={true}
             addressBooks={this.props.addressBooks}
             addressBook="Facility"
+            showPostOffice={true}
             dispatch={this.props.dispatch}
             onUpdate={this.updateAddress}
             onError={this.props.onError}

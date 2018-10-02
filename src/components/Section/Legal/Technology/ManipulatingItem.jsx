@@ -98,6 +98,7 @@ export default class ManipulatingItem extends ValidationElement {
             className="legal-technology-manipulating-location"
             layout={Location.ADDRESS}
             geocode={true}
+            showPostOffice={true}
             addressBooks={this.props.addressBooks}
             addressBook="Incident"
             dispatch={this.props.dispatch}

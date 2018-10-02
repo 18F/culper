@@ -252,6 +252,7 @@ export default class EducationItem extends ValidationElement {
               addressBooks={this.props.addressBooks}
               addressBook="Education"
               geocode={true}
+              showPostOffice={true}
               onUpdate={this.updateAddress}
               onError={this.props.onError}
               required={this.props.required}
@@ -404,6 +405,7 @@ export default class EducationItem extends ValidationElement {
                     geocode={true}
                     addressBooks={this.props.addressBooks}
                     addressBook="Reference"
+                    showPostOffice={true}
                     dispatch={this.props.dispatch}
                     onUpdate={this.updateReferenceAddress}
                     onError={this.props.onError}

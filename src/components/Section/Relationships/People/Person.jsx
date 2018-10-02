@@ -362,6 +362,7 @@ export default class Person extends React.Component {
             dispatch={this.props.dispatch}
             layout={Location.ADDRESS}
             geocode={true}
+            showPostOffice={true}
             onUpdate={this.updateAddress}
             onError={this.props.onError}
             required={this.props.required}

@@ -123,6 +123,7 @@ export default class VoluntaryCounseling extends ValidationElement {
             geocode={true}
             addressBooks={this.props.addressBooks}
             addressBook="Provider"
+            showPostOffice={true}
             dispatch={this.props.dispatch}
             onUpdate={this.updateTreatmentProviderAddress}
             onError={this.props.onError}

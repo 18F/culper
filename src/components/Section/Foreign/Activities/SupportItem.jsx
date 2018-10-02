@@ -113,6 +113,7 @@ export default class SupportItem extends ValidationElement {
             layout={Location.ADDRESS}
             geocode={true}
             addressBook="ForeignNational"
+            showPostOffice={true}
             addressBooks={this.props.addressBooks}
             dispatch={this.props.dispatch}
             required={this.props.required}
