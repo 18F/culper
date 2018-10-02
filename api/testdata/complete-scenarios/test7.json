@@ -3470,10 +3470,9 @@
                       "street": "FC EMPLOYER STREET XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO",
                       "street2": "FC EMPLOYER APT XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO",
                       "city": "FC EMPLOYER CITY XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO",
-                      "state": "JQ",
-                      "zipcode": "88888",
-                      "country": "United States",
-                      "validated": true
+                      "state": "CA",
+                      "zipcode": "93943",
+                      "country": "United States"
                     }
                   },
                   "EmployerAddressNotApplicable": {
@@ -3695,8 +3694,8 @@
                       "street": "FC EMPLOYER STREET XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO",
                       "street2": "FC EMPLOYER APT XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO",
                       "city": "FC EMPLOYER CITY XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO",
-                      "state": "JQ",
-                      "zipcode": "88888",
+                      "state": "OR",
+                      "zipcode": "97201",
                       "country": "United States"
                     }
                   },
@@ -5561,10 +5560,9 @@
                       "street": "No American can study the character and career of Abraham Lincoln without being carried away by sentimental emotions. We are always inclined to idealize that which we love,--a state of mind very unfavorable to the exercise of sober critical judgment. It i",
                       "street2": "No American can study the character and career of Abraham Lincoln without being carried away by sentimental emotions. We are always inclined to idealize that which we love,--a state of mind very unfavorable to the exercise of sober critical judgment. It i",
                       "city": "No American can study the character and career of Abraham Lincoln without being carried away by sent",
-                      "state": "DQ",
-                      "zipcode": "55555",
-                      "country": "United States",
-                      "validated": true
+                      "state": "CA",
+                      "zipcode": "93940",
+                      "country": "United States"
                     }
                   },
                   "OrganizationAddressNotApplicable": {
@@ -15147,10 +15145,9 @@
                       "street": "MOTHER EMPLOYER STREET XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO",
                       "street2": "MOTHER EMPLOYER APT XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO",
                       "city": "MOTHER EMPLOYER CITY XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO",
-                      "state": "LQ",
-                      "zipcode": "88888",
-                      "country": "United States",
-                      "validated": true
+                      "state": "CA",
+                      "zipcode": "93955",
+                      "country": "United States"
                     }
                   },
                   "EmployerAddressNotApplicable": {
@@ -15205,7 +15202,7 @@
                   "FrequencyComments": {
                     "type": "radio",
                     "props": {
-                      "value": ""
+                      "value": "Mother Other explanation for approximate frequency of contact"
                     }
                   },
                   "HasAffiliation": {
@@ -15301,10 +15298,9 @@
                       "street": "FATHER STREET XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO",
                       "street2": "FATHER APT XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO",
                       "city": "FATHER CITY XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO",
-                      "state": "HQ",
-                      "zipcode": "55555",
-                      "country": "United States",
-                      "validated": true
+                      "state": "CA",
+                      "zipcode": "93951",
+                      "country": "United States"
                     }
                   },
                   "Aliases": {
