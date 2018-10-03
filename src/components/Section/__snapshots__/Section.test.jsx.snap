@@ -28985,38 +28985,7 @@ exports[`The section component renders relationships.review 1`] = `
                                   <span>
                                     <div>
                                       <p>
-                                        Currently in a civil marriage
-                                      </p>
-                                    </div>
-                                  </span>
-                                </label>
-                              </div>
-                              <div
-                                className="status-civil-union block"
-                              >
-                                <label
-                                  className=""
-                                  htmlFor="status-MOCK-GUID-status-MOCK-GUID"
-                                >
-                                  <input
-                                    aria-label="[object Object] for null"
-                                    checked={false}
-                                    className="usa-input-success"
-                                    disabled={false}
-                                    id="status-MOCK-GUID-status-MOCK-GUID"
-                                    name="status-MOCK-GUID-status-MOCK-GUID"
-                                    onBlur={[Function]}
-                                    onChange={[Function]}
-                                    onClick={[Function]}
-                                    onFocus={[Function]}
-                                    onKeyDown={[Function]}
-                                    type="radio"
-                                    value="InCivilUnion"
-                                  />
-                                  <span>
-                                    <div>
-                                      <p>
-                                        Currently in a legally recognized domestic partnership or legally recognized civil union
+                                        Currently in a civil marriage, legally recognized civil union, or legally recognized domestic partnership
                                       </p>
                                     </div>
                                   </span>

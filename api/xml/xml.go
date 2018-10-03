@@ -495,7 +495,6 @@ func maritalStatus(status string) string {
 	alias := map[string]string{
 		"NeverMarried": "NeverMarried",
 		"Married":      "Married",
-		"InCivilUnion": "Married",
 		"Separated":    "Separated",
 		"Annulled":     "Annulled",
 		"Divorced":     "Divorced",
