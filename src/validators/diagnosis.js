@@ -13,6 +13,18 @@ export default class DiagnosisValidator {
     this.prefix = (data || {}).prefix
   }
 
+  validCondition() {
+    if (this.prefix === 'existingConditions.diagnosis') {
+      return true
+    }
+
+    if (!this.condition) {
+      return false
+    }
+
+    return true
+  }
+
   validEffective() {
     if (this.prefix === 'existingConditions.diagnosis') {
       return true
@@ -31,7 +43,7 @@ export default class DiagnosisValidator {
 
   isValid() {
     return (
-      !!this.condition &&
+      this.validCondition() &&
       new DateRangeValidator(this.diagnosed).isValid() &&
       new TreatmentValidator(this.treatment).isValid() &&
       new TreatmentValidator(this.treatmentFacility).isValid() &&
@@ -43,7 +55,6 @@ export default class DiagnosisValidator {
 export class ExistingConditionsDiagnosisValidator extends DiagnosisValidator {
   constructor(data = {}) {
     super(data)
-    this.condition = data.Condition || ''
     this.diagnosed = data.Diagnosed || {}
     this.treatment = data.Treatment || {}
     this.effective = data.Effective || {}

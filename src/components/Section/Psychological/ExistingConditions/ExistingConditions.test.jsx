@@ -70,4 +70,15 @@ describe('The ExistingConditions component', () => {
         .length
     ).toBe(0)
   })
+
+  it('Does not ask to identify existing conditions', () => {
+    const props = {
+      HasCondition: { value: 'Yes' },
+      ReceivedTreatment: { value: 'Yes' },
+      DidNotFollow: { value: 'No' },
+      prefix: { value: 'existingConditions.diagnosis' }
+    }
+    const component = mount(<ExistingConditions {...props} />)
+    expect(component.find('.diagnosis-condition').length).toBe(0)
+  })
 })

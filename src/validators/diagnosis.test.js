@@ -2,6 +2,41 @@ import DiagnosisValidator from './diagnosis'
 import Location from '../components/Form/Location'
 
 describe('Diagnosis validation', function() {
+  it('validates condition', () => {
+    const tests = [
+      {
+        data: {
+          prefix: 'existingConditions.diagnosis'
+        },
+        expected: true
+      },
+      {
+        data: {
+          prefix: 'existingConditions.diagnosis',
+          Condition: {}
+        },
+        expected: true
+      },
+      {
+        data: {
+          Condition: {}
+        },
+        expected: false
+      },
+      {
+        data: {
+          Condition: { value: 'Test' }
+        },
+        expected: true
+      }
+    ]
+    tests.forEach(test => {
+      expect(new DiagnosisValidator(test.data).validCondition()).toBe(
+        test.expected
+      )
+    })
+  })
+
   it('validates effective', () => {
     const tests = [
       {
