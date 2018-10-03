@@ -73,7 +73,6 @@ func (service Service) DefaultTemplate(templateName string, data map[string]inte
 		"location":               location,
 		"locationIsPostOffice":   locationIsPostOffice,
 		"locationOverrideLayout": locationOverrideLayout,
-		"maritalStatus":          maritalStatus,
 		"militaryAddress":        militaryAddress,
 		"militaryStatus":         militaryStatus,
 		"monthYear":              monthYear,
@@ -487,18 +486,6 @@ func militaryStatus(status string) string {
 		"ActiveDuty":      "Active",
 		"ActiveReserve":   "ActiveReserve",
 		"InactiveReserve": "InactiveReserve",
-	}
-	return alias[status]
-}
-
-func maritalStatus(status string) string {
-	alias := map[string]string{
-		"NeverMarried": "NeverMarried",
-		"Married":      "Married",
-		"Separated":    "Separated",
-		"Annulled":     "Annulled",
-		"Divorced":     "Divorced",
-		"Widowed":      "Widowed",
 	}
 	return alias[status]
 }
