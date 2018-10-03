@@ -60,7 +60,7 @@ export default class RelativesValidator {
     const requiredRelations = ['Father', 'Mother']
 
     if ((this.list.branch || {}).value === 'No') {
-      if (this.list.items || {}.length > 0) {
+      if ((this.list.items || {}).length > 0) {
         let relations = []
         for (const item of this.list.items) {
           if (!item || !item.Item || !item.Item.Relation) {
