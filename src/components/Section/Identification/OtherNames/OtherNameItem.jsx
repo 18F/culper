@@ -89,6 +89,10 @@ export default class OtherNameItem extends React.Component {
             name="DatesUsed"
             {...this.props.DatesUsed}
             onUpdate={this.updateDatesUsed}
+            minDate={(this.props.Birthdate || {}).date}
+            minDateEqualTo={true}
+            maxDate={(this.props.Birthdate || {}).date}
+            maxDateEqualTo={true}
             onError={this.props.onError}
             required={this.props.required}
           />
