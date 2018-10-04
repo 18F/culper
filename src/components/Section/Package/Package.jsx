@@ -113,8 +113,9 @@ class Package extends SectionElement {
       if (mark.errors > 0) {
         return false
       }
-      return true
     }
+
+    return true
   }
 
   errorCheck() {
