@@ -89,7 +89,12 @@ export default class AdditionalActivity extends ValidationElement {
               <DateRange
                 name="DatesEmployed"
                 bind={true}
+                minDate={(this.props.Birthdate || {}).date}
+                minDateEqualTo={true}
+                maxDate={(this.props.minDate || {}).date}
+                maxDateEqualTo={true}
                 required={this.props.required}
+
               />
             </Field>
           </AccordionItem>

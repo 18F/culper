@@ -142,6 +142,10 @@ export default class Person extends React.Component {
           <DateRange
             name="Dates"
             className="known-dates"
+            minDate={(this.props.Birthdate || {}).date}
+            minDateEqualTo={true}
+            maxDate={(this.props.minDate || {}).date}
+            maxDateEqualTo={true}
             {...this.props.Dates}
             onUpdate={this.updateDates}
             onError={this.props.onError}

@@ -143,6 +143,8 @@ export default class ReasonOptions extends React.Component {
                 <DateControl
                   name="Date"
                   {...this.state.Date}
+                  minDate={(this.props.Birthdate || {}).date}
+                  minDateEqualTo={true}
                   onUpdate={this.updateDate}
                   onError={this.props.onError}
                   required={this.props.required}

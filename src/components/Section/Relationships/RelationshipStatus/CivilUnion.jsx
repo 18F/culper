@@ -355,6 +355,8 @@ export default class CivilUnion extends ValidationElement {
             <DateControl
               name="enteredCivilUnion"
               className="entered"
+              minDate={(this.props.Birthdate || {}).date}
+              minDateEqualTo={true}
               {...this.props.EnteredCivilUnion}
               onUpdate={this.updateEnteredCivilUnion}
               onError={this.props.onError}
@@ -478,8 +480,9 @@ export default class CivilUnion extends ValidationElement {
                 <DateControl
                   name="DateSeparated"
                   className="dateseparated"
-                  {...this.props.DateSeparated}
                   minDate={(this.props.EnteredCivilUnion || {}).date}
+                  minDateEqualTo={true}
+                  {...this.props.DateSeparated}
                   onUpdate={this.updateDateSeparated}
                   onError={this.props.onError}
                   required={this.props.required}
