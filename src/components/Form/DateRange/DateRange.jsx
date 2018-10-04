@@ -261,7 +261,7 @@ export default class DateRange extends ValidationElement {
               this.props.required && !this.state.present && !this.props.disabled
             }
           />
-          <Show when={this.props.showPresent}>
+          <Show when={this.props.allowPresent}>
             <div className="from-present">
               <span className="or"> or </span>
             </div>
@@ -293,7 +293,7 @@ DateRange.defaultProps = {
   minDateEqualTo: false,
   maxDate: new Date(),
   maxDateEqualTo: false,
-  showPresent: true,
+  allowPresent: true,
   onError: (value, arr) => {
     return arr
   },
