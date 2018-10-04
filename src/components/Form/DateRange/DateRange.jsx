@@ -4,6 +4,7 @@ import DateControl from '../DateControl'
 import Checkbox from '../Checkbox'
 import Svg from '../Svg'
 import { now } from '../../Section/History/dateranges'
+import Show from '../Show'
 
 export default class DateRange extends ValidationElement {
   constructor(props) {
@@ -260,21 +261,23 @@ export default class DateRange extends ValidationElement {
               this.props.required && !this.state.present && !this.props.disabled
             }
           />
-          <div className="from-present">
-            <span className="or"> or </span>
-          </div>
-          <div className="from-present">
-            <Checkbox
-              name="present"
-              className="present"
-              label="Present"
-              value="present"
-              disabled={this.props.disabled}
-              checked={this.state.present}
-              onUpdate={this.updatePresent}
-              onError={this.handleErrorPresent}
-            />
-          </div>
+          <Show when={this.props.showPresent}>
+            <div className="from-present">
+              <span className="or"> or </span>
+            </div>
+            <div className="from-present">
+              <Checkbox
+                name="present"
+                className="present"
+                label="Present"
+                value="present"
+                disabled={this.props.disabled}
+                checked={this.state.present}
+                onUpdate={this.updatePresent}
+                onError={this.handleErrorPresent}
+              />
+            </div>
+          </Show>
         </div>
       </div>
     )
@@ -290,6 +293,7 @@ DateRange.defaultProps = {
   minDateEqualTo: false,
   maxDate: new Date(),
   maxDateEqualTo: false,
+  showPresent: true,
   onError: (value, arr) => {
     return arr
   },

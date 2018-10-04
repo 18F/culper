@@ -83,4 +83,12 @@ describe('The date range component', () => {
     component.find('.present input').simulate('change')
     expect(updates).toBeGreaterThan(0)
   })
+
+  it('hides the present button', () => {
+    const expected = {
+      showPresent: false
+    }
+    const component = mount(<DateRange {...expected} />)
+    expect(component.find('.present').length).toBe(0)
+  })
 })
