@@ -1,7 +1,7 @@
 {
   "type": "radio",
   "props": {
-    "value": "InCivilUnion",
+    "value": "Married",
     "checked": true
   }
 }
