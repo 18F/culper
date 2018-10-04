@@ -1042,6 +1042,8 @@ export default class Relative extends ValidationElement {
                 className="relative-first-contact"
                 {...this.props.FirstContact}
                 prefix="relative"
+                minDate={(this.props.Birthdate || {}).date}
+                minDateEqualTo={true}
                 applicantBirthdate={this.props.Birthdate}
                 onError={this.props.onError}
                 onUpdate={this.updateFirstContact}
@@ -1062,6 +1064,8 @@ export default class Relative extends ValidationElement {
                 className="relative-last-contact"
                 {...this.props.LastContact}
                 prefix="relative"
+                maxDate={(this.props.firstContact || {}).date}
+                maxDateEqualTo={true}
                 applicantBirthdate={this.props.Birthdate}
                 onError={this.props.onError}
                 onUpdate={this.updateLastContact}

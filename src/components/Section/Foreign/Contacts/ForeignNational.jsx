@@ -300,6 +300,8 @@ export default class ForeignNational extends ValidationElement {
           <DateControl
             name="FirstContact"
             className="first-contact"
+            minDate={(this.props.firstContact || {}).date}
+            minDateEqualTo={true}
             {...this.props.FirstContact}
             onUpdate={this.updateFirstContact}
             onError={this.props.onError}

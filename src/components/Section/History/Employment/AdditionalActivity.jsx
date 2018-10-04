@@ -94,7 +94,6 @@ export default class AdditionalActivity extends ValidationElement {
                 maxDate={(this.props.minDate || {}).date}
                 maxDateEqualTo={true}
                 required={this.props.required}
-
               />
             </Field>
           </AccordionItem>

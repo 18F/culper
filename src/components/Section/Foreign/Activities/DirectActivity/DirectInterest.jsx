@@ -311,6 +311,8 @@ export default class DirectInterest extends ValidationElement {
             onUpdate={this.updateRelinquishedNotApplicable}>
             <DateControl
               name="Relinquished"
+              minDate={(this.props.Birthdate || {}).date}
+              minDateEqualTo={true}
               className="relinquished"
               {...this.props.Relinquished}
               label={i18n.t(
