@@ -30,7 +30,7 @@ export default class InvalidForm extends React.Component {
       <div className="invalid-form">
         {i18n.m(`application.invalidForm`)}
         {this.errors()}
-        <Show when={!env.IsProduction()}>
+        <Show when={env.IsDevelopment()}>
           <Link to="/form/package/submit">Simulate valid form</Link>
         </Show>
       </div>
