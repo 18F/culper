@@ -79,20 +79,10 @@ export default class Diagnosis extends ValidationElement {
     const applicantBirthdate = getContext().applicantBirthdate
     return (
       <div className="diagnosis">
-        <Field
-          title={i18n.t(`psychological.${prefix}.heading.condition`)}
-          scrollIntoView={this.props.scrollIntoView}>
-          <Show when={this.props.prefix === 'existingConditions.diagnosis'}>
-            <Text
-              name="Condition"
-              className="diagnosis-condition"
-              {...this.props.Condition}
-              onUpdate={this.updateCondition}
-              onError={this.props.onError}
-              required={this.props.required}
-            />
-          </Show>
-          <Show when={this.props.prefix === 'diagnosis'}>
+        <Show when={this.props.prefix !== 'existingConditions.diagnosis'}>
+          <Field
+            title={i18n.t(`psychological.diagnosis.heading.condition`)}
+            scrollIntoView={this.props.scrollIntoView}>
             <RadioGroup
               className="diagnosis-condition"
               onError={this.props.onError}
@@ -155,8 +145,8 @@ export default class Diagnosis extends ValidationElement {
                 onError={this.props.onError}
               />
             </RadioGroup>
-          </Show>
-        </Field>
+          </Field>
+        </Show>
 
         <Field
           title={i18n.t(`psychological.${prefix}.heading.diagnosed`)}
