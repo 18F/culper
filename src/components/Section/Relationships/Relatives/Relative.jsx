@@ -981,7 +981,7 @@ export default class Relative extends ValidationElement {
                     <Show when={(this.props.Document || {}).value === 'Other'}>
                       <Textarea
                         name="DocumentComments"
-                        className="document-comments"
+                        className="relative-document-other-comments"
                         {...this.props.DocumentComments}
                         onValidate={this.props.onValidate}
                         onUpdate={this.updateDocumentComments}
