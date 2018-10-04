@@ -5,8 +5,10 @@ import Dropdown from '../Dropdown'
 export default class State extends ValidationElement {
   constructor(props) {
     super(props)
+    this.getStateAbbreviation = this.getStateAbbreviation.bind(this)
     this.getStates = this.getStates.bind(this)
     this.handleError = this.handleError.bind(this)
+    this.handleUpdate = this.handleUpdate.bind(this)
 
     this.states = [
       { name: 'Alabama', abbreviation: 'AL' },
@@ -80,17 +82,27 @@ export default class State extends ValidationElement {
     ]
   }
 
-  // Gets all internally stored states, and children states to spread in the render
+  getStateAbbreviation(stateName) {
+    // Need to use React Elements here because this.props.children are elements, not objects
+    const stateObj = this.getStates().find(state => state.key.toLowerCase() === stateName.toLowerCase())
+    if (stateObj) {
+      return stateObj.props.value
+    }
+    return stateName
+  }
+
+  // Gets all internally stored states and children states
   getStates() {
-    console.log(this.states)
-    console.log(this.props.children)
     const states = this.states.map(state => (
       <option key={state.name} value={state.abbreviation}>
         {state.name}
       </option>
     ))
 
-    return [...states, ...this.props.children]
+    if (this.props.children) {
+      return [...states, ...this.props.children]
+    }
+    return states
   }
 
   handleError(value, arr) {
@@ -106,6 +118,17 @@ export default class State extends ValidationElement {
     return this.props.onError(value, arr)
   }
 
+  handleUpdate(stateObj) {
+    const value = stateObj.value.length > 2
+      ? this.getStateAbbreviation(stateObj.value)
+      : stateObj.value
+
+    this.props.onUpdate({
+      ...stateObj,
+      value
+    })
+  }
+
   render() {
     return (
       <Dropdown
@@ -114,7 +137,7 @@ export default class State extends ValidationElement {
         placeholder={this.props.placeholder}
         className={this.props.className}
         disabled={this.props.disabled}
-        onUpdate={this.props.onUpdate}
+        onUpdate={this.handleUpdate}
         onError={this.handleError}
         onBlur={this.props.onBlur}
         onFocus={this.props.onFocus}
