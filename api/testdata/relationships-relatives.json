@@ -218,7 +218,7 @@
                   "checked": true
                 }
               },
-              "OtherDocument": {
+              "DocumentComments": {
                 "type": "textarea",
                 "props": {
                   "value": "other doc type"

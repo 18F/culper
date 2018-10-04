@@ -104,7 +104,7 @@ export class RelativeValidator {
     this.courtName = data.CourtName
     this.courtAddress = data.CourtAddress
     this.document = (data.Document || {}).value
-    this.otherDocument = data.OtherDocument
+    this.documentComments = data.DocumentComments
     this.residenceDocumentNumber = data.ResidenceDocumentNumber
     this.expiration = data.Expiration
     this.firstContact = data.FirstContact
@@ -334,7 +334,7 @@ export class RelativeValidator {
 
     switch (this.document) {
       case 'Other':
-        return validGenericTextfield(this.otherDocument)
+        return validGenericTextfield(this.documentComments)
       case 'Permanent':
       case 'Employment':
       case 'Arrival':
