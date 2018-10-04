@@ -19,6 +19,7 @@ export default class DateControlValidator {
     this.month = data.month
     this.day = data.day
     this.year = data.year
+    this.hideMonth = data.hideMonth
     this.hideDay = data.hideDay
     this.maxDate = data.maxDate
     this.maxDateEqualTo = data.maxDateEqualTo || false
@@ -38,12 +39,16 @@ export default class DateControlValidator {
     }
 
     // For month/year fields, we compare from the start of the month
-    if (this.hideDay) {
+    if (this.hideMonth || this.hideDay) {
       this.maxDate = new Date(
-        `${this.maxDate.getMonth() + 1}/1/${this.maxDate.getFullYear()}`
+        `${this.hideMonth ? '1' : this.maxDate.getMonth() + 1}/${
+          this.hideDay ? '1' : this.maxDate.getDate()
+        }/${this.maxDate.getFullYear()}`
       )
       this.minDate = new Date(
-        `${this.minDate.getMonth() + 1}/1/${this.minDate.getFullYear()}`
+        `${this.hideMonth ? '1' : this.minDate.getMonth() + 1}/${
+          this.hideDay ? '1' : this.minDate.getDate()
+        }/${this.minDate.getFullYear()}`
       )
     }
   }
@@ -89,7 +94,11 @@ export default class DateControlValidator {
   }
 
   isValid() {
-    if ((!this.day && !this.hideDay) || !this.month || !this.year) {
+    if (
+      (!this.day && !this.hideDay) ||
+      (!this.month && !this.hideMonth) ||
+      !this.year
+    ) {
       return false
     }
 

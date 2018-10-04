@@ -68,7 +68,7 @@ export default class DateControl extends ValidationElement {
       error: props.error,
       valid: props.valid,
       maxDate: props.maxDate,
-      month: props.month || datePart('m', props.value),
+      month: props.hideMonth ? '1' : props.month || datePart('m', props.value),
       day: props.hideDay ? '1' : props.day || datePart('d', props.value),
       year: props.year || datePart('y', props.value),
       errors: []
@@ -325,15 +325,20 @@ export default class DateControl extends ValidationElement {
   }
 
   render() {
-    let klass = `datecontrol ${
+    let klass = `${
+      this.props.hideMonth && this.props.hideDay ? '' : 'datecontrol'
+    } ${
       this.state.error && !this.props.overrideError ? 'usa-input-error' : ''
     } ${this.props.className || ''} ${
-      this.props.hideDay ? 'day-hidden' : ''
-    }`.trim()
+      this.props.hideMonth ? 'month-hidden' : ''
+    } ${this.props.hideDay ? 'day-hidden' : ''}`.trim()
     return (
       <div className={klass}>
         <div>
-          <div className="usa-form-group month">
+          <div
+            className={`usa-form-group month ${
+              this.props.hideMonth === true ? 'hidden' : ''
+            }`.trim()}>
             <Number
               id="month"
               name="month"
@@ -345,7 +350,7 @@ export default class DateControl extends ValidationElement {
               maxlength="2"
               min="1"
               readonly={this.props.readonly}
-              required={this.props.required}
+              required={!this.props.hideMonth && this.props.required}
               step="1"
               receiveProps="true"
               value={this.state.month}
@@ -443,6 +448,7 @@ DateControl.defaultProps = {
   error: false,
   valid: false,
   hideDay: false,
+  hideMonth: false,
   month: '',
   day: '',
   year: '',

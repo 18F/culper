@@ -2081,4 +2081,101 @@ describe('Relatives validation', function() {
       )
     })
   })
+
+  it('validates that a mother-in-law and father-in-law have been provided if married', () => {
+    const tests = [
+      {
+        data: {
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Relation: {
+                    value: 'Mother-in-law'
+                  }
+                }
+              },
+              {
+                Item: {
+                  Relation: {
+                    value: 'Father-in-law'
+                  }
+                }
+              }
+            ]
+          }
+        },
+        context: 'Married',
+        expected: true
+      },
+      {
+        data: {
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Relation: {
+                    value: 'Mother-in-law'
+                  }
+                }
+              },
+              {
+                Item: {
+                  Relation: {
+                    value: 'Father-in-law'
+                  }
+                }
+              }
+            ]
+          }
+        },
+        context: 'Separated',
+        expected: true
+      },
+      {
+        data: {
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Relation: {
+                    value: 'Mother-in-law'
+                  }
+                }
+              }
+            ]
+          }
+        },
+        context: 'Married',
+        expected: false
+      },
+      {
+        data: {
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Relation: {
+                    value: 'Father-in-law'
+                  }
+                }
+              }
+            ]
+          }
+        },
+        context: 'Separated',
+        expected: false
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(
+        new RelativesValidator(test.data).validMaritalRelations(test.context)
+      ).toBe(test.expected)
+    })
+  })
 })

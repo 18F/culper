@@ -405,6 +405,7 @@ export default class CivilUnion extends ValidationElement {
                   geocode={true}
                   addressBooks={this.props.addressBooks}
                   addressBook="Relative"
+                  showPostOffice={true}
                   dispatch={this.props.dispatch}
                   onUpdate={this.updateAddress}
                   onError={this.props.onError}
@@ -420,6 +421,7 @@ export default class CivilUnion extends ValidationElement {
                 geocode={true}
                 addressBooks={this.props.addressBooks}
                 addressBook="Relative"
+                showPostOffice={true}
                 dispatch={this.props.dispatch}
                 onUpdate={this.updateAddress}
                 onError={this.props.onError}
@@ -504,6 +506,7 @@ export default class CivilUnion extends ValidationElement {
                       'relationships.civilUnion.label.addressSeparated'
                     )}
                     layout={Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY}
+                    showPostOffice={true}
                     onUpdate={this.updateAddressSeparated}
                     onError={this.props.onError}
                     required={this.props.required}

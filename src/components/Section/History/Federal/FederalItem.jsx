@@ -111,6 +111,7 @@ export default class FederalItem extends ValidationElement {
             geocode={true}
             addressBooks={this.props.addressBooks}
             addressBook="Agency"
+            showPostOffice={true}
             dispatch={this.props.dispatch}
             required={this.props.required}
           />

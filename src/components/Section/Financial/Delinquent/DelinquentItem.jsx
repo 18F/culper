@@ -316,6 +316,7 @@ export default class DelinquentItem extends ValidationElement {
             layout={Location.ADDRESS}
             geocode={true}
             className="delinquent-courtaddress"
+            showPostOffice={true}
             dispatch={this.props.dispatch}
             addressBooks={this.props.addressBooks}
             addressBook="Court"

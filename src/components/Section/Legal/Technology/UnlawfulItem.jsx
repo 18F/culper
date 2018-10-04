@@ -98,6 +98,7 @@ export default class UnlawfulItem extends ValidationElement {
             className="legal-technology-unlawful-location"
             layout={Location.ADDRESS}
             geocode={true}
+            showPostOffice={true}
             addressBooks={this.props.addressBooks}
             addressBook="Incident"
             dispatch={this.props.dispatch}

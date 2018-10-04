@@ -1,0 +1,11 @@
+<!-- Derived from drug.xml -->
+{{with $dt := radio .}}
+{{if $dt | ne ""}}
+<DrugUsed>
+{{if $dt | drugType | eq "Other"}}
+<Explanation>{{$dt}}</Explanation>
+{{end}}
+<Type>{{$dt | drugType}}</Type>
+</DrugUsed>
+{{end}}
+{{end}}

@@ -60,18 +60,20 @@ func (service Service) DefaultTemplate(templateName string, data map[string]inte
 		"dischargeType":          dischargeType,
 		"doctorFirstName":        doctorFirstName,
 		"doctorLastName":         doctorLastName,
+		"drugType":               drugType,
 		"foreignDocType":         foreignDocType,
 		"foreignAffiliation":     foreignAffiliation,
 		"frequencyType":          frequencyType,
 		"monthYearDaterange":     monthYearDaterange,
 		"email":                  email,
 		"employmentType":         employmentType,
+		"hairType":               hairType,
 		"hasRelativeType":        hasRelativeType,
 		"inc":                    inc,
 		"location":               location,
 		"locationIsPostOffice":   locationIsPostOffice,
 		"locationOverrideLayout": locationOverrideLayout,
-		"maritalStatus":          maritalStatus,
+		"militaryAddress":        militaryAddress,
 		"militaryStatus":         militaryStatus,
 		"monthYear":              monthYear,
 		"name":                   name,
@@ -93,6 +95,7 @@ func (service Service) DefaultTemplate(templateName string, data map[string]inte
 		"textarea":               textarea,
 		"toUpper":                toUpper,
 		"treatment":              treatment,
+		"treatmentAnswerType":    treatmentAnswerType,
 		"tmpl":                   service.DefaultTemplate,
 	}
 	return xmlTemplateWithFuncs(templateName, data, fmap)
@@ -487,19 +490,6 @@ func militaryStatus(status string) string {
 	return alias[status]
 }
 
-func maritalStatus(status string) string {
-	alias := map[string]string{
-		"NeverMarried": "NeverMarried",
-		"Married":      "Married",
-		"InCivilUnion": "Married",
-		"Separated":    "Separated",
-		"Annulled":     "Annulled",
-		"Divorced":     "Divorced",
-		"Widowed":      "Widowed",
-	}
-	return alias[status]
-}
-
 // addressIn returns true if Location entity (Address) is in the specified country
 func addressIn(location map[string]interface{}, country string) bool {
 	props, ok := location["props"]
@@ -720,6 +710,10 @@ func location(data map[string]interface{}) (template.HTML, error) {
 	return locationOverrideLayout(data, "")
 }
 
+func militaryAddress(data map[string]interface{}) (template.HTML, error) {
+	return locationOverrideLayout(data, api.LayoutMilitaryAddress)
+}
+
 // location assumes the data comes in as the props
 func locationOverrideLayout(data map[string]interface{}, override string) (template.HTML, error) {
 	// Deserialize the initial payload from a JSON structure
@@ -803,6 +797,8 @@ func locationOverrideLayout(data map[string]interface{}, override string) (templ
 		return xmlTemplateWithFuncs("location-street-city-state-zipcode.xml", data, fmap)
 	case api.LayoutStreetCity:
 		return xmlTemplate("location-street-city.xml", data)
+	case api.LayoutMilitaryAddress:
+		return xmlTemplateWithFuncs("location-address-apofpo-state-zipcode.xml", data, fmap)
 	default:
 		if domestic || postoffice {
 			return xmlTemplateWithFuncs("location-street-city-state-zipcode.xml", data, fmap)
@@ -912,11 +908,49 @@ func clearanceType(v string) string {
 	return basis[v]
 }
 
+func hairType(v string) string {
+	basis := map[string]string{
+		"Bald":    "Bald",
+		"Black":   "Black",
+		"Blonde":  "Blonde or Strawberry",
+		"Blue":    "Blue",
+		"Brown":   "Brown",
+		"Gray":    "Gray or Partially Gray",
+		"Green":   "Green",
+		"Orange":  "Orange",
+		"Pink":    "Pink",
+		"Purple":  "Purple",
+		"Red":     "Red or Auburn",
+		"Sandy":   "Sandy",
+		"Unknown": "Unspecified or unknown",
+		"White":   "White",
+	}
+	return basis[v]
+}
+
 func suffixType(s string) string {
 	if s == "Other" {
 		return "__Other__"
 	}
 	return s
+}
+
+func treatmentAnswerType(s string) string {
+	if s == "Decline" {
+		return "IDeclineToAnswer"
+	}
+	return s
+}
+
+// XXX
+// Work-around for https://github.com/18F/e-QIP-prototype/issues/858
+func drugType(d string) string {
+	switch d {
+	case "Cocaine", "THC", "Ketamine", "Narcotics", "Stimulants", "Depressants", "Hallucinogenic", "Steroids", "Inhalants":
+		return d
+	default:
+		return "Other"
+	}
 }
 
 // inc adds 1 to a

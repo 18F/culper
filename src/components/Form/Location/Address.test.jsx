@@ -64,6 +64,7 @@ describe('The Address component', () => {
   it('Performs address type update', () => {
     let updates = 0
     const props = {
+      showPostOffice: true,
       onUpdate: () => {
         updates++
       }

@@ -114,6 +114,7 @@ export default class Order extends ValidationElement {
             geocode={true}
             addressBooks={this.props.addressBooks}
             addressBook="Court"
+            showPostOffice={true}
             dispatch={this.props.dispatch}
             onUpdate={this.updateCourtAddress}
             onError={this.props.onError}

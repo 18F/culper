@@ -65,7 +65,7 @@
         VisitFamilyOrFriends="True"
         {{end}}
         {{if (checkboxHas $Item.Purpose "Other") | eq "True"}}
-        Other="Other"
+        Other="True"
         {{end}}
         />
       <Threatened>

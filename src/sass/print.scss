@@ -1,5 +1,9 @@
 // Override the default styling of TABLE applied from
 // USWDS.
+.pre-print-view {
+  padding: 0 1rem;
+}
+
 .print-table {
   display: block;
   margin: 0;
@@ -268,6 +272,35 @@
     font-weight: 600;
     opacity: 1;
     outline: 3px solid #000;
+  }
+
+  /* Hiding options that were not selected and only showing the selection */
+  // .option-list {
+  //   .block label {
+  //     display: none;
+  //   }
+  //   .block label.checked {
+  //     display: block;
+  //   }
+  // }
+
+  input[type='text'].usa-input-success,
+  input[type='number'].usa-input-success,
+  input[type='email'].usa-input-success,
+  textarea.usa-input-success, select.usa-input-success {
+    background-image: none;
+  }
+
+  /* Adjusting accoridon spacing for print */
+  .accordion {
+    padding: 0;
+    .summary .left {
+      padding-left: 0;
+      width: 100%;
+    }
+    .item .details {
+      padding: 0 1rem;
+    }
   }
 
   /* Get rid of left blue border within accordion */

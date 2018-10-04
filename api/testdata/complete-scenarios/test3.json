@@ -269,7 +269,7 @@
           "props": {
             "layout": "City, State",
             "city": "ellis Island",
-            "state": "Mn"
+            "state": "MN"
           }
         },
         "PriorCitizenship": {
@@ -1559,7 +1559,7 @@
                     "props": {
                       "layout": "US City, State, Zipcode International city",
                       "city": "jamaica plain",
-                      "state": "ny",
+                      "state": "NY",
                       "zipcode": "10005",
                       "country": "United States"
                     }
@@ -2674,7 +2674,7 @@
                                     "layout": "Address",
                                     "street": "123 Seasame Street",
                                     "city": "New York",
-                                    "state": "ny",
+                                    "state": "NY",
                                     "zipcode": "10005",
                                     "country": "United States",
                                     "validated": true
@@ -2867,7 +2867,7 @@
                     "props": {
                       "layout": "US City, State, Zipcode International city",
                       "city": "New York",
-                      "state": "ny",
+                      "state": "NY",
                       "zipcode": "10006",
                       "country": "United States"
                     }
@@ -2975,7 +2975,7 @@
                     "props": {
                       "layout": "US City, State, Zipcode International city",
                       "city": "jamaica plain",
-                      "state": "ma",
+                      "state": "MA",
                       "zipcode": "02103",
                       "country": "United States"
                     }
@@ -3235,7 +3235,7 @@
                                     "layout": "Address",
                                     "street": "123 Seasame Street",
                                     "city": "New York",
-                                    "state": "ny",
+                                    "state": "NY",
                                     "zipcode": "10005",
                                     "country": "United States"
                                   }
@@ -3818,7 +3818,7 @@
                                     "layout": "Address",
                                     "street": "800 New Street",
                                     "city": "New York",
-                                    "state": "ny",
+                                    "state": "NY",
                                     "zipcode": "10005",
                                     "country": "United States",
                                     "validated": true
@@ -4275,7 +4275,7 @@
                       "layout": "Address",
                       "street": "123 Seasame Street",
                       "city": "New York",
-                      "state": "ma",
+                      "state": "MA",
                       "zipcode": "02130",
                       "country": "United States",
                       "validated": true
@@ -4327,7 +4327,7 @@
                       "layout": "Address",
                       "street": "800 New Street",
                       "city": "New York",
-                      "state": "ny",
+                      "state": "NY",
                       "zipcode": "10005",
                       "country": "United States",
                       "validated": true
@@ -4937,7 +4937,7 @@
                       "layout": "Address",
                       "street": "great",
                       "city": "scott",
-                      "state": "ny",
+                      "state": "NY",
                       "zipcode": "10003",
                       "country": "United States",
                       "validated": true
@@ -7069,7 +7069,7 @@
                     "props": {
                       "layout": "Birthplace without County",
                       "city": "Boston",
-                      "state": "ma",
+                      "state": "MA",
                       "country": "United States"
                     }
                   },
@@ -7999,7 +7999,7 @@
                       "layout": "Address",
                       "street": "800 New Street",
                       "city": "New York",
-                      "state": "ma",
+                      "state": "MA",
                       "zipcode": "02130",
                       "country": "United States",
                       "validated": true
@@ -8114,7 +8114,7 @@
                       "layout": "US Address",
                       "street": "54B LAFAYETTE ST",
                       "city": "New York",
-                      "state": "ma",
+                      "state": "MA",
                       "zipcode": "02130",
                       "country": "United States",
                       "validated": true
@@ -8671,7 +8671,7 @@
                     "props": {
                       "layout": "Birthplace without County",
                       "city": "manhattan",
-                      "state": "ny",
+                      "state": "NY",
                       "country": "United States"
                     }
                   },

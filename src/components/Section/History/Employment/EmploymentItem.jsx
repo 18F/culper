@@ -402,6 +402,7 @@ export default class EmploymentItem extends ValidationElement {
               geocode={true}
               addressBooks={this.props.addressBooks}
               addressBook="Employment"
+              showPostOffice={true}
               dispatch={this.props.dispatch}
               onUpdate={this.updateAddress}
               onError={this.props.onError}
@@ -515,6 +516,7 @@ export default class EmploymentItem extends ValidationElement {
                   geocode={true}
                   addressBooks={this.props.addressBooks}
                   addressBook="Reference"
+                  showPostOffice={true}
                   dispatch={this.props.dispatch}
                   onUpdate={this.updateReferenceAddress}
                   onError={this.props.onError}

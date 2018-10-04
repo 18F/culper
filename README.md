@@ -1,7 +1,5 @@
 # e-QIP Prototype
 
-[![Slack][badge_chat]][1] (TTS only)
-
 [![Build Status][badge_ci_18f]][2] [![codecov][badge_cov_18f]][24] [![Code Climate][badge_cc_18f]][3] [![Go Report Card][badge_goreportcard_18f]][22]
 
 To create the e-QIP questionnaire prototype, the project team is employing a user-centered design approach leveraging key principles from the [U.S. Digital Services Playbook][8]:

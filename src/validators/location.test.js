@@ -414,6 +414,16 @@ describe('the location component', function() {
       {
         state: {
           country: { value: 'United States' },
+          street: '1 Great Teen Drama Dr.',
+          city: 'Beverly Hills',
+          state: 'ca',
+          zipcode: '90210'
+        },
+        expected: true
+      },
+      {
+        state: {
+          country: { value: 'United States' },
           street: '1234 Some Rd',
           city: 'Arlington',
           state: 'VA',

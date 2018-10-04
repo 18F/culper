@@ -47,7 +47,7 @@ describe('The taxes component', () => {
       .simulate('change')
     component.find('.failure-file input').simulate('change')
     component
-      .find('.taxes-year input[type="text"]')
+      .find('.taxes-year .year input')
       .simulate('change', { target: { value: '2000' } })
     component
       .find('.taxes-reason textarea')

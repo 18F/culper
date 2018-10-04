@@ -1,1 +1,1 @@
-<HairColor>{{ radio . }}</HairColor>
+<HairColor>{{radio . | hairType}}</HairColor>

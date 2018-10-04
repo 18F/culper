@@ -485,7 +485,6 @@ export const psychological = {
     },
     diagnosis: {
       heading: {
-        condition: 'Identify the diagnosis or health condition',
         diagnosed: 'Provide the dates of counseling or treatment',
         healthcareProfessional: 'Health care professional info',
         effective:
@@ -494,11 +493,6 @@ export const psychological = {
         explanation: 'Provide explanation'
       },
       help: {
-        condition: {
-          title: 'Need help with health condition',
-          message: 'Provide the name of the diagnosis or health condition',
-          note: ''
-        },
         diagnosed: {
           title:
             'Provide the full date range (start to finish) of your counseling or treatment',

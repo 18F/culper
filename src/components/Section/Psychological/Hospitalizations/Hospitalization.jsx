@@ -158,6 +158,7 @@ export default class Hospitalization extends ValidationElement {
             label={i18n.t(`psychological.hospitalization.label.address`)}
             layout={Location.ADDRESS}
             geocode={true}
+            showPostOffice={true}
             onUpdate={this.updateFacilityAddress}
             onError={this.props.onError}
             required={this.props.required}

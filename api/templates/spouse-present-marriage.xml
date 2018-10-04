@@ -4,7 +4,7 @@
   <CurrentSpouse ID="1">
     {{if locationIsPostOffice $Item.Address}}
     <APOFPO>
-      <Address>{{location $Item.Address}}</Address>
+      <Address>{{militaryAddress $Item.Address}}</Address>
       <AddressComment></AddressComment>
       <!-- TODO -->
       <Answer></Answer>

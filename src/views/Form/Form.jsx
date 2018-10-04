@@ -41,6 +41,10 @@ class Form extends React.Component {
     }
   }
 
+  componentDidMount() {
+    this.refreshToken()
+  }
+
   getParams() {
     return this.props.params || this.props.match.params
   }
