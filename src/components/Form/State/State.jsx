@@ -100,7 +100,8 @@ export default class State extends ValidationElement {
     ))
 
     if (this.props.children) {
-      return [...states, ...this.props.children]
+      // Converts children toArray so it can be spread if there's only 1 child
+      return [...states, ...React.Children.toArray(this.props.children)]
     }
     return states
   }

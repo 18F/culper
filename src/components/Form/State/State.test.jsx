@@ -56,4 +56,36 @@ describe('The State component', () => {
     component.find('.state input').simulate('blur')
     expect(component.find('div').length).toBeGreaterThan(0)
   })
+
+  it('returns the typed input', () => {
+    const expected = {
+      name: 'state',
+      value: 'gibberish',
+      className: 'state',
+      onBlur: () => {},
+      onFocus: () => {}
+    }
+    const component = shallow(<State {...expected} />)
+    const instance = component.instance()
+    expect(instance.getStateAbbreviation('gibberish')).toEqual('gibberish')
+  })
+
+  it('returns children options', () => {
+    const expected = {
+      name: 'state',
+      value: 'gibberish',
+      className: 'state',
+      onBlur: () => {},
+      onFocus: () => {}
+    }
+    const component = mount(
+      <State {...expected}>
+        <option key="Gibberish" value="GB">
+          Gibberish
+        </option>
+      </State>
+    )
+    const instance = component.instance()
+    expect(instance.getStates().length).toEqual(instance.states.length + 1)
+  })
 })
