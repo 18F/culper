@@ -32,8 +32,6 @@ export default class RelativesValidator {
     const requiredRelations = ['Father-in-law', 'Mother-in-law']
     const maritalStatus = context || getContext()
 
-    console.log(maritalStatus)
-
     if (!maritalStatus || !maritalStatuses.includes(maritalStatus)) {
       return true
     }
