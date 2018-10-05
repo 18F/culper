@@ -156,6 +156,9 @@ export default class VoluntaryTreatment extends ValidationElement {
             name="TreatmentDates"
             className="treatment-dates"
             {...this.props.TreatmentDates}
+            minDate={(this.props.ApplicantBirthdate || {}).date}
+            minDateEqualTo={true}
+            maxDateEqualTo={true}
             onUpdate={this.updateTreatmentDates}
             onError={this.props.onError}
             required={this.props.required}

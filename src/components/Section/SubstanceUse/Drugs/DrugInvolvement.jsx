@@ -110,6 +110,8 @@ export default class DrugInvolvement extends ValidationElement {
             className="first-involvement"
             {...this.props.FirstInvolvement}
             hideDay={true}
+            minDate={(this.props.ApplicantBirthdate || {}).date}
+            minDateEqualTo={true}
             showEstimated={false}
             onUpdate={this.updateFirstInvolvement}
             onError={this.props.onError}
@@ -128,6 +130,9 @@ export default class DrugInvolvement extends ValidationElement {
             className="recent-involvement"
             {...this.props.RecentInvolvement}
             hideDay={true}
+            minDate={(this.props.FirstInvolvement || {}).date}
+            minDateEqualTo={true}
+            maxDate={(this.props.FirstInvolvement || {}).date}
             showEstimated={false}
             onUpdate={this.updateRecentInvolvement}
             onError={this.props.onError}
