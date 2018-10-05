@@ -381,7 +381,7 @@ export class RelativeValidator {
       this.frequency.length > 0 &&
       ((this.frequency === 'Other' &&
         !!this.frequencyComments &&
-        this.frequencyComments.length > 0 &&
+        this.frequencyComments.value.length > 0 &&
         this.validAddress(this.address)) ||
         this.frequency !== 'Other')
     )
