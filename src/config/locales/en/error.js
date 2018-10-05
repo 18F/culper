@@ -1070,6 +1070,11 @@ export const error = {
     message:
       'There was a problem submitting your SF-86. Please contact support for additional information.'
   },
+  validMaritalRelation: {
+    title: 'Mother-in-law and father-in-law must be provided',
+    message:
+      'You indicated that you are married or separated, please provide entries for mother-in-law and father-in-law.'
+  },
   validRelation: {
     title: 'Mother and father must be provided',
     message:

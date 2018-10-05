@@ -49,6 +49,10 @@ export default class Relatives extends SubsectionElement {
     })
   }
 
+  validMaritalRelations() {
+    return new RelativesValidator(this.props).validMaritalRelations()
+  }
+
   validRelations() {
     return new RelativesValidator(this.props).validMinimumRelations()
   }
@@ -69,6 +73,16 @@ export default class Relatives extends SubsectionElement {
         <Field
           errors={[{ code: 'validRelation', valid: this.validRelations() }]}
           className={this.validRelations() && 'hidden'}
+        />
+
+        <Field
+          errors={[
+            {
+              code: 'validMaritalRelation',
+              valid: this.validMaritalRelations()
+            }
+          ]}
+          className={this.validMaritalRelations() && 'hidden'}
         />
 
         <Accordion

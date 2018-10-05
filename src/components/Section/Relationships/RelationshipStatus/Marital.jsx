@@ -63,7 +63,7 @@ export default class Marital extends SubsectionElement {
     const status = (this.props.Status || {}).value
     const divorced = ((this.props.CivilUnion || {}).Divorced || {}).value
 
-    if (['Married', 'InCivilUnion', 'Separated'].includes(status)) {
+    if (['Married', 'Separated'].includes(status)) {
       return divorced === 'Yes'
     } else if (['Annulled', 'Divorced', 'Widowed'].includes(status)) {
       return true
@@ -101,13 +101,6 @@ export default class Marital extends SubsectionElement {
               onError={this.handleError}
             />
             <Radio
-              label={i18n.m('relationships.marital.label.status.inCivilUnion')}
-              className="status-civil-union"
-              value="InCivilUnion"
-              onUpdate={this.updateStatus}
-              onError={this.handleError}
-            />
-            <Radio
               label={i18n.m('relationships.marital.label.status.separated')}
               className="status-separated"
               value="Separated"
@@ -138,10 +131,7 @@ export default class Marital extends SubsectionElement {
           </RadioGroup>
         </Field>
 
-        <Show
-          when={['Married', 'InCivilUnion', 'Separated'].includes(
-            this.props.Status.value
-          )}>
+        <Show when={['Married', 'Separated'].includes(this.props.Status.value)}>
           <CivilUnion
             name="civilUnion"
             {...this.props.CivilUnion}
