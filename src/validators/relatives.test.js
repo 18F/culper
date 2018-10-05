@@ -80,7 +80,7 @@ describe('Relatives validation', function() {
           Document: {
             value: 'Other'
           },
-          OtherDocument: {
+          DocumentComments: {
             value: 'Other stuff'
           }
         },
