@@ -32,8 +32,6 @@ export default class RelativesValidator {
     const requiredRelations = ['Father-in-law', 'Mother-in-law']
     const maritalStatus = context || getContext()
 
-    console.log(maritalStatus)
-
     if (!maritalStatus || !maritalStatuses.includes(maritalStatus)) {
       return true
     }
@@ -104,7 +102,7 @@ export class RelativeValidator {
     this.courtName = data.CourtName
     this.courtAddress = data.CourtAddress
     this.document = (data.Document || {}).value
-    this.otherDocument = data.OtherDocument
+    this.documentComments = data.DocumentComments
     this.residenceDocumentNumber = data.ResidenceDocumentNumber
     this.expiration = data.Expiration
     this.firstContact = data.FirstContact
@@ -334,7 +332,7 @@ export class RelativeValidator {
 
     switch (this.document) {
       case 'Other':
-        return validGenericTextfield(this.otherDocument)
+        return validGenericTextfield(this.documentComments)
       case 'Permanent':
       case 'Employment':
       case 'Arrival':
