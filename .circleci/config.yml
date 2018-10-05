@@ -2,6 +2,7 @@ version: 2
 jobs:
   test:
     machine: true
+    parallelism: 4
     steps:
       - checkout
       - run:
@@ -13,8 +14,13 @@ jobs:
           name: Lint
           command: make lint
       - run:
-          name: Test
-          command: make test
+          name: Run React tests
+          command: |
+            TESTFILES=$(circleci tests glob "./src/**/*.test.js*" | circleci tests split)
+            make test-react FILES="$(echo ${TESTFILES})"
+      - run:
+          name: Run Go tests
+          command: make test-go
       - run:
           name: Code coverage
           command: make coverage
