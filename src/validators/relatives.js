@@ -1,11 +1,20 @@
+import store from '../services/store'
 import NameValidator from './name'
 import LocationValidator, { isInternational, countryString } from './location'
+import { extractMaritalStatus } from '../components/Section/extractors'
 import DateRangeValidator from './daterange'
 import {
   validAccordion,
   validDateField,
   validGenericTextfield
 } from './helpers'
+
+export const getContext = () => {
+  const state = store.getState()
+  const app = state.application || {}
+
+  return extractMaritalStatus(app)
+}
 
 export default class RelativesValidator {
   constructor(data = {}) {
@@ -18,11 +27,38 @@ export default class RelativesValidator {
     })
   }
 
+  validMaritalRelations(context = null) {
+    const maritalStatuses = ['Married', 'Separated']
+    const requiredRelations = ['Father-in-law', 'Mother-in-law']
+    const maritalStatus = context || getContext()
+
+    if (!maritalStatus || !maritalStatuses.includes(maritalStatus)) {
+      return true
+    }
+
+    if ((this.list.branch || {}).value === 'No') {
+      if ((this.list.items || {}).length > 0) {
+        let relations = []
+        for (const item of this.list.items) {
+          if (!item || !item.Item || !item.Item.Relation) {
+            continue
+          }
+          relations.push(item.Item.Relation.value)
+        }
+        if (relations.length > 0) {
+          return requiredRelations.every(r => relations.includes(r))
+        }
+      }
+      return false
+    }
+    return true
+  }
+
   validMinimumRelations() {
     const requiredRelations = ['Father', 'Mother']
 
     if ((this.list.branch || {}).value === 'No') {
-      if (this.list.items && this.list.items.length > 0) {
+      if ((this.list.items || {}).length > 0) {
         let relations = []
         for (const item of this.list.items) {
           if (!item || !item.Item || !item.Item.Relation) {
@@ -40,7 +76,11 @@ export default class RelativesValidator {
   }
 
   isValid() {
-    return this.validItems() && this.validMinimumRelations()
+    return (
+      this.validItems() &&
+      this.validMaritalRelations() &&
+      this.validMinimumRelations()
+    )
   }
 }
 
@@ -62,7 +102,7 @@ export class RelativeValidator {
     this.courtName = data.CourtName
     this.courtAddress = data.CourtAddress
     this.document = (data.Document || {}).value
-    this.otherDocument = data.OtherDocument
+    this.documentComments = data.DocumentComments
     this.residenceDocumentNumber = data.ResidenceDocumentNumber
     this.expiration = data.Expiration
     this.firstContact = data.FirstContact
@@ -292,7 +332,7 @@ export class RelativeValidator {
 
     switch (this.document) {
       case 'Other':
-        return validGenericTextfield(this.otherDocument)
+        return validGenericTextfield(this.documentComments)
       case 'Permanent':
       case 'Employment':
       case 'Arrival':

@@ -3,6 +3,7 @@ package saml
 import (
 	"encoding/base64"
 	"errors"
+	"net/url"
 	"strings"
 	"time"
 
@@ -39,8 +40,7 @@ func (service *Service) CreateAuthenticationRequest() (string, string, error) {
 	requestAsXML, _ := request.String()
 	service.Log.Debug("SAML authentication request", api.LogFields{"xml": requestAsXML})
 
-	// Get a URL formed with the SAMLRequest parameter
-	url, err = saml.GetAuthnRequestURL(service.provider.IDPSSOURL, encoded, "state")
+	url, err = getAuthnRequestURL(service.provider.IDPSSOURL, "state")
 	if err != nil {
 		return "", "", err
 	}
@@ -179,4 +179,21 @@ func cleanName(nameID string) string {
 	}
 
 	return nameID
+}
+
+// getAuthnRequestURL generates a URL for the AuthnRequest to the IdP with the RelayState parameter encoded
+// Altered from the original version from RobotsAndPencils/go-saml so that it
+// does not redundantly encode the AuthnRequest as a GET query parameter. The
+// login form does a POST to avoid bumping into referrer/URL/cookie maximums
+// in browsers and NGINX.
+func getAuthnRequestURL(baseURL string, state string) (string, error) {
+	u, err := url.Parse(baseURL)
+	if err != nil {
+		return "", err
+	}
+
+	q := u.Query()
+	q.Add("RelayState", state)
+	u.RawQuery = q.Encode()
+	return u.String(), nil
 }

@@ -52,7 +52,6 @@ describe('Diagnosis validation', function() {
             items: [
               {
                 Item: {
-                  Condition: 'Test',
                   Effective: { value: 'Yes' },
                   Explanation: {
                     value: null
@@ -195,9 +194,6 @@ describe('Diagnosis validation', function() {
             items: [
               {
                 Item: {
-                  Condition: {
-                    value: 'Test'
-                  },
                   Effective: { value: 'Yes' },
                   Explanation: {
                     value: null

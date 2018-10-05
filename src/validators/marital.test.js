@@ -145,7 +145,7 @@ describe('Marital validation', function() {
       {
         state: {
           Status: {
-            value: 'InCivilUnion'
+            value: 'Married'
           }
         },
         expected: false
@@ -164,7 +164,7 @@ describe('Marital validation', function() {
       },
       {
         state: {
-          Status: { value: 'InCivilUnion' },
+          Status: { value: 'Married' },
           DivorcedList: {
             branch: { value: '' },
             items: [{ Item: {} }]

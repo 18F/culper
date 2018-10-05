@@ -68,7 +68,7 @@ func (entity *RelationshipsMarital) Valid() (bool, error) {
 
 	sv := entity.Status.Value
 	switch {
-	case sv == "InCivilUnion" || sv == "Separated":
+	case sv == "Married" || sv == "Separated":
 		// Check if the civil union information is valid
 		if ok, err := entity.CivilUnion.Valid(); !ok {
 			stack.Append("CitizenshipMarital", err)

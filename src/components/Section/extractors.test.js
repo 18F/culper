@@ -1,4 +1,4 @@
-import { extractApplicantBirthdate } from './extractors'
+import { extractApplicantBirthdate, extractMaritalStatus } from './extractors'
 
 describe('Extractors', function() {
   it('should return a date', function() {
@@ -49,6 +49,45 @@ describe('Extractors', function() {
 
     tests.forEach(test => {
       expect(extractApplicantBirthdate(test.state)).toEqual(test.expected)
+    })
+  })
+
+  it('should return a marital status', function() {
+    const tests = [
+      {
+        state: {
+          Relationships: {
+            Marital: {
+              Status: null
+            }
+          }
+        },
+        expected: null
+      },
+      {
+        state: {
+          Relationships: {
+            Marital: null
+          }
+        },
+        expected: null
+      },
+      {
+        state: {
+          Relationships: {
+            Marital: {
+              Status: {
+                value: 'Married'
+              }
+            }
+          }
+        },
+        expected: 'Married'
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(extractMaritalStatus(test.state)).toEqual(test.expected)
     })
   })
 })
