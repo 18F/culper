@@ -1578,6 +1578,42 @@ describe('Relatives validation', function() {
           }
         },
         expected: true
+      },
+      {
+        data: {
+          IsDeceased: { value: 'No' },
+          Address: {
+            street: '1234 Some Rd',
+            city: 'Munich',
+            country: { value: 'Germany' },
+            layout: Location.ADDRESS
+          },
+          Frequency: {
+            value: 'Other'
+          },
+          FrequencyComments: {
+            value: ''
+          }
+        },
+        expected: false
+      },
+      {
+        data: {
+          IsDeceased: { value: 'No' },
+          Address: {
+            street: '1234 Some Rd',
+            city: 'Munich',
+            country: { value: 'Germany' },
+            layout: Location.ADDRESS
+          },
+          Frequency: {
+            value: 'Other'
+          },
+          FrequencyComments: {
+            value: 'foo'
+          }
+        },
+        expected: true
       }
     ]
 
