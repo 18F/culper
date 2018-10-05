@@ -30,7 +30,7 @@ describe('The OrderedCounseling component', () => {
     }
     const component = mount(<OrderedCounseling {...expected} />)
     expect(component.find('.ordered-counseling').length).toBe(1)
-    component.find('.provider-address input[name="address"]').simulate('change')
+    component.find('.provider-address input[name="street"]').simulate('change')
     component
       .find('.counseling-dates .datecontrol .year input')
       .first()
