@@ -137,6 +137,8 @@ export default class ContactItem extends ValidationElement {
           <DateControl
             name="Date"
             {...this.props.Date}
+            minDate={(this.props.Birthdate || {}).date}
+            minDateEqualTo={true}
             onUpdate={this.updateDate}
             onError={this.props.onError}
             className="foreign-business-contact-date"

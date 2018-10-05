@@ -137,6 +137,7 @@ export default class ContinuingBenefit extends ValidationElement {
             {...this.props.End}
             label={i18n.t('foreign.activities.benefit.continuing.label.end')}
             onUpdate={this.updateEnd}
+            minDate={(this.props.Begin || {}).date}
             noMaxDate={true}
             onError={this.props.onError}
             required={this.props.required}
