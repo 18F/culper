@@ -85,6 +85,8 @@ export default class CitizenshipItem extends ValidationElement {
     const from = d.from || {}
     const showCurrentQuestion = to.date && from.date && !d.present
 
+    const applicantBirthday = new Date(`${from.month}/${from.day}/${from.year}`)
+
     return (
       <div className="citizenship-item">
         <Field
@@ -116,6 +118,8 @@ export default class CitizenshipItem extends ValidationElement {
             name="Dates"
             {...this.props.Dates}
             className="citizenship-dates"
+            minDate={applicantBirthday}
+            minDateEqualTo
             onUpdate={this.updateDates}
             onError={this.props.onError}
             required={this.props.required}
