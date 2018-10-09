@@ -138,6 +138,8 @@ export default class TerroristOrganizationItem extends ValidationElement {
             {...this.props.Dates}
             onUpdate={this.updateDates}
             onError={this.props.onError}
+            minDateEqualTo={true}
+            maxDateEqualTo={true}
             className="legal-associations-terrorist-dates"
             required={this.props.required}
           />

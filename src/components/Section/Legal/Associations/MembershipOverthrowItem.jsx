@@ -137,6 +137,8 @@ export default class MembershipOverthrowItem extends ValidationElement {
           <DateRange
             name="Dates"
             {...this.props.Dates}
+            minDateEqualTo={true}
+            maxDateEqualTo={true}
             onUpdate={this.updateDates}
             onError={this.props.onError}
             className="legal-associations-overthrow-dates"
