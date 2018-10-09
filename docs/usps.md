@@ -8,7 +8,7 @@ To enable address validation:
     * `@gsa.gov` email servers block the registration email sent by `registration@shippingapis.com`. It looks too much like spam and doesn't even make it to the spam folder. Try registering with an alternative email address if the registration email does not arrive within a few minutes.
 
 1. Configure the Web Tools username 
-    * In the `.env` file used to build eApp (or at runtime in the eApp API backend process environment), set the `USPS_API_KEY` environment variable to the value of the username (e.g., `USPS_API_KEY=123ABCDE4567`).
+    * In the `.env` file used to build eApp (or at runtime in the eApp API backend process environment), set the `USPS_API_API_KEY` environment variable to the value of the username (e.g., `USPS_API_API_KEY=123ABCDE4567`).
     
     
 ## Notes:
