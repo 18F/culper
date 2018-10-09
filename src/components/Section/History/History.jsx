@@ -44,6 +44,9 @@ export const sort = (a, b) => {
   return 0
 }
 
+/**
+ * Figure the total amount of years to collect for the timeline
+ */
 export const totalYears = birthdate => {
   let total = 10
   if (!birthdate) {
@@ -133,31 +136,6 @@ class History extends SectionElement {
         new HistoryEducationValidator(education, education).isValid()
       )
     )
-  }
-
-  /**
-   * Figure the total amount of years to collect for the timeline
-   */
-  totalYears() {
-    let total = 10
-    if (!this.props.Birthdate) {
-      return total
-    }
-
-    const eighteen = daysAgo(this.props.Birthdate, 365 * -18)
-    total = Math.ceil(daysBetween(eighteen, today) / 365)
-
-    // A maximum of 10 years is required
-    if (total > 10) {
-      total = 10
-    }
-
-    // A minimum of two years is required
-    if (total < 2) {
-      total = 2
-    }
-
-    return total
   }
 
   /**
@@ -267,7 +245,7 @@ class History extends SectionElement {
         List={this.residenceRangeList}
         title={i18n.t('history.residence.summary.title')}
         unit={i18n.t('history.residence.summary.unit')}
-        total={this.totalYears()}>
+        total={totalYears(this.props.Birthdate)}>
         <div className="summary-icon">
           <Svg
             src="/img/residence-house.svg"
@@ -285,7 +263,7 @@ class History extends SectionElement {
         List={this.employmentRangesList}
         title={i18n.t('history.employment.summary.title')}
         unit={i18n.t('history.employment.summary.unit')}
-        total={this.totalYears()}>
+        total={totalYears(this.props.Birthdate)}>
         <div className="summary-icon">
           <Svg
             src="/img/employer-briefcase.svg"
@@ -305,7 +283,7 @@ class History extends SectionElement {
         diplomas={this.diplomaRangesList}
         schoolsLabel={i18n.t('history.education.summary.schools')}
         diplomasLabel={i18n.t('history.education.summary.diplomas')}
-        total={this.totalYears()}>
+        total={totalYears(this.props.Birthdate)}>
         <div className="summary-icon">
           <Svg
             src="/img/school-cap.svg"
@@ -320,7 +298,7 @@ class History extends SectionElement {
     let holes = 0
 
     if (this.props.History) {
-      const start = daysAgo(today, 365 * this.totalYears())
+      const start = daysAgo(today, 365 * totalYears())
 
       for (const t of types) {
         let items = []
@@ -419,7 +397,7 @@ class History extends SectionElement {
               defaultState={false}
               realtime={true}
               sort={sort}
-              totalYears={this.totalYears()}
+              totalYears={totalYears(this.props.Birthdate)}
               overrideInitial={this.overrideInitial}
               onUpdate={this.updateResidence}
               onError={this.handleError}
@@ -444,7 +422,7 @@ class History extends SectionElement {
               defaultState={false}
               realtime={true}
               sort={sort}
-              totalYears={this.totalYears()}
+              totalYears={totalYears(this.props.Birthdate)}
               overrideInitial={this.overrideInitial}
               onUpdate={this.updateEmployment}
               onError={this.handleError}
@@ -505,7 +483,7 @@ class History extends SectionElement {
                   defaultState={false}
                   realtime={true}
                   sort={sort}
-                  totalYears={this.totalYears()}
+                  totalYears={totalYears(this.props.Birthdate)}
                   overrideInitial={this.overrideInitial}
                   onUpdate={this.updateEducation}
                   onError={this.handleError}
@@ -569,7 +547,7 @@ class History extends SectionElement {
               scrollToTop="scrollToHistory"
               realtime={true}
               sort={sort}
-              totalYears={this.totalYears()}
+              totalYears={totalYears(this.props.Birthdate)}
               overrideInitial={this.overrideInitial}
               onUpdate={this.updateResidence}
               onError={this.handleError}
@@ -612,7 +590,7 @@ class History extends SectionElement {
               {...this.props.Employment}
               scrollToTop="scrollToHistory"
               sort={sort}
-              totalYears={this.totalYears()}
+              totalYears={totalYears(this.props.Birthdate)}
               overrideInitial={this.overrideInitial}
               onUpdate={this.updateEmployment}
               onError={this.handleError}
@@ -680,7 +658,7 @@ class History extends SectionElement {
                   {...this.props.Education}
                   scrollToTop="scrollToHistory"
                   sort={sort}
-                  totalYears={this.totalYears()}
+                  totalYears={totalYears(this.props.Birthdate)}
                   overrideInitial={this.overrideInitial}
                   onUpdate={this.updateEducation}
                   onError={this.handleError}
@@ -718,7 +696,7 @@ const processDate = date => {
   }
 
   let d = null
-  const { month, day, year } = date
+  const { month, day, year } = date.Date
   if (month && day && year) {
     d = utc(new Date(year, month - 1, day))
   }
