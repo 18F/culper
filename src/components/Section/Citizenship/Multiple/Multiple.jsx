@@ -56,6 +56,12 @@ export default class Multiple extends SubsectionElement {
     })
   }
 
+  validMinimumCitizenships() {
+    return new CitizenshipMultipleValidator(
+      this.props
+    ).validMinimumCitizenships()
+  }
+
   render() {
     return (
       <div
@@ -82,6 +88,16 @@ export default class Multiple extends SubsectionElement {
         />
 
         <Show when={this.props.HasMultiple.value === 'Yes'}>
+          <Field
+            errors={[
+              {
+                code: 'validMinimumCitizenships',
+                valid: this.validMinimumCitizenships()
+              }
+            ]}
+            className={this.validMinimumCitizenships() && 'hidden'}
+          />
+
           <Accordion
             {...this.props.List}
             defaultState={this.props.defaultState}

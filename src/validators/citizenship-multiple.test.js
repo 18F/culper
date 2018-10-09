@@ -62,12 +62,18 @@ describe('citizenship multiple component validation', function() {
     const tests = [
       {
         state: {
+          Country: {
+            value: 'Germany'
+          },
           How: null
         },
         expected: false
       },
       {
         state: {
+          Country: {
+            value: 'Germany'
+          },
           How: {
             value: 'Birth'
           }
@@ -83,30 +89,45 @@ describe('citizenship multiple component validation', function() {
     const tests = [
       {
         state: {
+          Country: {
+            value: 'Germany'
+          },
           Renounced: { value: null }
         },
         expected: false
       },
       {
         state: {
+          Country: {
+            value: 'Germany'
+          },
           Renounced: { value: 'Yuppers' }
         },
         expected: false
       },
       {
         state: {
+          Country: {
+            value: 'Germany'
+          },
           Renounced: { value: 'No' }
         },
         expected: false
       },
       {
         state: {
+          Country: {
+            value: 'Germany'
+          },
           Renounced: { value: 'Yes' }
         },
         expected: false
       },
       {
         state: {
+          Country: {
+            value: 'Germany'
+          },
           Renounced: { value: 'Yes' },
           RenouncedExplanation: {
             value: 'explanation'
@@ -311,6 +332,127 @@ describe('citizenship multiple component validation', function() {
     battery(tests, CitizenshipMultipleValidator, 'validCitizenships')
   })
 
+  it('can validate minimum number of citizenships provided', () => {
+    const tests = [
+      {
+        state: {
+          HasMultiple: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Country: {
+                    value: 'Germany'
+                  },
+                  Dates: {
+                    from: {
+                      month: '1',
+                      day: '1',
+                      year: '2010',
+                      date: new Date('1/1/2010')
+                    },
+                    to: {
+                      month: '1',
+                      day: '1',
+                      year: '2012',
+                      date: new Date('1/1/2012')
+                    },
+                    present: false
+                  },
+                  How: {
+                    value: 'Birth'
+                  },
+                  Renounced: { value: 'Yes' },
+                  RenouncedExplanation: {
+                    value: 'explanation'
+                  },
+                  Current: { value: 'Yes' },
+                  CurrentExplanation: {
+                    value: 'explanation'
+                  }
+                }
+              }
+            ]
+          }
+        },
+        expected: false
+      },
+      {
+        state: {
+          HasMultiple: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Country: {
+                    value: 'United States'
+                  },
+                  Dates: {
+                    from: {
+                      month: '1',
+                      day: '1',
+                      year: '2010',
+                      date: new Date('1/1/2010')
+                    },
+                    to: {
+                      month: '1',
+                      day: '1',
+                      year: '2012',
+                      date: new Date('1/1/2012')
+                    },
+                    present: false
+                  },
+                  Current: { value: 'Yes' },
+                  CurrentExplanation: {
+                    value: 'explanation'
+                  }
+                }
+              },
+              {
+                Item: {
+                  Country: {
+                    value: 'Germany'
+                  },
+                  Dates: {
+                    from: {
+                      month: '1',
+                      day: '1',
+                      year: '2010',
+                      date: new Date('1/1/2010')
+                    },
+                    to: {
+                      month: '1',
+                      day: '1',
+                      year: '2012',
+                      date: new Date('1/1/2012')
+                    },
+                    present: false
+                  },
+                  How: {
+                    value: 'Birth'
+                  },
+                  Renounced: { value: 'Yes' },
+                  RenouncedExplanation: {
+                    value: 'explanation'
+                  },
+                  Current: { value: 'Yes' },
+                  CurrentExplanation: {
+                    value: 'explanation'
+                  }
+                }
+              }
+            ]
+          }
+        },
+        expected: true
+      }
+    ]
+
+    battery(tests, CitizenshipMultipleValidator, 'validMinimumCitizenships')
+  })
+
   it('can validate entire multiple citizenships and passports', () => {
     const tests = [
       {
@@ -348,6 +490,32 @@ describe('citizenship multiple component validation', function() {
                       date: new Date('1/1/2012')
                     },
                     present: true
+                  },
+                  Current: { value: 'Yes' },
+                  CurrentExplanation: {
+                    value: 'explanation'
+                  }
+                }
+              },
+              {
+                Item: {
+                  Country: {
+                    value: 'Germany'
+                  },
+                  Dates: {
+                    from: {
+                      month: '1',
+                      day: '1',
+                      year: '2010',
+                      date: new Date('1/1/2010')
+                    },
+                    to: {
+                      month: '1',
+                      day: '1',
+                      year: '2012',
+                      date: new Date('1/1/2012')
+                    },
+                    present: false
                   },
                   How: {
                     value: 'Birth'
