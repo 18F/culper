@@ -319,6 +319,7 @@ export default class ForeignNational extends ValidationElement {
             className="last-contact"
             {...this.props.LastContact}
             prefix="contact.last"
+            minDateEqualTo
             minDate={(this.props.FirstContact || {}).date}
             onUpdate={this.updateLastContact}
             onError={this.props.onError}

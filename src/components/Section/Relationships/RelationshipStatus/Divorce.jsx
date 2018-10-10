@@ -215,6 +215,8 @@ export default class Divorce extends React.Component {
           <DateControl
             name="Recognized"
             className="recognized"
+            minDate={this.props.Birthdate.date}
+            minDateEqualTo
             {...this.props.Recognized}
             onUpdate={this.updateRecognized}
             onError={this.props.onError}
@@ -395,6 +397,7 @@ export default class Divorce extends React.Component {
 }
 
 Divorce.defaultProps = {
+  Birthdate: {},
   DeceasedAddressNotApplicable: { applicable: true },
   onUpdate: queue => {},
   onError: (value, arr) => {

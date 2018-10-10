@@ -186,6 +186,7 @@ export default class CivilUnion extends ValidationElement {
   }
 
   render() {
+    debugger
     const showForeignBornDocumentation =
       ((this.props.BirthPlace || {}).country || {}) !== 'United States'
     return (
@@ -355,7 +356,7 @@ export default class CivilUnion extends ValidationElement {
             <DateControl
               name="enteredCivilUnion"
               className="entered"
-              minDate={(this.props.Birthdate || {}).date}
+              minDate={[this.props.Birthdate.date, this.props.ApplicantBirthdate]}
               minDateEqualTo
               {...this.props.EnteredCivilUnion}
               onUpdate={this.updateEnteredCivilUnion}
