@@ -70,6 +70,20 @@ describe('The State component', () => {
     expect(instance.getStateAbbreviation('gibberish')).toEqual('gibberish')
   })
 
+  it('returns the uppercased state abbreviation', () => {
+    const props = {
+      name: 'state',
+      value: 'oregon',
+      className: 'state',
+      onBlur: () => {},
+      onFocus: () => {}
+    }
+
+    const component = shallow(<State {...props} />)
+    const instance = component.instance()
+    expect(instance.getStateAbbreviation('oregon')).toEqual('OR')
+  })
+
   it('returns children options', () => {
     const expected = {
       name: 'state',
@@ -87,5 +101,22 @@ describe('The State component', () => {
     )
     const instance = component.instance()
     expect(instance.getStates().length).toEqual(instance.states.length + 1)
+  })
+
+  it('calls the onUpdate function with the correct arguments', () => {
+    const props = {
+      name: 'state',
+      value: 'ca',
+      className: 'state',
+      onBlur: () => {},
+      onFocus: () => {},
+      onUpdate: jest.fn()
+    }
+
+    const component = shallow(<State {...props} />)
+    const instance = component.instance()
+    instance.handleUpdate({ value: 'ca' })
+    expect(props.onUpdate).toHaveBeenCalledTimes(1)
+    expect(props.onUpdate).toHaveBeenCalledWith({ value: 'CA' })
   })
 })
