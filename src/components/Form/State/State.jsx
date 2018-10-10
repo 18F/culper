@@ -122,7 +122,7 @@ export default class State extends ValidationElement {
   handleUpdate(stateObj) {
     const value = stateObj.value.length > 2
       ? this.getStateAbbreviation(stateObj.value)
-      : stateObj.value
+      : stateObj.value.toUpperCase()
 
     this.props.onUpdate({
       ...stateObj,
