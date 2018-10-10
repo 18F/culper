@@ -248,7 +248,7 @@ class History extends SectionElement {
 
       if (i.Item.Diplomas.items) {
         for (const d of i.Item.Diplomas.items) {
-          if (!d.Item || !d.Item.Date || !d.Item.Date.date) {
+          if (!d.Item || !d.Item.Date) {
             continue
           }
 
