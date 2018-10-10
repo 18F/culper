@@ -12,7 +12,7 @@ import ApoFpo from '../ApoFpo'
 import Show from '../Show'
 import Suggestions from '../Suggestions'
 import { AddressSuggestion } from './AddressSuggestion'
-import LocationValidator, { countryString } from '../../../validators/location'
+import LocationValidator, { countryString, isInternational } from '../../../validators/location'
 import { countryValueResolver } from './Location'
 
 export default class Address extends ValidationElement {
@@ -47,27 +47,19 @@ export default class Address extends ValidationElement {
     this.focusField = this.focusField.bind(this)
     this.blurField = this.blurField.bind(this)
     this.onAddressUpdate = this.onAddressUpdate.bind(this);
-    this.scroller = this.scroller.bind(this);
+    this.blurForceUpdate = this.blurForceUpdate.bind(this);
   }
 
   componentDidMount() {
-    // Turn on scroll detection
-    window.addEventListener('scroll', this.scroller)
+    /**
+     * On scroll, if the user has filled out the address fields AND the data has not been
+     * validated, open a USPS address verification modal
+     */
+    window.addEventListener('scroll', this.blurForceUpdate)
   }
 
   componentWillUnmount() {
-    // Turn off scroll detection
-    window.removeEventListener('scroll', this.scroller)
-  }
-
-  scroller() {
-    const b = this.blurred
-    const blurry =
-      b.street && b.street2 && b.city && b.state && b.country && b.zipcode
-    const modal = document.querySelector('.modal')
-    if (!blurry && !modal && !this.props.validated) {
-      this.update({}, 500, true)
-    }
+    window.removeEventListener('scroll', this.blurForceUpdate)
   }
 
   onAddressUpdate(nextValue) {
@@ -155,11 +147,9 @@ export default class Address extends ValidationElement {
   }
 
   blurForceUpdate() {
-    const b = this.blurred
-    const blurry =
-      b.street && b.street2 && b.city && b.state && b.country && b.zipcode
-    // why do we care about a modal here
+    const blurry = Object.values(this.blurred).every(value => !!value)
     const modal = document.querySelector('.modal')
+
     if (blurry && !modal && !this.props.validated) {
       this.update({}, 500, true)
     }
@@ -267,7 +257,7 @@ export default class Address extends ValidationElement {
 
     return (
       <div className="address">
-        <Show when={!this.props.disableToggle}>         
+        <Show when={!this.props.disableToggle}>
           <label>{this.props.label}</label>
           <RadioGroup
             className={`address-options option-list ${
@@ -340,7 +330,7 @@ export default class Address extends ValidationElement {
           </div>
         </Show>
 
-        <div className="fields">          
+        <div className="fields">
           <Show when={locationValidator.isDomestic()}>
             <div>
               <Street
@@ -412,7 +402,7 @@ export default class Address extends ValidationElement {
               </div>
             </div>
           </Show>
-          <Show when={!locationValidator.isDomestic()}>
+          <Show when={isInternational(this.props)}>
             <Street
               name="street"
               label={this.props.streetLabel}
@@ -464,7 +454,7 @@ export default class Address extends ValidationElement {
               disabled={this.props.disabled}
             />
           </Show>
-          <Show when={country === 'POSTOFFICE'}>
+          <Show when={locationValidator.isPostOffice()}>
             <div>
               <Street
                 name="street"
