@@ -400,8 +400,7 @@ export default class Status extends SubsectionElement {
               <DateControl
                 name="DocumentIssued"
                 className="document-issued"
-                minDate={(this.props.Birthdate || {}).date}
-                minDateEqualTo={true}
+                minDateEqualTo
                 {...this.props.DocumentIssued}
                 onUpdate={this.updateDocumentIssued}
                 onError={this.handleError}
@@ -466,8 +465,7 @@ export default class Status extends SubsectionElement {
                 name="CertificateIssued"
                 className="certificate-issued"
                 {...this.props.CertificateIssued}
-                minDate={(this.props.Birthdate || {}).date}
-                minDateEqualTo={true}
+                minDateEqualTo
                 onUpdate={this.updateCertificateIssued}
                 onError={this.handleError}
                 required={this.props.required}
@@ -536,8 +534,7 @@ export default class Status extends SubsectionElement {
                 name="EntryDate"
                 className="entry-date"
                 {...this.props.EntryDate}
-                minDate={(this.props.Birthdate || {}).date}
-                minDateEqualTo={true}
+                minDateEqualTo
                 onUpdate={this.updateEntryDate}
                 onError={this.handleError}
                 required={this.props.required}
@@ -665,8 +662,7 @@ export default class Status extends SubsectionElement {
                 name="CertificateIssued"
                 className="certificate-issued"
                 {...this.props.CertificateIssued}
-                minDate={(this.props.Birthdate || {}).date}
-                minDateEqualTo={true}
+                minDateEqualTo
                 onUpdate={this.updateCertificateIssued}
                 onError={this.handleError}
                 required={this.props.required}
@@ -813,6 +809,7 @@ export default class Status extends SubsectionElement {
                 name="CertificateIssued"
                 className="certificate-issued"
                 {...this.props.CertificateIssued}
+                minDateEqualTo
                 onUpdate={this.updateCertificateIssued}
                 onError={this.handleError}
                 required={this.props.required}
@@ -891,8 +888,7 @@ export default class Status extends SubsectionElement {
                 name="EntryDate"
                 className="entry-date"
                 {...this.props.EntryDate}
-                minDate={(this.props.Birthdate || {}).date}
-                minDateEqualTo={true}
+                minDateEqualTo
                 onUpdate={this.updateEntryDate}
                 onError={this.handleError}
                 required={this.props.required}
@@ -1070,8 +1066,7 @@ export default class Status extends SubsectionElement {
                 name="DocumentIssued"
                 className="document-issued"
                 {...this.props.DocumentIssued}
-                minDate={(this.props.Birthdate || {}).date}
-                minDateEqualTo={true}
+                minDateEqualTo
                 onUpdate={this.updateDocumentIssued}
                 onError={this.handleError}
                 required={this.props.required}
@@ -1087,8 +1082,7 @@ export default class Status extends SubsectionElement {
                 className="document-expiration"
                 {...this.props.DocumentExpiration}
                 noMaxDate={true}
-                minDate={(this.props.Birthdate || {}).date}
-                minDateEqualTo={true}
+                minDateEqualTo
                 onUpdate={this.updateDocumentExpiration}
                 onError={this.handleError}
                 required={this.props.required}

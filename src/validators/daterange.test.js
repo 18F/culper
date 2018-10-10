@@ -64,6 +64,24 @@ describe('Date range validator', function() {
           present: false
         },
         expected: false
+      },
+      {
+        data: {
+          from: {
+            month: '1',
+            day: '1',
+            year: '2000',
+            date: new Date('1/1/2000')
+          },
+          to: {
+            month: '1',
+            day: '1',
+            year: '2000',
+            date: new Date('1/1/2000')
+          },
+          present: false
+        },
+        expected: false
       }
     ]
 

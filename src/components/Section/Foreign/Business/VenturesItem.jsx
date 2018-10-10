@@ -202,9 +202,9 @@ export default class VenturesItem extends ValidationElement {
             name="Dates"
             {...this.props.Dates}
             minDate={(this.props.Birthdate || {}).date}
-            minDateEqualTo={true}
+            minDateEqualTo
             maxDate={(this.props.minDate || {}).date}
-            maxDateEqualTo={true}
+            maxDateEqualTo
             onUpdate={this.updateDates}
             onError={this.props.onError}
             className="ventures-dates"

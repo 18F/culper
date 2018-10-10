@@ -140,9 +140,9 @@ export default class Sentence extends ValidationElement {
               className="incarceration-dates"
               {...this.props.IncarcerationDates}
               minDate={(this.props.Birthdate || {}).date}
-              minDateEqualTo={true}
+              minDateEqualTo
               maxDate={(this.props.minDate || {}).date}
-              maxDateEqualTo={true}
+              maxDateEqualTo
               onUpdate={this.updateIncarcerationDates}
               onError={this.props.onError}
               required={this.props.required}
@@ -170,9 +170,9 @@ export default class Sentence extends ValidationElement {
               className="probation-dates"
               {...this.props.ProbationDates}
               minDate={(this.props.Birthdate || {}).date}
-              minDateEqualTo={true}
+              minDateEqualTo
               maxDate={(this.props.minDate || {}).date}
-              maxDateEqualTo={true}
+              maxDateEqualTo
               onUpdate={this.updateProbationDates}
               onError={this.props.onError}
               required={this.props.required}

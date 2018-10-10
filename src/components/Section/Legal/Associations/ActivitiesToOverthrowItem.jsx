@@ -55,8 +55,8 @@ export default class ActivitiesToOverthrowItem extends ValidationElement {
           <DateRange
             name="Dates"
             {...this.props.Dates}
-            minDateEqualTo={true}
-            maxDateEqualTo={true}
+            minDateEqualTo
+            maxDateEqualTo
             onUpdate={this.updateDates}
             onError={this.props.onError}
             className="legal-associations-activities-dates"

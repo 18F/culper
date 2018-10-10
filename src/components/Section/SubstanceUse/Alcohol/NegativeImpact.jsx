@@ -62,7 +62,7 @@ export default class NegativeImpact extends ValidationElement {
             label={i18n.t('substance.alcohol.negativeImpact.label.occurred')}
             hideDay={true}
             minDate={(this.props.Used || {}).date}
-            minDateEqualTo={true}
+            minDateEqualTo
             onUpdate={this.updateOccurred}
             onError={this.props.onError}
             required={this.props.required}
@@ -118,8 +118,8 @@ export default class NegativeImpact extends ValidationElement {
             className="used"
             {...this.props.Used}
             minDate={(this.props.ApplicantBirthdate || {}).date}
-            minDateEqualTo={true}
-            maxDateEqualTo={true}
+            minDateEqualTo
+            maxDateEqualTo
             onUpdate={this.updateUsed}
             onError={this.props.onError}
             required={this.props.required}

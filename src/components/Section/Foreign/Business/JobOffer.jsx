@@ -112,8 +112,7 @@ export default class JobOffer extends ValidationElement {
             name="Date"
             {...this.props.Date}
             className="employment-date"
-            minDate={(this.props.Birthdate || {}).date}
-            minDateEqualTo={true}
+            minDateEqualTo
             onUpdate={this.updateDate}
             onError={this.props.onError}
             required={this.props.required}

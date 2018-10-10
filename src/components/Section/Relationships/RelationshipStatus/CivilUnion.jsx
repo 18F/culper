@@ -323,7 +323,7 @@ export default class CivilUnion extends ValidationElement {
                   bind={true}
                   prefix="relative"
                   minDate={(this.props.Birthdate || {}).date}
-                  minDateEqualTo={true}
+                  minDateEqualTo
                   className="datesused"
                   onError={this.props.onError}
                   required={this.props.required}
@@ -356,7 +356,7 @@ export default class CivilUnion extends ValidationElement {
               name="enteredCivilUnion"
               className="entered"
               minDate={(this.props.Birthdate || {}).date}
-              minDateEqualTo={true}
+              minDateEqualTo
               {...this.props.EnteredCivilUnion}
               onUpdate={this.updateEnteredCivilUnion}
               onError={this.props.onError}
@@ -481,7 +481,7 @@ export default class CivilUnion extends ValidationElement {
                   name="DateSeparated"
                   className="dateseparated"
                   minDate={(this.props.EnteredCivilUnion || {}).date}
-                  minDateEqualTo={true}
+                  minDateEqualTo
                   {...this.props.DateSeparated}
                   onUpdate={this.updateDateSeparated}
                   onError={this.props.onError}

@@ -147,8 +147,7 @@ export class DiplomaItem extends ValidationElement {
             name="Date"
             {...this.props.Date}
             className="date-awarded"
-            minDate={(this.props.Birthdate || {}).date}
-            minDateEqualTo={true}
+            minDateEqualTo
             hideDay={true}
             onUpdate={this.updateDate}
             onError={this.props.onError}

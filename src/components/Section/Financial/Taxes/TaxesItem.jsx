@@ -144,8 +144,7 @@ export default class TaxesItem extends ValidationElement {
             hideDay={true}
             showEstimated={false}
             min={minYearFiled.minDate.getFullYear()}
-            minDate={(this.props.ApplicantBirthdate || {}).date}
-            minDateEqualTo={true}
+            minDateEqualTo
             required={this.props.required}
             onUpdate={this.updateYear}
             onError={this.props.onError}
@@ -248,7 +247,7 @@ export default class TaxesItem extends ValidationElement {
               className="taxes-date"
               hideDay={true}
               minDate={(this.props.Year || {}).date}
-              minDateEqualTo={true}
+              minDateEqualTo
               required={this.props.required}
               onUpdate={this.updateDate}
               onError={this.props.onError}

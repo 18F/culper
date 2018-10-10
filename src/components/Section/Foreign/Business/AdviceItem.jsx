@@ -137,9 +137,9 @@ export default class AdviceItem extends ValidationElement {
             {...this.props.Dates}
             onUpdate={this.updateDates}
             minDate={(this.props.Birthdate || {}).date}
-            minDateEqualTo={true}
+            minDateEqualTo
             maxDate={(this.props.minDate || {}).date}
-            maxDateEqualTo={true}
+            maxDateEqualTo
             onError={this.props.onError}
             className="advice-dates"
             required={this.props.required}

@@ -227,9 +227,9 @@ export default class ForeignService extends ValidationElement {
             name="Dates"
             className="foreign-service-dates"
             minDate={(this.props.Birthdate || {}).date}
-            minDateEqualTo={true}
+            minDateEqualTo
             maxDate={(this.props.minDate || {}).date}
-            maxDateEqualTo={true}
+            maxDateEqualTo
             {...this.props.Dates}
             onUpdate={this.updateDates}
             onError={this.props.onError}

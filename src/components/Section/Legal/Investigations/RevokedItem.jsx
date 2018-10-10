@@ -56,7 +56,7 @@ export default class RevokedItem extends ValidationElement {
             name="Date"
             {...this.props.Date}
             onUpdate={this.updateDate}
-            minDateEqualTo={true}
+            minDateEqualTo
             onError={this.props.onError}
             className="legal-investigations-revoked-date"
             required={this.props.required}

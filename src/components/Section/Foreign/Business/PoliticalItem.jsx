@@ -89,9 +89,9 @@ export default class PoliticalItem extends ValidationElement {
             onUpdate={this.updateDates}
             onError={this.props.onError}
             minDate={(this.props.Birthdate || {}).date}
-            minDateEqualTo={true}
+            minDateEqualTo
             maxDate={(this.props.minDate || {}).date}
-            maxDateEqualTo={true}
+            maxDateEqualTo
             className="foreign-business-political-dates"
             required={this.props.required}
           />

@@ -150,6 +150,7 @@ export default class DateRange extends ValidationElement {
 
   handleError(code, value, arr) {
     arr = arr.map(err => {
+
       return {
         code: `daterange.${code}.${err.code.replace('date.', '')}`,
         valid: err.valid,
@@ -163,6 +164,7 @@ export default class DateRange extends ValidationElement {
         .filter(err => err.code === 'required')
         .map(err => {
           const value = { ...this.state }
+          console.log(err)
           return {
             code: `daterange.${err.code}`,
             valid: err.func(value, this.props),
@@ -184,7 +186,8 @@ export default class DateRange extends ValidationElement {
         // Prepare some properties for the error testing
         const props = {
           from: this.state.from,
-          to: this.state.to
+          to: this.state.to,
+          allowEqual: this.props.allowEqual
         }
 
         local = noneRequiredErrors.map(err => {
@@ -294,6 +297,7 @@ DateRange.defaultProps = {
   maxDate: new Date(),
   maxDateEqualTo: false,
   allowPresent: true,
+  allowEqual: true,
   onError: (value, arr) => {
     return arr
   },
@@ -316,15 +320,22 @@ DateRange.errors = [
   {
     code: 'daterange.order',
     func: (value, props) => {
+      const { from, to, allowEqual } = props
+
       if (
-        !props.from ||
-        isNaN(props.from.date) ||
-        !props.to ||
-        isNaN(props.to.date)
+        !from || isNaN(from.date) || !to || isNaN(to.date)
       ) {
         return null
       }
-      return props.from.date && props.to.date && props.from.date < props.to.date
+
+      const checkDateOrder = (fromDate, toDate, allowEqual) => {
+        if (allowEqual){
+          return fromDate <= toDate
+        }
+        return fromDate < toDate
+      }
+
+      return from.date && to.date && checkDateOrder(from.date, to.date, allowEqual)
     }
   }
 ]

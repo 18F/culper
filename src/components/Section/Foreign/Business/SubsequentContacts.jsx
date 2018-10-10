@@ -59,8 +59,7 @@ export default class SubsequentContacts extends ValidationElement {
               <DateControl
                 name="Recent"
                 className="foreign-business-contact-recent"
-                minDate={(this.props.Birthdate || {}).date}
-                minDateEqualTo={true}
+                minDateEqualTo
                 bind={true}
                 required={this.props.required}
               />

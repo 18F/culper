@@ -86,9 +86,9 @@ export default class OtherName extends ValidationElement {
             name="DatesUsed"
             {...this.props.DatesUsed}
             minDate={(this.props.Birthdate || {}).date}
-            minDateEqualTo={true}
+            minDateEqualTo
             maxDate={(this.props.minDate || {}).date}
-            maxDateEqualTo={true}
+            maxDateEqualTo
             onUpdate={this.updateDatesUsed}
             onError={this.props.onError}
             className="datesused"

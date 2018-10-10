@@ -68,7 +68,7 @@ export default class NonCriminalCourtAction extends ValidationElement {
           <DateControl
             name="CivilActionDate"
             className="civil-action-date"
-            minDateEqualTo={true}
+            minDateEqualTo
             {...this.props.CivilActionDate}
             onUpdate={this.updateCivilActionDate}
             onError={this.props.onError}

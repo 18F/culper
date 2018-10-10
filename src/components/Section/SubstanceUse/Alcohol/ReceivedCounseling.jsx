@@ -242,7 +242,7 @@ export default class ReceivedCounseling extends ValidationElement {
             className="treatment-began-date"
             {...this.props.TreatmentBeganDate}
             prefix="treatment.began"
-            minDateEqualTo={true}
+            minDateEqualTo
             maxDate={maxDate}
             onUpdate={this.updateTreatmentBeganDate}
             required={this.props.required}

@@ -301,7 +301,7 @@ export default class ForeignNational extends ValidationElement {
             name="FirstContact"
             className="first-contact"
             minDate={(this.props.firstContact || {}).date}
-            minDateEqualTo={true}
+            minDateEqualTo
             {...this.props.FirstContact}
             onUpdate={this.updateFirstContact}
             onError={this.props.onError}

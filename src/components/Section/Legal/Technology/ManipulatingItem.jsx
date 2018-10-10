@@ -63,7 +63,7 @@ export default class ManipulatingItem extends ValidationElement {
           <DateControl
             name="Date"
             {...this.props.Date}
-            minDateEqualTo={true}
+            minDateEqualTo
             onUpdate={this.updateDate}
             onError={this.props.onError}
             className="legal-technology-manipulating-date"

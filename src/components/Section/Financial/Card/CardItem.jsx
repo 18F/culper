@@ -126,7 +126,7 @@ export default class CardItem extends ValidationElement {
             {...this.props.Date}
             className="card-date"
             hideDay={true}
-            minDateEqualTo={true}
+            minDateEqualTo
             required={this.props.required}
             onUpdate={this.updateDate}
             onError={this.props.onError}

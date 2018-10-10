@@ -211,8 +211,7 @@ export default class Offense extends ValidationElement {
             name="Date"
             {...this.props.Date}
             className="offense-date"
-            minDate={(this.props.Birthdate || {}).date}
-            minDateEqualTo={true}
+            minDateEqualTo
             onUpdate={this.updateDate}
             onError={this.props.onError}
             required={this.props.required}
@@ -513,8 +512,7 @@ export default class Offense extends ValidationElement {
                 {...this.props.CourtDate}
                 hideDay={true}
                 className="offense-courtdate"
-                minDate={(this.props.Birthdate || {}).date}
-                minDateEqualTo={true}
+                minDateEqualTo
                 onUpdate={this.updateCourtDate}
                 onError={this.props.onError}
                 required={this.props.required}

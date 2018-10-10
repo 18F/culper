@@ -244,8 +244,8 @@ export default class OrderedCounseling extends ValidationElement {
               <DateRange
                 name="CounselingDates"
                 className="counseling-dates"
-                minDateEqualTo={true}
-                maxDateEqualTo={true}
+                minDateEqualTo
+                maxDateEqualTo
                 {...this.props.CounselingDates}
                 onUpdate={this.updateCounselingDates}
                 onError={this.props.onError}
