@@ -12805,8 +12805,8 @@
                   "Address": {
                     "type": "location",
                     "props": {
-                      "layout": "Address",
-                      "street": "342 Alvarado St.",
+                      "layout": "Offense",
+                      "street": "",
                       "city": "Monterey",
                       "state": "CA",
                       "zipcode": "93940",
@@ -12816,8 +12816,8 @@
                   "AgencyAddress": {
                     "type": "location",
                     "props": {
-                      "layout": "Address",
-                      "street": "323 Pacific Ave.",
+                      "layout": "Offense",
+                      "street": "",
                       "city": "Monterey",
                       "state": "CA",
                       "zipcode": "93940",
@@ -12852,8 +12852,8 @@
                   "CourtAddress": {
                     "type": "location",
                     "props": {
-                      "layout": "Address",
-                      "street": "32 Court Ave.",
+                      "layout": "Offense",
+                      "street": "",
                       "city": "Monterey",
                       "state": "CA",
                       "zipcode": "93940",

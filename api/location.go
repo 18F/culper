@@ -22,6 +22,7 @@ const (
 	LayoutCityStateCountry                    = "City, State, Country"
 	LayoutUSAddress                           = "US Address"
 	LayoutStreetCity                          = "Street, City"
+	LayoutOffense                             = "US City, State, Zipcode International city country"
 )
 
 // Special layout flags for e-QIP integration for...

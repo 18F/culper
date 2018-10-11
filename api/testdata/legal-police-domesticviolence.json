@@ -38,8 +38,8 @@
               "CourtAddress": {
                 "type": "location",
                 "props": {
-                  "layout": "Address",
-                  "street": "123 Some Rd",
+                  "layout": "Offense",
+                  "street": "",
                   "street2": "",
                   "city": "Arlington",
                   "state": "VA",
