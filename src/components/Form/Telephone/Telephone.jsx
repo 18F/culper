@@ -384,9 +384,10 @@ export default class Telephone extends ValidationElement {
     return (
       <div className="numbers">
         <label
-          className={`${this.props.typeClass || ''} ${
-            this.props.noNumber ? 'disabled' : ''
-          }`.trim()}>
+          className={[
+            `${this.props.typeClass || ''}`,
+            `${this.props.noNumber ? 'disabled' : ''}`
+          ].join(' ').trim()}>
           {i18n.t('telephone.dsn.label')}
         </label>
         <Text
@@ -457,9 +458,11 @@ export default class Telephone extends ValidationElement {
     return (
       <div className="numbers">
         <label
-          className={`${this.props.typeClass || ''} ${
-            this.props.noNumber ? 'disabled' : ''
-          }`.trim()}>
+          className={[
+            `${this.props.typeClass || ''}`,
+            `${this.props.noNumber ? 'disabled' : ''}`,
+            'collapse-margin'
+          ].join(' ').trim()}>
           {i18n.t('telephone.domestic.label')}
         </label>
         <span className="separator">(</span>
@@ -575,9 +578,11 @@ export default class Telephone extends ValidationElement {
     return (
       <div className="international numbers">
         <label
-          className={`{this.props.typeClass || ''} ${
-            this.props.noNumber ? 'disabled' : ''
-          }`.trim()}>
+          className={[
+            `${this.props.typeClass || ''}`,
+            `${this.props.noNumber ? 'disabled' : ''}`,
+            'collapse-margin'
+          ].join(' ').trim()}>
           {i18n.t('telephone.international.label')}
         </label>
         <span className="separator">+</span>

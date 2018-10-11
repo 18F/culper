@@ -4,8 +4,11 @@
   .numbers {
     > label {
       font-weight: bold;
-      margin-bottom: -2.6rem;
     }
+  }
+
+  .collapse-margin {
+    margin-bottom: -2.6rem;
   }
 
   .number {
