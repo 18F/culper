@@ -280,10 +280,7 @@ export default class Offense extends ValidationElement {
             {...this.props.Address}
             className="offense-address"
             label={i18n.t('legal.police.label.address')}
-            layout={Location.ADDRESS}
-            geocode={true}
-            addressBooks={this.props.addressBooks}
-            addressBook="Incident"
+            layout={Location.OFFENSE}
             dispatch={this.props.dispatch}
             onUpdate={this.updateAddress}
             onError={this.props.onError}
@@ -339,16 +336,14 @@ export default class Offense extends ValidationElement {
               help="legal.police.help.agencyaddress"
               adjustFor="address"
               shrink={true}
-              scrollIntoView={this.props.scrollIntoView}>
+              scrollIntoView={this.props.scrollIntoView}
+            >
               <Location
                 name="AgencyAddress"
                 {...this.props.AgencyAddress}
                 className="offense-agencyaddress"
                 label={i18n.t('legal.police.label.address')}
-                layout={Location.ADDRESS}
-                geocode={true}
-                addressBooks={this.props.addressBooks}
-                addressBook="Agency"
+                layout={Location.OFFENSE}
                 dispatch={this.props.dispatch}
                 onUpdate={this.updateAgencyAddress}
                 onError={this.props.onError}

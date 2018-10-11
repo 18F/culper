@@ -1,6 +1,29 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { i18n } from '../../../config'
 import { Field, Radio, RadioGroup } from '../../Form'
+
+const propTypes = {
+  adjustFor: PropTypes.string.isRequired,
+  className: PropTypes.string,
+  disabled: PropTypes.bool,
+  help: PropTypes.string,
+  label: PropTypes.string,
+  labelSize: PropTypes.string,
+  name: PropTypes.string,
+  noAriaLabel: PropTypes.string,
+  noLabel: PropTypes.string,
+  noValue: PropTypes.string,
+  onError: PropTypes.func,
+  onUpdate: PropTypes.func,
+  optional: PropTypes.bool,
+  required: PropTypes.bool,
+  scrollIntoView: PropTypes.bool,
+  value: PropTypes.string,
+  yesAriaLabel: PropTypes.string,
+  yesLabel: PropTypes.string,
+  yesValue: PropTypes.string
+}
 
 /**
  * Branch is a component that stores whether Yes/No options were selected. It contains a callback
@@ -80,8 +103,13 @@ export default class Branch extends React.Component {
   }
 }
 
+Branch.propTypes = propTypes;
+
 // Default values for properties that are not specified
 Branch.defaultProps = {
+  adjustFor: 'buttons',
+  className: '',
+  confirmation: i18n.t('branch.confirmation'),
   yesLabel: i18n.t('branch.label.yes'),
   yesValue: i18n.t('branch.value.yes'),
   yesAriaLabel: null,
@@ -89,9 +117,9 @@ Branch.defaultProps = {
   noValue: i18n.t('branch.value.no'),
   noAriaLabel: null,
   labelSize: 'label',
-  adjustFor: 'buttons',
+  
   warning: false,
-  confirmation: i18n.t('branch.confirmation'),
+  
   value: '',
   onUpdate: queue => {},
   optional: false,
