@@ -1083,5 +1083,9 @@ export const error = {
   validPhoneTypes: {
     title: 'There is a problem with your phone numbers',
     message: 'Please provide only one of each phone number type.'
+  },
+  validMinimumCitizenships: {
+    title: 'There is a problem with your entry',
+    message: 'Please provide a minimum of two countries.'
   }
 }
