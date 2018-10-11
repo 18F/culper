@@ -1,6 +1,7 @@
 import React from 'react'
 import { shallow, mount } from 'enzyme'
 import State from './State'
+import { unitedStates, otherUsTerritories } from '../../../validators/location'
 
 describe('The State component', () => {
   it('renders', () => {
@@ -67,10 +68,10 @@ describe('The State component', () => {
     }
     const component = shallow(<State {...expected} />)
     const instance = component.instance()
-    expect(instance.getStateAbbreviation('gibberish')).toEqual('gibberish')
+    expect(instance.getStatePostalCode('gibberish')).toEqual('gibberish')
   })
 
-  it('returns the uppercased state abbreviation', () => {
+  it('returns the uppercased state postal code', () => {
     const props = {
       name: 'state',
       value: 'oregon',
@@ -81,26 +82,21 @@ describe('The State component', () => {
 
     const component = shallow(<State {...props} />)
     const instance = component.instance()
-    expect(instance.getStateAbbreviation('oregon')).toEqual('OR')
+    expect(instance.getStatePostalCode('oregon')).toEqual('OR')
   })
 
-  it('returns children options', () => {
+  it('returns additional states renderd through props', () => {
     const expected = {
       name: 'state',
       value: 'gibberish',
       className: 'state',
       onBlur: () => {},
-      onFocus: () => {}
+      onFocus: () => {},
+      additionalStates: [{ name: 'Test State', postalCode: 'CH' }]
     }
-    const component = mount(
-      <State {...expected}>
-        <option key="Gibberish" value="GB">
-          Gibberish
-        </option>
-      </State>
-    )
+    const component = mount(<State {...expected} />)
     const instance = component.instance()
-    expect(instance.getStates().length).toEqual(instance.states.length + 1)
+    expect(instance.states.length).toEqual(unitedStates.length + otherUsTerritories.length + 1)
   })
 
   it('calls the onUpdate function with the correct arguments', () => {
