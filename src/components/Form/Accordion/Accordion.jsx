@@ -535,12 +535,9 @@ export default class Accordion extends ValidationElement {
 
   hasNoErrors(uuid) {
     const element = document.getElementById(uuid)
+    const errors = element.querySelectorAll('.field .messages .message.error')
 
-    if (element) {
-      const errors = element.querySelectorAll('.field .messages .message.error')
-      return errors.length < 1
-    }
-    return true
+    return errors.length < 1
   }
 
   render() {
