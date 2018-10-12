@@ -164,7 +164,6 @@ export default class DateRange extends ValidationElement {
         .filter(err => err.code === 'required')
         .map(err => {
           const value = { ...this.state }
-          console.log(err)
           return {
             code: `daterange.${err.code}`,
             valid: err.func(value, this.props),
