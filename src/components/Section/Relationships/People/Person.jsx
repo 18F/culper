@@ -143,7 +143,7 @@ export default class Person extends React.Component {
             name="Dates"
             className="known-dates"
             minDate={(this.props.Birthdate || {}).date}
-            minDateEqualTo
+            minDateEqualTo={true}
             maxDate={(this.props.minDate || {}).date}
             maxDateEqualTo
             {...this.props.Dates}

@@ -186,7 +186,6 @@ export default class CivilUnion extends ValidationElement {
   }
 
   render() {
-    debugger
     const showForeignBornDocumentation =
       ((this.props.BirthPlace || {}).country || {}) !== 'United States'
     return (
@@ -324,7 +323,7 @@ export default class CivilUnion extends ValidationElement {
                   bind={true}
                   prefix="relative"
                   minDate={(this.props.Birthdate || {}).date}
-                  minDateEqualTo
+                  minDateEqualTo={true}
                   className="datesused"
                   onError={this.props.onError}
                   required={this.props.required}
@@ -356,8 +355,8 @@ export default class CivilUnion extends ValidationElement {
             <DateControl
               name="enteredCivilUnion"
               className="entered"
-              minDate={[this.props.Birthdate.date, this.props.ApplicantBirthdate]}
-              minDateEqualTo
+              // minDate={[this.props.Birthdate, this.props.ApplicantBirthdate]}
+              minDateEqualTo={true}={true}
               {...this.props.EnteredCivilUnion}
               onUpdate={this.updateEnteredCivilUnion}
               onError={this.props.onError}
@@ -482,7 +481,7 @@ export default class CivilUnion extends ValidationElement {
                   name="DateSeparated"
                   className="dateseparated"
                   minDate={(this.props.EnteredCivilUnion || {}).date}
-                  minDateEqualTo
+                  minDateEqualTo={true}={true}
                   {...this.props.DateSeparated}
                   onUpdate={this.updateDateSeparated}
                   onError={this.props.onError}

@@ -81,7 +81,6 @@ class Relationships extends SectionElement {
               name="marital"
               {...this.props.Marital}
               addressBooks={this.props.AddressBooks}
-              ApplicantBirthdate={this.props.ApplicantBirthdate}
               dispatch={this.props.dispatch}
               onUpdate={this.updateMarital}
               onError={this.handleError}
@@ -154,7 +153,6 @@ class Relationships extends SectionElement {
             <Marital
               name="marital"
               {...this.props.Marital}
-              ApplicantBirthdate={this.props.ApplicantBirthdate}
               section="relationships"
               subsection="status/marital"
               defaultState={false}
@@ -240,7 +238,6 @@ function mapStateToProps(state) {
   const addressBooks = app.AddressBooks || {}
 
   return {
-    ApplicantBirthdate: app.Identification.ApplicantBirthDate.Date,
     Relationships: relationships,
     Relatives: relationships.Relatives || {},
     Marital: relationships.Marital || {},
@@ -275,7 +272,6 @@ export class RelationshipSections extends React.Component {
         <Marital
           name="marital"
           {...this.props.Marital}
-          ApplicantBirthdate={this.props.ApplicantBirthdate}
           defaultState={false}
           addressBooks={this.props.AddressBooks}
           dispatch={this.props.dispatch}

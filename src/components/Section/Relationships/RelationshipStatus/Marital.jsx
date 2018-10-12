@@ -135,7 +135,6 @@ export default class Marital extends SubsectionElement {
           <CivilUnion
             name="civilUnion"
             {...this.props.CivilUnion}
-            ApplicantBirthdate={this.props.ApplicantBirthdate}
             onUpdate={this.updateCivilUnion}
             onError={this.handleError}
             onSpouseUpdate={this.props.onSpouseUpdate}

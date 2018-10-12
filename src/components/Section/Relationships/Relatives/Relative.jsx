@@ -1042,7 +1042,7 @@ export default class Relative extends ValidationElement {
                 {...this.props.FirstContact}
                 prefix="relative"
                 minDate={(this.props.Birthdate || {}).date}
-                minDateEqualTo
+                minDateEqualTo={true}
                 applicantBirthdate={this.props.Birthdate}
                 onError={this.props.onError}
                 onUpdate={this.updateFirstContact}
@@ -1064,7 +1064,7 @@ export default class Relative extends ValidationElement {
                 {...this.props.LastContact}
                 prefix="relative"
                 minDate={(this.props.FirstContact || {}).date}
-                minDateEqualTo
+                minDateEqualTo={true}
                 applicantBirthdate={this.props.Birthdate}
                 onError={this.props.onError}
                 onUpdate={this.updateLastContact}
