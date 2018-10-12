@@ -1,26 +1,6 @@
 import React from 'react'
 import Svg from '../Svg'
 
-export const applyFixedModal = (open = false) => {
-  if (!window || !window.document || !window.document.body) {
-    return
-  }
-
-  let klassBody = window.document.body.className
-
-  if (open) {
-    if (klassBody.indexOf('modal-open') === -1) {
-      klassBody += ' modal-open'
-    }
-  } else {
-    if (klassBody.indexOf('modal-open') !== -1) {
-      klassBody = klassBody.replace('modal-open', '')
-    }
-  }
-
-  window.document.body.className = klassBody.trim()
-}
-
 export default class Modal extends React.Component {
   constructor(props) {
     super(props)
@@ -28,6 +8,28 @@ export default class Modal extends React.Component {
     this.update = this.update.bind(this)
     this.doNothing = this.doNothing.bind(this)
     this.dismiss = this.dismiss.bind(this)
+  }
+
+  componentDidMount() {
+    if (this.props.show) {
+      window.document.body.classList.add('modal-open')
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    const body = window.document.body
+    if (!this.props.show && prevProps.show) {
+      body.classList.remove('modal-open')
+    }
+
+    if (this.props.show && !prevProps.show) {
+      body.classList.add('modal-open')
+    }
+  }
+
+  componentWillUnmount() {
+    const body = window.document.body
+    body.classList.remove('modal-open')
   }
 
   update(queue) {
@@ -83,8 +85,6 @@ export default class Modal extends React.Component {
   }
 
   render() {
-    applyFixedModal(this.props.show)
-
     if (!this.props.show) {
       return null
     }
