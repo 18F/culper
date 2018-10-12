@@ -41,6 +41,11 @@ exports[`The Introduction component renders properly 1`] = `
             </div>
             <div>
               <p>
+                National Background Investigation System (NBIS) eApp version MAJOR.MINOR.PATCH-IDENTIFIER
+              </p>
+            </div>
+            <div>
+              <p>
                 <strong>
                   Follow instructions completely or your form will be unable to be processed. If you have any questions, contact the office that provided you the form.
                 </strong>
