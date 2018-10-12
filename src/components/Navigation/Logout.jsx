@@ -33,12 +33,10 @@ class Logout extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
-  const section = state.section || {}
-  const app = state.application || {}
+function mapStateToProps({ section = {}, application = {} }) {
   return {
-    section: section,
-    app: app
+    section,
+    app: application
   }
 }
 
