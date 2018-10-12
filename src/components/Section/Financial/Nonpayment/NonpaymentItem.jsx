@@ -249,7 +249,7 @@ export default class NonpaymentItem extends ValidationElement {
               name="Resolved"
               {...this.props.Resolved}
               minDate={(this.props.Date || {}).date}
-              minDateEqualTo
+              minDateEqualTo={true}
               onUpdate={this.updateResolved}
               onError={this.props.onError}
               className="nonpayment-resolved"
@@ -267,7 +267,7 @@ export default class NonpaymentItem extends ValidationElement {
           <DateControl
             name="Date"
             {...this.props.Date}
-            minDateEqualTo
+            minDateEqualTo={true}
             onUpdate={this.updateDate}
             onError={this.props.onError}
             className="nonpayment-date"

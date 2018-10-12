@@ -143,7 +143,7 @@ export default class ConferencesItem extends ValidationElement {
             name="Dates"
             {...this.props.Dates}
             minDate={(this.props.Birthdate || {}).date}
-            minDateEqualTo
+            minDateEqualTo={true}
             maxDate={(this.props.minDate || {}).date}
             maxDateEqualTo
             onUpdate={this.updateDates}

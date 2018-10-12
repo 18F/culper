@@ -126,7 +126,7 @@ export default class Hospitalization extends ValidationElement {
             name="TreatmentDate"
             {...this.props.TreatmentDate}
             minDate={(this.props.ApplicantBirthdate || {}).date}
-            minDateEqualTo
+            minDateEqualTo={true}
             maxDate={(this.props.minDate || {}).date}
             maxDateEqualTo
             receiveProps={this.props.receiveProps}

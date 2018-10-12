@@ -314,7 +314,7 @@ export default class MilitaryService extends ValidationElement {
             {...this.props.Dates}
             label={i18n.t('military.history.label.dates')}
             minDate={(this.props.Birthdate || {}).date}
-            minDateEqualTo
+            minDateEqualTo={true}
             maxDate={(this.props.minDate || {}).date}
             maxDateEqualTo
             onUpdate={this.updateDates}
@@ -486,7 +486,7 @@ export default class MilitaryService extends ValidationElement {
                 name="DischargeDate"
                 {...this.props.DischargeDate}
                 className="discharge-date"
-                minDateEqualTo
+                minDateEqualTo={true}
                 hideDay={true}
                 onUpdate={this.updateDischargeDate}
                 onError={this.props.onError}

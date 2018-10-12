@@ -90,7 +90,7 @@ export default class AdditionalActivity extends ValidationElement {
                 name="DatesEmployed"
                 bind={true}
                 minDate={(this.props.Birthdate || {}).date}
-                minDateEqualTo
+                minDateEqualTo={true}
                 maxDate={(this.props.minDate || {}).date}
                 maxDateEqualTo
                 allowPresent={false}

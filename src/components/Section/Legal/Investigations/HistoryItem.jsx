@@ -177,7 +177,7 @@ export default class HistoryItem extends ValidationElement {
               {...this.props.Completed}
               onUpdate={this.updateCompleted}
               onError={this.props.onError}
-              minDateEqualTo
+              minDateEqualTo={true}
               className="legal-investigations-history-completed"
               required={this.props.required}
             />
@@ -221,7 +221,7 @@ export default class HistoryItem extends ValidationElement {
               {...this.props.Granted}
               onUpdate={this.updateGranted}
               minDate={(this.props.Completed || {}).date}
-              minDateEqualTo
+              minDateEqualTo={true}
               onError={this.props.onError}
               className="legal-investigations-history-granted"
               required={this.props.required}

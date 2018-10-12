@@ -81,7 +81,7 @@ export default class Order extends ValidationElement {
             {...this.props.Occurred}
             label={i18n.t(`psychological${prefix}.label.occurred`)}
             hideDay={true}
-            minDateEqualTo
+            minDateEqualTo={true}
             onUpdate={this.updateOccurred}
             onError={this.props.onError}
             required={this.props.required}

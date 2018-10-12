@@ -113,7 +113,9 @@ export default class FutureBenefit extends ValidationElement {
             name="Begin"
             className="begin"
             {...this.props.Begin}
-            label={i18n.t('foreign.activities.benefit.future.label.begin')} 
+            label={i18n.t('foreign.activities.benefit.future.label.begin')}
+            minDate={(Date.now || {}).date}
+            minDateEqualTo={true}={true}
             onUpdate={this.updateBegin}
             onError={this.props.onError}
             noMaxDate={true}

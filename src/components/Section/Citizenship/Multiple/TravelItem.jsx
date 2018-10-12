@@ -57,7 +57,7 @@ export default class TravelItem extends ValidationElement {
             className="travel-item-dates"
             {...this.props.Dates}
             minDate={(this.props.Birthdate || {}).date}
-            minDateEqualTo
+            minDateEqualTo={true}
             maxDate={(this.props.Birthdate || {}).date}
             maxDateEqualTo
             onUpdate={this.updateDates}

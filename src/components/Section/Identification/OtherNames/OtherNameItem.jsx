@@ -89,7 +89,7 @@ export default class OtherNameItem extends React.Component {
             name="DatesUsed"
             {...this.props.DatesUsed}
             onUpdate={this.updateDatesUsed}
-            minDateEqualTo
+            minDateEqualTo={true}
             maxDateEqualTo
             onError={this.props.onError}
             required={this.props.required}

@@ -74,7 +74,7 @@ export default class Procedure extends ValidationElement {
             name="Date"
             {...this.props.Date}
             className="procedure-date"
-            minDateEqualTo
+            minDateEqualTo={true}
             hideDay={true}
             onUpdate={this.updateDate}
             onError={this.props.onError}

@@ -67,7 +67,7 @@ export default class DrugClearanceUse extends ValidationElement {
             className="involvement-dates"
             {...this.props.InvolvementDates}
             minDate={(this.props.Birthdate || {}).date}
-            minDateEqualTo
+            minDateEqualTo={true}
             maxDate={(this.props.MinDate || {}).date}
             maxDateEqualTo
             onUpdate={this.updateInvolvementDates}

@@ -226,7 +226,7 @@ export default class EducationItem extends ValidationElement {
               {...this.props.Dates}
               label={i18n.t('history.education.label.dates')}
               minDate={(this.props.Birthdate || {}).date}
-              minDateEqualTo
+              minDateEqualTo={true}
               maxDate={(this.props.Birthdate || {}).date}
               maxDateEqualTo
               onUpdate={this.updateDates}

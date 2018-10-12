@@ -159,7 +159,7 @@ export default class Diagnosis extends ValidationElement {
             receiveProps={this.props.receiveProps}
             onUpdate={this.updateDiagnosed}
             minDate={(this.props.Birthdate || {}).date}
-            minDateEqualTo
+            minDateEqualTo={true}
             maxDate={(this.props.minDate || {}).date}
             maxDateEqualTo
             onError={this.props.onError}

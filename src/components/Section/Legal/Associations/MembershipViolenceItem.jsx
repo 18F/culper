@@ -137,7 +137,7 @@ export default class MembershipViolenceItem extends ValidationElement {
           <DateRange
             name="Dates"
             {...this.props.Dates}
-            minDateEqualTo
+            minDateEqualTo={true}
             maxDateEqualTo
             onUpdate={this.updateDates}
             onError={this.props.onError}

@@ -382,7 +382,7 @@ export default class EmploymentItem extends ValidationElement {
             {...this.props.Dates}
             receiveProps={this.props.receiveProps}
             minDate={(this.props.Birthdate || {}).date}
-            minDateEqualTo
+            minDateEqualTo={true}
             maxDate={(this.props.minDate || {}).date}
             maxDateEqualTo
             onUpdate={this.updateDates}

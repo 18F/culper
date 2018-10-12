@@ -118,7 +118,7 @@ export default class CitizenshipItem extends ValidationElement {
             className="citizenship-dates"
             maxDate={(this.props.minDate || {}).date}
             maxDateEqualTo
-            minDateEqualTo
+            minDateEqualTo={true}
             onUpdate={this.updateDates}
             onError={this.props.onError}
             required={this.props.required}

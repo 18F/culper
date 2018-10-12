@@ -63,7 +63,7 @@ export default class UnauthorizedItem extends ValidationElement {
           <DateControl
             name="Date"
             {...this.props.Date}
-            minDateEqualTo
+            minDateEqualTo={true}
             onUpdate={this.updateDate}
             onError={this.props.onError}
             className="legal-technology-unauthorized-date"
