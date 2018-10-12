@@ -61,7 +61,8 @@
     z-index: 9999;
 
     .modal {
-      overflow-y: visible;
+      overflow-y: auto;
+      overflow-x: hidden;
       background-color: rgba(255, 255, 255, 1) !important;
 
       .modal-wrap {
