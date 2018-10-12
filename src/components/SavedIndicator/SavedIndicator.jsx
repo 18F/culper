@@ -55,9 +55,16 @@ class SavedIndicator extends React.Component {
       return
     }
 
-    saveSection(application, section, subsection, this.props.dispatch, () => {
-      self.setState({ animate: false })
-    })
+    self.setState({ animate: true })
+
+    saveSection(application, section, subsection, this.props.dispatch)
+      .then(() => {
+        self.setState({ animate: false })
+      })
+      .catch(error => {
+        self.setState({ animate: false })
+        alert(error)
+      })
   }
 
   mouseEnter(event) {
@@ -126,7 +133,10 @@ class SavedIndicator extends React.Component {
       return null
     }
 
-    const klass = `saved-indicator ${this.state.animate ? 'active' : ''}`.trim()
+    const { saveError } = this.props
+    const klass = `saved-indicator ${this.state.animate ? 'active' : ''} ${
+      !this.state.animate && saveError ? 'error' : ''
+    }`.trim()
     const klassCircle = `spinner-icon ${
       this.state.animate ? 'spin' : ''
     }`.trim()
@@ -137,7 +147,9 @@ class SavedIndicator extends React.Component {
     // Determine the appropriate response for screen readers.
     let talkback = null
     if (!this.state.animate) {
-      if (this.state.hover) {
+      if (saveError) {
+        talkback = i18n.t('saved.error.message')
+      } else if (this.state.hover) {
         talkback = i18n.t('saved.action')
       } else {
         talkback = `${i18n.t('saved.saved')} ${this.calculateTime()}. ${i18n.t(
@@ -166,12 +178,16 @@ class SavedIndicator extends React.Component {
             <Show when={this.state.animate}>
               <strong className="one-line">{i18n.t('saved.saving')}</strong>
             </Show>
-            <Show when={!this.state.animate && this.state.hover}>
+            <Show when={!this.state.animate && this.state.hover && !saveError}>
               <strong className="one-line">{i18n.t('saved.action')}</strong>
             </Show>
-            <Show when={!this.state.animate && !this.state.hover}>
+            <Show when={!this.state.animate && !this.state.hover && !saveError}>
               <strong>{i18n.t('saved.saved')}</strong>
               <span className="time">{this.calculateTime()}</span>
+            </Show>
+            <Show when={!this.state.animate && saveError}>
+              <strong>{i18n.t('saved.error.title')}</strong>
+              <span className="time">{i18n.t('saved.error.subtitle')}</span>
             </Show>
           </span>
         </button>
@@ -187,7 +203,8 @@ function mapStateToProps(state) {
   return {
     section: section,
     app: app,
-    saved: settings.saved || new Date()
+    saved: settings.saved || new Date(),
+    saveError: settings.saveError
   }
 }
 
