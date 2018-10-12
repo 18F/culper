@@ -201,7 +201,7 @@ export default class TravelQuestions extends ValidationElement {
             {...this.props.Dates}
             className="foreign-travel-dates"
             minDate={(this.props.Birthdate || {}).date}
-            minDateEqualTo={true}={true}
+            minDateEqualTo={true}
             maxDate={(this.props.minDate || {}).date}
             maxDateEqualTo={true}
             onUpdate={this.updateDates}
