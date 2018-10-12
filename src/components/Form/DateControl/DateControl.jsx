@@ -269,30 +269,10 @@ export default class DateControl extends ValidationElement {
       let props = null
       if (date && !existingErr) {
         // Prepare some properties for the error testing
-        const buildValidators = (props) => {
-          const { minDate, ...rest } = props
-          let validators;
-
-          if (Array.isArray(minDate)) {
-            validators = minDate.map((minDateObj) => {
-              return new DateControlValidator({
-                ...{...rest, ...minDateObj},
-                ...this.state
-              })
-            })
-          } else {
-            validators = [
-              new DateControlValidator({ ...minDate, ...rest, ...this.state })
-            ]
-          }
-          
-          return validators
-        };
-
         props = {
           ...this.props,
           ...this.state,
-          validator: buildValidators(this.props)
+          validator: new DateControlValidator({ ...this.props, ...this.state })
         }
       }
 
@@ -517,7 +497,7 @@ DateControl.errors = [
       if (!value || isNaN(value)) {
         return null
       }
-      return value && props.validator.every(validator => validator.validMaxDate())
+      return value && props.validator.validMaxDate()
     }
   },
   {
@@ -526,7 +506,7 @@ DateControl.errors = [
       if (!value || isNaN(value)) {
         return null
       }
-      return value && props.validator.every(validator => validator.validMinDate())
+      return value && props.validator.validMinDate()
     }
   }
 ]
