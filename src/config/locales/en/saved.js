@@ -11,5 +11,10 @@ export const saved = {
   hours: 'hours',
   day: 'day',
   days: 'days',
-  ago: 'ago'
+  ago: 'ago',
+  error: {
+    title: 'Error',
+    subtitle: 'Try again',
+    message: 'There was a problem saving your data, please try again.'
+  }
 }

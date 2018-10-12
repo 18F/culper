@@ -68,7 +68,11 @@ export class TimeoutWarning extends React.Component {
           },
           () => {
             // Save the form
-            saveSection(application, section, subsection, dispatcher)
+            saveSection(application, section, subsection, dispatcher).catch(
+              error => {
+                alert(error)
+              }
+            )
             // Change the timer interval
             this.resetInterval()
           }
