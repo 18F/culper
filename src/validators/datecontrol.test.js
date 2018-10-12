@@ -51,7 +51,9 @@ describe('date control validator', function() {
     ]
 
     tests.forEach(test => {
-      expect(new DateControlValidator(test.data).isValid()).toBe(test.expected)
+      expect(new DateControlValidator(test.data).validDate()).toBe(
+        test.expected
+      )
     })
   })
 
