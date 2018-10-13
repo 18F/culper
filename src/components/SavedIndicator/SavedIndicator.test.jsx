@@ -5,6 +5,7 @@ import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
 import SavedIndicator from './SavedIndicator'
+import { i18n } from '../../config'
 
 describe('The saved indicator component', () => {
   // Setup
@@ -24,81 +25,76 @@ describe('The saved indicator component', () => {
     window.token = 'fake-token'
   })
 
-  it('visible when authenticated', () => {
-    const store = mockStore({ authentication: { authenticated: true } })
+  it('catches failed save', () => {
+    const store = mockStore({
+      authentication: {
+        authenticated: true
+      },
+      application: {
+        Settings: {
+          saveError: true
+        }
+      }
+    })
     const component = mount(
       <Provider store={store}>
         <SavedIndicator />
       </Provider>
     )
-    expect(component.find('button').length).toEqual(1)
+    expect(component.find('strong').text()).toContain(
+      i18n.t('saved.error.title')
+    )
   })
 
-  it('displays in seconds if under a minute', () => {
-    const elapsed = 10 * 1000
-    const store = mockStore({ authentication: { authenticated: true } })
-    const component = mount(
-      <Provider store={store}>
-        <SavedIndicator elapsed={elapsed} />
-      </Provider>
-    )
-    expect(component.find('.time').text()).toContain('sec')
-  })
+  describe('when authenticated', () => {
+    let createComponent
 
-  it('displays in minutes if under an hour', () => {
-    const elapsed = 60 * 1000
-    const store = mockStore({ authentication: { authenticated: true } })
-    const component = mount(
-      <Provider store={store}>
-        <SavedIndicator elapsed={elapsed} />
-      </Provider>
-    )
-    expect(component.find('.time').text()).toContain('min')
-  })
+    beforeEach(() => {
+      const store = mockStore({ authentication: { authenticated: true } })
+      createComponent = (elapsed = 0) =>
+        mount(
+          <Provider store={store}>
+            <SavedIndicator elapsed={elapsed} />
+          </Provider>
+        )
+    })
 
-  it('displays in hours if under a day', () => {
-    const elapsed = 60 * 60 * 1000
-    const store = mockStore({ authentication: { authenticated: true } })
-    const component = mount(
-      <Provider store={store}>
-        <SavedIndicator elapsed={elapsed} />
-      </Provider>
-    )
-    expect(component.find('.time').text()).toContain('hour')
-  })
+    it('visible when authenticated', () => {
+      const component = createComponent()
+      expect(component.find('button').length).toEqual(1)
+    })
 
-  it('displays in days if greater than 24 hours', () => {
-    const elapsed = 24 * 60 * 60 * 1000
-    const store = mockStore({ authentication: { authenticated: true } })
-    const component = mount(
-      <Provider store={store}>
-        <SavedIndicator elapsed={elapsed} />
-      </Provider>
-    )
-    expect(component.find('.time').text()).toContain('day')
-  })
+    it('displays in seconds if under a minute', () => {
+      const elapsed = 10 * 1000
+      const component = createComponent(elapsed)
+      expect(component.find('.time').text()).toContain('sec')
+    })
 
-  it('triggers save', () => {
-    const elapsed = 24 * 60 * 60 * 1000
-    const store = mockStore({ authentication: { authenticated: true } })
-    const component = mount(
-      <Provider store={store}>
-        <SavedIndicator elapsed={elapsed} />
-      </Provider>
-    )
-    component.find('button').simulate('click')
-  })
+    it('displays in minutes if under an hour', () => {
+      const elapsed = 60 * 1000
+      const component = createComponent(elapsed)
+      expect(component.find('.time').text()).toContain('min')
+    })
 
-  it('mouse in and out', () => {
-    const store = mockStore({ authentication: { authenticated: true } })
-    const component = mount(
-      <Provider store={store}>
-        <SavedIndicator interval={1} />
-      </Provider>
-    )
-    component.find('button').simulate('mouseenter')
-    expect(component.find('SavedIndicator').getNode().state.hover).toBe(true)
-    component.find('button').simulate('mouseleave')
-    expect(component.find('SavedIndicator').getNode().state.hover).toBe(false)
+    it('displays in hours if under a day', () => {
+      const elapsed = 60 * 60 * 1000
+      const component = createComponent(elapsed)
+      expect(component.find('.time').text()).toContain('hour')
+    })
+
+    it('displays in days if greater than 24 hours', () => {
+      const elapsed = 24 * 60 * 60 * 1000
+      const component = createComponent(elapsed)
+      expect(component.find('.time').text()).toContain('day')
+    })
+
+    it('mouse in and out', () => {
+      const store = mockStore({ authentication: { authenticated: true } })
+      const component = createComponent()
+      component.find('button').simulate('mouseenter')
+      expect(component.find('SavedIndicator').getNode().state.hover).toBe(true)
+      component.find('button').simulate('mouseleave')
+      expect(component.find('SavedIndicator').getNode().state.hover).toBe(false)
+    })
   })
 })

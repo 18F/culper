@@ -797,6 +797,14 @@ export const error = {
       }
     }
   },
+  divorce: {
+   date: {
+      min: {
+        title: 'There is a problem with the date',
+        message: 'The date should be after the date your civil marriage, civil union, or domestic partnership was legally recognized.'
+      }
+    }
+  },
   currency: {
     max: {
       title: 'Currency value is too large',
