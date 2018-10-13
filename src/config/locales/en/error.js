@@ -179,7 +179,7 @@ export const error = {
     },
     min: {
       title: 'There is a problem with the date',
-      message: 'The date should be after your date of birthXXX.'
+      message: 'The date should be after your date of birth.'
     },
     required: {
       title: 'Your response is required',
