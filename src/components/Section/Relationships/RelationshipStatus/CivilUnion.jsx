@@ -355,8 +355,6 @@ export default class CivilUnion extends ValidationElement {
             <DateControl
               name="enteredCivilUnion"
               className="entered"
-              // minDate={[this.props.Birthdate, this.props.ApplicantBirthdate]}
-              minDateEqualTo={true}
               {...this.props.EnteredCivilUnion}
               onUpdate={this.updateEnteredCivilUnion}
               onError={this.props.onError}

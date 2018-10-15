@@ -215,7 +215,6 @@ export default class Divorce extends React.Component {
           <DateControl
             name="Recognized"
             className="recognized"
-            minDateEqualTo={true}
             {...this.props.Recognized}
             onUpdate={this.updateRecognized}
             onError={this.props.onError}

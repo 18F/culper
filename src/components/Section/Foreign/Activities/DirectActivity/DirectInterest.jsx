@@ -312,7 +312,7 @@ export default class DirectInterest extends ValidationElement {
             onUpdate={this.updateRelinquishedNotApplicable}>
             <DateControl
               name="Relinquished"
-              minDate={(this.props.Birthdate || {}).date}
+              minDate={(this.props.Acquired || {}).date}
               minDateEqualTo={true}
               className="relinquished"
               {...this.props.Relinquished}

@@ -83,9 +83,7 @@ export default class PrescriptionUse extends ValidationElement {
             name="InvolvementDates"
             className="involvement-dates"
             {...this.props.InvolvementDates}
-            minDate={(this.props.ApplicantBirthdate || {}).date}
             minDateEqualTo={true}
-            maxDateEqualTo 
             onUpdate={this.updateInvolvementDates}
             onError={this.props.onError}
             required={this.props.required}

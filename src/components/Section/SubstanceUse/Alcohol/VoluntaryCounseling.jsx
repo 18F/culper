@@ -86,7 +86,6 @@ export default class VoluntaryCounseling extends ValidationElement {
             name="CounselingDates"
             className="counseling-dates"
             minDateEqualTo={true}
-            maxDateEqualTo
             {...this.props.CounselingDates}
             onUpdate={this.updateCounselingDates}
             onError={this.props.onError}

@@ -125,10 +125,7 @@ export default class Hospitalization extends ValidationElement {
           <DateRange
             name="TreatmentDate"
             {...this.props.TreatmentDate}
-            minDate={(this.props.ApplicantBirthdate || {}).date}
             minDateEqualTo={true}
-            maxDate={(this.props.minDate || {}).date}
-            maxDateEqualTo
             receiveProps={this.props.receiveProps}
             onUpdate={this.updateTreatmentDate}
             onError={this.props.onError}

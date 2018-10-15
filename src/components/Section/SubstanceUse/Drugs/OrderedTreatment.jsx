@@ -298,10 +298,8 @@ export default class OrderedTreatment extends ValidationElement {
               <DateRange
                 name="TreatmentDates"
                 className="treatment-dates"
-                {...this.props.TreatmentDates}
-                minDate={(this.props.ApplicantBirthdate || {}).date}
+                {...this.props.TreatmentDates}                
                 minDateEqualTo={true}
-                maxDateEqualTo
                 onUpdate={this.updateTreatmentDates}
                 onError={this.props.onError}
                 required={this.props.required}

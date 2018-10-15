@@ -226,10 +226,7 @@ export default class ForeignService extends ValidationElement {
           <DateRange
             name="Dates"
             className="foreign-service-dates"
-            minDate={(this.props.Birthdate || {}).date}
             minDateEqualTo={true}
-            maxDate={(this.props.minDate || {}).date}
-            maxDateEqualTo
             {...this.props.Dates}
             onUpdate={this.updateDates}
             onError={this.props.onError}

@@ -56,7 +56,6 @@ export default class AdvocatingItem extends ValidationElement {
             name="Dates"
             {...this.props.Dates}
             minDateEqualTo={true}
-            maxDateEqualTo
             onUpdate={this.updateDates}
             onError={this.props.onError}
             className="legal-associations-advocating-dates"
