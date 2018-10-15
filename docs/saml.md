@@ -60,5 +60,6 @@ Note this is using an off-the shelf WSO2 server, which won't match production in
 
 * It's not hardened
 * Using an embedded database rather than an external one
+    * **NOTE:** *If you delete the SAML server container the SAML Provider data will be lost along with the embedded database*
 * The WSO2 verison may not match
 * etc.
