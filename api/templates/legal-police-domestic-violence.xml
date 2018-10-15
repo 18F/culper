@@ -8,13 +8,7 @@
     <Court>
       <Location>
         <Place>
-          <!-- XXX https://github.com/18F/e-QIP-prototype/issues/755 -->
-          {{- $usAddress := addressIn $Item.CourtAddress "United States" }}
-          {{if $usAddress}}
-          {{locationOverrideLayout $Item.CourtAddress "US City, State, Zipcode International city"}}
-          {{else}}
-          {{locationOverrideLayout $Item.CourtAddress "City, Country"}}
-          {{end}}
+          {{location $Item.CourtAddress }}
         </Place>
       </Location>
       <Name>{{text $Item.CourtName}}</Name>

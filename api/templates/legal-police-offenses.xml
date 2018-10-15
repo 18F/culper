@@ -25,7 +25,6 @@
         <Court>
           <Location>
             <Place>
-              <!-- XXX https://github.com/18F/e-QIP-prototype/issues/755 -->
               {{location $Item.CourtAddress }}
             </Place>
           </Location>
@@ -95,7 +94,6 @@
         <Comment></Comment>
         <Location>
           <Place>
-            <!-- XXX https://github.com/18F/e-QIP-prototype/issues/755 -->
             {{location $Item.AgencyAddress }}
           </Place>
         </Location>
@@ -116,7 +114,6 @@
       </InvolveFollowingOffenses>
       <Location>
         <Place>
-          <!-- XXX https://github.com/18F/e-QIP-prototype/issues/755 -->
           {{location $Item.Address }}
         </Place>
       </Location>

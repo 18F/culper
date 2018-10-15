@@ -13295,7 +13295,7 @@
                   "CourtAddress": {
                     "type": "location",
                     "props": {
-                      "layout": "Offenes",
+                      "layout": "Offense",
                       "city": "San Jose",
                       "state": "CA",
                       "zipcode": "95002",

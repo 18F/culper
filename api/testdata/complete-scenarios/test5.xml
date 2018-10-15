@@ -4550,6 +4550,7 @@
                             <City>Monterey</City>
                             <State>CA</State>
                             <ZipCode>93940</ZipCode>
+                            <Country>United States</Country>
                           </Place>
                         </Location>
                         <Name>Monterey Criminal Court</Name>
@@ -4610,6 +4611,7 @@
                           <City>Monterey</City>
                           <State>CA</State>
                           <ZipCode>93940</ZipCode>
+                          <Country>United States</Country>
                         </Place>
                       </Location>
                       <Name>Monterey Police Department</Name>
@@ -4626,6 +4628,7 @@
                         <City>Monterey</City>
                         <State>CA</State>
                         <ZipCode>93940</ZipCode>
+                        <Country>United States</Country>
                       </Place>
                     </Location>
                     <NotConvicted>
@@ -4648,6 +4651,7 @@
                           <City>Monterey</City>
                           <State>CA</State>
                           <ZipCode>93940</ZipCode>
+                          <Country>United States</Country>
                         </Place>
                       </Location>
                       <Name>California Highway Patrol</Name>
@@ -4664,6 +4668,7 @@
                         <City>Monterey</City>
                         <State>CA</State>
                         <ZipCode>93940</ZipCode>
+                        <Country>United States</Country>
                       </Place>
                     </Location>
                     <NotConvicted>
@@ -4700,6 +4705,7 @@
                           <City>San Jose</City>
                           <State>CA</State>
                           <ZipCode>95002</ZipCode>
+                          <Country>United States</Country>
                         </Place>
                       </Location>
                       <Name>San Jose Court</Name>
@@ -4726,6 +4732,7 @@
                   <Court>
                     <Location>
                       <Place>
+                        <Street>32 Court Circle </Street>
                         <City>Monterey</City>
                         <State>CA</State>
                         <ZipCode>93940</ZipCode>
@@ -4743,6 +4750,7 @@
                   <Court>
                     <Location>
                       <Place>
+                        <Street>9889 99th Ave. </Street>
                         <City>Monterey</City>
                         <State>CA</State>
                         <ZipCode>93940</ZipCode>

@@ -15,5 +15,5 @@ export default {
   CITY_STATE_COUNTRY: 'City, State, Country',
   US_ADDRESS: 'US Address',
   STREET_CITY: 'Street, City',
-  OFFENSE: 'US City, State, Zipcode, International city country'
+  OFFENSE: 'Offense'
 }
