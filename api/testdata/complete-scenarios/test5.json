@@ -12806,7 +12806,6 @@
                     "type": "location",
                     "props": {
                       "layout": "Offense",
-                      "street": "",
                       "city": "Monterey",
                       "state": "CA",
                       "zipcode": "93940",
@@ -12817,7 +12816,6 @@
                     "type": "location",
                     "props": {
                       "layout": "Offense",
-                      "street": "",
                       "city": "Monterey",
                       "state": "CA",
                       "zipcode": "93940",
@@ -12853,7 +12851,6 @@
                     "type": "location",
                     "props": {
                       "layout": "Offense",
-                      "street": "",
                       "city": "Monterey",
                       "state": "CA",
                       "zipcode": "93940",
@@ -13034,8 +13031,7 @@
                   "Address": {
                     "type": "location",
                     "props": {
-                      "layout": "Address",
-                      "street": "392 Cross St.",
+                      "layout": "Offense",
                       "city": "Monterey",
                       "state": "CA",
                       "zipcode": "93940",
@@ -13045,8 +13041,7 @@
                   "AgencyAddress": {
                     "type": "location",
                     "props": {
-                      "layout": "Address",
-                      "street": "3173 1st St.",
+                      "layout": "Offense",
                       "city": "Monterey",
                       "state": "CA",
                       "zipcode": "93940",
@@ -13300,8 +13295,7 @@
                   "CourtAddress": {
                     "type": "location",
                     "props": {
-                      "layout": "Address",
-                      "street": "323 3rd St.",
+                      "layout": "Offenes",
                       "city": "San Jose",
                       "state": "CA",
                       "zipcode": "95002",

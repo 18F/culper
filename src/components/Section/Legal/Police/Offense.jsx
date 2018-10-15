@@ -419,7 +419,7 @@ export default class Offense extends ValidationElement {
                 label={i18n.t('legal.police.label.address')}
                 className="offense-courtaddress"
                 geocode={true}
-                layout={Location.ADDRESS}
+                layout={Location.OFFENSE}
                 addressBooks={this.props.addressBooks}
                 addressBook="Court"
                 dispatch={this.props.dispatch}
