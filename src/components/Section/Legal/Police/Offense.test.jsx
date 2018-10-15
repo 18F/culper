@@ -3,10 +3,11 @@ import { mount } from 'enzyme'
 import Offense from './Offense'
 
 describe('The offense component', () => {
-  it('no error on empty', () => {
+  it.only('no error on empty', () => {
     const expected = {
       name: 'offense'
     }
+    
     const component = mount(<Offense {...expected} />)
     expect(component.find('.offense-date').length).toEqual(1)
     expect(component.find('.offense-description').length).toEqual(1)

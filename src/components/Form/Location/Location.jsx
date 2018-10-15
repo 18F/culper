@@ -647,18 +647,16 @@ export default class Location extends ValidationElement {
         return this.renderFields(['country'])
       case Location.OFFENSE:
         return (
-          <div className="address">
-            <ToggleableLocation
-              {...this.props}
-              country={this.props.country || { value: 'United States' }}
-              domesticFields={['city', 'stateZipcode']}
-              internationalFields={['city', 'country']}
-              onBlur={this.handleBlur}
-              onUpdate={this.updateToggleableLocation}
-              onError={this.handleError}
-              required={this.props.required}
-            />
-          </div>
+          <ToggleableLocation
+            {...this.props}
+            country={this.props.country || { value: 'United States' }}
+            domesticFields={['city', 'stateZipcode']}
+            internationalFields={['city', 'country']}
+            onBlur={this.handleBlur}
+            onUpdate={this.updateToggleableLocation}
+            onError={this.handleError}
+            required={this.props.required}
+          />
         )
       case null:
       case undefined:
@@ -706,7 +704,6 @@ export default class Location extends ValidationElement {
   }
 
   render() {
-    console.log(countryValueResolver(this.props))
     const klass = `location ${this.props.className || ''}`.trim()
     return (
       <div className={klass}>
