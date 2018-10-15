@@ -463,6 +463,7 @@ export default class CivilUnion extends ValidationElement {
             labelSize="h3"
             {...this.props.Separated}
             onUpdate={this.updateSeparated}
+            minDate={(this.props.EnteredCivilUnion || {}).date}
             required={this.props.required}
             scrollIntoView={this.props.scrollIntoView}
             onError={this.props.onError}

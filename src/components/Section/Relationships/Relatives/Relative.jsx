@@ -1041,7 +1041,6 @@ export default class Relative extends ValidationElement {
                 className="relative-first-contact"
                 {...this.props.FirstContact}
                 prefix="relative"
-                minDate={(this.props.Birthdate || {}).date}
                 minDateEqualTo={true}
                 applicantBirthdate={this.props.Birthdate}
                 onError={this.props.onError}
