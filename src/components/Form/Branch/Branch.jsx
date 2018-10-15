@@ -3,35 +3,6 @@ import PropTypes from 'prop-types'
 import { i18n } from '../../../config'
 import { Field, Radio, RadioGroup } from '../../Form'
 
-const propTypes = {
-  adjustFor: PropTypes.string.isRequired,
-  children: PropTypes.oneOfType([
-    PropTypes.element,
-    PropTypes.array,
-    PropTypes.object
-  ]),
-  className: PropTypes.string,
-  confirmation: PropTypes.string,
-  disabled: PropTypes.bool,
-  help: PropTypes.string,
-  label: PropTypes.string,
-  labelSize: PropTypes.string,
-  name: PropTypes.string,
-  noAriaLabel: PropTypes.string,
-  noLabel: PropTypes.string,
-  noValue: PropTypes.string,
-  onError: PropTypes.func,
-  onUpdate: PropTypes.func,
-  optional: PropTypes.bool,
-  required: PropTypes.bool,
-  scrollIntoView: PropTypes.bool,
-  value: PropTypes.string,
-  warning: PropTypes.bool,
-  yesAriaLabel: PropTypes.string,
-  yesLabel: PropTypes.string,
-  yesValue: PropTypes.string,
-}
-
 /**
  * Branch is a component that stores whether Yes/No options were selected. It contains a callback
  * function that can be used to be upated when a button is clicked. The button labels and values are
@@ -109,8 +80,6 @@ export default class Branch extends React.Component {
     )
   }
 }
-
-Branch.propTypes = propTypes;
 
 // Default values for properties that are not specified
 Branch.defaultProps = {

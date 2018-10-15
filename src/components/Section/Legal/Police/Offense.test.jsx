@@ -3,7 +3,7 @@ import { mount } from 'enzyme'
 import Offense from './Offense'
 
 describe('The offense component', () => {
-  it.only('no error on empty', () => {
+  it('no error on empty', () => {
     const expected = {
       name: 'offense'
     }
