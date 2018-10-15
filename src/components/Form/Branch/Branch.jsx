@@ -5,7 +5,13 @@ import { Field, Radio, RadioGroup } from '../../Form'
 
 const propTypes = {
   adjustFor: PropTypes.string.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.array,
+    PropTypes.object
+  ]),
   className: PropTypes.string,
+  confirmation: PropTypes.string,
   disabled: PropTypes.bool,
   help: PropTypes.string,
   label: PropTypes.string,
@@ -20,9 +26,10 @@ const propTypes = {
   required: PropTypes.bool,
   scrollIntoView: PropTypes.bool,
   value: PropTypes.string,
+  warning: PropTypes.string,
   yesAriaLabel: PropTypes.string,
   yesLabel: PropTypes.string,
-  yesValue: PropTypes.string
+  yesValue: PropTypes.string,
 }
 
 /**
