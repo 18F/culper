@@ -63,7 +63,7 @@ describe('Date range validator', function() {
           },
           present: false
         },
-        expected: true
+        expected: false
       }
     ]
 
