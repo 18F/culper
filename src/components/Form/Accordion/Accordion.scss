@@ -173,17 +173,17 @@ $breakpoints: (
       }
     }
 
-.summary-item-content {
-  .context {
-    display: inline-block;
-    max-width: 70%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    margin-bottom: -.5rem;
-    vertical-align: text-top;
-  }
-}
+    .summary-item-content {
+      .context {
+        display: inline-block;
+        max-width: 70%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-bottom: -.5rem;
+        vertical-align: text-top;
+      }
+    }
 
     .left {
       color: #000;
