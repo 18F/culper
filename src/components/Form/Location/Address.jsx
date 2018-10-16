@@ -50,18 +50,6 @@ export default class Address extends ValidationElement {
     this.blurForceUpdate = this.blurForceUpdate.bind(this);
   }
 
-  componentDidMount() {
-    /**
-     * On scroll, if the user has filled out the address fields AND the data has not been
-     * validated, open a USPS address verification modal
-     */
-    window.addEventListener('scroll', this.blurForceUpdate)
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('scroll', this.blurForceUpdate)
-  }
-
   onAddressUpdate(nextValue) {
     const { name, value } = nextValue;
 
