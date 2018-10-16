@@ -70,7 +70,7 @@ lint-go:
 test: test-react test-go
 test-react:
 	$(info Running React test suite)
-	@docker-compose run --rm js yarn test $(FILES)
+	@docker-compose run --rm js yarn test $(COVERAGE) $(FILES)
 test-go:
 	$(info Running Go test suite)
 	@docker-compose run --rm api make test
