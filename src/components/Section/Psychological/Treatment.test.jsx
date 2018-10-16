@@ -16,7 +16,7 @@ describe('The Treatment component', () => {
     const component = mount(<Treatment onUpdate={onUpdate} />)
     expect(component.find('.treatment').length).toBe(1)
     component.find('input[name="Name"]').simulate('change')
-    component.find('input[name="address"]').simulate('change')
+    component.find('input[name="street"]').simulate('change')
     component.find('input[name="domestic_first"]').simulate('change')
     expect(updates).toBe(3)
   })

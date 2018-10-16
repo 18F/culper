@@ -195,7 +195,7 @@ export default class LocationValidator {
   }
 
   isInternational() {
-    return !!this.validCountry() && !this.isDomestic() && !this.isPostOffice()
+    return this.validCountry() && !this.isDomestic() && !this.isPostOffice()
   }
 
   validLocation() {
