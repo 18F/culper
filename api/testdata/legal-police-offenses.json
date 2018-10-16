@@ -51,8 +51,6 @@
                 "type": "location",
                 "props": {
                   "layout": "Offense",
-                  "street": "",
-                  "street2": "",
                   "city": "Arlington",
                   "state": "VA",
                   "zipcode": "22202",
@@ -77,8 +75,6 @@
                 "type": "location",
                 "props": {
                   "layout": "Offense",
-                  "street": "",
-                  "street2": "",
                   "city": "Arlington",
                   "state": "VA",
                   "zipcode": "22202",
@@ -109,8 +105,6 @@
                 "type": "location",
                 "props": {
                   "layout": "Offense",
-                  "street": "",
-                  "street2": "",
                   "city": "Arlington",
                   "state": "VA",
                   "zipcode": "22202",
