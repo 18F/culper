@@ -2,7 +2,7 @@ import React from 'react'
 import { i18n } from '../../../config'
 import ValidationElement from '../ValidationElement'
 import Street from '../Street'
-import MilitaryState from '../MilitaryState'
+import State from '../State'
 import City from '../City'
 import Country from '../Country'
 import ZipCode from '../ZipCode'
@@ -504,7 +504,7 @@ export default class Address extends ValidationElement {
                   disabled={this.props.disabled}
                 />
                 <div className="state-zip-wrap">
-                  <MilitaryState
+                  <State
                     name="state"
                     className="state required"
                     label={this.props.stateLabel}
