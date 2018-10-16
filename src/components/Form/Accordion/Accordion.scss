@@ -14,17 +14,17 @@ $breakpoints: (
   452px: 0.76
 );
 
-@mixin truncate-at($width) {
-  &.at-#{$width} {
-    max-width: $width + rem;
-
-    @each $bp, $adjuster in $breakpoints {
-      @media only screen and (max-width: $bp) {
-        max-width: ($width - ($width * $adjuster)) + rem;
-      }
-    }
-  }
-}
+// @mixin truncate-at($width) {
+//   &.at-#{$width} {
+//     max-width: $width + rem;
+//
+//     @each $bp, $adjuster in $breakpoints {
+//       @media only screen and (max-width: $bp) {
+//         max-width: ($width - ($width * $adjuster)) + rem;
+//       }
+//     }
+//   }
+// }
 
 @keyframes openbox {
   0% {
@@ -55,7 +55,7 @@ $breakpoints: (
 
 .accordion {
   background-color: #e5e5e5;
-  padding: 2rem 1rem;
+  padding: 1rem;
 
   > .caption {
     display: block;
@@ -75,8 +75,6 @@ $breakpoints: (
   > strong {
     display: block;
     line-height: 5rem;
-    min-height: 5rem;
-    padding: 0 10%;
 
     /* For screen readers we want the text to be "navigatable"
        but for non-screenreaders do not display it */
@@ -87,13 +85,8 @@ $breakpoints: (
     }
   }
 
-  .items {
-    line-height: 7.2rem;
-  }
-
   .item {
     background-color: #fff;
-    min-height: 7.2rem;
     margin-top: 0.8rem;
 
     .details {
@@ -131,7 +124,7 @@ $breakpoints: (
 
   .byline {
     width: 100%;
-    padding: 1rem 10%;
+    padding: 1rem;
     transition: border-left-color 0.3s;
     border-right: 0.4rem solid #fff;
 
@@ -159,6 +152,7 @@ $breakpoints: (
   .summary {
     display: table;
     width: 100%;
+    transition: box-shadow 0.3s, color 0.3s;
 
     .left,
     .right {
@@ -169,19 +163,20 @@ $breakpoints: (
       overflow: hidden;
       vertical-align: top;
       transition: box-shadow 0.3s, color 0.3s;
-      box-shadow: 0 0 0 0 rgba(32, 84, 146, 0.6);
+      padding: 2rem 1rem 1rem;
 
       &:hover {
-        box-shadow: 0 0 10px 0 rgba(32, 84, 146, 0.6);
+        box-shadow: 6px 1px 13px -3px rgba(0, 0, 0, 0.4);
       }
 
       .button-with-icon {
         display: inline-block;
         text-align: center;
         width: 7rem;
-        vertical-align: text-bottom;
+        vertical-align: text-top;
         border: none !important;
-        margin-top: 1.9rem;
+        top: -.5rem;
+        position: relative;
 
         > * {
           display: block;
@@ -190,13 +185,24 @@ $breakpoints: (
       }
     }
 
+.summary-item-content {
+  .context {
+    display: inline-block;
+    max-width: 70%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: -.5rem;
+    vertical-align: text-top;
+  }
+}
+
     .left {
       color: #000;
-      width: 80%;
-      padding-left: 10%;
-      text-overflow: ellipsis;
+      width: 100%;
       transition: border-left-color 0.3s;
       border-left: 0.4rem solid #fff;
+      padding-left: 2.4rem;
 
       &.open {
         border-left-color: $eapp-blue;
@@ -239,26 +245,11 @@ $breakpoints: (
         }
 
         > span:nth-of-type(2) {
-          > strong {
-            margin-bottom: 0.6rem;
-          }
 
           > strong,
           > strong * {
-            display: inline-block;
-            max-width: 53rem;
-            vertical-align: middle;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-
             &.italic {
               font-style: italic;
-            }
-
-            // Adjust truncation for various lengths of the content
-            @for $i from 1 through 64 {
-              @include truncate-at($i);
             }
 
             p {
@@ -275,7 +266,6 @@ $breakpoints: (
         > .dates {
           float: right;
           text-align: right;
-          height: 4.9rem;
 
           // Hide on smaller screens to allow more context
           @media only screen and (max-width: 650px) {
@@ -288,10 +278,11 @@ $breakpoints: (
       }
 
       .svg.incomplete {
-        height: 1.6rem;
+        height: 1.9rem;
         width: auto;
-        margin-right: 1rem;
-        margin-left: -2.6rem;
+        margin-right: 1.5rem;
+        margin-left: 0;
+        margin-bottom: -.3rem;
       }
 
       &:hover {
@@ -313,8 +304,6 @@ $breakpoints: (
 
     .right {
       color: #6a6a6a;
-      width: 20%;
-      padding-left: 0.5rem;
 
       &:hover {
         color: $eapp-red;
@@ -397,18 +386,10 @@ button.usa-button-outline {
         .left.open {
           width: 90%;
           transition: width 300ms ease-out;
-
-          > a,
-          > span > span > strong,
-          > span > span {
-            max-height: 3rem;
-          }
-
           vertical-align: middle;
-          line-height: 3rem;
 
           .button-with-icon {
-            margin-top: 0.7rem;
+            margin-top: 1rem;
             margin-left: 2rem;
 
             span.toggle {
