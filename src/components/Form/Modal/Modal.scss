@@ -24,16 +24,17 @@
 
   .modal-content {
     background-color: #fff;
-    margin: 0 auto;
+    margin: 10rem auto;
     padding: 20px;
     border: 1px solid $eapp-grey-lightest;
-    box-shadow: 5px 5px 5px $eapp-grey-light;
+    box-shadow: 5px 5px 5px #3c3c3c;
+    position: relative;
 
     > a {
       display: block;
-      position: relative;
-      top: -3.3rem;
-      right: -60.5rem;
+      position: absolute;
+      top: -1.5rem;
+      right: -1.5rem;
       width: 2.6rem;
 
       > .svg {
