@@ -14,18 +14,6 @@ $breakpoints: (
   452px: 0.76
 );
 
-// @mixin truncate-at($width) {
-//   &.at-#{$width} {
-//     max-width: $width + rem;
-//
-//     @each $bp, $adjuster in $breakpoints {
-//       @media only screen and (max-width: $bp) {
-//         max-width: ($width - ($width * $adjuster)) + rem;
-//       }
-//     }
-//   }
-// }
-
 @keyframes openbox {
   0% {
     max-height: 0;
