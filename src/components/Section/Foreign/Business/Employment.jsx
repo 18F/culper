@@ -2,7 +2,7 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import schema from '../../../../schema'
 import validate from '../../../../validators'
-import { Summary, DateSummary } from '../../../Summary'
+import { Summary, DateSummary, NameSummary } from '../../../Summary'
 import {
   ForeignBusinessEmploymentValidator,
   ForeignBusinessEmploymentItemValidator
@@ -42,14 +42,15 @@ export default class Employment extends SubsectionElement {
   }
 
   summary(item, index) {
-    const obj = item || {}
-    const date = DateSummary(item.Date)
-    const job = `${(obj.Description || {}).value || ''}`.trim() || ''
+    const o = (item || {}).Item || {}
+    const date = DateSummary(o.Dates)
+    const name = NameSummary(o.Name)
+    const type = i18n.t('foreign.business.employment.collection.summary.item')
 
     return Summary({
       type: i18n.t('foreign.business.employment.collection.summary.item'),
       index: index,
-      left: job,
+      left: name,
       right: date,
       placeholder: i18n.t(
         'foreign.business.employment.collection.summary.unknown'

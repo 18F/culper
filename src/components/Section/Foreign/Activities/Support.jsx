@@ -42,7 +42,9 @@ export default class Support extends SubsectionElement {
   }
 
   summary(item, index) {
-    const name = NameSummary((item || {}).Name)
+    const o = (item || {}).Item || {}
+    const name = NameSummary(o.Name)
+    const type = i18n.t('foreign.activities.support.collection.summary.item')
     return Summary({
       type: i18n.t('foreign.activities.support.collection.summary.item'),
       index: index,
