@@ -45,7 +45,6 @@ export default class Employment extends SubsectionElement {
     const o = (item || {}).Item || {}
     const date = DateSummary(o.Dates)
     const name = NameSummary(o.Name)
-    const type = i18n.t('foreign.business.employment.collection.summary.item')
 
     return Summary({
       type: i18n.t('foreign.business.employment.collection.summary.item'),
