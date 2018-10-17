@@ -57,6 +57,7 @@ func (service SaveHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	entity, err := payload.Entity()
 	if err != nil {
 		service.Log.WarnError(api.PayloadEntityError, err, api.LogFields{})
+<<<<<<< HEAD
 		RespondWithStructuredError(w, api.PayloadEntityError, http.StatusBadRequest)
 		return
 	}
@@ -104,4 +105,18 @@ func (service SaveHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
+=======
+		RespondWithStructuredError(w, api.PayloadEntityError, http.StatusInternalServerError)
+		return
+	}
+
+	// Save to storage and report any errors
+	if _, err = entity.Save(service.Database, account.ID); err != nil {
+		service.Log.WarnError(api.EntitySaveError, err, api.LogFields{})
+		RespondWithStructuredError(w, api.EntitySaveError, http.StatusInternalServerError)
+		return
+	}
+
+	EncodeErrJSON(w, nil)
+>>>>>>> First stage of error codes for save.go
 }
