@@ -656,7 +656,7 @@ export default class Location extends ValidationElement {
           <ToggleableLocation
             {...this.props}
             country={this.props.country || { value: 'United States' }}
-            domesticFields={['city', 'stateZipcode']}
+            domesticFields={['city', 'stateZipcode', 'county']}
             internationalFields={['city', 'country']}
             onBlur={this.handleBlur}
             onUpdate={this.updateToggleableLocation}
