@@ -3,6 +3,7 @@ import { updateApplication } from '../../../actions/ApplicationActions'
 import { i18n, env } from '../../../config'
 import ValidationElement from '../ValidationElement'
 import Street from '../Street'
+import State from '../State'
 import MilitaryState from '../MilitaryState'
 import City from '../City'
 import Country from '../Country'
@@ -489,6 +490,23 @@ export default class Location extends ValidationElement {
           )
         case 'state':
           return (
+            <State
+              name="state"
+              className="state"
+              label={this.props.stateLabel}
+              placeholder={this.props.statePlaceholder}
+              value={this.props.state}
+              includeStates="true"
+              disabled={this.props.disabled}
+              onUpdate={this.updateState}
+              onError={this.handleError}
+              onFocus={this.props.onFocus}
+              onBlur={this.handleBlur}
+              required={this.props.required}
+            />
+          )
+        case 'militaryState':
+          return (
             <MilitaryState
               name="state"
               key={field}
@@ -508,7 +526,7 @@ export default class Location extends ValidationElement {
         case 'stateZipcode':
           return (
             <div className="state-zip-wrap" key={`state-zip-${field}`}>
-              <MilitaryState
+              <State
                 name="state"
                 className="state"
                 label={this.props.stateLabel}

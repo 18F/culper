@@ -248,6 +248,7 @@ export default class Divorce extends React.Component {
           adjustFor="datecontrol">
           <DateControl
             name="DateDivorced"
+            prefix="divorce.date"
             className="date-divorced"
             {...this.props.DateDivorced}
             minDate={(this.props.Recognized || {}).date}

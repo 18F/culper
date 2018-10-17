@@ -36,7 +36,7 @@ describe('The Bankruptcy component', () => {
       .find('.courtinvolved input[name="CourtInvolved"]')
       .simulate('change')
     component.find('input[name="TotalAmountEstimated"]').simulate('change')
-    component.find('.address input[name="address"]').simulate('change')
+    component.find('.address input[name="street"]').simulate('change')
     component.find('.has-discharge-explanation .yes input').simulate('change')
     expect(updates).toBe(11)
   })
@@ -68,7 +68,7 @@ describe('The Bankruptcy component', () => {
       <Bankruptcy onUpdate={onUpdate} PetitionType={petitionType} />
     )
     component.find('input[name="chapter13Trustee"]').simulate('change')
-    component.find('.trustee-address input[name="address"]').simulate('change')
+    component.find('.trustee-address input[name="street"]').simulate('change')
     expect(updates).toBe(2)
   })
 })

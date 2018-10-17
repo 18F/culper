@@ -1,6 +1,7 @@
 import React from 'react'
 import { shallow, mount } from 'enzyme'
 import State from './State'
+import { unitedStates, otherUsTerritories } from '../../../validators/location'
 
 describe('The State component', () => {
   it('renders', () => {
@@ -55,5 +56,63 @@ describe('The State component', () => {
     ).toBeGreaterThan(0)
     component.find('.state input').simulate('blur')
     expect(component.find('div').length).toBeGreaterThan(0)
+  })
+
+  it('returns the typed input', () => {
+    const expected = {
+      name: 'state',
+      value: 'gibberish',
+      className: 'state',
+      onBlur: () => {},
+      onFocus: () => {}
+    }
+    const component = shallow(<State {...expected} />)
+    const instance = component.instance()
+    expect(instance.getStatePostalCode('gibberish')).toEqual('gibberish')
+  })
+
+  it('returns the uppercased state postal code', () => {
+    const props = {
+      name: 'state',
+      value: 'oregon',
+      className: 'state',
+      onBlur: () => {},
+      onFocus: () => {}
+    }
+
+    const component = shallow(<State {...props} />)
+    const instance = component.instance()
+    expect(instance.getStatePostalCode('oregon')).toEqual('OR')
+  })
+
+  it('returns additional states renderd through props', () => {
+    const expected = {
+      name: 'state',
+      value: 'gibberish',
+      className: 'state',
+      onBlur: () => {},
+      onFocus: () => {},
+      additionalStates: [{ name: 'Test State', postalCode: 'CH' }]
+    }
+    const component = mount(<State {...expected} />)
+    const instance = component.instance()
+    expect(instance.states.length).toEqual(unitedStates.length + otherUsTerritories.length + 1)
+  })
+
+  it('calls the onUpdate function with the correct arguments', () => {
+    const props = {
+      name: 'state',
+      value: 'ca',
+      className: 'state',
+      onBlur: () => {},
+      onFocus: () => {},
+      onUpdate: jest.fn()
+    }
+
+    const component = shallow(<State {...props} />)
+    const instance = component.instance()
+    instance.handleUpdate({ value: 'ca' })
+    expect(props.onUpdate).toHaveBeenCalledTimes(1)
+    expect(props.onUpdate).toHaveBeenCalledWith({ value: 'CA' })
   })
 })

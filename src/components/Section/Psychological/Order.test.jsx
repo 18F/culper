@@ -20,7 +20,7 @@ describe('The Order component', () => {
       .first()
       .simulate('change', { target: { value: '2010' } })
     component.find('input[name="CourtName"]').simulate('change')
-    component.find('input[name="address"]').simulate('change')
+    component.find('input[name="street"]').simulate('change')
     component.find('.appeals .yes input').simulate('change')
     component.find('.disposition input').simulate('change')
     expect(updates).toBe(5)

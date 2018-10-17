@@ -17,7 +17,7 @@ describe('The VoluntaryCounseling component', () => {
     }
     const component = mount(<VoluntaryCounseling {...expected} />)
     expect(component.find('.voluntary-counseling').length).toBe(1)
-    component.find('.provider-address input[name="address"]').simulate('change')
+    component.find('.provider-address input[name="street"]').simulate('change')
     component
       .find('.counseling-dates .datecontrol .year input')
       .first()

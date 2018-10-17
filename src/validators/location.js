@@ -82,79 +82,11 @@ export default class LocationValidator {
     const code = toCode(this.state || '').toUpperCase()
 
     if (this.isPostOffice()) {
-      return ['AA', 'AE', 'AP'].includes(code)
+      const militaryCodes = militaryStates.map(state => state.postalCode)
+      return militaryCodes.includes(code)
     }
 
-    const codes = [
-      'AL',
-      'AK',
-      'AZ',
-      'AR',
-      'CA',
-      'CO',
-      'CT',
-      'DE',
-      'DC',
-      'FL',
-      'GA',
-      'HI',
-      'ID',
-      'IL',
-      'IN',
-      'IA',
-      'KS',
-      'KY',
-      'LA',
-      'ME',
-      'MD',
-      'MA',
-      'MI',
-      'MN',
-      'MS',
-      'MO',
-      'MT',
-      'NE',
-      'NV',
-      'NH',
-      'NJ',
-      'NM',
-      'NY',
-      'NC',
-      'ND',
-      'OH',
-      'OK',
-      'OR',
-      'PA',
-      'RI',
-      'SC',
-      'SD',
-      'TN',
-      'TX',
-      'UT',
-      'VT',
-      'VA',
-      'WA',
-      'WV',
-      'WI',
-      'WY',
-      'AS',
-      'FQ',
-      'GU',
-      'HQ',
-      'DQ',
-      'JQ',
-      'KQ',
-      'MH',
-      'FM',
-      'MQ',
-      'BQ',
-      'MP',
-      'PW',
-      'LQ',
-      'PR',
-      'VI',
-      'WQ'
-    ]
+    const codes = [...unitedStates, ...otherUsTerritories].map(state => state.postalCode)
 
     return !!this.state && codes.includes(code)
   }
@@ -195,7 +127,7 @@ export default class LocationValidator {
   }
 
   isInternational() {
-    return !!this.validCountry() && !this.isDomestic() && !this.isPostOffice()
+    return this.validCountry() && !this.isDomestic() && !this.isPostOffice()
   }
 
   validLocation() {
@@ -336,84 +268,93 @@ export class Geocoder {
  * @returns {Return Type} State code.
  */
 const toCode = state => {
-  const codes = {
-    alabama: 'AL',
-    alaska: 'AK',
-    arizona: 'AZ',
-    arkansas: 'AR',
-    california: 'CA',
-    colorado: 'CO',
-    connecticut: 'CT',
-    delaware: 'DE',
-    'washington d.c.': 'DC',
-    florida: 'FL',
-    georgia: 'GA',
-    hawaii: 'HI',
-    idaho: 'ID',
-    illinois: 'IL',
-    indiana: 'IN',
-    iowa: 'IA',
-    kansas: 'KS',
-    kentucky: 'KY',
-    louisiana: 'LA',
-    maine: 'ME',
-    maryland: 'MD',
-    massachusetts: 'MA',
-    michigan: 'MI',
-    minnesota: 'MN',
-    mississippi: 'MS',
-    missouri: 'MO',
-    montana: 'MT',
-    nebraska: 'NE',
-    nevada: 'NV',
-    'new hampshire': 'NH',
-    'new jersey': 'NJ',
-    'new mexico': 'NM',
-    'new york': 'NY',
-    'north carolina': 'NC',
-    'north dakota': 'ND',
-    ohio: 'OH',
-    oklahoma: 'OK',
-    oregon: 'OR',
-    pennsylvania: 'PA',
-    'rhode island': 'RI',
-    'south carolina': 'SC',
-    'south dakota': 'SD',
-    tennessee: 'TN',
-    texas: 'TX',
-    utah: 'UT',
-    vermont: 'VT',
-    virginia: 'VA',
-    washington: 'WA',
-    'west virginia': 'WV',
-    wisconsin: 'WI',
-    wyoming: 'WY',
-    'american samoa': 'AS',
-    fq: 'FQ',
-    guam: 'GU',
-    hq: 'HQ',
-    dq: 'DQ',
-    jq: 'JQ',
-    kq: 'KQ',
-    'marshall islands': 'MH',
-    micronesia: 'FM',
-    mq: 'MQ',
-    bq: 'BQ',
-    'northern mariana islands': 'MP',
-    palau: 'PW',
-    lq: 'LQ',
-    'puerto rico': 'PR',
-    'virgin islands': 'VI',
-    wq: 'WQ',
-    'u.s. armed forces - americas': 'AA',
-    'u.s. armed forces - europe': 'AE',
-    'u.s. armed forces - pacific': 'AP'
-  }
+  const allUsStates = [...unitedStates, ...otherUsTerritories, ...militaryStates]
+  const selectedState = allUsStates.find(stateObj => {
+    return stateObj.name.toLowerCase() === state.toLowerCase()
+  })
 
-  const downcase = state.toLowerCase()
-  if (downcase in codes) {
-    return codes[downcase]
+  if (selectedState) {
+    return selectedState.postalCode
   }
-
   return state
 }
+
+export const unitedStates = [
+  { name: 'Alabama', postalCode: 'AL' },
+  { name: 'Alaska', postalCode: 'AK' },
+  { name: 'Arizona', postalCode: 'AZ' },
+  { name: 'Arkansas', postalCode: 'AR' },
+  { name: 'California', postalCode: 'CA' },
+  { name: 'Colorado', postalCode: 'CO' },
+  { name: 'Connecticut', postalCode: 'CT' },
+  { name: 'Delaware', postalCode: 'DE' },
+  { name: 'Washington D.C.', postalCode: 'DC' },
+  { name: 'Florida', postalCode: 'FL' },
+  { name: 'Georgia', postalCode: 'GA' },
+  { name: 'Hawaii', postalCode: 'HI' },
+  { name: 'Idaho', postalCode: 'ID' },
+  { name: 'Illinois', postalCode: 'IL' },
+  { name: 'Indiana', postalCode: 'IN' },
+  { name: 'Iowa', postalCode: 'IA' },
+  { name: 'Kansas', postalCode: 'KS' },
+  { name: 'Kentucky', postalCode: 'KY' },
+  { name: 'Louisiana', postalCode: 'LA' },
+  { name: 'Maine', postalCode: 'ME' },
+  { name: 'Maryland', postalCode: 'MD' },
+  { name: 'Massachusetts', postalCode: 'MA' },
+  { name: 'Michigan', postalCode: 'MI' },
+  { name: 'Minnesota', postalCode: 'MN' },
+  { name: 'Mississippi', postalCode: 'MS' },
+  { name: 'Missouri', postalCode: 'MO' },
+  { name: 'Montana', postalCode: 'MT' },
+  { name: 'Nebraska', postalCode: 'NE' },
+  { name: 'Nevada', postalCode: 'NV' },
+  { name: 'New Hampshire', postalCode: 'NH' },
+  { name: 'New Jersey', postalCode: 'NJ' },
+  { name: 'New Mexico', postalCode: 'NM' },
+  { name: 'New York', postalCode: 'NY' },
+  { name: 'North Carolina', postalCode: 'NC' },
+  { name: 'North Dakota', postalCode: 'ND' },
+  { name: 'Ohio', postalCode: 'OH' },
+  { name: 'Oklahoma', postalCode: 'OK' },
+  { name: 'Oregon', postalCode: 'OR' },
+  { name: 'Pennsylvania', postalCode: 'PA' },
+  { name: 'Rhode Island', postalCode: 'RI' },
+  { name: 'South Carolina', postalCode: 'SC' },
+  { name: 'South Dakota', postalCode: 'SD' },
+  { name: 'Tennessee', postalCode: 'TN' },
+  { name: 'Texas', postalCode: 'TX' },
+  { name: 'Utah', postalCode: 'UT' },
+  { name: 'Vermont', postalCode: 'VT' },
+  { name: 'Virginia', postalCode: 'VA' },
+  { name: 'Washington', postalCode: 'WA' },
+  { name: 'West Virginia', postalCode: 'WV' },
+  { name: 'Wisconsin', postalCode: 'WI' },
+  { name: 'Wyoming', postalCode: 'WY' }
+]
+
+export const otherUsTerritories = [
+  { name: 'American Samoa', postalCode: 'AS' },
+  { name: 'FQ', postalCode: 'FQ' },
+  { name: 'Guam', postalCode: 'GU' },
+  { name: 'HQ', postalCode: 'HQ' },
+  { name: 'DQ', postalCode: 'DQ' },
+  { name: 'JQ', postalCode: 'JQ' },
+  { name: 'KQ', postalCode: 'KQ' },
+  { name: 'Marshall Islands', postalCode: 'MH' },
+  { name: 'Micronesia', postalCode: 'FM' },
+  { name: 'MQ', postalCode: 'MQ' },
+  { name: 'BQ', postalCode: 'BQ' },
+  { name: 'Northern Mariana Islands', postalCode: 'MP' },
+  { name: 'Palau', postalCode: 'PW' },
+  { name: 'LQ', postalCode: 'LQ' },
+  { name: 'Puerto Rico', postalCode: 'PR' },
+  { name: 'Virgin Islands', postalCode: 'VI' },
+  { name: 'WQ', postalCode: 'WQ' }
+]
+
+export const militaryStates = [
+  { name: 'U.S. Armed Forces - Americas', postalCode: 'AA' },
+  { name: 'U.S. Armed Forces - Europe', postalCode: 'AE' },
+  { name: 'U.S. Armed Forces - Pacific', postalCode: 'AP' }
+]

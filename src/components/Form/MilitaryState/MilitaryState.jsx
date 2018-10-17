@@ -2,6 +2,7 @@ import React from 'react'
 import ValidationElement from '../ValidationElement'
 import Dropdown from '../Dropdown'
 import State from '../State'
+import { militaryStates } from '../../../validators/location'
 
 export default class MilitaryState extends ValidationElement {
   render() {
@@ -20,17 +21,9 @@ export default class MilitaryState extends ValidationElement {
           value={this.props.value}
           required={this.props.required}
           tabBack={this.props.tabBack}
-          tabNext={this.props.tabNext}>
-          <option key="aa" value="AA">
-            U.S. Armed Forces - Americas
-          </option>
-          <option key="ae" value="AE">
-            U.S. Armed Forces - Europe
-          </option>
-          <option key="ap" value="AP">
-            U.S. Armed Forces - Pacific
-          </option>
-        </State>
+          tabNext={this.props.tabNext}
+          additionalStates={militaryStates}
+        />
       )
     } else {
       return (
