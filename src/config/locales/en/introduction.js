@@ -1,6 +1,7 @@
 export const introduction = {
   contents: [
     '# Questionnaire for National Security Positions',
+    'National Background Investigation System (NBIS) eApp version MAJOR.MINOR.PATCH-IDENTIFIER',
     '**Follow instructions completely or your form will be unable to be processed. If you have any questions, contact the office that provided you the form.**',
     '## Instructions for completing this form ',
     '1. **Follow the instructions provided to you by the office that gave you this form** and any other clarifying instructions, provided by that office, to assist you with completion of this form. You should retain a copy of the completed form for your records.',

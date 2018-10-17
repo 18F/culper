@@ -21,7 +21,7 @@ describe('The Hospitalization component', () => {
       .first()
       .simulate('change', { target: { value: '2010' } })
     component.find('input[name="Facility"]').simulate('change')
-    component.find('input[name="address"]').simulate('change')
+    component.find('input[name="street"]').simulate('change')
     component.find({ type: 'radio', value: 'Voluntary' }).simulate('change')
     expect(updates).toBe(4)
   })

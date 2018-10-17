@@ -94,6 +94,29 @@ $border-size: 5px;
     display: block;
   }
 
+  &.error {
+    i {
+      background-color: $eapp-red;
+
+      &.invert {
+        background-color: transparent;
+        color: $eapp-red;
+      }
+    }
+
+    &.active,
+    &:active,
+    &:hover {
+      color: $eapp-red;
+    }
+
+    .spinner-label {
+      .one-line {
+        color: $eapp-red;
+      }
+    }
+  }
+
   .spinner {
     position: relative;
     top: -1rem;

@@ -19,18 +19,26 @@ describe('The SummaryCounter component', () => {
         return [
           {
             to: {
-              date: new Date()
+              month: '6',
+              day: '1',
+              year: '1982'
             },
             from: {
-              date: new Date(new Date() - 2)
+              month: '6',
+              day: '1',
+              year: '1980'
             }
           },
           {
             to: {
-              date: new Date(new Date() - 6)
+              month: '6',
+              day: '1',
+              year: '1984'
             },
             from: {
-              date: new Date(new Date() - 12)
+              month: '6',
+              day: '1',
+              year: '1982'
             }
           }
         ]
@@ -47,7 +55,9 @@ describe('The SummaryCounter component', () => {
       diplomas: () => {
         return [
           {
-            date: new Date(new Date() - 6)
+            month: '6',
+            day: '1',
+            year: '1982'
           }
         ]
       }

@@ -31,9 +31,9 @@ describe('The relative component', () => {
     expect(component.find('.relative-residence-documentnumber').length).toEqual(
       0
     )
-    expect(
-      component.find('.relative-residence-other-documentnumber').length
-    ).toEqual(0)
+    expect(component.find('.relative-document-other-comments ').length).toEqual(
+      0
+    )
     expect(component.find('.relative-expiration').length).toEqual(0)
     expect(component.find('.relative-first-contact').length).toEqual(0)
     expect(component.find('.relative-last-contact').length).toEqual(0)
@@ -433,8 +433,8 @@ describe('The relative component', () => {
       .find('.relative-document .document-other input')
       .simulate('change')
     component
-      .find('.relative-other-documentnumber textarea')
-      .simulate('change', { target: { value: 'documentnumber' } })
+      .find('.relative-document-other-comments textarea')
+      .simulate('change', { target: { value: 'explanation' } })
     component
       .find('.relative-residence-documentnumber input')
       .simulate('change', { target: { value: '00000000' } })

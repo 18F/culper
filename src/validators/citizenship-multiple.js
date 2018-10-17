@@ -14,6 +14,19 @@ export default class CitizenshipMultipleValidator {
     )
   }
 
+  validMinimumCitizenships() {
+    if (this.hasMultiple !== 'Yes') {
+      return true
+    }
+
+    // Must provide a minimum of two countries
+    if (this.list.items && this.list.items.length < 2) {
+      return false
+    }
+
+    return true
+  }
+
   validCitizenships() {
     if (this.hasMultiple !== 'Yes') {
       return true
@@ -25,7 +38,11 @@ export default class CitizenshipMultipleValidator {
   }
 
   isValid() {
-    return this.validHasMultiple() && this.validCitizenships()
+    return (
+      this.validHasMultiple() &&
+      this.validMinimumCitizenships() &&
+      this.validCitizenships()
+    )
   }
 }
 
@@ -40,6 +57,14 @@ export class CitizenshipItemValidator {
     this.currentExplanation = data.CurrentExplanation
   }
 
+  isUnitedStates() {
+    if (!this.country || !this.country.value) {
+      return true
+    }
+
+    return (this.country.value || []).includes('United States')
+  }
+
   validCountry() {
     return validGenericTextfield(this.country)
   }
@@ -49,10 +74,18 @@ export class CitizenshipItemValidator {
   }
 
   validHow() {
+    if (this.isUnitedStates()) {
+      return true
+    }
+
     return !!this.how && validGenericTextfield(this.how)
   }
 
   validRenounced() {
+    if (this.isUnitedStates()) {
+      return true
+    }
+
     return (
       !!this.renounced &&
       (this.renounced === 'No' || this.renounced === 'Yes') &&
