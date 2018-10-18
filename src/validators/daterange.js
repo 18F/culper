@@ -19,11 +19,11 @@ export default class DateRangeValidator {
    * Validates the date ranges
    */
   isValid() {
-    if (!new DateControlValidator(this.from || {}).isValid()) {
+    if (!new DateControlValidator(this.from).validDate()) {
       return false
     }
 
-    if (!new DateControlValidator(this.to || {}).isValid()) {
+    if (!new DateControlValidator(this.to).validDate()) {
       return false
     }
 
