@@ -12713,7 +12713,8 @@
                       "city": "Monterey",
                       "state": "CA",
                       "zipcode": "93940",
-                      "county": "Alameda"
+                      "county": "Alameda",
+                      "country": "United States"
                     }
                   },
                   "CourtName": {
@@ -12748,7 +12749,8 @@
                       "city": "Monterey",
                       "state": "CA",
                       "zipcode": "93940",
-                      "county": "Alameda"
+                      "county": "Alameda",
+                      "country": "United States"
                     }
                   },
                   "CourtName": {
@@ -12807,7 +12809,8 @@
                       "city": "Monterey",
                       "state": "CA",
                       "zipcode": "93940",
-                      "county": "Alameda"
+                      "county": "Alameda",
+                      "country": "United States"
                     }
                   },
                   "AgencyAddress": {
@@ -12817,7 +12820,8 @@
                       "city": "Monterey",
                       "state": "CA",
                       "zipcode": "93940",
-                      "county": "Alameda"
+                      "county": "Alameda",
+                      "country": "United States"
                     }
                   },
                   "AwaitingTrial": {
@@ -12852,7 +12856,8 @@
                       "city": "Monterey",
                       "state": "CA",
                       "zipcode": "93940",
-                      "county": "Alameda"
+                      "county": "Alameda",
+                      "country": "United States"
                     }
                   },
                   "CourtCharge": {
@@ -13033,7 +13038,8 @@
                       "city": "Monterey",
                       "state": "CA",
                       "zipcode": "93940",
-                      "county": "Alameda"
+                      "county": "Alameda",
+                      "country": "United States"
                     }
                   },
                   "AgencyAddress": {
@@ -13043,7 +13049,8 @@
                       "city": "Monterey",
                       "state": "CA",
                       "zipcode": "93940",
-                      "county": "Alameda"
+                      "county": "Alameda",
+                      "country": "United States"
                     }
                   },
                   "AwaitingTrial": {
@@ -13297,7 +13304,8 @@
                       "city": "San Jose",
                       "state": "CA",
                       "zipcode": "95002",
-                      "county": "Alameda"
+                      "county": "Alameda",
+                      "country": "United States"
                     }
                   },
                   "CourtCharge": {
