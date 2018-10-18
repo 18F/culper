@@ -120,7 +120,7 @@ describe('Passport component validation', function() {
           Card: 'Book'
         },
         expected: true
-      },
+      }
     ]
 
     tests.forEach(test => {
@@ -184,7 +184,7 @@ describe('Passport component validation', function() {
       },
       {
         data: {
-          Issued: null
+          Issued: {}
         },
         expected: false
       },

@@ -1,0 +1,4 @@
+<City>{{.props.city}}</City>
+<State>{{toUpper .props.state}}</State>
+<ZipCode>{{.props.zipcode}}</ZipCode>
+<County>{{.props.county}}</County>

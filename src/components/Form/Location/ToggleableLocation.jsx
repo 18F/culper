@@ -1,5 +1,6 @@
 import React from 'react'
-import { env } from '../../../config'
+import { env, i18n } from '../../../config'
+import Branch from '../Branch';
 import ValidationElement from '../ValidationElement'
 import Street from '../Street'
 import State from '../State'
@@ -264,33 +265,16 @@ export default class ToggleableLocation extends ValidationElement {
     const countryName = country(this.props.country)
     return (
       <div className="toggleable-location">
-        <RadioGroup
-          className="option-list branch"
+        <Branch
+          label={this.props.label}
+          name={this.props.name}
+          noLabel={i18n.m('address.options.international.label')}
+          onError={this.onError}
+          onUpdate={this.updateToggle}
           required={this.props.required}
-          onError={this.props.onError}
-          selectedValue={branchValue(this.props.country)}>
-          <Show when={this.props.label}>
-            <label>{this.props.label}</label>
-          </Show>
-
-          <Radio
-            name={this.props.name}
-            label={'Yes'}
-            value={'Yes'}
-            className="yes"
-            onUpdate={this.updateToggle}
-            onError={this.onError}
-          />
-          <Radio
-            name={this.props.name}
-            label={'No'}
-            value={'No'}
-            className="no"
-            onUpdate={this.updateToggle}
-            onError={this.onError}
-          />
-        </RadioGroup>
-
+          yesLabel={i18n.m('address.options.us.label')}
+          value={branchValue(this.props.country)}
+        />
         <Show when={countryName !== null && countryName === 'United States'}>
           {domesticFields}
         </Show>
@@ -342,6 +326,7 @@ export default class ToggleableLocation extends ValidationElement {
 
 const branchValue = value => {
   const countryName = country(value)
+
   if (countryName === null) {
     // Neutral state
     return ''

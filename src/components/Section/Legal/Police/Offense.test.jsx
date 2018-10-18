@@ -7,6 +7,7 @@ describe('The offense component', () => {
     const expected = {
       name: 'offense'
     }
+    
     const component = mount(<Offense {...expected} />)
     expect(component.find('.offense-date').length).toEqual(1)
     expect(component.find('.offense-description').length).toEqual(1)

@@ -101,7 +101,7 @@ describe('gambling debt component validation', function() {
                     value: 'Some action'
                   },
                   Dates: {
-                    from: null,
+                    from: {},
                     to: {
                       month: '1',
                       day: '1',

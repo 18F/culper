@@ -126,6 +126,8 @@ export default class LocationValidator {
     return this.country === 'POSTOFFICE'
   }
 
+  // TODO: this function doesn't quite work as an empty value for country should not necessarily preclude a valid international address
+  // for example, if the address is pristine and hasnt been modified
   isInternational() {
     return this.validCountry() && !this.isDomestic() && !this.isPostOffice()
   }

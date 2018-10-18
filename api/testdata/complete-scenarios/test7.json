@@ -10734,9 +10734,7 @@
                   "CourtAddress": {
                     "type": "location",
                     "props": {
-                      "layout": "Address",
-                      "street": "No American can study the character and career of Abraham Lincoln without being carried away by sentimental emotions. We are always inclined to idealize that which we love,--a state of mind very unfavorable to the exercise of sober critical judgment. It i",
-                      "street2": "No American can study the character and career of Abraham Lincoln without being carried away by sentimental emotions. We are always inclined to idealize that which we love,--a state of mind very unfavorable to the exercise of sober critical judgment. It i",
+                      "layout": "Offense",
                       "city": "No American can study the character and career of Abraham Lincoln without being carried away by sent",
                       "state": "FL",
                       "zipcode": "33901",
@@ -10771,9 +10769,7 @@
                   "CourtAddress": {
                     "type": "location",
                     "props": {
-                      "layout": "Address",
-                      "street": "No American can study the character and career of Abraham Lincoln without being carried away by sentimental emotions. We are always inclined to idealize that which we love,--a state of mind very unfavorable to the exercise of sober critical judgment. It i",
-                      "street2": "No American can study the character and career of Abraham Lincoln without being carried away by sentimental emotions. We are always inclined to idealize that which we love,--a state of mind very unfavorable to the exercise of sober critical judgment. It i",
+                      "layout": "Offense",
                       "city": "No American can study the character and career of Abraham Lincoln without being carried away by sent",
                       "state": "FL",
                       "zipcode": "33901",
@@ -10832,9 +10828,7 @@
                   "Address": {
                     "type": "location",
                     "props": {
-                      "layout": "Address",
-                      "street": "No American can study the character and career of Abraham Lincoln without being carried away by sentimental emotions. We are always inclined to idealize that which we love,--a state of mind very unfavorable to the exercise of sober critical judgment. It i",
-                      "street2": "No American can study the character and career of Abraham Lincoln without being carried away by sentimental emotions. We are always inclined to idealize that which we love,--a state of mind very unfavorable to the exercise of sober critical judgment. It i",
+                      "layout": "Offense",
                       "city": "No American can study the character and career of Abraham Lincoln without being carried away by sent",
                       "state": "FL",
                       "zipcode": "33902",
@@ -10845,9 +10839,7 @@
                   "AgencyAddress": {
                     "type": "location",
                     "props": {
-                      "layout": "Address",
-                      "street": "No American can study the character and career of Abraham Lincoln without being carried away by sentimental emotions. We are always inclined to idealize that which we love,--a state of mind very unfavorable to the exercise of sober critical judgment. It i",
-                      "street2": "No American can study the character and career of Abraham Lincoln without being carried away by sentimental emotions. We are always inclined to idealize that which we love,--a state of mind very unfavorable to the exercise of sober critical judgment. It i",
+                      "layout": "Offense",
                       "city": "No American can study the character and career of Abraham Lincoln without being carried away by sent",
                       "state": "RI",
                       "zipcode": "02922",
@@ -10883,9 +10875,7 @@
                   "CourtAddress": {
                     "type": "location",
                     "props": {
-                      "layout": "Address",
-                      "street": "No American can study the character and career of Abraham Lincoln without being carried away by sentimental emotions. We are always inclined to idealize that which we love,--a state of mind very unfavorable to the exercise of sober critical judgment. It i",
-                      "street2": "No American can study the character and career of Abraham Lincoln without being carried away by sentimental emotions. We are always inclined to idealize that which we love,--a state of mind very unfavorable to the exercise of sober critical judgment. It i",
+                      "layout": "Offense",
                       "city": "No American can study the character and career of Abraham Lincoln without being carried away by sent",
                       "state": "FL",
                       "zipcode": "32232",
@@ -11067,9 +11057,7 @@
                   "Address": {
                     "type": "location",
                     "props": {
-                      "layout": "Address",
-                      "street": "No American can study the character and career of Abraham Lincoln without being carried away by sentimental emotions. We are always inclined to idealize that which we love,--a state of mind very unfavorable to the exercise of sober critical judgment. It i",
-                      "street2": "No American can study the character and career of Abraham Lincoln without being carried away by sentimental emotions. We are always inclined to idealize that which we love,--a state of mind very unfavorable to the exercise of sober critical judgment. It i",
+                      "layout": "Offense",
                       "city": "No American can study the character and career of Abraham Lincoln without being carried away by sent",
                       "country": "Djibouti"
                     }
@@ -11077,13 +11065,12 @@
                   "AgencyAddress": {
                     "type": "location",
                     "props": {
-                      "layout": "Address",
+                      "layout": "Offense",
                       "street": "No American can study the character and career of Abraham Lincoln without being carried away by sentimental emotions. We are always inclined to idealize that which we love,--a state of mind very unfavorable to the exercise of sober critical judgment. It i",
                       "city": "Carmel",
                       "state": "CA",
                       "zipcode": "93923",
-                      "country": "United States",
-                      "validated": true
+                      "country": "United States"
                     }
                   },
                   "AwaitingTrial": {
@@ -11114,9 +11101,7 @@
                   "CourtAddress": {
                     "type": "location",
                     "props": {
-                      "layout": "Address",
-                      "street": "No American can study the character and career of Abraham Lincoln without being carried away by sentimental emotions. We are always inclined to idealize that which we love,--a state of mind very unfavorable to the exercise of sober critical judgment. It i",
-                      "street2": "No American can study the character and career of Abraham Lincoln without being carried away by sentimental emotions. We are always inclined to idealize that which we love,--a state of mind very unfavorable to the exercise of sober critical judgment. It i",
+                      "layout": "Offense",
                       "city": "No American can study the character and career of Abraham Lincoln without being carried away by sent",
                       "state": "AK",
                       "zipcode": "99522",
@@ -11341,9 +11326,7 @@
                   "CourtAddress": {
                     "type": "location",
                     "props": {
-                      "layout": "Address",
-                      "street": "No American can study the character and career of Abraham Lincoln without being carried away by sentimental emotions. We are always inclined to idealize that which we love,--a state of mind very unfavorable to the exercise of sober critical judgment. It i",
-                      "street2": "No American can study the character and career of Abraham Lincoln without being carried away by sentimental emotions. We are always inclined to idealize that which we love,--a state of mind very unfavorable to the exercise of sober critical judgment. It i",
+                      "layout": "Offense",
                       "city": "No American can study the character and career of Abraham Lincoln without being carried away by sent",
                       "state": "FL",
                       "zipcode": "32311",
