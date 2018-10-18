@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { i18n } from '../../../config'
 import { Field, Radio, RadioGroup } from '../../Form'
 
@@ -82,16 +83,17 @@ export default class Branch extends React.Component {
 
 // Default values for properties that are not specified
 Branch.defaultProps = {
+  adjustFor: 'buttons',
+  className: '',
+  confirmation: i18n.t('branch.confirmation'),
   yesLabel: i18n.t('branch.label.yes'),
   yesValue: i18n.t('branch.value.yes'),
-  yesAriaLabel: null,
+  yesAriaLabel: '',
   noLabel: i18n.t('branch.label.no'),
   noValue: i18n.t('branch.value.no'),
-  noAriaLabel: null,
+  noAriaLabel: '',
   labelSize: 'label',
-  adjustFor: 'buttons',
   warning: false,
-  confirmation: i18n.t('branch.confirmation'),
   value: '',
   onUpdate: queue => {},
   optional: false,

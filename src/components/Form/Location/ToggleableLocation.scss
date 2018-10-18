@@ -1,0 +1,10 @@
+.toggleable-location .blocks {
+  label {
+    width: 26rem !important;
+    height: 10rem;
+
+    & > span > div {
+      top: 25%;
+    }
+  }
+}

@@ -594,6 +594,7 @@ export default class Location extends ValidationElement {
             required={this.props.required}
           />
         )
+      // XXX This first location doesnt seem to be used in code at all
       case Location.US_CITY_STATE_INTERNATIONAL_CITY_COUNTRY:
       case Location.BIRTHPLACE_WITHOUT_COUNTY:
         return (
@@ -607,6 +608,11 @@ export default class Location extends ValidationElement {
             required={this.props.required}
           />
         )
+      // XXX This is used in ContactItem, which is foreign business contacts,
+      // would we ever need domestic fields for this?
+      // Should we have a separate component/case to just handle international
+      // city/country
+      // Also used in JobOffer, SponsorshipItem which only covers foreign offers/sponsorships?
       case Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY:
         return (
           <ToggleableLocation
@@ -645,6 +651,19 @@ export default class Location extends ValidationElement {
         return this.renderFields(['street', 'city'])
       case Location.COUNTRY:
         return this.renderFields(['country'])
+      case Location.OFFENSE:
+        return (
+          <ToggleableLocation
+            {...this.props}
+            country={this.props.country || { value: 'United States' }}
+            domesticFields={['city', 'stateZipcode', 'county']}
+            internationalFields={['city', 'country']}
+            onBlur={this.handleBlur}
+            onUpdate={this.updateToggleableLocation}
+            onError={this.handleError}
+            required={this.props.required}
+          />
+        )
       case null:
       case undefined:
       default:
@@ -825,6 +844,7 @@ Location.ADDRESS = Layouts.ADDRESS
 Location.CITY_STATE_COUNTRY = Layouts.CITY_STATE_COUNTRY
 Location.US_ADDRESS = Layouts.US_ADDRESS
 Location.STREET_CITY = Layouts.STREET_CITY
+Location.OFFENSE = Layouts.OFFENSE
 
 Location.defaultProps = {
   name: 'location',

@@ -12709,11 +12709,11 @@
                   "CourtAddress": {
                     "type": "location",
                     "props": {
-                      "layout": "Address",
-                      "street": "32 Court Circle",
+                      "layout": "Offense",
                       "city": "Monterey",
                       "state": "CA",
                       "zipcode": "93940",
+                      "county": "Alameda",
                       "country": "United States"
                     }
                   },
@@ -12745,11 +12745,11 @@
                   "CourtAddress": {
                     "type": "location",
                     "props": {
-                      "layout": "Address",
-                      "street": "9889 99th Ave.",
+                      "layout": "Offense",
                       "city": "Monterey",
                       "state": "CA",
                       "zipcode": "93940",
+                      "county": "Alameda",
                       "country": "United States"
                     }
                   },
@@ -12805,22 +12805,22 @@
                   "Address": {
                     "type": "location",
                     "props": {
-                      "layout": "Address",
-                      "street": "342 Alvarado St.",
+                      "layout": "Offense",
                       "city": "Monterey",
                       "state": "CA",
                       "zipcode": "93940",
+                      "county": "Alameda",
                       "country": "United States"
                     }
                   },
                   "AgencyAddress": {
                     "type": "location",
                     "props": {
-                      "layout": "Address",
-                      "street": "323 Pacific Ave.",
+                      "layout": "Offense",
                       "city": "Monterey",
                       "state": "CA",
                       "zipcode": "93940",
+                      "county": "Alameda",
                       "country": "United States"
                     }
                   },
@@ -12852,11 +12852,11 @@
                   "CourtAddress": {
                     "type": "location",
                     "props": {
-                      "layout": "Address",
-                      "street": "32 Court Ave.",
+                      "layout": "Offense",
                       "city": "Monterey",
                       "state": "CA",
                       "zipcode": "93940",
+                      "county": "Alameda",
                       "country": "United States"
                     }
                   },
@@ -13034,22 +13034,22 @@
                   "Address": {
                     "type": "location",
                     "props": {
-                      "layout": "Address",
-                      "street": "392 Cross St.",
+                      "layout": "Offense",
                       "city": "Monterey",
                       "state": "CA",
                       "zipcode": "93940",
+                      "county": "Alameda",
                       "country": "United States"
                     }
                   },
                   "AgencyAddress": {
                     "type": "location",
                     "props": {
-                      "layout": "Address",
-                      "street": "3173 1st St.",
+                      "layout": "Offense",
                       "city": "Monterey",
                       "state": "CA",
                       "zipcode": "93940",
+                      "county": "Alameda",
                       "country": "United States"
                     }
                   },
@@ -13300,11 +13300,11 @@
                   "CourtAddress": {
                     "type": "location",
                     "props": {
-                      "layout": "Address",
-                      "street": "323 3rd St.",
+                      "layout": "Offense",
                       "city": "San Jose",
                       "state": "CA",
                       "zipcode": "95002",
+                      "county": "Alameda",
                       "country": "United States"
                     }
                   },

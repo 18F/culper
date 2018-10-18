@@ -1885,7 +1885,7 @@ exports[`The identification section renders the IdentificationSections component
               className="usa-alert-body"
             >
               <div
-                data-i18n="error.location.required"
+                data-i18n="error.location.toggleablelocation.required"
               >
                 <h5
                   className="usa-alert-heading"
@@ -1918,64 +1918,159 @@ exports[`The identification section renders the IdentificationSections component
                   className="toggleable-location"
                 >
                   <div
-                    className="blocks option-list branch usa-input-error"
+                    aria-label="Were you born in the United States?"
+                    className="field required  branch"
+                    data-uuid="field-MOCK-GUID"
                   >
-                    <label>
+                    <a
+                      aria-hidden="true"
+                      className="anchor"
+                      id="field-MOCK-GUID"
+                      name="field-MOCK-GUID"
+                    />
+                    <label
+                      className="title label"
+                    >
                       Were you born in the United States?
                     </label>
+                    <span
+                      className="icon"
+                    />
                     <div
-                      className="yes block"
+                      className="table expand"
                     >
-                      <label
-                        className=""
-                        htmlFor="birthplace-MOCK-GUID"
-                      >
-                        <input
-                          aria-label="Yes for null"
-                          checked={false}
-                          className="usa-input-success"
-                          disabled={false}
-                          id="birthplace-MOCK-GUID"
-                          name="birthplace-MOCK-GUID"
-                          onBlur={[Function]}
-                          onChange={[Function]}
-                          onClick={[Function]}
-                          onFocus={[Function]}
-                          onKeyDown={[Function]}
-                          type="radio"
-                          value="Yes"
-                        />
-                        <span>
-                          Yes
-                        </span>
-                      </label>
+                      <span
+                        aria-live="polite"
+                        className="messages help-messages"
+                      />
                     </div>
                     <div
-                      className="no block"
+                      className="table expand"
                     >
-                      <label
-                        className=""
-                        htmlFor="birthplace-MOCK-GUID"
+                      <span
+                        aria-live="polite"
+                        className="messages error-messages"
+                        role="alert"
                       >
-                        <input
-                          aria-label="No for null"
-                          checked={false}
-                          className="usa-input-success"
-                          disabled={false}
-                          id="birthplace-MOCK-GUID"
-                          name="birthplace-MOCK-GUID"
-                          onBlur={[Function]}
-                          onChange={[Function]}
-                          onClick={[Function]}
-                          onFocus={[Function]}
-                          onKeyDown={[Function]}
-                          type="radio"
-                          value="No"
-                        />
-                        <span>
-                          No
+                        <div
+                          aria-live="polite"
+                          className="message error usa-alert usa-alert-error"
+                          role="alert"
+                        >
+                          <div
+                            className="usa-alert-body"
+                          >
+                            <div
+                              data-i18n="error.toggleablelocation.required"
+                            >
+                              <h5
+                                className="usa-alert-heading"
+                              >
+                                en.error.toggleablelocation.required.title
+                              </h5>
+                              
+                              
+                            </div>
+                          </div>
+                        </div>
+                      </span>
+                    </div>
+                    <div
+                      className="table"
+                    >
+                      <span
+                        className="content"
+                      >
+                        <span
+                          className="component shrink"
+                        >
+                          <div
+                            className="content"
+                          />
+                          <div
+                            className="blocks option-list branch usa-input-error"
+                          >
+                            <div
+                              className="yes block"
+                            >
+                              <label
+                                className=""
+                                htmlFor="birthplace-MOCK-GUID"
+                              >
+                                <input
+                                  aria-label="[object Object] for null"
+                                  checked={false}
+                                  className="usa-input-success"
+                                  disabled={false}
+                                  id="birthplace-MOCK-GUID"
+                                  name="birthplace-MOCK-GUID"
+                                  onBlur={[Function]}
+                                  onChange={[Function]}
+                                  onClick={[Function]}
+                                  onFocus={[Function]}
+                                  onKeyDown={[Function]}
+                                  type="radio"
+                                  value="Yes"
+                                />
+                                <span>
+                                  <div>
+                                    <p>
+                                      In the
+                                      <span
+                                        dangerouslySetInnerHTML={
+                                          Object {
+                                            "__html": "<br>",
+                                          }
+                                        }
+                                      />
+                                      United States
+                                    </p>
+                                  </div>
+                                </span>
+                              </label>
+                            </div>
+                            <div
+                              className="no block"
+                            >
+                              <label
+                                className=""
+                                htmlFor="birthplace-MOCK-GUID"
+                              >
+                                <input
+                                  aria-label="[object Object] for null"
+                                  checked={false}
+                                  className="usa-input-success"
+                                  disabled={false}
+                                  id="birthplace-MOCK-GUID"
+                                  name="birthplace-MOCK-GUID"
+                                  onBlur={[Function]}
+                                  onChange={[Function]}
+                                  onClick={[Function]}
+                                  onFocus={[Function]}
+                                  onKeyDown={[Function]}
+                                  type="radio"
+                                  value="No"
+                                />
+                                <span>
+                                  <div>
+                                    <p>
+                                      Outside of the
+                                      <span
+                                        dangerouslySetInnerHTML={
+                                          Object {
+                                            "__html": "<br>",
+                                          }
+                                        }
+                                      />
+                                      United States
+                                    </p>
+                                  </div>
+                                </span>
+                              </label>
+                            </div>
+                          </div>
                         </span>
-                      </label>
+                      </span>
                     </div>
                   </div>
                 </div>

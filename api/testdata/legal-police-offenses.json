@@ -50,9 +50,7 @@
               "Address": {
                 "type": "location",
                 "props": {
-                  "layout": "Address",
-                  "street": "123 Some Rd",
-                  "street2": "",
+                  "layout": "Offense",
                   "city": "Arlington",
                   "state": "VA",
                   "zipcode": "22202",
@@ -76,9 +74,7 @@
               "AgencyAddress": {
                 "type": "location",
                 "props": {
-                  "layout": "Address",
-                  "street": "123 Some Rd",
-                  "street2": "",
+                  "layout": "Offense",
                   "city": "Arlington",
                   "state": "VA",
                   "zipcode": "22202",
@@ -108,9 +104,7 @@
               "CourtAddress": {
                 "type": "location",
                 "props": {
-                  "layout": "Address",
-                  "street": "123 Some Rd",
-                  "street2": "",
+                  "layout": "Offense",
                   "city": "Arlington",
                   "state": "VA",
                   "zipcode": "22202",
