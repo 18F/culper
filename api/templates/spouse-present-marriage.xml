@@ -2,7 +2,8 @@
 <PresentMarriage>
   {{with $Item := .props.CivilUnion.props}}
   <CurrentSpouse ID="1">
-    {{if locationIsPostOffice $Item.Address}}
+    <!-- XXX Work-around for https://github.com/18F/e-QIP-prototype/issues/753 -->
+    {{if locationIsPostOffice $Item.Address | eq "NOOP"}}
     <APOFPO>
       <Address>{{militaryAddress $Item.Address}}</Address>
       <AddressComment></AddressComment>

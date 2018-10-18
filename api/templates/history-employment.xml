@@ -9,7 +9,8 @@
       <EmploymentTypeOtherExplanation>{{$Item.EmploymentActivity.props.otherExplanation}}</EmploymentTypeOtherExplanation>
       <EmploymentCodeComment></EmploymentCodeComment>
       <WorkHours>{{radio $Item.Status}}</WorkHours>
-      {{- if locationIsPostOffice $Item.Address}}
+      <!-- XXX Work-around for https://github.com/18F/e-QIP-prototype/issues/924 -->
+      {{- if locationIsPostOffice $Item.Address | eq "NOOP"}}
       <APOFPO>
         <Address>{{militaryAddress $Item.Address}}</Address>
         <AddressComment></AddressComment>
@@ -166,7 +167,8 @@
       <Supervisor>
         <Name>{{text $supervisor.SupervisorName}}</Name>
         <Title>{{text $supervisor.Title}}</Title>
-        {{if locationIsPostOffice $supervisor.Address}}
+        <!-- XXX Work-around for https://github.com/18F/e-QIP-prototype/issues/924 -->
+        {{if locationIsPostOffice $supervisor.Address | eq "NOOP"}}
         <APOFPO>
           <Address>{{militaryAddress $supervisor.Address}}</Address>
           <AddressComment></AddressComment>
@@ -184,7 +186,8 @@
       {{- if or (radio $Item.EmploymentActivity | eq "SelfEmployment") (radio $Item.EmploymentActivity | eq "Unemployment")}}
       <Verifier>
         <LegalName>{{nameLastFirst $Item.ReferenceName}}</LegalName>
-        {{if locationIsPostOffice $Item.ReferenceAddress}}
+        <!-- XXX Work-around for https://github.com/18F/e-QIP-prototype/issues/924 -->
+        {{if locationIsPostOffice $Item.ReferenceAddress | eq "NOOP"}}
         <APOFPO>
           <Address>{{militaryAddress $Item.ReferenceAddress}}</Address>
           <AddressComment></AddressComment>

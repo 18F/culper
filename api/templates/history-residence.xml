@@ -3,7 +3,8 @@
     {{range $index, $item := .props.List.props.items}}
     {{with $Item := $item.Item}}
     <Residency ID="{{inc $index}}">
-      {{if locationIsPostOffice $Item.Address}}
+      <!-- XXX Work-around for https://github.com/18F/e-QIP-prototype/issues/924 -->
+      {{if locationIsPostOffice $Item.Address | eq "NOOP"}}
       <APOFPO>
         <Address>{{militaryAddress $Item.Address}}</Address>
         <AddressComment>{{textarea $Item.Comments}}</AddressComment>
@@ -18,7 +19,8 @@
 
       {{- if $Item.ReferenceRelationship.props.values}}
       <Verifier>
-        {{if locationIsPostOffice $Item.ReferenceAddress}}
+        <!-- XXX Work-around for https://github.com/18F/e-QIP-prototype/issues/924 -->
+        {{if locationIsPostOffice $Item.ReferenceAddress | eq "NOOP"}}
         <APOFPO>
           <Address>{{militaryAddress $Item.ReferenceAddress}}</Address>
           <AddressComment>{{textarea $Item.Comments}}</AddressComment>
