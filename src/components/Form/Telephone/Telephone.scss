@@ -1,14 +1,19 @@
 .telephone {
   display: inline-block;
 
+  .telephone-number-fields {
+    display: table-row;
+  }
+
   .numbers {
     > label {
       font-weight: bold;
-      margin-bottom: -2.6rem;
     }
   }
 
   .number {
+    position: relative;
+
     &.three {
       width: 8rem;
     }
@@ -26,6 +31,8 @@
     }
 
     label {
+      position: absolute;
+      top: -27px;
       min-height: 2.7rem;
     }
   }
@@ -41,12 +48,13 @@
   }
 
   .separator.pound {
-    margin-left: 1rem;
+    padding-left: 1rem;
   }
 
   .number,
   .separator {
-    display: inline-block;
+    display: table-cell;
+    vertical-align: middle;
     padding-right: 0.3rem;
   }
 
