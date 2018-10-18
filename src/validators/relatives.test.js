@@ -80,7 +80,7 @@ describe('Relatives validation', function() {
           Document: {
             value: 'Other'
           },
-          OtherDocument: {
+          DocumentComments: {
             value: 'Other stuff'
           }
         },
@@ -1578,6 +1578,42 @@ describe('Relatives validation', function() {
           }
         },
         expected: true
+      },
+      {
+        data: {
+          IsDeceased: { value: 'No' },
+          Address: {
+            street: '1234 Some Rd',
+            city: 'Munich',
+            country: { value: 'Germany' },
+            layout: Location.ADDRESS
+          },
+          Frequency: {
+            value: 'Other'
+          },
+          FrequencyComments: {
+            value: ''
+          }
+        },
+        expected: false
+      },
+      {
+        data: {
+          IsDeceased: { value: 'No' },
+          Address: {
+            street: '1234 Some Rd',
+            city: 'Munich',
+            country: { value: 'Germany' },
+            layout: Location.ADDRESS
+          },
+          Frequency: {
+            value: 'Other'
+          },
+          FrequencyComments: {
+            value: 'foo'
+          }
+        },
+        expected: true
       }
     ]
 
@@ -2079,6 +2115,103 @@ describe('Relatives validation', function() {
       expect(new RelativesValidator(test.data).validMinimumRelations()).toBe(
         test.expected
       )
+    })
+  })
+
+  it('validates that a mother-in-law and father-in-law have been provided if married', () => {
+    const tests = [
+      {
+        data: {
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Relation: {
+                    value: 'Mother-in-law'
+                  }
+                }
+              },
+              {
+                Item: {
+                  Relation: {
+                    value: 'Father-in-law'
+                  }
+                }
+              }
+            ]
+          }
+        },
+        context: 'Married',
+        expected: true
+      },
+      {
+        data: {
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Relation: {
+                    value: 'Mother-in-law'
+                  }
+                }
+              },
+              {
+                Item: {
+                  Relation: {
+                    value: 'Father-in-law'
+                  }
+                }
+              }
+            ]
+          }
+        },
+        context: 'Separated',
+        expected: true
+      },
+      {
+        data: {
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Relation: {
+                    value: 'Mother-in-law'
+                  }
+                }
+              }
+            ]
+          }
+        },
+        context: 'Married',
+        expected: false
+      },
+      {
+        data: {
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Relation: {
+                    value: 'Father-in-law'
+                  }
+                }
+              }
+            ]
+          }
+        },
+        context: 'Separated',
+        expected: false
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(
+        new RelativesValidator(test.data).validMaritalRelations(test.context)
+      ).toBe(test.expected)
     })
   })
 })

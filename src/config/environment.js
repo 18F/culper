@@ -53,6 +53,10 @@ class Env {
     return process.env.NODE_ENV === 'test'
   }
 
+  IsDevelopment() {
+    return process.env.NODE_ENV === 'development'
+  }
+
   BasicAuthenticationEnabled() {
     return parseBool(process.env.BASIC_ENABLED)
   }

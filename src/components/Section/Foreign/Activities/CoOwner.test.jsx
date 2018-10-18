@@ -23,7 +23,7 @@ describe('The CoOwner component', () => {
     )
     expect(component.find('.co-owner').length).toBe(1)
     component.find('input[name="first"]').simulate('change')
-    component.find('input[name="address"]').simulate('change')
+    component.find('input[name="street"]').simulate('change')
 
     // Delete country to trigger update
     component.find('.token-delete').simulate('click')

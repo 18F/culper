@@ -4,6 +4,7 @@ import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 import History, { totalYears } from './History'
+import Employment from './Employment'
 import { mount } from 'enzyme'
 
 const applicationState = {
@@ -74,24 +75,55 @@ describe('The History section', () => {
     })
   })
 
-  it('can count total years', () => {
-    const tests = [
-      {
-        data: new Date('1/1/2010'),
-        expect: 10
-      },
-      {
-        data: new Date('1/1/2000'),
-        expect: 2
-      },
-      {
-        data: new Date('1/1/1980'),
-        expect: 10
+  it('sets totalYears to proper value if applicant has less than 10 years of history', () => {
+    const store = mockStore({
+      authentication: { authenticated: true },
+      application: {
+        Identification: {
+          ApplicantBirthDate: {
+            Date: {
+              month: `${new Date().getMonth() + 1}`,
+              day: `${new Date().getDate()}`,
+              year: `${new Date().getFullYear() - 18}`,
+              estimated: false
+            }
+          }
+        }
       }
-    ]
-
-    tests.forEach(test => {
-      expect(totalYears(test.data)).toBe(test.expect)
     })
+
+    const component = mount(
+      <Provider store={store}>
+        <History subsection="employment" />
+      </Provider>
+    )
+
+    expect(component.find(Employment).props().totalYears).toEqual(2)
+  })
+
+  it('sets totalYears to proper value if applicant has more than 10 years of history', () => {
+    const store = mockStore({
+      authentication: { authenticated: true },
+      application: {
+        Identification: {
+          ApplicantBirthDate: {
+            Date: {
+              month: `${new Date().getMonth() + 1}`,
+              day: `${new Date().getDate()}`,
+              year: `${new Date().getFullYear() - 30}`,
+              estimated: false
+            }
+          }
+        }
+      }
+    })
+
+    const component = mount(
+      <Provider store={store}>
+        <History subsection="employment" />
+      </Provider>
+    )
+
+    expect(component.find(Employment).props().totalYears).toEqual(10)
   })
 })

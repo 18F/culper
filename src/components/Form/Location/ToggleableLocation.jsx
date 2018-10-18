@@ -2,7 +2,7 @@ import React from 'react'
 import { env } from '../../../config'
 import ValidationElement from '../ValidationElement'
 import Street from '../Street'
-import MilitaryState from '../MilitaryState'
+import State from '../State'
 import City from '../City'
 import Country from '../Country'
 import County from '../County'
@@ -172,7 +172,7 @@ export default class ToggleableLocation extends ValidationElement {
           )
         case 'state':
           return (
-            <MilitaryState
+            <State
               name="state"
               key={key}
               className="state"
@@ -190,7 +190,7 @@ export default class ToggleableLocation extends ValidationElement {
         case 'stateZipcode':
           return (
             <div className="state-zip-wrap" key={key}>
-              <MilitaryState
+              <State
                 name="state"
                 className="state"
                 label={this.props.stateLabel}

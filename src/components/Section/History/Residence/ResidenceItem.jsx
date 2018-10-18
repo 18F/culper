@@ -332,8 +332,7 @@ export default class ResidenceItem extends ValidationElement {
         </Field>
         <Show
           when={
-            (this.props.Role || {}).value &&
-            !['Own', 'Rent', 'Military'].includes((this.props.Role || {}).value)
+            this.props.Role && this.props.Role.value === 'Other'
           }>
           <Field
             title={i18n.t('history.residence.label.role.explanation')}

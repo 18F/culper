@@ -14,7 +14,6 @@ export default class MaritalValidator {
     return [
       'NeverMarried',
       'Married',
-      'InCivilUnion',
       'Separated',
       'Annulled',
       'Divorced',
@@ -39,7 +38,7 @@ export default class MaritalValidator {
 
     const statusValue = this.status.value || ''
     let valid = true
-    if (['Married', 'InCivilUnion', 'Separated'].includes(statusValue)) {
+    if (['Married', 'Separated'].includes(statusValue)) {
       valid = new CivilUnionValidator(this.civilUnion).isValid()
       const divorcedValue = (this.civilUnion.Divorced || {}).value
       if (valid && divorcedValue === 'Yes') {

@@ -27,6 +27,7 @@
     "jsdoc": "^3.5.5",
     "node-sass-chokidar": "^1.3.0",
     "prop-types": "^15.6.0",
+    "query-string": "^5.1.1",
     "react": "^15.6.1",
     "react-autosuggest": "^9.3.2",
     "react-dom": "^15.6.1",
@@ -51,7 +52,7 @@
     ]
   },
   "scripts": {
-    "test": "NODE_ENV=test jest --ci --coverage --silent",
+    "test": "NODE_ENV=test jest --ci --silent",
     "lint-css": "gulp lint",
     "lint-js": "eslint --ext .js,.jsx src/",
     "lint": "npm run lint-css && npm run lint-js",

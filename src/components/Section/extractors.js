@@ -12,6 +12,15 @@ export const extractApplicantBirthdate = app => {
   return new Date(`${date.month}/${date.day}/${date.year}`)
 }
 
+export const extractMaritalStatus = app => {
+  const section = (app.Relationships || {}).Marital || {}
+  if (!section.Status) {
+    return null
+  }
+
+  return section.Status.value
+}
+
 export const extractOtherNames = app => {
   let names = []
   let identification = app.Identification

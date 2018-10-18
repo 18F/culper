@@ -31,14 +31,14 @@ func (service SaveHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	account.ID = id
 	if _, err := account.Get(service.Database, id); err != nil {
 		service.Log.WarnError(api.NoAccount, err, api.LogFields{})
-		EncodeErrJSON(w, err)
+		RespondWithStructuredError(w, api.NoAccount, http.StatusUnauthorized)
 		return
 	}
 
 	// If the account is locked then we cannot proceed
 	if account.Locked {
 		service.Log.Warn(api.AccountLocked, api.LogFields{})
-		EncodeErrJSON(w, err)
+		RespondWithStructuredError(w, api.AccountLocked, http.StatusForbidden)
 		return
 	}
 
@@ -46,7 +46,7 @@ func (service SaveHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {
 		service.Log.WarnError(api.PayloadEmpty, err, api.LogFields{})
-		EncodeErrJSON(w, err)
+		RespondWithStructuredError(w, api.PayloadEmpty, http.StatusBadRequest)
 		return
 	}
 
@@ -54,7 +54,7 @@ func (service SaveHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	payload := &api.Payload{}
 	if err := payload.Unmarshal(body); err != nil {
 		service.Log.WarnError(api.PayloadDeserializeError, err, api.LogFields{})
-		EncodeErrJSON(w, err)
+		RespondWithStructuredError(w, api.PayloadDeserializeError, http.StatusBadRequest)
 		return
 	}
 
@@ -62,15 +62,16 @@ func (service SaveHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	entity, err := payload.Entity()
 	if err != nil {
 		service.Log.WarnError(api.PayloadEntityError, err, api.LogFields{})
-		EncodeErrJSON(w, err)
+		RespondWithStructuredError(w, api.PayloadEntityError, http.StatusInternalServerError)
 		return
 	}
 
 	// Save to storage and report any errors
 	if _, err = entity.Save(service.Database, account.ID); err != nil {
 		service.Log.WarnError(api.EntitySaveError, err, api.LogFields{})
-		EncodeErrJSON(w, err)
+		RespondWithStructuredError(w, api.EntitySaveError, http.StatusInternalServerError)
 		return
 	}
+
 	EncodeErrJSON(w, nil)
 }

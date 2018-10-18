@@ -32,10 +32,10 @@ export const error = {
         note: ''
       },
       pattern: {
-        title: 'Oops, there’s a problem.',
-        message:
-          'If your first name is a single letter, please select the "Initial only" checkbox and type the letter. 100 character limit.',
-        note: ''
+        title: 'There is a problem with the first name',
+        message: "Some of these characters aren't allowed.",
+        note:
+          "Only use letters, hyphens (-), periods (.), apostrophes ('), and spaces."
       }
     },
     middle: {
@@ -52,10 +52,10 @@ export const error = {
         note: ''
       },
       pattern: {
-        title: 'Oops, there’s a problem.',
-        message:
-          'If your middle name is a single letter, please select the "Initial only" checkbox and type the letter. 100 character limit.',
-        note: ''
+        title: 'There is a problem with the middle name',
+        message: "Some of these characters aren't allowed.",
+        note:
+          "Only use letters, hyphens (-), periods (.), apostrophes ('), and spaces."
       }
     },
     suffix: {
@@ -797,6 +797,14 @@ export const error = {
       }
     }
   },
+  divorce: {
+   date: {
+      min: {
+        title: 'There is a problem with the date',
+        message: 'The date should be after the date your civil marriage, civil union, or domestic partnership was legally recognized.'
+      }
+    }
+  },
   currency: {
     max: {
       title: 'Currency value is too large',
@@ -1070,6 +1078,11 @@ export const error = {
     message:
       'There was a problem submitting your SF-86. Please contact support for additional information.'
   },
+  validMaritalRelation: {
+    title: 'Mother-in-law and father-in-law must be provided',
+    message:
+      'You indicated that you are married or separated, please provide entries for mother-in-law and father-in-law.'
+  },
   validRelation: {
     title: 'Mother and father must be provided',
     message:
@@ -1078,5 +1091,9 @@ export const error = {
   validPhoneTypes: {
     title: 'There is a problem with your phone numbers',
     message: 'Please provide only one of each phone number type.'
+  },
+  validMinimumCitizenships: {
+    title: 'There is a problem with your entry',
+    message: 'Please provide a minimum of two countries.'
   }
 }

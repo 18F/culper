@@ -49,7 +49,7 @@ export default class Relative extends ValidationElement {
     this.updateCourtName = this.updateCourtName.bind(this)
     this.updateCourtAddress = this.updateCourtAddress.bind(this)
     this.updateDocument = this.updateDocument.bind(this)
-    this.updateOtherDocument = this.updateOtherDocument.bind(this)
+    this.updateDocumentComments = this.updateDocumentComments.bind(this)
     this.updateResidenceDocumentNumber = this.updateResidenceDocumentNumber.bind(
       this
     )
@@ -93,7 +93,6 @@ export default class Relative extends ValidationElement {
       CourtName: this.props.CourtName,
       CourtAddress: this.props.CourtAddress,
       Document: this.props.Document,
-      OtherDocument: this.props.OtherDocument,
       DocumentComments: this.props.DocumentComments,
       ResidenceDocumentNumber: this.props.ResidenceDocumentNumber,
       Expiration: this.props.Expiration,
@@ -211,9 +210,9 @@ export default class Relative extends ValidationElement {
     })
   }
 
-  updateOtherDocument(value) {
+  updateDocumentComments(value) {
     this.update({
-      OtherDocument: value
+      DocumentComments: value
     })
   }
 
@@ -981,11 +980,11 @@ export default class Relative extends ValidationElement {
 
                     <Show when={(this.props.Document || {}).value === 'Other'}>
                       <Textarea
-                        name="OtherDocument"
-                        className="relative-other-documentnumber"
-                        {...this.props.OtherDocument}
+                        name="DocumentComments"
+                        className="relative-document-other-comments"
+                        {...this.props.DocumentComments}
                         onValidate={this.props.onValidate}
-                        onUpdate={this.updateOtherDocument}
+                        onUpdate={this.updateDocumentComments}
                         required={this.props.required}
                       />
                     </Show>

@@ -78,7 +78,9 @@ class Form extends React.Component {
       section,
       subsection,
       this.props.dispatch
-    )
+    ).catch(error => {
+      alert(error)
+    })
   }
 
   refreshToken() {
