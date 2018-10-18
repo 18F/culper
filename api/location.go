@@ -162,7 +162,7 @@ func (entity *Location) Valid() (bool, error) {
 		stack = validateFields(entity, "street", "city")
 	case LayoutOffense:
 		if domestic {
-			stack = validateFields(entity, "city", "state", "zipcode", "country")
+			stack = validateFields(entity, "city", "state", "zipcode", "county", "country")
 		} else {
 			stack = validateFields(entity, "city", "country")
 		}

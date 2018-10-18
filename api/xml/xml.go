@@ -748,7 +748,7 @@ func locationOverrideLayout(data map[string]interface{}, override string) (templ
 	switch layout {
 	case api.LayoutOffense:
 		if domestic {
-			return xmlTemplateWithFuncs("location-city-state-zipcode-country.xml", data, fmap)
+			return xmlTemplateWithFuncs("location-city-state-zipcode-county.xml", data, fmap)
 		}
 
 		return xmlTemplateWithFuncs("location-city-country.xml", data, fmap)
