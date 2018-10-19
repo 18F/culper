@@ -1350,9 +1350,9 @@ hand. It is impossible to conceive of </Relationship>
                 <Residency ID="2">
                   <Address>
                     <Street>RESI 2 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO </Street>
-                    <City>APO</City>
-                    <State>AA</State>
-                    <ZipCode>34033</ZipCode>
+                    <City>Seaside</City>
+                    <State>CA</State>
+                    <ZipCode>93940</ZipCode>
                   </Address>
                   <DateRange>
                     <From>
