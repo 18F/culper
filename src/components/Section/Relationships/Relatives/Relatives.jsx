@@ -102,6 +102,7 @@ export default class Relatives extends SubsectionElement {
           appendLabel={i18n.t('relationships.relatives.collection.append')}>
           <Relative
             name="Item"
+            applicantBirthdate={this.props.applicantBirthdate}
             addressBooks={this.props.addressBooks}
             dispatch={this.props.dispatch}
             bind={true}

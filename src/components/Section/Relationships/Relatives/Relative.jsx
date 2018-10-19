@@ -1,5 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import { pickDate } from '../../../../validators/helpers'
 import {
   ValidationElement,
   Branch,
@@ -332,6 +333,7 @@ export default class Relative extends ValidationElement {
   }
 
   render() {
+    const relativeContactMinDate = pickDate([this.props.applicantBirthdate, this.props.Birthdate])
     const validator = new RelativeValidator(this.props, null)
     const mother = (this.props.Relation || {}).value === 'Mother'
     const father = (this.props.Relation || {}).value === 'Father'
@@ -1040,8 +1042,9 @@ export default class Relative extends ValidationElement {
                 name="FirstContact"
                 className="relative-first-contact"
                 {...this.props.FirstContact}
-                prefix="relative"
-                applicantBirthdate={this.props.Birthdate}
+                prefix={"relative"}
+                minDate={relativeContactMinDate}
+                minDateEqualTo={true}
                 onError={this.props.onError}
                 onUpdate={this.updateFirstContact}
                 required={this.props.required}
@@ -1060,8 +1063,9 @@ export default class Relative extends ValidationElement {
                 name="LastContact"
                 className="relative-last-contact"
                 {...this.props.LastContact}
-                prefix="relative"
-                applicantBirthdate={this.props.Birthdate}
+                prefix={"relative"}
+                minDate={this.props.FirstContact.date}
+                minDateEqualTo={true}
                 onError={this.props.onError}
                 onUpdate={this.updateLastContact}
                 required={this.props.required}
