@@ -1111,5 +1111,19 @@ export const error = {
       title: 'Your response is required',
       message: ''
     }
-  }
+  },
+  foreignContact: {
+    min: {
+      title: 'There is a problem with the date',
+      message: "This date is before either you or your foriegn contact was born."
+    },
+    max: {
+      title: 'There is a problem with the date',
+      message: "The date can't be in the future."
+    },
+    required: {
+      title: 'Your response is required',
+      message: ''
+    }
+  },
 }

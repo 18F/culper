@@ -176,6 +176,7 @@ class Foreign extends SectionElement {
               {...this.props.Contacts}
               section="foreign"
               subsection="contacts"
+              applicantBirthdate={this.props.applicantBirthdate}
               defaultState={false}
               addressBooks={this.props.AddressBooks}
               dispatch={this.props.dispatch}
@@ -423,6 +424,7 @@ class Foreign extends SectionElement {
             <Contacts
               name="contacts"
               {...this.props.Contacts}
+              applicantBirthdate={this.props.applicantBirthdate}
               addressBooks={this.props.AddressBooks}
               dispatch={this.props.dispatch}
               onUpdate={this.updateContacts}
@@ -715,6 +717,7 @@ class Foreign extends SectionElement {
 
 function mapStateToProps(state) {
   const app = state.application || {}
+  const identification = app.Identification || {}
   const foreign = app.Foreign || {}
   const errors = app.Errors || {}
   const completed = app.Completed || {}
@@ -722,6 +725,7 @@ function mapStateToProps(state) {
 
   let names = extractOtherNames(app)
   return {
+    applicantBirthdate: (identification.ApplicantBirthDate || {}).Date,
     Foreign: foreign,
     Passport: foreign.Passport || {},
     Contacts: foreign.Contacts || {},
@@ -771,6 +775,7 @@ export class ForeignSections extends React.Component {
           name="contacts"
           {...this.props.Contacts}
           defaultState={false}
+          applicantBirthdate={this.props.applicantBirthdate}
           addressBooks={this.props.AddressBooks}
           dispatch={this.props.dispatch}
           onError={this.handleError}

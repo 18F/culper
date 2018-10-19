@@ -1,5 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import { pickDate } from '../../../../validators/helpers'
 import {
   ValidationElement,
   Field,
@@ -247,6 +248,7 @@ export default class ForeignNational extends ValidationElement {
   }
 
   render() {
+    const foreignContactMinDate = pickDate([this.props.applicantBirthdate, this.props.Birthdate])
     return (
       <div className="foreign-national">
         <Field
@@ -300,6 +302,9 @@ export default class ForeignNational extends ValidationElement {
           <DateControl
             name="FirstContact"
             className="first-contact"
+            minDateEqualTo={true}
+            prefix={"foreignContact"}
+            minDate={foreignContactMinDate}
             {...this.props.FirstContact}
             onUpdate={this.updateFirstContact}
             onError={this.props.onError}
@@ -316,8 +321,9 @@ export default class ForeignNational extends ValidationElement {
             name="LastContact"
             className="last-contact"
             {...this.props.LastContact}
-            prefix="contact.last"
+            prefix={"contact.last"}
             minDate={(this.props.FirstContact || {}).date}
+            minDateEqualTo={true}
             onUpdate={this.updateLastContact}
             onError={this.props.onError}
             required={this.props.required}
