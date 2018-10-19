@@ -823,9 +823,6 @@ enjoyments;</ReasonForChange>
                     <State>CA</State>
                     <ZipCode>93951</ZipCode>
                   </Address>
-                  <APOFPO>
-                    <Answer>No</Answer>
-                  </APOFPO>
                   <Birth>
                     <Date Type="Estimated">
                       <Month>01</Month>
@@ -973,9 +970,6 @@ hand. It is impossible to conceive of </ReasonForChange>
                     <State>CA</State>
                     <ZipCode>93940</ZipCode>
                   </Address>
-                  <APOFPO>
-                    <Answer>No</Answer>
-                  </APOFPO>
                   <Birth>
                     <Date Type="Estimated">
                       <Month>01</Month>
@@ -1213,9 +1207,6 @@ hand. It is impossible to conceive of </Relationship>
               <MaritalStatus>Married</MaritalStatus>
               <PresentMarriage>
                 <CurrentSpouse ID="1">
-                  <APOFPO>
-                    <Answer>No</Answer>
-                  </APOFPO>
                   <Address UseMyCurrentAddress="True"/>
                   <Birth>
                     <Date>
@@ -4774,9 +4765,6 @@ watched h</Reason>
                     <State>PA</State>
                     <ZipCode>15509</ZipCode>
                   </Address>
-                  <APOFPO>
-                    <Answer>No</Answer>
-                  </APOFPO>
                   <Birth>
                     <Date Type="Estimated">
                       <Month>01</Month>
@@ -5134,9 +5122,6 @@ hand. It is impossible to conceive of </Relationship>
                     <State>PA</State>
                     <ZipCode>15222</ZipCode>
                   </Address>
-                  <APOFPO>
-                    <Answer>No</Answer>
-                  </APOFPO>
                   <Birth>
                     <Date Type="Estimated">
                       <Month>01</Month>

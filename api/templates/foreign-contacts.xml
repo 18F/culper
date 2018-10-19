@@ -19,11 +19,15 @@
         <!-- No PhysicalLocation -->
       </APOFPO>
       {{else}}
-      <Address DoNotKnow="{{notApplicable $Item.AddressNotApplicable}}">
+      {{ $doNotKnowAddr := notApplicable $Item.AddressNotApplicable }}
+      <Address DoNotKnow="{{$doNotKnowAddr}}">
         {{location $Item.Address}}
       </Address>
+      <!-- This constraint is not consistent with SF-86 form or validation matrix; but is consistent with e-QIP -->
+      {{if and (isInternational $Item.Address) ($doNotKnowAddr | eq "False")}}
       <!-- XXX Work-around for https://github.com/18F/e-QIP-prototype/issues/753 -->
       <APOFPO><Answer>No</Answer></APOFPO>
+      {{end}}
       {{end}}
       <Birth>
         <Date Type="{{dateEstimated $Item.Birthdate}}" DoNotKnow="{{notApplicable $Item.BirthdateNotApplicable}}">

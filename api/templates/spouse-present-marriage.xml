@@ -18,14 +18,17 @@
       </PhysicalLocation>
     </APOFPO>
     {{else}}
-    <!-- XXX Work-around for https://github.com/18F/e-QIP-prototype/issues/1029 -->
-    <APOFPO><Answer>No</Answer></APOFPO>
     {{if notApplicable $Item.UseCurrentAddress | eq "True"}}
     <Address UseMyCurrentAddress="True"/>
     {{else}}
     <Address>
       {{location $Item.Address}}
     </Address>
+    <!-- This constraint is not consistent with SF-86/validation matrix; but is consistent with e-QIP -->
+    {{if isInternational $Item.Address}}
+    <!-- XXX Work-around for https://github.com/18F/e-QIP-prototype/issues/1029 -->
+    <APOFPO><Answer>No</Answer></APOFPO>
+    {{end}}
     {{end}}
     {{end}}
     <Birth>

@@ -212,9 +212,6 @@
                     <State>OR</State>
                     <ZipCode>97005</ZipCode>
                   </Address>
-                  <APOFPO>
-                    <Answer>No</Answer>
-                  </APOFPO>
                   <Birth>
                     <Date Type="Estimated">
                       <Month>04</Month>

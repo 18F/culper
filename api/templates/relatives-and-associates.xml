@@ -71,8 +71,11 @@
       {{else}}
       <Address>{{location $Item.Address}}</Address>
       <AddressComment></AddressComment>
+      <!-- This constraint is not consistent with SF-86 form or validation matrix; but is consistent with e-QIP -->
+      {{if isInternational $Item.Address}}
       <!-- XXX Work-around for https://github.com/18F/e-QIP-prototype/issues/753 -->
       <APOFPO><Answer>No</Answer></APOFPO>
+      {{end}}
       {{end}}
       {{end}}
 

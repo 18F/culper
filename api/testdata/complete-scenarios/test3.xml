@@ -212,9 +212,6 @@
                     <State>MA</State>
                     <ZipCode>02130</ZipCode>
                   </Address>
-                  <APOFPO>
-                    <Answer>No</Answer>
-                  </APOFPO>
                   <Birth>
                     <Date>
                       <Month>01</Month>
@@ -258,9 +255,6 @@
                     <State>MA</State>
                     <ZipCode>02125</ZipCode>
                   </Address>
-                  <APOFPO>
-                    <Answer>No</Answer>
-                  </APOFPO>
                   <Birth>
                     <Date>
                       <Month>03</Month>
@@ -299,9 +293,6 @@
                     <State>MA</State>
                     <ZipCode>02125</ZipCode>
                   </Address>
-                  <APOFPO>
-                    <Answer>No</Answer>
-                  </APOFPO>
                   <Birth>
                     <Date>
                       <Month>03</Month>
@@ -478,9 +469,6 @@
               <MaritalStatus>Married</MaritalStatus>
               <PresentMarriage>
                 <CurrentSpouse ID="1">
-                  <APOFPO>
-                    <Answer>No</Answer>
-                  </APOFPO>
                   <Address>
                     <Street>65 DEER ST </Street>
                     <City>BOSTON</City>
@@ -796,9 +784,6 @@
                     <State>MA</State>
                     <ZipCode>02130</ZipCode>
                   </Address>
-                  <APOFPO>
-                    <Answer>No</Answer>
-                  </APOFPO>
                   <Birth>
                     <Date DoNotKnow="True">
           
@@ -859,9 +844,6 @@
                     <State>MA</State>
                     <ZipCode>02130</ZipCode>
                   </Address>
-                  <APOFPO>
-                    <Answer>No</Answer>
-                  </APOFPO>
                   <Birth>
                     <Date>
                       <Month>12</Month>
