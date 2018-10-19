@@ -172,6 +172,7 @@ export default class Marital extends SubsectionElement {
             <Divorce
               name="Item"
               bind={true}
+              applicantBirthdate={this.props.applicantBirthdate}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
             />
