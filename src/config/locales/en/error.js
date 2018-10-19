@@ -1087,7 +1087,21 @@ export const error = {
   civilUnion: {
     min: {
       title: 'There is a problem with the date',
-      message: "The date should be after you and your partners\' date of birth."
+      message: "The date should be after you and your partner\'s date of birth."
+    },
+    max: {
+      title: 'There is a problem with the date',
+      message: "The date can't be in the future."
+    },
+    required: {
+      title: 'Your response is required',
+      message: ''
+    }
+  },
+  cohabitant: {
+    min: {
+      title: 'There is a problem with the date',
+      message: "The date should be after you and your cohabitant\'s date of birth."
     },
     max: {
       title: 'There is a problem with the date',
