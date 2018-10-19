@@ -1,5 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import { pickDate } from '../../../../validators/helpers'
 import {
   Branch,
   Field,
@@ -188,6 +189,7 @@ export default class CivilUnion extends ValidationElement {
   render() {
     const showForeignBornDocumentation =
       ((this.props.BirthPlace || {}).country || {}) !== 'United States'
+    const enteredCivilUnionMinDate = pickDate([this.props.applicantBirthdate, this.props.Birthdate])
     return (
       <div className="civil-union">
         <div>
@@ -355,6 +357,9 @@ export default class CivilUnion extends ValidationElement {
             <DateControl
               name="enteredCivilUnion"
               className="entered"
+              minDateEqualTo={true}
+              prefix={"civilUnion"}
+              minDate={enteredCivilUnionMinDate}
               {...this.props.EnteredCivilUnion}
               onUpdate={this.updateEnteredCivilUnion}
               onError={this.props.onError}
@@ -463,6 +468,7 @@ export default class CivilUnion extends ValidationElement {
             labelSize="h3"
             {...this.props.Separated}
             onUpdate={this.updateSeparated}
+            minDate={(this.props.EnteredCivilUnion || {}).date}
             required={this.props.required}
             scrollIntoView={this.props.scrollIntoView}
             onError={this.props.onError}
@@ -478,8 +484,9 @@ export default class CivilUnion extends ValidationElement {
                 <DateControl
                   name="DateSeparated"
                   className="dateseparated"
-                  {...this.props.DateSeparated}
                   minDate={(this.props.EnteredCivilUnion || {}).date}
+                  minDateEqualTo={true}
+                  {...this.props.DateSeparated}
                   onUpdate={this.updateDateSeparated}
                   onError={this.props.onError}
                   required={this.props.required}

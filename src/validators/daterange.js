@@ -33,6 +33,6 @@ export default class DateRangeValidator {
     const fdate = new Date(
       `${this.from.month || ''}/${this.from.day || '1'}/${this.from.year}`
     )
-    return tdate > fdate
+    return tdate >= fdate
   }
 }

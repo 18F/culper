@@ -81,6 +81,7 @@ class Relationships extends SectionElement {
               name="marital"
               {...this.props.Marital}
               addressBooks={this.props.AddressBooks}
+              applicantBirthdate={this.props.applicantBirthdate}
               dispatch={this.props.dispatch}
               onUpdate={this.updateMarital}
               onError={this.handleError}
@@ -156,6 +157,7 @@ class Relationships extends SectionElement {
               section="relationships"
               subsection="status/marital"
               defaultState={false}
+              applicantBirthdate={this.props.applicantBirthdate}
               addressBooks={this.props.AddressBooks}
               dispatch={this.props.dispatch}
               onUpdate={this.updateMarital}
@@ -229,8 +231,20 @@ class Relationships extends SectionElement {
   }
 }
 
+const utc = date => {
+  if (!date) {
+    return null
+  }
+  if (Object.prototype.toString.call(date) === '[object String]') {
+    return null
+  }
+
+  return new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()))
+}
+
 function mapStateToProps(state) {
   const app = state.application || {}
+  const identification = app.Identification || {}
   const relationships = app.Relationships || {}
   const errors = app.Errors || {}
   const completed = app.Completed || {}
@@ -238,6 +252,7 @@ function mapStateToProps(state) {
   const addressBooks = app.AddressBooks || {}
 
   return {
+    applicantBirthdate: (identification.ApplicantBirthDate || {}).Date,
     Relationships: relationships,
     Relatives: relationships.Relatives || {},
     Marital: relationships.Marital || {},
@@ -274,6 +289,7 @@ export class RelationshipSections extends React.Component {
           {...this.props.Marital}
           defaultState={false}
           addressBooks={this.props.AddressBooks}
+          applicantBirthdate={this.props.applicantBirthdate}
           dispatch={this.props.dispatch}
           onError={this.props.onError}
           currentAddress={this.props.CurrentAddress}
