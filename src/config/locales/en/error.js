@@ -239,7 +239,7 @@ export const error = {
     },
     min: {
       title: 'There is a problem with the date',
-      message: "The date should be after this person's date of birth."
+      message: "This date is before either you or your relative was born."
     },
     required: {
       title: 'Your response is required',
@@ -1087,7 +1087,7 @@ export const error = {
   civilUnion: {
     min: {
       title: 'There is a problem with the date',
-      message: "The date should be after you and your partner\'s date of birth."
+      message: "This date is before either you or your partner was born."
     },
     max: {
       title: 'There is a problem with the date',
@@ -1101,7 +1101,7 @@ export const error = {
   cohabitant: {
     min: {
       title: 'There is a problem with the date',
-      message: "The date should be after you and your cohabitant\'s date of birth."
+      message: "This date is before either you or your cohabitant was born."
     },
     max: {
       title: 'There is a problem with the date',
