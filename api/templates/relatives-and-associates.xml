@@ -58,21 +58,20 @@
       {{- $deceased := eq (branch $Item.IsDeceased) "Yes" }}
       {{if not $deceased }}
       <!-- XXX Work-around for https://github.com/18F/e-QIP-prototype/issues/753 -->
-      {{if locationIsPostOffice $Item.Address | eq "NOOP"}}
+      {{if false}}
       <APOFPO>
-        <Address>{{militaryAddress $Item.Address}}</Address>
+        <!-- TODO -->
+        <Address></Address>
         <AddressComment></AddressComment>
+        <!-- TODO -->
         <Answer></Answer>
         <AnswerComment></AnswerComment>
+        <!-- No PhysicalLocation -->
       </APOFPO>
       {{else}}
       <Address>{{location $Item.Address}}</Address>
       <!-- XXX Work-around for https://github.com/18F/e-QIP-prototype/issues/753 -->
-      {{- $usAddress := addressIn $Item.Address "United States" }}
-      {{if not $usAddress}}
-      <APOFPO>
-        <Answer>No</Answer>
-      </APOFPO>
+      <APOFPO><Answer>No</Answer></APOFPO>
       {{end}}
       {{end}}
       <AddressComment></AddressComment>
@@ -87,7 +86,7 @@
       {{- $birthCountry := $Item.Birthplace.props.country }}
       {{- $foreignPOB := ne $birthCountry "United States" }}
       {{- $usCitizen := citizenshipHas $Item.Citizenship "United States" }}
-      {{- $usAddress := addressIn $Item.Address "United States" }}
+      {{- $usAddress := isDomestic $Item.Address }}
 
       {{- if or (and $usCitizen $foreignPOB $deceased) (and $usCitizen $foreignPOB $usAddress) (and $usAddress (not $usCitizen) (not $deceased)) }}
       <Citizenship>

@@ -729,6 +729,9 @@
               <MaritalStatus>Married</MaritalStatus>
               <PresentMarriage>
                 <CurrentSpouse ID="1">
+                  <APOFPO>
+                    <Answer>No</Answer>
+                  </APOFPO>
                   <Address UseMyCurrentAddress="True"/>
                   <Birth>
                     <Date>
@@ -2581,6 +2584,9 @@
                   <Address DoNotKnow="True">
                     <Street> </Street>
                   </Address>
+                  <APOFPO>
+                    <Answer>No</Answer>
+                  </APOFPO>
                   <Birth>
                     <Date DoNotKnow="True">
           

@@ -10,11 +10,24 @@
       <EmploymentCodeComment></EmploymentCodeComment>
       <WorkHours>{{radio $Item.Status}}</WorkHours>
       <!-- XXX Work-around for https://github.com/18F/e-QIP-prototype/issues/924 -->
-      {{- if locationIsPostOffice $Item.Address | eq "NOOP"}}
+      {{if false}}
       <APOFPO>
-        <Address>{{militaryAddress $Item.Address}}</Address>
+        <!-- TODO -->
+        <Address></Address>
         <AddressComment></AddressComment>
+        <!-- TODO -->
+        <Answer></Answer>
+        <AnswerComment></AnswerComment>
+        <!-- TODO -->
+        <PhysicalLocation>
+          <Address></Address>
+          <Comment></Comment>
+        </PhysicalLocation>
       </APOFPO>
+      {{end}}
+      <!-- XXX Work-around for https://github.com/18F/e-QIP-prototype/issues/924 -->
+      {{if and (isInternational $Item.Address) (radio $Item.EmploymentActivity | ne "Unemployment")}}
+      <APOFPO><Answer>No</Answer></APOFPO>
       {{end}}
       {{- if radio $Item.EmploymentActivity | ne "OtherFederal"}}
       {{- if radio $Item.EmploymentActivity | ne "StateGovernment"}}
@@ -168,12 +181,25 @@
         <Name>{{text $supervisor.SupervisorName}}</Name>
         <Title>{{text $supervisor.Title}}</Title>
         <!-- XXX Work-around for https://github.com/18F/e-QIP-prototype/issues/924 -->
-        {{if locationIsPostOffice $supervisor.Address | eq "NOOP"}}
+        {{if false}}
         <APOFPO>
-          <Address>{{militaryAddress $supervisor.Address}}</Address>
+          <!-- TODO -->
+          <Address></Address>
           <AddressComment></AddressComment>
+          <!-- TODO -->
+          <Answer></Answer>
+          <AnswerComment></AnswerComment>
+          <!-- TODO -->
+          <PhysicalLocation>
+            <Address></Address>
+            <Comment></Comment>
+          </PhysicalLocation>
         </APOFPO>
         {{else}}
+        <!-- XXX Work-around for https://github.com/18F/e-QIP-prototype/issues/924 -->
+        {{if isInternational $supervisor.Address}}
+        <APOFPO><Answer>No</Answer></APOFPO>
+        {{end}}
         <Address>{{location $supervisor.Address}}</Address>
         {{end}}
         <Comment></Comment>
@@ -187,12 +213,25 @@
       <Verifier>
         <LegalName>{{nameLastFirst $Item.ReferenceName}}</LegalName>
         <!-- XXX Work-around for https://github.com/18F/e-QIP-prototype/issues/924 -->
-        {{if locationIsPostOffice $Item.ReferenceAddress | eq "NOOP"}}
+        {{if false}}
         <APOFPO>
-          <Address>{{militaryAddress $Item.ReferenceAddress}}</Address>
+          <!-- TODO -->
+          <Address></Address>
           <AddressComment></AddressComment>
+          <!-- TODO -->
+          <Answer></Answer>
+          <AnswerComment></AnswerComment>
+          <!-- TODO -->
+          <PhysicalLocation>
+            <Address></Address>
+            <Comment></Comment>
+          </PhysicalLocation>
         </APOFPO>
         {{else}}
+        <!-- XXX Work-around for https://github.com/18F/e-QIP-prototype/issues/924 -->
+        {{if isInternational $Item.ReferenceAddress}}
+        <APOFPO><Answer>No</Answer></APOFPO>
+        {{end}}
         <Address>{{location $Item.ReferenceAddress}}</Address>
         {{end}}
         <Telephone>{{telephone $Item.ReferencePhone}}</Telephone>

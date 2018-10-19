@@ -8,22 +8,22 @@
     {{with $Item := $item.Item}}
     <Contact ID="{{inc $index}}">
       <!-- XXX Work-around for https://github.com/18F/e-QIP-prototype/issues/753 -->
-      {{if locationIsPostOffice $Item.Address | eq "NOOP"}}
+      {{if false}}
       <APOFPO>
-        <Address>{{militaryAddress $Item.Address}}</Address>
+        <!-- TODO -->
+        <Address></Address>
         <AddressComment></AddressComment>
+        <!-- TODO -->
+        <Answer></Answer>
+        <AnswerComment></AnswerComment>
+        <!-- No PhysicalLocation -->
       </APOFPO>
       {{else}}
       <Address DoNotKnow="{{notApplicable $Item.AddressNotApplicable}}">
         {{location $Item.Address}}
       </Address>
       <!-- XXX Work-around for https://github.com/18F/e-QIP-prototype/issues/753 -->
-      {{- $usAddress := addressIn $Item.Address "United States" }}
-      {{if and (not $usAddress) (notApplicable $Item.AddressNotApplicable | eq "False")}}
-      <APOFPO>
-        <Answer>No</Answer>
-      </APOFPO>
-      {{end}}
+      <APOFPO><Answer>No</Answer></APOFPO>
       {{end}}
       <Birth>
         <Date Type="{{dateEstimated $Item.Birthdate}}" DoNotKnow="{{notApplicable $Item.BirthdateNotApplicable}}">

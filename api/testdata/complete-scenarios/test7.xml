@@ -1207,6 +1207,9 @@ hand. It is impossible to conceive of </Relationship>
               <MaritalStatus>Married</MaritalStatus>
               <PresentMarriage>
                 <CurrentSpouse ID="1">
+                  <APOFPO>
+                    <Answer>No</Answer>
+                  </APOFPO>
                   <Address UseMyCurrentAddress="True"/>
                   <Birth>
                     <Date>
@@ -1371,6 +1374,9 @@ hand. It is impossible to conceive of </Relationship>
                   <ResidenceType>Rent</ResidenceType>
                 </Residency>
                 <Residency ID="3">
+                  <APOFPO>
+                    <Answer>No</Answer>
+                  </APOFPO>
                   <Address>
                     <Street>RESI 3 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO RESI 3 APT XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO</Street>
                     <City>RESI 3 CITY XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO</City>
@@ -1527,6 +1533,9 @@ hand. It is impossible to conceive of </Relationship>
                   </DateRange>
                   <Type>SelfEmployed</Type>
                   <WorkHours>FullTime</WorkHours>
+                  <APOFPO>
+                    <Answer>No</Answer>
+                  </APOFPO>
                   <SelfEmployment>
                     <Occupation>SELF POSITION XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO</Occupation>
                     <Business>
@@ -4759,6 +4768,9 @@ watched h</Reason>
                     <State>PA</State>
                     <ZipCode>15509</ZipCode>
                   </Address>
+                  <APOFPO>
+                    <Answer>No</Answer>
+                  </APOFPO>
                   <Birth>
                     <Date Type="Estimated">
                       <Month>01</Month>
@@ -5116,6 +5128,9 @@ hand. It is impossible to conceive of </Relationship>
                     <State>PA</State>
                     <ZipCode>15222</ZipCode>
                   </Address>
+                  <APOFPO>
+                    <Answer>No</Answer>
+                  </APOFPO>
                   <Birth>
                     <Date Type="Estimated">
                       <Month>01</Month>

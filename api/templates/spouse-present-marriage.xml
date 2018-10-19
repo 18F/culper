@@ -2,10 +2,11 @@
 <PresentMarriage>
   {{with $Item := .props.CivilUnion.props}}
   <CurrentSpouse ID="1">
-    <!-- XXX Work-around for https://github.com/18F/e-QIP-prototype/issues/753 -->
-    {{if locationIsPostOffice $Item.Address | eq "NOOP"}}
+    <!-- XXX Work-around for https://github.com/18F/e-QIP-prototype/issues/1029 -->
+    {{if false}}
     <APOFPO>
-      <Address>{{militaryAddress $Item.Address}}</Address>
+      <!-- TODO -->
+      <Address></Address>
       <AddressComment></AddressComment>
       <!-- TODO -->
       <Answer></Answer>
@@ -13,10 +14,12 @@
       <!-- TODO -->
       <PhysicalLocation>
         <Address></Address>
+        <Comment></Comment>
       </PhysicalLocation>
     </APOFPO>
     {{else}}
-    <!-- UseCurrentAddress as an NotApplicable input is awkward -->
+    <!-- XXX Work-around for https://github.com/18F/e-QIP-prototype/issues/1029 -->
+    <APOFPO><Answer>No</Answer></APOFPO>
     {{if notApplicable $Item.UseCurrentAddress | eq "True"}}
     <Address UseMyCurrentAddress="True"/>
     {{else}}
