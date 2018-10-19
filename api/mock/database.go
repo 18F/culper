@@ -1,7 +1,10 @@
 package mock
 
 // DatabaseService mock implementation.
-type DatabaseService struct{}
+type DatabaseService struct {
+	SelectFn    func(query interface{}) error
+	SelectCount int
+}
 
 // Configure establishes a new database connection
 func (service *DatabaseService) Configure() {
@@ -71,5 +74,6 @@ func (service *DatabaseService) Delete(query interface{}) error {
 
 // Select returns the model from the data store
 func (service *DatabaseService) Select(query interface{}) error {
-	return nil
+	service.SelectCount++
+	return service.SelectFn(query)
 }

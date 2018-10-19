@@ -44,7 +44,7 @@ const (
 	NoUsername                                 = "Unable to retrieve account because no username was provided"
 	PayloadDeserializeError                    = "Failed to deserialize payload"
 	PayloadEmpty                               = "Payload not provided"
-	PayloadEntityError                         = "Error creating entity from the payload"
+	PayloadEntityError                         = "Error converting payload into valid entity"
 	PayloadInvalid                             = "Payload is invalid"
 	PayloadMissingType                         = "Payload is missing a type"
 	PdfError                                   = "Error generating archival signature PDFs"
