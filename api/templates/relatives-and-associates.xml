@@ -70,11 +70,10 @@
       </APOFPO>
       {{else}}
       <Address>{{location $Item.Address}}</Address>
+      <AddressComment></AddressComment>
       <!-- XXX Work-around for https://github.com/18F/e-QIP-prototype/issues/753 -->
       <APOFPO><Answer>No</Answer></APOFPO>
       {{end}}
-      {{end}}
-      <AddressComment></AddressComment>
       {{end}}
 
       <Birth>

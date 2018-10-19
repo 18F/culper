@@ -270,6 +270,9 @@
                     <State>CA</State>
                     <ZipCode>93940</ZipCode>
                   </Address>
+                  <APOFPO>
+                    <Answer>No</Answer>
+                  </APOFPO>
                   <Birth>
                     <Date>
                       <Month>01</Month>
@@ -375,6 +378,9 @@
                     <State>CA</State>
                     <ZipCode>93940</ZipCode>
                   </Address>
+                  <APOFPO>
+                    <Answer>No</Answer>
+                  </APOFPO>
                   <Birth>
                     <Date>
                       <Month>08</Month>
@@ -431,6 +437,9 @@
                     <State>CA</State>
                     <ZipCode>90001</ZipCode>
                   </Address>
+                  <APOFPO>
+                    <Answer>No</Answer>
+                  </APOFPO>
                   <Birth>
                     <Date>
                       <Month>09</Month>
@@ -465,6 +474,9 @@
                     <State>CA</State>
                     <ZipCode>93940</ZipCode>
                   </Address>
+                  <APOFPO>
+                    <Answer>No</Answer>
+                  </APOFPO>
                   <Birth>
                     <Date>
                       <Month>01</Month>

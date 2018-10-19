@@ -212,6 +212,9 @@
                     <State>MA</State>
                     <ZipCode>02130</ZipCode>
                   </Address>
+                  <APOFPO>
+                    <Answer>No</Answer>
+                  </APOFPO>
                   <Birth>
                     <Date>
                       <Month>01</Month>
@@ -255,6 +258,9 @@
                     <State>MA</State>
                     <ZipCode>02125</ZipCode>
                   </Address>
+                  <APOFPO>
+                    <Answer>No</Answer>
+                  </APOFPO>
                   <Birth>
                     <Date>
                       <Month>03</Month>
@@ -293,6 +299,9 @@
                     <State>MA</State>
                     <ZipCode>02125</ZipCode>
                   </Address>
+                  <APOFPO>
+                    <Answer>No</Answer>
+                  </APOFPO>
                   <Birth>
                     <Date>
                       <Month>03</Month>

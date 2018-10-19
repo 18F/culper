@@ -823,6 +823,9 @@ enjoyments;</ReasonForChange>
                     <State>CA</State>
                     <ZipCode>93951</ZipCode>
                   </Address>
+                  <APOFPO>
+                    <Answer>No</Answer>
+                  </APOFPO>
                   <Birth>
                     <Date Type="Estimated">
                       <Month>01</Month>
@@ -970,6 +973,9 @@ hand. It is impossible to conceive of </ReasonForChange>
                     <State>CA</State>
                     <ZipCode>93940</ZipCode>
                   </Address>
+                  <APOFPO>
+                    <Answer>No</Answer>
+                  </APOFPO>
                   <Birth>
                     <Date Type="Estimated">
                       <Month>01</Month>
