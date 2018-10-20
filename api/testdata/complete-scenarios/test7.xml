@@ -1747,7 +1747,10 @@ thou</Reason>
                     </DegreeAwarded>
                   </DegreesAwarded>
                   <Verifier>
-                    <LegalName DoNotKnow="True"/>
+                    <LegalName>
+                      <Last>EDUC ONE REFE LAST XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO</Last>
+                      <First>EDUC ONE REFE XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO</First>
+                    </LegalName>
                     <Email DoNotKnow="True"/>
                     <Telephone>
                       <Number>0000000000</Number>
