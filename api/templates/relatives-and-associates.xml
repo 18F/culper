@@ -210,9 +210,13 @@
             <LegalName>
               {{ name $Alias.Name }}
             </LegalName>
+            {{if eq $rtype "01Mother"}}
+            <Maiden><Answer>No</Answer></Maiden>
+            {{else}}
             <Maiden>
               <Answer>{{branch $Alias.MaidenName}}</Answer>
             </Maiden>
+            {{end}}
             <ReasonForChange>{{text $Alias.Reason}}</ReasonForChange>
           </OtherName>
           {{end}}
