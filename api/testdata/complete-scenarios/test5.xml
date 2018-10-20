@@ -1771,21 +1771,21 @@
                     </DegreeAwarded>
                   </DegreesAwarded>
                   <Verifier>
+                    <LegalName>
+                      <Last>Bronston</Last>
+                      <First>Timothy</First>
+                    </LegalName>
+                    <Email>timothy@example.com</Email>
+                    <Telephone>
+                      <Number>1247181232</Number>
+                      <Time>Both</Time>
+                    </Telephone>
                     <Address>
                       <Street>200 Hawkins Drive </Street>
                       <City>Iowa City</City>
                       <State>IA</State>
                       <ZipCode>52242</ZipCode>
                     </Address>
-                    <Email>timothy@example.com</Email>
-                    <LegalName>
-                      <Last>Bronston</Last>
-                      <First>Timothy</First>
-                    </LegalName>
-                    <Telephone>
-                      <Number>1247181232</Number>
-                      <Time>Both</Time>
-                    </Telephone>
                   </Verifier>
                 </SchoolAttended>
               </SchoolsAttended>

@@ -1747,22 +1747,19 @@ thou</Reason>
                     </DegreeAwarded>
                   </DegreesAwarded>
                   <Verifier>
+                    <LegalName DoNotKnow="True"/>
+                    <Email DoNotKnow="True"/>
+                    <Telephone>
+                      <Number>0000000000</Number>
+                      <Extension>0000000000</Extension>
+                      <Time>Both</Time>
+                    </Telephone>
                     <Address>
                       <Street>EDUC 1 STREET XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO EDUC 1 APT XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO</Street>
                       <City>EDUC 1 CITY XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO</City>
                       <State>GA</State>
                       <ZipCode>30922</ZipCode>
                     </Address>
-                    <Email DoNotKnow="True">e@e.millllllllllllllllllllllllllllllllllllllll</Email>
-                    <LegalName DoNotKnow="True">
-                      <Last>EDUC ONE REFE LAST XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO</Last>
-                      <First>EDUC ONE REFE XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO</First>
-                    </LegalName>
-                    <Telephone>
-                      <Number>0000000000</Number>
-                      <Extension>0000000000</Extension>
-                      <Time>Both</Time>
-                    </Telephone>
                   </Verifier>
                 </SchoolAttended>
                 <SchoolAttended ID="2">
