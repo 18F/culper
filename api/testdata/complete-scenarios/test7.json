@@ -15257,6 +15257,12 @@
                       "suffixOther": "I WAS born in the year 1632, in the city of York, of a good family,  though not of that country, my"
                     }
                   },
+                  "OtherCitizenshipDocumentation": {
+                    "type": "textarea",
+                    "props": {
+                      "value": ""
+                    }
+                  },
                   "Relation": {
                     "type": "radio",
                     "props": {
@@ -15619,6 +15625,12 @@
                       "suffixOther": ""
                     }
                   },
+                  "OtherCitizenshipDocumentation": {
+                    "type": "textarea",
+                    "props": {
+                      "value": ""
+                    }
+                  },
                   "Relation": {
                     "type": "radio",
                     "props": {
@@ -15869,6 +15881,12 @@
                       "suffixOther": ""
                     }
                   },
+                  "OtherCitizenshipDocumentation": {
+                    "type": "textarea",
+                    "props": {
+                      "value": ""
+                    }
+                  },
                   "Relation": {
                     "type": "radio",
                     "props": {
@@ -15880,6 +15898,239 @@
                     "type": "text",
                     "props": {
                       "value": "\"It has long been a grave question whether any government not too strong for the liberties of its people can be strong enough to maintain its existence in great emergencies. On this point, the present rebellion brought our republic to a severe test, and t"
+                    }
+                  }
+                }
+              },
+              {
+                "Item": {
+                  "Address": {
+                    "type": "location",
+                    "props": {
+                      "layout": ""
+                    }
+                  },
+                  "Aliases": {
+                    "type": "collection",
+                    "props": {
+                      "branch": {
+                        "type": ""
+                      },
+                      "items": []
+                    }
+                  },
+                  "Birthdate": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "02",
+                      "day": "02",
+                      "year": "1970",
+                      "estimated": false
+                    }
+                  },
+                  "Birthplace": {
+                    "type": "location",
+                    "props": {
+                      "layout": "Birthplace without County",
+                      "city": "Monterey",
+                      "state": "CA",
+                      "country": "United States"
+                    }
+                  },
+                  "Citizenship": {
+                    "type": "country",
+                    "props": {
+                      "value": [
+                        "United States"
+                      ]
+                    }
+                  },
+                  "CitizenshipDocumentation": {
+                    "type": "radio",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "CourtAddress": {
+                    "type": "location",
+                    "props": {
+                      "layout": ""
+                    }
+                  },
+                  "CourtName": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Document": {
+                    "type": "radio",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "DocumentComments": {
+                    "type": "textarea",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "DocumentNumber": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Employer": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "EmployerAddress": {
+                    "type": "location",
+                    "props": {
+                      "layout": ""
+                    }
+                  },
+                  "EmployerAddressNotApplicable": {
+                    "type": "notapplicable",
+                    "props": {
+                      "applicable": true
+                    }
+                  },
+                  "EmployerNotApplicable": {
+                    "type": "notapplicable",
+                    "props": {
+                      "applicable": false
+                    }
+                  },
+                  "EmployerRelationship": {
+                    "type": "textarea",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "EmployerRelationshipNotApplicable": {
+                    "type": "notapplicable",
+                    "props": {
+                      "applicable": true
+                    }
+                  },
+                  "Expiration": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "",
+                      "day": "",
+                      "year": "",
+                      "estimated": false
+                    }
+                  },
+                  "FirstContact": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "",
+                      "day": "",
+                      "year": "",
+                      "estimated": false
+                    }
+                  },
+                  "Frequency": {
+                    "type": "radio",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "FrequencyComments": {
+                    "type": "radio",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "HasAffiliation": {
+                    "type": "branch",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "IsDeceased": {
+                    "type": "branch",
+                    "props": {
+                      "value": "Yes"
+                    }
+                  },
+                  "LastContact": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "",
+                      "day": "",
+                      "year": "",
+                      "estimated": false
+                    }
+                  },
+                  "MaidenName": {
+                    "type": "name",
+                    "props": {
+                      "first": "",
+                      "firstInitialOnly": false,
+                      "middle": "",
+                      "middleInitialOnly": false,
+                      "noMiddleName": false,
+                      "last": "",
+                      "lastInitialOnly": false,
+                      "suffix": "",
+                      "suffixOther": ""
+                    }
+                  },
+                  "MaidenSameAsListed": {
+                    "type": "branch",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Methods": {
+                    "type": "checkboxgroup",
+                    "props": {
+                      "values": null
+                    }
+                  },
+                  "MethodsComments": {
+                    "type": "textarea",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Name": {
+                    "type": "name",
+                    "props": {
+                      "first": "MIL FIRST",
+                      "firstInitialOnly": false,
+                      "middle": "MIL MIDDLE",
+                      "middleInitialOnly": false,
+                      "noMiddleName": false,
+                      "last": "MIL LAST",
+                      "lastInitialOnly": false,
+                      "suffix": "",
+                      "suffixOther": ""
+                    }
+                  },
+                  "OtherCitizenshipDocumentation": {
+                    "type": "textarea",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Relation": {
+                    "type": "radio",
+                    "props": {
+                      "value": "Mother-in-law",
+                      "checked": true
+                    }
+                  },
+                  "ResidenceDocumentNumber": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
                     }
                   }
                 }
