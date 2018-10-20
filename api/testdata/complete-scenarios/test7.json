@@ -7971,10 +7971,10 @@
                     "props": {
                       "layout": "Address",
                       "street": "SELF VERI ADDRESS XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO",
-                      "city": "APO",
-                      "state": "AA",
-                      "zipcode": "34001",
-                      "country": "POSTOFFICE"
+                      "city": "Monterey",
+                      "state": "CA",
+                      "zipcode": "93940",
+                      "country": "United States"
                     }
                   },
                   "ReferenceName": {
