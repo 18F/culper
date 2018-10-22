@@ -97,8 +97,9 @@
     {{if radio $Item.BenefitFrequency | eq "Other"}}
     {{with $Benefit := $Item.OtherBenefit.props}}
     <FrequencyType>{{radio $Item.BenefitFrequency | frequencyType}}</FrequencyType>
+    <FrequencyTypeOtherExplanation>{{text $Item.OtherBenefit}}</FrequencyTypeOtherExplanation>
     <Type>{{radio $Item.BenefitType}}</Type>
-    <TypeOtherExplanation>{{text $Benefit.OtherBenefit}}</TypeOtherExplanation>
+    <TypeOtherExplanation>{{text $Item.OtherBenefitType}}</TypeOtherExplanation>
     {{end}}
     {{end}}
   </ForeignFinancialBenefit>
