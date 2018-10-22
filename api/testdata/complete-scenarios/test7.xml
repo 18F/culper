@@ -13356,9 +13356,9 @@ watched h</Explanation>
                         <ZipCode>70622</ZipCode>
                       </Address>
                       <Telephone>
-
-
-</Telephone>
+                        <Number>8318931313</Number>
+                        <Time>Day</Time>
+                      </Telephone>
                     </Doctor>
                   </Consultation>
                   <Consultation ID="2">
@@ -13460,9 +13460,8 @@ watched h</Explanation>
                         <ZipCode>20066</ZipCode>
                       </Address>
                       <Telephone>
-
-
-</Telephone>
+                        <Number>8318732243</Number>
+                      </Telephone>
                     </Doctor>
                   </Consultation>
                 </Consultations>
@@ -13492,9 +13491,9 @@ watched h</Explanation>
                         <ZipCode>20066</ZipCode>
                       </Address>
                       <Telephone>
-
-
-</Telephone>
+                        <Number>8314432365</Number>
+                        <Time>Day</Time>
+                      </Telephone>
                     </Doctor>
                     <CompletedTreatmentProgram>
                       <Answer>No</Answer>
@@ -13589,9 +13588,9 @@ watched h</Explanation>
                         <ZipCode>32122</ZipCode>
                       </Address>
                       <Telephone>
-
-
-</Telephone>
+                        <Number>8314339987</Number>
+                        <Time>Day</Time>
+                      </Telephone>
                     </Doctor>
                     <CompletedTreatmentProgram>
                       <Answer>No</Answer>
@@ -15501,9 +15500,9 @@ watched h</Explanation>
                         <ZipCode>20322</ZipCode>
                       </Address>
                       <Telephone>
-
-
-</Telephone>
+                        <Number>8312227777</Number>
+                        <Time>Day</Time>
+                      </Telephone>
                     </Doctor>
                     <DateRange>
                       <From>
@@ -15606,9 +15605,9 @@ watched h</Explanation>
                         <ZipCode>34011</ZipCode>
                       </Address>
                       <Telephone>
-
-
-</Telephone>
+                        <Number>8311110987</Number>
+                        <Time>Day</Time>
+                      </Telephone>
                     </Doctor>
                     <DateRange>
                       <From>

@@ -16873,12 +16873,12 @@
                   "TreatmentProviderTelephone": {
                     "type": "telephone",
                     "props": {
-                      "timeOfDay": "",
+                      "timeOfDay": "Day",
                       "type": "Domestic",
                       "numberType": "",
-                      "number": "",
+                      "number": "8318931313",
                       "extension": "",
-                      "noNumber": true
+                      "noNumber": false
                     }
                   }
                 }
@@ -16975,9 +16975,9 @@
                       "timeOfDay": "",
                       "type": "Domestic",
                       "numberType": "",
-                      "number": "",
+                      "number": "8318732243",
                       "extension": "",
-                      "noNumber": true
+                      "noNumber": false
                     }
                   }
                 }
@@ -17599,12 +17599,12 @@
                   "TreatmentProviderTelephone": {
                     "type": "telephone",
                     "props": {
-                      "timeOfDay": "",
+                      "timeOfDay": "Day",
                       "type": "Domestic",
                       "numberType": "",
-                      "number": "",
+                      "number": "8314432365",
                       "extension": "",
-                      "noNumber": true
+                      "noNumber": false
                     }
                   }
                 }
@@ -17668,12 +17668,12 @@
                   "TreatmentProviderTelephone": {
                     "type": "telephone",
                     "props": {
-                      "timeOfDay": "",
+                      "timeOfDay": "Day",
                       "type": "Domestic",
                       "numberType": "",
-                      "number": "",
+                      "number": "8314339987",
                       "extension": "",
-                      "noNumber": true
+                      "noNumber": false
                     }
                   }
                 }
@@ -17767,12 +17767,12 @@
                   "TreatmentProviderTelephone": {
                     "type": "telephone",
                     "props": {
-                      "timeOfDay": "",
+                      "timeOfDay": "Day",
                       "type": "Domestic",
                       "numberType": "",
-                      "number": "",
+                      "number": "8312227777",
                       "extension": "",
-                      "noNumber": true
+                      "noNumber": false
                     }
                   }
                 }
@@ -17841,12 +17841,12 @@
                   "TreatmentProviderTelephone": {
                     "type": "telephone",
                     "props": {
-                      "timeOfDay": "",
+                      "timeOfDay": "Day",
                       "type": "Domestic",
                       "numberType": "",
-                      "number": "",
+                      "number": "8311110987",
                       "extension": "",
-                      "noNumber": true
+                      "noNumber": false
                     }
                   }
                 }
