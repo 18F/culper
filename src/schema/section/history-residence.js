@@ -7,6 +7,7 @@ export const historyResidence = (data = {}) => {
       Item: {
         Dates: form.daterange(xitem.Dates),
         Address: form.location(xitem.Address),
+        PhysicalAddress: form.physicaladdress(xitem.PhysicalAddress),
         Comments: form.textarea(xitem.Comments),
         ReferenceName: form.name(xitem.ReferenceName),
         ReferenceLastContact: form.datecontrol(xitem.ReferenceLastContact),
@@ -28,6 +29,7 @@ export const historyResidence = (data = {}) => {
       }
     }
   })
+
   return {
     List: form.collection(items, (data.List || {}).branch)
   }

@@ -125,8 +125,8 @@ export default class Residence extends SubsectionElement {
           required={this.props.required}
           scrollIntoView={this.props.scrollIntoView}>
           <ResidenceItem
+            bind
             name="Item"
-            bind={true}
             addressBooks={this.props.addressBooks}
             dispatch={this.props.dispatch}
             required={this.props.required}
