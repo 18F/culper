@@ -17042,7 +17042,6 @@
                     "type": "checkboxgroup",
                     "props": {
                       "values": [
-                        "None",
                         "MentalHealthProfessional",
                         "Judge",
                         "MedicalProfessional",
@@ -17150,8 +17149,7 @@
                         "Employer",
                         "MedicalProfessional",
                         "Judge",
-                        "MentalHealthProfessional",
-                        "None"
+                        "MentalHealthProfessional"
                       ]
                     }
                   },

@@ -14034,7 +14034,7 @@ watched h</Circumstances>
         
       </DidNotReceiveTreatment>
                     <CounselingOrderedBy>
-                      <Answer Employer="True" MedicalProfessional="True" MentalHealthProfessional="True" Court="True" None="True"/>
+                      <Answer Employer="True" MedicalProfessional="True" MentalHealthProfessional="True" Court="True"/>
                       <Explanation>No American can study the character and career of Abraham Lincoln
 without being carried away by sentimental emotions. We are
 always inclined to idealize that which we love,--a state of mind
@@ -14286,7 +14286,7 @@ watched h</Explanation>
         
       </DidNotReceiveTreatment>
                     <CounselingOrderedBy>
-                      <Answer Employer="True" MedicalProfessional="True" MentalHealthProfessional="True" Court="True" None="True"/>
+                      <Answer Employer="True" MedicalProfessional="True" MentalHealthProfessional="True" Court="True"/>
                       <Explanation>No American can study the character and career of Abraham Lincoln
 without being carried away by sentimental emotions. We are
 always inclined to idealize that which we love,--a state of mind
