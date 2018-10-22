@@ -10832,8 +10832,8 @@
                       "city": "No American can study the character and career of Abraham Lincoln without being carried away by sent",
                       "state": "FL",
                       "zipcode": "33902",
-                      "country": "United States",
-                      "validated": true
+                      "county": "Santa Clara",
+                      "country": "United States"
                     }
                   },
                   "AgencyAddress": {
@@ -10843,8 +10843,8 @@
                       "city": "No American can study the character and career of Abraham Lincoln without being carried away by sent",
                       "state": "RI",
                       "zipcode": "02922",
-                      "country": "United States",
-                      "validated": true
+                      "county": "Marin",
+                      "country": "United States"
                     }
                   },
                   "AwaitingTrial": {
@@ -10879,8 +10879,8 @@
                       "city": "No American can study the character and career of Abraham Lincoln without being carried away by sent",
                       "state": "FL",
                       "zipcode": "32232",
-                      "country": "United States",
-                      "validated": true
+                      "county": "Monterey",
+                      "country": "United States"
                     }
                   },
                   "CourtCharge": {
@@ -11070,6 +11070,7 @@
                       "city": "Carmel",
                       "state": "CA",
                       "zipcode": "93923",
+                      "county": "Monterey",
                       "country": "United States"
                     }
                   },
@@ -11105,8 +11106,8 @@
                       "city": "No American can study the character and career of Abraham Lincoln without being carried away by sent",
                       "state": "AK",
                       "zipcode": "99522",
-                      "country": "United States",
-                      "validated": true
+                      "county": "San Benito",
+                      "country": "United States"
                     }
                   },
                   "CourtCharge": {
