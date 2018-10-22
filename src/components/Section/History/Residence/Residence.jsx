@@ -6,7 +6,7 @@ import validate, {
   ResidenceValidator
 } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
-import { Accordion } from '../../../Form'
+import Branch, { Accordion } from '../../../Form'
 import { newGuid } from '../../../Form/ValidationElement'
 import { openState } from '../../../Form/Accordion/Accordion'
 import { today, daysAgo } from '../dateranges'
@@ -125,8 +125,8 @@ export default class Residence extends SubsectionElement {
           required={this.props.required}
           scrollIntoView={this.props.scrollIntoView}>
           <ResidenceItem
+            bind
             name="Item"
-            bind={true}
             addressBooks={this.props.addressBooks}
             dispatch={this.props.dispatch}
             required={this.props.required}

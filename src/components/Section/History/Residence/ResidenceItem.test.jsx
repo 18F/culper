@@ -62,6 +62,20 @@ describe('The residence component', () => {
     expect(component.find('.role.hidden').length).toEqual(0)
   })
 
+  it('displays an address component when a military address is specified', () => {
+    const props = {
+      Address: {
+        country: 'POSTOFFICE'
+      }
+    }
+
+    const component = mount(<ResidenceItem {...props} />)
+    expect(component.find('PhysicalAddress').length).toEqual(1)
+
+    component.setProps({Address: 'Spain'})
+    expect(component.find('PhysicalAddress').length).toEqual(0)
+  })
+
   it('performs updates for components', () => {
     let updates = 0
     const expected = {

@@ -1,6 +1,7 @@
 export const address = {
   label: 'This address is',
   spinner: 'Verifying your address',
+  physicalLocationRequired: 'Please provide a physical address for this location',
   options: {
     us: {
       label: 'In the<br>United States'
