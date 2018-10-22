@@ -311,3 +311,5 @@ export const buildDate = date => {
     return null
   }
 }
+
+export const alphaNumericRegEx = "^[a-zA-Z0-9]*$"

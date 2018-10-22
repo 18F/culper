@@ -1,6 +1,7 @@
 import React from 'react'
 import ValidationElement from '../ValidationElement'
 import { i18n } from '../../../config'
+import { alphaNumericRegEx } from '../../../validators/helpers'
 import RadioGroup from '../RadioGroup'
 import Radio from '../Radio'
 import Textarea from '../Textarea'
@@ -291,7 +292,7 @@ export default class ForeignBornDocuments extends ValidationElement {
             {...this.props.DocumentNumber}
             className="foreign-born-document-number"
             maxlength="30"
-            pattern="^[a-zA-Z0-9]*$"
+            pattern={alphaNumericRegEx}
             prefix={"alphanumeric"}
             onUpdate={this.updateDocumentNumber}
             onError={this.props.onError}

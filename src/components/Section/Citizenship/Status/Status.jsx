@@ -1,5 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import { alphaNumericRegEx } from '../../../../validators/helpers'
 import schema from '../../../../schema'
 import validate from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
@@ -387,7 +388,7 @@ export default class Status extends SubsectionElement {
                 name="DocumentNumber"
                 className="document-number"
                 maxlength="30"
-                pattern="^[a-zA-Z0-9]*$"
+                pattern={alphaNumericRegEx}
                 prefix="alphanumeric"
                 {...this.props.DocumentNumber}
                 onUpdate={this.updateDocumentNumber}
@@ -452,7 +453,7 @@ export default class Status extends SubsectionElement {
                 className="certificate-number"
                 {...this.props.CertificateNumber}
                 maxlength="30"
-                pattern="^[a-zA-Z0-9]*$"
+                pattern={alphaNumericRegEx}
                 prefix="alphanumeric"
                 onUpdate={this.updateCertificateNumber}
                 onError={this.handleError}
@@ -599,7 +600,7 @@ export default class Status extends SubsectionElement {
                   name="AlienRegistrationNumber"
                   className="alien-registration-number"
                   maxlength="30"
-                  pattern="^[a-zA-Z0-9]*$"
+                  pattern={alphaNumericRegEx}
                   prefix="alphanumeric"
                   {...this.props.AlienRegistrationNumber}
                   onUpdate={this.updateAlienRegistrationNumber}
@@ -618,7 +619,7 @@ export default class Status extends SubsectionElement {
                 name="CertificateNumber"
                 className="certificate-number"
                 maxlength="30"
-                pattern="^[a-zA-Z0-9]*$"
+                pattern={alphaNumericRegEx}
                 prefix="alphanumeric"
                 {...this.props.CertificateNumber}
                 onUpdate={this.updateCertificateNumber}
@@ -753,7 +754,7 @@ export default class Status extends SubsectionElement {
                 name="AlienRegistrationNumber"
                 className="alien-registration-number"
                 maxlength="30"
-                pattern="^[a-zA-Z0-9]*$"
+                pattern={alphaNumericRegEx}
                 prefix="alphanumeric"
                 {...this.props.AlienRegistrationNumber}
                 onUpdate={this.updateAlienRegistrationNumber}
@@ -771,7 +772,7 @@ export default class Status extends SubsectionElement {
                 name="PermanentResidentCardNumber"
                 className="permanent-resident-card-number"
                 maxlength="30"
-                pattern="^[a-zA-Z0-9]*$"
+                pattern={alphaNumericRegEx}
                 prefix="alphanumeric"
                 {...this.props.PermanentResidentCardNumber}
                 onUpdate={this.updatePermanentResidentCardNumber}
@@ -790,7 +791,7 @@ export default class Status extends SubsectionElement {
                 className="certificate-number"
                 {...this.props.CertificateNumber}
                 maxlength="30"
-                pattern="^[a-zA-Z0-9]*$"
+                pattern={alphaNumericRegEx}
                 prefix="alphanumeric"
                 onUpdate={this.updateCertificateNumber}
                 onError={this.handleError}
@@ -951,7 +952,7 @@ export default class Status extends SubsectionElement {
                 name="AlienRegistrationNumber"
                 className="alien-registration-number"
                 maxlength="30"
-                pattern="^[a-zA-Z0-9]*$"
+                pattern={alphaNumericRegEx}
                 prefix="alphanumeric"
                 {...this.props.AlienRegistrationNumber}
                 onUpdate={this.updateAlienRegistrationNumber}
@@ -1055,7 +1056,7 @@ export default class Status extends SubsectionElement {
                 name="DocumentNumber"
                 className="document-number"
                 maxlength="30"
-                pattern="^[a-zA-Z0-9]*$"
+                pattern={alphaNumericRegEx}
                 prefix="alphanumeric"
                 {...this.props.DocumentNumber}
                 onUpdate={this.updateDocumentNumber}
