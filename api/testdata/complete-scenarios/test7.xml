@@ -6690,9 +6690,19 @@ watched h</HowAcquired>
                 <Answer>Yes</Answer>
                 <ForeignFinancialBenefit ID="1">
                   <Members Yourself="True"/>
-                  <FrequencyType>Other</FrequencyType>
-                  <FrequencyTypeOtherExplanation>Frequency of Benefit Other haracter and career of Abraham Lincoln
-without being carried away by sentimental emotions. We are
+                  <BeginDate>
+                    <Month>02</Month>
+                    <Day>01</Day>
+                    <Year>2018</Year>
+                  </BeginDate>
+                  <Country>Canada</Country>
+                  <EndDate Type="Estimated">
+                    <Month>05</Month>
+                    <Day>20</Day>
+                    <Year>2020</Year>
+                  </EndDate>
+                  <FrequencyReceivedType>Other</FrequencyReceivedType>
+                  <FrequencyReceivedTypeOtherExplanation>Benefit 1 Frequency of Benefit Other without being carried away by sentimental emotions. We are
 always inclined to idealize that which we love,--a state of mind
 very unfavorable to the exercise of sober critical judgment. It
 is therefore not surprising that most of those who have written
@@ -6758,7 +6768,13 @@ Progress, a short history of the United States, and Weems's Life
 of Washington. To the town constable's he went to read the
 Revised Statutes of Indiana. Every printed page that fell into
 his hands he would greedily devour, and his family and friends
-watched h</FrequencyTypeOtherExplanation>
+watched h</FrequencyReceivedTypeOtherExplanation>
+                  <FrequencyType>Continuing</FrequencyType>
+                  <ObligatedToCountry>
+                    <Answer>Yes</Answer>
+                    <Explanation>Benefit 1 Obligation Explanation</Explanation>
+                  </ObligatedToCountry>
+                  <Reason>Benefit 1 Reason</Reason>
                   <Type>Other</Type>
                   <TypeOtherExplanation>Type of Benefit Other the character and career of Abraham Lincoln
 without being carried away by sentimental emotions. We are
@@ -6828,78 +6844,21 @@ of Washington. To the town constable's he went to read the
 Revised Statutes of Indiana. Every printed page that fell into
 his hands he would greedily devour, and his family and friends
 watched h</TypeOtherExplanation>
+                  <Value>99</Value>
                 </ForeignFinancialBenefit>
                 <ForeignFinancialBenefit ID="2">
                   <Members DependentChildren="True"/>
-                  <FrequencyType>Other</FrequencyType>
-                  <FrequencyTypeOtherExplanation>No American can study the character and career of Abraham Lincoln
-without being carried away by sentimental emotions. We are
-always inclined to idealize that which we love,--a state of mind
-very unfavorable to the exercise of sober critical judgment. It
-is therefore not surprising that most of those who have written
-or spoken on that extraordinary man, even while conscientiously
-endeavoring to draw a lifelike portraiture of his being, and to
-form a just estimate of his public conduct, should have drifted
-into more or less indiscriminating eulogy, painting his great
-features in the most glowing colors, and covering with tender
-shadings whatever might look like a blemish.
-
-But his standing before posterity will not be exalted by mere
-praise of his virtues and abilities, nor by any concealment of
-his limitations and faults. The stature of the great man, one of
-whose peculiar charms consisted in his being so unlike all other
-great men, will rather lose than gain by the idealization which
-so easily runs into the commonplace. For it was distinctly the
-weird mixture of qualities and forces in him, of the lofty with
-the common, the ideal with the uncouth, of that which he had
-become with that which he had not ceased to be, that made him so
-fascinating a character among his fellow-men, gave him his
-singular power over their minds and hearts, and fitted him to be
-the greatest leader in the greatest crisis of our national life.
-
-His was indeed a marvellous growth. The statesman or the
-military hero born and reared in a log cabin is a familiar figure
-in American history; but we may search in vain among our
-celebrities for one whose origin and early life equalled Abraham
-Lincoln's in wretchedness. He first saw the light in a miserable
-hovel in Kentucky, on a farm consisting of a few barren acres in
-a dreary neighborhood; his father a typical "poor Southern
-white," shiftless and without ambition for himself or his
-children, constantly looking for a new piece of land on which he
-might make a living without much work; his mother, in her youth
-handsome and bright, grown prematurely coarse in feature and
-soured in mind by daily toil and care; the whole household
-squalid, cheerless, and utterly void of elevating inspirations...
-Only when the family had "moved" into the malarious backwoods of
-Indiana, the mother had died, and a stepmother, a woman of thrift
-and energy, had taken charge of the children, the shaggy-headed,
-ragged, barefooted, forlorn boy, then seven years old, "began to
-feel like a human being." Hard work was his early lot. When a
-mere boy he had to help in supporting the family, either on his
-father's clearing, or hired out to other farmers to plough, or
-dig ditches, or chop wood, or drive ox teams; occasionally also
-to "tend the baby," when the farmer's wife was otherwise engaged.
-He could regard it as an advancement to a higher sphere of
-activity when he obtained work in a "crossroads store," where he
-amused the customers by his talk over the counter; for he soon
-distinguished himself among the backwoods folk as one who had
-something to say worth listening to. To win that distinction, he
-had to draw mainly upon his wits; for, while his thirst for
-knowledge was great, his opportunities for satisfying that thirst
-were wofully slender.
-
-In the log schoolhouse, which he could visit but little, he was
-taught only reading, writing, and elementary arithmetic. Among
-the people of the settlement, bush farmers and small tradesmen,
-he found none of uncommon intelligence or education; but some of
-them had a few books, which he borrowed eagerly. Thus he read
-and reread, AEsop's Fables, learning to tell stories with a point
-and to argue by parables; he read Robinson Crusoe, The Pilgrim's
-Progress, a short history of the United States, and Weems's Life
-of Washington. To the town constable's he went to read the
-Revised Statutes of Indiana. Every printed page that fell into
-his hands he would greedily devour, and his family and friends
-watched h</FrequencyTypeOtherExplanation>
+                  <Country>Saint Helena</Country>
+                  <DateReceived>
+                    <Month>05</Month>
+                    <Day>02</Day>
+                    <Year>2018</Year>
+                  </DateReceived>
+                  <FrequencyType>Onetime</FrequencyType>
+                  <ObligatedToCountry>
+                    <Answer>No</Answer>
+                  </ObligatedToCountry>
+                  <Reason>Benefit 2 Reason</Reason>
                   <Type>Other</Type>
                   <TypeOtherExplanation>No American can study the character and career of Abraham Lincoln
 without being carried away by sentimental emotions. We are
@@ -6969,6 +6928,7 @@ of Washington. To the town constable's he went to read the
 Revised Statutes of Indiana. Every printed page that fell into
 his hands he would greedily devour, and his family and friends
 watched h</TypeOtherExplanation>
+                  <Value>1000</Value>
                 </ForeignFinancialBenefit>
                 <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
               </ForeignFinancialBenefits>

@@ -28,9 +28,7 @@
     <DateReceived Type="{{dateEstimated $Benefit.Received}}">
       {{date $Benefit.Received}}
     </DateReceived>
-    <FrequencyReceivedType>{{checkbox $Benefit.BenefitFrequency}}</FrequencyReceivedType>
     <FrequencyType>{{radio $Item.BenefitFrequency | frequencyType}}</FrequencyType>
-    <FrequencyTypeOtherExplanation>{{text $Benefit.OtherFrequency}}</FrequencyTypeOtherExplanation>
     <ObligatedToCountry>
       <Answer>{{branch $Benefit.Obligated}}</Answer>
       {{if branch $Benefit.Obligated | eq "Yes"}}
@@ -39,6 +37,9 @@
     </ObligatedToCountry>
     <Reason>{{text $Benefit.Reason}}</Reason>
     <Type>{{radio $Item.BenefitType}}</Type>
+    {{if radio $Item.BenefitType | eq "Other"}}
+    <TypeOtherExplanation>{{text $Item.OtherBenefitType}}</TypeOtherExplanation>
+    {{end}}
     <Value Estimated="{{$Benefit.Value.props.checked}}">{{text $Benefit.Value}}</Value>
     {{end}}
     {{end}}
@@ -52,9 +53,11 @@
     <Comment></Comment>
     <ContinueComment></ContinueComment>
     {{country $Benefit.Country}}
-    <FrequencyReceivedType>{{checkbox $Benefit.BenefitFrequency}}</FrequencyReceivedType>
+    <FrequencyReceivedType>{{radio $Benefit.Frequency}}</FrequencyReceivedType>
+    {{if radio $Benefit.Frequency | eq "Other"}}
+    <FrequencyReceivedTypeOtherExplanation>{{text $Benefit.OtherFrequency}}</FrequencyReceivedTypeOtherExplanation>
+    {{end}}
     <FrequencyType>{{radio $Item.BenefitFrequency | frequencyType}}</FrequencyType>
-    <FrequencyTypeOtherExplanation>{{text $Benefit.OtherFrequency}}</FrequencyTypeOtherExplanation>
     <ObligatedToCountry>
       <Answer>{{branch $Benefit.Obligated}}</Answer>
       {{if branch $Benefit.Obligated | eq "Yes"}}
@@ -63,12 +66,15 @@
     </ObligatedToCountry>
     <Reason>{{text $Benefit.Reason}}</Reason>
     <Type>{{radio $Item.BenefitType}}</Type>
+    {{if radio $Item.BenefitType | eq "Other"}}
+    <TypeOtherExplanation>{{text $Item.OtherBenefitType}}</TypeOtherExplanation>
+    {{end}}
     <Value Estimated="{{$Benefit.Value.props.checked}}">{{text $Benefit.Value}}</Value>
     {{end}}
     {{end}}
 
     {{if radio $Item.BenefitFrequency | eq "Continuing"}}
-    {{with $Benefit := $Item.ContinuingBenfit.props}}
+    {{with $Benefit := $Item.ContinuingBenefit.props}}
     <BeginDate Type="{{dateEstimated $Benefit.Began}}">
       {{date $Benefit.Began}}
     </BeginDate>
@@ -79,9 +85,11 @@
     <EndDate Type="{{dateEstimated $Benefit.End}}">
       {{date $Benefit.End}}
     </EndDate>
-    <FrequencyReceivedType>{{checkbox $Benefit.BenefitFrequency}}</FrequencyReceivedType>
+    <FrequencyReceivedType>{{radio $Benefit.Frequency}}</FrequencyReceivedType>
+    {{if radio $Benefit.Frequency | eq "Other"}}
+    <FrequencyReceivedTypeOtherExplanation>{{text $Benefit.OtherFrequency}}</FrequencyReceivedTypeOtherExplanation>
+    {{end}}
     <FrequencyType>{{radio $Item.BenefitFrequency | frequencyType}}</FrequencyType>
-    <FrequencyTypeOtherExplanation>{{text $Benefit.OtherFrequency}}</FrequencyTypeOtherExplanation>
     <ObligatedToCountry>
       <Answer>{{branch $Benefit.Obligated}}</Answer>
       {{if branch $Benefit.Obligated | eq "Yes"}}
@@ -90,16 +98,23 @@
     </ObligatedToCountry>
     <Reason>{{text $Benefit.Reason}}</Reason>
     <Type>{{radio $Item.BenefitType}}</Type>
+    {{if radio $Item.BenefitType | eq "Other"}}
+    <TypeOtherExplanation>{{text $Item.OtherBenefitType}}</TypeOtherExplanation>
+    {{end}}
     <Value Estimated="{{$Benefit.Value.props.checked}}">{{text $Benefit.Value}}</Value>
     {{end}}
     {{end}}
 
     {{if radio $Item.BenefitFrequency | eq "Other"}}
     {{with $Benefit := $Item.OtherBenefit.props}}
+    <!-- XXX Insert relevant template text from Continuing -->
+    <!-- XXX https://github.com/18F/e-QIP-prototype/issues/1042 -->
     <FrequencyType>{{radio $Item.BenefitFrequency | frequencyType}}</FrequencyType>
     <FrequencyTypeOtherExplanation>{{text $Item.OtherBenefit}}</FrequencyTypeOtherExplanation>
     <Type>{{radio $Item.BenefitType}}</Type>
+    {{if radio $Item.BenefitType | eq "Other"}}
     <TypeOtherExplanation>{{text $Item.OtherBenefitType}}</TypeOtherExplanation>
+    {{end}}
     {{end}}
     {{end}}
   </ForeignFinancialBenefit>
