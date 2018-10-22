@@ -989,13 +989,6 @@ hand. It is impossible to conceive of </ReasonForChange>
                         <Day>01</Day>
                         <Year>2020</Year>
                       </DocumentExpiration>
-                      <NaturalizationCertificate>
-                        <Court>
-                          <Address>
-                            <Street> </Street>
-                          </Address>
-                        </Court>
-                      </NaturalizationCertificate>
                       <Type>Other</Type>
                       <TypeOtherExplanation>FIL US Residence Other</TypeOtherExplanation>
                     </ProofOfStatus>
