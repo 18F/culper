@@ -13250,12 +13250,12 @@
                       "Phone": {
                         "type": "telephone",
                         "props": {
-                          "timeOfDay": "",
+                          "timeOfDay": "Both",
                           "type": "Domestic",
                           "numberType": "",
-                          "number": "",
+                          "number": "8313233232",
                           "extension": "",
-                          "noNumber": true
+                          "noNumber": false
                         }
                       },
                       "Address": {
@@ -13285,12 +13285,12 @@
                       "Phone": {
                         "type": "telephone",
                         "props": {
-                          "timeOfDay": "",
+                          "timeOfDay": "Both",
                           "type": "Domestic",
                           "numberType": "",
-                          "number": "",
+                          "number": "8313231234",
                           "extension": "",
-                          "noNumber": true
+                          "noNumber": false
                         }
                       },
                       "Address": {
@@ -13366,12 +13366,12 @@
                       "Phone": {
                         "type": "telephone",
                         "props": {
-                          "timeOfDay": "",
+                          "timeOfDay": "Day",
                           "type": "Domestic",
                           "numberType": "",
-                          "number": "",
+                          "number": "8314442134",
                           "extension": "",
-                          "noNumber": true
+                          "noNumber": false
                         }
                       },
                       "Address": {
@@ -13400,12 +13400,12 @@
                       "Phone": {
                         "type": "telephone",
                         "props": {
-                          "timeOfDay": "",
+                          "timeOfDay": "Day",
                           "type": "Domestic",
                           "numberType": "",
-                          "number": "",
+                          "number": "8313133333",
                           "extension": "",
-                          "noNumber": true
+                          "noNumber": false
                         }
                       },
                       "Address": {
@@ -13499,12 +13499,12 @@
                   "Phone": {
                     "type": "telephone",
                     "props": {
-                      "timeOfDay": "",
+                      "timeOfDay": "Day",
                       "type": "Domestic",
                       "numberType": "",
-                      "number": "",
+                      "number": "8314447777",
                       "extension": "",
-                      "noNumber": true
+                      "noNumber": false
                     }
                   }
                 }
