@@ -5283,6 +5283,7 @@
                 </Investigation>
                 <Investigation ID="2">
                   <Agency>ForeignGovernment</Agency>
+                  <OtherAgency>Ministry of Forests, Canada</OtherAgency>
                   <ClearanceLevel>Foreign</ClearanceLevel>
                   <GrantedDate>
                     <Date>
@@ -5299,7 +5300,6 @@
                   <IssuingAgency>
                     <Name>Different Agency</Name>
                   </IssuingAgency>
-                  <OtherAgency>Ministry of Forests, Canada</OtherAgency>
                 </Investigation>
               </Investigations>
               <PriorInvestigation>

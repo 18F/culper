@@ -19473,22 +19473,6 @@ hand. It is impossible to conceive of </Explanation>
               <Investigations>
                 <Investigation ID="1">
                   <Agency>Other</Agency>
-                  <ClearanceLevel>Other</ClearanceLevel>
-                  <GrantedDate>
-                    <Date Type="Estimated">
-                      <Month>01</Month>
-                      <Year>2000</Year>
-                    </Date>
-                  </GrantedDate>
-                  <InvestigationDate>
-                    <Date Type="Estimated">
-                      <Month>01</Month>
-                      <Year>2000</Year>
-                    </Date>
-                  </InvestigationDate>
-                  <IssuingAgency>
-                    <Name>No American can study the character and career of Abraham Lincoln without being carried away by sentimental emotions. We are always inclined to idealize that which we love,--a state of mind very unfavorable to the exercise of sober critical judgment. It i</Name>
-                  </IssuingAgency>
                   <OtherAgency>No American can study the character and career of Abraham Lincoln
 without being carried away by sentimental emotions. We are
 always inclined to idealize that which we love,--a state of mind
@@ -19556,7 +19540,24 @@ Progress, a short history of the United States, and Weems's Life
 of Washington. To the town constable's he went to read the
 Revised Statutes of Indiana. Every printed page that fell into
 his hands he would greedily devour, and his family and friends
-watched hNo American can study the character and career of Abraham Lincoln
+watched h</OtherAgency>
+                  <ClearanceLevel>Other</ClearanceLevel>
+                  <GrantedDate>
+                    <Date Type="Estimated">
+                      <Month>01</Month>
+                      <Year>2000</Year>
+                    </Date>
+                  </GrantedDate>
+                  <InvestigationDate>
+                    <Date Type="Estimated">
+                      <Month>01</Month>
+                      <Year>2000</Year>
+                    </Date>
+                  </InvestigationDate>
+                  <IssuingAgency>
+                    <Name>No American can study the character and career of Abraham Lincoln without being carried away by sentimental emotions. We are always inclined to idealize that which we love,--a state of mind very unfavorable to the exercise of sober critical judgment. It i</Name>
+                  </IssuingAgency>
+                  <OtherClearanceLevel>No American can study the character and career of Abraham Lincoln
 without being carried away by sentimental emotions. We are
 always inclined to idealize that which we love,--a state of mind
 very unfavorable to the exercise of sober critical judgment. It
@@ -19623,9 +19624,10 @@ Progress, a short history of the United States, and Weems's Life
 of Washington. To the town constable's he went to read the
 Revised Statutes of Indiana. Every printed page that fell into
 his hands he would greedily devour, and his family and friends
-watched h</OtherAgency>
+watched h</OtherClearanceLevel>
                 </Investigation>
                 <Investigation ID="2">
+                  <Agency>Unknown</Agency>
                   <ClearanceLevel>Other</ClearanceLevel>
                   <GrantedDate>
                     <Date Type="Estimated">
@@ -19642,7 +19644,7 @@ watched h</OtherAgency>
                   <IssuingAgency>
                     <Name>No American can study the character and career of Abraham Lincoln without being carried away by sentimental emotions. We are always inclined to idealize that which we love,--a state of mind very unfavorable to the exercise of sober critical judgment. It i</Name>
                   </IssuingAgency>
-                  <OtherAgency>No American can study the character and career of Abraham Lincoln
+                  <OtherClearanceLevel>No American can study the character and career of Abraham Lincoln
 without being carried away by sentimental emotions. We are
 always inclined to idealize that which we love,--a state of mind
 very unfavorable to the exercise of sober critical judgment. It
@@ -19709,7 +19711,7 @@ Progress, a short history of the United States, and Weems's Life
 of Washington. To the town constable's he went to read the
 Revised Statutes of Indiana. Every printed page that fell into
 his hands he would greedily devour, and his family and friends
-watched h</OtherAgency>
+watched h</OtherClearanceLevel>
                 </Investigation>
               </Investigations>
               <PriorInvestigation>

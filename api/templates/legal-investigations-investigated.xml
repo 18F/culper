@@ -4,7 +4,15 @@
   {{range $index, $item := .props.List.props.items}}
   {{with $Item := $item.Item}}
   <Investigation ID="{{inc $index}}">
-    <Agency>{{radio $Item.Agency | agencyType}}</Agency>
+    {{if notApplicable $Item.AgencyNotApplicable | eq "True"}}
+    <Agency>Unknown</Agency> 
+    {{else}}
+    {{$agency := radio $Item.Agency | agencyType}}
+    <Agency>{{$agency}}</Agency>
+    {{if or (eq $agency "Other") (eq $agency "ForeignGovernment") (eq $agency "Treasury") }}
+    <OtherAgency>{{text $Item.AgencyExplanation}}</OtherAgency>
+    {{end}}
+    {{end}}
     <ClearanceLevel>{{radio $Item.ClearanceLevel.props.Level | clearanceType}}</ClearanceLevel>
     <EntryComment></EntryComment>
     <GrantedDate>
@@ -20,8 +28,9 @@
     <IssuingAgency>
       <Name>{{text $Item.Issued}}</Name>
     </IssuingAgency>
-    <OtherAgency>{{text $Item.ClearanceLevel.props.Explanation}}{{text $Item.AgencyExplanation}}</OtherAgency>
-    <OtherClearanceLevel></OtherClearanceLevel>
+    {{if radio $Item.ClearanceLevel.props.Level | eq "Other"}}
+    <OtherClearanceLevel>{{text $Item.ClearanceLevel.props.Explanation}}</OtherClearanceLevel>
+    {{end}}
   </Investigation>
   {{end}}
   {{end}}
