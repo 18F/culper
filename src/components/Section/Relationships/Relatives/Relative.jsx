@@ -838,7 +838,7 @@ export default class Relative extends ValidationElement {
                 className="relative-documentnumber"
                 maxlength="30"
                 pattern="^[a-zA-Z0-9]*$"
-                prefix={"alphanumeric"}
+                prefix="alphanumeric"
                 {...this.props.DocumentNumber}
                 onError={this.props.onError}
                 onUpdate={this.updateDocumentNumber}

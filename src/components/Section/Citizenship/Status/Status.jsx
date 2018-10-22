@@ -388,7 +388,7 @@ export default class Status extends SubsectionElement {
                 className="document-number"
                 maxlength="30"
                 pattern="^[a-zA-Z0-9]*$"
-                prefix={"alphanumeric"}
+                prefix="alphanumeric"
                 {...this.props.DocumentNumber}
                 onUpdate={this.updateDocumentNumber}
                 onError={this.handleError}
@@ -453,7 +453,7 @@ export default class Status extends SubsectionElement {
                 {...this.props.CertificateNumber}
                 maxlength="30"
                 pattern="^[a-zA-Z0-9]*$"
-                prefix={"alphanumeric"}
+                prefix="alphanumeric"
                 onUpdate={this.updateCertificateNumber}
                 onError={this.handleError}
                 required={this.props.required}
@@ -600,7 +600,7 @@ export default class Status extends SubsectionElement {
                   className="alien-registration-number"
                   maxlength="30"
                   pattern="^[a-zA-Z0-9]*$"
-                  prefix={"alphanumeric"}
+                  prefix="alphanumeric"
                   {...this.props.AlienRegistrationNumber}
                   onUpdate={this.updateAlienRegistrationNumber}
                   onError={this.handleError}
@@ -619,7 +619,7 @@ export default class Status extends SubsectionElement {
                 className="certificate-number"
                 maxlength="30"
                 pattern="^[a-zA-Z0-9]*$"
-                prefix={"alphanumeric"}
+                prefix="alphanumeric"
                 {...this.props.CertificateNumber}
                 onUpdate={this.updateCertificateNumber}
                 onError={this.handleError}
@@ -754,7 +754,7 @@ export default class Status extends SubsectionElement {
                 className="alien-registration-number"
                 maxlength="30"
                 pattern="^[a-zA-Z0-9]*$"
-                prefix={"alphanumeric"}
+                prefix="alphanumeric"
                 {...this.props.AlienRegistrationNumber}
                 onUpdate={this.updateAlienRegistrationNumber}
                 onError={this.handleError}
@@ -772,7 +772,7 @@ export default class Status extends SubsectionElement {
                 className="permanent-resident-card-number"
                 maxlength="30"
                 pattern="^[a-zA-Z0-9]*$"
-                prefix={"alphanumeric"}
+                prefix="alphanumeric"
                 {...this.props.PermanentResidentCardNumber}
                 onUpdate={this.updatePermanentResidentCardNumber}
                 onError={this.handleError}
@@ -791,7 +791,7 @@ export default class Status extends SubsectionElement {
                 {...this.props.CertificateNumber}
                 maxlength="30"
                 pattern="^[a-zA-Z0-9]*$"
-                prefix={"alphanumeric"}
+                prefix="alphanumeric"
                 onUpdate={this.updateCertificateNumber}
                 onError={this.handleError}
                 required={this.props.required}
@@ -952,7 +952,7 @@ export default class Status extends SubsectionElement {
                 className="alien-registration-number"
                 maxlength="30"
                 pattern="^[a-zA-Z0-9]*$"
-                prefix={"alphanumeric"}
+                prefix="alphanumeric"
                 {...this.props.AlienRegistrationNumber}
                 onUpdate={this.updateAlienRegistrationNumber}
                 onError={this.handleError}
@@ -1056,7 +1056,7 @@ export default class Status extends SubsectionElement {
                 className="document-number"
                 maxlength="30"
                 pattern="^[a-zA-Z0-9]*$"
-                prefix={"alphanumeric"}
+                prefix="alphanumeric"
                 {...this.props.DocumentNumber}
                 onUpdate={this.updateDocumentNumber}
                 onError={this.handleError}
