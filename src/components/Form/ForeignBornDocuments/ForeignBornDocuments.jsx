@@ -290,6 +290,9 @@ export default class ForeignBornDocuments extends ValidationElement {
             label="Document Number"
             {...this.props.DocumentNumber}
             className="foreign-born-document-number"
+            maxlength="30"
+            pattern="^[a-zA-Z0-9]*$"
+            prefix={"alphanumeric"}
             onUpdate={this.updateDocumentNumber}
             onError={this.props.onError}
             required={this.props.required}
