@@ -26,7 +26,8 @@
       </APOFPO>
       {{end}}
       <!-- XXX Work-around for https://github.com/18F/e-QIP-prototype/issues/924 -->
-      {{if and (isInternational $Item.Address) (radio $Item.EmploymentActivity | ne "Unemployment")}}
+      <!-- XXX SelfEmployment conditional is another work-around for https://github.com/18F/e-QIP-prototype/issues/1050 and test case #7 -->
+      {{if and (isInternational $Item.Address) (radio $Item.EmploymentActivity | ne "Unemployment") (radio $Item.EmploymentActivity | ne "SelfEmployment")}}
       <APOFPO><Answer>No</Answer></APOFPO>
       {{end}}
       {{- if radio $Item.EmploymentActivity | ne "OtherFederal"}}
