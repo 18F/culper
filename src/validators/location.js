@@ -8,21 +8,16 @@ export const isInternational = location => {
   )
 }
 
-export const countryString = country => {
-  if (
-    country &&
-    Object.prototype.toString.call(country) === '[object Object]'
-  ) {
-    if (
-      country.value &&
-      Object.prototype.toString.call(country.value) === '[object Array]'
-    ) {
+export const countryString = (country) => {
+  if (country && country.value) {
+    if (Array.isArray(country.value)) {
       return country.value[0]
-    } else {
-      return country.value
     }
+
+    return country.value
   }
-  return country
+
+  return country;
 }
 
 export default class LocationValidator {
