@@ -849,6 +849,7 @@ enjoyments;</ReasonForChange>
                         </Court>
                       </NaturalizationCertificate>
                       <Type>Other</Type>
+                      <TypeOtherExplanation>Father Other U.S. Citizenship Documentation</TypeOtherExplanation>
                     </ProofOfStatus>
                   </Citizenship>
                   <CountriesOfCitizenship>
@@ -996,6 +997,7 @@ hand. It is impossible to conceive of </ReasonForChange>
                         </Court>
                       </NaturalizationCertificate>
                       <Type>Other</Type>
+                      <TypeOtherExplanation>FIL US Residence Other</TypeOtherExplanation>
                     </ProofOfStatus>
                   </Citizenship>
                   <CountriesOfCitizenship>

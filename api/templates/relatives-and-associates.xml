@@ -106,10 +106,11 @@
           </NaturalizationCertificate>
           {{- if text $Item.Document }}
           <Type>{{text $Item.Document | relativeForeignDocType}}</Type>
+          <TypeOtherExplanation>{{text $Item.DocumentComments}}</TypeOtherExplanation>
           {{else if text $Item.CitizenshipDocumentation}}
           <Type>{{text $Item.CitizenshipDocumentation | relativeForeignDocType}}</Type>
+          <TypeOtherExplanation>{{text $Item.OtherCitizenshipDocumentation}}</TypeOtherExplanation>
           {{end}}
-          <TypeOtherExplanation>{{text $Item.DocumentComments}}</TypeOtherExplanation>
         </ProofOfStatus>
       </Citizenship>
       {{- end}}
