@@ -17202,12 +17202,12 @@
                   "TreatmentProviderTelephone": {
                     "type": "telephone",
                     "props": {
-                      "timeOfDay": "",
+                      "timeOfDay": "Both",
                       "type": "Domestic",
-                      "numberType": "",
-                      "number": "",
+                      "numberType": "NA",
+                      "number": "8313333333",
                       "extension": "",
-                      "noNumber": true
+                      "noNumber": false
                     }
                   }
                 }
