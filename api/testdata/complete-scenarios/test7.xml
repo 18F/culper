@@ -12002,8 +12002,8 @@ his hands he would greedily devour, and his family and friends
 watched h</Explanation>
                   </Detained>
                   <Duration>
-        
-      </Duration>
+                    <NumberOfDaysRange>MoreThanThirty</NumberOfDaysRange>
+                  </Duration>
                   <InvolvedInCounterintelligence>
                     <Answer>Yes</Answer>
                     <Explanation>No American can study the character and career of Abraham Lincoln
@@ -12517,8 +12517,8 @@ his hands he would greedily devour, and his family and friends
 watched h</Explanation>
                   </Detained>
                   <Duration>
-        
-      </Duration>
+                    <NumberOfDaysRange>MoreThanThirty</NumberOfDaysRange>
+                  </Duration>
                   <InvolvedInCounterintelligence>
                     <Answer>Yes</Answer>
                     <Explanation>No American can study the character and career of Abraham Lincoln

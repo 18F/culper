@@ -6054,12 +6054,7 @@
                     "type": "checkboxgroup",
                     "props": {
                       "values": [
-                        "More than 30",
-                        "Many short trips",
-                        "1-5",
-                        "6-10",
-                        "11-20",
-                        "21-30"
+                        "More than 30"
                       ]
                     }
                   },
@@ -6202,12 +6197,7 @@
                     "type": "checkboxgroup",
                     "props": {
                       "values": [
-                        "1-5",
-                        "6-10",
-                        "11-20",
-                        "Many short trips",
-                        "More than 30",
-                        "21-30"
+                        "More than 30"
                       ]
                     }
                   },
