@@ -42,7 +42,7 @@ export default class Employment extends SubsectionElement {
   }
 
   summary(item, index) {
-    const o = (item || {}).Item || {}
+    const o = (item || {}).Item
     const date = DateSummary(o.Dates)
     const name = NameSummary(o.Name)
 
