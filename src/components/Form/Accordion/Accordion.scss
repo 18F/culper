@@ -138,13 +138,11 @@ $breakpoints: (
   }
 
   .summary {
-    display: table;
-    width: 100%;
     transition: box-shadow 0.3s, color 0.3s;
 
     .left,
     .right {
-      display: table-cell;
+      display: inline-block;
       position: relative;
       cursor: pointer;
       text-decoration: none;
@@ -182,12 +180,12 @@ $breakpoints: (
         text-overflow: ellipsis;
         margin-bottom: -.5rem;
         vertical-align: text-top;
+        margin-left: .5rem;
       }
     }
 
     .left {
       color: #000;
-      width: 100%;
       transition: border-left-color 0.3s;
       border-left: 0.4rem solid #fff;
       padding-left: 2.4rem;
@@ -207,7 +205,6 @@ $breakpoints: (
       > a {
         text-decoration: none;
         display: inline-block;
-        width: 100%;
       }
 
       // All but the first anchor
@@ -226,13 +223,10 @@ $breakpoints: (
         display: inline-block;
       }
 
-      > a > span:last-of-type,
-      > span:last-of-type {
-        > span:first-of-type {
-          margin-right: 1rem;
-        }
-
         > span:nth-of-type(2) {
+
+          > a > span:last-of-type,
+          > span:last-of-type {
 
           > strong,
           > strong * {
@@ -292,6 +286,8 @@ $breakpoints: (
 
     .right {
       color: #6a6a6a;
+      float: right;
+      padding: 2.3rem .25rem .7rem;
 
       &:hover {
         color: $eapp-red;
