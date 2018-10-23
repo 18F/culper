@@ -340,6 +340,7 @@ class Foreign extends SectionElement {
               section="foreign"
               subsection="business/sponsorship"
               defaultState={false}
+              applicantBirthdate={this.props.applicantBirthdate}
               addressBooks={this.props.AddressBooks}
               dispatch={this.props.dispatch}
               onUpdate={this.updateSponsorship}
@@ -654,6 +655,7 @@ class Foreign extends SectionElement {
             <Sponsorship
               name="Sponsorship"
               {...this.props.Sponsorship}
+              applicantBirthdate={this.props.applicantBirthdate}
               addressBooks={this.props.AddressBooks}
               dispatch={this.props.dispatch}
               onUpdate={this.updateSponsorship}
@@ -902,6 +904,7 @@ export class ForeignSections extends React.Component {
           name="Sponsorship"
           {...this.props.Sponsorship}
           defaultState={false}
+          applicantBirthdate={this.props.applicantBirthdate}
           addressBooks={this.props.AddressBooks}
           dispatch={this.props.dispatch}
           onError={this.handleError}
