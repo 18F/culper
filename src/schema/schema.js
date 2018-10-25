@@ -10,12 +10,10 @@ export const schema = (type, props, raw = true) => {
 }
 
 export const unschema = data => {
-  // The absence of something is nothing
   if (data === undefined || data === null) {
     return null
   }
 
-  // An array is a type of object so we check for this first
   if (data instanceof Array) {
     let outputArr = []
 
@@ -26,7 +24,6 @@ export const unschema = data => {
     return outputArr
   }
 
-  // A date is a type of object so we check for this first
   if (data instanceof Date) {
     return data
   }

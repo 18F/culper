@@ -399,7 +399,7 @@ describe('the location component', function() {
     })
   })
 
-  it.only('should validate zipcode is in correct state if in US', function() {
+  it('should validate zipcode is in correct state if in US', function() {
     const tests = [
       {
         state: {
