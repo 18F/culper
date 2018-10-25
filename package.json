@@ -49,7 +49,10 @@
     "clearMocks": true,
     "roots": [
       "<rootDir>/src"
-    ]
+    ],
+    "globals": {
+      "EAPP_VERSION": "MAJOR.MINOR.PATCH-IDENTIFIER"
+    }
   },
   "scripts": {
     "test": "NODE_ENV=test jest --ci --coverage --silent",
@@ -77,6 +80,7 @@
     "eslint-import-resolver-webpack": "^0.10.1",
     "eslint-plugin-import": "^2.13.0",
     "eslint-plugin-react": "^7.10.0",
+    "git-revision-webpack-plugin": "^3.0.3",
     "gulp": "^4.0.0",
     "jest": "^23.1.0",
     "redux-devtools-extension": "^2.13.2",
