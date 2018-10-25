@@ -235,17 +235,6 @@ class Relationships extends SectionElement {
   }
 }
 
-const utc = date => {
-  if (!date) {
-    return null
-  }
-  if (Object.prototype.toString.call(date) === '[object String]') {
-    return null
-  }
-
-  return new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()))
-}
-
 function mapStateToProps(state) {
   const app = state.application || {}
   const identification = app.Identification || {}
