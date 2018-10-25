@@ -319,24 +319,19 @@ export const pickDate = (dates, max=true) => {
    if (finalDate <= dateItem) {
      return finalDate
    }
-   else {
      return dateItem
-   }
  }
 
  const findMaxDate = (finalDate, dateItem) => {
    if (finalDate >= dateItem) {
      return finalDate
    }
-   else {
      return dateItem
-   }
  }
 
  if (max) {
     return buildsDates.reduce(findMaxDate)
   }
-  else {
+
     return buildsDates.reduce(findMinDate)
-  }
 }
