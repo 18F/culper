@@ -358,7 +358,7 @@ export default class CivilUnion extends ValidationElement {
               name="enteredCivilUnion"
               className="entered"
               minDateEqualTo={true}
-              prefix={"civilUnion"}
+              prefix="civilUnion"
               minDate={enteredCivilUnionMinDate}
               {...this.props.EnteredCivilUnion}
               onUpdate={this.updateEnteredCivilUnion}
