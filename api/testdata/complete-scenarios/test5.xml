@@ -1771,21 +1771,21 @@
                     </DegreeAwarded>
                   </DegreesAwarded>
                   <Verifier>
+                    <LegalName>
+                      <Last>Bronston</Last>
+                      <First>Timothy</First>
+                    </LegalName>
+                    <Email>timothy@example.com</Email>
+                    <Telephone>
+                      <Number>1247181232</Number>
+                      <Time>Both</Time>
+                    </Telephone>
                     <Address>
                       <Street>200 Hawkins Drive </Street>
                       <City>Iowa City</City>
                       <State>IA</State>
                       <ZipCode>52242</ZipCode>
                     </Address>
-                    <Email>timothy@example.com</Email>
-                    <LegalName>
-                      <Last>Bronston</Last>
-                      <First>Timothy</First>
-                    </LegalName>
-                    <Telephone>
-                      <Number>1247181232</Number>
-                      <Time>Both</Time>
-                    </Telephone>
                   </Verifier>
                 </SchoolAttended>
               </SchoolsAttended>
@@ -5283,6 +5283,7 @@
                 </Investigation>
                 <Investigation ID="2">
                   <Agency>ForeignGovernment</Agency>
+                  <OtherAgency>Ministry of Forests, Canada</OtherAgency>
                   <ClearanceLevel>Foreign</ClearanceLevel>
                   <GrantedDate>
                     <Date>
@@ -5299,7 +5300,6 @@
                   <IssuingAgency>
                     <Name>Different Agency</Name>
                   </IssuingAgency>
-                  <OtherAgency>Ministry of Forests, Canada</OtherAgency>
                 </Investigation>
               </Investigations>
               <PriorInvestigation>

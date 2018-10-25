@@ -2,9 +2,11 @@
 <PresentMarriage>
   {{with $Item := .props.CivilUnion.props}}
   <CurrentSpouse ID="1">
-    {{if locationIsPostOffice $Item.Address}}
+    <!-- XXX Work-around for https://github.com/18F/e-QIP-prototype/issues/1029 -->
+    {{if false}}
     <APOFPO>
-      <Address>{{militaryAddress $Item.Address}}</Address>
+      <!-- TODO -->
+      <Address></Address>
       <AddressComment></AddressComment>
       <!-- TODO -->
       <Answer></Answer>
@@ -12,16 +14,21 @@
       <!-- TODO -->
       <PhysicalLocation>
         <Address></Address>
+        <Comment></Comment>
       </PhysicalLocation>
     </APOFPO>
     {{else}}
-    <!-- UseCurrentAddress as an NotApplicable input is awkward -->
     {{if notApplicable $Item.UseCurrentAddress | eq "True"}}
     <Address UseMyCurrentAddress="True"/>
     {{else}}
     <Address>
       {{location $Item.Address}}
     </Address>
+    <!-- This constraint is not consistent with SF-86/validation matrix; but is consistent with e-QIP -->
+    {{if isInternational $Item.Address}}
+    <!-- XXX Work-around for https://github.com/18F/e-QIP-prototype/issues/1029 -->
+    <APOFPO><Answer>No</Answer></APOFPO>
+    {{end}}
     {{end}}
     {{end}}
     <Birth>
