@@ -45,14 +45,27 @@
       </DegreesAwarded>
       {{end}}
 
+      <!-- XXX Work-around for https://github.com/18F/e-QIP-prototype/issues/1035 -->
       {{if $Item.ReferenceName}}
       {{if $Item.ReferenceName.props.first}}
       <Verifier>
+        {{$doNotKnowPerson := notApplicable $Item.ReferenceNameNotApplicable}}
+        {{if $doNotKnowPerson | eq "True"}}
+        <LegalName DoNotKnow="True"></LegalName>
+        {{else}}
+        <LegalName DoNotKnow="False">{{nameLastFirst $Item.ReferenceName}}</LegalName>
+        {{end}}
+
+        {{$doNotKnowEmail := notApplicable $Item.ReferenceEmailNotApplicable}}
+        {{if $doNotKnowEmail | eq "True"}}
+        <Email DoNotKnow="True"></Email>
+        {{else}}
+        <Email DoNotKnow="False">{{email $Item.ReferenceEmail}}</Email>
+        {{end}}
+
+        <Telephone>{{telephone $Item.ReferencePhone}}</Telephone>
         <Address>{{location $Item.ReferenceAddress}}</Address>
         <Comment></Comment>
-        <Email DoNotKnow="{{notApplicable $Item.ReferenceEmailNotApplicable}}">{{email $Item.ReferenceEmail}}</Email>
-        <LegalName DoNotKnow="{{notApplicable $Item.ReferenceNameNotApplicable}}">{{nameLastFirst $Item.ReferenceName}}</LegalName>
-        <Telephone>{{telephone $Item.ReferencePhone}}</Telephone>
       </Verifier>
       {{end}}
       {{end}}

@@ -1,14 +1,14 @@
 import React from 'react'
-import { mount } from 'enzyme'
+import { shallow, mount } from 'enzyme'
 import CivilUnion from './CivilUnion'
 
-describe('The civil union component', () => {
+describe('<CivilUnion />', () => {
   it('no error on empty', () => {
     const expected = {
       name: 'cohabitant'
     }
 
-    const component = mount(<CivilUnion {...expected} />)
+    const component = shallow(<CivilUnion {...expected} />)
     expect(component.find('.civil-union').length).toEqual(1)
   })
 
@@ -68,9 +68,6 @@ describe('The civil union component', () => {
     let updates = 0
     const expected = {
       name: 'cohabitant',
-      onUpdate: () => {
-        updates++
-      },
       currentAddress: {
         address: '123 Some Rd',
         city: 'Arlington',
@@ -82,26 +79,56 @@ describe('The civil union component', () => {
     const component = mount(<CivilUnion {...expected} />)
     expect(component.find('.current-address.button').length).toEqual(1)
     component.find('.current-address.button input').simulate('change')
-    expect(updates).toBe(1)
     component.find('.current-address.button input').simulate('change')
     expect(
       component.find('.current-address.button label.checked').length
     ).toEqual(0)
   })
 
-  it('should not ask for foreign born documentation if from the United States', () => {
-    const expected = {
-      BirthPlace: { country: 'United States' }
-    }
-    const component = mount(<CivilUnion {...expected} />)
-    expect(component.find('.foreign-born-documents').length).toEqual(0)
-  })
+  describe('with foreign-born spouse', () => {
+    const foreignBornDocumentEl = '.foreign-born-documents'
+    const component = mount(<CivilUnion />)
 
-  it('should ask for foreign born documentation if not from the United States', () => {
-    const expected = {
-      BirthPlace: { country: 'Canada' }
-    }
-    const component = mount(<CivilUnion {...expected} />)
-    expect(component.find('.foreign-born-documents').length).toEqual(1)
+    it('does not ask for foreign-born documentation in default state', () => {
+      const emptyExpected = {
+        BirthPlace: {}
+      }
+      
+      component.setProps(emptyExpected)
+      expect(component.find(foreignBornDocumentEl).length).toEqual(0)
+
+      component.setProps({ BirthPlace: undefined })
+      expect(component.find(foreignBornDocumentEl).length).toEqual(0)
+    })
+
+    it('does not ask for foreign born documentation if from the United States', () => {
+      const usExpected = {
+        BirthPlace: { country: 'United States' }
+      }
+      const altUSExpected = {
+        BirthPlace: { country: { value: 'United States' } }
+      }
+
+      component.setProps(usExpected)
+      expect(component.find(foreignBornDocumentEl).length).toEqual(0)
+
+      component.setProps(altUSExpected)
+      expect(component.find(foreignBornDocumentEl).length).toEqual(0)
+    })
+  
+    it('asks for foreign born documentation if not from the United States', () => {
+      const stringExpected = {
+        BirthPlace: { country: 'Canada' }
+      }
+      const objectExpected = {
+        BirthPlace: { country: { value: ['Canada'] } }
+      }
+
+      component.setProps(stringExpected)
+      expect(component.find(foreignBornDocumentEl).length).toEqual(1)
+
+      component.setProps(objectExpected)
+      expect(component.find(foreignBornDocumentEl).length).toEqual(1)
+    })
   })
 })
