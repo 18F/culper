@@ -1,5 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import { alphaNumericRegEx } from '../../../../validators/helpers'
 import {
   ValidationElement,
   Branch,
@@ -836,6 +837,9 @@ export default class Relative extends ValidationElement {
               <Text
                 name="DocumentNumber"
                 className="relative-documentnumber"
+                maxlength="30"
+                pattern={alphaNumericRegEx}
+                prefix="alphanumeric"
                 {...this.props.DocumentNumber}
                 onError={this.props.onError}
                 onUpdate={this.updateDocumentNumber}

@@ -1095,5 +1095,15 @@ export const error = {
   validMinimumCitizenships: {
     title: 'There is a problem with your entry',
     message: 'Please provide a minimum of two countries.'
+  },
+  alphanumeric: {
+    required: {
+      title: 'Your response is required',
+      message: ''
+    },
+    pattern: {
+      title: 'There is a problem with your entry',
+      message: 'Only use letters and numbers.'
+    }
   }
 }
