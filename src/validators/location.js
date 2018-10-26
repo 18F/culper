@@ -8,7 +8,7 @@ export const isInternational = location => {
   )
 }
 
-export const countryString = (country) => {
+export const countryString = country => {
   if (country && country.value) {
     if (Array.isArray(country.value)) {
       return country.value[0]
@@ -17,7 +17,7 @@ export const countryString = (country) => {
     return country.value
   }
 
-  return country;
+  return country
 }
 
 export default class LocationValidator {
@@ -81,7 +81,9 @@ export default class LocationValidator {
       return militaryCodes.includes(code)
     }
 
-    const codes = [...unitedStates, ...otherUsTerritories].map(state => state.postalCode)
+    const codes = [...unitedStates, ...otherUsTerritories].map(
+      state => state.postalCode
+    )
 
     return !!this.state && codes.includes(code)
   }
@@ -142,7 +144,7 @@ export default class LocationValidator {
         return this.validFields(['city', 'country'])
       case Layouts.US_CITY_STATE_ZIP_INTERNATIONAL_CITY:
         if (this.isDomestic()) {
-          return this.validFields(['city', 'state', 'zipcode', 'zipcodeState'])
+          return this.validFields(['city', 'state', 'zipcode', 'stateZipcode'])
         }
         return this.validFields(['city', 'country'])
       case Layouts.STATE:
@@ -164,7 +166,7 @@ export default class LocationValidator {
           'city',
           'state',
           'zipcode',
-          'zipcodeState'
+          'stateZipcode'
         ])
       case Layouts.STREET_CITY:
         return this.validFields(['street', 'city'])
@@ -175,10 +177,15 @@ export default class LocationValidator {
             'city',
             'state',
             'zipcode',
-            'zipcodeState'
+            'stateZipcode'
           ])
         }
         return this.validFields(['street', 'city', 'country'])
+      case Layouts.OFFENSE:
+        if (this.isDomestic()) {
+          return this.validFields(['city', 'stateZipcode', 'county'])
+        }
+        return this.validFields(['city', 'country'])
       default:
         return false
     }
@@ -203,7 +210,7 @@ export default class LocationValidator {
         case 'zipcode':
           valid = valid && this.validZipcode()
           break
-        case 'zipcodeState':
+        case 'stateZipcode':
           valid = valid && this.validZipcodeState()
           break
         case 'county':
@@ -265,7 +272,11 @@ export class Geocoder {
  * @returns {Return Type} State code.
  */
 const toCode = state => {
-  const allUsStates = [...unitedStates, ...otherUsTerritories, ...militaryStates]
+  const allUsStates = [
+    ...unitedStates,
+    ...otherUsTerritories,
+    ...militaryStates
+  ]
   const selectedState = allUsStates.find(stateObj => {
     return stateObj.name.toLowerCase() === state.toLowerCase()
   })
