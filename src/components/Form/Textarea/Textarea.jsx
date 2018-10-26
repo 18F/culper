@@ -151,6 +151,7 @@ export default class Textarea extends ValidationElement {
           onBlur={this.handleBlur}
           ref="textarea"
         />
+        <div className="textarea-print print-only">{this.state.value}</div>
       </div>
     )
   }

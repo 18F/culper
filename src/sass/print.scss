@@ -303,12 +303,17 @@
     }
   }
 
+.textarea-print {
+  white-space: pre-wrap;
+}
+
   /* Get rid of left blue border within accordion */
   .accordion .summary .left.open,
   .accordion .item .details {
     border-left: 0;
   }
-
+  /* Hide textareas for print */
+  textarea,
   /* Hide the print button */
   .print-btn,
   /* Hide progress bar under header */
