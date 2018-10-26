@@ -211,7 +211,6 @@ export default class TravelQuestions extends ValidationElement {
           help="foreign.travel.help.days"
           adjustFor="p"
           scrollIntoView={this.props.scrollIntoView}>
-          {i18n.m('foreign.travel.para.checkall')}
           <TravelDays
             name="Days"
             className="foreign-travel-days"

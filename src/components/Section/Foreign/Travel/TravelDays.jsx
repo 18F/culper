@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, CheckboxGroup, Checkbox } from '../../../Form'
+import { ValidationElement, RadioGroup, Radio } from '../../../Form'
 
 export default class TravelDays extends ValidationElement {
   constructor(props) {
@@ -8,31 +8,20 @@ export default class TravelDays extends ValidationElement {
     this.update = this.update.bind(this)
   }
 
-  update(response) {
-    if (!this.props.onUpdate) {
-      return
-    }
-
-    let selected = response.value
-    let list = [...(this.props.values || [])]
-
-    if (list.includes(selected)) {
-      list.splice(list.indexOf(selected), 1)
-    } else {
-      list.push(selected)
-    }
-
-    this.props.onUpdate({ values: list })
+  update(values) {
+    const { onUpdate } = this.props;
+    onUpdate && onUpdate({ value: values.value })
   }
 
   render() {
+    const selected = this.props.value
     return (
-      <CheckboxGroup
+      <RadioGroup
         className={`travel-days ${this.props.className || ''}`.trim()}
         onError={this.props.onError}
         required={this.props.required}
-        selectedValues={this.props.values || []}>
-        <Checkbox
+        selectedValue={selected}>
+        <Radio
           name="days-1-5"
           label={i18n.m('foreign.travel.label.one')}
           value="1-5"
@@ -40,7 +29,7 @@ export default class TravelDays extends ValidationElement {
           onUpdate={this.update}
           onError={this.props.onError}
         />
-        <Checkbox
+        <Radio
           name="days-6-10"
           label={i18n.m('foreign.travel.label.six')}
           value="6-10"
@@ -48,7 +37,7 @@ export default class TravelDays extends ValidationElement {
           onUpdate={this.update}
           onError={this.props.onError}
         />
-        <Checkbox
+        <Radio
           name="days-11-20"
           label={i18n.m('foreign.travel.label.eleven')}
           value="11-20"
@@ -56,7 +45,7 @@ export default class TravelDays extends ValidationElement {
           onUpdate={this.update}
           onError={this.props.onError}
         />
-        <Checkbox
+        <Radio
           name="days-21-30"
           label={i18n.m('foreign.travel.label.twentyone')}
           value="21-30"
@@ -64,7 +53,7 @@ export default class TravelDays extends ValidationElement {
           onUpdate={this.update}
           onError={this.props.onError}
         />
-        <Checkbox
+        <Radio
           name="more-than-30"
           label={i18n.m('foreign.travel.label.more')}
           value="More than 30"
@@ -72,7 +61,7 @@ export default class TravelDays extends ValidationElement {
           onUpdate={this.update}
           onError={this.props.onError}
         />
-        <Checkbox
+        <Radio
           name="many-short-trips"
           label={i18n.m('foreign.travel.label.many')}
           value="Many short trips"
@@ -80,14 +69,13 @@ export default class TravelDays extends ValidationElement {
           onUpdate={this.update}
           onError={this.props.onError}
         />
-      </CheckboxGroup>
+      </RadioGroup>
     )
   }
 }
 
 TravelDays.defaultProps = {
-  values: [],
-  onUpdate: queue => {},
+  value: '',
   onError: (value, arr) => {
     return arr
   }
