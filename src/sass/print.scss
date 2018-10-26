@@ -303,15 +303,20 @@
     }
   }
 
-.textarea-print {
-  white-space: pre-wrap;
-}
+  .textarea-print {
+    white-space: pre-wrap;
+    border: #333 solid 1px;
+    display: block;
+    border-radius: 3px;
+    padding: 1rem;
+  }
 
   /* Get rid of left blue border within accordion */
   .accordion .summary .left.open,
   .accordion .item .details {
     border-left: 0;
   }
+
   /* Hide textareas for print */
   textarea,
   /* Hide the print button */
