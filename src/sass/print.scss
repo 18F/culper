@@ -319,12 +319,18 @@
     border-left: 0;
   }
 
+  .hide-for-print {
+    display: inline-block;
+    input,
+    textarea {
+      display: none;
+    }
+  }
+
   .textbox-print {
     display: inline-block;
   }
 
-  /* Generic class to hide for print */
-  .hide-for-print,
   /* Hide the print button */
   .print-btn,
   /* Hide progress bar under header */

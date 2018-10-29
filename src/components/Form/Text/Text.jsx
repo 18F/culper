@@ -51,16 +51,14 @@ export default class Text extends ValidationElement {
 
   render() {
     return (
-      <span className="textbox-print">
-      <label className={this.labelClass} htmlFor={this.state.uid}>
-        {this.props.label}
-      </label>
+      <span className="hide-for-print">
         <Generic
           name={this.props.name}
           ariaLabel={this.props.ariaLabel}
+          label={this.props.label}
           placeholder={this.props.placeholder}
           type="text"
-          className={`hide-for-print ${this.props.className}`}
+          className={this.props.className}
           disabled={this.props.disabled}
           status={this.props.status}
           minlength={this.props.minlength}

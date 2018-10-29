@@ -126,12 +126,12 @@ export default class Textarea extends ValidationElement {
 
   render() {
     return (
-      <div className={this.divClass()}>
+      <div className={`hide-for-print ${this.divClass()}`}>
         <label className={this.labelClass()} htmlFor={this.state.uid}>
           {this.props.label}
         </label>
         <textarea
-          className={`hide-for-print ${this.inputClass()}`}
+          className={this.inputClass()}
           id={this.state.uid}
           name={this.props.name}
           aria-describedby={this.errorName()}
