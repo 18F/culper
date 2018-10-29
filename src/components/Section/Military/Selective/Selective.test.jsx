@@ -57,6 +57,6 @@ describe('The selective service component', () => {
     component.find('.registered .yes input').simulate('change')
     component.find('.registration-number input').simulate('change')
     expect(component.find('.explanation').length).toBe(0)
-    expect(component.find('.registration-number').length).toBe(1)
+    expect(component.find('.registration-number').length).toBe(2)
   })
 })
