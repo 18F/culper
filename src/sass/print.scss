@@ -36,7 +36,7 @@
 @media only screen {
   .print-view,
   .print-only {
-    display: none;
+    display: none !important;
     visibility: hidden;
   }
 
@@ -303,12 +303,14 @@
     }
   }
 
+  .text-print,
   .textarea-print {
-    white-space: pre-wrap;
+    word-break: break-all;
     border: #333 solid 1px;
-    display: block;
+    display: block !important;
     border-radius: 3px;
     padding: 1rem;
+    white-space: pre-line;
   }
 
   /* Get rid of left blue border within accordion */
@@ -317,8 +319,12 @@
     border-left: 0;
   }
 
-  /* Hide textareas for print */
-  textarea,
+  .textbox-print {
+    display: inline-block;
+  }
+
+  /* Generic class to hide for print */
+  .hide-for-print,
   /* Hide the print button */
   .print-btn,
   /* Hide progress bar under header */

@@ -51,35 +51,44 @@ export default class Text extends ValidationElement {
 
   render() {
     return (
-      <Generic
-        name={this.props.name}
-        label={this.props.label}
-        ariaLabel={this.props.ariaLabel}
-        placeholder={this.props.placeholder}
-        type="text"
-        className={this.props.className}
-        disabled={this.props.disabled}
-        status={this.props.status}
-        minlength={this.props.minlength}
-        maxlength={this.props.maxlength}
-        pattern={this.props.pattern}
-        readonly={this.props.readonly}
-        required={this.props.required}
-        value={this.state.value}
-        focus={this.props.focus}
-        onChange={this.handleChange}
-        onFocus={this.props.onFocus}
-        onBlur={this.props.onBlur}
-        onError={this.handleError}
-        onKeyDown={this.props.onKeyDown}
-        onCopy={this.props.onCopy}
-        onCut={this.props.onCut}
-        onPaste={this.props.onPaste}
-        clipboard={this.props.clipboard}
-        tabBack={this.props.tabBack}
-        tabNext={this.props.tabNext}
-        ref="text"
-      />
+      <span className="textbox-print">
+        <Generic
+          name={this.props.name}
+          label={this.props.label}
+          ariaLabel={this.props.ariaLabel}
+          placeholder={this.props.placeholder}
+          type="text"
+          className={`hide-for-print ${this.props.className}`}
+          disabled={this.props.disabled}
+          status={this.props.status}
+          minlength={this.props.minlength}
+          maxlength={this.props.maxlength}
+          pattern={this.props.pattern}
+          readonly={this.props.readonly}
+          required={this.props.required}
+          value={this.state.value}
+          focus={this.props.focus}
+          onChange={this.handleChange}
+          onFocus={this.props.onFocus}
+          onBlur={this.props.onBlur}
+          onError={this.handleError}
+          onKeyDown={this.props.onKeyDown}
+          onCopy={this.props.onCopy}
+          onCut={this.props.onCut}
+          onPaste={this.props.onPaste}
+          clipboard={this.props.clipboard}
+          tabBack={this.props.tabBack}
+          tabNext={this.props.tabNext}
+          ref="text"
+        />
+        <label className={`print-only ${this.labelClass}`}>
+          {this.props.label}
+        </label>
+        <div
+        className={`text-print print-only ${this.props.className}`}>
+          {this.state.value}
+        </div>
+      </span>
     )
   }
 }

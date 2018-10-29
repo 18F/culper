@@ -131,7 +131,7 @@ export default class Textarea extends ValidationElement {
           {this.props.label}
         </label>
         <textarea
-          className={this.inputClass()}
+          className={`hide-for-print ${this.inputClass()}`}
           id={this.state.uid}
           name={this.props.name}
           aria-describedby={this.errorName()}
