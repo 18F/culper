@@ -52,9 +52,11 @@ export default class Text extends ValidationElement {
   render() {
     return (
       <span className="textbox-print">
+      <label className={this.labelClass} htmlFor={this.state.uid}>
+        {this.props.label}
+      </label>
         <Generic
           name={this.props.name}
-          label={this.props.label}
           ariaLabel={this.props.ariaLabel}
           placeholder={this.props.placeholder}
           type="text"
@@ -81,9 +83,6 @@ export default class Text extends ValidationElement {
           tabNext={this.props.tabNext}
           ref="text"
         />
-        <label className={`print-only ${this.labelClass}`}>
-          {this.props.label}
-        </label>
         <div
         className={`text-print print-only ${this.props.className}`}>
           {this.state.value}
