@@ -17,7 +17,7 @@ jobs:
           name: Run React tests
           command: |
             TESTFILES=$(circleci tests glob "./src/**/*.test.js*" | circleci tests split)
-            make test-react COVERAGE=--coverage FILES="$(echo ${TESTFILES})"
+            make test-react FLAGS="--ci --silent --coverage" FILES="$(echo ${TESTFILES})"
       - run:
           name: Run Go tests
           command: make test-go
