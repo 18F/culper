@@ -6,7 +6,7 @@ import validate, {
   ResidenceValidator
 } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
-import Branch, { Accordion } from '../../../Form'
+import { Accordion } from '../../../Form'
 import { newGuid } from '../../../Form/ValidationElement'
 import { openState } from '../../../Form/Accordion/Accordion'
 import { today, daysAgo } from '../dateranges'
