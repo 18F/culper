@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 import { i18n } from '../../../config'
 import Field from '../Field'
 import Location from './Location'
-import ValidationElement from '../ValidationElement';
+import locationValidator from '../../../validators/location'
+import ValidationElement from '../ValidationElement'
 
 class PhysicalAddress extends ValidationElement {
   constructor(props) {
@@ -27,6 +28,16 @@ class PhysicalAddress extends ValidationElement {
     })
   }
 
+  /**
+   * Need to have two render functions, one to just show the physical location
+   * field with a toggle, and the other to render the APO address choice branch,
+   * and THEN display the location field if the user indicates that they had
+   * a military address in the foreign country
+   * 
+   * so potentially we prepare props in a couple of different ways,
+   * and have a show block around the branch piece
+   */
+
   render() {
     const { addressFieldMetadata, physicalAddress } = this.props
 
@@ -35,11 +46,13 @@ class PhysicalAddress extends ValidationElement {
         <Location
           {...addressFieldMetadata}
           {...physicalAddress.Address}
+          country={this.props.country}
           addressBook={this.props.addressBook}
           addressBooks={this.props.addressBooks}
           geocode
           label={i18n.t('address.label')}
-          layout={Location.ADDRESS}
+          layout={this.props.layout}
+          disableToggle={this.props.disableToggle}
           onUpdate={this.handleUpdate}
           required
         />
@@ -62,6 +75,7 @@ PhysicalAddress.defaultProps = {
     countyLabel: i18n.t('address.us.county.label'),
     countryLabel: i18n.t('address.international.country.label'),
   },
+  layout: Location.ADDRESS,
   physicalAddress: {}
 }
 

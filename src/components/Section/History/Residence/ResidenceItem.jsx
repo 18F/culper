@@ -250,6 +250,11 @@ export default class ResidenceItem extends ValidationElement {
     return countryString(this.props.Address.country) === 'POSTOFFICE'
   }
 
+  isForeignAddress() {
+    const country = countryString(this.props.Address.country);
+    return country !== null && country !== undefined && country !== 'POSTOFFICE' && country !== 'United States'
+  }
+
   render() {
     // Certain elements are present if the date range of the residency was
     // within the last 3 years.
@@ -289,6 +294,23 @@ export default class ResidenceItem extends ValidationElement {
         </Field>
         <Show when={this.isMilitaryAddress()}>
           <PhysicalAddress
+            physicalAddress={this.props.PhysicalAddress}
+            onUpdate={this.updatePhysicalAddress}
+          />
+        </Show>
+        <Show when={this.isForeignAddress()}>
+          {
+            /*
+             * Note that we have to force a layout of US_ADDRESS because of the way the
+             *
+             * Location component overrides the disableToggle property.
+             * The actual layout that will be show in this instance is that of
+             * the APO military address form
+            */
+          }
+          <PhysicalAddress
+            country="POSTOFFICE"
+            layout={Location.US_ADDRESS}
             physicalAddress={this.props.PhysicalAddress}
             onUpdate={this.updatePhysicalAddress}
           />

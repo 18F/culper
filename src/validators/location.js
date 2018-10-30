@@ -2,14 +2,17 @@ import { api } from '../services/api'
 import Layouts from '../components/Form/Location/Layouts'
 import { isZipcodeState, zipcodes } from '../config'
 
+const isDefined = x => x !== null && x !== undefined
+
 export const isInternational = location => {
   return !['United States', 'POSTOFFICE'].includes(
     countryString(location.country || {})
   )
 }
 
+// XXX TEST ME
 export const countryString = country => {
-  if (country && country.value) {
+  if (country && isDefined(country.value)) {
     if (Array.isArray(country.value)) {
       return country.value[0]
     }
