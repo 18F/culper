@@ -51,7 +51,6 @@ export default class Text extends ValidationElement {
 
   render() {
     return (
-      <span className="hide-for-print">
         <Generic
           name={this.props.name}
           ariaLabel={this.props.ariaLabel}
@@ -81,11 +80,6 @@ export default class Text extends ValidationElement {
           tabNext={this.props.tabNext}
           ref="text"
         />
-        <div
-        className={`text-print print-only ${this.props.className}`}>
-          {this.state.value}
-        </div>
-      </span>
     )
   }
 }

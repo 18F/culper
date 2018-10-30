@@ -262,6 +262,10 @@
   .block label {
     background-color: #fff;
     opacity: 0.6;
+    // Hide all unchecked items for future print styling
+    &:not(.checked) {
+
+    }
   }
 
   /* Set selected checkboxes with thick border */
@@ -320,12 +324,13 @@
   }
 
   .hide-for-print {
-    display: inline-block;
+    display: block;
     input,
     textarea {
       display: none;
     }
   }
+
 
   .textbox-print {
     display: inline-block;
