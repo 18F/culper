@@ -28,12 +28,5 @@ func (service LogoutHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// If the account is locked then we cannot proceed
-	if account.Locked {
-		service.Log.Warn(api.AccountLocked, api.LogFields{})
-		// EncodeErrJSON(w, err)
-		return
-	}
-
 	service.Log.Info(api.LoggedOut, api.LogFields{})
 }
