@@ -23,7 +23,6 @@ import {
 import PhysicalAddress from '../../../Form/Location/PhysicalAddress'
 import { today, daysAgo } from '../dateranges'
 import { buildDate } from '../../../../validators/helpers'
-import { countryString } from '../../../../validators/location'
 
 // We need to determine how far back 3 years ago was
 const threeYearsAgo = daysAgo(today, 365 * 3)
@@ -246,10 +245,6 @@ export default class ResidenceItem extends ValidationElement {
     })
   }
 
-  isMilitaryAddress() {
-    return countryString(this.props.Address.country) === 'POSTOFFICE'
-  }
-
   render() {
     // Certain elements are present if the date range of the residency was
     // within the last 3 years.
@@ -287,12 +282,12 @@ export default class ResidenceItem extends ValidationElement {
             required={this.props.required}
           />
         </Field>
-        <Show when={this.isMilitaryAddress()}>
-          <PhysicalAddress
-            physicalAddress={this.props.PhysicalAddress}
-            onUpdate={this.updatePhysicalAddress}
-          />
-        </Show>
+
+        <PhysicalAddress
+          country={this.props.Address.country}
+          onUpdate={this.updatePhysicalAddress}
+          physicalAddress={this.props.PhysicalAddress}
+        />
 
         <Field
           title={i18n.t('history.residence.heading.dates')}

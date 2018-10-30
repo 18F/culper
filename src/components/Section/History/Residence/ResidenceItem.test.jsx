@@ -76,13 +76,6 @@ describe('The residence component', () => {
       component = mount(<ResidenceItem {...props} />)
     })
 
-    it('displays an address component when a military address is specified', () => {
-      expect(component.find('PhysicalAddress').length).toEqual(1)
-
-      component.setProps({Address: 'Spain'})
-      expect(component.find('PhysicalAddress').length).toEqual(0)
-    })
-
     it('supplies the physicalAddress prop to the <PhysicalAddress> component', () => {
       expect(component.find('PhysicalAddress').prop('physicalAddress')).toBeDefined();
     })
