@@ -2,6 +2,8 @@ import React from 'react'
 import { mount } from 'enzyme'
 import { today, daysAgo } from '../dateranges'
 import EmploymentItem from './EmploymentItem'
+import ReasonLeft from './ReasonLeft'
+import Reprimand from './Reprimand'
 
 describe('The employment component', () => {
   it('no error on empty', () => {
@@ -133,43 +135,36 @@ describe('The employment component', () => {
     expect(component.find('.reason-description').length).toBe(0)
   })
 
-  it('does not display reason for leaving for unemployment', () => {
-    const past = daysAgo(today, 365 * 3)
-    const props = {
-      EmploymentActivity: { value: 'Unemployment' },
-      Dates: {
-        present: true,
-        from: {
-          month: `${past.getMonth() + 1}`,
-          day: `${past.getDate()}`,
-          year: `${past.getFullYear()}`
-        },
-        to: {}
+  describe('when unemployment is selected', () => {
+    let component
+
+    beforeEach(() => {
+      const past = daysAgo(today, 365 * 3)
+      const props = {
+        EmploymentActivity: { value: 'Unemployment' },
+        Dates: {
+          present: true,
+          from: {
+            month: `${past.getMonth() + 1}`,
+            day: `${past.getDate()}`,
+            year: `${past.getFullYear()}`
+          },
+          to: {}
+        }
       }
-    }
-    const component = mount(<EmploymentItem {...props} />)
-    expect(component.find('.reason-description').length).toBe(0)
+      component = mount(<EmploymentItem {...props} />)
+    })
+
+    it('it does not display reason for leaving', () => {
+      expect(component.contains(<ReasonLeft />)).toBe(false)
+    })
+
+    it('it does not display reprimand', () => {
+      expect(component.contains(<Reprimand />)).toBe(false)
+    })
   })
 
-  it('does not display reprimand for unemployment', () => {
-    const past = daysAgo(today, 365 * 3)
-    const props = {
-      EmploymentActivity: { value: 'Unemployment' },
-      Dates: {
-        present: true,
-        from: {
-          month: `${past.getMonth() + 1}`,
-          day: `${past.getDate()}`,
-          year: `${past.getFullYear()}`
-        },
-        to: {}
-      }
-    }
-    const component = mount(<EmploymentItem {...props} />)
-    expect(component.find('.reprimand-branch').length).toBe(0)
-  })
-
-  it('does display reason for leaving if not currently employed', () => {
+  it('it does display reason for leaving', () => {
     const past = daysAgo(today, 365 * 3)
     const props = {
       EmploymentActivity: { value: 'ActiveMilitary' },
