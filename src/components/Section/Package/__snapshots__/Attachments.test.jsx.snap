@@ -269,7 +269,7 @@ exports[`The attachments component renders properly 1`] = `
               />
             </form>
             <div
-              className=""
+              className="hide-for-print "
             >
               <label
                 className=""
@@ -296,6 +296,11 @@ exports[`The attachments component renders properly 1`] = `
                 type="text"
                 value=""
               />
+              <div
+                className="text-print print-only"
+              >
+                
+              </div>
             </div>
             <button
               onClick={[Function]}

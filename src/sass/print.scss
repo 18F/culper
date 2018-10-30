@@ -36,7 +36,7 @@
 @media only screen {
   .print-view,
   .print-only {
-    display: none;
+    display: none !important;
     visibility: hidden;
   }
 
@@ -262,6 +262,10 @@
   .block label {
     background-color: #fff;
     opacity: 0.6;
+    // Hide all unchecked items for future print styling
+    //&:not(.checked) {
+    //
+    //}
   }
 
   /* Set selected checkboxes with thick border */
@@ -303,10 +307,32 @@
     }
   }
 
+  .text-print,
+  .textarea-print {
+    word-break: break-all;
+    border: #333 solid 1px;
+    display: block !important;
+    border-radius: 3px;
+    padding: 1rem;
+    white-space: pre-line;
+  }
+
   /* Get rid of left blue border within accordion */
   .accordion .summary .left.open,
   .accordion .item .details {
     border-left: 0;
+  }
+
+  .hide-for-print {
+    display: block;
+    input,
+    textarea {
+      display: none;
+    }
+  }
+
+  .textbox-print {
+    display: inline-block;
   }
 
   /* Hide the print button */
