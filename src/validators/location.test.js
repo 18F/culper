@@ -1,9 +1,20 @@
-import LocationValidator, { Geocoder } from './location'
+import LocationValidator, { Geocoder, countryString } from './location'
 import Location from '../components/Form/Location'
 import { api } from '../services/api'
 import MockAdapter from 'axios-mock-adapter'
 
-describe('the location component', function() {
+describe('the location validator', function() {
+  describe('.countryString', () => {
+    it('properly extracts the country string from the supplied value', () => {
+      const noOpValues = ['', false, true, {}, 'United States', 0]
+      noOpValues.forEach(v => expect(countryString(v)).toEqual(v))
+
+      expect(countryString({ value: '' })).toEqual('')
+      expect(countryString({ value: 'Portugal' })).toEqual('Portugal')
+      expect(countryString({ value: [ 'Portugal' ]})).toEqual('Portugal')
+    })
+  })
+
   it('should validate locations', function() {
     const tests = [
       {
