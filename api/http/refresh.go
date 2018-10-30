@@ -22,7 +22,7 @@ func (service RefreshHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) 
 	_, id, err := service.Token.CheckToken(r)
 	if err != nil {
 		service.Log.WarnError(api.InvalidJWT, err, api.LogFields{})
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		RespondWithStructuredError(w, api.InvalidJWT, http.StatusInternalServerError)
 		return
 	}
 
