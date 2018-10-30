@@ -18,18 +18,12 @@ type FormHandler struct {
 // ServeHTTP will return a JSON object of all currently saved application
 // information specifict to the account.
 func (service FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	account := &api.Account{}
 
-	// Valid token and audience while populating the audience ID
-	_, id, err := service.Token.CheckToken(r)
-	if err != nil {
-		service.Log.WarnError(api.InvalidJWT, err, api.LogFields{})
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
+	// Get account ID
+	id := AccountIDFromRequestContext(r)
 
 	// Get the account information from the data store
-	account.ID = id
+	account := &api.Account{ID: id}
 	if _, err := account.Get(service.Database, id); err != nil {
 		service.Log.WarnError(api.NoAccount, err, api.LogFields{})
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -39,7 +33,7 @@ func (service FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	// If the account is locked then we cannot proceed
 	if account.Locked {
 		service.Log.Warn(api.AccountLocked, api.LogFields{})
-		EncodeErrJSON(w, err)
+		RespondWithStructuredError(w, api.AccountLocked, http.StatusForbidden)
 		return
 	}
 

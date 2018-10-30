@@ -22,8 +22,7 @@ func (service SaveHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	id := AccountIDFromRequestContext(r)
 
 	// Get the account information from the data store
-	account := &api.Account{}
-	account.ID = id
+	account := &api.Account{ID: id}
 	if _, err := account.Get(service.Database, id); err != nil {
 		service.Log.WarnError(api.NoAccount, err, api.LogFields{})
 		RespondWithStructuredError(w, api.NoAccount, http.StatusUnauthorized)
@@ -68,5 +67,4 @@ func (service SaveHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	EncodeErrJSON(w, nil)
 }

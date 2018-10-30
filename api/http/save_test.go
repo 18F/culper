@@ -1,7 +1,6 @@
 package http
 
 import (
-    "fmt"
     "net/http"
     "net/http/httptest"
     "strings"
@@ -14,7 +13,6 @@ func TestSaveHandler(t *testing.T) {
 
     var mockDB mock.DatabaseService
     mockDB.SelectFn = func(query interface{}) error {
-        fmt.Println("SELECTING", query)
         return nil
     }
 
@@ -67,7 +65,7 @@ func TestSaveHandler(t *testing.T) {
     }
 
     // Check the response body is what we expect.
-    expected := `{"Errors":null}` + "\n"
+    expected := ``
     if rr.Body.String() != expected {
         t.Errorf("handler returned unexpected body: got %v want %v",
             rr.Body.String(), expected)
@@ -83,7 +81,6 @@ func TestSaveHandlerBadEntity(t *testing.T) {
 
     var mockDB mock.DatabaseService
     mockDB.SelectFn = func(query interface{}) error {
-        fmt.Println("SELECTING", query)
         return nil
     }
 

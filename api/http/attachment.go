@@ -25,35 +25,28 @@ type AttachmentListHandler struct {
 // ServeHTTP serves the HTTP response.
 func (service AttachmentListHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	if !service.Env.True(api.AttachmentsEnabled) {
-		service.Log.Warn(api.AttachmentDenied, api.LogFields{})
-		http.Error(w, "Attachments is not implemented", http.StatusInternalServerError)
+		service.Log.Warn(api.AttachmentsNotImplemented, api.LogFields{})
+		RespondWithStructuredError(w, api.AttachmentsNotImplemented, http.StatusInternalServerError)
 		return
 	}
 
-	account := &api.Account{}
-
-	// Valid token and audience while populating the audience ID
-	_, id, err := service.Token.CheckToken(r)
-	if err != nil {
-		service.Log.WarnError(api.InvalidJWT, err, api.LogFields{})
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
+	// Get account ID
+	id := AccountIDFromRequestContext(r)
 
 	// Get the account information from the data store.
 	// Proceed even if the account is locked, as files are presented
 	// after application submission, on the Print page.
-	account.ID = id
+	account := &api.Account{ID: id}
 	if _, err := account.Get(service.Database, id); err != nil {
 		service.Log.WarnError(api.NoAccount, err, api.LogFields{})
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		RespondWithStructuredError(w, api.NoAccount, http.StatusUnauthorized)
 		return
 	}
 
 	var attachments []api.Attachment
 	if err := service.Database.Where(&attachments, "account_id = ?", account.ID); err != nil {
 		service.Log.Warn(api.AttachmentNotFound, api.LogFields{})
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		RespondWithStructuredError(w, api.AttachmentNotFound, http.StatusInternalServerError)
 		return
 	}
 
@@ -71,33 +64,26 @@ type AttachmentSaveHandler struct {
 // ServeHTTP serves the HTTP response.
 func (service AttachmentSaveHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	if !service.Env.True(api.AttachmentsEnabled) {
-		service.Log.Warn(api.AttachmentDenied, api.LogFields{})
-		http.Error(w, "Attachments is not implemented", http.StatusInternalServerError)
+		service.Log.Warn(api.AttachmentsNotImplemented, api.LogFields{})
+		RespondWithStructuredError(w, api.AttachmentsNotImplemented, http.StatusInternalServerError)
 		return
 	}
 
-	account := &api.Account{}
-
-	// Valid token and audience while populating the audience ID
-	_, id, err := service.Token.CheckToken(r)
-	if err != nil {
-		service.Log.WarnError(api.InvalidJWT, err, api.LogFields{})
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
+	// Get account ID
+	id := AccountIDFromRequestContext(r)
 
 	// Get the account information from the data store
-	account.ID = id
+	account := &api.Account{ID: id}
 	if _, err := account.Get(service.Database, id); err != nil {
 		service.Log.WarnError(api.NoAccount, err, api.LogFields{})
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		RespondWithStructuredError(w, api.NoAccount, http.StatusUnauthorized)
 		return
 	}
 
 	// If the account is locked then we cannot proceed
 	if account.Locked {
 		service.Log.Warn(api.AccountLocked, api.LogFields{})
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		RespondWithStructuredError(w, api.AccountLocked, http.StatusForbidden)
 		return
 	}
 
@@ -106,7 +92,7 @@ func (service AttachmentSaveHandler) ServeHTTP(w http.ResponseWriter, r *http.Re
 	file, header, err := r.FormFile("file")
 	if err != nil {
 		service.Log.WarnError(api.AttachmentNoFile, err, api.LogFields{})
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		RespondWithStructuredError(w, api.AttachmentNoFile, http.StatusBadRequest)
 		return
 	}
 	defer file.Close()
@@ -115,7 +101,7 @@ func (service AttachmentSaveHandler) ServeHTTP(w http.ResponseWriter, r *http.Re
 	var buffer bytes.Buffer
 	if _, err := io.Copy(&buffer, file); err != nil {
 		service.Log.WarnError(api.AttachmentCopyBufferError, err, api.LogFields{})
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		RespondWithStructuredError(w, api.AttachmentCopyBufferError, http.StatusInternalServerError)
 		return
 	}
 
@@ -125,12 +111,12 @@ func (service AttachmentSaveHandler) ServeHTTP(w http.ResponseWriter, r *http.Re
 	headerSize := int(header.Size)
 	if headerSize != bufferSize {
 		service.Log.Warn(api.AttachmentSizeMismatch, api.LogFields{"header": headerSize, "buffer": bufferSize})
-		http.Error(w, api.AttachmentSizeMismatch, http.StatusInternalServerError)
+		RespondWithStructuredError(w, api.AttachmentSizeMismatch, http.StatusInternalServerError)
 		return
 	}
 	if headerSize > maximumSize {
 		service.Log.Warn(api.AttachmentSizeExceeded, api.LogFields{"size": headerSize})
-		http.Error(w, api.AttachmentSizeExceeded, http.StatusInternalServerError)
+		RespondWithStructuredError(w, api.AttachmentSizeExceeded, http.StatusInternalServerError)
 		return
 	}
 
@@ -146,7 +132,7 @@ func (service AttachmentSaveHandler) ServeHTTP(w http.ResponseWriter, r *http.Re
 	}
 	if !allowed {
 		service.Log.Warn(api.AttachmentTypeNotAllowed, api.LogFields{"extension": extension})
-		http.Error(w, api.AttachmentTypeNotAllowed, http.StatusInternalServerError)
+		RespondWithStructuredError(w, api.AttachmentTypeNotAllowed, http.StatusInternalServerError)
 		return
 	}
 
@@ -159,7 +145,7 @@ func (service AttachmentSaveHandler) ServeHTTP(w http.ResponseWriter, r *http.Re
 	}
 	if _, err := attachment.Save(service.Database, id); err != nil {
 		service.Log.WarnError(api.AttachmentNotSaved, err, api.LogFields{})
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		RespondWithStructuredError(w, api.AttachmentNotSaved, http.StatusInternalServerError)
 		return
 	}
 
@@ -179,23 +165,16 @@ type AttachmentUpdateHandler struct {
 // ServeHTTP serves the HTTP response.
 func (service AttachmentUpdateHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	if !service.Env.True(api.AttachmentsEnabled) {
-		service.Log.Warn(api.AttachmentDenied, api.LogFields{})
-		http.Error(w, "Attachments is not implemented", http.StatusInternalServerError)
+		service.Log.Warn(api.AttachmentsNotImplemented, api.LogFields{})
+		RespondWithStructuredError(w, api.AttachmentsNotImplemented, http.StatusInternalServerError)
 		return
 	}
 
-	account := &api.Account{}
-
-	// Valid token and audience while populating the audience ID
-	_, id, err := service.Token.CheckToken(r)
-	if err != nil {
-		service.Log.WarnError(api.InvalidJWT, err, api.LogFields{})
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
+	// Get account ID
+	id := AccountIDFromRequestContext(r)
 
 	// Get the account information from the data store
-	account.ID = id
+	account := &api.Account{ID: id}
 	if _, err := account.Get(service.Database, id); err != nil {
 		service.Log.WarnError(api.NoAccount, err, api.LogFields{})
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -205,7 +184,7 @@ func (service AttachmentUpdateHandler) ServeHTTP(w http.ResponseWriter, r *http.
 	// If the account is locked then we cannot proceed
 	if account.Locked {
 		service.Log.Warn(api.AccountLocked, api.LogFields{})
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		RespondWithStructuredError(w, api.AccountLocked, http.StatusForbidden)
 		return
 	}
 
@@ -214,13 +193,13 @@ func (service AttachmentUpdateHandler) ServeHTTP(w http.ResponseWriter, r *http.
 	attachmentID, err := strconv.Atoi(vars["id"])
 	if err != nil {
 		service.Log.WarnError(api.AttachmentNoID, err, api.LogFields{})
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		RespondWithStructuredError(w, api.AttachmentNoID, http.StatusBadRequest)
 		return
 	}
 	attachment := &api.Attachment{ID: attachmentID}
 	if _, err := attachment.Get(service.Database, account.ID); err != nil {
 		service.Log.WarnError(api.AttachmentNotFound, err, api.LogFields{"attachment": attachmentID})
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		RespondWithStructuredError(w, api.AttachmentNotFound, http.StatusNotFound)
 		return
 	}
 
@@ -229,14 +208,15 @@ func (service AttachmentUpdateHandler) ServeHTTP(w http.ResponseWriter, r *http.
 		Description string `json:"description"`
 	}
 	if err := DecodeJSON(r.Body, &body); err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		service.Log.WarnError(api.PayloadDeserializeError, err, api.LogFields{})
+		RespondWithStructuredError(w, api.PayloadDeserializeError, http.StatusBadRequest)
 	}
 
 	// Apply the settings and save it back to storage.
 	attachment.Description = body.Description
 	if _, err := attachment.Save(service.Database, account.ID); err != nil {
 		service.Log.WarnError(api.AttachmentNotSaved, err, api.LogFields{})
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		RespondWithStructuredError(w, api.AttachmentNotSaved, http.StatusBadRequest)
 		return
 	}
 
@@ -255,28 +235,21 @@ type AttachmentGetHandler struct {
 // ServeHTTP serves the HTTP response.
 func (service AttachmentGetHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	if !service.Env.True(api.AttachmentsEnabled) {
-		service.Log.Warn(api.AttachmentDenied, api.LogFields{})
-		http.Error(w, "Attachments is not implemented", http.StatusInternalServerError)
+		service.Log.Warn(api.AttachmentsNotImplemented, api.LogFields{})
+		RespondWithStructuredError(w, api.AttachmentsNotImplemented, http.StatusInternalServerError)
 		return
 	}
 
-	account := &api.Account{}
-
-	// Valid token and audience while populating the audience ID
-	_, id, err := service.Token.CheckToken(r)
-	if err != nil {
-		service.Log.WarnError(api.InvalidJWT, err, api.LogFields{})
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
+	// Get account ID
+	id := AccountIDFromRequestContext(r)
 
 	// Get the account information from the data store.
 	// Proceed even if the account is locked, as files are presented
 	// after application submission, on the Print page.
-	account.ID = id
+	account := &api.Account{ID: id}
 	if _, err := account.Get(service.Database, id); err != nil {
 		service.Log.WarnError(api.NoAccount, err, api.LogFields{})
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		RespondWithStructuredError(w, api.NoAccount, http.StatusUnauthorized)
 		return
 	}
 
@@ -285,13 +258,13 @@ func (service AttachmentGetHandler) ServeHTTP(w http.ResponseWriter, r *http.Req
 	attachmentID, err := strconv.Atoi(vars["id"])
 	if err != nil {
 		service.Log.WarnError(api.AttachmentNoID, err, api.LogFields{})
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		RespondWithStructuredError(w, api.AttachmentNoID, http.StatusBadRequest)
 		return
 	}
 	attachment := &api.Attachment{ID: attachmentID}
 	if _, err := attachment.Get(service.Database, account.ID); err != nil {
 		service.Log.WarnError(api.AttachmentNotFound, err, api.LogFields{"attachment": attachmentID})
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		RespondWithStructuredError(w, api.AttachmentNotFound, http.StatusNotFound)
 		return
 	}
 
@@ -310,33 +283,26 @@ type AttachmentDeleteHandler struct {
 // ServeHTTP serves the HTTP response.
 func (service AttachmentDeleteHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	if !service.Env.True(api.AttachmentsEnabled) {
-		service.Log.Warn(api.AttachmentDenied, api.LogFields{})
-		http.Error(w, "Attachments is not implemented", http.StatusInternalServerError)
+		service.Log.Warn(api.AttachmentsNotImplemented, api.LogFields{})
+		RespondWithStructuredError(w, api.AttachmentsNotImplemented, http.StatusInternalServerError)
 		return
 	}
 
-	account := &api.Account{}
-
-	// Valid token and audience while populating the audience ID
-	_, id, err := service.Token.CheckToken(r)
-	if err != nil {
-		service.Log.WarnError(api.InvalidJWT, err, api.LogFields{})
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
+	// Get account ID
+	id := AccountIDFromRequestContext(r)
 
 	// Get the account information from the data store
-	account.ID = id
+	account := &api.Account{ID: id}
 	if _, err := account.Get(service.Database, id); err != nil {
 		service.Log.WarnError(api.NoAccount, err, api.LogFields{})
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		RespondWithStructuredError(w, api.NoAccount, http.StatusUnauthorized)
 		return
 	}
 
 	// If the account is locked then we cannot proceed
 	if account.Locked {
 		service.Log.Warn(api.AccountLocked, api.LogFields{})
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		RespondWithStructuredError(w, api.AccountLocked, http.StatusForbidden)
 		return
 	}
 
@@ -345,13 +311,13 @@ func (service AttachmentDeleteHandler) ServeHTTP(w http.ResponseWriter, r *http.
 	attachmentID, err := strconv.Atoi(vars["id"])
 	if err != nil {
 		service.Log.WarnError(api.AttachmentNoID, err, api.LogFields{})
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		RespondWithStructuredError(w, api.AttachmentNoID, http.StatusBadRequest)
 		return
 	}
 	attachment := &api.Attachment{ID: attachmentID}
 	if _, err := attachment.Delete(service.Database, account.ID); err != nil {
 		service.Log.WarnError(api.AttachmentDeleted, err, api.LogFields{"attachment": attachmentID})
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		RespondWithStructuredError(w, api.AttachmentDeleted, http.StatusInternalServerError)
 		return
 	}
 

@@ -16,35 +16,29 @@ type SectionHandler struct {
 
 // ServeHTTP returns data for one section of the application.
 func (service SectionHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	account := &api.Account{}
 
-	// Valid token and audience while populating the audience ID
-	_, id, err := service.Token.CheckToken(r)
-	if err != nil {
-		service.Log.WarnError(api.InvalidJWT, err, api.LogFields{})
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
+	// Get account ID
+	id := AccountIDFromRequestContext(r)
 
 	// Get the account information from the data store
-	account.ID = id
+	account := &api.Account{ID: id}
 	if _, err := account.Get(service.Database, id); err != nil {
 		service.Log.WarnError(api.NoAccount, err, api.LogFields{})
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		RespondWithStructuredError(w, api.NoAccount, http.StatusUnauthorized)
 		return
 	}
 
 	// If the account is locked then we cannot proceed
 	if account.Locked {
 		service.Log.Warn(api.AccountLocked, api.LogFields{})
-		EncodeErrJSON(w, err)
+		RespondWithStructuredError(w, api.AccountLocked, http.StatusForbidden)
 		return
 	}
 
 	payloadType := r.FormValue("type")
 	if payloadType == "" {
-		service.Log.WarnError(api.PayloadMissingType, err, api.LogFields{})
-		http.Error(w, "No payload type provided", http.StatusInternalServerError)
+		service.Log.WarnError(api.PayloadMissingType, nil, api.LogFields{})
+		RespondWithStructuredError(w, api.PayloadMissingType, http.StatusBadRequest)
 		return
 	}
 
@@ -54,7 +48,7 @@ func (service SectionHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) 
 	entity, err := payload.Entity()
 	if err != nil {
 		service.Log.WarnError(api.PayloadEntityError, err, api.LogFields{})
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		RespondWithStructuredError(w, api.PayloadEntityError, http.StatusBadRequest)
 		return
 	}
 
