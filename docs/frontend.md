@@ -4,25 +4,43 @@ The frontend is built in [React](https://reactjs.org/), wired up with [React Rou
 
 Here are some of the major directories:
 
-* [`/`](..): Things like the [`package.json`](../package.json) and config files for other tools live at the root directory of the repository
-* [`specs/`](../specs): [Integration tests](../specs/README.md)
-* [`src/`](../src): All the frontend source files live here
-  * [`actions/`](../src/actions): [Redux action creators](https://redux.js.org/basics/actions#action-creators)
-  * [`components/`](../src/components): Underlying React components used by the views or other components. Each should have corresponding styles (where applicable), tests, etc. in the same subdirectory.
-  * [`config/locales/`](../src/config/locales): Where any user-visible text is stored
-  * [`reducers/`](../src/reducers): [Redux reducers](https://redux.js.org/basics/reducers)
-  * [`sass/`](../src/sass): Handful of shared SASS files
-  * [`validators/`](../src/validators): The validation logic
-  * [`views/`](../src/views): Higher-level React components that correspond to different pages/routes
+- [`/`](..): Things like the [`package.json`](../package.json) and config files for other tools live at the root directory of the repository
+- [`specs/`](../specs): [Integration tests](../specs/README.md)
+- [`src/`](../src): All the frontend source files live here
+  - [`actions/`](../src/actions): [Redux action creators](https://redux.js.org/basics/actions#action-creators)
+  - [`components/`](../src/components): Underlying React components used by the views or other components. Each should have corresponding styles (where applicable), tests, etc. in the same subdirectory.
+  - [`config/locales/`](../src/config/locales): Where any user-visible text is stored
+  - [`reducers/`](../src/reducers): [Redux reducers](https://redux.js.org/basics/reducers)
+  - [`sass/`](../src/sass): Handful of shared SASS files
+  - [`validators/`](../src/validators): The validation logic
+  - [`views/`](../src/views): Higher-level React components that correspond to different pages/routes
 
 ## Troubleshooting
 
-* Use of the [React Developer Tools](https://github.com/facebook/react-devtools) and [Redux DevTools Extension](http://extension.remotedev.io/) are recommended for frontend work.
-* With the React extension, the Redux store can be inspected by running `$r.store.getState();` in your browser's JavaScript console.
+- Use of the [React Developer Tools](https://github.com/facebook/react-devtools) and [Redux DevTools Extension](http://extension.remotedev.io/) are recommended for frontend work.
+- With the React extension, the Redux store can be inspected by running `$r.store.getState();` in your browser's JavaScript console.
 
 ## Tests
 
 Unit tests are written in [Jest](https://facebook.github.io/jest/), with [snapshot tests](https://jestjs.io/docs/en/snapshot-testing) for ensuring components don't inadvertently change.
+
+To run the React test suite:
+
+```shell
+make test-react
+```
+
+To run a subset of tests, use the `FILES` argument, using a space as a delimiter between file paths:
+
+```shell
+make test-react FILES="src/components/Navigation/Navigation.test.jsx src/components/Navigation/SectionLink.test.jsx"
+```
+
+If changes are made that require updating a snapshot(s), pass the appropriate flag using the `FLAGS` argument:
+
+```shell
+make test-react FLAGS="--updateSnapshot"
+```
 
 [Information about integration tests.](../specs/README.md)
 
