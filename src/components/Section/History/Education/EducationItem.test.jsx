@@ -9,7 +9,7 @@ describe('The education component', () => {
     }
     const component = mount(<EducationItem {...expected} />)
     expect(component.find('.education').length).toEqual(1)
-    expect(component.find('.school-name').length).toEqual(2)
+    expect(component.find('.school-name').length).toEqual(1)
   })
 
   it('should ask if they attended school in last 10 years', () => {
@@ -18,7 +18,7 @@ describe('The education component', () => {
     }
     const component = mount(<EducationItem {...expected} />)
     expect(component.find('.education').length).toEqual(1)
-    expect(component.find('.school-name').length).toEqual(2)
+    expect(component.find('.school-name').length).toEqual(1)
   })
 
   it('should ask for a reference if within the last 3 years', () => {
