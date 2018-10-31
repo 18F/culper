@@ -37,7 +37,7 @@ func (service CORSHandler) Middleware(next http.Handler) http.Handler {
 				"Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
 		} else {
 			service.Log.Info(api.CORSDenied, api.LogFields{"origin": origin})
-			http.Error(w, api.CORSDenied, http.StatusBadRequest)
+			RespondWithStructuredError(w, api.CORSDenied, http.StatusBadRequest)
 			return
 		}
 

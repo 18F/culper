@@ -21,7 +21,7 @@ func (service ValidateHandler) ServeHTTP(w http.ResponseWriter, r *http.Request)
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {
 		service.Log.WarnError(api.PayloadEmpty, err, api.LogFields{})
-		EncodeErrJSON(w, err)
+		RespondWithStructuredError(w, api.PayloadEmpty, http.StatusBadRequest)
 		return
 	}
 
@@ -29,16 +29,15 @@ func (service ValidateHandler) ServeHTTP(w http.ResponseWriter, r *http.Request)
 	payload := &api.Payload{}
 	if err := payload.Unmarshal(body); err != nil {
 		service.Log.WarnError(api.PayloadDeserializeError, err, api.LogFields{})
-		EncodeErrJSON(w, err)
+		RespondWithStructuredError(w, api.PayloadDeserializeError, http.StatusBadRequest)
 		return
 	}
 
 	// Extract the entity interface of the payload and validate it
 	if ok, err := payload.Valid(); !ok {
 		service.Log.WarnError(api.PayloadInvalid, err, api.LogFields{})
-		EncodeErrJSON(w, err)
+		RespondWithStructuredError(w, api.PayloadInvalid, http.StatusBadRequest)
 		return
 	}
 
-	EncodeErrJSON(w, nil)
 }

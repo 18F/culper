@@ -126,7 +126,7 @@ export default class Textarea extends ValidationElement {
 
   render() {
     return (
-      <div className={this.divClass()}>
+      <div className={`hide-for-print ${this.divClass()}`}>
         <label className={this.labelClass()} htmlFor={this.state.uid}>
           {this.props.label}
         </label>
@@ -151,6 +151,9 @@ export default class Textarea extends ValidationElement {
           onBlur={this.handleBlur}
           ref="textarea"
         />
+        <div className="textarea-print print-only">
+          {this.state.value}
+        </div>
       </div>
     )
   }

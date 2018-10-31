@@ -37,6 +37,15 @@
     }
   }
 
+  .nonumber {
+    position: relative;
+
+    label {
+      margin-right: 0;
+      width: 13rem;
+    }
+  }
+
   .separator {
     font-size: 2rem;
     line-height: 2rem;
@@ -52,6 +61,7 @@
   }
 
   .number,
+  .nonumber,
   .separator {
     display: table-cell;
     vertical-align: middle;
@@ -87,16 +97,5 @@
   .phonetype-option.block label {
     height: auto !important;
     width: 8.7rem !important;
-  }
-
-  .nonumber {
-    display: inline-block;
-    vertical-align: top;
-    margin-bottom: -2rem;
-
-    label {
-      width: 13rem;
-      margin-top: 2.5rem;
-    }
   }
 }

@@ -312,6 +312,7 @@ export const buildDate = date => {
   }
 }
 
+
 export const pickDate = (dates, max=true) => {
  const buildsDates = dates.map(buildDate)
 
@@ -335,3 +336,6 @@ export const pickDate = (dates, max=true) => {
 
     return buildsDates.reduce(findMinDate)
 }
+
+export const alphaNumericRegEx = "^[a-zA-Z0-9]*$"
+

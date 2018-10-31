@@ -19,9 +19,9 @@ import {
   Country,
   Location,
   BranchCollection,
-  AccordionItem,
+  AccordionItem
 } from '../../../Form'
-import { countryString } from '../../../../validators/location';
+import { countryString } from '../../../../validators/location'
 
 export default class CivilUnion extends ValidationElement {
   constructor(props) {
@@ -193,7 +193,7 @@ export default class CivilUnion extends ValidationElement {
      * `this.props.BirthPlace` can end up in a number of different states,
      * depending on the choices a user makes in this section _and_ on
      * the initial state of the app.
-     * 
+     *
      * The initial, pristine value for this.props.BirthPlace is `undefined`.
      * This occurs despite the BirthPlace key/value pair in defaultProps,
      * indicating that the value is being explicitly supplied at some point.
@@ -218,7 +218,7 @@ export default class CivilUnion extends ValidationElement {
      *
      *  {name: "country", comments: "", showComments: false, value: ['germany']}
      *
-    */
+     */
 
     const { country } = this.props.BirthPlace;
     const showForeignBornDocumentation = country && countryString(country) !== 'United States'
@@ -322,6 +322,7 @@ export default class CivilUnion extends ValidationElement {
                 scrollIntoView={this.props.scrollIntoView}>
                 <Name
                   name="Name"
+                  bind
                   onError={this.props.onError}
                   required={this.props.required}
                   scrollIntoView={this.props.scrollIntoView}

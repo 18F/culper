@@ -387,7 +387,9 @@ export default class Telephone extends ValidationElement {
           className={[
             `${this.props.typeClass || ''}`,
             `${this.props.noNumber ? 'disabled' : ''}`
-          ].join(' ').trim()}>
+          ]
+            .join(' ')
+            .trim()}>
           {i18n.t('telephone.dsn.label')}
         </label>
         <div className="telephone-number-fields">
@@ -437,21 +439,22 @@ export default class Telephone extends ValidationElement {
               this.props.tab(this.refs.dsn_first.refs.text.refs.input)
             }}
           />
-        </div>
-        <Show when={this.props.allowNotApplicable}>
-          <span>
-            <span className="separator extension">or</span>
-            <Checkbox
-              name="nonumber"
-              className="nonumber"
-              label={i18n.t('telephone.noNumber.label')}
-              value="NA"
-              checked={this.props.noNumber}
-              onUpdate={this.updateNoNumber}
-              onError={this.handleErrorNoNumber}
-            />
+          <span
+            className={
+              this.props.allowNotApplicable ? 'separator extension' : 'hidden'
+            }>
+            or
           </span>
-        </Show>
+          <Checkbox
+            name="nonumber"
+            className={this.props.allowNotApplicable ? 'nonumber' : 'hidden'}
+            label={i18n.t('telephone.noNumber.label')}
+            value="NA"
+            checked={this.props.noNumber}
+            onUpdate={this.updateNoNumber}
+            onError={this.handleErrorNoNumber}
+          />
+        </div>
       </div>
     )
   }
@@ -463,7 +466,9 @@ export default class Telephone extends ValidationElement {
           className={[
             `${this.props.typeClass || ''}`,
             `${this.props.noNumber ? 'disabled' : ''}`
-          ].join(' ').trim()}>
+          ]
+            .join(' ')
+            .trim()}>
           {i18n.t('telephone.domestic.label')}
         </label>
         <div className="telephone-number-fields">
@@ -558,21 +563,22 @@ export default class Telephone extends ValidationElement {
               this.props.tab(this.refs.domestic_third.refs.text.refs.input)
             }}
           />
-        </div>
-        <Show when={this.props.allowNotApplicable}>
-          <span>
-            <span className="separator extension">or</span>
-            <Checkbox
-              name="nonumber"
-              className="nonumber"
-              label={i18n.t('telephone.noNumber.label')}
-              value="NA"
-              checked={this.props.noNumber}
-              onUpdate={this.updateNoNumber}
-              onError={this.handleErrorNoNumber}
-            />
+          <span
+            className={
+              this.props.allowNotApplicable ? 'separator extension' : 'hidden'
+            }>
+            or
           </span>
-        </Show>
+          <Checkbox
+            name="nonumber"
+            className={this.props.allowNotApplicable ? 'nonumber' : 'hidden'}
+            label={i18n.t('telephone.noNumber.label')}
+            value="NA"
+            checked={this.props.noNumber}
+            onUpdate={this.updateNoNumber}
+            onError={this.handleErrorNoNumber}
+          />
+        </div>
       </div>
     )
   }
@@ -584,7 +590,9 @@ export default class Telephone extends ValidationElement {
           className={[
             `${this.props.typeClass || ''}`,
             `${this.props.noNumber ? 'disabled' : ''}`
-          ].join(' ').trim()}>
+          ]
+            .join(' ')
+            .trim()}>
           {i18n.t('telephone.international.label')}
         </label>
         <span className="separator">+</span>
@@ -653,20 +661,21 @@ export default class Telephone extends ValidationElement {
             this.props.tab(this.refs.int_second.refs.text.refs.input)
           }}
         />
-        <Show when={this.props.allowNotApplicable}>
-          <span>
-            <span className="separator extension">or</span>
-            <Checkbox
-              name="nonumber"
-              className="nonumber"
-              label={i18n.t('telephone.noNumber.label')}
-              value="NA"
-              checked={this.props.noNumber}
-              onUpdate={this.updateNoNumber}
-              onError={this.handleErrorNoNumber}
-            />
-          </span>
-        </Show>
+        <span
+          className={
+            this.props.allowNotApplicable ? 'separator extension' : 'hidden'
+          }>
+          or
+        </span>
+        <Checkbox
+          name="nonumber"
+          className={this.props.allowNotApplicable ? 'nonumber' : 'hidden'}
+          label={i18n.t('telephone.noNumber.label')}
+          value="NA"
+          checked={this.props.noNumber}
+          onUpdate={this.updateNoNumber}
+          onError={this.handleErrorNoNumber}
+        />
       </div>
     )
   }

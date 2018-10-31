@@ -65,6 +65,7 @@ export default class Treatment extends ValidationElement {
             name="Phone"
             label={i18n.t(`psychological.${prefix}.label.phone`)}
             {...this.props.Phone}
+            allowNotApplicable={false}
             onUpdate={this.updatePhone}
             onError={this.props.onError}
             required={this.props.required}

@@ -1473,7 +1473,7 @@ exports[`The section component renders citizenship.review 1`] = `
                           className="component"
                         >
                           <div
-                            className=""
+                            className="hide-for-print "
                           >
                             <input
                               aria-describedby="Comments-error"
@@ -1494,6 +1494,11 @@ exports[`The section component renders citizenship.review 1`] = `
                               type="text"
                               value=""
                             />
+                            <div
+                              className="text-print print-only"
+                            >
+                              
+                            </div>
                           </div>
                         </span>
                       </span>
@@ -4850,7 +4855,7 @@ exports[`The section component renders financial.review 1`] = `
                           className="component"
                         >
                           <div
-                            className=""
+                            className="hide-for-print "
                           >
                             <input
                               aria-describedby="Comments-error"
@@ -4871,6 +4876,11 @@ exports[`The section component renders financial.review 1`] = `
                               type="text"
                               value=""
                             />
+                            <div
+                              className="text-print print-only"
+                            >
+                              
+                            </div>
                           </div>
                         </span>
                       </span>
@@ -8807,7 +8817,7 @@ exports[`The section component renders foreign.review 1`] = `
                           className="component"
                         >
                           <div
-                            className=""
+                            className="hide-for-print "
                           >
                             <input
                               aria-describedby="Comments-error"
@@ -8828,6 +8838,11 @@ exports[`The section component renders foreign.review 1`] = `
                               type="text"
                               value=""
                             />
+                            <div
+                              className="text-print print-only"
+                            >
+                              
+                            </div>
                           </div>
                         </span>
                       </span>
@@ -12005,7 +12020,7 @@ exports[`The section component renders history.review 1`] = `
                           className="component"
                         >
                           <div
-                            className=""
+                            className="hide-for-print "
                           >
                             <input
                               aria-describedby="Comments-error"
@@ -12026,6 +12041,11 @@ exports[`The section component renders history.review 1`] = `
                               type="text"
                               value=""
                             />
+                            <div
+                              className="text-print print-only"
+                            >
+                              
+                            </div>
                           </div>
                         </span>
                       </span>
@@ -12223,7 +12243,7 @@ exports[`The section component renders identification.birthdate 1`] = `
                                   className="usa-form-group month"
                                 >
                                   <div
-                                    className=""
+                                    className="hide-for-print "
                                   >
                                     <label
                                       className=""
@@ -12252,13 +12272,18 @@ exports[`The section component renders identification.birthdate 1`] = `
                                       type="text"
                                       value=""
                                     />
+                                    <div
+                                      className="text-print print-only"
+                                    >
+                                      
+                                    </div>
                                   </div>
                                 </div>
                                 <div
                                   className="usa-form-group day "
                                 >
                                   <div
-                                    className=""
+                                    className="hide-for-print "
                                   >
                                     <label
                                       className=""
@@ -12287,13 +12312,18 @@ exports[`The section component renders identification.birthdate 1`] = `
                                       type="text"
                                       value=""
                                     />
+                                    <div
+                                      className="text-print print-only"
+                                    >
+                                      
+                                    </div>
                                   </div>
                                 </div>
                                 <div
                                   className="usa-form-group year"
                                 >
                                   <div
-                                    className=""
+                                    className="hide-for-print "
                                   >
                                     <label
                                       className=""
@@ -12322,6 +12352,11 @@ exports[`The section component renders identification.birthdate 1`] = `
                                       type="text"
                                       value=""
                                     />
+                                    <div
+                                      className="text-print print-only"
+                                    >
+                                      
+                                    </div>
                                   </div>
                                 </div>
                               </div>
@@ -12959,7 +12994,7 @@ exports[`The section component renders identification.contacts 1`] = `
                             className="component"
                           >
                             <div
-                              className="email email-home"
+                              className="hide-for-print email email-home"
                             >
                               <input
                                 aria-describedby="HomeEmail-error"
@@ -12981,6 +13016,11 @@ exports[`The section component renders identification.contacts 1`] = `
                                 type="text"
                                 value=""
                               />
+                              <div
+                                className="text-print print-only"
+                              >
+                                
+                              </div>
                             </div>
                           </span>
                         </span>
@@ -13032,7 +13072,7 @@ exports[`The section component renders identification.contacts 1`] = `
                             className="component"
                           >
                             <div
-                              className="email email-work"
+                              className="hide-for-print email email-work"
                             >
                               <input
                                 aria-describedby="WorkEmail-error"
@@ -13054,6 +13094,11 @@ exports[`The section component renders identification.contacts 1`] = `
                                 type="text"
                                 value=""
                               />
+                              <div
+                                className="text-print print-only"
+                              >
+                                
+                              </div>
                             </div>
                           </span>
                         </span>
@@ -13583,7 +13628,7 @@ exports[`The section component renders identification.name 1`] = `
                                       className="component"
                                     >
                                       <div
-                                        className="first"
+                                        className="hide-for-print first"
                                       >
                                         <input
                                           aria-describedby="first-error"
@@ -13604,6 +13649,11 @@ exports[`The section component renders identification.name 1`] = `
                                           type="text"
                                           value=""
                                         />
+                                        <div
+                                          className="text-print print-only"
+                                        >
+                                          
+                                        </div>
                                       </div>
                                       <div
                                         className="flags"
@@ -13708,7 +13758,7 @@ exports[`The section component renders identification.name 1`] = `
                                       className="component"
                                     >
                                       <div
-                                        className="middle"
+                                        className="hide-for-print middle"
                                       >
                                         <input
                                           aria-describedby="middle-error"
@@ -13729,6 +13779,11 @@ exports[`The section component renders identification.name 1`] = `
                                           type="text"
                                           value=""
                                         />
+                                        <div
+                                          className="text-print print-only"
+                                        >
+                                          
+                                        </div>
                                       </div>
                                       <div
                                         className="middle-options flags"
@@ -13858,7 +13913,7 @@ exports[`The section component renders identification.name 1`] = `
                                       className="component"
                                     >
                                       <div
-                                        className="last"
+                                        className="hide-for-print last"
                                       >
                                         <input
                                           aria-describedby="last-error"
@@ -13879,6 +13934,11 @@ exports[`The section component renders identification.name 1`] = `
                                           type="text"
                                           value=""
                                         />
+                                        <div
+                                          className="text-print print-only"
+                                        >
+                                          
+                                        </div>
                                       </div>
                                       <div
                                         className="flags"
@@ -14895,7 +14955,7 @@ exports[`The section component renders identification.physical 1`] = `
                                 className="feet"
                               >
                                 <div
-                                  className=""
+                                  className="hide-for-print "
                                 >
                                   <label
                                     className=""
@@ -14924,13 +14984,18 @@ exports[`The section component renders identification.physical 1`] = `
                                     type="text"
                                     value=""
                                   />
+                                  <div
+                                    className="text-print print-only"
+                                  >
+                                    
+                                  </div>
                                 </div>
                               </div>
                               <div
                                 className="inches"
                               >
                                 <div
-                                  className=""
+                                  className="hide-for-print "
                                 >
                                   <label
                                     className=""
@@ -14959,6 +15024,11 @@ exports[`The section component renders identification.physical 1`] = `
                                     type="text"
                                     value=""
                                   />
+                                  <div
+                                    className="text-print print-only"
+                                  >
+                                    
+                                  </div>
                                 </div>
                               </div>
                             </div>
@@ -15042,7 +15112,7 @@ exports[`The section component renders identification.physical 1`] = `
                                 className="pounds"
                               >
                                 <div
-                                  className=""
+                                  className="hide-for-print "
                                 >
                                   <label
                                     className=""
@@ -15071,6 +15141,11 @@ exports[`The section component renders identification.physical 1`] = `
                                     type="text"
                                     value=""
                                   />
+                                  <div
+                                    className="text-print print-only"
+                                  >
+                                    
+                                  </div>
                                 </div>
                               </div>
                             </div>
@@ -16701,7 +16776,7 @@ exports[`The section component renders identification.review 1`] = `
                                       className="component"
                                     >
                                       <div
-                                        className="first usa-input-error"
+                                        className="hide-for-print first usa-input-error"
                                       >
                                         <input
                                           aria-describedby="first-error"
@@ -16722,6 +16797,11 @@ exports[`The section component renders identification.review 1`] = `
                                           type="text"
                                           value=""
                                         />
+                                        <div
+                                          className="text-print print-only"
+                                        >
+                                          
+                                        </div>
                                       </div>
                                       <div
                                         className="flags"
@@ -16826,7 +16906,7 @@ exports[`The section component renders identification.review 1`] = `
                                       className="component"
                                     >
                                       <div
-                                        className="middle usa-input-error"
+                                        className="hide-for-print middle usa-input-error"
                                       >
                                         <input
                                           aria-describedby="middle-error"
@@ -16847,6 +16927,11 @@ exports[`The section component renders identification.review 1`] = `
                                           type="text"
                                           value=""
                                         />
+                                        <div
+                                          className="text-print print-only"
+                                        >
+                                          
+                                        </div>
                                       </div>
                                       <div
                                         className="middle-options flags"
@@ -16976,7 +17061,7 @@ exports[`The section component renders identification.review 1`] = `
                                       className="component"
                                     >
                                       <div
-                                        className="last usa-input-error"
+                                        className="hide-for-print last usa-input-error"
                                       >
                                         <input
                                           aria-describedby="last-error"
@@ -16997,6 +17082,11 @@ exports[`The section component renders identification.review 1`] = `
                                           type="text"
                                           value=""
                                         />
+                                        <div
+                                          className="text-print print-only"
+                                        >
+                                          
+                                        </div>
                                       </div>
                                       <div
                                         className="flags"
@@ -17869,7 +17959,7 @@ exports[`The section component renders identification.review 1`] = `
                             className="component"
                           >
                             <div
-                              className="email email-home"
+                              className="hide-for-print email email-home"
                             >
                               <input
                                 aria-describedby="HomeEmail-error"
@@ -17891,6 +17981,11 @@ exports[`The section component renders identification.review 1`] = `
                                 type="text"
                                 value=""
                               />
+                              <div
+                                className="text-print print-only"
+                              >
+                                
+                              </div>
                             </div>
                           </span>
                         </span>
@@ -17942,7 +18037,7 @@ exports[`The section component renders identification.review 1`] = `
                             className="component"
                           >
                             <div
-                              className="email email-work"
+                              className="hide-for-print email email-work"
                             >
                               <input
                                 aria-describedby="WorkEmail-error"
@@ -17964,6 +18059,11 @@ exports[`The section component renders identification.review 1`] = `
                                 type="text"
                                 value=""
                               />
+                              <div
+                                className="text-print print-only"
+                              >
+                                
+                              </div>
                             </div>
                           </span>
                         </span>
@@ -18243,7 +18343,7 @@ exports[`The section component renders identification.review 1`] = `
                                   className="usa-form-group month"
                                 >
                                   <div
-                                    className="usa-input-error"
+                                    className="hide-for-print usa-input-error"
                                   >
                                     <label
                                       className="usa-input-error-label"
@@ -18272,13 +18372,18 @@ exports[`The section component renders identification.review 1`] = `
                                       type="text"
                                       value=""
                                     />
+                                    <div
+                                      className="text-print print-only"
+                                    >
+                                      
+                                    </div>
                                   </div>
                                 </div>
                                 <div
                                   className="usa-form-group day "
                                 >
                                   <div
-                                    className="usa-input-error"
+                                    className="hide-for-print usa-input-error"
                                   >
                                     <label
                                       className="usa-input-error-label"
@@ -18307,13 +18412,18 @@ exports[`The section component renders identification.review 1`] = `
                                       type="text"
                                       value=""
                                     />
+                                    <div
+                                      className="text-print print-only"
+                                    >
+                                      
+                                    </div>
                                   </div>
                                 </div>
                                 <div
                                   className="usa-form-group year"
                                 >
                                   <div
-                                    className="usa-input-error"
+                                    className="hide-for-print usa-input-error"
                                   >
                                     <label
                                       className="usa-input-error-label"
@@ -18342,6 +18452,11 @@ exports[`The section component renders identification.review 1`] = `
                                       type="text"
                                       value=""
                                     />
+                                    <div
+                                      className="text-print print-only"
+                                    >
+                                      
+                                    </div>
                                   </div>
                                 </div>
                               </div>
@@ -18732,7 +18847,7 @@ exports[`The section component renders identification.review 1`] = `
                               className="ssn applicant-ssn-initial"
                             >
                               <div
-                                className="first eapp-short-input usa-input-error"
+                                className="hide-for-print first eapp-short-input usa-input-error"
                               >
                                 <input
                                   aria-describedby="first-error"
@@ -18758,9 +18873,14 @@ exports[`The section component renders identification.review 1`] = `
                                   type="text"
                                   value=""
                                 />
+                                <div
+                                  className="text-print print-only"
+                                >
+                                  
+                                </div>
                               </div>
                               <div
-                                className="middle eapp-short-input usa-input-error"
+                                className="hide-for-print middle eapp-short-input usa-input-error"
                               >
                                 <input
                                   aria-describedby="middle-error"
@@ -18786,9 +18906,14 @@ exports[`The section component renders identification.review 1`] = `
                                   type="text"
                                   value=""
                                 />
+                                <div
+                                  className="text-print print-only"
+                                >
+                                  
+                                </div>
                               </div>
                               <div
-                                className="last eapp-short-input usa-input-error"
+                                className="hide-for-print last eapp-short-input usa-input-error"
                               >
                                 <input
                                   aria-describedby="last-error"
@@ -18814,6 +18939,11 @@ exports[`The section component renders identification.review 1`] = `
                                   type="text"
                                   value=""
                                 />
+                                <div
+                                  className="text-print print-only"
+                                >
+                                  
+                                </div>
                               </div>
                               <div
                                 className="flags"
@@ -19004,7 +19134,7 @@ exports[`The section component renders identification.review 1`] = `
                                 className="feet"
                               >
                                 <div
-                                  className="usa-input-error"
+                                  className="hide-for-print usa-input-error"
                                 >
                                   <label
                                     className="usa-input-error-label"
@@ -19033,13 +19163,18 @@ exports[`The section component renders identification.review 1`] = `
                                     type="text"
                                     value=""
                                   />
+                                  <div
+                                    className="text-print print-only"
+                                  >
+                                    
+                                  </div>
                                 </div>
                               </div>
                               <div
                                 className="inches"
                               >
                                 <div
-                                  className="usa-input-error"
+                                  className="hide-for-print usa-input-error"
                                 >
                                   <label
                                     className="usa-input-error-label"
@@ -19068,6 +19203,11 @@ exports[`The section component renders identification.review 1`] = `
                                     type="text"
                                     value=""
                                   />
+                                  <div
+                                    className="text-print print-only"
+                                  >
+                                    
+                                  </div>
                                 </div>
                               </div>
                             </div>
@@ -19173,7 +19313,7 @@ exports[`The section component renders identification.review 1`] = `
                                 className="pounds"
                               >
                                 <div
-                                  className="usa-input-error"
+                                  className="hide-for-print usa-input-error"
                                 >
                                   <label
                                     className="usa-input-error-label"
@@ -19202,6 +19342,11 @@ exports[`The section component renders identification.review 1`] = `
                                     type="text"
                                     value=""
                                   />
+                                  <div
+                                    className="text-print print-only"
+                                  >
+                                    
+                                  </div>
                                 </div>
                               </div>
                             </div>
@@ -20678,7 +20823,7 @@ exports[`The section component renders identification.review 1`] = `
                           className="component"
                         >
                           <div
-                            className=""
+                            className="hide-for-print "
                           >
                             <input
                               aria-describedby="Comments-error"
@@ -20699,6 +20844,11 @@ exports[`The section component renders identification.review 1`] = `
                               type="text"
                               value=""
                             />
+                            <div
+                              className="text-print print-only"
+                            >
+                              
+                            </div>
                           </div>
                         </span>
                       </span>
@@ -20892,7 +21042,7 @@ exports[`The section component renders identification.ssn 1`] = `
                               className="ssn applicant-ssn-initial"
                             >
                               <div
-                                className="first eapp-short-input"
+                                className="hide-for-print first eapp-short-input"
                               >
                                 <input
                                   aria-describedby="first-error"
@@ -20918,9 +21068,14 @@ exports[`The section component renders identification.ssn 1`] = `
                                   type="text"
                                   value=""
                                 />
+                                <div
+                                  className="text-print print-only"
+                                >
+                                  
+                                </div>
                               </div>
                               <div
-                                className="middle eapp-short-input"
+                                className="hide-for-print middle eapp-short-input"
                               >
                                 <input
                                   aria-describedby="middle-error"
@@ -20946,9 +21101,14 @@ exports[`The section component renders identification.ssn 1`] = `
                                   type="text"
                                   value=""
                                 />
+                                <div
+                                  className="text-print print-only"
+                                >
+                                  
+                                </div>
                               </div>
                               <div
-                                className="last eapp-short-input"
+                                className="hide-for-print last eapp-short-input"
                               >
                                 <input
                                   aria-describedby="last-error"
@@ -20974,6 +21134,11 @@ exports[`The section component renders identification.ssn 1`] = `
                                   type="text"
                                   value=""
                                 />
+                                <div
+                                  className="text-print print-only"
+                                >
+                                  
+                                </div>
                               </div>
                               <div
                                 className="flags"
@@ -24646,7 +24811,7 @@ exports[`The section component renders legal.review 1`] = `
                           className="component"
                         >
                           <div
-                            className=""
+                            className="hide-for-print "
                           >
                             <input
                               aria-describedby="Comments-error"
@@ -24667,6 +24832,11 @@ exports[`The section component renders legal.review 1`] = `
                               type="text"
                               value=""
                             />
+                            <div
+                              className="text-print print-only"
+                            >
+                              
+                            </div>
                           </div>
                         </span>
                       </span>
@@ -26429,7 +26599,7 @@ exports[`The section component renders military.review 1`] = `
                           className="component"
                         >
                           <div
-                            className=""
+                            className="hide-for-print "
                           >
                             <input
                               aria-describedby="Comments-error"
@@ -26450,6 +26620,11 @@ exports[`The section component renders military.review 1`] = `
                               type="text"
                               value=""
                             />
+                            <div
+                              className="text-print print-only"
+                            >
+                              
+                            </div>
                           </div>
                         </span>
                       </span>
@@ -30105,7 +30280,7 @@ exports[`The section component renders relationships.review 1`] = `
                           className="component"
                         >
                           <div
-                            className=""
+                            className="hide-for-print "
                           >
                             <input
                               aria-describedby="Comments-error"
@@ -30126,6 +30301,11 @@ exports[`The section component renders relationships.review 1`] = `
                               type="text"
                               value=""
                             />
+                            <div
+                              className="text-print print-only"
+                            >
+                              
+                            </div>
                           </div>
                         </span>
                       </span>
@@ -32044,7 +32224,7 @@ exports[`The section component renders substance.review 1`] = `
                           className="component"
                         >
                           <div
-                            className=""
+                            className="hide-for-print "
                           >
                             <input
                               aria-describedby="Comments-error"
@@ -32065,6 +32245,11 @@ exports[`The section component renders substance.review 1`] = `
                               type="text"
                               value=""
                             />
+                            <div
+                              className="text-print print-only"
+                            >
+                              
+                            </div>
                           </div>
                         </span>
                       </span>
