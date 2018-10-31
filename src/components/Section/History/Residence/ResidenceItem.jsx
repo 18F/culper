@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { i18n } from '../../../../config'
-import { physicaladdress } from '../../../../schema/form/physicaladdress'
+import { physicaladdress, collection } from '../../../../schema/form'
 import {
   ValidationElement,
   DateRange,
@@ -255,12 +255,30 @@ export default class ResidenceItem extends ValidationElement {
     return country !== null && country !== undefined && country !== 'POSTOFFICE' && country !== 'United States'
   }
 
+  computeAlternateAddressProps() {
+    const { PhysicalAddress } = this.props
+
+    if (!PhysicalAddress) {
+      return {
+        branch: { value: '' },
+        items: []
+      }
+    }
+
+    if (!PhysicalAddress.List) {
+      return PhysicalAddress
+    }
+
+    return PhysicalAddress.List
+  }
+
   render() {
     // Certain elements are present if the date range of the residency was
     // within the last 3 years.
     const dates = this.props.Dates || {}
     const from = buildDate(dates.from)
     const to = buildDate(dates.to)
+    const physicalAddress = this.computeAlternateAddressProps();
 
     return (
       <div className="residence">
@@ -294,7 +312,8 @@ export default class ResidenceItem extends ValidationElement {
         </Field>
         <Show when={this.isMilitaryAddress()}>
           <PhysicalAddress
-            physicalAddress={this.props.PhysicalAddress}
+            country="POSTOFFICE"
+            physicalAddress={physicalAddress}
             onUpdate={this.updatePhysicalAddress}
           />
         </Show>
@@ -309,9 +328,9 @@ export default class ResidenceItem extends ValidationElement {
             */
           }
           <PhysicalAddress
-            country="POSTOFFICE"
+            isForeign
             layout={Location.US_ADDRESS}
-            physicalAddress={this.props.PhysicalAddress}
+            physicalAddress={physicalAddress}
             onUpdate={this.updatePhysicalAddress}
           />
         </Show>
@@ -643,7 +662,18 @@ ResidenceItem.defaultProps = {
   Dates: {},
   Address: {},
   Comments: {},
-  PhysicalAddress: physicaladdress(),
+  PhysicalAddress: {
+    List: {
+      branch: { value: ''},
+      items: [{
+        Item: {
+          HasDifferentAddress: false,
+          Address: {},
+          Telephone: {}
+        }
+      }]
+    }
+  },
   Role: {},
   RoleOther: {},
   ReferenceName: {},

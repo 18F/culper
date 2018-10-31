@@ -10,7 +10,6 @@ export const isInternational = location => {
   )
 }
 
-// XXX TEST ME
 export const countryString = country => {
   if (country && isDefined(country.value)) {
     if (Array.isArray(country.value)) {

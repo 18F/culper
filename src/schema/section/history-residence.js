@@ -3,11 +3,19 @@ import * as form from '../form'
 export const historyResidence = (data = {}) => {
   const items = ((data.List || {}).items || []).map(x => {
     const xitem = x.Item || {}
+
     return {
       Item: {
         Dates: form.daterange(xitem.Dates),
         Address: form.location(xitem.Address),
-        PhysicalAddress: form.physicaladdress(xitem.PhysicalAddress),
+        PhysicalAddress: {
+          List: form.collection(
+            [{
+              Item: form.physicaladdress(xitem.PhysicalAddress)
+            }],
+          xitem.branch)
+        },
+        //PhysicalAddress: form.physicaladdress(xitem.PhysicalAddress),
         Comments: form.textarea(xitem.Comments),
         ReferenceName: form.name(xitem.ReferenceName),
         ReferenceLastContact: form.datecontrol(xitem.ReferenceLastContact),
