@@ -17,7 +17,7 @@ describe('Schema for financial taxes', () => {
               Address: {
                 country: null
               },
-              PhysicalAddress: {
+              AlternateAddress: {
                 Address: {
                   country: null,
                 },

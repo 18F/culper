@@ -8,12 +8,12 @@ import Location from './Location'
 import LocationValidator, { countryString } from '../../../validators/location'
 import ValidationElement from '../ValidationElement'
 
-const physicalAddressDefaultState = () => ({
+const alternateAddressDefaultState = () => ({
   Address: {},
   HasDifferentAddress: { value: '' }
 })
 
-class PhysicalAddress extends ValidationElement {
+class AlternateAddress extends ValidationElement {
   constructor(props) {
     super(props)
 
@@ -22,28 +22,28 @@ class PhysicalAddress extends ValidationElement {
   }
 
   // XXX This is not a great pattern, but we don't have a clear
-  // way to update the state of this PhysicalAddress prop when
+  // way to update the state of this AlternateAddress prop when
   // a user chooses a 'country' value that is not a military address
   componentWillUnmount() {
-    this.props.onUpdate(computedPhysicalAddressDefaultState())
+    this.props.onUpdate(alternateAddressDefaultState())
   }
 
   handleUpdate(values) {
     this.props.onUpdate({
-      ...this.props.physicalAddress,
+      ...this.props.alternateAddress,
       Address: values
     })
   }
 
   setAlternateAddress(values) {
     this.props.onUpdate({
-      ...this.props.physicalAddress,
+      ...this.props.alternateAddress,
       HasDifferentAddress: values
     })
   }
 
   isForeignMilitaryAddress() {
-    const { physicalAddress: { HasDifferentAddress } } = this.props
+    const { alternateAddress: { HasDifferentAddress } } = this.props
     return HasDifferentAddress.value === 'Yes' && this.isForeignAddress()
   }
 
@@ -63,7 +63,7 @@ class PhysicalAddress extends ValidationElement {
   prepareProps(extraProps = {}) {
     const defaults = {
       ...this.props.addressFieldMetadata,
-      ...this.props.physicalAddress.Address,
+      ...this.props.alternateAddress.Address,
       label: i18n.t('address.label'),
       onUpdate: this.handleUpdate,
       required: true
@@ -83,7 +83,7 @@ class PhysicalAddress extends ValidationElement {
             label={i18n.t('address.militaryAddress')}
             labelSize="h3"
             onUpdate={this.setAlternateAddress}
-            value={this.props.physicalAddress.HasDifferentAddress.value}
+            value={this.props.alternateAddress.HasDifferentAddress.value}
           />
         </Show>
         <Show when={this.isForeignMilitaryAddress()}>
@@ -114,7 +114,7 @@ class PhysicalAddress extends ValidationElement {
   }
 }
 
-PhysicalAddress.defaultProps = {
+AlternateAddress.defaultProps = {
   addressBook: 'Residence',
   addressFieldMetadata: {
     streetLabel: i18n.t('address.us.street.label'),
@@ -130,17 +130,17 @@ PhysicalAddress.defaultProps = {
 }
 
 const mapStateToProps = ({ application }, ownProps) => {
-  let computed = { ...ownProps.physicalAddress }
+  let computed = { ...ownProps.alternateAddress }
 
   if (['United States', 'POSTOFFICE'].includes(countryString(ownProps.country))) {
-    computed = computedPhysicalAddressDefaultState()
+    computed = alternateAddressDefaultState()
   }
 
   return {
     addressBooks: application.AddressBooks,
-    physicalAddress: computed
+    alternateAddress: computed
   }
 }
 
-export { PhysicalAddress }
-export default connect(mapStateToProps)(PhysicalAddress)
+export { AlternateAddress }
+export default connect(mapStateToProps)(AlternateAddress)

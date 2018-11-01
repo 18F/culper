@@ -20,7 +20,7 @@ import {
   NotApplicable,
   Email
 } from '../../../Form'
-import PhysicalAddress from '../../../Form/Location/PhysicalAddress'
+import AlternateAddress from '../../../Form/Location/AlternateAddress'
 import { today, daysAgo } from '../dateranges'
 import { buildDate } from '../../../../validators/helpers'
 
@@ -62,7 +62,7 @@ export default class ResidenceItem extends ValidationElement {
     this.updateReferenceEmailNotApplicable = this.updateReferenceEmailNotApplicable.bind(
       this
     )
-    this.updatePhysicalAddress = this.updatePhysicalAddress.bind(this)
+    this.updateAlternateAddress = this.updateAlternateAddress.bind(this)
     this.updateReferenceEmail = this.updateReferenceEmail.bind(this)
     this.updateReferenceAddress = this.updateReferenceAddress.bind(this)
     this.updateComments = this.updateComments.bind(this)
@@ -80,7 +80,7 @@ export default class ResidenceItem extends ValidationElement {
       name: this.props.name,
       Dates: this.props.Dates,
       Address: this.props.Address,
-      PhysicalAddress: this.props.PhysicalAddress,
+      AlternateAddress: this.props.AlternateAddress,
       Comments: this.props.Comments,
       Role: this.props.Role,
       RoleOther: this.props.RoleOther,
@@ -192,9 +192,9 @@ export default class ResidenceItem extends ValidationElement {
     })
   }
 
-  updatePhysicalAddress(values) {
+  updateAlternateAddress(values) {
     this.update({
-      PhysicalAddress: values
+      AlternateAddress: values
     })
   }
 
@@ -283,10 +283,10 @@ export default class ResidenceItem extends ValidationElement {
           />
         </Field>
 
-        <PhysicalAddress
+        <AlternateAddress
           country={this.props.Address.country}
-          onUpdate={this.updatePhysicalAddress}
-          physicalAddress={this.props.PhysicalAddress}
+          onUpdate={this.updateAlternateAddress}
+          alternateAddress={this.props.AlternateAddress}
         />
 
         <Field
@@ -616,7 +616,10 @@ ResidenceItem.defaultProps = {
   Dates: {},
   Address: {},
   Comments: {},
-  PhysicalAddress: physicaladdress(),
+  AlternateAddress: {
+    Address: {},
+    HasDifferentAddress: { value: '' }
+  },
   Role: {},
   RoleOther: {},
   ReferenceName: {},

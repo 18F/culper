@@ -1,20 +1,20 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import { PhysicalAddress } from './PhysicalAddress'
+import { AlternateAddress } from './AlternateAddress'
 import { address } from '../../../config/locales/en/address'
 
-describe('<PhysicalLocation />', () => {
+describe('<AlternateAddress />', () => {
   describe('when a user indicates a foreign address', () => {
     it('renders a Branch component', () => {
       const props = {
         country: '',
-        physicalAddress: {
+        alternateAddress: {
           HasDifferentAddress: '',
           Address: { country: '' }
         }
       }
      
-      const component = mount(<PhysicalAddress {...props} />)
+      const component = mount(<AlternateAddress {...props} />)
       const branch = component.find('Branch')
   
       expect(branch.length).toEqual(1)
@@ -24,12 +24,12 @@ describe('<PhysicalLocation />', () => {
     it('renders an APO/FPO-only component when Branch value is yes', () => {
       const props = {
         country: '',
-        physicalAddress: {
-          HasDifferentAddress: 'Yes'
+        alternateAddress: {
+          HasDifferentAddress: { value: 'Yes' }
         }
       }
 
-      const component = mount(<PhysicalAddress {...props} />)
+      const component = mount(<AlternateAddress {...props} />)
 
       expect(component.find('Location').prop('disableToggle')).toEqual(true)
     })
@@ -37,35 +37,46 @@ describe('<PhysicalLocation />', () => {
     it('passes the branch value to the branch', () => {
       const props = {
         country: '',
-        physicalAddress: {
-          HasDifferentAddress: 'No'
+        alternateAddress: {
+          HasDifferentAddress: { value: 'No' }
         }
       }
-      const component = mount(<PhysicalAddress {...props} />)
+      const component = mount(<AlternateAddress {...props} />)
 
-      expect(component.find('Branch').prop('value')).toEqual(props.physicalAddress.HasDifferentAddress)
+      expect(component.find('Branch').prop('value')).toEqual(props.alternateAddress.HasDifferentAddress.value)
     })
 
     describe('when the user toggles to an APO address', () => {
       it('toggles the secondary APO address form properly', () => {
         const props = {
           country: 'Spain',
-          physicalAddress: {
-            HasDifferentAddress: ''
+          alternateAddress: {
+            HasDifferentAddress: { value: 'Yes' }
           }
         }
-        const component = mount(<PhysicalAddress {...props} />)
-        component.setProps({ country: 'POSTOFFICE' });
+        const component = mount(<AlternateAddress {...props} />)
+        expect(component.find('Branch').length).toBe(1)
+        component.setProps({ country: { value: 'POSTOFFICE' } });
+
+        expect(component.find('Branch').length).toBe(0)
 
         const location = component.find('Location')
-
-        expect(location.filterWhere(l => l.prop('country').length)).toBe(1)
+        // The secondary APO form has a country value of POSTOFFICE
+        expect(location.prop('country')).toEqual(undefined)
+        expect(location.prop('disableToggle')).toEqual(undefined)
       })
     })
   })
 
   it('renders the correct field label', () => {
-    const component = mount(<PhysicalAddress physicalAddress={{}} country="POSTOFFICE" />)
+    const props = {
+      country: 'POSTOFFICE',
+      alternateAddress: {
+        HasDifferentAddress: { value: '' },
+        Address: {}
+      }
+    }
+    const component = mount(<AlternateAddress {...props} />)
     const field = component.find('Field')
 
     expect(field.length).toEqual(1)
@@ -76,18 +87,19 @@ describe('<PhysicalLocation />', () => {
     it('supplies the correct props to the Location component', () => {
       const props = {
         country: 'POSTOFFICE',
-        physicalAddress: {
+        alternateAddress: {
           Address: {
             country: ''
-          }
+          },
+          HasDifferentAddress: { value: '' }
         }
       }
-      const component = mount(<PhysicalAddress {...props} />)
+      const component = mount(<AlternateAddress {...props} />)
       const location = component.find('Location');
 
       expect(location.prop('disableToggle')).toEqual(undefined);
       expect(location.prop('geocode')).toEqual(true);
-      expect(location.prop('country')).toEqual(props.physicalAddress.Address.country)
+      expect(location.prop('country')).toEqual(props.alternateAddress.Address.country)
     })
   })
 })
