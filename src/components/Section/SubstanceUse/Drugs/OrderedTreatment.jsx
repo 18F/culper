@@ -66,11 +66,20 @@ export default class OrderedTreatment extends ValidationElement {
     let selected = cb.value
     let list = [...((this.props.OrderedBy || {}).values || [])]
 
-    if (list.includes(selected)) {
-      list.splice(list.indexOf(selected), 1)
-    } else {
-      list.push(selected)
-    }
+      if (list.includes(selected)) {
+        list.splice(list.indexOf(selected), 1)
+      } else {
+        if (selected !== "None" && list.includes("None")) {
+          list.splice(list.indexOf("None"), 1)
+          list.push(selected)
+        }
+        else if (selected === "None") {
+          list = [selected]
+        }
+        else {
+          list.push(selected)
+        }
+      }
 
     this.update({ OrderedBy: { values: list } })
   }
