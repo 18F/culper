@@ -139,7 +139,6 @@ export default class TaxesItem extends ValidationElement {
           <DateControl
             name="Year"
             {...this.props.Year}
-            year={this.props.Year.year || this.props.Year.value}
             className="taxes-year"
             hideMonth={true}
             hideDay={true}
