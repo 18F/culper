@@ -38,7 +38,6 @@ export const datePart = (part, date) => {
     case 'year':
     case 'yy':
     case 'y':
-      d.setYear(date)
       return d.getFullYear()
   }
 
