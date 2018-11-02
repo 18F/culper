@@ -25,30 +25,5 @@
         color: $eapp-red;
       }
     }
-
-    &.add-comment,
-    &.add-comment:link,
-    &.add-comment:visited,
-    &.add-comment:hover,
-    &.add-comment:active {
-      color: $eapp-blue;
-      text-decoration: none;
-
-      span {
-        border-bottom: 1px $eapp-blue dashed;
-      }
-    }
-
-    &.remove-comment,
-    &.remove-comment:link,
-    &.remove-comment:visited,
-    &.remove-comment:hover,
-    &.remove-comment:active {
-      text-decoration: none;
-
-      span {
-        border-bottom: 1px $eapp-blue dashed;
-      }
-    }
   }
 }
