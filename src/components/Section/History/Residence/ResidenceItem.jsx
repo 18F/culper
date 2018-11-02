@@ -285,6 +285,7 @@ export default class ResidenceItem extends ValidationElement {
 
         <AlternateAddress
           country={this.props.Address.country}
+          onUpdateCountry={this.updateAlternateAddress}
           onUpdate={this.updateAlternateAddress}
           alternateAddress={this.props.AlternateAddress}
         />

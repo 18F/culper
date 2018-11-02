@@ -1,5 +1,6 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import { fn } from 'jest'
 import { AlternateAddress } from './AlternateAddress'
 import { address } from '../../../config/locales/en/address'
 
@@ -81,6 +82,31 @@ describe('<AlternateAddress />', () => {
 
     expect(field.length).toEqual(1)
     expect(field.prop('title')).toEqual(address.physicalLocationRequired)
+  })
+
+  it('resets the alternate address when a new country type is selected', () => {
+    const props = {
+      onUpdateCountry: jest.fn(),
+      country: 'Germany',
+      alternateAddress: {
+        Address: {
+          country: 'POSTOFFICE',
+          state: 'AA'
+        },
+        HasDifferentAddress: { value: 'Yes' }
+      }
+    }
+
+    const component = mount(<AlternateAddress {...props} />)
+    expect(component.prop('alternateAddress').Address.country).toEqual(props.alternateAddress.Address.country);
+
+    component.setProps({ country: 'United States' })
+
+    expect(props.onUpdateCountry.mock.calls.length).toBe(1)
+    expect(props.onUpdateCountry.mock.calls[0][0]).toEqual({
+      Address: {},
+      HasDifferentAddress: { value: '' }
+    })
   })
 
   describe('when the user indicates an APO address', () => {

@@ -83,7 +83,9 @@ describe('The residence component', () => {
         Address: {
           country: 'POSTOFFICE'
         },
-        AlternateAddress: {}
+        AlternateAddress: {
+          HasDifferentAddress: { value: '' }
+        }
       }
 
       const component = mountComponent(mockStore, ResidenceItem, props);

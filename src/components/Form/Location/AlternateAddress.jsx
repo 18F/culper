@@ -21,11 +21,10 @@ class AlternateAddress extends ValidationElement {
     this.setAlternateAddress = this.setAlternateAddress.bind(this)
   }
 
-  // XXX This is not a great pattern, but we don't have a clear
-  // way to update the state of this AlternateAddress prop when
-  // a user chooses a 'country' value that is not a military address
-  componentWillUnmount() {
-    this.props.onUpdate(alternateAddressDefaultState())
+  componentDidUpdate(prevProps) {
+    if (countryString(prevProps.country) !== countryString(this.props.country)) {
+      this.props.onUpdateCountry(alternateAddressDefaultState());
+    }
   }
 
   handleUpdate(values) {
@@ -127,20 +126,12 @@ AlternateAddress.defaultProps = {
     countryLabel: i18n.t('address.international.country.label'),
   },
   layout: Location.ADDRESS,
+  onUpdateCountry: () => ({})
 }
 
-const mapStateToProps = ({ application }, ownProps) => {
-  let computed = { ...ownProps.alternateAddress }
-
-  if (['United States', 'POSTOFFICE'].includes(countryString(ownProps.country))) {
-    computed = alternateAddressDefaultState()
-  }
-
-  return {
-    addressBooks: application.AddressBooks,
-    alternateAddress: computed
-  }
-}
+const mapStateToProps = ({ application }, ownProps) => ({
+  addressBooks: application.AddressBooks
+})
 
 export { AlternateAddress }
 export default connect(mapStateToProps)(AlternateAddress)
