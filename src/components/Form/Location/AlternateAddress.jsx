@@ -9,8 +9,10 @@ import LocationValidator, { countryString } from '../../../validators/location'
 import ValidationElement from '../ValidationElement'
 
 const alternateAddressDefaultState = () => ({
-  Address: {},
-  HasDifferentAddress: { value: '' }
+  AlternateAddress: {
+    Address: {},
+    HasDifferentAddress: { value: '' }
+  }
 })
 
 class AlternateAddress extends ValidationElement {
@@ -23,21 +25,25 @@ class AlternateAddress extends ValidationElement {
 
   componentDidUpdate(prevProps) {
     if (!this.isSameCountry(prevProps.country) && !this.isForeignAddress()) {
-      this.props.onUpdateCountry(alternateAddressDefaultState());
+      this.props.onUpdate(alternateAddressDefaultState())      
     }
   }
 
   handleUpdate(values) {
     this.props.onUpdate({
-      ...this.props.alternateAddress,
-      Address: values
+      AlternateAddress: {
+        ...this.props.alternateAddress,
+        Address: values
+      }
     })
   }
 
   setAlternateAddress(values) {
     this.props.onUpdate({
-      ...this.props.alternateAddress,
-      HasDifferentAddress: values
+      AlternateAddress: {
+        ...this.props.alternateAddress,
+        HasDifferentAddress: values
+      }
     })
   }
 
@@ -129,8 +135,7 @@ AlternateAddress.defaultProps = {
     countyLabel: i18n.t('address.us.county.label'),
     countryLabel: i18n.t('address.international.country.label'),
   },
-  layout: Location.ADDRESS,
-  onUpdateCountry: () => ({})
+  layout: Location.ADDRESS
 }
 
 const mapStateToProps = ({ application }, ownProps) => ({

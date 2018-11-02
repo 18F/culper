@@ -62,7 +62,7 @@ export default class ResidenceItem extends ValidationElement {
     this.updateReferenceEmailNotApplicable = this.updateReferenceEmailNotApplicable.bind(
       this
     )
-    this.updateAlternateAddress = this.updateAlternateAddress.bind(this)
+   // this.updateAlternateAddress = this.updateAlternateAddress.bind(this)
     this.updateReferenceEmail = this.updateReferenceEmail.bind(this)
     this.updateReferenceAddress = this.updateReferenceAddress.bind(this)
     this.updateComments = this.updateComments.bind(this)
@@ -80,7 +80,6 @@ export default class ResidenceItem extends ValidationElement {
       name: this.props.name,
       Dates: this.props.Dates,
       Address: this.props.Address,
-      AlternateAddress: this.props.AlternateAddress,
       Comments: this.props.Comments,
       Role: this.props.Role,
       RoleOther: this.props.RoleOther,
@@ -192,11 +191,11 @@ export default class ResidenceItem extends ValidationElement {
     })
   }
 
-  updateAlternateAddress(values) {
-    this.update({
-      AlternateAddress: values
-    })
-  }
+  // updateAlternateAddress(values) {
+  //   this.update({
+  //     AlternateAddress: values
+  //   })
+  // }
 
   updateDates(values) {
     const dates = this.props.Dates || {}
@@ -283,12 +282,15 @@ export default class ResidenceItem extends ValidationElement {
           />
         </Field>
 
-        <AlternateAddress
+        { this.props.render({
+          country: this.props.Address.country,
+          onUpdate: this.update
+        })}
+        {/*<AlternateAddress
           country={this.props.Address.country}
-          onUpdateCountry={this.updateAlternateAddress}
           onUpdate={this.updateAlternateAddress}
           alternateAddress={this.props.AlternateAddress}
-        />
+        />*/}
 
         <Field
           title={i18n.t('history.residence.heading.dates')}
@@ -615,12 +617,12 @@ export default class ResidenceItem extends ValidationElement {
 
 ResidenceItem.defaultProps = {
   Dates: {},
-  Address: {},
+ // Address: {},
   Comments: {},
-  AlternateAddress: {
-    Address: {},
-    HasDifferentAddress: { value: '' }
-  },
+  // AlternateAddress: {
+  //   Address: {},
+  //   HasDifferentAddress: { value: '' }
+  // },
   Role: {},
   RoleOther: {},
   ReferenceName: {},

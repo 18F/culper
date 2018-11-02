@@ -50,6 +50,7 @@ describe('<AlternateAddress />', () => {
     describe('when the user toggles to an APO address', () => {
       it('toggles the secondary APO address form properly', () => {
         const props = {
+          onUpdate: () => ({}),
           country: 'Spain',
           alternateAddress: {
             HasDifferentAddress: { value: 'Yes' }
@@ -86,7 +87,7 @@ describe('<AlternateAddress />', () => {
 
   it('resets the alternate address when a new country type is selected', () => {
     const props = {
-      onUpdateCountry: jest.fn(),
+      onUpdate: jest.fn(),
       country: 'Germany',
       alternateAddress: {
         Address: {
@@ -102,8 +103,8 @@ describe('<AlternateAddress />', () => {
 
     component.setProps({ country: 'United States' })
 
-    expect(props.onUpdateCountry.mock.calls.length).toBe(1)
-    expect(props.onUpdateCountry.mock.calls[0][0]).toEqual({
+    expect(props.onUpdate.mock.calls.length).toBe(1)
+    expect(props.onUpdate.mock.calls[0][0]).toEqual({
       Address: {},
       HasDifferentAddress: { value: '' }
     })
