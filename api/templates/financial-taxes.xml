@@ -10,7 +10,7 @@
       <Amount Estimated="{{checkboxTrueFalse $Item.AmountEstimated}}">{{number $Item.Amount}}</Amount>
       <Comment></Comment>
       <DateFailedToPay Type={{if checkboxTrueFalse $Item.YearEstimated | eq "true" }}"Estimated"{{else}}""{{end}}>
-        <Year>{{number $Item.Year}}</Year>
+        <Year>{{$Item.Year.props.year}}</Year>
       </DateFailedToPay>
       {{if notApplicable $Item.DateNotApplicable | eq "True"}}
       <DateSatisfied NotApplicable="True" />

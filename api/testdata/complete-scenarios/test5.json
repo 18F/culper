@@ -1840,9 +1840,12 @@
                     }
                   },
                   "Year": {
-                    "type": "number",
+                    "type": "datecontrol",
                     "props": {
-                      "value": "2012"
+                      "month": "1",
+                      "day": "1",
+                      "year": "2012",
+                      "estimated": false
                     }
                   },
                   "YearEstimated": {
@@ -1913,9 +1916,12 @@
                     }
                   },
                   "Year": {
-                    "type": "number",
+                    "type": "datecontrol",
                     "props": {
-                      "value": "2013"
+                      "month": "1",
+                      "day": "1",
+                      "year": "2013",
+                      "estimated": false
                     }
                   },
                   "YearEstimated": {

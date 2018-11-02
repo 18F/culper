@@ -1837,9 +1837,12 @@
                     }
                   },
                   "Year": {
-                    "type": "number",
+                    "type": "datecontrol",
                     "props": {
-                      "value": "2015"
+                      "month": "1",
+                      "day": "1",
+                      "year": "2015",
+                      "estimated": false
                     }
                   },
                   "YearEstimated": {
