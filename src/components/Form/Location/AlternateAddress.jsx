@@ -22,7 +22,7 @@ class AlternateAddress extends ValidationElement {
   }
 
   componentDidUpdate(prevProps) {
-    if (countryString(prevProps.country) !== countryString(this.props.country)) {
+    if (!this.isSameCountry(prevProps.country) && !this.isForeignAddress()) {
       this.props.onUpdateCountry(alternateAddressDefaultState());
     }
   }
@@ -57,6 +57,10 @@ class AlternateAddress extends ValidationElement {
       country !== undefined &&
       country !== 'POSTOFFICE' &&
       country !== 'United States'
+  }
+
+  isSameCountry(comparedCountry) {
+    return countryString(comparedCountry) === countryString(this.props.country)
   }
 
   prepareProps(extraProps = {}) {
