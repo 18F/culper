@@ -75,6 +75,7 @@ describe('Employment component validation', function() {
             }
           },
           ReasonLeft: {
+            ReasonDescription: { value: 'Because' },
             Reasons: {
               items: [
                 {
@@ -187,6 +188,7 @@ describe('Employment component validation', function() {
             }
           },
           ReasonLeft: {
+            ReasonDescription: { value: 'Because' },
             Reasons: {
               items: [
                 {
@@ -320,6 +322,7 @@ describe('Employment component validation', function() {
             }
           },
           ReasonLeft: {
+            ReasonDescription: { value: 'Because' },
             Reasons: {
               items: [
                 {
@@ -443,6 +446,7 @@ describe('Employment component validation', function() {
             }
           },
           ReasonLeft: {
+            ReasonDescription: { value: 'Because' },
             Reasons: {
               items: [
                 {
@@ -579,6 +583,7 @@ describe('Employment component validation', function() {
             timeOfDay: 'Day'
           },
           ReasonLeft: {
+            ReasonDescription: { value: 'Because' },
             Reasons: {
               items: [
                 {
@@ -1083,6 +1088,7 @@ describe('Employment component validation', function() {
             value: 'ActiveMilitary'
           },
           ReasonLeft: {
+            ReasonDescription: { value: 'Because' },
             Reasons: {
               items: [
                 {
@@ -1127,6 +1133,7 @@ describe('Employment component validation', function() {
             value: 'ActiveMilitary'
           },
           ReasonLeft: {
+            ReasonDescription: { value: 'Because' },
             Reasons: {
               items: [
                 {
@@ -1219,6 +1226,7 @@ describe('Employment component validation', function() {
             value: 'ActiveMilitary'
           },
           ReasonLeft: {
+            ReasonDescription: { value: 'Because' },
             Reasons: {
               items: [
                 {
@@ -1263,6 +1271,7 @@ describe('Employment component validation', function() {
             value: 'ActiveMilitary'
           },
           ReasonLeft: {
+            ReasonDescription: { value: 'Because' },
             Reasons: {
               items: [{ Item: { Has: { value: 'No' } } }]
             }
@@ -1291,6 +1300,7 @@ describe('Employment component validation', function() {
             value: 'ActiveMilitary'
           },
           ReasonLeft: {
+            ReasonDescription: { value: 'Because' },
             Reasons: {
               items: [
                 {
@@ -1589,6 +1599,7 @@ describe('Employment component validation', function() {
               }
             },
             ReasonLeft: {
+              ReasonDescription: { value: 'Because' },
               Reasons: {
                 items: [
                   {
