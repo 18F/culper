@@ -83,11 +83,5 @@ export class DrugOrderedTreatmentValidator {
     if (this.orderedBy.length <= 1) {
       return true
     }
-    else {
-      if (this.orderedBy.includes("None")) {
-        return false
-      }
-      return true
-    }
   }
 }

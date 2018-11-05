@@ -69,12 +69,8 @@ export default class OrderedTreatment extends ValidationElement {
       if (list.includes(selected)) {
         list.splice(list.indexOf(selected), 1)
       } else {
-        if (selected !== "None" && list.includes("None")) {
-          list.splice(list.indexOf("None"), 1)
-          list.push(selected)
-        }
-        else if (selected === "None") {
-          list = [selected]
+        if (selected !== "None" && list.includes("None") || selected === "None") {
+            list = [selected]
         }
         else {
           list.push(selected)
