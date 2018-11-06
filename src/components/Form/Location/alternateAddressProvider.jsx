@@ -39,7 +39,6 @@ const alternateAddressProvider = (Component) => {
 
   AddressProvider.defaultProps = {
     addressBook: 'Residence',
-    allowForeignMilitary: true,
   }
 
   return AddressProvider

@@ -135,6 +135,7 @@ class AlternateAddress extends ValidationElement {
 
 AlternateAddress.propTypes = propTypes
 AlternateAddress.defaultProps = {
+  allowForeignMilitary: true,
   addressFieldMetadata: {
     streetLabel: i18n.t('address.us.street.label'),
     streetPlaceholder: i18n.t('address.us.street.placeholder'),

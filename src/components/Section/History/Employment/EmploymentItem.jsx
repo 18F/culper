@@ -438,6 +438,13 @@ export default class EmploymentItem extends ValidationElement {
             required={this.props.required}
             scrollIntoView={this.props.scrollIntoView}
           />
+          {this.props.render({
+            address: this.props.SupervisorAlternateAddress,
+            allowForeignMilitary: false,
+            belongingTo: 'SupervisorAlternateAddress',
+            country: this.props.Supervisor.Address.country,
+            onUpdate: this.update
+          })}
         </Show>
 
         <Show when={this.showReference()}>
@@ -571,7 +578,7 @@ EmploymentItem.defaultProps = {
   Status: {},
   Address: {},
   Telephone: {},
-  Supervisor: {},
+  Supervisor: { Address: {} },
   ReferenceName: {},
   ReferencePhone: {},
   ReferenceAddress: {},
