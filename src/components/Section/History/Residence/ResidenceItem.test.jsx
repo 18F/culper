@@ -1,8 +1,22 @@
 import React from 'react'
 import { shallow, mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import ResidenceItem from './ResidenceItem'
 
+const mountComponent = (mockStore, Component, props) => {
+  const store = mockStore({ application: { AddressBooks: {} }})
+
+  return mount(
+    <Provider store={store}>
+      <Component {...props} />
+    </Provider>
+  )
+}
+
 describe('The residence component', () => {
+  const mockStore = configureMockStore()
+
   it('renders without crashing', () => {
     shallow(<ResidenceItem />)
   })
@@ -11,7 +25,8 @@ describe('The residence component', () => {
     const expected = {
       name: 'residence'
     }
-    const component = mount(<ResidenceItem {...expected} />)
+    const component = mountComponent(mockStore, ResidenceItem, expected);
+
     expect(component.find('.residence').length).toEqual(1)
     expect(component.find('.reference').length).toEqual(0)
   })
@@ -35,7 +50,7 @@ describe('The residence component', () => {
         value: 'test@abc.com'
       }
     }
-    const component = mount(<ResidenceItem {...expected} />)
+    const component = mountComponent(mockStore, ResidenceItem, expected);
     expect(component.find('.reference').length).toEqual(1)
   })
 
@@ -47,7 +62,7 @@ describe('The residence component', () => {
       },
       OtherRole: {}
     }
-    const component = mount(<ResidenceItem {...expected} />)
+    const component = mountComponent(mockStore, ResidenceItem, expected);
     expect(component.find('.role.hidden').length).toEqual(0)
   })
 
@@ -58,9 +73,26 @@ describe('The residence component', () => {
         value: 'Dance'
       }
     }
-    const component = mount(<ResidenceItem {...expected} />)
+    const component = mountComponent(mockStore, ResidenceItem, expected);
     expect(component.find('.role.hidden').length).toEqual(0)
   })
+
+  describe('displaying a <PhysicalAddress/> component', () => {
+    it('supplies the physicalAddress prop to the <PhysicalAddress> component', () => {
+      const props = {
+        Address: {
+          country: 'POSTOFFICE'
+        },
+        AlternateAddress: {
+          HasDifferentAddress: { value: '' }
+        }
+      }
+
+      const component = mountComponent(mockStore, ResidenceItem, props);
+      expect(component.find('AlternateAddress').prop('alternateAddress')).toBeDefined();
+    })
+  })
+
 
   it('performs updates for components', () => {
     let updates = 0
@@ -85,7 +117,8 @@ describe('The residence component', () => {
         updates++
       }
     }
-    const component = mount(<ResidenceItem {...expected} />)
+
+    const component = mountComponent(mockStore, ResidenceItem, expected);
     component
       .find('.address .street input')
       .first()

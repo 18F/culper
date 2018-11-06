@@ -36,6 +36,8 @@ const message = id => {
   )
 }
 
+// XXX All references to `comments` in this component refer to help text / info boxes
+
 export default class Field extends ValidationElement {
   constructor(props) {
     super(props)
