@@ -62,7 +62,6 @@ export default class ResidenceItem extends ValidationElement {
     this.updateReferenceEmailNotApplicable = this.updateReferenceEmailNotApplicable.bind(
       this
     )
-   // this.updateAlternateAddress = this.updateAlternateAddress.bind(this)
     this.updateReferenceEmail = this.updateReferenceEmail.bind(this)
     this.updateReferenceAddress = this.updateReferenceAddress.bind(this)
     this.updateComments = this.updateComments.bind(this)
@@ -77,23 +76,7 @@ export default class ResidenceItem extends ValidationElement {
    */
   update(queue) {
     this.props.onUpdate({
-      name: this.props.name,
-      Dates: this.props.Dates,
-      Address: this.props.Address,
-      Comments: this.props.Comments,
-      Role: this.props.Role,
-      RoleOther: this.props.RoleOther,
-      ReferenceName: this.props.ReferenceName,
-      ReferenceLastContact: this.props.ReferenceLastContact,
-      ReferenceRelationshipComments: this.props.ReferenceRelationshipComments,
-      ReferenceRelationship: this.props.ReferenceRelationship,
-      ReferenceRelationshipOther: this.props.ReferenceRelationshipOther,
-      ReferencePhoneEvening: this.props.ReferencePhoneEvening,
-      ReferencePhoneDay: this.props.ReferencePhoneDay,
-      ReferencePhoneMobile: this.props.ReferencePhoneMobile,
-      ReferenceEmailNotApplicable: this.props.ReferenceEmailNotApplicable,
-      ReferenceEmail: this.props.ReferenceEmail,
-      ReferenceAddress: this.props.ReferenceAddress,
+      ...this.props,
       ...queue
     })
   }
@@ -191,12 +174,6 @@ export default class ResidenceItem extends ValidationElement {
     })
   }
 
-  // updateAlternateAddress(values) {
-  //   this.update({
-  //     AlternateAddress: values
-  //   })
-  // }
-
   updateDates(values) {
     const dates = this.props.Dates || {}
     const from = dates.from
@@ -282,15 +259,12 @@ export default class ResidenceItem extends ValidationElement {
           />
         </Field>
 
-        { this.props.render({
+        {this.props.render({
+          belongingTo: 'AlternateAddress',
+          address: this.props.AlternateAddress,
           country: this.props.Address.country,
           onUpdate: this.update
         })}
-        {/*<AlternateAddress
-          country={this.props.Address.country}
-          onUpdate={this.updateAlternateAddress}
-          alternateAddress={this.props.AlternateAddress}
-        />*/}
 
         <Field
           title={i18n.t('history.residence.heading.dates')}
@@ -607,6 +581,14 @@ export default class ResidenceItem extends ValidationElement {
                   onError={this.props.onError}
                 />
               </Field>
+
+              {this.props.render({
+                belongingTo: 'ReferenceAlternateAddress',
+                address: this.props.ReferenceAlternateAddress,
+                country: this.props.ReferenceAddress.country,
+                onUpdate: this.update
+              })}
+
             </div>
           </div>
         </Show>
@@ -617,12 +599,8 @@ export default class ResidenceItem extends ValidationElement {
 
 ResidenceItem.defaultProps = {
   Dates: {},
- // Address: {},
+  Address: {},
   Comments: {},
-  // AlternateAddress: {
-  //   Address: {},
-  //   HasDifferentAddress: { value: '' }
-  // },
   Role: {},
   RoleOther: {},
   ReferenceName: {},

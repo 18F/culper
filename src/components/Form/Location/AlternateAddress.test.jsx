@@ -24,6 +24,7 @@ describe('<AlternateAddress />', () => {
 
     it('renders an APO/FPO-only component when Branch value is yes', () => {
       const props = {
+        allowForeignMilitary: true,
         country: '',
         alternateAddress: {
           HasDifferentAddress: { value: 'Yes' }

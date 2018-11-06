@@ -1,16 +1,13 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import AlternateAddress from './AlternateAddress'
+import alternateAddress from '../../../schema/form/alternateAddress'
 
 /**
  * Becuase of the way the app is structured, this component
  * MUST be passed an onUpdate function which conforms to the
  * `update` function included in every component in this app
  * 
- */
-// const propTypes = {
-//   onUpdate: PropTypes.func.isRequired
-// }
+*/
 
 const alternateAddressProvider = (Component) => {
   class AddressProvider extends React.Component {
@@ -24,8 +21,8 @@ const alternateAddressProvider = (Component) => {
       return (
         <AlternateAddress
           {...extraProps}
-          alternateAddress={this.props.AlternateAddress}
-          onUpdate={extraProps.onUpdate}
+          addressBook={this.props.addressBook}
+          allowForeignMilitary
         />
       );
     }
@@ -41,10 +38,8 @@ const alternateAddressProvider = (Component) => {
   }
 
   AddressProvider.defaultProps = {
-    AlternateAddress: {
-      Address: {},
-      HasDifferentAddress: { value: '' }
-    }
+    addressBook: 'Residence',
+    allowForeignMilitary: true,
   }
 
   return AddressProvider
