@@ -3,13 +3,14 @@ import { mount } from 'enzyme'
 import { fn } from 'jest'
 import { AlternateAddress } from './AlternateAddress'
 import { address } from '../../../config/locales/en/address'
+import alternateAddress from '../../../schema/form/alternateaddress'
 
 describe('<AlternateAddress />', () => {
   describe('when a user indicates a foreign address', () => {
     it('renders a Branch component', () => {
       const props = {
         country: '',
-        alternateAddress: {
+        address: {
           HasDifferentAddress: '',
           Address: { country: '' }
         }
@@ -26,7 +27,7 @@ describe('<AlternateAddress />', () => {
       const props = {
         allowForeignMilitary: true,
         country: '',
-        alternateAddress: {
+        address: {
           HasDifferentAddress: { value: 'Yes' }
         }
       }
@@ -39,13 +40,13 @@ describe('<AlternateAddress />', () => {
     it('passes the branch value to the branch', () => {
       const props = {
         country: '',
-        alternateAddress: {
+        address: {
           HasDifferentAddress: { value: 'No' }
         }
       }
       const component = mount(<AlternateAddress {...props} />)
 
-      expect(component.find('Branch').prop('value')).toEqual(props.alternateAddress.HasDifferentAddress.value)
+      expect(component.find('Branch').prop('value')).toEqual(props.address.HasDifferentAddress.value)
     })
 
     describe('when the user toggles to an APO address', () => {
@@ -53,7 +54,7 @@ describe('<AlternateAddress />', () => {
         const props = {
           onUpdate: () => ({}),
           country: 'Spain',
-          alternateAddress: {
+          address: {
             HasDifferentAddress: { value: 'Yes' }
           }
         }
@@ -74,7 +75,7 @@ describe('<AlternateAddress />', () => {
   it('renders the correct field label', () => {
     const props = {
       country: 'POSTOFFICE',
-      alternateAddress: {
+      address: {
         HasDifferentAddress: { value: '' },
         Address: {}
       }
@@ -88,9 +89,10 @@ describe('<AlternateAddress />', () => {
 
   it('resets the alternate address when a new country type is selected', () => {
     const props = {
+      belongingTo: 'Address',
       onUpdate: jest.fn(),
       country: 'Germany',
-      alternateAddress: {
+      address: {
         Address: {
           country: 'POSTOFFICE',
           state: 'AA'
@@ -100,14 +102,17 @@ describe('<AlternateAddress />', () => {
     }
 
     const component = mount(<AlternateAddress {...props} />)
-    expect(component.prop('alternateAddress').Address.country).toEqual(props.alternateAddress.Address.country);
+    expect(component.prop('address').Address.country).toEqual(props.address.Address.country);
 
     component.setProps({ country: 'United States' })
 
     expect(props.onUpdate.mock.calls.length).toBe(1)
     expect(props.onUpdate.mock.calls[0][0]).toEqual({
-      Address: {},
-      HasDifferentAddress: { value: '' }
+      Address: {
+        Address: { country: null },
+        HasDifferentAddress: { value: '' },
+        Telephone: {}
+      }
     })
   })
 
@@ -115,7 +120,7 @@ describe('<AlternateAddress />', () => {
     it('supplies the correct props to the Location component', () => {
       const props = {
         country: 'POSTOFFICE',
-        alternateAddress: {
+        address: {
           Address: {
             country: ''
           },
@@ -127,7 +132,7 @@ describe('<AlternateAddress />', () => {
 
       expect(location.prop('disableToggle')).toEqual(undefined);
       expect(location.prop('geocode')).toEqual(true);
-      expect(location.prop('country')).toEqual(props.alternateAddress.Address.country)
+      expect(location.prop('country')).toEqual(props.address.Address.country)
     })
   })
 })

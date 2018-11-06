@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
 import { i18n } from '../../../config'
 import Field from '../Field'
@@ -7,9 +8,16 @@ import Show from '../Show'
 import Location from './Location'
 import LocationValidator, { countryString } from '../../../validators/location'
 import ValidationElement from '../ValidationElement'
-import alternateAddress from '../../../schema/form/alternateAddress'
+import alternateAddress from '../../../schema/form/alternateaddress'
 
 const alternateAddressDefaultState = alternateAddress
+const propTypes = {
+  address: PropTypes.object,
+  belongingTo: PropTypes.string,
+  country: PropTypes.string,
+  onUpdate: PropTypes.func
+}
+
 
 class AlternateAddress extends ValidationElement {
   constructor(props) {
@@ -126,6 +134,7 @@ class AlternateAddress extends ValidationElement {
   }
 }
 
+AlternateAddress.propTypes = propTypes
 AlternateAddress.defaultProps = {
   addressFieldMetadata: {
     streetLabel: i18n.t('address.us.street.label'),

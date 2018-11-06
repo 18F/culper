@@ -1,8 +1,11 @@
 import { general } from './general'
 
 const defaultState = (options = {}) => ({
-  Address: {},
+  Address: {
+    country: null
+  },
   HasDifferentAddress: { value: '' },
+  Telephone: {},
   ...options
 })
 

@@ -1,13 +1,6 @@
 import React from 'react'
 import AlternateAddress from './AlternateAddress'
-import alternateAddress from '../../../schema/form/alternateAddress'
-
-/**
- * Becuase of the way the app is structured, this component
- * MUST be passed an onUpdate function which conforms to the
- * `update` function included in every component in this app
- * 
-*/
+import alternateAddress from '../../../schema/form/alternateaddress'
 
 const alternateAddressProvider = (Component) => {
   class AddressProvider extends React.Component {
@@ -17,12 +10,19 @@ const alternateAddressProvider = (Component) => {
       this.renderAlternateAddress = this.renderAlternateAddress.bind(this)
     }
 
+
+    /**
+     * Becuase of the way the app is structured, this component
+     * MUST be passed an `onUpdate` function in the extraProps obj that
+     * conforms to the `update` function included in every component in this app
+     *
+    */
     renderAlternateAddress(extraProps) {
       return (
         <AlternateAddress
           {...extraProps}
           addressBook={this.props.addressBook}
-          allowForeignMilitary
+          allowForeignMilitary={this.props.allowForeignMilitary}
         />
       );
     }

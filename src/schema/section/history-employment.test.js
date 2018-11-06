@@ -41,7 +41,7 @@ describe('Schema for financial taxes', () => {
                 ]
               },
               Telephone: {},
-              PhysicalAddress: {
+              ReferenceAlternateAddress: {
                 HasDifferentAddress: {},
                 Address: {
                   country: null
