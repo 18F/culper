@@ -6,7 +6,7 @@
 
 # entr doesn't work in docker containers, being tracked by this bug:https://github.com/docker/for-mac/issues/896
 
-set -u -o pipefail
+set -eu -o pipefail
 
 # This just ensure that we clean up propperly on ctr-c, mostly useful for debugging this script.
 sigint_handler()
