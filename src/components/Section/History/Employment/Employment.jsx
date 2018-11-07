@@ -10,6 +10,9 @@ import { today, daysAgo } from '../dateranges'
 import { InjectGaps, EmploymentCustomSummary } from '../summaries'
 import EmploymentItem from './EmploymentItem'
 import { Gap } from '../Gap'
+import alternateAddressProvider from '../../../Form/Location/alternateAddressProvider'
+
+const AlternateAddressEmploymentItem = alternateAddressProvider(EmploymentItem)
 
 const byline = (item, index, initial, translation, required, validator) => {
   // If item is required and not currently opened and is not valid, show message
@@ -159,9 +162,9 @@ export default class Employment extends SubsectionElement {
           appendClass="no-margin-bottom"
           required={this.props.required}
           scrollIntoView={this.props.scrollIntoView}>
-          <EmploymentItem
+          <AlternateAddressEmploymentItem
+            bind
             name="Item"
-            bind={true}
             addressBooks={this.props.addressBooks}
             dispatch={this.props.dispatch}
             required={this.props.required}
