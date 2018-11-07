@@ -12,7 +12,7 @@ export const foreignActivitiesBenefits = (data = {}) => {
         OneTimeBenefit: form.benefit(xitem.OneTimeBenefit),
         FutureBenefit: form.benefit(xitem.FutureBenefit),
         ContinuingBenefit: form.benefit(xitem.ContinuingBenefit),
-        OtherBenefit: form.textarea(xitem.OtherBenefit)
+        OtherBenefit: form.benefit(xitem.OtherBenefit)
       }
     }
   })
