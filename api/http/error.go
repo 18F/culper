@@ -14,28 +14,14 @@ func Error(w http.ResponseWriter, r *http.Request, err error) {
 }
 
 type structuredError struct {
-	Message string `json:"message"`
-}
-
-type structuredErrors struct {
-	Errors []structuredError `json:"errors"`
-}
-
-func newStructuredError(message string) structuredError {
-	return structuredError{
-		Message: message,
-	}
-}
-
-func newStructuredErrors(errors ...structuredError) structuredErrors {
-	return structuredErrors{
-		Errors: errors,
-	}
+	Errors interface{}
 }
 
 // RespondWithStructuredError writes an error code and a json error response
 func RespondWithStructuredError(w http.ResponseWriter, errorMessage string, code int) {
-	errorStruct := newStructuredErrors(newStructuredError(errorMessage))
+	errorStruct := structuredError{
+		Errors: errorMessage,
+	}
 	// It's a little ugly to not just have json write directly to the the Writer, but I don't see another way
 	// to return 500 correctly in the case of an error.
 	jsonString, err := json.Marshal(errorStruct)

@@ -40,4 +40,5 @@ func (service ValidateHandler) ServeHTTP(w http.ResponseWriter, r *http.Request)
 		return
 	}
 
+	EncodeErrJSON(w, nil)
 }
