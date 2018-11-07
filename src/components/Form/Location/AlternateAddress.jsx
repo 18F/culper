@@ -67,6 +67,10 @@ class AlternateAddress extends ValidationElement {
   }
 
   isForeignAddress() {
+    if (this.props.forceAPO) {
+      return true;
+    }
+
     const country = countryString(this.props.country);
 
     return country !== null &&
@@ -97,14 +101,20 @@ class AlternateAddress extends ValidationElement {
   render() {
     return (
       <div>
-        <Show when={this.isForeignAddress()}>
+        <Show when={this.props.forceAPO || (this.isForeignAddress() && this.props.allowForeignMilitary)}>
           <Branch
-            label={i18n.t('address.militaryAddress')}
+            label={this.props.militaryAddressLabel}
             labelSize="h3"
             onUpdate={this.setAlternateAddress}
             value={this.props.address.HasDifferentAddress.value}
           />
         </Show>
+        {/* 
+          * This next block is a bit confusing. It renders when the user has indicated
+          * that the associated address is in a foreign country AND has selected 'Yes'
+          * in the preceeding <Branch/> component, indicating that they (or someone they knew)
+          * had an APO/FPO (military) address in the foreign country
+        */}
         <Show when={this.isForeignMilitaryAddress()}>
           <Field title={i18n.t('address.physicalLocationRequired')}>
             <Location
@@ -145,7 +155,9 @@ AlternateAddress.defaultProps = {
     countyLabel: i18n.t('address.us.county.label'),
     countryLabel: i18n.t('address.international.country.label'),
   },
-  layout: Location.ADDRESS
+  forceAPO: false,
+  layout: Location.ADDRESS,
+  militaryAddressLabel: i18n.t('address.militaryAddress.me'),
 }
 
 const mapStateToProps = ({ application }, ownProps) => {
