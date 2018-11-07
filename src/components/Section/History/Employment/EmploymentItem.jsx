@@ -522,7 +522,7 @@ export default class EmploymentItem extends ValidationElement {
 
             { this.props.render({
               address: this.props.ReferenceAlternateAddress,
-              belongingTo: 'ReferenceAddress',
+              belongingTo: 'ReferenceAlternateAddress',
               country: this.props.ReferenceAddress.country,
               onUpdate: this.update
             })}

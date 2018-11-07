@@ -18,7 +18,6 @@ const propTypes = {
   onUpdate: PropTypes.func
 }
 
-
 class AlternateAddress extends ValidationElement {
   constructor(props) {
     super(props)
@@ -98,7 +97,7 @@ class AlternateAddress extends ValidationElement {
   render() {
     return (
       <div>
-        <Show when={this.isForeignAddress()}>
+        <Show when={this.isForeignAddress() && this.props.allowForeignMilitary}>
           <Branch
             label={i18n.t('address.militaryAddress')}
             labelSize="h3"
@@ -106,7 +105,7 @@ class AlternateAddress extends ValidationElement {
             value={this.props.address.HasDifferentAddress.value}
           />
         </Show>
-        <Show when={this.isForeignMilitaryAddress() && this.props.allowForeignMilitary}>
+        <Show when={this.isForeignMilitaryAddress()}>
           <Field title={i18n.t('address.physicalLocationRequired')}>
             <Location
               {...this.prepareProps({
