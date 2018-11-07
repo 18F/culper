@@ -59,7 +59,21 @@ describe('Schema for financial taxes', () => {
                 Obligated: {},
                 ObligatedExplanation: {}
               },
-              OtherBenefit: {}
+              OtherBenefit: {
+                Began: {},
+                End: {},
+                Frequency: {},
+                OtherFrequency: {},
+                Received: {},
+                Country: {},
+                Value: {
+                  value: ''
+                },
+                ValueEstimated: {},
+                Reason: {},
+                Obligated: {},
+                ObligatedExplanation: {}
+              }
             }
           }
         ]
