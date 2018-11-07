@@ -7,7 +7,7 @@ export const foreignTravel = (data = {}) => {
       Item: {
         Dates: form.daterange(xitem.Dates),
         Country: form.country(xitem.Country),
-        Days: form.checkboxgroup(xitem.Days),
+        Days: form.radio(xitem.Days),
         Purpose: form.checkboxgroup(xitem.Purpose),
         Questioned: form.branch(xitem.Questioned),
         QuestionedExplanation: form.textarea(xitem.QuestionedExplanation),

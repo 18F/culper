@@ -70,8 +70,10 @@ func (service Service) DefaultTemplate(templateName string, data map[string]inte
 		"hairType":               hairType,
 		"hasRelativeType":        hasRelativeType,
 		"inc":                    inc,
+		"isPostOffice":           isPostOffice,
+		"isDomestic":             isDomestic,
+		"isInternational":        isInternational,
 		"location":               location,
-		"locationIsPostOffice":   locationIsPostOffice,
 		"locationOverrideLayout": locationOverrideLayout,
 		"militaryAddress":        militaryAddress,
 		"militaryStatus":         militaryStatus,
@@ -607,19 +609,40 @@ func checkboxTrueFalse(data map[string]interface{}) string {
 	return "false"
 }
 
-func locationIsPostOffice(data map[string]interface{}) string {
+func unmarshalLocation(data map[string]interface{}) (*api.Location, error) {
 	// Deserialize the initial payload from a JSON structure
 	payload := &api.Payload{}
 	entity, err := payload.UnmarshalEntity(getInterfaceAsBytes(data))
 	if err != nil {
-		return ""
+		return nil, err
 	}
 
 	location := entity.(*api.Location)
-	if location.IsPostOffice() {
-		return "True"
+	return location, nil
+}
+
+func isDomestic(data map[string]interface{}) (bool, error) {
+	location, err := unmarshalLocation(data)
+	if err != nil {
+		return false, err
 	}
-	return ""
+	return location.IsDomestic(), nil
+}
+
+func isInternational(data map[string]interface{}) (bool, error) {
+	location, err := unmarshalLocation(data)
+	if err != nil {
+		return false, err
+	}
+	return location.IsInternational(), nil
+}
+
+func isPostOffice(data map[string]interface{}) (bool, error) {
+	location, err := unmarshalLocation(data)
+	if err != nil {
+		return false, err
+	}
+	return location.IsPostOffice(), nil
 }
 
 func branchToBool(data map[string]interface{}) string {
@@ -746,6 +769,12 @@ func locationOverrideLayout(data map[string]interface{}, override string) (templ
 	}
 
 	switch layout {
+	case api.LayoutOffense:
+		if domestic {
+			return xmlTemplateWithFuncs("location-city-state-zipcode-county.xml", data, fmap)
+		}
+
+		return xmlTemplateWithFuncs("location-city-country.xml", data, fmap)
 	case api.LayoutBirthPlace:
 		if domestic {
 			return xmlTemplateWithFuncs("location-city-state-county.xml", data, fmap)

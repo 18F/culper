@@ -200,6 +200,7 @@ export default class TravelQuestions extends ValidationElement {
             name="Dates"
             {...this.props.Dates}
             className="foreign-travel-dates"
+            minDateEqualTo={true}
             onUpdate={this.updateDates}
             onError={this.props.onError}
             required={this.props.required}
@@ -211,7 +212,6 @@ export default class TravelQuestions extends ValidationElement {
           help="foreign.travel.help.days"
           adjustFor="p"
           scrollIntoView={this.props.scrollIntoView}>
-          {i18n.m('foreign.travel.para.checkall')}
           <TravelDays
             name="Days"
             className="foreign-travel-days"

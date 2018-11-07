@@ -10,10 +10,19 @@ import {
   validNotApplicable,
   validBranch,
   validSSN,
-  validCurrency
+  validCurrency,
+  isDefined
 } from './helpers'
 
 describe('Helpers for validators', function() {
+  describe('.isDefined', () => {
+    expect(isDefined(0)).toBe(true)
+    expect(isDefined('')).toBe(true)
+    expect(isDefined(false)).toBe(true)
+    expect(isDefined()).toBe(false)
+    expect(isDefined(null)).toBe(false)
+  })
+
   it('should return if a property has a status', function() {
     const tests = [
       {

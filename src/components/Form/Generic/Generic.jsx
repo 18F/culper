@@ -277,7 +277,7 @@ export default class Generic extends ValidationElement {
       )
     }
     return (
-      <div className={this.divClass()}>
+      <div className={`hide-for-print ${this.divClass()}`}>
         {label}
         <input
           className={this.inputClass()}
@@ -315,6 +315,9 @@ export default class Generic extends ValidationElement {
           }
           ref="input"
         />
+        <div className="text-print print-only">
+          {this.state.value}
+        </div>
       </div>
     )
   }

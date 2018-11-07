@@ -253,9 +253,7 @@ export class EmploymentValidator {
 
       case 'Unemployment':
         // Unemployment
-        return (
-          this.validDates() && this.validReference() && this.validReasonLeft()
-        )
+        return this.validDates() && this.validReference()
 
       default:
         return false

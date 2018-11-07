@@ -76,6 +76,12 @@ export class DrugOrderedTreatmentValidator {
   }
 
   isValid() {
-    return validGenericTextfield(this.explanation) && this.validActionTaken()
+    return validGenericTextfield(this.explanation) && this.validActionTaken() && this.validOrderedBy()
+  }
+
+  validOrderedBy() {
+    if (this.orderedBy.length <= 1) {
+      return true
+    }
   }
 }

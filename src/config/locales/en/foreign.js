@@ -1372,7 +1372,7 @@ export const foreign = {
       },
       para: {
         intro:
-          'For Section 7, "Immediate Family" means your spouse, parents, step-parents, siblings, half and step-siblings, children, stepchildren, and cohabitant.',
+          'For this question, "Immediate Family" means your spouse, parents, step-parents, siblings, half and step-siblings, children, stepchildren, and cohabitant.',
         branch: [
           'Such as  embassy, consulate, agency, military service, intelligence or security service, etc.',
           'Answer "No" if the contact was for routine visa applications and border crossings related to either official U.S.  Government travel, foreign travel on a U.S. passport, or as a U.S. military service member in conjunction with a U.S. Government military duty.'

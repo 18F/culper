@@ -1,5 +1,6 @@
 import { unschema } from '../schema'
 import { historyResidence } from './history-residence'
+import alternateAddress from '../form/alternateaddress'
 
 describe('Schema for financial taxes', () => {
   it('can wrap in schema', () => {
@@ -17,6 +18,7 @@ describe('Schema for financial taxes', () => {
               Address: {
                 country: null
               },
+              AlternateAddress: alternateAddress(),
               Comments: {},
               ReferenceName: {},
               ReferenceLastContact: {},
@@ -31,6 +33,7 @@ describe('Schema for financial taxes', () => {
               ReferenceAddress: {
                 country: null
               },
+              ReferenceAlternateAddress: alternateAddress(),
               Role: {},
               RoleOther: {}
             }

@@ -9,27 +9,10 @@ SPACE=$1
 #
 if [ "$SPACE" = "cloudgov" ]; then
 		if [ "$CIRCLE_BRANCH" = "master" ]; then
-				if [ "$CIRCLE_PROJECT_USERNAME" = "18F" ]; then
-						ENV_FILE=".env.production"
-				elif [ "$CIRCLE_PROJECT_USERNAME" = "truetandem" ]; then
-						ENV_FILE=".env.staging"
-				fi
+			ENV_FILE=".env.production"
 		elif [ "$CIRCLE_BRANCH" = "develop" ]; then
-				ENV_FILE=".env.dev"
+			ENV_FILE=".env.dev"
 		fi
-elif [ "$SPACE" = "aws" ]; then
-		if [ "$CIRCLE_BRANCH" = "master" ]; then
-				if [ "$CIRCLE_PROJECT_USERNAME" = "18F" ]; then
-						ENV_FILE=".env.aws.production"
-				elif [ "$CIRCLE_PROJECT_USERNAME" = "truetandem" ]; then
-						ENV_FILE=".env.aws.staging"
-				fi
-		elif [ "$CIRCLE_BRANCH" = "develop" ]; then
-				ENV_FILE=".env.aws.dev"
-		fi
-
-		# Add the AWS base image to the dockerfile for packaging
-	  echo -e "FROM ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/nbis-ecr:basedeb\n#$(cat Dockerfile.eapp_golang)" > Dockerfile.eapp_golang
 fi
 
 #

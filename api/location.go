@@ -22,6 +22,7 @@ const (
 	LayoutCityStateCountry                    = "City, State, Country"
 	LayoutUSAddress                           = "US Address"
 	LayoutStreetCity                          = "Street, City"
+	LayoutOffense                             = "Offense"
 )
 
 // Special layout flags for e-QIP integration for...
@@ -159,6 +160,12 @@ func (entity *Location) Valid() (bool, error) {
 		stack = validateFields(entity, "street", "city", "state", "zipcode")
 	case LayoutStreetCity:
 		stack = validateFields(entity, "street", "city")
+	case LayoutOffense:
+		if domestic {
+			stack = validateFields(entity, "city", "state", "zipcode", "county", "country")
+		} else {
+			stack = validateFields(entity, "city", "country")
+		}
 	default:
 		if domestic || postoffice {
 			stack = validateFields(entity, "street", "city", "state", "zipcode")

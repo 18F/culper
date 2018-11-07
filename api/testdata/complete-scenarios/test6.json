@@ -145,19 +145,19 @@
                   "How": {
                     "type": "textarea",
                     "props": {
-                      "value": "Should not be submitted"
+                      "value": ""
                     }
                   },
                   "Renounced": {
                     "type": "branch",
                     "props": {
-                      "value": "No"
+                      "value": ""
                     }
                   },
                   "RenouncedExplanation": {
                     "type": "textarea",
                     "props": {
-                      "value": "Should not be submitted"
+                      "value": ""
                     }
                   }
                 }

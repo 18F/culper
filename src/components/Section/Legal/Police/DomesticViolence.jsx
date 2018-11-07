@@ -82,6 +82,7 @@ export default class DomesticViolence extends ValidationElement {
             {...this.props.Issued}
             hideDay={true}
             className="issued"
+            minDateEqualTo={true}
             onUpdate={this.updateIssued}
             onError={this.props.onError}
             required={this.props.required}

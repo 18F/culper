@@ -20,6 +20,7 @@ import {
   BranchCollection,
   AccordionItem
 } from '../../../Form'
+import { countryString } from '../../../../validators/location'
 
 export default class CivilUnion extends ValidationElement {
   constructor(props) {
@@ -186,8 +187,41 @@ export default class CivilUnion extends ValidationElement {
   }
 
   render() {
+    /**
+     * `this.props.BirthPlace` can end up in a number of different states,
+     * depending on the choices a user makes in this section _and_ on
+     * the initial state of the app.
+     *
+     * The initial, pristine value for this.props.BirthPlace is `undefined`.
+     * This occurs despite the BirthPlace key/value pair in defaultProps,
+     * indicating that the value is being explicitly supplied at some point.
+     *
+     * Once either the 'US' or 'outside the US' options have been selected, the value
+     * of `BirthPlace` changes to one of these data structures on page load:
+     *
+     * {layout: "Birthplace", country: "United States"}
+     *
+     * OR
+     *
+     * {layout: "Birthplace", city: "Hamburg", country: "Germany"}
+     *
+     * If the user has indicated their spouse has an international birthplace, and then
+     * clicks on 'US', `BirthPlace` will get updated to the following data structure:
+     *
+     * {value: "United States"}
+     *
+     * If the user then clicks on 'outside the US', and fills in any of the fields in
+     * the displayd form, the `BirthPlace` prop is resupplied to the component with
+     * the following structure:
+     *
+     *  {name: "country", comments: "", showComments: false, value: ['germany']}
+     *
+     */
+
+    const { country } = this.props.BirthPlace
     const showForeignBornDocumentation =
-      ((this.props.BirthPlace || {}).country || {}) !== 'United States'
+      country && countryString(country) !== 'United States'
+
     return (
       <div className="civil-union">
         <div>
@@ -195,7 +229,7 @@ export default class CivilUnion extends ValidationElement {
 
           <Field
             title={i18n.t('relationships.civilUnion.heading.name')}
-            optional={true}
+            optional
             filterErrors={Name.requiredErrorsOnly}
             scrollIntoView={this.props.scrollIntoView}>
             <Name
@@ -282,12 +316,12 @@ export default class CivilUnion extends ValidationElement {
                 title={i18n.t(
                   'relationships.civilUnion.othernames.heading.name'
                 )}
-                optional={true}
+                optional
                 filterErrors={Name.requiredErrorsOnly}
                 scrollIntoView={this.props.scrollIntoView}>
                 <Name
                   name="Name"
-                  bind={true}
+                  bind
                   onError={this.props.onError}
                   required={this.props.required}
                   scrollIntoView={this.props.scrollIntoView}
@@ -300,11 +334,11 @@ export default class CivilUnion extends ValidationElement {
                 )}
                 help="alias.maiden.help"
                 adjustFor="buttons"
-                shrink={true}
+                shrink
                 scrollIntoView={this.props.scrollIntoView}>
                 <MaidenName
                   name="MaidenName"
-                  bind={true}
+                  bind
                   onError={this.props.onError}
                   required={this.props.required}
                   scrollIntoView={this.props.scrollIntoView}
@@ -316,14 +350,14 @@ export default class CivilUnion extends ValidationElement {
                   'relationships.civilUnion.othernames.heading.used'
                 )}
                 adjustFor="daterange"
-                shrink={true}
+                shrink
                 scrollIntoView={this.props.scrollIntoView}>
                 <DateRange
                   name="DatesUsed"
-                  bind={true}
+                  bind
                   prefix="relative"
-                  minDate={(this.props.Birthdate || {}).date}
-                  minDateEqualTo={true}
+                  minDate={this.props.Birthdate.date}
+                  minDateEqualTo
                   className="datesused"
                   onError={this.props.onError}
                   required={this.props.required}
@@ -341,7 +375,7 @@ export default class CivilUnion extends ValidationElement {
               name="Citizenship"
               {...this.props.Citizenship}
               className="relationships-civilUnion-citizenship"
-              multiple={true}
+              multiple
               onUpdate={this.updateCitizenship}
               onError={this.props.onError}
               required={this.props.required}
@@ -383,7 +417,7 @@ export default class CivilUnion extends ValidationElement {
                 this.props.currentAddress ? '' : 'WithoutCurrent'
               }`
             )}
-            optional={true}
+            optional
             help="relationships.civilUnion.help.address"
             scrollIntoView={this.props.scrollIntoView}
             adjustFor="address">
@@ -402,10 +436,10 @@ export default class CivilUnion extends ValidationElement {
                   name="Address"
                   {...this.props.Address}
                   layout={Location.ADDRESS}
-                  geocode={true}
+                  geocode
                   addressBooks={this.props.addressBooks}
                   addressBook="Relative"
-                  showPostOffice={true}
+                  showPostOffice
                   dispatch={this.props.dispatch}
                   onUpdate={this.updateAddress}
                   onError={this.props.onError}
@@ -418,10 +452,10 @@ export default class CivilUnion extends ValidationElement {
                 name="Address"
                 {...this.props.Address}
                 layout={Location.ADDRESS}
-                geocode={true}
+                geocode
                 addressBooks={this.props.addressBooks}
                 addressBook="Relative"
-                showPostOffice={true}
+                showPostOffice
                 dispatch={this.props.dispatch}
                 onUpdate={this.updateAddress}
                 onError={this.props.onError}
@@ -463,6 +497,7 @@ export default class CivilUnion extends ValidationElement {
             labelSize="h3"
             {...this.props.Separated}
             onUpdate={this.updateSeparated}
+            minDate={(this.props.EnteredCivilUnion || {}).date}
             required={this.props.required}
             scrollIntoView={this.props.scrollIntoView}
             onError={this.props.onError}
@@ -478,8 +513,9 @@ export default class CivilUnion extends ValidationElement {
                 <DateControl
                   name="DateSeparated"
                   className="dateseparated"
-                  {...this.props.DateSeparated}
                   minDate={(this.props.EnteredCivilUnion || {}).date}
+                  minDateEqualTo={true}
+                  {...this.props.DateSeparated}
                   onUpdate={this.updateDateSeparated}
                   onError={this.props.onError}
                   required={this.props.required}
@@ -506,7 +542,7 @@ export default class CivilUnion extends ValidationElement {
                       'relationships.civilUnion.label.addressSeparated'
                     )}
                     layout={Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY}
-                    showPostOffice={true}
+                    showPostOffice
                     onUpdate={this.updateAddressSeparated}
                     onError={this.props.onError}
                     required={this.props.required}

@@ -89,6 +89,8 @@ export default class AdditionalActivity extends ValidationElement {
               <DateRange
                 name="DatesEmployed"
                 bind={true}
+                minDateEqualTo={true}
+                allowPresent={false}
                 required={this.props.required}
               />
             </Field>

@@ -1,5 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import { alphaNumericRegEx } from '../../../../validators/helpers'
 import {
   ValidationElement,
   Branch,
@@ -836,6 +837,9 @@ export default class Relative extends ValidationElement {
               <Text
                 name="DocumentNumber"
                 className="relative-documentnumber"
+                maxlength="30"
+                pattern={alphaNumericRegEx}
+                prefix="alphanumeric"
                 {...this.props.DocumentNumber}
                 onError={this.props.onError}
                 onUpdate={this.updateDocumentNumber}
@@ -1041,6 +1045,7 @@ export default class Relative extends ValidationElement {
                 className="relative-first-contact"
                 {...this.props.FirstContact}
                 prefix="relative"
+                minDateEqualTo={true}
                 applicantBirthdate={this.props.Birthdate}
                 onError={this.props.onError}
                 onUpdate={this.updateFirstContact}
@@ -1061,6 +1066,8 @@ export default class Relative extends ValidationElement {
                 className="relative-last-contact"
                 {...this.props.LastContact}
                 prefix="relative"
+                minDate={(this.props.FirstContact || {}).date}
+                minDateEqualTo={true}
                 applicantBirthdate={this.props.Birthdate}
                 onError={this.props.onError}
                 onUpdate={this.updateLastContact}

@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
-import { i18n, navigationWalker } from '../../../config'
+import { i18n, env, navigationWalker } from '../../../config'
 import { hideHippa } from '../../../validators/releases'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
@@ -16,6 +16,7 @@ import axios from 'axios'
 import { api } from '../../../services'
 import schema from '../../../schema'
 import { Show } from '../../Form'
+import queryString from 'query-string'
 
 class Package extends SectionElement {
   constructor(props) {
@@ -26,8 +27,6 @@ class Package extends SectionElement {
     this.onSubmit = this.onSubmit.bind(this)
     this.onTransitionEnd = this.onTransitionEnd.bind(this)
     this.errorCheck = this.errorCheck.bind(this)
-    // TODO: Remove after testing
-    this.goToReleases = this.goToReleases.bind(this)
     this.state = {
       submitting: false,
       submissionError: false
@@ -82,28 +81,41 @@ class Package extends SectionElement {
    * releases or errors based on whether the form is valid
    */
   onTransitionEnd() {
-    const tally = this.errorCheck()
-    for (const sectionName in tally) {
-      const mark = tally[sectionName]
-      if (mark.errors > 0) {
-        // We do not call `this.props.update` here because there is no hard
-        // route to `package/errors`. By only pushing the new location we keep
-        // the navigation element marking `/review` as active but allow us to
-        // display a different internal route.
-        this.props.history.push('/form/package/errors')
-        return
-      }
+    const formIsValid = this.isValid()
+
+    if (!formIsValid) {
+      // We do not call `this.props.update` here because there is no hard
+      // route to `package/errors`. By only pushing the new location we keep
+      // the navigation element marking `/review` as active but allow us to
+      // display a different internal route.
+      this.props.history.push('/form/package/errors')
+      return
     }
 
     this.props.update({ section: 'package', subsection: 'submit' })
     return
   }
 
-  /**
-   * TODO: Remove after testing. Hook to get to releases form
-   */
-  goToReleases() {
-    this.props.update({ section: 'package', subsection: 'submit' })
+  isValid(params = null) {
+    const tally = this.errorCheck()
+
+    // Allows invalid form submission for debugging purpose
+    if (params) {
+      params = queryString.parse(params)
+
+      if (env.IsDevelopment() && params.force === 'true') {
+        return true
+      }
+    }
+
+    for (const sectionName in tally) {
+      const mark = tally[sectionName]
+      if (mark.errors > 0) {
+        return false
+      }
+    }
+
+    return true
   }
 
   errorCheck() {
@@ -159,6 +171,7 @@ class Package extends SectionElement {
   render() {
     const tally = this.errorCheck()
     const releases = (this.props.Submission || {}).Releases || {}
+    const params = this.props.location.search
     return (
       <SectionViews
         current={this.props.subsection}
@@ -181,30 +194,29 @@ class Package extends SectionElement {
             onTransitionEnd={this.onTransitionEnd}
           />
         </SectionView>
-        <SectionView name="valid">
-          <SubmissionStatus
-            transition={true}
-            onTransitionEnd={this.goToReleases}
-          />
-        </SectionView>
         <SectionView name="errors">
           <SubmissionStatus valid={false} transition={false}>
             <InvalidForm tally={tally} dispatch={this.props.dispatch} />
           </SubmissionStatus>
         </SectionView>
         <SectionView name="submit">
-          <SubmissionStatus valid={true} transition={false}>
-            <ValidForm
-              {...releases}
-              dispatch={this.props.dispatch}
-              onUpdate={this.updateSubmission}
-              hideHippa={hideHippa(this.props.Application)}
-              submitting={this.state.submitting}
-              LegalName={this.props.LegalName}
-              onSubmit={this.onSubmit}
-              Identification={this.props.Identification}
-              History={this.props.History}
-            />
+          <SubmissionStatus
+            valid={this.isValid(params)}
+            transition={!this.isValid(params)}
+            onTransitionEnd={this.onTransitionEnd}>
+            <Show when={this.isValid(params)}>
+              <ValidForm
+                {...releases}
+                dispatch={this.props.dispatch}
+                onUpdate={this.updateSubmission}
+                hideHippa={hideHippa(this.props.Application)}
+                submitting={this.state.submitting}
+                LegalName={this.props.LegalName}
+                onSubmit={this.onSubmit}
+                Identification={this.props.Identification}
+                History={this.props.History}
+              />
+            </Show>
           </SubmissionStatus>
           <Show when={this.state.submissionError}>
             <div className="field">

@@ -228,6 +228,7 @@ export default class Passport extends SubsectionElement {
                 name="issued"
                 className="passport-issued"
                 {...this.props.Issued}
+                minDateEqualTo={true}
                 onUpdate={this.updateIssued}
                 onError={this.handleError}
                 required={this.props.required}
@@ -244,6 +245,8 @@ export default class Passport extends SubsectionElement {
                 name="expiration"
                 className="passport-expiration"
                 {...this.props.Expiration}
+                minDate={(this.props.Issued || {}).date}
+                minDateEqualTo={true}
                 noMaxDate={true}
                 onUpdate={this.updateExpiration}
                 onError={this.handleError}

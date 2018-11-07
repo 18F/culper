@@ -142,6 +142,7 @@ export default class Person extends React.Component {
           <DateRange
             name="Dates"
             className="known-dates"
+            minDateEqualTo={true}
             {...this.props.Dates}
             onUpdate={this.updateDates}
             onError={this.props.onError}

@@ -287,6 +287,7 @@ export default class Cohabitant extends ValidationElement {
             name="cohabitationBegan"
             className="cohabitation-began"
             {...this.props.CohabitationBegan}
+            minDateEqualTo={true}
             onUpdate={this.updateCohabitationBegan}
             onError={this.props.onError}
             required={this.props.required}

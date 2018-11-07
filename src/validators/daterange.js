@@ -19,11 +19,11 @@ export default class DateRangeValidator {
    * Validates the date ranges
    */
   isValid() {
-    if (!new DateControlValidator(this.from || {}).isValid()) {
+    if (!new DateControlValidator(this.from).validDate()) {
       return false
     }
 
-    if (!new DateControlValidator(this.to || {}).isValid()) {
+    if (!new DateControlValidator(this.to).validDate()) {
       return false
     }
 
@@ -33,6 +33,6 @@ export default class DateRangeValidator {
     const fdate = new Date(
       `${this.from.month || ''}/${this.from.day || '1'}/${this.from.year}`
     )
-    return tdate > fdate
+    return tdate >= fdate
   }
 }

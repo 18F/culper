@@ -120,6 +120,7 @@ export default class ForeignContact extends React.Component {
             name="Dates"
             className="foreign-contact-dates"
             {...this.props.Dates}
+            minDateEqualTo={true}
             onUpdate={this.updateDates}
             onError={this.props.onError}
             required={this.props.required}

@@ -217,7 +217,7 @@ exports[`The print section renders properly 1`] = `
                             className="component"
                           >
                             <div
-                              className="first usa-input-error"
+                              className="hide-for-print first usa-input-error"
                             >
                               <input
                                 aria-describedby="first-error"
@@ -238,6 +238,11 @@ exports[`The print section renders properly 1`] = `
                                 type="text"
                                 value=""
                               />
+                              <div
+                                className="text-print print-only"
+                              >
+                                
+                              </div>
                             </div>
                             <div
                               className="flags"
@@ -342,7 +347,7 @@ exports[`The print section renders properly 1`] = `
                             className="component"
                           >
                             <div
-                              className="middle usa-input-error"
+                              className="hide-for-print middle usa-input-error"
                             >
                               <input
                                 aria-describedby="middle-error"
@@ -363,6 +368,11 @@ exports[`The print section renders properly 1`] = `
                                 type="text"
                                 value=""
                               />
+                              <div
+                                className="text-print print-only"
+                              >
+                                
+                              </div>
                             </div>
                             <div
                               className="middle-options flags"
@@ -492,7 +502,7 @@ exports[`The print section renders properly 1`] = `
                             className="component"
                           >
                             <div
-                              className="last usa-input-error"
+                              className="hide-for-print last usa-input-error"
                             >
                               <input
                                 aria-describedby="last-error"
@@ -513,6 +523,11 @@ exports[`The print section renders properly 1`] = `
                                 type="text"
                                 value=""
                               />
+                              <div
+                                className="text-print print-only"
+                              >
+                                
+                              </div>
                             </div>
                             <div
                               className="flags"
@@ -1385,7 +1400,7 @@ exports[`The print section renders properly 1`] = `
                   className="component"
                 >
                   <div
-                    className="email email-home"
+                    className="hide-for-print email email-home"
                   >
                     <input
                       aria-describedby="HomeEmail-error"
@@ -1407,6 +1422,11 @@ exports[`The print section renders properly 1`] = `
                       type="text"
                       value=""
                     />
+                    <div
+                      className="text-print print-only"
+                    >
+                      
+                    </div>
                   </div>
                 </span>
               </span>
@@ -1458,7 +1478,7 @@ exports[`The print section renders properly 1`] = `
                   className="component"
                 >
                   <div
-                    className="email email-work"
+                    className="hide-for-print email email-work"
                   >
                     <input
                       aria-describedby="WorkEmail-error"
@@ -1480,6 +1500,11 @@ exports[`The print section renders properly 1`] = `
                       type="text"
                       value=""
                     />
+                    <div
+                      className="text-print print-only"
+                    >
+                      
+                    </div>
                   </div>
                 </span>
               </span>
@@ -1759,7 +1784,7 @@ exports[`The print section renders properly 1`] = `
                         className="usa-form-group month"
                       >
                         <div
-                          className="usa-input-error"
+                          className="hide-for-print usa-input-error"
                         >
                           <label
                             className="usa-input-error-label"
@@ -1788,13 +1813,18 @@ exports[`The print section renders properly 1`] = `
                             type="text"
                             value=""
                           />
+                          <div
+                            className="text-print print-only"
+                          >
+                            
+                          </div>
                         </div>
                       </div>
                       <div
                         className="usa-form-group day "
                       >
                         <div
-                          className="usa-input-error"
+                          className="hide-for-print usa-input-error"
                         >
                           <label
                             className="usa-input-error-label"
@@ -1823,13 +1853,18 @@ exports[`The print section renders properly 1`] = `
                             type="text"
                             value=""
                           />
+                          <div
+                            className="text-print print-only"
+                          >
+                            
+                          </div>
                         </div>
                       </div>
                       <div
                         className="usa-form-group year"
                       >
                         <div
-                          className="usa-input-error"
+                          className="hide-for-print usa-input-error"
                         >
                           <label
                             className="usa-input-error-label"
@@ -1858,6 +1893,11 @@ exports[`The print section renders properly 1`] = `
                             type="text"
                             value=""
                           />
+                          <div
+                            className="text-print print-only"
+                          >
+                            
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -1949,7 +1989,7 @@ exports[`The print section renders properly 1`] = `
                     className="usa-alert-body"
                   >
                     <div
-                      data-i18n="error.location.required"
+                      data-i18n="error.location.toggleablelocation.required"
                     >
                       <h5
                         className="usa-alert-heading"
@@ -1982,64 +2022,159 @@ exports[`The print section renders properly 1`] = `
                         className="toggleable-location"
                       >
                         <div
-                          className="blocks option-list branch usa-input-error"
+                          aria-label="Were you born in the United States?"
+                          className="field required  branch"
+                          data-uuid="field-MOCK-GUID"
                         >
-                          <label>
+                          <a
+                            aria-hidden="true"
+                            className="anchor"
+                            id="field-MOCK-GUID"
+                            name="field-MOCK-GUID"
+                          />
+                          <label
+                            className="title label"
+                          >
                             Were you born in the United States?
                           </label>
+                          <span
+                            className="icon"
+                          />
                           <div
-                            className="yes block"
+                            className="table expand"
                           >
-                            <label
-                              className=""
-                              htmlFor="birthplace-MOCK-GUID"
-                            >
-                              <input
-                                aria-label="Yes for null"
-                                checked={false}
-                                className="usa-input-success"
-                                disabled={false}
-                                id="birthplace-MOCK-GUID"
-                                name="birthplace-MOCK-GUID"
-                                onBlur={[Function]}
-                                onChange={[Function]}
-                                onClick={[Function]}
-                                onFocus={[Function]}
-                                onKeyDown={[Function]}
-                                type="radio"
-                                value="Yes"
-                              />
-                              <span>
-                                Yes
-                              </span>
-                            </label>
+                            <span
+                              aria-live="polite"
+                              className="messages help-messages"
+                            />
                           </div>
                           <div
-                            className="no block"
+                            className="table expand"
                           >
-                            <label
-                              className=""
-                              htmlFor="birthplace-MOCK-GUID"
+                            <span
+                              aria-live="polite"
+                              className="messages error-messages"
+                              role="alert"
                             >
-                              <input
-                                aria-label="No for null"
-                                checked={false}
-                                className="usa-input-success"
-                                disabled={false}
-                                id="birthplace-MOCK-GUID"
-                                name="birthplace-MOCK-GUID"
-                                onBlur={[Function]}
-                                onChange={[Function]}
-                                onClick={[Function]}
-                                onFocus={[Function]}
-                                onKeyDown={[Function]}
-                                type="radio"
-                                value="No"
-                              />
-                              <span>
-                                No
+                              <div
+                                aria-live="polite"
+                                className="message error usa-alert usa-alert-error"
+                                role="alert"
+                              >
+                                <div
+                                  className="usa-alert-body"
+                                >
+                                  <div
+                                    data-i18n="error.toggleablelocation.required"
+                                  >
+                                    <h5
+                                      className="usa-alert-heading"
+                                    >
+                                      en.error.toggleablelocation.required.title
+                                    </h5>
+                                    
+                                    
+                                  </div>
+                                </div>
+                              </div>
+                            </span>
+                          </div>
+                          <div
+                            className="table"
+                          >
+                            <span
+                              className="content"
+                            >
+                              <span
+                                className="component shrink"
+                              >
+                                <div
+                                  className="content"
+                                />
+                                <div
+                                  className="blocks option-list branch usa-input-error"
+                                >
+                                  <div
+                                    className="yes block"
+                                  >
+                                    <label
+                                      className=""
+                                      htmlFor="birthplace-MOCK-GUID"
+                                    >
+                                      <input
+                                        aria-label="[object Object] for null"
+                                        checked={false}
+                                        className="usa-input-success"
+                                        disabled={false}
+                                        id="birthplace-MOCK-GUID"
+                                        name="birthplace-MOCK-GUID"
+                                        onBlur={[Function]}
+                                        onChange={[Function]}
+                                        onClick={[Function]}
+                                        onFocus={[Function]}
+                                        onKeyDown={[Function]}
+                                        type="radio"
+                                        value="Yes"
+                                      />
+                                      <span>
+                                        <div>
+                                          <p>
+                                            In the
+                                            <span
+                                              dangerouslySetInnerHTML={
+                                                Object {
+                                                  "__html": "<br>",
+                                                }
+                                              }
+                                            />
+                                            United States
+                                          </p>
+                                        </div>
+                                      </span>
+                                    </label>
+                                  </div>
+                                  <div
+                                    className="no block"
+                                  >
+                                    <label
+                                      className=""
+                                      htmlFor="birthplace-MOCK-GUID"
+                                    >
+                                      <input
+                                        aria-label="[object Object] for null"
+                                        checked={false}
+                                        className="usa-input-success"
+                                        disabled={false}
+                                        id="birthplace-MOCK-GUID"
+                                        name="birthplace-MOCK-GUID"
+                                        onBlur={[Function]}
+                                        onChange={[Function]}
+                                        onClick={[Function]}
+                                        onFocus={[Function]}
+                                        onKeyDown={[Function]}
+                                        type="radio"
+                                        value="No"
+                                      />
+                                      <span>
+                                        <div>
+                                          <p>
+                                            Outside of the
+                                            <span
+                                              dangerouslySetInnerHTML={
+                                                Object {
+                                                  "__html": "<br>",
+                                                }
+                                              }
+                                            />
+                                            United States
+                                          </p>
+                                        </div>
+                                      </span>
+                                    </label>
+                                  </div>
+                                </div>
                               </span>
-                            </label>
+                            </span>
                           </div>
                         </div>
                       </div>
@@ -2153,7 +2288,7 @@ exports[`The print section renders properly 1`] = `
                     className="ssn applicant-ssn-initial"
                   >
                     <div
-                      className="first eapp-short-input usa-input-error"
+                      className="hide-for-print first eapp-short-input usa-input-error"
                     >
                       <input
                         aria-describedby="first-error"
@@ -2179,9 +2314,14 @@ exports[`The print section renders properly 1`] = `
                         type="text"
                         value=""
                       />
+                      <div
+                        className="text-print print-only"
+                      >
+                        
+                      </div>
                     </div>
                     <div
-                      className="middle eapp-short-input usa-input-error"
+                      className="hide-for-print middle eapp-short-input usa-input-error"
                     >
                       <input
                         aria-describedby="middle-error"
@@ -2207,9 +2347,14 @@ exports[`The print section renders properly 1`] = `
                         type="text"
                         value=""
                       />
+                      <div
+                        className="text-print print-only"
+                      >
+                        
+                      </div>
                     </div>
                     <div
-                      className="last eapp-short-input usa-input-error"
+                      className="hide-for-print last eapp-short-input usa-input-error"
                     >
                       <input
                         aria-describedby="last-error"
@@ -2235,6 +2380,11 @@ exports[`The print section renders properly 1`] = `
                         type="text"
                         value=""
                       />
+                      <div
+                        className="text-print print-only"
+                      >
+                        
+                      </div>
                     </div>
                     <div
                       className="flags"
@@ -2425,7 +2575,7 @@ exports[`The print section renders properly 1`] = `
                       className="feet"
                     >
                       <div
-                        className="usa-input-error"
+                        className="hide-for-print usa-input-error"
                       >
                         <label
                           className="usa-input-error-label"
@@ -2454,13 +2604,18 @@ exports[`The print section renders properly 1`] = `
                           type="text"
                           value=""
                         />
+                        <div
+                          className="text-print print-only"
+                        >
+                          
+                        </div>
                       </div>
                     </div>
                     <div
                       className="inches"
                     >
                       <div
-                        className="usa-input-error"
+                        className="hide-for-print usa-input-error"
                       >
                         <label
                           className="usa-input-error-label"
@@ -2489,6 +2644,11 @@ exports[`The print section renders properly 1`] = `
                           type="text"
                           value=""
                         />
+                        <div
+                          className="text-print print-only"
+                        >
+                          
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -2594,7 +2754,7 @@ exports[`The print section renders properly 1`] = `
                       className="pounds"
                     >
                       <div
-                        className="usa-input-error"
+                        className="hide-for-print usa-input-error"
                       >
                         <label
                           className="usa-input-error-label"
@@ -2623,6 +2783,11 @@ exports[`The print section renders properly 1`] = `
                           type="text"
                           value=""
                         />
+                        <div
+                          className="text-print print-only"
+                        >
+                          
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -4099,7 +4264,7 @@ exports[`The print section renders properly 1`] = `
                 className="component"
               >
                 <div
-                  className=""
+                  className="hide-for-print "
                 >
                   <input
                     aria-describedby="Comments-error"
@@ -4120,6 +4285,11 @@ exports[`The print section renders properly 1`] = `
                     type="text"
                     value=""
                   />
+                  <div
+                    className="text-print print-only"
+                  >
+                    
+                  </div>
                 </div>
               </span>
             </span>
@@ -4843,7 +5013,7 @@ exports[`The print section renders properly 1`] = `
                 className="component"
               >
                 <div
-                  className=""
+                  className="hide-for-print "
                 >
                   <input
                     aria-describedby="Comments-error"
@@ -4864,6 +5034,11 @@ exports[`The print section renders properly 1`] = `
                     type="text"
                     value=""
                   />
+                  <div
+                    className="text-print print-only"
+                  >
+                    
+                  </div>
                 </div>
               </span>
             </span>
@@ -5917,7 +6092,7 @@ exports[`The print section renders properly 1`] = `
                 className="component"
               >
                 <div
-                  className=""
+                  className="hide-for-print "
                 >
                   <input
                     aria-describedby="Comments-error"
@@ -5938,6 +6113,11 @@ exports[`The print section renders properly 1`] = `
                     type="text"
                     value=""
                   />
+                  <div
+                    className="text-print print-only"
+                  >
+                    
+                  </div>
                 </div>
               </span>
             </span>
@@ -6676,7 +6856,7 @@ exports[`The print section renders properly 1`] = `
                 className="component"
               >
                 <div
-                  className=""
+                  className="hide-for-print "
                 >
                   <input
                     aria-describedby="Comments-error"
@@ -6697,6 +6877,11 @@ exports[`The print section renders properly 1`] = `
                     type="text"
                     value=""
                   />
+                  <div
+                    className="text-print print-only"
+                  >
+                    
+                  </div>
                 </div>
               </span>
             </span>
@@ -7241,7 +7426,7 @@ exports[`The print section renders properly 1`] = `
                 className="component"
               >
                 <div
-                  className=""
+                  className="hide-for-print "
                 >
                   <input
                     aria-describedby="Comments-error"
@@ -7262,6 +7447,11 @@ exports[`The print section renders properly 1`] = `
                     type="text"
                     value=""
                   />
+                  <div
+                    className="text-print print-only"
+                  >
+                    
+                  </div>
                 </div>
               </span>
             </span>
@@ -9147,7 +9337,7 @@ exports[`The print section renders properly 1`] = `
         >
           <div>
             <p>
-              For Section 7, "Immediate Family" means your spouse, parents, step-parents, siblings, half and step-siblings, children, stepchildren, and cohabitant.
+              For this question, "Immediate Family" means your spouse, parents, step-parents, siblings, half and step-siblings, children, stepchildren, and cohabitant.
             </p>
           </div>
           <div
@@ -9936,7 +10126,7 @@ exports[`The print section renders properly 1`] = `
                 className="component"
               >
                 <div
-                  className=""
+                  className="hide-for-print "
                 >
                   <input
                     aria-describedby="Comments-error"
@@ -9957,6 +10147,11 @@ exports[`The print section renders properly 1`] = `
                     type="text"
                     value=""
                   />
+                  <div
+                    className="text-print print-only"
+                  >
+                    
+                  </div>
                 </div>
               </span>
             </span>
@@ -11160,7 +11355,7 @@ exports[`The print section renders properly 1`] = `
                 className="component"
               >
                 <div
-                  className=""
+                  className="hide-for-print "
                 >
                   <input
                     aria-describedby="Comments-error"
@@ -11181,6 +11376,11 @@ exports[`The print section renders properly 1`] = `
                     type="text"
                     value=""
                   />
+                  <div
+                    className="text-print print-only"
+                  >
+                    
+                  </div>
                 </div>
               </span>
             </span>
@@ -12810,7 +13010,7 @@ exports[`The print section renders properly 1`] = `
                 className="component"
               >
                 <div
-                  className=""
+                  className="hide-for-print "
                 >
                   <input
                     aria-describedby="Comments-error"
@@ -12831,6 +13031,11 @@ exports[`The print section renders properly 1`] = `
                     type="text"
                     value=""
                   />
+                  <div
+                    className="text-print print-only"
+                  >
+                    
+                  </div>
                 </div>
               </span>
             </span>
@@ -15490,7 +15695,7 @@ exports[`The print section renders properly 1`] = `
                 className="component"
               >
                 <div
-                  className=""
+                  className="hide-for-print "
                 >
                   <input
                     aria-describedby="Comments-error"
@@ -15511,6 +15716,11 @@ exports[`The print section renders properly 1`] = `
                     type="text"
                     value=""
                   />
+                  <div
+                    className="text-print print-only"
+                  >
+                    
+                  </div>
                 </div>
               </span>
             </span>
@@ -16171,7 +16381,7 @@ exports[`The print section renders properly 1`] = `
                 className="component"
               >
                 <div
-                  className=""
+                  className="hide-for-print "
                 >
                   <input
                     aria-describedby="Comments-error"
@@ -16192,6 +16402,11 @@ exports[`The print section renders properly 1`] = `
                     type="text"
                     value=""
                   />
+                  <div
+                    className="text-print print-only"
+                  >
+                    
+                  </div>
                 </div>
               </span>
             </span>

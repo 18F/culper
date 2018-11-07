@@ -9,13 +9,9 @@ const scan = items => {
   let counter = 0
 
   for (const dates of items.sort(rangeSorter)) {
-    if (
-      dates.from &&
-      dates.from.date &&
-      (dates.present || (dates.to && dates.to.date))
-    ) {
+    if (dates.from && (dates.present || dates.to)) {
       counter++
-    } else if (dates.date) {
+    } else if (dates.month && dates.day && dates.year) {
       counter++
     }
   }

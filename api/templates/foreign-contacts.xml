@@ -7,21 +7,26 @@
     {{range $index, $item := .props.List.props.items}}
     {{with $Item := $item.Item}}
     <Contact ID="{{inc $index}}">
-      {{if locationIsPostOffice $Item.Address}}
+      <!-- XXX Work-around for https://github.com/18F/e-QIP-prototype/issues/753 -->
+      {{if false}}
       <APOFPO>
-        <Address>{{militaryAddress $Item.Address}}</Address>
+        <!-- TODO -->
+        <Address></Address>
         <AddressComment></AddressComment>
+        <!-- TODO -->
+        <Answer></Answer>
+        <AnswerComment></AnswerComment>
+        <!-- No PhysicalLocation -->
       </APOFPO>
       {{else}}
-      <Address DoNotKnow="{{notApplicable $Item.AddressNotApplicable}}">
+      {{ $doNotKnowAddr := notApplicable $Item.AddressNotApplicable }}
+      <Address DoNotKnow="{{$doNotKnowAddr}}">
         {{location $Item.Address}}
       </Address>
+      <!-- This constraint is not consistent with SF-86 form or validation matrix; but is consistent with e-QIP -->
+      {{if and (isInternational $Item.Address) ($doNotKnowAddr | eq "False")}}
       <!-- XXX Work-around for https://github.com/18F/e-QIP-prototype/issues/753 -->
-      {{- $usAddress := addressIn $Item.Address "United States" }}
-      {{if and (not $usAddress) (notApplicable $Item.AddressNotApplicable | eq "False")}}
-      <APOFPO>
-        <Answer>No</Answer>
-      </APOFPO>
+      <APOFPO><Answer>No</Answer></APOFPO>
       {{end}}
       {{end}}
       <Birth>

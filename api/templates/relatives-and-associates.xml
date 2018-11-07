@@ -57,24 +57,26 @@
     <Relative ID="{{inc $index}}">
       {{- $deceased := eq (branch $Item.IsDeceased) "Yes" }}
       {{if not $deceased }}
-      {{if locationIsPostOffice $Item.Address}}
+      <!-- XXX Work-around for https://github.com/18F/e-QIP-prototype/issues/753 -->
+      {{if false}}
       <APOFPO>
-        <Address>{{militaryAddress $Item.Address}}</Address>
+        <!-- TODO -->
+        <Address></Address>
         <AddressComment></AddressComment>
+        <!-- TODO -->
         <Answer></Answer>
         <AnswerComment></AnswerComment>
+        <!-- No PhysicalLocation -->
       </APOFPO>
       {{else}}
       <Address>{{location $Item.Address}}</Address>
-      <!-- XXX Work-around for https://github.com/18F/e-QIP-prototype/issues/753 -->
-      {{- $usAddress := addressIn $Item.Address "United States" }}
-      {{if not $usAddress}}
-      <APOFPO>
-        <Answer>No</Answer>
-      </APOFPO>
-      {{end}}
-      {{end}}
       <AddressComment></AddressComment>
+      <!-- This constraint is not consistent with SF-86 form or validation matrix; but is consistent with e-QIP -->
+      {{if isInternational $Item.Address}}
+      <!-- XXX Work-around for https://github.com/18F/e-QIP-prototype/issues/753 -->
+      <APOFPO><Answer>No</Answer></APOFPO>
+      {{end}}
+      {{end}}
       {{end}}
 
       <Birth>
@@ -86,7 +88,7 @@
       {{- $birthCountry := $Item.Birthplace.props.country }}
       {{- $foreignPOB := ne $birthCountry "United States" }}
       {{- $usCitizen := citizenshipHas $Item.Citizenship "United States" }}
-      {{- $usAddress := addressIn $Item.Address "United States" }}
+      {{- $usAddress := isDomestic $Item.Address }}
 
       {{- if or (and $usCitizen $foreignPOB $deceased) (and $usCitizen $foreignPOB $usAddress) (and $usAddress (not $usCitizen) (not $deceased)) }}
       <Citizenship>
@@ -96,18 +98,21 @@
           <DocumentExpiration Type="{{dateEstimated $Item.Expiration}}">{{date $Item.Expiration}}</DocumentExpiration>
           {{end}}
           <DocumentNumber>{{text $Item.DocumentNumber}}</DocumentNumber>
+          {{if $usCitizen}}
           <NaturalizationCertificate>
             <Court>
               <Address>{{location $Item.CourtAddress}}</Address>
               <Name>{{text $Item.CourtName}}</Name>
             </Court>
           </NaturalizationCertificate>
+          {{end}}
           {{- if text $Item.Document }}
           <Type>{{text $Item.Document | relativeForeignDocType}}</Type>
+          <TypeOtherExplanation>{{text $Item.DocumentComments}}</TypeOtherExplanation>
           {{else if text $Item.CitizenshipDocumentation}}
           <Type>{{text $Item.CitizenshipDocumentation | relativeForeignDocType}}</Type>
+          <TypeOtherExplanation>{{text $Item.OtherCitizenshipDocumentation}}</TypeOtherExplanation>
           {{end}}
-          <TypeOtherExplanation>{{text $Item.DocumentComments}}</TypeOtherExplanation>
         </ProofOfStatus>
       </Citizenship>
       {{- end}}
@@ -208,9 +213,13 @@
             <LegalName>
               {{ name $Alias.Name }}
             </LegalName>
+            {{if eq $rtype "01Mother"}}
+            <Maiden><Answer>No</Answer></Maiden>
+            {{else}}
             <Maiden>
               <Answer>{{branch $Alias.MaidenName}}</Answer>
             </Maiden>
+            {{end}}
             <ReasonForChange>{{text $Alias.Reason}}</ReasonForChange>
           </OtherName>
           {{end}}

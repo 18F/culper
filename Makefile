@@ -70,7 +70,7 @@ lint-go:
 test: test-react test-go
 test-react:
 	$(info Running React test suite)
-	@docker-compose run --rm js yarn test
+	@docker-compose run --rm js yarn test $(FLAGS) $(FILES)
 test-go:
 	$(info Running Go test suite)
 	@docker-compose run --rm api make test
@@ -119,62 +119,6 @@ build-go:
 build-cmd:
 	$(info Compiling Go commands)
 	docker-compose run --rm api make cmd
-
-
-#
-# Packaging
-#
-package: package-react package-go
-package-clean:
-	-@docker rmi -f eapp_golang:smallest
-	-@docker rmi -f eapp_react:basedeb
-	-@docker rm -f eapp_react_container
-package-react:
-	@docker pull ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/nbis_eapp:base
-	@docker create --name=eapp_react_container ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/nbis_eapp:base
-	@docker cp ./dist/. eapp_react_container:/var/www/html/
-	@docker commit eapp_react_container eapp_react
-package-go:
-	@docker-compose run --rm \
-               -w /go/src/github.com/18F/e-QIP-prototype/api/cmd/server \
-               -e "CGO_ENABLED=0" \
-               api go build -ldflags '-w -extldflags "-static"'
-	-@mkdir -p ./api/dist/tmp
-	-@mkdir -p ./api/dist/bin
-	-@cp -R ./api/migrations ./api/dist/
-	-@cp -R ./api/templates ./api/dist/
-	-@cp ./api/bin/xmlsec1 ./api/dist/bin/
-	-@cp ./api/checksum ./api/dist/
-	-@cp ./api/cmd/server/server ./api/dist/eapp-backend
-	@docker pull ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/nbis-ecr:basedeb
-	@docker build -f Dockerfile.eapp_golang . -t eapp_golang:smallest
-
-#
-# Deploy
-#
-deploy: deploy-check deploy-configure deploy-go deploy-react
-deploy-check:
-	echo "Checking deployment prerequisites"
-	if test -z "$$AWS_DEFAULT_REGION"; then echo "AWS_DEFAULT_REGION is missing"; exit 1; fi;
-	if test -z "$$AWS_ACCOUNT_ID"; then echo "AWS_ACCOUNT_ID is missing"; exit 1; fi;
-	if test -z "$$AWS_ACCESS_KEY_ID"; then echo "AWS_ACCESS_KEY_ID is missing"; exit 1; fi;
-	if test -z "$$AWS_SECRET_ACCESS_KEY"; then echo "AWS_SECRET_ACCESS_KEY is missing"; exit 1; fi;
-	if test -z "$$DOCKER_TAG"; then echo "DOCKER_TAG is missing"; exit 1; fi;
-deploy-configure:
-	echo "Configuring AWS CLI"
-	aws --version
-	aws configure set default.aws_access_key_id ${AWS_ACCESS_KEY_ID}
-	aws configure set default.aws_secret_access_key ${AWS_SECRET_ACCESS_KEY}
-	aws configure set default.region ${AWS_DEFAULT_REGION}
-	aws configure set default.output text
-deploy-go:
-	echo "Deploying Go image to repository"
-	docker tag eapp_golang:smallest ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/nbis-ecr:${version}
-	docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/nbis-ecr:${version}
-deploy-react:
-	echo "Deploying React image to repository"
-	docker tag eapp_react:latest ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/nbis_eapp:${version}
-	docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/nbis_eapp:${version}
 
 #
 # Suites

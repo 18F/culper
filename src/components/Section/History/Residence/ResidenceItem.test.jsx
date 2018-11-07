@@ -1,13 +1,37 @@
 import React from 'react'
-import { mount } from 'enzyme'
+import { shallow, mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import ResidenceItem from './ResidenceItem'
 
+const alternateAddressRenderMock = jest.fn();
+const mountComponent = (mockStore, Component, props) => {
+  const store = mockStore({ application: { AddressBooks: {} }})
+  const finalProps = {
+    render: alternateAddressRenderMock,
+    ...props
+  }
+
+  return mount(
+    <Provider store={store}>
+      <Component {...finalProps} />
+    </Provider>
+  )
+}
+
 describe('The residence component', () => {
+  const mockStore = configureMockStore()
+
+  it('renders without crashing', () => {
+    shallow(<ResidenceItem render={alternateAddressRenderMock}/>)
+  })
+
   it('no error on empty', () => {
     const expected = {
       name: 'residence'
     }
-    const component = mount(<ResidenceItem {...expected} />)
+    const component = mountComponent(mockStore, ResidenceItem, expected);
+
     expect(component.find('.residence').length).toEqual(1)
     expect(component.find('.reference').length).toEqual(0)
   })
@@ -31,7 +55,7 @@ describe('The residence component', () => {
         value: 'test@abc.com'
       }
     }
-    const component = mount(<ResidenceItem {...expected} />)
+    const component = mountComponent(mockStore, ResidenceItem, expected);
     expect(component.find('.reference').length).toEqual(1)
   })
 
@@ -43,7 +67,7 @@ describe('The residence component', () => {
       },
       OtherRole: {}
     }
-    const component = mount(<ResidenceItem {...expected} />)
+    const component = mountComponent(mockStore, ResidenceItem, expected);
     expect(component.find('.role.hidden').length).toEqual(0)
   })
 
@@ -54,7 +78,7 @@ describe('The residence component', () => {
         value: 'Dance'
       }
     }
-    const component = mount(<ResidenceItem {...expected} />)
+    const component = mountComponent(mockStore, ResidenceItem, expected);
     expect(component.find('.role.hidden').length).toEqual(0)
   })
 
@@ -62,7 +86,6 @@ describe('The residence component', () => {
     let updates = 0
     const expected = {
       name: 'residence',
-
       Dates: {
         from: {
           day: '1',
@@ -81,7 +104,8 @@ describe('The residence component', () => {
         updates++
       }
     }
-    const component = mount(<ResidenceItem {...expected} />)
+
+    const component = mountComponent(mockStore, ResidenceItem, expected);
     component
       .find('.address .street input')
       .first()

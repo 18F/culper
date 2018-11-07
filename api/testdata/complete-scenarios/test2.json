@@ -1411,9 +1411,12 @@
                     }
                   },
                   "Year": {
-                    "type": "number",
+                    "type": "datecontrol",
                     "props": {
-                      "value": "1979"
+                      "month": "1",
+                      "day": "1",
+                      "year": "1979",
+                      "estimated": false
                     }
                   },
                   "YearEstimated": {
@@ -1484,9 +1487,12 @@
                     }
                   },
                   "Year": {
-                    "type": "number",
+                    "type": "datecontrol",
                     "props": {
-                      "value": "1999"
+                      "month": "1",
+                      "day": "1",
+                      "year": "1999",
+                      "estimated": false
                     }
                   },
                   "YearEstimated": {
