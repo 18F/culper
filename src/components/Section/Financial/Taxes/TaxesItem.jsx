@@ -142,7 +142,7 @@ export default class TaxesItem extends ValidationElement {
             hideMonth={true}
             hideDay={true}
             showEstimated={false}
-            min={minYearFiled.minDate.getFullYear()}
+            minDate={this.props.Year.date}
             minDateEqualTo={true}
             required={this.props.required}
             onUpdate={this.updateYear}
