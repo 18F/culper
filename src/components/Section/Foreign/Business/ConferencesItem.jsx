@@ -142,6 +142,7 @@ export default class ConferencesItem extends ValidationElement {
           <DateRange
             name="Dates"
             {...this.props.Dates}
+            minDateEqualTo={true}
             onUpdate={this.updateDates}
             onError={this.props.onError}
             className="conferences-dates"

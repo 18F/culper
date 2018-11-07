@@ -69,6 +69,7 @@ export default class DebarredItem extends ValidationElement {
           <DateControl
             name="Date"
             {...this.props.Date}
+            minDateEqualTo={true}
             onUpdate={this.updateDate}
             onError={this.props.onError}
             className="legal-investigations-debarred-date"

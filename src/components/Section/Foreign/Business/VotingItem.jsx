@@ -64,6 +64,7 @@ export default class VotingItem extends ValidationElement {
           <DateControl
             name="Date"
             {...this.props.Date}
+            minDateEqualTo={true}
             onUpdate={this.updateDate}
             onError={this.props.onError}
             className="foreign-business-voting-date"

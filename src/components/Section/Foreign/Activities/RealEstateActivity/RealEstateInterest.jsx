@@ -225,6 +225,7 @@ export default class RealEstateInterest extends ValidationElement {
             label={i18n.t(
               'foreign.activities.realestate.interest.label.acquired'
             )}
+            minDateEqualTo={true}
             noMaxDate={true}
             onUpdate={this.updateAcquired}
             onError={this.props.onError}

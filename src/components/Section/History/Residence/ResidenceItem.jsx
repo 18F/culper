@@ -277,6 +277,7 @@ export default class ResidenceItem extends ValidationElement {
             name="Dates"
             {...this.props.Dates}
             label={i18n.t('history.residence.label.dates')}
+            minDateEqualTo={true}
             onUpdate={this.updateDates}
             onError={this.props.onError}
             required={this.props.required}
@@ -385,6 +386,7 @@ export default class ResidenceItem extends ValidationElement {
                   name="ReferenceLastContact"
                   className="reference-last-contact"
                   {...this.props.ReferenceLastContact}
+                  minDateEqualTo={true}
                   onUpdate={this.updateReferenceLastContact}
                   onError={this.props.onError}
                   required={this.props.required}

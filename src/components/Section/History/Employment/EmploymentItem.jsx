@@ -380,6 +380,7 @@ export default class EmploymentItem extends ValidationElement {
             name="Dates"
             {...this.props.Dates}
             receiveProps={this.props.receiveProps}
+            minDateEqualTo={true}
             onUpdate={this.updateDates}
             onError={this.props.onError}
             required={this.props.required}

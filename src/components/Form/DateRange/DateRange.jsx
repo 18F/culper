@@ -324,7 +324,7 @@ DateRange.errors = [
       ) {
         return null
       }
-      return props.from.date && props.to.date && props.from.date < props.to.date
+      return props.from.date && props.to.date && props.from.date <= props.to.date
     }
   }
 ]
