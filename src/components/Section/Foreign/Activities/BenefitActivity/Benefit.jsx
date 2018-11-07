@@ -273,13 +273,14 @@ export default class Benefit extends ValidationElement {
           </RadioGroup>
           <Show when={(this.props.BenefitFrequency || {}).value === 'Other'}>
             <div>
-              {i18n.m('foreign.activities.benefit.label.otherBenefit')}
-              <Textarea
+              {/* The 'Other' frequency type has the same fields as the ConinuingBenefit */}
+              <ContinuingBenefit
                 name="OtherBenefit"
                 {...this.props.OtherBenefit}
                 onUpdate={this.updateOtherBenefit}
                 onError={this.props.onError}
                 required={this.props.required}
+                scrollIntoView={this.props.scrollIntoView}
               />
             </div>
           </Show>
