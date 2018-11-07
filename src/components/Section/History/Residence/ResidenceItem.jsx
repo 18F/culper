@@ -1,5 +1,7 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { i18n } from '../../../../config'
+import { physicaladdress } from '../../../../schema/form/physicaladdress'
 import {
   ValidationElement,
   DateRange,
@@ -18,6 +20,7 @@ import {
   NotApplicable,
   Email
 } from '../../../Form'
+import AlternateAddress from '../../../Form/Location/AlternateAddress'
 import { today, daysAgo } from '../dateranges'
 import { buildDate } from '../../../../validators/helpers'
 
@@ -73,23 +76,7 @@ export default class ResidenceItem extends ValidationElement {
    */
   update(queue) {
     this.props.onUpdate({
-      name: this.props.name,
-      Dates: this.props.Dates,
-      Address: this.props.Address,
-      Comments: this.props.Comments,
-      Role: this.props.Role,
-      RoleOther: this.props.RoleOther,
-      ReferenceName: this.props.ReferenceName,
-      ReferenceLastContact: this.props.ReferenceLastContact,
-      ReferenceRelationshipComments: this.props.ReferenceRelationshipComments,
-      ReferenceRelationship: this.props.ReferenceRelationship,
-      ReferenceRelationshipOther: this.props.ReferenceRelationshipOther,
-      ReferencePhoneEvening: this.props.ReferencePhoneEvening,
-      ReferencePhoneDay: this.props.ReferencePhoneDay,
-      ReferencePhoneMobile: this.props.ReferencePhoneMobile,
-      ReferenceEmailNotApplicable: this.props.ReferenceEmailNotApplicable,
-      ReferenceEmail: this.props.ReferenceEmail,
-      ReferenceAddress: this.props.ReferenceAddress,
+      ...this.props,
       ...queue
     })
   }
@@ -245,7 +232,7 @@ export default class ResidenceItem extends ValidationElement {
       <div className="residence">
         <Field
           title={i18n.t('history.residence.heading.address')}
-          optional={true}
+          optional
           help="history.residence.help.address"
           comments={false}
           commentsName="Comments"
@@ -254,23 +241,30 @@ export default class ResidenceItem extends ValidationElement {
           onUpdate={this.updateComments}
           onError={this.props.onError}
           adjustFor="address"
-          shrink={true}
+          shrink
           scrollIntoView={this.props.scrollIntoView}>
           <Location
             name="Address"
             {...this.props.Address}
             label={i18n.t('history.residence.label.address')}
             layout={Location.ADDRESS}
-            geocode={true}
+            geocode
             addressBook="Residence"
             addressBooks={this.props.addressBooks}
-            showPostOffice={true}
+            showPostOffice
             dispatch={this.props.dispatch}
             onUpdate={this.updateAddress}
             onError={this.props.onError}
             required={this.props.required}
           />
         </Field>
+
+        {this.props.render({
+          belongingTo: 'AlternateAddress',
+          address: this.props.AlternateAddress,
+          country: this.props.Address.country,
+          onUpdate: this.update
+        })}
 
         <Field
           title={i18n.t('history.residence.heading.dates')}
@@ -283,6 +277,7 @@ export default class ResidenceItem extends ValidationElement {
             name="Dates"
             {...this.props.Dates}
             label={i18n.t('history.residence.label.dates')}
+            minDateEqualTo={true}
             onUpdate={this.updateDates}
             onError={this.props.onError}
             required={this.props.required}
@@ -356,7 +351,7 @@ export default class ResidenceItem extends ValidationElement {
             <Field
               title={i18n.t('history.residence.heading.reference')}
               titleSize="h2"
-              optional={true}
+              optional
               className="no-margin-bottom"
               scrollIntoView={this.props.scrollIntoView}>
               {i18n.m('history.residence.para.reference')}
@@ -366,7 +361,7 @@ export default class ResidenceItem extends ValidationElement {
               <Field
                 title={i18n.t('reference.heading.name')}
                 titleSize="h3"
-                optional={true}
+                optional
                 filterErrors={Name.requiredErrorsOnly}
                 scrollIntoView={this.props.scrollIntoView}>
                 <Name
@@ -385,12 +380,13 @@ export default class ResidenceItem extends ValidationElement {
                 title={i18n.t('reference.heading.contact')}
                 help={'reference.help.contact'}
                 adjustFor="labels"
-                shrink={true}
+                shrink
                 scrollIntoView={this.props.scrollIntoView}>
                 <DateControl
                   name="ReferenceLastContact"
                   className="reference-last-contact"
                   {...this.props.ReferenceLastContact}
+                  minDateEqualTo={true}
                   onUpdate={this.updateReferenceLastContact}
                   onError={this.props.onError}
                   required={this.props.required}
@@ -399,13 +395,13 @@ export default class ResidenceItem extends ValidationElement {
 
               <Field
                 title={i18n.t('reference.heading.relationship')}
-                comments={true}
+                comments
                 commentsName="ReferenceRelationshipComments"
                 commentsValue={this.props.ReferenceRelationshipComments}
                 commentsAdd={'reference.label.relationship.comments'}
                 onUpdate={this.updateReferenceRelationshipComments}
                 adjustFor="labels"
-                shrink={true}
+                shrink
                 scrollIntoView={this.props.scrollIntoView}>
                 <label>{i18n.t('reference.label.relationship.title')}</label>
                 <CheckboxGroup
@@ -488,7 +484,7 @@ export default class ResidenceItem extends ValidationElement {
               <Field
                 title={i18n.t('reference.heading.correspondence')}
                 titleSize="h2"
-                optional={true}
+                optional
                 className="no-margin-bottom"
                 scrollIntoView={this.props.scrollIntoView}>
                 {i18n.m('reference.para.correspondence')}
@@ -567,7 +563,7 @@ export default class ResidenceItem extends ValidationElement {
 
               <Field
                 title={i18n.t('reference.heading.address')}
-                optional={true}
+                optional
                 help={'reference.help.address'}
                 adjustFor="address"
                 scrollIntoView={this.props.scrollIntoView}>
@@ -578,15 +574,23 @@ export default class ResidenceItem extends ValidationElement {
                   {...this.props.ReferenceAddress}
                   label={i18n.t('reference.label.address')}
                   layout={Location.ADDRESS}
-                  geocode={true}
+                  geocode
                   addressBooks={this.props.addressBooks}
                   addressBook="Reference"
-                  showPostOffice={true}
+                  showPostOffice
                   dispatch={this.props.dispatch}
                   onUpdate={this.updateReferenceAddress}
                   onError={this.props.onError}
                 />
               </Field>
+
+              {this.props.render({
+                belongingTo: 'ReferenceAlternateAddress',
+                address: this.props.ReferenceAlternateAddress,
+                country: this.props.ReferenceAddress.country,
+                onUpdate: this.update
+              })}
+
             </div>
           </div>
         </Show>

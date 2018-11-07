@@ -64,6 +64,7 @@ export default class GamblingItem extends ValidationElement {
             {...this.props.Dates}
             className="dates"
             label={i18n.t('financial.gambling.label.dates')}
+            minDateEqualTo={true}
             onUpdate={this.updateDates}
             onError={this.props.onError}
             required={this.props.required}

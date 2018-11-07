@@ -136,6 +136,7 @@ export default class AdviceItem extends ValidationElement {
             name="Dates"
             {...this.props.Dates}
             onUpdate={this.updateDates}
+            minDateEqualTo={true}
             onError={this.props.onError}
             className="advice-dates"
             required={this.props.required}

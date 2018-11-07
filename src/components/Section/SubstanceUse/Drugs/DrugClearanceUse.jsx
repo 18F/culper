@@ -66,6 +66,7 @@ export default class DrugClearanceUse extends ValidationElement {
             name="InvolvementDates"
             className="involvement-dates"
             {...this.props.InvolvementDates}
+            minDateEqualTo={true}
             onUpdate={this.updateInvolvementDates}
             onError={this.props.onError}
             required={this.props.required}

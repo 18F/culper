@@ -17,12 +17,18 @@ type SaveHandler struct {
 
 // ServeHTTP saves a payload of information for the provided account.
 func (service SaveHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	account := &api.Account{}
 
-	// Get account ID
-	id := AccountIDFromRequestContext(r)
+	// Valid token and audience while populating the audience ID
+	_, id, err := service.Token.CheckToken(r)
+	if err != nil {
+		service.Log.WarnError(api.InvalidJWT, err, api.LogFields{})
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 
 	// Get the account information from the data store
-	account := &api.Account{ID: id}
+	account.ID = id
 	if _, err := account.Get(service.Database, id); err != nil {
 		service.Log.WarnError(api.NoAccount, err, api.LogFields{})
 		RespondWithStructuredError(w, api.NoAccount, http.StatusUnauthorized)
@@ -56,7 +62,7 @@ func (service SaveHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	entity, err := payload.Entity()
 	if err != nil {
 		service.Log.WarnError(api.PayloadEntityError, err, api.LogFields{})
-		RespondWithStructuredError(w, api.PayloadEntityError, http.StatusBadRequest)
+		RespondWithStructuredError(w, api.PayloadEntityError, http.StatusInternalServerError)
 		return
 	}
 
@@ -67,4 +73,5 @@ func (service SaveHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	EncodeErrJSON(w, nil)
 }

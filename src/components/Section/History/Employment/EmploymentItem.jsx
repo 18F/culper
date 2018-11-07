@@ -24,6 +24,7 @@ export default class EmploymentItem extends ValidationElement {
   constructor(props) {
     super(props)
 
+    this.update = this.update.bind(this);
     this.updateEmploymentActivity = this.updateEmploymentActivity.bind(this)
     this.updateEmployment = this.updateEmployment.bind(this)
     this.updateDates = this.updateDates.bind(this)
@@ -379,6 +380,7 @@ export default class EmploymentItem extends ValidationElement {
             name="Dates"
             {...this.props.Dates}
             receiveProps={this.props.receiveProps}
+            minDateEqualTo={true}
             onUpdate={this.updateDates}
             onError={this.props.onError}
             required={this.props.required}
@@ -518,6 +520,13 @@ export default class EmploymentItem extends ValidationElement {
                 onError={this.props.onError}
               />
             </Field>
+
+            { this.props.render({
+              address: this.props.ReferenceAlternateAddress,
+              belongingTo: 'ReferenceAlternateAddress',
+              country: this.props.ReferenceAddress.country,
+              onUpdate: this.update
+            })}
           </div>
         </Show>
 

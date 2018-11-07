@@ -24,44 +24,49 @@ type SubmitHandler struct {
 
 // ServeHTTP submits the application package to the external web service for further processing.
 func (service SubmitHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	account := &api.Account{}
 
-	// Get account ID
-	id := AccountIDFromRequestContext(r)
+	// Valid token and audience while populating the audience ID
+	_, id, err := service.Token.CheckToken(r)
+	if err != nil {
+		service.Log.WarnError(api.InvalidJWT, err, api.LogFields{})
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 
 	// Get the account information from the data store
-	account := &api.Account{ID: id}
+	account.ID = id
 	if _, err := account.Get(service.Database, id); err != nil {
 		service.Log.WarnError(api.NoAccount, err, api.LogFields{})
-		RespondWithStructuredError(w, api.NoAccount, http.StatusUnauthorized)
+		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
 	// If the account is locked then we cannot proceed
 	if account.Locked {
 		service.Log.Warn(api.AccountLocked, api.LogFields{})
-		RespondWithStructuredError(w, api.AccountLocked, http.StatusForbidden)
+		EncodeErrJSON(w, err)
 		return
 	}
 
 	if err := service.generatePdfs(account); err != nil {
 		service.Log.WarnError(api.PdfError, err, api.LogFields{})
-		RespondWithStructuredError(w, api.PdfError, http.StatusInternalServerError)
+		EncodeErrJSON(w, errors.New(api.PdfError))
 		return
 	}
 
 	if err := service.transmit(w, r, account); err != nil {
-		service.Log.WarnError(api.PdfError, err, api.LogFields{})
-		RespondWithStructuredError(w, api.PdfError, http.StatusConflict)
+		w.WriteHeader(http.StatusConflict)
+		EncodeErrJSON(w, err)
 		return
 	}
 
 	// Lock the account
-	if err := account.Lock(service.Database); err != nil {
+	if err = account.Lock(service.Database); err != nil {
 		service.Log.WarnError(api.AccountUpdateError, err, api.LogFields{})
-		RespondWithStructuredError(w, api.AccountUpdateError, http.StatusInternalServerError)
+		EncodeErrJSON(w, err)
 		return
 	}
-
 }
 
 func (service SubmitHandler) generatePdfs(account *api.Account) error {

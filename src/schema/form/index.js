@@ -1,3 +1,4 @@
+import { alternateaddress } from './alternateaddress'
 import { benefit } from './benefit'
 import { branch } from './branch'
 import { checkbox } from './checkbox'
@@ -33,6 +34,7 @@ import { textarea } from './textarea'
 import { signature } from './signature'
 
 export {
+  alternateaddress,
   benefit,
   branch,
   checkbox,

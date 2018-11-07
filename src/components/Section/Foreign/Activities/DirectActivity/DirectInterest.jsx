@@ -215,6 +215,7 @@ export default class DirectInterest extends ValidationElement {
           <DateControl
             name="Acquired"
             className="acquired"
+            minDateEqualTo={true}
             {...this.props.Acquired}
             label={i18n.t('foreign.activities.direct.interest.label.acquired')}
             onUpdate={this.updateAcquired}
@@ -311,6 +312,8 @@ export default class DirectInterest extends ValidationElement {
             onUpdate={this.updateRelinquishedNotApplicable}>
             <DateControl
               name="Relinquished"
+              minDate={(this.props.Acquired || {}).date}
+              minDateEqualTo={true}
               className="relinquished"
               {...this.props.Relinquished}
               label={i18n.t(

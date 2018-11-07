@@ -12,7 +12,7 @@ import (
 )
 
 var (
-	redirectTo   = os.Getenv("API_REDIRECT")
+	redirectTo = os.Getenv("API_REDIRECT")
 	cookieDomain = os.Getenv("COOKIE_DOMAIN")
 )
 
@@ -28,15 +28,15 @@ type SamlRequestHandler struct {
 // ServeHTTP is the initial entry point for authentication.
 func (service SamlRequestHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	if !service.Env.True(api.SamlEnabled) {
-		service.Log.Warn(api.SamlNotImplemented, api.LogFields{})
-		RespondWithStructuredError(w, api.SamlNotImplemented, http.StatusInternalServerError)
+		service.Log.Warn(api.SamlAttemptDenied, api.LogFields{})
+		http.Error(w, "SAML is not implemented", http.StatusInternalServerError)
 		return
 	}
 
 	encoded, url, err := service.SAML.CreateAuthenticationRequest()
 	if err != nil {
 		service.Log.WarnError(api.SamlRequestError, err, api.LogFields{})
-		RespondWithStructuredError(w, api.SamlRequestError, http.StatusInternalServerError)
+		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
@@ -61,8 +61,8 @@ type SamlResponseHandler struct {
 // ServeHTTP is the returning entry point for authentication.
 func (service SamlResponseHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	if !service.Env.True(api.SamlEnabled) {
-		service.Log.Warn(api.SamlNotImplemented, api.LogFields{})
-		RespondWithStructuredError(w, api.SamlNotImplemented, http.StatusInternalServerError)
+		service.Log.Warn(api.SamlAttemptDenied, api.LogFields{})
+		http.Error(w, "SAML is not implemented", http.StatusInternalServerError)
 		return
 	}
 
@@ -114,7 +114,7 @@ func (service SamlResponseHandler) ServeHTTP(w http.ResponseWriter, r *http.Requ
 		// Default to frontend host
 		uri, _ := url.Parse(redirectTo)
 		cookieDomain = strings.Split(uri.Host, ":")[0]
-	}
+        }
 	expiration := time.Now().Add(time.Duration(1) * time.Minute)
 	cookie := &http.Cookie{
 		Domain:   cookieDomain,

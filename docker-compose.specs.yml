@@ -31,7 +31,7 @@ services:
   nightwatch:
     build:
       context: ./specs
-      dockerfile: ../conf/docker/Dockerfile.frontend
+      dockerfile: Dockerfile.frontend
     command: [npm, run, docker]
     volumes:
       - ./specs:/usr/src/app

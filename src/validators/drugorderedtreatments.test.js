@@ -192,6 +192,29 @@ describe('Drug Ordered Treatment Validation', function() {
             items: [
               {
                 Item: {
+                  OrderedBy: ['Employer','None'],
+                  Explanation: {
+                    value: 'The explanation'
+                  },
+                  ActionTaken: { value: 'No' },
+                  NoActionTakenExplanation: {
+                    value: 'No action taken'
+                  }
+                }
+              }
+            ]
+          }
+        },
+        expected: false
+      },
+      {
+        state: {
+          TreatmentOrdered: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
                   OrderedBy: ['Employer'],
                   Explanation: {
                     value: 'The explanation'

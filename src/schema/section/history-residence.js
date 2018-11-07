@@ -7,6 +7,7 @@ export const historyResidence = (data = {}) => {
       Item: {
         Dates: form.daterange(xitem.Dates),
         Address: form.location(xitem.Address),
+        AlternateAddress: form.physicaladdress(xitem.AlternateAddress),
         Comments: form.textarea(xitem.Comments),
         ReferenceName: form.name(xitem.ReferenceName),
         ReferenceLastContact: form.datecontrol(xitem.ReferenceLastContact),
@@ -23,11 +24,13 @@ export const historyResidence = (data = {}) => {
         ),
         ReferenceEmail: form.email(xitem.ReferenceEmail),
         ReferenceAddress: form.location(xitem.ReferenceAddress),
+        ReferenceAlternateAddress: form.physicaladdress(xitem.ReferenceAlternateAddress),
         Role: form.radio(xitem.Role),
         RoleOther: form.text(xitem.RoleOther)
       }
     }
   })
+
   return {
     List: form.collection(items, (data.List || {}).branch)
   }

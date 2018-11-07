@@ -63,6 +63,7 @@ export default class FederalItem extends ValidationElement {
           <DateRange
             name="Dates"
             {...this.props.Dates}
+            minDateEqualTo={true}
             onUpdate={this.updateDates}
             onError={this.props.onError}
             required={this.props.required}

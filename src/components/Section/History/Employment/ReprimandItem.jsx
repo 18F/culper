@@ -61,6 +61,7 @@ export default class ReprimandItem extends ValidationElement {
             name="Date"
             {...this.props.Date}
             onUpdate={this.updateDate}
+            minDateEqualTo={true}
             onError={this.props.onError}
             hideDay={true}
             required={this.props.required}
