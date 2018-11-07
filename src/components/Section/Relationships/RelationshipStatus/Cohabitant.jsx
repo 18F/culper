@@ -288,7 +288,6 @@ export default class Cohabitant extends ValidationElement {
           <DateControl
             name="cohabitationBegan"
             className="cohabitation-began"
-            minDateEqualTo={true}
             prefix={"cohabitant"}
             minDate={cohabitationBeganMinDate}
             {...this.props.CohabitationBegan}
