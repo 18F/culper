@@ -1005,6 +1005,9 @@ export default class Relative extends ValidationElement {
                     className="relative-residence-documentnumber"
                     {...this.props.ResidenceDocumentNumber}
                     onError={this.props.onError}
+                    maxlength="30"
+                    pattern={alphaNumericRegEx}
+                    prefix="alphanumeric"
                     onUpdate={this.updateResidenceDocumentNumber}
                     required={this.props.required}
                   />
