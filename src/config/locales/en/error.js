@@ -1105,5 +1105,15 @@ export const error = {
       title: 'There is a problem with your entry',
       message: 'Only use letters and numbers.'
     }
+  },
+  nonPayment: {
+    required: {
+      title: 'Your response is required',
+      message: ''
+    },
+    min: {
+      title: 'There is a problem with your entry',
+      message: 'The date resolved is before the date began.'
+    }
   }
 }
