@@ -52,7 +52,9 @@ export default class ForeignBenefitValidator {
       case 'Continuing':
         return new ContinuingBenefitValidator(this.continuingBenefit).isValid()
       case 'Other':
-        return validGenericTextfield(this.otherBenefit)
+        // Using ContinuingBenefitValidator because on the paper form, "Other"
+        // uses identical fields to "Continuing Benefit"
+        return new ContinuingBenefitValidator(this.otherBenefit).isValid()
       default:
         return false
     }

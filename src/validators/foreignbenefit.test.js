@@ -110,7 +110,30 @@ describe('Foreign Born Benefits', function() {
           BenefitType: { value: 'Educational' },
           BenefitFrequency: { value: 'Other' },
           OtherBenefit: {
-            value: 'Sweet'
+            Began: {
+              month: '1',
+              day: '1',
+              year: '2010'
+            },
+            End: {
+              month: '1',
+              day: '1',
+              year: '2020'
+            },
+            Frequency: { value: 'Weekly' },
+            Country: {
+              value: 'Germany'
+            },
+            Value: {
+              value: '2000'
+            },
+            Reason: {
+              value: 'Foo'
+            },
+            Obligated: { value: 'Yes' },
+            ObligatedExplanation: {
+              value: 'Because'
+            }
           }
         },
         expected: true
