@@ -1,5 +1,6 @@
 import { unschema } from '../schema'
 import { relationshipsRelatives } from './relationships-relatives'
+import { alternateaddress } from '../form';
 
 describe('Schema for financial taxes', () => {
   it('can wrap in schema', () => {
@@ -65,7 +66,8 @@ describe('Schema for financial taxes', () => {
                 country: null
               },
               HasAffiliation: {},
-              EmployerRelationship: {}
+              EmployerRelationship: {},
+              AlternateAddress: alternateaddress()
             }
           }
         ]

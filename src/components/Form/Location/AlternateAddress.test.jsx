@@ -1,5 +1,5 @@
 import React from 'react'
-import { mount } from 'enzyme'
+import { shallow, mount } from 'enzyme'
 import { fn } from 'jest'
 import { AlternateAddress } from './AlternateAddress'
 import { address } from '../../../config/locales/en/address'
@@ -20,7 +20,7 @@ describe('<AlternateAddress />', () => {
       const branch = component.find('Branch')
   
       expect(branch.length).toEqual(1)
-      expect(branch.prop('label')).toEqual(address.militaryAddress)
+      expect(branch.prop('label')).toEqual(address.militaryAddress.me)
     })
 
     it('renders an APO/FPO-only component when Branch value is yes', () => {
@@ -114,6 +114,21 @@ describe('<AlternateAddress />', () => {
         Telephone: {}
       }
     })
+  })
+
+  it('always shows the APO field when the `forceAPO` prop is supplied', () => {
+    const props = {
+      belongingTo: 'Address',
+      onUpdate: jest.fn(),
+      country: 'United States',
+      address: {
+        Address: {},
+        HasDifferentAddress: { value: '' }
+      }
+    }
+
+    const component = shallow(<AlternateAddress {...props} />)
+    expect(component.find('Branch').length).toBe(1)
   })
 
   describe('when the user indicates an APO address', () => {
