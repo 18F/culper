@@ -89,7 +89,8 @@ export default class ForeignContact extends React.Component {
             addressBook="ForeignNational"
             dispatch={this.props.dispatch}
             layout={Location.ADDRESS}
-            geocode={true}
+            geocode
+            showPostOffice={false}
             onUpdate={this.updateAddress}
             onError={this.props.onError}
             required={this.props.required}
