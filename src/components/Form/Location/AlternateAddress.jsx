@@ -13,8 +13,12 @@ import alternateAddress from '../../../schema/form/alternateaddress'
 const alternateAddressDefaultState = alternateAddress
 const propTypes = {
   address: PropTypes.object,
+  addressBook: PropTypes.string,
+  allowForeignMilitary: PropTypes.bool,
   belongingTo: PropTypes.string,
   country: PropTypes.string,
+  // XXX Rename this prop
+  forceAPO: PropTypes.bool,
   onUpdate: PropTypes.func
 }
 
@@ -57,6 +61,9 @@ class AlternateAddress extends ValidationElement {
     )
   }
 
+  // XXX figure out how to simplify the ways in which we compute
+  // what state the component should render in based on the
+  // switches supplied to it
   isForeignMilitaryAddress() {
     const { address: { HasDifferentAddress } } = this.props
     return HasDifferentAddress.value === 'Yes' && this.isForeignAddress()
@@ -145,6 +152,7 @@ class AlternateAddress extends ValidationElement {
 
 AlternateAddress.propTypes = propTypes
 AlternateAddress.defaultProps = {
+  addressBook: 'Residence',
   addressFieldMetadata: {
     streetLabel: i18n.t('address.us.street.label'),
     streetPlaceholder: i18n.t('address.us.street.placeholder'),
