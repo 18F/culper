@@ -38,7 +38,7 @@ export default class Currency extends React.Component {
 
 Currency.defaultProps = {
   name: 'currency',
-  placeholder: i18n.t('currency.placeholder'),
+  placeholder: '',
   disabled: false,
   value: '',
   min: '1',
