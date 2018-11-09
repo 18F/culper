@@ -1381,10 +1381,6 @@ export const foreign = {
       label: {
         location: 'Did this contact take place in the United States of America?'
       },
-      placeholder: {
-        city: 'Please enter the city',
-        country: 'Please enter the country'
-      },
       help: {
         branch: {
           title:
@@ -1495,10 +1491,6 @@ export const foreign = {
       para: {
         or: 'or'
       },
-      placeholder: {
-        city: 'Please enter the city of birth',
-        country: 'Please enter the country of birth'
-      },
       help: {
         branch: {
           title: 'Foreign national defined:',
@@ -1593,10 +1585,6 @@ export const foreign = {
       },
       para: {
         or: 'or'
-      },
-      placeholder: {
-        city: 'Please enter the city of birth',
-        country: 'Please enter the country of birth'
       },
       help: {
         branch: {
