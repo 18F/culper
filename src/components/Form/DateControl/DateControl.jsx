@@ -344,7 +344,6 @@ export default class DateControl extends ValidationElement {
               name="month"
               ref="month"
               label="Month"
-              placeholder={i18n.t('date.placeholder.day')}
               disabled={this.state.disabled}
               max="12"
               maxlength="2"
@@ -371,7 +370,6 @@ export default class DateControl extends ValidationElement {
               name="day"
               ref="day"
               label="Day"
-              placeholder={i18n.t('date.placeholder.day')}
               disabled={this.state.disabled}
               max={daysInMonth(this.state.month, this.state.year)}
               maxlength="2"
@@ -398,7 +396,6 @@ export default class DateControl extends ValidationElement {
               name="year"
               ref="year"
               label="Year"
-              placeholder={i18n.t('date.placeholder.year')}
               disabled={this.state.disabled}
               min="1000"
               max={this.props.maxDate && this.props.maxDate.getFullYear()}
