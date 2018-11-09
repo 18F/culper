@@ -9,7 +9,6 @@ describe('<AlternateAddress />', () => {
   describe('when a user indicates a foreign address', () => {
     it('renders a Branch component', () => {
       const props = {
-        allowForeignMilitary: true,
         country: '',
         address: {
           HasDifferentAddress: '',
@@ -24,25 +23,8 @@ describe('<AlternateAddress />', () => {
       expect(branch.prop('label')).toEqual(address.militaryAddress)
     })
 
-    it('does not render APO selection branch when prop `allowForeignMilitary` is false', () => {
-      const props = {
-        allowForeignMilitary: false,
-        country: '',
-        address: {
-          HasDifferentAddress: '',
-          Address: { country: '' }
-        }
-      }
-
-      const component = mount(<AlternateAddress {...props} />)
-      const branch = component.find('Branch')
-
-      expect(branch.length).toEqual(0)
-    })
-
     it('renders an APO/FPO-only component when Branch value is yes', () => {
       const props = {
-        allowForeignMilitary: true,
         country: '',
         address: {
           HasDifferentAddress: { value: 'Yes' }
@@ -57,7 +39,6 @@ describe('<AlternateAddress />', () => {
 
     it('passes the branch value to the branch', () => {
       const props = {
-        allowForeignMilitary: true,
         country: '',
         address: {
           HasDifferentAddress: { value: 'No' }
@@ -71,7 +52,6 @@ describe('<AlternateAddress />', () => {
     describe('when the user toggles to an APO address', () => {
       it('toggles the secondary APO address form properly', () => {
         const props = {
-          allowForeignMilitary: true,
           onUpdate: () => ({}),
           country: 'Spain',
           address: {

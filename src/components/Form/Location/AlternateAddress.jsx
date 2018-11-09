@@ -97,7 +97,7 @@ class AlternateAddress extends ValidationElement {
   render() {
     return (
       <div>
-        <Show when={this.isForeignAddress() && this.props.allowForeignMilitary}>
+        <Show when={this.isForeignAddress()}>
           <Branch
             label={i18n.t('address.militaryAddress')}
             labelSize="h3"
@@ -135,7 +135,6 @@ class AlternateAddress extends ValidationElement {
 
 AlternateAddress.propTypes = propTypes
 AlternateAddress.defaultProps = {
-  allowForeignMilitary: true,
   addressFieldMetadata: {
     streetLabel: i18n.t('address.us.street.label'),
     streetPlaceholder: i18n.t('address.us.street.placeholder'),

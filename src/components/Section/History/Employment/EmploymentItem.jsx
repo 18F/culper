@@ -440,7 +440,6 @@ export default class EmploymentItem extends ValidationElement {
           />
           {this.props.render({
             address: this.props.SupervisorAlternateAddress,
-            allowForeignMilitary: false,
             belongingTo: 'SupervisorAlternateAddress',
             country: this.props.Supervisor.Address.country,
             onUpdate: this.update
