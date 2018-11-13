@@ -52,7 +52,7 @@ export default class Branch extends React.Component {
         shrink={true}>
         <div className="content">{this.props.children}</div>
         <RadioGroup
-          className="option-list branch"
+          className="option-list option-list-inline branch"
           disabled={this.props.disabled}
           required={this.props.required}
           onError={this.props.onError}

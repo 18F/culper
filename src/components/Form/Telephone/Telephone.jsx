@@ -750,7 +750,7 @@ export default class Telephone extends ValidationElement {
             disabled={this.props.noNumber}>
             <Radio
               native={true}
-              className="time day"
+              className="block time day"
               label={i18n.t('telephone.timeOfDay.day')}
               value="Day"
               ariaLabel={i18n.t('telephone.aria.day')}
@@ -760,7 +760,7 @@ export default class Telephone extends ValidationElement {
             />
             <Radio
               native={true}
-              className="time night"
+              className="block time night"
               label={i18n.t('telephone.timeOfDay.night')}
               value="Night"
               ariaLabel={i18n.t('telephone.aria.night')}
@@ -770,7 +770,7 @@ export default class Telephone extends ValidationElement {
             />
             <Radio
               native={true}
-              className="time both"
+              className="block time both"
               label={i18n.t('telephone.timeOfDay.both')}
               value="Both"
               ariaLabel={i18n.t('telephone.aria.both')}
@@ -790,6 +790,7 @@ export default class Telephone extends ValidationElement {
             <RadioGroup
               selectedValue={this.props.numberType}
               required={this.required()}
+              className="option-list-inline"
               disabled={this.props.noNumber}>
               <Radio
                 name="numbertype-cell"

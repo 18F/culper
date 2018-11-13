@@ -331,7 +331,7 @@ export default class Name extends ValidationElement {
           optional={true}
           optionalText={i18n.t(`${prefix}.label.optional`)}>
           <RadioGroup
-            className="option-list suffix"
+            className="option-list option-list-inline suffix"
             selectedValue={this.props.suffix}
             disabled={this.props.disabled}>
             <Radio

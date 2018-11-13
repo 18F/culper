@@ -41,7 +41,7 @@ export default class MaidenName extends ValidationElement {
       <div className={klass}>
         <label>{this.props.label}</label>
         <RadioGroup
-          className="option-list"
+          className="option-list option-list-inline"
           selectedValue={this.props.value}
           onError={this.props.onError}
           required={this.props.required}>
