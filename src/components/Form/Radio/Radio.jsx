@@ -255,26 +255,26 @@ export default class Radio extends ValidationElement {
 
     return (
       <div className={this.divClass()}>
+      <input
+        className={this.inputClass()}
+        id={this.state.uid}
+        name={this.state.uid}
+        type="radio"
+        ref="radio"
+        disabled={this.props.disabled}
+        readOnly={this.props.readonly}
+        value={this.state.value}
+        onChange={this.handleChange}
+        onClick={this.handleClick}
+        onKeyDown={this.handleKeyPress}
+        onFocus={this.handleFocus}
+        onBlur={this.handleBlur}
+        checked={this.state.checked}
+        aria-label={speech}
+        />
         <label className={this.labelClass()} htmlFor={this.state.uid}>
-          <input
-            className={this.inputClass()}
-            id={this.state.uid}
-            name={this.state.uid}
-            type="radio"
-            ref="radio"
-            disabled={this.props.disabled}
-            readOnly={this.props.readonly}
-            value={this.state.value}
-            onChange={this.handleChange}
-            onClick={this.handleClick}
-            onKeyDown={this.handleKeyPress}
-            onFocus={this.handleFocus}
-            onBlur={this.handleBlur}
-            checked={this.state.checked}
-            aria-label={speech}
-          />
           {this.props.children}
-          <span>{this.props.label}</span>
+          {this.props.label}
         </label>
       </div>
     )
