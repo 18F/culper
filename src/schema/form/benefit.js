@@ -12,6 +12,9 @@ export const benefit = (data = {}) => {
     Began: datecontrol(data.Began),
     End: datecontrol(data.End),
     Frequency: radio(data.Frequency),
+    // Required for first "Other" explanation
+    OtherFrequencyTypeExplanation: textarea(data.OtherFrequencyTypeExplanation),
+    // Required for the nested "Other" explanation within the parent "Other"
     OtherFrequency: textarea(data.OtherFrequency),
     Received: datecontrol(data.Received),
     Country: country(data.Country),

@@ -1,7 +1,8 @@
 import ForeignBenefitValidator, {
   OneTimeBenefitValidator,
   FutureBenefitValidator,
-  ContinuingBenefitValidator
+  ContinuingBenefitValidator,
+  OtherBenefitValidator
 } from './foreignbenefit'
 
 describe('Foreign Born Benefits', function() {
@@ -133,6 +134,9 @@ describe('Foreign Born Benefits', function() {
             Obligated: { value: 'Yes' },
             ObligatedExplanation: {
               value: 'Because'
+            },
+            OtherFrequencyTypeExplanation: {
+              value: 'Some Explanation'
             }
           }
         },
@@ -465,6 +469,38 @@ describe('Foreign Born Benefits', function() {
 
     tests.forEach(test => {
       expect(new FutureBenefitValidator(test.props).validFrequency()).toBe(
+        test.expected
+      )
+    })
+  })
+
+  it('should validate other benefit other frequency', function() {
+    const tests = [
+      {
+        props: {
+          Frequency: { value: 'Annually' }
+        },
+        expected: true
+      },
+      {
+        props: {
+          Frequency: { value: 'Nope' }
+        },
+        expected: false
+      },
+      {
+        props: {
+          Frequency: { value: 'Other' },
+          OtherFrequency: {
+            value: 'Something else'
+          }
+        },
+        expected: true
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(new OtherBenefitValidator(test.props).validFrequency()).toBe(
         test.expected
       )
     })

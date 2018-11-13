@@ -13,6 +13,7 @@ import {
 import OneTimeBenefit from './OneTimeBenefit'
 import FutureBenefit from './FutureBenefit'
 import ContinuingBenefit from './ContinuingBenefit'
+import OtherBenefit from './OtherBenefit';
 
 export default class Benefit extends ValidationElement {
   constructor(props) {
@@ -306,12 +307,10 @@ export default class Benefit extends ValidationElement {
           />
         </Show>
 
-
         <Show when={(this.props.BenefitFrequency || {}).value === 'Other'}>
-          {/* The 'Other' frequency type has the same fields as the ConinuingBenefit */}
-          <ContinuingBenefit
+          <OtherBenefit
             name="OtherBenefit"
-            {...this.props.OtherBenefit}
+            otherBenefit={this.props.OtherBenefit}
             onUpdate={this.updateOtherBenefit}
             onError={this.props.onError}
             required={this.props.required}
