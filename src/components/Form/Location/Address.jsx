@@ -12,7 +12,10 @@ import ApoFpo from '../ApoFpo'
 import Show from '../Show'
 import Suggestions from '../Suggestions'
 import { AddressSuggestion } from './AddressSuggestion'
-import LocationValidator, { countryString, isInternational } from '../../../validators/location'
+import LocationValidator, {
+  countryString,
+  isInternational
+} from '../../../validators/location'
 import { countryValueResolver } from './Location'
 
 export default class Address extends ValidationElement {
@@ -46,16 +49,16 @@ export default class Address extends ValidationElement {
     this.storeErrors = this.storeErrors.bind(this)
     this.focusField = this.focusField.bind(this)
     this.blurField = this.blurField.bind(this)
-    this.onAddressUpdate = this.onAddressUpdate.bind(this);
-    this.blurForceUpdate = this.blurForceUpdate.bind(this);
+    this.onAddressUpdate = this.onAddressUpdate.bind(this)
+    this.blurForceUpdate = this.blurForceUpdate.bind(this)
   }
 
   onAddressUpdate(nextValue) {
-    const { name, value } = nextValue;
+    const { name, value } = nextValue
 
     this.update({
       [name]: value
-    });
+    })
   }
 
   updateCountry(values) {
@@ -176,7 +179,7 @@ export default class Address extends ValidationElement {
     this.setState({ showAddressBook: true })
   }
 
-  closeAddressBook(hook = function () {}) {
+  closeAddressBook(hook = function() {}) {
     this.setState({ showAddressBook: false }, hook)
   }
 
@@ -240,8 +243,8 @@ export default class Address extends ValidationElement {
   render() {
     const book = this.props.addressBooks[this.props.addressBook] || []
     const country = countryString(this.props.country)
-    const locationValidator = new LocationValidator(this.props);
-    const instateZipcode = locationValidator.validZipcodeState();
+    const locationValidator = new LocationValidator(this.props)
+    const instateZipcode = locationValidator.validZipcodeState()
 
     return (
       <div className="address">
@@ -264,7 +267,7 @@ export default class Address extends ValidationElement {
               onBlur={this.props.onBlur}
               onFocus={this.props.onFocus}
             />
-            <Show when={this.props.showPostOffice}>
+            {this.props.showPostOffice && (
               <Radio
                 name="addressType"
                 label={i18n.m('address.options.apoFpo.label')}
@@ -276,10 +279,7 @@ export default class Address extends ValidationElement {
                 onBlur={this.props.onBlur}
                 onFocus={this.props.onFocus}
               />
-            </Show>
-            <Show when={!this.props.showPostOffice}>
-              <div className="apofpo postoffice block" />
-            </Show>
+            )}
             <Radio
               name="addressType"
               label={i18n.m('address.options.international.label')}
