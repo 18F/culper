@@ -94,6 +94,7 @@ describe('Employment component validation', function() {
                     }
                   },
                   ReasonLeft: {
+                    ReasonDescription: { value: 'Because' }
                     Reasons: {
                       items: [
                         {
