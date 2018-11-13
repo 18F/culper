@@ -9,11 +9,11 @@ import {
 import ContinuingBenefit from './ContinuingBenefit';
 
 const propTypes = {
-  otherBenefit: PropTypes.object.isRequired,
+  otherBenefit: PropTypes.object,
   onUpdate: PropTypes.func.isRequired,
   onError: PropTypes.func.isRequired,
-  required: PropTypes.bool.isRequired,
-  scrollIntoView: PropTypes.func.isRequired
+  required: PropTypes.bool,
+  scrollIntoView: PropTypes.func
 }
 
 export default class OtherBenefit extends ValidationElement {
@@ -21,7 +21,7 @@ export default class OtherBenefit extends ValidationElement {
     super(props)
 
     this.update = this.update.bind(this)
-    this.updateOtherBenefitFrequency = this.updateOtherBenefitFrequency.bind(this)
+    this.updateOtherFrequencyTypeExplanation = this.updateOtherFrequencyTypeExplanation.bind(this)
   }
 
   update(queue) {
@@ -31,7 +31,7 @@ export default class OtherBenefit extends ValidationElement {
     })
   }
 
-  updateOtherBenefitFrequency(value) {
+  updateOtherFrequencyTypeExplanation(value) {
     this.update({
       OtherFrequencyTypeExplanation: value
     })
@@ -42,12 +42,12 @@ export default class OtherBenefit extends ValidationElement {
       <div>
         {i18n.m('foreign.activities.benefit.label.otherBenefit')}
         <Textarea
-          name="OtherBenefitTypeExplanation"
+          name="OtherFrequencyTypeExplanation"
           {...this.props.otherBenefit}
-          onUpdate={this.updateOtherBenefitFrequency}
+          onUpdate={this.updateOtherFrequencyTypeExplanation}
           onError={this.props.onError}
           required={this.props.required}
-          valud={this.props.otherBenefit.OtherFrequencyTypeExplanation}
+          value={this.props.otherBenefit.OtherFrequencyTypeExplanation}
         />
         {/* Hacky spacer between components */}
         <div style={{ height: '30px'}} />
@@ -66,3 +66,9 @@ export default class OtherBenefit extends ValidationElement {
 }
 
 OtherBenefit.propTypes = propTypes
+
+OtherBenefit.defualtProps = {
+  otherBenefit: {},
+  required: false,
+  scrollIntoView: () => {}
+}

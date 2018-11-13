@@ -310,7 +310,7 @@ export default class Benefit extends ValidationElement {
         <Show when={(this.props.BenefitFrequency || {}).value === 'Other'}>
           <OtherBenefit
             name="OtherBenefit"
-            otherBenefit={this.props.OtherBenefit}
+            otherBenefit={this.props.OtherBenefit || {}}
             onUpdate={this.updateOtherBenefit}
             onError={this.props.onError}
             required={this.props.required}

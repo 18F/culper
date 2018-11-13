@@ -49,9 +49,9 @@ describe('The OtherBenefit component', () => {
         {...requiredProps}
       />
     )
-    expect(component.find({ name: 'OtherBenefitTypeExplanation'}).length).toBe(1)
+    expect(component.find({ name: 'OtherFrequencyTypeExplanation'}).length).toBe(1)
     component
-      .find({ name: 'OtherBenefitTypeExplanation' })
+      .find({ name: 'OtherFrequencyTypeExplanation' })
       .simulate('change')
     expect(requiredProps.onUpdate).toHaveBeenCalled()
   })
