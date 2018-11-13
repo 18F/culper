@@ -97,7 +97,7 @@ class AlternateAddress extends ValidationElement {
   render() {
     return (
       <div>
-        <Show when={this.isForeignAddress() && this.props.allowForeignMilitary}>
+        <Show when={this.isForeignAddress()}>
           <Branch
             label={i18n.t('address.militaryAddress')}
             labelSize="h3"
