@@ -8,9 +8,7 @@ export const military = {
     para: 'Take a guided tour through the section'
   },
   review: {
-    para: 'View all the sections associated with military history at once',
-    comments:
-      'Add a comment to clarify any of your responses in the military history section'
+    para: 'View all the sections associated with military history at once'
   },
   destination: {
     intro: 'Military intro',

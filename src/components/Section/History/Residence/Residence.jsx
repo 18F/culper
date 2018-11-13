@@ -13,6 +13,9 @@ import { today, daysAgo } from '../dateranges'
 import { InjectGaps, ResidenceCustomSummary } from '../summaries'
 import ResidenceItem from './ResidenceItem'
 import { Gap } from '../Gap'
+import alternateAddressProvider from '../../../Form/Location/alternateAddressProvider'
+
+const AlternateAddressResidenceItem = alternateAddressProvider(ResidenceItem)
 
 const byline = (item, index, initial, translation, required, validator) => {
   switch (true) {
@@ -124,7 +127,7 @@ export default class Residence extends SubsectionElement {
           appendLabel={i18n.t('history.residence.collection.append')}
           required={this.props.required}
           scrollIntoView={this.props.scrollIntoView}>
-          <ResidenceItem
+          <AlternateAddressResidenceItem
             bind
             name="Item"
             addressBooks={this.props.addressBooks}

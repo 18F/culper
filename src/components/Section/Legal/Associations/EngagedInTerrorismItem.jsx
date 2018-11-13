@@ -55,6 +55,7 @@ export default class EngagedInTerrorismItem extends ValidationElement {
           <DateRange
             name="Dates"
             {...this.props.Dates}
+            minDateEqualTo={true}
             onUpdate={this.updateDates}
             onError={this.props.onError}
             className="legal-associations-engaged-dates"

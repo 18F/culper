@@ -76,6 +76,7 @@ services:
       dockerfile: conf/docker/Dockerfile.api
     env_file:
       - .env
+    command: ./bin/live_reload.sh
     volumes:
       - .:/go/src/github.com/18F/e-QIP-prototype
       - /go/src/github.com/18F/e-QIP-prototype/api/vendor

@@ -315,6 +315,7 @@ export default class SponsorshipItem extends ValidationElement {
             name="Dates"
             {...this.props.Dates}
             onUpdate={this.updateDates}
+            minDateEqualTo={true}
             onError={this.props.onError}
             className="foreign-business-sponsorship-dates"
             required={this.props.required}

@@ -300,6 +300,7 @@ export default class ForeignNational extends ValidationElement {
           <DateControl
             name="FirstContact"
             className="first-contact"
+            minDateEqualTo={true}
             {...this.props.FirstContact}
             onUpdate={this.updateFirstContact}
             onError={this.props.onError}
@@ -318,6 +319,7 @@ export default class ForeignNational extends ValidationElement {
             {...this.props.LastContact}
             prefix="contact.last"
             minDate={(this.props.FirstContact || {}).date}
+            minDateEqualTo={true}
             onUpdate={this.updateLastContact}
             onError={this.props.onError}
             required={this.props.required}

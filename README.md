@@ -58,6 +58,25 @@ To do the initial setup and ensure that all tests pass locally:
 make
 ```
 
+#### Feature Tests
+
+Setup steps:
+
+1. Edit _.env_ file
+  * *API\_REDIRECT*=__http://web:8080__
+  * *API\_BASE\_URL*=__http://api:3000__
+1. Disable *SAML\_ENABLED* auth and enable *BASIC\_ENABLED*
+1. Edit /etc/hosts file __OPTIONAL__
+  * Add _web_ and _api_ to the end of the localhost line in /etc/hosts so you don't have to keep changing the values of API\_REDIRECT or API\_BASE\_URL in .env file back to localhost
+
+To run the feature specs locally:
+
+```shell
+make specs
+```
+
+Screenshots will be recorded in _specs/screenshots_
+
 ### Running a local server
 
 To run a local server, we are using [docker][21] containers leveraging the [docker-compose][20] tool via the command:

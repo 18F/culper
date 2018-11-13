@@ -24,6 +24,7 @@ export default class EmploymentItem extends ValidationElement {
   constructor(props) {
     super(props)
 
+    this.update = this.update.bind(this);
     this.updateEmploymentActivity = this.updateEmploymentActivity.bind(this)
     this.updateEmployment = this.updateEmployment.bind(this)
     this.updateDates = this.updateDates.bind(this)
@@ -44,22 +45,7 @@ export default class EmploymentItem extends ValidationElement {
 
   update(queue) {
     this.props.onUpdate({
-      EmploymentActivity: this.props.EmploymentActivity,
-      Employment: this.props.Employment,
-      Dates: this.props.Dates,
-      Title: this.props.Title,
-      DutyStation: this.props.DutyStation,
-      Status: this.props.Status,
-      Address: this.props.Address,
-      Telephone: this.props.Telephone,
-      Supervisor: this.props.Supervisor,
-      ReferenceName: this.props.ReferenceName,
-      ReferencePhone: this.props.ReferencePhone,
-      ReferenceAddress: this.props.ReferenceAddress,
-      PhysicalAddress: this.props.PhysicalAddress,
-      Additional: this.props.Additional,
-      ReasonLeft: this.props.ReasonLeft,
-      Reprimand: this.props.Reprimand,
+      ...this.props,
       ...queue
     })
   }
@@ -379,6 +365,7 @@ export default class EmploymentItem extends ValidationElement {
             name="Dates"
             {...this.props.Dates}
             receiveProps={this.props.receiveProps}
+            minDateEqualTo={true}
             onUpdate={this.updateDates}
             onError={this.props.onError}
             required={this.props.required}
@@ -451,6 +438,12 @@ export default class EmploymentItem extends ValidationElement {
             required={this.props.required}
             scrollIntoView={this.props.scrollIntoView}
           />
+          {this.props.render({
+            address: this.props.SupervisorAlternateAddress,
+            belongingTo: 'SupervisorAlternateAddress',
+            country: this.props.Supervisor.Address.country,
+            onUpdate: this.update
+          })}
         </Show>
 
         <Show when={this.showReference()}>
@@ -518,6 +511,13 @@ export default class EmploymentItem extends ValidationElement {
                 onError={this.props.onError}
               />
             </Field>
+
+            { this.props.render({
+              address: this.props.ReferenceAlternateAddress,
+              belongingTo: 'ReferenceAlternateAddress',
+              country: this.props.ReferenceAddress.country,
+              onUpdate: this.update
+            })}
           </div>
         </Show>
 
@@ -577,7 +577,7 @@ EmploymentItem.defaultProps = {
   Status: {},
   Address: {},
   Telephone: {},
-  Supervisor: {},
+  Supervisor: { Address: {} },
   ReferenceName: {},
   ReferencePhone: {},
   ReferenceAddress: {},

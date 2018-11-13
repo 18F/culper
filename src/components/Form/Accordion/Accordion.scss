@@ -119,7 +119,7 @@ $breakpoints: (
         transition: opacity 300ms ease-in;
 
         span {
-          border-bottom: 1px dashed $eapp-blue;
+          text-decoration: underline;
         }
       }
     }
@@ -192,7 +192,7 @@ $breakpoints: (
 
     .left {
       color: #000;
-      width: 80%;
+      width: 100%;
       padding-left: 10%;
       text-overflow: ellipsis;
       transition: border-left-color 0.3s;
@@ -214,6 +214,16 @@ $breakpoints: (
         text-decoration: none;
         display: inline-block;
         width: 100%;
+      }
+
+      .context {
+        display: inline-block;
+        max-width: 48rem;
+        vertical-align: middle;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        vertical-align: bottom;
       }
 
       // All but the first anchor
@@ -245,13 +255,6 @@ $breakpoints: (
 
           > strong,
           > strong * {
-            display: inline-block;
-            max-width: 53rem;
-            vertical-align: middle;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-
             &.italic {
               font-style: italic;
             }
@@ -298,7 +301,7 @@ $breakpoints: (
         color: $eapp-blue;
 
         > span:last-of-type > span {
-          border-bottom: 1px dashed $eapp-blue;
+          text-decoration: underline;
         }
       }
 
@@ -306,7 +309,7 @@ $breakpoints: (
         color: $eapp-blue;
 
         > span:last-of-type > span {
-          border-bottom: 1px dashed $eapp-blue;
+          text-decoration: underline;
         }
       }
     }
@@ -395,14 +398,7 @@ button.usa-button-outline {
 
         .left.close,
         .left.open {
-          width: 90%;
           transition: width 300ms ease-out;
-
-          > a,
-          > span > span > strong,
-          > span > span {
-            max-height: 3rem;
-          }
 
           vertical-align: middle;
           line-height: 3rem;
@@ -413,7 +409,7 @@ button.usa-button-outline {
 
             span.toggle {
               width: 4rem;
-              border-bottom: 1px dashed $eapp-blue;
+              text-decoration: underline;
             }
           }
 

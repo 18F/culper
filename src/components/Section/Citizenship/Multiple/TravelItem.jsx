@@ -56,6 +56,7 @@ export default class TravelItem extends ValidationElement {
             name="Dates"
             className="travel-item-dates"
             {...this.props.Dates}
+            minDateEqualTo={true}
             onUpdate={this.updateDates}
             onError={this.props.onError}
             required={this.props.required}

@@ -24,6 +24,7 @@ export const historyResidence = (data = {}) => {
         ),
         ReferenceEmail: form.email(xitem.ReferenceEmail),
         ReferenceAddress: form.location(xitem.ReferenceAddress),
+        ReferenceAlternateAddress: form.physicaladdress(xitem.ReferenceAlternateAddress),
         Role: form.radio(xitem.Role),
         RoleOther: form.text(xitem.RoleOther)
       }

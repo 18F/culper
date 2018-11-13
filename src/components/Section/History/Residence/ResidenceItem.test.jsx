@@ -4,12 +4,17 @@ import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
 import ResidenceItem from './ResidenceItem'
 
+const alternateAddressRenderMock = jest.fn();
 const mountComponent = (mockStore, Component, props) => {
   const store = mockStore({ application: { AddressBooks: {} }})
+  const finalProps = {
+    render: alternateAddressRenderMock,
+    ...props
+  }
 
   return mount(
     <Provider store={store}>
-      <Component {...props} />
+      <Component {...finalProps} />
     </Provider>
   )
 }
@@ -18,7 +23,7 @@ describe('The residence component', () => {
   const mockStore = configureMockStore()
 
   it('renders without crashing', () => {
-    shallow(<ResidenceItem />)
+    shallow(<ResidenceItem render={alternateAddressRenderMock}/>)
   })
 
   it('no error on empty', () => {
@@ -77,28 +82,10 @@ describe('The residence component', () => {
     expect(component.find('.role.hidden').length).toEqual(0)
   })
 
-  describe('displaying a <PhysicalAddress/> component', () => {
-    it('supplies the physicalAddress prop to the <PhysicalAddress> component', () => {
-      const props = {
-        Address: {
-          country: 'POSTOFFICE'
-        },
-        AlternateAddress: {
-          HasDifferentAddress: { value: '' }
-        }
-      }
-
-      const component = mountComponent(mockStore, ResidenceItem, props);
-      expect(component.find('AlternateAddress').prop('alternateAddress')).toBeDefined();
-    })
-  })
-
-
   it('performs updates for components', () => {
     let updates = 0
     const expected = {
       name: 'residence',
-
       Dates: {
         from: {
           day: '1',

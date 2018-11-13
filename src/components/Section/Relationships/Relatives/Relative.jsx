@@ -1005,6 +1005,9 @@ export default class Relative extends ValidationElement {
                     className="relative-residence-documentnumber"
                     {...this.props.ResidenceDocumentNumber}
                     onError={this.props.onError}
+                    maxlength="30"
+                    pattern={alphaNumericRegEx}
+                    prefix="alphanumeric"
                     onUpdate={this.updateResidenceDocumentNumber}
                     required={this.props.required}
                   />
@@ -1045,6 +1048,7 @@ export default class Relative extends ValidationElement {
                 className="relative-first-contact"
                 {...this.props.FirstContact}
                 prefix="relative"
+                minDateEqualTo={true}
                 applicantBirthdate={this.props.Birthdate}
                 onError={this.props.onError}
                 onUpdate={this.updateFirstContact}
@@ -1065,6 +1069,8 @@ export default class Relative extends ValidationElement {
                 className="relative-last-contact"
                 {...this.props.LastContact}
                 prefix="relative"
+                minDate={(this.props.FirstContact || {}).date}
+                minDateEqualTo={true}
                 applicantBirthdate={this.props.Birthdate}
                 onError={this.props.onError}
                 onUpdate={this.updateLastContact}

@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { i18n, env } from '../../../config'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
-import SectionComments from '../SectionComments'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import { Show, Field } from '../../Form'
 import Competence from './Competence/Competence'
@@ -229,18 +228,6 @@ class Psychological extends SectionElement {
                 />
               </div>
             </Show>
-
-            <hr className="section-divider" />
-            <SectionComments
-              name="comments"
-              {...this.props.Comments}
-              title={i18n.t('psychological.review.comments')}
-              dispatch={this.props.dispatch}
-              onUpdate={this.handleUpdate.bind(this, 'Comments')}
-              onError={this.handleError}
-              required={false}
-              scrollIntoView={false}
-            />
           </SectionView>
         </SectionViews>
       </div>
@@ -262,7 +249,6 @@ function mapStateToProps(state) {
     Hospitalizations: psychological.Hospitalizations,
     Diagnoses: psychological.Diagnoses,
     ExistingConditions: psychological.ExistingConditions,
-    Comments: psychological.Comments || {},
     Errors: errors.financial || [],
     Completed: completed.psychological || [],
     ShowExistingConditions: showQuestion21E(psychological),
@@ -338,17 +324,6 @@ export class PsychologicalSections extends React.Component {
             />
           </div>
         </Show>
-
-        <hr className="section-divider" />
-        <SectionComments
-          name="comments"
-          {...this.props.Comments}
-          title={i18n.t('psychological.review.comments')}
-          dispatch={this.props.dispatch}
-          onError={this.handleError}
-          required={false}
-          scrollIntoView={false}
-        />
       </div>
     )
   }

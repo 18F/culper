@@ -128,7 +128,7 @@ describe('The Address component', () => {
       showPostOffice: false
     }
     const component = mount(<Address {...props} />)
-    expect(component.find('.address-options .postoffice').length).toBe(1)
+    expect(component.find('.address-options .postoffice').length).toBe(0)
   })
 
   it('simulate blurring', () => {

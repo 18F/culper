@@ -50,7 +50,7 @@ export default class RadioGroup extends ValidationElement {
     const name = self.props.name ? `${self.state.uid}-${self.props.name}` : null
     const children = React.Children.map(self.props.children, child => {
       // If type is not Radio, stop
-      if (child.type !== Radio) {
+      if (!child || child.type !== Radio) {
         return child
       }
 
