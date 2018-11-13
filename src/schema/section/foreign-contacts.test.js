@@ -1,5 +1,6 @@
 import { unschema } from '../schema'
 import { foreignContacts } from './foreign-contacts'
+import alternateAddress from '../form/alternateaddress'
 
 describe('Schema for financial taxes', () => {
   it('can wrap in schema', () => {
@@ -42,6 +43,7 @@ describe('Schema for financial taxes', () => {
               Address: {
                 country: null
               },
+              AlternateAddress: alternateAddress(),
               AddressNotApplicable: {},
               Employer: {},
               EmployerNotApplicable: {},

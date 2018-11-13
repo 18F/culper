@@ -32,6 +32,7 @@ export const relationshipsRelatives = (data = {}) => {
         ),
         IsDeceased: form.branch(xitem.IsDeceased),
         Address: form.location(xitem.Address),
+        AlternateAddress: form.physicaladdress(xitem.AlternateAddress),
         DocumentNumber: form.text(xitem.DocumentNumber),
         CourtName: form.text(xitem.CourtName),
         CourtAddress: form.location(xitem.CourtAddress),
