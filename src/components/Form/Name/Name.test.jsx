@@ -1,4 +1,5 @@
 import React from 'react'
+import { i18n } from '../../../config'
 import { mount } from 'enzyme'
 import Name from './Name'
 
@@ -33,7 +34,7 @@ describe('The Name component', () => {
         valid: false
       }
 
-      const expectedMessage = "Oops, there’s a problem.If your first name is a single letter, please select the \"Initial only\" checkbox and type the letter. 100 character limit."
+       const expectedMessage = "Oops, there’s a problem.If your first name is a single letter, please select the \"Initial only\" checkbox and type the letter. 100 character limit."
       const component = mount(<Name {...params} />)
       component.find('.first input').simulate('change')
       expect(component.find('[aria-label="First name"] .error-messages [data-i18n="error.name.first.pattern"]').text()).toEqual(expectedMessage)
@@ -61,7 +62,7 @@ describe('The Name component', () => {
         valid: false
       }
 
-      const expectedMessage = "Oops, there’s a problem.If your middle name is a single letter, please select the \"Initial only\" checkbox and type the letter. 100 character limit."
+      const expectedMessage = i18n.t('error.name.middle.pattern')
       const component = mount(<Name {...params} />)
       component.find('.middle input').simulate('change')
       expect(component.find('[aria-label="Middle name"] .error-messages [data-i18n="error.name.middle.pattern"]').text()).toEqual(expectedMessage)
