@@ -234,6 +234,23 @@ export default class NonpaymentItem extends ValidationElement {
         </Field>
 
         <Field
+          title={i18n.t('financial.nonpayment.heading.date')}
+          adjustFor="labels"
+          scrollIntoView={this.props.scrollIntoView}
+          shrink={true}>
+          <DateControl
+            name="Date"
+            {...this.props.Date}
+            minDateEqualTo={true}
+            onUpdate={this.updateDate}
+            onError={this.props.onError}
+            className="nonpayment-date"
+            hideDay={true}
+            required={this.props.required}
+          />
+        </Field>
+
+        <Field
           title={i18n.t('financial.nonpayment.heading.resolved')}
           adjustFor="label"
           scrollIntoView={this.props.scrollIntoView}
@@ -250,6 +267,7 @@ export default class NonpaymentItem extends ValidationElement {
               {...this.props.Resolved}
               minDate={(this.props.Date || {}).date}
               minDateEqualTo={true}
+              prefix="nonPayment"
               onUpdate={this.updateResolved}
               onError={this.props.onError}
               className="nonpayment-resolved"
@@ -257,23 +275,6 @@ export default class NonpaymentItem extends ValidationElement {
               required={this.props.required}
             />
           </NotApplicable>
-        </Field>
-
-        <Field
-          title={i18n.t('financial.nonpayment.heading.date')}
-          adjustFor="labels"
-          scrollIntoView={this.props.scrollIntoView}
-          shrink={true}>
-          <DateControl
-            name="Date"
-            {...this.props.Date}
-            minDateEqualTo={true}
-            onUpdate={this.updateDate}
-            onError={this.props.onError}
-            className="nonpayment-date"
-            hideDay={true}
-            required={this.props.required}
-          />
         </Field>
 
         <Field

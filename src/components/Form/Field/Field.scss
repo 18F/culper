@@ -184,23 +184,6 @@
               color: $eapp-red;
             }
           }
-
-          &.add,
-          &.add:link,
-          &.add:visited,
-          &.add:hover,
-          &.add:active,
-          &.remove,
-          &.remove:link,
-          &.remove:visited,
-          &.remove:hover,
-          &.remove:active {
-            text-decoration: none;
-
-            span {
-              border-bottom: 1px $eapp-blue dashed;
-            }
-          }
         }
       }
     }
@@ -224,7 +207,6 @@
         a:visited,
         a:active {
           padding: 1.5rem 0;
-          color: #004c7e;
         }
 
         a:hover {

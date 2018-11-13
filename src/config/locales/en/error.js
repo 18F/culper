@@ -1139,5 +1139,35 @@ export const error = {
       title: 'There is a problem with your entry',
       message: 'Only use letters and numbers.'
     }
+  },
+  nonPayment: {
+    required: {
+      title: 'Your response is required',
+      message: ''
+    },
+    min: {
+      title: 'There is a problem with your entry',
+      message: 'The date resolved is before the date began.'
+    }
+  },
+  taxesSatisfied: {
+    required: {
+      title: 'Your response is required',
+      message: ''
+    },
+    min: {
+      title: 'There is a problem with your entry',
+      message: 'The date satisfied is before the date you failed to file or pay.'
+    }
+  },
+  drugUsage: {
+    required: {
+      title: 'Your response is required',
+      message: ''
+    },
+    min: {
+      title: 'There is a problem with your entry',
+      message: 'The date of most recent use is before the date of first use.'
+    }
   }
 }
