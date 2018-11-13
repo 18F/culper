@@ -162,6 +162,9 @@
         .flags {
           text-align: right;
           clear: both;
+          > div {
+            display: inline-block;
+          }
 
           .block > label {
             margin-right: 0;

@@ -37,15 +37,6 @@
     }
   }
 
-  .nonumber {
-    position: relative;
-
-    label {
-      margin-right: 0;
-      width: 13rem;
-    }
-  }
-
   .separator {
     font-size: 2rem;
     line-height: 2rem;
@@ -92,8 +83,8 @@
     }
   }
 
-  .phonetype-option.block label {
-    height: auto !important;
-    width: 8.7rem !important;
-  }
+  // .phonetype-option.block label {
+  //   height: auto !important;
+  //   width: 8.7rem !important;
+  // }
 }

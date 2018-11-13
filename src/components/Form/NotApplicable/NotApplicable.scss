@@ -1,9 +1,4 @@
 .not-applicable {
-  .button label {
-    width: 23.5rem;
-    margin-bottom: 4.6rem !important;
-  }
-
   // If there is a field within the NotApplicable we want
   // to remove the last `margin-bottom` to tighten up the `or`
   // with the last component.
