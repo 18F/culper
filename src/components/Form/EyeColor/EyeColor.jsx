@@ -26,7 +26,7 @@ export default class EyeColor extends ValidationElement {
       <div className={this.divClass()}>
         <label>{this.props.label}</label>
         <RadioGroup
-          className="option-list eapp-extend-labels"
+          className="option-list option-list-inline eapp-extend-labels"
           selectedValue={this.props.value}
           required={this.props.required}
           onError={this.props.onError}>
@@ -40,9 +40,6 @@ export default class EyeColor extends ValidationElement {
             onError={this.props.onError}
             onBlur={this.props.onBlur}
             onFocus={this.props.onFocus}>
-            <div className="eye-icon brown">
-              <Svg src="/img/eye.svg" />
-            </div>
           </Radio>
           <Radio
             name={`${this.props.name}-hazel`}
@@ -54,9 +51,6 @@ export default class EyeColor extends ValidationElement {
             onError={this.props.onError}
             onBlur={this.props.onBlur}
             onFocus={this.props.onFocus}>
-            <div className="eye-icon hazel">
-              <Svg src="/img/eye.svg" />
-            </div>
           </Radio>
           <Radio
             name={`${this.props.name}-blue`}
@@ -68,9 +62,6 @@ export default class EyeColor extends ValidationElement {
             onError={this.props.onError}
             onBlur={this.props.onBlur}
             onFocus={this.props.onFocus}>
-            <div className="eye-icon blue">
-              <Svg src="/img/eye.svg" />
-            </div>
           </Radio>
           <Radio
             name={`${this.props.name}-green`}
@@ -82,9 +73,6 @@ export default class EyeColor extends ValidationElement {
             onError={this.props.onError}
             onBlur={this.props.onBlur}
             onFocus={this.props.onFocus}>
-            <div className="eye-icon green">
-              <Svg src="/img/eye.svg" />
-            </div>
           </Radio>
           <Radio
             name={`${this.props.name}-gray`}
@@ -96,9 +84,6 @@ export default class EyeColor extends ValidationElement {
             onError={this.props.onError}
             onBlur={this.props.onBlur}
             onFocus={this.props.onFocus}>
-            <div className="eye-icon gray">
-              <Svg src="/img/eye.svg" />
-            </div>
           </Radio>
           <Radio
             name={`${this.props.name}-maroon`}
@@ -110,9 +95,6 @@ export default class EyeColor extends ValidationElement {
             onError={this.props.onError}
             onBlur={this.props.onBlur}
             onFocus={this.props.onFocus}>
-            <div className="eye-icon maroon">
-              <Svg src="/img/eye.svg" />
-            </div>
           </Radio>
           <Radio
             name={`${this.props.name}-black`}
@@ -124,9 +106,6 @@ export default class EyeColor extends ValidationElement {
             onError={this.props.onError}
             onBlur={this.props.onBlur}
             onFocus={this.props.onFocus}>
-            <div className="eye-icon black">
-              <Svg src="/img/eye.svg" />
-            </div>
           </Radio>
           <Radio
             name={`${this.props.name}-multi`}
@@ -138,9 +117,6 @@ export default class EyeColor extends ValidationElement {
             onError={this.props.onError}
             onBlur={this.props.onBlur}
             onFocus={this.props.onFocus}>
-            <div className="eye-icon multi">
-              <Svg src="/img/eye-multicolor.svg" />
-            </div>
           </Radio>
           <Radio
             name={`${this.props.name}-pink`}
@@ -152,9 +128,6 @@ export default class EyeColor extends ValidationElement {
             onError={this.props.onError}
             onBlur={this.props.onBlur}
             onFocus={this.props.onFocus}>
-            <div className="eye-icon pink">
-              <Svg src="/img/eye.svg" />
-            </div>
           </Radio>
           <Radio
             name={`${this.props.name}-unknown`}
@@ -166,9 +139,6 @@ export default class EyeColor extends ValidationElement {
             onError={this.props.onError}
             onBlur={this.props.onBlur}
             onFocus={this.props.onFocus}>
-            <div className="eye-icon unknown">
-              <Svg src="/img/question.svg" />
-            </div>
           </Radio>
         </RadioGroup>
       </div>

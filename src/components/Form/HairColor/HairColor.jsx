@@ -26,7 +26,7 @@ export default class HairColor extends ValidationElement {
       <div className={this.divClass()}>
         <label>{this.props.label}</label>
         <RadioGroup
-          className="option-list eapp-extend-labels"
+          className="option-list option-list-inline eapp-extend-labels"
           selectedValue={this.props.value}
           onError={this.props.onError}
           required={this.props.required}>
@@ -40,9 +40,6 @@ export default class HairColor extends ValidationElement {
             onError={this.props.onError}
             onBlur={this.props.onBlur}
             onFocus={this.props.onFocus}>
-            <div className="hair-icon black">
-              <Svg src="/img/hair.svg" />
-            </div>
           </Radio>
           <Radio
             name="hair-brown"
@@ -54,9 +51,6 @@ export default class HairColor extends ValidationElement {
             onError={this.props.onError}
             onBlur={this.props.onBlur}
             onFocus={this.props.onFocus}>
-            <div className="hair-icon brown">
-              <Svg src="/img/hair.svg" />
-            </div>
           </Radio>
           <Radio
             name="hair-red"
@@ -68,9 +62,6 @@ export default class HairColor extends ValidationElement {
             onError={this.props.onError}
             onBlur={this.props.onBlur}
             onFocus={this.props.onFocus}>
-            <div className="hair-icon red">
-              <Svg src="/img/hair.svg" />
-            </div>
           </Radio>
           <Radio
             name="hair-blonde"
@@ -82,9 +73,6 @@ export default class HairColor extends ValidationElement {
             onError={this.props.onError}
             onBlur={this.props.onBlur}
             onFocus={this.props.onFocus}>
-            <div className="hair-icon blonde">
-              <Svg src="/img/hair.svg" />
-            </div>
           </Radio>
           <Radio
             name="hair-sandy"
@@ -96,9 +84,6 @@ export default class HairColor extends ValidationElement {
             onError={this.props.onError}
             onBlur={this.props.onBlur}
             onFocus={this.props.onFocus}>
-            <div className="hair-icon sandy">
-              <Svg src="/img/hair.svg" />
-            </div>
           </Radio>
           <Radio
             name="hair-gray"
@@ -110,9 +95,6 @@ export default class HairColor extends ValidationElement {
             onError={this.props.onError}
             onBlur={this.props.onBlur}
             onFocus={this.props.onFocus}>
-            <div className="hair-icon gray">
-              <Svg src="/img/hair.svg" />
-            </div>
           </Radio>
           <Radio
             name="hair-white"
@@ -124,9 +106,6 @@ export default class HairColor extends ValidationElement {
             onError={this.props.onError}
             onBlur={this.props.onBlur}
             onFocus={this.props.onFocus}>
-            <div className="hair-icon white">
-              <Svg src="/img/hair.svg" />
-            </div>
           </Radio>
           <Radio
             name="hair-bald"
@@ -140,9 +119,6 @@ export default class HairColor extends ValidationElement {
             onBlur={this.props.onBlur}
             onFocus={this.props.onFocus}
             required={this.props.required}>
-            <div className="hair-icon bald">
-              <Svg src="/img/bald.svg" />
-            </div>
           </Radio>
           <Radio
             name="hair-blue"
@@ -154,9 +130,6 @@ export default class HairColor extends ValidationElement {
             onError={this.props.onError}
             onBlur={this.props.onBlur}
             onFocus={this.props.onFocus}>
-            <div className="hair-icon blue">
-              <Svg src="/img/hair.svg" />
-            </div>
           </Radio>
           <Radio
             name="hair-green"
@@ -168,9 +141,6 @@ export default class HairColor extends ValidationElement {
             onError={this.props.onError}
             onBlur={this.props.onBlur}
             onFocus={this.props.onFocus}>
-            <div className="hair-icon green">
-              <Svg src="/img/hair.svg" />
-            </div>
           </Radio>
           <Radio
             name="hair-orange"
@@ -182,9 +152,6 @@ export default class HairColor extends ValidationElement {
             onError={this.props.onError}
             onBlur={this.props.onBlur}
             onFocus={this.props.onFocus}>
-            <div className="hair-icon orange">
-              <Svg src="/img/hair.svg" />
-            </div>
           </Radio>
           <Radio
             name="hair-pink"
@@ -196,9 +163,6 @@ export default class HairColor extends ValidationElement {
             onError={this.props.onError}
             onBlur={this.props.onBlur}
             onFocus={this.props.onFocus}>
-            <div className="hair-icon pink">
-              <Svg src="/img/hair.svg" />
-            </div>
           </Radio>
           <Radio
             name="hair-purple"
@@ -210,9 +174,6 @@ export default class HairColor extends ValidationElement {
             onError={this.props.onError}
             onBlur={this.props.onBlur}
             onFocus={this.props.onFocus}>
-            <div className="hair-icon purple">
-              <Svg src="/img/hair.svg" />
-            </div>
           </Radio>
           <Radio
             name="hair-unknown"
@@ -224,9 +185,6 @@ export default class HairColor extends ValidationElement {
             onError={this.props.onError}
             onBlur={this.props.onBlur}
             onFocus={this.props.onFocus}>
-            <div className="hair-icon unknown">
-              <Svg src="/img/question.svg" />
-            </div>
           </Radio>
         </RadioGroup>
       </div>
