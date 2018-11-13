@@ -64,7 +64,7 @@ export class DiplomaItem extends ValidationElement {
             <Radio
               name="diploma-highschool"
               className="diploma-highschool"
-              label={i18n.m('history.education.label.diploma.highschool')}
+              label={i18n.t('history.education.label.diploma.highschool')}
               value="High School Diploma"
               onUpdate={this.updateDiploma}
               onError={this.props.onError}
@@ -72,7 +72,7 @@ export class DiplomaItem extends ValidationElement {
             <Radio
               name="diploma-associate"
               className="diploma-associate"
-              label={i18n.m('history.education.label.diploma.associate')}
+              label={i18n.t('history.education.label.diploma.associate')}
               value="Associate"
               onUpdate={this.updateDiploma}
               onError={this.props.onError}
@@ -80,7 +80,7 @@ export class DiplomaItem extends ValidationElement {
             <Radio
               name="diploma-bachelor"
               className="diploma-bachelor"
-              label={i18n.m('history.education.label.diploma.bachelor')}
+              label={i18n.t('history.education.label.diploma.bachelor')}
               value="Bachelor"
               onUpdate={this.updateDiploma}
               onError={this.props.onError}
@@ -88,7 +88,7 @@ export class DiplomaItem extends ValidationElement {
             <Radio
               name="diploma-master"
               className="diploma-master"
-              label={i18n.m('history.education.label.diploma.master')}
+              label={i18n.t('history.education.label.diploma.master')}
               value="Master"
               onUpdate={this.updateDiploma}
               onError={this.props.onError}
@@ -96,7 +96,7 @@ export class DiplomaItem extends ValidationElement {
             <Radio
               name="diploma-doctorate"
               className="diploma-doctorate"
-              label={i18n.m('history.education.label.diploma.doctorate')}
+              label={i18n.t('history.education.label.diploma.doctorate')}
               value="Doctorate"
               onUpdate={this.updateDiploma}
               onError={this.props.onError}
@@ -104,7 +104,7 @@ export class DiplomaItem extends ValidationElement {
             <Radio
               name="diploma-professional"
               className="diploma-professional"
-              label={i18n.m('history.education.label.diploma.professional')}
+              label={i18n.t('history.education.label.diploma.professional')}
               value="Professional"
               onUpdate={this.updateDiploma}
               onError={this.props.onError}
@@ -112,7 +112,7 @@ export class DiplomaItem extends ValidationElement {
             <Radio
               name="diploma-other"
               className="diploma-other"
-              label={i18n.m('history.education.label.diploma.other')}
+              label={i18n.t('history.education.label.diploma.other')}
               value="Other"
               onUpdate={this.updateDiploma}
               onError={this.props.onError}

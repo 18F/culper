@@ -87,42 +87,42 @@ export default class Marital extends SubsectionElement {
             required={this.props.required}
             onError={this.handleError}>
             <Radio
-              label={i18n.m('relationships.marital.label.status.never')}
+              label={i18n.t('relationships.marital.label.status.never')}
               className="status-never"
               value="NeverMarried"
               onUpdate={this.updateStatus}
               onError={this.handleError}
             />
             <Radio
-              label={i18n.m('relationships.marital.label.status.married')}
+              label={i18n.t('relationships.marital.label.status.married')}
               className="status-married"
               value="Married"
               onUpdate={this.updateStatus}
               onError={this.handleError}
             />
             <Radio
-              label={i18n.m('relationships.marital.label.status.separated')}
+              label={i18n.t('relationships.marital.label.status.separated')}
               className="status-separated"
               value="Separated"
               onUpdate={this.updateStatus}
               onError={this.handleError}
             />
             <Radio
-              label={i18n.m('relationships.marital.label.status.annulled')}
+              label={i18n.t('relationships.marital.label.status.annulled')}
               className="status-annulled"
               value="Annulled"
               onUpdate={this.updateStatus}
               onError={this.handleError}
             />
             <Radio
-              label={i18n.m('relationships.marital.label.status.divorced')}
+              label={i18n.t('relationships.marital.label.status.divorced')}
               className="status-divorced"
               value="Divorced"
               onUpdate={this.updateStatus}
               onError={this.handleError}
             />
             <Radio
-              label={i18n.m('relationships.marital.label.status.widowed')}
+              label={i18n.t('relationships.marital.label.status.widowed')}
               className="status-widowed"
               value="Widowed"
               onUpdate={this.updateStatus}

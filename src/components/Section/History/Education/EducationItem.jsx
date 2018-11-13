@@ -273,7 +273,7 @@ export default class EducationItem extends ValidationElement {
               <Radio
                 name="type-highschool"
                 className="type-highschool"
-                label={i18n.m('history.education.label.type.highschool')}
+                label={i18n.t('history.education.label.type.highschool')}
                 value="High School"
                 onUpdate={this.updateType}
                 onError={this.props.onError}
@@ -281,7 +281,7 @@ export default class EducationItem extends ValidationElement {
               <Radio
                 name="type-college"
                 className="type-college"
-                label={i18n.m('history.education.label.type.college')}
+                label={i18n.t('history.education.label.type.college')}
                 value="College"
                 onUpdate={this.updateType}
                 onError={this.props.onError}
@@ -289,7 +289,7 @@ export default class EducationItem extends ValidationElement {
               <Radio
                 name="type-vocational"
                 className="type-vocational"
-                label={i18n.m('history.education.label.type.vocational')}
+                label={i18n.t('history.education.label.type.vocational')}
                 value="Vocational"
                 onUpdate={this.updateType}
                 onError={this.props.onError}
@@ -297,7 +297,7 @@ export default class EducationItem extends ValidationElement {
               <Radio
                 name="type-correspondence"
                 className="type-correspondence"
-                label={i18n.m('history.education.label.type.correspondence')}
+                label={i18n.t('history.education.label.type.correspondence')}
                 value="Correspondence"
                 onUpdate={this.updateType}
                 onError={this.props.onError}
@@ -312,7 +312,7 @@ export default class EducationItem extends ValidationElement {
                 titleSize="h2"
                 className="no-margin-bottom"
                 scrollIntoView={this.props.scrollIntoView}>
-                {i18n.m('history.education.para.reference')}
+                {i18n.t('history.education.para.reference')}
               </Field>
 
               <Field
@@ -325,7 +325,7 @@ export default class EducationItem extends ValidationElement {
                   name="ReferenceNameNotApplicable"
                   {...this.props.ReferenceNameNotApplicable}
                   label={i18n.t('reference.label.idk')}
-                  or={i18n.m('reference.para.or')}
+                  or={i18n.t('reference.para.or')}
                   onUpdate={this.updateReferenceNameNotApplicable}
                   onError={this.props.onError}>
                   <Name
@@ -348,7 +348,7 @@ export default class EducationItem extends ValidationElement {
                   optional={true}
                   className="no-margin-bottom"
                   scrollIntoView={this.props.scrollIntoView}>
-                  {i18n.m('reference.para.correspondence')}
+                  {i18n.t('reference.para.correspondence')}
                 </Field>
 
                 <Field
@@ -376,7 +376,7 @@ export default class EducationItem extends ValidationElement {
                     name="ReferenceEmailNotApplicable"
                     {...this.props.ReferenceEmailNotApplicable}
                     label={i18n.t('reference.label.idk')}
-                    or={i18n.m('reference.para.or')}
+                    or={i18n.t('reference.para.or')}
                     onUpdate={this.updateReferenceEmailNotApplicable}
                     onError={this.props.onError}>
                     <Email

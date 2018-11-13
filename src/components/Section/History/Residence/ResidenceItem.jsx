@@ -291,34 +291,34 @@ export default class ResidenceItem extends ValidationElement {
           }
           scrollIntoView={this.props.scrollIntoView}>
           <RadioGroup
-            className="role option-list"
+            className="role option-list option-list-inline"
             required={this.props.required}
             onError={this.props.onError}
             selectedValue={(this.props.Role || {}).value}>
             <Radio
               name="role-owned"
-              label={i18n.m('history.residence.label.role.owned')}
+              label={i18n.t('history.residence.label.role.owned')}
               value="Own"
               onUpdate={this.updateRole}
               onError={this.props.onError}
             />
             <Radio
               name="role-rented"
-              label={i18n.m('history.residence.label.role.rented')}
+              label={i18n.t('history.residence.label.role.rented')}
               value="Rent"
               onUpdate={this.updateRole}
               onError={this.props.onError}
             />
             <Radio
               name="role-military"
-              label={i18n.m('history.residence.label.role.military')}
+              label={i18n.t('history.residence.label.role.military')}
               value="MilitaryHousing"
               onUpdate={this.updateRole}
               onError={this.props.onError}
             />
             <Radio
               name="role-other"
-              label={i18n.m('history.residence.label.role.other')}
+              label={i18n.t('history.residence.label.role.other')}
               value="Other"
               onUpdate={this.updateRole}
               onError={this.props.onError}
@@ -354,7 +354,7 @@ export default class ResidenceItem extends ValidationElement {
               optional
               className="no-margin-bottom"
               scrollIntoView={this.props.scrollIntoView}>
-              {i18n.m('history.residence.para.reference')}
+              {i18n.t('history.residence.para.reference')}
             </Field>
 
             <div className="reference">
@@ -487,7 +487,7 @@ export default class ResidenceItem extends ValidationElement {
                 optional
                 className="no-margin-bottom"
                 scrollIntoView={this.props.scrollIntoView}>
-                {i18n.m('reference.para.correspondence')}
+                {i18n.t('reference.para.correspondence')}
               </Field>
 
               <Field
@@ -547,7 +547,7 @@ export default class ResidenceItem extends ValidationElement {
                   name="ReferenceEmailNotApplicable"
                   {...this.props.ReferenceEmailNotApplicable}
                   label={i18n.t('reference.label.idk')}
-                  or={i18n.m('reference.para.or')}
+                  or={i18n.t('reference.para.or')}
                   onUpdate={this.updateReferenceEmailNotApplicable}
                   onError={this.props.onError}>
                   <Email

@@ -147,7 +147,7 @@ export default class ForeignService extends ValidationElement {
             <Radio
               name="organization-military"
               className="organization-military"
-              label={i18n.m('military.foreign.label.organization.military')}
+              label={i18n.t('military.foreign.label.organization.military')}
               value="Military"
               onUpdate={this.updateOrganization}
               onError={this.props.onError}
@@ -155,7 +155,7 @@ export default class ForeignService extends ValidationElement {
             <Radio
               name="organization-intelligence"
               className="organization-intelligence"
-              label={i18n.m('military.foreign.label.organization.intelligence')}
+              label={i18n.t('military.foreign.label.organization.intelligence')}
               value="Intelligence"
               onUpdate={this.updateOrganization}
               onError={this.props.onError}
@@ -163,7 +163,7 @@ export default class ForeignService extends ValidationElement {
             <Radio
               name="organization-diplomatic"
               className="organization-diplomatic"
-              label={i18n.m('military.foreign.label.organization.diplomatic')}
+              label={i18n.t('military.foreign.label.organization.diplomatic')}
               value="Diplomatic"
               onUpdate={this.updateOrganization}
               onError={this.props.onError}
@@ -171,7 +171,7 @@ export default class ForeignService extends ValidationElement {
             <Radio
               name="organization-security"
               className="organization-security"
-              label={i18n.m('military.foreign.label.organization.security')}
+              label={i18n.t('military.foreign.label.organization.security')}
               value="Security"
               onUpdate={this.updateOrganization}
               onError={this.props.onError}
@@ -179,7 +179,7 @@ export default class ForeignService extends ValidationElement {
             <Radio
               name="organization-militia"
               className="organization-militia"
-              label={i18n.m('military.foreign.label.organization.militia')}
+              label={i18n.t('military.foreign.label.organization.militia')}
               value="Militia"
               onUpdate={this.updateOrganization}
               onError={this.props.onError}
@@ -187,7 +187,7 @@ export default class ForeignService extends ValidationElement {
             <Radio
               name="organization-defense"
               className="organization-defense"
-              label={i18n.m('military.foreign.label.organization.defense')}
+              label={i18n.t('military.foreign.label.organization.defense')}
               value="Defense"
               onUpdate={this.updateOrganization}
               onError={this.props.onError}
@@ -195,7 +195,7 @@ export default class ForeignService extends ValidationElement {
             <Radio
               name="organization-other"
               className="organization-other"
-              label={i18n.m('military.foreign.label.organization.other')}
+              label={i18n.t('military.foreign.label.organization.other')}
               value="Other"
               onUpdate={this.updateOrganization}
               onError={this.props.onError}
@@ -325,7 +325,7 @@ export default class ForeignService extends ValidationElement {
               titleSize="h2"
               optional={true}
               className="no-margin-bottom">
-              {i18n.m('military.foreign.para.contact')}
+              {i18n.t('military.foreign.para.contact')}
             </Field>
 
             <Accordion

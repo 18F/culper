@@ -368,7 +368,7 @@ export default class Relative extends ValidationElement {
             selectedValue={this.props.Relation.value}>
             <Radio
               name="relation-mother"
-              label={i18n.m('relationships.relatives.label.relation.mother')}
+              label={i18n.t('relationships.relatives.label.relation.mother')}
               value="Mother"
               className="relation-mother"
               onError={this.props.onError}
@@ -376,7 +376,7 @@ export default class Relative extends ValidationElement {
             />
             <Radio
               name="relation-father"
-              label={i18n.m('relationships.relatives.label.relation.father')}
+              label={i18n.t('relationships.relatives.label.relation.father')}
               value="Father"
               className="relation-father"
               onError={this.props.onError}
@@ -384,7 +384,7 @@ export default class Relative extends ValidationElement {
             />
             <Radio
               name="relation-stepmother"
-              label={i18n.m(
+              label={i18n.t(
                 'relationships.relatives.label.relation.stepmother'
               )}
               value="Stepmother"
@@ -394,7 +394,7 @@ export default class Relative extends ValidationElement {
             />
             <Radio
               name="relation-stepfather"
-              label={i18n.m(
+              label={i18n.t(
                 'relationships.relatives.label.relation.stepfather'
               )}
               value="Stepfather"
@@ -404,7 +404,7 @@ export default class Relative extends ValidationElement {
             />
             <Radio
               name="relation-fosterparent"
-              label={i18n.m(
+              label={i18n.t(
                 'relationships.relatives.label.relation.fosterparent'
               )}
               value="Fosterparent"
@@ -414,7 +414,7 @@ export default class Relative extends ValidationElement {
             />
             <Radio
               name="relation-child"
-              label={i18n.m('relationships.relatives.label.relation.child')}
+              label={i18n.t('relationships.relatives.label.relation.child')}
               value="Child"
               className="relation-child"
               onError={this.props.onError}
@@ -422,7 +422,7 @@ export default class Relative extends ValidationElement {
             />
             <Radio
               name="relation-stepchild"
-              label={i18n.m('relationships.relatives.label.relation.stepchild')}
+              label={i18n.t('relationships.relatives.label.relation.stepchild')}
               value="Stepchild"
               className="relation-stepchild"
               onError={this.props.onError}
@@ -430,7 +430,7 @@ export default class Relative extends ValidationElement {
             />
             <Radio
               name="relation-brother"
-              label={i18n.m('relationships.relatives.label.relation.brother')}
+              label={i18n.t('relationships.relatives.label.relation.brother')}
               value="Brother"
               className="relation-brother"
               onError={this.props.onError}
@@ -438,7 +438,7 @@ export default class Relative extends ValidationElement {
             />
             <Radio
               name="relation-sister"
-              label={i18n.m('relationships.relatives.label.relation.sister')}
+              label={i18n.t('relationships.relatives.label.relation.sister')}
               value="Sister"
               className="relation-sister"
               onError={this.props.onError}
@@ -446,7 +446,7 @@ export default class Relative extends ValidationElement {
             />
             <Radio
               name="relation-stepbrother"
-              label={i18n.m(
+              label={i18n.t(
                 'relationships.relatives.label.relation.stepbrother'
               )}
               value="Stepbrother"
@@ -456,7 +456,7 @@ export default class Relative extends ValidationElement {
             />
             <Radio
               name="relation-stepsister"
-              label={i18n.m(
+              label={i18n.t(
                 'relationships.relatives.label.relation.stepsister'
               )}
               value="Stepsister"
@@ -466,7 +466,7 @@ export default class Relative extends ValidationElement {
             />
             <Radio
               name="relation-halfbrother"
-              label={i18n.m(
+              label={i18n.t(
                 'relationships.relatives.label.relation.halfbrother'
               )}
               value="Half-brother"
@@ -476,7 +476,7 @@ export default class Relative extends ValidationElement {
             />
             <Radio
               name="relation-halfsister"
-              label={i18n.m(
+              label={i18n.t(
                 'relationships.relatives.label.relation.halfsister'
               )}
               value="Half-sister"
@@ -486,7 +486,7 @@ export default class Relative extends ValidationElement {
             />
             <Radio
               name="relation-fatherinlaw"
-              label={i18n.m(
+              label={i18n.t(
                 'relationships.relatives.label.relation.fatherinlaw'
               )}
               value="Father-in-law"
@@ -496,7 +496,7 @@ export default class Relative extends ValidationElement {
             />
             <Radio
               name="relation-motherinlaw"
-              label={i18n.m(
+              label={i18n.t(
                 'relationships.relatives.label.relation.motherinlaw'
               )}
               value="Mother-in-law"
@@ -506,7 +506,7 @@ export default class Relative extends ValidationElement {
             />
             <Radio
               name="relation-guardian"
-              label={i18n.m('relationships.relatives.label.relation.guardian')}
+              label={i18n.t('relationships.relatives.label.relation.guardian')}
               value="Guardian"
               className="relation-guardian"
               onError={this.props.onError}
@@ -712,7 +712,7 @@ export default class Relative extends ValidationElement {
                 }>
                 <Radio
                   name="abroad-fs"
-                  label={i18n.m('relationships.relatives.label.abroad.fs')}
+                  label={i18n.t('relationships.relatives.label.abroad.fs')}
                   value="FS"
                   className="abroad-fs"
                   onError={this.props.onError}
@@ -720,7 +720,7 @@ export default class Relative extends ValidationElement {
                 />
                 <Radio
                   name="abroad-ds"
-                  label={i18n.m('relationships.relatives.label.abroad.ds')}
+                  label={i18n.t('relationships.relatives.label.abroad.ds')}
                   value="DS"
                   className="abroad-ds"
                   onError={this.props.onError}
@@ -740,7 +740,7 @@ export default class Relative extends ValidationElement {
                 }>
                 <Radio
                   name="naturalized-alien"
-                  label={i18n.m(
+                  label={i18n.t(
                     'relationships.relatives.label.naturalized.alien'
                   )}
                   value="NaturalizedAlien"
@@ -750,7 +750,7 @@ export default class Relative extends ValidationElement {
                 />
                 <Radio
                   name="naturalized-permanent"
-                  label={i18n.m(
+                  label={i18n.t(
                     'relationships.relatives.label.naturalized.permanent'
                   )}
                   value="NaturalizedPermanent"
@@ -760,7 +760,7 @@ export default class Relative extends ValidationElement {
                 />
                 <Radio
                   name="naturalized-certificate"
-                  label={i18n.m(
+                  label={i18n.t(
                     'relationships.relatives.label.naturalized.certificate'
                   )}
                   value="NaturalizedCertificate"
@@ -780,7 +780,7 @@ export default class Relative extends ValidationElement {
                 }>
                 <Radio
                   name="derived-alien"
-                  label={i18n.m('relationships.relatives.label.derived.alien')}
+                  label={i18n.t('relationships.relatives.label.derived.alien')}
                   value="DerivedAlien"
                   className="derived-alien"
                   onError={this.props.onError}
@@ -788,7 +788,7 @@ export default class Relative extends ValidationElement {
                 />
                 <Radio
                   name="derived-permanent"
-                  label={i18n.m(
+                  label={i18n.t(
                     'relationships.relatives.label.derived.permanent'
                   )}
                   value="DerivedPermanent"
@@ -798,7 +798,7 @@ export default class Relative extends ValidationElement {
                 />
                 <Radio
                   name="derived-certificate"
-                  label={i18n.m(
+                  label={i18n.t(
                     'relationships.relatives.label.derived.certificate'
                   )}
                   value="DerivedCertificate"
@@ -808,7 +808,7 @@ export default class Relative extends ValidationElement {
                 />
                 <Radio
                   name="derived-other"
-                  label={i18n.m('relationships.relatives.label.derived.other')}
+                  label={i18n.t('relationships.relatives.label.derived.other')}
                   value="Other"
                   className="derived-other"
                   onError={this.props.onError}
@@ -912,7 +912,7 @@ export default class Relative extends ValidationElement {
                       selectedValue={(this.props.Document || {}).value}>
                       <Radio
                         name="document-permanent"
-                        label={i18n.m(
+                        label={i18n.t(
                           'relationships.relatives.label.document.permanent'
                         )}
                         value="Permanent"
@@ -922,7 +922,7 @@ export default class Relative extends ValidationElement {
                       />
                       <Radio
                         name="document-employment"
-                        label={i18n.m(
+                        label={i18n.t(
                           'relationships.relatives.label.document.employment'
                         )}
                         value="Employment"
@@ -932,7 +932,7 @@ export default class Relative extends ValidationElement {
                       />
                       <Radio
                         name="document-arrival"
-                        label={i18n.m(
+                        label={i18n.t(
                           'relationships.relatives.label.document.arrival'
                         )}
                         value="Arrival"
@@ -942,7 +942,7 @@ export default class Relative extends ValidationElement {
                       />
                       <Radio
                         name="document-visa"
-                        label={i18n.m(
+                        label={i18n.t(
                           'relationships.relatives.label.document.visa'
                         )}
                         value="Visa"
@@ -952,7 +952,7 @@ export default class Relative extends ValidationElement {
                       />
                       <Radio
                         name="document-f1"
-                        label={i18n.m(
+                        label={i18n.t(
                           'relationships.relatives.label.document.f1'
                         )}
                         value="F1"
@@ -962,7 +962,7 @@ export default class Relative extends ValidationElement {
                       />
                       <Radio
                         name="document-j1"
-                        label={i18n.m(
+                        label={i18n.t(
                           'relationships.relatives.label.document.j1'
                         )}
                         value="J1"
@@ -972,7 +972,7 @@ export default class Relative extends ValidationElement {
                       />
                       <Radio
                         name="document-other"
-                        label={i18n.m(
+                        label={i18n.t(
                           'relationships.relatives.label.document.other'
                         )}
                         value="Other"
@@ -1090,7 +1090,7 @@ export default class Relative extends ValidationElement {
               adjustFor="big-buttons"
               scrollIntoView={this.props.scrollIntoView}>
               <div>
-                {i18n.m('relationships.relatives.para.checkall')}
+                {i18n.t('relationships.relatives.para.checkall')}
                 <CheckboxGroup
                   className="relative-methods option-list"
                   required={this.props.required}
@@ -1098,7 +1098,7 @@ export default class Relative extends ValidationElement {
                   selectedValues={(this.props.Methods || {}).values}>
                   <Checkbox
                     name="methods-inperson"
-                    label={i18n.m(
+                    label={i18n.t(
                       'relationships.relatives.label.methods.inperson'
                     )}
                     value="In person"
@@ -1108,7 +1108,7 @@ export default class Relative extends ValidationElement {
                   />
                   <Checkbox
                     name="methods-telephone"
-                    label={i18n.m(
+                    label={i18n.t(
                       'relationships.relatives.label.methods.telephone'
                     )}
                     value="Telephone"
@@ -1118,7 +1118,7 @@ export default class Relative extends ValidationElement {
                   />
                   <Checkbox
                     name="methods-electronic"
-                    label={i18n.m(
+                    label={i18n.t(
                       'relationships.relatives.label.methods.electronic'
                     )}
                     value="Electronic"
@@ -1128,7 +1128,7 @@ export default class Relative extends ValidationElement {
                   />
                   <Checkbox
                     name="methods-written"
-                    label={i18n.m(
+                    label={i18n.t(
                       'relationships.relatives.label.methods.written'
                     )}
                     value="Written"
@@ -1138,7 +1138,7 @@ export default class Relative extends ValidationElement {
                   />
                   <Checkbox
                     name="methods-other"
-                    label={i18n.m(
+                    label={i18n.t(
                       'relationships.relatives.label.methods.other'
                     )}
                     value="Other"
@@ -1170,7 +1170,7 @@ export default class Relative extends ValidationElement {
                 selectedValue={this.props.Frequency.value}>
                 <Radio
                   name="frequency-daily"
-                  label={i18n.m(
+                  label={i18n.t(
                     'relationships.relatives.label.frequency.daily'
                   )}
                   value="Daily"
@@ -1180,7 +1180,7 @@ export default class Relative extends ValidationElement {
                 />
                 <Radio
                   name="frequency-weekly"
-                  label={i18n.m(
+                  label={i18n.t(
                     'relationships.relatives.label.frequency.weekly'
                   )}
                   value="Weekly"
@@ -1190,7 +1190,7 @@ export default class Relative extends ValidationElement {
                 />
                 <Radio
                   name="frequency-monthly"
-                  label={i18n.m(
+                  label={i18n.t(
                     'relationships.relatives.label.frequency.monthly'
                   )}
                   value="Monthly"
@@ -1200,7 +1200,7 @@ export default class Relative extends ValidationElement {
                 />
                 <Radio
                   name="frequency-quarterly"
-                  label={i18n.m(
+                  label={i18n.t(
                     'relationships.relatives.label.frequency.quarterly'
                   )}
                   value="Quarterly"
@@ -1210,7 +1210,7 @@ export default class Relative extends ValidationElement {
                 />
                 <Radio
                   name="frequency-annually"
-                  label={i18n.m(
+                  label={i18n.t(
                     'relationships.relatives.label.frequency.annually'
                   )}
                   value="Annually"
@@ -1220,7 +1220,7 @@ export default class Relative extends ValidationElement {
                 />
                 <Radio
                   name="frequency-other"
-                  label={i18n.m(
+                  label={i18n.t(
                     'relationships.relatives.label.frequency.other'
                   )}
                   value="Other"
@@ -1240,7 +1240,7 @@ export default class Relative extends ValidationElement {
                 {...this.props.EmployerNotApplicable}
                 name="EmployerNotApplicable"
                 label={i18n.t('relationships.relatives.label.idk')}
-                or={i18n.m('relationships.relatives.para.or')}
+                or={i18n.t('relationships.relatives.para.or')}
                 onError={this.props.onError}
                 onUpdate={this.updateEmployerNotApplicable}>
                 <Text
@@ -1262,7 +1262,7 @@ export default class Relative extends ValidationElement {
                 {...this.props.EmployerAddressNotApplicable}
                 name="EmployerAddressNotApplicable"
                 label={i18n.t('relationships.relatives.label.idk')}
-                or={i18n.m('relationships.relatives.para.or')}
+                or={i18n.t('relationships.relatives.para.or')}
                 onError={this.props.onError}
                 onUpdate={this.updateEmployerAddressNotApplicable}>
                 <Location
@@ -1283,7 +1283,7 @@ export default class Relative extends ValidationElement {
               {...this.props.EmployerRelationshipNotApplicable}
               name="EmployerRelationshipNotApplicable"
               label={i18n.t('relationships.relatives.label.idk')}
-              or={i18n.m('relationships.relatives.para.or')}
+              or={i18n.t('relationships.relatives.para.or')}
               onError={this.props.onError}
               onUpdate={this.updateEmployerRelationshipNotApplicable}>
               <Branch

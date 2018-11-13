@@ -264,7 +264,7 @@ export default class Status extends SubsectionElement {
             selectedValue={(this.props.CitizenshipStatus || {}).value}>
             <Radio
               name="citizenship-status-citizen"
-              label={i18n.m(
+              label={i18n.t(
                 'citizenship.status.label.citizenshipstatus.citizen'
               )}
               value="Citizen"
@@ -274,7 +274,7 @@ export default class Status extends SubsectionElement {
             />
             <Radio
               name="citizenship-status-foreignborn"
-              label={i18n.m(
+              label={i18n.t(
                 'citizenship.status.label.citizenshipstatus.foreignborn'
               )}
               value="ForeignBorn"
@@ -284,7 +284,7 @@ export default class Status extends SubsectionElement {
             />
             <Radio
               name="citizenship-status-naturalized"
-              label={i18n.m(
+              label={i18n.t(
                 'citizenship.status.label.citizenshipstatus.naturalized'
               )}
               value="Naturalized"
@@ -294,7 +294,7 @@ export default class Status extends SubsectionElement {
             />
             <Radio
               name="citizenship-status-derived"
-              label={i18n.m(
+              label={i18n.t(
                 'citizenship.status.label.citizenshipstatus.derived'
               )}
               value="Derived"
@@ -304,7 +304,7 @@ export default class Status extends SubsectionElement {
             />
             <Radio
               name="citizenship-status-notcitizen"
-              label={i18n.m(
+              label={i18n.t(
                 'citizenship.status.label.citizenshipstatus.notcitizen'
               )}
               value="NotCitizen"
@@ -323,7 +323,7 @@ export default class Status extends SubsectionElement {
               adjustFor="buttons"
               scrollIntoView={this.props.scrollIntoView}>
               <RadioGroup
-                className="citizenship-abroad"
+                className="citizenship-abroad option-list-inline"
                 required={this.props.required}
                 onError={this.handleError}
                 selectedValue={(this.props.AbroadDocumentation || {}).value}>
@@ -711,7 +711,7 @@ export default class Status extends SubsectionElement {
                 selectedValue={(this.props.Basis || {}).value}>
                 <Radio
                   name="citizenship-basis-individual"
-                  label={i18n.m('citizenship.status.label.basis.naturalized')}
+                  label={i18n.t('citizenship.status.label.basis.naturalized')}
                   value="Individual"
                   className="citizenship-basis-individual"
                   onUpdate={this.updateBasis}
@@ -719,7 +719,7 @@ export default class Status extends SubsectionElement {
                 />
                 <Radio
                   name="citizenship-basis-other"
-                  label={i18n.m('citizenship.status.label.basis.other')}
+                  label={i18n.t('citizenship.status.label.basis.other')}
                   value="Other"
                   className="citizenship-basis-other"
                   onUpdate={this.updateBasis}
@@ -849,7 +849,7 @@ export default class Status extends SubsectionElement {
                 selectedValue={(this.props.Basis || {}).value}>
                 <Radio
                   name="citizenship-basis-individual"
-                  label={i18n.m('citizenship.status.label.basis.derived')}
+                  label={i18n.t('citizenship.status.label.basis.derived')}
                   value="Individual"
                   className="citizenship-basis-individual"
                   onUpdate={this.updateBasis}
@@ -857,7 +857,7 @@ export default class Status extends SubsectionElement {
                 />
                 <Radio
                   name="citizenship-basis-other"
-                  label={i18n.m('citizenship.status.label.basis.other')}
+                  label={i18n.t('citizenship.status.label.basis.other')}
                   value="Other"
                   className="citizenship-basis-other"
                   onUpdate={this.updateBasis}
@@ -989,7 +989,7 @@ export default class Status extends SubsectionElement {
               adjustFor="buttons"
               scrollIntoView={this.props.scrollIntoView}>
               <RadioGroup
-                className="citizenship-document-type"
+                className="citizenship-document-type option-list-inline"
                 required={this.props.required}
                 onError={this.handleError}
                 selectedValue={(this.props.DocumentType || {}).value}>

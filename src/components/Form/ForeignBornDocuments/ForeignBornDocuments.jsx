@@ -82,7 +82,7 @@ export default class ForeignBornDocuments extends ValidationElement {
             onError={this.props.onError}>
             <Radio
               className="born"
-              label={i18n.m('foreignBornDocuments.bornToUSParents.label.fs240')}
+              label={i18n.t('foreignBornDocuments.bornToUSParents.label.fs240')}
               value="FS240"
               onUpdate={this.updateDocumentType}
               onError={this.props.onError}
@@ -91,7 +91,7 @@ export default class ForeignBornDocuments extends ValidationElement {
             />
             <Radio
               className="born"
-              label={i18n.m(
+              label={i18n.t(
                 'foreignBornDocuments.bornToUSParents.label.ds1350'
               )}
               value="DS1350"
@@ -110,7 +110,7 @@ export default class ForeignBornDocuments extends ValidationElement {
             onError={this.props.onError}>
             <Radio
               className="naturalized alien"
-              label={i18n.m('foreignBornDocuments.naturalized.label.alien')}
+              label={i18n.t('foreignBornDocuments.naturalized.label.alien')}
               value="AlienRegistration"
               onUpdate={this.updateDocumentType}
               onError={this.props.onError}
@@ -119,7 +119,7 @@ export default class ForeignBornDocuments extends ValidationElement {
             />
             <Radio
               className="naturalized permanent"
-              label={i18n.m(
+              label={i18n.t(
                 'foreignBornDocuments.naturalized.label.permanentResident'
               )}
               value="PermanentResident"
@@ -130,7 +130,7 @@ export default class ForeignBornDocuments extends ValidationElement {
             />
             <Radio
               className="naturalized certificate"
-              label={i18n.m(
+              label={i18n.t(
                 'foreignBornDocuments.naturalized.label.certificateOfNaturalization'
               )}
               value="CertificateOfNaturalization"
@@ -149,7 +149,7 @@ export default class ForeignBornDocuments extends ValidationElement {
             onError={this.props.onError}>
             <Radio
               className="derived alien"
-              label={i18n.m('foreignBornDocuments.derived.label.alien')}
+              label={i18n.t('foreignBornDocuments.derived.label.alien')}
               value="DerivedAlienRegistration"
               onUpdate={this.updateDocumentType}
               onError={this.props.onError}
@@ -158,7 +158,7 @@ export default class ForeignBornDocuments extends ValidationElement {
             />
             <Radio
               className="derived permanent"
-              label={i18n.m(
+              label={i18n.t(
                 'foreignBornDocuments.derived.label.permanentResident'
               )}
               value="DerivedPermanentResident"
@@ -169,7 +169,7 @@ export default class ForeignBornDocuments extends ValidationElement {
             />
             <Radio
               className="derived certificate"
-              label={i18n.m(
+              label={i18n.t(
                 'foreignBornDocuments.derived.label.certificateOfNaturalization'
               )}
               value="DerivedCertificateOfNaturalization"
@@ -188,7 +188,7 @@ export default class ForeignBornDocuments extends ValidationElement {
             onError={this.props.onError}>
             <Radio
               className="notcitizen permanent"
-              label={i18n.m(
+              label={i18n.t(
                 'foreignBornDocuments.notCitizen.label.permanentResident'
               )}
               value="I-551"
@@ -199,7 +199,7 @@ export default class ForeignBornDocuments extends ValidationElement {
             />
             <Radio
               className="notcitizen employment"
-              label={i18n.m(
+              label={i18n.t(
                 'foreignBornDocuments.notCitizen.label.employmentAuthorization'
               )}
               value="I-766"
@@ -210,7 +210,7 @@ export default class ForeignBornDocuments extends ValidationElement {
             />
             <Radio
               className="notcitizen arrival"
-              label={i18n.m(
+              label={i18n.t(
                 'foreignBornDocuments.notCitizen.label.arrivalDepartureRecord'
               )}
               value="I-94"
@@ -221,7 +221,7 @@ export default class ForeignBornDocuments extends ValidationElement {
             />
             <Radio
               className="notcitizen visa"
-              label={i18n.m('foreignBornDocuments.notCitizen.label.visa')}
+              label={i18n.t('foreignBornDocuments.notCitizen.label.visa')}
               value="Visa"
               onUpdate={this.updateDocumentType}
               onError={this.props.onError}
@@ -230,7 +230,7 @@ export default class ForeignBornDocuments extends ValidationElement {
             />
             <Radio
               className="notcitizen student"
-              label={i18n.m(
+              label={i18n.t(
                 'foreignBornDocuments.notCitizen.label.nonImmigrantStudent'
               )}
               value="NonImmigrantStudent"
@@ -241,7 +241,7 @@ export default class ForeignBornDocuments extends ValidationElement {
             />
             <Radio
               className="notcitizen exchange"
-              label={i18n.m(
+              label={i18n.t(
                 'foreignBornDocuments.notCitizen.label.exchangeVisitor'
               )}
               value="ExchangeVisitor"
@@ -260,7 +260,7 @@ export default class ForeignBornDocuments extends ValidationElement {
             onError={this.props.onError}>
             <Radio
               className="other"
-              label={i18n.m('foreignBornDocuments.other.label.other')}
+              label={i18n.t('foreignBornDocuments.other.label.other')}
               value="Other"
               onUpdate={this.updateDocumentType}
               onError={this.props.onError}
@@ -308,7 +308,7 @@ export default class ForeignBornDocuments extends ValidationElement {
             name="DocumentExpirationNotApplicable"
             {...this.props.DocumentExpirationNotApplicable}
             label={i18n.t('reference.label.idk')}
-            or={i18n.m('reference.para.or')}
+            or={i18n.t('reference.para.or')}
             onUpdate={this.updateDocumentExpirationNotApplicable}>
             <DateControl
               name="documentExpiration"

@@ -268,11 +268,11 @@ export default class ToggleableLocation extends ValidationElement {
         <Branch
           label={this.props.label}
           name={this.props.name}
-          noLabel={i18n.m('address.options.international.label')}
+          noLabel={i18n.t('address.options.international.label')}
           onError={this.onError}
           onUpdate={this.updateToggle}
           required={this.props.required}
-          yesLabel={i18n.m('address.options.us.label')}
+          yesLabel={i18n.t('address.options.us.label')}
           value={branchValue(this.props.country)}
         />
         <Show when={countryName !== null && countryName === 'United States'}>

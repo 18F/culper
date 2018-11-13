@@ -248,14 +248,14 @@ export default class Address extends ValidationElement {
         <Show when={!this.props.disableToggle}>
           <label>{this.props.label}</label>
           <RadioGroup
-            className={`address-options option-list ${
+            className={`address-options option-list option-list-inline ${
               this.props.showPostOffice ? '' : 'no-postoffice'
             }`.trim()}
             disabled={this.props.disabled}
             selectedValueFunc={this.addressTypeFunc}>
             <Radio
               name="addressType"
-              label={i18n.m('address.options.us.label')}
+              label={i18n.t('address.options.us.label')}
               value="United States"
               className="domestic"
               ignoreDeselect="true"
@@ -267,7 +267,7 @@ export default class Address extends ValidationElement {
             <Show when={this.props.showPostOffice}>
               <Radio
                 name="addressType"
-                label={i18n.m('address.options.apoFpo.label')}
+                label={i18n.t('address.options.apoFpo.label')}
                 value="POSTOFFICE"
                 className="apofpo postoffice"
                 ignoreDeselect="true"
@@ -282,7 +282,7 @@ export default class Address extends ValidationElement {
             </Show>
             <Radio
               name="addressType"
-              label={i18n.m('address.options.international.label')}
+              label={i18n.t('address.options.international.label')}
               value="International"
               className="international"
               ignoreDeselect="true"
@@ -308,7 +308,7 @@ export default class Address extends ValidationElement {
               suggestions={book}
               renderSuggestion={this.renderAddressBookItem}
               suggestionTitle={i18n.t('suggestions.addressBook.title')}
-              suggestionParagraph={i18n.m('suggestions.addressBook.para')}
+              suggestionParagraph={i18n.t('suggestions.addressBook.para')}
               suggestionLabel={i18n.t('suggestions.addressBook.label')}
               suggestionUseLabel={i18n.t('suggestions.addressBook.use')}
               suggestionDismissLabel={i18n.t('suggestions.addressBook.dismiss')}
@@ -459,7 +459,7 @@ export default class Address extends ValidationElement {
               />
               <label>{i18n.t('address.apoFpo.select.label')}</label>
               <RadioGroup
-                className="apofpo"
+                className="apofpo option-list-inline"
                 selectedValue={this.props.city}
                 disabled={this.props.disabled}
                 required={this.props.required}
@@ -467,7 +467,7 @@ export default class Address extends ValidationElement {
                 <Radio
                   name="city"
                   className="apo"
-                  label={i18n.m('address.apoFpo.apoFpoType.apo.label')}
+                  label={i18n.t('address.apoFpo.apoFpoType.apo.label')}
                   value="APO"
                   disabled={this.props.disabled}
                   onUpdate={this.onAddressUpdate}
@@ -477,7 +477,7 @@ export default class Address extends ValidationElement {
                 <Radio
                   name="city"
                   className="fpo"
-                  label={i18n.m('address.apoFpo.apoFpoType.fpo.label')}
+                  label={i18n.t('address.apoFpo.apoFpoType.fpo.label')}
                   value="FPO"
                   disabled={this.props.disabled}
                   onUpdate={this.onAddressUpdate}
@@ -487,7 +487,7 @@ export default class Address extends ValidationElement {
                 <Radio
                   name="city"
                   className="dpo"
-                  label={i18n.m('address.apoFpo.apoFpoType.dpo.label')}
+                  label={i18n.t('address.apoFpo.apoFpoType.dpo.label')}
                   value="DPO"
                   disabled={this.props.disabled}
                   onUpdate={this.onAddressUpdate}

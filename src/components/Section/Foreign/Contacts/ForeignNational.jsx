@@ -336,7 +336,7 @@ export default class ForeignNational extends ValidationElement {
           help="foreign.contacts.help.methods"
           adjustFor="p"
           scrollIntoView={this.props.scrollIntoView}>
-          {i18n.m('foreign.contacts.para.checkall')}
+          {i18n.t('foreign.contacts.para.checkall')}
           <CheckboxGroup
             className="methods"
             onError={this.props.onError}
@@ -344,7 +344,7 @@ export default class ForeignNational extends ValidationElement {
             selectedValues={(this.props.Methods || {}).values}>
             <Checkbox
               name="methods-inperson"
-              label={i18n.m('foreign.contacts.label.inperson')}
+              label={i18n.t('foreign.contacts.label.inperson')}
               value="In person"
               className="methods-inperson"
               onUpdate={this.updateMethods}
@@ -352,7 +352,7 @@ export default class ForeignNational extends ValidationElement {
             />
             <Checkbox
               name="methods-telephone"
-              label={i18n.m('foreign.contacts.label.telephone')}
+              label={i18n.t('foreign.contacts.label.telephone')}
               value="Telephone"
               className="methods-telephone"
               onUpdate={this.updateMethods}
@@ -360,7 +360,7 @@ export default class ForeignNational extends ValidationElement {
             />
             <Checkbox
               name="methods-electronic"
-              label={i18n.m('foreign.contacts.label.electronic')}
+              label={i18n.t('foreign.contacts.label.electronic')}
               value="Electronic"
               className="methods-electronic"
               onUpdate={this.updateMethods}
@@ -368,7 +368,7 @@ export default class ForeignNational extends ValidationElement {
             />
             <Checkbox
               name="methods-written"
-              label={i18n.m('foreign.contacts.label.written')}
+              label={i18n.t('foreign.contacts.label.written')}
               value="Written"
               className="methods-written"
               onUpdate={this.updateMethods}
@@ -376,7 +376,7 @@ export default class ForeignNational extends ValidationElement {
             />
             <Checkbox
               name="methods-other"
-              label={i18n.m('foreign.contacts.label.other')}
+              label={i18n.t('foreign.contacts.label.other')}
               value="Other"
               className="methods-other"
               onUpdate={this.updateMethods}
@@ -420,7 +420,7 @@ export default class ForeignNational extends ValidationElement {
             selectedValue={(this.props.Frequency || {}).value}>
             <Radio
               name="frequency-daily"
-              label={i18n.m('foreign.contacts.label.daily')}
+              label={i18n.t('foreign.contacts.label.daily')}
               value="Daily"
               className="frequency-daily"
               onUpdate={this.updateFrequency}
@@ -428,7 +428,7 @@ export default class ForeignNational extends ValidationElement {
             />
             <Radio
               name="frequency-weekly"
-              label={i18n.m('foreign.contacts.label.weekly')}
+              label={i18n.t('foreign.contacts.label.weekly')}
               value="Weekly"
               className="frequency-weekly"
               onUpdate={this.updateFrequency}
@@ -436,7 +436,7 @@ export default class ForeignNational extends ValidationElement {
             />
             <Radio
               name="frequency-monthly"
-              label={i18n.m('foreign.contacts.label.monthly')}
+              label={i18n.t('foreign.contacts.label.monthly')}
               value="Monthly"
               className="frequency-monthly"
               onUpdate={this.updateFrequency}
@@ -444,7 +444,7 @@ export default class ForeignNational extends ValidationElement {
             />
             <Radio
               name="frequency-quarterly"
-              label={i18n.m('foreign.contacts.label.quarterly')}
+              label={i18n.t('foreign.contacts.label.quarterly')}
               value="Quarterly"
               className="frequency-quarterly"
               onUpdate={this.updateFrequency}
@@ -452,7 +452,7 @@ export default class ForeignNational extends ValidationElement {
             />
             <Radio
               name="frequency-annually"
-              label={i18n.m('foreign.contacts.label.annually')}
+              label={i18n.t('foreign.contacts.label.annually')}
               value="Annually"
               className="frequency-annually"
               onUpdate={this.updateFrequency}
@@ -460,7 +460,7 @@ export default class ForeignNational extends ValidationElement {
             />
             <Radio
               name="frequency-other"
-              label={i18n.m('foreign.contacts.label.other')}
+              label={i18n.t('foreign.contacts.label.other')}
               value="Other"
               className="frequency-other"
               onUpdate={this.updateFrequency}
@@ -505,7 +505,7 @@ export default class ForeignNational extends ValidationElement {
             selectedValues={(this.props.Relationship || {}).values}>
             <Checkbox
               name="relationship-professional"
-              label={i18n.m('foreign.contacts.label.professional')}
+              label={i18n.t('foreign.contacts.label.professional')}
               value="Professional"
               className="relationship-professional"
               onUpdate={this.updateRelationship}
@@ -513,7 +513,7 @@ export default class ForeignNational extends ValidationElement {
             />
             <Checkbox
               name="relationship-personal"
-              label={i18n.m('foreign.contacts.label.personal')}
+              label={i18n.t('foreign.contacts.label.personal')}
               value="Personal"
               className="relationship-personal"
               onUpdate={this.updateRelationship}
@@ -521,7 +521,7 @@ export default class ForeignNational extends ValidationElement {
             />
             <Checkbox
               name="relationship-obligation"
-              label={i18n.m('foreign.contacts.label.obligation')}
+              label={i18n.t('foreign.contacts.label.obligation')}
               value="Obligation"
               className="relationship-obligation"
               onUpdate={this.updateRelationship}
@@ -529,7 +529,7 @@ export default class ForeignNational extends ValidationElement {
             />
             <Checkbox
               name="relationship-other"
-              label={i18n.m('foreign.contacts.label.other')}
+              label={i18n.t('foreign.contacts.label.other')}
               value="Other"
               className="relationship-other"
               onUpdate={this.updateRelationship}
@@ -741,7 +741,7 @@ export default class ForeignNational extends ValidationElement {
           adjustFor="buttons"
           scrollIntoView={this.props.scrollIntoView}>
           <RadioGroup
-            className="has-affiliations"
+            className="has-affiliations option-list-inline"
             required={this.props.required}
             onError={this.props.onError}
             selectedValue={(this.props.HasAffiliations || {}).value}>
