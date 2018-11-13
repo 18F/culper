@@ -61,12 +61,6 @@ var (
 			hashable:   true,
 		},
 		{
-			Name:       "Identification",
-			Subsection: "Comments",
-			Payload:    "identification.comments",
-			hashable:   true,
-		},
-		{
 			Name:       "Financial",
 			Subsection: "Bankruptcy",
 			Payload:    "financial.bankruptcy",
@@ -109,12 +103,6 @@ var (
 			hashable:   true,
 		},
 		{
-			Name:       "Financial",
-			Subsection: "Comments",
-			Payload:    "financial.comments",
-			hashable:   true,
-		},
-		{
 			Name:       "History",
 			Subsection: "Residence",
 			Payload:    "history.residence",
@@ -136,12 +124,6 @@ var (
 			Name:       "History",
 			Subsection: "Federal",
 			Payload:    "history.federal",
-			hashable:   true,
-		},
-		{
-			Name:       "History",
-			Subsection: "Comments",
-			Payload:    "history.comments",
 			hashable:   true,
 		},
 		{
@@ -169,12 +151,6 @@ var (
 			hashable:   true,
 		},
 		{
-			Name:       "Relationships",
-			Subsection: "Comments",
-			Payload:    "relationships.comments",
-			hashable:   true,
-		},
-		{
 			Name:       "Citizenship",
 			Subsection: "Status",
 			Payload:    "citizenship.status",
@@ -190,12 +166,6 @@ var (
 			Name:       "Citizenship",
 			Subsection: "Passports",
 			Payload:    "citizenship.passports",
-			hashable:   true,
-		},
-		{
-			Name:       "Citizenship",
-			Subsection: "Comments",
-			Payload:    "citizenship.comments",
 			hashable:   true,
 		},
 		{
@@ -220,12 +190,6 @@ var (
 			Name:       "Military",
 			Subsection: "Foreign",
 			Payload:    "military.foreign",
-			hashable:   true,
-		},
-		{
-			Name:       "Military",
-			Subsection: "Comments",
-			Payload:    "military.comments",
 			hashable:   true,
 		},
 		{
@@ -331,12 +295,6 @@ var (
 			hashable:   true,
 		},
 		{
-			Name:       "Foreign",
-			Subsection: "Comments",
-			Payload:    "foreign.comments",
-			hashable:   true,
-		},
-		{
 			Name:       "Substance",
 			Subsection: "DrugClearanceUses",
 			Payload:    "substance.drugs.clearance",
@@ -400,12 +358,6 @@ var (
 			Name:       "Substance",
 			Subsection: "ReceivedCounselings",
 			Payload:    "substance.alcohol.additional",
-			hashable:   true,
-		},
-		{
-			Name:       "Substance",
-			Subsection: "Comments",
-			Payload:    "substance.comments",
 			hashable:   true,
 		},
 		{
@@ -511,12 +463,6 @@ var (
 			hashable:   true,
 		},
 		{
-			Name:       "Legal",
-			Subsection: "Comments",
-			Payload:    "legal.comments",
-			hashable:   true,
-		},
-		{
 			Name:       "Psychological",
 			Subsection: "Competence",
 			Payload:    "psychological.competence",
@@ -544,12 +490,6 @@ var (
 			Name:       "Psychological",
 			Subsection: "Hospitalizations",
 			Payload:    "psychological.hospitalizations",
-			hashable:   true,
-		},
-		{
-			Name:       "Psychological",
-			Subsection: "Comments",
-			Payload:    "psychological.comments",
 			hashable:   true,
 		},
 		{

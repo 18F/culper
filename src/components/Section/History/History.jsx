@@ -10,7 +10,6 @@ import {
 import { i18n } from '../../../config'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
-import SectionComments from '../SectionComments'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import { Field, Svg, Show, Branch } from '../../Form'
 import SummaryProgress from './SummaryProgress'
@@ -509,18 +508,6 @@ class History extends SectionElement {
               scrollIntoView={false}
               required={true}
             />
-
-            <hr className="section-divider" />
-            <SectionComments
-              name="comments"
-              {...this.props.Comments}
-              title={i18n.t('history.review.comments')}
-              dispatch={this.props.dispatch}
-              onUpdate={this.handleUpdate.bind(this, 'Comments')}
-              onError={this.handleError}
-              required={false}
-              scrollIntoView={false}
-            />
           </SectionView>
 
           <SectionView
@@ -721,7 +708,6 @@ function mapStateToProps(state) {
       List: { items: [] }
     },
     Federal: history.Federal || {},
-    Comments: history.Comments || {},
     Errors: errors.history || [],
     Completed: completed.history || [],
     Birthdate: processDate(identification.ApplicantBirthDate),
@@ -800,17 +786,6 @@ export class HistorySections extends React.Component {
           onError={this.props.onError}
           scrollIntoView={false}
           required={true}
-        />
-
-        <hr className="section-divider" />
-        <SectionComments
-          name="comments"
-          {...this.props.Comments}
-          title={i18n.t('history.review.comments')}
-          dispatch={this.props.dispatch}
-          onError={this.handleError}
-          required={false}
-          scrollIntoView={false}
         />
       </div>
     )

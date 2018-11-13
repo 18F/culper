@@ -87,10 +87,6 @@ export const sectionData = (section, subsection, application = {}) => {
         {
           path: 'identification/ssn',
           data: wrap(application.Identification).ApplicantSSN
-        },
-        {
-          path: 'identification/comments',
-          data: wrap(application.Identification).Comments
         }
       ]
 
@@ -155,10 +151,6 @@ export const sectionData = (section, subsection, application = {}) => {
         {
           path: 'financial/nonpayment',
           data: wrap(application.Financial).Nonpayment
-        },
-        {
-          path: 'financial/comments',
-          data: wrap(application.Financial).Comments
         }
       ]
 
@@ -196,8 +188,7 @@ export const sectionData = (section, subsection, application = {}) => {
         {
           path: 'history/residence',
           data: wrap(application.History).Residence
-        },
-        { path: 'history/comments', data: wrap(application.History).Comments }
+        }
       ]
 
     case 'relationships/status/marital':
@@ -246,10 +237,6 @@ export const sectionData = (section, subsection, application = {}) => {
         {
           path: 'relationships/relatives',
           data: wrap(application.Relationships).Relatives
-        },
-        {
-          path: 'relationships/comments',
-          data: wrap(application.Relationships).Comments
         }
       ]
 
@@ -288,10 +275,6 @@ export const sectionData = (section, subsection, application = {}) => {
         {
           path: 'citizenship/status',
           data: wrap(application.Citizenship).Status
-        },
-        {
-          path: 'citizenship/comments',
-          data: wrap(application.Citizenship).Comments
         }
       ]
 
@@ -329,8 +312,7 @@ export const sectionData = (section, subsection, application = {}) => {
           path: 'military/disciplinary',
           data: wrap(application.Military).Disciplinary
         },
-        { path: 'military/foreign', data: wrap(application.Military).Foreign },
-        { path: 'military/comments', data: wrap(application.Military).Comments }
+        { path: 'military/foreign', data: wrap(application.Military).Foreign }
       ]
 
     case 'foreign/activities/benefits':
@@ -504,8 +486,7 @@ export const sectionData = (section, subsection, application = {}) => {
         },
         { path: 'foreign/contacts', data: wrap(application.Foreign).Contacts },
         { path: 'foreign/passport', data: wrap(application.Foreign).Passport },
-        { path: 'foreign/travel', data: wrap(application.Foreign).Travel },
-        { path: 'foreign/comments', data: wrap(application.Foreign).Comments }
+        { path: 'foreign/travel', data: wrap(application.Foreign).Travel }
       ]
 
     case 'substance/alcohol/additional':
@@ -631,10 +612,6 @@ export const sectionData = (section, subsection, application = {}) => {
         {
           path: 'substance/drugs/voluntary',
           data: wrap(application.Substance).VoluntaryTreatments
-        },
-        {
-          path: 'substance/comments',
-          data: wrap(application.Substance).Comments
         }
       ]
 
@@ -842,8 +819,7 @@ export const sectionData = (section, subsection, application = {}) => {
         {
           path: 'legal/technology/unlawful',
           data: wrap(application.Legal).Unlawful
-        },
-        { path: 'legal/comments', data: wrap(application.Legal).Comments }
+        }
       ]
 
     case 'psychological/competence':
@@ -903,10 +879,6 @@ export const sectionData = (section, subsection, application = {}) => {
         {
           path: 'psychological/hospitalizations',
           data: wrap(application.Psychological).Hospitalizations
-        },
-        {
-          path: 'psychological/comments',
-          data: wrap(application.Psychological).Comments
         }
       ]
 

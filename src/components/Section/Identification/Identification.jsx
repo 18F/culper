@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { i18n } from '../../../config'
 import SectionElement from '../SectionElement'
-import SectionComments from '../SectionComments'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import { addDividers, createPrintSubsectionViews } from '../generators'
 import navigation from './navigation'
@@ -35,7 +34,6 @@ function mapStateToProps(state) {
     OtherNames: identification.OtherNames || {},
     Contacts: identification.Contacts || {},
     Physical: identification.Physical || {},
-    Comments: identification.Comments || {},
     Errors: errors.identification || [],
     Completed: completed.identification || []
   }
@@ -75,20 +73,7 @@ export class IdentificationSections extends React.Component {
   render() {
     const components = addDividers(this.createSubsections())
 
-    return (
-      <div>
-        {components}
-        <SectionComments
-          name="comments"
-          {...this.props.Comments}
-          title={i18n.t('identification.review.comments')}
-          dispatch={this.props.dispatch}
-          onError={this.props.onError}
-          required={false}
-          scrollIntoView={false}
-        />
-      </div>
-    )
+    return <div>{components}</div>
   }
 }
 

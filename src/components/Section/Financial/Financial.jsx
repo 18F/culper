@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { i18n } from '../../../config'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
-import SectionComments from '../SectionComments'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import { Field } from '../../Form'
 import Gambling from './Gambling'
@@ -138,17 +137,6 @@ class Financial extends SectionElement {
               onError={this.handleError}
               defaultState={false}
               required={true}
-              scrollIntoView={false}
-            />
-            <hr className="section-divider" />
-            <SectionComments
-              name="comments"
-              {...this.props.Comments}
-              title={i18n.t('financial.review.comments')}
-              dispatch={this.props.dispatch}
-              onUpdate={this.handleUpdate.bind(this, 'Comments')}
-              onError={this.handleError}
-              required={false}
               scrollIntoView={false}
             />
           </SectionView>
@@ -290,7 +278,6 @@ function mapStateToProps(state) {
     Credit: financial.Credit || {},
     Delinquent: financial.Delinquent || {},
     Nonpayment: financial.Nonpayment || {},
-    Comments: financial.Comments || {},
     Errors: errors.financial || [],
     Completed: completed.financial || [],
     AddressBooks: addressBooks
@@ -383,17 +370,6 @@ export class FinancialSections extends React.Component {
           onError={this.props.onError}
           defaultState={false}
           required={true}
-          scrollIntoView={false}
-        />
-
-        <hr className="section-divider" />
-        <SectionComments
-          name="comments"
-          {...this.props.Comments}
-          title={i18n.t('financial.review.comments')}
-          dispatch={this.props.dispatch}
-          onError={this.handleError}
-          required={false}
           scrollIntoView={false}
         />
       </div>
