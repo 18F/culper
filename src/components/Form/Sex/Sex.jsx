@@ -45,6 +45,7 @@ export default class Sex extends ValidationElement {
         <RadioGroup
           selectedValue={this.props.value}
           onError={this.props.onError}
+          className="option-list-inline"
           required={this.props.required}>
           <Radio
             name={this.props.name}
@@ -54,9 +55,6 @@ export default class Sex extends ValidationElement {
             className="female"
             onUpdate={this.handleUpdate}
             onError={this.handleError}>
-            <div className="sex-icon">
-              <Svg src="/img/female.svg" />
-            </div>
           </Radio>
           <Radio
             name={this.props.name}
@@ -66,9 +64,6 @@ export default class Sex extends ValidationElement {
             className="male"
             onUpdate={this.handleUpdate}
             onError={this.handleError}>
-            <div className="sex-icon">
-              <Svg src="/img/male.svg" />
-            </div>
           </Radio>
         </RadioGroup>
       </div>

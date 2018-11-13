@@ -141,9 +141,6 @@ export default class MilitaryService extends ValidationElement {
               value="AirForce"
               onUpdate={this.updateService}
               onError={this.props.onError}>
-              <div className="military-service-icon airforce-icon">
-                <Svg src="/img/airforce.png" />
-              </div>
             </Radio>
             <Radio
               name="service-airnationalguard"
@@ -152,9 +149,6 @@ export default class MilitaryService extends ValidationElement {
               value="AirNationalGuard"
               onUpdate={this.updateService}
               onError={this.props.onError}>
-              <div className="military-service-icon airnationalguard-icon">
-                <Svg src="/img/airnationalguard.gif" />
-              </div>
             </Radio>
             <Radio
               name="service-army"
@@ -163,9 +157,6 @@ export default class MilitaryService extends ValidationElement {
               value="Army"
               onUpdate={this.updateService}
               onError={this.props.onError}>
-              <div className="military-service-icon army-icon">
-                <Svg src="/img/army.png" />
-              </div>
             </Radio>
             <Radio
               name="service-armynationalguard"
@@ -174,9 +165,6 @@ export default class MilitaryService extends ValidationElement {
               value="ArmyNationalGuard"
               onUpdate={this.updateService}
               onError={this.props.onError}>
-              <div className="military-service-icon armynationalguard-icon">
-                <Svg src="/img/armynationalguard.png" />
-              </div>
             </Radio>
             <Radio
               name="service-coastguard"
@@ -185,9 +173,6 @@ export default class MilitaryService extends ValidationElement {
               value="CoastGuard"
               onUpdate={this.updateService}
               onError={this.props.onError}>
-              <div className="military-service-icon coastguard-icon">
-                <Svg src="/img/coastguard.png" />
-              </div>
             </Radio>
             <Radio
               name="service-marinecorps"
@@ -196,9 +181,6 @@ export default class MilitaryService extends ValidationElement {
               value="MarineCorps"
               onUpdate={this.updateService}
               onError={this.props.onError}>
-              <div className="military-service-icon marinecorps-icon">
-                <Svg src="/img/marinecorps.png" />
-              </div>
             </Radio>
             <Radio
               name="service-navy"
@@ -207,9 +189,6 @@ export default class MilitaryService extends ValidationElement {
               value="Navy"
               onUpdate={this.updateService}
               onError={this.props.onError}>
-              <div className="military-service-icon navy-icon">
-                <Svg src="/img/navy.png" />
-              </div>
             </Radio>
           </RadioGroup>
         </Field>
@@ -220,7 +199,7 @@ export default class MilitaryService extends ValidationElement {
           shrink={true}
           scrollIntoView={this.props.scrollIntoView}>
           <RadioGroup
-            className="status option-list"
+            className="status option-list option-list-inline"
             required={this.props.required}
             onError={this.props.onError}
             selectedValue={(this.props.Status || {}).value}>
@@ -257,7 +236,7 @@ export default class MilitaryService extends ValidationElement {
           shrink={true}
           scrollIntoView={this.props.scrollIntoView}>
           <RadioGroup
-            className="officer option-list"
+            className="officer option-list option-list-inline"
             required={this.props.required}
             onError={this.props.onError}
             selectedValue={(this.props.Officer || {}).value}>
@@ -376,7 +355,7 @@ export default class MilitaryService extends ValidationElement {
                 <Radio
                   name="discharge-type-honorable"
                   className="discharge-type-honorable"
-                  label={i18n.m(
+                  label={i18n.t(
                     'military.history.label.discharge.type.honorable'
                   )}
                   value="Honorable"
@@ -386,7 +365,7 @@ export default class MilitaryService extends ValidationElement {
                 <Radio
                   name="discharge-type-dishonorable"
                   className="discharge-type-dishonorable"
-                  label={i18n.m(
+                  label={i18n.t(
                     'military.history.label.discharge.type.dishonorable'
                   )}
                   value="Dishonorable"
@@ -396,7 +375,7 @@ export default class MilitaryService extends ValidationElement {
                 <Radio
                   name="discharge-type-lessthan"
                   className="discharge-type-lessthan long-text"
-                  label={i18n.m(
+                  label={i18n.t(
                     'military.history.label.discharge.type.lessthan'
                   )}
                   value="LessThan"
@@ -406,7 +385,7 @@ export default class MilitaryService extends ValidationElement {
                 <Radio
                   name="discharge-type-general"
                   className="discharge-type-general"
-                  label={i18n.m(
+                  label={i18n.t(
                     'military.history.label.discharge.type.general'
                   )}
                   value="General"
@@ -416,7 +395,7 @@ export default class MilitaryService extends ValidationElement {
                 <Radio
                   name="discharge-type-badconduct"
                   className="discharge-type-badconduct"
-                  label={i18n.m(
+                  label={i18n.t(
                     'military.history.label.discharge.type.badconduct'
                   )}
                   value="BadConduct"
@@ -426,7 +405,7 @@ export default class MilitaryService extends ValidationElement {
                 <Radio
                   name="discharge-type-other"
                   className="discharge-type-other long-text"
-                  label={i18n.m('military.history.label.discharge.type.other')}
+                  label={i18n.t('military.history.label.discharge.type.other')}
                   value="Other"
                   onUpdate={this.updateDischargeType}
                   onError={this.props.onError}
