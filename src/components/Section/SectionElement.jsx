@@ -10,7 +10,6 @@ import {
   createReviewGroups,
   createSectionViews
 } from './generators'
-import SectionComments from './SectionComments'
 import { SectionView, SectionViews } from './SectionView'
 
 export default class SectionElement extends React.Component {
@@ -72,18 +71,6 @@ export default class SectionElement extends React.Component {
         next={`${nextSection}/intro`}
         nextLabel={i18n.t(`${nextSection}.destination.intro`)}>
         {reviewComponents}
-        <SectionComments
-          name="comments"
-          {...this.props.Comments}
-          section={section}
-          subsection="name"
-          title={i18n.t(`${section}.review.comments`)}
-          dispatch={this.props.dispatch}
-          onUpdate={this.handleUpdate.bind(this, 'Comments')}
-          onError={this.handleError}
-          required={false}
-          scrollIntoView={false}
-        />
       </SectionView>
     )
   }

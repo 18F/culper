@@ -4,7 +4,6 @@ import { updateApplication } from '../../../actions/ApplicationActions'
 import { i18n } from '../../../config'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
-import SectionComments from '../SectionComments'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import { Field } from '../../Form'
 import Relatives from './Relatives'
@@ -210,18 +209,6 @@ class Relationships extends SectionElement {
               required={true}
               scrollIntoView={false}
             />
-
-            <hr className="section-divider" />
-            <SectionComments
-              name="comments"
-              {...this.props.Comments}
-              title={i18n.t('relationships.review.comments')}
-              dispatch={this.props.dispatch}
-              onUpdate={this.handleUpdate.bind(this, 'Comments')}
-              onError={this.handleError}
-              required={false}
-              scrollIntoView={false}
-            />
           </SectionView>
         </SectionViews>
       </div>
@@ -245,7 +232,6 @@ function mapStateToProps(state) {
     Cohabitants: relationships.Cohabitants || {},
     CurrentAddress: history.CurrentAddress,
     People: relationships.People || {},
-    Comments: relationships.Comments || {},
     Errors: errors.relationships || [],
     Completed: completed.relationships || [],
     AddressBooks: addressBooks
@@ -313,17 +299,6 @@ export class RelationshipSections extends React.Component {
           dispatch={this.props.dispatch}
           onError={this.handleError}
           required={true}
-          scrollIntoView={false}
-        />
-
-        <hr className="section-divider" />
-        <SectionComments
-          name="comments"
-          {...this.props.Comments}
-          title={i18n.t('relationships.review.comments')}
-          dispatch={this.props.dispatch}
-          onError={this.handleError}
-          required={false}
           scrollIntoView={false}
         />
       </div>

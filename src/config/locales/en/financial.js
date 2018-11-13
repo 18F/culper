@@ -8,9 +8,7 @@ export const financial = {
     para: 'Take a guided tour through the section'
   },
   review: {
-    para: 'View all the sections associated with identification at once',
-    comments:
-      'Add a comment to clarify any of your responses in the financial record section'
+    para: 'View all the sections associated with identification at once'
   },
   destination: {
     intro: 'Financial intro',
