@@ -41,9 +41,6 @@ export default class OtherBenefit extends ValidationElement {
     return (
       <div>
         {i18n.m('foreign.activities.benefit.label.otherBenefit')}
-        {/*
-          *
-        */}
         <Textarea
           name="OtherBenefitTypeExplanation"
           {...this.props.otherBenefit}
@@ -52,6 +49,8 @@ export default class OtherBenefit extends ValidationElement {
           required={this.props.required}
           valud={this.props.otherBenefit.OtherFrequencyTypeExplanation}
         />
+        {/* Hacky spacer between components */}
+        <div style={{ height: '30px'}} />
         {/* The 'Other' frequency type has the same fields as the ConinuingBenefit */}
         <ContinuingBenefit
           name="OtherBenefit"
