@@ -6021,11 +6021,9 @@
                     }
                   },
                   "Days": {
-                    "type": "checkboxgroup",
+                    "type": "radio",
                     "props": {
-                      "values": [
-                        "More than 30"
-                      ]
+                      "value": "More than 30"
                     }
                   },
                   "Encounter": {
@@ -6164,11 +6162,9 @@
                     }
                   },
                   "Days": {
-                    "type": "checkboxgroup",
+                    "type": "radio",
                     "props": {
-                      "values": [
-                        "More than 30"
-                      ]
+                      "value": "More than 30"
                     }
                   },
                   "Encounter": {

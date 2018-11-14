@@ -4659,11 +4659,9 @@
                     }
                   },
                   "Days": {
-                    "type": "checkboxgroup",
+                    "type": "radio",
                     "props": {
-                      "values": [
-                        "6-10"
-                      ]
+                      "value": "6-10"
                     }
                   },
                   "Encounter": {
@@ -4795,11 +4793,9 @@
                     }
                   },
                   "Days": {
-                    "type": "checkboxgroup",
+                    "type": "radio",
                     "props": {
-                      "values": [
-                        "11-20"
-                      ]
+                      "value": "11-20"
                     }
                   },
                   "Encounter": {

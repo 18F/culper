@@ -52,9 +52,9 @@
                 }
               },
               "Days": {
-                "type": "checkboxgroup",
+                "type": "radio",
                 "props": {
-                  "values": ["1-5"]
+                  "value": "1-5"
                 }
               },
               "Purpose": {
