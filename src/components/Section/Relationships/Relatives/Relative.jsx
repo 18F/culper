@@ -681,13 +681,21 @@ export default class Relative extends ValidationElement {
               addressBook={this.props.addressBook}
               dispatch={this.props.dispatch}
               layout={Location.ADDRESS}
-              geocode={true}
-              showPostOffice={true}
+              geocode
               onUpdate={this.updateAddress}
               onError={this.props.onError}
               required={this.props.required}
             />
           </Field>
+
+          {this.props.render({
+            address: this.props.AlternateAddress,
+            belongingTo: 'AlternateAddress',
+            country: this.props.Address.country,
+            forceAPO: true,
+            militaryAddressLabel: i18n.t('address.militaryAddress.other'),
+            onUpdate: this.update
+          })}
         </Show>
 
         <Show when={validator.requiresCitizenshipDocumentation()}>

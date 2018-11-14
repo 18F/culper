@@ -10,9 +10,7 @@ export const history = {
   review: {
     title: 'Full section view',
     para: 'View all the sections associated with your history at once',
-    button: 'Show me the full section',
-    comments:
-      'Add a comment to clarify any of your responses in the your history section'
+    button: 'Show me the full section'
   },
   timeline: {
     title: "Let's cover your last 10 years",

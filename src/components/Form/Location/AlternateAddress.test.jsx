@@ -1,5 +1,5 @@
 import React from 'react'
-import { mount } from 'enzyme'
+import { shallow, mount } from 'enzyme'
 import { fn } from 'jest'
 import { AlternateAddress } from './AlternateAddress'
 import { address } from '../../../config/locales/en/address'
@@ -9,7 +9,6 @@ describe('<AlternateAddress />', () => {
   describe('when a user indicates a foreign address', () => {
     it('renders a Branch component', () => {
       const props = {
-        allowForeignMilitary: true,
         country: '',
         address: {
           HasDifferentAddress: '',
@@ -21,12 +20,11 @@ describe('<AlternateAddress />', () => {
       const branch = component.find('Branch')
   
       expect(branch.length).toEqual(1)
-      expect(branch.prop('label')).toEqual(address.militaryAddress)
+      expect(branch.prop('label')).toEqual(address.militaryAddress.me)
     })
 
     it('renders an APO/FPO-only component when Branch value is yes', () => {
       const props = {
-        allowForeignMilitary: true,
         country: '',
         address: {
           HasDifferentAddress: { value: 'Yes' }
@@ -35,12 +33,12 @@ describe('<AlternateAddress />', () => {
 
       const component = mount(<AlternateAddress {...props} />)
 
+      expect(component.find('Branch').length).toBe(1)
       expect(component.find('Location').prop('disableToggle')).toEqual(true)
     })
 
     it('passes the branch value to the branch', () => {
       const props = {
-        allowForeignMilitary: true,
         country: '',
         address: {
           HasDifferentAddress: { value: 'No' }
@@ -54,7 +52,6 @@ describe('<AlternateAddress />', () => {
     describe('when the user toggles to an APO address', () => {
       it('toggles the secondary APO address form properly', () => {
         const props = {
-          allowForeignMilitary: true,
           onUpdate: () => ({}),
           country: 'Spain',
           address: {
@@ -117,6 +114,21 @@ describe('<AlternateAddress />', () => {
         Telephone: {}
       }
     })
+  })
+
+  it('always shows the APO field when the `forceAPO` prop is supplied', () => {
+    const props = {
+      belongingTo: 'Address',
+      onUpdate: jest.fn(),
+      country: 'United States',
+      address: {
+        Address: {},
+        HasDifferentAddress: { value: '' }
+      }
+    }
+
+    const component = shallow(<AlternateAddress {...props} />)
+    expect(component.find('Branch').length).toBe(1)
   })
 
   describe('when the user indicates an APO address', () => {

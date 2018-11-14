@@ -7,6 +7,9 @@ import { RelativesValidator, RelativeValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Field, Accordion } from '../../../Form'
 import Relative from './Relative'
+import alternateAddressProvider from '../../../Form/Location/alternateAddressProvider'
+
+const RelativeWithAlternateAddress = alternateAddressProvider(Relative)
 
 export default class Relatives extends SubsectionElement {
   constructor(props) {
@@ -100,7 +103,7 @@ export default class Relatives extends SubsectionElement {
           scrollIntoView={this.props.scrollIntoView}
           appendTitle={i18n.t('relationships.relatives.collection.appendTitle')}
           appendLabel={i18n.t('relationships.relatives.collection.append')}>
-          <Relative
+          <RelativeWithAlternateAddress
             name="Item"
             applicantBirthdate={this.props.applicantBirthdate}
             addressBooks={this.props.addressBooks}

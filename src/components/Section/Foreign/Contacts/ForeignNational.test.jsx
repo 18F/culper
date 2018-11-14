@@ -2,9 +2,12 @@ import React from 'react'
 import { mount } from 'enzyme'
 import ForeignNational from './ForeignNational'
 
+const renderMock = jest.fn()
+
 describe('The foreign national component', () => {
   it('display explanation if we do not know the name', () => {
     const expected = {
+      render: renderMock,
       name: 'foreign-national',
       NameNotApplicable: { applicable: false }
     }
@@ -14,6 +17,7 @@ describe('The foreign national component', () => {
 
   it('display explanation if we have methods of "other"', () => {
     const expected = {
+      render: renderMock,
       name: 'foreign-national',
       Methods: { values: ['Other'] }
     }
@@ -23,6 +27,7 @@ describe('The foreign national component', () => {
 
   it('display explanation if we have frequency of "other"', () => {
     const expected = {
+      render: renderMock,
       name: 'foreign-national',
       Frequency: { value: 'Other' }
     }
@@ -32,6 +37,7 @@ describe('The foreign national component', () => {
 
   it('display explanation if we have relation of "other"', () => {
     const expected = {
+      render: renderMock,
       name: 'foreign-national',
       Relationship: { values: ['Other'] }
     }
@@ -43,6 +49,7 @@ describe('The foreign national component', () => {
 
   it('display explanation if we have relation of "obligation"', () => {
     const expected = {
+      render: renderMock,
       name: 'foreign-national',
       Relationship: { values: ['Obligation'] }
     }
@@ -52,6 +59,7 @@ describe('The foreign national component', () => {
 
   it('display affiliations if said to have some', () => {
     const expected = {
+      render: renderMock,
       name: 'foreign-national',
       HasAffiliations: { value: 'Yes' }
     }
@@ -62,6 +70,7 @@ describe('The foreign national component', () => {
   it('trigger updates', () => {
     let updates = 0
     const expected = {
+      render: renderMock,
       name: 'foreign-national',
       NameNotApplicable: { applicable: false },
       Methods: { values: ['Other'] },

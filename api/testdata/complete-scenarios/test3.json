@@ -1,16 +1,5 @@
 {
   "Citizenship": {
-    "Comments": {
-      "type": "citizenship.comments",
-      "props": {
-        "Comments": {
-          "type": "text",
-          "props": {
-            "value": ""
-          }
-        }
-      }
-    },
     "Multiple": {
       "type": "citizenship.multiple",
       "props": {
@@ -366,17 +355,6 @@
               }
             },
             "items": []
-          }
-        }
-      }
-    },
-    "Comments": {
-      "type": "financial.comments",
-      "props": {
-        "Comments": {
-          "type": "text",
-          "props": {
-            "value": ""
           }
         }
       }
@@ -1241,17 +1219,6 @@
                 }
               }
             ]
-          }
-        }
-      }
-    },
-    "Comments": {
-      "type": "foreign.comments",
-      "props": {
-        "Comments": {
-          "type": "text",
-          "props": {
-            "value": ""
           }
         }
       }
@@ -5231,17 +5198,6 @@
     }
   },
   "History": {
-    "Comments": {
-      "type": "history.comments",
-      "props": {
-        "Comments": {
-          "type": "text",
-          "props": {
-            "value": ""
-          }
-        }
-      }
-    },
     "Education": {
       "type": "history.education",
       "props": {
@@ -5863,17 +5819,6 @@
         "verified": true
       }
     },
-    "Comments": {
-      "type": "identification.comments",
-      "props": {
-        "Comments": {
-          "type": "text",
-          "props": {
-            "value": ""
-          }
-        }
-      }
-    },
     "Contacts": {
       "type": "identification.contacts",
       "props": {
@@ -6025,17 +5970,6 @@
               }
             },
             "items": []
-          }
-        }
-      }
-    },
-    "Comments": {
-      "type": "legal.comments",
-      "props": {
-        "Comments": {
-          "type": "text",
-          "props": {
-            "value": ""
           }
         }
       }
@@ -6381,17 +6315,6 @@
     }
   },
   "Military": {
-    "Comments": {
-      "type": "military.comments",
-      "props": {
-        "Comments": {
-          "type": "text",
-          "props": {
-            "value": ""
-          }
-        }
-      }
-    },
     "Disciplinary": {
       "type": "military.disciplinary",
       "props": {
@@ -6702,17 +6625,6 @@
     }
   },
   "Psychological": {
-    "Comments": {
-      "type": "psychological.comments",
-      "props": {
-        "Comments": {
-          "type": "text",
-          "props": {
-            "value": ""
-          }
-        }
-      }
-    },
     "Competence": {
       "type": "psychological.competence",
       "props": {
@@ -7228,17 +7140,6 @@
                 }
               }
             ]
-          }
-        }
-      }
-    },
-    "Comments": {
-      "type": "relationships.comments",
-      "props": {
-        "Comments": {
-          "type": "text",
-          "props": {
-            "value": ""
           }
         }
       }
@@ -9310,17 +9211,6 @@
     }
   },
   "Substance": {
-    "Comments": {
-      "type": "substance.comments",
-      "props": {
-        "Comments": {
-          "type": "text",
-          "props": {
-            "value": ""
-          }
-        }
-      }
-    },
     "DrugClearanceUses": {
       "type": "substance.drugs.clearance",
       "props": {

@@ -10,6 +10,9 @@ import {
 import SubsectionElement from '../../SubsectionElement'
 import { Field, Branch, Show, Accordion } from '../../../Form'
 import ForeignNational from './ForeignNational'
+import alternateAddressProvider from '../../../Form/Location/alternateAddressProvider'
+
+const ForeignNationalWithAlternateAddress = alternateAddressProvider(ForeignNational)
 
 export default class Contacts extends SubsectionElement {
   constructor(props) {
@@ -86,7 +89,7 @@ export default class Contacts extends SubsectionElement {
             appendLabel={i18n.t('foreign.contacts.collection.append')}
             required={this.props.required}
             scrollIntoView={this.props.scrollIntoView}>
-            <ForeignNational
+            <ForeignNationalWithAlternateAddress
               name="Item"
               applicantBirthdate={this.props.applicantBirthdate}
               bind={true}
