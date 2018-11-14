@@ -90,11 +90,11 @@ func (entity *Benefit) Unmarshal(raw []byte) error {
 	}
 
 	if entity.PayloadOtherFrequencyTypeExplanation.Type != "" {
-		OtherFrequencyTypeExplanation, err := entity.PayloadOtherFrequencyTypeExplanation.Entity()
+		otherFrequencyTypeExplanation, err := entity.PayloadOtherFrequencyTypeExplanation.Entity()
 		if err != nil {
 			return err
 		}
-		entity.OtherFrequencyTypeExplanation = OtherFrequencyTypeExplanation.(*Textarea)
+		entity.OtherFrequencyTypeExplanation = otherFrequencyTypeExplanation.(*Textarea)
 	}
 
 	if entity.PayloadReceived.Type != "" {
@@ -257,11 +257,11 @@ func (entity *Benefit) Save(context DatabaseService, account int) (int, error) {
 	}
 
 	if entity.PayloadOtherFrequencyTypeExplanation.Type != "" {
-		OtherFrequencyTypeExplanationID, err := entity.OtherFrequencyTypeExplanation.Save(context, account)
+		otherFrequencyTypeExplanationID, err := entity.OtherFrequencyTypeExplanation.Save(context, account)
 		if err != nil {
-			return OtherFrequencyTypeExplanationID, err
+			return otherFrequencyTypeExplanationID, err
 		}
-		entity.OtherFrequencyTypeExplanationID = OtherFrequencyTypeExplanationID
+		entity.OtherFrequencyTypeExplanationID = otherFrequencyTypeExplanationID
 	}
 
 	if entity.PayloadReceived.Type != "" {
