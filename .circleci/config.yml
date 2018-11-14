@@ -21,6 +21,9 @@ jobs:
       - run:
           name: Run Go tests
           command: make test-go
+      - run:	
+          name: Code coverage	
+          command: make coverage
 
   cloudgov:
     machine: true
