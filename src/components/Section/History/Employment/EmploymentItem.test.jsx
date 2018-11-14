@@ -120,6 +120,7 @@ describe('The employment component', () => {
     expect(component.find('.reason-options').length).toBe(0)
   })
 
+/*
   it('does not display reason left options if currently employed', () => {
     const past = daysAgo(today, 365 * 10)
     const props = {
@@ -137,6 +138,7 @@ describe('The employment component', () => {
     const component = mount(<EmploymentItem {...props} />)
     expect(component.find('.reason-options').length).toBe(0)
   })
+*/
 
   it('does not display reason for leaving if currently employed', () => {
     const past = daysAgo(today, 365 * 3)
