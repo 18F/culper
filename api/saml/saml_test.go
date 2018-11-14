@@ -67,7 +67,7 @@ func TestSamlResponse(t *testing.T) {
 	}
 
 	// Validate the response
-	username, err := service.ValidateAuthenticationResponse(encodedResponse)
+	username, _, err := service.ValidateAuthenticationResponse(encodedResponse)
 	if err != nil || username != "test01" {
 		t.Fatal(err)
 	}

@@ -31,6 +31,11 @@ var (
 	AuthBearerRegexp = regexp.MustCompile("Bearer\\s(.*)")
 )
 
+type EAppClaims struct {
+	SessionID string `json:"sid,omitempty"`
+	jwt.StandardClaims
+}
+
 // Service is an implementation of JWT service handling.
 type Service struct {
 	Env api.Settings
@@ -79,21 +84,41 @@ func (service Service) CurrentAudience(request *http.Request) string {
 	}
 
 	if token.Valid {
-		claims := token.Claims.(*jwt.StandardClaims)
+		claims := token.Claims.(*EAppClaims)
 		return claims.Audience
 	}
 
 	return ""
 }
 
+// SessionID is the session embedded in the token.
+func (service Service) SessionID(request *http.Request) string {
+	rawToken := service.ExtractToken(request)
+	token, err := service.ParseWithClaims(rawToken)
+	if err != nil {
+		return ""
+	}
+
+	if token.Valid {
+		claims := token.Claims.(*EAppClaims)
+		return claims.SessionID
+	}
+
+	return ""
+}
+
 // NewToken generates a new Jwt signed token using a users account information
-func (service Service) NewToken(id int, audience string) (string, time.Time, error) {
+func (service Service) NewToken(id int, sessionID string, audience string) (string, time.Time, error) {
 	expiresAt := time.Now().Add(service.Timeout())
-	token := jwt.NewWithClaims(JwtSigningMethod, jwt.StandardClaims{
-		Id:        strconv.FormatInt(int64(id), 10),
-		Issuer:    Issuer,
-		Audience:  audience,
-		ExpiresAt: expiresAt.Unix(),
+
+	token := jwt.NewWithClaims(JwtSigningMethod, EAppClaims{
+		sessionID,
+		jwt.StandardClaims{
+			Id:        strconv.FormatInt(int64(id), 10),
+			Issuer:    Issuer,
+			Audience:  audience,
+			ExpiresAt: expiresAt.Unix(),
+		},
 	})
 
 	signedToken, err := token.SignedString(service.Secret())
@@ -105,13 +130,13 @@ func (service Service) NewToken(id int, audience string) (string, time.Time, err
 }
 
 // TokenClaims return all standard token claims.
-func (service Service) TokenClaims(token *jwt.Token) *jwt.StandardClaims {
-	return token.Claims.(*jwt.StandardClaims)
+func (service Service) TokenClaims(token *jwt.Token) *EAppClaims {
+	return token.Claims.(*EAppClaims)
 }
 
 // ParseWithClaims parses the token with standard claims..
 func (service Service) ParseWithClaims(tokenString string) (*jwt.Token, error) {
-	return jwt.ParseWithClaims(tokenString, &jwt.StandardClaims{}, service.KeyFunc)
+	return jwt.ParseWithClaims(tokenString, &EAppClaims{}, service.KeyFunc)
 }
 
 // KeyFunc ensures the signing method of the token.

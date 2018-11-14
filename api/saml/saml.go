@@ -48,7 +48,7 @@ func (service *Service) CreateAuthenticationRequest() (string, string, error) {
 }
 
 // ValidateAuthenticationResponse validations a SAML authentication response.
-func (service *Service) ValidateAuthenticationResponse(encoded string) (string, error) {
+func (service *Service) ValidateAuthenticationResponse(encoded string) (string, string, error) {
 	service.configure()
 
 	authnResponseXML, _ := base64.StdEncoding.DecodeString(encoded)
@@ -57,23 +57,35 @@ func (service *Service) ValidateAuthenticationResponse(encoded string) (string, 
 	response, err := saml.ParseEncodedResponse(encoded)
 	if err != nil {
 		service.Log.WarnError(api.SamlParseError, err, api.LogFields{})
-		return "", err
+		return "", "", err
 	}
 
 	// err = response.Validate(&service.provider)
 	err = service.validate(response, string(authnResponseXML))
 	if err != nil {
 		service.Log.WarnError(api.SamlInvalid, err, api.LogFields{})
-		return "", err
+		return "", "", err
 	}
 
 	username := cleanName(response.Assertion.Subject.NameID.Value)
 	if username == "" {
 		service.Log.WarnError(api.SamlIdentifierMissing, err, api.LogFields{})
-		return "", err
+		return "", "", err
 	}
 
-	return username, nil
+	var sessionIndex string
+	for _, authnStatement := range response.Assertion.AuthnStatements {
+		if authnStatement.SessionIndex != "" {
+			sessionIndex = authnStatement.SessionIndex
+		}
+	}
+
+	if sessionIndex == "" {
+		service.Log.Warn("SAML Auth Response does not include a SessionIndex. WSO2 is probably misconfigured and SLO will likely not work correctly.", api.LogFields{})
+	}
+
+
+	return username, sessionIndex, nil
 }
 
 // Example configuration:
@@ -179,6 +191,18 @@ func cleanName(nameID string) string {
 	}
 
 	return nameID
+}
+
+func (service *Service) CreateSLORequest(username string, sessionIndex string) (string, string, error) {
+	req := NewLogoutRequest(service.provider.IDPSSODescriptorURL, username, sessionIndex)
+	encoded, err := req.Base64()
+
+	url, err := getAuthnRequestURL(service.provider.IDPSSOURL, "state")
+	if err != nil {
+		return "", "", err
+	}
+
+	return encoded, url, err
 }
 
 // getAuthnRequestURL generates a URL for the AuthnRequest to the IdP with the RelayState parameter encoded
