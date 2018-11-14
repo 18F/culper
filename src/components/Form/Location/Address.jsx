@@ -551,7 +551,6 @@ Address.defaultProps = {
   },
   showPostOffice: false,
   streetLabel: i18n.t('address.us.street.label'),
-  postOfficeStreetPlaceholder: i18n.t('address.apoFpo.street.placeholder'),
   postOfficeStateLabel: i18n.t('address.apoFpo.apoFpo.label'),
   postOfficeZipcodeLabel: i18n.t('address.apoFpo.zipcode.label'),
   street2Label: i18n.t('address.us.street2.label'),

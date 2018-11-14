@@ -208,7 +208,6 @@ export default class Bankruptcy extends ValidationElement {
             onError={this.props.onError}
             {...this.props.CourtNumber}
             className="courtnumber"
-            placeholder={i18n.t('financial.bankruptcy.courtNumber.placeholder')}
             title={i18n.t('financial.bankruptcy.courtNumber.title')}
             required={this.props.required}
           />
@@ -301,9 +300,6 @@ export default class Bankruptcy extends ValidationElement {
           scrollIntoView={this.props.scrollIntoView}>
           <Text
             name="CourtInvolved"
-            placeholder={i18n.t(
-              'financial.bankruptcy.courtInvolved.placeholder'
-            )}
             {...this.props.CourtInvolved}
             className="courtinvolved"
             onUpdate={this.updateCourtInvolved}
@@ -342,7 +338,6 @@ export default class Bankruptcy extends ValidationElement {
                 name="chapter13Trustee"
                 className="trustee"
                 {...this.props.Trustee}
-                placeholder={i18n.t('financial.bankruptcy.trustee.placeholder')}
                 onError={this.props.onError}
                 onUpdate={this.updateTrustee}
                 required={this.props.required}

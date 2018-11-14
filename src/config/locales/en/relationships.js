@@ -171,10 +171,6 @@ export const relationships = {
       estimated: 'Estimated',
       birthplace: 'Was this person born in the United States of America?'
     },
-    placeholder: {
-      city: 'Please enter the city of birth',
-      country: 'Please enter the country of birth'
-    },
     help: {
       relation: {
         title: 'Need help selecting relatives?',

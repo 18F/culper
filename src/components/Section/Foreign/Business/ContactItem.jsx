@@ -115,12 +115,6 @@ export default class ContactItem extends ValidationElement {
             layout={Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY}
             help=""
             label={i18n.t('foreign.business.contact.label.location')}
-            cityPlaceholder={i18n.t(
-              'foreign.business.contact.placeholder.city'
-            )}
-            countryPlaceholder={i18n.t(
-              'foreign.business.contact.placeholder.country'
-            )}
             className="birthplace foreign-business-contact-location"
             addressBooks={this.props.addressBooks}
             addressBook="ForeignNational"

@@ -102,7 +102,6 @@ export default class Height extends ValidationElement {
             name="feet"
             ref="feet"
             label={i18n.t('identification.traits.label.feet')}
-            placeholder={i18n.t('identification.traits.placeholder.feet')}
             disabled={this.props.disabled}
             max="9"
             maxlength="1"
@@ -126,7 +125,6 @@ export default class Height extends ValidationElement {
             name="inches"
             ref="inches"
             label={i18n.t('identification.traits.label.inches')}
-            placeholder={i18n.t('identification.traits.placeholder.inches')}
             disabled={this.props.disabled}
             max="11"
             maxlength="2"
