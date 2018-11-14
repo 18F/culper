@@ -34,10 +34,11 @@ describe('The Name component', () => {
         valid: false
       }
 
-       const expectedMessage = "Oops, there’s a problem.If your first name is a single letter, please select the \"Initial only\" checkbox and type the letter. 100 character limit."
       const component = mount(<Name {...params} />)
       component.find('.first input').simulate('change')
-      expect(component.find('[aria-label="First name"] .error-messages [data-i18n="error.name.first.pattern"]').text()).toEqual(expectedMessage)
+      expect(component.find('[aria-label="First name"] .error-messages').text()).toEqual(
+        `${i18n.t('error.name.first.pattern.title')}${i18n.t('error.name.first.pattern.message')}`
+      )
     })
   })
 
@@ -62,10 +63,11 @@ describe('The Name component', () => {
         valid: false
       }
 
-      const expectedMessage = i18n.t('error.name.middle.pattern')
       const component = mount(<Name {...params} />)
       component.find('.middle input').simulate('change')
-      expect(component.find('[aria-label="Middle name"] .error-messages [data-i18n="error.name.middle.pattern"]').text()).toEqual(expectedMessage)
+      expect(component.find('[aria-label="Middle name"] .error-messages').text()).toEqual(
+        `${i18n.t('error.name.middle.pattern.title')}${i18n.t('error.name.middle.pattern.message')}`
+      )
     })
   })
 
@@ -88,10 +90,11 @@ describe('The Name component', () => {
         valid: false
       }
 
-      const expectedMessage = "There is a problem with the last nameSome of these characters aren't allowed.Only use letters, hyphens (-), periods (.), apostrophes ('), and spaces."
       const component = mount(<Name {...params} />)
       component.find('.last input').simulate('change')
-      expect(component.find('[aria-label="Last name"] .error-messages [data-i18n="error.name.last.pattern"]').text()).toEqual(expectedMessage)
+      expect(component.find('[aria-label="Last name"] .error-messages').text()).toEqual(
+        `${i18n.t('error.name.last.pattern.title')}${i18n.t('error.name.last.pattern.message')}${i18n.t('error.name.last.pattern.note')}`
+      )
     })
   })
 
