@@ -15,12 +15,72 @@ describe('The reason left component', () => {
     expect(component.find('.date-left').length).toEqual(0)
   })
 
+  it('no description or question if still employed', () => {
+    const past = daysAgo(today, 365 * 1)
+    const expected = {
+      name: 'peace_i_am_out',
+      Dates: {
+        present: true,
+        from: {
+          month: `${past.getMonth() + 1}`,
+          day: `${past.getDate()}`,
+          year: `${past.getFullYear()}`
+        },
+        to: {}
+      },
+
+    }
+    const component = mount(<ReasonLeft {...expected} />)
+    expect(component.find('.reason-description').length).toEqual(0)
+    expect(component.find('.reason-options').length).toEqual(0)
+  })
+
+  it('show description and question if no longer employed and less than 7 years', () => {
+    const past = daysAgo(today, 365 * 1)
+    const expected = {
+      name: 'peace_i_am_out',
+      Dates: {
+        present: false,
+        from: {
+          month: `${past.getMonth() + 1}`,
+          day: `${past.getDate()}`,
+          year: `${past.getFullYear()}`
+        },
+        to: {}
+      },
+
+    }
+    const component = mount(<ReasonLeft {...expected} />)
+    expect(component.find('.reason-description').length).toEqual(1)
+    expect(component.find('.reason-options').length).toEqual(1)
+  })
+
+  it('show description and not question if no longer employed and greater than 7 years', () => {
+    const past = daysAgo(today, 365 * 10)
+    const expected = {
+      name: 'peace_i_am_out',
+      Dates: {
+        present: false,
+        from: {
+          month: `${past.getMonth() + 1}`,
+          day: `${past.getDate()}`,
+          year: `${past.getFullYear()}`
+        },
+        to: {}
+      },
+
+    }
+    const component = mount(<ReasonLeft {...expected} />)
+    expect(component.find('.reason-description').length).toEqual(1)
+    expect(component.find('.reason-options').length).toEqual(0)
+  })
+
   it('display explanation and date when a value is selected', () => {
     const past = daysAgo(today, 365 * 7)
     const expected = {
       name: 'peace_i_am_out',
       Dates: {
-        present: true,
+        present: false,
         from: {
           month: `${past.getMonth() + 1}`,
           day: `${past.getDate()}`,
@@ -70,7 +130,7 @@ describe('The reason left component', () => {
       {
         name: 'peace_i_am_out',
         Dates: {
-          present: true,
+          present: false,
           from: {
             month: `${past.getMonth() + 1}`,
             day: `${past.getDate()}`,
@@ -89,7 +149,7 @@ describe('The reason left component', () => {
       {
         name: 'peace_i_am_out',
         Dates: {
-          present: true,
+          present: false,
           from: {
             month: `${past.getMonth() + 1}`,
             day: `${past.getDate()}`,
@@ -108,7 +168,7 @@ describe('The reason left component', () => {
       {
         name: 'peace_i_am_out',
         Dates: {
-          present: true,
+          present: false,
           from: {
             month: `${past.getMonth() + 1}`,
             day: `${past.getDate()}`,
@@ -127,7 +187,7 @@ describe('The reason left component', () => {
       {
         name: 'peace_i_am_out',
         Dates: {
-          present: true,
+          present: false,
           from: {
             month: `${past.getMonth() + 1}`,
             day: `${past.getDate()}`,
