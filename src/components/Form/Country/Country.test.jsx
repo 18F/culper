@@ -9,7 +9,7 @@ describe('The Country component', () => {
       value: ''
     }
     const component = mount(<Country {...expected} />)
-    expect(component.find('div').length).toBeGreaterThan(0)
+    expect(component.length).toBe(1)
   })
 
   it('renders with values', () => {

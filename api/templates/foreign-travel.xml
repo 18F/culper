@@ -34,7 +34,7 @@
         <Explanation>{{text $Item.QuestionedExplanation}}</Explanation>
       </Detained>
       <Duration>
-        <NumberOfDaysRange>{{checkbox $Item.Days | daysInRange}}</NumberOfDaysRange>
+        <NumberOfDaysRange>{{radio $Item.Days | daysInRange}}</NumberOfDaysRange>
       </Duration>
       <EntryComment></EntryComment>
       <InvolvedInCounterintelligence>

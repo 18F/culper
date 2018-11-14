@@ -8,9 +8,7 @@ export const identification = {
     para: 'Take a guided tour through the section'
   },
   review: {
-    para: 'View all the sections associated with identification at once',
-    comments:
-      'Add a comment to clarify any of your responses in the information about you section'
+    para: 'View all the sections associated with identification at once'
   },
   destination: {
     intro: 'Identification intro',
@@ -150,12 +148,6 @@ export const identification = {
       county: 'County or province',
       country: 'Country',
       location: 'Were you born in the United States?'
-    },
-    placeholder: {
-      state: 'Please enter state or territory within the United States',
-      city: 'Please enter your city of birth',
-      county: 'Please enter your county or province of birth',
-      country: 'Please enter your country of birth'
     }
   },
   contacts: {
@@ -204,10 +196,6 @@ export const identification = {
       comments:
         'If you need to provide any additional comments about this information enter them below',
       phoneNumber: 'Phone number'
-    },
-    placeholder: {
-      email: 'Enter an email address',
-      phoneNumber: 'Enter a phone number'
     }
   },
   ssn: {
@@ -228,11 +216,6 @@ export const identification = {
       middle: '',
       first: '',
       verify: 'Please verify your social security number'
-    },
-    placeholder: {
-      last: '####',
-      middle: '##',
-      first: '###'
     }
   },
   traits: {
@@ -292,11 +275,6 @@ export const identification = {
       inches: 'Inches',
       pounds: 'Pounds',
       comments: 'Add a comment about sex'
-    },
-    placeholder: {
-      feet: '#',
-      inches: '##',
-      pounds: '###'
     },
     hair: {
       bald: 'Bald',

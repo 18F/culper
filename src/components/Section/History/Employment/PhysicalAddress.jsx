@@ -92,9 +92,6 @@ export default class PhysicalAddress extends ValidationElement {
               label={i18n.t(
                 'history.employment.default.physicalAddress.address.label'
               )}
-              placeholder={i18n.t(
-                'history.employment.default.physicalAddress.address.placeholder'
-              )}
               layout={Location.ADDRESS}
               geocode={true}
               addressBooks={this.props.addressBooks}

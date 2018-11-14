@@ -136,7 +136,6 @@ func TestPayloadValidate(t *testing.T) {
 		{Data: "testdata/identification-othernames.json"},
 		{Data: "testdata/identification-physical.json"},
 		{Data: "testdata/identification-ssn.json"},
-		{Data: "testdata/identification-comments.json"},
 
 		// Section: Financial
 		{Data: "testdata/financial-bankruptcy.json"},
@@ -146,34 +145,29 @@ func TestPayloadValidate(t *testing.T) {
 		{Data: "testdata/financial-credit.json"},
 		{Data: "testdata/financial-delinquent.json"},
 		{Data: "testdata/financial-nonpayment.json"},
-		{Data: "testdata/financial-comments.json"},
 
 		// Section: Your history
 		{Data: "testdata/history-residence.json"},
 		{Data: "testdata/history-employment.json"},
 		{Data: "testdata/history-education.json"},
 		{Data: "testdata/history-federal.json"},
-		{Data: "testdata/history-comments.json"},
 
 		// Section: Relationships
 		{Data: "testdata/relationships-status-marital.json"},
 		{Data: "testdata/relationships-status-cohabitant.json"},
 		{Data: "testdata/relationships-people.json"},
 		{Data: "testdata/relationships-relatives.json"},
-		{Data: "testdata/relationships-comments.json"},
 
 		// Section: Citizenship
 		{Data: "testdata/citizenship-status.json"},
 		{Data: "testdata/citizenship-multiple.json"},
 		{Data: "testdata/citizenship-passports.json"},
-		{Data: "testdata/citizenship-comments.json"},
 
 		// Section: Military history
 		{Data: "testdata/military-selective.json"},
 		{Data: "testdata/military-history.json"},
 		{Data: "testdata/military-foreign.json"},
 		{Data: "testdata/military-disciplinary.json"},
-		{Data: "testdata/military-comments.json"},
 
 		// Section: Foreign activities
 		{Data: "testdata/foreign-passport.json"},
@@ -193,7 +187,6 @@ func TestPayloadValidate(t *testing.T) {
 		{Data: "testdata/foreign-business-sponsorship.json"},
 		{Data: "testdata/foreign-business-ventures.json"},
 		{Data: "testdata/foreign-business-voting.json"},
-		{Data: "testdata/foreign-comments.json"},
 
 		// Section: Substance use
 		{Data: "testdata/substance-drug-usage.json"},
@@ -207,7 +200,6 @@ func TestPayloadValidate(t *testing.T) {
 		{Data: "testdata/substance-alcohol-ordered.json"},
 		{Data: "testdata/substance-alcohol-voluntary.json"},
 		{Data: "testdata/substance-alcohol-additional.json"},
-		{Data: "testdata/substance-comments.json"},
 
 		// Section: Investigative and criminal history
 		{Data: "testdata/legal-associations-activities-to-overthrow.json"},
@@ -227,7 +219,6 @@ func TestPayloadValidate(t *testing.T) {
 		{Data: "testdata/legal-technology-manipulating.json"},
 		{Data: "testdata/legal-technology-unauthorized.json"},
 		{Data: "testdata/legal-technology-unlawful.json"},
-		{Data: "testdata/legal-comments.json"},
 
 		// Section: Psychological and emotional health
 		{Data: "testdata/psychological-competence.json"},
@@ -235,7 +226,6 @@ func TestPayloadValidate(t *testing.T) {
 		{Data: "testdata/psychological-hospitalizations.json"},
 		{Data: "testdata/psychological-diagnoses.json"},
 		{Data: "testdata/psychological-conditions.json"},
-		{Data: "testdata/psychological-comments.json"},
 
 		// Section: Submission
 		{Data: "testdata/submission.json"},
@@ -296,7 +286,6 @@ func TestPayloadPersistence(t *testing.T) {
 		{Data: "testdata/identification-othernames.json"},
 		{Data: "testdata/identification-physical.json"},
 		{Data: "testdata/identification-ssn.json"},
-		{Data: "testdata/identification-comments.json"},
 
 		// Section: Financial
 		{Data: "testdata/financial-bankruptcy.json"},
@@ -306,34 +295,29 @@ func TestPayloadPersistence(t *testing.T) {
 		{Data: "testdata/financial-credit.json"},
 		{Data: "testdata/financial-delinquent.json"},
 		{Data: "testdata/financial-nonpayment.json"},
-		{Data: "testdata/financial-comments.json"},
 
 		// Section: Your history
 		{Data: "testdata/history-residence.json"},
 		{Data: "testdata/history-employment.json"},
 		{Data: "testdata/history-education.json"},
 		{Data: "testdata/history-federal.json"},
-		{Data: "testdata/history-comments.json"},
 
 		// Section: Relationships
 		{Data: "testdata/relationships-status-marital.json"},
 		{Data: "testdata/relationships-status-cohabitant.json"},
 		{Data: "testdata/relationships-people.json"},
 		{Data: "testdata/relationships-relatives.json"},
-		{Data: "testdata/relationships-comments.json"},
 
 		// Section: Citizenship
 		{Data: "testdata/citizenship-status.json"},
 		{Data: "testdata/citizenship-multiple.json"},
 		{Data: "testdata/citizenship-passports.json"},
-		{Data: "testdata/citizenship-comments.json"},
 
 		// Section: Military history
 		{Data: "testdata/military-selective.json"},
 		{Data: "testdata/military-history.json"},
 		{Data: "testdata/military-foreign.json"},
 		{Data: "testdata/military-disciplinary.json"},
-		{Data: "testdata/military-comments.json"},
 
 		// Section: Foreign activities
 		{Data: "testdata/foreign-passport.json"},
@@ -353,7 +337,6 @@ func TestPayloadPersistence(t *testing.T) {
 		{Data: "testdata/foreign-business-sponsorship.json"},
 		{Data: "testdata/foreign-business-ventures.json"},
 		{Data: "testdata/foreign-business-voting.json"},
-		{Data: "testdata/foreign-comments.json"},
 
 		// Section: Substance use
 		{Data: "testdata/substance-drug-usage.json"},
@@ -367,7 +350,6 @@ func TestPayloadPersistence(t *testing.T) {
 		{Data: "testdata/substance-alcohol-ordered.json"},
 		{Data: "testdata/substance-alcohol-voluntary.json"},
 		{Data: "testdata/substance-alcohol-additional.json"},
-		{Data: "testdata/substance-comments.json"},
 
 		// Section: Investigative and criminal history
 		{Data: "testdata/legal-associations-activities-to-overthrow.json"},
@@ -387,7 +369,6 @@ func TestPayloadPersistence(t *testing.T) {
 		{Data: "testdata/legal-technology-manipulating.json"},
 		{Data: "testdata/legal-technology-unauthorized.json"},
 		{Data: "testdata/legal-technology-unlawful.json"},
-		{Data: "testdata/legal-comments.json"},
 
 		// Section: Psychological and emotional health
 		{Data: "testdata/psychological-competence.json"},
@@ -395,7 +376,6 @@ func TestPayloadPersistence(t *testing.T) {
 		{Data: "testdata/psychological-hospitalizations.json"},
 		{Data: "testdata/psychological-diagnoses.json"},
 		{Data: "testdata/psychological-conditions.json"},
-		{Data: "testdata/psychological-comments.json"},
 
 		// Section: Submission
 		{Data: "testdata/submission.json"},

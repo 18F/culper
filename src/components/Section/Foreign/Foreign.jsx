@@ -4,7 +4,6 @@ import { withRouter } from 'react-router'
 import { i18n } from '../../../config'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
-import SectionComments from '../SectionComments'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import { Field } from '../../Form'
 import Passport from './Passport'
@@ -385,17 +384,6 @@ class Foreign extends SectionElement {
               required={true}
               scrollIntoView={false}
             />
-            <hr className="section-divider" />
-            <SectionComments
-              name="comments"
-              {...this.props.Comments}
-              title={i18n.t('foreign.review.comments')}
-              dispatch={this.props.dispatch}
-              onUpdate={this.handleUpdate.bind(this, 'Comments')}
-              onError={this.handleError}
-              required={false}
-              scrollIntoView={false}
-            />
           </SectionView>
 
           <SectionView
@@ -740,7 +728,6 @@ function mapStateToProps(state) {
     Political: foreign.Political || {},
     Voting: foreign.Voting || {},
     Travel: foreign.Travel || {},
-    Comments: foreign.Comments || {},
     Errors: errors.foreign || [],
     Completed: completed.foreign || [],
     suggestedNames: names,
@@ -931,16 +918,6 @@ export class ForeignSections extends React.Component {
           dispatch={this.props.dispatch}
           onError={this.handleError}
           required={true}
-          scrollIntoView={false}
-        />
-        <hr className="section-divider" />
-        <SectionComments
-          name="comments"
-          {...this.props.Comments}
-          title={i18n.t('foreign.review.comments')}
-          dispatch={this.props.dispatch}
-          onError={this.handleError}
-          required={false}
           scrollIntoView={false}
         />
       </div>

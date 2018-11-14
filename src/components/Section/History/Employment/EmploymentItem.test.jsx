@@ -89,7 +89,7 @@ describe('The employment component', () => {
     const props = buildProps({
       EmploymentActivity: { value: 'ActiveMilitary' },
       Dates: {
-        present: true,
+        present: false,
         from: {
           month: `${sevenYearsAgo.getMonth() + 1}`,
           day: `${sevenYearsAgo.getDate()}`,
@@ -116,6 +116,24 @@ describe('The employment component', () => {
         to: {}
       }
     })
+    const component = mount(<EmploymentItem {...props} />)
+    expect(component.find('.reason-options').length).toBe(0)
+  })
+
+  it('does not display reason left options if currently employed', () => {
+    const past = daysAgo(today, 365 * 10)
+    const props = {
+      EmploymentActivity: { value: 'ActiveMilitary' },
+      Dates: {
+        present: true,
+        from: {
+          month: `${past.getMonth() + 1}`,
+          day: `${past.getDate()}`,
+          year: `${past.getFullYear()}`
+        },
+        to: {}
+      }
+    }
     const component = mount(<EmploymentItem {...props} />)
     expect(component.find('.reason-options').length).toBe(0)
   })

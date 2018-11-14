@@ -64,13 +64,16 @@ const createSectionView = (
 export const addDividers = components => {
   // essentially this is a flatMap()
   const componentsWithDividers = []
-  components.forEach(component => {
+  components.forEach((component, index, array) => {
     componentsWithDividers.push(component)
 
     const divider = (
       <hr key={`${component.key}-divider`} className="section-divider" />
     )
-    componentsWithDividers.push(divider)
+
+    if (index !== array.length - 1) {
+      componentsWithDividers.push(divider)
+    }
   })
 
   return componentsWithDividers

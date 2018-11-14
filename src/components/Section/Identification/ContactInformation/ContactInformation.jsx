@@ -133,7 +133,6 @@ export default class ContactInformation extends SubsectionElement {
           <Email
             name="HomeEmail"
             className="email-home"
-            placeholder={i18n.t('identification.contacts.placeholder.email')}
             {...this.props.HomeEmail}
             onUpdate={this.updateHomeEmail}
             onError={this.props.onError}
@@ -148,7 +147,6 @@ export default class ContactInformation extends SubsectionElement {
           <Email
             name="WorkEmail"
             className="email-work"
-            placeholder={i18n.t('identification.contacts.placeholder.email')}
             {...this.props.WorkEmail}
             onUpdate={this.updateWorkEmail}
             onError={this.props.onError}
@@ -195,9 +193,6 @@ export default class ContactInformation extends SubsectionElement {
                 <Telephone
                   name="Telephone"
                   typeClass="title"
-                  placeholder={i18n.t(
-                    'identification.contacts.placeholder.telephone'
-                  )}
                   showNumberType={true}
                   allowNotApplicable={false}
                   bind={true}

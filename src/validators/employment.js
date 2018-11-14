@@ -118,31 +118,37 @@ export class EmploymentValidator {
   }
 
   validReasonLeft() {
-    if (this.withinSevenYears()) {
-      if (!this.reasonLeft) {
+    if (this.dates.present !== true ) {
+      if (!this.reasonLeft || !this.reasonLeft.ReasonDescription) {
         return false
       }
 
-      if (!this.reasonLeft.Reasons) {
+      if (!validGenericTextfield(this.reasonLeft.ReasonDescription)) {
         return false
       }
 
-      const branchValidator = new BranchCollection(this.reasonLeft.Reasons)
-      if (!branchValidator.validKeyValues()) {
-        return false
-      }
+      if (this.withinSevenYears()) {
+        if (!this.reasonLeft.Reasons) {
+          return false
+        }
 
-      if (!branchValidator.hasNo()) {
-        return false
-      }
+        const branchValidator = new BranchCollection(this.reasonLeft.Reasons)
+        if (!branchValidator.validKeyValues()) {
+          return false
+        }
 
-      return branchValidator.each(item => {
-        return (
-          validGenericTextfield(item.Reason) &&
-          validDateField(item.Date) &&
-          validGenericTextfield(item.Text)
-        )
-      })
+        if (!branchValidator.hasNo()) {
+          return false
+        }
+
+        return branchValidator.each(item => {
+          return (
+            validGenericTextfield(item.Reason) &&
+            validDateField(item.Date) &&
+            validGenericTextfield(item.Text)
+          )
+        })
+      }
     }
 
     return true

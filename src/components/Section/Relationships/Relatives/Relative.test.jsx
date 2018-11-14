@@ -6,6 +6,7 @@ import Location from '../../../Form/Location'
 describe('The relative component', () => {
   it('no error on empty', () => {
     const expected = {
+      render: jest.fn(),
       name: 'relative'
     }
 
@@ -47,6 +48,7 @@ describe('The relative component', () => {
 
   it('display maiden name if relationship is mother', () => {
     const expected = {
+      render: jest.fn(),
       name: 'relative',
       Relation: { value: 'Mother' },
       MaidenSameAsListed: { value: 'No' }
@@ -60,6 +62,7 @@ describe('The relative component', () => {
 
   it('display items specific to immediate relationships', () => {
     const expected = {
+      render: jest.fn(),
       name: 'relative',
       Relation: { value: 'Father' }
     }
@@ -70,6 +73,7 @@ describe('The relative component', () => {
 
   it('display address if not deceased', () => {
     const expected = {
+      render: jest.fn(),
       name: 'relative',
       IsDeceased: { value: 'No' }
     }
@@ -85,6 +89,7 @@ describe('The relative component', () => {
       onUpdate: () => {
         updates++
       },
+      render: jest.fn(),
       name: 'relative',
       Citizenship: { value: ['United States'] },
       CitizenshipDocumentation: { value: 'Other' },
@@ -111,6 +116,7 @@ describe('The relative component', () => {
 
   it('display items if not deceased and not a citizen but lives in the U.S.', () => {
     const expected = {
+      render: jest.fn(),
       name: 'relative',
       Citizenship: {
         value: ['Germany']
@@ -135,6 +141,7 @@ describe('The relative component', () => {
 
   it('display items if not deceased and not a citizen and lives abroad', () => {
     const expected = {
+      render: jest.fn(),
       name: 'relative',
       Citizenship: {
         value: ['Germany']
@@ -159,6 +166,7 @@ describe('The relative component', () => {
 
   it('display employer relationship if affiliated', () => {
     const expected = {
+      render: jest.fn(),
       name: 'relative',
       Citizenship: {
         value: ['Germany']
@@ -184,6 +192,7 @@ describe('The relative component', () => {
   it('initial questions presented', () => {
     let updates = 0
     const expected = {
+      render: jest.fn(),
       name: 'relative',
       Relation: { value: 'Mother' },
       Birthplace: { country: { value: 'Germany' } },
@@ -220,6 +229,7 @@ describe('The relative component', () => {
   it('are you my mother?', () => {
     let updates = 0
     const expected = {
+      render: jest.fn(),
       name: 'relative',
       Relation: { value: 'Mother' },
       Name: {
@@ -265,6 +275,7 @@ describe('The relative component', () => {
   it('is immediate relationships?', () => {
     let updates = 0
     const expected = {
+      render: jest.fn(),
       name: 'relative',
       Relation: { value: 'Mother' },
       Name: {
@@ -328,6 +339,7 @@ describe('The relative component', () => {
   it('is a citizen but lives abroad?', () => {
     let updates = 0
     const expected = {
+      render: jest.fn(),
       name: 'relative',
       Relation: { value: 'Mother' },
       Name: {
@@ -384,6 +396,7 @@ describe('The relative component', () => {
   it('is not a citizen but lives in the United States?', () => {
     let updates = 0
     const expected = {
+      render: jest.fn(),
       name: 'relative',
       Relation: { value: 'Mother' },
       Name: {
@@ -453,6 +466,7 @@ describe('The relative component', () => {
   it('is not a citizen and lives outside the United States?', () => {
     let updates = 0
     const expected = {
+      render: jest.fn(),
       name: 'relative',
       Relation: { value: 'Mother' },
       Name: {

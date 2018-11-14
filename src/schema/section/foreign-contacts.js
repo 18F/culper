@@ -37,6 +37,7 @@ export const foreignContacts = (data = {}) => {
           xitem.BirthplaceNotApplicable
         ),
         Address: form.location(xitem.Address),
+        AlternateAddress: form.physicaladdress(xitem.AlternateAddress),
         AddressNotApplicable: form.notapplicable(xitem.AddressNotApplicable),
         Employer: form.text(xitem.Employer),
         EmployerNotApplicable: form.notapplicable(xitem.EmployerNotApplicable),

@@ -2,7 +2,11 @@ export const address = {
   label: 'This address is',
   spinner: 'Verifying your address',
   physicalLocationRequired: 'Please provide a physical address for this location',
-  militaryAddress: 'Do you or did you have an APO/FPO address at this location',
+  militaryAddress: {
+    me: 'Do you or did you have an APO/FPO address at this location',
+    other: 'Does this person have an APO/FPO address',
+    foreignNational: 'Does this person have an APO/FPO address? Provide the foreign national\'s APO/FPO address'
+  },
   options: {
     us: {
       label: 'In the<br>United States'
@@ -16,46 +20,37 @@ export const address = {
   },
   us: {
     street: {
-      label: 'Street address',
-      placeholder: 'Enter street address'
+      label: 'Street address'
     },
     street2: {
       label: 'Apt, suite, building, floor, etc.',
       optional: '(Optional)'
     },
     city: {
-      label: 'City',
-      placeholder: 'Enter city'
+      label: 'City'
     },
     state: {
-      label: 'State',
-      placeholder: 'Enter state'
+      label: 'State'
     },
     county: {
-      label: 'County',
-      placeholder: 'Enter county'
+      label: 'County'
     },
     zipcode: {
-      label: 'ZIP Code',
-      placeholder: 'Enter ZIP Code'
+      label: 'ZIP Code'
     }
   },
   international: {
     street: {
-      label: 'Address',
-      placeholder: 'Enter mailing address'
+      label: 'Address'
     },
     city: {
-      label: 'City',
-      placeholder: 'Enter city'
+      label: 'City'
     },
     country: {
-      label: 'Country',
-      placeholder: 'Enter country'
+      label: 'Country'
     },
     zipcode: {
-      label: 'ZIP Code',
-      placeholder: 'Enter ZIP Code'
+      label: 'ZIP Code'
     }
   },
   apoFpo: {
@@ -63,24 +58,19 @@ export const address = {
       label: 'Select APO, FPO or DPO'
     },
     street: {
-      label: 'Address',
-      placeholder: 'Enter address'
+      label: 'Address'
     },
     city: {
-      label: 'City',
-      placeholder: 'Enter city'
+      label: 'City'
     },
     state: {
-      label: 'State',
-      placeholder: 'Enter state'
+      label: 'State'
     },
     zipcode: {
-      label: 'ZIP Code',
-      placeholder: 'Enter ZIP Code'
+      label: 'ZIP Code'
     },
     apoFpo: {
-      label: 'APO/FPO/DPO State Code',
-      placeholder: 'Enter state code (AA, AE, AP)'
+      label: 'APO/FPO/DPO State Code'
     },
     apoFpoType: {
       apo: {
@@ -93,8 +83,7 @@ export const address = {
         label: 'DPO'
       },
       apoFpo: {
-        label: 'APO/FPO/DPO',
-        placeholder: 'Enter APO/FPO/DPO'
+        label: 'APO/FPO/DPO'
       }
     }
   },

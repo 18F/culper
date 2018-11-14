@@ -1,3 +1,1 @@
-export const currency = {
-  placeholder: '#'
-}
+

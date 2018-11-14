@@ -247,6 +247,7 @@ export default class TaxesItem extends ValidationElement {
               className="taxes-date"
               hideDay={true}
               minDate={(this.props.Year || {}).date}
+              prefix="taxesSatisfied"
               minDateEqualTo={true}
               required={this.props.required}
               onUpdate={this.updateDate}

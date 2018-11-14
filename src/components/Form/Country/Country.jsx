@@ -2,7 +2,6 @@ import React from 'react'
 import { i18n } from '../../../config'
 import ValidationElement from '../ValidationElement'
 import Show from '../Show'
-import Comments from '../Comments'
 import Dropdown from '../Dropdown'
 import MultipleDropdown from '../MultipleDropdown'
 
@@ -16,14 +15,12 @@ export default class Country extends ValidationElement {
 
     this.update = this.update.bind(this)
     this.updateCountry = this.updateCountry.bind(this)
-    this.updateComments = this.updateComments.bind(this)
     this.handleError = this.handleError.bind(this)
   }
 
   update(queue) {
     this.props.onUpdate({
       name: this.props.name,
-      comments: this.props.comments,
       showComments: this.props.showComments,
       value: this.props.value,
       ...queue
@@ -31,20 +28,15 @@ export default class Country extends ValidationElement {
   }
 
   updateCountry(values) {
-    let arr = []
-    if (Array.isArray(values.value)) {
-      arr = values.value
+    const { value } = values
+    let arr
+
+    if (Array.isArray(value)) {
+      arr = value
     } else {
-      arr = [values.value]
+      arr = [value]
     }
     this.update({ value: arr })
-  }
-
-  updateComments(values) {
-    this.update({
-      showComments: true,
-      comments: values.value
-    })
   }
 
   handleError(value, arr) {
@@ -102,15 +94,14 @@ export default class Country extends ValidationElement {
           return true
         }
 
+
     const countryOptions = Object.keys(countries)
       .filter(filter)
-      .map(x => {
-        return (
-          <option key={x} value={countries[x].value}>
-            {countries[x].text}
-          </option>
-        )
-      })
+      .map(x => (
+        <option key={x} value={countries[x].value}>
+          {countries[x].text}
+        </option>
+      ))
 
     // Check for children
     const children = this.props.children || []
@@ -123,7 +114,6 @@ export default class Country extends ValidationElement {
       })
     )
 
-    // Do the placeholder first if one is present
     if (this.props.placeholder) {
       return [
         <option key="placeholder" value="">
@@ -132,9 +122,7 @@ export default class Country extends ValidationElement {
       ].concat(options)
     }
 
-    return options.map(x => {
-      return x
-    })
+    return options
   }
 
   appropriateValue(value, multiple = false) {
@@ -172,10 +160,7 @@ export default class Country extends ValidationElement {
     const value = this.appropriateValue(this.props.value, this.props.multiple)
 
     return (
-      <Comments
-        title={i18n.t('country.comments')}
-        value={this.props.comments}
-        onUpdate={this.updateComments}>
+      <div>
         <Show when={this.props.multiple}>
           <MultipleDropdown
             name={this.props.name}
@@ -218,13 +203,12 @@ export default class Country extends ValidationElement {
               <div className="usa-alert usa-alert-error" role="alert">
                 <div className="usa-alert-body">
                   <h5 className="usa-alert-heading">{i18n.t('error.country.notfound.title')}</h5>
-                  <p>{i18n.m('error.country.notfound.message')}</p>
                 </div>
               </div>
             </div>
           </div>
         </Show>
-      </Comments>
+      </div>
     )
   }
 }
@@ -233,7 +217,6 @@ Country.defaultProps = {
   name: 'country',
   value: [],
   multiple: false,
-  comments: '',
   showComments: false,
   excludeUnitedStates: false,
   onUpdate: queue => {},

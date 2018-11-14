@@ -5,7 +5,6 @@ import { i18n } from '../../../config'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
-import SectionComments from '../SectionComments'
 import { Field } from '../../Form'
 import NegativeImpacts from './Alcohol/NegativeImpacts'
 import OrderedCounselings from './Alcohol/OrderedCounselings'
@@ -454,18 +453,6 @@ class SubstanceUse extends SectionElement {
               required={true}
               scrollIntoView={false}
             />
-
-            <hr className="section-divider" />
-            <SectionComments
-              name="comments"
-              {...this.props.Comments}
-              title={i18n.t('substance.review.comments')}
-              dispatch={this.props.dispatch}
-              onUpdate={this.handleUpdate.bind(this, 'Comments')}
-              onError={this.handleError}
-              required={false}
-              scrollIntoView={false}
-            />
           </SectionView>
         </SectionViews>
       </div>
@@ -493,7 +480,6 @@ function mapStateToProps(state) {
     PrescriptionUses: substance.PrescriptionUses || {},
     OrderedTreatments: substance.OrderedTreatments || {},
     VoluntaryTreatments: substance.VoluntaryTreatments || {},
-    Comments: substance.Comments || {},
     Errors: errors.substance || [],
     Completed: completed.substance || [],
     AddressBooks: addressBooks
@@ -628,17 +614,6 @@ export class SubstanceUseSections extends React.Component {
           dispatch={this.props.dispatch}
           onError={this.props.onError}
           required={true}
-          scrollIntoView={false}
-        />
-
-        <hr className="section-divider" />
-        <SectionComments
-          name="comments"
-          {...this.props.Comments}
-          title={i18n.t('substance.review.comments')}
-          dispatch={this.props.dispatch}
-          onError={this.handleError}
-          required={false}
           scrollIntoView={false}
         />
       </div>

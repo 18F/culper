@@ -130,7 +130,6 @@ export default class SSN extends ValidationElement {
           name="first"
           ref="first"
           className="first eapp-short-input"
-          placeholder={i18n.t('identification.ssn.placeholder.first')}
           maxlength="3"
           pattern="^[0-9]{3}$"
           prefilter={digitsOnly}
@@ -150,7 +149,6 @@ export default class SSN extends ValidationElement {
           name="middle"
           ref="middle"
           className="middle eapp-short-input"
-          placeholder={i18n.t('identification.ssn.placeholder.middle')}
           maxlength="2"
           pattern="^[0-9]{2}$"
           prefilter={digitsOnly}
@@ -173,7 +171,6 @@ export default class SSN extends ValidationElement {
           name="last"
           ref="last"
           className="last eapp-short-input"
-          placeholder={i18n.t('identification.ssn.placeholder.last')}
           maxlength="4"
           pattern="^[0-9]{4}$"
           prefilter={digitsOnly}
