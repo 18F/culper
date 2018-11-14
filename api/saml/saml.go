@@ -47,6 +47,30 @@ func (service *Service) CreateAuthenticationRequest() (string, string, error) {
 	return encoded, url, err
 }
 
+const (
+	authnResponseXMLName  = "Response"
+	logoutResponseXMLName = "LogoutResponse"
+)
+
+func (service *Service) ResponseType(encoded string) (string, error) {
+	response, err := saml.ParseEncodedResponse(encoded)
+	if err != nil {
+		service.Log.WarnError(api.SamlParseError, err, api.LogFields{})
+		return "", err
+	}
+
+	xmlName := response.XMLName.Local
+	switch xmlName {
+	case authnResponseXMLName:
+		return api.AuthnSAMLResponseType, nil
+	case logoutResponseXMLName:
+		return api.LogoutSAMLResponseType, nil
+	default:
+		service.Log.Fatal("Unknown SAML response type", api.LogFields{"SAMLResponseType": xmlName})
+		return "", errors.New("Unknown SAML response type")
+	}
+}
+
 // ValidateAuthenticationResponse validations a SAML authentication response.
 func (service *Service) ValidateAuthenticationResponse(encoded string) (string, string, error) {
 	service.configure()
@@ -83,7 +107,6 @@ func (service *Service) ValidateAuthenticationResponse(encoded string) (string, 
 	if sessionIndex == "" {
 		service.Log.Warn("SAML Auth Response does not include a SessionIndex. WSO2 is probably misconfigured and SLO will likely not work correctly.", api.LogFields{})
 	}
-
 
 	return username, sessionIndex, nil
 }

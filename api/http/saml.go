@@ -103,7 +103,7 @@ func (service SamlSLORequestHandler) ServeHTTP(w http.ResponseWriter, r *http.Re
 	})
 }
 
-// SamlResponseHandler is the handler for handling a SAML response.
+// SamlResponseHandler is the callback handler for both login and logout SAML Responses.
 type SamlResponseHandler struct {
 	Env      api.Settings
 	Log      api.LogService
@@ -112,7 +112,7 @@ type SamlResponseHandler struct {
 	SAML     api.SamlService
 }
 
-// ServeHTTP is the callback handler for both login and logout.
+// ServeHTTP is the callback handler for both login and logout SAML Responses.
 func (service SamlResponseHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	if !service.Env.True(api.SamlEnabled) {
 		service.Log.Warn(api.SamlAttemptDenied, api.LogFields{})
@@ -127,7 +127,28 @@ func (service SamlResponseHandler) ServeHTTP(w http.ResponseWriter, r *http.Requ
 		return
 	}
 
-	username, sessionIndex, err := service.SAML.ValidateAuthenticationResponse(encoded)
+	responseType, err := service.SAML.ResponseType(encoded)
+	if err != nil {
+		service.Log.WarnError(api.SamlParseError, err, api.LogFields{})
+		redirectAccessDenied(w, r)
+		return
+	}
+
+	switch responseType {
+	case api.AuthnSAMLResponseType:
+		service.serveAuthnResponse(encoded, w, r)
+		return
+	case api.LogoutSAMLResponseType:
+		service.serveLogoutResponse(encoded, w, r)
+		return
+	default:
+		service.Log.Fatal("SAML.ResponseType returned an unknown response type. This is programmer error due to the lack of go enums", api.LogFields{"unknownResponseType": responseType})
+		http.Error(w, "Server Error", http.StatusInternalServerError)
+	}
+}
+
+func (service SamlResponseHandler) serveAuthnResponse(encodedResponse string, w http.ResponseWriter, r *http.Request) {
+	username, sessionIndex, err := service.SAML.ValidateAuthenticationResponse(encodedResponse)
 	if err != nil {
 		redirectAccessDenied(w, r)
 		return
@@ -183,7 +204,15 @@ func (service SamlResponseHandler) ServeHTTP(w http.ResponseWriter, r *http.Requ
 	http.Redirect(w, r, redirectTo, http.StatusFound)
 }
 
+func (service SamlResponseHandler) serveLogoutResponse(encodedResponse string, w http.ResponseWriter, r *http.Request) {
+	redirectLogout(w, r)
+}
+
 func redirectAccessDenied(w http.ResponseWriter, r *http.Request) {
 	url := fmt.Sprintf("%s?error=access_denied", redirectTo)
 	http.Redirect(w, r, url, http.StatusFound)
+}
+
+func redirectLogout(w http.ResponseWriter, r *http.Request) {
+	http.Redirect(w, r, redirectTo, http.StatusFound)
 }
