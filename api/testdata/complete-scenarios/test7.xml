@@ -1461,12 +1461,68 @@ hand. It is impossible to conceive of </Relationship>
                   <DateRange>
                     <From>
                       <Date>
+                        <Month>08</Month>
+                        <Year>2018</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Present"/>
+                    </To>
+                  </DateRange>
+                  <Type>NonGovernment</Type>
+                  <WorkHours>PartTime</WorkHours>
+                  <CivilEmployment>
+                    <Employer>Safeway</Employer>
+                    <PositionTitle>Cashier</PositionTitle>
+                    <EmployersLocation>
+                      <Address>
+                        <Street>123 1st St. </Street>
+                        <City>Monterey</City>
+                        <State>CA</State>
+                        <ZipCode>93940</ZipCode>
+                      </Address>
+                      <Telephone>
+                        <Number>8319993333</Number>
+                        <Time>Both</Time>
+                      </Telephone>
+                    </EmployersLocation>
+                    <PreviousEmployments NotApplicable="True"/>
+                  </CivilEmployment>
+                  <Incidents>
+                    <Answer>No</Answer>
+                  </Incidents>
+                  <JobLocation>
+                    <Answer>No</Answer>
+                  </JobLocation>
+                  <Supervisor>
+                    <Name>Joe Clark</Name>
+                    <Title>Head Cashier</Title>
+                    <Address>
+                      <Street>123 1st St. </Street>
+                      <City>Monterey</City>
+                      <State>CA</State>
+                      <ZipCode>93940</ZipCode>
+                    </Address>
+                    <Email>joe.claker@example.com</Email>
+                    <Telephone>
+                      <Number>8313232234</Number>
+                      <Time>Day</Time>
+                    </Telephone>
+                  </Supervisor>
+                </Employment>
+                <Employment ID="2">
+                  <DateRange>
+                    <From>
+                      <Date>
                         <Month>01</Month>
                         <Year>1990</Year>
                       </Date>
                     </From>
                     <To>
-                      <Date Type="Present"/>
+                      <Date>
+                        <Month>08</Month>
+                        <Year>2018</Year>
+                      </Date>
                     </To>
                   </DateRange>
                   <Type>ActiveMilitaryDuty</Type>
@@ -1488,9 +1544,32 @@ hand. It is impossible to conceive of </Relationship>
                     </DutyStation>
                     <Rank>rankxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxoo</Rank>
                   </MilitaryService>
+                  <Dismissals>
+                    <Answer>Yes</Answer>
+                    <Dismissal ID="1">
+                      <Date>
+                        <Month>01</Month>
+                        <Year>1990</Year>
+                      </Date>
+                      <Reason>This section only takes a very limited number of characters XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</Reason>
+                      <SeveranceType>AllegedMisconduct</SeveranceType>
+                    </Dismissal>
+                    <Dismissal ID="2">
+                      <Date Type="Estimated">
+                        <Month>01</Month>
+                        <Year>1990</Year>
+                      </Date>
+                      <Reason>Another section with very limited characters... strange... and formats weirdly on the screen XXXXXXX</Reason>
+                      <SeveranceType>QuitKnowingWouldBeFired</SeveranceType>
+                    </Dismissal>
+                    <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+                  </Dismissals>
                   <Incidents>
                     <Answer>No</Answer>
                   </Incidents>
+                  <LeftJob>
+                    <Reason>Employer 2 Reason</Reason>
+                  </LeftJob>
                   <Supervisor>
                     <Name>SUPER NAME XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO</Name>
                     <Title>SUPER RANK XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO</Title>
@@ -1508,7 +1587,7 @@ hand. It is impossible to conceive of </Relationship>
                     </Telephone>
                   </Supervisor>
                 </Employment>
-                <Employment ID="2">
+                <Employment ID="3">
                   <DateRange>
                     <From>
                       <Date Type="Estimated">
@@ -1517,7 +1596,10 @@ hand. It is impossible to conceive of </Relationship>
                       </Date>
                     </From>
                     <To>
-                      <Date Type="Present"/>
+                      <Date>
+                        <Month>08</Month>
+                        <Year>2018</Year>
+                      </Date>
                     </To>
                   </DateRange>
                   <Type>Unemployed</Type>
@@ -1539,7 +1621,7 @@ hand. It is impossible to conceive of </Relationship>
                     </Telephone>
                   </Verifier>
                 </Employment>
-                <Employment ID="3">
+                <Employment ID="4">
                   <DateRange>
                     <From>
                       <Date Type="Estimated">
@@ -1548,7 +1630,10 @@ hand. It is impossible to conceive of </Relationship>
                       </Date>
                     </From>
                     <To>
-                      <Date Type="Present"/>
+                      <Date>
+                        <Month>08</Month>
+                        <Year>2018</Year>
+                      </Date>
                     </To>
                   </DateRange>
                   <Type>SelfEmployed</Type>
@@ -1569,6 +1654,18 @@ hand. It is impossible to conceive of </Relationship>
                       </Telephone>
                     </Business>
                   </SelfEmployment>
+                  <Dismissals>
+                    <Answer>Yes</Answer>
+                    <Dismissal ID="1">
+                      <Date Type="Estimated">
+                        <Month>01</Month>
+                        <Year>1990</Year>
+                      </Date>
+                      <Reason>SELF EMPLP FIRED XXXXXXXXXXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXXXXX</Reason>
+                      <SeveranceType>Fired</SeveranceType>
+                    </Dismissal>
+                    <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+                  </Dismissals>
                   <Incidents>
                     <Answer>Yes</Answer>
                     <Incident ID="1">
@@ -1595,6 +1692,9 @@ thou</Reason>
                       <Time>Both</Time>
                     </Telephone>
                   </JobLocation>
+                  <LeftJob>
+                    <Reason>Employer 4 Reason</Reason>
+                  </LeftJob>
                   <Verifier>
                     <LegalName>
                       <Last>SELF EMPL VERI LAST XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO</Last>
@@ -1613,7 +1713,7 @@ thou</Reason>
                     </Telephone>
                   </Verifier>
                 </Employment>
-                <Employment ID="4">
+                <Employment ID="5">
                   <DateRange>
                     <From>
                       <Date Type="Estimated">
@@ -1622,7 +1722,10 @@ thou</Reason>
                       </Date>
                     </From>
                     <To>
-                      <Date Type="Present"/>
+                      <Date>
+                        <Month>08</Month>
+                        <Year>2018</Year>
+                      </Date>
                     </To>
                   </DateRange>
                   <Type>NonGovernment</Type>
@@ -1682,12 +1785,18 @@ thou</Reason>
                       </PreviousEmployment>
                     </PreviousEmployments>
                   </CivilEmployment>
+                  <Dismissals>
+                    <Answer>No</Answer>
+                  </Dismissals>
                   <Incidents>
                     <Answer>No</Answer>
                   </Incidents>
                   <JobLocation>
                     <Answer>No</Answer>
                   </JobLocation>
+                  <LeftJob>
+                    <Reason>Employer 5 Reason</Reason>
+                  </LeftJob>
                   <Supervisor>
                     <Name>dfgdfgdfgdfgzgf dzsg dfg dfg zdg </Name>
                     <Title>dfgdfgdfg</Title>
