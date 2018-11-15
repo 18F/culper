@@ -651,9 +651,8 @@
                     <Answer>No</Answer>
                   </JobLocation>
                   <LeftJob>
-        
-        
-      </LeftJob>
+                    <Reason>Employer 1 Reason</Reason>
+                  </LeftJob>
                   <Supervisor>
                     <Name>Employer 1 Supervisor</Name>
                     <Title>Senior Overseer</Title>

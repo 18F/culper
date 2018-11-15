@@ -1311,7 +1311,7 @@
                       "ReasonDescription": {
                         "type": "textarea",
                         "props": {
-                          "value": ""
+                          "value": "Employer 1 Reason"
                         }
                       }
                     }
