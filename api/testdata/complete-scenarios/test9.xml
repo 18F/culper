@@ -635,12 +635,6 @@
                     </EmployersLocation>
                     <PreviousEmployments NotApplicable="True"/>
                   </CivilEmployment>
-                  <Dismissals>
-                    <Answer>No</Answer>
-                  </Dismissals>
-                  <Incidents>
-                    <Answer>No</Answer>
-                  </Incidents>
                   <JobLocation>
                     <Answer>No</Answer>
                   </JobLocation>

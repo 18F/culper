@@ -111,7 +111,7 @@
       {{- end}}
       {{- end}}
 
-      {{- if and (not $isPresent) (radio $Item.EmploymentActivity | ne "Unemployment")}}
+      {{- if and (not $isPresent) (radio $Item.EmploymentActivity | ne "Unemployment") (len $Item.ReasonLeft.props.Reasons.props.items) }}
       <Dismissals>
         <Answer>{{branchcollectionHas $Item.ReasonLeft.props.Reasons}}</Answer>
         {{- range $lindex, $left := $Item.ReasonLeft.props.Reasons.props.items}}
@@ -135,7 +135,7 @@
       </Dismissals>
       {{end}}
 
-      {{- if radio $Item.EmploymentActivity | ne "Unemployment"}}
+      {{- if and (radio $Item.EmploymentActivity | ne "Unemployment") (len $Item.Reprimand.props.items) }}
       <Incidents>
         <Answer>{{branchcollectionHas $Item.Reprimand}}</Answer>
         {{- range $rindex, $reprimand := $Item.Reprimand.props.items}}
