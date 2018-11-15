@@ -197,28 +197,12 @@
       {{- if or (radio $Item.EmploymentActivity | eq "SelfEmployment") (radio $Item.EmploymentActivity | eq "Unemployment")}}
       <Verifier>
         <LegalName>{{nameLastFirst $Item.ReferenceName}}</LegalName>
-        <!-- XXX Work-around for https://github.com/18F/e-QIP-prototype/issues/924 -->
-        {{if false}}
-        <APOFPO>
-          <!-- TODO -->
-          <Address></Address>
-          <AddressComment></AddressComment>
-          <!-- TODO -->
-          <Answer></Answer>
-          <AnswerComment></AnswerComment>
-          <!-- TODO -->
-          <PhysicalLocation>
-            <Address></Address>
-            <Comment></Comment>
-          </PhysicalLocation>
-        </APOFPO>
-        {{else}}
-        <!-- XXX Work-around for https://github.com/18F/e-QIP-prototype/issues/924 -->
-        {{if isInternational $Item.ReferenceAddress}}
-        <APOFPO><Answer>No</Answer></APOFPO>
-        {{end}}
         <Address>{{location $Item.ReferenceAddress}}</Address>
+
+        {{with $remap := altAddressRemap $Item.ReferenceAddress $Item.ReferenceAlternateAddress.props.HasDifferentAddress $Item.ReferenceAlternateAddress.props.Address}}
+        {{tmpl "apofpo-physical.xml" $remap}}
         {{end}}
+
         <Telephone>{{telephone $Item.ReferencePhone}}</Telephone>
         <Comment></Comment>
         {{if radio $Item.EmploymentActivity | eq "Unemployment"}}

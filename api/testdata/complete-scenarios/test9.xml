@@ -773,6 +773,16 @@
                       <State>AE</State>
                       <ZipCode>09011</ZipCode>
                     </Address>
+                    <APOFPO>
+                      <PhysicalLocation>
+                        <Address>
+                          <StreetUnitDutyLocation>Unemployment Verifier 1 Secondary</StreetUnitDutyLocation>
+                          <CityPostName>Monterey</CityPostName>
+                          <State>CA</State>
+                          <ZipCode>93940</ZipCode>
+                        </Address>
+                      </PhysicalLocation>
+                    </APOFPO>
                     <Telephone>
                       <Number>5033333333</Number>
                       <Time>Both</Time>
@@ -822,14 +832,20 @@
                       <Last>Richards</Last>
                       <First>Reed</First>
                     </LegalName>
-                    <APOFPO>
-                      <Answer>No</Answer>
-                    </APOFPO>
                     <Address>
                       <Street>SelfEmployment Verifier </Street>
                       <City>Ottawa</City>
                       <Country>Canada</Country>
                     </Address>
+                    <APOFPO>
+                      <Answer>Yes</Answer>
+                      <Address>
+                        <Address>SelfEmployment verifier Secondary APO</Address>
+                        <ApoFpo>FPO</ApoFpo>
+                        <State>AE</State>
+                        <ZipCode>09012</ZipCode>
+                      </Address>
+                    </APOFPO>
                     <Telephone>
                       <Number>9873331111</Number>
                       <Time>Both</Time>
