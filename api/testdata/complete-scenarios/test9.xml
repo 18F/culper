@@ -218,7 +218,13 @@
                     <Country>Italy</Country>
                   </Address>
                   <APOFPO>
-                    <Answer>No</Answer>
+                    <Answer>Yes</Answer>
+                    <Address>
+                      <Address>Mother Secondary APO</Address>
+                      <ApoFpo>FPO</ApoFpo>
+                      <State>AE</State>
+                      <ZipCode>09011</ZipCode>
+                    </Address>
                   </APOFPO>
                   <Birth>
                     <Date>
