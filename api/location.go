@@ -31,7 +31,9 @@ const (
 	LayoutBirthPlaceWithoutCountyNoUS = "Birthplace without County CountriesNoUS"
 	LayoutBirthPlaceNoUS              = "Birthplace CountriesNoUS"
 	// APOFPO elements
-	LayoutMilitaryAddress = "Military Address"
+	LayoutMilitaryAddress       = "Military Address"
+	LayoutPhysicalDomestic      = "PhysicalDomestic"
+	LayoutPhysicalInternational = "PhysicalInternational"
 )
 
 // Location is a basic input.

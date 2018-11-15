@@ -1,0 +1,4 @@
+<StreetUnitDutyLocation>{{.props.street}}</StreetUnitDutyLocation>
+<CityPostName>{{.props.city}}</CityPostName>
+<State>{{toUpper .props.state}}</State>
+<ZipCode>{{.props.zipcode}}</ZipCode>

@@ -828,6 +828,10 @@ func locationOverrideLayout(data map[string]interface{}, override string) (templ
 		return xmlTemplate("location-street-city.xml", data)
 	case api.LayoutMilitaryAddress:
 		return xmlTemplateWithFuncs("location-address-apofpo-state-zipcode.xml", data, fmap)
+	case api.LayoutPhysicalDomestic:
+		return xmlTemplateWithFuncs("location-physical-address-domestic.xml", data, fmap)
+	case api.LayoutPhysicalInternational:
+		return xmlTemplateWithFuncs("location-physical-address-international.xml", data, fmap)
 	default:
 		if domestic || postoffice {
 			return xmlTemplateWithFuncs("location-street-city-state-zipcode.xml", data, fmap)

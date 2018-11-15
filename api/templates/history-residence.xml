@@ -3,28 +3,35 @@
     {{range $index, $item := .props.List.props.items}}
     {{with $Item := $item.Item}}
     <Residency ID="{{inc $index}}">
+      <Address>{{location $Item.Address}}</Address>
+
       <!-- XXX Work-around for https://github.com/18F/e-QIP-prototype/issues/924 -->
-      {{if false}}
+      {{if isPostOffice $Item.Address}}
       <APOFPO>
-        <!-- TODO -->
-        <Address></Address>
-        <AddressComment></AddressComment>
-        <!-- TODO -->
-        <Answer></Answer>
-        <AnswerComment></AnswerComment>
-        <!-- TODO -->
         <PhysicalLocation>
-          <Address></Address>
-          <Comment></Comment>
+          {{$AltAddress := $Item.AlternateAddress.props.Address}}
+
+          {{if isInternational $AltAddress}}
+          <Address>{{locationOverrideLayout $AltAddress "PhysicalInternational"}}</Address>
+          {{else}}
+          <Address>{{locationOverrideLayout $AltAddress "PhysicalDomestic"}}</Address>
+          {{end}}
         </PhysicalLocation>
       </APOFPO>
-      {{else}}
-      <!-- XXX Work-around for https://github.com/18F/e-QIP-prototype/issues/924 -->
+      {{end}}
+
       {{if isInternational $Item.Address}}
+      {{if branch $Item.AlternateAddress.props.HasDifferentAddress | eq "Yes"}}
+      {{$AltAddress := $Item.AlternateAddress.props.Address}}
+      <APOFPO>
+        <Answer>Yes</Answer>
+        <Address>{{locationOverrideLayout $AltAddress "Military Address"}}</Address>
+      </APOFPO>
+      {{else}}
       <APOFPO><Answer>No</Answer></APOFPO>
       {{end}}
-      <Address>{{location $Item.Address}}</Address>
       {{end}}
+
       {{monthYearDaterange $Item.Dates}}
       <DetailComment></DetailComment>
       <ResidenceType>{{radio $Item.Role}}</ResidenceType>
