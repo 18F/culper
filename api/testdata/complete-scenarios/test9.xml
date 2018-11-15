@@ -389,12 +389,6 @@
                       <Country>United States</Country>
                     </Place>
                   </Birth>
-                  <Citizenship>
-                    <ProofOfStatus>
-                      <DocumentNumber>FS240DocumentNumber</DocumentNumber>
-                      <Type>FS240or545</Type>
-                    </ProofOfStatus>
-                  </Citizenship>
                   <CountriesOfCitizenship>
                     <Citizenship ID="1">
                       <Country>United States</Country>
