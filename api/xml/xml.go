@@ -35,6 +35,7 @@ func (service Service) DefaultTemplate(templateName string, data map[string]inte
 	fmap := template.FuncMap{
 		"addressIn":              addressIn,
 		"agencyType":             agencyType,
+		"altAddressRemap":        altAddressRemap,
 		"branch":                 branch,
 		"branchToAnswer":         branchToAnswer,
 		"branchToBool":           branchToBool,
@@ -155,6 +156,14 @@ func getInterfaceAsBytes(anon interface{}) []byte {
 		return nil
 	}
 	return js
+}
+
+func altAddressRemap(primary map[string]interface{}, hasDifferent map[string]interface{}, alternate map[string]interface{}) map[string]interface{} {
+	foo := make(map[string]interface{})
+	foo["Address"] = primary
+	foo["HasDifferentAddress"] = hasDifferent
+	foo["Alternate"] = alternate
+	return foo
 }
 
 // Put simple structures here where they only output a string
