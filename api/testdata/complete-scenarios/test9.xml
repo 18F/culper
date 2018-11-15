@@ -456,14 +456,20 @@
                   </DateRange>
                   <ResidenceType>Own</ResidenceType>
                   <Verifier>
-                    <APOFPO>
-                      <Answer>No</Answer>
-                    </APOFPO>
                     <Address>
                       <Street>Verifier 2 Outside of US </Street>
                       <City>Sooke</City>
                       <Country>Canada</Country>
                     </Address>
+                    <APOFPO>
+                      <Answer>Yes</Answer>
+                      <Address>
+                        <Address>Verifier 2 Secondary APO</Address>
+                        <ApoFpo>FPO</ApoFpo>
+                        <State>AE</State>
+                        <ZipCode>09010</ZipCode>
+                      </Address>
+                    </APOFPO>
                     <Email DoNotKnow="True"/>
                     <LastContact>
                       <Date>
@@ -551,11 +557,20 @@
                   <ResidenceType>MilitaryHousing</ResidenceType>
                   <Verifier>
                     <Address>
-                      <Street>Residence 2 Secondary APO </Street>
+                      <Street>Verifier 1 APO </Street>
                       <City>APO</City>
                       <State>AE</State>
                       <ZipCode>09009</ZipCode>
                     </Address>
+                    <APOFPO>
+                      <PhysicalLocation>
+                        <Address>
+                          <StreetUnitDutyLocation>Verifier 1 Secondary Outside US</StreetUnitDutyLocation>
+                          <CityPostName>Nanaimo</CityPostName>
+                          <Country>Canada</Country>
+                        </Address>
+                      </PhysicalLocation>
+                    </APOFPO>
                     <Email>jack@example.com</Email>
                     <LastContact>
                       <Date>

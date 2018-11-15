@@ -2938,7 +2938,7 @@
                     "type": "location",
                     "props": {
                       "layout": "Address",
-                      "street": "Residence 2 Secondary APO",
+                      "street": "Verifier 1 APO",
                       "city": "APO",
                       "state": "AE",
                       "zipcode": "09009",
