@@ -648,10 +648,8 @@
                     <Answer>No</Answer>
                   </Incidents>
                   <JobLocation>
-        
-        
-        
-      </JobLocation>
+                    <Answer>No</Answer>
+                  </JobLocation>
                   <LeftJob>
         
         
@@ -721,10 +719,8 @@
                     <Answer>No</Answer>
                   </Incidents>
                   <JobLocation>
-        
-        
-        
-      </JobLocation>
+                    <Answer>No</Answer>
+                  </JobLocation>
                   <LeftJob>
                     <Reason>Employer 2 Reason</Reason>
                   </LeftJob>
@@ -829,10 +825,8 @@
                     <Answer>No</Answer>
                   </Incidents>
                   <JobLocation>
-        
-        
-        
-      </JobLocation>
+                    <Answer>No</Answer>
+                  </JobLocation>
                   <Verifier>
                     <LegalName>
                       <Last>Richards</Last>
