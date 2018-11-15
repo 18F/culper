@@ -181,28 +181,12 @@
       <Supervisor>
         <Name>{{text $supervisor.SupervisorName}}</Name>
         <Title>{{text $supervisor.Title}}</Title>
-        <!-- XXX Work-around for https://github.com/18F/e-QIP-prototype/issues/924 -->
-        {{if false}}
-        <APOFPO>
-          <!-- TODO -->
-          <Address></Address>
-          <AddressComment></AddressComment>
-          <!-- TODO -->
-          <Answer></Answer>
-          <AnswerComment></AnswerComment>
-          <!-- TODO -->
-          <PhysicalLocation>
-            <Address></Address>
-            <Comment></Comment>
-          </PhysicalLocation>
-        </APOFPO>
-        {{else}}
-        <!-- XXX Work-around for https://github.com/18F/e-QIP-prototype/issues/924 -->
-        {{if isInternational $supervisor.Address}}
-        <APOFPO><Answer>No</Answer></APOFPO>
-        {{end}}
         <Address>{{location $supervisor.Address}}</Address>
+
+        {{with $remap := altAddressRemap $supervisor.Address $Item.SupervisorAlternateAddress.props.HasDifferentAddress $Item.SupervisorAlternateAddress.props.Address}}
+        {{tmpl "apofpo-physical.xml" $remap}}
         {{end}}
+
         <Comment></Comment>
         <Email DoNotKnow="{{notApplicable $supervisor.EmailNotApplicable}}">{{email $supervisor.Email}}</Email>
         <Telephone>{{telephone $supervisor.Telephone}}</Telephone>

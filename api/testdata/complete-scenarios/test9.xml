@@ -659,6 +659,15 @@
                       <State>AE</State>
                       <ZipCode>09011</ZipCode>
                     </Address>
+                    <APOFPO>
+                      <PhysicalLocation>
+                        <Address>
+                          <StreetUnitDutyLocation>Supervisor 1 Secondary Outside Of US</StreetUnitDutyLocation>
+                          <CityPostName>Rota</CityPostName>
+                          <Country>Spain</Country>
+                        </Address>
+                      </PhysicalLocation>
+                    </APOFPO>
                     <Email>sup1@example.com</Email>
                     <Telephone>
                       <Number>3333331111</Number>
@@ -716,14 +725,20 @@
                   <Supervisor>
                     <Name>Supervisor 2</Name>
                     <Title>Head Supervisor</Title>
-                    <APOFPO>
-                      <Answer>No</Answer>
-                    </APOFPO>
                     <Address>
                       <Street>Supervisor 2 Outside of the US </Street>
                       <City>Glasgow</City>
                       <Country>United Kingdom</Country>
                     </Address>
+                    <APOFPO>
+                      <Answer>Yes</Answer>
+                      <Address>
+                        <Address>Supervisor 2 Secondary APO</Address>
+                        <ApoFpo>APO</ApoFpo>
+                        <State>AE</State>
+                        <ZipCode>09012</ZipCode>
+                      </Address>
+                    </APOFPO>
                     <Email>sup2@example.com</Email>
                     <Telephone>
                       <Number>7838888888</Number>
