@@ -437,7 +437,6 @@ describe('The relative component', () => {
     }
     const component = mount(<Relative {...expected} />)
     expect(component.find('.relative-address').length).toBe(1)
-    component.find('.relative-address .domestic input').simulate('change')
     component
       .find('.relative-address .city input')
       .simulate('change', { target: { name: 'city', value: 'City name' } })
@@ -460,7 +459,7 @@ describe('The relative component', () => {
     component
       .find('.relative-expiration .year input')
       .simulate('change', { target: { name: 'year', value: '2005' } })
-    expect(updates).toBe(8)
+    expect(updates).toBe(7)
   })
 
   it('is not a citizen and lives outside the United States?', () => {
@@ -506,7 +505,6 @@ describe('The relative component', () => {
       }
     }
     const component = mount(<Relative {...expected} />)
-    component.find('.relative-address .international input').simulate('change')
     expect(component.find('.relative-first-contact').length).toBeGreaterThan(0)
     component
       .find('.relative-first-contact .day input')
@@ -551,6 +549,6 @@ describe('The relative component', () => {
     component
       .find({ type: 'checkbox', name: 'EmployerRelationshipNotApplicable' })
       .simulate('change')
-    expect(updates).toBe(16)
+    expect(updates).toBe(15)
   })
 })
