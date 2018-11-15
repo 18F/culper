@@ -4187,8 +4187,7 @@
                 "DocumentType": {
                   "type": "radio",
                   "props": {
-                    "value": "FS240",
-                    "checked": true
+                    "value": ""
                   }
                 },
                 "OtherExplanation": {
@@ -4200,7 +4199,7 @@
                 "DocumentNumber": {
                   "type": "text",
                   "props": {
-                    "value": "FS240DocumentNumber"
+                    "value": ""
                   }
                 },
                 "DocumentExpiration": {
@@ -4215,7 +4214,7 @@
                 "DocumentExpirationNotApplicable": {
                   "type": "notapplicable",
                   "props": {
-                    "applicable": true
+                    "applicable": false
                   }
                 }
               }
