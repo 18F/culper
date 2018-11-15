@@ -40,7 +40,7 @@ export default class Address extends ValidationElement {
     this.update = this.update.bind(this)
     this.updateCountry = this.updateCountry.bind(this)
     this.updateAddressType = this.updateAddressType.bind(this)
-    this.addressTypeFunc = this.addressTypeFunc.bind(this)
+    this.addressType = this.addressType.bind(this)
     this.openAddressBook = this.openAddressBook.bind(this)
     this.closeAddressBook = this.closeAddressBook.bind(this)
     this.renderAddressBookItem = this.renderAddressBookItem.bind(this)
@@ -162,17 +162,14 @@ export default class Address extends ValidationElement {
     this.update({}, 0, true)
   }
 
-  addressTypeFunc(props) {
+  addressType() {
     const country = countryString(this.props.country)
-    switch (true) {
-      case props.value === country:
-        return true
-      case props.value === 'International' &&
-        !['United States', 'POSTOFFICE'].includes(country):
-        return true
-      default:
-        return false
+
+    if (['United States', 'POSTOFFICE'].includes(country)) {
+      return country
     }
+
+    return "International"
   }
 
   openAddressBook() {
@@ -255,13 +252,14 @@ export default class Address extends ValidationElement {
               this.props.showPostOffice ? '' : 'no-postoffice'
             }`.trim()}
             disabled={this.props.disabled}
-            selectedValueFunc={this.addressTypeFunc}>
+            selectedValue={this.addressType()}
+          >
             <Radio
               name="addressType"
               label={i18n.m('address.options.us.label')}
               value="United States"
               className="domestic"
-              ignoreDeselect="true"
+              ignoreDeselect
               disabled={this.props.disabled}
               onUpdate={this.updateAddressType}
               onBlur={this.props.onBlur}
@@ -273,7 +271,7 @@ export default class Address extends ValidationElement {
                 label={i18n.m('address.options.apoFpo.label')}
                 value="POSTOFFICE"
                 className="apofpo postoffice"
-                ignoreDeselect="true"
+                ignoreDeselect
                 disabled={this.props.disabled}
                 onUpdate={this.updateAddressType}
                 onBlur={this.props.onBlur}
@@ -285,7 +283,7 @@ export default class Address extends ValidationElement {
               label={i18n.m('address.options.international.label')}
               value="International"
               className="international"
-              ignoreDeselect="true"
+              ignoreDeselect
               disabled={this.props.disabled}
               onUpdate={this.updateAddressType}
               onBlur={this.props.onBlur}
