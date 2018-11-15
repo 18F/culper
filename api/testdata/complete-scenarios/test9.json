@@ -615,13 +615,18 @@
                       "HasDifferentAddress": {
                         "type": "branch",
                         "props": {
-                          "value": ""
+                          "value": "Yes"
                         }
                       },
                       "Address": {
                         "type": "location",
                         "props": {
-                          "layout": ""
+                          "layout": "US Address",
+                          "street": "Foreign Contact 1 APO",
+                          "city": "APO",
+                          "state": "AE",
+                          "zipcode": "09011",
+                          "country": "POSTOFFICE"
                         }
                       },
                       "Telephone": {

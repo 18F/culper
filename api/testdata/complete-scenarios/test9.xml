@@ -985,7 +985,13 @@
                     <Country>United Kingdom</Country>
                   </Address>
                   <APOFPO>
-                    <Answer>No</Answer>
+                    <Answer>Yes</Answer>
+                    <Address>
+                      <Address>Foreign Contact 1 APO</Address>
+                      <ApoFpo>APO</ApoFpo>
+                      <State>AE</State>
+                      <ZipCode>09011</ZipCode>
+                    </Address>
                   </APOFPO>
                   <Birth>
                     <Date DoNotKnow="True">
