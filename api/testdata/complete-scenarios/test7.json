@@ -6021,11 +6021,9 @@
                     }
                   },
                   "Days": {
-                    "type": "checkboxgroup",
+                    "type": "radio",
                     "props": {
-                      "values": [
-                        "More than 30"
-                      ]
+                      "value": "More than 30"
                     }
                   },
                   "Encounter": {
@@ -6164,11 +6162,9 @@
                     }
                   },
                   "Days": {
-                    "type": "checkboxgroup",
+                    "type": "radio",
                     "props": {
-                      "values": [
-                        "More than 30"
-                      ]
+                      "value": "More than 30"
                     }
                   },
                   "Encounter": {
@@ -7042,6 +7038,315 @@
                       "branch": {
                         "type": ""
                       },
+                      "items": [
+                        {
+                          "Item": {
+                            "DatesEmployed": {
+                              "type": "daterange",
+                              "props": {
+                                "from": {
+                                  "type": "datecontrol",
+                                  "props": {
+                                    "month": "",
+                                    "day": "",
+                                    "year": "",
+                                    "estimated": false
+                                  }
+                                },
+                                "to": {
+                                  "type": "datecontrol",
+                                  "props": {
+                                    "month": "",
+                                    "day": "",
+                                    "year": "",
+                                    "estimated": false
+                                  }
+                                },
+                                "present": false
+                              }
+                            },
+                            "Has": {
+                              "type": "branch",
+                              "props": {
+                                "value": "No"
+                              }
+                            },
+                            "Position": {
+                              "type": "text",
+                              "props": {
+                                "value": ""
+                              }
+                            },
+                            "Supervisor": {
+                              "type": "text",
+                              "props": {
+                                "value": ""
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "Address": {
+                    "type": "location",
+                    "props": {
+                      "layout": "Address",
+                      "street": "123 1st St.",
+                      "city": "Monterey",
+                      "state": "CA",
+                      "zipcode": "93940",
+                      "country": "United States",
+                      "validated": true
+                    }
+                  },
+                  "Dates": {
+                    "type": "daterange",
+                    "props": {
+                      "from": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "8",
+                          "day": "27",
+                          "year": "2018",
+                          "estimated": false
+                        }
+                      },
+                      "to": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "11",
+                          "day": "4",
+                          "year": "2018",
+                          "estimated": false
+                        }
+                      },
+                      "present": true
+                    }
+                  },
+                  "DutyStation": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Employment": {
+                    "type": "text",
+                    "props": {
+                      "value": "Safeway"
+                    }
+                  },
+                  "EmploymentActivity": {
+                    "type": "employmentactivity",
+                    "props": {
+                      "value": "NonGovernment"
+                    }
+                  },
+                  "PhysicalAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": "No"
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": ""
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "ReasonLeft": {
+                    "type": "reasonleft",
+                    "props": {
+                      "Comments": {
+                        "type": "textarea",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Reasons": {
+                        "type": "collection",
+                        "props": {
+                          "branch": {
+                            "type": ""
+                          },
+                          "items": []
+                        }
+                      },
+                      "ReasonDescription": {
+                        "type": "textarea",
+                        "props": {
+                          "value": ""
+                        }
+                      }
+                    }
+                  },
+                  "ReferenceAddress": {
+                    "type": "location",
+                    "props": {
+                      "layout": ""
+                    }
+                  },
+                  "ReferenceName": {
+                    "type": "name",
+                    "props": {
+                      "first": "",
+                      "firstInitialOnly": false,
+                      "middle": "",
+                      "middleInitialOnly": false,
+                      "noMiddleName": false,
+                      "last": "",
+                      "lastInitialOnly": false,
+                      "suffix": "",
+                      "suffixOther": ""
+                    }
+                  },
+                  "ReferencePhone": {
+                    "type": "telephone",
+                    "props": {
+                      "timeOfDay": "",
+                      "type": "",
+                      "numberType": "",
+                      "number": "",
+                      "extension": "",
+                      "noNumber": false
+                    }
+                  },
+                  "Reprimand": {
+                    "type": "collection",
+                    "props": {
+                      "branch": {
+                        "type": ""
+                      },
+                      "items": [
+                        {
+                          "Item": {
+                            "Date": {
+                              "type": "datecontrol",
+                              "props": {
+                                "month": "",
+                                "day": "",
+                                "year": "",
+                                "estimated": false
+                              }
+                            },
+                            "Has": {
+                              "type": "branch",
+                              "props": {
+                                "value": "No"
+                              }
+                            },
+                            "Text": {
+                              "type": "textarea",
+                              "props": {
+                                "value": ""
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "Status": {
+                    "type": "radio",
+                    "props": {
+                      "value": "PartTime"
+                    }
+                  },
+                  "Supervisor": {
+                    "type": "supervisor",
+                    "props": {
+                      "SupervisorName": {
+                        "type": "text",
+                        "props": {
+                          "value": "Joe Clark"
+                        }
+                      },
+                      "Title": {
+                        "type": "text",
+                        "props": {
+                          "value": "Head Cashier"
+                        }
+                      },
+                      "Email": {
+                        "type": "email",
+                        "props": {
+                          "value": "joe.claker@example.com"
+                        }
+                      },
+                      "EmailNotApplicable": {
+                        "type": "notapplicable",
+                        "props": {
+                          "applicable": true
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "Address",
+                          "street": "123 1st St.",
+                          "city": "Monterey",
+                          "state": "CA",
+                          "zipcode": "93940",
+                          "country": "United States",
+                          "validated": true
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "Day",
+                          "type": "Domestic",
+                          "numberType": "",
+                          "number": "8313232234",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "Telephone": {
+                    "type": "telephone",
+                    "props": {
+                      "timeOfDay": "Both",
+                      "type": "Domestic",
+                      "numberType": "",
+                      "number": "8319993333",
+                      "extension": "",
+                      "noNumber": false
+                    }
+                  },
+                  "Title": {
+                    "type": "text",
+                    "props": {
+                      "value": "Cashier"
+                    }
+                  }
+                }
+              },
+              {
+                "Item": {
+                  "Additional": {
+                    "type": "collection",
+                    "props": {
+                      "branch": {
+                        "type": ""
+                      },
                       "items": []
                     }
                   },
@@ -7078,7 +7383,7 @@
                           "estimated": false
                         }
                       },
-                      "present": true
+                      "present": false
                     }
                   },
                   "DutyStation": {
@@ -7242,7 +7547,7 @@
                       "ReasonDescription": {
                         "type": "textarea",
                         "props": {
-                          "value": ""
+                          "value": "Employer 2 Reason"
                         }
                       }
                     }
@@ -7428,7 +7733,7 @@
                           "estimated": false
                         }
                       },
-                      "present": true
+                      "present": false
                     }
                   },
                   "DutyStation": {
@@ -7776,7 +8081,7 @@
                           "estimated": false
                         }
                       },
-                      "present": true
+                      "present": false
                     }
                   },
                   "DutyStation": {
@@ -7915,7 +8220,7 @@
                       "ReasonDescription": {
                         "type": "textarea",
                         "props": {
-                          "value": ""
+                          "value": "Employer 4 Reason"
                         }
                       }
                     }
@@ -8270,7 +8575,7 @@
                           "estimated": false
                         }
                       },
-                      "present": true
+                      "present": false
                     }
                   },
                   "DutyStation": {
@@ -8372,7 +8677,7 @@
                       "ReasonDescription": {
                         "type": "textarea",
                         "props": {
-                          "value": ""
+                          "value": "Employer 5 Reason"
                         }
                       }
                     }

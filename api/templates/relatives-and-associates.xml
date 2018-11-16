@@ -97,14 +97,16 @@
           {{- if $Item.Expiration.props.month }}
           <DocumentExpiration Type="{{dateEstimated $Item.Expiration}}">{{date $Item.Expiration}}</DocumentExpiration>
           {{end}}
-          <DocumentNumber>{{text $Item.DocumentNumber}}</DocumentNumber>
           {{if $usCitizen}}
+          <DocumentNumber>{{text $Item.DocumentNumber}}</DocumentNumber>
           <NaturalizationCertificate>
             <Court>
               <Address>{{location $Item.CourtAddress}}</Address>
               <Name>{{text $Item.CourtName}}</Name>
             </Court>
           </NaturalizationCertificate>
+          {{else}}
+          <DocumentNumber>{{text $Item.ResidenceDocumentNumber}}</DocumentNumber>
           {{end}}
           {{- if text $Item.Document }}
           <Type>{{text $Item.Document | relativeForeignDocType}}</Type>

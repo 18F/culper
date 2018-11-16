@@ -165,7 +165,6 @@ export const financial = {
     courtNumber: {
       title: 'Court docket/account number',
       label: 'Number',
-      placeholder: 'Court docket/account number',
       help: {
         title: 'Need help with the docker or account number?',
         message: 'Provide the docket/account number',
@@ -189,12 +188,10 @@ export const financial = {
         message: 'Provide the name of the court involved',
         note: ''
       },
-      placeholder: 'Provide court involved'
     },
     trustee: {
       title: 'Provide the name of the trustee for this bankruptcy',
       label: 'Trustee name',
-      placeholder: 'Provide name of trustee',
       help: {
         title: 'Need help with the trustee name?',
         message:
@@ -399,10 +396,6 @@ export const financial = {
       address: 'Provide the location of the credit counseling organization',
       description:
         'As a result of this counseling provide a description of any action(s) you have taken to resolve your financial difficulties. If you have not taken any action(s) provide explanation.'
-    },
-    placeholder: {
-      city: 'Please enter the city',
-      state: 'Please enter state or territory within the United States'
     },
     help: {
       branch: {
