@@ -204,8 +204,7 @@ class CivilUnion extends ValidationElement {
      */
 
     const { country } = this.props.BirthPlace
-    const showForeignBornDocumentation =
-      country && countryString(country) !== 'United States'
+    const showForeignBornDocumentation = country && countryString(country) !== 'United States'
 
     return (
       <div className="civil-union">
