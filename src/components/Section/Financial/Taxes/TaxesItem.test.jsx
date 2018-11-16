@@ -1,6 +1,5 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import Taxes from './Taxes'
 import TaxesItem from './TaxesItem'
 
 describe('The taxes item component', () => {
