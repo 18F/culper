@@ -1,11 +1,16 @@
 export const address = {
   label: 'This address is',
   spinner: 'Verifying your address',
-  physicalLocationRequired: 'Please provide a physical address for this location',
+  physicalLocationRequired: 'Provide physical location data with street address, base, post, embassy, unit, and country location or home port/fleet headquarter.',
+  apoFpoRequired: 'Provide APO/FPO address.',
   militaryAddress: {
-    me: 'Do you or did you have an APO/FPO address at this location',
-    other: 'Does this person have an APO/FPO address',
-    foreignNational: 'Does this person have an APO/FPO address? Provide the foreign national\'s APO/FPO address'
+    meResidence: 'Did you have an APO/FPO address while at this location?',
+    meEmployment: 'Do you or did you have an APO/FPO address while at this location?',
+    spouse: 'Does the person have an APO/FPO address within the United States?',
+    relative: 'Does this relative have an APO/FPO address?',
+    foreignNational: 'Does this person have an APO/FPO address? Provide the foreign national\'s APO/FPO address.',
+    supervisor: 'Did/does your supervisor have an APO/FPO address while at this location?',
+    residenceVerifier: 'Does the person who knew you have an APO/FPO address?',
   },
   options: {
     us: {
@@ -37,6 +42,14 @@ export const address = {
     },
     zipcode: {
       label: 'ZIP Code'
+    }
+  },
+  physical: {
+    street: {
+      label: 'Street address/Unit/Duty Location'
+    },
+    city: {
+      label: 'City or Post Name'
     }
   },
   international: {

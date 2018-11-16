@@ -263,6 +263,7 @@ export default class ResidenceItem extends ValidationElement {
           belongingTo: 'AlternateAddress',
           address: this.props.AlternateAddress,
           country: this.props.Address.country,
+          militaryAddressLabel: i18n.t('address.militaryAddress.meResidence'),
           onUpdate: this.update
         })}
 
@@ -588,6 +589,7 @@ export default class ResidenceItem extends ValidationElement {
                 belongingTo: 'ReferenceAlternateAddress',
                 address: this.props.ReferenceAlternateAddress,
                 country: this.props.ReferenceAddress.country,
+                militaryAddressLabel: i18n.t('address.militaryAddress.residenceVerifier'),
                 onUpdate: this.update
               })}
 

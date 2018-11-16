@@ -123,7 +123,7 @@ class AlternateAddress extends ValidationElement {
           * had an APO/FPO (military) address in the foreign country
         */}
         <Show when={this.isForeignMilitaryAddress()}>
-          <Field title={i18n.t('address.physicalLocationRequired')}>
+          <Field title={i18n.t('address.apoFpoRequired')}>
             <Location
               {...this.prepareProps({
                 country: 'POSTOFFICE',
@@ -140,6 +140,8 @@ class AlternateAddress extends ValidationElement {
                 addressBook: this.props.addressBook,
                 addressBooks: this.props.addressBooks,
                 geocode: true,
+                streetLabel: i18n.t('address.physical.street.label'),
+                cityLabel: i18n.t('address.physical.city.label'),
                 layout: this.props.layout
               })}
             />
@@ -165,7 +167,7 @@ AlternateAddress.defaultProps = {
   },
   forceAPO: false,
   layout: Location.ADDRESS,
-  militaryAddressLabel: i18n.t('address.militaryAddress.me'),
+  militaryAddressLabel: i18n.t('address.militaryAddress.meEmployment'),
 }
 
 const mapStateToProps = ({ application }, ownProps) => {
