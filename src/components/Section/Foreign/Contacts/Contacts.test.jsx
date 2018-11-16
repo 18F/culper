@@ -96,7 +96,7 @@ describe('The contacts component', () => {
       const component = mountComponent(mockStore, Contacts, props)
       expect(component.find('.error-messages [data-i18n="error.foreignContact.min"]').children().length).toEqual(0)
     })
-    it.only('with bad data', () => {
+    it('with bad data', () => {
       const mockStore = configureMockStore()
       const props = {
         name: "contacts",
