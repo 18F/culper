@@ -1,19 +1,36 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import MembershipViolence from './MembershipViolence'
 
 describe('The legal associations violence component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <MembershipViolence {...expected} />
+        </Provider>
+      )
+  })
+
   it('renders without errors', () => {
-    const component = mount(<MembershipViolence />)
+    const component = createComponent()
     expect(component.find('.legal-associations-violence').length).toBe(1)
   })
 
   it('can select "yes"', () => {
     let updates = 0
-    const onUpdate = () => {
-      updates++
+    const expected = {
+      onUpdate: () => {
+        updates++
+      }
     }
-    const component = mount(<MembershipViolence onUpdate={onUpdate} />)
+    const component = createComponent(expected)
     component
       .find('.legal-associations-violence-has-violence .yes input')
       .simulate('change')
@@ -24,7 +41,7 @@ describe('The legal associations violence component', () => {
     const props = {
       HasViolence: { value: 'Yes' }
     }
-    const component = mount(<MembershipViolence {...props} />)
+    const component = createComponent(props)
     expect(component.find('.accordion').length).toBe(1)
   })
 
@@ -57,7 +74,7 @@ describe('The legal associations violence component', () => {
         ]
       }
     }
-    const component = mount(<MembershipViolence {...props} />)
+    const component = createComponent(props)
     const text = component.find('.accordion .summary .left').text()
     expect(text).toContain('Donut Brigade')
     expect(text).toContain('1/2010 - 1/2011')

@@ -1,8 +1,23 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import PassportItem from './PassportItem'
 
 describe('The passport item component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <PassportItem {...expected} />
+        </Provider>
+      )
+  })
+
   it('can trigger updates', () => {
     let updates = 0
     const expected = {
@@ -13,7 +28,7 @@ describe('The passport item component', () => {
         updates++
       }
     }
-    const component = mount(<PassportItem {...expected} />)
+    const component = createComponent(expected)
     component.find('.passport-country .country input').simulate('change', {
       target: { name: 'Country', value: 'United States' }
     })

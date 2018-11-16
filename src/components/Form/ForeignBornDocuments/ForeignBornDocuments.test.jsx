@@ -1,20 +1,35 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import ForeignBornDocuments from '../ForeignBornDocuments'
 
 describe('The ForeignBornDocuments component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <ForeignBornDocuments {...expected} />
+        </Provider>
+      )
+  })
+
   it('renders focus and blur', () => {
     let blurs = 0
     let focus = 0
-    const onBlur = () => {
-      blurs++
+    const expected = {
+      onBlur: () => {
+        blurs++
+      },
+      onFocus: () => {
+        focus++
+      }
     }
-    const onFocus = () => {
-      focus++
-    }
-    const component = mount(
-      <ForeignBornDocuments onBlur={onBlur} onFocus={onFocus} />
-    )
+    const component = createComponent(expected)
 
     component
       .find('.born input')
@@ -36,7 +51,7 @@ describe('The ForeignBornDocuments component', () => {
         updates++
       }
     }
-    const component = mount(<ForeignBornDocuments {...props} />)
+    const component = createComponent(props)
     expect(component.find('.foreign-born-documents').length).toEqual(1)
 
     expect(component.find('.born').length).toEqual(2)

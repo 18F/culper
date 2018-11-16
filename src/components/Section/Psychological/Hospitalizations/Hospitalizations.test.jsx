@@ -1,11 +1,26 @@
 import React from 'react'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
 import Hospitalizations from './Hospitalizations'
 import Location from '../../../Form/Location'
 
 describe('The Hospitalizations component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <Hospitalizations {...expected} />
+        </Provider>
+      )
+  })
+
   it('Renders without errors', () => {
-    const component = mount(<Hospitalizations />)
+    const component = createComponent()
     expect(component.find('.hospitalizations').length).toBe(1)
   })
 
@@ -24,7 +39,7 @@ describe('The Hospitalizations component', () => {
         updates++
       }
     }
-    const component = mount(<Hospitalizations {...props} />)
+    const component = createComponent(props)
     expect(component.find('.hospitalization').length).toBe(1)
     updates = 0
     component.find({ type: 'radio', value: 'Voluntary' }).simulate('change')
@@ -42,13 +57,14 @@ describe('The Hospitalizations component', () => {
     const onUpdate = () => {
       updates++
     }
-    const component = mount(
-      <Hospitalizations
-        onUpdate={onUpdate}
-        List={List}
-        Hospitalized={{ value: 'Yes' }}
-      />
-    )
+    const props = {
+      Hospitalized: { value: 'Yes' },
+      List: List,
+      onUpdate: () => {
+        updates++
+      }
+    }
+    const component = createComponent(props)
     updates = 0
     component
       .find('.facility input')

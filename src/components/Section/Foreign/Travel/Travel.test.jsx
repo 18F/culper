@@ -1,14 +1,29 @@
 import React from 'react'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
 import Travel from './Travel'
 
 describe('The foreign travel component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <Travel {...expected} />
+        </Provider>
+      )
+  })
+
   it('display nothing when "no" is clicked', () => {
     const expected = {
       name: 'foreign-travel',
       HasForeignTravelOutside: { value: 'No' }
     }
-    const component = mount(<Travel {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(0)
   })
 
@@ -18,7 +33,7 @@ describe('The foreign travel component', () => {
       HasForeignTravelOutside: { value: 'Yes' },
       HasForeignTravelOfficial: { value: 'No' }
     }
-    const component = mount(<Travel {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(1)
   })
 
@@ -32,7 +47,7 @@ describe('The foreign travel component', () => {
         return arr
       }
     }
-    const component = mount(<Travel {...expected} />)
+    const component = createComponent(expected)
     component
       .find('.branch .yes input')
       .at(1)
@@ -81,7 +96,7 @@ describe('The foreign travel component', () => {
         updates++
       }
     }
-    const component = mount(<Travel {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(1)
     component.find('.foreign-travel-country input').simulate('change')
     component.find('.foreign-travel-dates .to .day input').simulate('change')
@@ -141,7 +156,7 @@ describe('The foreign travel component', () => {
         updates++
       }
     }
-    const component = mount(<Travel {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(1)
     component.find('.foreign-travel-days .days-1-5 input').simulate('change')
     expect(updates).toBe(2)

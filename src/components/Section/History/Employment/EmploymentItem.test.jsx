@@ -1,19 +1,34 @@
 import React from 'react'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
 import { today, daysAgo } from '../dateranges'
 import EmploymentItem from './EmploymentItem'
 import ReasonLeft from './ReasonLeft'
 import Reprimand from './Reprimand'
 
-const alternateAddressRenderMock = jest.fn();
-const buildProps = other => ({ render: alternateAddressRenderMock, ...other})
+const alternateAddressRenderMock = jest.fn()
+const buildProps = other => ({ render: alternateAddressRenderMock, ...other })
 
 describe('The employment component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <EmploymentItem {...expected} />
+        </Provider>
+      )
+  })
+
   it('no error on empty', () => {
     const expected = buildProps({
       name: 'employment'
     })
-    const component = mount(<EmploymentItem {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.h3').length).toBeGreaterThan(0)
   })
 
@@ -36,7 +51,7 @@ describe('The employment component', () => {
       '.supervisor'
     ]
 
-    const component = mount(<EmploymentItem {...expected} />)
+    const component = createComponent(expected)
     selectors.forEach(selector => {
       var len = component.find(selector).length
       expect(len).toBeGreaterThan(0)
@@ -62,7 +77,7 @@ describe('The employment component', () => {
         to: {}
       }
     })
-    const component = mount(<EmploymentItem {...props} />)
+    const component = createComponent(props)
     expect(component.find('.reprimand-branch').length).toBe(1)
   })
 
@@ -80,7 +95,7 @@ describe('The employment component', () => {
         to: {}
       }
     })
-    const component = mount(<EmploymentItem {...props} />)
+    const component = createComponent(props)
     expect(component.find('.reprimand-branch').length).toBe(0)
   })
 
@@ -98,7 +113,7 @@ describe('The employment component', () => {
         to: {}
       }
     })
-    const component = mount(<EmploymentItem {...props} />)
+    const component = createComponent(props)
     expect(component.find('.reason-options').length).toBe(1)
   })
 
@@ -116,7 +131,7 @@ describe('The employment component', () => {
         to: {}
       }
     })
-    const component = mount(<EmploymentItem {...props} />)
+    const component = createComponent(props)
     expect(component.find('.reason-options').length).toBe(0)
   })
 
@@ -134,7 +149,7 @@ describe('The employment component', () => {
         to: {}
       }
     })
-    const component = mount(<EmploymentItem {...props} />)
+    const component = createComponent(props)
     expect(component.find('.reason-options').length).toBe(0)
   })
 
@@ -152,7 +167,7 @@ describe('The employment component', () => {
         to: {}
       }
     })
-    const component = mount(<EmploymentItem {...props} />)
+    const component = createComponent(props)
     expect(component.find('.reason-description').length).toBe(0)
   })
 
@@ -173,7 +188,7 @@ describe('The employment component', () => {
           to: {}
         }
       })
-      component = mount(<EmploymentItem {...props} />)
+      component = createComponent(props)
     })
 
     it('it does not display reason for leaving', () => {
@@ -199,7 +214,7 @@ describe('The employment component', () => {
         to: {}
       }
     })
-    const component = mount(<EmploymentItem {...props} />)
+    const component = createComponent(props)
     expect(component.find('.reason-description').length).toBe(1)
   })
 

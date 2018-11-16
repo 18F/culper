@@ -1,20 +1,36 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import Bankruptcy from './Bankruptcy'
 
 describe('The Bankruptcy component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <Bankruptcy {...expected} />
+        </Provider>
+      )
+  })
+
   it('Renders without errors', () => {
-    const component = mount(<Bankruptcy />)
+    const component = createComponent()
     expect(component.find('.bankruptcy').length).toBe(1)
   })
 
   it('Performs updates', () => {
     let updates = 0
-    const onUpdate = () => {
-      updates++
+    const expected = {
+      onUpdate: () => {
+        updates++
+      }
     }
-
-    const component = mount(<Bankruptcy onUpdate={onUpdate} />)
+    const component = createComponent(expected)
     expect(component.find('.bankruptcy').length).toBe(1)
     component
       .find('.petition-chapters .block input')
@@ -43,16 +59,13 @@ describe('The Bankruptcy component', () => {
 
   it('Performs update to having discharge explanation', () => {
     let updates = 0
-    const onUpdate = () => {
-      updates++
+    const expected = {
+      onUpdate: () => {
+        updates++
+      },
+      HasDischargeExplanation: { value: 'Yes' }
     }
-    const dischargeExplanation = { value: 'Yes' }
-    const component = mount(
-      <Bankruptcy
-        onUpdate={onUpdate}
-        HasDischargeExplanation={dischargeExplanation}
-      />
-    )
+    const component = createComponent(expected)
     expect(component.find('.bankruptcy').length).toBe(1)
     component.find('textarea[name="DischargeExplanation"]').simulate('change')
     expect(updates).toBe(1)
@@ -60,13 +73,13 @@ describe('The Bankruptcy component', () => {
 
   it('Performs update with chapter 13 selected', () => {
     let updates = 0
-    const onUpdate = () => {
-      updates++
+    const expected = {
+      onUpdate: () => {
+        updates++
+      },
+      PetitionType: { value: 'Chapter13' }
     }
-    const petitionType = { value: 'Chapter13' }
-    const component = mount(
-      <Bankruptcy onUpdate={onUpdate} PetitionType={petitionType} />
-    )
+    const component = createComponent(expected)
     component.find('input[name="chapter13Trustee"]').simulate('change')
     component.find('.trustee-address input[name="street"]').simulate('change')
     expect(updates).toBe(2)

@@ -1,8 +1,23 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import Employment from './Employment'
 
 describe('The employment section', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <Employment {...expected} />
+        </Provider>
+      )
+  })
+
   it('can trigger updates', () => {
     let updates = 0
     const expected = {
@@ -33,7 +48,7 @@ describe('The employment section', () => {
         updates++
       }
     }
-    const component = mount(<Employment {...expected} />)
+    const component = createComponent(expected)
     expect(updates).toBe(1)
   })
 })

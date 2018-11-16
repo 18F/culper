@@ -1,13 +1,28 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import Taxes from './Taxes'
 
 describe('The taxes component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <Taxes {...expected} />
+        </Provider>
+      )
+  })
+
   it('no error on empty', () => {
     const expected = {
       name: 'taxes'
     }
-    const component = mount(<Taxes {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.branch').length).toBeGreaterThan(0)
     expect(component.find('.accordion').length).toBe(0)
   })
@@ -17,7 +32,7 @@ describe('The taxes component', () => {
       name: 'taxes',
       HasTaxes: { value: 'Yes' }
     }
-    const component = mount(<Taxes {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(1)
   })
 
@@ -26,7 +41,7 @@ describe('The taxes component', () => {
       name: 'taxes',
       HasTaxes: { value: 'No' }
     }
-    const component = mount(<Taxes {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(0)
   })
 
@@ -40,7 +55,7 @@ describe('The taxes component', () => {
         updates++
       }
     }
-    const component = mount(<Taxes {...expected} />)
+    const component = createComponent(expected)
     component
       .find('.branch .yes input')
       .first()

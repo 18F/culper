@@ -1,14 +1,29 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import Offenses from './Offenses'
 import Location from '../../../Form/Location'
 
 describe('The Offenses record component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <Offenses {...expected} />
+        </Provider>
+      )
+  })
+
   it('no error on empty', () => {
     const expected = {
       name: 'police-record'
     }
-    const component = mount(<Offenses {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.has-offenses').length).toEqual(1)
     expect(component.find('.accordion').length).toEqual(0)
   })
@@ -21,7 +36,7 @@ describe('The Offenses record component', () => {
         updates++
       }
     }
-    const component = mount(<Offenses {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.has-offenses').length).toEqual(1)
     component.find('.has-offenses .yes input').simulate('change')
     expect(updates).toBe(1)
@@ -65,7 +80,7 @@ describe('The Offenses record component', () => {
         ]
       }
     }
-    const component = mount(<Offenses {...expected} />)
+    const component = createComponent(expected)
     component.find('.has-offenses .no input').simulate('change')
     expect(updates).toBe(2)
   })
@@ -104,7 +119,7 @@ describe('The Offenses record component', () => {
         ]
       }
     }
-    const component = mount(<Offenses {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.accordion').length).toEqual(1)
   })
 
@@ -113,7 +128,7 @@ describe('The Offenses record component', () => {
       name: 'police-record',
       HasOffenses: { value: 'No' }
     }
-    const component = mount(<Offenses {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(0)
   })
 })

@@ -1,19 +1,36 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import ActivitiesToOverthrow from './ActivitiesToOverthrow'
 
 describe('The legal associations activities component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <ActivitiesToOverthrow {...expected} />
+        </Provider>
+      )
+  })
+
   it('renders without errors', () => {
-    const component = mount(<ActivitiesToOverthrow />)
+    const component = createComponent()
     expect(component.find('.legal-associations-activities').length).toBe(1)
   })
 
   it('can select "yes"', () => {
     let updates = 0
-    const onUpdate = () => {
-      updates++
+    const expected = {
+      onUpdate: () => {
+        updates++
+      }
     }
-    const component = mount(<ActivitiesToOverthrow onUpdate={onUpdate} />)
+    const component = createComponent(expected)
     component
       .find('.legal-associations-activities-has-activities .yes input')
       .simulate('change')
@@ -24,7 +41,7 @@ describe('The legal associations activities component', () => {
     const props = {
       HasActivities: { value: 'Yes' }
     }
-    const component = mount(<ActivitiesToOverthrow {...props} />)
+    const component = createComponent(props)
     expect(component.find('.accordion').length).toBe(1)
   })
 
@@ -57,7 +74,7 @@ describe('The legal associations activities component', () => {
         ]
       }
     }
-    const component = mount(<ActivitiesToOverthrow {...props} />)
+    const component = createComponent(props)
     const text = component.find('.accordion .summary .left').text()
     expect(text).toContain('It was a tuesday')
     expect(text).toContain('1/2010 - 1/2011')
