@@ -432,15 +432,13 @@ class CivilUnion extends ValidationElement {
                 required={this.props.required}
               />
             </NotApplicable>
-            <Show when={this.props.UseCurrentAddress.applicable}> 
-              <AlternateAddress
-                address={this.props.AlternateAddress}
-                addressBook="Residence"
-                belongingTo="AlternateAddress"
-                country={this.props.Address.country}
-                onUpdate={this.update}
-              />
-            </Show>
+            <AlternateAddress
+              address={this.props.AlternateAddress}
+              addressBook="Relative"
+              belongingTo="AlternateAddress"
+              country={this.props.Address.country}
+              onUpdate={this.update}
+            />
           </Field>
 
           <Field
