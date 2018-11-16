@@ -295,6 +295,30 @@ export default class ForeignNational extends ValidationElement {
         </Show>
 
         <Field
+          title={i18n.t('foreign.contacts.heading.birthdate')}
+          adjustFor="label"
+          scrollIntoView={this.props.scrollIntoView}>
+          <NotApplicable
+            name="BirthdateNotApplicable"
+            className="na-birthdate"
+            label={i18n.t('foreign.contacts.label.idk')}
+            or={i18n.m('foreign.contacts.para.or')}
+            {...this.props.BirthdateNotApplicable}
+            onUpdate={this.updateBirthdateNotApplicable}
+            required={this.props.required}
+            onError={this.props.onError}>
+            <DateControl
+              name="Birthdate"
+              {...this.props.Birthdate}
+              relationship="Other"
+              onUpdate={this.updateBirthdate}
+              onError={this.props.onError}
+              required={this.props.required}
+            />
+          </NotApplicable>
+        </Field>
+
+        <Field
           title={i18n.t('foreign.contacts.heading.firstcontact')}
           help="foreign.contacts.help.firstcontact"
           adjustFor="label"
@@ -601,30 +625,6 @@ export default class ForeignNational extends ValidationElement {
             onError={this.props.onError}
             required={this.props.required}
           />
-        </Field>
-
-        <Field
-          title={i18n.t('foreign.contacts.heading.birthdate')}
-          adjustFor="label"
-          scrollIntoView={this.props.scrollIntoView}>
-          <NotApplicable
-            name="BirthdateNotApplicable"
-            className="na-birthdate"
-            label={i18n.t('foreign.contacts.label.idk')}
-            or={i18n.m('foreign.contacts.para.or')}
-            {...this.props.BirthdateNotApplicable}
-            onUpdate={this.updateBirthdateNotApplicable}
-            required={this.props.required}
-            onError={this.props.onError}>
-            <DateControl
-              name="Birthdate"
-              {...this.props.Birthdate}
-              relationship="Other"
-              onUpdate={this.updateBirthdate}
-              onError={this.props.onError}
-              required={this.props.required}
-            />
-          </NotApplicable>
         </Field>
 
         <Field
