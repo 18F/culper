@@ -6,9 +6,9 @@ export const address = {
   militaryAddress: {
     meResidence: 'Did you have an APO/FPO address while at this location?',
     meEmployment: 'Do you or did you have an APO/FPO address while at this location?',
-    spouse: 'Does the person have an APO/FPO address within the United States?',
+    spouse: 'Does the person have an APO/FPO address?',
     relative: 'Does this relative have an APO/FPO address?',
-    foreignNational: 'Does this person have an APO/FPO address? Provide the foreign national\'s APO/FPO address.',
+    foreignNational: 'Does this person have an APO/FPO address?',
     supervisor: 'Did/does your supervisor have an APO/FPO address while at this location?',
     residenceVerifier: 'Does the person who knew you have an APO/FPO address?',
   },
