@@ -541,7 +541,7 @@ export default class EmploymentItem extends ValidationElement {
           />
         </Show>
 
-        <Show when={this.showEmployed() && this.showLeaving()}>
+        <Show when={this.showEmployed()}>
           <ReasonLeft
             name="ReasonLeft"
             {...this.props.ReasonLeft}
