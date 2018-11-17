@@ -44,7 +44,7 @@ type Location struct {
 	State           string `json:"state,omitempty"`
 	Zipcode         string `json:"zipcode,omitempty"`
 	County          string `json:"county,omitempty"`
-	Country         string `json:"country,omitempty"`
+	Country         string `json:"country"`
 	CountryComments string `json:"countryComments,omitempty"`
 	Validated       bool   `json:"validated,omitempty"`
 }
