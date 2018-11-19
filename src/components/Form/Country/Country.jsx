@@ -31,11 +31,18 @@ export default class Country extends ValidationElement {
     })
   }
 
+  /**
+    * Update function when there are multiple selectable countries
+   */
   updateMultipleCountries(values) {
     const { value } = values
     this.update({ value })
   }
 
+  /**
+    * Update function when there is only one country
+    * @param {object} values - Country object
+   */
   updateSingleCountry(values) {
     const { value } = values
     let arr
