@@ -136,7 +136,6 @@ describe('<CivilUnion />', () => {
       const civilUnion = mountComponent(configureMockStore(), CivilUnion, objectExpected)
 
       civilUnion.setProps(objectExpected)
-      console.log(civilUnion.debug())
       expect(civilUnion.find(foreignBornDocumentEl).length).toEqual(1)
     })
   })
@@ -170,7 +169,7 @@ describe('<CivilUnion />', () => {
       }
       const component = mountComponent(mockStore, CivilUnion, props)
 
-      expect(component.find('AlternateAddress').length).toBe(1)
+      expect(component.find('AlternateAddress').length).toBe(0)
     })
   })
 })

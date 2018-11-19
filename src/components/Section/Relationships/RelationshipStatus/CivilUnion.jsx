@@ -165,8 +165,10 @@ class CivilUnion extends ValidationElement {
   }
 
   updateUseCurrentAddress(values) {
+    const nextValues = { ...values, applicable: !values.applicable }
+
     this.update({
-      UseCurrentAddress: values,
+      UseCurrentAddress: nextValues,
       Address: !values.applicable ? { ...this.props.currentAddress } : {}
     })
   }
@@ -408,7 +410,7 @@ class CivilUnion extends ValidationElement {
           >
             <NotApplicable
               name="UseCurrentAddress"
-              {...this.props.UseCurrentAddress}
+              applicable={!this.props.UseCurrentAddress.applicable}
               className="current-address"
               label={i18n.t(
                 'relationships.civilUnion.useCurrentAddress.label'
@@ -431,13 +433,15 @@ class CivilUnion extends ValidationElement {
                 required={this.props.required}
               />
             </NotApplicable>
-            <AlternateAddress
-              address={this.props.AlternateAddress}
-              addressBook="Relative"
-              belongingTo="AlternateAddress"
-              country={this.props.Address.country}
-              onUpdate={this.update}
-            />
+            <Show when={!this.props.UseCurrentAddress.applicable}>
+              <AlternateAddress
+                address={this.props.AlternateAddress}
+                addressBook="Relative"
+                belongingTo="AlternateAddress"
+                country={this.props.Address.country}
+                onUpdate={this.update}
+              />
+            </Show>
           </Field>
 
           <Field
