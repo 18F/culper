@@ -16,7 +16,8 @@ export default class Country extends ValidationElement {
     this.countries = i18n.value('countries')
 
     this.update = this.update.bind(this)
-    this.updateCountry = this.updateCountry.bind(this)
+    this.updateSingleCountry = this.updateSingleCountry.bind(this)
+    this.updateMultipleCountries = this.updateMultipleCountries.bind(this)
     this.handleError = this.handleError.bind(this)
     this.filterValidCountries = this.filterValidCountries.bind(this)
   }
@@ -30,7 +31,12 @@ export default class Country extends ValidationElement {
     })
   }
 
-  updateCountry(values) {
+  updateMultipleCountries(values) {
+    const { value } = values
+    this.update({ value })
+  }
+
+  updateSingleCountry(values) {
     const { value } = values
     let arr
 
@@ -38,19 +44,15 @@ export default class Country extends ValidationElement {
     const matchingCountries = this.filterValidCountries(value)
     if (matchingCountries.length > 0) {
       // If more than 1 matching country, keep typed value
-      if (this.matchingCountries(value) > 1) {
+      if (matchingCountries.length > 1) {
         arr = [capitalizedCountry]
       }
       // If only matched country, keep valid value
-      if (this.matchingCountries(value).length === 1) {
-        arr = [this.matchingCountries(value)[0].value]
+      if (matchingCountries.length === 1) {
+        arr = [matchingCountries[0].value]
       }
     } else {
-      if (Array.isArray(value)) {
-        arr = capitalizedCountry
-      } else {
-        arr = [capitalizedCountry]
-      }
+      arr = capitalizedCountry
     }
     this.update({ value: arr })
   }
@@ -196,7 +198,7 @@ export default class Country extends ValidationElement {
             className={klass}
             ariaLabel={this.props.ariaLabel}
             disabled={this.props.disabled}
-            onUpdate={this.updateCountry}
+            onUpdate={this.updateMultipleCountries}
             onError={this.handleError}
             onFocus={this.handleFocus}
             onBlur={this.handleBlur}
@@ -214,7 +216,7 @@ export default class Country extends ValidationElement {
             className={klass}
             ariaLabel={this.props.ariaLabel}
             disabled={this.props.disabled}
-            onUpdate={this.updateCountry}
+            onUpdate={this.updateSingleCountry}
             onError={this.handleError}
             onFocus={this.handleFocus}
             onBlur={this.handleBlur}
