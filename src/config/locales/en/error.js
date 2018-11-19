@@ -1098,6 +1098,20 @@ export const error = {
       message: ''
     }
   },
+  divorceDate: {
+    min: {
+      title: 'There is a problem with the date',
+      message: "This date is before the date your civil marriage, civil union, or domestic partnership was legally recognized"
+    },
+    max: {
+      title: 'There is a problem with the date',
+      message: "The date can't be in the future."
+    },
+    required: {
+      title: 'Your response is required',
+      message: ''
+    }
+  },
   cohabitant: {
     min: {
       title: 'There is a problem with the date',
