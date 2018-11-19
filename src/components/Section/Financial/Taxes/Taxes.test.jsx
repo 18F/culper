@@ -78,7 +78,7 @@ describe('The taxes component', () => {
   })
 
   describe('handles tax dates', () => {
-    it('with good data', () => {
+    it('with good data - the year failed to file or pay is before the date satisfied', () => {
       const props = {
         HasTaxes: {
           name: "has_taxes",
@@ -110,7 +110,7 @@ describe('The taxes component', () => {
       const component = mount(<Taxes {...props} />)
       expect(component.find('.error-messages [data-i18n="error.taxesSatisfied.min"]').children().length).toEqual(0)
     })
-    it('with bad data', () => {
+    it('with bad data - the year failed to file or pay is after the date satisfied', () => {
       const props = {
         HasTaxes: {
           name: "has_taxes",

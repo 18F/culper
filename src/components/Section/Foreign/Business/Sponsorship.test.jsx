@@ -102,7 +102,7 @@ describe('The foreign business sponsorship component', () => {
   })
 
   describe('handles dates', () => {
-    it('with good data', () => {
+    it('with good data - the dates of stay in the U.S. for the sponsored foreign national are after applicant DOB and foreign national DOB', () => {
       const props = {
         name: "Sponsorship",
         HasForeignSponsorship: {
@@ -147,7 +147,7 @@ describe('The foreign business sponsorship component', () => {
       const component = mount(<Sponsorship {...props} />)
       expect(component.find('.error-messages [data-i18n="error.daterange.from.min"]').children().length).toEqual(0)
     })
-    it('with bad data', () => {
+    it('with bad data - the dates of stay in the U.S. for the sponsored foreign national are before applicant DOB and foreign national DOB', () => {
       const props = {
         name: "Sponsorship",
         HasForeignSponsorship: {

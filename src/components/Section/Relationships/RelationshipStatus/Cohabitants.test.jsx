@@ -54,7 +54,7 @@ describe('The cohabitants component', () => {
   })
 
   describe('handles cohanbitant dates', () => {
-    it('with good data', () => {
+    it('with good data - the date cohabitation began is after the applicant and cohabitant DOB', () => {
       const props = {
         name: "marital",
         HasCohabitant: {
@@ -97,7 +97,7 @@ describe('The cohabitants component', () => {
       const component =  mount(<Cohabitants {...props} />)
       expect(component.find('.error-messages [data-i18n="error.cohabitant.min"]').children().length).toEqual(0)
     })
-    it('with bad data', () => {
+    it('with bad data - the date cohabitation began is before the applicant and cohabitant', () => {
       const props = {
         name: "marital",
         HasCohabitant: {

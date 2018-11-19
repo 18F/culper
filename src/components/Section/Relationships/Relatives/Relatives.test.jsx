@@ -55,7 +55,7 @@ describe('The relatives component', () => {
 
 
   describe('handles foreign relative dates', () => {
-    it('with good data', () => {
+    it('with good data - date first contacted is after applicant and relative DOB', () => {
       const mockStore = configureMockStore()
       const props = {
         name: "relatives",
@@ -104,7 +104,7 @@ describe('The relatives component', () => {
       expect(component.find('.error-messages [data-i18n="error.date.min"]').children().length).toEqual(0)
     })
 
-    it('with bad data', () => {
+    it('with bad data - date first contacted is before applicant and relative DOB', () => {
       const mockStore = configureMockStore()
       const props = {
         name: "relatives",

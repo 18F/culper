@@ -65,7 +65,7 @@ describe('The relationship status component', () => {
   })
 
   describe('handles civil union dates', () => {
-    it('with good data', () => {
+    it('with good data - where the date entered into civil union is after applicant and partner DOB', () => {
       const props = {
         name: "marital",
         Status: {
@@ -104,7 +104,7 @@ describe('The relationship status component', () => {
       const component =  mount(<Marital {...props} />)
       expect(component.find('.error-messages [data-i18n="error.civilUnion.min"]').children().length).toEqual(0)
     })
-    it('with bad data', () => {
+    it('with bad data - where the date entered into civil union is before applicant and partner DOB', () => {
       const props = {
         name: "marital",
         Status: {
@@ -148,7 +148,7 @@ describe('The relationship status component', () => {
   })
 
   describe('handles divorce dates', () => {
-    it('with good data', () => {
+    it('with good data - where the date divorced is after applicant and partner DOB as well as date entered into civil union', () => {
       const props = {
         name: "marital",
         Status: {
@@ -200,7 +200,7 @@ describe('The relationship status component', () => {
       const component =  mount(<Marital {...props} />)
       expect(component.find('.error-messages [data-i18n="error.divorceDate.min"]').children().length).toEqual(0)
     })
-    it('with bad data', () => {
+    it('with bad data - where the date divorced is before date entered into civil union', () => {
       const props = {
         name: "marital",
         Status: {

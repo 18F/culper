@@ -44,7 +44,7 @@ describe('The contacts component', () => {
   })
 
   describe('handles dates', () => {
-    it('with good data', () => {
+    it('with good data - the date of first contact is after the applicant and contact DOB', () => {
       const mockStore = configureMockStore()
       const props = {
         name: "contacts",
@@ -96,7 +96,7 @@ describe('The contacts component', () => {
       const component = mountComponent(mockStore, Contacts, props)
       expect(component.find('.error-messages [data-i18n="error.foreignContact.min"]').children().length).toEqual(0)
     })
-    it('with bad data', () => {
+    it('with bad data - the date of first contact is before the applicant and contact DOB', () => {
       const mockStore = configureMockStore()
       const props = {
         name: "contacts",
