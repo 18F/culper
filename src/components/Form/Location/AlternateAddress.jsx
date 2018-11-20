@@ -116,7 +116,7 @@ class AlternateAddress extends ValidationElement {
             value={this.props.address.HasDifferentAddress.value}
           />
         </Show>
-        {/* 
+        {/*
           * This next block is a bit confusing. It renders when the user has indicated
           * that the associated address is in a foreign country AND has selected 'Yes'
           * in the preceeding <Branch/> component, indicating that they (or someone they knew)
@@ -157,7 +157,6 @@ AlternateAddress.defaultProps = {
   addressBook: 'Residence',
   addressFieldMetadata: {
     streetLabel: i18n.t('address.us.street.label'),
-    streetPlaceholder: i18n.t('address.us.street.placeholder'),
     street2Label: i18n.t('address.us.street2.label'),
     stateLabel: i18n.t('address.us.state.label'),
     cityLabel: i18n.t('address.us.city.label'),
