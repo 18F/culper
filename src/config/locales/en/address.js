@@ -46,7 +46,7 @@ export const address = {
   },
   physical: {
     street: {
-      label: 'Street address/Unit/Duty Location'
+      label: 'Street Address/Unit/Duty Location'
     },
     city: {
       label: 'City or Post Name'
