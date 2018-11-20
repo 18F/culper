@@ -157,6 +157,7 @@ const civilUnionDatesSetup = {
     it('with bad data - where the date entered into civil union is before applicant and partner DOB', () => {
       const props = {
         CivilUnion: {
+              ...civilUnionDatesSetup.CivilUnion,
               EnteredCivilUnion: {
                 estimated: false,
                 day: "1",
@@ -170,6 +171,7 @@ const civilUnionDatesSetup = {
       }
 
       const component =  mount(<Marital {...civilUnionDatesSetup} {...props}  />)
+      console.log(component.find('.marital').html())
       expect(component.find('.error-messages [data-i18n="error.civilUnion.min"]').text()).toEqual(
         `${i18n.t('error.civilUnion.min.title')}${i18n.t('error.civilUnion.min.message')}`
       )
@@ -190,6 +192,7 @@ const civilUnionDatesSetup = {
         DivorcedList: {
           items: [{
             Item: {
+              ...divorcedDatesSetup.DivorcedList.items[0].Item,
               DateDivorced: {
                 estimated: false,
                 day: "1",
@@ -199,12 +202,12 @@ const civilUnionDatesSetup = {
                 date: new Date("1950", "1", "1")
               },
             },
-        }],
-      },
+          }],
+        },
         valid: false
       }
 
-      const component =  mount(<Marital {...divorcedDatesSetup} {...props}  />)
+      const component =  mount(<Marital {...divorcedDatesSetup} {...props} />)
       expect(component.find('.error-messages [data-i18n="error.divorceDate.min"]').text()).toEqual(
         `${i18n.t('error.divorceDate.min.title')}${i18n.t('error.divorceDate.min.message')}`
       )
