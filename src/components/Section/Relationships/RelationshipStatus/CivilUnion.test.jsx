@@ -89,7 +89,7 @@ describe('<CivilUnion />', () => {
       }
     }
 
-    const component = mount(<CivilUnion {...expected} />)
+    const component = mountComponent(configureMockStore(), CivilUnion, expected)
     expect(component.find('.current-address.button').length).toEqual(1)
     component.find('.current-address.button input').simulate('change')
     component.find('.current-address.button input').simulate('change')
@@ -100,7 +100,7 @@ describe('<CivilUnion />', () => {
 
   describe('with foreign-born spouse', () => {
     const foreignBornDocumentEl = '.foreign-born-documents'
-    const component = mount(<CivilUnion />)
+    const component = mountComponent(configureMockStore(), CivilUnion, {})
 
     it('does not ask for foreign-born documentation in default state', () => {
       const emptyExpected = {
@@ -130,18 +130,13 @@ describe('<CivilUnion />', () => {
     })
   
     it('asks for foreign born documentation if not from the United States', () => {
-      const stringExpected = {
-        BirthPlace: { country: 'Canada' }
-      }
       const objectExpected = {
         BirthPlace: { country: { value: ['Canada'] } }
       }
+      const civilUnion = mountComponent(configureMockStore(), CivilUnion, objectExpected)
 
-      component.setProps(stringExpected)
-      expect(component.find(foreignBornDocumentEl).length).toEqual(1)
-
-      component.setProps(objectExpected)
-      expect(component.find(foreignBornDocumentEl).length).toEqual(1)
+      civilUnion.setProps(objectExpected)
+      expect(civilUnion.find(foreignBornDocumentEl).length).toEqual(1)
     })
   })
 
@@ -174,7 +169,7 @@ describe('<CivilUnion />', () => {
       }
       const component = mountComponent(mockStore, CivilUnion, props)
 
-      expect(component.find('AlternateAddress').length).toBe(1)
+      expect(component.find('AlternateAddress').length).toBe(0)
     })
   })
 })
