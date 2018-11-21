@@ -1,13 +1,28 @@
 import React from 'react'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
 import EducationItem from './EducationItem'
 
 describe('The education component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <EducationItem {...expected} />
+        </Provider>
+      )
+  })
+
   it('no error on empty', () => {
     const expected = {
       name: 'education'
     }
-    const component = mount(<EducationItem {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.education').length).toEqual(1)
     expect(component.find('.school-name').length).toEqual(1)
   })
@@ -16,7 +31,7 @@ describe('The education component', () => {
     const expected = {
       name: 'education'
     }
-    const component = mount(<EducationItem {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.education').length).toEqual(1)
     expect(component.find('.school-name').length).toEqual(1)
   })
@@ -37,7 +52,7 @@ describe('The education component', () => {
         }
       }
     }
-    const component = mount(<EducationItem {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.reference').length).toEqual(1)
   })
 
@@ -67,7 +82,7 @@ describe('The education component', () => {
         ]
       }
     }
-    const component = mount(<EducationItem {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.diploma').length).toEqual(2)
   })
 
@@ -77,7 +92,7 @@ describe('The education component', () => {
       HasAttended: { value: 'Yes' },
       HasDegree: { value: 'No' }
     }
-    const component = mount(<EducationItem {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.diploma').length).toEqual(0)
   })
 
@@ -118,7 +133,7 @@ describe('The education component', () => {
         updates++
       }
     }
-    const component = mount(<EducationItem {...expected} />)
+    const component = createComponent(expected)
     component
       .find('.school-name input')
       .simulate('change', { target: { name: 'Name', value: 'some text' } })

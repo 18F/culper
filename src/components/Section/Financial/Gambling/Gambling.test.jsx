@@ -1,6 +1,9 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import Gambling from './Gambling'
+import Accordion from '../../../Form/Accordion'
 
 let gamblingData = {
   branch: {},
@@ -30,11 +33,24 @@ let gamblingData = {
 }
 
 describe('The gambling component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <Gambling {...expected} />
+        </Provider>
+      )
+  })
+
   it('no error on empty', () => {
     const expected = {
       name: 'gambling'
     }
-    const component = mount(<Gambling {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('input[type="radio"]').length).toEqual(2)
     expect(component.find('.selected').length).toEqual(0)
     expect(component.find('button.add').length).toEqual(0)
@@ -46,7 +62,7 @@ describe('The gambling component', () => {
       HasGamblingDebt: { value: 'Yes' },
       List: { branch: {}, items: [{}] }
     }
-    const component = mount(<Gambling {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.details').length).toBeGreaterThan(0)
   })
 
@@ -54,7 +70,7 @@ describe('The gambling component', () => {
     const expected = {
       name: 'gambling'
     }
-    const component = mount(<Gambling {...expected} />)
+    const component = createComponent(expected)
     component.find('.has-gambling-debt .no input').simulate('change')
     expect(component.find('.details').length).toBe(0)
   })
@@ -69,7 +85,7 @@ describe('The gambling component', () => {
         update++
       }
     }
-    const component = mount(<Gambling {...expected} />)
+    const component = createComponent(expected)
     update = 0
     component.find('.addendum .yes input').simulate('change')
     expect(update).toBe(1)
@@ -80,7 +96,7 @@ describe('The gambling component', () => {
       HasGamblingDebt: { value: 'Yes' },
       List: { branch: {}, items: [{}] }
     }
-    const component = mount(<Gambling {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.losses').length).toEqual(1)
   })
 
@@ -89,17 +105,53 @@ describe('The gambling component', () => {
       HasGamblingDebt: { value: 'No' },
       List: { branch: {}, items: [{}] }
     }
-    const component = mount(<Gambling {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.losses').length).toEqual(0)
   })
 
   it('can make fancy numbers', () => {
-    const expected = {
-      HasGamblingDebt: { value: 'No' },
-      List: { branch: {}, items: [{}] }
-    }
-    const component = mount(<Gambling {...expected} />)
-    expect(component.instance().fancyNumber(1000)).toEqual('1,000')
-    expect(component.instance().fancyNumber(10000)).toEqual('10,000')
+    const tests = [
+      {
+        HasGamblingDebt: { value: 'Yes' },
+        List: {
+          branch: {},
+          items: [
+            {
+              Item: {
+                Losses: {
+                  name: 'Losses',
+                  value: '1000'
+                }
+              }
+            }
+          ]
+        },
+        expected: '$1,000'
+      },
+      {
+        HasGamblingDebt: { value: 'Yes' },
+        List: {
+          branch: {},
+          items: [
+            {
+              Item: {
+                Losses: {
+                  name: 'Losses',
+                  value: '10000'
+                }
+              }
+            }
+          ]
+        },
+        expected: '$10,000'
+      }
+    ]
+
+    tests.forEach(test => {
+      const component = createComponent(test)
+      expect(component.find('.summary .left .context').text()).toBe(
+        test.expected
+      )
+    })
   })
 })

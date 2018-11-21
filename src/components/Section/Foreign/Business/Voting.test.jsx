@@ -1,14 +1,29 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import Voting from './Voting'
 
 describe('The foreign business voting component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <Voting {...expected} />
+        </Provider>
+      )
+  })
+
   it('display nothing when "no" is clicked', () => {
     const expected = {
       name: 'foreign-business-voting',
       HasForeignVoting: { value: 'No' }
     }
-    const component = mount(<Voting {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(0)
   })
 
@@ -17,7 +32,7 @@ describe('The foreign business voting component', () => {
       name: 'foreign-business-voting',
       HasForeignVoting: { value: 'Yes' }
     }
-    const component = mount(<Voting {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(1)
   })
 
@@ -31,7 +46,7 @@ describe('The foreign business voting component', () => {
         return arr
       }
     }
-    const component = mount(<Voting {...expected} />)
+    const component = createComponent(expected)
     component
       .find('.branch .yes input')
       .at(0)
@@ -63,7 +78,7 @@ describe('The foreign business voting component', () => {
         updates++
       }
     }
-    const component = mount(<Voting {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(1)
     component
       .find('.foreign-business-voting-date .day input')

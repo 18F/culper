@@ -116,14 +116,14 @@ class AlternateAddress extends ValidationElement {
             value={this.props.address.HasDifferentAddress.value}
           />
         </Show>
-        {/* 
+        {/*
           * This next block is a bit confusing. It renders when the user has indicated
           * that the associated address is in a foreign country AND has selected 'Yes'
           * in the preceeding <Branch/> component, indicating that they (or someone they knew)
           * had an APO/FPO (military) address in the foreign country
         */}
         <Show when={this.isForeignMilitaryAddress()}>
-          <Field title={i18n.t('address.physicalLocationRequired')}>
+          <Field title={i18n.t('address.apoFpoRequired')}>
             <Location
               {...this.prepareProps({
                 country: 'POSTOFFICE',
@@ -140,6 +140,8 @@ class AlternateAddress extends ValidationElement {
                 addressBook: this.props.addressBook,
                 addressBooks: this.props.addressBooks,
                 geocode: true,
+                streetLabel: i18n.t('address.physical.street.label'),
+                cityLabel: i18n.t('address.physical.city.label'),
                 layout: this.props.layout
               })}
             />
@@ -155,7 +157,6 @@ AlternateAddress.defaultProps = {
   addressBook: 'Residence',
   addressFieldMetadata: {
     streetLabel: i18n.t('address.us.street.label'),
-    streetPlaceholder: i18n.t('address.us.street.placeholder'),
     street2Label: i18n.t('address.us.street2.label'),
     stateLabel: i18n.t('address.us.state.label'),
     cityLabel: i18n.t('address.us.city.label'),
@@ -165,7 +166,7 @@ AlternateAddress.defaultProps = {
   },
   forceAPO: false,
   layout: Location.ADDRESS,
-  militaryAddressLabel: i18n.t('address.militaryAddress.me'),
+  militaryAddressLabel: i18n.t('address.militaryAddress.meEmployment'),
 }
 
 const mapStateToProps = ({ application }, ownProps) => {

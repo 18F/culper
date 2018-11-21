@@ -1,13 +1,28 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import Disciplinary from './Disciplinary'
 
 describe('The military disciplinary component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <Disciplinary {...expected} />
+        </Provider>
+      )
+  })
+
   it('no error on empty', () => {
     const expected = {
       name: 'military-disciplinary'
     }
-    const component = mount(<Disciplinary {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.branch').length).toBeGreaterThan(1)
     expect(component.find('.accordion').length).toEqual(0)
   })
@@ -17,7 +32,7 @@ describe('The military disciplinary component', () => {
       name: 'military-disciplinary',
       HasDisciplinary: { value: 'No' }
     }
-    const component = mount(<Disciplinary {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.accordion').length).toEqual(0)
   })
 
@@ -27,7 +42,7 @@ describe('The military disciplinary component', () => {
       HasDisciplinary: { value: 'Yes' },
       List: { branch: {}, items: [{ Item: { Date: {} } }] }
     }
-    const component = mount(<Disciplinary {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.accordion').length).toEqual(1)
   })
 })

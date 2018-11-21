@@ -1,16 +1,31 @@
 import React from 'react'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
 import Relative from './Relative'
 import Location from '../../../Form/Location'
 
 describe('The relative component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <Relative {...expected} />
+        </Provider>
+      )
+  })
+
   it('no error on empty', () => {
     const expected = {
       render: jest.fn(),
       name: 'relative'
     }
 
-    const component = mount(<Relative {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.relative-relation').length).toEqual(1)
     expect(component.find('.relative-name').length).toEqual(1)
     expect(component.find('.relative-birthdate .datecontrol').length).toEqual(1)
@@ -54,7 +69,7 @@ describe('The relative component', () => {
       MaidenSameAsListed: { value: 'No' }
     }
 
-    const component = mount(<Relative {...expected} />)
+    const component = createComponent(expected)
     component.find({ type: 'radio', value: 'Mother' }).simulate('change')
     component.find('.relative-maiden-diff .no input').simulate('change')
     expect(component.find('.relative-maidenname').length).toEqual(1)
@@ -67,7 +82,7 @@ describe('The relative component', () => {
       Relation: { value: 'Father' }
     }
 
-    const component = mount(<Relative {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.relative-alias').length).toEqual(1)
   })
 
@@ -78,7 +93,7 @@ describe('The relative component', () => {
       IsDeceased: { value: 'No' }
     }
 
-    const component = mount(<Relative {...expected} />)
+    const component = createComponent(expected)
     component.find('.relative-deceased .no input').simulate('change')
     expect(component.find('.relative-address').length).toEqual(1)
   })
@@ -107,7 +122,7 @@ describe('The relative component', () => {
       }
     }
 
-    const component = mount(<Relative {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.relative-abroad').length).toEqual(1)
     component.find('.derived-other input').simulate('change')
     component.find('.derived-other-explanation textarea').simulate('change')
@@ -132,7 +147,7 @@ describe('The relative component', () => {
       }
     }
 
-    const component = mount(<Relative {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.relative-document').length).toEqual(1)
     expect(
       component.find('.relative-first-contact .datecontrol').length
@@ -158,7 +173,7 @@ describe('The relative component', () => {
       }
     }
 
-    const component = mount(<Relative {...expected} />)
+    const component = createComponent(expected)
     expect(
       component.find('.relative-first-contact .datecontrol').length
     ).toEqual(1)
@@ -184,7 +199,7 @@ describe('The relative component', () => {
       HasAffiliation: { value: 'Yes' }
     }
 
-    const component = mount(<Relative {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.relative-affiliation').length).toEqual(1)
     expect(component.find('.relative-employer-relationship').length).toEqual(1)
   })
@@ -201,7 +216,7 @@ describe('The relative component', () => {
         updates++
       }
     }
-    const component = mount(<Relative {...expected} />)
+    const component = createComponent(expected)
     component.find('.relation-mother input').simulate('change')
     component
       .find('.relative-name .first input')
@@ -261,7 +276,7 @@ describe('The relative component', () => {
         updates++
       }
     }
-    const component = mount(<Relative {...expected} />)
+    const component = createComponent(expected)
     component.find('.relative-maiden-diff .no input').simulate('change')
     expect(component.find('.relative-maidenname').length).toBeGreaterThan(0)
     component
@@ -310,7 +325,7 @@ describe('The relative component', () => {
         updates++
       }
     }
-    const component = mount(<Relative {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.relative-alias .branch').length).toBeGreaterThan(0)
     component
       .find('.alias-name .first input')
@@ -375,7 +390,7 @@ describe('The relative component', () => {
         updates++
       }
     }
-    const component = mount(<Relative {...expected} />)
+    const component = createComponent(expected)
     component.find('.relative-abroad .abroad-fs input').simulate('change')
     component
       .find('.relative-naturalized .naturalized-alien input')
@@ -435,7 +450,7 @@ describe('The relative component', () => {
         updates++
       }
     }
-    const component = mount(<Relative {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.relative-address').length).toBe(1)
     component
       .find('.relative-address .city input')
@@ -504,7 +519,7 @@ describe('The relative component', () => {
         updates++
       }
     }
-    const component = mount(<Relative {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.relative-first-contact').length).toBeGreaterThan(0)
     component
       .find('.relative-first-contact .day input')

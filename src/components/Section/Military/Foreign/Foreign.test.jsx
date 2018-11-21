@@ -1,13 +1,28 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import Foreign from './Foreign'
 
 describe('The military foreign component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <Foreign {...expected} />
+        </Provider>
+      )
+  })
+
   it('no error on empty', () => {
     const expected = {
       name: 'military-foreign'
     }
-    const component = mount(<Foreign {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.branch').length).toBeGreaterThan(1)
     expect(component.find('.foreign-service').length).toEqual(0)
   })
@@ -25,7 +40,7 @@ describe('The military foreign component', () => {
         ]
       }
     }
-    const component = mount(<Foreign {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.foreign-service').length).toEqual(0)
   })
 
@@ -42,7 +57,7 @@ describe('The military foreign component', () => {
         ]
       }
     }
-    const component = mount(<Foreign {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.foreign-service').length).toEqual(1)
   })
 })

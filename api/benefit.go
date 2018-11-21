@@ -6,45 +6,48 @@ import (
 
 // Benefit payload type.
 type Benefit struct {
-	PayloadBegin                Payload `json:"Began,omitempty" sql:"-"`
-	PayloadEnd                  Payload `json:"End,omitempty" sql:"-"`
-	PayloadFrequency            Payload `json:"Frequency,omitempty" sql:"-"`
-	PayloadOtherFrequency       Payload `json:"OtherFrequency,omitempty" sql:"-"`
-	PayloadReceived             Payload `json:"Received,omitempty" sql:"-"`
-	PayloadCountry              Payload `json:"Country" sql:"-"`
-	PayloadValue                Payload `json:"Value" sql:"-"`
-	PayloadValueEstimated       Payload `json:"ValueEstimated" sql:"-"`
-	PayloadReason               Payload `json:"Reason" sql:"-"`
-	PayloadObligated            Payload `json:"Obligated" sql:"-"`
-	PayloadObligatedExplanation Payload `json:"ObligatedExplanation" sql:"-"`
+	PayloadBegin                         Payload `json:"Began,omitempty" sql:"-"`
+	PayloadEnd                           Payload `json:"End,omitempty" sql:"-"`
+	PayloadFrequency                     Payload `json:"Frequency,omitempty" sql:"-"`
+	PayloadOtherFrequency                Payload `json:"OtherFrequency,omitempty" sql:"-"`
+	PayloadOtherFrequencyTypeExplanation Payload `json:"OtherFrequencyTypeExplanation,omitempty" sql:"-"`
+	PayloadReceived                      Payload `json:"Received,omitempty" sql:"-"`
+	PayloadCountry                       Payload `json:"Country" sql:"-"`
+	PayloadValue                         Payload `json:"Value" sql:"-"`
+	PayloadValueEstimated                Payload `json:"ValueEstimated" sql:"-"`
+	PayloadReason                        Payload `json:"Reason" sql:"-"`
+	PayloadObligated                     Payload `json:"Obligated" sql:"-"`
+	PayloadObligatedExplanation          Payload `json:"ObligatedExplanation" sql:"-"`
 
 	// Validator specific fields
-	Begin                *DateControl `json:"-"`
-	End                  *DateControl `json:"-"`
-	Frequency            *Radio       `json:"-"`
-	OtherFrequency       *Textarea    `json:"-"`
-	Received             *DateControl `json:"-"`
-	Country              *Country     `json:"-"`
-	Value                *Number      `json:"-"`
-	ValueEstimated       *Checkbox    `json:"-"`
-	Reason               *Textarea    `json:"-"`
-	Obligated            *Branch      `json:"-"`
-	ObligatedExplanation *Textarea    `json:"-"`
+	Begin                         *DateControl `json:"-"`
+	End                           *DateControl `json:"-"`
+	Frequency                     *Radio       `json:"-"`
+	OtherFrequency                *Textarea    `json:"-"`
+	OtherFrequencyTypeExplanation *Textarea    `json:"-"`
+	Received                      *DateControl `json:"-"`
+	Country                       *Country     `json:"-"`
+	Value                         *Number      `json:"-"`
+	ValueEstimated                *Checkbox    `json:"-"`
+	Reason                        *Textarea    `json:"-"`
+	Obligated                     *Branch      `json:"-"`
+	ObligatedExplanation          *Textarea    `json:"-"`
 
 	// Persister specific fields
-	ID                     int `json:"-"`
-	AccountID              int `json:"-"`
-	BeginID                int `json:"-" pg:",fk:Begin"`
-	EndID                  int `json:"-" pg:",fk:End"`
-	FrequencyID            int `json:"-" pg:",fk:Frequency"`
-	OtherFrequencyID       int `json:"-" pg:",fk:OtherFrequency"`
-	ReceivedID             int `json:"-" pg:",fk:Received"`
-	CountryID              int `json:"-" pg:",fk:Country"`
-	ValueID                int `json:"-" pg:",fk:Value"`
-	ValueEstimatedID       int `json:"-" pg:",fk:ValueEstimated"`
-	ReasonID               int `json:"-" pg:",fk:Reason"`
-	ObligatedID            int `json:"-" pg:",fk:Obligated"`
-	ObligatedExplanationID int `json:"-" pg:",fk:ObligatedExplanation"`
+	ID                              int `json:"-"`
+	AccountID                       int `json:"-"`
+	BeginID                         int `json:"-" pg:",fk:Begin"`
+	EndID                           int `json:"-" pg:",fk:End"`
+	FrequencyID                     int `json:"-" pg:",fk:Frequency"`
+	OtherFrequencyID                int `json:"-" pg:",fk:OtherFrequency"`
+	OtherFrequencyTypeExplanationID int `json:"-" pg:",fk:OtherFrequencyTypeExplanation"`
+	ReceivedID                      int `json:"-" pg:",fk:Received"`
+	CountryID                       int `json:"-" pg:",fk:Country"`
+	ValueID                         int `json:"-" pg:",fk:Value"`
+	ValueEstimatedID                int `json:"-" pg:",fk:ValueEstimated"`
+	ReasonID                        int `json:"-" pg:",fk:Reason"`
+	ObligatedID                     int `json:"-" pg:",fk:Obligated"`
+	ObligatedExplanationID          int `json:"-" pg:",fk:ObligatedExplanation"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -84,6 +87,14 @@ func (entity *Benefit) Unmarshal(raw []byte) error {
 			return err
 		}
 		entity.OtherFrequency = otherFrequency.(*Textarea)
+	}
+
+	if entity.PayloadOtherFrequencyTypeExplanation.Type != "" {
+		otherFrequencyTypeExplanation, err := entity.PayloadOtherFrequencyTypeExplanation.Entity()
+		if err != nil {
+			return err
+		}
+		entity.OtherFrequencyTypeExplanation = otherFrequencyTypeExplanation.(*Textarea)
 	}
 
 	if entity.PayloadReceived.Type != "" {
@@ -146,6 +157,9 @@ func (entity *Benefit) Marshal() Payload {
 	}
 	if entity.OtherFrequency != nil {
 		entity.PayloadOtherFrequency = entity.OtherFrequency.Marshal()
+	}
+	if entity.OtherFrequencyTypeExplanation != nil {
+		entity.PayloadOtherFrequencyTypeExplanation = entity.OtherFrequencyTypeExplanation.Marshal()
 	}
 	if entity.Received != nil {
 		entity.PayloadReceived = entity.Received.Marshal()
@@ -242,6 +256,14 @@ func (entity *Benefit) Save(context DatabaseService, account int) (int, error) {
 		entity.OtherFrequencyID = otherFrequencyID
 	}
 
+	if entity.PayloadOtherFrequencyTypeExplanation.Type != "" {
+		otherFrequencyTypeExplanationID, err := entity.OtherFrequencyTypeExplanation.Save(context, account)
+		if err != nil {
+			return otherFrequencyTypeExplanationID, err
+		}
+		entity.OtherFrequencyTypeExplanationID = otherFrequencyTypeExplanationID
+	}
+
 	if entity.PayloadReceived.Type != "" {
 		receivedID, err := entity.Received.Save(context, account)
 		if err != nil {
@@ -329,6 +351,12 @@ func (entity *Benefit) Delete(context DatabaseService, account int) (int, error)
 		}
 	}
 
+	if entity.OtherFrequencyTypeExplanationID != 0 {
+		if _, err := entity.OtherFrequencyTypeExplanation.Delete(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	if entity.ReceivedID != 0 {
 		if _, err := entity.Received.Delete(context, account); err != nil {
 			return entity.ID, err
@@ -406,6 +434,12 @@ func (entity *Benefit) Get(context DatabaseService, account int) (int, error) {
 
 	if entity.OtherFrequencyID != 0 {
 		if _, err := entity.OtherFrequency.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	if entity.OtherFrequencyTypeExplanationID != 0 {
+		if _, err := entity.OtherFrequencyTypeExplanation.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
@@ -489,6 +523,11 @@ func (entity *Benefit) Find(context DatabaseService) error {
 		}
 		entity.OtherFrequency.ID = previous.OtherFrequencyID
 		entity.OtherFrequencyID = previous.OtherFrequencyID
+		if entity.OtherFrequencyTypeExplanation == nil {
+			entity.OtherFrequencyTypeExplanation = &Textarea{}
+		}
+		entity.OtherFrequencyTypeExplanation.ID = previous.OtherFrequencyTypeExplanationID
+		entity.OtherFrequencyTypeExplanationID = previous.OtherFrequencyTypeExplanationID
 		if entity.Received == nil {
 			entity.Received = &DateControl{}
 		}

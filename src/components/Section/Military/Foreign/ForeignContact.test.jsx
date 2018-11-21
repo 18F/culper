@@ -1,13 +1,28 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import ForeignContact from './ForeignContact'
 
 describe('The foreign contact component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <ForeignContact {...expected} />
+        </Provider>
+      )
+  })
+
   it('no error on empty', () => {
     const expected = {
       name: 'foreign-contact'
     }
-    const component = mount(<ForeignContact {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.foreign-contact-name .first input').length).toEqual(
       1
     )
@@ -30,7 +45,7 @@ describe('The foreign contact component', () => {
         updates++
       }
     }
-    const component = mount(<ForeignContact {...expected} />)
+    const component = createComponent(expected)
     component
       .find('.foreign-contact-name .first input')
       .simulate('change', { target: { name: 'first', value: 'The name' } })

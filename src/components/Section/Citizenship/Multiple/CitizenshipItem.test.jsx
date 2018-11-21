@@ -1,8 +1,23 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import CitizenshipItem from './CitizenshipItem'
 
 describe('The citizenship item component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <CitizenshipItem {...expected} />
+        </Provider>
+      )
+  })
+
   it('display display question for current citizenship if NOT present', () => {
     const props = {
       Dates: {
@@ -11,7 +26,7 @@ describe('The citizenship item component', () => {
         present: true
       }
     }
-    const component = mount(<CitizenshipItem {...props} />)
+    const component = createComponent(props)
     expect(component.find('.citizenship-current').length).toBe(0)
   })
 
@@ -27,7 +42,7 @@ describe('The citizenship item component', () => {
         present: false
       }
     }
-    const component = mount(<CitizenshipItem {...props} />)
+    const component = createComponent(props)
     expect(component.find('.citizenship-current').length).toBe(1)
   })
 
@@ -50,7 +65,7 @@ describe('The citizenship item component', () => {
         updates++
       }
     }
-    const component = mount(<CitizenshipItem {...expected} />)
+    const component = createComponent(expected)
     component.find('.citizenship-country .country input').simulate('change', {
       target: { name: 'Country', value: 'United States' }
     })

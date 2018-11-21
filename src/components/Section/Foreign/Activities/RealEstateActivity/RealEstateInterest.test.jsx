@@ -1,24 +1,38 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import RealEstateInterest from './RealEstateInterest'
 
 describe('The RealEstateInterest component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <RealEstateInterest {...expected} />
+        </Provider>
+      )
+  })
+
   it('Renders without errors', () => {
-    const component = mount(<RealEstateInterest />)
+    const component = createComponent()
     expect(component.find('.interest').length).toBe(1)
   })
 
   it('Performs updates', () => {
     let updates = 0
-    const onUpdate = () => {
-      updates++
-    }
-
     // load interest types to test toggling since this is using all props
-    const interestTypes = ['Yourself']
-    const component = mount(
-      <RealEstateInterest onUpdate={onUpdate} InterestTypes={interestTypes} />
-    )
+    const expected = {
+      onUpdate: () => {
+        updates++
+      },
+      InterestTypes: ['Yourself']
+    }
+    const component = createComponent(expected)
     expect(component.find('.interest').length).toBe(1)
     component
       .find({ name: 'interest-type', value: 'Yourself' })
