@@ -1,14 +1,29 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import Political from './Political'
 
 describe('The foreign business political component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <Political {...expected} />
+        </Provider>
+      )
+  })
+
   it('display nothing when "no" is clicked', () => {
     const expected = {
       name: 'foreign-business-political',
       HasForeignPolitical: { value: 'No' }
     }
-    const component = mount(<Political {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(0)
   })
 
@@ -17,7 +32,7 @@ describe('The foreign business political component', () => {
       name: 'foreign-business-political',
       HasForeignPolitical: { value: 'Yes' }
     }
-    const component = mount(<Political {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(1)
   })
 
@@ -31,7 +46,7 @@ describe('The foreign business political component', () => {
         return arr
       }
     }
-    const component = mount(<Political {...expected} />)
+    const component = createComponent(expected)
     component
       .find('.branch .yes input')
       .at(0)
@@ -63,7 +78,7 @@ describe('The foreign business political component', () => {
         updates++
       }
     }
-    const component = mount(<Political {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(1)
     component
       .find('.foreign-business-political-position input')

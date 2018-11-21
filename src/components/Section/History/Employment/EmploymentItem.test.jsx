@@ -1,19 +1,34 @@
 import React from 'react'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
 import { today, daysAgo } from '../dateranges'
 import EmploymentItem from './EmploymentItem'
 import ReasonLeft from './ReasonLeft'
 import Reprimand from './Reprimand'
 
-const alternateAddressRenderMock = jest.fn();
-const buildProps = other => ({ render: alternateAddressRenderMock, ...other})
+const alternateAddressRenderMock = jest.fn()
+const buildProps = other => ({ render: alternateAddressRenderMock, ...other })
 
 describe('The employment component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <EmploymentItem {...expected} />
+        </Provider>
+      )
+  })
+
   it('no error on empty', () => {
     const expected = buildProps({
       name: 'employment'
     })
-    const component = mount(<EmploymentItem {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.h3').length).toBeGreaterThan(0)
   })
 
@@ -36,7 +51,7 @@ describe('The employment component', () => {
       '.supervisor'
     ]
 
-    const component = mount(<EmploymentItem {...expected} />)
+    const component = createComponent(expected)
     selectors.forEach(selector => {
       var len = component.find(selector).length
       expect(len).toBeGreaterThan(0)
@@ -49,20 +64,20 @@ describe('The employment component', () => {
   })
 
   it('display displinary when within 7 years', () => {
-    const sevenYearsAgo = daysAgo(today, 365 * 7)
+    const past = daysAgo(today, 365 * 6)
     const props = buildProps({
       EmploymentActivity: { value: 'ActiveMilitary' },
       Dates: {
         present: true,
         from: {
-          month: `${sevenYearsAgo.getMonth() + 1}`,
-          day: `${sevenYearsAgo.getDate()}`,
-          year: `${sevenYearsAgo.getFullYear()}`
+          month: `${past.getMonth() + 1}`,
+          day: `${past.getDate()}`,
+          year: `${past.getFullYear()}`
         },
         to: {}
       }
     })
-    const component = mount(<EmploymentItem {...props} />)
+    const component = createComponent(props)
     expect(component.find('.reprimand-branch').length).toBe(1)
   })
 
@@ -80,25 +95,25 @@ describe('The employment component', () => {
         to: {}
       }
     })
-    const component = mount(<EmploymentItem {...props} />)
+    const component = createComponent(props)
     expect(component.find('.reprimand-branch').length).toBe(0)
   })
 
   it('display reason left options when within 7 years', () => {
-    const sevenYearsAgo = daysAgo(today, 365 * 7)
+    const past = daysAgo(today, 365 * 6)
     const props = buildProps({
       EmploymentActivity: { value: 'ActiveMilitary' },
       Dates: {
         present: false,
         from: {
-          month: `${sevenYearsAgo.getMonth() + 1}`,
-          day: `${sevenYearsAgo.getDate()}`,
-          year: `${sevenYearsAgo.getFullYear()}`
+          month: `${past.getMonth() + 1}`,
+          day: `${past.getDate()}`,
+          year: `${past.getFullYear()}`
         },
         to: {}
       }
     })
-    const component = mount(<EmploymentItem {...props} />)
+    const component = createComponent(props)
     expect(component.find('.reason-options').length).toBe(1)
   })
 
@@ -116,13 +131,13 @@ describe('The employment component', () => {
         to: {}
       }
     })
-    const component = mount(<EmploymentItem {...props} />)
+    const component = createComponent(props)
     expect(component.find('.reason-options').length).toBe(0)
   })
 
   it('does not display reason left options if currently employed', () => {
     const past = daysAgo(today, 365 * 10)
-    const props = {
+    const props = buildProps({
       EmploymentActivity: { value: 'ActiveMilitary' },
       Dates: {
         present: true,
@@ -133,8 +148,8 @@ describe('The employment component', () => {
         },
         to: {}
       }
-    }
-    const component = mount(<EmploymentItem {...props} />)
+    })
+    const component = createComponent(props)
     expect(component.find('.reason-options').length).toBe(0)
   })
 
@@ -152,7 +167,7 @@ describe('The employment component', () => {
         to: {}
       }
     })
-    const component = mount(<EmploymentItem {...props} />)
+    const component = createComponent(props)
     expect(component.find('.reason-description').length).toBe(0)
   })
 
@@ -173,7 +188,7 @@ describe('The employment component', () => {
           to: {}
         }
       })
-      component = mount(<EmploymentItem {...props} />)
+      component = createComponent(props)
     })
 
     it('it does not display reason for leaving', () => {
@@ -199,7 +214,7 @@ describe('The employment component', () => {
         to: {}
       }
     })
-    const component = mount(<EmploymentItem {...props} />)
+    const component = createComponent(props)
     expect(component.find('.reason-description').length).toBe(1)
   })
 

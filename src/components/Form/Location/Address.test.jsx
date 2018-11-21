@@ -62,18 +62,17 @@ describe('The Address component', () => {
   })
 
   it('Performs address type update', () => {
-    let updates = 0
     const props = {
       showPostOffice: true,
-      onUpdate: () => {
-        updates++
-      }
+      onUpdate: jest.fn()
     }
     const component = mount(<Address {...props} />)
-    component.find('.address-options .domestic input').simulate('change')
+
+    // Not testing .domestic because it is intially selected, so there is no change
+    // when clicked
     component.find('.address-options .postoffice input').simulate('change')
     component.find('.address-options .international input').simulate('change')
-    expect(updates).toBe(3)
+    expect(props.onUpdate).toHaveBeenCalledTimes(2)
   })
 
   it('Validates required', () => {

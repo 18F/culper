@@ -1,0 +1,22 @@
+{{if isPostOffice .Address}}
+<APOFPO>
+  <PhysicalLocation>
+    {{if isInternational .Alternate}}
+    <Address>{{locationOverrideLayout .Alternate "PhysicalInternational"}}</Address>
+    {{else}}
+    <Address>{{locationOverrideLayout .Alternate "PhysicalDomestic"}}</Address>
+    {{end}}
+  </PhysicalLocation>
+</APOFPO>
+{{end}}
+
+{{if isInternational .Address}}
+{{if branch .HasDifferentAddress | eq "Yes"}}
+<APOFPO>
+  <Answer>Yes</Answer>
+  <Address>{{locationOverrideLayout .Alternate "Military Address"}}</Address>
+</APOFPO>
+{{else}}
+<APOFPO><Answer>No</Answer></APOFPO>
+{{end}}
+{{end}}

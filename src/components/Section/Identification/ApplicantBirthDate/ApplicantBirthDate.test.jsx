@@ -1,15 +1,30 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import ApplicantBirthDate from './ApplicantBirthDate'
 
 describe('The applicant birth date component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <ApplicantBirthDate {...expected} />
+        </Provider>
+      )
+  })
+
   it('no error on empty', () => {
     const expected = {
       name: 'input-focus',
       label: 'Text input focused',
       onUpdate: () => {}
     }
-    const component = mount(<ApplicantBirthDate {...expected} />)
+    const component = createComponent(expected)
     component.find('.month input').simulate('change')
     expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
@@ -29,7 +44,7 @@ describe('The applicant birth date component', () => {
         updates++
       }
     }
-    const component = mount(<ApplicantBirthDate {...expected} />)
+    const component = createComponent(expected)
     component.find('.month input').simulate('change')
     component.find('.day input').simulate('change')
     component.find('.year input').simulate('change')
@@ -49,7 +64,7 @@ describe('The applicant birth date component', () => {
       },
       onUpdate: () => {}
     }
-    const component = mount(<ApplicantBirthDate {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.age-warning').length).toBe(1)
   })
 })

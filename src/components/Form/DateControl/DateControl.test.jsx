@@ -1,6 +1,6 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import DateControl, { datePart } from './DateControl'
+import { DateControl, datePart } from './DateControl'
 
 describe('The date component', () => {
   const children = 4

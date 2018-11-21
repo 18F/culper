@@ -1,13 +1,28 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import Procedure from './Procedure'
 
 describe('The procedure component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <Procedure {...expected} />
+        </Provider>
+      )
+  })
+
   it('no error on empty', () => {
     const expected = {
       name: 'procedure'
     }
-    const component = mount(<Procedure {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.procedure-date').length).toEqual(1)
     expect(component.find('.procedure-offenses').length).toEqual(1)
     expect(component.find('.procedure-name').length).toEqual(1)
@@ -23,7 +38,7 @@ describe('The procedure component', () => {
         updates++
       }
     }
-    const component = mount(<Procedure {...expected} />)
+    const component = createComponent(expected)
     component
       .find('.procedure-date .month input')
       .simulate('change', { target: { name: 'month', value: '1' } })

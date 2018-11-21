@@ -1,14 +1,29 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import DomesticViolenceList from './DomesticViolenceList'
 import Location from '../../../Form/Location'
 
 describe('The DomesticViolenceList  component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <DomesticViolenceList {...expected} />
+        </Provider>
+      )
+  })
+
   it('no error on empty', () => {
     const expected = {
       name: 'sentence'
     }
-    const component = mount(<DomesticViolenceList {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.domestic-violence-list').length).toBe(1)
     expect(component.find('.has-domestic-violence').length).toBe(1)
     expect(component.find('.has-order').length).toBe(0)
@@ -22,7 +37,7 @@ describe('The DomesticViolenceList  component', () => {
         updates++
       }
     }
-    const component = mount(<DomesticViolenceList {...expected} />)
+    const component = createComponent(expected)
     component.find('.has-domestic-violence .yes input').simulate('change')
     expect(updates).toBe(1)
   })
@@ -60,7 +75,7 @@ describe('The DomesticViolenceList  component', () => {
         ]
       }
     }
-    const component = mount(<DomesticViolenceList {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.domestic-violence').length).toBe(1)
   })
 })

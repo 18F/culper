@@ -1,20 +1,37 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import OrderedCounselings from './OrderedCounselings'
 import { Location } from '../../../Form'
 
 describe('The OrderedCounselings component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <OrderedCounselings {...expected} />
+        </Provider>
+      )
+  })
+
   it('Renders without errors', () => {
-    const component = mount(<OrderedCounselings />)
+    const component = createComponent()
     expect(component.find('.ordered-counselings').length).toBe(1)
   })
 
   it('Updates branch', () => {
     let updates = 0
-    const onUpdate = () => {
-      updates++
+    const expected = {
+      onUpdate: () => {
+        updates++
+      }
     }
-    const component = mount(<OrderedCounselings onUpdate={onUpdate} />)
+    const component = createComponent(expected)
     expect(component.find('.ordered-counselings').length).toBe(1)
     component.find('.has-been-ordered .no input').simulate('change')
     expect(updates).toBe(1)
@@ -68,7 +85,7 @@ describe('The OrderedCounselings component', () => {
         ]
       }
     }
-    const component = mount(<OrderedCounselings {...expected} />)
+    const component = createComponent(expected)
     component.find('.seekers .seekers-employer input').simulate('change')
     expect(updates).toBe(2)
   })
@@ -98,7 +115,7 @@ describe('The OrderedCounselings component', () => {
         ]
       }
     }
-    const component = mount(<OrderedCounselings {...expected} />)
+    const component = createComponent(expected)
     const text = component.find('.item').text()
     let options = [
       'Employer',

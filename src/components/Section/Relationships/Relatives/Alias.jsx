@@ -96,6 +96,9 @@ export default class Alias extends ValidationElement {
             className="alias-dates"
             {...this.props.Dates}
             prefix="relative"
+            minDateEqualTo={true}
+            minDate={this.props.minDate}
+            relationship={this.props.relationship}
             onUpdate={this.updateDates}
             onError={this.props.onError}
             required={this.props.required}

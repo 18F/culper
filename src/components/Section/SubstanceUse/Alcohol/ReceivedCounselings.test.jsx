@@ -1,20 +1,37 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import ReceivedCounselings from './ReceivedCounselings'
 import { Location } from '../../../Form'
 
 describe('The ReceivedCounselings component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <ReceivedCounselings {...expected} />
+        </Provider>
+      )
+  })
+
   it('Renders without errors', () => {
-    const component = mount(<ReceivedCounselings />)
+    const component = createComponent()
     expect(component.find('.received-counselings').length).toBe(1)
   })
 
   it('Updates branch', () => {
     let updates = 0
-    const onUpdate = () => {
-      updates++
+    const expected = {
+      onUpdate: () => {
+        updates++
+      }
     }
-    const component = mount(<ReceivedCounselings onUpdate={onUpdate} />)
+    const component = createComponent(expected)
     expect(component.find('.received-counselings').length).toBe(1)
     component.find('.received-treatment .no input').simulate('change')
     expect(updates).toBe(1)
@@ -70,7 +87,7 @@ describe('The ReceivedCounselings component', () => {
         ]
       }
     }
-    const component = mount(<ReceivedCounselings {...expected} />)
+    const component = createComponent(expected)
     component.find('input[name="TreatmentProviderName"]').simulate('change')
     expect(updates).toBe(2)
   })
