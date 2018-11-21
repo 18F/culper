@@ -1,7 +1,8 @@
 import ForeignBenefitValidator, {
   OneTimeBenefitValidator,
   FutureBenefitValidator,
-  ContinuingBenefitValidator
+  ContinuingBenefitValidator,
+  OtherBenefitValidator
 } from './foreignbenefit'
 
 describe('Foreign Born Benefits', function() {
@@ -110,7 +111,33 @@ describe('Foreign Born Benefits', function() {
           BenefitType: { value: 'Educational' },
           BenefitFrequency: { value: 'Other' },
           OtherBenefit: {
-            value: 'Sweet'
+            Began: {
+              month: '1',
+              day: '1',
+              year: '2010'
+            },
+            End: {
+              month: '1',
+              day: '1',
+              year: '2020'
+            },
+            Frequency: { value: 'Weekly' },
+            Country: {
+              value: 'Germany'
+            },
+            Value: {
+              value: '2000'
+            },
+            Reason: {
+              value: 'Foo'
+            },
+            Obligated: { value: 'Yes' },
+            ObligatedExplanation: {
+              value: 'Because'
+            },
+            OtherFrequencyTypeExplanation: {
+              value: 'Some Explanation'
+            }
           }
         },
         expected: true
@@ -442,6 +469,38 @@ describe('Foreign Born Benefits', function() {
 
     tests.forEach(test => {
       expect(new FutureBenefitValidator(test.props).validFrequency()).toBe(
+        test.expected
+      )
+    })
+  })
+
+  it('should validate other benefit other frequency', function() {
+    const tests = [
+      {
+        props: {
+          Frequency: { value: 'Annually' }
+        },
+        expected: true
+      },
+      {
+        props: {
+          Frequency: { value: 'Nope' }
+        },
+        expected: false
+      },
+      {
+        props: {
+          Frequency: { value: 'Other' },
+          OtherFrequency: {
+            value: 'Something else'
+          }
+        },
+        expected: true
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(new OtherBenefitValidator(test.props).validFrequency()).toBe(
         test.expected
       )
     })

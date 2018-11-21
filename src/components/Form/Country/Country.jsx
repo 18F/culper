@@ -13,9 +13,13 @@ export default class Country extends ValidationElement {
       showComents: props.showComments
     }
 
+    this.countries = i18n.value('countries')
+
     this.update = this.update.bind(this)
-    this.updateCountry = this.updateCountry.bind(this)
+    this.updateSingleCountry = this.updateSingleCountry.bind(this)
+    this.updateMultipleCountries = this.updateMultipleCountries.bind(this)
     this.handleError = this.handleError.bind(this)
+    this.filterValidCountries = this.filterValidCountries.bind(this)
   }
 
   update(queue) {
@@ -27,16 +31,48 @@ export default class Country extends ValidationElement {
     })
   }
 
-  updateCountry(values) {
+  /**
+    * Update function when there are multiple selectable countries
+   */
+  updateMultipleCountries(values) {
+    const { value } = values
+    this.update({ value })
+  }
+
+  /**
+    * Update function when there is only one country
+    * @param {object} values - Country object
+   */
+  updateSingleCountry(values) {
     const { value } = values
     let arr
 
-    if (Array.isArray(value)) {
-      arr = value
+    const capitalizedCountry = value[0].toUpperCase() + value.slice(1)
+    const matchingCountries = this.filterValidCountries(value)
+    if (matchingCountries.length > 0) {
+      // If more than 1 matching country, keep typed value
+      if (matchingCountries.length > 1) {
+        arr = [capitalizedCountry]
+      }
+      // If only matched country, keep valid value
+      if (matchingCountries.length === 1) {
+        arr = [matchingCountries[0].value]
+      }
     } else {
-      arr = [value]
+      arr = capitalizedCountry
     }
     this.update({ value: arr })
+  }
+
+  /**
+   * Filters country names match anything in the country list
+   * @param {string} country - Country Name
+   */
+  filterValidCountries(country) {
+    const countryArray = Object.values(this.countries)
+    return countryArray.filter(countryObj => {
+      return countryObj.value.toLowerCase() === country.toLowerCase()
+    })
   }
 
   handleError(value, arr) {
@@ -85,7 +121,6 @@ export default class Country extends ValidationElement {
   }
 
   renderOptions() {
-    const countries = i18n.value('countries')
     const filter = this.props.excludeUnitedStates
       ? x => {
           return x !== 'unitedStates'
@@ -95,11 +130,11 @@ export default class Country extends ValidationElement {
         }
 
 
-    const countryOptions = Object.keys(countries)
+    const countryOptions = Object.keys(this.countries)
       .filter(filter)
       .map(x => (
-        <option key={x} value={countries[x].value}>
-          {countries[x].text}
+        <option key={x} value={this.countries[x].value}>
+          {this.countries[x].text}
         </option>
       ))
 
@@ -170,7 +205,7 @@ export default class Country extends ValidationElement {
             className={klass}
             ariaLabel={this.props.ariaLabel}
             disabled={this.props.disabled}
-            onUpdate={this.updateCountry}
+            onUpdate={this.updateMultipleCountries}
             onError={this.handleError}
             onFocus={this.handleFocus}
             onBlur={this.handleBlur}
@@ -188,7 +223,7 @@ export default class Country extends ValidationElement {
             className={klass}
             ariaLabel={this.props.ariaLabel}
             disabled={this.props.disabled}
-            onUpdate={this.updateCountry}
+            onUpdate={this.updateSingleCountry}
             onError={this.handleError}
             onFocus={this.handleFocus}
             onBlur={this.handleBlur}

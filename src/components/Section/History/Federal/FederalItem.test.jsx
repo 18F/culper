@@ -1,8 +1,23 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import FederalItem from './FederalItem'
 
 describe('The federal item component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <FederalItem {...expected} />
+        </Provider>
+      )
+  })
+
   it('recieves updates from children', () => {
     let updates = 0
     const expected = {
@@ -13,7 +28,7 @@ describe('The federal item component', () => {
         updates++
       }
     }
-    const component = mount(<FederalItem {...expected} />)
+    const component = createComponent(expected)
     component.find({ type: 'text', name: 'Position' }).simulate('change')
     component.find({ type: 'text', name: 'Name' }).simulate('change')
     component

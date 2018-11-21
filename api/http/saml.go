@@ -12,7 +12,7 @@ import (
 )
 
 var (
-	redirectTo = os.Getenv("API_REDIRECT")
+	redirectTo   = os.Getenv("API_REDIRECT")
 	cookieDomain = os.Getenv("COOKIE_DOMAIN")
 )
 
@@ -49,7 +49,61 @@ func (service SamlRequestHandler) ServeHTTP(w http.ResponseWriter, r *http.Reque
 	})
 }
 
-// SamlResponseHandler is the handler for handling a SAML response.
+// SamlSLORequestHandler is the handler for creating a SAML request.
+type SamlSLORequestHandler struct {
+	Env      api.Settings
+	Log      api.LogService
+	Token    api.TokenService
+	Database api.DatabaseService
+	SAML     api.SamlService
+}
+
+// ServeHTTP is the initial entry point for authentication.
+func (service SamlSLORequestHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	if !service.Env.True(api.SamlEnabled) {
+		service.Log.Warn(api.SamlAttemptDenied, api.LogFields{})
+		http.Error(w, "SAML is not implemented", http.StatusInternalServerError)
+		return
+	}
+
+	// Valid token and audience while populating the audience ID
+	_, id, err := service.Token.CheckToken(r)
+	if err != nil {
+		service.Log.WarnError(api.InvalidJWT, err, api.LogFields{})
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	// Get the SessionID from the token
+	sessionIndex := service.Token.SessionID(r)
+	if sessionIndex == "" {
+		service.Log.Warn("SAML auth should always contain a SessionID for SLO to work properly", api.LogFields{})
+	}
+
+	// Get the account information from the data store
+	account := &api.Account{}
+	account.ID = id
+	if _, err := account.Get(service.Database, id); err != nil {
+		service.Log.WarnError(api.NoAccount, err, api.LogFields{})
+		RespondWithStructuredError(w, api.NoAccount, http.StatusUnauthorized)
+		return
+	}
+
+	encoded, url, err := service.SAML.CreateSLORequest(account.Username, sessionIndex)
+	if err != nil {
+		http.Error(w, api.SamlSLORequestGeneration, http.StatusInternalServerError)
+	}
+
+	EncodeJSON(w, struct {
+		Base64XML string
+		URL       string
+	}{
+		encoded,
+		url,
+	})
+}
+
+// SamlResponseHandler is the callback handler for both login and logout SAML Responses.
 type SamlResponseHandler struct {
 	Env      api.Settings
 	Log      api.LogService
@@ -58,7 +112,7 @@ type SamlResponseHandler struct {
 	SAML     api.SamlService
 }
 
-// ServeHTTP is the returning entry point for authentication.
+// ServeHTTP is the callback handler for both login and logout SAML Responses.
 func (service SamlResponseHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	if !service.Env.True(api.SamlEnabled) {
 		service.Log.Warn(api.SamlAttemptDenied, api.LogFields{})
@@ -73,7 +127,28 @@ func (service SamlResponseHandler) ServeHTTP(w http.ResponseWriter, r *http.Requ
 		return
 	}
 
-	username, err := service.SAML.ValidateAuthenticationResponse(encoded)
+	responseType, err := service.SAML.ResponseType(encoded)
+	if err != nil {
+		service.Log.WarnError(api.SamlParseError, err, api.LogFields{})
+		redirectAccessDenied(w, r)
+		return
+	}
+
+	switch responseType {
+	case api.AuthnSAMLResponseType:
+		service.serveAuthnResponse(encoded, w, r)
+		return
+	case api.LogoutSAMLResponseType:
+		service.serveLogoutResponse(encoded, w, r)
+		return
+	default:
+		service.Log.Fatal("SAML.ResponseType returned an unknown response type. This is programmer error due to the lack of go enums", api.LogFields{"unknownResponseType": responseType})
+		http.Error(w, "Server Error", http.StatusInternalServerError)
+	}
+}
+
+func (service SamlResponseHandler) serveAuthnResponse(encodedResponse string, w http.ResponseWriter, r *http.Request) {
+	username, sessionIndex, err := service.SAML.ValidateAuthenticationResponse(encodedResponse)
 	if err != nil {
 		redirectAccessDenied(w, r)
 		return
@@ -101,7 +176,7 @@ func (service SamlResponseHandler) ServeHTTP(w http.ResponseWriter, r *http.Requ
 	}
 
 	// Generate jwt token
-	signedToken, _, err := service.Token.NewToken(account.ID, api.SingleSignOnAudience)
+	signedToken, _, err := service.Token.NewToken(account.ID, sessionIndex, api.SingleSignOnAudience)
 	if err != nil {
 		service.Log.WarnError(api.JWTError, err, api.LogFields{"account": account})
 		redirectAccessDenied(w, r)
@@ -114,7 +189,7 @@ func (service SamlResponseHandler) ServeHTTP(w http.ResponseWriter, r *http.Requ
 		// Default to frontend host
 		uri, _ := url.Parse(redirectTo)
 		cookieDomain = strings.Split(uri.Host, ":")[0]
-        }
+	}
 	expiration := time.Now().Add(time.Duration(1) * time.Minute)
 	cookie := &http.Cookie{
 		Domain:   cookieDomain,
@@ -129,7 +204,15 @@ func (service SamlResponseHandler) ServeHTTP(w http.ResponseWriter, r *http.Requ
 	http.Redirect(w, r, redirectTo, http.StatusFound)
 }
 
+func (service SamlResponseHandler) serveLogoutResponse(encodedResponse string, w http.ResponseWriter, r *http.Request) {
+	redirectLogout(w, r)
+}
+
 func redirectAccessDenied(w http.ResponseWriter, r *http.Request) {
 	url := fmt.Sprintf("%s?error=access_denied", redirectTo)
 	http.Redirect(w, r, url, http.StatusFound)
+}
+
+func redirectLogout(w http.ResponseWriter, r *http.Request) {
+	http.Redirect(w, r, redirectTo, http.StatusFound)
 }

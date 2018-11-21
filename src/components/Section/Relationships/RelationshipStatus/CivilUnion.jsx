@@ -165,8 +165,10 @@ class CivilUnion extends ValidationElement {
   }
 
   updateUseCurrentAddress(values) {
+    const nextValues = { ...values, applicable: !values.applicable }
+
     this.update({
-      UseCurrentAddress: values,
+      UseCurrentAddress: nextValues,
       Address: !values.applicable ? { ...this.props.currentAddress } : {}
     })
   }
@@ -204,8 +206,7 @@ class CivilUnion extends ValidationElement {
      */
 
     const { country } = this.props.BirthPlace
-    const showForeignBornDocumentation =
-      country && countryString(country) !== 'United States'
+    const showForeignBornDocumentation = country && countryString(country) !== 'United States'
 
     return (
       <div className="civil-union">
@@ -409,7 +410,7 @@ class CivilUnion extends ValidationElement {
           >
             <NotApplicable
               name="UseCurrentAddress"
-              {...this.props.UseCurrentAddress}
+              applicable={!this.props.UseCurrentAddress.applicable}
               className="current-address"
               label={i18n.t(
                 'relationships.civilUnion.useCurrentAddress.label'
@@ -432,12 +433,13 @@ class CivilUnion extends ValidationElement {
                 required={this.props.required}
               />
             </NotApplicable>
-            <Show when={this.props.UseCurrentAddress.applicable}> 
+            <Show when={!this.props.UseCurrentAddress.applicable}>
               <AlternateAddress
                 address={this.props.AlternateAddress}
-                addressBook="Residence"
+                addressBook="Relative"
                 belongingTo="AlternateAddress"
                 country={this.props.Address.country}
+                militaryAddressLabel={i18n.t('address.militaryAddress.spouse')}
                 onUpdate={this.update}
               />
             </Show>

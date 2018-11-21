@@ -19,6 +19,7 @@ describe('Schema for financial taxes', () => {
                 End: {},
                 Frequency: {},
                 OtherFrequency: {},
+                OtherFrequencyTypeExplanation: {},
                 Received: {},
                 Country: {},
                 Value: {
@@ -34,6 +35,7 @@ describe('Schema for financial taxes', () => {
                 End: {},
                 Frequency: {},
                 OtherFrequency: {},
+                OtherFrequencyTypeExplanation: {},
                 Received: {},
                 Country: {},
                 Value: {
@@ -49,6 +51,7 @@ describe('Schema for financial taxes', () => {
                 End: {},
                 Frequency: {},
                 OtherFrequency: {},
+                OtherFrequencyTypeExplanation: {},
                 Received: {},
                 Country: {},
                 Value: {
@@ -59,7 +62,22 @@ describe('Schema for financial taxes', () => {
                 Obligated: {},
                 ObligatedExplanation: {}
               },
-              OtherBenefit: {}
+              OtherBenefit: {
+                Began: {},
+                End: {},
+                Frequency: {},
+                OtherFrequency: {},
+                OtherFrequencyTypeExplanation: {},
+                Received: {},
+                Country: {},
+                Value: {
+                  value: ''
+                },
+                ValueEstimated: {},
+                Reason: {},
+                Obligated: {},
+                ObligatedExplanation: {}
+              }
             }
           }
         ]

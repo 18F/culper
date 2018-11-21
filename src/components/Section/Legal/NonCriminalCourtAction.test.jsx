@@ -1,8 +1,23 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import NonCriminalCourtAction from './NonCriminalCourtAction'
 
 describe('The NonCriminalCourtAction component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <NonCriminalCourtAction {...expected} />
+        </Provider>
+      )
+  })
+
   it('no error on empty', () => {
     let updates = 0
     const expected = {
@@ -10,7 +25,7 @@ describe('The NonCriminalCourtAction component', () => {
         updates++
       }
     }
-    const component = mount(<NonCriminalCourtAction {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.non-criminal-court-action').length).toEqual(1)
     component.find('.civil-action-date .year input').simulate('change')
     component.find('.court-name input').simulate('change')

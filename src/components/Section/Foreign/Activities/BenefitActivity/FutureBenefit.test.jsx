@@ -1,20 +1,36 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import FutureBenefit from './FutureBenefit'
 
 describe('The FutureBenefit component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <FutureBenefit {...expected} />
+        </Provider>
+      )
+  })
+
   it('Renders without errors', () => {
-    const component = mount(<FutureBenefit />)
+    const component = createComponent()
     expect(component.find('.future-benefit').length).toBe(1)
   })
 
   it('Performs updates', () => {
     let updates = 0
-    const onUpdate = () => {
-      updates++
+    const expected = {
+      onUpdate: () => {
+        updates++
+      }
     }
-
-    const component = mount(<FutureBenefit onUpdate={onUpdate} />)
+    const component = createComponent(expected)
     expect(component.find('.future-benefit').length).toBe(1)
     component
       .find('.begin input[name="month"]')
@@ -35,13 +51,13 @@ describe('The FutureBenefit component', () => {
 
   it('Performs an obligatedExplanation update', () => {
     let updates = 0
-    const onUpdate = () => {
-      updates++
+    const expected = {
+      onUpdate: () => {
+        updates++
+      },
+      Obligated: { value: 'Yes' }
     }
-    const obligated = { value: 'Yes' }
-    const component = mount(
-      <FutureBenefit onUpdate={onUpdate} Obligated={obligated} />
-    )
+    const component = createComponent(expected)
     expect(component.find('.future-benefit').length).toBe(1)
     component
       .find('.explanation textarea[name="Explanation"]')
@@ -51,13 +67,13 @@ describe('The FutureBenefit component', () => {
 
   it('Performs an other frequency update', () => {
     let updates = 0
-    const onUpdate = () => {
-      updates++
+    const expected = {
+      onUpdate: () => {
+        updates++
+      },
+      Frequency: { value: 'Other' }
     }
-    const frequency = { value: 'Other' }
-    const component = mount(
-      <FutureBenefit onUpdate={onUpdate} Frequency={frequency} />
-    )
+    const component = createComponent(expected)
     expect(component.find('.future-benefit').length).toBe(1)
     component.find('textarea[name="OtherFrequency"]').simulate('change')
     expect(updates).toBe(1)

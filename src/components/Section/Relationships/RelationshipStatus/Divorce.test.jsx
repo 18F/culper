@@ -1,14 +1,29 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import Divorce from './Divorce'
 
 describe('The Divorce component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <Divorce {...expected} />
+        </Provider>
+      )
+  })
+
   it('no error on empty', () => {
     const expected = {
       name: 'divorce'
     }
 
-    const component = mount(<Divorce {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.divorce').length).toEqual(1)
   })
 
@@ -25,7 +40,7 @@ describe('The Divorce component', () => {
       }
     }
 
-    const component = mount(<Divorce {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.divorce').length).toEqual(1)
 
     component.find('.divorce .first input').simulate('change')

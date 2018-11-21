@@ -4,8 +4,9 @@ import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
 import CivilUnion from './CivilUnion'
 
-const mountComponent = (mockStore, Component, props) => {
-  const store = mockStore({ application: { AddressBooks: {} }})
+const mountComponent = (Component, props = {}) => {
+  const mockStore = configureMockStore()
+  const store = mockStore({ application: { AddressBooks: {} } })
 
   return mount(
     <Provider store={store}>
@@ -14,14 +15,13 @@ const mountComponent = (mockStore, Component, props) => {
   )
 }
 
-
 describe('<CivilUnion />', () => {
   it('no error on empty', () => {
     const expected = {
       name: 'cohabitant'
     }
 
-    const component = shallow(<CivilUnion {...expected} />)
+    const component = mountComponent(CivilUnion, expected)
     expect(component.find('.civil-union').length).toEqual(1)
   })
 
@@ -39,7 +39,7 @@ describe('<CivilUnion />', () => {
       }
     }
 
-    const component = mount(<CivilUnion {...expected} />)
+    const component = mountComponent(CivilUnion, expected)
     expect(component.find('.civil-union').length).toEqual(1)
     updates = 0
     component.find('.civil .name .first input').simulate('change')
@@ -89,7 +89,7 @@ describe('<CivilUnion />', () => {
       }
     }
 
-    const component = mount(<CivilUnion {...expected} />)
+    const component = mountComponent(CivilUnion, expected)
     expect(component.find('.current-address.button').length).toEqual(1)
     component.find('.current-address.button input').simulate('change')
     component.find('.current-address.button input').simulate('change')
@@ -100,17 +100,17 @@ describe('<CivilUnion />', () => {
 
   describe('with foreign-born spouse', () => {
     const foreignBornDocumentEl = '.foreign-born-documents'
-    const component = mount(<CivilUnion />)
+    let component
 
     it('does not ask for foreign-born documentation in default state', () => {
       const emptyExpected = {
         BirthPlace: {}
       }
-      
-      component.setProps(emptyExpected)
+
+      component = mountComponent(CivilUnion, emptyExpected)
       expect(component.find(foreignBornDocumentEl).length).toEqual(0)
 
-      component.setProps({ BirthPlace: undefined })
+      component = mountComponent(CivilUnion, { BirthPlace: undefined })
       expect(component.find(foreignBornDocumentEl).length).toEqual(0)
     })
 
@@ -122,44 +122,37 @@ describe('<CivilUnion />', () => {
         BirthPlace: { country: { value: 'United States' } }
       }
 
-      component.setProps(usExpected)
+      component = mountComponent(CivilUnion, usExpected)
       expect(component.find(foreignBornDocumentEl).length).toEqual(0)
 
-      component.setProps(altUSExpected)
+      component = mountComponent(CivilUnion, altUSExpected)
       expect(component.find(foreignBornDocumentEl).length).toEqual(0)
     })
-  
+
     it('asks for foreign born documentation if not from the United States', () => {
-      const stringExpected = {
-        BirthPlace: { country: 'Canada' }
-      }
       const objectExpected = {
         BirthPlace: { country: { value: ['Canada'] } }
       }
 
-      component.setProps(stringExpected)
-      expect(component.find(foreignBornDocumentEl).length).toEqual(1)
-
-      component.setProps(objectExpected)
+      component = mountComponent(CivilUnion, objectExpected)
       expect(component.find(foreignBornDocumentEl).length).toEqual(1)
     })
   })
 
   describe('when `Use Current Address` is selected', () => {
     it('does not show the location form', () => {
-      const mockStore = configureMockStore()
       const props = {
         name: 'civilUnion',
-        UseCurrentAddress: { applicable: false },
+        UseCurrentAddress: { applicable: false }
       }
-      let component = mountComponent(mockStore, CivilUnion, props)
-      let locations = component.find('NotApplicable')
-        .find('Location')
+      let component = mountComponent(CivilUnion, props)
+      let locations = component.find('NotApplicable').find('Location')
 
-      expect(locations.find({name: 'Address'}).length).toBe(0)
+      expect(locations.find({ name: 'Address' }).length).toBe(0)
 
-      component = mountComponent(mockStore, CivilUnion, {
-        name: 'civilUnion', UseCurrentAddress: { applicable: true}
+      component = mountComponent(CivilUnion, {
+        name: 'civilUnion',
+        UseCurrentAddress: { applicable: true }
       })
 
       locations = component.find('NotApplicable').find('Location')
@@ -167,14 +160,13 @@ describe('<CivilUnion />', () => {
     })
 
     it('does not show the alternate address form', () => {
-      const mockStore = configureMockStore()
       const props = {
         name: 'civilUnion',
-        UseCurrentAddress: { applicable: true },
+        UseCurrentAddress: { applicable: true }
       }
-      const component = mountComponent(mockStore, CivilUnion, props)
+      const component = mountComponent(CivilUnion, props)
 
-      expect(component.find('AlternateAddress').length).toBe(1)
+      expect(component.find('AlternateAddress').length).toBe(0)
     })
   })
 })

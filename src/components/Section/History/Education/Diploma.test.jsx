@@ -1,13 +1,28 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import { DiplomaItem } from './Diploma'
 
 describe('The diploma component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <DiplomaItem {...expected} />
+        </Provider>
+      )
+  })
+
   it('no error on empty', () => {
     const expected = {
       name: 'diploma'
     }
-    const component = mount(<DiplomaItem {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.diploma').length).toEqual(1)
   })
 
@@ -16,7 +31,7 @@ describe('The diploma component', () => {
       name: 'diploma',
       Diploma: { value: 'Other' }
     }
-    const component = mount(<DiplomaItem {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.other').length).toEqual(1)
   })
 
@@ -25,7 +40,7 @@ describe('The diploma component', () => {
       name: 'diploma',
       Diploma: { value: 'Doctorate' }
     }
-    const component = mount(<DiplomaItem {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.other').length).toEqual(0)
   })
 
@@ -38,7 +53,7 @@ describe('The diploma component', () => {
         updates++
       }
     }
-    const component = mount(<DiplomaItem {...expected} />)
+    const component = createComponent(expected)
     component.find('.diploma-highschool input').simulate('change')
     component.find('.diploma-other input').simulate('change')
     component
