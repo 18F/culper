@@ -101,77 +101,62 @@ describe('The foreign business sponsorship component', () => {
     expect(updates).toBe(9)
   })
 
+
+  const sponsorshipDateSetup = {
+    name: "Sponsorship",
+    HasForeignSponsorship: {
+      value: 'Yes'
+    },
+    applicantBirthdate: {
+      estimated: false,
+      day: "1",
+      month: "1",
+      name: "birthdate",
+      year: "1970",
+      date: new Date("1970", "1", "1")
+    },
+    List: {
+      items: [{
+        Item: {
+          Birthdate: {
+            estimated: false,
+            day: "1",
+            month: "1",
+            name: "Birthdate",
+            year: "1980",
+            date: new Date("1980", "1", "1")
+          },
+          Dates: {
+            from: {
+              estimated: false,
+              day: "1",
+              month: "1",
+              name: "from",
+              year: "1990",
+              date: new Date("1990", "1", "1")
+            },
+          },
+      },
+      open: true
+    }]
+  },
+  }
+
   describe('handles dates', () => {
     it('with good data - the dates of stay in the U.S. for the sponsored foreign national are after applicant DOB and foreign national DOB', () => {
       const props = {
-        name: "Sponsorship",
-        HasForeignSponsorship: {
-          value: 'Yes'
-        },
-        applicantBirthdate: {
-          estimated: false,
-          day: "1",
-          month: "1",
-          name: "birthdate",
-          year: "1970",
-          date: new Date("1970", "1", "1")
-        },
-        List: {
-          items: [{
-            Item: {
-              Birthdate: {
-                estimated: false,
-                day: "1",
-                month: "1",
-                name: "Birthdate",
-                year: "1980",
-                date: new Date("1980", "1", "1")
-              },
-              Dates: {
-                from: {
-                  estimated: false,
-                  day: "1",
-                  month: "1",
-                  name: "from",
-                  year: "1990",
-                  date: new Date("1990", "1", "1")
-                },
-              },
-          },
-          open: true
-        }]
-      },
         valid: true
       }
 
-      const component = mount(<Sponsorship {...props} />)
+      const component = mount(<Sponsorship {...sponsorshipDateSetup} {...props} />)
       expect(component.find('.error-messages [data-i18n="error.daterange.from.min"]').children().length).toEqual(0)
     })
     it('with bad data - the dates of stay in the U.S. for the sponsored foreign national are before applicant DOB and foreign national DOB', () => {
       const props = {
-        name: "Sponsorship",
-        HasForeignSponsorship: {
-          value: 'Yes'
-        },
-        applicantBirthdate: {
-          estimated: false,
-          day: "1",
-          month: "1",
-          name: "birthdate",
-          year: "1970",
-          date: new Date("1970", "1", "1")
-        },
         List: {
           items: [{
             Item: {
-              Birthdate: {
-                estimated: false,
-                day: "1",
-                month: "1",
-                name: "Birthdate",
-                year: "1980",
-                date: new Date("1980", "1", "1")
-              },
+              ...sponsorshipDateSetup.List.items[0].Item,
               Dates: {
                 from: {
                   estimated: false,
@@ -183,13 +168,12 @@ describe('The foreign business sponsorship component', () => {
                 },
               },
           },
-          open: true
         }]
       },
         valid: false
       }
 
-      const component = mount(<Sponsorship {...props} />)
+      const component = mount(<Sponsorship {...sponsorshipDateSetup} {...props} />)
       expect(component.find('.error-messages [data-i18n="error.daterange.from.min"]').text()).toEqual(
         `${i18n.t('error.daterange.from.min.title')}${i18n.t('error.daterange.from.min.message')}`
       )
