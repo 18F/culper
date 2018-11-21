@@ -130,15 +130,9 @@ describe('<CivilUnion />', () => {
     })
 
     it('asks for foreign born documentation if not from the United States', () => {
-      const stringExpected = {
-        BirthPlace: { country: 'Canada' }
-      }
       const objectExpected = {
         BirthPlace: { country: { value: ['Canada'] } }
       }
-
-      component = mountComponent(CivilUnion, stringExpected)
-      expect(component.find(foreignBornDocumentEl).length).toEqual(1)
 
       component = mountComponent(CivilUnion, objectExpected)
       expect(component.find(foreignBornDocumentEl).length).toEqual(1)
@@ -172,7 +166,7 @@ describe('<CivilUnion />', () => {
       }
       const component = mountComponent(CivilUnion, props)
 
-      expect(component.find('AlternateAddress').length).toBe(1)
+      expect(component.find('AlternateAddress').length).toBe(0)
     })
   })
 })

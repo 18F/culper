@@ -3,6 +3,7 @@ import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
 import Benefit from './Benefit'
+import ContinuingBenefit from './ContinuingBenefit'
 
 describe('The Benefit component', () => {
   const mockStore = configureMockStore()
@@ -147,12 +148,8 @@ describe('The Benefit component', () => {
     expect(updates).toBe(1)
   })
 
-  it('Renders with other benefit and triggers update', () => {
-    let updates = 0
+  it('Renders with proper fields for other benefit type', () => {
     const expected = {
-      onUpdate: () => {
-        updates++
-      },
       BenefitFrequency: { value: 'Other' },
       OtherBenefit: {
         value: 'Other'
@@ -160,7 +157,6 @@ describe('The Benefit component', () => {
     }
 
     const component = createComponent(expected)
-    component.find('textarea[name="OtherBenefit"]').simulate('change')
-    expect(updates).toBe(1)
+    expect(component.find(ContinuingBenefit).length).toBe(1)
   })
 })

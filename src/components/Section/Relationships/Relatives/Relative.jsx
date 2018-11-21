@@ -24,6 +24,7 @@ import { RelativeValidator } from '../../../../validators'
 import { countryString } from '../../../../validators/location'
 import { today, daysAgo } from '../../History/dateranges'
 import Alias from './Alias'
+import { extractDate } from '../../History/dateranges'
 
 export default class Relative extends ValidationElement {
   constructor(props) {
@@ -638,7 +639,8 @@ export default class Relative extends ValidationElement {
               </Field>
               <Alias
                 name="Item"
-                applicantBirthdate={this.props.Birthdate}
+                minDate={extractDate(this.props.Birthdate)}
+                relationship="Other"
                 onError={this.props.onError}
                 hideMaiden={mother}
                 required={this.props.required}
@@ -687,7 +689,7 @@ export default class Relative extends ValidationElement {
             belongingTo: 'AlternateAddress',
             country: this.props.Address.country,
             forceAPO: true,
-            militaryAddressLabel: i18n.t('address.militaryAddress.other'),
+            militaryAddressLabel: i18n.t('address.militaryAddress.relative'),
             onUpdate: this.update
           })}
         </Show>

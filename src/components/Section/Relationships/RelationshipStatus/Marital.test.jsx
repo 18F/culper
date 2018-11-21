@@ -3,13 +3,16 @@ import { mount } from 'enzyme'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
 import Marital from './Marital'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 
 describe('The relationship status component', () => {
   const mockStore = configureMockStore()
   let createComponent
 
   beforeEach(() => {
-    const store = mockStore()
+    const mockStore = configureMockStore()
+    const store = mockStore({ application: { addressBooks: {} } })
     createComponent = (expected = {}) =>
       mount(
         <Provider store={store}>

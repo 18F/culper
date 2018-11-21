@@ -1355,6 +1355,7 @@ export const history = {
           'Provide the name of someone that can verify your self-employment',
         physicalAddress:
           'Is your physical work address different than your employment address?',
+        militaryAddress: 'Does your self-employment verifier have an APO/FPO address?',
         additionalActivity: 'Additional periods of activity with this employer'
       },
       employer: {
@@ -1458,6 +1459,7 @@ export const history = {
     },
     unemployment: {
       heading: {
+        militaryAddress: 'Does your unemployment verifier have an APO/FPO address?',
         reference:
           'Provide the name of someone who can verify your unemployment activities and means of support'
       }

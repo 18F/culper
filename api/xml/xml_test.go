@@ -305,6 +305,19 @@ func TestScenario8(t *testing.T) {
 	executeScenario(t, "test8")
 }
 
+// `test9` is for APO and foreign primary address/secondary (alternate) address
+// workflows in the following sub-sections of the form:
+// * applicant residence
+// * residence verifier
+// * supervisor address
+// * unemployment/self-employment verifier
+// * current spouse
+// * relative
+// * close foreign contact
+func TestScenario9(t *testing.T) {
+	executeScenario(t, "test9")
+}
+
 // executeScenario generates XML from JSON test fixtures for a complete
 // applicant scenario and compares the result with XML reference files.
 // It is a coarse and unforgiving test; anything less than an exact match,
