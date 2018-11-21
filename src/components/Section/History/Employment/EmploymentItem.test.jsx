@@ -49,15 +49,15 @@ describe('The employment component', () => {
   })
 
   it('display displinary when within 7 years', () => {
-    const sevenYearsAgo = daysAgo(today, 365 * 7)
+    const past = daysAgo(today, 365 * 6)
     const props = buildProps({
       EmploymentActivity: { value: 'ActiveMilitary' },
       Dates: {
         present: true,
         from: {
-          month: `${sevenYearsAgo.getMonth() + 1}`,
-          day: `${sevenYearsAgo.getDate()}`,
-          year: `${sevenYearsAgo.getFullYear()}`
+          month: `${past.getMonth() + 1}`,
+          day: `${past.getDate()}`,
+          year: `${past.getFullYear()}`
         },
         to: {}
       }
@@ -85,15 +85,15 @@ describe('The employment component', () => {
   })
 
   it('display reason left options when within 7 years', () => {
-    const sevenYearsAgo = daysAgo(today, 365 * 7)
+    const past = daysAgo(today, 365 * 6)
     const props = buildProps({
       EmploymentActivity: { value: 'ActiveMilitary' },
       Dates: {
         present: false,
         from: {
-          month: `${sevenYearsAgo.getMonth() + 1}`,
-          day: `${sevenYearsAgo.getDate()}`,
-          year: `${sevenYearsAgo.getFullYear()}`
+          month: `${past.getMonth() + 1}`,
+          day: `${past.getDate()}`,
+          year: `${past.getFullYear()}`
         },
         to: {}
       }
@@ -122,7 +122,7 @@ describe('The employment component', () => {
 
   it('does not display reason left options if currently employed', () => {
     const past = daysAgo(today, 365 * 10)
-    const props = {
+    const props = buildProps({
       EmploymentActivity: { value: 'ActiveMilitary' },
       Dates: {
         present: true,
@@ -133,7 +133,7 @@ describe('The employment component', () => {
         },
         to: {}
       }
-    }
+    })
     const component = mount(<EmploymentItem {...props} />)
     expect(component.find('.reason-options').length).toBe(0)
   })

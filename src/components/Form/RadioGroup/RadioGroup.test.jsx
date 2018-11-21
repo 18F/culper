@@ -30,13 +30,10 @@ describe('The RadioGroup component', () => {
     ).toBe(true)
   })
 
-  it('renders radio button children with selected func', () => {
-    let selectedValueFunc = props => {
-      return props.value === 'Option1'
-    }
+  it('renders radio button children with selectedValue', () => {
 
     const component = mount(
-      <RadioGroup name={'rgroup'} selectedValueFunc={selectedValueFunc}>
+      <RadioGroup name={'rgroup'} selectedValue="Option2">
         <Radio value="Option1" />
         <Radio value="Option2" />
       </RadioGroup>
@@ -45,7 +42,7 @@ describe('The RadioGroup component', () => {
     expect(
       component
         .find('input[type="radio"]')
-        .first()
+        .last()
         .props().checked
     ).toBe(true)
   })
