@@ -31,6 +31,7 @@ var (
 	AuthBearerRegexp = regexp.MustCompile("Bearer\\s(.*)")
 )
 
+// EAppClaims are all the claims eApp uses in JWT
 type EAppClaims struct {
 	SessionID string `json:"sid,omitempty"`
 	jwt.StandardClaims

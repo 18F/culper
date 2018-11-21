@@ -52,7 +52,8 @@ const (
 	logoutResponseXMLName = "LogoutResponse"
 )
 
-func (service *Service) ResponseType(encoded string) (string, error) {
+// ResponseType returns an "enum" that indicates what type of response the encoded message represents
+func (service *Service) ResponseType(encoded string) (api.SAMLResponseType, error) {
 	response, err := saml.ParseEncodedResponse(encoded)
 	if err != nil {
 		service.Log.WarnError(api.SamlParseError, err, api.LogFields{})
@@ -216,9 +217,10 @@ func cleanName(nameID string) string {
 	return nameID
 }
 
+// CreateSLORequest creates an encoded SAML Logout Request suitable for sending to the identity server
 func (service *Service) CreateSLORequest(username string, sessionIndex string) (string, string, error) {
-	req := NewLogoutRequest(service.provider.IDPSSODescriptorURL, username, sessionIndex)
-	encoded, err := req.Base64()
+	req := newLogoutRequest(service.provider.IDPSSODescriptorURL, username, sessionIndex)
+	encoded, err := req.base64()
 
 	url, err := getAuthnRequestURL(service.provider.IDPSSOURL, "state")
 	if err != nil {

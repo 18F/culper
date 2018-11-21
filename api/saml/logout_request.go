@@ -8,7 +8,8 @@ import (
 	"github.com/satori/go.uuid"
 )
 
-type LogoutRequest struct {
+// logoutRequest is a SAML Logout Request message XML
+type logoutRequest struct {
 	XMLName        xml.Name  `xml:"samlp:LogoutRequest"`
 	ID             string    `xml:"ID,attr"`
 	Version        string    `xml:"Version,attr"`
@@ -17,17 +18,19 @@ type LogoutRequest struct {
 	SAMLNamespace  string    `xml:"xmlns:saml,attr"`
 	SessionIndex   string    `xml:"samlp:SessionIndex"`
 
-	Name   LogoutRequestName
+	Name   logoutRequestName
 	Issuer string `xml:"saml:Issuer"`
 }
 
-type LogoutRequestName struct {
+// logoutRequestName is the name field of the XML
+type logoutRequestName struct {
 	XMLName    xml.Name `xml:"saml:NameID"`
 	NameFormat string   `xml:"Format,attr"`
 	NameID     string   `xml:",chardata"`
 }
 
-func NewLogoutRequest(issuer string, username string, sessionIndex string) LogoutRequest {
+// newLogoutRequest creates a new logout request
+func newLogoutRequest(issuer string, username string, sessionIndex string) logoutRequest {
 	requestID := uuid.NewV4().String()
 	issueInstant := time.Now().UTC()
 
@@ -35,14 +38,14 @@ func NewLogoutRequest(issuer string, username string, sessionIndex string) Logou
 	samlpNamespace := "urn:oasis:names:tc:SAML:2.0:protocol"
 	samlNamespace := "urn:oasis:names:tc:SAML:2.0:assertion"
 
-	return LogoutRequest{
+	return logoutRequest{
 		ID:             requestID,
 		Version:        "2.0",
 		IssueInstant:   issueInstant,
 		SAMLPNamespace: samlpNamespace,
 		SAMLNamespace:  samlNamespace,
 		SessionIndex:   sessionIndex,
-		Name: LogoutRequestName{
+		Name: logoutRequestName{
 			NameID:     username,
 			NameFormat: emailFormat,
 		},
@@ -50,7 +53,8 @@ func NewLogoutRequest(issuer string, username string, sessionIndex string) Logou
 	}
 }
 
-func (req *LogoutRequest) XML() ([]byte, error) {
+// xml returns the xml for the logout request
+func (req *logoutRequest) xml() ([]byte, error) {
 	output, err := xml.MarshalIndent(req, "", "    ")
 	if err != nil {
 		return nil, err
@@ -62,8 +66,9 @@ func (req *LogoutRequest) XML() ([]byte, error) {
 
 }
 
-func (req *LogoutRequest) Base64() (string, error) {
-	fullXML, err := req.XML()
+// base64 returns the base64 encoding of the xml of the logout request
+func (req *logoutRequest) base64() (string, error) {
+	fullXML, err := req.xml()
 	if err != nil {
 		return "", err
 	}
