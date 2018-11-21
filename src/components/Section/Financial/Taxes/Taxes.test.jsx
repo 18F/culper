@@ -5,6 +5,22 @@ import { Provider } from 'react-redux'
 import Taxes from './Taxes'
 import { i18n } from '../../../../config'
 
+const alternateAddressRenderMock = jest.fn();
+const mountComponent = (mockStore, Component, props) => {
+  const store = mockStore({ application: { AddressBooks: {} }})
+  const finalProps = {
+    render: alternateAddressRenderMock,
+    ...props
+
+  }
+
+  return mount(
+    <Provider store={store}>
+      <Component {...finalProps} />
+    </Provider>
+  )
+}
+
 describe('The taxes component', () => {
   const mockStore = configureMockStore()
   let createComponent
@@ -121,16 +137,17 @@ describe('The taxes component', () => {
 
   describe('handles tax dates', () => {
     it('with good data - the year failed to file or pay is before the date satisfied', () => {
+      const mockStore = configureMockStore()
       const props = {
         valid: true
       }
-
-      const component = mount(<Taxes {...taxDatesSetup} {...props} />)
+      const component = mountComponent(mockStore, Taxes, props)
       expect(component.find('.error-messages [data-i18n="error.taxesSatisfied.min"]').children().length).toEqual(0)
     })
     it('with bad data - the year failed to file or pay is after the date satisfied', () => {
-
+      const mockStore = configureMockStore()
       const props = {
+        ...taxDatesSetup,
         List: {
           items: [{
             Item: {
@@ -148,7 +165,7 @@ describe('The taxes component', () => {
         valid: false
       }
 
-      const component = mount(<Taxes {...taxDatesSetup} {...props} />)
+      const component = mountComponent(mockStore, Taxes, props)
       expect(component.find('.error-messages [data-i18n="error.taxesSatisfied.min"]').text()).toEqual(
         `${i18n.t('error.taxesSatisfied.min.title')}${i18n.t('error.taxesSatisfied.min.message')}`
       )
