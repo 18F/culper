@@ -1,13 +1,28 @@
 import React from 'react'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
 import MilitaryService from './MilitaryService'
 
 describe('The military service component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <MilitaryService {...expected} />
+        </Provider>
+      )
+  })
+
   it('no error on empty', () => {
     const expected = {
       name: 'military-service'
     }
-    const component = mount(<MilitaryService {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.service').length).toEqual(1)
     expect(component.find('.status').length).toEqual(1)
     expect(component.find('.officer').length).toEqual(1)
@@ -26,7 +41,7 @@ describe('The military service component', () => {
       name: 'military-service',
       HasBeenDischarged: { value: 'No' }
     }
-    const component = mount(<MilitaryService {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.discharge-type').length).toEqual(0)
     expect(component.find('.discharge-type-otherex').length).toEqual(0)
     expect(component.find('.discharge-reason').length).toEqual(0)
@@ -38,7 +53,7 @@ describe('The military service component', () => {
       name: 'military-service',
       HasBeenDischarged: { value: 'Yes' }
     }
-    const component = mount(<MilitaryService {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.discharge-type').length).toEqual(1)
     expect(component.find('.discharge-type-otherex').length).toEqual(0)
     expect(component.find('.discharge-reason').length).toEqual(0)
@@ -50,7 +65,7 @@ describe('The military service component', () => {
       name: 'military-service',
       Service: { value: 'Army' }
     }
-    const component = mount(<MilitaryService {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.service-state').length).toEqual(0)
   })
 
@@ -59,7 +74,7 @@ describe('The military service component', () => {
       name: 'military-service',
       Service: { value: 'ArmyNationalGuard' }
     }
-    const component = mount(<MilitaryService {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.service-state').length).toEqual(1)
   })
 
@@ -69,7 +84,7 @@ describe('The military service component', () => {
       HasBeenDischarged: { value: 'Yes' },
       DischargeType: { value: 'Other' }
     }
-    const component = mount(<MilitaryService {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.discharge-type').length).toEqual(1)
     expect(component.find('.discharge-type-otherex').length).toEqual(1)
     expect(component.find('.discharge-reason').length).toEqual(1)
@@ -81,7 +96,7 @@ describe('The military service component', () => {
       HasBeenDischarged: { value: 'Yes' },
       DischargeType: { value: 'General' }
     }
-    const component = mount(<MilitaryService {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.discharge-type').length).toEqual(1)
     expect(component.find('.discharge-type-otherex').length).toEqual(0)
     expect(component.find('.discharge-reason').length).toEqual(1)
@@ -93,7 +108,7 @@ describe('The military service component', () => {
       HasBeenDischarged: { value: 'Yes' },
       DischargeType: { value: 'Honorable' }
     }
-    const component = mount(<MilitaryService {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.discharge-type').length).toEqual(1)
     expect(component.find('.discharge-type-otherex').length).toEqual(0)
     expect(component.find('.discharge-reason').length).toEqual(0)
@@ -110,7 +125,7 @@ describe('The military service component', () => {
         updates++
       }
     }
-    const component = mount(<MilitaryService {...expected} />)
+    const component = createComponent(expected)
     component.find('.service-airnationalguard input').simulate('change')
     component.find('.status .status-activeduty input').simulate('change')
     component.find('.officer .officer-enlisted input').simulate('change')

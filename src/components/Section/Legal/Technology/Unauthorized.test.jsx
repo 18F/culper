@@ -1,19 +1,36 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import Unauthorized from './Unauthorized'
 
 describe('The legal technology unauthorized access component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <Unauthorized {...expected} />
+        </Provider>
+      )
+  })
+
   it('renders without errors', () => {
-    const component = mount(<Unauthorized />)
+    const component = createComponent()
     expect(component.find('.legal-technology-unauthorized').length).toBe(1)
   })
 
   it('can select "yes"', () => {
     let updates = 0
-    const onUpdate = () => {
-      updates++
+    const expected = {
+      onUpdate: () => {
+        updates++
+      }
     }
-    const component = mount(<Unauthorized onUpdate={onUpdate} />)
+    const component = createComponent(expected)
     component
       .find('.legal-technology-unauthorized-has-unauthorized .yes input')
       .simulate('change')
@@ -24,7 +41,7 @@ describe('The legal technology unauthorized access component', () => {
     const props = {
       HasUnauthorized: { value: 'Yes' }
     }
-    const component = mount(<Unauthorized {...props} />)
+    const component = createComponent(props)
     expect(component.find('.accordion').length).toBe(1)
   })
 
@@ -49,7 +66,7 @@ describe('The legal technology unauthorized access component', () => {
         ]
       }
     }
-    const component = mount(<Unauthorized {...props} />)
+    const component = createComponent(props)
     const text = component.find('.accordion .summary .left').text()
     expect(text).toContain('Looked over the shoulder')
     expect(text).toContain('1/2010')

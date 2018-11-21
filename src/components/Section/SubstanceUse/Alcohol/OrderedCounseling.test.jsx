@@ -1,19 +1,36 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import OrderedCounseling from './OrderedCounseling'
 
 describe('The OrderedCounseling component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <OrderedCounseling {...expected} />
+        </Provider>
+      )
+  })
+
   it('Renders without errors', () => {
-    const component = mount(<OrderedCounseling />)
+    const component = createComponent()
     expect(component.find('.ordered-counseling').length).toBe(1)
   })
 
   it('Renders empty and starts populating', () => {
     let updates = 0
-    const onUpdate = () => {
-      updates++
+    const expected = {
+      onUpdate: () => {
+        updates++
+      }
     }
-    const component = mount(<OrderedCounseling onUpdate={onUpdate} />)
+    const component = createComponent(expected)
     expect(component.find('.ordered-counseling').length).toBe(1)
     component.find('.seekers .seekers-employer input').simulate('change')
     component.find('.action-taken .yes input').simulate('change')
@@ -28,7 +45,7 @@ describe('The OrderedCounseling component', () => {
       },
       ActionTaken: { value: 'Yes' }
     }
-    const component = mount(<OrderedCounseling {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.ordered-counseling').length).toBe(1)
     component.find('.provider-address input[name="street"]').simulate('change')
     component
@@ -52,7 +69,7 @@ describe('The OrderedCounseling component', () => {
       ActionTaken: { value: 'Yes' },
       CompletedTreatment: { value: 'No' }
     }
-    const component = mount(<OrderedCounseling {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.ordered-counseling').length).toBe(1)
     component
       .find('textarea[name="NoCompletedTreatmentExplanation"]')
@@ -69,7 +86,7 @@ describe('The OrderedCounseling component', () => {
       ActionTaken: { value: 'No' },
       Seekers: { values: ['Employer'] }
     }
-    const component = mount(<OrderedCounseling {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.ordered-counseling').length).toBe(1)
     component.find('.seekers .seekers-employer input').simulate('change')
     component
@@ -87,7 +104,7 @@ describe('The OrderedCounseling component', () => {
       ActionTaken: { value: 'No' },
       Seekers: { values: ['Other'] }
     }
-    const component = mount(<OrderedCounseling {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.ordered-counseling').length).toBe(1)
     component.find('input[name="OtherSeeker"]').simulate('change')
     expect(updates).toBe(1)

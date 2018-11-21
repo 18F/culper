@@ -1,13 +1,28 @@
 import React from 'react'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
 import Passport from './Passport'
 
 describe('The passport component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <Passport {...expected} />
+        </Provider>
+      )
+  })
+
   it('no error on empty', () => {
     const expected = {
       name: 'passport'
     }
-    const component = mount(<Passport name={expected.name} />)
+    const component = createComponent(expected)
     expect(component.find('.first input').length).toEqual(0)
     expect(component.find('.number input').length).toEqual(0)
     expect(component.find('.month input').length).toEqual(0)
@@ -19,7 +34,7 @@ describe('The passport component', () => {
       name: 'passport',
       HasPassports: { value: 'Yes' }
     }
-    const component = mount(<Passport {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.number input').length).toEqual(1)
     expect(component.find('.month input').length).toEqual(2)
     expect(component.find('.usa-input-error-label').length).toEqual(0)
@@ -30,7 +45,7 @@ describe('The passport component', () => {
       name: 'passport',
       HasPassports: { value: 'No' }
     }
-    const component = mount(<Passport name={expected.name} HasPassport="No" />)
+    const component = createComponent(expected)
     expect(component.find('.first input').length).toEqual(0)
     expect(component.find('.number input').length).toEqual(0)
     expect(component.find('.month input').length).toEqual(0)
@@ -56,7 +71,7 @@ describe('The passport component', () => {
         }
       ]
     }
-    const component = mount(<Passport {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.modal').length).toEqual(1)
     component
       .find('.suggestion .action button')
@@ -95,9 +110,10 @@ describe('The passport component', () => {
       Number: {
         name: 'number',
         value: '123456789'
-      }
+      },
+      name: 'passport'
     }
-    const component = mount(<Passport {...data} name={'passport'} />)
+    const component = createComponent(data)
     expect(component.find('.usa-input-error-label').length).toEqual(0)
     component.find('.branch .yes input').simulate('change')
     component.find('.name .first input').simulate('change')
@@ -119,7 +135,7 @@ describe('The passport component', () => {
       Card: { value: 'Book' },
       reBook: 'test'
     }
-    const component = mount(<Passport {...props} />)
+    const component = createComponent(props)
     expect(component.find('.number').length).toBe(1)
     expect(component.find('[pattern="test"]').length).toBe(1)
   })

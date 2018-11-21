@@ -1,13 +1,28 @@
 import React from 'react'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
 import Status from './Status'
 
 describe('The status component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <Status {...expected} />
+        </Provider>
+      )
+  })
+
   it('no error on empty', () => {
     const expected = {
       name: 'status'
     }
-    const component = mount(<Status {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.citizenship-status').length).toBe(1)
     expect(component.find('.block').length).toBeGreaterThan(0)
   })
@@ -23,7 +38,7 @@ describe('The status component', () => {
         updates++
       }
     }
-    const component = mount(<Status {...expected} />)
+    const component = createComponent(expected)
     component.find('.citizenship-status-citizen input').simulate('change')
     expect(updates).toBe(1)
   })
@@ -39,7 +54,7 @@ describe('The status component', () => {
         updates++
       }
     }
-    const component = mount(<Status {...expected} />)
+    const component = createComponent(expected)
     component.find('.citizenship-abroad-other input').simulate('change')
     component
       .find({ name: 'Explanation' })
@@ -85,7 +100,7 @@ describe('The status component', () => {
         updates++
       }
     }
-    const component = mount(<Status {...expected} />)
+    const component = createComponent(expected)
     updates = 0
     component
       .find('.entry-date .day input')
@@ -135,7 +150,7 @@ describe('The status component', () => {
         updates++
       }
     }
-    const component = mount(<Status {...expected} />)
+    const component = createComponent(expected)
     component
       .find({ name: 'AlienRegistrationNumber' })
       .simulate('change', { target: { value: 'number' } })
@@ -168,7 +183,7 @@ describe('The status component', () => {
         updates++
       }
     }
-    const component = mount(<Status {...expected} />)
+    const component = createComponent(expected)
     component
       .find('.residence-status input')
       .simulate('change', { target: { value: 'status' } })

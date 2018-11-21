@@ -1,11 +1,26 @@
 import React from 'react'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
 import RealEstateActivity from './RealEstateActivity'
 import Location from '../.././../../Form/Location'
 
 describe('The RealEstateActivity component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <RealEstateActivity {...expected} />
+        </Provider>
+      )
+  })
+
   it('Renders without errors', () => {
-    const component = mount(<RealEstateActivity />)
+    const component = createComponent()
     expect(component.find('.realestate').length).toBe(1)
   })
 
@@ -14,7 +29,8 @@ describe('The RealEstateActivity component', () => {
     const onUpdate = () => {
       updates++
     }
-    const component = mount(<RealEstateActivity onUpdate={onUpdate} />)
+
+    const component = createComponent({ onUpdate: onUpdate })
     expect(component.find('.realestate').length).toBe(1)
     component.find('.branch .no input').simulate('change')
     expect(updates).toBe(1)
@@ -34,7 +50,7 @@ describe('The RealEstateActivity component', () => {
         ]
       }
     }
-    const component = mount(<RealEstateActivity {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(1)
     expect(component.find('.context strong').text()).toBe('Yourself')
   })
@@ -114,7 +130,7 @@ describe('The RealEstateActivity component', () => {
     ]
 
     tests.forEach(test => {
-      const component = mount(<RealEstateActivity {...test.props} />)
+      const component = createComponent({ ...test.props })
       expect(component.find('.accordion').length).toBe(1)
       expect(component.find('.context strong').text()).toBe(test.expected)
     })
@@ -124,7 +140,7 @@ describe('The RealEstateActivity component', () => {
     const expected = {
       HasInterests: { value: 'No' }
     }
-    const component = mount(<RealEstateActivity {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(0)
   })
 
@@ -180,7 +196,7 @@ describe('The RealEstateActivity component', () => {
         ]
       }
     }
-    const component = mount(<RealEstateActivity {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(1)
     expect(status).toBe(true)
   })

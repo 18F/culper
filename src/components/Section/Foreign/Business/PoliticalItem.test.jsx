@@ -1,8 +1,23 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import PoliticalItem from './PoliticalItem'
 
 describe('The foreign business political component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <PoliticalItem {...expected} />
+        </Provider>
+      )
+  })
+
   it('trigger updates', () => {
     let updates = 0
     const expected = {
@@ -10,7 +25,7 @@ describe('The foreign business political component', () => {
         updates++
       }
     }
-    const component = mount(<PoliticalItem {...expected} />)
+    const component = createComponent(expected)
     component
       .find('.foreign-business-political-position input')
       .simulate('change')

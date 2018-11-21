@@ -1,19 +1,36 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import DrugUse from './DrugUse'
 
 describe('The DrugUse component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <DrugUse {...expected} />
+        </Provider>
+      )
+  })
+
   it('Renders without errors', () => {
-    const component = mount(<DrugUse />)
+    const component = createComponent()
     expect(component.find('.drug-use').length).toBe(1)
   })
 
   it('Performs update', () => {
     let updates = 0
-    const onUpdate = () => {
-      updates++
+    const expected = {
+      onUpdate: () => {
+        updates++
+      }
     }
-    const component = mount(<DrugUse onUpdate={onUpdate} />)
+    const component = createComponent(expected)
     expect(component.find('.drug-use').length).toBe(1)
     component.find('.drug-type-use .cocaine input').simulate('change')
     component.find('.first-use .year input').simulate('change')

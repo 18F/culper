@@ -1,8 +1,23 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import SubsequentContacts from './SubsequentContacts'
 
 describe('The foreign business contact subsequent contacts component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <SubsequentContacts {...expected} />
+        </Provider>
+      )
+  })
+
   it('trigger updates', () => {
     let updates = 0
     const expected = {
@@ -12,7 +27,7 @@ describe('The foreign business contact subsequent contacts component', () => {
         updates++
       }
     }
-    const component = mount(<SubsequentContacts {...expected} />)
+    const component = createComponent(expected)
     component
       .find('.foreign-business-contact-subsequent textarea')
       .simulate('change')

@@ -1,8 +1,23 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import NonpaymentItem from './NonpaymentItem'
 
 describe('The nonpayment item component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <NonpaymentItem {...expected} />
+        </Provider>
+      )
+  })
+
   it('triggers updates when changing values', () => {
     let updates = 0
     const expected = {
@@ -11,7 +26,7 @@ describe('The nonpayment item component', () => {
         updates++
       }
     }
-    const component = mount(<NonpaymentItem {...expected} />)
+    const component = createComponent(expected)
     component
       .find('.nonpayment-name input')
       .simulate('change', { target: { value: 'IRS' } })

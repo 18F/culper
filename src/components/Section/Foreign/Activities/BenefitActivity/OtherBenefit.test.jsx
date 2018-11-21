@@ -1,27 +1,38 @@
 import React from 'react'
 import { shallow, mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import OtherBenefit from './OtherBenefit'
 import ContinuingBenefit from './ContinuingBenefit';
 import { Textarea } from '../../../../Form'
 
 describe('The OtherBenefit component', () => {
+  const mockStore = configureMockStore()
   const requiredProps = {
     onUpdate: jest.fn(),
     onError: jest.fn(),
     scrollIntoView: jest.fn(),
     otherBenefit: {}
   }
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <OtherBenefit {...expected} />
+        </Provider>
+      )
+  })
+
   it('Renders without errors', () => {
-    const component = shallow(<OtherBenefit {...requiredProps} />)
+    const component = createComponent(requiredProps)
     expect(component.find(ContinuingBenefit).length).toBe(1)
   })
 
   it('Performs updates', () => {
-    const component = mount(
-      <OtherBenefit
-        {...requiredProps}
-      />
-    )
+    const component = createComponent(requiredProps)
     expect(component.find(ContinuingBenefit).length).toBe(1)
     component
       .find('.began input[name="month"]')
@@ -44,11 +55,7 @@ describe('The OtherBenefit component', () => {
   })
 
   it('updates the OtherFrequencyTypeExplanation field', () => {
-    const component = mount(
-      <OtherBenefit
-        {...requiredProps}
-      />
-    )
+    const component = createComponent(requiredProps)
     expect(component.find({ name: 'OtherFrequencyTypeExplanation'}).length).toBe(1)
     component
       .find({ name: 'OtherFrequencyTypeExplanation' })
