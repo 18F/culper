@@ -77,6 +77,10 @@ class Api {
     return this.get(env.EndpointSaml(), false)
   }
 
+  samlSLO() {
+    return this.get(env.EndpointSamlSLO())
+  }
+
   login(username, password) {
     return this.post(
       env.EndpointBasicAuthentication(),
