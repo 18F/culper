@@ -7,10 +7,15 @@ import Location from '../../../Form/Location'
 
 describe('The relative component', () => {
   const mockStore = configureMockStore()
+  const defaultAppState = {
+    application: {
+      AddressBooks: {}
+    }
+  }
   let createComponent
 
   beforeEach(() => {
-    const store = mockStore()
+    const store = mockStore(defaultAppState)
     createComponent = (expected = {}) =>
       mount(
         <Provider store={store}>
@@ -21,7 +26,6 @@ describe('The relative component', () => {
 
   it('no error on empty', () => {
     const expected = {
-      render: jest.fn(),
       name: 'relative'
     }
 
@@ -63,7 +67,6 @@ describe('The relative component', () => {
 
   it('display maiden name if relationship is mother', () => {
     const expected = {
-      render: jest.fn(),
       name: 'relative',
       Relation: { value: 'Mother' },
       MaidenSameAsListed: { value: 'No' }
@@ -77,7 +80,6 @@ describe('The relative component', () => {
 
   it('display items specific to immediate relationships', () => {
     const expected = {
-      render: jest.fn(),
       name: 'relative',
       Relation: { value: 'Father' }
     }
@@ -88,7 +90,6 @@ describe('The relative component', () => {
 
   it('display address if not deceased', () => {
     const expected = {
-      render: jest.fn(),
       name: 'relative',
       IsDeceased: { value: 'No' }
     }
@@ -99,12 +100,8 @@ describe('The relative component', () => {
   })
 
   it('display documentation information if relative requires citizenship documentation', () => {
-    let updates = 0
     const expected = {
-      onUpdate: () => {
-        updates++
-      },
-      render: jest.fn(),
+      onUpdate: jest.fn(),
       name: 'relative',
       Citizenship: { value: ['United States'] },
       CitizenshipDocumentation: { value: 'Other' },
@@ -126,12 +123,11 @@ describe('The relative component', () => {
     expect(component.find('.relative-abroad').length).toEqual(1)
     component.find('.derived-other input').simulate('change')
     component.find('.derived-other-explanation textarea').simulate('change')
-    expect(updates).toBe(2)
+    expect(expected.onUpdate.mock.calls.length).toBe(2)
   })
 
   it('display items if not deceased and not a citizen but lives in the U.S.', () => {
     const expected = {
-      render: jest.fn(),
       name: 'relative',
       Citizenship: {
         value: ['Germany']
@@ -156,7 +152,6 @@ describe('The relative component', () => {
 
   it('display items if not deceased and not a citizen and lives abroad', () => {
     const expected = {
-      render: jest.fn(),
       name: 'relative',
       Citizenship: {
         value: ['Germany']
@@ -181,7 +176,6 @@ describe('The relative component', () => {
 
   it('display employer relationship if affiliated', () => {
     const expected = {
-      render: jest.fn(),
       name: 'relative',
       Citizenship: {
         value: ['Germany']
@@ -205,16 +199,12 @@ describe('The relative component', () => {
   })
 
   it('initial questions presented', () => {
-    let updates = 0
     const expected = {
-      render: jest.fn(),
       name: 'relative',
       Relation: { value: 'Mother' },
       Birthplace: { country: { value: 'Germany' } },
       IsDeceased: { value: 'No' },
-      onUpdate: obj => {
-        updates++
-      }
+      onUpdate: jest.fn()
     }
     const component = createComponent(expected)
     component.find('.relation-mother input').simulate('change')
@@ -238,13 +228,11 @@ describe('The relative component', () => {
       target: { name: 'country', value: 'United States' }
     })
     component.find('.relative-deceased .no input').simulate('change')
-    expect(updates).toBe(7)
+    expect(expected.onUpdate.mock.calls.length).toBe(7)
   })
 
   it('are you my mother?', () => {
-    let updates = 0
     const expected = {
-      render: jest.fn(),
       name: 'relative',
       Relation: { value: 'Mother' },
       Name: {
@@ -272,9 +260,7 @@ describe('The relative component', () => {
       Citizenship: { value: ['United States'] },
       IsDeceased: { value: 'No' },
       MaidenSameAsListed: { value: 'No' },
-      onUpdate: obj => {
-        updates++
-      }
+      onUpdate: jest.fn()
     }
     const component = createComponent(expected)
     component.find('.relative-maiden-diff .no input').simulate('change')
@@ -282,15 +268,13 @@ describe('The relative component', () => {
     component
       .find('.relative-maidenname .last input')
       .simulate('change', { target: { value: 'maidenname' } })
-    expect(updates).toBe(2)
+    expect(expected.onUpdate.mock.calls.length).toBe(2)
     component.find('.relative-alias .branch .yes input').simulate('change')
     expect(component.find('.alias-maiden').length).toBe(0)
   })
 
   it('is immediate relationships?', () => {
-    let updates = 0
     const expected = {
-      render: jest.fn(),
       name: 'relative',
       Relation: { value: 'Mother' },
       Name: {
@@ -321,9 +305,7 @@ describe('The relative component', () => {
           { Item: { Has: { value: 'Yes' }, MaidenName: { value: 'No' } } }
         ]
       },
-      onUpdate: obj => {
-        updates++
-      }
+      onUpdate: jest.fn()
     }
     const component = createComponent(expected)
     expect(component.find('.relative-alias .branch').length).toBeGreaterThan(0)
@@ -348,13 +330,11 @@ describe('The relative component', () => {
     component
       .find('.alias-dates .datecontrol.to .year input')
       .simulate('change', { target: { name: 'year', value: '2005' } })
-    expect(updates).toBe(7)
+    expect(expected.onUpdate.mock.calls.length).toBe(7)
   })
 
   it('is a citizen but lives abroad?', () => {
-    let updates = 0
     const expected = {
-      render: jest.fn(),
       name: 'relative',
       Relation: { value: 'Mother' },
       Name: {
@@ -386,9 +366,7 @@ describe('The relative component', () => {
         country: { value: 'Germany' },
         layout: Location.ADDRESS
       },
-      onUpdate: obj => {
-        updates++
-      }
+      onUpdate: jest.fn()
     }
     const component = createComponent(expected)
     component.find('.relative-abroad .abroad-fs input').simulate('change')
@@ -405,13 +383,11 @@ describe('The relative component', () => {
     component
       .find('.relative-courtaddress .city input')
       .simulate('change', { target: { name: 'city', value: 'The city' } })
-    expect(updates).toBe(6)
+    expect(expected.onUpdate.mock.calls.length).toBe(6)
   })
 
   it('is not a citizen but lives in the United States?', () => {
-    let updates = 0
     const expected = {
-      render: jest.fn(),
       name: 'relative',
       Relation: { value: 'Mother' },
       Name: {
@@ -446,9 +422,7 @@ describe('The relative component', () => {
         zipcode: '22202'
       },
       Document: { value: 'Other' },
-      onUpdate: obj => {
-        updates++
-      }
+      onUpdate: jest.fn()
     }
     const component = createComponent(expected)
     expect(component.find('.relative-address').length).toBe(1)
@@ -474,13 +448,11 @@ describe('The relative component', () => {
     component
       .find('.relative-expiration .year input')
       .simulate('change', { target: { name: 'year', value: '2005' } })
-    expect(updates).toBe(7)
+    expect(expected.onUpdate.mock.calls.length).toBe(7)
   })
 
   it('is not a citizen and lives outside the United States?', () => {
-    let updates = 0
     const expected = {
-      render: jest.fn(),
       name: 'relative',
       Relation: { value: 'Mother' },
       Name: {
@@ -515,9 +487,7 @@ describe('The relative component', () => {
       Methods: { value: ['Telephone'] },
       Frequency: { value: 'Daily' },
       HasAffiliation: { value: 'Yes' },
-      onUpdate: obj => {
-        updates++
-      }
+      onUpdate: jest.fn()
     }
     const component = createComponent(expected)
     expect(component.find('.relative-first-contact').length).toBeGreaterThan(0)
@@ -564,6 +534,6 @@ describe('The relative component', () => {
     component
       .find({ type: 'checkbox', name: 'EmployerRelationshipNotApplicable' })
       .simulate('change')
-    expect(updates).toBe(15)
+    expect(expected.onUpdate.mock.calls.length).toBe(15)
   })
 })
