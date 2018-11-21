@@ -66,7 +66,7 @@ export default class OtherBenefit extends ValidationElement {
 
 OtherBenefit.propTypes = propTypes
 
-OtherBenefit.defualtProps = {
+OtherBenefit.defaultProps = {
   otherBenefit: {},
   required: false,
   scrollIntoView: () => {}
