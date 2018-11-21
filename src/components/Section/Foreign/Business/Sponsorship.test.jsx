@@ -5,6 +5,22 @@ import { Provider } from 'react-redux'
 import Sponsorship from './Sponsorship'
 import { i18n } from '../../../../config'
 
+const alternateAddressRenderMock = jest.fn();
+const mountComponent = (mockStore, Component, props) => {
+  const store = mockStore({ application: { AddressBooks: {} }})
+  const finalProps = {
+    render: alternateAddressRenderMock,
+    ...props
+
+  }
+
+  return mount(
+    <Provider store={store}>
+      <Component {...finalProps} />
+    </Provider>
+  )
+}
+
 describe('The foreign business sponsorship component', () => {
   const mockStore = configureMockStore()
   let createComponent
@@ -159,15 +175,17 @@ describe('The foreign business sponsorship component', () => {
 
   describe('handles dates', () => {
     it('with good data - the dates of stay in the U.S. for the sponsored foreign national are after applicant DOB and foreign national DOB', () => {
+      const mockStore = configureMockStore()
       const props = {
         valid: true
       }
-
-      const component = mount(<Sponsorship {...sponsorshipDateSetup} {...props} />)
+      const component = mountComponent(mockStore, Sponsorship, props)
       expect(component.find('.error-messages [data-i18n="error.daterange.from.min"]').children().length).toEqual(0)
     })
     it('with bad data - the dates of stay in the U.S. for the sponsored foreign national are before applicant DOB and foreign national DOB', () => {
+      const mockStore = configureMockStore()
       const props = {
+        ...sponsorshipDateSetup,
         List: {
           items: [{
             Item: {
@@ -188,7 +206,7 @@ describe('The foreign business sponsorship component', () => {
         valid: false
       }
 
-      const component = mount(<Sponsorship {...sponsorshipDateSetup} {...props} />)
+      const component = mountComponent(mockStore, Sponsorship, props)
       expect(component.find('.error-messages [data-i18n="error.daterange.from.min"]').text()).toEqual(
         `${i18n.t('error.daterange.from.min.title')}${i18n.t('error.daterange.from.min.message')}`
       )
