@@ -442,6 +442,7 @@ export default class EmploymentItem extends ValidationElement {
             address: this.props.SupervisorAlternateAddress,
             belongingTo: 'SupervisorAlternateAddress',
             country: this.props.Supervisor.Address.country,
+            militaryAddressLabel: i18n.t('address.militaryAddress.supervisor'),
             onUpdate: this.update
           })}
         </Show>
@@ -516,6 +517,7 @@ export default class EmploymentItem extends ValidationElement {
               address: this.props.ReferenceAlternateAddress,
               belongingTo: 'ReferenceAlternateAddress',
               country: this.props.ReferenceAddress.country,
+              militaryAddressLabel: i18n.t(`${prefix}.heading.militaryAddress`),
               onUpdate: this.update
             })}
           </div>
@@ -541,7 +543,7 @@ export default class EmploymentItem extends ValidationElement {
           />
         </Show>
 
-        <Show when={this.showEmployed() && this.showLeaving()}>
+        <Show when={this.showEmployed()}>
           <ReasonLeft
             name="ReasonLeft"
             {...this.props.ReasonLeft}

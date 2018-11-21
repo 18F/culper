@@ -13,6 +13,7 @@ import {
 import OneTimeBenefit from './OneTimeBenefit'
 import FutureBenefit from './FutureBenefit'
 import ContinuingBenefit from './ContinuingBenefit'
+import OtherBenefit from './OtherBenefit';
 
 export default class Benefit extends ValidationElement {
   constructor(props) {
@@ -271,18 +272,6 @@ export default class Benefit extends ValidationElement {
               onError={this.props.onError}
             />
           </RadioGroup>
-          <Show when={(this.props.BenefitFrequency || {}).value === 'Other'}>
-            <div>
-              {i18n.m('foreign.activities.benefit.label.otherBenefit')}
-              <Textarea
-                name="OtherBenefit"
-                {...this.props.OtherBenefit}
-                onUpdate={this.updateOtherBenefit}
-                onError={this.props.onError}
-                required={this.props.required}
-              />
-            </div>
-          </Show>
         </Field>
 
         <Show when={(this.props.BenefitFrequency || {}).value === 'OneTime'}>
@@ -312,6 +301,17 @@ export default class Benefit extends ValidationElement {
             name="ContinuingBenefit"
             {...this.props.ContinuingBenefit}
             onUpdate={this.updateContinuingBenefit}
+            onError={this.props.onError}
+            required={this.props.required}
+            scrollIntoView={this.props.scrollIntoView}
+          />
+        </Show>
+
+        <Show when={(this.props.BenefitFrequency || {}).value === 'Other'}>
+          <OtherBenefit
+            name="OtherBenefit"
+            otherBenefit={this.props.OtherBenefit || {}}
+            onUpdate={this.updateOtherBenefit}
             onError={this.props.onError}
             required={this.props.required}
             scrollIntoView={this.props.scrollIntoView}

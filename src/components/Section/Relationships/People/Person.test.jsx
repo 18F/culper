@@ -1,14 +1,29 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import Person from './Person'
 
 describe('The person component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <Person {...expected} />
+        </Provider>
+      )
+  })
+
   it('no error on empty', () => {
     const expected = {
       name: 'person'
     }
 
-    const component = mount(<Person {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.person').length).toEqual(1)
   })
 
@@ -24,7 +39,7 @@ describe('The person component', () => {
       }
     }
 
-    const component = mount(<Person {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.person').length).toEqual(1)
     component
       .find('.known-dates .from .month input')

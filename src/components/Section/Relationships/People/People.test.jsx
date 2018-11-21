@@ -1,14 +1,29 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import People from './People'
 
 describe('The relative alias component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <People {...expected} />
+        </Provider>
+      )
+  })
+
   it('no error on empty', () => {
     const expected = {
       name: 'people'
     }
 
-    const component = mount(<People {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.accordion').length).toEqual(1)
   })
 
@@ -24,7 +39,7 @@ describe('The relative alias component', () => {
       }
     }
 
-    const component = mount(<People {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.accordion').length).toEqual(1)
     component
       .find('.known-dates .from .month input')

@@ -52,7 +52,7 @@ export default class ForeignBenefitValidator {
       case 'Continuing':
         return new ContinuingBenefitValidator(this.continuingBenefit).isValid()
       case 'Other':
-        return validGenericTextfield(this.otherBenefit)
+        return new OtherBenefitValidator(this.otherBenefit).isValid()
       default:
         return false
     }
@@ -260,6 +260,91 @@ export class ContinuingBenefitValidator {
       this.validReason() &&
       this.validObligated() &&
       this.validObligatedExplanation()
+    )
+  }
+}
+
+
+export class OtherBenefitValidator {
+  constructor(data = {}) {
+    this.began = data.Began
+    this.end = data.End
+    this.frequency = (data.Frequency || {}).value
+    this.otherFrequency = data.OtherFrequency
+    this.otherFrequencyTypeExplanation = data.OtherFrequencyTypeExplanation
+    this.country = data.Country
+    this.value = data.Value
+    this.reason = data.Reason
+    this.obligated = (data.Obligated || {}).value
+    this.obligatedExplanation = data.ObligatedExplanation
+  }
+
+  validBegan() {
+    return !!this.began && validDateField(this.began)
+  }
+
+  validEnd() {
+    return !!this.end && validDateField(this.end)
+  }
+
+  validFrequency() {
+    switch (this.frequency) {
+      case 'Annually':
+      case 'Quarterly':
+      case 'Monthly':
+      case 'Weekly':
+        return true
+      case 'Other':
+        return validGenericTextfield(this.otherFrequency)
+      default:
+        return false
+    }
+  }
+
+  validCountry() {
+    return !!this.country && validGenericTextfield(this.country)
+  }
+
+  validValue() {
+    return !!this.value && validCurrency(this.value)
+  }
+
+  validReason() {
+    return !!this.reason && validGenericTextfield(this.reason)
+  }
+
+  validObligated() {
+    return validBranch(this.obligated)
+  }
+
+  validObligatedExplanation() {
+    if (!this.validObligated()) {
+      return false
+    }
+    if (this.obligated === 'No') {
+      return true
+    }
+    return validGenericTextfield(this.obligatedExplanation)
+  }
+
+  validOtherFrequencyTypeExplanation() {
+    if (this.validOtherFrequencyTypeExplanation) {
+      return validGenericTextfield(this.otherFrequencyTypeExplanation)
+    }
+    return true
+  }
+
+  isValid() {
+    return (
+      this.validBegan() &&
+      this.validEnd() &&
+      this.validFrequency() &&
+      this.validCountry() &&
+      this.validValue() &&
+      this.validReason() &&
+      this.validObligated() &&
+      this.validObligatedExplanation() &&
+      this.validOtherFrequencyTypeExplanation()
     )
   }
 }

@@ -46,6 +46,7 @@ export const historyEmployment = (data = {}) => {
         ReferencePhone: form.telephone(xitem.ReferencePhone),
         ReferenceAddress: form.location(xitem.ReferenceAddress),
         ReferenceAlternateAddress: form.physicaladdress(xitem.ReferenceAlternateAddress),
+        PhysicalAddress: form.physicaladdress(xitem.PhysicalAddress)
       }
     }
   })

@@ -1,8 +1,23 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import DateRange from './DateRange'
 
 describe('The date range component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <DateRange {...expected} />
+        </Provider>
+      )
+  })
+
   it('handles dates in reversed order', () => {
     const expected = {
       name: 'input-error',
@@ -19,7 +34,7 @@ describe('The date range component', () => {
         date: new Date('1/1/2000')
       }
     }
-    const component = mount(<DateRange {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.to.usa-input-error').length).toBe(1)
   })
 
@@ -43,27 +58,27 @@ describe('The date range component', () => {
       },
       receiveProps: true
     }
-    const component = mount(<DateRange {...expected} />)
+    const component = createComponent(expected)
     component.find('.present input').simulate('change')
     expect(updates).toBeGreaterThan(0)
   })
 
   it('can receive props', () => {
-    const props = {
+    const expected = {
       receiveProps: true
     }
-    const component = mount(<DateRange {...props} />)
+    const component = createComponent(expected)
     component.setProps({ to: { date: new Date() } })
   })
 
   it('can update date field', () => {
     let updates = 0
-    const props = {
+    const expected = {
       onUpdate: () => {
         updates++
       }
     }
-    const component = mount(<DateRange {...props} />)
+    const component = createComponent(expected)
     component
       .find('.to .day input')
       .simulate('change', { target: { value: '15' } })
@@ -72,14 +87,14 @@ describe('The date range component', () => {
 
   it('can click on present', () => {
     let updates = 0
-    const props = {
+    const expected = {
       onUpdate: values => {
         if (values.to && values.to.date) {
           updates++
         }
       }
     }
-    const component = mount(<DateRange {...props} />)
+    const component = createComponent(expected)
     component.find('.present input').simulate('change')
     expect(updates).toBeGreaterThan(0)
   })
@@ -88,7 +103,7 @@ describe('The date range component', () => {
     const expected = {
       allowPresent: false
     }
-    const component = mount(<DateRange {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.present').length).toBe(0)
   })
 })

@@ -1,14 +1,29 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import Contact from './Contact'
 
 describe('The foreign business contact component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <Contact {...expected} />
+        </Provider>
+      )
+  })
+
   it('display nothing when "no" is clicked', () => {
     const expected = {
       name: 'foreign-business-contact',
       HasForeignContact: { value: 'No' }
     }
-    const component = mount(<Contact {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(0)
   })
 
@@ -17,7 +32,7 @@ describe('The foreign business contact component', () => {
       name: 'foreign-business-contact',
       HasForeignContact: { value: 'Yes' }
     }
-    const component = mount(<Contact {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(1)
   })
 
@@ -31,7 +46,7 @@ describe('The foreign business contact component', () => {
         return arr
       }
     }
-    const component = mount(<Contact {...expected} />)
+    const component = createComponent(expected)
     component
       .find('.branch .yes input')
       .at(0)
@@ -66,7 +81,7 @@ describe('The foreign business contact component', () => {
         updates++
       }
     }
-    const component = mount(<Contact {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(1)
     updates = 0
     component

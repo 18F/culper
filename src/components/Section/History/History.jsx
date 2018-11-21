@@ -756,6 +756,20 @@ export class HistorySections extends React.Component {
           required={true}
         />
 
+        <Branch
+          name="branch_school"
+          {...this.props.Education.HasAttended}
+          label={i18n.t('history.education.label.attendance')}
+          labelSize="h3"
+        />
+        <Show when={this.props.Education.HasAttended.value === 'No'}>
+          <Branch
+            name="branch_degree10"
+            {...this.props.Education.HasDegree10}
+            label={i18n.t('history.education.label.degree10')}
+            labelSize="h3"
+          />
+        </Show>
         <Show
           when={
             this.props.Education.HasAttended.value === 'Yes' ||

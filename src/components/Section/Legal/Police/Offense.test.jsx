@@ -1,14 +1,29 @@
 import React from 'react'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
 import Offense from './Offense'
 
 describe('The offense component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <Offense {...expected} />
+        </Provider>
+      )
+  })
+
   it('no error on empty', () => {
     const expected = {
       name: 'offense'
     }
-    
-    const component = mount(<Offense {...expected} />)
+
+    const component = createComponent(expected)
     expect(component.find('.offense-date').length).toEqual(1)
     expect(component.find('.offense-description').length).toEqual(1)
     expect(component.find('.offense-violence').length).toEqual(1)
@@ -33,7 +48,7 @@ describe('The offense component', () => {
       WasCited: { value: 'Yes' },
       WasCharged: { value: 'No' }
     }
-    const component = mount(<Offense {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.offense-explanation').length).toEqual(1)
     expect(component.find('.offense-courtaddress').length).toEqual(0)
     expect(component.find('.offense-chargetype').length).toEqual(0)
@@ -49,7 +64,7 @@ describe('The offense component', () => {
       WasCited: { value: 'Yes' },
       WasCharged: { value: 'Yes' }
     }
-    const component = mount(<Offense {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.offense-courtname').length).toEqual(1)
     expect(component.find('.offense-courtaddress').length).toEqual(1)
     expect(component.find('.offense-chargetype').length).toEqual(1)
@@ -70,7 +85,7 @@ describe('The offense component', () => {
         updates++
       }
     }
-    const component = mount(<Offense {...expected} />)
+    const component = createComponent(expected)
     component
       .find('.offense-date .day input')
       .simulate('change', { target: { name: 'day', value: '1' } })
@@ -139,7 +154,7 @@ describe('The offense component', () => {
         updates++
       }
     }
-    const component = mount(<Offense {...expected} />)
+    const component = createComponent(expected)
     component
       .find('.offense-date .day input')
       .simulate('change', { target: { name: 'day', value: '1' } })
@@ -203,7 +218,7 @@ describe('The offense component', () => {
         updates++
       }
     }
-    const component = mount(<Offense {...expected} />)
+    const component = createComponent(expected)
     component.find('.offense-charged .no input').simulate('change')
     component.find('.offense-explanation textarea').simulate('change')
     expect(updates).toBe(2)

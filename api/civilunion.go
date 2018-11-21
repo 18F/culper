@@ -7,6 +7,7 @@ type CivilUnion struct {
 	PayloadAddress                       Payload `json:"Address" sql:"-"`
 	PayloadAddressSeparated              Payload `json:"AddressSeparated" sql:"-"`
 	PayloadAddressSeparatedNotApplicable Payload `json:"AddressSeparatedNotApplicable" sql:"-"`
+	PayloadAlternateAddress              Payload `json:"AlternateAddress" sql:"-"`
 	PayloadBirthPlace                    Payload `json:"BirthPlace" sql:"-"`
 	PayloadBirthdate                     Payload `json:"Birthdate" sql:"-"`
 	PayloadCitizenship                   Payload `json:"Citizenship" sql:"-"`
@@ -27,6 +28,7 @@ type CivilUnion struct {
 	Address                       *Location            `json:"-"`
 	AddressSeparated              *Location            `json:"-"`
 	AddressSeparatedNotApplicable *NotApplicable       `json:"-"`
+	AlternateAddress              *PhysicalAddress     `json:"-"`
 	BirthPlace                    *Location            `json:"-"`
 	Birthdate                     *DateControl         `json:"-"`
 	Citizenship                   *Country             `json:"-"`
@@ -49,6 +51,7 @@ type CivilUnion struct {
 	AddressID                       int `json:"-"`
 	AddressSeparatedID              int `json:"-"`
 	AddressSeparatedNotApplicableID int `json:"-"`
+	AlternateAddressID              int `json:"-"`
 	BirthPlaceID                    int `json:"-"`
 	BirthdateID                     int `json:"-"`
 	CitizenshipID                   int `json:"-"`
@@ -90,6 +93,12 @@ func (entity *CivilUnion) Unmarshal(raw []byte) error {
 		return err
 	}
 	entity.AddressSeparatedNotApplicable = addressSeparatedNotApplicable.(*NotApplicable)
+
+	alternateAddress, err := entity.PayloadAlternateAddress.Entity()
+	if err != nil {
+		return err
+	}
+	entity.AlternateAddress = alternateAddress.(*PhysicalAddress)
 
 	birthPlace, err := entity.PayloadBirthPlace.Entity()
 	if err != nil {
@@ -194,6 +203,9 @@ func (entity *CivilUnion) Marshal() Payload {
 	}
 	if entity.AddressSeparatedNotApplicable != nil {
 		entity.PayloadAddressSeparatedNotApplicable = entity.AddressSeparatedNotApplicable.Marshal()
+	}
+	if entity.AlternateAddress != nil {
+		entity.PayloadAlternateAddress = entity.AlternateAddress.Marshal()
 	}
 	if entity.BirthPlace != nil {
 		entity.PayloadBirthPlace = entity.BirthPlace.Marshal()
@@ -368,6 +380,12 @@ func (entity *CivilUnion) Save(context DatabaseService, account int) (int, error
 	}
 	entity.AddressSeparatedNotApplicableID = addressSeparatedNotApplicableID
 
+	alternateAddressID, err := entity.AlternateAddress.Save(context, account)
+	if err != nil {
+		return alternateAddressID, err
+	}
+	entity.AlternateAddressID = alternateAddressID
+
 	birthPlaceID, err := entity.BirthPlace.Save(context, account)
 	if err != nil {
 		return birthPlaceID, err
@@ -492,6 +510,9 @@ func (entity *CivilUnion) Delete(context DatabaseService, account int) (int, err
 	if _, err := entity.AddressSeparatedNotApplicable.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
+	if _, err := entity.AlternateAddress.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
 	if _, err := entity.BirthPlace.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
@@ -571,6 +592,11 @@ func (entity *CivilUnion) Get(context DatabaseService, account int) (int, error)
 	}
 	if entity.AddressSeparatedNotApplicableID != 0 {
 		if _, err := entity.AddressSeparatedNotApplicable.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+	if entity.AlternateAddressID != 0 {
+		if _, err := entity.AlternateAddress.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
@@ -672,16 +698,25 @@ func (entity *CivilUnion) Find(context DatabaseService) error {
 		}
 		entity.Address.ID = previous.AddressID
 		entity.AddressID = previous.AddressID
+
 		if entity.AddressSeparated == nil {
 			entity.AddressSeparated = &Location{}
 		}
 		entity.AddressSeparated.ID = previous.AddressSeparatedID
 		entity.AddressSeparatedID = previous.AddressSeparatedID
+
 		if entity.AddressSeparatedNotApplicable == nil {
 			entity.AddressSeparatedNotApplicable = &NotApplicable{}
 		}
 		entity.AddressSeparatedNotApplicable.ID = previous.AddressSeparatedNotApplicableID
 		entity.AddressSeparatedNotApplicableID = previous.AddressSeparatedNotApplicableID
+
+		if entity.AlternateAddress == nil {
+			entity.AlternateAddress = &PhysicalAddress{}
+		}
+		entity.AlternateAddress.ID = previous.AlternateAddressID
+		entity.AlternateAddressID = previous.AlternateAddressID
+
 		if entity.BirthPlace == nil {
 			entity.BirthPlace = &Location{}
 		}

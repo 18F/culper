@@ -1,13 +1,28 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import Sentence from './Sentence'
 
 describe('The Sentence  component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <Sentence {...expected} />
+        </Provider>
+      )
+  })
+
   it('no error on empty', () => {
     const expected = {
       name: 'sentence'
     }
-    const component = mount(<Sentence {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.description').length).toEqual(1)
     expect(component.find('.exceeds-year').length).toEqual(1)
     expect(component.find('.incarcerated').length).toEqual(1)
@@ -23,7 +38,7 @@ describe('The Sentence  component', () => {
         updates++
       }
     }
-    const component = mount(<Sentence {...expected} />)
+    const component = createComponent(expected)
 
     let selectors = [
       '.description textarea',

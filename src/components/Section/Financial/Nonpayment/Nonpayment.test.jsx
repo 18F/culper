@@ -1,13 +1,28 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import Nonpayment from './Nonpayment'
 
 describe('The nonpayment component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <Nonpayment {...expected} />
+        </Provider>
+      )
+  })
+
   it('no error on empty', () => {
     const expected = {
       name: 'nonpayment'
     }
-    const component = mount(<Nonpayment {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.branch').length).toBeGreaterThan(0)
     expect(component.find('.accordion').length).toBe(0)
   })
@@ -18,7 +33,7 @@ describe('The nonpayment component', () => {
       HasNonpayment: { value: 'Yes' },
       List: { branch: {}, items: [] }
     }
-    const component = mount(<Nonpayment {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(1)
   })
 
@@ -28,7 +43,7 @@ describe('The nonpayment component', () => {
       HasNonpayment: { value: 'No' },
       List: { branch: {}, items: [] }
     }
-    const component = mount(<Nonpayment {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(0)
   })
 
@@ -42,7 +57,7 @@ describe('The nonpayment component', () => {
         updates++
       }
     }
-    const component = mount(<Nonpayment {...expected} />)
+    const component = createComponent(expected)
     component
       .find('.branch .yes input')
       .first()
