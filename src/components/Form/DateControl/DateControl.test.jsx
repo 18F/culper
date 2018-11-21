@@ -1,6 +1,6 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import { DateControl, datePart } from './DateControl'
+import { DateControl } from './DateControl'
 
 describe('The date component', () => {
   const children = 4
@@ -60,7 +60,9 @@ describe('The date component', () => {
     const expected = {
       name: 'input-success',
       label: 'DateControl input success',
-      value: '1-28-2016'
+      month: '1',
+      day: '28',
+      year: '2016'
     }
     const component = mount(<DateControl {...expected} />)
 
@@ -91,7 +93,9 @@ describe('The date component', () => {
     const expected = {
       name: 'input-type-text',
       label: 'DateControl input label',
-      value: '01-28-2016',
+      month: '1',
+      day: '28',
+      year: '2016',
       error: false,
       focus: false,
       valid: false
@@ -105,30 +109,14 @@ describe('The date component', () => {
     expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
 
-  it('renders with invalid date', () => {
-    const expected = {
-      name: 'input-type-text',
-      label: 'DateControl input label',
-      value: '1-42-2016',
-      error: false,
-      focus: false,
-      valid: false
-    }
-    const component = mount(<DateControl {...expected} />)
-    expect(component.find('label').length).toEqual(children)
-    expect(component.find('.day input').length).toEqual(1)
-    expect(component.find('.month input').nodes[0].value).toEqual('')
-    expect(component.find('.day input').nodes[0].value).toEqual('')
-    expect(component.find('.year input').nodes[0].value).toEqual('')
-    expect(component.find('.usa-input-error-label').length).toEqual(0)
-  })
-
   it('renders with date exceeding max', () => {
     let errors = 0
     const expected = {
       name: 'input-type-text',
       label: 'DateControl input label',
-      value: '1-1-2016',
+      month: '1',
+      day: '1',
+      year: '2016',
       maxDate: new Date('1/1/2000'),
       error: false,
       focus: false,
@@ -149,7 +137,6 @@ describe('The date component', () => {
     const expected = {
       name: 'input-type-text',
       label: 'DateControl input label',
-      value: '',
       focus: false,
       onValidate: (event, status, error) => {},
       receiveProps: true,
@@ -173,7 +160,9 @@ describe('The date component', () => {
     const expected = {
       name: 'input-type-text',
       label: 'DateControl input label',
-      value: '1-1-2016',
+      month: '1',
+      day: '1',
+      year: '2016',
       maxDate: new Date('1/1/2000'),
       error: false,
       focus: false,
@@ -188,7 +177,7 @@ describe('The date component', () => {
     component.find('.year input').simulate('change')
     component.find('.year input').simulate('blur')
     expect(errors).toBeGreaterThan(2)
-    component.setProps({ value: '1-1-2009' })
+    component.setProps({ month: '1', day: '1', year: '2009' })
     expect(errors).toBeGreaterThan(2)
   })
 
@@ -209,30 +198,14 @@ describe('The date component', () => {
     expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
 
-  it('renders with date as random input', () => {
-    const expected = {
-      name: 'input-type-text',
-      label: 'DateControl input label',
-      value: 'the quick brown fox...',
-      error: false,
-      focus: false,
-      valid: false
-    }
-    const component = mount(<DateControl {...expected} />)
-    expect(component.find('label').length).toEqual(children)
-    expect(component.find('.day input').length).toEqual(1)
-    expect(component.find('.month input').nodes[0].value).toEqual('')
-    expect(component.find('.day input').nodes[0].value).toEqual('')
-    expect(component.find('.year input').nodes[0].value).toEqual('')
-    expect(component.find('.usa-input-error-label').length).toEqual(0)
-  })
-
   it('updates with estimated', () => {
     let updates = 0
     const expected = {
       name: 'input-type-text',
       label: 'DateControl input label',
-      value: '1-1-2010',
+      month: '1',
+      day: '1',
+      year: '2010',
       receiveProps: true,
       error: false,
       focus: false,
@@ -244,70 +217,6 @@ describe('The date component', () => {
     const component = mount(<DateControl {...expected} />)
     component.find('input[type="checkbox"]').simulate('change')
     expect(updates).toBe(1)
-  })
-
-  it('parses date part', () => {
-    const tests = [
-      {
-        part: 'm',
-        date: '1/1/2010',
-        expected: '1'
-      },
-      {
-        part: 'mm',
-        date: '1/1/2010',
-        expected: '1'
-      },
-      {
-        part: 'month',
-        date: '1/1/2010',
-        expected: '1'
-      },
-      {
-        part: 'd',
-        date: '1/1/2010',
-        expected: 1
-      },
-      {
-        part: 'dd',
-        date: '1/1/2010',
-        expected: 1
-      },
-      {
-        part: 'day',
-        date: '1/1/2010',
-        expected: 1
-      },
-      {
-        part: 'y',
-        date: '1/1/2010',
-        expected: 2010
-      },
-      {
-        part: 'yy',
-        date: '1/1/2010',
-        expected: 2010
-      },
-      {
-        part: 'year',
-        date: '1/1/2010',
-        expected: 2010
-      },
-      {
-        part: 'd',
-        date: null,
-        expected: ''
-      },
-      {
-        part: 'foo',
-        date: '1/1/2010',
-        expected: ''
-      }
-    ]
-
-    tests.forEach(test => {
-      expect(datePart(test.part, test.date)).toEqual(test.expected)
-    })
   })
 
   it('does not loops when invalid date', () => {
