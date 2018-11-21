@@ -689,7 +689,7 @@ export default class Relative extends ValidationElement {
             belongingTo: 'AlternateAddress',
             country: this.props.Address.country,
             forceAPO: true,
-            militaryAddressLabel: i18n.t('address.militaryAddress.other'),
+            militaryAddressLabel: i18n.t('address.militaryAddress.relative'),
             onUpdate: this.update
           })}
         </Show>
