@@ -19,7 +19,6 @@ describe('The employment section', () => {
   })
 
   it('can trigger updates', () => {
-    let updates = 0
     const expected = {
       List: {
         branch: {},
@@ -44,11 +43,9 @@ describe('The employment section', () => {
           }
         ]
       },
-      onUpdate: () => {
-        updates++
-      }
+      onUpdate: jest.fn()
     }
     const component = createComponent(expected)
-    expect(updates).toBe(1)
+    expect(expected.onUpdate.mock.calls.length).toBe(1)
   })
 })
