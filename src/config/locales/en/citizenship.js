@@ -8,9 +8,7 @@ export const citizenship = {
     para: 'Take a guided tour through the section'
   },
   review: {
-    para: 'View all the sections associated with citizenship at once',
-    comments:
-      'Add a comment to clarify any of your responses in the citizenship section'
+    para: 'View all the sections associated with citizenship at once'
   },
   destination: {
     intro: 'Citizenship intro',

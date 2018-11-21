@@ -1,13 +1,25 @@
 import React from 'react'
 import configureMockStore from 'redux-mock-store'
-import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 import OtherNames from './OtherNames'
 import { mount } from 'enzyme'
 
 describe('The other names section', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <OtherNames {...expected} />
+        </Provider>
+      )
+  })
+
   it('has no names initially', () => {
-    const component = mount(<OtherNames />)
+    const component = createComponent()
     expect(component.find('.first input').length).toEqual(0)
   })
 
@@ -18,7 +30,7 @@ describe('The other names section', () => {
         items: [{ Item: {} }]
       }
     }
-    const component = mount(<OtherNames {...props} />)
+    const component = createComponent(props)
     expect(component.find('.details').length).toBeGreaterThan(0)
   })
 
@@ -26,7 +38,7 @@ describe('The other names section', () => {
     const props = {
       HasOtherNames: { value: 'No' }
     }
-    const component = mount(<OtherNames {...props} />)
+    const component = createComponent(props)
     expect(component.find('.details').length).toBe(0)
   })
 
@@ -37,7 +49,7 @@ describe('The other names section', () => {
         items: [{ Item: {} }]
       }
     }
-    const component = mount(<OtherNames {...props} />)
+    const component = createComponent(props)
     component.find('.addendum .branch .yes').simulate('click')
   })
 
@@ -48,7 +60,7 @@ describe('The other names section', () => {
         items: [{ Item: {} }]
       }
     }
-    const component = mount(<OtherNames {...props} />)
+    const component = createComponent(props)
     expect(component.find('.first input').length).toEqual(1)
   })
 
@@ -56,7 +68,7 @@ describe('The other names section', () => {
     const props = {
       HasOtherNames: { value: 'No' }
     }
-    const component = mount(<OtherNames {...props} />)
+    const component = createComponent(props)
     expect(component.find('.first input').length).toEqual(0)
   })
 
@@ -67,7 +79,7 @@ describe('The other names section', () => {
         updates++
       }
     }
-    const component = mount(<OtherNames {...props} />)
+    const component = createComponent(props)
     component.find('.branch .yes input').simulate('change')
     expect(updates).toEqual(1)
   })

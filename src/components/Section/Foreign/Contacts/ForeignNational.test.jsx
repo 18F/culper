@@ -1,41 +1,62 @@
 import React from 'react'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
 import ForeignNational from './ForeignNational'
 
+const renderMock = jest.fn()
+
 describe('The foreign national component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <ForeignNational {...expected} />
+        </Provider>
+      )
+  })
+
   it('display explanation if we do not know the name', () => {
     const expected = {
+      render: renderMock,
       name: 'foreign-national',
       NameNotApplicable: { applicable: false }
     }
-    const component = mount(<ForeignNational {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.name-explanation').length).toBe(1)
   })
 
   it('display explanation if we have methods of "other"', () => {
     const expected = {
+      render: renderMock,
       name: 'foreign-national',
       Methods: { values: ['Other'] }
     }
-    const component = mount(<ForeignNational {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.methods-explanation').length).toBe(1)
   })
 
   it('display explanation if we have frequency of "other"', () => {
     const expected = {
+      render: renderMock,
       name: 'foreign-national',
       Frequency: { value: 'Other' }
     }
-    const component = mount(<ForeignNational {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.frequency-explanation').length).toBe(1)
   })
 
   it('display explanation if we have relation of "other"', () => {
     const expected = {
+      render: renderMock,
       name: 'foreign-national',
       Relationship: { values: ['Other'] }
     }
-    const component = mount(<ForeignNational {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.relationship-explanation').length).toBe(1)
     component.find('.relationship-obligation input').simulate('change')
     expect(component.find('.relationship-explanation').length).toBe(1)
@@ -43,25 +64,28 @@ describe('The foreign national component', () => {
 
   it('display explanation if we have relation of "obligation"', () => {
     const expected = {
+      render: renderMock,
       name: 'foreign-national',
       Relationship: { values: ['Obligation'] }
     }
-    const component = mount(<ForeignNational {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.relationship-explanation').length).toBe(1)
   })
 
   it('display affiliations if said to have some', () => {
     const expected = {
+      render: renderMock,
       name: 'foreign-national',
       HasAffiliations: { value: 'Yes' }
     }
-    const component = mount(<ForeignNational {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.affiliations').length).toBe(1)
   })
 
   it('trigger updates', () => {
     let updates = 0
     const expected = {
+      render: renderMock,
       name: 'foreign-national',
       NameNotApplicable: { applicable: false },
       Methods: { values: ['Other'] },
@@ -75,7 +99,7 @@ describe('The foreign national component', () => {
         updates++
       }
     }
-    const component = mount(<ForeignNational {...expected} />)
+    const component = createComponent(expected)
     component.find('.na-name .name .first input').simulate('change')
     component.find('.na-name.button input').simulate('change')
     component.find('.name-explanation textarea').simulate('change')

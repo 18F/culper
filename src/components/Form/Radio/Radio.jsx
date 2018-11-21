@@ -60,17 +60,25 @@ export default class Radio extends ValidationElement {
    * Update the value of the radio button
    */
   update(clicked = false) {
+    const { name, value, ignoreDeselect } = this.props;
+    const { checked } = this.state;
+
     if (this.skip(clicked)) {
       return
     }
+    if (ignoreDeselect && checked) {
+      return
+    }
 
-    const checked = !this.state.checked
-    const value = checked ? this.props.value : ''
-    this.setState({ checked: checked, value: value }, () => {
+    const updatedValue = !checked ? value : ''
+    this.setState((prevState) => ({
+      checked: !prevState.checked,
+      value: updatedValue
+    }), () => {
       this.props.onUpdate({
-        name: this.props.name,
-        value: value,
-        checked: checked
+        name,
+        value: updatedValue,
+        checked
       })
 
       // Toggling the focus of the element serves two purposes

@@ -1,5 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import { connect } from 'react-redux'
 import {
   Branch,
   Field,
@@ -20,9 +21,10 @@ import {
   BranchCollection,
   AccordionItem
 } from '../../../Form'
+import AlternateAddress from '../../../Form/Location/AlternateAddress'
 import { countryString } from '../../../../validators/location'
 
-export default class CivilUnion extends ValidationElement {
+class CivilUnion extends ValidationElement {
   constructor(props) {
     super(props)
 
@@ -51,24 +53,7 @@ export default class CivilUnion extends ValidationElement {
 
   update(queue) {
     this.props.onUpdate({
-      Name: this.props.Name,
-      Birthdate: this.props.Birthdate,
-      BirthPlace: this.props.BirthPlace,
-      ForeignBornDocument: this.props.ForeignBornDocument,
-      SSN: this.props.SSN,
-      OtherNames: this.props.OtherNames,
-      Citizenship: this.props.Citizenship,
-      EnteredCivilUnion: this.props.EnteredCivilUnion,
-      Location: this.props.Location,
-      Address: this.props.Address,
-      Telephone: this.props.Telephone,
-      Email: this.props.Email,
-      Separated: this.props.Separated,
-      DateSeparated: this.props.DateSeparated,
-      AddressSeparated: this.props.AddressSeparated,
-      AddressSeparatedNotApplicable: this.props.AddressSeparatedNotApplicable,
-      Divorced: this.props.Divorced,
-      UseCurrentAddress: this.props.UseCurrentAddress,
+      ...this.props,
       ...queue
     })
   }
@@ -180,8 +165,10 @@ export default class CivilUnion extends ValidationElement {
   }
 
   updateUseCurrentAddress(values) {
+    const nextValues = { ...values, applicable: !values.applicable }
+
     this.update({
-      UseCurrentAddress: values,
+      UseCurrentAddress: nextValues,
       Address: !values.applicable ? { ...this.props.currentAddress } : {}
     })
   }
@@ -219,8 +206,7 @@ export default class CivilUnion extends ValidationElement {
      */
 
     const { country } = this.props.BirthPlace
-    const showForeignBornDocumentation =
-      country && countryString(country) !== 'United States'
+    const showForeignBornDocumentation = country && countryString(country) !== 'United States'
 
     return (
       <div className="civil-union">
@@ -420,34 +406,19 @@ export default class CivilUnion extends ValidationElement {
             optional
             help="relationships.civilUnion.help.address"
             scrollIntoView={this.props.scrollIntoView}
-            adjustFor="address">
-            <Show when={this.props.currentAddress}>
-              <NotApplicable
-                name="UseCurrentAddress"
-                {...this.props.UseCurrentAddress}
-                className="current-address"
-                label={i18n.t(
-                  'relationships.civilUnion.useCurrentAddress.label'
-                )}
-                or={i18n.m('relationships.civilUnion.useCurrentAddress.or')}
-                onUpdate={this.updateUseCurrentAddress}
-                onError={this.props.onError}>
-                <Location
-                  name="Address"
-                  {...this.props.Address}
-                  layout={Location.ADDRESS}
-                  geocode
-                  addressBooks={this.props.addressBooks}
-                  addressBook="Relative"
-                  showPostOffice
-                  dispatch={this.props.dispatch}
-                  onUpdate={this.updateAddress}
-                  onError={this.props.onError}
-                  required={this.props.required}
-                />
-              </NotApplicable>
-            </Show>
-            <Show when={!this.props.currentAddress}>
+            adjustFor="address"
+          >
+            <NotApplicable
+              name="UseCurrentAddress"
+              applicable={!this.props.UseCurrentAddress.applicable}
+              className="current-address"
+              label={i18n.t(
+                'relationships.civilUnion.useCurrentAddress.label'
+              )}
+              or={i18n.m('relationships.civilUnion.useCurrentAddress.or')}
+              onUpdate={this.updateUseCurrentAddress}
+              onError={this.props.onError}
+            >
               <Location
                 name="Address"
                 {...this.props.Address}
@@ -460,6 +431,16 @@ export default class CivilUnion extends ValidationElement {
                 onUpdate={this.updateAddress}
                 onError={this.props.onError}
                 required={this.props.required}
+              />
+            </NotApplicable>
+            <Show when={!this.props.UseCurrentAddress.applicable}>
+              <AlternateAddress
+                address={this.props.AlternateAddress}
+                addressBook="Relative"
+                belongingTo="AlternateAddress"
+                country={this.props.Address.country}
+                militaryAddressLabel={i18n.t('address.militaryAddress.spouse')}
+                onUpdate={this.update}
               />
             </Show>
           </Field>
@@ -598,3 +579,5 @@ CivilUnion.defaultProps = {
   },
   defaultState: true
 }
+
+export default CivilUnion

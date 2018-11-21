@@ -45,18 +45,6 @@ ul {
   margin-top: 0;
 }
 
-/* design needs a touch more line height than standards */
-a {
-  text-decoration: underline;
-  text-decoration-color: $eapp-blue;
-  text-decoration-style: dashed;
-  text-underline-position: under;
-}
-
-a:focus {
-  box-shadow: none;
-}
-
 /* set up structure to go from a table-style to floated block style */
 .eapp-structure-wrap {
   display: table;

@@ -1419,91 +1419,6 @@ exports[`The section component renders citizenship.review 1`] = `
                       </div>
                     </div>
                   </div>
-                  <hr
-                    className="section-divider"
-                  />
-                  <div
-                    aria-label="Add a comment to clarify any of your responses in the citizenship section"
-                    className="field   section-comment"
-                    data-uuid="field-MOCK-GUID"
-                  >
-                    <a
-                      aria-hidden="true"
-                      className="anchor"
-                      id="field-MOCK-GUID"
-                      name="field-MOCK-GUID"
-                    />
-                    <h4
-                      className="title h4"
-                    >
-                      Add a comment to clarify any of your responses in the citizenship section
-                      <span
-                        className="optional"
-                      >
-                        (Optional)
-                      </span>
-                    </h4>
-                    <span
-                      className="icon"
-                    />
-                    <div
-                      className="table expand"
-                    >
-                      <span
-                        aria-live="polite"
-                        className="messages help-messages"
-                      />
-                    </div>
-                    <div
-                      className="table expand"
-                    >
-                      <span
-                        aria-live="polite"
-                        className="messages error-messages"
-                        role="alert"
-                      />
-                    </div>
-                    <div
-                      className="table"
-                    >
-                      <span
-                        className="content"
-                      >
-                        <span
-                          className="component"
-                        >
-                          <div
-                            className="hide-for-print "
-                          >
-                            <input
-                              aria-describedby="Comments-error"
-                              aria-label={null}
-                              autoCapitalize={true}
-                              autoComplete={true}
-                              autoCorrect={true}
-                              className=""
-                              id="Comments-MOCK-GUID"
-                              maxLength={255}
-                              name="Comments"
-                              onBlur={[Function]}
-                              onChange={[Function]}
-                              onFocus={[Function]}
-                              onKeyDown={[Function]}
-                              pattern=".*"
-                              spellCheck={true}
-                              type="text"
-                              value=""
-                            />
-                            <div
-                              className="text-print print-only"
-                            >
-                              
-                            </div>
-                          </div>
-                        </span>
-                      </span>
-                    </div>
-                  </div>
                 </div>
                 <div
                   className="bottom-btns"
@@ -4799,91 +4714,6 @@ exports[`The section component renders financial.review 1`] = `
                           </span>
                         </span>
                       </div>
-                    </div>
-                  </div>
-                  <hr
-                    className="section-divider"
-                  />
-                  <div
-                    aria-label="Add a comment to clarify any of your responses in the financial record section"
-                    className="field   section-comment"
-                    data-uuid="field-MOCK-GUID"
-                  >
-                    <a
-                      aria-hidden="true"
-                      className="anchor"
-                      id="field-MOCK-GUID"
-                      name="field-MOCK-GUID"
-                    />
-                    <h4
-                      className="title h4"
-                    >
-                      Add a comment to clarify any of your responses in the financial record section
-                      <span
-                        className="optional"
-                      >
-                        (Optional)
-                      </span>
-                    </h4>
-                    <span
-                      className="icon"
-                    />
-                    <div
-                      className="table expand"
-                    >
-                      <span
-                        aria-live="polite"
-                        className="messages help-messages"
-                      />
-                    </div>
-                    <div
-                      className="table expand"
-                    >
-                      <span
-                        aria-live="polite"
-                        className="messages error-messages"
-                        role="alert"
-                      />
-                    </div>
-                    <div
-                      className="table"
-                    >
-                      <span
-                        className="content"
-                      >
-                        <span
-                          className="component"
-                        >
-                          <div
-                            className="hide-for-print "
-                          >
-                            <input
-                              aria-describedby="Comments-error"
-                              aria-label={null}
-                              autoCapitalize={true}
-                              autoComplete={true}
-                              autoCorrect={true}
-                              className=""
-                              id="Comments-MOCK-GUID"
-                              maxLength={255}
-                              name="Comments"
-                              onBlur={[Function]}
-                              onChange={[Function]}
-                              onFocus={[Function]}
-                              onKeyDown={[Function]}
-                              pattern=".*"
-                              spellCheck={true}
-                              type="text"
-                              value=""
-                            />
-                            <div
-                              className="text-print print-only"
-                            >
-                              
-                            </div>
-                          </div>
-                        </span>
-                      </span>
                     </div>
                   </div>
                 </div>
@@ -8763,91 +8593,6 @@ exports[`The section component renders foreign.review 1`] = `
                       </div>
                     </div>
                   </div>
-                  <hr
-                    className="section-divider"
-                  />
-                  <div
-                    aria-label="Add a comment to clarify any of your responses in the foreign associations section"
-                    className="field   section-comment"
-                    data-uuid="field-MOCK-GUID"
-                  >
-                    <a
-                      aria-hidden="true"
-                      className="anchor"
-                      id="field-MOCK-GUID"
-                      name="field-MOCK-GUID"
-                    />
-                    <h4
-                      className="title h4"
-                    >
-                      Add a comment to clarify any of your responses in the foreign associations section
-                      <span
-                        className="optional"
-                      >
-                        (Optional)
-                      </span>
-                    </h4>
-                    <span
-                      className="icon"
-                    />
-                    <div
-                      className="table expand"
-                    >
-                      <span
-                        aria-live="polite"
-                        className="messages help-messages"
-                      />
-                    </div>
-                    <div
-                      className="table expand"
-                    >
-                      <span
-                        aria-live="polite"
-                        className="messages error-messages"
-                        role="alert"
-                      />
-                    </div>
-                    <div
-                      className="table"
-                    >
-                      <span
-                        className="content"
-                      >
-                        <span
-                          className="component"
-                        >
-                          <div
-                            className="hide-for-print "
-                          >
-                            <input
-                              aria-describedby="Comments-error"
-                              aria-label={null}
-                              autoCapitalize={true}
-                              autoComplete={true}
-                              autoCorrect={true}
-                              className=""
-                              id="Comments-MOCK-GUID"
-                              maxLength={255}
-                              name="Comments"
-                              onBlur={[Function]}
-                              onChange={[Function]}
-                              onFocus={[Function]}
-                              onKeyDown={[Function]}
-                              pattern=".*"
-                              spellCheck={true}
-                              type="text"
-                              value=""
-                            />
-                            <div
-                              className="text-print print-only"
-                            >
-                              
-                            </div>
-                          </div>
-                        </span>
-                      </span>
-                    </div>
-                  </div>
                 </div>
                 <div
                   className="bottom-btns"
@@ -11966,91 +11711,6 @@ exports[`The section component renders history.review 1`] = `
                       </div>
                     </div>
                   </div>
-                  <hr
-                    className="section-divider"
-                  />
-                  <div
-                    aria-label="Add a comment to clarify any of your responses in the your history section"
-                    className="field   section-comment"
-                    data-uuid="field-MOCK-GUID"
-                  >
-                    <a
-                      aria-hidden="true"
-                      className="anchor"
-                      id="field-MOCK-GUID"
-                      name="field-MOCK-GUID"
-                    />
-                    <h4
-                      className="title h4"
-                    >
-                      Add a comment to clarify any of your responses in the your history section
-                      <span
-                        className="optional"
-                      >
-                        (Optional)
-                      </span>
-                    </h4>
-                    <span
-                      className="icon"
-                    />
-                    <div
-                      className="table expand"
-                    >
-                      <span
-                        aria-live="polite"
-                        className="messages help-messages"
-                      />
-                    </div>
-                    <div
-                      className="table expand"
-                    >
-                      <span
-                        aria-live="polite"
-                        className="messages error-messages"
-                        role="alert"
-                      />
-                    </div>
-                    <div
-                      className="table"
-                    >
-                      <span
-                        className="content"
-                      >
-                        <span
-                          className="component"
-                        >
-                          <div
-                            className="hide-for-print "
-                          >
-                            <input
-                              aria-describedby="Comments-error"
-                              aria-label={null}
-                              autoCapitalize={true}
-                              autoComplete={true}
-                              autoCorrect={true}
-                              className=""
-                              id="Comments-MOCK-GUID"
-                              maxLength={255}
-                              name="Comments"
-                              onBlur={[Function]}
-                              onChange={[Function]}
-                              onFocus={[Function]}
-                              onKeyDown={[Function]}
-                              pattern=".*"
-                              spellCheck={true}
-                              type="text"
-                              value=""
-                            />
-                            <div
-                              className="text-print print-only"
-                            >
-                              
-                            </div>
-                          </div>
-                        </span>
-                      </span>
-                    </div>
-                  </div>
                 </div>
                 <div
                   className="bottom-btns"
@@ -12267,7 +11927,6 @@ exports[`The section component renders identification.birthdate 1`] = `
                                       onFocus={[Function]}
                                       onKeyDown={[Function]}
                                       pattern="^(\\\\s*|\\\\d+)$"
-                                      placeholder="##"
                                       spellCheck={true}
                                       type="text"
                                       value=""
@@ -12307,7 +11966,6 @@ exports[`The section component renders identification.birthdate 1`] = `
                                       onFocus={[Function]}
                                       onKeyDown={[Function]}
                                       pattern="^(\\\\s*|\\\\d+)$"
-                                      placeholder="##"
                                       spellCheck={true}
                                       type="text"
                                       value=""
@@ -12347,7 +12005,6 @@ exports[`The section component renders identification.birthdate 1`] = `
                                       onFocus={[Function]}
                                       onKeyDown={[Function]}
                                       pattern="^(\\\\s*|\\\\d+)$"
-                                      placeholder="####"
                                       spellCheck={true}
                                       type="text"
                                       value=""
@@ -13011,7 +12668,6 @@ exports[`The section component renders identification.contacts 1`] = `
                                 onFocus={[Function]}
                                 onKeyDown={[Function]}
                                 pattern={/\\^\\(\\[A-z0-9_\\.-\\]\\+\\)@\\(\\[A-z0-9\\.-\\]\\+\\)\\\\\\.\\+\\(\\[A-z\\.\\]\\{2,63\\}\\)\\$/}
-                                placeholder="Enter an email address"
                                 spellCheck={false}
                                 type="text"
                                 value=""
@@ -13089,7 +12745,6 @@ exports[`The section component renders identification.contacts 1`] = `
                                 onFocus={[Function]}
                                 onKeyDown={[Function]}
                                 pattern={/\\^\\(\\[A-z0-9_\\.-\\]\\+\\)@\\(\\[A-z0-9\\.-\\]\\+\\)\\\\\\.\\+\\(\\[A-z\\.\\]\\{2,63\\}\\)\\$/}
-                                placeholder="Enter an email address"
                                 spellCheck={false}
                                 type="text"
                                 value=""
@@ -14979,7 +14634,6 @@ exports[`The section component renders identification.physical 1`] = `
                                     onFocus={[Function]}
                                     onKeyDown={[Function]}
                                     pattern="^(\\\\s*|\\\\d+)$"
-                                    placeholder="#"
                                     spellCheck={true}
                                     type="text"
                                     value=""
@@ -15019,7 +14673,6 @@ exports[`The section component renders identification.physical 1`] = `
                                     onFocus={[Function]}
                                     onKeyDown={[Function]}
                                     pattern="^(\\\\s*|\\\\d+)$"
-                                    placeholder="##"
                                     spellCheck={true}
                                     type="text"
                                     value=""
@@ -15136,7 +14789,6 @@ exports[`The section component renders identification.physical 1`] = `
                                     onFocus={[Function]}
                                     onKeyDown={[Function]}
                                     pattern="^(\\\\s*|\\\\d+)$"
-                                    placeholder="###"
                                     spellCheck={true}
                                     type="text"
                                     value=""
@@ -17976,7 +17628,6 @@ exports[`The section component renders identification.review 1`] = `
                                 onFocus={[Function]}
                                 onKeyDown={[Function]}
                                 pattern={/\\^\\(\\[A-z0-9_\\.-\\]\\+\\)@\\(\\[A-z0-9\\.-\\]\\+\\)\\\\\\.\\+\\(\\[A-z\\.\\]\\{2,63\\}\\)\\$/}
-                                placeholder="Enter an email address"
                                 spellCheck={false}
                                 type="text"
                                 value=""
@@ -18054,7 +17705,6 @@ exports[`The section component renders identification.review 1`] = `
                                 onFocus={[Function]}
                                 onKeyDown={[Function]}
                                 pattern={/\\^\\(\\[A-z0-9_\\.-\\]\\+\\)@\\(\\[A-z0-9\\.-\\]\\+\\)\\\\\\.\\+\\(\\[A-z\\.\\]\\{2,63\\}\\)\\$/}
-                                placeholder="Enter an email address"
                                 spellCheck={false}
                                 type="text"
                                 value=""
@@ -18367,7 +18017,6 @@ exports[`The section component renders identification.review 1`] = `
                                       onFocus={[Function]}
                                       onKeyDown={[Function]}
                                       pattern="^(\\\\s*|\\\\d+)$"
-                                      placeholder="##"
                                       spellCheck={true}
                                       type="text"
                                       value=""
@@ -18407,7 +18056,6 @@ exports[`The section component renders identification.review 1`] = `
                                       onFocus={[Function]}
                                       onKeyDown={[Function]}
                                       pattern="^(\\\\s*|\\\\d+)$"
-                                      placeholder="##"
                                       spellCheck={true}
                                       type="text"
                                       value=""
@@ -18447,7 +18095,6 @@ exports[`The section component renders identification.review 1`] = `
                                       onFocus={[Function]}
                                       onKeyDown={[Function]}
                                       pattern="^(\\\\s*|\\\\d+)$"
-                                      placeholder="####"
                                       spellCheck={true}
                                       type="text"
                                       value=""
@@ -18868,7 +18515,6 @@ exports[`The section component renders identification.review 1`] = `
                                   onKeyDown={[Function]}
                                   onPaste={[Function]}
                                   pattern="^[0-9]{3}$"
-                                  placeholder="###"
                                   spellCheck={true}
                                   type="text"
                                   value=""
@@ -18901,7 +18547,6 @@ exports[`The section component renders identification.review 1`] = `
                                   onKeyDown={[Function]}
                                   onPaste={[Function]}
                                   pattern="^[0-9]{2}$"
-                                  placeholder="##"
                                   spellCheck={true}
                                   type="text"
                                   value=""
@@ -18934,7 +18579,6 @@ exports[`The section component renders identification.review 1`] = `
                                   onKeyDown={[Function]}
                                   onPaste={[Function]}
                                   pattern="^[0-9]{4}$"
-                                  placeholder="####"
                                   spellCheck={true}
                                   type="text"
                                   value=""
@@ -19158,7 +18802,6 @@ exports[`The section component renders identification.review 1`] = `
                                     onFocus={[Function]}
                                     onKeyDown={[Function]}
                                     pattern="^(\\\\s*|\\\\d+)$"
-                                    placeholder="#"
                                     spellCheck={true}
                                     type="text"
                                     value=""
@@ -19198,7 +18841,6 @@ exports[`The section component renders identification.review 1`] = `
                                     onFocus={[Function]}
                                     onKeyDown={[Function]}
                                     pattern="^(\\\\s*|\\\\d+)$"
-                                    placeholder="##"
                                     spellCheck={true}
                                     type="text"
                                     value=""
@@ -19337,7 +18979,6 @@ exports[`The section component renders identification.review 1`] = `
                                     onFocus={[Function]}
                                     onKeyDown={[Function]}
                                     pattern="^(\\\\s*|\\\\d+)$"
-                                    placeholder="###"
                                     spellCheck={true}
                                     type="text"
                                     value=""
@@ -20769,91 +20410,6 @@ exports[`The section component renders identification.review 1`] = `
                       </div>
                     </div>
                   </div>
-                  <hr
-                    className="section-divider"
-                  />
-                  <div
-                    aria-label="Add a comment to clarify any of your responses in the information about you section"
-                    className="field   section-comment"
-                    data-uuid="field-MOCK-GUID"
-                  >
-                    <a
-                      aria-hidden="true"
-                      className="anchor"
-                      id="field-MOCK-GUID"
-                      name="field-MOCK-GUID"
-                    />
-                    <h4
-                      className="title h4"
-                    >
-                      Add a comment to clarify any of your responses in the information about you section
-                      <span
-                        className="optional"
-                      >
-                        (Optional)
-                      </span>
-                    </h4>
-                    <span
-                      className="icon"
-                    />
-                    <div
-                      className="table expand"
-                    >
-                      <span
-                        aria-live="polite"
-                        className="messages help-messages"
-                      />
-                    </div>
-                    <div
-                      className="table expand"
-                    >
-                      <span
-                        aria-live="polite"
-                        className="messages error-messages"
-                        role="alert"
-                      />
-                    </div>
-                    <div
-                      className="table"
-                    >
-                      <span
-                        className="content"
-                      >
-                        <span
-                          className="component"
-                        >
-                          <div
-                            className="hide-for-print "
-                          >
-                            <input
-                              aria-describedby="Comments-error"
-                              aria-label={null}
-                              autoCapitalize={true}
-                              autoComplete={true}
-                              autoCorrect={true}
-                              className=""
-                              id="Comments-MOCK-GUID"
-                              maxLength={255}
-                              name="Comments"
-                              onBlur={[Function]}
-                              onChange={[Function]}
-                              onFocus={[Function]}
-                              onKeyDown={[Function]}
-                              pattern=".*"
-                              spellCheck={true}
-                              type="text"
-                              value=""
-                            />
-                            <div
-                              className="text-print print-only"
-                            >
-                              
-                            </div>
-                          </div>
-                        </span>
-                      </span>
-                    </div>
-                  </div>
                 </div>
                 <div
                   className="bottom-btns"
@@ -21063,7 +20619,6 @@ exports[`The section component renders identification.ssn 1`] = `
                                   onKeyDown={[Function]}
                                   onPaste={[Function]}
                                   pattern="^[0-9]{3}$"
-                                  placeholder="###"
                                   spellCheck={true}
                                   type="text"
                                   value=""
@@ -21096,7 +20651,6 @@ exports[`The section component renders identification.ssn 1`] = `
                                   onKeyDown={[Function]}
                                   onPaste={[Function]}
                                   pattern="^[0-9]{2}$"
-                                  placeholder="##"
                                   spellCheck={true}
                                   type="text"
                                   value=""
@@ -21129,7 +20683,6 @@ exports[`The section component renders identification.ssn 1`] = `
                                   onKeyDown={[Function]}
                                   onPaste={[Function]}
                                   pattern="^[0-9]{4}$"
-                                  placeholder="####"
                                   spellCheck={true}
                                   type="text"
                                   value=""
@@ -24757,91 +24310,6 @@ exports[`The section component renders legal.review 1`] = `
                       </div>
                     </div>
                   </div>
-                  <hr
-                    className="section-divider"
-                  />
-                  <div
-                    aria-label="Add a comment to clarify any of your responses in the investigative and criminal history section"
-                    className="field   section-comment"
-                    data-uuid="field-MOCK-GUID"
-                  >
-                    <a
-                      aria-hidden="true"
-                      className="anchor"
-                      id="field-MOCK-GUID"
-                      name="field-MOCK-GUID"
-                    />
-                    <h4
-                      className="title h4"
-                    >
-                      Add a comment to clarify any of your responses in the investigative and criminal history section
-                      <span
-                        className="optional"
-                      >
-                        (Optional)
-                      </span>
-                    </h4>
-                    <span
-                      className="icon"
-                    />
-                    <div
-                      className="table expand"
-                    >
-                      <span
-                        aria-live="polite"
-                        className="messages help-messages"
-                      />
-                    </div>
-                    <div
-                      className="table expand"
-                    >
-                      <span
-                        aria-live="polite"
-                        className="messages error-messages"
-                        role="alert"
-                      />
-                    </div>
-                    <div
-                      className="table"
-                    >
-                      <span
-                        className="content"
-                      >
-                        <span
-                          className="component"
-                        >
-                          <div
-                            className="hide-for-print "
-                          >
-                            <input
-                              aria-describedby="Comments-error"
-                              aria-label={null}
-                              autoCapitalize={true}
-                              autoComplete={true}
-                              autoCorrect={true}
-                              className=""
-                              id="Comments-MOCK-GUID"
-                              maxLength={255}
-                              name="Comments"
-                              onBlur={[Function]}
-                              onChange={[Function]}
-                              onFocus={[Function]}
-                              onKeyDown={[Function]}
-                              pattern=".*"
-                              spellCheck={true}
-                              type="text"
-                              value=""
-                            />
-                            <div
-                              className="text-print print-only"
-                            >
-                              
-                            </div>
-                          </div>
-                        </span>
-                      </span>
-                    </div>
-                  </div>
                 </div>
                 <div
                   className="bottom-btns"
@@ -26543,91 +26011,6 @@ exports[`The section component renders military.review 1`] = `
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                  <hr
-                    className="section-divider"
-                  />
-                  <div
-                    aria-label="Add a comment to clarify any of your responses in the military history section"
-                    className="field   section-comment"
-                    data-uuid="field-MOCK-GUID"
-                  >
-                    <a
-                      aria-hidden="true"
-                      className="anchor"
-                      id="field-MOCK-GUID"
-                      name="field-MOCK-GUID"
-                    />
-                    <h4
-                      className="title h4"
-                    >
-                      Add a comment to clarify any of your responses in the military history section
-                      <span
-                        className="optional"
-                      >
-                        (Optional)
-                      </span>
-                    </h4>
-                    <span
-                      className="icon"
-                    />
-                    <div
-                      className="table expand"
-                    >
-                      <span
-                        aria-live="polite"
-                        className="messages help-messages"
-                      />
-                    </div>
-                    <div
-                      className="table expand"
-                    >
-                      <span
-                        aria-live="polite"
-                        className="messages error-messages"
-                        role="alert"
-                      />
-                    </div>
-                    <div
-                      className="table"
-                    >
-                      <span
-                        className="content"
-                      >
-                        <span
-                          className="component"
-                        >
-                          <div
-                            className="hide-for-print "
-                          >
-                            <input
-                              aria-describedby="Comments-error"
-                              aria-label={null}
-                              autoCapitalize={true}
-                              autoComplete={true}
-                              autoCorrect={true}
-                              className=""
-                              id="Comments-MOCK-GUID"
-                              maxLength={255}
-                              name="Comments"
-                              onBlur={[Function]}
-                              onChange={[Function]}
-                              onFocus={[Function]}
-                              onKeyDown={[Function]}
-                              pattern=".*"
-                              spellCheck={true}
-                              type="text"
-                              value=""
-                            />
-                            <div
-                              className="text-print print-only"
-                            >
-                              
-                            </div>
-                          </div>
-                        </span>
-                      </span>
                     </div>
                   </div>
                 </div>
@@ -30226,91 +29609,6 @@ exports[`The section component renders relationships.review 1`] = `
                       </div>
                     </div>
                   </div>
-                  <hr
-                    className="section-divider"
-                  />
-                  <div
-                    aria-label="Add a comment to clarify any of your responses in the relationships section"
-                    className="field   section-comment"
-                    data-uuid="field-MOCK-GUID"
-                  >
-                    <a
-                      aria-hidden="true"
-                      className="anchor"
-                      id="field-MOCK-GUID"
-                      name="field-MOCK-GUID"
-                    />
-                    <h4
-                      className="title h4"
-                    >
-                      Add a comment to clarify any of your responses in the relationships section
-                      <span
-                        className="optional"
-                      >
-                        (Optional)
-                      </span>
-                    </h4>
-                    <span
-                      className="icon"
-                    />
-                    <div
-                      className="table expand"
-                    >
-                      <span
-                        aria-live="polite"
-                        className="messages help-messages"
-                      />
-                    </div>
-                    <div
-                      className="table expand"
-                    >
-                      <span
-                        aria-live="polite"
-                        className="messages error-messages"
-                        role="alert"
-                      />
-                    </div>
-                    <div
-                      className="table"
-                    >
-                      <span
-                        className="content"
-                      >
-                        <span
-                          className="component"
-                        >
-                          <div
-                            className="hide-for-print "
-                          >
-                            <input
-                              aria-describedby="Comments-error"
-                              aria-label={null}
-                              autoCapitalize={true}
-                              autoComplete={true}
-                              autoCorrect={true}
-                              className=""
-                              id="Comments-MOCK-GUID"
-                              maxLength={255}
-                              name="Comments"
-                              onBlur={[Function]}
-                              onChange={[Function]}
-                              onFocus={[Function]}
-                              onKeyDown={[Function]}
-                              pattern=".*"
-                              spellCheck={true}
-                              type="text"
-                              value=""
-                            />
-                            <div
-                              className="text-print print-only"
-                            >
-                              
-                            </div>
-                          </div>
-                        </span>
-                      </span>
-                    </div>
-                  </div>
                 </div>
                 <div
                   className="bottom-btns"
@@ -32168,91 +31466,6 @@ exports[`The section component renders substance.review 1`] = `
                           </span>
                         </span>
                       </div>
-                    </div>
-                  </div>
-                  <hr
-                    className="section-divider"
-                  />
-                  <div
-                    aria-label="Add a comment to clarify any of your responses in the substance use section"
-                    className="field   section-comment"
-                    data-uuid="field-MOCK-GUID"
-                  >
-                    <a
-                      aria-hidden="true"
-                      className="anchor"
-                      id="field-MOCK-GUID"
-                      name="field-MOCK-GUID"
-                    />
-                    <h4
-                      className="title h4"
-                    >
-                      Add a comment to clarify any of your responses in the substance use section
-                      <span
-                        className="optional"
-                      >
-                        (Optional)
-                      </span>
-                    </h4>
-                    <span
-                      className="icon"
-                    />
-                    <div
-                      className="table expand"
-                    >
-                      <span
-                        aria-live="polite"
-                        className="messages help-messages"
-                      />
-                    </div>
-                    <div
-                      className="table expand"
-                    >
-                      <span
-                        aria-live="polite"
-                        className="messages error-messages"
-                        role="alert"
-                      />
-                    </div>
-                    <div
-                      className="table"
-                    >
-                      <span
-                        className="content"
-                      >
-                        <span
-                          className="component"
-                        >
-                          <div
-                            className="hide-for-print "
-                          >
-                            <input
-                              aria-describedby="Comments-error"
-                              aria-label={null}
-                              autoCapitalize={true}
-                              autoComplete={true}
-                              autoCorrect={true}
-                              className=""
-                              id="Comments-MOCK-GUID"
-                              maxLength={255}
-                              name="Comments"
-                              onBlur={[Function]}
-                              onChange={[Function]}
-                              onFocus={[Function]}
-                              onKeyDown={[Function]}
-                              pattern=".*"
-                              spellCheck={true}
-                              type="text"
-                              value=""
-                            />
-                            <div
-                              className="text-print print-only"
-                            >
-                              
-                            </div>
-                          </div>
-                        </span>
-                      </span>
                     </div>
                   </div>
                 </div>

@@ -1,14 +1,29 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import Family from './Family'
 
 describe('The foreign business family component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <Family {...expected} />
+        </Provider>
+      )
+  })
+
   it('display nothing when "no" is clicked', () => {
     const expected = {
       name: 'foreign-business-family',
       HasForeignFamily: { value: 'No' }
     }
-    const component = mount(<Family {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(0)
   })
 
@@ -17,7 +32,7 @@ describe('The foreign business family component', () => {
       name: 'foreign-business-family',
       HasForeignFamily: { value: 'Yes' }
     }
-    const component = mount(<Family {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(1)
   })
 
@@ -31,7 +46,7 @@ describe('The foreign business family component', () => {
         return arr
       }
     }
-    const component = mount(<Family {...expected} />)
+    const component = createComponent(expected)
     component
       .find('.branch .yes input')
       .at(0)
@@ -53,7 +68,7 @@ describe('The foreign business family component', () => {
         updates++
       }
     }
-    const component = mount(<Family {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(1)
     component.find('.family-name .first input').simulate('change')
     component.find('.family-agency input').simulate('change')

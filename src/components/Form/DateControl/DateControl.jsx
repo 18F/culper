@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { i18n } from '../../../config'
 import ValidationElement from '../ValidationElement'
 import Number from '../Number'
@@ -56,7 +57,7 @@ export const buildDate = (year = '', month = '', day = '') => {
   return d
 }
 
-export default class DateControl extends ValidationElement {
+class DateControl extends ValidationElement {
   constructor(props) {
     super(props)
 
@@ -344,7 +345,6 @@ export default class DateControl extends ValidationElement {
               name="month"
               ref="month"
               label="Month"
-              placeholder={i18n.t('date.placeholder.day')}
               disabled={this.state.disabled}
               max="12"
               maxlength="2"
@@ -371,7 +371,6 @@ export default class DateControl extends ValidationElement {
               name="day"
               ref="day"
               label="Day"
-              placeholder={i18n.t('date.placeholder.day')}
               disabled={this.state.disabled}
               max={daysInMonth(this.state.month, this.state.year)}
               maxlength="2"
@@ -398,7 +397,6 @@ export default class DateControl extends ValidationElement {
               name="year"
               ref="year"
               label="Year"
-              placeholder={i18n.t('date.placeholder.year')}
               disabled={this.state.disabled}
               min="1000"
               max={this.props.maxDate && this.props.maxDate.getFullYear()}
@@ -510,3 +508,14 @@ DateControl.errors = [
     }
   }
 ]
+
+const mapStateToProps = (state, ownProps) => {
+  const date = buildDate(ownProps.year, ownProps.month, ownProps.day)
+
+  return {
+    date
+  }
+}
+
+export { DateControl }
+export default connect(mapStateToProps)(DateControl)

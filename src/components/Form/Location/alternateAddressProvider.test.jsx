@@ -10,7 +10,6 @@ describe('.alternateAddressProvider', () => {
     const mock = component.instance().renderAlternateAddress;
     const expected = {
       addressBook: 'Residence',
-      allowForeignMilitary: true,
       render: mock
     }
 

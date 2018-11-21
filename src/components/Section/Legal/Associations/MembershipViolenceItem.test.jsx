@@ -1,14 +1,31 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import MembershipViolenceItem from './MembershipViolenceItem'
 
 describe('The legal associations membership violence item component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <MembershipViolenceItem {...expected} />
+        </Provider>
+      )
+  })
+
   it('can select "yes"', () => {
     let updates = 0
-    const onUpdate = () => {
-      updates++
+    const expected = {
+      onUpdate: () => {
+        updates++
+      }
     }
-    const component = mount(<MembershipViolenceItem onUpdate={onUpdate} />)
+    const component = createComponent(expected)
     component
       .find('.legal-associations-violence-organization input')
       .simulate('change')

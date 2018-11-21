@@ -11,10 +11,12 @@ import { foreignborndocument } from './foreignborndocument'
 import { name } from './name'
 import { ssn } from './ssn'
 import { telephone } from './telephone'
+import { physicaladdress } from './physicaladdress'
 
 export const civilunion = (data = {}) => {
   return general('civilunion', {
     Address: location(data.Address),
+    AlternateAddress: physicaladdress(data.AlternateAddress),
     AddressSeparated: location(data.AddressSeparated),
     AddressSeparatedNotApplicable: notapplicable(
       data.AddressSeparatedNotApplicable

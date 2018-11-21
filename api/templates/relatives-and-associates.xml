@@ -57,26 +57,12 @@
     <Relative ID="{{inc $index}}">
       {{- $deceased := eq (branch $Item.IsDeceased) "Yes" }}
       {{if not $deceased }}
-      <!-- XXX Work-around for https://github.com/18F/e-QIP-prototype/issues/753 -->
-      {{if false}}
-      <APOFPO>
-        <!-- TODO -->
-        <Address></Address>
-        <AddressComment></AddressComment>
-        <!-- TODO -->
-        <Answer></Answer>
-        <AnswerComment></AnswerComment>
-        <!-- No PhysicalLocation -->
-      </APOFPO>
-      {{else}}
       <Address>{{location $Item.Address}}</Address>
-      <AddressComment></AddressComment>
-      <!-- This constraint is not consistent with SF-86 form or validation matrix; but is consistent with e-QIP -->
-      {{if isInternational $Item.Address}}
-      <!-- XXX Work-around for https://github.com/18F/e-QIP-prototype/issues/753 -->
-      <APOFPO><Answer>No</Answer></APOFPO>
+
+      {{with $remap := altAddressRemap $Item.Address $Item.AlternateAddress.props.HasDifferentAddress $Item.AlternateAddress.props.Address}}
+      {{tmpl "apofpo-physical.xml" $remap}}
       {{end}}
-      {{end}}
+
       {{end}}
 
       <Birth>
@@ -97,14 +83,16 @@
           {{- if $Item.Expiration.props.month }}
           <DocumentExpiration Type="{{dateEstimated $Item.Expiration}}">{{date $Item.Expiration}}</DocumentExpiration>
           {{end}}
-          <DocumentNumber>{{text $Item.DocumentNumber}}</DocumentNumber>
           {{if $usCitizen}}
+          <DocumentNumber>{{text $Item.DocumentNumber}}</DocumentNumber>
           <NaturalizationCertificate>
             <Court>
               <Address>{{location $Item.CourtAddress}}</Address>
               <Name>{{text $Item.CourtName}}</Name>
             </Court>
           </NaturalizationCertificate>
+          {{else}}
+          <DocumentNumber>{{text $Item.ResidenceDocumentNumber}}</DocumentNumber>
           {{end}}
           {{- if text $Item.Document }}
           <Type>{{text $Item.Document | relativeForeignDocType}}</Type>

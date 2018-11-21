@@ -12,7 +12,10 @@ import ApoFpo from '../ApoFpo'
 import Show from '../Show'
 import Suggestions from '../Suggestions'
 import { AddressSuggestion } from './AddressSuggestion'
-import LocationValidator, { countryString, isInternational } from '../../../validators/location'
+import LocationValidator, {
+  countryString,
+  isInternational
+} from '../../../validators/location'
 import { countryValueResolver } from './Location'
 
 export default class Address extends ValidationElement {
@@ -37,7 +40,7 @@ export default class Address extends ValidationElement {
     this.update = this.update.bind(this)
     this.updateCountry = this.updateCountry.bind(this)
     this.updateAddressType = this.updateAddressType.bind(this)
-    this.addressTypeFunc = this.addressTypeFunc.bind(this)
+    this.addressType = this.addressType.bind(this)
     this.openAddressBook = this.openAddressBook.bind(this)
     this.closeAddressBook = this.closeAddressBook.bind(this)
     this.renderAddressBookItem = this.renderAddressBookItem.bind(this)
@@ -46,16 +49,16 @@ export default class Address extends ValidationElement {
     this.storeErrors = this.storeErrors.bind(this)
     this.focusField = this.focusField.bind(this)
     this.blurField = this.blurField.bind(this)
-    this.onAddressUpdate = this.onAddressUpdate.bind(this);
-    this.blurForceUpdate = this.blurForceUpdate.bind(this);
+    this.onAddressUpdate = this.onAddressUpdate.bind(this)
+    this.blurForceUpdate = this.blurForceUpdate.bind(this)
   }
 
   onAddressUpdate(nextValue) {
-    const { name, value } = nextValue;
+    const { name, value } = nextValue
 
     this.update({
       [name]: value
-    });
+    })
   }
 
   updateCountry(values) {
@@ -159,24 +162,21 @@ export default class Address extends ValidationElement {
     this.update({}, 0, true)
   }
 
-  addressTypeFunc(props) {
+  addressType() {
     const country = countryString(this.props.country)
-    switch (true) {
-      case props.value === country:
-        return true
-      case props.value === 'International' &&
-        !['United States', 'POSTOFFICE'].includes(country):
-        return true
-      default:
-        return false
+
+    if (['United States', 'POSTOFFICE'].includes(country)) {
+      return country
     }
+
+    return "International"
   }
 
   openAddressBook() {
     this.setState({ showAddressBook: true })
   }
 
-  closeAddressBook(hook = function () {}) {
+  closeAddressBook(hook = function() {}) {
     this.setState({ showAddressBook: false }, hook)
   }
 
@@ -240,8 +240,8 @@ export default class Address extends ValidationElement {
   render() {
     const book = this.props.addressBooks[this.props.addressBook] || []
     const country = countryString(this.props.country)
-    const locationValidator = new LocationValidator(this.props);
-    const instateZipcode = locationValidator.validZipcodeState();
+    const locationValidator = new LocationValidator(this.props)
+    const instateZipcode = locationValidator.validZipcodeState()
 
     return (
       <div className="address">
@@ -252,40 +252,38 @@ export default class Address extends ValidationElement {
               this.props.showPostOffice ? '' : 'no-postoffice'
             }`.trim()}
             disabled={this.props.disabled}
-            selectedValueFunc={this.addressTypeFunc}>
+            selectedValue={this.addressType()}
+          >
             <Radio
               name="addressType"
               label={i18n.m('address.options.us.label')}
               value="United States"
               className="domestic"
-              ignoreDeselect="true"
+              ignoreDeselect
               disabled={this.props.disabled}
               onUpdate={this.updateAddressType}
               onBlur={this.props.onBlur}
               onFocus={this.props.onFocus}
             />
-            <Show when={this.props.showPostOffice}>
+            {this.props.showPostOffice && (
               <Radio
                 name="addressType"
                 label={i18n.m('address.options.apoFpo.label')}
                 value="POSTOFFICE"
                 className="apofpo postoffice"
-                ignoreDeselect="true"
+                ignoreDeselect
                 disabled={this.props.disabled}
                 onUpdate={this.updateAddressType}
                 onBlur={this.props.onBlur}
                 onFocus={this.props.onFocus}
               />
-            </Show>
-            <Show when={!this.props.showPostOffice}>
-              <div className="apofpo postoffice block" />
-            </Show>
+            )}
             <Radio
               name="addressType"
               label={i18n.m('address.options.international.label')}
               value="International"
               className="international"
-              ignoreDeselect="true"
+              ignoreDeselect
               disabled={this.props.disabled}
               onUpdate={this.updateAddressType}
               onBlur={this.props.onBlur}
@@ -551,7 +549,6 @@ Address.defaultProps = {
   },
   showPostOffice: false,
   streetLabel: i18n.t('address.us.street.label'),
-  postOfficeStreetPlaceholder: i18n.t('address.apoFpo.street.placeholder'),
   postOfficeStateLabel: i18n.t('address.apoFpo.apoFpo.label'),
   postOfficeZipcodeLabel: i18n.t('address.apoFpo.zipcode.label'),
   street2Label: i18n.t('address.us.street2.label'),

@@ -1,10 +1,25 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import Consultation from './Consultation'
 
 describe('The Consultation component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <Consultation {...expected} />
+        </Provider>
+      )
+  })
+
   it('Renders without errors', () => {
-    const component = mount(<Consultation />)
+    const component = createComponent()
     expect(component.find('.consultation').length).toBe(1)
   })
 
@@ -19,7 +34,7 @@ describe('The Consultation component', () => {
         updates++
       }
     }
-    const component = mount(<Consultation {...props} />)
+    const component = createComponent(props)
     updates = 0
     component.find('input[name="CourtName"]').simulate('change')
     expect(updates).toBe(1)

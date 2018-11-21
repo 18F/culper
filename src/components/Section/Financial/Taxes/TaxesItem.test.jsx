@@ -1,8 +1,23 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import TaxesItem from './TaxesItem'
 
 describe('The taxes item component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <TaxesItem {...expected} />
+        </Provider>
+      )
+  })
+
   it('triggers updates when changing values', () => {
     let updates = 0
     const expected = {
@@ -11,7 +26,7 @@ describe('The taxes item component', () => {
         updates++
       }
     }
-    const component = mount(<TaxesItem {...expected} />)
+    const component = createComponent(expected)
     component
       .find('.taxes-year .year input')
       .simulate('change', { target: { value: '2000' } })

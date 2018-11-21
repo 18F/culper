@@ -187,6 +187,7 @@ export default class HistoryItem extends ValidationElement {
         <Field
           title={i18n.t('legal.investigations.history.heading.issued')}
           adjustFor="text"
+          optional={true}
           scrollIntoView={this.props.scrollIntoView}>
           <Text
             name="Issued"
@@ -194,7 +195,6 @@ export default class HistoryItem extends ValidationElement {
             onUpdate={this.updateIssued}
             onError={this.props.onError}
             className="legal-investigations-history-issued"
-            required={this.props.required}
           />
         </Field>
 

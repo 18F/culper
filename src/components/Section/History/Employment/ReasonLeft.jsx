@@ -48,26 +48,18 @@ export default class ReasonLeft extends ValidationElement {
 
   /**
    * Only show the reasons for leaving if
-   *  - not currently employed there
+   *  - not currently employed at position
    */
   showDescription() {
-    const now = new Date()
     const dates = this.props.Dates || {}
-    const from = buildDate(dates.from)
-    const to = dates.present === true ? now : buildDate(dates.to)
 
-    // Check user is not currently employed.
-    return !(
-      to &&
-      to.getFullYear() === now.getFullYear() &&
-      to.getMonth() === now.getMonth() &&
-      to.getDate() === now.getDate()
-    )
+    return (dates.present !== true)
   }
 
   /**
-   * Only show the reasons options if
-   *  - employed there within the last 7 years
+   * Only show the reasons options if:
+   *  - not currently employed at position AND
+   *  - employed at position within the last 7 years
    */
   showOptions() {
     const sevenYearsAgo = daysAgo(today, 365 * 7)
@@ -76,8 +68,8 @@ export default class ReasonLeft extends ValidationElement {
     const from = buildDate(dates.from)
     const to = dates.present === true ? now : buildDate(dates.to)
 
-    // Check user is within seven years and part of approved employers.
-    return (from && from >= sevenYearsAgo) || (to && to >= sevenYearsAgo)
+    return (dates.present !== true) && 
+        ((from && from >= sevenYearsAgo) || (to && to >= sevenYearsAgo))
   }
 
   render() {

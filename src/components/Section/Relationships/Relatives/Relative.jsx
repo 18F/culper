@@ -24,6 +24,7 @@ import { RelativeValidator } from '../../../../validators'
 import { countryString } from '../../../../validators/location'
 import { today, daysAgo } from '../../History/dateranges'
 import Alias from './Alias'
+import { extractDate } from '../../History/dateranges'
 
 export default class Relative extends ValidationElement {
   constructor(props) {
@@ -560,10 +561,6 @@ export default class Relative extends ValidationElement {
             label={i18n.t('relationships.relatives.label.birthplace')}
             layout={Location.BIRTHPLACE_WITHOUT_COUNTY}
             help=""
-            cityPlaceholder={i18n.t('relationships.relatives.placeholder.city')}
-            countryPlaceholder={i18n.t(
-              'relationships.relatives.placeholder.country'
-            )}
             hideCounty={true}
             className="relative-birthplace"
             onError={this.props.onError}
@@ -642,7 +639,8 @@ export default class Relative extends ValidationElement {
               </Field>
               <Alias
                 name="Item"
-                applicantBirthdate={this.props.Birthdate}
+                minDate={extractDate(this.props.Birthdate)}
+                relationship="Other"
                 onError={this.props.onError}
                 hideMaiden={mother}
                 required={this.props.required}
@@ -679,13 +677,21 @@ export default class Relative extends ValidationElement {
               addressBook={this.props.addressBook}
               dispatch={this.props.dispatch}
               layout={Location.ADDRESS}
-              geocode={true}
-              showPostOffice={true}
+              geocode
               onUpdate={this.updateAddress}
               onError={this.props.onError}
               required={this.props.required}
             />
           </Field>
+
+          {this.props.render({
+            address: this.props.AlternateAddress,
+            belongingTo: 'AlternateAddress',
+            country: this.props.Address.country,
+            forceAPO: true,
+            militaryAddressLabel: i18n.t('address.militaryAddress.relative'),
+            onUpdate: this.update
+          })}
         </Show>
 
         <Show when={validator.requiresCitizenshipDocumentation()}>
@@ -1005,6 +1011,9 @@ export default class Relative extends ValidationElement {
                     className="relative-residence-documentnumber"
                     {...this.props.ResidenceDocumentNumber}
                     onError={this.props.onError}
+                    maxlength="30"
+                    pattern={alphaNumericRegEx}
+                    prefix="alphanumeric"
                     onUpdate={this.updateResidenceDocumentNumber}
                     required={this.props.required}
                   />

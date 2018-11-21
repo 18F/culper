@@ -1,15 +1,30 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import OtherOffenses from './OtherOffenses'
 import Location from '../../../Form/Location'
 
 describe('The offense component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <OtherOffenses {...expected} />
+        </Provider>
+      )
+  })
+
   it('no error on empty', () => {
     const expected = {
       name: 'offense',
       HasOtherOffenses: { value: 'No' }
     }
-    const component = mount(<OtherOffenses {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(0)
   })
 
@@ -21,7 +36,7 @@ describe('The offense component', () => {
         updates++
       }
     }
-    const component = mount(<OtherOffenses {...expected} />)
+    const component = createComponent(expected)
     component.find('.has-otheroffenses .yes input').simulate('change')
     expect(updates).toBe(1)
   })
@@ -42,7 +57,7 @@ describe('The offense component', () => {
         items: [{ Item: {} }]
       }
     }
-    const component = mount(<OtherOffenses {...expected} />)
+    const component = createComponent(expected)
     component.find('.has-otheroffenses .no input').simulate('change')
     expect(updates).toBe(1)
   })
@@ -127,7 +142,7 @@ describe('The offense component', () => {
         ]
       }
     }
-    const component = mount(<OtherOffenses {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(1)
   })
 })

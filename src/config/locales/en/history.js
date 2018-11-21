@@ -10,9 +10,7 @@ export const history = {
   review: {
     title: 'Full section view',
     para: 'View all the sections associated with your history at once',
-    button: 'Show me the full section',
-    comments:
-      'Add a comment to clarify any of your responses in the your history section'
+    button: 'Show me the full section'
   },
   timeline: {
     title: "Let's cover your last 10 years",
@@ -1357,6 +1355,7 @@ export const history = {
           'Provide the name of someone that can verify your self-employment',
         physicalAddress:
           'Is your physical work address different than your employment address?',
+        militaryAddress: 'Does your self-employment verifier have an APO/FPO address?',
         additionalActivity: 'Additional periods of activity with this employer'
       },
       employer: {
@@ -1460,6 +1459,7 @@ export const history = {
     },
     unemployment: {
       heading: {
+        militaryAddress: 'Does your unemployment verifier have an APO/FPO address?',
         reference:
           'Provide the name of someone who can verify your unemployment activities and means of support'
       }

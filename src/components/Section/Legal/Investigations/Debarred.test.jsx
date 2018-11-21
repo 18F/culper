@@ -1,19 +1,36 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import Debarred from './Debarred'
 
 describe('The legal investigations debarred component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <Debarred {...expected} />
+        </Provider>
+      )
+  })
+
   it('renders without errors', () => {
-    const component = mount(<Debarred />)
+    const component = createComponent()
     expect(component.find('.investigations-debarred').length).toBe(1)
   })
 
   it('can select "yes"', () => {
     let updates = 0
-    const onUpdate = () => {
-      updates++
+    const expected = {
+      onUpdate: () => {
+        updates++
+      }
     }
-    const component = mount(<Debarred onUpdate={onUpdate} />)
+    const component = createComponent(expected)
     component
       .find('.legal-investigations-debarred-has-debarment .yes input')
       .simulate('change')
@@ -24,7 +41,7 @@ describe('The legal investigations debarred component', () => {
     const props = {
       HasDebarment: { value: 'Yes' }
     }
-    const component = mount(<Debarred {...props} />)
+    const component = createComponent(props)
     expect(component.find('.accordion').length).toBe(1)
   })
 
@@ -49,7 +66,7 @@ describe('The legal investigations debarred component', () => {
         ]
       }
     }
-    const component = mount(<Debarred {...props} />)
+    const component = createComponent(props)
     const text = component.find('.accordion .summary .left').text()
     expect(text).toContain('U.S. Department of Defense')
     expect(text).toContain('1/2010')

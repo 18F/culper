@@ -1,8 +1,23 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import SponsorshipItem from './SponsorshipItem'
 
 describe('The foreign business sponsorship component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <SponsorshipItem {...expected} />
+        </Provider>
+      )
+  })
+
   it('trigger updates', () => {
     let updates = 0
     const expected = {
@@ -11,7 +26,7 @@ describe('The foreign business sponsorship component', () => {
         updates++
       }
     }
-    const component = mount(<SponsorshipItem {...expected} />)
+    const component = createComponent(expected)
     component
       .find('.foreign-business-sponsorship-name .first input')
       .simulate('change')

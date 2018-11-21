@@ -22,7 +22,6 @@ const alternateAddressProvider = (Component) => {
         <AlternateAddress
           {...extraProps}
           addressBook={this.props.addressBook}
-          allowForeignMilitary={this.props.allowForeignMilitary}
         />
       );
     }
@@ -39,7 +38,6 @@ const alternateAddressProvider = (Component) => {
 
   AddressProvider.defaultProps = {
     addressBook: 'Residence',
-    allowForeignMilitary: true,
   }
 
   return AddressProvider

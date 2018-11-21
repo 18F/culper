@@ -1,5 +1,5 @@
 import React from 'react'
-import { mount } from 'enzyme'
+import { shallow, mount } from 'enzyme'
 import Country from './Country'
 
 describe('The Country component', () => {
@@ -9,7 +9,7 @@ describe('The Country component', () => {
       value: ''
     }
     const component = mount(<Country {...expected} />)
-    expect(component.find('div').length).toBeGreaterThan(0)
+    expect(component.length).toBe(1)
   })
 
   it('renders with values', () => {
@@ -38,5 +38,19 @@ describe('The Country component', () => {
     ).toBeGreaterThan(0)
     component.find('.country input').simulate('blur')
     expect(component.find('div').length).toBeGreaterThan(0)
+  })
+
+  it('filters out and displays the correct country', () => {
+    const props = {
+      name: 'country',
+      value: 'dOmiNiCa'
+    }
+
+    const wrapper = shallow(<Country {...props} />)
+    const component = wrapper.instance()
+    expect(component.filterValidCountries(props.value).length).toBe(1)
+
+    const fixture = 'Dominica'
+    expect(component.filterValidCountries(props.value)[0].value).toEqual(fixture)
   })
 })

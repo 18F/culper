@@ -1,14 +1,31 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import HistoryItem from './HistoryItem'
 
 describe('The legal investigations history item component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <HistoryItem {...expected} />
+        </Provider>
+      )
+  })
+
   it('can select values', () => {
     let updates = 0
-    const onUpdate = () => {
-      updates++
+    const expected = {
+      onUpdate: () => {
+        updates++
+      }
     }
-    const component = mount(<HistoryItem onUpdate={onUpdate} />)
+    const component = createComponent(expected)
     component
       .find(
         '.legal-investigations-history-agency .investigative-agency-dod input'

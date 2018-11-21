@@ -670,10 +670,9 @@ export default class ForeignNational extends ValidationElement {
               className="current-address"
               {...this.props.Address}
               layout={Location.ADDRESS}
-              geocode={true}
+              geocode
               addressBooks={this.props.addressBooks}
               addressBook="ForeignNational"
-              showPostOffice={true}
               dispatch={this.props.dispatch}
               onUpdate={this.updateAddress}
               onError={this.props.onError}
@@ -681,6 +680,16 @@ export default class ForeignNational extends ValidationElement {
             />
           </NotApplicable>
         </Field>
+
+        {this.props.render({
+          address: this.props.AlternateAddress,
+          addressBook: 'ForeignNational',
+          belongingTo: 'AlternateAddress',
+          country: this.props.Address.country,
+          forceAPO: true,
+          militaryAddressLabel: i18n.t('address.militaryAddress.foreignNational'),
+          onUpdate: this.update
+        })}
 
         <Field
           title={i18n.t('foreign.contacts.heading.employer')}

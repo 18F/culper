@@ -35,6 +35,7 @@ func (service Service) DefaultTemplate(templateName string, data map[string]inte
 	fmap := template.FuncMap{
 		"addressIn":              addressIn,
 		"agencyType":             agencyType,
+		"altAddressRemap":        altAddressRemap,
 		"branch":                 branch,
 		"branchToAnswer":         branchToAnswer,
 		"branchToBool":           branchToBool,
@@ -155,6 +156,14 @@ func getInterfaceAsBytes(anon interface{}) []byte {
 		return nil
 	}
 	return js
+}
+
+func altAddressRemap(primary map[string]interface{}, hasDifferent map[string]interface{}, alternate map[string]interface{}) map[string]interface{} {
+	foo := make(map[string]interface{})
+	foo["Address"] = primary
+	foo["HasDifferentAddress"] = hasDifferent
+	foo["Alternate"] = alternate
+	return foo
 }
 
 // Put simple structures here where they only output a string
@@ -828,6 +837,10 @@ func locationOverrideLayout(data map[string]interface{}, override string) (templ
 		return xmlTemplate("location-street-city.xml", data)
 	case api.LayoutMilitaryAddress:
 		return xmlTemplateWithFuncs("location-address-apofpo-state-zipcode.xml", data, fmap)
+	case api.LayoutPhysicalDomestic:
+		return xmlTemplateWithFuncs("location-physical-address-domestic.xml", data, fmap)
+	case api.LayoutPhysicalInternational:
+		return xmlTemplateWithFuncs("location-physical-address-international.xml", data, fmap)
 	default:
 		if domestic || postoffice {
 			return xmlTemplateWithFuncs("location-street-city-state-zipcode.xml", data, fmap)

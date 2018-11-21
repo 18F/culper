@@ -1,14 +1,29 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import Relatives from './Relatives'
 
 describe('The relatives component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <Relatives {...expected} />
+        </Provider>
+      )
+  })
+
   it('no error on empty', () => {
     const expected = {
       name: 'relatives'
     }
 
-    const component = mount(<Relatives {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.accordion').length).toEqual(1)
   })
 
@@ -23,7 +38,7 @@ describe('The relatives component', () => {
         updates++
       }
     }
-    const component = mount(<Relatives {...expected} />)
+    const component = createComponent(expected)
     component.find({ type: 'radio', value: 'Mother' }).simulate('change')
     component
       .find('.relative-name .first input')

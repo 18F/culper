@@ -1,14 +1,29 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import Alias from './Alias'
 
 describe('The relative alias component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <Alias {...expected} />
+        </Provider>
+      )
+  })
+
   it('no error on empty', () => {
     const expected = {
       name: 'relative-alias'
     }
 
-    const component = mount(<Alias {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.alias-name').length).toEqual(1)
     expect(component.find('.alias-maiden').length).toEqual(1)
     expect(component.find('.alias-dates').length).toEqual(1)
@@ -23,7 +38,7 @@ describe('The relative alias component', () => {
       }
     }
 
-    const component = mount(<Alias {...expected} />)
+    const component = createComponent(expected)
     component
       .find('.alias-name .first input')
       .simulate('change', { target: { name: 'first', value: 'The name' } })
