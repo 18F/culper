@@ -96,13 +96,13 @@ describe('The contacts component', () => {
         valid: true
       }
 
-      const component = mountComponent(mockStore, Contacts, contactDatesSetup, props)
+      const component = mountComponent(mockStore, Contacts, props)
       expect(component.find('.error-messages [data-i18n="error.foreignContact.min"]').children().length).toEqual(0)
     })
     it('with bad data - the date of first contact is before the applicant and contact DOB', () => {
       const mockStore = configureMockStore()
-
       const props = {
+        ...contactDatesSetup,
         List: {
           items: [{
             Item: {
@@ -121,7 +121,7 @@ describe('The contacts component', () => {
         valid: false
       }
 
-      const component = mountComponent(mockStore, Contacts, contactDatesSetup, props)
+      const component = mountComponent(mockStore, Contacts, props)
       expect(component.find('.error-messages [data-i18n="error.foreignContact.min"]').text()).toEqual(
         `${i18n.t('error.foreignContact.min.title')}${i18n.t('error.foreignContact.min.message')}`
       )
