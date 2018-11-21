@@ -1,7 +1,25 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import Cohabitants from './Cohabitants'
 import { i18n } from '../../../../config'
+
+const alternateAddressRenderMock = jest.fn();
+const mountComponent = (mockStore, Component, props) => {
+  const store = mockStore({ application: { AddressBooks: {} }})
+  const finalProps = {
+    render: alternateAddressRenderMock,
+    ...props
+
+  }
+
+  return mount(
+    <Provider store={store}>
+      <Component {...finalProps} />
+    </Provider>
+  )
+}
 
 describe('The cohabitants component', () => {
   it('no error on empty', () => {
@@ -93,15 +111,17 @@ const cohabitantDateSetup = {
 
   describe('handles cohanbitant dates', () => {
     it('with good data - the date cohabitation began is after the applicant and cohabitant DOB', () => {
+      const mockStore = configureMockStore()
       const props = {
         valid: true
       }
-
-      const component =  mount(<Cohabitants {...cohabitantDateSetup} {...props} />)
+      const component = mountComponent(mockStore, Cohabitants, props)
       expect(component.find('.error-messages [data-i18n="error.cohabitant.min"]').children().length).toEqual(0)
     })
     it('with bad data - the date cohabitation began is before the applicant and cohabitant', () => {
+      const mockStore = configureMockStore()
       const props = {
+        ...cohabitantDateSetup,
         CohabitantList: {
           items: [{
             Item: {
@@ -120,7 +140,7 @@ const cohabitantDateSetup = {
         valid: false
       }
 
-      const component =  mount(<Cohabitants {...cohabitantDateSetup} {...props} />)
+      const component = mountComponent(mockStore, Cohabitants, props)
       expect(component.find('.error-messages [data-i18n="error.cohabitant.min"]').text()).toEqual(
         `${i18n.t('error.cohabitant.min.title')}${i18n.t('error.cohabitant.min.message')}`
       )
