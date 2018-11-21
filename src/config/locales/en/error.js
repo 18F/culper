@@ -502,7 +502,11 @@ export const error = {
         min: {
           title: 'There is a problem with your entry',
           message: 'For the **from** date, the date should be after their date of birth.'
-        }
+        },
+        required: {
+          title: 'Your response is required',
+          message: ''
+       }
       }
     },
     order: {
