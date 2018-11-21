@@ -1,8 +1,23 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import Federal from './Federal'
 
 describe('The federal component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <Federal {...expected} />
+        </Provider>
+      )
+  })
+
   it('selects yes and loads form', () => {
     const expected = {
       name: 'federal_service',
@@ -11,7 +26,7 @@ describe('The federal component', () => {
         items: [{}]
       }
     }
-    const component = mount(<Federal {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.accordion').length).toBeGreaterThan(0)
     expect(component.find('.accordion .daterange').length).toBeGreaterThan(0)
     expect(component.find('.accordion input').length).toBeGreaterThan(0)
@@ -23,7 +38,7 @@ describe('The federal component', () => {
       name: 'federal_service',
       HasFederalService: { value: 'No' }
     }
-    const component = mount(<Federal {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(0)
   })
 
@@ -39,7 +54,7 @@ describe('The federal component', () => {
         updates++
       }
     }
-    const component = mount(<Federal {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(1)
     component.find({ type: 'text', name: 'Position' }).simulate('change')
     component.find({ type: 'text', name: 'Name' }).simulate('change')
@@ -108,7 +123,7 @@ describe('The federal component', () => {
         ]
       }
     }
-    const component = mount(<Federal {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(1)
     expect(component.find('.accordion .item').length).toBe(2)
     expect(component.find('.accordion .index').length).toBe(2)

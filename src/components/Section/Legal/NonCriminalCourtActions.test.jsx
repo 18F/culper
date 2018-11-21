@@ -1,20 +1,37 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import NonCriminalCourtActions from './NonCriminalCourtActions'
 import { Location } from '../../Form'
 
 describe('The NonCriminalCourtActions component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <NonCriminalCourtActions {...expected} />
+        </Provider>
+      )
+  })
+
   it('Renders without errors', () => {
-    const component = mount(<NonCriminalCourtActions />)
+    const component = createComponent()
     expect(component.find('.non-criminal-court-actions').length).toBe(1)
   })
 
   it('Updates branch', () => {
     let updates = 0
-    const onUpdate = () => {
-      updates++
+    const expected = {
+      onUpdate: () => {
+        updates++
+      }
     }
-    const component = mount(<NonCriminalCourtActions onUpdate={onUpdate} />)
+    const component = createComponent(expected)
     expect(component.find('.non-criminal-court-actions').length).toBe(1)
     component.find('.has-court-actions .no input').simulate('change')
     expect(updates).toBe(1)
@@ -65,7 +82,7 @@ describe('The NonCriminalCourtActions component', () => {
         ]
       }
     }
-    const component = mount(<NonCriminalCourtActions {...expected} />)
+    const component = createComponent(expected)
     component.find('.court-name input').simulate('change')
     expect(updates).toBe(2)
   })

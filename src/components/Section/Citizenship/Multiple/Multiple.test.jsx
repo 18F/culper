@@ -1,13 +1,28 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import Multiple from './Multiple'
 
 describe('The multiple component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <Multiple {...expected} />
+        </Provider>
+      )
+  })
+
   it('no error on empty', () => {
     const expected = {
       name: 'multiple'
     }
-    const component = mount(<Multiple {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.branch').length).toBeGreaterThan(0)
     expect(component.find('.accordion').length).toBe(0)
   })
@@ -17,7 +32,7 @@ describe('The multiple component', () => {
       name: 'multiple',
       HasMultiple: { value: 'Yes' }
     }
-    const component = mount(<Multiple {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(1)
   })
 
@@ -31,7 +46,7 @@ describe('The multiple component', () => {
         updates++
       }
     }
-    const component = mount(<Multiple {...expected} />)
+    const component = createComponent(expected)
     updates = 0
     component.find('.has-multiple .yes input').simulate('change')
     expect(updates).toBe(1)
@@ -67,7 +82,7 @@ describe('The multiple component', () => {
         ]
       }
     }
-    const component = mount(<Multiple {...props} />)
+    const component = createComponent(props)
     expect(component.find('.summary .left .context').text()).toBe(
       'United States'
     )

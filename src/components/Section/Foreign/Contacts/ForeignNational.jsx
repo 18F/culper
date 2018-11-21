@@ -691,7 +691,7 @@ export default class ForeignNational extends ValidationElement {
           belongingTo: 'AlternateAddress',
           country: this.props.Address.country,
           forceAPO: true,
-          militaryAddressLabel: i18n.t('address.militaryAddress.other'),
+          militaryAddressLabel: i18n.t('address.militaryAddress.foreignNational'),
           onUpdate: this.update
         })}
 

@@ -1,19 +1,36 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import Order from './Order'
 
 describe('The Order component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <Order {...expected} />
+        </Provider>
+      )
+  })
+
   it('Renders without errors', () => {
-    const component = mount(<Order />)
+    const component = createComponent()
     expect(component.find('.order').length).toBe(1)
   })
 
   it('Performs updates', () => {
     let updates = 0
-    const onUpdate = () => {
-      updates++
+    const expected = {
+      onUpdate: () => {
+        updates++
+      }
     }
-    const component = mount(<Order onUpdate={onUpdate} />)
+    const component = createComponent(expected)
     expect(component.find('.order').length).toBe(1)
     component
       .find('.datecontrol .year input')
