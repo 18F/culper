@@ -506,7 +506,7 @@
                   <APOFPO>
                     <PhysicalLocation>
                       <Address>
-                        <StreetUnitDutyLocation>Residence 1 Secondary Physical outside US</StreetUnitDutyLocation>
+                        <StreetUnitDutyLocation>Residence 1 Secondary Physical outside US </StreetUnitDutyLocation>
                         <CityPostName>Barcelona</CityPostName>
                         <Country>Spain</Country>
                       </Address>
@@ -565,7 +565,7 @@
                     <APOFPO>
                       <PhysicalLocation>
                         <Address>
-                          <StreetUnitDutyLocation>Verifier 1 Secondary Outside US</StreetUnitDutyLocation>
+                          <StreetUnitDutyLocation>Verifier 1 Secondary Outside US </StreetUnitDutyLocation>
                           <CityPostName>Nanaimo</CityPostName>
                           <Country>Canada</Country>
                         </Address>
@@ -653,7 +653,7 @@
                     <APOFPO>
                       <PhysicalLocation>
                         <Address>
-                          <StreetUnitDutyLocation>Supervisor 1 Secondary Outside Of US</StreetUnitDutyLocation>
+                          <StreetUnitDutyLocation>Supervisor 1 Secondary Outside Of US </StreetUnitDutyLocation>
                           <CityPostName>Rota</CityPostName>
                           <Country>Spain</Country>
                         </Address>
@@ -765,7 +765,7 @@
                     <APOFPO>
                       <PhysicalLocation>
                         <Address>
-                          <StreetUnitDutyLocation>Unemployment Verifier 1 Secondary</StreetUnitDutyLocation>
+                          <StreetUnitDutyLocation>Unemployment Verifier 1 Secondary </StreetUnitDutyLocation>
                           <CityPostName>Monterey</CityPostName>
                           <State>CA</State>
                           <ZipCode>93940</ZipCode>
