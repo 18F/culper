@@ -44,6 +44,7 @@ export default class Employment extends SubsectionElement {
     this.update = this.update.bind(this)
     this.updateList = this.updateList.bind(this)
     this.updateEmploymentRecord = this.updateEmploymentRecord.bind(this)
+    this.sortEmploymentItems = this.sortEmploymentItems.bind(this)
   }
 
   customEmploymentByline(item, index, initial) {
@@ -59,12 +60,24 @@ export default class Employment extends SubsectionElement {
     )
   }
 
+  sortEmploymentItems(employmentItems) {
+    console.log(employmentItems)
+  }
+
   update(queue) {
-    this.props.onUpdate({
+
+    const updatedValues = {
       List: this.props.List,
       EmploymentRecord: this.props.EmploymentRecord,
       ...queue
-    })
+    }
+
+    this.sortEmploymentItems(queue.List)
+    // if (queue.List) {
+    //   updatedValues.List = this.sortEmploymentItems(queue.List)
+    // }
+
+    this.props.onUpdate(updatedValues)
   }
 
   updateList(values) {
