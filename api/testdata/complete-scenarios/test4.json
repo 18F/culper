@@ -3765,6 +3765,35 @@
                 "applicable": false
               }
             },
+            "AlternateAddress": {
+              "type": "physicaladdress",
+              "props": {
+                "HasDifferentAddress": {
+                  "type": "branch",
+                  "props": {
+                    "value": ""
+                  }
+                },
+                "Address": {
+                  "type": "location",
+                  "props": {
+                    "layout": "",
+                    "country": ""
+                  }
+                },
+                "Telephone": {
+                  "type": "telephone",
+                  "props": {
+                    "timeOfDay": "",
+                    "type": "",
+                    "numberType": "",
+                    "number": "",
+                    "extension": "",
+                    "noNumber": false
+                  }
+                }
+              }
+            },
             "BirthPlace": {
               "type": "location",
               "props": {

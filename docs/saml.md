@@ -29,6 +29,7 @@ To authenticate with SAML rather than the basic auth:
         - Issuer: `localhost`
         - Assertion Consumer URLs: `http://localhost:3000/auth/saml/callback`, then click `Add` <!-- this should match SAML_CONSUMER_SERVICE_URL -->
         - Uncheck everything but `Enable Response Signing`
+        - Check `Enable Single Logout`, no need to set SLO request or response URLs
 1. Copy the certificate.
     1. [Go to `Identity Providers`->`Resident`.](https://localhost:9443/carbon/idpmgt/idp-mgt-edit-local.jsp)
     1. Expand `Inbound Authentication Configuration`, then `SAML2 Web SSO Configuration`.

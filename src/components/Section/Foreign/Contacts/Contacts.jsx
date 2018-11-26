@@ -4,15 +4,11 @@ import schema from '../../../../schema'
 import validate from '../../../../validators'
 import { Summary, NameSummary } from '../../../Summary'
 import {
-  ForeignContactsValidator,
   ForeignNationalValidator
 } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
-import { Field, Branch, Show, Accordion } from '../../../Form'
+import { Branch, Show, Accordion } from '../../../Form'
 import ForeignNational from './ForeignNational'
-import alternateAddressProvider from '../../../Form/Location/alternateAddressProvider'
-
-const ForeignNationalWithAlternateAddress = alternateAddressProvider(ForeignNational)
 
 export default class Contacts extends SubsectionElement {
   constructor(props) {
@@ -89,7 +85,7 @@ export default class Contacts extends SubsectionElement {
             appendLabel={i18n.t('foreign.contacts.collection.append')}
             required={this.props.required}
             scrollIntoView={this.props.scrollIntoView}>
-            <ForeignNationalWithAlternateAddress
+            <ForeignNational
               name="Item"
               applicantBirthdate={this.props.applicantBirthdate}
               bind={true}

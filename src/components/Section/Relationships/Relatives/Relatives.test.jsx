@@ -24,20 +24,17 @@ describe('The relatives component', () => {
       name: 'relatives'
     }
 
-    const component = createComponent(expected)
+    const component = mount(<Relatives {...expected} />)
     expect(component.find('.accordion').length).toEqual(1)
   })
 
   it('triggers updates when changing values', () => {
-    let updates = 0
     const expected = {
       name: 'relatives',
       List: {
         items: [{ Item: { Relation: { value: 'Mother' } } }]
       },
-      onUpdate: obj => {
-        updates++
-      }
+      onUpdate: jest.fn()
     }
     const component = createComponent(expected)
     component.find({ type: 'radio', value: 'Mother' }).simulate('change')
@@ -47,7 +44,7 @@ describe('The relatives component', () => {
     component
       .find('.relative-name .first input')
       .simulate('change', { target: { name: 'first', value: '123123123' } })
-    expect(updates).toBeGreaterThan(1)
+    expect(expected.onUpdate.mock.calls.length).toEqual(4)
   })
 
   const relativeDatesSetup = {

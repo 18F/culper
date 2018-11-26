@@ -65,7 +65,7 @@ func (service BasicAuthHandler) ServeHTTP(w http.ResponseWriter, r *http.Request
 	}
 
 	// Generate jwt token
-	signedToken, _, err := service.Token.NewToken(account.ID, api.BasicAuthAudience)
+	signedToken, _, err := service.Token.NewToken(account.ID, "basic-session", api.BasicAuthAudience)
 	if err != nil {
 		service.Log.WarnError(api.JWTError, err, api.LogFields{"account": account.ID})
 		Error(w, r, err)

@@ -316,6 +316,7 @@ export default class SponsorshipItem extends ValidationElement {
             onError={this.props.onError}
             className="foreign-business-sponsorship-dates"
             required={this.props.required}
+            prefix="foreignNationalSponsorship"
           />
         </Field>
 

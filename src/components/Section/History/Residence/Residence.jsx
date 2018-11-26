@@ -1,7 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import schema from '../../../../schema'
-import validate, {
+import {
   HistoryResidenceValidator,
   ResidenceValidator
 } from '../../../../validators'
@@ -13,9 +12,6 @@ import { today, daysAgo } from '../dateranges'
 import { InjectGaps, ResidenceCustomSummary } from '../summaries'
 import ResidenceItem from './ResidenceItem'
 import { Gap } from '../Gap'
-import alternateAddressProvider from '../../../Form/Location/alternateAddressProvider'
-
-const AlternateAddressResidenceItem = alternateAddressProvider(ResidenceItem)
 
 const byline = (item, index, initial, translation, required, validator) => {
   switch (true) {
@@ -127,7 +123,7 @@ export default class Residence extends SubsectionElement {
           appendLabel={i18n.t('history.residence.collection.append')}
           required={this.props.required}
           scrollIntoView={this.props.scrollIntoView}>
-          <AlternateAddressResidenceItem
+          <ResidenceItem
             bind
             name="Item"
             addressBooks={this.props.addressBooks}

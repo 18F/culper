@@ -48,7 +48,7 @@ describe('The ReceivedCounseling component', () => {
     component.find('input[name="AgencyName"]').simulate('change')
     component.find('.agency-address input[name="street"]').simulate('change')
     component.find('.completed-treatment .yes input').simulate('change')
-    expect(updates).toBe(9)
+    expect(updates).toBe(8)
   })
 
   it('Renders with treatment completed marked as no', () => {
