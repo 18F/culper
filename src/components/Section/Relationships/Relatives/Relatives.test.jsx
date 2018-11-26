@@ -7,10 +7,15 @@ import { i18n } from '../../../../config'
 
 describe('The relatives component', () => {
   const mockStore = configureMockStore()
+  const defaultAppState = {
+    application: {
+      AddressBooks: {}
+    }
+  }
   let createComponent
 
   beforeEach(() => {
-    const store = mockStore()
+    const store = mockStore(defaultAppState)
     createComponent = (expected = {}) =>
       mount(
         <Provider store={store}>
