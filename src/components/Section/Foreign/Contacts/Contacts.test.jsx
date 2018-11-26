@@ -11,7 +11,6 @@ const mountComponent = (mockStore, Component, props) => {
   const finalProps = {
     render: alternateAddressRenderMock,
     ...props
-
   }
 
   return mount(

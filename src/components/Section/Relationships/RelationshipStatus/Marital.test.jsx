@@ -5,22 +5,6 @@ import { Provider } from 'react-redux'
 import Marital from './Marital'
 import { i18n } from '../../../../config'
 
-const alternateAddressRenderMock = jest.fn();
-const mountComponent = (mockStore, Component, props) => {
-  const store = mockStore({ application: { AddressBooks: {} }})
-  const finalProps = {
-    render: alternateAddressRenderMock,
-    ...props
-
-  }
-
-  return mount(
-    <Provider store={store}>
-      <Component {...finalProps} />
-    </Provider>
-  )
-}
-
 describe('The relationship status component', () => {
   const mockStore = configureMockStore()
   let createComponent
@@ -178,16 +162,14 @@ const civilUnionDatesSetup = {
 
   describe('handles civil union dates', () => {
     it('with good data - where the date entered into civil union is after applicant and partner DOB', () => {
-      const mockStore = configureMockStore()
       const props = {
         valid: true
       }
 
-      const component = mountComponent(mockStore, Marital, props)
+      const component = createComponent(props)
       expect(component.find('.error-messages [data-i18n="error.civilUnion.min"]').children().length).toEqual(0)
     })
     it('with bad data - where the date entered into civil union is before applicant and partner DOB', () => {
-      const mockStore = configureMockStore()
       const props = {
         ...civilUnionDatesSetup,
         CivilUnion: {
@@ -203,7 +185,7 @@ const civilUnionDatesSetup = {
             },
         valid: false
       }
-      const component = mountComponent(mockStore, Marital, props)
+      const component = createComponent(props)
       expect(component.find('.error-messages [data-i18n="error.civilUnion.min"]').text()).toEqual(
         `${i18n.t('error.civilUnion.min.title')}${i18n.t('error.civilUnion.min.message')}`
       )
@@ -212,16 +194,14 @@ const civilUnionDatesSetup = {
 
   describe('handles divorce dates', () => {
     it('with good data - where the date divorced is after applicant and partner DOB as well as date entered into civil union', () => {
-      const mockStore = configureMockStore()
       const props = {
         valid: true
       }
 
-      const component = mountComponent(mockStore, Marital, props)
+      const component = createComponent(props)
       expect(component.find('.error-messages [data-i18n="error.divorceDate.min"]').children().length).toEqual(0)
     })
     it('with bad data - where the date divorced is before date entered into civil union', () => {
-      const mockStore = configureMockStore()
       const props = {
         ...divorcedDatesSetup,
         DivorcedList: {
@@ -242,7 +222,7 @@ const civilUnionDatesSetup = {
         valid: false
       }
 
-      const component = mountComponent(mockStore, Marital, props)
+      const component = createComponent(props)
       expect(component.find('.error-messages [data-i18n="error.divorceDate.min"]').text()).toEqual(
         `${i18n.t('error.divorceDate.min.title')}${i18n.t('error.divorceDate.min.message')}`
       )

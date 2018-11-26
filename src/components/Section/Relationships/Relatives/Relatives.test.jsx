@@ -5,22 +5,6 @@ import { Provider } from 'react-redux'
 import Relatives from './Relatives'
 import { i18n } from '../../../../config'
 
-const alternateAddressRenderMock = jest.fn();
-const mountComponent = (mockStore, Component, props) => {
-  const store = mockStore({ application: { AddressBooks: {} }})
-  const finalProps = {
-    render: alternateAddressRenderMock,
-    ...props
-
-  }
-
-  return mount(
-    <Provider store={store}>
-      <Component {...finalProps} />
-    </Provider>
-  )
-}
-
 describe('The relatives component', () => {
   const mockStore = configureMockStore()
   let createComponent
@@ -109,17 +93,15 @@ describe('The relatives component', () => {
 
   describe('handles foreign relative dates', () => {
     it('with good data - date first contacted is after applicant and relative DOB', () => {
-      const mockStore = configureMockStore()
       const props = {
         valid: true
       }
 
-      const component = mountComponent(mockStore, Relatives, props)
+      const component = createComponent(props)
       expect(component.find('.error-messages [data-i18n="error.date.min"]').children().length).toEqual(0)
     })
 
     it('with bad data - date first contacted is before applicant and relative DOB', () => {
-      const mockStore = configureMockStore()
       const props = {
         List: {
           items: [{
@@ -136,9 +118,10 @@ describe('The relatives component', () => {
             },
         }],
       },
-        valid: false
+      valid: false
       }
-      const component = mountComponent(mockStore, Relatives, props)
+
+      const component = createComponent(props)
       expect(component.find('.error-messages [data-i18n="error.date.min"]').text()).toEqual(
         `${i18n.t('error.date.min.title')}${i18n.t('error.date.min.message')}`
       )
