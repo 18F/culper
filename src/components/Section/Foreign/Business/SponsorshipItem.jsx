@@ -201,12 +201,6 @@ export default class SponsorshipItem extends ValidationElement {
             onError={this.props.onError}
             layout={Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY}
             label={i18n.t('foreign.business.sponsorship.label.birthplace')}
-            cityPlaceholder={i18n.t(
-              'foreign.business.sponsorship.placeholder.city'
-            )}
-            countryPlaceholder={i18n.t(
-              'foreign.business.sponsorship.placeholder.country'
-            )}
             className="foreign-business-sponsorship-birthplace"
             addressBooks={this.props.addressBooks}
             addressBook="ForeignNational"
@@ -315,9 +309,12 @@ export default class SponsorshipItem extends ValidationElement {
             name="Dates"
             {...this.props.Dates}
             onUpdate={this.updateDates}
+            minDate={(this.props.Birthdate || {}).date}
+            minDateEqualTo={true}
             onError={this.props.onError}
             className="foreign-business-sponsorship-dates"
             required={this.props.required}
+            prefix="foreignNationalSponsorship"
           />
         </Field>
 

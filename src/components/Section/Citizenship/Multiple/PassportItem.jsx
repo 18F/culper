@@ -137,6 +137,7 @@ export default class PassportItem extends ValidationElement {
             name="Issued"
             {...this.props.Issued}
             className="passport-issued"
+            minDateEqualTo={true}
             onUpdate={this.updateIssued}
             onError={this.props.onError}
             required={this.props.required}
@@ -200,6 +201,7 @@ export default class PassportItem extends ValidationElement {
             onUpdate={this.updateExpiration}
             onError={this.props.onError}
             minDate={(this.props.Issued || {}).date}
+            minDateEqualTo={true}
             noMaxDate={true}
             required={this.props.required}
           />

@@ -1,19 +1,36 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import Hospitalization from './Hospitalization'
 
 describe('The Hospitalization component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <Hospitalization {...expected} />
+        </Provider>
+      )
+  })
+
   it('Renders without errors', () => {
-    const component = mount(<Hospitalization />)
+    const component = createComponent()
     expect(component.find('.hospitalization').length).toBe(1)
   })
 
   it('Performs updates', () => {
     let updates = 0
-    const onUpdate = () => {
-      updates++
+    const expected = {
+      onUpdate: () => {
+        updates++
+      }
     }
-    const component = mount(<Hospitalization onUpdate={onUpdate} />)
+    const component = createComponent(expected)
     expect(component.find('.hospitalization').length).toBe(1)
     expect(component.find('input[name="Explanation"]').length).toBe(0)
     component
@@ -21,7 +38,7 @@ describe('The Hospitalization component', () => {
       .first()
       .simulate('change', { target: { value: '2010' } })
     component.find('input[name="Facility"]').simulate('change')
-    component.find('input[name="address"]').simulate('change')
+    component.find('input[name="street"]').simulate('change')
     component.find({ type: 'radio', value: 'Voluntary' }).simulate('change')
     expect(updates).toBe(4)
   })
@@ -29,12 +46,13 @@ describe('The Hospitalization component', () => {
   it('Performs updates with explanation', () => {
     let updates = 0
     const admission = { value: 'Voluntary' }
-    const onUpdate = () => {
-      updates++
+    const expected = {
+      onUpdate: () => {
+        updates++
+      },
+      Admission: { value: 'Voluntary' }
     }
-    const component = mount(
-      <Hospitalization onUpdate={onUpdate} Admission={admission} />
-    )
+    const component = createComponent(expected)
     expect(component.find('.hospitalization').length).toBe(1)
     expect(component.find('textarea[name="Explanation"]').length).toBe(1)
     component.find('textarea').simulate('change')
@@ -43,7 +61,7 @@ describe('The Hospitalization component', () => {
 
   it('Loads data', () => {
     let updates = 0
-    const item = {
+    const expected = {
       Facility: {
         value: 'Place 1'
       },
@@ -66,12 +84,12 @@ describe('The Hospitalization component', () => {
       Admission: 'Voluntary',
       Explanation: {
         value: 'Because I can'
+      },
+      onUpdate: () => {
+        updates++
       }
     }
-    const onUpdate = () => {
-      updates++
-    }
-    const component = mount(<Hospitalization onUpdate={onUpdate} {...item} />)
+    const component = createComponent(expected)
     expect(component.find('.hospitalization').length).toBe(1)
     component.find('textarea').simulate('change')
     expect(updates).toBe(1)

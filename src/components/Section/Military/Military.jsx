@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { i18n } from '../../../config'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
-import SectionComments from '../SectionComments'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import { hideDisciplinaryProcedures } from '../../../validators/militarydisciplinary'
 import { hideSelectiveService } from '../../../validators/selectiveservice'
@@ -136,18 +135,6 @@ class Military extends SectionElement {
               required={true}
               scrollIntoView={false}
             />
-
-            <hr className="section-divider" />
-            <SectionComments
-              name="comments"
-              {...this.props.Comments}
-              title={i18n.t('military.review.comments')}
-              dispatch={this.props.dispatch}
-              onUpdate={this.handleUpdate.bind(this, 'Comments')}
-              onError={this.handleError}
-              required={false}
-              scrollIntoView={false}
-            />
           </SectionView>
 
           <SectionView
@@ -251,7 +238,6 @@ function mapStateToProps(state) {
     History: military.History || {},
     Disciplinary: military.Disciplinary || {},
     Foreign: military.Foreign || {},
-    Comments: military.Comments || {},
     Errors: errors.military || [],
     Completed: completed.military || [],
     AddressBooks: addressBooks
@@ -314,17 +300,6 @@ export class MilitarySections extends React.Component {
           dispatch={this.props.dispatch}
           onError={this.props.onError}
           required={true}
-          scrollIntoView={false}
-        />
-
-        <hr className="section-divider" />
-        <SectionComments
-          name="comments"
-          {...this.props.Comments}
-          title={i18n.t('military.review.comments')}
-          dispatch={this.props.dispatch}
-          onError={this.handleError}
-          required={false}
           scrollIntoView={false}
         />
       </div>

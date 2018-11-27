@@ -8,9 +8,7 @@ export const relationships = {
     para: 'Take a guided tour through the section'
   },
   review: {
-    para: 'View all the sections associated with relationships at once',
-    comments:
-      'Add a comment to clarify any of your responses in the relationships section'
+    para: 'View all the sections associated with relationships at once'
   },
   destination: {
     intro: 'Relationships intro',
@@ -172,10 +170,6 @@ export const relationships = {
       },
       estimated: 'Estimated',
       birthplace: 'Was this person born in the United States of America?'
-    },
-    placeholder: {
-      city: 'Please enter the city of birth',
-      country: 'Please enter the country of birth'
     },
     help: {
       relation: {

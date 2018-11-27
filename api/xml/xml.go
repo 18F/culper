@@ -35,6 +35,7 @@ func (service Service) DefaultTemplate(templateName string, data map[string]inte
 	fmap := template.FuncMap{
 		"addressIn":              addressIn,
 		"agencyType":             agencyType,
+		"altAddressRemap":        altAddressRemap,
 		"branch":                 branch,
 		"branchToAnswer":         branchToAnswer,
 		"branchToBool":           branchToBool,
@@ -70,8 +71,10 @@ func (service Service) DefaultTemplate(templateName string, data map[string]inte
 		"hairType":               hairType,
 		"hasRelativeType":        hasRelativeType,
 		"inc":                    inc,
+		"isPostOffice":           isPostOffice,
+		"isDomestic":             isDomestic,
+		"isInternational":        isInternational,
 		"location":               location,
-		"locationIsPostOffice":   locationIsPostOffice,
 		"locationOverrideLayout": locationOverrideLayout,
 		"militaryAddress":        militaryAddress,
 		"militaryStatus":         militaryStatus,
@@ -153,6 +156,14 @@ func getInterfaceAsBytes(anon interface{}) []byte {
 		return nil
 	}
 	return js
+}
+
+func altAddressRemap(primary map[string]interface{}, hasDifferent map[string]interface{}, alternate map[string]interface{}) map[string]interface{} {
+	foo := make(map[string]interface{})
+	foo["Address"] = primary
+	foo["HasDifferentAddress"] = hasDifferent
+	foo["Alternate"] = alternate
+	return foo
 }
 
 // Put simple structures here where they only output a string
@@ -607,19 +618,40 @@ func checkboxTrueFalse(data map[string]interface{}) string {
 	return "false"
 }
 
-func locationIsPostOffice(data map[string]interface{}) string {
+func unmarshalLocation(data map[string]interface{}) (*api.Location, error) {
 	// Deserialize the initial payload from a JSON structure
 	payload := &api.Payload{}
 	entity, err := payload.UnmarshalEntity(getInterfaceAsBytes(data))
 	if err != nil {
-		return ""
+		return nil, err
 	}
 
 	location := entity.(*api.Location)
-	if location.IsPostOffice() {
-		return "True"
+	return location, nil
+}
+
+func isDomestic(data map[string]interface{}) (bool, error) {
+	location, err := unmarshalLocation(data)
+	if err != nil {
+		return false, err
 	}
-	return ""
+	return location.IsDomestic(), nil
+}
+
+func isInternational(data map[string]interface{}) (bool, error) {
+	location, err := unmarshalLocation(data)
+	if err != nil {
+		return false, err
+	}
+	return location.IsInternational(), nil
+}
+
+func isPostOffice(data map[string]interface{}) (bool, error) {
+	location, err := unmarshalLocation(data)
+	if err != nil {
+		return false, err
+	}
+	return location.IsPostOffice(), nil
 }
 
 func branchToBool(data map[string]interface{}) string {
@@ -746,6 +778,12 @@ func locationOverrideLayout(data map[string]interface{}, override string) (templ
 	}
 
 	switch layout {
+	case api.LayoutOffense:
+		if domestic {
+			return xmlTemplateWithFuncs("location-city-state-zipcode-county.xml", data, fmap)
+		}
+
+		return xmlTemplateWithFuncs("location-city-country.xml", data, fmap)
 	case api.LayoutBirthPlace:
 		if domestic {
 			return xmlTemplateWithFuncs("location-city-state-county.xml", data, fmap)
@@ -799,6 +837,10 @@ func locationOverrideLayout(data map[string]interface{}, override string) (templ
 		return xmlTemplate("location-street-city.xml", data)
 	case api.LayoutMilitaryAddress:
 		return xmlTemplateWithFuncs("location-address-apofpo-state-zipcode.xml", data, fmap)
+	case api.LayoutPhysicalDomestic:
+		return xmlTemplateWithFuncs("location-physical-address-domestic.xml", data, fmap)
+	case api.LayoutPhysicalInternational:
+		return xmlTemplateWithFuncs("location-physical-address-international.xml", data, fmap)
 	default:
 		if domestic || postoffice {
 			return xmlTemplateWithFuncs("location-street-city-state-zipcode.xml", data, fmap)

@@ -205,8 +205,6 @@
     width: 100%;
 
     .form-navigation {
-      transform: translateX(-100%);
-      -webkit-transform: translateX(-100%);
 
       .section-name {
         max-width: 88%;
@@ -242,19 +240,19 @@
       }
 
       .form-navigation {
-        animation: slide-out 0.5s forwards;
         -webkit-animation: slide-out 0.5s forwards;
+        animation: slide-out 0.5s forwards;
 
-        @keyframes slide-out {
+        @-webkit-keyframes slide-out {
           0% {
-            transform: translateX(-100%);
+            -webkit-transform: translateX(-100%);
           }
           100% {
-            transform: translateX(0%);
+            -webkit-transform: translateX(0%);
           }
         }
 
-        @-webkit-keyframes slide-out {
+        @keyframes slide-out {
           0% {
             transform: translateX(-100%);
           }
@@ -276,7 +274,7 @@
 
         > span {
           color: $eapp-blue;
-          border-bottom: 1px dashed $eapp-blue;
+          text-decoration: underline;
         }
       }
     }

@@ -17,13 +17,10 @@ jobs:
           name: Run React tests
           command: |
             TESTFILES=$(circleci tests glob "./src/**/*.test.js*" | circleci tests split)
-            make test-react FILES="$(echo ${TESTFILES})"
+            make test-react FLAGS="--ci --silent --coverage" FILES="$(echo ${TESTFILES})"
       - run:
           name: Run Go tests
           command: make test-go
-      - run:
-          name: Code coverage
-          command: make coverage
 
   cloudgov:
     machine: true
@@ -45,51 +42,12 @@ jobs:
       - deploy:
           command: ./bin/deploy-cloudgov
 
-  aws:
-    machine: true
-    steps:
-      - checkout
-      - run:
-          name: Prepare for target environment
-          command: ./bin/predeploy.sh aws
-      - run:
-          name: Setup
-          command: |
-            make setup
-      - run:
-          name: Build
-          command: make build
-      - run:
-          name: Checksum
-          command: make checksum
-      - run:
-          name: Package
-          command: |
-            ./bin/aws-login
-            make package
-      - deploy:
-          command: |
-            set -a
-            source .env
-            make deploy-check && make deploy-configure
-            ./bin/aws-login
-            make deploy-go
-            make deploy-react
-
 workflows:
   version: 2
   build_and_deploy:
     jobs:
       - test
       - cloudgov:
-          requires:
-            - test
-          filters:
-            branches:
-              only:
-                - master
-                - develop
-      - aws:
           requires:
             - test
           filters:

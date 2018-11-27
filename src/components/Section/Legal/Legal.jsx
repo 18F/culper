@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { i18n } from '../../../config'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
-import SectionComments from '../SectionComments'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import { Field } from '../../Form'
 import Offenses from './Police/Offenses'
@@ -763,18 +762,6 @@ class Legal extends SectionElement {
               required={true}
               scrollIntoView={false}
             />
-
-            <hr className="section-divider" />
-            <SectionComments
-              name="comments"
-              {...this.props.Comments}
-              title={i18n.t('legal.review.comments')}
-              dispatch={this.props.dispatch}
-              onUpdate={this.handleUpdate.bind(this, 'Comments')}
-              onError={this.handleError}
-              required={false}
-              scrollIntoView={false}
-            />
           </SectionView>
         </SectionViews>
       </div>
@@ -809,7 +796,6 @@ function mapStateToProps(state) {
     Advocating: legal.Advocating || {},
     ActivitiesToOverthrow: legal.ActivitiesToOverthrow || {},
     TerrorismAssociation: legal.TerrorismAssociation || {},
-    Comments: legal.Comments || {},
     Errors: errors.legal || [],
     Completed: completed.legal || [],
     AddressBooks: addressBooks
@@ -1020,17 +1006,6 @@ export class LegalSections extends React.Component {
           dispatch={this.props.dispatch}
           onError={this.props.onError}
           required={true}
-          scrollIntoView={false}
-        />
-
-        <hr className="section-divider" />
-        <SectionComments
-          name="comments"
-          {...this.props.Comments}
-          title={i18n.t('legal.review.comments')}
-          dispatch={this.props.dispatch}
-          onError={this.handleError}
-          required={false}
           scrollIntoView={false}
         />
       </div>

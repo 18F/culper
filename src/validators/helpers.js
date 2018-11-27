@@ -1,5 +1,12 @@
 import { daysAgo, today } from '../components/Section/History/dateranges'
 
+/**
+  * Determines if a value is defined vs false, 0, or empty string
+  * Useful when boolean short circuiting a value that might be
+  * 'truthy' even when javascript defines it as false
+**/
+export const isDefined = x => x !== undefined && x !== null
+
 export const validGenericMonthYear = obj => {
   if (!obj || !obj.month || !obj.year) {
     return false
@@ -311,3 +318,5 @@ export const buildDate = date => {
     return null
   }
 }
+
+export const alphaNumericRegEx = "^[a-zA-Z0-9]*$"

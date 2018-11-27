@@ -38,9 +38,7 @@
               "CourtAddress": {
                 "type": "location",
                 "props": {
-                  "layout": "Address",
-                  "street": "123 Some Rd",
-                  "street2": "",
+                  "layout": "Offense",
                   "city": "Arlington",
                   "state": "VA",
                   "zipcode": "22202",

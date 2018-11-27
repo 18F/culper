@@ -230,6 +230,7 @@ export default class DateRange extends ValidationElement {
             maxDate={this.props.maxDate}
             maxDateEqualTo={this.props.maxDateEqualTo}
             prefix={this.props.prefix}
+            relationship={this.props.relationship}
             onError={this.handleErrorFrom}
             disabled={this.props.disabled}
             required={this.props.required}
@@ -256,6 +257,7 @@ export default class DateRange extends ValidationElement {
             maxDate={this.props.maxDate}
             maxDateEqualTo={this.props.maxDateEqualTo}
             prefix={this.props.prefix}
+            relationship={this.props.relationship}
             onError={this.handleErrorTo}
             required={
               this.props.required && !this.state.present && !this.props.disabled
@@ -293,6 +295,7 @@ DateRange.defaultProps = {
   minDateEqualTo: false,
   maxDate: new Date(),
   maxDateEqualTo: false,
+  relationship: '',
   allowPresent: true,
   onError: (value, arr) => {
     return arr
@@ -324,7 +327,9 @@ DateRange.errors = [
       ) {
         return null
       }
-      return props.from.date && props.to.date && props.from.date < props.to.date
+      return (
+        props.from.date && props.to.date && props.from.date <= props.to.date
+      )
     }
   }
 ]

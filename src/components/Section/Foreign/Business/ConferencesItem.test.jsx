@@ -1,8 +1,23 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import ConferencesItem from './ConferencesItem'
 
 describe('The conferences item component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <ConferencesItem {...expected} />
+        </Provider>
+      )
+  })
+
   it('trigger updates', () => {
     let updates = 0
     const expected = {
@@ -10,7 +25,7 @@ describe('The conferences item component', () => {
         updates++
       }
     }
-    const component = mount(<ConferencesItem {...expected} />)
+    const component = createComponent(expected)
     component.find('.conferences-description textarea').simulate('change')
     component.find('.conferences-sponsor input').simulate('change')
     component.find('.conferences-city input').simulate('change')
@@ -34,7 +49,7 @@ describe('The conferences item component', () => {
         }
       }
     }
-    const component = mount(<ConferencesItem {...expected} />)
+    const component = createComponent(expected)
     component.find('.conferences-explanation textarea').simulate('change')
     expect(updates).toBe(1)
   })

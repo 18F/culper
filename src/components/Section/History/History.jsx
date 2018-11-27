@@ -10,7 +10,6 @@ import {
 import { i18n } from '../../../config'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
-import SectionComments from '../SectionComments'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import { Field, Svg, Show, Branch } from '../../Form'
 import SummaryProgress from './SummaryProgress'
@@ -44,6 +43,9 @@ export const sort = (a, b) => {
   return 0
 }
 
+/**
+ * Figure the total amount of years to collect for the timeline
+ */
 export const totalYears = birthdate => {
   let total = 10
   if (!birthdate) {
@@ -133,31 +135,6 @@ class History extends SectionElement {
         new HistoryEducationValidator(education, education).isValid()
       )
     )
-  }
-
-  /**
-   * Figure the total amount of years to collect for the timeline
-   */
-  totalYears() {
-    let total = 10
-    if (!this.props.Birthdate) {
-      return total
-    }
-
-    const eighteen = daysAgo(this.props.Birthdate, 365 * -18)
-    total = Math.ceil(daysBetween(eighteen, today) / 365)
-
-    // A maximum of 10 years is required
-    if (total > 10) {
-      total = 10
-    }
-
-    // A minimum of two years is required
-    if (total < 2) {
-      total = 2
-    }
-
-    return total
   }
 
   /**
@@ -267,7 +244,7 @@ class History extends SectionElement {
         List={this.residenceRangeList}
         title={i18n.t('history.residence.summary.title')}
         unit={i18n.t('history.residence.summary.unit')}
-        total={this.totalYears()}>
+        total={totalYears(this.props.Birthdate)}>
         <div className="summary-icon">
           <Svg
             src="/img/residence-house.svg"
@@ -285,7 +262,7 @@ class History extends SectionElement {
         List={this.employmentRangesList}
         title={i18n.t('history.employment.summary.title')}
         unit={i18n.t('history.employment.summary.unit')}
-        total={this.totalYears()}>
+        total={totalYears(this.props.Birthdate)}>
         <div className="summary-icon">
           <Svg
             src="/img/employer-briefcase.svg"
@@ -305,7 +282,7 @@ class History extends SectionElement {
         diplomas={this.diplomaRangesList}
         schoolsLabel={i18n.t('history.education.summary.schools')}
         diplomasLabel={i18n.t('history.education.summary.diplomas')}
-        total={this.totalYears()}>
+        total={totalYears(this.props.Birthdate)}>
         <div className="summary-icon">
           <Svg
             src="/img/school-cap.svg"
@@ -320,7 +297,7 @@ class History extends SectionElement {
     let holes = 0
 
     if (this.props.History) {
-      const start = daysAgo(today, 365 * this.totalYears())
+      const start = daysAgo(today, 365 * totalYears())
 
       for (const t of types) {
         let items = []
@@ -419,7 +396,7 @@ class History extends SectionElement {
               defaultState={false}
               realtime={true}
               sort={sort}
-              totalYears={this.totalYears()}
+              totalYears={totalYears(this.props.Birthdate)}
               overrideInitial={this.overrideInitial}
               onUpdate={this.updateResidence}
               onError={this.handleError}
@@ -444,7 +421,7 @@ class History extends SectionElement {
               defaultState={false}
               realtime={true}
               sort={sort}
-              totalYears={this.totalYears()}
+              totalYears={totalYears(this.props.Birthdate)}
               overrideInitial={this.overrideInitial}
               onUpdate={this.updateEmployment}
               onError={this.handleError}
@@ -505,7 +482,7 @@ class History extends SectionElement {
                   defaultState={false}
                   realtime={true}
                   sort={sort}
-                  totalYears={this.totalYears()}
+                  totalYears={totalYears(this.props.Birthdate)}
                   overrideInitial={this.overrideInitial}
                   onUpdate={this.updateEducation}
                   onError={this.handleError}
@@ -530,18 +507,6 @@ class History extends SectionElement {
               onError={this.handleError}
               scrollIntoView={false}
               required={true}
-            />
-
-            <hr className="section-divider" />
-            <SectionComments
-              name="comments"
-              {...this.props.Comments}
-              title={i18n.t('history.review.comments')}
-              dispatch={this.props.dispatch}
-              onUpdate={this.handleUpdate.bind(this, 'Comments')}
-              onError={this.handleError}
-              required={false}
-              scrollIntoView={false}
             />
           </SectionView>
 
@@ -569,7 +534,7 @@ class History extends SectionElement {
               scrollToTop="scrollToHistory"
               realtime={true}
               sort={sort}
-              totalYears={this.totalYears()}
+              totalYears={totalYears(this.props.Birthdate)}
               overrideInitial={this.overrideInitial}
               onUpdate={this.updateResidence}
               onError={this.handleError}
@@ -612,7 +577,7 @@ class History extends SectionElement {
               {...this.props.Employment}
               scrollToTop="scrollToHistory"
               sort={sort}
-              totalYears={this.totalYears()}
+              totalYears={totalYears(this.props.Birthdate)}
               overrideInitial={this.overrideInitial}
               onUpdate={this.updateEmployment}
               onError={this.handleError}
@@ -680,7 +645,7 @@ class History extends SectionElement {
                   {...this.props.Education}
                   scrollToTop="scrollToHistory"
                   sort={sort}
-                  totalYears={this.totalYears()}
+                  totalYears={totalYears(this.props.Birthdate)}
                   overrideInitial={this.overrideInitial}
                   onUpdate={this.updateEducation}
                   onError={this.handleError}
@@ -718,7 +683,7 @@ const processDate = date => {
   }
 
   let d = null
-  const { month, day, year } = date
+  const { month, day, year } = date.Date
   if (month && day && year) {
     d = utc(new Date(year, month - 1, day))
   }
@@ -743,7 +708,6 @@ function mapStateToProps(state) {
       List: { items: [] }
     },
     Federal: history.Federal || {},
-    Comments: history.Comments || {},
     Errors: errors.history || [],
     Completed: completed.history || [],
     Birthdate: processDate(identification.ApplicantBirthDate),
@@ -792,6 +756,20 @@ export class HistorySections extends React.Component {
           required={true}
         />
 
+        <Branch
+          name="branch_school"
+          {...this.props.Education.HasAttended}
+          label={i18n.t('history.education.label.attendance')}
+          labelSize="h3"
+        />
+        <Show when={this.props.Education.HasAttended.value === 'No'}>
+          <Branch
+            name="branch_degree10"
+            {...this.props.Education.HasDegree10}
+            label={i18n.t('history.education.label.degree10')}
+            labelSize="h3"
+          />
+        </Show>
         <Show
           when={
             this.props.Education.HasAttended.value === 'Yes' ||
@@ -822,17 +800,6 @@ export class HistorySections extends React.Component {
           onError={this.props.onError}
           scrollIntoView={false}
           required={true}
-        />
-
-        <hr className="section-divider" />
-        <SectionComments
-          name="comments"
-          {...this.props.Comments}
-          title={i18n.t('history.review.comments')}
-          dispatch={this.props.dispatch}
-          onError={this.handleError}
-          required={false}
-          scrollIntoView={false}
         />
       </div>
     )

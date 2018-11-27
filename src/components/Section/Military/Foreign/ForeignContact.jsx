@@ -89,7 +89,8 @@ export default class ForeignContact extends React.Component {
             addressBook="ForeignNational"
             dispatch={this.props.dispatch}
             layout={Location.ADDRESS}
-            geocode={true}
+            geocode
+            showPostOffice={false}
             onUpdate={this.updateAddress}
             onError={this.props.onError}
             required={this.props.required}
@@ -120,6 +121,7 @@ export default class ForeignContact extends React.Component {
             name="Dates"
             className="foreign-contact-dates"
             {...this.props.Dates}
+            minDateEqualTo={true}
             onUpdate={this.updateDates}
             onError={this.props.onError}
             required={this.props.required}

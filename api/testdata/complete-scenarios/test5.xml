@@ -1771,21 +1771,21 @@
                     </DegreeAwarded>
                   </DegreesAwarded>
                   <Verifier>
+                    <LegalName>
+                      <Last>Bronston</Last>
+                      <First>Timothy</First>
+                    </LegalName>
+                    <Email>timothy@example.com</Email>
+                    <Telephone>
+                      <Number>1247181232</Number>
+                      <Time>Both</Time>
+                    </Telephone>
                     <Address>
                       <Street>200 Hawkins Drive </Street>
                       <City>Iowa City</City>
                       <State>IA</State>
                       <ZipCode>52242</ZipCode>
                     </Address>
-                    <Email>timothy@example.com</Email>
-                    <LegalName>
-                      <Last>Bronston</Last>
-                      <First>Timothy</First>
-                    </LegalName>
-                    <Telephone>
-                      <Number>1247181232</Number>
-                      <Time>Both</Time>
-                    </Telephone>
                   </Verifier>
                 </SchoolAttended>
               </SchoolsAttended>
@@ -4550,6 +4550,7 @@
                             <City>Monterey</City>
                             <State>CA</State>
                             <ZipCode>93940</ZipCode>
+                            <County>Alameda</County>
                           </Place>
                         </Location>
                         <Name>Monterey Criminal Court</Name>
@@ -4610,6 +4611,7 @@
                           <City>Monterey</City>
                           <State>CA</State>
                           <ZipCode>93940</ZipCode>
+                          <County>Alameda</County>
                         </Place>
                       </Location>
                       <Name>Monterey Police Department</Name>
@@ -4626,6 +4628,7 @@
                         <City>Monterey</City>
                         <State>CA</State>
                         <ZipCode>93940</ZipCode>
+                        <County>Alameda</County>
                       </Place>
                     </Location>
                     <NotConvicted>
@@ -4648,6 +4651,7 @@
                           <City>Monterey</City>
                           <State>CA</State>
                           <ZipCode>93940</ZipCode>
+                          <County>Alameda</County>
                         </Place>
                       </Location>
                       <Name>California Highway Patrol</Name>
@@ -4664,6 +4668,7 @@
                         <City>Monterey</City>
                         <State>CA</State>
                         <ZipCode>93940</ZipCode>
+                        <County>Alameda</County>
                       </Place>
                     </Location>
                     <NotConvicted>
@@ -4700,6 +4705,7 @@
                           <City>San Jose</City>
                           <State>CA</State>
                           <ZipCode>95002</ZipCode>
+                          <County>Alameda</County>
                         </Place>
                       </Location>
                       <Name>San Jose Court</Name>
@@ -4729,6 +4735,7 @@
                         <City>Monterey</City>
                         <State>CA</State>
                         <ZipCode>93940</ZipCode>
+                        <County>Alameda</County>
                       </Place>
                     </Location>
                     <Name>Monterey Restraining Court</Name>
@@ -4746,6 +4753,7 @@
                         <City>Monterey</City>
                         <State>CA</State>
                         <ZipCode>93940</ZipCode>
+                        <County>Alameda</County>
                       </Place>
                     </Location>
                     <Name>Salinas Court</Name>
@@ -5275,6 +5283,7 @@
                 </Investigation>
                 <Investigation ID="2">
                   <Agency>ForeignGovernment</Agency>
+                  <OtherAgency>Ministry of Forests, Canada</OtherAgency>
                   <ClearanceLevel>Foreign</ClearanceLevel>
                   <GrantedDate>
                     <Date>
@@ -5291,7 +5300,6 @@
                   <IssuingAgency>
                     <Name>Different Agency</Name>
                   </IssuingAgency>
-                  <OtherAgency>Ministry of Forests, Canada</OtherAgency>
                 </Investigation>
               </Investigations>
               <PriorInvestigation>

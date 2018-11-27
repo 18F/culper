@@ -1,19 +1,36 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import IndirectActivity from './IndirectActivity'
 
 describe('The IndirectActivity component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <IndirectActivity {...expected} />
+        </Provider>
+      )
+  })
+
   it('Renders without errors', () => {
-    const component = mount(<IndirectActivity />)
+    const component = createComponent()
     expect(component.find('.indirect').length).toBe(1)
   })
 
   it('Updates with yes', () => {
     let updates = 0
-    const onUpdate = () => {
-      updates++
+    const expected = {
+      onUpdate: () => {
+        updates++
+      }
     }
-    const component = mount(<IndirectActivity onUpdate={onUpdate} />)
+    const component = createComponent(expected)
     expect(component.find('.indirect').length).toBe(1)
     component.find('.branch .no input').simulate('change')
     expect(updates).toBe(1)
@@ -41,7 +58,7 @@ describe('The IndirectActivity component', () => {
         ]
       }
     }
-    const component = mount(<IndirectActivity {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(1)
     expect(component.find('.context strong').text()).toBe('Foo - John Doe')
   })
@@ -62,7 +79,7 @@ describe('The IndirectActivity component', () => {
         ]
       }
     }
-    const component = mount(<IndirectActivity {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(1)
     expect(component.find('.context strong').text()).toBe('Foo')
   })
@@ -71,7 +88,7 @@ describe('The IndirectActivity component', () => {
     const expected = {
       HasInterests: { value: 'No' }
     }
-    const component = mount(<IndirectActivity {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(0)
   })
 
@@ -134,7 +151,7 @@ describe('The IndirectActivity component', () => {
         ]
       }
     }
-    const component = mount(<IndirectActivity {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(1)
     expect(status).toBe(true)
   })

@@ -2,7 +2,7 @@ import React from 'react'
 import { i18n } from '../../../config'
 import ValidationElement from '../ValidationElement'
 import Street from '../Street'
-import MilitaryState from '../MilitaryState'
+import State from '../State'
 import City from '../City'
 import Country from '../Country'
 import ZipCode from '../ZipCode'
@@ -12,7 +12,10 @@ import ApoFpo from '../ApoFpo'
 import Show from '../Show'
 import Suggestions from '../Suggestions'
 import { AddressSuggestion } from './AddressSuggestion'
-import LocationValidator, { countryString } from '../../../validators/location'
+import LocationValidator, {
+  countryString,
+  isInternational
+} from '../../../validators/location'
 import { countryValueResolver } from './Location'
 
 export default class Address extends ValidationElement {
@@ -24,37 +27,6 @@ export default class Address extends ValidationElement {
       showAddressBook: false
     }
 
-    this.update = this.update.bind(this)
-    this.updateStreet = this.updateStreet.bind(this)
-    this.updateStreet2 = this.updateStreet2.bind(this)
-    this.updateCity = this.updateCity.bind(this)
-    this.updateState = this.updateState.bind(this)
-    this.updateCountry = this.updateCountry.bind(this)
-    this.updateZipcode = this.updateZipcode.bind(this)
-    this.updateAddressType = this.updateAddressType.bind(this)
-    this.addressTypeFunc = this.addressTypeFunc.bind(this)
-    this.openAddressBook = this.openAddressBook.bind(this)
-    this.closeAddressBook = this.closeAddressBook.bind(this)
-    this.renderAddressBookItem = this.renderAddressBookItem.bind(this)
-    this.selectAddressBookItem = this.selectAddressBookItem.bind(this)
-    this.zipcodeInstate = this.zipcodeInstate.bind(this)
-    this.handleError = this.handleError.bind(this)
-    this.storeErrors = this.storeErrors.bind(this)
-    this.errors = []
-
-    this.focusStreet = this.focusStreet.bind(this)
-    this.focusStreet2 = this.focusStreet2.bind(this)
-    this.focusCity = this.focusCity.bind(this)
-    this.focusState = this.focusState.bind(this)
-    this.focusCountry = this.focusCountry.bind(this)
-    this.focusZipcode = this.focusZipcode.bind(this)
-
-    this.blurStreet = this.blurStreet.bind(this)
-    this.blurStreet2 = this.blurStreet2.bind(this)
-    this.blurCity = this.blurCity.bind(this)
-    this.blurState = this.blurState.bind(this)
-    this.blurCountry = this.blurCountry.bind(this)
-    this.blurZipcode = this.blurZipcode.bind(this)
     this.blurred = {
       street: true,
       street2: true,
@@ -63,71 +35,30 @@ export default class Address extends ValidationElement {
       country: true,
       zipcode: true
     }
+    this.errors = []
+
+    this.update = this.update.bind(this)
+    this.updateCountry = this.updateCountry.bind(this)
+    this.updateAddressType = this.updateAddressType.bind(this)
+    this.addressType = this.addressType.bind(this)
+    this.openAddressBook = this.openAddressBook.bind(this)
+    this.closeAddressBook = this.closeAddressBook.bind(this)
+    this.renderAddressBookItem = this.renderAddressBookItem.bind(this)
+    this.selectAddressBookItem = this.selectAddressBookItem.bind(this)
+    this.handleError = this.handleError.bind(this)
+    this.storeErrors = this.storeErrors.bind(this)
+    this.focusField = this.focusField.bind(this)
+    this.blurField = this.blurField.bind(this)
+    this.onAddressUpdate = this.onAddressUpdate.bind(this)
+    this.blurForceUpdate = this.blurForceUpdate.bind(this)
   }
 
-  componentDidMount() {
-    // Turn on scroll detection
-    window.addEventListener('scroll', this.scroller.bind(this))
-  }
+  onAddressUpdate(nextValue) {
+    const { name, value } = nextValue
 
-  componentWillUnmount() {
-    // Turn off scroll detection
-    window.removeEventListener('scroll', this.scroller.bind(this))
-  }
-
-  scroller() {
-    const b = this.blurred
-    const blurry =
-      b.street && b.street2 && b.city && b.state && b.country && b.zipcode
-    const modal = document.querySelector('.modal')
-    if (!blurry && !modal && !this.props.validated) {
-      this.update({}, 500, true)
-    }
-  }
-
-  updateStreet(values) {
-    this.update(
-      {
-        street: values.value
-      },
-      6000
-    )
-  }
-
-  updateStreet2(values) {
-    this.update(
-      {
-        street2: values.value
-      },
-      6000
-    )
-  }
-
-  updateCity(values) {
-    this.update(
-      {
-        city: values.value
-      },
-      6000
-    )
-  }
-
-  updateState(values) {
-    this.update(
-      {
-        state: values.value
-      },
-      6000
-    )
-  }
-
-  updateZipcode(values) {
-    this.update(
-      {
-        zipcode: values.value
-      },
-      1000
-    )
+    this.update({
+      [name]: value
+    })
   }
 
   updateCountry(values) {
@@ -151,7 +82,6 @@ export default class Address extends ValidationElement {
     )
 
     let country = { value: '' }
-    let city = this.props.city
 
     // POSTOFFICE is used for APO, FPO and DPO
     switch (values.value) {
@@ -169,17 +99,9 @@ export default class Address extends ValidationElement {
         break
     }
 
-    // Clear the city when moving *from* APO/FPO and *to* something else.
-    if (
-      values.value !== 'POSTOFFICE' &&
-      countryString(this.props.country) === 'POSTOFFICE'
-    ) {
-      city = ''
-    }
-
     this.update({
-      country: country,
-      city: city,
+      country,
+      city: '',
       state: ''
     })
   }
@@ -216,106 +138,46 @@ export default class Address extends ValidationElement {
   }
 
   blurForceUpdate() {
-    const b = this.blurred
-    const blurry =
-      b.street && b.street2 && b.city && b.state && b.country && b.zipcode
+    const blurry = Object.values(this.blurred).every(value => !!value)
     const modal = document.querySelector('.modal')
+
     if (blurry && !modal && !this.props.validated) {
       this.update({}, 500, true)
     }
   }
 
-  blurStreet(event) {
+  blurField(event) {
+    const field = event.target.name
+
     this.props.onBlur(event)
-    this.blurred.street = true
+    this.blurred[field] = true
     this.blurForceUpdate()
   }
 
-  blurStreet2(event) {
-    this.props.onBlur(event)
-    this.blurred.street2 = true
-    this.blurForceUpdate()
-  }
+  focusField(event) {
+    const field = event.target.name
 
-  blurCity(event) {
-    this.props.onBlur(event)
-    this.blurred.city = true
-    this.blurForceUpdate()
-  }
-
-  blurState(event) {
-    this.props.onBlur(event)
-    this.blurred.state = true
-    this.blurForceUpdate()
-  }
-
-  blurCountry(event) {
-    this.props.onBlur(event)
-    this.blurred.country = true
-    this.blurForceUpdate()
-  }
-
-  blurZipcode(event) {
-    this.props.onBlur(event)
-    this.blurred.zipcode = true
-    this.blurForceUpdate()
-  }
-
-  focusStreet(event) {
     this.props.onFocus(event)
-    this.blurred.street = false
+    this.blurred[field] = false
     this.update({}, 0, true)
   }
 
-  focusStreet2(event) {
-    this.props.onFocus(event)
-    this.blurred.street2 = false
-    this.update({}, 0, true)
-  }
-
-  focusCity(event) {
-    this.props.onFocus(event)
-    this.blurred.city = false
-    this.update({}, 0, true)
-  }
-
-  focusState(event) {
-    this.props.onFocus(event)
-    this.blurred.state = false
-    this.update({}, 0, true)
-  }
-
-  focusCountry(event) {
-    this.props.onFocus(event)
-    this.blurred.country = false
-    this.update({}, 0, true)
-  }
-
-  focusZipcode(event) {
-    this.props.onFocus(event)
-    this.blurred.zipcode = false
-    this.update({}, 0, true)
-  }
-
-  addressTypeFunc(props) {
+  addressType() {
     const country = countryString(this.props.country)
-    switch (true) {
-      case props.value === country:
-        return true
-      case props.value === 'International' &&
-        !['United States', 'POSTOFFICE'].includes(country):
-        return true
-      default:
-        return false
+
+    if (['United States', 'POSTOFFICE'].includes(country)) {
+      return country
     }
+
+    return "International"
   }
 
   openAddressBook() {
     this.setState({ showAddressBook: true })
   }
 
-  closeAddressBook() {
-    this.setState({ showAddressBook: false })
+  closeAddressBook(hook = function() {}) {
+    this.setState({ showAddressBook: false }, hook)
   }
 
   renderAddressBookItem(suggestion) {
@@ -323,7 +185,7 @@ export default class Address extends ValidationElement {
   }
 
   selectAddressBookItem(suggestion) {
-    this.setState({ showAddressBook: false }, () => {
+    this.closeAddressBook(() => {
       this.update({
         street: suggestion.street,
         street2: suggestion.street2,
@@ -335,12 +197,6 @@ export default class Address extends ValidationElement {
         validated: true
       })
     })
-  }
-
-  zipcodeInstate() {
-    const validator = new LocationValidator(this.props)
-
-    return validator.validZipcodeState()
   }
 
   handleError(value, arr) {
@@ -384,58 +240,56 @@ export default class Address extends ValidationElement {
   render() {
     const book = this.props.addressBooks[this.props.addressBook] || []
     const country = countryString(this.props.country)
-    const instateZipcode = this.zipcodeInstate()
+    const locationValidator = new LocationValidator(this.props)
+    const instateZipcode = locationValidator.validZipcodeState()
+
     return (
       <div className="address">
         <Show when={!this.props.disableToggle}>
-          <div>
-            <label>{this.props.label}</label>
-            <RadioGroup
-              className={`address-options option-list ${
-                this.props.showPostOffice ? '' : 'no-postoffice'
-              }`.trim()}
+          <label>{this.props.label}</label>
+          <RadioGroup
+            className={`address-options option-list ${
+              this.props.showPostOffice ? '' : 'no-postoffice'
+            }`.trim()}
+            disabled={this.props.disabled}
+            selectedValue={this.addressType()}
+          >
+            <Radio
+              name="addressType"
+              label={i18n.m('address.options.us.label')}
+              value="United States"
+              className="domestic"
+              ignoreDeselect
               disabled={this.props.disabled}
-              selectedValueFunc={this.addressTypeFunc}>
+              onUpdate={this.updateAddressType}
+              onBlur={this.props.onBlur}
+              onFocus={this.props.onFocus}
+            />
+            {this.props.showPostOffice && (
               <Radio
                 name="addressType"
-                label={i18n.m('address.options.us.label')}
-                value="United States"
-                className="domestic"
-                ignoreDeselect="true"
+                label={i18n.m('address.options.apoFpo.label')}
+                value="POSTOFFICE"
+                className="apofpo postoffice"
+                ignoreDeselect
                 disabled={this.props.disabled}
                 onUpdate={this.updateAddressType}
                 onBlur={this.props.onBlur}
                 onFocus={this.props.onFocus}
               />
-              <Show when={this.props.showPostOffice}>
-                <Radio
-                  name="addressType"
-                  label={i18n.m('address.options.apoFpo.label')}
-                  value="POSTOFFICE"
-                  className="apofpo postoffice"
-                  ignoreDeselect="true"
-                  disabled={this.props.disabled}
-                  onUpdate={this.updateAddressType}
-                  onBlur={this.props.onBlur}
-                  onFocus={this.props.onFocus}
-                />
-              </Show>
-              <Show when={!this.props.showPostOffice}>
-                <div className="apofpo postoffice block" />
-              </Show>
-              <Radio
-                name="addressType"
-                label={i18n.m('address.options.international.label')}
-                value="International"
-                className="international"
-                ignoreDeselect="true"
-                disabled={this.props.disabled}
-                onUpdate={this.updateAddressType}
-                onBlur={this.props.onBlur}
-                onFocus={this.props.onFocus}
-              />
-            </RadioGroup>
-          </div>
+            )}
+            <Radio
+              name="addressType"
+              label={i18n.m('address.options.international.label')}
+              value="International"
+              className="international"
+              ignoreDeselect
+              disabled={this.props.disabled}
+              onUpdate={this.updateAddressType}
+              onBlur={this.props.onBlur}
+              onFocus={this.props.onFocus}
+            />
+          </RadioGroup>
         </Show>
 
         <Show when={this.props.addressBook && book.length}>
@@ -463,222 +317,218 @@ export default class Address extends ValidationElement {
         </Show>
 
         <div className="fields">
-          <div>
-            <Show when={country === 'United States'}>
-              <div>
-                <Street
-                  name="address"
-                  className="mailing street required"
-                  label={this.props.streetLabel}
-                  placeholder={this.props.streetPlaceholder}
-                  value={this.props.street}
-                  onUpdate={this.updateStreet}
+          <Show when={locationValidator.isDomestic()}>
+            <div>
+              <Street
+                name="street"
+                className="mailing street required"
+                label={this.props.streetLabel}
+                placeholder={this.props.streetPlaceholder}
+                value={this.props.street}
+                onUpdate={this.onAddressUpdate}
+                onError={this.handleError}
+                onFocus={this.focusField}
+                onBlur={this.blurField}
+                required={this.props.required}
+                disabled={this.props.disabled}
+              />
+              <Street
+                name="street2"
+                className="street2"
+                label={this.props.street2Label}
+                optional={true}
+                value={this.props.street2}
+                disabled={this.props.disabled}
+                onUpdate={this.onAddressUpdate}
+                onError={this.handleError}
+                onFocus={this.focusField}
+                onBlur={this.blurField}
+              />
+              <City
+                name="city"
+                className="city required"
+                label={this.props.cityLabel}
+                value={this.props.city}
+                onUpdate={this.onAddressUpdate}
+                onError={this.handleError}
+                onFocus={this.focusField}
+                onBlur={this.blurField}
+                required={this.props.required}
+                disabled={this.props.disabled}
+              />
+              <div className="state-zip-wrap">
+                <State
+                  name="state"
+                  className="state required"
+                  label={this.props.stateLabel}
+                  value={this.props.state}
+                  includeStates="true"
+                  onUpdate={this.onAddressUpdate}
                   onError={this.handleError}
-                  onFocus={this.focusStreet}
-                  onBlur={this.blurStreet}
+                  onFocus={this.focusField}
+                  onBlur={this.blurField}
                   required={this.props.required}
                   disabled={this.props.disabled}
                 />
-                <Street
-                  name="street2"
-                  className="street2"
-                  label={this.props.street2Label}
-                  optional={true}
-                  value={this.props.street2}
-                  disabled={this.props.disabled}
-                  onUpdate={this.updateStreet2}
+                <ZipCode
+                  name="zipcode"
+                  ref="us_zipcode"
+                  key="us_zipcode"
+                  className="zipcode required"
+                  label={this.props.zipcodeLabel}
+                  value={this.props.zipcode}
+                  status={instateZipcode}
+                  onUpdate={this.onAddressUpdate}
                   onError={this.handleError}
-                  onFocus={this.focusStreet2}
-                  onBlur={this.blurStreet2}
+                  onFocus={this.focusField}
+                  onBlur={this.blurField}
+                  required={this.props.required}
+                  disabled={this.props.disabled}
                 />
-                <City
+              </div>
+            </div>
+          </Show>
+          <Show when={isInternational(this.props)}>
+            <Street
+              name="street"
+              label={this.props.streetLabel}
+              placeholder={this.props.streetPlaceholder}
+              className="mailing street required"
+              value={this.props.street}
+              onUpdate={this.onAddressUpdate}
+              onError={this.handleError}
+              onFocus={this.props.onFocus}
+              onBlur={this.props.onBlur}
+              required={this.props.required}
+              disabled={this.props.disabled}
+            />
+            <Street
+              name="street2"
+              className="street2"
+              label={this.props.street2Label}
+              optional={true}
+              value={this.props.street2}
+              onUpdate={this.onAddressUpdate}
+              onError={this.handleError}
+              onFocus={this.props.onFocus}
+              onBlur={this.props.onBlur}
+              disabled={this.props.disabled}
+            />
+            <City
+              name="city"
+              className="city required"
+              label={this.props.cityLabel}
+              value={this.props.city}
+              onUpdate={this.onAddressUpdate}
+              onError={this.handleError}
+              onFocus={this.props.onFocus}
+              onBlur={this.props.onBlur}
+              required={this.props.required}
+              disabled={this.props.disabled}
+            />
+            <Country
+              name="country"
+              className="required"
+              label={this.props.countryLabel}
+              {...countryValueResolver(this.props)}
+              excludeUnitedStates="true"
+              onUpdate={this.updateCountry}
+              onError={this.handleError}
+              onFocus={this.props.onFocus}
+              onBlur={this.props.onBlur}
+              required={this.props.required}
+              disabled={this.props.disabled}
+            />
+          </Show>
+          <Show when={locationValidator.isPostOffice()}>
+            <div>
+              <Street
+                name="street"
+                label={i18n.t('address.apoFpo.street.label')}
+                placeholder={this.props.postOfficeStreetPlaceholder}
+                className="mailing street required"
+                value={this.props.street}
+                onUpdate={this.onAddressUpdate}
+                onError={this.handleError}
+                onFocus={this.focusField}
+                onBlur={this.blurField}
+                required={this.props.required}
+                disabled={this.props.disabled}
+              />
+              <label>{i18n.t('address.apoFpo.select.label')}</label>
+              <RadioGroup
+                className="apofpo"
+                selectedValue={this.props.city}
+                disabled={this.props.disabled}
+                required={this.props.required}
+                onError={this.handleError}>
+                <Radio
                   name="city"
-                  className="city required"
-                  label={this.props.cityLabel}
-                  value={this.props.city}
-                  onUpdate={this.updateCity}
-                  onError={this.handleError}
-                  onFocus={this.focusCity}
-                  onBlur={this.blurCity}
-                  required={this.props.required}
+                  className="apo"
+                  label={i18n.m('address.apoFpo.apoFpoType.apo.label')}
+                  value="APO"
                   disabled={this.props.disabled}
+                  onUpdate={this.onAddressUpdate}
+                  onBlur={this.blurField}
+                  onFocus={this.focusField}
                 />
-                <div className="state-zip-wrap">
-                  <MilitaryState
-                    name="state"
-                    className="state required"
-                    label={this.props.stateLabel}
-                    value={this.props.state}
-                    includeStates="true"
-                    onUpdate={this.updateState}
-                    onError={this.handleError}
-                    onFocus={this.focusState}
-                    onBlur={this.blurState}
-                    required={this.props.required}
-                    disabled={this.props.disabled}
-                  />
-                  <ZipCode
-                    name="zipcode"
-                    ref="us_zipcode"
-                    key="us_zipcode"
-                    className="zipcode required"
-                    label={this.props.zipcodeLabel}
-                    value={this.props.zipcode}
-                    status={instateZipcode}
-                    onUpdate={this.updateZipcode}
-                    onError={this.handleError}
-                    onFocus={this.focusZipcode}
-                    onBlur={this.blurZipcode}
-                    required={this.props.required}
-                    disabled={this.props.disabled}
-                  />
-                </div>
-              </div>
-            </Show>
-            <Show when={!['United States', 'POSTOFFICE'].includes(country)}>
-              <div>
-                <Street
-                  name="address"
-                  label={this.props.streetLabel}
-                  placeholder={this.props.streetPlaceholder}
-                  className="mailing street required"
-                  value={this.props.street}
-                  onUpdate={this.updateStreet}
-                  onError={this.handleError}
-                  onFocus={this.props.onFocus}
-                  onBlur={this.props.onBlur}
-                  required={this.props.required}
-                  disabled={this.props.disabled}
-                />
-                <Street
-                  name="street2"
-                  className="street2"
-                  label={this.props.street2Label}
-                  optional={true}
-                  value={this.props.street2}
-                  onUpdate={this.updateStreet2}
-                  onError={this.handleError}
-                  onFocus={this.props.onFocus}
-                  onBlur={this.props.onBlur}
-                  disabled={this.props.disabled}
-                />
-                <City
+                <Radio
                   name="city"
-                  className="city required"
-                  label={this.props.cityLabel}
-                  value={this.props.city}
-                  onUpdate={this.updateCity}
+                  className="fpo"
+                  label={i18n.m('address.apoFpo.apoFpoType.fpo.label')}
+                  value="FPO"
+                  disabled={this.props.disabled}
+                  onUpdate={this.onAddressUpdate}
+                  onBlur={this.blurField}
+                  onFocus={this.focusField}
+                />
+                <Radio
+                  name="city"
+                  className="dpo"
+                  label={i18n.m('address.apoFpo.apoFpoType.dpo.label')}
+                  value="DPO"
+                  disabled={this.props.disabled}
+                  onUpdate={this.onAddressUpdate}
+                  onBlur={this.blurField}
+                  onFocus={this.focusField}
+                />
+              </RadioGroup>
+              <div className="state-zip-wrap">
+                <ApoFpo
+                  name="state"
+                  className="state required"
+                  label={this.props.postOfficeStateLabel}
+                  value={this.props.state}
+                  onUpdate={this.onAddressUpdate}
                   onError={this.handleError}
-                  onFocus={this.props.onFocus}
-                  onBlur={this.props.onBlur}
+                  onFocus={this.focusField}
+                  onBlur={this.blurField}
                   required={this.props.required}
                   disabled={this.props.disabled}
+                  tabNext={() => {
+                    this.props.tab(
+                      this.refs.apo_zipcode.refs.zipcode.refs.text.refs.input
+                    )
+                  }}
                 />
-                <Country
-                  name="country"
-                  className="required"
-                  label={this.props.countryLabel}
-                  {...countryValueResolver(this.props)}
-                  excludeUnitedStates="true"
-                  onUpdate={this.updateCountry}
+                <ZipCode
+                  name="zipcode"
+                  ref="apo_zipcode"
+                  key="apo_zipcode"
+                  className="zipcode required"
+                  label={this.props.postOfficeZipcodeLabel}
+                  value={this.props.zipcode}
+                  status={instateZipcode}
+                  onUpdate={this.onAddressUpdate}
                   onError={this.handleError}
-                  onFocus={this.props.onFocus}
-                  onBlur={this.props.onBlur}
+                  onFocus={this.focusField}
+                  onBlur={this.blurField}
                   required={this.props.required}
                   disabled={this.props.disabled}
                 />
               </div>
-            </Show>
-            <Show when={country === 'POSTOFFICE'}>
-              <div>
-                <Street
-                  name="address"
-                  label={i18n.t('address.apoFpo.street.label')}
-                  placeholder={this.props.postOfficeStreetPlaceholder}
-                  className="mailing street required"
-                  value={this.props.street}
-                  onUpdate={this.updateStreet}
-                  onError={this.handleError}
-                  onFocus={this.focusStreet}
-                  onBlur={this.blurStreet}
-                  required={this.props.required}
-                  disabled={this.props.disabled}
-                />
-                <label>{i18n.t('address.apoFpo.select.label')}</label>
-                <RadioGroup
-                  className="apofpo"
-                  selectedValue={this.props.city}
-                  disabled={this.props.disabled}
-                  required={this.props.required}
-                  onError={this.handleError}>
-                  <Radio
-                    name="apoFpoType"
-                    className="apo"
-                    label={i18n.m('address.apoFpo.apoFpoType.apo.label')}
-                    value="APO"
-                    disabled={this.props.disabled}
-                    onUpdate={this.updateCity}
-                    onBlur={this.blurCity}
-                    onFocus={this.focusCity}
-                  />
-                  <Radio
-                    name="addressType"
-                    className="fpo"
-                    label={i18n.m('address.apoFpo.apoFpoType.fpo.label')}
-                    value="FPO"
-                    disabled={this.props.disabled}
-                    onUpdate={this.updateCity}
-                    onBlur={this.blurCity}
-                    onFocus={this.focusCity}
-                  />
-                  <Radio
-                    name="addressType"
-                    className="dpo"
-                    label={i18n.m('address.apoFpo.apoFpoType.dpo.label')}
-                    value="DPO"
-                    disabled={this.props.disabled}
-                    onUpdate={this.updateCity}
-                    onBlur={this.blurCity}
-                    onFocus={this.focusCity}
-                  />
-                </RadioGroup>
-                <div className="state-zip-wrap">
-                  <ApoFpo
-                    name="apoFpo"
-                    className="state required"
-                    label={this.props.postOfficeStateLabel}
-                    value={this.props.state}
-                    onUpdate={this.updateState}
-                    onError={this.handleError}
-                    onFocus={this.focusState}
-                    onBlur={this.blurState}
-                    required={this.props.required}
-                    disabled={this.props.disabled}
-                    tabNext={() => {
-                      this.props.tab(
-                        this.refs.apo_zipcode.refs.zipcode.refs.text.refs.input
-                      )
-                    }}
-                  />
-                  <ZipCode
-                    name="zipcode"
-                    ref="apo_zipcode"
-                    key="apo_zipcode"
-                    className="zipcode required"
-                    label={this.props.postOfficeZipcodeLabel}
-                    value={this.props.zipcode}
-                    status={instateZipcode}
-                    onUpdate={this.updateZipcode}
-                    onError={this.handleError}
-                    onFocus={this.focusZipcode}
-                    onBlur={this.blurZipcode}
-                    required={this.props.required}
-                    disabled={this.props.disabled}
-                  />
-                </div>
-              </div>
-            </Show>
-          </div>
+            </div>
+          </Show>
         </div>
       </div>
     )
@@ -699,7 +549,6 @@ Address.defaultProps = {
   },
   showPostOffice: false,
   streetLabel: i18n.t('address.us.street.label'),
-  postOfficeStreetPlaceholder: i18n.t('address.apoFpo.street.placeholder'),
   postOfficeStateLabel: i18n.t('address.apoFpo.apoFpo.label'),
   postOfficeZipcodeLabel: i18n.t('address.apoFpo.zipcode.label'),
   street2Label: i18n.t('address.us.street2.label'),

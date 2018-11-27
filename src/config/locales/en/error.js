@@ -32,10 +32,10 @@ export const error = {
         note: ''
       },
       pattern: {
-        title: 'Oops, there’s a problem.',
-        message:
-          'If your first name is a single letter, please select the "Initial only" checkbox and type the letter. 100 character limit.',
-        note: ''
+        title: 'There is a problem with the first name',
+        message: "Some of these characters aren't allowed.",
+        note:
+          "Only use letters, hyphens (-), periods (.), apostrophes ('), and spaces."
       }
     },
     middle: {
@@ -52,10 +52,10 @@ export const error = {
         note: ''
       },
       pattern: {
-        title: 'Oops, there’s a problem.',
-        message:
-          'If your middle name is a single letter, please select the "Initial only" checkbox and type the letter. 100 character limit.',
-        note: ''
+        title: 'There is a problem with the middle name',
+        message: "Some of these characters aren't allowed.",
+        note:
+          "Only use letters, hyphens (-), periods (.), apostrophes ('), and spaces."
       }
     },
     suffix: {
@@ -497,6 +497,16 @@ export const error = {
           message:
             "For the **from** date, the date should be after this person's date of birth."
         }
+      },
+      foreignNationalSponsorship: {
+        min: {
+          title: 'There is a problem with your entry',
+          message: 'For the **from** date, the date should be after their date of birth.'
+        },
+        required: {
+          title: 'Your response is required',
+          message: ''
+       }
       }
     },
     order: {
@@ -1095,5 +1105,45 @@ export const error = {
   validMinimumCitizenships: {
     title: 'There is a problem with your entry',
     message: 'Please provide a minimum of two countries.'
+  },
+  alphanumeric: {
+    required: {
+      title: 'Your response is required',
+      message: ''
+    },
+    pattern: {
+      title: 'There is a problem with your entry',
+      message: 'Only use letters and numbers.'
+    }
+  },
+  nonPayment: {
+    required: {
+      title: 'Your response is required',
+      message: ''
+    },
+    min: {
+      title: 'There is a problem with your entry',
+      message: 'The date resolved is before the date began.'
+    }
+  },
+  taxesSatisfied: {
+    required: {
+      title: 'Your response is required',
+      message: ''
+    },
+    min: {
+      title: 'There is a problem with your entry',
+      message: 'The date satisfied is before the date you failed to file or pay.'
+    }
+  },
+  drugUsage: {
+    required: {
+      title: 'Your response is required',
+      message: ''
+    },
+    min: {
+      title: 'There is a problem with your entry',
+      message: 'The date of most recent use is before the date of first use.'
+    }
   }
 }

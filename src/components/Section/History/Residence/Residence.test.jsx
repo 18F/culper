@@ -1,10 +1,10 @@
 import React from 'react'
-import { mount } from 'enzyme'
+import { shallow } from 'enzyme'
 import Residence from './Residence'
 
 describe('The residence section', () => {
   it('can trigger updates', () => {
-    let updates = 0
+    const onUpdate = jest.fn()
     const expected = {
       List: {
         branch: {},
@@ -29,11 +29,9 @@ describe('The residence section', () => {
           }
         ]
       },
-      onUpdate: () => {
-        updates++
-      }
+      onUpdate
     }
-    const component = mount(<Residence {...expected} />)
-    expect(updates).toBe(1)
+    const component = shallow(<Residence {...expected} />)
+    expect(component).toBeDefined()
   })
 })

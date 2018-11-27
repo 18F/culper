@@ -88,6 +88,7 @@ export default class PoliticalItem extends ValidationElement {
             {...this.props.Dates}
             onUpdate={this.updateDates}
             onError={this.props.onError}
+            minDateEqualTo={true}
             className="foreign-business-political-dates"
             required={this.props.required}
           />

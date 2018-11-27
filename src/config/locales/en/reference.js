@@ -32,7 +32,7 @@ export const reference = {
       comments: 'Add a comment to this question'
     },
     email: 'Provide email address for this person',
-    idk: 'Not applicable',
+    idk: "I don't know",
     address: 'The address of your contact during this time period'
   },
   name: {
@@ -57,11 +57,6 @@ export const reference = {
       viii: 'VIII',
       ix: 'IX',
       x: 'X'
-    },
-    placeholder: {
-      first: 'Enter first name of the person who knows you',
-      middle: 'Enter middle name of the person who knows you',
-      last: 'Enter last name of the person who knows you'
     }
   },
   help: {

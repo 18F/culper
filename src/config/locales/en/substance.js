@@ -9,9 +9,7 @@ export const substance = {
   },
   review: {
     title: "Let's make sure everything looks right",
-    para: 'View all the sections associated with substance abuse',
-    comments:
-      'Add a comment to clarify any of your responses in the substance use section'
+    para: 'View all the sections associated with substance abuse'
   },
   destination: {
     intro: 'Substance use intro',

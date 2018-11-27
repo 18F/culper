@@ -345,7 +345,7 @@ export default class Accordion extends ValidationElement {
     }
 
     const closedAndIncomplete =
-      !item.open && !this.isValid(this.props.transformer(item))
+      !item.open && !this.isValid(this.props.transformer(item), item.uuid)
     const svg = closedAndIncomplete ? (
       <Svg
         src="/img/exclamation-point.svg"
@@ -526,11 +526,21 @@ export default class Accordion extends ValidationElement {
    * Determines if current item is valid. By default, this
    * utilizes the validator that is passed in.
    * */
-  isValid(item) {
+  isValid(item, uuid) {
     if (this.props.required) {
-      return new this.props.validator(item).isValid()
+      return new this.props.validator(item).isValid() && this.hasNoErrors(uuid)
     }
     return true
+  }
+
+  hasNoErrors(uuid) {
+    const el = document.getElementById(uuid)
+    if (!el) {
+      return true
+    }
+    const errors = el.querySelectorAll('.field .messages .message.error')
+
+    return errors.length < 1
   }
 
   render() {

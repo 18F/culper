@@ -1,13 +1,28 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import Bankruptcies from './Bankruptcies'
 
 describe('The bankruptcies component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <Bankruptcies {...expected} />
+        </Provider>
+      )
+  })
+
   it('no error on empty', () => {
     const expected = {
       name: 'bankruptcy'
     }
-    const component = mount(<Bankruptcies name={expected.name} />)
+    const component = createComponent(expected)
     expect(component.find('input[type="radio"]').length).toEqual(2)
     expect(component.find('.selected').length).toEqual(0)
     expect(component.find('button.add').length).toEqual(0)
@@ -21,7 +36,7 @@ describe('The bankruptcies component', () => {
         updates++
       }
     }
-    const component = mount(<Bankruptcies {...expected} />)
+    const component = createComponent(expected)
     component.find('.branch .yes input').simulate('change')
     expect(updates).toBe(1)
   })
@@ -87,7 +102,7 @@ describe('The bankruptcies component', () => {
       }
     }
 
-    const component = mount(<Bankruptcies {...expected} />)
+    const component = createComponent(expected)
     component.find('.courtnumber input[name="CourtNumber"]').simulate('change')
     expect(updates).toBe(2)
   })

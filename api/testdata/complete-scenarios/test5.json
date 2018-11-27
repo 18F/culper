@@ -1,16 +1,5 @@
 {
   "Citizenship": {
-    "Comments": {
-      "type": "citizenship.comments",
-      "props": {
-        "Comments": {
-          "type": "text",
-          "props": {
-            "value": ""
-          }
-        }
-      }
-    },
     "Multiple": {
       "type": "citizenship.multiple",
       "props": {
@@ -1110,17 +1099,6 @@
         }
       }
     },
-    "Comments": {
-      "type": "financial.comments",
-      "props": {
-        "Comments": {
-          "type": "text",
-          "props": {
-            "value": ""
-          }
-        }
-      }
-    },
     "Credit": {
       "type": "financial.credit",
       "props": {
@@ -1840,9 +1818,12 @@
                     }
                   },
                   "Year": {
-                    "type": "number",
+                    "type": "datecontrol",
                     "props": {
-                      "value": "2012"
+                      "month": "1",
+                      "day": "1",
+                      "year": "2012",
+                      "estimated": false
                     }
                   },
                   "YearEstimated": {
@@ -1913,9 +1894,12 @@
                     }
                   },
                   "Year": {
-                    "type": "number",
+                    "type": "datecontrol",
                     "props": {
-                      "value": "2013"
+                      "month": "1",
+                      "day": "1",
+                      "year": "2013",
+                      "estimated": false
                     }
                   },
                   "YearEstimated": {
@@ -2674,17 +2658,6 @@
                 }
               }
             ]
-          }
-        }
-      }
-    },
-    "Comments": {
-      "type": "foreign.comments",
-      "props": {
-        "Comments": {
-          "type": "text",
-          "props": {
-            "value": ""
           }
         }
       }
@@ -5849,11 +5822,9 @@
                     }
                   },
                   "Days": {
-                    "type": "checkboxgroup",
+                    "type": "radio",
                     "props": {
-                      "values": [
-                        "6-10"
-                      ]
+                      "value": "6-10"
                     }
                   },
                   "Encounter": {
@@ -5985,11 +5956,9 @@
                     }
                   },
                   "Days": {
-                    "type": "checkboxgroup",
+                    "type": "radio",
                     "props": {
-                      "values": [
-                        "6-10"
-                      ]
+                      "value": "6-10"
                     }
                   },
                   "Encounter": {
@@ -6385,17 +6354,6 @@
     }
   },
   "History": {
-    "Comments": {
-      "type": "history.comments",
-      "props": {
-        "Comments": {
-          "type": "text",
-          "props": {
-            "value": ""
-          }
-        }
-      }
-    },
     "Education": {
       "type": "history.education",
       "props": {
@@ -11330,17 +11288,6 @@
         "verified": true
       }
     },
-    "Comments": {
-      "type": "identification.comments",
-      "props": {
-        "Comments": {
-          "type": "text",
-          "props": {
-            "value": ""
-          }
-        }
-      }
-    },
     "Contacts": {
       "type": "identification.contacts",
       "props": {
@@ -11754,17 +11701,6 @@
                 }
               }
             ]
-          }
-        }
-      }
-    },
-    "Comments": {
-      "type": "legal.comments",
-      "props": {
-        "Comments": {
-          "type": "text",
-          "props": {
-            "value": ""
           }
         }
       }
@@ -12709,11 +12645,11 @@
                   "CourtAddress": {
                     "type": "location",
                     "props": {
-                      "layout": "Address",
-                      "street": "32 Court Circle",
+                      "layout": "Offense",
                       "city": "Monterey",
                       "state": "CA",
                       "zipcode": "93940",
+                      "county": "Alameda",
                       "country": "United States"
                     }
                   },
@@ -12745,11 +12681,11 @@
                   "CourtAddress": {
                     "type": "location",
                     "props": {
-                      "layout": "Address",
-                      "street": "9889 99th Ave.",
+                      "layout": "Offense",
                       "city": "Monterey",
                       "state": "CA",
                       "zipcode": "93940",
+                      "county": "Alameda",
                       "country": "United States"
                     }
                   },
@@ -12805,22 +12741,22 @@
                   "Address": {
                     "type": "location",
                     "props": {
-                      "layout": "Address",
-                      "street": "342 Alvarado St.",
+                      "layout": "Offense",
                       "city": "Monterey",
                       "state": "CA",
                       "zipcode": "93940",
+                      "county": "Alameda",
                       "country": "United States"
                     }
                   },
                   "AgencyAddress": {
                     "type": "location",
                     "props": {
-                      "layout": "Address",
-                      "street": "323 Pacific Ave.",
+                      "layout": "Offense",
                       "city": "Monterey",
                       "state": "CA",
                       "zipcode": "93940",
+                      "county": "Alameda",
                       "country": "United States"
                     }
                   },
@@ -12852,11 +12788,11 @@
                   "CourtAddress": {
                     "type": "location",
                     "props": {
-                      "layout": "Address",
-                      "street": "32 Court Ave.",
+                      "layout": "Offense",
                       "city": "Monterey",
                       "state": "CA",
                       "zipcode": "93940",
+                      "county": "Alameda",
                       "country": "United States"
                     }
                   },
@@ -13034,22 +12970,22 @@
                   "Address": {
                     "type": "location",
                     "props": {
-                      "layout": "Address",
-                      "street": "392 Cross St.",
+                      "layout": "Offense",
                       "city": "Monterey",
                       "state": "CA",
                       "zipcode": "93940",
+                      "county": "Alameda",
                       "country": "United States"
                     }
                   },
                   "AgencyAddress": {
                     "type": "location",
                     "props": {
-                      "layout": "Address",
-                      "street": "3173 1st St.",
+                      "layout": "Offense",
                       "city": "Monterey",
                       "state": "CA",
                       "zipcode": "93940",
+                      "county": "Alameda",
                       "country": "United States"
                     }
                   },
@@ -13300,11 +13236,11 @@
                   "CourtAddress": {
                     "type": "location",
                     "props": {
-                      "layout": "Address",
-                      "street": "323 3rd St.",
+                      "layout": "Offense",
                       "city": "San Jose",
                       "state": "CA",
                       "zipcode": "95002",
+                      "county": "Alameda",
                       "country": "United States"
                     }
                   },
@@ -13919,17 +13855,6 @@
     }
   },
   "Military": {
-    "Comments": {
-      "type": "military.comments",
-      "props": {
-        "Comments": {
-          "type": "text",
-          "props": {
-            "value": ""
-          }
-        }
-      }
-    },
     "Disciplinary": {
       "type": "military.disciplinary",
       "props": {
@@ -14854,17 +14779,6 @@
     }
   },
   "Psychological": {
-    "Comments": {
-      "type": "psychological.comments",
-      "props": {
-        "Comments": {
-          "type": "text",
-          "props": {
-            "value": ""
-          }
-        }
-      }
-    },
     "Competence": {
       "type": "psychological.competence",
       "props": {
@@ -16223,17 +16137,6 @@
         }
       }
     },
-    "Comments": {
-      "type": "relationships.comments",
-      "props": {
-        "Comments": {
-          "type": "text",
-          "props": {
-            "value": ""
-          }
-        }
-      }
-    },
     "Marital": {
       "type": "relationships.status.marital",
       "props": {
@@ -16267,6 +16170,35 @@
               "type": "notapplicable",
               "props": {
                 "applicable": true
+              }
+            },
+            "AlternateAddress": {
+              "type": "physicaladdress",
+              "props": {
+                "HasDifferentAddress": {
+                  "type": "branch",
+                  "props": {
+                    "value": ""
+                  }
+                },
+                "Address": {
+                  "type": "location",
+                  "props": {
+                    "layout": "",
+                    "country": ""
+                  }
+                },
+                "Telephone": {
+                  "type": "telephone",
+                  "props": {
+                    "timeOfDay": "",
+                    "type": "",
+                    "numberType": "",
+                    "number": "",
+                    "extension": "",
+                    "noNumber": false
+                  }
+                }
               }
             },
             "BirthPlace": {
@@ -18930,17 +18862,6 @@
     }
   },
   "Substance": {
-    "Comments": {
-      "type": "substance.comments",
-      "props": {
-        "Comments": {
-          "type": "text",
-          "props": {
-            "value": ""
-          }
-        }
-      }
-    },
     "DrugClearanceUses": {
       "type": "substance.drugs.clearance",
       "props": {

@@ -1,5 +1,7 @@
 import { unschema } from '../schema'
 import { historyEmployment } from './history-employment'
+import alternateAddress from '../form/alternateaddress'
+import { physicaladdress } from '../form/physicaladdress'
 
 describe('Schema for financial taxes', () => {
   it('can wrap in schema', () => {
@@ -11,6 +13,14 @@ describe('Schema for financial taxes', () => {
           {
             Item: {
               EmploymentActivity: {},
+              PhysicalAddress: {
+                Address: {
+                  country: null,
+                  type: "location",
+                },
+                HasDifferentAddress: {},
+                Telephone: {}
+              },
               Dates: {
                 from: {},
                 to: {},
@@ -41,13 +51,7 @@ describe('Schema for financial taxes', () => {
                 ]
               },
               Telephone: {},
-              PhysicalAddress: {
-                HasDifferentAddress: {},
-                Address: {
-                  country: null
-                },
-                Telephone: {}
-              },
+              ReferenceAlternateAddress: alternateAddress(),
               ReasonLeft: {
                 Comments: {},
                 Reasons: {
@@ -87,6 +91,7 @@ describe('Schema for financial taxes', () => {
                 },
                 Telephone: {}
               },
+              SupervisorAlternateAddress: alternateAddress(),
               ReferenceName: {},
               ReferencePhone: {},
               ReferenceAddress: {

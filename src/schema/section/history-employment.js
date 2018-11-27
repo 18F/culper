@@ -27,7 +27,6 @@ export const historyEmployment = (data = {}) => {
           })
         ),
         Telephone: form.telephone(xitem.Telephone),
-        PhysicalAddress: form.physicaladdress(xitem.PhysicalAddress),
         ReasonLeft: form.reasonleft(xitem.ReasonLeft),
         Reprimand: form.collection(
           ((reprimand || {}).items || []).map(y => {
@@ -42,9 +41,12 @@ export const historyEmployment = (data = {}) => {
           })
         ),
         Supervisor: form.supervisor(xitem.Supervisor),
+        SupervisorAlternateAddress: form.physicaladdress(xitem.SupervisorAlternateAddress),
         ReferenceName: form.name(xitem.ReferenceName),
         ReferencePhone: form.telephone(xitem.ReferencePhone),
-        ReferenceAddress: form.location(xitem.ReferenceAddress)
+        ReferenceAddress: form.location(xitem.ReferenceAddress),
+        ReferenceAlternateAddress: form.physicaladdress(xitem.ReferenceAlternateAddress),
+        PhysicalAddress: form.physicaladdress(xitem.PhysicalAddress)
       }
     }
   })

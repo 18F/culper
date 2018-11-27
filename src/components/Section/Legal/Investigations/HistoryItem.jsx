@@ -177,6 +177,7 @@ export default class HistoryItem extends ValidationElement {
               {...this.props.Completed}
               onUpdate={this.updateCompleted}
               onError={this.props.onError}
+              minDateEqualTo={true}
               className="legal-investigations-history-completed"
               required={this.props.required}
             />
@@ -186,6 +187,7 @@ export default class HistoryItem extends ValidationElement {
         <Field
           title={i18n.t('legal.investigations.history.heading.issued')}
           adjustFor="text"
+          optional={true}
           scrollIntoView={this.props.scrollIntoView}>
           <Text
             name="Issued"
@@ -193,7 +195,6 @@ export default class HistoryItem extends ValidationElement {
             onUpdate={this.updateIssued}
             onError={this.props.onError}
             className="legal-investigations-history-issued"
-            required={this.props.required}
           />
         </Field>
 
@@ -219,6 +220,8 @@ export default class HistoryItem extends ValidationElement {
               name="Granted"
               {...this.props.Granted}
               onUpdate={this.updateGranted}
+              minDate={(this.props.Completed || {}).date}
+              minDateEqualTo={true}
               onError={this.props.onError}
               className="legal-investigations-history-granted"
               required={this.props.required}

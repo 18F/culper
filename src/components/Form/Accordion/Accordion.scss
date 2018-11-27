@@ -100,7 +100,7 @@ $breakpoints: (
         transition: opacity 300ms ease-in;
 
         span {
-          border-bottom: 1px dashed $eapp-blue;
+          text-decoration: underline;
         }
       }
     }
@@ -209,6 +209,7 @@ $breakpoints: (
       .dates {
         margin-left: 2rem;
       }
+      
       // All but the first anchor
       > a:nth-child(n + 2) {
         display: block;
@@ -268,7 +269,7 @@ $breakpoints: (
         color: $eapp-blue;
 
         > span:last-of-type > span {
-          border-bottom: 1px dashed $eapp-blue;
+          text-decoration: underline;
         }
       }
 
@@ -276,7 +277,7 @@ $breakpoints: (
         color: $eapp-blue;
 
         > span:last-of-type > span {
-          border-bottom: 1px dashed $eapp-blue;
+          text-decoration: underline;
         }
       }
     }
@@ -365,7 +366,6 @@ button.usa-button-outline {
 
         .left.close,
         .left.open {
-          width: 90%;
           transition: width 300ms ease-out;
           vertical-align: middle;
 

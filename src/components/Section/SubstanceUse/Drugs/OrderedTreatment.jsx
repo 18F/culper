@@ -66,11 +66,16 @@ export default class OrderedTreatment extends ValidationElement {
     let selected = cb.value
     let list = [...((this.props.OrderedBy || {}).values || [])]
 
-    if (list.includes(selected)) {
-      list.splice(list.indexOf(selected), 1)
-    } else {
-      list.push(selected)
-    }
+      if (list.includes(selected)) {
+        list.splice(list.indexOf(selected), 1)
+      } else {
+        if (selected !== "None" && list.includes("None") || selected === "None") {
+            list = [selected]
+        }
+        else {
+          list.push(selected)
+        }
+      }
 
     this.update({ OrderedBy: { values: list } })
   }
@@ -284,6 +289,7 @@ export default class OrderedTreatment extends ValidationElement {
               <Telephone
                 name="TreatmentProviderTelephone"
                 {...this.props.TreatmentProviderTelephone}
+                allowNotApplicable={false}
                 onUpdate={this.updateTreatmentProviderTelephone}
                 onError={this.props.onError}
                 required={this.props.required}
@@ -298,7 +304,8 @@ export default class OrderedTreatment extends ValidationElement {
               <DateRange
                 name="TreatmentDates"
                 className="treatment-dates"
-                {...this.props.TreatmentDates}
+                {...this.props.TreatmentDates}                
+                minDateEqualTo={true}
                 onUpdate={this.updateTreatmentDates}
                 onError={this.props.onError}
                 required={this.props.required}

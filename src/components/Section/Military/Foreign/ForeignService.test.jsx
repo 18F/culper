@@ -1,13 +1,28 @@
 import React from 'react'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
 import ForeignService from './ForeignService'
 
 describe('The foreign service component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <ForeignService {...expected} />
+        </Provider>
+      )
+  })
+
   it('no error on empty', () => {
     const expected = {
       name: 'foreign-service'
     }
-    const component = mount(<ForeignService {...expected} />)
+    const component = createComponent(expected)
     expect(
       component.find('.foreign-service .organization-military label').length
     ).toEqual(1)
@@ -33,7 +48,7 @@ describe('The foreign service component', () => {
         updates++
       }
     }
-    const component = mount(<ForeignService {...expected} />)
+    const component = createComponent(expected)
     component
       .find('.foreign-service .organization-military label')
       .simulate('change')
@@ -117,7 +132,7 @@ describe('The foreign service component', () => {
     ]
 
     for (const test of tests) {
-      const component = mount(<ForeignService {...test.props} />)
+      const component = createComponent(test.props)
       expect(component.find('.dates').text()).toBe(test.expected)
     }
   })

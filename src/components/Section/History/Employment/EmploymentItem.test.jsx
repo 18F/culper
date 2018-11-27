@@ -1,25 +1,44 @@
 import React from 'react'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
 import { today, daysAgo } from '../dateranges'
 import EmploymentItem from './EmploymentItem'
+import ReasonLeft from './ReasonLeft'
+import Reprimand from './Reprimand'
 
 describe('The employment component', () => {
+  const mockStore = configureMockStore()
+  const defaultAppState = {
+    application: {
+      AddressBooks: {}
+    }
+  }
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore(defaultAppState)
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <EmploymentItem {...expected} />
+        </Provider>
+      )
+  })
+
   it('no error on empty', () => {
     const expected = {
       name: 'employment'
     }
-    const component = mount(<EmploymentItem {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.h3').length).toBeGreaterThan(0)
   })
 
   it('can populate values for Military, NationalGuard and USPHS', () => {
-    let updates = 0
     const expected = {
       name: 'employment',
       EmploymentActivity: { value: 'ActiveMilitary' },
-      onUpdate: () => {
-        updates++
-      }
+      onUpdate: jest.fn()
     }
     const selectors = [
       '.employment-title',
@@ -31,7 +50,7 @@ describe('The employment component', () => {
       '.supervisor'
     ]
 
-    const component = mount(<EmploymentItem {...expected} />)
+    const component = createComponent(expected)
     selectors.forEach(selector => {
       var len = component.find(selector).length
       expect(len).toBeGreaterThan(0)
@@ -40,24 +59,24 @@ describe('The employment component', () => {
     component
       .find({ type: 'radio', value: 'ActiveMilitary' })
       .simulate('change')
-    expect(updates).toBe(1)
+    expect(expected.onUpdate.mock.calls.length).toBe(1)
   })
 
   it('display displinary when within 7 years', () => {
-    const sevenYearsAgo = daysAgo(today, 365 * 7)
+    const past = daysAgo(today, 365 * 6)
     const props = {
       EmploymentActivity: { value: 'ActiveMilitary' },
       Dates: {
         present: true,
         from: {
-          month: `${sevenYearsAgo.getMonth() + 1}`,
-          day: `${sevenYearsAgo.getDate()}`,
-          year: `${sevenYearsAgo.getFullYear()}`
+          month: `${past.getMonth() + 1}`,
+          day: `${past.getDate()}`,
+          year: `${past.getFullYear()}`
         },
         to: {}
       }
     }
-    const component = mount(<EmploymentItem {...props} />)
+    const component = createComponent(props)
     expect(component.find('.reprimand-branch').length).toBe(1)
   })
 
@@ -75,25 +94,25 @@ describe('The employment component', () => {
         to: {}
       }
     }
-    const component = mount(<EmploymentItem {...props} />)
+    const component = createComponent(props)
     expect(component.find('.reprimand-branch').length).toBe(0)
   })
 
   it('display reason left options when within 7 years', () => {
-    const sevenYearsAgo = daysAgo(today, 365 * 7)
+    const past = daysAgo(today, 365 * 6)
     const props = {
       EmploymentActivity: { value: 'ActiveMilitary' },
       Dates: {
-        present: true,
+        present: false,
         from: {
-          month: `${sevenYearsAgo.getMonth() + 1}`,
-          day: `${sevenYearsAgo.getDate()}`,
-          year: `${sevenYearsAgo.getFullYear()}`
+          month: `${past.getMonth() + 1}`,
+          day: `${past.getDate()}`,
+          year: `${past.getFullYear()}`
         },
         to: {}
       }
     }
-    const component = mount(<EmploymentItem {...props} />)
+    const component = createComponent(props)
     expect(component.find('.reason-options').length).toBe(1)
   })
 
@@ -111,7 +130,25 @@ describe('The employment component', () => {
         to: {}
       }
     }
-    const component = mount(<EmploymentItem {...props} />)
+    const component = createComponent(props)
+    expect(component.find('.reason-options').length).toBe(0)
+  })
+
+  it('does not display reason left options if currently employed', () => {
+    const past = daysAgo(today, 365 * 10)
+    const props = {
+      EmploymentActivity: { value: 'ActiveMilitary' },
+      Dates: {
+        present: true,
+        from: {
+          month: `${past.getMonth() + 1}`,
+          day: `${past.getDate()}`,
+          year: `${past.getFullYear()}`
+        },
+        to: {}
+      }
+    }
+    const component = createComponent(props)
     expect(component.find('.reason-options').length).toBe(0)
   })
 
@@ -129,11 +166,40 @@ describe('The employment component', () => {
         to: {}
       }
     }
-    const component = mount(<EmploymentItem {...props} />)
+    const component = createComponent(props)
     expect(component.find('.reason-description').length).toBe(0)
   })
 
-  it('does display reason for leaving if not currently employed', () => {
+  describe('when unemployment is selected', () => {
+    let component
+
+    beforeEach(() => {
+      const past = daysAgo(today, 365 * 3)
+      const props = {
+        EmploymentActivity: { value: 'Unemployment' },
+        Dates: {
+          present: true,
+          from: {
+            month: `${past.getMonth() + 1}`,
+            day: `${past.getDate()}`,
+            year: `${past.getFullYear()}`
+          },
+          to: {}
+        }
+      }
+      component = createComponent(props)
+    })
+
+    it('it does not display reason for leaving', () => {
+      expect(component.contains(<ReasonLeft />)).toBe(false)
+    })
+
+    it('it does not display reprimand', () => {
+      expect(component.contains(<Reprimand />)).toBe(false)
+    })
+  })
+
+  it('it does display reason for leaving', () => {
     const past = daysAgo(today, 365 * 3)
     const props = {
       EmploymentActivity: { value: 'ActiveMilitary' },
@@ -147,7 +213,7 @@ describe('The employment component', () => {
         to: {}
       }
     }
-    const component = mount(<EmploymentItem {...props} />)
+    const component = createComponent(props)
     expect(component.find('.reason-description').length).toBe(1)
   })
 

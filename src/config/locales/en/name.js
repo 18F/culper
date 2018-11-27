@@ -20,10 +20,5 @@ export const name = {
     viii: 'VIII',
     ix: 'IX',
     x: 'X'
-  },
-  placeholder: {
-    first: 'Please enter your first name or initial',
-    middle: 'Please enter your middle name or initial',
-    last: 'Please enter your last name'
   }
 }

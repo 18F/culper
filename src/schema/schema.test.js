@@ -504,10 +504,6 @@ describe('Schema', function() {
         data: {}
       },
       {
-        type: 'identification.comments',
-        data: {}
-      },
-      {
         type: 'financial.bankruptcy',
         data: {}
       },
@@ -536,10 +532,6 @@ describe('Schema', function() {
         data: {}
       },
       {
-        type: 'financial.comments',
-        data: {}
-      },
-      {
         type: 'history.education',
         data: {}
       },
@@ -553,10 +545,6 @@ describe('Schema', function() {
       },
       {
         type: 'history.residence',
-        data: {}
-      },
-      {
-        type: 'history.comments',
         data: {}
       },
       {
@@ -576,10 +564,6 @@ describe('Schema', function() {
         data: {}
       },
       {
-        type: 'relationships.comments',
-        data: {}
-      },
-      {
         type: 'citizenship.multiple',
         data: {}
       },
@@ -589,10 +573,6 @@ describe('Schema', function() {
       },
       {
         type: 'citizenship.status',
-        data: {}
-      },
-      {
-        type: 'citizenship.comments',
         data: {}
       },
       {
@@ -609,10 +589,6 @@ describe('Schema', function() {
       },
       {
         type: 'military.foreign',
-        data: {}
-      },
-      {
-        type: 'military.comments',
         data: {}
       },
       {
@@ -684,10 +660,6 @@ describe('Schema', function() {
         data: {}
       },
       {
-        type: 'foreign.comments',
-        data: {}
-      },
-      {
         type: 'substance.alcohol.additional',
         data: {}
       },
@@ -729,10 +701,6 @@ describe('Schema', function() {
       },
       {
         type: 'substance.drugs.voluntary',
-        data: {}
-      },
-      {
-        type: 'substance.comments',
         data: {}
       },
       {
@@ -804,10 +772,6 @@ describe('Schema', function() {
         data: {}
       },
       {
-        type: 'legal.comments',
-        data: {}
-      },
-      {
         type: 'psychological.competence',
         data: {}
       },
@@ -825,10 +789,6 @@ describe('Schema', function() {
       },
       {
         type: 'psychological.hospitalizations',
-        data: {}
-      },
-      {
-        type: 'psychological.comments',
         data: {}
       },
       {

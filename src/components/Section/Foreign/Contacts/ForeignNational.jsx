@@ -18,6 +18,7 @@ import {
   Location,
   AccordionItem
 } from '../../../Form'
+import AlternateAddress from '../../../Form/Location/AlternateAddress'
 
 export default class ForeignNational extends ValidationElement {
   constructor(props) {
@@ -300,6 +301,7 @@ export default class ForeignNational extends ValidationElement {
           <DateControl
             name="FirstContact"
             className="first-contact"
+            minDateEqualTo={true}
             {...this.props.FirstContact}
             onUpdate={this.updateFirstContact}
             onError={this.props.onError}
@@ -318,6 +320,7 @@ export default class ForeignNational extends ValidationElement {
             {...this.props.LastContact}
             prefix="contact.last"
             minDate={(this.props.FirstContact || {}).date}
+            minDateEqualTo={true}
             onUpdate={this.updateLastContact}
             onError={this.props.onError}
             required={this.props.required}
@@ -668,10 +671,9 @@ export default class ForeignNational extends ValidationElement {
               className="current-address"
               {...this.props.Address}
               layout={Location.ADDRESS}
-              geocode={true}
+              geocode
               addressBooks={this.props.addressBooks}
               addressBook="ForeignNational"
-              showPostOffice={true}
               dispatch={this.props.dispatch}
               onUpdate={this.updateAddress}
               onError={this.props.onError}
@@ -679,7 +681,15 @@ export default class ForeignNational extends ValidationElement {
             />
           </NotApplicable>
         </Field>
-
+        <AlternateAddress
+          address={this.props.AlternateAddress}
+          addressBook="ForeignNational"
+          belongingTo="AlternateAddress"
+          country={this.props.Address.country}
+          forceAPO
+          militaryAddressLabel={i18n.t('address.militaryAddress.foreignNational')}
+          onUpdate={this.update}
+        />
         <Field
           title={i18n.t('foreign.contacts.heading.employer')}
           scrollIntoView={this.props.scrollIntoView}>

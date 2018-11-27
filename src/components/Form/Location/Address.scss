@@ -50,6 +50,7 @@
     &.no-postoffice {
       > .block.domestic > label:last-child,
       > .block.international > label:last-child {
+        height: 10rem;
         width: 26rem;
       }
     }
@@ -94,14 +95,6 @@
       background-color: #fff;
       padding: 0;
 
-      &.reuse-address-open-modal,
-      &.reuse-address-open-modal:link,
-      &.reuse-address-open-modal:visited,
-      &.reuse-address-open-modal:hover,
-      &.reuse-address-open-modal:active {
-        text-decoration: none;
-      }
-
       > i {
         margin-right: 1rem;
         color: $eapp-blue;
@@ -111,7 +104,7 @@
 
       > span {
         color: $eapp-blue;
-        border-bottom: 1px $eapp-blue dashed;
+        text-decoration: underline;
       }
     }
   }

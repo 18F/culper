@@ -8,9 +8,7 @@ export const foreign = {
     para: 'Take a guided tour through the section'
   },
   review: {
-    para: 'View all the sections associated with foreign associations at once',
-    comments:
-      'Add a comment to clarify any of your responses in the foreign associations section'
+    para: 'View all the sections associated with foreign associations at once'
   },
   destination: {
     intro: 'Foreign intro',
@@ -1372,7 +1370,7 @@ export const foreign = {
       },
       para: {
         intro:
-          'For Section 7, "Immediate Family" means your spouse, parents, step-parents, siblings, half and step-siblings, children, stepchildren, and cohabitant.',
+          'For this question, "Immediate Family" means your spouse, parents, step-parents, siblings, half and step-siblings, children, stepchildren, and cohabitant.',
         branch: [
           'Such as  embassy, consulate, agency, military service, intelligence or security service, etc.',
           'Answer "No" if the contact was for routine visa applications and border crossings related to either official U.S.  Government travel, foreign travel on a U.S. passport, or as a U.S. military service member in conjunction with a U.S. Government military duty.'
@@ -1380,10 +1378,6 @@ export const foreign = {
       },
       label: {
         location: 'Did this contact take place in the United States of America?'
-      },
-      placeholder: {
-        city: 'Please enter the city',
-        country: 'Please enter the country'
       },
       help: {
         branch: {
@@ -1495,10 +1489,6 @@ export const foreign = {
       para: {
         or: 'or'
       },
-      placeholder: {
-        city: 'Please enter the city of birth',
-        country: 'Please enter the country of birth'
-      },
       help: {
         branch: {
           title: 'Foreign national defined:',
@@ -1593,10 +1583,6 @@ export const foreign = {
       },
       para: {
         or: 'or'
-      },
-      placeholder: {
-        city: 'Please enter the city of birth',
-        country: 'Please enter the country of birth'
       },
       help: {
         branch: {

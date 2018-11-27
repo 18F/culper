@@ -494,7 +494,7 @@ enjoyments;</Reason>
               </References>
             </PersonalReferences>
             <RelativesAndAssociates Version="1" Type="Pooled">
-              <ApplicableRelativeTypes Mother01="True" Father02="True" FatherInLaw14="True"/>
+              <ApplicableRelativeTypes Mother01="True" Father02="True" FatherInLaw14="True" MotherInLaw15="True"/>
               <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
               <Relatives>
                 <Relative ID="1">
@@ -548,8 +548,8 @@ enjoyments;</Reason>
                       <Address>
                         <Street>MOTHER EMPLOYER STREET XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO MOTHER EMPLOYER APT XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO</Street>
                         <City>MOTHER EMPLOYER CITY XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO</City>
-                        <State>LQ</State>
-                        <ZipCode>88888</ZipCode>
+                        <State>CA</State>
+                        <ZipCode>93955</ZipCode>
                       </Address>
                       <Name>
             I WAS born in the year 1632, in the city of York, of a good family,  though not of that country, my father being a foreigner of Bremen,  who settled first at Hull. He got a good estate by merchandise,  and leaving off his trade, lived afterwards at York,
@@ -629,6 +629,7 @@ life was calculated for all kind of virtue and all kind of
 enjoyments;</Relationship>
                     </ForeignAffiliation>
                     <FrequencyOfContact>Other</FrequencyOfContact>
+                    <FrequencyOfContactTypeOtherExplanation>Mother Other explanation for approximate frequency of contact</FrequencyOfContactTypeOtherExplanation>
                     <LastContactDate Type="Estimated">
                       <Month>01</Month>
                       <Year>2005</Year>
@@ -741,8 +742,8 @@ hand. It is impossible to conceive of </MethodsOfContactTypeOtherExplanation>
                         <Suffix>II</Suffix>
                       </LegalName>
                       <Maiden>
-              
-            </Maiden>
+                        <Answer>No</Answer>
+                      </Maiden>
                       <ReasonForChange>I WAS born in the year 1632, in the city of York, of a good family, 
 though not of that country, my father being a foreigner of Bremen, 
 who settled first at Hull. He got a good estate by merchandise, 
@@ -819,8 +820,8 @@ enjoyments;</ReasonForChange>
                   <Address>
                     <Street>FATHER STREET XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO FATHER APT XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO</Street>
                     <City>FATHER CITY XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO</City>
-                    <State>HQ</State>
-                    <ZipCode>55555</ZipCode>
+                    <State>CA</State>
+                    <ZipCode>93951</ZipCode>
                   </Address>
                   <Birth>
                     <Date Type="Estimated">
@@ -835,7 +836,7 @@ enjoyments;</ReasonForChange>
                   </Birth>
                   <Citizenship>
                     <ProofOfStatus>
-                      <DocumentNumber>"It has long been a grave question whether any government not too strong for the liberties of its people can be strong enough to maintain its existence in great emergencies. On this point, the present rebellion brought our republic to a severe test, and t</DocumentNumber>
+                      <DocumentNumber>ForcedAlphaNumericLessThan30</DocumentNumber>
                       <NaturalizationCertificate>
                         <Court>
                           <Address>
@@ -848,6 +849,7 @@ enjoyments;</ReasonForChange>
                         </Court>
                       </NaturalizationCertificate>
                       <Type>Other</Type>
+                      <TypeOtherExplanation>Father Other U.S. Citizenship Documentation</TypeOtherExplanation>
                     </ProofOfStatus>
                   </Citizenship>
                   <CountriesOfCitizenship>
@@ -987,14 +989,9 @@ hand. It is impossible to conceive of </ReasonForChange>
                         <Day>01</Day>
                         <Year>2020</Year>
                       </DocumentExpiration>
-                      <NaturalizationCertificate>
-                        <Court>
-                          <Address>
-                            <Street> </Street>
-                          </Address>
-                        </Court>
-                      </NaturalizationCertificate>
+                      <DocumentNumber>"It has long been a grave question whether any government not too strong for the liberties of its people can be strong enough to maintain its existence in great emergencies. On this point, the present rebellion brought our republic to a severe test, and t</DocumentNumber>
                       <Type>Other</Type>
+                      <TypeOtherExplanation>FIL US Residence Other</TypeOtherExplanation>
                     </ProofOfStatus>
                   </Citizenship>
                   <CountriesOfCitizenship>
@@ -1119,6 +1116,34 @@ hand. It is impossible to conceive of </Relationship>
                   </LegalName>
                   <Type>14FatherInLaw</Type>
                 </Relative>
+                <Relative ID="4">
+                  <Birth>
+                    <Date>
+                      <Month>02</Month>
+                      <Day>02</Day>
+                      <Year>1970</Year>
+                    </Date>
+                    <Place>
+                      <City>Monterey</City>
+                      <State>CA</State>
+                      <Country>United States</Country>
+                    </Place>
+                  </Birth>
+                  <CountriesOfCitizenship>
+                    <Citizenship ID="1">
+                      <Country>United States</Country>
+                    </Citizenship>
+                  </CountriesOfCitizenship>
+                  <Deceased>
+                    <Answer>Yes</Answer>
+                  </Deceased>
+                  <LegalName>
+                    <Last>MIL LAST</Last>
+                    <First>MIL FIRST</First>
+                    <Middle>MIL MIDDLE</Middle>
+                  </LegalName>
+                  <Type>15MotherInLaw</Type>
+                </Relative>
               </Relatives>
             </RelativesAndAssociates>
             <Spouse Version="1" Type="Pooled">
@@ -1225,7 +1250,7 @@ hand. It is impossible to conceive of </Relationship>
                         <Day>01</Day>
                         <Year>1999</Year>
                       </DocumentExpiration>
-                      <DocumentNumber>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO</DocumentNumber>
+                      <DocumentNumber>XXXXXXXXXXXXXXXXXXXXXXXXXXXX30</DocumentNumber>
                       <Type>FS240or545</Type>
                     </ProofOfStatus>
                   </Citizenship>
@@ -1347,14 +1372,12 @@ hand. It is impossible to conceive of </Relationship>
                   <ResidenceType>Own</ResidenceType>
                 </Residency>
                 <Residency ID="2">
-                  <APOFPO>
-                    <Address>
-                      <Address>RESI 2 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO</Address>
-                      <ApoFpo>APO</ApoFpo>
-                      <State>AA</State>
-                      <ZipCode>34033</ZipCode>
-                    </Address>
-                  </APOFPO>
+                  <Address>
+                    <Street>RESI 2 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO </Street>
+                    <City>Seaside</City>
+                    <State>CA</State>
+                    <ZipCode>93940</ZipCode>
+                  </Address>
                   <DateRange>
                     <From>
                       <Date Type="Estimated">
@@ -1377,6 +1400,9 @@ hand. It is impossible to conceive of </Relationship>
                     <City>RESI 3 CITY XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO</City>
                     <Country>Gabon</Country>
                   </Address>
+                  <APOFPO>
+                    <Answer>No</Answer>
+                  </APOFPO>
                   <DateRange>
                     <From>
                       <Date Type="Estimated">
@@ -1436,12 +1462,68 @@ hand. It is impossible to conceive of </Relationship>
                   <DateRange>
                     <From>
                       <Date>
+                        <Month>08</Month>
+                        <Year>2018</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Present"/>
+                    </To>
+                  </DateRange>
+                  <Type>NonGovernment</Type>
+                  <WorkHours>PartTime</WorkHours>
+                  <CivilEmployment>
+                    <Employer>Safeway</Employer>
+                    <PositionTitle>Cashier</PositionTitle>
+                    <EmployersLocation>
+                      <Address>
+                        <Street>123 1st St. </Street>
+                        <City>Monterey</City>
+                        <State>CA</State>
+                        <ZipCode>93940</ZipCode>
+                      </Address>
+                      <Telephone>
+                        <Number>8319993333</Number>
+                        <Time>Both</Time>
+                      </Telephone>
+                    </EmployersLocation>
+                    <PreviousEmployments NotApplicable="True"/>
+                  </CivilEmployment>
+                  <Incidents>
+                    <Answer>No</Answer>
+                  </Incidents>
+                  <JobLocation>
+                    <Answer>No</Answer>
+                  </JobLocation>
+                  <Supervisor>
+                    <Name>Joe Clark</Name>
+                    <Title>Head Cashier</Title>
+                    <Address>
+                      <Street>123 1st St. </Street>
+                      <City>Monterey</City>
+                      <State>CA</State>
+                      <ZipCode>93940</ZipCode>
+                    </Address>
+                    <Email>joe.claker@example.com</Email>
+                    <Telephone>
+                      <Number>8313232234</Number>
+                      <Time>Day</Time>
+                    </Telephone>
+                  </Supervisor>
+                </Employment>
+                <Employment ID="2">
+                  <DateRange>
+                    <From>
+                      <Date>
                         <Month>01</Month>
                         <Year>1990</Year>
                       </Date>
                     </From>
                     <To>
-                      <Date Type="Present"/>
+                      <Date>
+                        <Month>08</Month>
+                        <Year>2018</Year>
+                      </Date>
                     </To>
                   </DateRange>
                   <Type>ActiveMilitaryDuty</Type>
@@ -1463,9 +1545,32 @@ hand. It is impossible to conceive of </Relationship>
                     </DutyStation>
                     <Rank>rankxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxoo</Rank>
                   </MilitaryService>
+                  <Dismissals>
+                    <Answer>Yes</Answer>
+                    <Dismissal ID="1">
+                      <Date>
+                        <Month>01</Month>
+                        <Year>1990</Year>
+                      </Date>
+                      <Reason>This section only takes a very limited number of characters XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</Reason>
+                      <SeveranceType>AllegedMisconduct</SeveranceType>
+                    </Dismissal>
+                    <Dismissal ID="2">
+                      <Date Type="Estimated">
+                        <Month>01</Month>
+                        <Year>1990</Year>
+                      </Date>
+                      <Reason>Another section with very limited characters... strange... and formats weirdly on the screen XXXXXXX</Reason>
+                      <SeveranceType>QuitKnowingWouldBeFired</SeveranceType>
+                    </Dismissal>
+                    <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+                  </Dismissals>
                   <Incidents>
                     <Answer>No</Answer>
                   </Incidents>
+                  <LeftJob>
+                    <Reason>Employer 2 Reason</Reason>
+                  </LeftJob>
                   <Supervisor>
                     <Name>SUPER NAME XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO</Name>
                     <Title>SUPER RANK XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO</Title>
@@ -1483,7 +1588,7 @@ hand. It is impossible to conceive of </Relationship>
                     </Telephone>
                   </Supervisor>
                 </Employment>
-                <Employment ID="2">
+                <Employment ID="3">
                   <DateRange>
                     <From>
                       <Date Type="Estimated">
@@ -1492,7 +1597,10 @@ hand. It is impossible to conceive of </Relationship>
                       </Date>
                     </From>
                     <To>
-                      <Date Type="Present"/>
+                      <Date>
+                        <Month>08</Month>
+                        <Year>2018</Year>
+                      </Date>
                     </To>
                   </DateRange>
                   <Type>Unemployed</Type>
@@ -1514,7 +1622,7 @@ hand. It is impossible to conceive of </Relationship>
                     </Telephone>
                   </Verifier>
                 </Employment>
-                <Employment ID="3">
+                <Employment ID="4">
                   <DateRange>
                     <From>
                       <Date Type="Estimated">
@@ -1523,7 +1631,10 @@ hand. It is impossible to conceive of </Relationship>
                       </Date>
                     </From>
                     <To>
-                      <Date Type="Present"/>
+                      <Date>
+                        <Month>08</Month>
+                        <Year>2018</Year>
+                      </Date>
                     </To>
                   </DateRange>
                   <Type>SelfEmployed</Type>
@@ -1544,6 +1655,18 @@ hand. It is impossible to conceive of </Relationship>
                       </Telephone>
                     </Business>
                   </SelfEmployment>
+                  <Dismissals>
+                    <Answer>Yes</Answer>
+                    <Dismissal ID="1">
+                      <Date Type="Estimated">
+                        <Month>01</Month>
+                        <Year>1990</Year>
+                      </Date>
+                      <Reason>SELF EMPLP FIRED XXXXXXXXXXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXXXXX</Reason>
+                      <SeveranceType>Fired</SeveranceType>
+                    </Dismissal>
+                    <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+                  </Dismissals>
                   <Incidents>
                     <Answer>Yes</Answer>
                     <Incident ID="1">
@@ -1570,19 +1693,20 @@ thou</Reason>
                       <Time>Both</Time>
                     </Telephone>
                   </JobLocation>
+                  <LeftJob>
+                    <Reason>Employer 4 Reason</Reason>
+                  </LeftJob>
                   <Verifier>
                     <LegalName>
                       <Last>SELF EMPL VERI LAST XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO</Last>
                       <First>SELF EMPL VERI FIRST XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO</First>
                     </LegalName>
-                    <APOFPO>
-                      <Address>
-                        <Address>SELF VERI ADDRESS XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO</Address>
-                        <ApoFpo>APO</ApoFpo>
-                        <State>AA</State>
-                        <ZipCode>34001</ZipCode>
-                      </Address>
-                    </APOFPO>
+                    <Address>
+                      <Street>SELF VERI ADDRESS XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO </Street>
+                      <City>Monterey</City>
+                      <State>CA</State>
+                      <ZipCode>93940</ZipCode>
+                    </Address>
                     <Telephone>
                       <Number>9999999999</Number>
                       <Extension>9999999999</Extension>
@@ -1590,7 +1714,7 @@ thou</Reason>
                     </Telephone>
                   </Verifier>
                 </Employment>
-                <Employment ID="4">
+                <Employment ID="5">
                   <DateRange>
                     <From>
                       <Date Type="Estimated">
@@ -1599,7 +1723,10 @@ thou</Reason>
                       </Date>
                     </From>
                     <To>
-                      <Date Type="Present"/>
+                      <Date>
+                        <Month>08</Month>
+                        <Year>2018</Year>
+                      </Date>
                     </To>
                   </DateRange>
                   <Type>NonGovernment</Type>
@@ -1626,13 +1753,13 @@ thou</Reason>
                           <From>
                             <Date Type="Estimated">
                               <Month>01</Month>
-                              <Year>2005</Year>
+                              <Year>2000</Year>
                             </Date>
                           </From>
                           <To>
                             <Date>
                               <Month>08</Month>
-                              <Year>2018</Year>
+                              <Year>2000</Year>
                             </Date>
                           </To>
                         </DateRange>
@@ -1644,13 +1771,13 @@ thou</Reason>
                           <From>
                             <Date Type="Estimated">
                               <Month>01</Month>
-                              <Year>2005</Year>
+                              <Year>2001</Year>
                             </Date>
                           </From>
                           <To>
                             <Date>
                               <Month>08</Month>
-                              <Year>2018</Year>
+                              <Year>2001</Year>
                             </Date>
                           </To>
                         </DateRange>
@@ -1659,12 +1786,18 @@ thou</Reason>
                       </PreviousEmployment>
                     </PreviousEmployments>
                   </CivilEmployment>
+                  <Dismissals>
+                    <Answer>No</Answer>
+                  </Dismissals>
                   <Incidents>
                     <Answer>No</Answer>
                   </Incidents>
                   <JobLocation>
                     <Answer>No</Answer>
                   </JobLocation>
+                  <LeftJob>
+                    <Reason>Employer 5 Reason</Reason>
+                  </LeftJob>
                   <Supervisor>
                     <Name>dfgdfgdfgdfgzgf dzsg dfg dfg zdg </Name>
                     <Title>dfgdfgdfg</Title>
@@ -1744,22 +1877,22 @@ thou</Reason>
                     </DegreeAwarded>
                   </DegreesAwarded>
                   <Verifier>
+                    <LegalName>
+                      <Last>EDUC ONE REFE LAST XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO</Last>
+                      <First>EDUC ONE REFE XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO</First>
+                    </LegalName>
+                    <Email DoNotKnow="True"/>
+                    <Telephone>
+                      <Number>0000000000</Number>
+                      <Extension>0000000000</Extension>
+                      <Time>Both</Time>
+                    </Telephone>
                     <Address>
                       <Street>EDUC 1 STREET XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO EDUC 1 APT XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO</Street>
                       <City>EDUC 1 CITY XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO</City>
                       <State>GA</State>
                       <ZipCode>30922</ZipCode>
                     </Address>
-                    <Email DoNotKnow="True">e@e.millllllllllllllllllllllllllllllllllllllll</Email>
-                    <LegalName DoNotKnow="True">
-                      <Last>EDUC ONE REFE LAST XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO</Last>
-                      <First>EDUC ONE REFE XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO</First>
-                    </LegalName>
-                    <Telephone>
-                      <Number>0000000000</Number>
-                      <Extension>0000000000</Extension>
-                      <Time>Both</Time>
-                    </Telephone>
                   </Verifier>
                 </SchoolAttended>
                 <SchoolAttended ID="2">
@@ -1869,9 +2002,9 @@ thou</Reason>
               <Status>DerivedUSCitizen</Status>
               <USCitizen>
                 <Derived>
-                  <AlienRegistrationNumber>777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777700</AlienRegistrationNumber>
+                  <AlienRegistrationNumber>777777777777777777777777777777</AlienRegistrationNumber>
                   <Basis>Other</Basis>
-                  <CitizenshipCertificateNumber>999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999911</CitizenshipCertificateNumber>
+                  <CitizenshipCertificateNumber>999999999999999999999999999999</CitizenshipCertificateNumber>
                   <DocumentIssued>
                     <Date Type="Estimated">
                       <Month>01</Month>
@@ -1953,7 +2086,7 @@ sense of fealty to a lofty ideal; but throughout his entire life,
 he also accepted human nature as it is, and worked with keen,
 practical good sense to achieve results with the instruments at
 hand. It is impossible to conceive of </Explanation>
-                  <PermanentResidentCardNumber>888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888811</PermanentResidentCardNumber>
+                  <PermanentResidentCardNumber>888888888888888888888888888888</PermanentResidentCardNumber>
                 </Derived>
                 <ProofOfUSCitizenship>
                   <USPassport>
@@ -4289,7 +4422,7 @@ watched h</Description>
                     </DateBegan>
                     <DateResolved Type="Estimated">
                       <Month>01</Month>
-                      <Year>2001</Year>
+                      <Year>2013</Year>
                     </DateResolved>
                     <Description>No American can study the character and career of Abraham Lincoln
 without being carried away by sentimental emotions. We are
@@ -4673,7 +4806,7 @@ watched h</Actions>
                     </DateFailedToPay>
                     <DateSatisfied Type="Estimated">
                       <Month>01</Month>
-                      <Year>2001</Year>
+                      <Year>2016</Year>
                     </DateSatisfied>
                     <Reason>No American can study the character and career of Abraham Lincoln
 without being carried away by sentimental emotions. We are
@@ -5017,8 +5150,8 @@ hand. It is impossible to conceive of </TypeOtherExplanation>
                     <Address>
                       <Street>FC EMPLOYER STREET XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO FC EMPLOYER APT XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO</Street>
                       <City>FC EMPLOYER CITY XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO</City>
-                      <State>JQ</State>
-                      <ZipCode>88888</ZipCode>
+                      <State>CA</State>
+                      <ZipCode>93943</ZipCode>
                     </Address>
                     <Name>FC EMPLOYER NAME XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO</Name>
                   </Employer>
@@ -5368,8 +5501,8 @@ hand. It is impossible to conceive of </TypeOtherExplanation>
                     <Address>
                       <Street>FC EMPLOYER STREET XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO FC EMPLOYER APT XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO</Street>
                       <City>FC EMPLOYER CITY XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO</City>
-                      <State>JQ</State>
-                      <ZipCode>88888</ZipCode>
+                      <State>OR</State>
+                      <ZipCode>97201</ZipCode>
                     </Address>
                     <Name>FC TWO EMPL NAME XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXOO</Name>
                   </Employer>
@@ -6657,13 +6790,245 @@ watched h</HowAcquired>
                 <Answer>Yes</Answer>
                 <ForeignFinancialBenefit ID="1">
                   <Members Yourself="True"/>
-                  <FrequencyType>Other</FrequencyType>
+                  <BeginDate>
+                    <Month>02</Month>
+                    <Day>01</Day>
+                    <Year>2018</Year>
+                  </BeginDate>
+                  <Country>Canada</Country>
+                  <EndDate Type="Estimated">
+                    <Month>05</Month>
+                    <Day>20</Day>
+                    <Year>2020</Year>
+                  </EndDate>
+                  <FrequencyReceivedType>Other</FrequencyReceivedType>
+                  <FrequencyReceivedTypeOtherExplanation>Benefit 1 Frequency of Benefit Other without being carried away by sentimental emotions. We are
+always inclined to idealize that which we love,--a state of mind
+very unfavorable to the exercise of sober critical judgment. It
+is therefore not surprising that most of those who have written
+or spoken on that extraordinary man, even while conscientiously
+endeavoring to draw a lifelike portraiture of his being, and to
+form a just estimate of his public conduct, should have drifted
+into more or less indiscriminating eulogy, painting his great
+features in the most glowing colors, and covering with tender
+shadings whatever might look like a blemish.
+
+But his standing before posterity will not be exalted by mere
+praise of his virtues and abilities, nor by any concealment of
+his limitations and faults. The stature of the great man, one of
+whose peculiar charms consisted in his being so unlike all other
+great men, will rather lose than gain by the idealization which
+so easily runs into the commonplace. For it was distinctly the
+weird mixture of qualities and forces in him, of the lofty with
+the common, the ideal with the uncouth, of that which he had
+become with that which he had not ceased to be, that made him so
+fascinating a character among his fellow-men, gave him his
+singular power over their minds and hearts, and fitted him to be
+the greatest leader in the greatest crisis of our national life.
+
+His was indeed a marvellous growth. The statesman or the
+military hero born and reared in a log cabin is a familiar figure
+in American history; but we may search in vain among our
+celebrities for one whose origin and early life equalled Abraham
+Lincoln's in wretchedness. He first saw the light in a miserable
+hovel in Kentucky, on a farm consisting of a few barren acres in
+a dreary neighborhood; his father a typical "poor Southern
+white," shiftless and without ambition for himself or his
+children, constantly looking for a new piece of land on which he
+might make a living without much work; his mother, in her youth
+handsome and bright, grown prematurely coarse in feature and
+soured in mind by daily toil and care; the whole household
+squalid, cheerless, and utterly void of elevating inspirations...
+Only when the family had "moved" into the malarious backwoods of
+Indiana, the mother had died, and a stepmother, a woman of thrift
+and energy, had taken charge of the children, the shaggy-headed,
+ragged, barefooted, forlorn boy, then seven years old, "began to
+feel like a human being." Hard work was his early lot. When a
+mere boy he had to help in supporting the family, either on his
+father's clearing, or hired out to other farmers to plough, or
+dig ditches, or chop wood, or drive ox teams; occasionally also
+to "tend the baby," when the farmer's wife was otherwise engaged.
+He could regard it as an advancement to a higher sphere of
+activity when he obtained work in a "crossroads store," where he
+amused the customers by his talk over the counter; for he soon
+distinguished himself among the backwoods folk as one who had
+something to say worth listening to. To win that distinction, he
+had to draw mainly upon his wits; for, while his thirst for
+knowledge was great, his opportunities for satisfying that thirst
+were wofully slender.
+
+In the log schoolhouse, which he could visit but little, he was
+taught only reading, writing, and elementary arithmetic. Among
+the people of the settlement, bush farmers and small tradesmen,
+he found none of uncommon intelligence or education; but some of
+them had a few books, which he borrowed eagerly. Thus he read
+and reread, AEsop's Fables, learning to tell stories with a point
+and to argue by parables; he read Robinson Crusoe, The Pilgrim's
+Progress, a short history of the United States, and Weems's Life
+of Washington. To the town constable's he went to read the
+Revised Statutes of Indiana. Every printed page that fell into
+his hands he would greedily devour, and his family and friends
+watched h</FrequencyReceivedTypeOtherExplanation>
+                  <FrequencyType>Continuing</FrequencyType>
+                  <ObligatedToCountry>
+                    <Answer>Yes</Answer>
+                    <Explanation>Benefit 1 Obligation Explanation</Explanation>
+                  </ObligatedToCountry>
+                  <Reason>Benefit 1 Reason</Reason>
                   <Type>Other</Type>
+                  <TypeOtherExplanation>Type of Benefit Other the character and career of Abraham Lincoln
+without being carried away by sentimental emotions. We are
+always inclined to idealize that which we love,--a state of mind
+very unfavorable to the exercise of sober critical judgment. It
+is therefore not surprising that most of those who have written
+or spoken on that extraordinary man, even while conscientiously
+endeavoring to draw a lifelike portraiture of his being, and to
+form a just estimate of his public conduct, should have drifted
+into more or less indiscriminating eulogy, painting his great
+features in the most glowing colors, and covering with tender
+shadings whatever might look like a blemish.
+
+But his standing before posterity will not be exalted by mere
+praise of his virtues and abilities, nor by any concealment of
+his limitations and faults. The stature of the great man, one of
+whose peculiar charms consisted in his being so unlike all other
+great men, will rather lose than gain by the idealization which
+so easily runs into the commonplace. For it was distinctly the
+weird mixture of qualities and forces in him, of the lofty with
+the common, the ideal with the uncouth, of that which he had
+become with that which he had not ceased to be, that made him so
+fascinating a character among his fellow-men, gave him his
+singular power over their minds and hearts, and fitted him to be
+the greatest leader in the greatest crisis of our national life.
+
+His was indeed a marvellous growth. The statesman or the
+military hero born and reared in a log cabin is a familiar figure
+in American history; but we may search in vain among our
+celebrities for one whose origin and early life equalled Abraham
+Lincoln's in wretchedness. He first saw the light in a miserable
+hovel in Kentucky, on a farm consisting of a few barren acres in
+a dreary neighborhood; his father a typical "poor Southern
+white," shiftless and without ambition for himself or his
+children, constantly looking for a new piece of land on which he
+might make a living without much work; his mother, in her youth
+handsome and bright, grown prematurely coarse in feature and
+soured in mind by daily toil and care; the whole household
+squalid, cheerless, and utterly void of elevating inspirations...
+Only when the family had "moved" into the malarious backwoods of
+Indiana, the mother had died, and a stepmother, a woman of thrift
+and energy, had taken charge of the children, the shaggy-headed,
+ragged, barefooted, forlorn boy, then seven years old, "began to
+feel like a human being." Hard work was his early lot. When a
+mere boy he had to help in supporting the family, either on his
+father's clearing, or hired out to other farmers to plough, or
+dig ditches, or chop wood, or drive ox teams; occasionally also
+to "tend the baby," when the farmer's wife was otherwise engaged.
+He could regard it as an advancement to a higher sphere of
+activity when he obtained work in a "crossroads store," where he
+amused the customers by his talk over the counter; for he soon
+distinguished himself among the backwoods folk as one who had
+something to say worth listening to. To win that distinction, he
+had to draw mainly upon his wits; for, while his thirst for
+knowledge was great, his opportunities for satisfying that thirst
+were wofully slender.
+
+In the log schoolhouse, which he could visit but little, he was
+taught only reading, writing, and elementary arithmetic. Among
+the people of the settlement, bush farmers and small tradesmen,
+he found none of uncommon intelligence or education; but some of
+them had a few books, which he borrowed eagerly. Thus he read
+and reread, AEsop's Fables, learning to tell stories with a point
+and to argue by parables; he read Robinson Crusoe, The Pilgrim's
+Progress, a short history of the United States, and Weems's Life
+of Washington. To the town constable's he went to read the
+Revised Statutes of Indiana. Every printed page that fell into
+his hands he would greedily devour, and his family and friends
+watched h</TypeOtherExplanation>
+                  <Value>99</Value>
                 </ForeignFinancialBenefit>
                 <ForeignFinancialBenefit ID="2">
                   <Members DependentChildren="True"/>
-                  <FrequencyType>Other</FrequencyType>
+                  <Country>Saint Helena</Country>
+                  <DateReceived>
+                    <Month>05</Month>
+                    <Day>02</Day>
+                    <Year>2018</Year>
+                  </DateReceived>
+                  <FrequencyType>Onetime</FrequencyType>
+                  <ObligatedToCountry>
+                    <Answer>No</Answer>
+                  </ObligatedToCountry>
+                  <Reason>Benefit 2 Reason</Reason>
                   <Type>Other</Type>
+                  <TypeOtherExplanation>No American can study the character and career of Abraham Lincoln
+without being carried away by sentimental emotions. We are
+always inclined to idealize that which we love,--a state of mind
+very unfavorable to the exercise of sober critical judgment. It
+is therefore not surprising that most of those who have written
+or spoken on that extraordinary man, even while conscientiously
+endeavoring to draw a lifelike portraiture of his being, and to
+form a just estimate of his public conduct, should have drifted
+into more or less indiscriminating eulogy, painting his great
+features in the most glowing colors, and covering with tender
+shadings whatever might look like a blemish.
+
+But his standing before posterity will not be exalted by mere
+praise of his virtues and abilities, nor by any concealment of
+his limitations and faults. The stature of the great man, one of
+whose peculiar charms consisted in his being so unlike all other
+great men, will rather lose than gain by the idealization which
+so easily runs into the commonplace. For it was distinctly the
+weird mixture of qualities and forces in him, of the lofty with
+the common, the ideal with the uncouth, of that which he had
+become with that which he had not ceased to be, that made him so
+fascinating a character among his fellow-men, gave him his
+singular power over their minds and hearts, and fitted him to be
+the greatest leader in the greatest crisis of our national life.
+
+His was indeed a marvellous growth. The statesman or the
+military hero born and reared in a log cabin is a familiar figure
+in American history; but we may search in vain among our
+celebrities for one whose origin and early life equalled Abraham
+Lincoln's in wretchedness. He first saw the light in a miserable
+hovel in Kentucky, on a farm consisting of a few barren acres in
+a dreary neighborhood; his father a typical "poor Southern
+white," shiftless and without ambition for himself or his
+children, constantly looking for a new piece of land on which he
+might make a living without much work; his mother, in her youth
+handsome and bright, grown prematurely coarse in feature and
+soured in mind by daily toil and care; the whole household
+squalid, cheerless, and utterly void of elevating inspirations...
+Only when the family had "moved" into the malarious backwoods of
+Indiana, the mother had died, and a stepmother, a woman of thrift
+and energy, had taken charge of the children, the shaggy-headed,
+ragged, barefooted, forlorn boy, then seven years old, "began to
+feel like a human being." Hard work was his early lot. When a
+mere boy he had to help in supporting the family, either on his
+father's clearing, or hired out to other farmers to plough, or
+dig ditches, or chop wood, or drive ox teams; occasionally also
+to "tend the baby," when the farmer's wife was otherwise engaged.
+He could regard it as an advancement to a higher sphere of
+activity when he obtained work in a "crossroads store," where he
+amused the customers by his talk over the counter; for he soon
+distinguished himself among the backwoods folk as one who had
+something to say worth listening to. To win that distinction, he
+had to draw mainly upon his wits; for, while his thirst for
+knowledge was great, his opportunities for satisfying that thirst
+were wofully slender.
+
+In the log schoolhouse, which he could visit but little, he was
+taught only reading, writing, and elementary arithmetic. Among
+the people of the settlement, bush farmers and small tradesmen,
+he found none of uncommon intelligence or education; but some of
+them had a few books, which he borrowed eagerly. Thus he read
+and reread, AEsop's Fables, learning to tell stories with a point
+and to argue by parables; he read Robinson Crusoe, The Pilgrim's
+Progress, a short history of the United States, and Weems's Life
+of Washington. To the town constable's he went to read the
+Revised Statutes of Indiana. Every printed page that fell into
+his hands he would greedily devour, and his family and friends
+watched h</TypeOtherExplanation>
+                  <Value>1000</Value>
                 </ForeignFinancialBenefit>
                 <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
               </ForeignFinancialBenefits>
@@ -10498,7 +10863,7 @@ watched </Purpose>
                   <Birth>
                     <Date Type="Estimated">
                       <Month>01</Month>
-                      <Year>2000</Year>
+                      <Year>1980</Year>
                     </Date>
                     <Place>
                       <City>No American can study the character and career of Abraham Lincoln without being carried away by sent</City>
@@ -10752,8 +11117,8 @@ watched h</SponsorshipPurpose>
                     <Address>
                       <Street>No American can study the character and career of Abraham Lincoln without being carried away by sentimental emotions. We are always inclined to idealize that which we love,--a state of mind very unfavorable to the exercise of sober critical judgment. It i No American can study the character and career of Abraham Lincoln without being carried away by sentimental emotions. We are always inclined to idealize that which we love,--a state of mind very unfavorable to the exercise of sober critical judgment. It i</Street>
                       <City>No American can study the character and career of Abraham Lincoln without being carried away by sent</City>
-                      <State>DQ</State>
-                      <ZipCode>55555</ZipCode>
+                      <State>CA</State>
+                      <ZipCode>93940</ZipCode>
                     </Address>
                     <Name>No American can study the character and career of Abraham Lincoln without being carried away by sentimental emotions. We are always inclined to idealize that which we love,--a state of mind very unfavorable to the exercise of sober critical judgment. It i</Name>
                   </Organization>
@@ -11737,8 +12102,8 @@ his hands he would greedily devour, and his family and friends
 watched h</Explanation>
                   </Detained>
                   <Duration>
-        
-      </Duration>
+                    <NumberOfDaysRange>MoreThanThirty</NumberOfDaysRange>
+                  </Duration>
                   <InvolvedInCounterintelligence>
                     <Answer>Yes</Answer>
                     <Explanation>No American can study the character and career of Abraham Lincoln
@@ -12252,8 +12617,8 @@ his hands he would greedily devour, and his family and friends
 watched h</Explanation>
                   </Detained>
                   <Duration>
-        
-      </Duration>
+                    <NumberOfDaysRange>MoreThanThirty</NumberOfDaysRange>
+                  </Duration>
                   <InvolvedInCounterintelligence>
                     <Answer>Yes</Answer>
                     <Explanation>No American can study the character and career of Abraham Lincoln
@@ -13091,9 +13456,9 @@ watched h</Explanation>
                         <ZipCode>70622</ZipCode>
                       </Address>
                       <Telephone>
-
-
-</Telephone>
+                        <Number>8318931313</Number>
+                        <Time>Day</Time>
+                      </Telephone>
                     </Doctor>
                   </Consultation>
                   <Consultation ID="2">
@@ -13195,9 +13560,8 @@ watched h</Explanation>
                         <ZipCode>20066</ZipCode>
                       </Address>
                       <Telephone>
-
-
-</Telephone>
+                        <Number>8318732243</Number>
+                      </Telephone>
                     </Doctor>
                   </Consultation>
                 </Consultations>
@@ -13227,9 +13591,9 @@ watched h</Explanation>
                         <ZipCode>20066</ZipCode>
                       </Address>
                       <Telephone>
-
-
-</Telephone>
+                        <Number>8314432365</Number>
+                        <Time>Day</Time>
+                      </Telephone>
                     </Doctor>
                     <CompletedTreatmentProgram>
                       <Answer>No</Answer>
@@ -13324,9 +13688,9 @@ watched h</Explanation>
                         <ZipCode>32122</ZipCode>
                       </Address>
                       <Telephone>
-
-
-</Telephone>
+                        <Number>8314339987</Number>
+                        <Time>Day</Time>
+                      </Telephone>
                     </Doctor>
                     <CompletedTreatmentProgram>
                       <Answer>No</Answer>
@@ -13769,7 +14133,7 @@ watched h</Circumstances>
         
       </DidNotReceiveTreatment>
                     <CounselingOrderedBy>
-                      <Answer Employer="True" MedicalProfessional="True" MentalHealthProfessional="True" Court="True" None="True"/>
+                      <Answer Employer="True" MedicalProfessional="True" MentalHealthProfessional="True" Court="True"/>
                       <Explanation>No American can study the character and career of Abraham Lincoln
 without being carried away by sentimental emotions. We are
 always inclined to idealize that which we love,--a state of mind
@@ -14021,7 +14385,7 @@ watched h</Explanation>
         
       </DidNotReceiveTreatment>
                     <CounselingOrderedBy>
-                      <Answer Employer="True" MedicalProfessional="True" MentalHealthProfessional="True" Court="True" None="True"/>
+                      <Answer Employer="True" MedicalProfessional="True" MentalHealthProfessional="True" Court="True"/>
                       <Explanation>No American can study the character and career of Abraham Lincoln
 without being carried away by sentimental emotions. We are
 always inclined to idealize that which we love,--a state of mind
@@ -14173,9 +14537,9 @@ watched h</Explanation>
                         <Country>Dhekelia Sovereign Base Area</Country>
                       </Address>
                       <Telephone>
-
-
-</Telephone>
+                        <Number>8313333333</Number>
+                        <Time>Both</Time>
+                      </Telephone>
                     </Doctor>
                     <DateRange>
                       <From>
@@ -14512,7 +14876,7 @@ watched h</Explanation>
                     </Drug>
                     <FirstInvolvementDate>
                       <Month>01</Month>
-                      <Year>2001</Year>
+                      <Year>1999</Year>
                     </FirstInvolvementDate>
                     <MostRecentInvolvementDate>
                       <Month>01</Month>
@@ -15236,9 +15600,9 @@ watched h</Explanation>
                         <ZipCode>20322</ZipCode>
                       </Address>
                       <Telephone>
-
-
-</Telephone>
+                        <Number>8312227777</Number>
+                        <Time>Day</Time>
+                      </Telephone>
                     </Doctor>
                     <DateRange>
                       <From>
@@ -15341,9 +15705,9 @@ watched h</Explanation>
                         <ZipCode>34011</ZipCode>
                       </Address>
                       <Telephone>
-
-
-</Telephone>
+                        <Number>8311110987</Number>
+                        <Time>Day</Time>
+                      </Telephone>
                     </Doctor>
                     <DateRange>
                       <From>
@@ -15458,6 +15822,7 @@ watched h</Explanation>
                             <City>No American can study the character and career of Abraham Lincoln without being carried away by sent</City>
                             <State>FL</State>
                             <ZipCode>32232</ZipCode>
+                            <County>Monterey</County>
                           </Place>
                         </Location>
                         <Name>No American can study the character and career of Abraham Lincoln without being carried away by sentimental emotions. We are always inclined to idealize that which we love,--a state of mind very unfavorable to the exercise of sober critical judgment. It i</Name>
@@ -15585,6 +15950,7 @@ watched h</Description>
                           <City>No American can study the character and career of Abraham Lincoln without being carried away by sent</City>
                           <State>RI</State>
                           <ZipCode>02922</ZipCode>
+                          <County>Marin</County>
                         </Place>
                       </Location>
                       <Name>No American can study the character and career of Abraham Lincoln without being carried away by sentimental emotions. We are always inclined to idealize that which we love,--a state of mind very unfavorable to the exercise of sober critical judgment. It i</Name>
@@ -15601,6 +15967,7 @@ watched h</Description>
                         <City>No American can study the character and career of Abraham Lincoln without being carried away by sent</City>
                         <State>FL</State>
                         <ZipCode>33902</ZipCode>
+                        <County>Santa Clara</County>
                       </Place>
                     </Location>
                     <NotConvicted>
@@ -15697,6 +16064,7 @@ watched h</OffenseDescription>
                             <City>No American can study the character and career of Abraham Lincoln without being carried away by sent</City>
                             <State>AK</State>
                             <ZipCode>99522</ZipCode>
+                            <County>San Benito</County>
                           </Place>
                         </Location>
                         <Name>No American can study the character and career of Abraham Lincoln without being carried away by sentimental emotions. We are always inclined to idealize that which we love,--a state of mind very unfavorable to the exercise of sober critical judgment. It i</Name>
@@ -15821,8 +16189,10 @@ watched h</Description>
                     <ArrestingAgency>
                       <Location>
                         <Place>
-                          <City>APO</City>
-                          <Country>POSTOFFICE</Country>
+                          <City>Carmel</City>
+                          <State>CA</State>
+                          <ZipCode>93923</ZipCode>
+                          <County>Monterey</County>
                         </Place>
                       </Location>
                       <Name>No American can study the character and career of Abraham Lincoln without being carried away by sentimental emotions. We are always inclined to idealize that which we love,--a state of mind very unfavorable to the exercise of sober critical judgment. It i</Name>
@@ -19203,22 +19573,6 @@ hand. It is impossible to conceive of </Explanation>
               <Investigations>
                 <Investigation ID="1">
                   <Agency>Other</Agency>
-                  <ClearanceLevel>Other</ClearanceLevel>
-                  <GrantedDate>
-                    <Date Type="Estimated">
-                      <Month>01</Month>
-                      <Year>2000</Year>
-                    </Date>
-                  </GrantedDate>
-                  <InvestigationDate>
-                    <Date Type="Estimated">
-                      <Month>01</Month>
-                      <Year>2000</Year>
-                    </Date>
-                  </InvestigationDate>
-                  <IssuingAgency>
-                    <Name>No American can study the character and career of Abraham Lincoln without being carried away by sentimental emotions. We are always inclined to idealize that which we love,--a state of mind very unfavorable to the exercise of sober critical judgment. It i</Name>
-                  </IssuingAgency>
                   <OtherAgency>No American can study the character and career of Abraham Lincoln
 without being carried away by sentimental emotions. We are
 always inclined to idealize that which we love,--a state of mind
@@ -19286,7 +19640,24 @@ Progress, a short history of the United States, and Weems's Life
 of Washington. To the town constable's he went to read the
 Revised Statutes of Indiana. Every printed page that fell into
 his hands he would greedily devour, and his family and friends
-watched hNo American can study the character and career of Abraham Lincoln
+watched h</OtherAgency>
+                  <ClearanceLevel>Other</ClearanceLevel>
+                  <GrantedDate>
+                    <Date Type="Estimated">
+                      <Month>01</Month>
+                      <Year>2000</Year>
+                    </Date>
+                  </GrantedDate>
+                  <InvestigationDate>
+                    <Date Type="Estimated">
+                      <Month>01</Month>
+                      <Year>2000</Year>
+                    </Date>
+                  </InvestigationDate>
+                  <IssuingAgency>
+                    <Name>No American can study the character and career of Abraham Lincoln without being carried away by sentimental emotions. We are always inclined to idealize that which we love,--a state of mind very unfavorable to the exercise of sober critical judgment. It i</Name>
+                  </IssuingAgency>
+                  <OtherClearanceLevel>No American can study the character and career of Abraham Lincoln
 without being carried away by sentimental emotions. We are
 always inclined to idealize that which we love,--a state of mind
 very unfavorable to the exercise of sober critical judgment. It
@@ -19353,9 +19724,10 @@ Progress, a short history of the United States, and Weems's Life
 of Washington. To the town constable's he went to read the
 Revised Statutes of Indiana. Every printed page that fell into
 his hands he would greedily devour, and his family and friends
-watched h</OtherAgency>
+watched h</OtherClearanceLevel>
                 </Investigation>
                 <Investigation ID="2">
+                  <Agency>Unknown</Agency>
                   <ClearanceLevel>Other</ClearanceLevel>
                   <GrantedDate>
                     <Date Type="Estimated">
@@ -19372,7 +19744,7 @@ watched h</OtherAgency>
                   <IssuingAgency>
                     <Name>No American can study the character and career of Abraham Lincoln without being carried away by sentimental emotions. We are always inclined to idealize that which we love,--a state of mind very unfavorable to the exercise of sober critical judgment. It i</Name>
                   </IssuingAgency>
-                  <OtherAgency>No American can study the character and career of Abraham Lincoln
+                  <OtherClearanceLevel>No American can study the character and career of Abraham Lincoln
 without being carried away by sentimental emotions. We are
 always inclined to idealize that which we love,--a state of mind
 very unfavorable to the exercise of sober critical judgment. It
@@ -19439,7 +19811,7 @@ Progress, a short history of the United States, and Weems's Life
 of Washington. To the town constable's he went to read the
 Revised Statutes of Indiana. Every printed page that fell into
 his hands he would greedily devour, and his family and friends
-watched h</OtherAgency>
+watched h</OtherClearanceLevel>
                 </Investigation>
               </Investigations>
               <PriorInvestigation>
@@ -19834,9 +20206,9 @@ hand. It is impossible to conceive of </Explanation>
                   <HealthCareProfessional>
                     <Name>"It has long been a grave question whether any government not too strong for the liberties of its people can be strong enough to maintain its existence in great emergencies. On this point, the present rebellion brought our republic to a severe test, and t</Name>
                     <Telephone>
-
-
-</Telephone>
+                      <Number>8313233232</Number>
+                      <Time>Both</Time>
+                    </Telephone>
                     <Address>
                       <Street>"It has long been a grave question whether any government not too strong for the liberties of its people can be strong enough to maintain its existence in great emergencies. On this point, the present rebellion brought our republic to a severe test, and t "It has long been a grave question whether any government not too strong for the liberties of its people can be strong enough to maintain its existence in great emergencies. On this point, the present rebellion brought our republic to a severe test, and t</Street>
                       <City>"It has long been a grave question whether any government not too strong for the liberties of its pe</City>
@@ -19847,9 +20219,9 @@ hand. It is impossible to conceive of </Explanation>
                   <TreatmentFacility>
                     <Name>"It has long been a grave question whether any government not too strong for the liberties of its people can be strong enough to maintain its existence in great emergencies. On this point, the present rebellion brought our republic to a severe test, and t</Name>
                     <Telephone>
-
-
-</Telephone>
+                      <Number>8313231234</Number>
+                      <Time>Both</Time>
+                    </Telephone>
                     <Address>
                       <Street>"It has long been a grave question whether any government not too strong for the liberties of its people can be strong enough to maintain its existence in great emergencies. On this point, the present rebellion brought our republic to a severe test, and t "It has long been a grave question whether any government not too strong for the liberties of its people can be strong enough to maintain its existence in great emergencies. On this point, the present rebellion brought our republic to a severe test, and t</Street>
                       <City>"It has long been a grave question whether any government not too strong for the liberties of its pe</City>
@@ -19945,9 +20317,9 @@ hand. It is impossible to conceive of </Explanation>
                   <HealthCareProfessional>
                     <Name>"It has long been a grave question whether any government not too strong for the liberties of its people can be strong enough to maintain its existence in great emergencies. On this point, the present rebellion brought our republic to a severe test, and t</Name>
                     <Telephone>
-
-
-</Telephone>
+                      <Number>8314442134</Number>
+                      <Time>Day</Time>
+                    </Telephone>
                     <Address>
                       <Street>"It has long been a grave question whether any government not too strong for the liberties of its people can be strong enough to maintain its existence in great emergencies. On this point, the present rebellion brought our republic to a severe test, and t "It has long been a grave question whether any government not too strong for the liberties of its people can be strong enough to maintain its existence in great emergencies. On this point, the present rebellion brought our republic to a severe test, and t</Street>
                       <City>"It has long been a grave question whether any government not too strong for the liberties of its pe</City>
@@ -19958,9 +20330,9 @@ hand. It is impossible to conceive of </Explanation>
                   <TreatmentFacility>
                     <Name>"It has long been a grave question whether any government not too strong for the liberties of its people can be strong enough to maintain its existence in great emergencies. On this point, the present rebellion brought our republic to a severe test, and t</Name>
                     <Telephone>
-
-
-</Telephone>
+                      <Number>8313133333</Number>
+                      <Time>Day</Time>
+                    </Telephone>
                     <Address>
                       <Street>"It has long been a grave question whether any government not too strong for the liberties of its people can be strong enough to maintain its existence in great emergencies. On this point, the present rebellion brought our republic to a severe test, and t "It has long been a grave question whether any government not too strong for the liberties of its people can be strong enough to maintain its existence in great emergencies. On this point, the present rebellion brought our republic to a severe test, and t</Street>
                       <City>"It has long been a grave question whether any government not too strong for the liberties of its pe</City>
@@ -20064,9 +20436,9 @@ hand. It is impossible to conceive of </Explanation>
                   <HealthCareProfessional>
                     <Name>"It has long been a grave question whether any government not too strong for the liberties of its people can be strong enough to maintain its existence in great emergencies. On this point, the present rebellion brought our republic to a severe test, and t</Name>
                     <Telephone>
-
-
-</Telephone>
+                      <Number>8314447777</Number>
+                      <Time>Day</Time>
+                    </Telephone>
                     <Address>
                       <Street>"It has long been a grave question whether any government not too strong for the liberties of its people can be strong enough to maintain its existence in great emergencies. On this point, the present rebellion brought our republic to a severe test, and t "It has long been a grave question whether any government not too strong for the liberties of its people can be strong enough to maintain its existence in great emergencies. On this point, the present rebellion brought our republic to a severe test, and t</Street>
                       <City>"It has long been a grave question whether any government not too strong for the liberties of its pe</City>

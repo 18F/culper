@@ -1,16 +1,5 @@
 {
   "Citizenship": {
-    "Comments": {
-      "type": "citizenship.comments",
-      "props": {
-        "Comments": {
-          "type": "text",
-          "props": {
-            "value": ""
-          }
-        }
-      }
-    },
     "Multiple": {
       "type": "citizenship.multiple",
       "props": {
@@ -797,17 +786,6 @@
         }
       }
     },
-    "Comments": {
-      "type": "financial.comments",
-      "props": {
-        "Comments": {
-          "type": "text",
-          "props": {
-            "value": ""
-          }
-        }
-      }
-    },
     "Credit": {
       "type": "financial.credit",
       "props": {
@@ -949,17 +927,6 @@
               "type": ""
             },
             "items": []
-          }
-        }
-      }
-    },
-    "Comments": {
-      "type": "foreign.comments",
-      "props": {
-        "Comments": {
-          "type": "text",
-          "props": {
-            "value": ""
           }
         }
       }
@@ -1337,17 +1304,6 @@
     }
   },
   "History": {
-    "Comments": {
-      "type": "history.comments",
-      "props": {
-        "Comments": {
-          "type": "text",
-          "props": {
-            "value": ""
-          }
-        }
-      }
-    },
     "Education": {
       "type": "history.education",
       "props": {
@@ -2148,17 +2104,6 @@
         "verified": true
       }
     },
-    "Comments": {
-      "type": "identification.comments",
-      "props": {
-        "Comments": {
-          "type": "text",
-          "props": {
-            "value": ""
-          }
-        }
-      }
-    },
     "Contacts": {
       "type": "identification.contacts",
       "props": {
@@ -2319,17 +2264,6 @@
               "type": ""
             },
             "items": []
-          }
-        }
-      }
-    },
-    "Comments": {
-      "type": "legal.comments",
-      "props": {
-        "Comments": {
-          "type": "text",
-          "props": {
-            "value": ""
           }
         }
       }
@@ -2864,17 +2798,6 @@
     }
   },
   "Military": {
-    "Comments": {
-      "type": "military.comments",
-      "props": {
-        "Comments": {
-          "type": "text",
-          "props": {
-            "value": "Look, I know I'm a weird bird, but trust me I really need this TS-SCI"
-          }
-        }
-      }
-    },
     "Disciplinary": {
       "type": "military.disciplinary",
       "props": {
@@ -3641,17 +3564,6 @@
     }
   },
   "Psychological": {
-    "Comments": {
-      "type": "psychological.comments",
-      "props": {
-        "Comments": {
-          "type": "text",
-          "props": {
-            "value": ""
-          }
-        }
-      }
-    },
     "Competence": {
       "type": "psychological.competence",
       "props": {
@@ -3822,17 +3734,6 @@
         }
       }
     },
-    "Comments": {
-      "type": "relationships.comments",
-      "props": {
-        "Comments": {
-          "type": "text",
-          "props": {
-            "value": ""
-          }
-        }
-      }
-    },
     "Marital": {
       "type": "relationships.status.marital",
       "props": {
@@ -3862,6 +3763,35 @@
               "type": "notapplicable",
               "props": {
                 "applicable": false
+              }
+            },
+            "AlternateAddress": {
+              "type": "physicaladdress",
+              "props": {
+                "HasDifferentAddress": {
+                  "type": "branch",
+                  "props": {
+                    "value": ""
+                  }
+                },
+                "Address": {
+                  "type": "location",
+                  "props": {
+                    "layout": "",
+                    "country": ""
+                  }
+                },
+                "Telephone": {
+                  "type": "telephone",
+                  "props": {
+                    "timeOfDay": "",
+                    "type": "",
+                    "numberType": "",
+                    "number": "",
+                    "extension": "",
+                    "noNumber": false
+                  }
+                }
               }
             },
             "BirthPlace": {
@@ -4972,17 +4902,6 @@
     }
   },
   "Substance": {
-    "Comments": {
-      "type": "substance.comments",
-      "props": {
-        "Comments": {
-          "type": "text",
-          "props": {
-            "value": ""
-          }
-        }
-      }
-    },
     "DrugClearanceUses": {
       "type": "substance.drugs.clearance",
       "props": {

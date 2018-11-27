@@ -1,5 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import { alphaNumericRegEx } from '../../../../validators/helpers'
 import {
   ValidationElement,
   Branch,
@@ -19,10 +20,11 @@ import {
   NotApplicable,
   Location
 } from '../../../Form'
+import AlternateAddress from '../../../Form/Location/AlternateAddress'
 import { RelativeValidator } from '../../../../validators'
 import { countryString } from '../../../../validators/location'
-import { today, daysAgo } from '../../History/dateranges'
 import Alias from './Alias'
+import { extractDate } from '../../History/dateranges'
 
 export default class Relative extends ValidationElement {
   constructor(props) {
@@ -559,10 +561,6 @@ export default class Relative extends ValidationElement {
             label={i18n.t('relationships.relatives.label.birthplace')}
             layout={Location.BIRTHPLACE_WITHOUT_COUNTY}
             help=""
-            cityPlaceholder={i18n.t('relationships.relatives.placeholder.city')}
-            countryPlaceholder={i18n.t(
-              'relationships.relatives.placeholder.country'
-            )}
             hideCounty={true}
             className="relative-birthplace"
             onError={this.props.onError}
@@ -641,7 +639,8 @@ export default class Relative extends ValidationElement {
               </Field>
               <Alias
                 name="Item"
-                applicantBirthdate={this.props.Birthdate}
+                minDate={extractDate(this.props.Birthdate)}
+                relationship="Other"
                 onError={this.props.onError}
                 hideMaiden={mother}
                 required={this.props.required}
@@ -678,13 +677,21 @@ export default class Relative extends ValidationElement {
               addressBook={this.props.addressBook}
               dispatch={this.props.dispatch}
               layout={Location.ADDRESS}
-              geocode={true}
-              showPostOffice={true}
+              geocode
               onUpdate={this.updateAddress}
               onError={this.props.onError}
               required={this.props.required}
             />
           </Field>
+          <AlternateAddress
+            address={this.props.AlternateAddress}
+            addressBook={this.props.addressBook}
+            belongingTo="AlternateAddress"
+            country={countryString(this.props.Address.country)}
+            forceAPO
+            militaryAddressLabel={i18n.t('address.militaryAddress.relative')}
+            onUpdate={this.update}
+          />
         </Show>
 
         <Show when={validator.requiresCitizenshipDocumentation()}>
@@ -836,6 +843,9 @@ export default class Relative extends ValidationElement {
               <Text
                 name="DocumentNumber"
                 className="relative-documentnumber"
+                maxlength="30"
+                pattern={alphaNumericRegEx}
+                prefix="alphanumeric"
                 {...this.props.DocumentNumber}
                 onError={this.props.onError}
                 onUpdate={this.updateDocumentNumber}
@@ -1001,6 +1011,9 @@ export default class Relative extends ValidationElement {
                     className="relative-residence-documentnumber"
                     {...this.props.ResidenceDocumentNumber}
                     onError={this.props.onError}
+                    maxlength="30"
+                    pattern={alphaNumericRegEx}
+                    prefix="alphanumeric"
                     onUpdate={this.updateResidenceDocumentNumber}
                     required={this.props.required}
                   />
@@ -1041,6 +1054,7 @@ export default class Relative extends ValidationElement {
                 className="relative-first-contact"
                 {...this.props.FirstContact}
                 prefix="relative"
+                minDateEqualTo={true}
                 applicantBirthdate={this.props.Birthdate}
                 onError={this.props.onError}
                 onUpdate={this.updateFirstContact}
@@ -1061,6 +1075,8 @@ export default class Relative extends ValidationElement {
                 className="relative-last-contact"
                 {...this.props.LastContact}
                 prefix="relative"
+                minDate={(this.props.FirstContact || {}).date}
+                minDateEqualTo={true}
                 applicantBirthdate={this.props.Birthdate}
                 onError={this.props.onError}
                 onUpdate={this.updateLastContact}

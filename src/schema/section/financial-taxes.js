@@ -6,7 +6,7 @@ export const financialTaxes = (data = {}) => {
     return {
       Item: {
         Failure: form.radio(xitem.Failure),
-        Year: form.number(xitem.Year),
+        Year: form.datecontrol(xitem.Year),
         YearEstimated: form.checkbox(xitem.YearEstimated),
         Reason: form.textarea(xitem.Reason),
         Agency: form.text(xitem.Agency),

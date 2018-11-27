@@ -67,6 +67,7 @@ export default class DrugPublicSafetyUse extends ValidationElement {
           <DateRange
             name="InvolvementDates"
             className="involvement-dates"
+            minDateEqualTo={true}
             {...this.props.InvolvementDates}
             onUpdate={this.updateInvolvementDates}
             onError={this.props.onError}

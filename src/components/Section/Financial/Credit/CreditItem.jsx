@@ -125,8 +125,6 @@ export default class CreditItem extends ValidationElement {
             addressBook="Agency"
             bind={true}
             help=""
-            statePlaceholder={i18n.t('financial.credit.placeholder.state')}
-            cityPlaceholder={i18n.t('financial.credit.placeholder.city')}
             required={this.props.required}
             onUpdate={this.updateLocation}
             onError={this.props.onError}

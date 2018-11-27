@@ -95,6 +95,9 @@ class Env {
   EndpointSaml() {
     return `${this.ApiBaseURL()}/auth/saml`
   }
+  EndpointSamlSLO() {
+    return `${this.ApiBaseURL()}/auth/saml_slo`
+  }
   EndpointSave(payload) {
     return '/me/save'
   }

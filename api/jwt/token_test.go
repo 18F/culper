@@ -58,7 +58,7 @@ func BenchmarkRandomSecret256(b *testing.B) {
 	var token string
 	for n := 0; n < b.N; n++ {
 		JwtSigningMethod = jwt.SigningMethodHS256
-		token, _, _ = service.NewToken(0, "audience")
+		token, _, _ = service.NewToken(0, "session", "audience")
 	}
 	token256 = token
 
@@ -82,7 +82,7 @@ func BenchmarkRandomSecret512(b *testing.B) {
 	var token string
 	for n := 0; n < b.N; n++ {
 		JwtSigningMethod = jwt.SigningMethodHS512
-		token, _, _ = service.NewToken(0, "audience")
+		token, _, _ = service.NewToken(0, "session", "audience")
 	}
 	token512 = token
 
@@ -114,7 +114,7 @@ func TestTimeout(t *testing.T) {
 
 func TestValidateToken(t *testing.T) {
 	service := Service{Env: mock.Native{}}
-	token, _, err := service.NewToken(1, api.BasicAuthAudience)
+	token, _, err := service.NewToken(1, "session", api.BasicAuthAudience)
 	if err != nil {
 		t.Fatal(err)
 	}

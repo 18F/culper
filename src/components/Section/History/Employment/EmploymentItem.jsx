@@ -10,6 +10,7 @@ import {
   Show,
   Name
 } from '../../../Form'
+import AlternateAddress from '../../../Form/Location/AlternateAddress'
 import EmploymentActivity from './EmploymentActivity'
 import EmploymentStatus from './EmploymentStatus'
 import PhysicalAddress from './PhysicalAddress'
@@ -24,6 +25,7 @@ export default class EmploymentItem extends ValidationElement {
   constructor(props) {
     super(props)
 
+    this.update = this.update.bind(this);
     this.updateEmploymentActivity = this.updateEmploymentActivity.bind(this)
     this.updateEmployment = this.updateEmployment.bind(this)
     this.updateDates = this.updateDates.bind(this)
@@ -44,22 +46,7 @@ export default class EmploymentItem extends ValidationElement {
 
   update(queue) {
     this.props.onUpdate({
-      EmploymentActivity: this.props.EmploymentActivity,
-      Employment: this.props.Employment,
-      Dates: this.props.Dates,
-      Title: this.props.Title,
-      DutyStation: this.props.DutyStation,
-      Status: this.props.Status,
-      Address: this.props.Address,
-      Telephone: this.props.Telephone,
-      Supervisor: this.props.Supervisor,
-      ReferenceName: this.props.ReferenceName,
-      ReferencePhone: this.props.ReferencePhone,
-      ReferenceAddress: this.props.ReferenceAddress,
-      PhysicalAddress: this.props.PhysicalAddress,
-      Additional: this.props.Additional,
-      ReasonLeft: this.props.ReasonLeft,
-      Reprimand: this.props.Reprimand,
+      ...this.props,
       ...queue
     })
   }
@@ -258,7 +245,6 @@ export default class EmploymentItem extends ValidationElement {
    *    - Federal Contractor
    *    - Non-Government
    *    - Self Employment
-   *    - Unemployment
    *    - Other
    */
   showLeaving() {
@@ -283,7 +269,6 @@ export default class EmploymentItem extends ValidationElement {
           'FederalContractor',
           'NonGovernment',
           'SelfEmployment',
-          'Unemployment',
           'Other'
         ].includes(activity))
     )
@@ -381,6 +366,7 @@ export default class EmploymentItem extends ValidationElement {
             name="Dates"
             {...this.props.Dates}
             receiveProps={this.props.receiveProps}
+            minDateEqualTo={true}
             onUpdate={this.updateDates}
             onError={this.props.onError}
             required={this.props.required}
@@ -453,112 +439,124 @@ export default class EmploymentItem extends ValidationElement {
             required={this.props.required}
             scrollIntoView={this.props.scrollIntoView}
           />
+          <AlternateAddress
+            address={this.props.SupervisorAlternateAddress}
+            belongingTo="SupervisorAlternateAddress"
+            country={this.props.Supervisor.Address.country}
+            militaryAddressLabel={i18n.t('address.militaryAddress.supervisor')}
+            onUpdate={this.update}
+          />
         </Show>
 
         <Show when={this.showReference()}>
-          <div>
+          <Field
+            title={i18n.t(`${prefix}.heading.reference`)}
+            titleSize="h2"
+            className="no-margin-bottom"
+            scrollIntoView={this.props.scrollIntoView}
+          />
+
+          <div className="reference">
             <Field
-              title={i18n.t(`${prefix}.heading.reference`)}
-              titleSize="h2"
-              className="no-margin-bottom"
-              scrollIntoView={this.props.scrollIntoView}
+              title={i18n.t('reference.heading.name')}
+              optional={true}
+              filterErrors={Name.requiredErrorsOnly}
+              scrollIntoView={this.props.scrollIntoView}>
+              <Name
+                name="ReferenceName"
+                prefix={'name'}
+                className="reference-name"
+                {...this.props.ReferenceName}
+                scrollIntoView={this.props.scrollIntoView}
+                onUpdate={this.updateReferenceName}
+                onError={this.props.onError}
+                required={this.props.required}
+              />
+            </Field>
+
+            <Field
+              title={i18n.t('reference.heading.phone.default')}
+              className="override-required"
+              help={'reference.help.phone'}
+              adjustFor="telephone"
+              scrollIntoView={this.props.scrollIntoView}>
+              <Telephone
+                name="ReferencePhone"
+                className="reference-phone"
+                {...this.props.ReferencePhone}
+                allowNotApplicable={false}
+                onUpdate={this.updateReferencePhone}
+                onError={this.props.onError}
+                required={this.props.required}
+              />
+            </Field>
+
+            <Field
+              title={i18n.t('reference.heading.address')}
+              optional={true}
+              help={'reference.help.address'}
+              adjustFor="address"
+              scrollIntoView={this.props.scrollIntoView}>
+              <p>{i18n.t('reference.para.address')}</p>
+              <Location
+                name="ReferenceAddress"
+                className="reference-address"
+                {...this.props.ReferenceAddress}
+                label={i18n.t('reference.label.address')}
+                layout={Location.ADDRESS}
+                geocode={true}
+                addressBooks={this.props.addressBooks}
+                addressBook="Reference"
+                showPostOffice={true}
+                dispatch={this.props.dispatch}
+                onUpdate={this.updateReferenceAddress}
+                onError={this.props.onError}
+              />
+            </Field>
+            <AlternateAddress
+              address={this.props.ReferenceAlternateAddress}
+              addressBook="Reference"
+              belongingTo="ReferenceAlternateAddress"
+              country={this.props.ReferenceAddress.country}
+              militaryAddressLabel={i18n.t(`${prefix}.heading.militaryAddress`)}
+              onUpdate={this.update}
             />
-
-            <div className="reference">
-              <Field
-                title={i18n.t('reference.heading.name')}
-                titleSize="h3"
-                optional={true}
-                filterErrors={Name.requiredErrorsOnly}
-                scrollIntoView={this.props.scrollIntoView}>
-                <Name
-                  name="ReferenceName"
-                  prefix={'name'}
-                  className="reference-name"
-                  {...this.props.ReferenceName}
-                  scrollIntoView={this.props.scrollIntoView}
-                  onUpdate={this.updateReferenceName}
-                  onError={this.props.onError}
-                  required={this.props.required}
-                />
-              </Field>
-
-              <Field
-                title={i18n.t('reference.heading.phone.default')}
-                className="override-required"
-                help={'reference.help.phone'}
-                adjustFor="telephone"
-                scrollIntoView={this.props.scrollIntoView}>
-                <Telephone
-                  name="ReferencePhone"
-                  className="reference-phone"
-                  {...this.props.ReferencePhone}
-                  allowNotApplicable={false}
-                  onUpdate={this.updateReferencePhone}
-                  onError={this.props.onError}
-                  required={this.props.required}
-                />
-              </Field>
-
-              <Field
-                title={i18n.t('reference.heading.address')}
-                optional={true}
-                help={'reference.help.address'}
-                adjustFor="address"
-                scrollIntoView={this.props.scrollIntoView}>
-                <p>{i18n.t('reference.para.address')}</p>
-                <Location
-                  name="ReferenceAddress"
-                  className="reference-address"
-                  {...this.props.ReferenceAddress}
-                  label={i18n.t('reference.label.address')}
-                  layout={Location.ADDRESS}
-                  geocode={true}
-                  addressBooks={this.props.addressBooks}
-                  addressBook="Reference"
-                  showPostOffice={true}
-                  dispatch={this.props.dispatch}
-                  onUpdate={this.updateReferenceAddress}
-                  onError={this.props.onError}
-                />
-              </Field>
-            </div>
           </div>
         </Show>
 
         <Show when={this.showAdditionalActivity()}>
-          <div>
-            <Field
-              title={i18n.t(`${prefix}.heading.additionalActivity`)}
-              titleSize="h2"
-              optional={true}
-              className="no-margin-bottom"
-              scrollIntoView={this.props.scrollIntoView}>
-              {i18n.m(`${prefix}.para.additionalActivity`)}
-            </Field>
+          <Field
+            title={i18n.t(`${prefix}.heading.additionalActivity`)}
+            titleSize="h2"
+            optional={true}
+            className="no-margin-bottom"
+            scrollIntoView={this.props.scrollIntoView}>
+            {i18n.m(`${prefix}.para.additionalActivity`)}
+          </Field>
 
-            <AdditionalActivity
-              name="Additional"
-              {...this.props.Additional}
-              onUpdate={this.updateAdditional}
-              onError={this.props.onError}
-              required={this.props.required}
-              scrollIntoView={this.props.scrollIntoView}
-            />
-          </div>
+          <AdditionalActivity
+            name="Additional"
+            {...this.props.Additional}
+            onUpdate={this.updateAdditional}
+            onError={this.props.onError}
+            required={this.props.required}
+            scrollIntoView={this.props.scrollIntoView}
+          />
         </Show>
 
-        <ReasonLeft
-          name="ReasonLeft"
-          {...this.props.ReasonLeft}
-          Dates={this.props.Dates}
-          onUpdate={this.updateReasonLeft}
-          onError={this.props.onError}
-          required={this.props.required}
-          scrollIntoView={this.props.scrollIntoView}
-        />
+        <Show when={this.showEmployed()}>
+          <ReasonLeft
+            name="ReasonLeft"
+            {...this.props.ReasonLeft}
+            Dates={this.props.Dates}
+            onUpdate={this.updateReasonLeft}
+            onError={this.props.onError}
+            required={this.props.required}
+            scrollIntoView={this.props.scrollIntoView}
+          />
+        </Show>
 
-        <Show when={this.showLeaving()}>
+        <Show when={this.showEmployed() && this.showLeaving()}>
           <Reprimand
             name="Reprimand"
             {...this.props.Reprimand}
@@ -582,7 +580,7 @@ EmploymentItem.defaultProps = {
   Status: {},
   Address: {},
   Telephone: {},
-  Supervisor: {},
+  Supervisor: { Address: {} },
   ReferenceName: {},
   ReferencePhone: {},
   ReferenceAddress: {},

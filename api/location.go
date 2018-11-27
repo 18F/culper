@@ -22,6 +22,7 @@ const (
 	LayoutCityStateCountry                    = "City, State, Country"
 	LayoutUSAddress                           = "US Address"
 	LayoutStreetCity                          = "Street, City"
+	LayoutOffense                             = "Offense"
 )
 
 // Special layout flags for e-QIP integration for...
@@ -30,7 +31,9 @@ const (
 	LayoutBirthPlaceWithoutCountyNoUS = "Birthplace without County CountriesNoUS"
 	LayoutBirthPlaceNoUS              = "Birthplace CountriesNoUS"
 	// APOFPO elements
-	LayoutMilitaryAddress = "Military Address"
+	LayoutMilitaryAddress       = "Military Address"
+	LayoutPhysicalDomestic      = "PhysicalDomestic"
+	LayoutPhysicalInternational = "PhysicalInternational"
 )
 
 // Location is a basic input.
@@ -43,7 +46,7 @@ type Location struct {
 	State           string `json:"state,omitempty"`
 	Zipcode         string `json:"zipcode,omitempty"`
 	County          string `json:"county,omitempty"`
-	Country         string `json:"country,omitempty"`
+	Country         string `json:"country"`
 	CountryComments string `json:"countryComments,omitempty"`
 	Validated       bool   `json:"validated,omitempty"`
 }
@@ -159,6 +162,12 @@ func (entity *Location) Valid() (bool, error) {
 		stack = validateFields(entity, "street", "city", "state", "zipcode")
 	case LayoutStreetCity:
 		stack = validateFields(entity, "street", "city")
+	case LayoutOffense:
+		if domestic {
+			stack = validateFields(entity, "city", "state", "zipcode", "county", "country")
+		} else {
+			stack = validateFields(entity, "city", "country")
+		}
 	default:
 		if domestic || postoffice {
 			stack = validateFields(entity, "street", "city", "state", "zipcode")

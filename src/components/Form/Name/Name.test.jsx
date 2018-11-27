@@ -14,24 +14,83 @@ describe('The Name component', () => {
     expect(component.find('.suffix-other').length).toBe(0)
   })
 
-  it('handles last name patterns', () => {
-    const expected = [
-      {
+  describe('handles first name patterns', () => {
+    it('with good data', () => {
+      const params = {
+        name: 'applicant-name',
+        first: "X- Mc. O'Leary",
+        valid: true
+      }
+
+      const component = mount(<Name {...params} />)
+      component.find('.first input').simulate('change')
+      expect(component.find('[aria-label="First name"] .error-messages [data-i18n="error.name.first.pattern"]').length).toEqual(0)
+    })
+    it('with bad data', () => {
+      const params = {
+        name: 'applicant-numbers',
+        first: 'abc 123',
+        valid: false
+      }
+
+      const expectedMessage = "There is a problem with the first nameSome of these characters aren't allowed.Only use letters, hyphens (-), periods (.), apostrophes ('), and spaces."
+      const component = mount(<Name {...params} />)
+      component.find('.first input').simulate('change')
+      expect(component.find('[aria-label="First name"] .error-messages [data-i18n="error.name.first.pattern"]').text()).toEqual(expectedMessage)
+    })
+  })
+
+  describe('handles middle name patterns', () => {
+    it('with good data', () => {
+      const params = {
+        name: 'applicant-name',
+        noMiddleName: false,
+        middle: "X- Mc. O'Leary",
+        valid: true
+      }
+
+      const component = mount(<Name {...params} />)
+      component.find('.middle input').simulate('change')
+      expect(component.find('[aria-label="Middle name"] .error-messages [data-i18n="error.name.middle.pattern"]').length).toEqual(0)
+    })
+    it('with bad data', () => {
+      const params = {
+        name: 'applicant-numbers',
+        noMiddleName: false,
+        middle: 'abc 123',
+        valid: false
+      }
+
+      const expectedMessage = "There is a problem with the middle nameSome of these characters aren't allowed.Only use letters, hyphens (-), periods (.), apostrophes ('), and spaces."
+      const component = mount(<Name {...params} />)
+      component.find('.middle input').simulate('change')
+      expect(component.find('[aria-label="Middle name"] .error-messages [data-i18n="error.name.middle.pattern"]').text()).toEqual(expectedMessage)
+    })
+  })
+
+  describe('handles last name patterns', () => {
+    it('with good data', () => {
+      const params = {
         name: 'applicant-name',
         last: "X- Mc. O'Leary",
         valid: true
-      },
-      {
+      }
+
+      const component = mount(<Name {...params} />)
+      component.find('.last input').simulate('change')
+      expect(component.find('[aria-label="Last name"] .error-messages [data-i18n="error.name.last.pattern"]').length).toEqual(0)
+    })
+    it('with bad data', () => {
+      const params = {
         name: 'applicant-numbers',
         last: 'abc 123',
         valid: false
       }
-    ]
 
-    expected.forEach(ex => {
-      const component = mount(<Name {...ex} />)
+      const expectedMessage = "There is a problem with the last nameSome of these characters aren't allowed.Only use letters, hyphens (-), periods (.), apostrophes ('), and spaces."
+      const component = mount(<Name {...params} />)
       component.find('.last input').simulate('change')
-      expect(component.find('.suffix-other').length).toBe(0)
+      expect(component.find('[aria-label="Last name"] .error-messages [data-i18n="error.name.last.pattern"]').text()).toEqual(expectedMessage)
     })
   })
 

@@ -1,19 +1,36 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import History from './History'
 
 describe('The legal investigations history component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <History {...expected} />
+        </Provider>
+      )
+  })
+
   it('renders without errors', () => {
-    const component = mount(<History />)
+    const component = createComponent()
     expect(component.find('.investigations-history').length).toBe(1)
   })
 
   it('can select "yes"', () => {
     let updates = 0
-    const onUpdate = () => {
-      updates++
+    const expected = {
+      onUpdate: () => {
+        updates++
+      }
     }
-    const component = mount(<History onUpdate={onUpdate} />)
+    const component = createComponent(expected)
     component
       .find('.legal-investigations-history-has-history .yes input')
       .simulate('change')
@@ -24,7 +41,7 @@ describe('The legal investigations history component', () => {
     const props = {
       HasHistory: { value: 'Yes' }
     }
-    const component = mount(<History {...props} />)
+    const component = createComponent(props)
     expect(component.find('.accordion').length).toBe(1)
   })
 
@@ -49,7 +66,7 @@ describe('The legal investigations history component', () => {
         ]
       }
     }
-    const component = mount(<History {...props} />)
+    const component = createComponent(props)
     const text = component.find('.accordion .summary .left').text()
     expect(text).toContain('U.S. Department of Defense')
     expect(text).toContain('1/2010')

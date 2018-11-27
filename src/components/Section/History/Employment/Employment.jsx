@@ -160,8 +160,8 @@ export default class Employment extends SubsectionElement {
           required={this.props.required}
           scrollIntoView={this.props.scrollIntoView}>
           <EmploymentItem
+            bind
             name="Item"
-            bind={true}
             addressBooks={this.props.addressBooks}
             dispatch={this.props.dispatch}
             required={this.props.required}

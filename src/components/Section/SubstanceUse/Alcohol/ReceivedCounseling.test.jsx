@@ -1,10 +1,25 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import ReceivedCounseling from './ReceivedCounseling'
 
 describe('The ReceivedCounseling component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <ReceivedCounseling {...expected} />
+        </Provider>
+      )
+  })
+
   it('Renders without errors', () => {
-    const component = mount(<ReceivedCounseling />)
+    const component = createComponent()
     expect(component.find('.voluntary-counseling').length).toBe(0)
   })
 
@@ -16,7 +31,7 @@ describe('The ReceivedCounseling component', () => {
       },
       UseSameAddress: { value: 'No' }
     }
-    const component = mount(<ReceivedCounseling {...expected} />)
+    const component = createComponent(expected)
     component
       .find('.treatment-began-date .datecontrol .year input')
       .first()
@@ -29,11 +44,11 @@ describe('The ReceivedCounseling component', () => {
       .find('input[name="PresentTreatmentEndDate"]')
       .simulate('change', { target: { checked: true } })
     component.find('input[name="TreatmentProviderName"]').simulate('change')
-    component.find('.provider-address input[name="address"]').simulate('change')
+    component.find('.provider-address input[name="street"]').simulate('change')
     component.find('input[name="AgencyName"]').simulate('change')
-    component.find('.agency-address input[name="address"]').simulate('change')
+    component.find('.agency-address input[name="street"]').simulate('change')
     component.find('.completed-treatment .yes input').simulate('change')
-    expect(updates).toBe(9)
+    expect(updates).toBe(8)
   })
 
   it('Renders with treatment completed marked as no', () => {
@@ -44,7 +59,7 @@ describe('The ReceivedCounseling component', () => {
       },
       CompletedTreatment: { value: 'No' }
     }
-    const component = mount(<ReceivedCounseling {...expected} />)
+    const component = createComponent(expected)
     component
       .find('textarea[name="NoCompletedTreatmentExplanation"]')
       .simulate('change')
@@ -61,7 +76,7 @@ describe('The ReceivedCounseling component', () => {
       }
     }
 
-    const component = mount(<ReceivedCounseling {...props} />)
+    const component = createComponent(props)
     component.find('.present-treatment-end-date input').simulate('change')
     expect(checked).toBe(true)
   })
@@ -75,7 +90,7 @@ describe('The ReceivedCounseling component', () => {
       }
     }
 
-    const component = mount(<ReceivedCounseling {...props} />)
+    const component = createComponent(props)
     component.find('.present-treatment-end-date input').simulate('change')
     expect(checked).toBe(false)
   })

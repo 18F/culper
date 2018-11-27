@@ -1,10 +1,24 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import Employment from './Employment'
 
 describe('The employment section', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <Employment {...expected} />
+        </Provider>
+      )
+  })
+
   it('can trigger updates', () => {
-    let updates = 0
     const expected = {
       List: {
         branch: {},
@@ -29,11 +43,9 @@ describe('The employment section', () => {
           }
         ]
       },
-      onUpdate: () => {
-        updates++
-      }
+      onUpdate: jest.fn()
     }
-    const component = mount(<Employment {...expected} />)
-    expect(updates).toBe(1)
+    const component = createComponent(expected)
+    expect(expected.onUpdate.mock.calls.length).toBe(1)
   })
 })

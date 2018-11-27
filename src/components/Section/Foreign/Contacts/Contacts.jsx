@@ -4,11 +4,10 @@ import schema from '../../../../schema'
 import validate from '../../../../validators'
 import { Summary, NameSummary } from '../../../Summary'
 import {
-  ForeignContactsValidator,
   ForeignNationalValidator
 } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
-import { Field, Branch, Show, Accordion } from '../../../Form'
+import { Branch, Show, Accordion } from '../../../Form'
 import ForeignNational from './ForeignNational'
 
 export default class Contacts extends SubsectionElement {

@@ -3,6 +3,7 @@ import { updateApplication } from '../../../actions/ApplicationActions'
 import { i18n, env } from '../../../config'
 import ValidationElement from '../ValidationElement'
 import Street from '../Street'
+import State from '../State'
 import MilitaryState from '../MilitaryState'
 import City from '../City'
 import Country from '../Country'
@@ -489,6 +490,23 @@ export default class Location extends ValidationElement {
           )
         case 'state':
           return (
+            <State
+              name="state"
+              className="state"
+              label={this.props.stateLabel}
+              placeholder={this.props.statePlaceholder}
+              value={this.props.state}
+              includeStates="true"
+              disabled={this.props.disabled}
+              onUpdate={this.updateState}
+              onError={this.handleError}
+              onFocus={this.props.onFocus}
+              onBlur={this.handleBlur}
+              required={this.props.required}
+            />
+          )
+        case 'militaryState':
+          return (
             <MilitaryState
               name="state"
               key={field}
@@ -508,7 +526,7 @@ export default class Location extends ValidationElement {
         case 'stateZipcode':
           return (
             <div className="state-zip-wrap" key={`state-zip-${field}`}>
-              <MilitaryState
+              <State
                 name="state"
                 className="state"
                 label={this.props.stateLabel}
@@ -576,6 +594,7 @@ export default class Location extends ValidationElement {
             required={this.props.required}
           />
         )
+      // XXX This first location doesnt seem to be used in code at all
       case Location.US_CITY_STATE_INTERNATIONAL_CITY_COUNTRY:
       case Location.BIRTHPLACE_WITHOUT_COUNTY:
         return (
@@ -627,6 +646,19 @@ export default class Location extends ValidationElement {
         return this.renderFields(['street', 'city'])
       case Location.COUNTRY:
         return this.renderFields(['country'])
+      case Location.OFFENSE:
+        return (
+          <ToggleableLocation
+            {...this.props}
+            country={this.props.country || { value: 'United States' }}
+            domesticFields={['city', 'stateZipcode', 'county']}
+            internationalFields={['city', 'country']}
+            onBlur={this.handleBlur}
+            onUpdate={this.updateToggleableLocation}
+            onError={this.handleError}
+            required={this.props.required}
+          />
+        )
       case null:
       case undefined:
       default:
@@ -807,6 +839,7 @@ Location.ADDRESS = Layouts.ADDRESS
 Location.CITY_STATE_COUNTRY = Layouts.CITY_STATE_COUNTRY
 Location.US_ADDRESS = Layouts.US_ADDRESS
 Location.STREET_CITY = Layouts.STREET_CITY
+Location.OFFENSE = Layouts.OFFENSE
 
 Location.defaultProps = {
   name: 'location',
@@ -817,18 +850,12 @@ Location.defaultProps = {
   spinner: false,
   suggestions: false,
   streetLabel: i18n.t('address.us.street.label'),
-  streetPlaceholder: i18n.t('address.us.street.placeholder'),
   street2Label: i18n.t('address.us.street2.label'),
   stateLabel: i18n.t('address.us.state.label'),
-  statePlaceholder: i18n.t('address.us.state.placeholder'),
   cityLabel: i18n.t('address.us.city.label'),
-  cityPlaceholder: i18n.t('address.us.city.placeholder'),
-  zipcodePlaceholder: i18n.t('address.us.zipcode.placeholder'),
   zipcodeLabel: i18n.t('address.us.zipcode.label'),
   countyLabel: i18n.t('address.us.county.label'),
-  countyPlaceholder: i18n.t('address.us.county.placeholder'),
   countryLabel: i18n.t('address.international.country.label'),
-  countryPlaceholder: i18n.t('address.international.country.placeholder'),
   required: false,
   addressBooks: {},
   addressBook: '',

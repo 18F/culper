@@ -208,7 +208,6 @@ export default class Bankruptcy extends ValidationElement {
             onError={this.props.onError}
             {...this.props.CourtNumber}
             className="courtnumber"
-            placeholder={i18n.t('financial.bankruptcy.courtNumber.placeholder')}
             title={i18n.t('financial.bankruptcy.courtNumber.title')}
             required={this.props.required}
           />
@@ -221,6 +220,7 @@ export default class Bankruptcy extends ValidationElement {
           <DateControl
             name="DateFiled"
             onUpdate={this.updateDateFiled}
+            minDateEqualTo={true}
             onError={this.props.onError}
             {...this.props.DateFiled}
             className="datefiled"
@@ -243,6 +243,8 @@ export default class Bankruptcy extends ValidationElement {
               className="datedischarged"
               onUpdate={this.updateDateDischarged}
               onError={this.props.onError}
+              minDate={(this.props.DateFiled || {}).date}
+              minDateEqualTo={true}
               {...this.props.DateDischarged}
               required={this.props.required}
               hideDay={true}
@@ -298,9 +300,6 @@ export default class Bankruptcy extends ValidationElement {
           scrollIntoView={this.props.scrollIntoView}>
           <Text
             name="CourtInvolved"
-            placeholder={i18n.t(
-              'financial.bankruptcy.courtInvolved.placeholder'
-            )}
             {...this.props.CourtInvolved}
             className="courtinvolved"
             onUpdate={this.updateCourtInvolved}
@@ -339,7 +338,6 @@ export default class Bankruptcy extends ValidationElement {
                 name="chapter13Trustee"
                 className="trustee"
                 {...this.props.Trustee}
-                placeholder={i18n.t('financial.bankruptcy.trustee.placeholder')}
                 onError={this.props.onError}
                 onUpdate={this.updateTrustee}
                 required={this.props.required}

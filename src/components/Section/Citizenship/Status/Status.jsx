@@ -1,5 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import { alphaNumericRegEx } from '../../../../validators/helpers'
 import schema from '../../../../schema'
 import validate from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
@@ -386,6 +387,9 @@ export default class Status extends SubsectionElement {
               <Text
                 name="DocumentNumber"
                 className="document-number"
+                maxlength="30"
+                pattern={alphaNumericRegEx}
+                prefix="alphanumeric"
                 {...this.props.DocumentNumber}
                 onUpdate={this.updateDocumentNumber}
                 onError={this.handleError}
@@ -400,6 +404,7 @@ export default class Status extends SubsectionElement {
               <DateControl
                 name="DocumentIssued"
                 className="document-issued"
+                minDateEqualTo={true}
                 {...this.props.DocumentIssued}
                 onUpdate={this.updateDocumentIssued}
                 onError={this.handleError}
@@ -448,6 +453,9 @@ export default class Status extends SubsectionElement {
                 name="CertificateNumber"
                 className="certificate-number"
                 {...this.props.CertificateNumber}
+                maxlength="30"
+                pattern={alphaNumericRegEx}
+                prefix="alphanumeric"
                 onUpdate={this.updateCertificateNumber}
                 onError={this.handleError}
                 required={this.props.required}
@@ -464,6 +472,7 @@ export default class Status extends SubsectionElement {
                 name="CertificateIssued"
                 className="certificate-issued"
                 {...this.props.CertificateIssued}
+                minDateEqualTo={true}
                 onUpdate={this.updateCertificateIssued}
                 onError={this.handleError}
                 required={this.props.required}
@@ -532,6 +541,7 @@ export default class Status extends SubsectionElement {
                 name="EntryDate"
                 className="entry-date"
                 {...this.props.EntryDate}
+                minDateEqualTo={true}
                 onUpdate={this.updateEntryDate}
                 onError={this.handleError}
                 required={this.props.required}
@@ -592,6 +602,9 @@ export default class Status extends SubsectionElement {
                 <Text
                   name="AlienRegistrationNumber"
                   className="alien-registration-number"
+                  maxlength="30"
+                  pattern={alphaNumericRegEx}
+                  prefix="alphanumeric"
                   {...this.props.AlienRegistrationNumber}
                   onUpdate={this.updateAlienRegistrationNumber}
                   onError={this.handleError}
@@ -608,6 +621,9 @@ export default class Status extends SubsectionElement {
               <Text
                 name="CertificateNumber"
                 className="certificate-number"
+                maxlength="30"
+                pattern={alphaNumericRegEx}
+                prefix="alphanumeric"
                 {...this.props.CertificateNumber}
                 onUpdate={this.updateCertificateNumber}
                 onError={this.handleError}
@@ -659,6 +675,7 @@ export default class Status extends SubsectionElement {
                 name="CertificateIssued"
                 className="certificate-issued"
                 {...this.props.CertificateIssued}
+                minDateEqualTo={true}
                 onUpdate={this.updateCertificateIssued}
                 onError={this.handleError}
                 required={this.props.required}
@@ -740,6 +757,9 @@ export default class Status extends SubsectionElement {
               <Text
                 name="AlienRegistrationNumber"
                 className="alien-registration-number"
+                maxlength="30"
+                pattern={alphaNumericRegEx}
+                prefix="alphanumeric"
                 {...this.props.AlienRegistrationNumber}
                 onUpdate={this.updateAlienRegistrationNumber}
                 onError={this.handleError}
@@ -755,6 +775,9 @@ export default class Status extends SubsectionElement {
               <Text
                 name="PermanentResidentCardNumber"
                 className="permanent-resident-card-number"
+                maxlength="30"
+                pattern={alphaNumericRegEx}
+                prefix="alphanumeric"
                 {...this.props.PermanentResidentCardNumber}
                 onUpdate={this.updatePermanentResidentCardNumber}
                 onError={this.handleError}
@@ -771,6 +794,9 @@ export default class Status extends SubsectionElement {
                 name="CertificateNumber"
                 className="certificate-number"
                 {...this.props.CertificateNumber}
+                maxlength="30"
+                pattern={alphaNumericRegEx}
+                prefix="alphanumeric"
                 onUpdate={this.updateCertificateNumber}
                 onError={this.handleError}
                 required={this.props.required}
@@ -805,6 +831,7 @@ export default class Status extends SubsectionElement {
                 name="CertificateIssued"
                 className="certificate-issued"
                 {...this.props.CertificateIssued}
+                minDateEqualTo={true}
                 onUpdate={this.updateCertificateIssued}
                 onError={this.handleError}
                 required={this.props.required}
@@ -883,6 +910,7 @@ export default class Status extends SubsectionElement {
                 name="EntryDate"
                 className="entry-date"
                 {...this.props.EntryDate}
+                minDateEqualTo={true}
                 onUpdate={this.updateEntryDate}
                 onError={this.handleError}
                 required={this.props.required}
@@ -929,6 +957,9 @@ export default class Status extends SubsectionElement {
               <Text
                 name="AlienRegistrationNumber"
                 className="alien-registration-number"
+                maxlength="30"
+                pattern={alphaNumericRegEx}
+                prefix="alphanumeric"
                 {...this.props.AlienRegistrationNumber}
                 onUpdate={this.updateAlienRegistrationNumber}
                 onError={this.handleError}
@@ -1030,6 +1061,9 @@ export default class Status extends SubsectionElement {
               <Text
                 name="DocumentNumber"
                 className="document-number"
+                maxlength="30"
+                pattern={alphaNumericRegEx}
+                prefix="alphanumeric"
                 {...this.props.DocumentNumber}
                 onUpdate={this.updateDocumentNumber}
                 onError={this.handleError}
@@ -1060,6 +1094,7 @@ export default class Status extends SubsectionElement {
                 name="DocumentIssued"
                 className="document-issued"
                 {...this.props.DocumentIssued}
+                minDateEqualTo={true}
                 onUpdate={this.updateDocumentIssued}
                 onError={this.handleError}
                 required={this.props.required}
@@ -1075,6 +1110,7 @@ export default class Status extends SubsectionElement {
                 className="document-expiration"
                 {...this.props.DocumentExpiration}
                 noMaxDate={true}
+                minDateEqualTo={true}
                 onUpdate={this.updateDocumentExpiration}
                 onError={this.handleError}
                 required={this.props.required}

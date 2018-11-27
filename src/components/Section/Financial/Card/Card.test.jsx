@@ -1,13 +1,28 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import Card from './Card'
 
 describe('The card component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <Card {...expected} />
+        </Provider>
+      )
+  })
+
   it('no error on empty', () => {
     const expected = {
       name: 'card-abuse'
     }
-    const component = mount(<Card {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.branch').length).toBeGreaterThan(0)
     expect(component.find('.accordion').length).toBe(0)
   })
@@ -17,7 +32,7 @@ describe('The card component', () => {
       name: 'card-abuse',
       HasCardAbuse: { value: 'Yes' }
     }
-    const component = mount(<Card {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(1)
   })
 
@@ -26,7 +41,7 @@ describe('The card component', () => {
       name: 'card-abuse',
       HasCardAbuse: { value: 'No' }
     }
-    const component = mount(<Card {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(0)
   })
 
@@ -40,7 +55,7 @@ describe('The card component', () => {
         updates++
       }
     }
-    const component = mount(<Card {...expected} />)
+    const component = createComponent(expected)
     component
       .find('.branch .yes input')
       .first()

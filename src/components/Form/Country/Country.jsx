@@ -2,7 +2,6 @@ import React from 'react'
 import { i18n } from '../../../config'
 import ValidationElement from '../ValidationElement'
 import Show from '../Show'
-import Comments from '../Comments'
 import Dropdown from '../Dropdown'
 import MultipleDropdown from '../MultipleDropdown'
 
@@ -14,36 +13,65 @@ export default class Country extends ValidationElement {
       showComents: props.showComments
     }
 
+    this.countries = i18n.value('countries')
+
     this.update = this.update.bind(this)
-    this.updateCountry = this.updateCountry.bind(this)
-    this.updateComments = this.updateComments.bind(this)
+    this.updateSingleCountry = this.updateSingleCountry.bind(this)
+    this.updateMultipleCountries = this.updateMultipleCountries.bind(this)
     this.handleError = this.handleError.bind(this)
+    this.filterValidCountries = this.filterValidCountries.bind(this)
   }
 
   update(queue) {
     this.props.onUpdate({
       name: this.props.name,
-      comments: this.props.comments,
       showComments: this.props.showComments,
       value: this.props.value,
       ...queue
     })
   }
 
-  updateCountry(values) {
-    let arr = []
-    if (Array.isArray(values.value)) {
-      arr = values.value
+  /**
+    * Update function when there are multiple selectable countries
+   */
+  updateMultipleCountries(values) {
+    const { value } = values
+    this.update({ value })
+  }
+
+  /**
+    * Update function when there is only one country
+    * @param {object} values - Country object
+   */
+  updateSingleCountry(values) {
+    const { value } = values
+    let arr
+
+    const capitalizedCountry = value[0].toUpperCase() + value.slice(1)
+    const matchingCountries = this.filterValidCountries(value)
+    if (matchingCountries.length > 0) {
+      // If more than 1 matching country, keep typed value
+      if (matchingCountries.length > 1) {
+        arr = [capitalizedCountry]
+      }
+      // If only matched country, keep valid value
+      if (matchingCountries.length === 1) {
+        arr = [matchingCountries[0].value]
+      }
     } else {
-      arr = [values.value]
+      arr = capitalizedCountry
     }
     this.update({ value: arr })
   }
 
-  updateComments(values) {
-    this.update({
-      showComments: true,
-      comments: values.value
+  /**
+   * Filters country names match anything in the country list
+   * @param {string} country - Country Name
+   */
+  filterValidCountries(country) {
+    const countryArray = Object.values(this.countries)
+    return countryArray.filter(countryObj => {
+      return countryObj.value.toLowerCase() === country.toLowerCase()
     })
   }
 
@@ -93,7 +121,6 @@ export default class Country extends ValidationElement {
   }
 
   renderOptions() {
-    const countries = i18n.value('countries')
     const filter = this.props.excludeUnitedStates
       ? x => {
           return x !== 'unitedStates'
@@ -102,15 +129,14 @@ export default class Country extends ValidationElement {
           return true
         }
 
-    const countryOptions = Object.keys(countries)
+
+    const countryOptions = Object.keys(this.countries)
       .filter(filter)
-      .map(x => {
-        return (
-          <option key={x} value={countries[x].value}>
-            {countries[x].text}
-          </option>
-        )
-      })
+      .map(x => (
+        <option key={x} value={this.countries[x].value}>
+          {this.countries[x].text}
+        </option>
+      ))
 
     // Check for children
     const children = this.props.children || []
@@ -123,7 +149,6 @@ export default class Country extends ValidationElement {
       })
     )
 
-    // Do the placeholder first if one is present
     if (this.props.placeholder) {
       return [
         <option key="placeholder" value="">
@@ -132,9 +157,7 @@ export default class Country extends ValidationElement {
       ].concat(options)
     }
 
-    return options.map(x => {
-      return x
-    })
+    return options
   }
 
   appropriateValue(value, multiple = false) {
@@ -172,10 +195,7 @@ export default class Country extends ValidationElement {
     const value = this.appropriateValue(this.props.value, this.props.multiple)
 
     return (
-      <Comments
-        title={i18n.t('country.comments')}
-        value={this.props.comments}
-        onUpdate={this.updateComments}>
+      <div>
         <Show when={this.props.multiple}>
           <MultipleDropdown
             name={this.props.name}
@@ -185,7 +205,7 @@ export default class Country extends ValidationElement {
             className={klass}
             ariaLabel={this.props.ariaLabel}
             disabled={this.props.disabled}
-            onUpdate={this.updateCountry}
+            onUpdate={this.updateMultipleCountries}
             onError={this.handleError}
             onFocus={this.handleFocus}
             onBlur={this.handleBlur}
@@ -203,7 +223,7 @@ export default class Country extends ValidationElement {
             className={klass}
             ariaLabel={this.props.ariaLabel}
             disabled={this.props.disabled}
-            onUpdate={this.updateCountry}
+            onUpdate={this.updateSingleCountry}
             onError={this.handleError}
             onFocus={this.handleFocus}
             onBlur={this.handleBlur}
@@ -218,13 +238,12 @@ export default class Country extends ValidationElement {
               <div className="usa-alert usa-alert-error" role="alert">
                 <div className="usa-alert-body">
                   <h5 className="usa-alert-heading">{i18n.t('error.country.notfound.title')}</h5>
-                  <p>{i18n.m('error.country.notfound.message')}</p>
                 </div>
               </div>
             </div>
           </div>
         </Show>
-      </Comments>
+      </div>
     )
   }
 }
@@ -233,7 +252,6 @@ Country.defaultProps = {
   name: 'country',
   value: [],
   multiple: false,
-  comments: '',
   showComments: false,
   excludeUnitedStates: false,
   onUpdate: queue => {},

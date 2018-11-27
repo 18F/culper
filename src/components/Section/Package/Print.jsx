@@ -149,7 +149,7 @@ class Print extends React.Component {
           sectionComponent = (
             <MilitarySections
               {...this.props.Military}
-              application={this.props.Application}
+              Application={this.props.Application}
             />
           )
           break

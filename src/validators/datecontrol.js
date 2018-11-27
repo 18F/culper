@@ -93,7 +93,7 @@ export default class DateControlValidator {
     return date > this.minDate
   }
 
-  isValid() {
+  validDate() {
     if (
       (!this.day && !this.hideDay) ||
       (!this.month && !this.hideMonth) ||
@@ -101,8 +101,11 @@ export default class DateControlValidator {
     ) {
       return false
     }
-
     return true
+  }
+
+  isValid() {
+    return this.validDate() && this.validMaxDate() && this.validMinDate()
   }
 }
 

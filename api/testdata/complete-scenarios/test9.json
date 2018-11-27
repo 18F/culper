@@ -1,0 +1,6171 @@
+{
+  "Citizenship": {
+    "Multiple": {
+      "type": "citizenship.multiple",
+      "props": {
+        "HasMultiple": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "Passports": {
+      "type": "citizenship.passports",
+      "props": {
+        "Passports": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": [
+              {
+                "Item": {
+                  "Countries": {
+                    "type": "collection",
+                    "props": {
+                      "branch": {
+                        "type": ""
+                      },
+                      "items": []
+                    }
+                  },
+                  "Country": {
+                    "type": "country",
+                    "props": {
+                      "value": null
+                    }
+                  },
+                  "Expiration": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "",
+                      "day": "",
+                      "year": "",
+                      "estimated": false
+                    }
+                  },
+                  "Has": {
+                    "type": "branch",
+                    "props": {
+                      "value": "No"
+                    }
+                  },
+                  "Issued": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "",
+                      "day": "",
+                      "year": "",
+                      "estimated": false
+                    }
+                  },
+                  "Location": {
+                    "type": "location",
+                    "props": {
+                      "layout": ""
+                    }
+                  },
+                  "Name": {
+                    "type": "name",
+                    "props": {
+                      "first": "",
+                      "firstInitialOnly": false,
+                      "middle": "",
+                      "middleInitialOnly": false,
+                      "noMiddleName": false,
+                      "last": "",
+                      "lastInitialOnly": false,
+                      "suffix": "",
+                      "suffixOther": ""
+                    }
+                  },
+                  "Number": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Used": {
+                    "type": "branch",
+                    "props": {
+                      "value": ""
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    "Status": {
+      "type": "citizenship.status",
+      "props": {
+        "CitizenshipStatus": {
+          "type": "radio",
+          "props": {
+            "value": "Citizen",
+            "checked": true
+          }
+        },
+        "AbroadDocumentation": {
+          "type": "radio",
+          "props": {
+            "value": ""
+          }
+        },
+        "Explanation": {
+          "type": "textarea",
+          "props": {
+            "value": ""
+          }
+        },
+        "DocumentNumber": {
+          "type": "text",
+          "props": {
+            "value": ""
+          }
+        },
+        "DocumentIssued": {
+          "type": "datecontrol",
+          "props": {
+            "month": "",
+            "day": "",
+            "year": "",
+            "estimated": false
+          }
+        },
+        "DocumentName": {
+          "type": "name",
+          "props": {
+            "first": "",
+            "firstInitialOnly": false,
+            "middle": "",
+            "middleInitialOnly": false,
+            "noMiddleName": false,
+            "last": "",
+            "lastInitialOnly": false,
+            "suffix": "",
+            "suffixOther": ""
+          }
+        },
+        "DocumentExpiration": {
+          "type": "datecontrol",
+          "props": {
+            "month": "",
+            "day": "",
+            "year": "",
+            "estimated": false
+          }
+        },
+        "DocumentType": {
+          "type": "radio",
+          "props": {
+            "value": ""
+          }
+        },
+        "PlaceIssued": {
+          "type": "location",
+          "props": {
+            "layout": ""
+          }
+        },
+        "CertificateNumber": {
+          "type": "text",
+          "props": {
+            "value": ""
+          }
+        },
+        "CertificateIssued": {
+          "type": "datecontrol",
+          "props": {
+            "month": "",
+            "day": "",
+            "year": "",
+            "estimated": false
+          }
+        },
+        "CertificateName": {
+          "type": "name",
+          "props": {
+            "first": "",
+            "firstInitialOnly": false,
+            "middle": "",
+            "middleInitialOnly": false,
+            "noMiddleName": false,
+            "last": "",
+            "lastInitialOnly": false,
+            "suffix": "",
+            "suffixOther": ""
+          }
+        },
+        "CertificateCourtName": {
+          "type": "text",
+          "props": {
+            "value": ""
+          }
+        },
+        "CertificateCourtAddress": {
+          "type": "location",
+          "props": {
+            "layout": ""
+          }
+        },
+        "BornOnMilitaryInstallation": {
+          "type": "branch",
+          "props": {
+            "value": ""
+          }
+        },
+        "MilitaryBase": {
+          "type": "text",
+          "props": {
+            "value": ""
+          }
+        },
+        "EntryDate": {
+          "type": "datecontrol",
+          "props": {
+            "month": "",
+            "day": "",
+            "year": "",
+            "estimated": false
+          }
+        },
+        "EntryLocation": {
+          "type": "location",
+          "props": {
+            "layout": ""
+          }
+        },
+        "PriorCitizenship": {
+          "type": "country",
+          "props": {
+            "value": null
+          }
+        },
+        "HasAlienRegistration": {
+          "type": "branch",
+          "props": {
+            "value": ""
+          }
+        },
+        "AlienRegistrationNumber": {
+          "type": "text",
+          "props": {
+            "value": ""
+          }
+        },
+        "AlienRegistrationExpiration": {
+          "type": "datecontrol",
+          "props": {
+            "month": "",
+            "day": "",
+            "year": "",
+            "estimated": false
+          }
+        },
+        "Basis": {
+          "type": "radio",
+          "props": {
+            "value": ""
+          }
+        },
+        "PermanentResidentCardNumber": {
+          "type": "text",
+          "props": {
+            "value": ""
+          }
+        },
+        "ResidenceStatus": {
+          "type": "text",
+          "props": {
+            "value": ""
+          }
+        }
+      }
+    }
+  },
+  "Financial": {
+    "Bankruptcy": {
+      "type": "financial.bankruptcy",
+      "props": {
+        "HasBankruptcy": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "Card": {
+      "type": "financial.card",
+      "props": {
+        "HasCardAbuse": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "Credit": {
+      "type": "financial.credit",
+      "props": {
+        "HasCreditCounseling": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "Delinquent": {
+      "type": "financial.delinquent",
+      "props": {
+        "HasDelinquent": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "Gambling": {
+      "type": "financial.gambling",
+      "props": {
+        "HasGamblingDebt": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "Nonpayment": {
+      "type": "financial.nonpayment",
+      "props": {
+        "HasNonpayment": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "Taxes": {
+      "type": "financial.taxes",
+      "props": {
+        "HasTaxes": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    }
+  },
+  "Foreign": {
+    "Advice": {
+      "type": "foreign.business.advice",
+      "props": {
+        "HasForeignAdvice": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "BenefitActivity": {
+      "type": "foreign.activities.benefits",
+      "props": {
+        "HasBenefits": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "Conferences": {
+      "type": "foreign.business.conferences",
+      "props": {
+        "HasForeignConferences": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "Contact": {
+      "type": "foreign.business.contact",
+      "props": {
+        "HasForeignContact": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "Contacts": {
+      "type": "foreign.contacts",
+      "props": {
+        "HasForeignContacts": {
+          "type": "branch",
+          "props": {
+            "value": "Yes"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": "branch",
+              "props": {
+                "value": "No"
+              }
+            },
+            "items": [
+              {
+                "Item": {
+                  "Address": {
+                    "type": "location",
+                    "props": {
+                      "layout": "Address",
+                      "street": "Foreign Contact 1 Residence",
+                      "city": "Belfast",
+                      "country": "United Kingdom"
+                    }
+                  },
+                  "AddressNotApplicable": {
+                    "type": "notapplicable",
+                    "props": {
+                      "applicable": true
+                    }
+                  },
+                  "Affiliations": {
+                    "type": "textarea",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Aliases": {
+                    "type": "collection",
+                    "props": {
+                      "branch": {
+                        "type": ""
+                      },
+                      "items": [
+                        {
+                          "Item": {
+                            "Alias": {
+                              "type": "name",
+                              "props": {
+                                "first": "",
+                                "firstInitialOnly": false,
+                                "middle": "",
+                                "middleInitialOnly": false,
+                                "noMiddleName": false,
+                                "last": "",
+                                "lastInitialOnly": false,
+                                "suffix": "",
+                                "suffixOther": ""
+                              }
+                            },
+                            "Has": {
+                              "type": "branch",
+                              "props": {
+                                "value": "No"
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "AlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": "Yes"
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "US Address",
+                          "street": "Foreign Contact 1 APO",
+                          "city": "APO",
+                          "state": "AE",
+                          "zipcode": "09011",
+                          "country": "POSTOFFICE"
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "Birthdate": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "",
+                      "day": "",
+                      "year": "",
+                      "estimated": false
+                    }
+                  },
+                  "BirthdateNotApplicable": {
+                    "type": "notapplicable",
+                    "props": {
+                      "applicable": false
+                    }
+                  },
+                  "Birthplace": {
+                    "type": "location",
+                    "props": {
+                      "layout": "City, Country",
+                      "city": "Belfast",
+                      "country": "United Kingdom"
+                    }
+                  },
+                  "BirthplaceNotApplicable": {
+                    "type": "notapplicable",
+                    "props": {
+                      "applicable": true
+                    }
+                  },
+                  "Citizenship": {
+                    "type": "country",
+                    "props": {
+                      "value": [
+                        "United Kingdom"
+                      ]
+                    }
+                  },
+                  "Employer": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "EmployerAddress": {
+                    "type": "location",
+                    "props": {
+                      "layout": ""
+                    }
+                  },
+                  "EmployerAddressNotApplicable": {
+                    "type": "notapplicable",
+                    "props": {
+                      "applicable": false
+                    }
+                  },
+                  "EmployerNotApplicable": {
+                    "type": "notapplicable",
+                    "props": {
+                      "applicable": false
+                    }
+                  },
+                  "FirstContact": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "06",
+                      "day": "01",
+                      "year": "2010",
+                      "estimated": false
+                    }
+                  },
+                  "Frequency": {
+                    "type": "radio",
+                    "props": {
+                      "value": "Annually",
+                      "checked": true
+                    }
+                  },
+                  "FrequencyExplanation": {
+                    "type": "textarea",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "HasAffiliations": {
+                    "type": "branch",
+                    "props": {
+                      "value": "I don't know"
+                    }
+                  },
+                  "LastContact": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "07",
+                      "day": "03",
+                      "year": "2018",
+                      "estimated": false
+                    }
+                  },
+                  "Methods": {
+                    "type": "checkboxgroup",
+                    "props": {
+                      "values": [
+                        "In person"
+                      ]
+                    }
+                  },
+                  "MethodsExplanation": {
+                    "type": "textarea",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Name": {
+                    "type": "name",
+                    "props": {
+                      "first": "Liam",
+                      "firstInitialOnly": false,
+                      "middle": "",
+                      "middleInitialOnly": false,
+                      "noMiddleName": true,
+                      "last": "Neeson",
+                      "lastInitialOnly": false,
+                      "suffix": "",
+                      "suffixOther": ""
+                    }
+                  },
+                  "NameExplanation": {
+                    "type": "textarea",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "NameNotApplicable": {
+                    "type": "notapplicable",
+                    "props": {
+                      "applicable": true
+                    }
+                  },
+                  "Relationship": {
+                    "type": "checkboxgroup",
+                    "props": {
+                      "values": [
+                        "Personal"
+                      ]
+                    }
+                  },
+                  "RelationshipExplanation": {
+                    "type": "textarea",
+                    "props": {
+                      "value": ""
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    "DirectActivity": {
+      "type": "foreign.activities.direct",
+      "props": {
+        "HasInterests": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "Employment": {
+      "type": "foreign.business.employment",
+      "props": {
+        "HasForeignEmployment": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "Family": {
+      "type": "foreign.business.family",
+      "props": {
+        "HasForeignFamily": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "IndirectActivity": {
+      "type": "foreign.activities.indirect",
+      "props": {
+        "HasInterests": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "Passport": {
+      "type": "foreign.passport",
+      "props": {
+        "HasPassports": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "Name": {
+          "type": "name",
+          "props": {
+            "first": "",
+            "firstInitialOnly": false,
+            "middle": "",
+            "middleInitialOnly": false,
+            "noMiddleName": false,
+            "last": "",
+            "lastInitialOnly": false,
+            "suffix": "",
+            "suffixOther": ""
+          }
+        },
+        "Card": {
+          "type": "radio",
+          "props": {
+            "value": "Book"
+          }
+        },
+        "Number": {
+          "type": "text",
+          "props": {
+            "value": ""
+          }
+        },
+        "Issued": {
+          "type": "datecontrol",
+          "props": {
+            "month": "",
+            "day": "",
+            "year": "",
+            "estimated": false
+          }
+        },
+        "Expiration": {
+          "type": "datecontrol",
+          "props": {
+            "month": "",
+            "day": "",
+            "year": "",
+            "estimated": false
+          }
+        },
+        "Comments": {
+          "type": "textarea",
+          "props": {
+            "value": ""
+          }
+        }
+      }
+    },
+    "Political": {
+      "type": "foreign.business.political",
+      "props": {
+        "HasForeignPolitical": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "RealEstateActivity": {
+      "type": "foreign.activities.realestate",
+      "props": {
+        "HasInterests": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "Sponsorship": {
+      "type": "foreign.business.sponsorship",
+      "props": {
+        "HasForeignSponsorship": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "Support": {
+      "type": "foreign.activities.support",
+      "props": {
+        "HasForeignSupport": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "Travel": {
+      "type": "foreign.travel",
+      "props": {
+        "HasForeignTravelOutside": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "HasForeignTravelOfficial": {
+          "type": "branch",
+          "props": {
+            "value": ""
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "Ventures": {
+      "type": "foreign.business.ventures",
+      "props": {
+        "HasForeignVentures": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "Voting": {
+      "type": "foreign.business.voting",
+      "props": {
+        "HasForeignVoting": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
+            },
+            "items": []
+          }
+        }
+      }
+    }
+  },
+  "History": {
+    "Education": {
+      "type": "history.education",
+      "props": {
+        "HasAttended": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "HasDegree10": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "Employment": {
+      "type": "history.employment",
+      "props": {
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": "branch",
+              "props": {
+                "value": "No"
+              }
+            },
+            "items": [
+              {
+                "Item": {
+                  "Additional": {
+                    "type": "collection",
+                    "props": {
+                      "branch": {
+                        "type": ""
+                      },
+                      "items": [
+                        {
+                          "Item": {
+                            "DatesEmployed": {
+                              "type": "daterange",
+                              "props": {
+                                "from": {
+                                  "type": "datecontrol",
+                                  "props": {
+                                    "month": "",
+                                    "day": "",
+                                    "year": "",
+                                    "estimated": false
+                                  }
+                                },
+                                "to": {
+                                  "type": "datecontrol",
+                                  "props": {
+                                    "month": "",
+                                    "day": "",
+                                    "year": "",
+                                    "estimated": false
+                                  }
+                                },
+                                "present": false
+                              }
+                            },
+                            "Has": {
+                              "type": "branch",
+                              "props": {
+                                "value": "No"
+                              }
+                            },
+                            "Position": {
+                              "type": "text",
+                              "props": {
+                                "value": ""
+                              }
+                            },
+                            "Supervisor": {
+                              "type": "text",
+                              "props": {
+                                "value": ""
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "Address": {
+                    "type": "location",
+                    "props": {
+                      "layout": "Address",
+                      "street": "employer 1 In the US",
+                      "city": "Monterey",
+                      "state": "CA",
+                      "zipcode": "93940",
+                      "country": "United States",
+                      "validated": true
+                    }
+                  },
+                  "Dates": {
+                    "type": "daterange",
+                    "props": {
+                      "from": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "11",
+                          "day": "01",
+                          "year": "2008",
+                          "estimated": false
+                        }
+                      },
+                      "to": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "12",
+                          "day": "01",
+                          "year": "2008",
+                          "estimated": false
+                        }
+                      },
+                      "present": false
+                    }
+                  },
+                  "DutyStation": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Employment": {
+                    "type": "text",
+                    "props": {
+                      "value": "Employer 1"
+                    }
+                  },
+                  "EmploymentActivity": {
+                    "type": "employmentactivity",
+                    "props": {
+                      "value": "NonGovernment"
+                    }
+                  },
+                  "PhysicalAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": "No"
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": ""
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "ReasonLeft": {
+                    "type": "reasonleft",
+                    "props": {
+                      "Comments": {
+                        "type": "textarea",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Reasons": {
+                        "type": "collection",
+                        "props": {
+                          "branch": {
+                            "type": ""
+                          },
+                          "items": []
+                        }
+                      },
+                      "ReasonDescription": {
+                        "type": "textarea",
+                        "props": {
+                          "value": "Employer 1 Reason"
+                        }
+                      }
+                    }
+                  },
+                  "ReferenceAddress": {
+                    "type": "location",
+                    "props": {
+                      "layout": ""
+                    }
+                  },
+                  "ReferenceAlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": ""
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "ReferenceName": {
+                    "type": "name",
+                    "props": {
+                      "first": "",
+                      "firstInitialOnly": false,
+                      "middle": "",
+                      "middleInitialOnly": false,
+                      "noMiddleName": false,
+                      "last": "",
+                      "lastInitialOnly": false,
+                      "suffix": "",
+                      "suffixOther": ""
+                    }
+                  },
+                  "ReferencePhone": {
+                    "type": "telephone",
+                    "props": {
+                      "timeOfDay": "",
+                      "type": "",
+                      "numberType": "",
+                      "number": "",
+                      "extension": "",
+                      "noNumber": false
+                    }
+                  },
+                  "Reprimand": {
+                    "type": "collection",
+                    "props": {
+                      "branch": {
+                        "type": ""
+                      },
+                      "items": []
+                    }
+                  },
+                  "Status": {
+                    "type": "radio",
+                    "props": {
+                      "value": "FullTime"
+                    }
+                  },
+                  "Supervisor": {
+                    "type": "supervisor",
+                    "props": {
+                      "SupervisorName": {
+                        "type": "text",
+                        "props": {
+                          "value": "Employer 1 Supervisor"
+                        }
+                      },
+                      "Title": {
+                        "type": "text",
+                        "props": {
+                          "value": "Senior Overseer"
+                        }
+                      },
+                      "Email": {
+                        "type": "email",
+                        "props": {
+                          "value": "sup1@example.com"
+                        }
+                      },
+                      "EmailNotApplicable": {
+                        "type": "notapplicable",
+                        "props": {
+                          "applicable": true
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "Address",
+                          "street": "Supervisor 1 APO",
+                          "city": "APO",
+                          "state": "AE",
+                          "zipcode": "09011",
+                          "country": "POSTOFFICE",
+                          "validated": true
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "Domestic",
+                          "numberType": "",
+                          "number": "3333331111",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "SupervisorAlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "Address",
+                          "street": "Supervisor 1 Secondary Outside Of US",
+                          "city": "Rota",
+                          "country": "Spain"
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "Telephone": {
+                    "type": "telephone",
+                    "props": {
+                      "timeOfDay": "",
+                      "type": "Domestic",
+                      "numberType": "",
+                      "number": "1111111111",
+                      "extension": "",
+                      "noNumber": false
+                    }
+                  },
+                  "Title": {
+                    "type": "text",
+                    "props": {
+                      "value": "Supervisor"
+                    }
+                  }
+                }
+              },
+              {
+                "Item": {
+                  "Additional": {
+                    "type": "collection",
+                    "props": {
+                      "branch": {
+                        "type": ""
+                      },
+                      "items": [
+                        {
+                          "Item": {
+                            "DatesEmployed": {
+                              "type": "daterange",
+                              "props": {
+                                "from": {
+                                  "type": "datecontrol",
+                                  "props": {
+                                    "month": "",
+                                    "day": "",
+                                    "year": "",
+                                    "estimated": false
+                                  }
+                                },
+                                "to": {
+                                  "type": "datecontrol",
+                                  "props": {
+                                    "month": "",
+                                    "day": "",
+                                    "year": "",
+                                    "estimated": false
+                                  }
+                                },
+                                "present": false
+                              }
+                            },
+                            "Has": {
+                              "type": "branch",
+                              "props": {
+                                "value": "No"
+                              }
+                            },
+                            "Position": {
+                              "type": "text",
+                              "props": {
+                                "value": ""
+                              }
+                            },
+                            "Supervisor": {
+                              "type": "text",
+                              "props": {
+                                "value": ""
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "Address": {
+                    "type": "location",
+                    "props": {
+                      "layout": "Address",
+                      "street": "Employer 2 Rd.",
+                      "city": "Monterey",
+                      "state": "CA",
+                      "zipcode": "93940",
+                      "country": "United States",
+                      "validated": true
+                    }
+                  },
+                  "Dates": {
+                    "type": "daterange",
+                    "props": {
+                      "from": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "02",
+                          "day": "03",
+                          "year": "2009",
+                          "estimated": false
+                        }
+                      },
+                      "to": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "11",
+                          "day": "01",
+                          "year": "2018",
+                          "estimated": false
+                        }
+                      },
+                      "present": false
+                    }
+                  },
+                  "DutyStation": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Employment": {
+                    "type": "text",
+                    "props": {
+                      "value": "Employer 2"
+                    }
+                  },
+                  "EmploymentActivity": {
+                    "type": "employmentactivity",
+                    "props": {
+                      "value": "NonGovernment"
+                    }
+                  },
+                  "PhysicalAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": "No"
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": ""
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "ReasonLeft": {
+                    "type": "reasonleft",
+                    "props": {
+                      "Comments": {
+                        "type": "textarea",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Reasons": {
+                        "type": "collection",
+                        "props": {
+                          "branch": {
+                            "type": ""
+                          },
+                          "items": [
+                            {
+                              "Item": {
+                                "Date": {
+                                  "type": "datecontrol",
+                                  "props": {
+                                    "month": "",
+                                    "day": "",
+                                    "year": "",
+                                    "estimated": false
+                                  }
+                                },
+                                "Has": {
+                                  "type": "branch",
+                                  "props": {
+                                    "value": "No"
+                                  }
+                                },
+                                "Reason": {
+                                  "type": "textarea",
+                                  "props": {
+                                    "value": ""
+                                  }
+                                },
+                                "Text": {
+                                  "type": "textarea",
+                                  "props": {
+                                    "value": ""
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      "ReasonDescription": {
+                        "type": "textarea",
+                        "props": {
+                          "value": "Employer 2 Reason"
+                        }
+                      }
+                    }
+                  },
+                  "ReferenceAddress": {
+                    "type": "location",
+                    "props": {
+                      "layout": ""
+                    }
+                  },
+                  "ReferenceAlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": ""
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "ReferenceName": {
+                    "type": "name",
+                    "props": {
+                      "first": "",
+                      "firstInitialOnly": false,
+                      "middle": "",
+                      "middleInitialOnly": false,
+                      "noMiddleName": false,
+                      "last": "",
+                      "lastInitialOnly": false,
+                      "suffix": "",
+                      "suffixOther": ""
+                    }
+                  },
+                  "ReferencePhone": {
+                    "type": "telephone",
+                    "props": {
+                      "timeOfDay": "",
+                      "type": "",
+                      "numberType": "",
+                      "number": "",
+                      "extension": "",
+                      "noNumber": false
+                    }
+                  },
+                  "Reprimand": {
+                    "type": "collection",
+                    "props": {
+                      "branch": {
+                        "type": ""
+                      },
+                      "items": [
+                        {
+                          "Item": {
+                            "Date": {
+                              "type": "datecontrol",
+                              "props": {
+                                "month": "",
+                                "day": "",
+                                "year": "",
+                                "estimated": false
+                              }
+                            },
+                            "Has": {
+                              "type": "branch",
+                              "props": {
+                                "value": "No"
+                              }
+                            },
+                            "Text": {
+                              "type": "textarea",
+                              "props": {
+                                "value": ""
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "Status": {
+                    "type": "radio",
+                    "props": {
+                      "value": "FullTime"
+                    }
+                  },
+                  "Supervisor": {
+                    "type": "supervisor",
+                    "props": {
+                      "SupervisorName": {
+                        "type": "text",
+                        "props": {
+                          "value": "Supervisor 2"
+                        }
+                      },
+                      "Title": {
+                        "type": "text",
+                        "props": {
+                          "value": "Head Supervisor"
+                        }
+                      },
+                      "Email": {
+                        "type": "email",
+                        "props": {
+                          "value": "sup2@example.com"
+                        }
+                      },
+                      "EmailNotApplicable": {
+                        "type": "notapplicable",
+                        "props": {
+                          "applicable": true
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "Address",
+                          "street": "Supervisor 2 Outside of the US",
+                          "city": "Glasgow",
+                          "country": "United Kingdom"
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "Both",
+                          "type": "Domestic",
+                          "numberType": "",
+                          "number": "7838888888",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "SupervisorAlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": "Yes"
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "US Address",
+                          "street": "Supervisor 2 Secondary APO",
+                          "city": "APO",
+                          "state": "AE",
+                          "zipcode": "09012",
+                          "country": "POSTOFFICE"
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "Telephone": {
+                    "type": "telephone",
+                    "props": {
+                      "timeOfDay": "Both",
+                      "type": "Domestic",
+                      "numberType": "",
+                      "number": "8319999999",
+                      "extension": "",
+                      "noNumber": false
+                    }
+                  },
+                  "Title": {
+                    "type": "text",
+                    "props": {
+                      "value": "Associate"
+                    }
+                  }
+                }
+              },
+              {
+                "Item": {
+                  "Additional": {
+                    "type": "collection",
+                    "props": {
+                      "branch": {
+                        "type": ""
+                      },
+                      "items": []
+                    }
+                  },
+                  "Address": {
+                    "type": "location",
+                    "props": {
+                      "layout": ""
+                    }
+                  },
+                  "Dates": {
+                    "type": "daterange",
+                    "props": {
+                      "from": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "12",
+                          "day": "02",
+                          "year": "2008",
+                          "estimated": false
+                        }
+                      },
+                      "to": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "02",
+                          "day": "02",
+                          "year": "2009",
+                          "estimated": false
+                        }
+                      },
+                      "present": false
+                    }
+                  },
+                  "DutyStation": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Employment": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "EmploymentActivity": {
+                    "type": "employmentactivity",
+                    "props": {
+                      "value": "Unemployment"
+                    }
+                  },
+                  "PhysicalAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": "No"
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": ""
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "ReasonLeft": {
+                    "type": "reasonleft",
+                    "props": {
+                      "Comments": {
+                        "type": "textarea",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Reasons": {
+                        "type": "collection",
+                        "props": {
+                          "branch": {
+                            "type": ""
+                          },
+                          "items": []
+                        }
+                      },
+                      "ReasonDescription": {
+                        "type": "textarea",
+                        "props": {
+                          "value": ""
+                        }
+                      }
+                    }
+                  },
+                  "ReferenceAddress": {
+                    "type": "location",
+                    "props": {
+                      "layout": "Address",
+                      "street": "Unemployment Verifier 1 APO",
+                      "city": "APO",
+                      "state": "AE",
+                      "zipcode": "09011",
+                      "country": "POSTOFFICE",
+                      "validated": true
+                    }
+                  },
+                  "ReferenceAlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "Address",
+                          "street": "Unemployment Verifier 1 Secondary",
+                          "city": "Monterey",
+                          "state": "CA",
+                          "zipcode": "93940",
+                          "country": "United States",
+                          "validated": true
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "ReferenceName": {
+                    "type": "name",
+                    "props": {
+                      "first": "Sue",
+                      "firstInitialOnly": false,
+                      "middle": "",
+                      "middleInitialOnly": false,
+                      "noMiddleName": true,
+                      "last": "Storm",
+                      "lastInitialOnly": false,
+                      "suffix": "",
+                      "suffixOther": ""
+                    }
+                  },
+                  "ReferencePhone": {
+                    "type": "telephone",
+                    "props": {
+                      "timeOfDay": "Both",
+                      "type": "Domestic",
+                      "numberType": "",
+                      "number": "5033333333",
+                      "extension": "",
+                      "noNumber": false
+                    }
+                  },
+                  "Reprimand": {
+                    "type": "collection",
+                    "props": {
+                      "branch": {
+                        "type": ""
+                      },
+                      "items": []
+                    }
+                  },
+                  "Status": {
+                    "type": "radio",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Supervisor": {
+                    "type": "supervisor",
+                    "props": {
+                      "SupervisorName": {
+                        "type": "text",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Title": {
+                        "type": "text",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Email": {
+                        "type": "email",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "EmailNotApplicable": {
+                        "type": "notapplicable",
+                        "props": {
+                          "applicable": false
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": ""
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "SupervisorAlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": ""
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "Telephone": {
+                    "type": "telephone",
+                    "props": {
+                      "timeOfDay": "",
+                      "type": "",
+                      "numberType": "",
+                      "number": "",
+                      "extension": "",
+                      "noNumber": false
+                    }
+                  },
+                  "Title": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  }
+                }
+              },
+              {
+                "Item": {
+                  "Additional": {
+                    "type": "collection",
+                    "props": {
+                      "branch": {
+                        "type": ""
+                      },
+                      "items": []
+                    }
+                  },
+                  "Address": {
+                    "type": "location",
+                    "props": {
+                      "layout": "Address",
+                      "street": "189 1st st.",
+                      "city": "Monterey",
+                      "state": "CA",
+                      "zipcode": "93940",
+                      "country": "United States",
+                      "validated": true
+                    }
+                  },
+                  "Dates": {
+                    "type": "daterange",
+                    "props": {
+                      "from": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "11",
+                          "day": "02",
+                          "year": "2018",
+                          "estimated": false
+                        }
+                      },
+                      "to": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "11",
+                          "day": "14",
+                          "year": "2018",
+                          "estimated": false
+                        }
+                      },
+                      "present": true
+                    }
+                  },
+                  "DutyStation": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Employment": {
+                    "type": "text",
+                    "props": {
+                      "value": "SelfEmployment Co"
+                    }
+                  },
+                  "EmploymentActivity": {
+                    "type": "employmentactivity",
+                    "props": {
+                      "value": "SelfEmployment"
+                    }
+                  },
+                  "PhysicalAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": "No"
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": ""
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "ReasonLeft": {
+                    "type": "reasonleft",
+                    "props": {
+                      "Comments": {
+                        "type": "textarea",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Reasons": {
+                        "type": "collection",
+                        "props": {
+                          "branch": {
+                            "type": ""
+                          },
+                          "items": []
+                        }
+                      },
+                      "ReasonDescription": {
+                        "type": "textarea",
+                        "props": {
+                          "value": ""
+                        }
+                      }
+                    }
+                  },
+                  "ReferenceAddress": {
+                    "type": "location",
+                    "props": {
+                      "layout": "Address",
+                      "street": "SelfEmployment Verifier",
+                      "city": "Ottawa",
+                      "country": "Canada"
+                    }
+                  },
+                  "ReferenceAlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": "Yes"
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "US Address",
+                          "street": "SelfEmployment verifier Secondary APO",
+                          "city": "FPO",
+                          "state": "AE",
+                          "zipcode": "09012",
+                          "country": "POSTOFFICE"
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "ReferenceName": {
+                    "type": "name",
+                    "props": {
+                      "first": "Reed",
+                      "firstInitialOnly": false,
+                      "middle": "",
+                      "middleInitialOnly": false,
+                      "noMiddleName": true,
+                      "last": "Richards",
+                      "lastInitialOnly": false,
+                      "suffix": "",
+                      "suffixOther": ""
+                    }
+                  },
+                  "ReferencePhone": {
+                    "type": "telephone",
+                    "props": {
+                      "timeOfDay": "Both",
+                      "type": "Domestic",
+                      "numberType": "",
+                      "number": "9873331111",
+                      "extension": "",
+                      "noNumber": false
+                    }
+                  },
+                  "Reprimand": {
+                    "type": "collection",
+                    "props": {
+                      "branch": {
+                        "type": ""
+                      },
+                      "items": [
+                        {
+                          "Item": {
+                            "Date": {
+                              "type": "datecontrol",
+                              "props": {
+                                "month": "",
+                                "day": "",
+                                "year": "",
+                                "estimated": false
+                              }
+                            },
+                            "Has": {
+                              "type": "branch",
+                              "props": {
+                                "value": "No"
+                              }
+                            },
+                            "Text": {
+                              "type": "textarea",
+                              "props": {
+                                "value": ""
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "Status": {
+                    "type": "radio",
+                    "props": {
+                      "value": "FullTime"
+                    }
+                  },
+                  "Supervisor": {
+                    "type": "supervisor",
+                    "props": {
+                      "SupervisorName": {
+                        "type": "text",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Title": {
+                        "type": "text",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Email": {
+                        "type": "email",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "EmailNotApplicable": {
+                        "type": "notapplicable",
+                        "props": {
+                          "applicable": false
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": ""
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "SupervisorAlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": ""
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "Telephone": {
+                    "type": "telephone",
+                    "props": {
+                      "timeOfDay": "Both",
+                      "type": "Domestic",
+                      "numberType": "",
+                      "number": "8878338333",
+                      "extension": "",
+                      "noNumber": false
+                    }
+                  },
+                  "Title": {
+                    "type": "text",
+                    "props": {
+                      "value": "Owner"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "EmploymentRecord": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        }
+      }
+    },
+    "Federal": {
+      "type": "history.federal",
+      "props": {
+        "HasFederalService": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "Residence": {
+      "type": "history.residence",
+      "props": {
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": "branch",
+              "props": {
+                "value": "No"
+              }
+            },
+            "items": [
+              {
+                "Item": {
+                  "Address": {
+                    "type": "location",
+                    "props": {
+                      "layout": "Address",
+                      "street": "Residence 3 Rd.",
+                      "city": "Monterey",
+                      "state": "CA",
+                      "zipcode": "93940",
+                      "country": "United States",
+                      "validated": true
+                    }
+                  },
+                  "AlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": ""
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "Comments": {
+                    "type": "textarea",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Dates": {
+                    "type": "daterange",
+                    "props": {
+                      "from": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "03",
+                          "day": "05",
+                          "year": "2010",
+                          "estimated": false
+                        }
+                      },
+                      "to": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "03",
+                          "day": "05",
+                          "year": "2016",
+                          "estimated": false
+                        }
+                      },
+                      "present": false
+                    }
+                  },
+                  "ReferenceAddress": {
+                    "type": "location",
+                    "props": {
+                      "layout": "Address",
+                      "street": "Verifier 2 Outside of US",
+                      "city": "Sooke",
+                      "country": "Canada"
+                    }
+                  },
+                  "ReferenceAlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": "Yes"
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "US Address",
+                          "street": "Verifier 2 Secondary APO",
+                          "city": "FPO",
+                          "state": "AE",
+                          "zipcode": "09010",
+                          "country": "POSTOFFICE"
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "ReferenceEmail": {
+                    "type": "email",
+                    "props": {
+                      "value": "jill@example.com"
+                    }
+                  },
+                  "ReferenceEmailNotApplicable": {
+                    "type": "notapplicable",
+                    "props": {
+                      "applicable": false
+                    }
+                  },
+                  "ReferenceLastContact": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "08",
+                      "day": "01",
+                      "year": "2016",
+                      "estimated": false
+                    }
+                  },
+                  "ReferenceName": {
+                    "type": "name",
+                    "props": {
+                      "first": "Jill",
+                      "firstInitialOnly": false,
+                      "middle": "",
+                      "middleInitialOnly": false,
+                      "noMiddleName": true,
+                      "last": "Blue",
+                      "lastInitialOnly": false,
+                      "suffix": "",
+                      "suffixOther": ""
+                    }
+                  },
+                  "ReferencePhoneDay": {
+                    "type": "telephone",
+                    "props": {
+                      "timeOfDay": "Both",
+                      "type": "Domestic",
+                      "numberType": "",
+                      "number": "8317777777",
+                      "extension": "",
+                      "noNumber": false
+                    }
+                  },
+                  "ReferencePhoneEvening": {
+                    "type": "telephone",
+                    "props": {
+                      "timeOfDay": "Both",
+                      "type": "Domestic",
+                      "numberType": "",
+                      "number": "8316666666",
+                      "extension": "",
+                      "noNumber": false
+                    }
+                  },
+                  "ReferencePhoneMobile": {
+                    "type": "telephone",
+                    "props": {
+                      "timeOfDay": "Both",
+                      "type": "Domestic",
+                      "numberType": "",
+                      "number": "8318888888",
+                      "extension": "",
+                      "noNumber": false
+                    }
+                  },
+                  "ReferenceRelationship": {
+                    "type": "checkboxgroup",
+                    "props": {
+                      "values": [
+                        "Friend"
+                      ]
+                    }
+                  },
+                  "ReferenceRelationshipComments": {
+                    "type": "checkboxgroup",
+                    "props": {
+                      "values": null
+                    }
+                  },
+                  "ReferenceRelationshipOther": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Role": {
+                    "type": "radio",
+                    "props": {
+                      "value": "Own",
+                      "checked": true
+                    }
+                  },
+                  "RoleOther": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  }
+                }
+              },
+              {
+                "Item": {
+                  "Address": {
+                    "type": "location",
+                    "props": {
+                      "layout": "Address",
+                      "street": "Residence 1 APO USS Abraham Lincoln CVN 72",
+                      "city": "FPO",
+                      "state": "AE",
+                      "zipcode": "09520",
+                      "country": "POSTOFFICE",
+                      "validated": true
+                    }
+                  },
+                  "AlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "Address",
+                          "street": "Residence 1 Secondary Physical outside US",
+                          "city": "Barcelona",
+                          "country": "Spain"
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "Comments": {
+                    "type": "textarea",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Dates": {
+                    "type": "daterange",
+                    "props": {
+                      "from": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "01",
+                          "day": "02",
+                          "year": "2007",
+                          "estimated": false
+                        }
+                      },
+                      "to": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "03",
+                          "day": "04",
+                          "year": "2010",
+                          "estimated": false
+                        }
+                      },
+                      "present": false
+                    }
+                  },
+                  "ReferenceAddress": {
+                    "type": "location",
+                    "props": {
+                      "layout": ""
+                    }
+                  },
+                  "ReferenceAlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": ""
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "ReferenceEmail": {
+                    "type": "email",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "ReferenceEmailNotApplicable": {
+                    "type": "notapplicable",
+                    "props": {
+                      "applicable": false
+                    }
+                  },
+                  "ReferenceLastContact": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "",
+                      "day": "",
+                      "year": "",
+                      "estimated": false
+                    }
+                  },
+                  "ReferenceName": {
+                    "type": "name",
+                    "props": {
+                      "first": "",
+                      "firstInitialOnly": false,
+                      "middle": "",
+                      "middleInitialOnly": false,
+                      "noMiddleName": false,
+                      "last": "",
+                      "lastInitialOnly": false,
+                      "suffix": "",
+                      "suffixOther": ""
+                    }
+                  },
+                  "ReferencePhoneDay": {
+                    "type": "telephone",
+                    "props": {
+                      "timeOfDay": "",
+                      "type": "",
+                      "numberType": "",
+                      "number": "",
+                      "extension": "",
+                      "noNumber": false
+                    }
+                  },
+                  "ReferencePhoneEvening": {
+                    "type": "telephone",
+                    "props": {
+                      "timeOfDay": "",
+                      "type": "",
+                      "numberType": "",
+                      "number": "",
+                      "extension": "",
+                      "noNumber": false
+                    }
+                  },
+                  "ReferencePhoneMobile": {
+                    "type": "telephone",
+                    "props": {
+                      "timeOfDay": "",
+                      "type": "",
+                      "numberType": "",
+                      "number": "",
+                      "extension": "",
+                      "noNumber": false
+                    }
+                  },
+                  "ReferenceRelationship": {
+                    "type": "checkboxgroup",
+                    "props": {
+                      "values": null
+                    }
+                  },
+                  "ReferenceRelationshipComments": {
+                    "type": "checkboxgroup",
+                    "props": {
+                      "values": null
+                    }
+                  },
+                  "ReferenceRelationshipOther": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Role": {
+                    "type": "radio",
+                    "props": {
+                      "value": "MilitaryHousing",
+                      "checked": true
+                    }
+                  },
+                  "RoleOther": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  }
+                }
+              },
+              {
+                "Item": {
+                  "Address": {
+                    "type": "location",
+                    "props": {
+                      "layout": "Address",
+                      "street": "Residence 2 Outside US",
+                      "city": "Victoria",
+                      "country": "Canada"
+                    }
+                  },
+                  "AlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": "Yes"
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "US Address",
+                          "street": "Residence 2 Secondary APO USS John Stennis CVN 74",
+                          "city": "FPO",
+                          "state": "AE",
+                          "zipcode": "09520",
+                          "country": "POSTOFFICE"
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "Comments": {
+                    "type": "textarea",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Dates": {
+                    "type": "daterange",
+                    "props": {
+                      "from": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "03",
+                          "day": "06",
+                          "year": "2016",
+                          "estimated": false
+                        }
+                      },
+                      "to": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "11",
+                          "day": "14",
+                          "year": "2018",
+                          "estimated": false
+                        }
+                      },
+                      "present": true
+                    }
+                  },
+                  "ReferenceAddress": {
+                    "type": "location",
+                    "props": {
+                      "layout": "Address",
+                      "street": "Verifier 1 APO",
+                      "city": "APO",
+                      "state": "AE",
+                      "zipcode": "09009",
+                      "country": "POSTOFFICE",
+                      "validated": true
+                    }
+                  },
+                  "ReferenceAlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "Address",
+                          "street": "Verifier 1 Secondary Outside US",
+                          "city": "Nanaimo",
+                          "country": "Canada"
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "ReferenceEmail": {
+                    "type": "email",
+                    "props": {
+                      "value": "jack@example.com"
+                    }
+                  },
+                  "ReferenceEmailNotApplicable": {
+                    "type": "notapplicable",
+                    "props": {
+                      "applicable": true
+                    }
+                  },
+                  "ReferenceLastContact": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "07",
+                      "day": "01",
+                      "year": "2018",
+                      "estimated": false
+                    }
+                  },
+                  "ReferenceName": {
+                    "type": "name",
+                    "props": {
+                      "first": "Jack",
+                      "firstInitialOnly": false,
+                      "middle": "",
+                      "middleInitialOnly": false,
+                      "noMiddleName": true,
+                      "last": "Sprat",
+                      "lastInitialOnly": false,
+                      "suffix": "",
+                      "suffixOther": ""
+                    }
+                  },
+                  "ReferencePhoneDay": {
+                    "type": "telephone",
+                    "props": {
+                      "timeOfDay": "Both",
+                      "type": "Domestic",
+                      "numberType": "",
+                      "number": "8312222222",
+                      "extension": "",
+                      "noNumber": false
+                    }
+                  },
+                  "ReferencePhoneEvening": {
+                    "type": "telephone",
+                    "props": {
+                      "timeOfDay": "Both",
+                      "type": "Domestic",
+                      "numberType": "",
+                      "number": "8311111111",
+                      "extension": "",
+                      "noNumber": false
+                    }
+                  },
+                  "ReferencePhoneMobile": {
+                    "type": "telephone",
+                    "props": {
+                      "timeOfDay": "Both",
+                      "type": "Domestic",
+                      "numberType": "",
+                      "number": "8313333333",
+                      "extension": "",
+                      "noNumber": false
+                    }
+                  },
+                  "ReferenceRelationship": {
+                    "type": "checkboxgroup",
+                    "props": {
+                      "values": [
+                        "Friend"
+                      ]
+                    }
+                  },
+                  "ReferenceRelationshipComments": {
+                    "type": "checkboxgroup",
+                    "props": {
+                      "values": null
+                    }
+                  },
+                  "ReferenceRelationshipOther": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Role": {
+                    "type": "radio",
+                    "props": {
+                      "value": "MilitaryHousing",
+                      "checked": true
+                    }
+                  },
+                  "RoleOther": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "Identification": {
+    "ApplicantBirthDate": {
+      "type": "identification.birthdate",
+      "props": {
+        "Date": {
+          "type": "datecontrol",
+          "props": {
+            "month": "03",
+            "day": "25",
+            "year": "1993",
+            "estimated": false
+          }
+        },
+        "Confirmed": {
+          "type": "checkbox",
+          "props": {
+            "value": ""
+          }
+        }
+      }
+    },
+    "ApplicantBirthPlace": {
+      "type": "identification.birthplace",
+      "props": {
+        "Location": {
+          "type": "location",
+          "props": {
+            "layout": "Birthplace",
+            "city": "Seaside",
+            "state": "CA",
+            "county": "Monterey",
+            "country": "United States"
+          }
+        }
+      }
+    },
+    "ApplicantName": {
+      "type": "identification.name",
+      "props": {
+        "Name": {
+          "type": "name",
+          "props": {
+            "first": "Martin",
+            "firstInitialOnly": false,
+            "middle": "",
+            "middleInitialOnly": false,
+            "noMiddleName": true,
+            "last": "McFly",
+            "lastInitialOnly": false,
+            "suffix": "",
+            "suffixOther": ""
+          }
+        }
+      }
+    },
+    "ApplicantSSN": {
+      "type": "identification.ssn",
+      "props": {
+        "ssn": {
+          "type": "ssn",
+          "props": {
+            "first": "801",
+            "middle": "31",
+            "last": "3321",
+            "notApplicable": false
+          }
+        },
+        "verified": true
+      }
+    },
+    "Contacts": {
+      "type": "identification.contacts",
+      "props": {
+        "HomeEmail": {
+          "type": "email",
+          "props": {
+            "value": "mcfly@example.com"
+          }
+        },
+        "WorkEmail": {
+          "type": "email",
+          "props": {
+            "value": ""
+          }
+        },
+        "PhoneNumbers": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": [
+              {
+                "Item": {
+                  "Telephone": {
+                    "type": "telephone",
+                    "props": {
+                      "timeOfDay": "Both",
+                      "type": "Domestic",
+                      "numberType": "Home",
+                      "number": "8316560001",
+                      "extension": "",
+                      "noNumber": false
+                    }
+                  }
+                }
+              },
+              {
+                "Item": {
+                  "Telephone": {
+                    "type": "telephone",
+                    "props": {
+                      "timeOfDay": "Both",
+                      "type": "Domestic",
+                      "numberType": "Work",
+                      "number": "8315555551",
+                      "extension": "",
+                      "noNumber": false
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    "OtherNames": {
+      "type": "identification.othernames",
+      "props": {
+        "HasOtherNames": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "Physical": {
+      "type": "identification.physical",
+      "props": {
+        "Comments": {
+          "type": "textarea",
+          "props": {
+            "value": ""
+          }
+        },
+        "EyeColor": {
+          "type": "text",
+          "props": {
+            "value": "Brown"
+          }
+        },
+        "HairColor": {
+          "type": "text",
+          "props": {
+            "value": "Black"
+          }
+        },
+        "Height": {
+          "type": "height",
+          "props": {
+            "feet": 5,
+            "inches": 10
+          }
+        },
+        "Sex": {
+          "type": "text",
+          "props": {
+            "value": "Male"
+          }
+        },
+        "Weight": {
+          "type": "number",
+          "props": {
+            "value": "160"
+          }
+        }
+      }
+    }
+  },
+  "Legal": {
+    "ActivitiesToOverthrow": {
+      "type": "legal.associations.activities-to-overthrow",
+      "props": {
+        "HasActivities": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "Advocating": {
+      "type": "legal.associations.advocating",
+      "props": {
+        "HasAdvocated": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "Debarred": {
+      "type": "legal.investigations.debarred",
+      "props": {
+        "HasDebarment": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "EngagedInTerrorism": {
+      "type": "legal.associations.engaged-in-terrorism",
+      "props": {
+        "HasEngaged": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "History": {
+      "type": "legal.investigations.history",
+      "props": {
+        "HasHistory": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "Manipulating": {
+      "type": "legal.technology.manipulating",
+      "props": {
+        "HasManipulating": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "MembershipOverthrow": {
+      "type": "legal.associations.membership-overthrow",
+      "props": {
+        "HasOverthrow": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "MembershipViolence": {
+      "type": "legal.associations.membership-violence-or-force",
+      "props": {
+        "HasViolence": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "NonCriminalCourtActions": {
+      "type": "legal.court",
+      "props": {
+        "HasCourtActions": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "PoliceDomesticViolence": {
+      "type": "legal.police.domesticviolence",
+      "props": {
+        "HasDomesticViolence": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "PoliceOffenses": {
+      "type": "legal.police.offenses",
+      "props": {
+        "HasOffenses": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "PoliceOtherOffenses": {
+      "type": "legal.police.additionaloffenses",
+      "props": {
+        "HasOtherOffenses": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "Revoked": {
+      "type": "legal.investigations.revoked",
+      "props": {
+        "HasRevocations": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "TerrorismAssociation": {
+      "type": "legal.associations.terrorism-association",
+      "props": {
+        "HasTerrorism": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "Explanation": {
+          "type": "textarea",
+          "props": {
+            "value": ""
+          }
+        }
+      }
+    },
+    "TerroristOrganization": {
+      "type": "legal.associations.terrorist-organization",
+      "props": {
+        "HasTerrorist": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "Unauthorized": {
+      "type": "legal.technology.unauthorized",
+      "props": {
+        "HasUnauthorized": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "Unlawful": {
+      "type": "legal.technology.unlawful",
+      "props": {
+        "HasUnlawful": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    }
+  },
+  "Military": {
+    "Disciplinary": {
+      "type": "military.disciplinary",
+      "props": {
+        "HasDisciplinary": {
+          "type": "branch",
+          "props": {
+            "value": ""
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "Foreign": {
+      "type": "military.foreign",
+      "props": {
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": [
+              {
+                "Item": {
+                  "Circumstances": {
+                    "type": "textarea",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Country": {
+                    "type": "country",
+                    "props": {
+                      "value": null
+                    }
+                  },
+                  "Dates": {
+                    "type": "daterange",
+                    "props": {
+                      "from": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "",
+                          "day": "",
+                          "year": "",
+                          "estimated": false
+                        }
+                      },
+                      "to": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "",
+                          "day": "",
+                          "year": "",
+                          "estimated": false
+                        }
+                      },
+                      "present": false
+                    }
+                  },
+                  "Division": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Has": {
+                    "type": "branch",
+                    "props": {
+                      "value": "No"
+                    }
+                  },
+                  "List": {
+                    "type": "collection",
+                    "props": {
+                      "branch": {
+                        "type": ""
+                      },
+                      "items": []
+                    }
+                  },
+                  "MaintainsContact": {
+                    "type": "branch",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Name": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Organization": {
+                    "type": "radio",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Rank": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "ReasonLeft": {
+                    "type": "textarea",
+                    "props": {
+                      "value": ""
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    "History": {
+      "type": "military.history",
+      "props": {
+        "HasServed": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "Selective": {
+      "type": "military.selective",
+      "props": {
+        "WasBornAfter": {
+          "type": "branch",
+          "props": {
+            "value": "Yes"
+          }
+        },
+        "HasRegistered": {
+          "type": "branch",
+          "props": {
+            "value": "Yes"
+          }
+        },
+        "RegistrationNumber": {
+          "type": "text",
+          "props": {
+            "value": "55533311234"
+          }
+        },
+        "Explanation": {
+          "type": "textarea",
+          "props": {
+            "value": ""
+          }
+        }
+      }
+    }
+  },
+  "Psychological": {
+    "Competence": {
+      "type": "psychological.competence",
+      "props": {
+        "IsIncompetent": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "Consultations": {
+      "type": "psychological.consultations",
+      "props": {
+        "Consulted": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "Diagnoses": {
+      "type": "psychological.diagnoses",
+      "props": {
+        "Diagnosed": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "DidNotConsult": {
+          "type": "branch",
+          "props": {
+            "value": ""
+          }
+        },
+        "DiagnosisList": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        },
+        "InTreatment": {
+          "type": "branch",
+          "props": {
+            "value": ""
+          }
+        },
+        "TreatmentList": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "ExistingConditions": {
+      "type": "psychological.conditions",
+      "props": {
+        "HasCondition": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "ReceivedTreatment": {
+          "type": "radio",
+          "props": {
+            "value": ""
+          }
+        },
+        "Explanation": {
+          "type": "textarea",
+          "props": {
+            "value": ""
+          }
+        },
+        "TreatmentList": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
+            },
+            "items": []
+          }
+        },
+        "DidNotFollow": {
+          "type": "branch",
+          "props": {
+            "value": ""
+          }
+        },
+        "DidNotFollowExplanation": {
+          "type": "textarea",
+          "props": {
+            "value": ""
+          }
+        }
+      }
+    },
+    "Hospitalizations": {
+      "type": "psychological.hospitalizations",
+      "props": {
+        "Hospitalized": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    }
+  },
+  "Relationships": {
+    "Cohabitants": {
+      "type": "relationships.status.cohabitant",
+      "props": {
+        "HasCohabitant": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "CohabitantList": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "Marital": {
+      "type": "relationships.status.marital",
+      "props": {
+        "Status": {
+          "type": "radio",
+          "props": {
+            "value": "Married",
+            "checked": true
+          }
+        },
+        "CivilUnion": {
+          "type": "civilunion",
+          "props": {
+            "Address": {
+              "type": "location",
+              "props": {
+                "layout": "Address",
+                "street": "Spouse Address Outside of Us",
+                "city": "Montreal",
+                "country": "Canada"
+              }
+            },
+            "AddressSeparated": {
+              "type": "location",
+              "props": {
+                "layout": ""
+              }
+            },
+            "AddressSeparatedNotApplicable": {
+              "type": "notapplicable",
+              "props": {
+                "applicable": true
+              }
+            },
+            "AlternateAddress": {
+              "type": "physicaladdress",
+              "props": {
+                "HasDifferentAddress": {
+                  "type": "branch",
+                  "props": {
+                    "value": ""
+                  }
+                },
+                "Address": {
+                  "type": "location",
+                  "props": {
+                    "layout": "",
+                    "country": ""
+                  }
+                },
+                "Telephone": {
+                  "type": "telephone",
+                  "props": {
+                    "timeOfDay": "",
+                    "type": "",
+                    "numberType": "",
+                    "number": "",
+                    "extension": "",
+                    "noNumber": false
+                  }
+                }
+              }
+            },
+            "BirthPlace": {
+              "type": "location",
+              "props": {
+                "layout": "Birthplace",
+                "city": "San Jose",
+                "state": "CA",
+                "county": "Santa Clara",
+                "country": "United States"
+              }
+            },
+            "Birthdate": {
+              "type": "datecontrol",
+              "props": {
+                "month": "02",
+                "day": "01",
+                "year": "1994",
+                "estimated": false
+              }
+            },
+            "Citizenship": {
+              "type": "country",
+              "props": {
+                "value": [
+                  "United States",
+                  "Canada"
+                ]
+              }
+            },
+            "DateSeparated": {
+              "type": "datecontrol",
+              "props": {
+                "month": "",
+                "day": "",
+                "year": "",
+                "estimated": false
+              }
+            },
+            "Divorced": {
+              "type": "branch",
+              "props": {
+                "value": "No"
+              }
+            },
+            "Email": {
+              "type": "email",
+              "props": {
+                "value": "spouse@example.com"
+              }
+            },
+            "EnteredCivilUnion": {
+              "type": "datecontrol",
+              "props": {
+                "month": "07",
+                "day": "01",
+                "year": "2012",
+                "estimated": false
+              }
+            },
+            "ForeignBornDocument": {
+              "type": "foreignborndocument",
+              "props": {
+                "DocumentType": {
+                  "type": "radio",
+                  "props": {
+                    "value": ""
+                  }
+                },
+                "OtherExplanation": {
+                  "type": "textarea",
+                  "props": {
+                    "value": ""
+                  }
+                },
+                "DocumentNumber": {
+                  "type": "text",
+                  "props": {
+                    "value": ""
+                  }
+                },
+                "DocumentExpiration": {
+                  "type": "datecontrol",
+                  "props": {
+                    "month": "",
+                    "day": "",
+                    "year": "",
+                    "estimated": false
+                  }
+                },
+                "DocumentExpirationNotApplicable": {
+                  "type": "notapplicable",
+                  "props": {
+                    "applicable": false
+                  }
+                }
+              }
+            },
+            "Location": {
+              "type": "location",
+              "props": {
+                "layout": "Birthplace",
+                "city": "San Jose",
+                "state": "CA",
+                "county": "Santa Clara",
+                "country": "United States"
+              }
+            },
+            "Name": {
+              "type": "name",
+              "props": {
+                "first": "Haley",
+                "firstInitialOnly": false,
+                "middle": "",
+                "middleInitialOnly": false,
+                "noMiddleName": true,
+                "last": "Mills",
+                "lastInitialOnly": false,
+                "suffix": "",
+                "suffixOther": ""
+              }
+            },
+            "OtherNames": {
+              "type": "collection",
+              "props": {
+                "branch": {
+                  "type": ""
+                },
+                "items": [
+                  {
+                    "Item": {
+                      "DatesUsed": {
+                        "type": "daterange",
+                        "props": {
+                          "from": {
+                            "type": "datecontrol",
+                            "props": {
+                              "month": "",
+                              "day": "",
+                              "year": "",
+                              "estimated": false
+                            }
+                          },
+                          "to": {
+                            "type": "datecontrol",
+                            "props": {
+                              "month": "",
+                              "day": "",
+                              "year": "",
+                              "estimated": false
+                            }
+                          },
+                          "present": false
+                        }
+                      },
+                      "Has": {
+                        "type": "branch",
+                        "props": {
+                          "value": "No"
+                        }
+                      },
+                      "MaidenName": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Name": {
+                        "type": "name",
+                        "props": {
+                          "first": "",
+                          "firstInitialOnly": false,
+                          "middle": "",
+                          "middleInitialOnly": false,
+                          "noMiddleName": false,
+                          "last": "",
+                          "lastInitialOnly": false,
+                          "suffix": "",
+                          "suffixOther": ""
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            "SSN": {
+              "type": "ssn",
+              "props": {
+                "first": "431",
+                "middle": "32",
+                "last": "3333",
+                "notApplicable": false
+              }
+            },
+            "Separated": {
+              "type": "branch",
+              "props": {
+                "value": "No"
+              }
+            },
+            "Telephone": {
+              "type": "telephone",
+              "props": {
+                "timeOfDay": "Both",
+                "type": "Domestic",
+                "numberType": "",
+                "number": "8313333331",
+                "extension": "",
+                "noNumber": false
+              }
+            },
+            "UseCurrentAddress": {
+              "type": "notapplicable",
+              "props": {
+                "applicable": true
+              }
+            }
+          }
+        },
+        "DivorcedList": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "People": {
+      "type": "relationships.people",
+      "props": {
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": "branch",
+              "props": {
+                "value": "No"
+              }
+            },
+            "items": [
+              {
+                "Item": {
+                  "Address": {
+                    "type": "location",
+                    "props": {
+                      "layout": "Address",
+                      "street": "154 2nd Ave.",
+                      "city": "Monterey",
+                      "state": "CA",
+                      "zipcode": "93940",
+                      "country": "United States",
+                      "validated": true
+                    }
+                  },
+                  "Dates": {
+                    "type": "daterange",
+                    "props": {
+                      "from": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "01",
+                          "day": "01",
+                          "year": "2008",
+                          "estimated": false
+                        }
+                      },
+                      "to": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "11",
+                          "day": "14",
+                          "year": "2018",
+                          "estimated": false
+                        }
+                      },
+                      "present": true
+                    }
+                  },
+                  "Email": {
+                    "type": "email",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "EmailNotApplicable": {
+                    "type": "notapplicable",
+                    "props": {
+                      "applicable": false
+                    }
+                  },
+                  "MobileTelephone": {
+                    "type": "telephone",
+                    "props": {
+                      "timeOfDay": "Both",
+                      "type": "Domestic",
+                      "numberType": "",
+                      "number": "3331119999",
+                      "extension": "",
+                      "noNumber": false
+                    }
+                  },
+                  "Name": {
+                    "type": "name",
+                    "props": {
+                      "first": "Jacques",
+                      "firstInitialOnly": false,
+                      "middle": "",
+                      "middleInitialOnly": false,
+                      "noMiddleName": true,
+                      "last": "Smith",
+                      "lastInitialOnly": false,
+                      "suffix": "",
+                      "suffixOther": ""
+                    }
+                  },
+                  "OtherTelephone": {
+                    "type": "telephone",
+                    "props": {
+                      "timeOfDay": "",
+                      "type": "Domestic",
+                      "numberType": "",
+                      "number": "",
+                      "extension": "",
+                      "noNumber": true
+                    }
+                  },
+                  "Rank": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "RankNotApplicable": {
+                    "type": "notapplicable",
+                    "props": {
+                      "applicable": false
+                    }
+                  },
+                  "Relationship": {
+                    "type": "checkboxgroup",
+                    "props": {
+                      "values": [
+                        "Neighbor"
+                      ]
+                    }
+                  },
+                  "RelationshipOther": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  }
+                }
+              },
+              {
+                "Item": {
+                  "Address": {
+                    "type": "location",
+                    "props": {
+                      "layout": "Address",
+                      "street": "893 4th St.",
+                      "city": "Monterey",
+                      "state": "CA",
+                      "zipcode": "93940",
+                      "country": "United States",
+                      "validated": true
+                    }
+                  },
+                  "Dates": {
+                    "type": "daterange",
+                    "props": {
+                      "from": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "03",
+                          "day": "01",
+                          "year": "2008",
+                          "estimated": false
+                        }
+                      },
+                      "to": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "11",
+                          "day": "14",
+                          "year": "2018",
+                          "estimated": false
+                        }
+                      },
+                      "present": true
+                    }
+                  },
+                  "Email": {
+                    "type": "email",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "EmailNotApplicable": {
+                    "type": "notapplicable",
+                    "props": {
+                      "applicable": false
+                    }
+                  },
+                  "MobileTelephone": {
+                    "type": "telephone",
+                    "props": {
+                      "timeOfDay": "Both",
+                      "type": "Domestic",
+                      "numberType": "",
+                      "number": "1113331121",
+                      "extension": "",
+                      "noNumber": false
+                    }
+                  },
+                  "Name": {
+                    "type": "name",
+                    "props": {
+                      "first": "Wilma",
+                      "firstInitialOnly": false,
+                      "middle": "",
+                      "middleInitialOnly": false,
+                      "noMiddleName": true,
+                      "last": "Flintstone",
+                      "lastInitialOnly": false,
+                      "suffix": "",
+                      "suffixOther": ""
+                    }
+                  },
+                  "OtherTelephone": {
+                    "type": "telephone",
+                    "props": {
+                      "timeOfDay": "",
+                      "type": "Domestic",
+                      "numberType": "",
+                      "number": "",
+                      "extension": "",
+                      "noNumber": true
+                    }
+                  },
+                  "Rank": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "RankNotApplicable": {
+                    "type": "notapplicable",
+                    "props": {
+                      "applicable": false
+                    }
+                  },
+                  "Relationship": {
+                    "type": "checkboxgroup",
+                    "props": {
+                      "values": [
+                        "Friend"
+                      ]
+                    }
+                  },
+                  "RelationshipOther": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  }
+                }
+              },
+              {
+                "Item": {
+                  "Address": {
+                    "type": "location",
+                    "props": {
+                      "layout": "Address",
+                      "street": "932 5th Ave.",
+                      "city": "Monterey",
+                      "state": "CA",
+                      "zipcode": "93940",
+                      "country": "United States",
+                      "validated": true
+                    }
+                  },
+                  "Dates": {
+                    "type": "daterange",
+                    "props": {
+                      "from": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "04",
+                          "day": "01",
+                          "year": "2008",
+                          "estimated": false
+                        }
+                      },
+                      "to": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "11",
+                          "day": "14",
+                          "year": "2018",
+                          "estimated": false
+                        }
+                      },
+                      "present": true
+                    }
+                  },
+                  "Email": {
+                    "type": "email",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "EmailNotApplicable": {
+                    "type": "notapplicable",
+                    "props": {
+                      "applicable": false
+                    }
+                  },
+                  "MobileTelephone": {
+                    "type": "telephone",
+                    "props": {
+                      "timeOfDay": "Both",
+                      "type": "Domestic",
+                      "numberType": "",
+                      "number": "3338889999",
+                      "extension": "",
+                      "noNumber": false
+                    }
+                  },
+                  "Name": {
+                    "type": "name",
+                    "props": {
+                      "first": "Betty",
+                      "firstInitialOnly": false,
+                      "middle": "",
+                      "middleInitialOnly": false,
+                      "noMiddleName": true,
+                      "last": "White",
+                      "lastInitialOnly": false,
+                      "suffix": "",
+                      "suffixOther": ""
+                    }
+                  },
+                  "OtherTelephone": {
+                    "type": "telephone",
+                    "props": {
+                      "timeOfDay": "",
+                      "type": "Domestic",
+                      "numberType": "",
+                      "number": "",
+                      "extension": "",
+                      "noNumber": true
+                    }
+                  },
+                  "Rank": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "RankNotApplicable": {
+                    "type": "notapplicable",
+                    "props": {
+                      "applicable": false
+                    }
+                  },
+                  "Relationship": {
+                    "type": "checkboxgroup",
+                    "props": {
+                      "values": [
+                        "Friend"
+                      ]
+                    }
+                  },
+                  "RelationshipOther": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    "Relatives": {
+      "type": "relationships.relatives",
+      "props": {
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": "branch",
+              "props": {
+                "value": "No"
+              }
+            },
+            "items": [
+              {
+                "Item": {
+                  "Address": {
+                    "type": "location",
+                    "props": {
+                      "layout": "Address",
+                      "street": "Mother Residence Outside of the US",
+                      "city": "Rome",
+                      "country": "Italy"
+                    }
+                  },
+                  "Aliases": {
+                    "type": "collection",
+                    "props": {
+                      "branch": {
+                        "type": ""
+                      },
+                      "items": [
+                        {
+                          "Item": {
+                            "Dates": {
+                              "type": "daterange",
+                              "props": {
+                                "from": {
+                                  "type": "datecontrol",
+                                  "props": {
+                                    "month": "",
+                                    "day": "",
+                                    "year": "",
+                                    "estimated": false
+                                  }
+                                },
+                                "to": {
+                                  "type": "datecontrol",
+                                  "props": {
+                                    "month": "",
+                                    "day": "",
+                                    "year": "",
+                                    "estimated": false
+                                  }
+                                },
+                                "present": false
+                              }
+                            },
+                            "Has": {
+                              "type": "branch",
+                              "props": {
+                                "value": "No"
+                              }
+                            },
+                            "MaidenName": {
+                              "type": "branch",
+                              "props": {
+                                "value": ""
+                              }
+                            },
+                            "Name": {
+                              "type": "name",
+                              "props": {
+                                "first": "",
+                                "firstInitialOnly": false,
+                                "middle": "",
+                                "middleInitialOnly": false,
+                                "noMiddleName": false,
+                                "last": "",
+                                "lastInitialOnly": false,
+                                "suffix": "",
+                                "suffixOther": ""
+                              }
+                            },
+                            "Reason": {
+                              "type": "textarea",
+                              "props": {
+                                "value": ""
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "AlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": "Yes"
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": "US Address",
+                          "street": "Mother Secondary APO",
+                          "city": "FPO",
+                          "state": "AE",
+                          "zipcode": "09011",
+                          "country": "POSTOFFICE"
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "Birthdate": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "09",
+                      "day": "01",
+                      "year": "1970",
+                      "estimated": false
+                    }
+                  },
+                  "Birthplace": {
+                    "type": "location",
+                    "props": {
+                      "layout": "Birthplace without County",
+                      "city": "Alameda",
+                      "state": "CA",
+                      "country": "United States"
+                    }
+                  },
+                  "Citizenship": {
+                    "type": "country",
+                    "props": {
+                      "value": [
+                        "United States"
+                      ]
+                    }
+                  },
+                  "CitizenshipDocumentation": {
+                    "type": "radio",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "CourtAddress": {
+                    "type": "location",
+                    "props": {
+                      "layout": ""
+                    }
+                  },
+                  "CourtName": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Document": {
+                    "type": "radio",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "DocumentComments": {
+                    "type": "textarea",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "DocumentNumber": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Employer": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "EmployerAddress": {
+                    "type": "location",
+                    "props": {
+                      "layout": ""
+                    }
+                  },
+                  "EmployerAddressNotApplicable": {
+                    "type": "notapplicable",
+                    "props": {
+                      "applicable": true
+                    }
+                  },
+                  "EmployerNotApplicable": {
+                    "type": "notapplicable",
+                    "props": {
+                      "applicable": false
+                    }
+                  },
+                  "EmployerRelationship": {
+                    "type": "textarea",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "EmployerRelationshipNotApplicable": {
+                    "type": "notapplicable",
+                    "props": {
+                      "applicable": true
+                    }
+                  },
+                  "Expiration": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "",
+                      "day": "",
+                      "year": "",
+                      "estimated": false
+                    }
+                  },
+                  "FirstContact": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "",
+                      "day": "",
+                      "year": "",
+                      "estimated": false
+                    }
+                  },
+                  "Frequency": {
+                    "type": "radio",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "FrequencyComments": {
+                    "type": "radio",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "HasAffiliation": {
+                    "type": "branch",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "IsDeceased": {
+                    "type": "branch",
+                    "props": {
+                      "value": "No"
+                    }
+                  },
+                  "LastContact": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "",
+                      "day": "",
+                      "year": "",
+                      "estimated": false
+                    }
+                  },
+                  "MaidenName": {
+                    "type": "name",
+                    "props": {
+                      "first": "",
+                      "firstInitialOnly": false,
+                      "middle": "",
+                      "middleInitialOnly": false,
+                      "noMiddleName": false,
+                      "last": "",
+                      "lastInitialOnly": false,
+                      "suffix": "",
+                      "suffixOther": ""
+                    }
+                  },
+                  "MaidenSameAsListed": {
+                    "type": "branch",
+                    "props": {
+                      "value": "Yes"
+                    }
+                  },
+                  "Methods": {
+                    "type": "checkboxgroup",
+                    "props": {
+                      "values": null
+                    }
+                  },
+                  "MethodsComments": {
+                    "type": "textarea",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Name": {
+                    "type": "name",
+                    "props": {
+                      "first": "Jane",
+                      "firstInitialOnly": false,
+                      "middle": "",
+                      "middleInitialOnly": false,
+                      "noMiddleName": true,
+                      "last": "Goodall",
+                      "lastInitialOnly": false,
+                      "suffix": "",
+                      "suffixOther": ""
+                    }
+                  },
+                  "OtherCitizenshipDocumentation": {
+                    "type": "textarea",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Relation": {
+                    "type": "radio",
+                    "props": {
+                      "value": "Mother",
+                      "checked": true
+                    }
+                  },
+                  "ResidenceDocumentNumber": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  }
+                }
+              },
+              {
+                "Item": {
+                  "Address": {
+                    "type": "location",
+                    "props": {
+                      "layout": "Address",
+                      "street": "Father Residence Outside of the US",
+                      "city": "Barcelona",
+                      "country": "Spain"
+                    }
+                  },
+                  "Aliases": {
+                    "type": "collection",
+                    "props": {
+                      "branch": {
+                        "type": ""
+                      },
+                      "items": [
+                        {
+                          "Item": {
+                            "Dates": {
+                              "type": "daterange",
+                              "props": {
+                                "from": {
+                                  "type": "datecontrol",
+                                  "props": {
+                                    "month": "",
+                                    "day": "",
+                                    "year": "",
+                                    "estimated": false
+                                  }
+                                },
+                                "to": {
+                                  "type": "datecontrol",
+                                  "props": {
+                                    "month": "",
+                                    "day": "",
+                                    "year": "",
+                                    "estimated": false
+                                  }
+                                },
+                                "present": false
+                              }
+                            },
+                            "Has": {
+                              "type": "branch",
+                              "props": {
+                                "value": "No"
+                              }
+                            },
+                            "MaidenName": {
+                              "type": "branch",
+                              "props": {
+                                "value": ""
+                              }
+                            },
+                            "Name": {
+                              "type": "name",
+                              "props": {
+                                "first": "",
+                                "firstInitialOnly": false,
+                                "middle": "",
+                                "middleInitialOnly": false,
+                                "noMiddleName": false,
+                                "last": "",
+                                "lastInitialOnly": false,
+                                "suffix": "",
+                                "suffixOther": ""
+                              }
+                            },
+                            "Reason": {
+                              "type": "textarea",
+                              "props": {
+                                "value": ""
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "AlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": "No"
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": ""
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "Birthdate": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "07",
+                      "day": "01",
+                      "year": "1969",
+                      "estimated": false
+                    }
+                  },
+                  "Birthplace": {
+                    "type": "location",
+                    "props": {
+                      "layout": "Birthplace without County",
+                      "city": "Portland",
+                      "state": "OR",
+                      "country": "United States"
+                    }
+                  },
+                  "Citizenship": {
+                    "type": "country",
+                    "props": {
+                      "value": [
+                        "United States"
+                      ]
+                    }
+                  },
+                  "CitizenshipDocumentation": {
+                    "type": "radio",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "CourtAddress": {
+                    "type": "location",
+                    "props": {
+                      "layout": ""
+                    }
+                  },
+                  "CourtName": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Document": {
+                    "type": "radio",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "DocumentComments": {
+                    "type": "textarea",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "DocumentNumber": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Employer": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "EmployerAddress": {
+                    "type": "location",
+                    "props": {
+                      "layout": ""
+                    }
+                  },
+                  "EmployerAddressNotApplicable": {
+                    "type": "notapplicable",
+                    "props": {
+                      "applicable": true
+                    }
+                  },
+                  "EmployerNotApplicable": {
+                    "type": "notapplicable",
+                    "props": {
+                      "applicable": false
+                    }
+                  },
+                  "EmployerRelationship": {
+                    "type": "textarea",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "EmployerRelationshipNotApplicable": {
+                    "type": "notapplicable",
+                    "props": {
+                      "applicable": true
+                    }
+                  },
+                  "Expiration": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "",
+                      "day": "",
+                      "year": "",
+                      "estimated": false
+                    }
+                  },
+                  "FirstContact": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "",
+                      "day": "",
+                      "year": "",
+                      "estimated": false
+                    }
+                  },
+                  "Frequency": {
+                    "type": "radio",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "FrequencyComments": {
+                    "type": "radio",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "HasAffiliation": {
+                    "type": "branch",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "IsDeceased": {
+                    "type": "branch",
+                    "props": {
+                      "value": "No"
+                    }
+                  },
+                  "LastContact": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "",
+                      "day": "",
+                      "year": "",
+                      "estimated": false
+                    }
+                  },
+                  "MaidenName": {
+                    "type": "name",
+                    "props": {
+                      "first": "",
+                      "firstInitialOnly": false,
+                      "middle": "",
+                      "middleInitialOnly": false,
+                      "noMiddleName": false,
+                      "last": "",
+                      "lastInitialOnly": false,
+                      "suffix": "",
+                      "suffixOther": ""
+                    }
+                  },
+                  "MaidenSameAsListed": {
+                    "type": "branch",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Methods": {
+                    "type": "checkboxgroup",
+                    "props": {
+                      "values": null
+                    }
+                  },
+                  "MethodsComments": {
+                    "type": "textarea",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Name": {
+                    "type": "name",
+                    "props": {
+                      "first": "Fred",
+                      "firstInitialOnly": false,
+                      "middle": "",
+                      "middleInitialOnly": false,
+                      "noMiddleName": true,
+                      "last": "Rogers",
+                      "lastInitialOnly": false,
+                      "suffix": "",
+                      "suffixOther": ""
+                    }
+                  },
+                  "OtherCitizenshipDocumentation": {
+                    "type": "textarea",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Relation": {
+                    "type": "radio",
+                    "props": {
+                      "value": "Father",
+                      "checked": true
+                    }
+                  },
+                  "ResidenceDocumentNumber": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  }
+                }
+              },
+              {
+                "Item": {
+                  "Address": {
+                    "type": "location",
+                    "props": {
+                      "layout": ""
+                    }
+                  },
+                  "Aliases": {
+                    "type": "collection",
+                    "props": {
+                      "branch": {
+                        "type": ""
+                      },
+                      "items": []
+                    }
+                  },
+                  "AlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": ""
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "Birthdate": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "09",
+                      "day": "01",
+                      "year": "1960",
+                      "estimated": false
+                    }
+                  },
+                  "Birthplace": {
+                    "type": "location",
+                    "props": {
+                      "layout": "Birthplace without County",
+                      "city": "Los Angeles",
+                      "state": "CA",
+                      "country": "United States"
+                    }
+                  },
+                  "Citizenship": {
+                    "type": "country",
+                    "props": {
+                      "value": [
+                        "United States"
+                      ]
+                    }
+                  },
+                  "CitizenshipDocumentation": {
+                    "type": "radio",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "CourtAddress": {
+                    "type": "location",
+                    "props": {
+                      "layout": ""
+                    }
+                  },
+                  "CourtName": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Document": {
+                    "type": "radio",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "DocumentComments": {
+                    "type": "textarea",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "DocumentNumber": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Employer": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "EmployerAddress": {
+                    "type": "location",
+                    "props": {
+                      "layout": ""
+                    }
+                  },
+                  "EmployerAddressNotApplicable": {
+                    "type": "notapplicable",
+                    "props": {
+                      "applicable": true
+                    }
+                  },
+                  "EmployerNotApplicable": {
+                    "type": "notapplicable",
+                    "props": {
+                      "applicable": false
+                    }
+                  },
+                  "EmployerRelationship": {
+                    "type": "textarea",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "EmployerRelationshipNotApplicable": {
+                    "type": "notapplicable",
+                    "props": {
+                      "applicable": true
+                    }
+                  },
+                  "Expiration": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "",
+                      "day": "",
+                      "year": "",
+                      "estimated": false
+                    }
+                  },
+                  "FirstContact": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "",
+                      "day": "",
+                      "year": "",
+                      "estimated": false
+                    }
+                  },
+                  "Frequency": {
+                    "type": "radio",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "FrequencyComments": {
+                    "type": "radio",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "HasAffiliation": {
+                    "type": "branch",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "IsDeceased": {
+                    "type": "branch",
+                    "props": {
+                      "value": "Yes"
+                    }
+                  },
+                  "LastContact": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "",
+                      "day": "",
+                      "year": "",
+                      "estimated": false
+                    }
+                  },
+                  "MaidenName": {
+                    "type": "name",
+                    "props": {
+                      "first": "",
+                      "firstInitialOnly": false,
+                      "middle": "",
+                      "middleInitialOnly": false,
+                      "noMiddleName": false,
+                      "last": "",
+                      "lastInitialOnly": false,
+                      "suffix": "",
+                      "suffixOther": ""
+                    }
+                  },
+                  "MaidenSameAsListed": {
+                    "type": "branch",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Methods": {
+                    "type": "checkboxgroup",
+                    "props": {
+                      "values": null
+                    }
+                  },
+                  "MethodsComments": {
+                    "type": "textarea",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Name": {
+                    "type": "name",
+                    "props": {
+                      "first": "Peter",
+                      "firstInitialOnly": false,
+                      "middle": "",
+                      "middleInitialOnly": false,
+                      "noMiddleName": true,
+                      "last": "Murphy",
+                      "lastInitialOnly": false,
+                      "suffix": "",
+                      "suffixOther": ""
+                    }
+                  },
+                  "OtherCitizenshipDocumentation": {
+                    "type": "textarea",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Relation": {
+                    "type": "radio",
+                    "props": {
+                      "value": "Father-in-law",
+                      "checked": true
+                    }
+                  },
+                  "ResidenceDocumentNumber": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  }
+                }
+              },
+              {
+                "Item": {
+                  "Address": {
+                    "type": "location",
+                    "props": {
+                      "layout": ""
+                    }
+                  },
+                  "Aliases": {
+                    "type": "collection",
+                    "props": {
+                      "branch": {
+                        "type": ""
+                      },
+                      "items": []
+                    }
+                  },
+                  "AlternateAddress": {
+                    "type": "physicaladdress",
+                    "props": {
+                      "HasDifferentAddress": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Address": {
+                        "type": "location",
+                        "props": {
+                          "layout": ""
+                        }
+                      },
+                      "Telephone": {
+                        "type": "telephone",
+                        "props": {
+                          "timeOfDay": "",
+                          "type": "",
+                          "numberType": "",
+                          "number": "",
+                          "extension": "",
+                          "noNumber": false
+                        }
+                      }
+                    }
+                  },
+                  "Birthdate": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "09",
+                      "day": "01",
+                      "year": "1968",
+                      "estimated": false
+                    }
+                  },
+                  "Birthplace": {
+                    "type": "location",
+                    "props": {
+                      "layout": "Birthplace without County",
+                      "city": "Salem",
+                      "state": "OR",
+                      "country": "United States"
+                    }
+                  },
+                  "Citizenship": {
+                    "type": "country",
+                    "props": {
+                      "value": [
+                        "United States"
+                      ]
+                    }
+                  },
+                  "CitizenshipDocumentation": {
+                    "type": "radio",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "CourtAddress": {
+                    "type": "location",
+                    "props": {
+                      "layout": ""
+                    }
+                  },
+                  "CourtName": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Document": {
+                    "type": "radio",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "DocumentComments": {
+                    "type": "textarea",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "DocumentNumber": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Employer": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "EmployerAddress": {
+                    "type": "location",
+                    "props": {
+                      "layout": ""
+                    }
+                  },
+                  "EmployerAddressNotApplicable": {
+                    "type": "notapplicable",
+                    "props": {
+                      "applicable": true
+                    }
+                  },
+                  "EmployerNotApplicable": {
+                    "type": "notapplicable",
+                    "props": {
+                      "applicable": false
+                    }
+                  },
+                  "EmployerRelationship": {
+                    "type": "textarea",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "EmployerRelationshipNotApplicable": {
+                    "type": "notapplicable",
+                    "props": {
+                      "applicable": true
+                    }
+                  },
+                  "Expiration": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "",
+                      "day": "",
+                      "year": "",
+                      "estimated": false
+                    }
+                  },
+                  "FirstContact": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "",
+                      "day": "",
+                      "year": "",
+                      "estimated": false
+                    }
+                  },
+                  "Frequency": {
+                    "type": "radio",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "FrequencyComments": {
+                    "type": "radio",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "HasAffiliation": {
+                    "type": "branch",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "IsDeceased": {
+                    "type": "branch",
+                    "props": {
+                      "value": "Yes"
+                    }
+                  },
+                  "LastContact": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "",
+                      "day": "",
+                      "year": "",
+                      "estimated": false
+                    }
+                  },
+                  "MaidenName": {
+                    "type": "name",
+                    "props": {
+                      "first": "",
+                      "firstInitialOnly": false,
+                      "middle": "",
+                      "middleInitialOnly": false,
+                      "noMiddleName": false,
+                      "last": "",
+                      "lastInitialOnly": false,
+                      "suffix": "",
+                      "suffixOther": ""
+                    }
+                  },
+                  "MaidenSameAsListed": {
+                    "type": "branch",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Methods": {
+                    "type": "checkboxgroup",
+                    "props": {
+                      "values": null
+                    }
+                  },
+                  "MethodsComments": {
+                    "type": "textarea",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Name": {
+                    "type": "name",
+                    "props": {
+                      "first": "Cindy",
+                      "firstInitialOnly": false,
+                      "middle": "",
+                      "middleInitialOnly": false,
+                      "noMiddleName": true,
+                      "last": "Lauper",
+                      "lastInitialOnly": false,
+                      "suffix": "",
+                      "suffixOther": ""
+                    }
+                  },
+                  "OtherCitizenshipDocumentation": {
+                    "type": "textarea",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Relation": {
+                    "type": "radio",
+                    "props": {
+                      "value": "Mother-in-law",
+                      "checked": true
+                    }
+                  },
+                  "ResidenceDocumentNumber": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "Substance": {
+    "DrugClearanceUses": {
+      "type": "substance.drugs.clearance",
+      "props": {
+        "UsedDrugs": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "DrugInvolvements": {
+      "type": "substance.drugs.purchase",
+      "props": {
+        "Involved": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "DrugPublicSafetyUses": {
+      "type": "substance.drugs.publicsafety",
+      "props": {
+        "UsedDrugs": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "DrugUses": {
+      "type": "substance.drugs.usage",
+      "props": {
+        "UsedDrugs": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "NegativeImpacts": {
+      "type": "substance.alcohol.negative",
+      "props": {
+        "HasImpacts": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "OrderedCounselings": {
+      "type": "substance.alcohol.ordered",
+      "props": {
+        "HasBeenOrdered": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "OrderedTreatments": {
+      "type": "substance.drugs.ordered",
+      "props": {
+        "TreatmentOrdered": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "PrescriptionUses": {
+      "type": "substance.drugs.misuse",
+      "props": {
+        "MisusedDrugs": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "ReceivedCounselings": {
+      "type": "substance.alcohol.additional",
+      "props": {
+        "ReceivedTreatment": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": ""
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "VoluntaryCounselings": {
+      "type": "substance.alcohol.voluntary",
+      "props": {
+        "SoughtTreatment": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
+            },
+            "items": []
+          }
+        }
+      }
+    },
+    "VoluntaryTreatments": {
+      "type": "substance.drugs.voluntary",
+      "props": {
+        "TreatmentVoluntary": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "List": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": "branch",
+              "props": {
+                "value": ""
+              }
+            },
+            "items": []
+          }
+        }
+      }
+    }
+  }
+}

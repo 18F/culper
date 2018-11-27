@@ -3,14 +3,12 @@
     {{range $index, $item := .props.List.props.items}}
     {{with $Item := $item.Item}}
     <Residency ID="{{inc $index}}">
-      {{if locationIsPostOffice $Item.Address}}
-      <APOFPO>
-        <Address>{{militaryAddress $Item.Address}}</Address>
-        <AddressComment>{{textarea $Item.Comments}}</AddressComment>
-      </APOFPO>
-      {{else}}
       <Address>{{location $Item.Address}}</Address>
+
+      {{with $remap := altAddressRemap $Item.Address $Item.AlternateAddress.props.HasDifferentAddress $Item.AlternateAddress.props.Address}}
+      {{tmpl "apofpo-physical.xml" $remap}}
       {{end}}
+
       {{monthYearDaterange $Item.Dates}}
       <DetailComment></DetailComment>
       <ResidenceType>{{radio $Item.Role}}</ResidenceType>
@@ -18,14 +16,12 @@
 
       {{- if $Item.ReferenceRelationship.props.values}}
       <Verifier>
-        {{if locationIsPostOffice $Item.ReferenceAddress}}
-        <APOFPO>
-          <Address>{{militaryAddress $Item.ReferenceAddress}}</Address>
-          <AddressComment>{{textarea $Item.Comments}}</AddressComment>
-        </APOFPO>
-        {{else}}
         <Address>{{location $Item.ReferenceAddress}}</Address>
+
+        {{with $remap := altAddressRemap $Item.ReferenceAddress $Item.ReferenceAlternateAddress.props.HasDifferentAddress $Item.ReferenceAlternateAddress.props.Address}}
+        {{tmpl "apofpo-physical.xml" $remap}}
         {{end}}
+
         <Comment>{{textarea $Item.ReferenceComments}}</Comment>
         {{- if notApplicable $Item.ReferenceEmailNotApplicable | eq "True"}}
         <Email DoNotKnow="True"></Email>
