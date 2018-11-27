@@ -33,7 +33,6 @@ export const reference = {
     },
     email: 'Provide email address for this person',
     idk: "I don't know",
-    notApplicable: "Not applicable",
     address: 'The address of your contact during this time period'
   },
   name: {
