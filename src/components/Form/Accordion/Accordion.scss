@@ -149,17 +149,16 @@ $breakpoints: (
       overflow: hidden;
       vertical-align: top;
       transition: box-shadow 0.3s, color 0.3s;
-      padding: 2rem 1rem 1rem;
+      padding: 2rem .4rem 1rem;
 
       &:hover {
         box-shadow: 6px 1px 13px -3px rgba(0, 0, 0, 0.4);
       }
 
       .button-with-icon {
-        display: inline-block;
+        display: block;
         text-align: center;
         width: 7rem;
-        vertical-align: text-top;
         border: none !important;
         top: -.5rem;
         position: relative;
@@ -185,6 +184,7 @@ $breakpoints: (
     }
 
     .left {
+      width: 90%;
       color: #000;
       transition: border-left-color 0.3s;
       border-left: 0.4rem solid #fff;
@@ -204,29 +204,26 @@ $breakpoints: (
 
       > a {
         text-decoration: none;
-        display: inline-block;
       }
 
+      .dates {
+        margin-left: 2rem;
+      }
       // All but the first anchor
       > a:nth-child(n + 2) {
         display: block;
-        line-height: 1.8rem;
-        padding-bottom: 3rem;
-        padding-right: 7rem;
-
-        .dates {
-          height: 1.8rem;
-        }
+        padding-bottom: 1rem;
+        padding-top: .25rem;
       }
 
       div {
         display: inline-block;
       }
 
-        > span:nth-of-type(2) {
+      > span:nth-of-type(2) {
 
-          > a > span:last-of-type,
-          > span:last-of-type {
+        > a > span:last-of-type,
+        > span:last-of-type {
 
           > strong,
           > strong * {
@@ -287,7 +284,7 @@ $breakpoints: (
     .right {
       color: #6a6a6a;
       float: right;
-      padding: 2.3rem .25rem .7rem;
+      width: 10%;
 
       &:hover {
         color: $eapp-red;
@@ -373,29 +370,8 @@ button.usa-button-outline {
           vertical-align: middle;
 
           .button-with-icon {
-            margin-top: 1rem;
             margin-left: 2rem;
-
-            span.toggle {
-              width: 4rem;
-              border-bottom: 1px dashed $eapp-blue;
-            }
           }
-
-          /** Hide both chevrons when sticky is enabled **/
-          .toggle.fa-chevron-down,
-          .toggle.fa-chevron-up {
-            display: none;
-          }
-        }
-
-        .right.remove {
-          /** Allow for sliding in animation **/
-          padding: 0;
-          visibility: hidden;
-          width: 0;
-          display: block;
-          height: 0;
         }
       }
     }
