@@ -1,14 +1,29 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import Conferences from './Conferences'
 
 describe('The foreign business conferences component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <Conferences {...expected} />
+        </Provider>
+      )
+  })
+
   it('display nothing when "no" is clicked', () => {
     const expected = {
       name: 'foreign-business-conferences',
       HasForeignConferences: { value: 'No' }
     }
-    const component = mount(<Conferences {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(0)
   })
 
@@ -17,7 +32,7 @@ describe('The foreign business conferences component', () => {
       name: 'foreign-business-conferences',
       HasForeignConferences: { value: 'Yes' }
     }
-    const component = mount(<Conferences {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(1)
   })
 
@@ -31,7 +46,7 @@ describe('The foreign business conferences component', () => {
         return arr
       }
     }
-    const component = mount(<Conferences {...expected} />)
+    const component = createComponent(expected)
     component
       .find('.branch .yes input')
       .at(0)
@@ -61,7 +76,7 @@ describe('The foreign business conferences component', () => {
         updates++
       }
     }
-    const component = mount(<Conferences {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(1)
     component.find('.conferences-description textarea').simulate('change')
     component.find('.conferences-sponsor input').simulate('change')

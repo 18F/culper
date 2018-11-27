@@ -439,6 +439,7 @@ class CivilUnion extends ValidationElement {
                 addressBook="Relative"
                 belongingTo="AlternateAddress"
                 country={this.props.Address.country}
+                militaryAddressLabel={i18n.t('address.militaryAddress.spouse')}
                 onUpdate={this.update}
               />
             </Show>

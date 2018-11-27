@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { i18n } from '../../../config'
 import ValidationElement from '../ValidationElement'
 import Number from '../Number'
@@ -12,38 +13,6 @@ import {
 } from '../../Section/History/dateranges'
 import DateControlValidator from '../../../validators/datecontrol'
 
-export const datePart = (part, date) => {
-  if (!date) {
-    return ''
-  }
-
-  let d = new Date(date)
-
-  // Make sure it is a valid date
-  if (isNaN(d.getTime())) {
-    return ''
-  }
-
-  switch (part) {
-    case 'month':
-    case 'mm':
-    case 'm':
-      return '' + (d.getMonth() + 1)
-
-    case 'day':
-    case 'dd':
-    case 'd':
-      return d.getDate()
-
-    case 'year':
-    case 'yy':
-    case 'y':
-      return d.getFullYear()
-  }
-
-  return ''
-}
-
 export const buildDate = (year = '', month = '', day = '') => {
   let d
 
@@ -56,21 +25,20 @@ export const buildDate = (year = '', month = '', day = '') => {
   return d
 }
 
-export default class DateControl extends ValidationElement {
+class DateControl extends ValidationElement {
   constructor(props) {
     super(props)
 
     this.state = {
       uid: `${this.props.name}-${super.guid()}`,
       disabled: props.disabled,
-      value: props.value,
       estimated: props.estimated,
       error: props.error,
       valid: props.valid,
       maxDate: props.maxDate,
-      month: props.hideMonth ? '1' : props.month || datePart('m', props.value),
-      day: props.hideDay ? '1' : props.day || datePart('d', props.value),
-      year: props.year || datePart('y', props.value),
+      month: props.hideMonth ? '1' : props.month,
+      day: props.hideDay ? '1' : props.day,
+      year: props.year,
       errors: []
     }
 
@@ -90,24 +58,6 @@ export default class DateControl extends ValidationElement {
   }
 
   componentWillReceiveProps(next) {
-    if (next.receiveProps) {
-      let month = ''
-      let day = ''
-      let year = ''
-
-      if (next.date) {
-        month = '' + (next.date.getMonth() + 1)
-        day = next.date.getDate()
-        year = next.date.getFullYear()
-      } else {
-        month = datePart('m', next.value)
-        day = datePart('d', next.value)
-        year = datePart('y', next.value)
-      }
-
-      this.update(null, year, month, day, next.estimated)
-    }
-
     if (next.disabled !== this.state.disabled) {
       this.handleDisable(next)
     }
@@ -145,7 +95,7 @@ export default class DateControl extends ValidationElement {
     }
 
     this.setState(
-      { month: month, day: day, year: year, estimated: estimated, value: date },
+      { month: month, day: day, year: year, estimated: estimated },
       () => {
         // Estimate touches the day so we need to toggle focus
         const toggleForEstimation = changed.estimated
@@ -438,7 +388,6 @@ export default class DateControl extends ValidationElement {
 DateControl.defaultProps = {
   name: 'datecontrol',
   disabled: false,
-  value: '',
   estimated: false,
   showEstimated: true,
   overrideError: false,
@@ -507,3 +456,14 @@ DateControl.errors = [
     }
   }
 ]
+
+const mapStateToProps = (state, ownProps) => {
+  const date = buildDate(ownProps.year, ownProps.month, ownProps.day)
+
+  return {
+    date
+  }
+}
+
+export { DateControl }
+export default connect(mapStateToProps)(DateControl)

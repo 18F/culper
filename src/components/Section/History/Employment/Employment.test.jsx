@@ -1,10 +1,24 @@
 import React from 'react'
 import { shallow, mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import Employment from './Employment'
 
 describe('The employment section', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <Employment {...expected} />
+        </Provider>
+      )
+  })
+
   it('can trigger updates', () => {
-    let updates = 0
     const expected = {
       List: {
         branch: {},
@@ -48,15 +62,15 @@ describe('The employment section', () => {
           }
         ]
       },
-      onUpdate: () => {
-        updates++
-      }
+      onUpdate: jest.fn()
     }
-    const component = mount(<Employment {...expected} />)
-    expect(updates).toBe(1)
+    const component = createComponent(expected)
+    expect(expected.onUpdate.mock.calls.length).toBe(1)
   })
 
   it('sorts employment items with most recent being first', () => {
+    const mockStore = configureMockStore()
+    const store = mockStore()
     const props = {
       List: {
         branch: {},
@@ -119,10 +133,16 @@ describe('The employment section', () => {
       }
     }
 
-    const component = mount(<Employment {...props} />)
-    const sortedEmploymentItems = component.instance().sortEmploymentItems(props.List.items)
+    const component = shallow(
+      <Provider store={store}>
+        <Employment {...props} />
+      </Provider>
+    )
+    const sortedEmploymentItems = component
+      .dive()
+      .instance()
+      .sortEmploymentItems(props.List.items)
 
-    console.log(sortedEmploymentItems[0])
     expect(sortedEmploymentItems[0].Item.Dates.from.year).toEqual('2014')
     expect(sortedEmploymentItems[1].Item.Dates.from.year).toEqual('2005')
     expect(sortedEmploymentItems[2].Item.Dates.from.year).toEqual('2000')

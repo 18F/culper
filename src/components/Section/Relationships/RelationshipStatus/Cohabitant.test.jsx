@@ -1,14 +1,29 @@
 import React from 'react'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
 import Cohabitant from './Cohabitant'
 
 describe('The cohabitant component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <Cohabitant {...expected} />
+        </Provider>
+      )
+  })
+
   it('no error on empty', () => {
     const expected = {
       name: 'cohabitant'
     }
 
-    const component = mount(<Cohabitant {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.cohabitant').length).toEqual(1)
   })
 
@@ -25,7 +40,7 @@ describe('The cohabitant component', () => {
       }
     }
 
-    const component = mount(<Cohabitant {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.cohabitant').length).toEqual(1)
     component.find('.cohabitant-name .first input').simulate('change')
     component
@@ -68,7 +83,7 @@ describe('The cohabitant component', () => {
       SSN: {}
     }
 
-    const component = mount(<Cohabitant {...expected} />)
+    const component = createComponent(expected)
     component
       .find('.cohabitant-name .first input')
       .simulate('change', { target: { value: 'Foo' } })
@@ -101,7 +116,7 @@ describe('The cohabitant component', () => {
       SSN: {}
     }
 
-    const component = mount(<Cohabitant {...expected} />)
+    const component = createComponent(expected)
     component
       .find('.cohabitant-name .first input')
       .simulate('change', { target: { value: 'Foo' } })
@@ -115,7 +130,7 @@ describe('The cohabitant component', () => {
     const expected = {
       BirthPlace: { country: 'United States' }
     }
-    const component = mount(<Cohabitant {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.foreign-born-documents').length).toEqual(0)
   })
 
@@ -123,7 +138,7 @@ describe('The cohabitant component', () => {
     const expected = {
       BirthPlace: { country: 'Canada' }
     }
-    const component = mount(<Cohabitant {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.foreign-born-documents').length).toEqual(1)
   })
 })

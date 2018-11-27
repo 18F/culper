@@ -4,8 +4,7 @@ import Residence from './Residence'
 
 describe('The residence section', () => {
   it('can trigger updates', () => {
-    // XXX this is testing react, not the component
-    let updates = 0
+    const onUpdate = jest.fn()
     const expected = {
       List: {
         branch: {},
@@ -30,9 +29,7 @@ describe('The residence section', () => {
           }
         ]
       },
-      onUpdate: () => {
-        updates++
-      }
+      onUpdate
     }
     const component = shallow(<Residence {...expected} />)
     expect(component).toBeDefined()

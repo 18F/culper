@@ -1,14 +1,31 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import RevokedItem from './RevokedItem'
 
 describe('The legal investigations revoked item component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <RevokedItem {...expected} />
+        </Provider>
+      )
+  })
+
   it('can update', () => {
     let updates = 0
-    const onUpdate = () => {
-      updates++
+    const expected = {
+      onUpdate: () => {
+        updates++
+      }
     }
-    const component = mount(<RevokedItem onUpdate={onUpdate} />)
+    const component = createComponent(expected)
     component
       .find('.legal-investigations-revoked-date .year input')
       .simulate('change')

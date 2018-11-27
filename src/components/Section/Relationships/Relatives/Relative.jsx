@@ -20,9 +20,9 @@ import {
   NotApplicable,
   Location
 } from '../../../Form'
+import AlternateAddress from '../../../Form/Location/AlternateAddress'
 import { RelativeValidator } from '../../../../validators'
 import { countryString } from '../../../../validators/location'
-import { today, daysAgo } from '../../History/dateranges'
 import Alias from './Alias'
 import { extractDate } from '../../History/dateranges'
 
@@ -683,15 +683,15 @@ export default class Relative extends ValidationElement {
               required={this.props.required}
             />
           </Field>
-
-          {this.props.render({
-            address: this.props.AlternateAddress,
-            belongingTo: 'AlternateAddress',
-            country: this.props.Address.country,
-            forceAPO: true,
-            militaryAddressLabel: i18n.t('address.militaryAddress.other'),
-            onUpdate: this.update
-          })}
+          <AlternateAddress
+            address={this.props.AlternateAddress}
+            addressBook={this.props.addressBook}
+            belongingTo="AlternateAddress"
+            country={countryString(this.props.Address.country)}
+            forceAPO
+            militaryAddressLabel={i18n.t('address.militaryAddress.relative')}
+            onUpdate={this.update}
+          />
         </Show>
 
         <Show when={validator.requiresCitizenshipDocumentation()}>

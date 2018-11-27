@@ -1,14 +1,29 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import Employment from './Employment'
 
 describe('The foreign business employment component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <Employment {...expected} />
+        </Provider>
+      )
+  })
+
   it('display nothing when "no" is clicked', () => {
     const expected = {
       name: 'foreign-business-employment',
       HasForeignEmployment: { value: 'No' }
     }
-    const component = mount(<Employment {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(0)
   })
 
@@ -17,7 +32,7 @@ describe('The foreign business employment component', () => {
       name: 'foreign-business-employment',
       HasForeignEmployment: { value: 'Yes' }
     }
-    const component = mount(<Employment {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(1)
   })
 
@@ -31,7 +46,7 @@ describe('The foreign business employment component', () => {
         return arr
       }
     }
-    const component = mount(<Employment {...expected} />)
+    const component = createComponent(expected)
     component
       .find('.branch .yes input')
       .at(0)
@@ -62,7 +77,7 @@ describe('The foreign business employment component', () => {
         updates++
       }
     }
-    const component = mount(<Employment {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.accordion').length).toBe(1)
     updates = 0
     component.find('.employment-name .first input').simulate('change')

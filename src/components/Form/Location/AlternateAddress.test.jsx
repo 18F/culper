@@ -20,7 +20,7 @@ describe('<AlternateAddress />', () => {
       const branch = component.find('Branch')
   
       expect(branch.length).toEqual(1)
-      expect(branch.prop('label')).toEqual(address.militaryAddress.me)
+      expect(branch.prop('label')).toEqual(address.militaryAddress.meEmployment)
     })
 
     it('renders an APO/FPO-only component when Branch value is yes', () => {

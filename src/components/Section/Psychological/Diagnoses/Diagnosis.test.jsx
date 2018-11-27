@@ -1,19 +1,36 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import Diagnosis from './Diagnosis'
 
 describe('The Diagnosis component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <Diagnosis {...expected} />
+        </Provider>
+      )
+  })
+
   it('Renders without errors', () => {
-    const component = mount(<Diagnosis />)
+    const component = createComponent()
     expect(component.find('.diagnosis').length).toBe(1)
   })
 
   it('Performs updates', () => {
     let updates = 0
-    const onUpdate = () => {
-      updates++
+    const expected = {
+      onUpdate: () => {
+        updates++
+      }
     }
-    const component = mount(<Diagnosis onUpdate={onUpdate} />)
+    const component = createComponent(expected)
     component.find('.diagnosis-condition-psychotic input').simulate('change')
     component
       .find('.datecontrol .year input')
@@ -35,7 +52,7 @@ describe('The Diagnosis component', () => {
         updates++
       }
     }
-    const component = mount(<Diagnosis {...props} />)
+    const component = createComponent(props)
     component.find('textarea').simulate('change')
     expect(updates).toBe(1)
   })

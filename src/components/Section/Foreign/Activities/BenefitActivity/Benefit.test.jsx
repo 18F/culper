@@ -1,22 +1,40 @@
 import React from 'react'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
 import Benefit from './Benefit'
+import ContinuingBenefit from './ContinuingBenefit'
 
 describe('The Benefit component', () => {
+  const mockStore = configureMockStore()
+  let createComponent
+
+  beforeEach(() => {
+    const store = mockStore()
+    createComponent = (expected = {}) =>
+      mount(
+        <Provider store={store}>
+          <Benefit {...expected} />
+        </Provider>
+      )
+  })
+
   it('Renders without errors', () => {
-    const component = mount(<Benefit />)
+    const component = createComponent()
     expect(component.find('.benefit').length).toBe(1)
   })
 
   it('Performs updates for base fields', () => {
     let updates = 0
-    const onUpdate = () => {
-      updates++
+    const expected = {
+      onUpdate: () => {
+        updates++
+      },
+      InterestTypes: {
+        value: ['Yourself']
+      }
     }
-    const interestTypes = { value: ['Yourself'] }
-    const component = mount(
-      <Benefit onUpdate={onUpdate} InterestTypes={interestTypes} />
-    )
+    const component = createComponent(expected)
     expect(component.find('.benefit').length).toBe(1)
     // Toggle
     component
@@ -68,7 +86,7 @@ describe('The Benefit component', () => {
       }
     }
 
-    const component = mount(<Benefit {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.onetime-benefit').length).toBe(1)
     component.find('.obligated .no input').simulate('change')
     expect(updates).toBe(1)
@@ -89,7 +107,7 @@ describe('The Benefit component', () => {
       }
     }
 
-    const component = mount(<Benefit {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.future-benefit').length).toBe(1)
     component.find('.obligated .no input').simulate('change')
     expect(updates).toBe(1)
@@ -104,7 +122,7 @@ describe('The Benefit component', () => {
       BenefitType: { value: 'Other' }
     }
 
-    const component = mount(<Benefit {...expected} />)
+    const component = createComponent(expected)
     component.find('textarea[name="OtherBenefitType"]').simulate('change')
     expect(updates).toBe(1)
   })
@@ -124,26 +142,21 @@ describe('The Benefit component', () => {
       }
     }
 
-    const component = mount(<Benefit {...expected} />)
+    const component = createComponent(expected)
     expect(component.find('.continuing-benefit').length).toBe(1)
     component.find('.obligated .no input').simulate('change')
     expect(updates).toBe(1)
   })
 
-  it('Renders with other benefit and triggers update', () => {
-    let updates = 0
+  it('Renders with proper fields for other benefit type', () => {
     const expected = {
-      onUpdate: () => {
-        updates++
-      },
       BenefitFrequency: { value: 'Other' },
       OtherBenefit: {
         value: 'Other'
       }
     }
 
-    const component = mount(<Benefit {...expected} />)
-    component.find('textarea[name="OtherBenefit"]').simulate('change')
-    expect(updates).toBe(1)
+    const component = createComponent(expected)
+    expect(component.find(ContinuingBenefit).length).toBe(1)
   })
 })

@@ -18,6 +18,7 @@ import {
   Location,
   AccordionItem
 } from '../../../Form'
+import AlternateAddress from '../../../Form/Location/AlternateAddress'
 
 export default class ForeignNational extends ValidationElement {
   constructor(props) {
@@ -680,17 +681,15 @@ export default class ForeignNational extends ValidationElement {
             />
           </NotApplicable>
         </Field>
-
-        {this.props.render({
-          address: this.props.AlternateAddress,
-          addressBook: 'ForeignNational',
-          belongingTo: 'AlternateAddress',
-          country: this.props.Address.country,
-          forceAPO: true,
-          militaryAddressLabel: i18n.t('address.militaryAddress.other'),
-          onUpdate: this.update
-        })}
-
+        <AlternateAddress
+          address={this.props.AlternateAddress}
+          addressBook="ForeignNational"
+          belongingTo="AlternateAddress"
+          country={this.props.Address.country}
+          forceAPO
+          militaryAddressLabel={i18n.t('address.militaryAddress.foreignNational')}
+          onUpdate={this.update}
+        />
         <Field
           title={i18n.t('foreign.contacts.heading.employer')}
           scrollIntoView={this.props.scrollIntoView}>
