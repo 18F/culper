@@ -111,7 +111,7 @@ export default class Supervisor extends ValidationElement {
             name="EmailNotApplicable"
             {...this.props.EmailNotApplicable}
             className="supervisor-email-na"
-            label={i18n.t('reference.label.notApplicable')}
+            label={i18n.t('reference.label.idk')}
             or={i18n.m('reference.para.or')}
             onUpdate={this.updateEmailNotApplicable}
             onError={this.props.onError}>
