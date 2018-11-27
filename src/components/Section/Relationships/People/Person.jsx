@@ -174,7 +174,7 @@ export default class Person extends React.Component {
             className="rank-notapplicable"
             {...this.props.RankNotApplicable}
             label={i18n.t(
-              'relationships.people.person.label.notApplicable'
+              'relationships.people.person.label.emailNotApplicable'
             )}
             or={i18n.m('relationships.people.person.label.or')}
             onError={this.props.onError}
