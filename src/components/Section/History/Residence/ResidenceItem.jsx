@@ -543,7 +543,7 @@ export default class ResidenceItem extends ValidationElement {
                 <NotApplicable
                   name="ReferenceEmailNotApplicable"
                   {...this.props.ReferenceEmailNotApplicable}
-                  label={i18n.t('reference.label.idk')}
+                  label={i18n.t('reference.label.notApplicable')}
                   or={i18n.m('reference.para.or')}
                   onUpdate={this.updateReferenceEmailNotApplicable}
                   onError={this.props.onError}>
