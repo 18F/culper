@@ -1,14 +1,13 @@
 .history {
   .employment-activity {
     .block label {
-      height: 8rem;
+      height: 12rem;
       width: 18rem;
       padding-top: 2rem;
       line-height: 1.4 !important;
     }
   }
 
-  .employment-activity-state-government,
   .employment-activity-federal-contractor,
   .employment-activity-self,
   .employment-activity-unemployment,
@@ -17,6 +16,15 @@
       padding-top: 2.5rem;
     }
   }
+
+  // Hack
+  .employment-activity-state-government,
+  .employment-activity-nongovernment {
+    &.block label {
+      padding-top: 0;
+    }
+  }
+
 
   .employment-left {
     .block label {
