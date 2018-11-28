@@ -43,6 +43,8 @@ export default class Name extends ValidationElement {
       lastInitialOnly: this.props.lastInitialOnly,
       middle: this.props.middle,
       middleInitialOnly: this.props.middleInitialOnly,
+      hideMiddleName: this.props.hideMiddleName,
+      hideLastInitialOnly: this.props.hideLastInitialOnly,
       noMiddleName: this.props.noMiddleName,
       suffix: this.props.suffix,
       suffixOther: this.props.suffixOther,
