@@ -290,7 +290,8 @@ func TestScenario5(t *testing.T) {
 	executeScenario(t, "test5")
 }
 
-// `test6` is a basic smoke test, a bare bones application
+// `test6` is a basic smoke test, a bare bones application plus:
+// * Other Foreign Benefit with Other Frequency Type and received at Other interval
 func TestScenario6(t *testing.T) {
 	executeScenario(t, "test6")
 }
