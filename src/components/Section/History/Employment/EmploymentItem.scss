@@ -1,10 +1,10 @@
 .history {
   .employment-activity {
     .block label {
-      height: 12rem;
+      height: 8rem;
       width: 18rem;
       padding-top: 2rem;
-      line-height: 1.4 !important;
+      line-height: 1.1 !important;
     }
   }
 
@@ -17,11 +17,15 @@
     }
   }
 
-  // Hack
+  // Entire block is a hack
   .employment-activity-state-government,
   .employment-activity-nongovernment {
     &.block label {
       padding-top: 0;
+    }
+
+    p:first-of-type {
+      line-height: 1.1;
     }
   }
 
