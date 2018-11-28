@@ -471,6 +471,7 @@ export default class EmploymentItem extends ValidationElement {
                 onUpdate={this.updateReferenceName}
                 onError={this.props.onError}
                 required={this.props.required}
+                hideMiddleName={this.props.EmploymentActivity.value === "SelfEmployment"}
               />
             </Field>
 
