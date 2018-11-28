@@ -337,9 +337,4 @@ describe('The Name component', () => {
     const component = shallow(<Name hideMiddleName />)
     expect(component.find('.middle').length).toBe(0)
   })
-
-  it('hides last initial only checkbox', () => {
-    const component = shallow(<Name hideLastInitialOnly />)
-    expect(component.find('.last-initial-only').length).toBe(0)
-  })
 })

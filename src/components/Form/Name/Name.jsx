@@ -44,7 +44,6 @@ export default class Name extends ValidationElement {
       middle: this.props.middle,
       middleInitialOnly: this.props.middleInitialOnly,
       hideMiddleName: this.props.hideMiddleName,
-      hideLastInitialOnly: this.props.hideLastInitialOnly,
       noMiddleName: this.props.noMiddleName,
       suffix: this.props.suffix,
       suffixOther: this.props.suffixOther,
@@ -311,22 +310,20 @@ export default class Name extends ValidationElement {
             required={this.props.required}
             disabled={this.props.disabled}
           />
-          {!this.props.hideLastInitialOnly && (
-            <div className="flags">
-              <Checkbox
-                name="lastInitialOnly"
-                ref="lastInitialOnly"
-                label={i18n.t(`${prefix}.label.initialOnly`)}
-                className="last-initial-only"
-                toggle="false"
-                value={this.props.lastInitialOnly}
-                checked={this.props.lastInitialOnly}
-                onUpdate={this.updateLastInitial}
-                onError={this.handleErrorLast}
-                disabled={this.props.disabled}
-              />
-            </div>
-          )}
+          <div className="flags">
+            <Checkbox
+              name="lastInitialOnly"
+              ref="lastInitialOnly"
+              label={i18n.t(`${prefix}.label.initialOnly`)}
+              className="last-initial-only"
+              toggle="false"
+              value={this.props.lastInitialOnly}
+              checked={this.props.lastInitialOnly}
+              onUpdate={this.updateLastInitial}
+              onError={this.handleErrorLast}
+              disabled={this.props.disabled}
+            />
+          </div>
         </Field>
         <Field
           title={i18n.t(`${prefix}.label.suffix`)}
@@ -501,7 +498,6 @@ Name.defaultProps = {
   middleInitialOnly: false,
   noMiddleName: false,
   hideMiddleName: false,
-  hideLastInitialOnly: false,
   suffix: '',
   suffixOther: '',
   prefix: 'name',
