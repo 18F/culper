@@ -91,7 +91,9 @@ func (service SamlSLORequestHandler) ServeHTTP(w http.ResponseWriter, r *http.Re
 
 	encoded, url, err := service.SAML.CreateSLORequest(account.Username, sessionIndex)
 	if err != nil {
+		service.Log.WarnError(api.SamlSLORequestGeneration, err, api.LogFields{})
 		http.Error(w, api.SamlSLORequestGeneration, http.StatusInternalServerError)
+		return
 	}
 
 	EncodeJSON(w, struct {

@@ -1,10 +1,13 @@
 package saml
 
 import (
+	"bytes"
+	"crypto/tls"
 	"encoding/base64"
 	"encoding/xml"
 	"time"
 
+	"github.com/amdonov/xmlsig"
 	"github.com/satori/go.uuid"
 )
 
@@ -20,6 +23,8 @@ type logoutRequest struct {
 
 	Name   logoutRequestName
 	Issuer string `xml:"saml:Issuer"`
+
+	Signature *xmlsig.Signature
 }
 
 // logoutRequestName is the name field of the XML
@@ -53,14 +58,38 @@ func newLogoutRequest(issuer string, username string, sessionIndex string) logou
 	}
 }
 
+func (req *logoutRequest) signRequest(certFile, keyFile string) error {
+	cert, err := tls.LoadX509KeyPair(certFile, keyFile)
+	if err != nil {
+		return err
+	}
+
+	signer, err := xmlsig.NewSigner(cert)
+	if err != nil {
+		return err
+	}
+
+	sig, err := signer.CreateSignature(req)
+	if err != nil {
+		return err
+	}
+	req.Signature = sig
+
+	return nil
+}
+
 // xml returns the xml for the logout request
 func (req *logoutRequest) xml() ([]byte, error) {
-	output, err := xml.MarshalIndent(req, "", "    ")
+
+	var b bytes.Buffer
+	b.Write([]byte(xml.Header))
+	encoder := xml.NewEncoder(&b)
+	err := encoder.Encode(req)
 	if err != nil {
 		return nil, err
 	}
+	fullOutput := b.Bytes()
 
-	fullOutput := append([]byte(xml.Header), output...)
 
 	return fullOutput, nil
 

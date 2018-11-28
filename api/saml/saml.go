@@ -220,7 +220,15 @@ func cleanName(nameID string) string {
 // CreateSLORequest creates an encoded SAML Logout Request suitable for sending to the identity server
 func (service *Service) CreateSLORequest(username string, sessionIndex string) (string, string, error) {
 	req := newLogoutRequest(service.provider.IDPSSODescriptorURL, username, sessionIndex)
+
+	err := req.signRequest(service.provider.PublicCertPath, service.provider.PrivateKeyPath)
+	if err != nil {
+		return "", "", err
+	}
 	encoded, err := req.base64()
+	if err != nil {
+		return "", "", err
+	}
 
 	url, err := getAuthnRequestURL(service.provider.IDPSSOURL, "state")
 	if err != nil {
@@ -241,8 +249,8 @@ func getAuthnRequestURL(baseURL string, state string) (string, error) {
 		return "", err
 	}
 
-	q := u.Query()
-	q.Add("RelayState", state)
-	u.RawQuery = q.Encode()
+	// q := u.Query()
+	// q.Add("RelayState", state)
+	// u.RawQuery = q.Encode()
 	return u.String(), nil
 }
