@@ -472,6 +472,7 @@ export default class EmploymentItem extends ValidationElement {
                 onError={this.props.onError}
                 required={this.props.required}
                 hideMiddleName
+                hideLastInitialOnly
               />
             </Field>
 
