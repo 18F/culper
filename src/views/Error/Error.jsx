@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { i18n } from '../../config'
 
-class Error extends React.Component {
+export default class Error extends React.Component {
   render() {
     return (
       <div className="login eapp-core" id="login">
@@ -30,11 +30,3 @@ class Error extends React.Component {
     )
   }
 }
-
-Error.defaultProps = {}
-
-function mapStateToProps(state) {
-  return {}
-}
-
-export default connect(mapStateToProps)(Error)
