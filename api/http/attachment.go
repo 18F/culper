@@ -24,12 +24,6 @@ type AttachmentListHandler struct {
 
 // ServeHTTP serves the HTTP response.
 func (service AttachmentListHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	if !service.Env.True(api.AttachmentsEnabled) {
-		service.Log.Warn(api.AttachmentDenied, api.LogFields{})
-		http.Error(w, "Attachments is not implemented", http.StatusInternalServerError)
-		return
-	}
-
 	account := &api.Account{}
 
 	// Valid token and audience while populating the audience ID
@@ -254,12 +248,6 @@ type AttachmentGetHandler struct {
 
 // ServeHTTP serves the HTTP response.
 func (service AttachmentGetHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	if !service.Env.True(api.AttachmentsEnabled) {
-		service.Log.Warn(api.AttachmentDenied, api.LogFields{})
-		http.Error(w, "Attachments is not implemented", http.StatusInternalServerError)
-		return
-	}
-
 	account := &api.Account{}
 
 	// Valid token and audience while populating the audience ID
