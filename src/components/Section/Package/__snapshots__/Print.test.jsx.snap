@@ -57,6 +57,81 @@ exports[`The print section renders properly 1`] = `
   <div
     className="print-view"
   >
+    <h4>
+      <div>
+        <p>
+          Statement of Understanding
+        </p>
+      </div>
+    </h4>
+    <div>
+      <p>
+        Persons completing this form should begin after carefully reading the preceding instructions
+      </p>
+    </div>
+    <div>
+      <p>
+        I have read the instructions and I understand that if I withhold, misrepresent, or falsify information on this form, I am subject to the penalties for inaccurate or false statement (per U. S. Criminal Code, Title 18, section 1001), denial or revocation of a security clearance, and/or removal and debarment from Federal Service.
+      </p>
+    </div>
+    <div
+      className="blocks option-list branch"
+    >
+      <div
+        className="yes block"
+      >
+        <label
+          className="checked"
+          htmlFor="radio_input-MOCK-GUID"
+        >
+          <input
+            aria-label="Yes for null"
+            checked={true}
+            className="usa-input-success selected"
+            disabled={false}
+            id="radio_input-MOCK-GUID"
+            name="radio_input-MOCK-GUID"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            type="radio"
+            value="Yes"
+          />
+          <span>
+            Yes
+          </span>
+        </label>
+      </div>
+      <div
+        className="no block"
+      >
+        <label
+          className=""
+          htmlFor="radio_input-MOCK-GUID"
+        >
+          <input
+            aria-label="No for null"
+            checked={false}
+            className="usa-input-success"
+            disabled={false}
+            id="radio_input-MOCK-GUID"
+            name="radio_input-MOCK-GUID"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            type="radio"
+            value="No"
+          />
+          <span>
+            No
+          </span>
+        </label>
+      </div>
+    </div>
     <div
       className="section-print-container"
     >
