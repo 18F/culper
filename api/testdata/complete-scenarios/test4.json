@@ -1475,9 +1475,7 @@
                     "props": {
                       "first": "",
                       "firstInitialOnly": false,
-                      "middle": "",
-                      "middleInitialOnly": false,
-                      "noMiddleName": false,
+                      "noMiddleName": true,
                       "last": "",
                       "lastInitialOnly": false,
                       "suffix": "",

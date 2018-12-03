@@ -6744,9 +6744,7 @@
                     "props": {
                       "first": "EDUC ONE REFEXXXXXXXXOO",
                       "firstInitialOnly": false,
-                      "middle": "EDUC ONE REFE MIDDLEXXXXXXXXOO",
-                      "middleInitialOnly": false,
-                      "noMiddleName": false,
+                      "noMiddleName": true,
                       "last": "EDUC ONE REFE LASTXXXXXXXXOO",
                       "lastInitialOnly": false,
                       "suffix": "I",
@@ -6925,9 +6923,7 @@
                     "props": {
                       "first": "",
                       "firstInitialOnly": false,
-                      "middle": "",
-                      "middleInitialOnly": false,
-                      "noMiddleName": false,
+                      "noMiddleName": true,
                       "last": "",
                       "lastInitialOnly": false,
                       "suffix": "",

@@ -6524,8 +6524,6 @@
                     "props": {
                       "first": "",
                       "firstInitialOnly": false,
-                      "middle": "",
-                      "middleInitialOnly": false,
                       "noMiddleName": false,
                       "last": "",
                       "lastInitialOnly": false,
@@ -6704,9 +6702,7 @@
                     "props": {
                       "first": "",
                       "firstInitialOnly": false,
-                      "middle": "",
-                      "middleInitialOnly": false,
-                      "noMiddleName": false,
+                      "noMiddleName": true,
                       "last": "",
                       "lastInitialOnly": false,
                       "suffix": "",
@@ -6852,9 +6848,7 @@
                     "props": {
                       "first": "",
                       "firstInitialOnly": false,
-                      "middle": "",
-                      "middleInitialOnly": false,
-                      "noMiddleName": false,
+                      "noMiddleName": true,
                       "last": "",
                       "lastInitialOnly": false,
                       "suffix": "",
@@ -7037,9 +7031,7 @@
                     "props": {
                       "first": "Timothy",
                       "firstInitialOnly": false,
-                      "middle": "",
-                      "middleInitialOnly": false,
-                      "noMiddleName": true,
+                      "noMiddleName": false,
                       "last": "Bronston",
                       "lastInitialOnly": false,
                       "suffix": "",
