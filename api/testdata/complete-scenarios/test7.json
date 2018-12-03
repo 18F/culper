@@ -14158,10 +14158,9 @@
                   "BirthPlace": {
                     "type": "location",
                     "props": {
-                      "layout": "Birthplace",
+                      "layout": "Birthplace without County",
                       "city": "POBXXXXXXXXOO",
                       "state": "PR",
-                      "county": "COUNTYXXXXXXXXOO",
                       "country": "United States"
                     }
                   },
