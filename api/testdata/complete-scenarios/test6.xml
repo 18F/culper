@@ -651,7 +651,34 @@
                 <Answer>No</Answer>
               </RealEstateHoldings>
               <ForeignFinancialBenefits>
-                <Answer>No</Answer>
+                <Answer>Yes</Answer>
+                <ForeignFinancialBenefit ID="1">
+                  <Members Yourself="True"/>
+                  <Type>Other</Type>
+                  <TypeOtherExplanation>Other such benefit, explanation</TypeOtherExplanation>
+                  <Country>Canada</Country>
+                  <FrequencyType>Other</FrequencyType>
+                  <FrequencyTypeOtherExplanation>Frequency of benefit, other, provide explanation</FrequencyTypeOtherExplanation>
+                  <BeginDate>
+                    <Month>01</Month>
+                    <Day>02</Day>
+                    <Year>2016</Year>
+                  </BeginDate>
+                  <EndDate>
+                    <Month>02</Month>
+                    <Day>03</Day>
+                    <Year>2050</Year>
+                  </EndDate>
+                  <FrequencyReceivedType>Other</FrequencyReceivedType>
+                  <FrequencyReceivedTypeOtherExplanation>Frequency that this benefit is received, other, provide explanation</FrequencyReceivedTypeOtherExplanation>
+                  <ObligatedToCountry>
+                    <Answer>Yes</Answer>
+                    <Explanation>As a result, I am obligated to this foreign country explanation</Explanation>
+                  </ObligatedToCountry>
+                  <Reason>Reason the benefit will be received</Reason>
+                  <Value>90210</Value>
+                </ForeignFinancialBenefit>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
               </ForeignFinancialBenefits>
               <ForeignNationalsSupported>
                 <Answer>No</Answer>
