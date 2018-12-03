@@ -137,7 +137,7 @@ describe('Divorce validation', function() {
             country: { value: 'United States' },
             city: 'Arlington',
             state: 'VA',
-            layout: Location.BIRTHPLACE
+            layout: Location.BIRTHPLACE_WITHOUT_COUNTY
           },
           Citizenship: {
             value: ['Germany']
