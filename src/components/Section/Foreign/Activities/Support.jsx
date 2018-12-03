@@ -2,7 +2,7 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import schema from '../../../../schema'
 import validate from '../../../../validators'
-import { Summary, NameSummary } from '../../../Summary'
+import { Summary, DateSummary, NameSummary } from '../../../Summary'
 import {
   ForeignActivitiesSupportValidator,
   SupportValidator
@@ -42,7 +42,8 @@ export default class Support extends SubsectionElement {
   }
 
   summary(item, index) {
-    const name = NameSummary((item || {}).Name)
+    const o = (item || {}).Item || {}
+    const name = NameSummary(o.Name)
     return Summary({
       type: i18n.t('foreign.activities.support.collection.summary.item'),
       index: index,
