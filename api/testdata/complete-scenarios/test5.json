@@ -16550,10 +16550,9 @@
                   "BirthPlace": {
                     "type": "location",
                     "props": {
-                      "layout": "Birthplace",
+                      "layout": "Birthplace without County",
                       "city": "Monterey",
                       "state": "CA",
-                      "county": "Monterey",
                       "country": "United States"
                     }
                   },
