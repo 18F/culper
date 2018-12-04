@@ -6857,7 +6857,7 @@
                       "middle": "",
                       "hideMiddleName": true,
                       "middleInitialOnly": false,
-                      "noMiddleName": true,
+                      "noMiddleName": false,
                       "last": "",
                       "lastInitialOnly": false,
                       "suffix": "",
