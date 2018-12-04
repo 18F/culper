@@ -173,7 +173,7 @@ $breakpoints: (
     .summary-item-content {
       .context {
         display: inline-block;
-        max-width: 70%;
+        max-width: 49%;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -207,7 +207,7 @@ $breakpoints: (
       }
 
       .dates {
-        margin-left: 2rem;
+        float: right;
       }
 
       // All but the first anchor
@@ -369,9 +369,6 @@ button.usa-button-outline {
           transition: width 300ms ease-out;
           vertical-align: middle;
 
-          .button-with-icon {
-            margin-left: 2rem;
-          }
         }
       }
     }
