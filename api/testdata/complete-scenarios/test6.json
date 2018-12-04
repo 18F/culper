@@ -1552,7 +1552,10 @@
                     "props": {
                       "first": "",
                       "firstInitialOnly": false,
-                      "noMiddleName": true,
+                      "middle": "",
+                      "hideMiddleName": true,
+                      "middleInitialOnly": false,
+                      "noMiddleName": false,
                       "last": "",
                       "lastInitialOnly": false,
                       "suffix": "",
@@ -1732,7 +1735,10 @@
                     "props": {
                       "first": "",
                       "firstInitialOnly": false,
-                      "noMiddleName": true,
+                      "middle": "",
+                      "hideMiddleName": true,
+                      "middleInitialOnly": false,
+                      "noMiddleName": false,
                       "last": "",
                       "lastInitialOnly": false,
                       "suffix": "",
