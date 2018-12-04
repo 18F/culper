@@ -135,7 +135,12 @@ export const application = {
     logout: 'Make sure you save and/or print your responses before logging out'
   },
   loading: {
-    title: '#### We are loading your data'
+    title: '#### We are loading your data',
+    error: {
+      title: 'Oops, there’s a problem.',
+      para: ['There was a problem loading your data, please try again.'],
+      button: 'Back to login'
+    }
   },
   timeout: {
     title: 'Are you still working?',

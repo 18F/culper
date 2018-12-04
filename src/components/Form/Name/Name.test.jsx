@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../config'
-import { mount } from 'enzyme'
+import { shallow, mount } from 'enzyme'
 import Name from './Name'
 
 describe('The Name component', () => {
@@ -335,5 +335,10 @@ describe('The Name component', () => {
       component.find({ name: 'middle' }).simulate('change')
       expect(component.find('.usa-input-error').length).toEqual(ex.errors)
     })
+  })
+
+  it('hides middle name', () => {
+    const component = shallow(<Name hideMiddleName />)
+    expect(component.find('.middle').length).toBe(0)
   })
 })

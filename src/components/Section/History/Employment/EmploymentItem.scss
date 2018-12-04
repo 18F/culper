@@ -1,20 +1,27 @@
 .history {
   .employment-activity {
     .block label {
-      height: 8rem;
+      height: 11rem;
       width: 18rem;
       padding-top: 2rem;
-      line-height: 1.4 !important;
+      line-height: 1.5 !important;
     }
   }
 
-  .employment-activity-state-government,
   .employment-activity-federal-contractor,
   .employment-activity-self,
   .employment-activity-unemployment,
   .employment-activity-other {
     &.block label {
       padding-top: 2.5rem;
+    }
+  }
+
+  // Entire block is a hack
+  .employment-activity-state-government,
+  .employment-activity-nongovernment {
+    &.block label {
+      padding-top: 0;
     }
   }
 

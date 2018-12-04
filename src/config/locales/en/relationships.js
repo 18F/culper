@@ -713,8 +713,8 @@ export const relationships = {
       label: {
         address: 'This address is',
         or: 'or',
-        emailNotApplicable: "I don't know",
-        rankNotApplicable: 'Not applicable',
+        idk: "I don't know",
+        notApplicable: 'Not applicable',
         relationship: {
           title: 'Check all that apply.',
           neighbor: 'Neighbor',

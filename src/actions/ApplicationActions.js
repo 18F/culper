@@ -48,10 +48,8 @@ export function getApplicationState(done) {
           done()
         }
       })
-      .catch(() => {
-        if (console && console.warn) {
-          console.warn('Failed to retrieve form saved data')
-        }
+      .catch(error => {
+        env.History().push('/error')
       })
   }
 }

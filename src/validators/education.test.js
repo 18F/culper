@@ -181,9 +181,7 @@ describe('Education component validation', function() {
           ReferenceName: {
             first: 'Foo',
             firstInitialOnly: false,
-            middle: 'J',
-            middleInitialOnly: true,
-            noMiddleName: false,
+            noMiddleName: true,
             last: 'Bar',
             lastInitialOnly: false,
             suffix: 'Jr'

@@ -172,7 +172,7 @@ export default class Divorce extends React.Component {
           <Location
             name="birthplace"
             {...this.props.BirthPlace}
-            layout={Location.BIRTHPLACE}
+            layout={Location.BIRTHPLACE_WITHOUT_COUNTY}
             label={i18n.t('relationships.civilUnion.divorce.label.birthplace')}
             className="birthplace"
             onUpdate={this.updateBirthPlace}

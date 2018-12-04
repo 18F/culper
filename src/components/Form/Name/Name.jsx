@@ -43,6 +43,7 @@ export default class Name extends ValidationElement {
       lastInitialOnly: this.props.lastInitialOnly,
       middle: this.props.middle,
       middleInitialOnly: this.props.middleInitialOnly,
+      hideMiddleName: this.props.hideMiddleName,
       noMiddleName: this.props.noMiddleName,
       suffix: this.props.suffix,
       suffixOther: this.props.suffixOther,
@@ -234,56 +235,58 @@ export default class Name extends ValidationElement {
             />
           </div>
         </Field>
-        <Field
-          title={i18n.t(`${prefix}.label.middle`)}
-          titleSize="label"
-          help="identification.name.middle.help"
-          errorPrefix="name"
-          filterErrors={this.filterErrors.bind(this)}
-          scrollIntoView={this.props.scrollIntoView}
-          adjustFor="labels">
-          <Text
-            name="middle"
-            ref="middle"
-            pattern="^[a-zA-Z\-\.' ]*$"
-            minlength={this.props.middleInitialOnly ? 1 : 2}
-            maxlength={maxMiddle}
-            className="middle"
-            value={this.props.middle}
-            disabled={this.props.noMiddleName || this.props.disabled}
-            onUpdate={this.updateMiddle}
-            onError={this.handleErrorMiddle}
-            onFocus={this.props.onFocus}
-            onBlur={this.props.onBlur}
-            required={!this.props.noMiddleName && this.props.required}
-          />
-          <div className="middle-options flags">
-            <Checkbox
-              name="noMiddleName"
-              ref="noMiddleName"
-              label={i18n.t(`${prefix}.label.noMiddle`)}
-              className="middle-none"
-              toggle="false"
-              value={this.props.noMiddleName}
-              checked={this.props.noMiddleName}
-              onUpdate={this.updateMiddleNone}
+        {!this.props.hideMiddleName && (
+          <Field
+            title={i18n.t(`${prefix}.label.middle`)}
+            titleSize="label"
+            help="identification.name.middle.help"
+            errorPrefix="name"
+            filterErrors={this.filterErrors.bind(this)}
+            scrollIntoView={this.props.scrollIntoView}
+            adjustFor="labels">
+            <Text
+              name="middle"
+              ref="middle"
+              pattern="^[a-zA-Z\-\.' ]*$"
+              minlength={this.props.middleInitialOnly ? 1 : 2}
+              maxlength={maxMiddle}
+              className="middle"
+              value={this.props.middle}
+              disabled={this.props.noMiddleName || this.props.disabled}
+              onUpdate={this.updateMiddle}
               onError={this.handleErrorMiddle}
-              disabled={this.props.disabled}
+              onFocus={this.props.onFocus}
+              onBlur={this.props.onBlur}
+              required={!this.props.noMiddleName && this.props.required}
             />
-            <Checkbox
-              name="middleInitialOnly"
-              ref="middleInitialOnly"
-              label={i18n.t(`${prefix}.label.initialOnly`)}
-              className="middle-initial-only"
-              toggle="false"
-              value={this.props.middleInitialOnly}
-              checked={this.props.middleInitialOnly}
-              onUpdate={this.updateMiddleInitial}
-              onError={this.handleErrorMiddle}
-              disabled={this.props.disabled}
-            />
-          </div>
-        </Field>
+            <div className="middle-options flags">
+              <Checkbox
+                name="noMiddleName"
+                ref="noMiddleName"
+                label={i18n.t(`${prefix}.label.noMiddle`)}
+                className="middle-none"
+                toggle="false"
+                value={this.props.noMiddleName}
+                checked={this.props.noMiddleName}
+                onUpdate={this.updateMiddleNone}
+                onError={this.handleErrorMiddle}
+                disabled={this.props.disabled}
+              />
+              <Checkbox
+                name="middleInitialOnly"
+                ref="middleInitialOnly"
+                label={i18n.t(`${prefix}.label.initialOnly`)}
+                className="middle-initial-only"
+                toggle="false"
+                value={this.props.middleInitialOnly}
+                checked={this.props.middleInitialOnly}
+                onUpdate={this.updateMiddleInitial}
+                onError={this.handleErrorMiddle}
+                disabled={this.props.disabled}
+              />
+            </div>
+          </Field>
+        )}
         <Field
           title={i18n.t(`${prefix}.label.last`)}
           titleSize="label"
@@ -494,6 +497,7 @@ Name.defaultProps = {
   middle: '',
   middleInitialOnly: false,
   noMiddleName: false,
+  hideMiddleName: false,
   suffix: '',
   suffixOther: '',
   prefix: 'name',

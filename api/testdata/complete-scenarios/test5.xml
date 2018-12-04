@@ -2965,36 +2965,36 @@
                 <Answer>Yes</Answer>
                 <ForeignFinancialBenefit ID="1">
                   <Members Yourself="True" Spouse="True"/>
+                  <Type>Educational</Type>
                   <Country>Canada</Country>
+                  <FrequencyType>Onetime</FrequencyType>
                   <DateReceived>
                     <Month>03</Month>
                     <Day>01</Day>
                     <Year>2018</Year>
                   </DateReceived>
-                  <FrequencyType>Onetime</FrequencyType>
                   <ObligatedToCountry>
                     <Answer>Yes</Answer>
                     <Explanation>Have to say only good things</Explanation>
                   </ObligatedToCountry>
                   <Reason>Kindness</Reason>
-                  <Type>Educational</Type>
                   <Value>900</Value>
                 </ForeignFinancialBenefit>
                 <ForeignFinancialBenefit ID="2">
                   <Members Cohabitant="True"/>
+                  <Type>Medical</Type>
                   <Country>Canada</Country>
+                  <FrequencyType>Onetime</FrequencyType>
                   <DateReceived>
                     <Month>01</Month>
                     <Day>01</Day>
                     <Year>2018</Year>
                   </DateReceived>
-                  <FrequencyType>Onetime</FrequencyType>
                   <ObligatedToCountry>
                     <Answer>Yes</Answer>
                     <Explanation>Have to say good things</Explanation>
                   </ObligatedToCountry>
                   <Reason>Had medical emergency</Reason>
-                  <Type>Medical</Type>
                   <Value>10000</Value>
                 </ForeignFinancialBenefit>
                 <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>

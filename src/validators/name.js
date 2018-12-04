@@ -22,6 +22,7 @@ export default class NameValidator {
     this.lastInitialOnly = data.lastInitialOnly
     this.middleInitialOnly = data.middleInitialOnly
     this.noMiddleName = data.noMiddleName
+    this.hideMiddleName = data.hideMiddleName
     this.middle = data.middle
     this.suffix = data.suffix
     this.suffixOther = data.suffixOther
@@ -61,6 +62,11 @@ export default class NameValidator {
    * Validates a persons middle name
    */
   validMiddle() {
+
+    if (this.hideMiddleName) {
+      return true
+    }
+
     switch (this.noMiddleName) {
       case true:
         // If user does not have a middle name, make sure middle name is not entered
