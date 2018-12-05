@@ -7,15 +7,17 @@ import EmploymentItem from './EmploymentItem'
 import ReasonLeft from './ReasonLeft'
 import Reprimand from './Reprimand'
 
-const alternateAddressRenderMock = jest.fn()
-const buildProps = other => ({ render: alternateAddressRenderMock, ...other })
-
 describe('The employment component', () => {
   const mockStore = configureMockStore()
+  const defaultAppState = {
+    application: {
+      AddressBooks: {}
+    }
+  }
   let createComponent
 
   beforeEach(() => {
-    const store = mockStore()
+    const store = mockStore(defaultAppState)
     createComponent = (expected = {}) =>
       mount(
         <Provider store={store}>
@@ -25,22 +27,19 @@ describe('The employment component', () => {
   })
 
   it('no error on empty', () => {
-    const expected = buildProps({
+    const expected = {
       name: 'employment'
-    })
+    }
     const component = createComponent(expected)
     expect(component.find('.h3').length).toBeGreaterThan(0)
   })
 
   it('can populate values for Military, NationalGuard and USPHS', () => {
-    let updates = 0
-    const expected = buildProps({
+    const expected = {
       name: 'employment',
       EmploymentActivity: { value: 'ActiveMilitary' },
-      onUpdate: () => {
-        updates++
-      }
-    })
+      onUpdate: jest.fn()
+    }
     const selectors = [
       '.employment-title',
       '.employment-duty-station',
@@ -60,12 +59,12 @@ describe('The employment component', () => {
     component
       .find({ type: 'radio', value: 'ActiveMilitary' })
       .simulate('change')
-    expect(updates).toBe(1)
+    expect(expected.onUpdate.mock.calls.length).toBe(1)
   })
 
   it('display displinary when within 7 years', () => {
     const past = daysAgo(today, 365 * 6)
-    const props = buildProps({
+    const props = {
       EmploymentActivity: { value: 'ActiveMilitary' },
       Dates: {
         present: true,
@@ -76,14 +75,14 @@ describe('The employment component', () => {
         },
         to: {}
       }
-    })
+    }
     const component = createComponent(props)
     expect(component.find('.reprimand-branch').length).toBe(1)
   })
 
   it('does not display disciplinary if not within 7 years', () => {
     const past = daysAgo(today, 365 * 8)
-    const props = buildProps({
+    const props = {
       EmploymentActivity: { value: 'ActiveMilitary' },
       Dates: {
         present: false,
@@ -94,14 +93,14 @@ describe('The employment component', () => {
         },
         to: {}
       }
-    })
+    }
     const component = createComponent(props)
     expect(component.find('.reprimand-branch').length).toBe(0)
   })
 
   it('display reason left options when within 7 years', () => {
     const past = daysAgo(today, 365 * 6)
-    const props = buildProps({
+    const props = {
       EmploymentActivity: { value: 'ActiveMilitary' },
       Dates: {
         present: false,
@@ -112,14 +111,14 @@ describe('The employment component', () => {
         },
         to: {}
       }
-    })
+    }
     const component = createComponent(props)
     expect(component.find('.reason-options').length).toBe(1)
   })
 
   it('does not display reason left options if not within 7 years', () => {
     const past = daysAgo(today, 365 * 8)
-    const props = buildProps({
+    const props = {
       EmploymentActivity: { value: 'ActiveMilitary' },
       Dates: {
         present: false,
@@ -130,14 +129,14 @@ describe('The employment component', () => {
         },
         to: {}
       }
-    })
+    }
     const component = createComponent(props)
     expect(component.find('.reason-options').length).toBe(0)
   })
 
   it('does not display reason left options if currently employed', () => {
     const past = daysAgo(today, 365 * 10)
-    const props = buildProps({
+    const props = {
       EmploymentActivity: { value: 'ActiveMilitary' },
       Dates: {
         present: true,
@@ -148,14 +147,14 @@ describe('The employment component', () => {
         },
         to: {}
       }
-    })
+    }
     const component = createComponent(props)
     expect(component.find('.reason-options').length).toBe(0)
   })
 
   it('does not display reason for leaving if currently employed', () => {
     const past = daysAgo(today, 365 * 3)
-    const props = buildProps({
+    const props = {
       EmploymentActivity: { value: 'ActiveMilitary' },
       Dates: {
         present: true,
@@ -166,7 +165,7 @@ describe('The employment component', () => {
         },
         to: {}
       }
-    })
+    }
     const component = createComponent(props)
     expect(component.find('.reason-description').length).toBe(0)
   })
@@ -176,7 +175,7 @@ describe('The employment component', () => {
 
     beforeEach(() => {
       const past = daysAgo(today, 365 * 3)
-      const props = buildProps({
+      const props = {
         EmploymentActivity: { value: 'Unemployment' },
         Dates: {
           present: true,
@@ -187,7 +186,7 @@ describe('The employment component', () => {
           },
           to: {}
         }
-      })
+      }
       component = createComponent(props)
     })
 
@@ -202,7 +201,7 @@ describe('The employment component', () => {
 
   it('it does display reason for leaving', () => {
     const past = daysAgo(today, 365 * 3)
-    const props = buildProps({
+    const props = {
       EmploymentActivity: { value: 'ActiveMilitary' },
       Dates: {
         present: false,
@@ -213,7 +212,7 @@ describe('The employment component', () => {
         },
         to: {}
       }
-    })
+    }
     const component = createComponent(props)
     expect(component.find('.reason-description').length).toBe(1)
   })

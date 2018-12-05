@@ -7,6 +7,7 @@ import {
   Loading,
   AccessDenied,
   Locked,
+  Error,
   TokenRefresh,
   Help
 } from '../../views'
@@ -44,6 +45,7 @@ class Main extends React.Component {
           <Route exact path="/login" component={Login} />
           <Route exact path="/accessdenied" component={AccessDenied} />
           <Route exact path="/locked" component={Locked} />
+          <Route exact path="/error" component={Error} />
           <Route exact path="/token" component={TokenRefresh} />
         </Switch>
       </Router>

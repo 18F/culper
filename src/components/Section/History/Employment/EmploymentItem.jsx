@@ -10,6 +10,7 @@ import {
   Show,
   Name
 } from '../../../Form'
+import AlternateAddress from '../../../Form/Location/AlternateAddress'
 import EmploymentActivity from './EmploymentActivity'
 import EmploymentStatus from './EmploymentStatus'
 import PhysicalAddress from './PhysicalAddress'
@@ -438,13 +439,13 @@ export default class EmploymentItem extends ValidationElement {
             required={this.props.required}
             scrollIntoView={this.props.scrollIntoView}
           />
-          {this.props.render({
-            address: this.props.SupervisorAlternateAddress,
-            belongingTo: 'SupervisorAlternateAddress',
-            country: this.props.Supervisor.Address.country,
-            militaryAddressLabel: i18n.t('address.militaryAddress.supervisor'),
-            onUpdate: this.update
-          })}
+          <AlternateAddress
+            address={this.props.SupervisorAlternateAddress}
+            belongingTo="SupervisorAlternateAddress"
+            country={this.props.Supervisor.Address.country}
+            militaryAddressLabel={i18n.t('address.militaryAddress.supervisor')}
+            onUpdate={this.update}
+          />
         </Show>
 
         <Show when={this.showReference()}>
@@ -470,6 +471,7 @@ export default class EmploymentItem extends ValidationElement {
                 onUpdate={this.updateReferenceName}
                 onError={this.props.onError}
                 required={this.props.required}
+                hideMiddleName
               />
             </Field>
 
@@ -512,14 +514,14 @@ export default class EmploymentItem extends ValidationElement {
                 onError={this.props.onError}
               />
             </Field>
-
-            { this.props.render({
-              address: this.props.ReferenceAlternateAddress,
-              belongingTo: 'ReferenceAlternateAddress',
-              country: this.props.ReferenceAddress.country,
-              militaryAddressLabel: i18n.t(`${prefix}.heading.militaryAddress`),
-              onUpdate: this.update
-            })}
+            <AlternateAddress
+              address={this.props.ReferenceAlternateAddress}
+              addressBook="Reference"
+              belongingTo="ReferenceAlternateAddress"
+              country={this.props.ReferenceAddress.country}
+              militaryAddressLabel={i18n.t(`${prefix}.heading.militaryAddress`)}
+              onUpdate={this.update}
+            />
           </div>
         </Show>
 

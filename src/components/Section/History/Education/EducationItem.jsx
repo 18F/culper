@@ -334,6 +334,7 @@ export default class EducationItem extends ValidationElement {
                     className="reference-name"
                     {...this.props.ReferenceName}
                     scrollIntoView={this.props.scrollIntoView}
+                    hideMiddleName={true}
                     onUpdate={this.updateReferenceName}
                     onError={this.props.onError}
                     required={this.props.required}

@@ -3,7 +3,7 @@ import FileSaver from 'file-saver'
 import { connect } from 'react-redux'
 import { i18n, navigation } from '../../../config'
 import { api } from '../../../services'
-import { Show, Svg } from '../../Form'
+import { RadioGroup, Radio, Show, Svg } from '../../Form'
 
 import { IdentificationSections } from '../Identification'
 import { RelationshipSections } from '../Relationships'
@@ -228,8 +228,40 @@ class Print extends React.Component {
           <table>
             <tbody>{this.displayAttachments(this.state.attachments)}</tbody>
           </table>
+
         </div>
-        <div className="print-view">{this.sections()}</div>
+        <div className="print-view">
+          <h4>{i18n.m('introduction.acceptance.heading')}</h4>
+          {i18n.m('introduction.acceptance.title')}
+          {i18n.m('introduction.acceptance.para')}
+          <RadioGroup
+            className="option-list branch"
+            disabled={this.props.disabled}
+            required={this.props.required}
+            onError={this.props.onError}
+            selectedValue="Yes">
+            <Radio
+              name={this.props.name}
+              label="Yes"
+              value="Yes"
+              ariaLabel={this.props.yesAriaLabel}
+              className="yes"
+              checked="true"
+              onUpdate={this.handleUpdate}
+              onError={this.props.onError}
+            />
+            <Radio
+              name={this.props.name}
+              label="No"
+              value="No"
+              ariaLabel={this.props.noAriaLabel}
+              className="no"
+              onUpdate={this.handleUpdate}
+              onError={this.props.onError}
+            />
+          </RadioGroup>
+          {this.sections()}
+        </div>
       </div>
     )
   }

@@ -102,7 +102,7 @@ export default class EmploymentActivity extends ValidationElement {
                 onFocus={this.props.onFocus}
               />
               <Radio
-                label={i18n.t(
+                label={i18n.m(
                   'history.employment.default.activity.type.stateGovernment'
                 )}
                 value="StateGovernment"
@@ -127,7 +127,7 @@ export default class EmploymentActivity extends ValidationElement {
               />
               <div>Other employment</div>
               <Radio
-                label={i18n.t(
+                label={i18n.m(
                   'history.employment.default.activity.type.nonGovernment'
                 )}
                 value="NonGovernment"
@@ -176,7 +176,7 @@ export default class EmploymentActivity extends ValidationElement {
           </Field>
           <Show when={this.props.value === 'Other'}>
             <Field
-              title={i18n.t('history.employment.default.activity.other.label')}
+              title={i18n.m('history.employment.default.activity.other.label')}
               titleSize="label"
               adjustFor="labels"
               scrollIntoView={this.props.scrollIntoView}>

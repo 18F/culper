@@ -3,6 +3,7 @@ const staging = process.env.NODE_ENV === 'staging'
 const debug = !production && !staging
 const webpack = require('webpack')
 const path = require('path')
+const GitRevisionPlugin = require('git-revision-webpack-plugin')
 
 module.exports = {
   mode: production ? 'production' : 'development',
@@ -22,19 +23,29 @@ module.exports = {
       {
         test: /\.jsx?$/,
         include: path.resolve(__dirname, 'src'),
-        use: [
-          'cache-loader',
-          'babel-loader'
-        ]
+        use: ['cache-loader', 'babel-loader']
       }
     ]
   },
   devtool: debug ? 'cheap-module-source-map' : 'source-map',
   plugins: [
     new webpack.EnvironmentPlugin([
-      'API_BASE_URL', 'COOKIE_DOMAIN', 'HASH_ROUTING',
-      'BASIC_ENABLED', 'SAML_ENABLED', 'SESSION_TIMEOUT',
-      'ATTACHMENTS_ENABLED', 'FILE_MAXIMUM_SIZE', 'FILE_TYPES'
-    ])
+      'API_BASE_URL',
+      'COOKIE_DOMAIN',
+      'HASH_ROUTING',
+      'BASIC_ENABLED',
+      'SAML_ENABLED',
+      'SESSION_TIMEOUT',
+      'ATTACHMENTS_ENABLED',
+      'FILE_MAXIMUM_SIZE',
+      'FILE_TYPES'
+    ]),
+    new webpack.DefinePlugin({
+      EAPP_VERSION: JSON.stringify(
+        new GitRevisionPlugin({
+          versionCommand: 'describe --tags --always'
+        }).version()
+      )
+    })
   ]
 }

@@ -39,7 +39,7 @@ class Api {
   constructor() {
     this.proxy = axios.create({
       baseURL: env ? env.ApiBaseURL() : '/api',
-      timeout: 10000
+      timeout: 30000
     })
   }
 
@@ -75,6 +75,10 @@ class Api {
 
   saml() {
     return this.get(env.EndpointSaml(), false)
+  }
+
+  samlSLO() {
+    return this.get(env.EndpointSamlSLO())
   }
 
   login(username, password) {

@@ -1,7 +1,9 @@
+/*global EAPP_VERSION*/
+
 export const introduction = {
   contents: [
     '# Questionnaire for National Security Positions',
-    'National Background Investigation System (NBIS) eApp version 1.0.5',
+    `National Background Investigation System (NBIS) eApp version ${EAPP_VERSION}`,
     '**Follow instructions completely or your form will be unable to be processed. If you have any questions, contact the office that provided you the form.**',
     '## Instructions for completing this form ',
     '1. **Follow the instructions provided to you by the office that gave you this form** and any other clarifying instructions, provided by that office, to assist you with completion of this form. You should retain a copy of the completed form for your records.',
@@ -83,6 +85,8 @@ export const introduction = {
     'Public burden reporting for this collection of information is **estimated to average 150 minutes per response**, including time for reviewing instructions, searching existing data sources, gathering and maintaining the data needed, and completing and reviewing the collection of information. Send comments regarding the burden estimate or any other aspect of this collection of information, including suggestions for reducing this burden, to U.S. Office of Personnel Management, Federal Investigative Services, Attn: OMB Number 3206-0005, 1900 E Street, N.W., Washington, DC 20415. The OMB clearance number, 3206-0005, is currently valid. OPM may not collect this information, and you are not required to respond, unless this number is displayed.'
   ],
   acceptance: {
+    heading:
+      'Statement of Understanding',
     title:
       'Persons completing this form should begin after carefully reading the preceding instructions',
     para: [

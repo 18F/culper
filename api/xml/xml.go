@@ -3,6 +3,7 @@ package xml
 import (
 	"bytes"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"html/template"
 	"path"
@@ -87,6 +88,7 @@ func (service Service) DefaultTemplate(templateName string, data map[string]inte
 		"padDigits":              padDigits,
 		"radio":                  radio,
 		"schoolType":             schoolType,
+		"selectBenefit":          selectBenefit,
 		"severanceType":          severanceType,
 		"suffixType":             suffixType,
 		"relationshipType":       relationshipType,
@@ -164,6 +166,18 @@ func altAddressRemap(primary map[string]interface{}, hasDifferent map[string]int
 	foo["HasDifferentAddress"] = hasDifferent
 	foo["Alternate"] = alternate
 	return foo
+}
+
+// selectBenefit returns the appropriate sub-tree from Foreign.BenefitActivity.props.List.props.items[*],
+// given the benefit frequency type. This faciltates less duplication in foreign-financial-benefits.xml.
+func selectBenefit(freqType string, benefitItem map[string]interface{}) (map[string]interface{}, error) {
+	selector := freqType + "Benefit"
+	if t, ok := benefitItem[selector]; ok {
+		if p, ok := (t.(map[string]interface{}))["props"]; ok {
+			return (p.(map[string]interface{})), nil
+		}
+	}
+	return nil, errors.New(selector + " not found in benefit item")
 }
 
 // Put simple structures here where they only output a string

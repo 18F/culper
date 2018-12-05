@@ -10,9 +10,6 @@ import { today, daysAgo } from '../dateranges'
 import { InjectGaps, EmploymentCustomSummary } from '../summaries'
 import EmploymentItem from './EmploymentItem'
 import { Gap } from '../Gap'
-import alternateAddressProvider from '../../../Form/Location/alternateAddressProvider'
-
-const AlternateAddressEmploymentItem = alternateAddressProvider(EmploymentItem)
 
 const byline = (item, index, initial, translation, required, validator) => {
   // If item is required and not currently opened and is not valid, show message
@@ -44,6 +41,7 @@ export default class Employment extends SubsectionElement {
     this.update = this.update.bind(this)
     this.updateList = this.updateList.bind(this)
     this.updateEmploymentRecord = this.updateEmploymentRecord.bind(this)
+    this.sortEmploymentItems = this.sortEmploymentItems.bind(this)
   }
 
   customEmploymentByline(item, index, initial) {
@@ -59,12 +57,40 @@ export default class Employment extends SubsectionElement {
     )
   }
 
+  sortEmploymentItems(employmentItems) {
+    return employmentItems.sort((a, b)  => {
+      if (
+        a.Item &&
+        a.Item.Dates &&
+        a.Item.Dates.from
+      ) {
+        const aDateObj = a.Item.Dates.from
+        const bDateObj = b.Item.Dates.from
+        const aDate = new Date(aDateObj.year, aDateObj.month - 1, aDateObj.day)
+        const bDate = new Date(bDateObj.year, bDateObj.month - 1, bDateObj.day)
+
+        return bDate.getTime() - aDate.getTime()
+      }
+      return 0
+    })
+  }
+
   update(queue) {
-    this.props.onUpdate({
+
+    const updatedValues = {
       List: this.props.List,
       EmploymentRecord: this.props.EmploymentRecord,
       ...queue
-    })
+    }
+
+    if (queue.List) {
+      updatedValues.List = {
+        ...queue.List,
+        items: this.sortEmploymentItems(queue.List.items)
+      }
+    }
+
+    this.props.onUpdate(updatedValues)
   }
 
   updateList(values) {
@@ -162,7 +188,7 @@ export default class Employment extends SubsectionElement {
           appendClass="no-margin-bottom"
           required={this.props.required}
           scrollIntoView={this.props.scrollIntoView}>
-          <AlternateAddressEmploymentItem
+          <EmploymentItem
             bind
             name="Item"
             addressBooks={this.props.addressBooks}

@@ -1,14 +1,11 @@
 import React from 'react'
-import { shallow, mount } from 'enzyme'
+import { mount } from 'enzyme'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
 import ResidenceItem from './ResidenceItem'
 
-const alternateAddressRenderMock = jest.fn();
-const mountComponent = (mockStore, Component, props) => {
-  const store = mockStore({ application: { AddressBooks: {} }})
+const mountComponent = store => (Component, props) => {
   const finalProps = {
-    render: alternateAddressRenderMock,
     ...props
   }
 
@@ -20,17 +17,29 @@ const mountComponent = (mockStore, Component, props) => {
 }
 
 describe('The residence component', () => {
-  const mockStore = configureMockStore()
+  const defaultAppState = {
+    application: {
+      AddressBooks: {}
+    }
+  }
 
-  it('renders without crashing', () => {
-    shallow(<ResidenceItem render={alternateAddressRenderMock}/>)
+  let createComponent
+
+  beforeEach(() => {
+    const store = configureMockStore()(defaultAppState)
+    createComponent = mountComponent(store)
+  })
+
+  it('renders properly', () => {
+    const component = createComponent(ResidenceItem)
+    expect(component).toBeDefined()
   })
 
   it('no error on empty', () => {
     const expected = {
       name: 'residence'
     }
-    const component = mountComponent(mockStore, ResidenceItem, expected);
+    const component = createComponent(ResidenceItem, expected);
 
     expect(component.find('.residence').length).toEqual(1)
     expect(component.find('.reference').length).toEqual(0)
@@ -55,7 +64,7 @@ describe('The residence component', () => {
         value: 'test@abc.com'
       }
     }
-    const component = mountComponent(mockStore, ResidenceItem, expected);
+    const component = createComponent(ResidenceItem, expected);
     expect(component.find('.reference').length).toEqual(1)
   })
 
@@ -67,7 +76,7 @@ describe('The residence component', () => {
       },
       OtherRole: {}
     }
-    const component = mountComponent(mockStore, ResidenceItem, expected);
+    const component = createComponent(ResidenceItem, expected);
     expect(component.find('.role.hidden').length).toEqual(0)
   })
 
@@ -78,12 +87,12 @@ describe('The residence component', () => {
         value: 'Dance'
       }
     }
-    const component = mountComponent(mockStore, ResidenceItem, expected);
+    const component = createComponent(ResidenceItem, expected);
     expect(component.find('.role.hidden').length).toEqual(0)
   })
 
   it('performs updates for components', () => {
-    let updates = 0
+    const onUpdate = jest.fn()
     const expected = {
       name: 'residence',
       Dates: {
@@ -100,12 +109,10 @@ describe('The residence component', () => {
           date: new Date('1/1/2018')
         }
       },
-      onUpdate: () => {
-        updates++
-      }
+      onUpdate
     }
 
-    const component = mountComponent(mockStore, ResidenceItem, expected);
+    const component = createComponent(ResidenceItem, expected);
     component
       .find('.address .street input')
       .first()
@@ -126,6 +133,7 @@ describe('The residence component', () => {
       .find('.reference-address .street input')
       .first()
       .simulate('change')
-    expect(updates).toBeGreaterThan(0)
+
+    expect(onUpdate.mock.calls.length).toBe(8)
   })
 })
