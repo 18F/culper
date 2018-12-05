@@ -46,7 +46,7 @@ exports[`The Introduction component renders properly 1`] = `
             </div>
             <div>
               <p>
-                National Background Investigation System (NBIS) eApp version 1.0.5
+                National Background Investigation System (NBIS) eApp version MAJOR.MINOR.PATCH-IDENTIFIER
               </p>
             </div>
             <div>
