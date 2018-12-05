@@ -103,9 +103,10 @@ export default class Accordion extends ValidationElement {
       if (item.open !== true && item.open !== false) {
         item.open = this.props.defaultState
         dirty = true
+      } else {
+        item.open = this.props.items.length > 1 ? false : this.props.defaultState
       }
 
-      item.open = this.props.items.length > 1 ? false : this.props.defaultState
       return item
     })
 

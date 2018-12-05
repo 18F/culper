@@ -393,8 +393,6 @@ class History extends SectionElement {
               {...this.props.Residence}
               section="history"
               subsection="residence"
-              defaultState={false}
-              realtime={true}
               sort={sort}
               totalYears={totalYears(this.props.Birthdate)}
               overrideInitial={this.overrideInitial}
@@ -403,7 +401,9 @@ class History extends SectionElement {
               addressBooks={this.props.AddressBooks}
               dispatch={this.props.dispatch}
               scrollIntoView={false}
-              required={true}
+              realtime
+              required
+              defaultState
             />
 
             <hr className="section-divider" />
@@ -418,8 +418,6 @@ class History extends SectionElement {
               {...this.props.Employment}
               section="history"
               subsection="employment"
-              defaultState={false}
-              realtime={true}
               sort={sort}
               totalYears={totalYears(this.props.Birthdate)}
               overrideInitial={this.overrideInitial}
@@ -428,7 +426,9 @@ class History extends SectionElement {
               addressBooks={this.props.AddressBooks}
               dispatch={this.props.dispatch}
               scrollIntoView={false}
-              required={true}
+              realtime
+              required
+              defaultState
             />
 
             <hr className="section-divider" />
@@ -479,7 +479,6 @@ class History extends SectionElement {
                   {...this.props.Education}
                   section="history"
                   subsection="education"
-                  defaultState={false}
                   realtime={true}
                   sort={sort}
                   totalYears={totalYears(this.props.Birthdate)}
@@ -500,7 +499,6 @@ class History extends SectionElement {
               {...this.props.Federal}
               section="history"
               subsection="federal"
-              defaultState={false}
               addressBooks={this.props.AddressBooks}
               dispatch={this.props.dispatch}
               onUpdate={this.handleUpdate.bind(this, 'Federal')}
@@ -742,7 +740,6 @@ export class HistorySections extends React.Component {
         />
 
         <Employment
-          {...this.props.Employment}
           {...this.props.Employment}
           defaultState={false}
           realtime={true}

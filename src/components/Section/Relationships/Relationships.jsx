@@ -154,7 +154,6 @@ class Relationships extends SectionElement {
               {...this.props.Marital}
               section="relationships"
               subsection="status/marital"
-              defaultState={false}
               addressBooks={this.props.AddressBooks}
               dispatch={this.props.dispatch}
               onUpdate={this.updateMarital}
@@ -171,7 +170,6 @@ class Relationships extends SectionElement {
               {...this.props.Cohabitants}
               section="relationships"
               subsection="status/cohabitant"
-              defaultState={false}
               spouse={this.props.Spouse}
               dispatch={this.props.dispatch}
               onUpdate={this.updateCohabitants}
@@ -186,7 +184,6 @@ class Relationships extends SectionElement {
               {...this.props.People}
               section="relationships"
               subsection="people"
-              defaultState={false}
               addressBooks={this.props.AddressBooks}
               dispatch={this.props.dispatch}
               onUpdate={this.updatePeople}
@@ -201,7 +198,6 @@ class Relationships extends SectionElement {
               {...this.props.Relatives}
               section="relationships"
               subsection="relatives"
-              defaultState={false}
               addressBooks={this.props.AddressBooks}
               dispatch={this.props.dispatch}
               onUpdate={this.updateRelatives}
