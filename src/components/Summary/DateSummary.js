@@ -1,5 +1,6 @@
 import React from 'react' // eslint-disable-line no-unused-vars
 import { i18n } from '../../config'
+import { validDate } from '../Section/History/dateranges'
 
 export const DateSummary = (
   props,
@@ -33,7 +34,7 @@ export const DateSummary = (
   }
 
   // Handle single date
-  if (props.date || props.value) {
+  if (validDate(props)) {
     const singleDate = format(props)
     if (singleDate) {
       return <span>{singleDate}</span>

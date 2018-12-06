@@ -102,8 +102,8 @@ export default class SummaryProgress extends ValidationElement {
           key={newGuid()}
           className="filled"
           style={styles}
-          data-from={range.dates.from.date}
-          data-to={range.dates.to.date}
+          data-from={extractDate(range.dates.from)}
+          data-to={extractDate(range.dates.to)}
         />
       )
     })

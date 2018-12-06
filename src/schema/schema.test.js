@@ -61,8 +61,7 @@ describe('Schema', function() {
                 month: '7',
                 day: '1',
                 year: '2017',
-                estimated: false,
-                date: '2017-07-01T00:00:00Z'
+                estimated: false
               }
             },
             to: {
@@ -71,8 +70,7 @@ describe('Schema', function() {
                 month: '7',
                 day: '25',
                 year: '2017',
-                estimated: false,
-                date: '2017-07-25T00:00:00Z'
+                estimated: false
               }
             },
             present: false
@@ -83,15 +81,13 @@ describe('Schema', function() {
             month: '7',
             day: '1',
             year: '2017',
-            estimated: false,
-            date: '2017-07-01T00:00:00Z'
+            estimated: false
           },
           to: {
             month: '7',
             day: '25',
             year: '2017',
-            estimated: false,
-            date: '2017-07-25T00:00:00Z'
+            estimated: false
           },
           present: false
         }
@@ -139,8 +135,7 @@ describe('Schema', function() {
                           month: '7',
                           day: '1',
                           year: '2017',
-                          estimated: false,
-                          date: '2017-07-01T00:00:00Z'
+                          estimated: false
                         }
                       },
                       to: {
@@ -149,8 +144,7 @@ describe('Schema', function() {
                           month: '7',
                           day: '25',
                           year: '2017',
-                          estimated: false,
-                          date: '2017-07-25T00:00:00Z'
+                          estimated: false
                         }
                       },
                       present: false
@@ -196,15 +190,13 @@ describe('Schema', function() {
                     month: '7',
                     day: '1',
                     year: '2017',
-                    estimated: false,
-                    date: '2017-07-01T00:00:00Z'
+                    estimated: false
                   },
                   to: {
                     month: '7',
                     day: '25',
                     year: '2017',
-                    estimated: false,
-                    date: '2017-07-25T00:00:00Z'
+                    estimated: false
                   },
                   present: false
                 },
@@ -255,8 +247,7 @@ describe('Schema', function() {
                               month: '7',
                               day: '1',
                               year: '2017',
-                              estimated: false,
-                              date: '2017-07-01T00:00:00Z'
+                              estimated: false
                             }
                           },
                           to: {
@@ -265,8 +256,7 @@ describe('Schema', function() {
                               month: '7',
                               day: '25',
                               year: '2017',
-                              estimated: false,
-                              date: '2017-07-25T00:00:00Z'
+                              estimated: false
                             }
                           },
                           present: false
@@ -318,15 +308,13 @@ describe('Schema', function() {
                       month: '7',
                       day: '1',
                       year: '2017',
-                      estimated: false,
-                      date: '2017-07-01T00:00:00Z'
+                      estimated: false
                     },
                     to: {
                       month: '7',
                       day: '25',
                       year: '2017',
-                      estimated: false,
-                      date: '2017-07-25T00:00:00Z'
+                      estimated: false
                     },
                     present: false
                   },

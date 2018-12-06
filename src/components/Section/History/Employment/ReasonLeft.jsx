@@ -1,7 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { today, daysAgo } from '../dateranges'
-import { buildDate } from '../../../../validators/helpers'
+import { today, daysAgo, extractDate } from '../dateranges'
 import {
   ValidationElement,
   Show,
@@ -53,7 +52,7 @@ export default class ReasonLeft extends ValidationElement {
   showDescription() {
     const dates = this.props.Dates || {}
 
-    return (dates.present !== true)
+    return dates.present !== true
   }
 
   /**
@@ -65,11 +64,13 @@ export default class ReasonLeft extends ValidationElement {
     const sevenYearsAgo = daysAgo(today, 365 * 7)
     const now = new Date()
     const dates = this.props.Dates || {}
-    const from = buildDate(dates.from)
-    const to = dates.present === true ? now : buildDate(dates.to)
+    const from = extractDate(dates.from)
+    const to = dates.present === true ? now : extractDate(dates.to)
 
-    return (dates.present !== true) && 
-        ((from && from >= sevenYearsAgo) || (to && to >= sevenYearsAgo))
+    return (
+      dates.present !== true &&
+      ((from && from >= sevenYearsAgo) || (to && to >= sevenYearsAgo))
+    )
   }
 
   render() {

@@ -50,14 +50,12 @@ describe('Education component validation', function() {
             from: {
               month: '1',
               day: '1',
-              year: '2000',
-              date: new Date('1/1/2000')
+              year: '2000'
             },
             to: {
               month: '1',
               day: '1',
-              year: '2004',
-              date: new Date('1/1/2004')
+              year: '2004'
             },
             present: false
           }
@@ -71,14 +69,12 @@ describe('Education component validation', function() {
             from: {
               month: '1',
               day: '1',
-              year: '2004',
-              date: new Date('1/1/2004')
+              year: '2004'
             },
             to: {
               month: '1',
               day: '1',
-              year: '2000',
-              date: new Date('1/1/2000')
+              year: '2000'
             },
             present: false
           }
@@ -167,14 +163,12 @@ describe('Education component validation', function() {
             from: {
               month: '1',
               day: '1',
-              year: '2000',
-              date: new Date('1/1/2000')
+              year: '2000'
             },
             to: {
               month: `${today.getMonth() + 1}`,
               day: `${today.getDate()}`,
-              year: `${today.getFullYear()}`,
-              date: today
+              year: `${today.getFullYear()}`
             },
             present: true
           },
@@ -221,14 +215,12 @@ describe('Education component validation', function() {
             from: {
               month: '1',
               day: '1',
-              year: '2000',
-              date: new Date('1/1/2000')
+              year: '2000'
             },
             to: {
               month: '1',
               day: '1',
-              year: '2001',
-              date: new Date('1/1/2001')
+              year: '2001'
             },
             present: false
           }
@@ -287,8 +279,7 @@ describe('Education component validation', function() {
                   Date: {
                     month: `${today.getMonth() + 1}`,
                     day: `${today.getDate()}`,
-                    year: `${today.getFullYear()}`,
-                    date: today
+                    year: `${today.getFullYear()}`
                   },
                   Diploma: {
                     value: 'Other'
@@ -352,8 +343,7 @@ describe('Education component validation', function() {
                   Date: {
                     month: `${today.getMonth() + 1}`,
                     day: `${today.getDate()}`,
-                    year: `${today.getFullYear()}`,
-                    date: today
+                    year: `${today.getFullYear()}`
                   },
                   Diploma: {
                     value: 'High School Diploma'
@@ -367,8 +357,7 @@ describe('Education component validation', function() {
                   Date: {
                     month: `${today.getMonth() + 1}`,
                     day: `${today.getDate()}`,
-                    year: `${today.getFullYear()}`,
-                    date: today
+                    year: `${today.getFullYear()}`
                   },
                   Diploma: {
                     value: 'Other'
@@ -399,8 +388,7 @@ describe('Education component validation', function() {
                   Date: {
                     month: `${today.getMonth() + 1}`,
                     day: `${today.getDate()}`,
-                    year: `${today.getFullYear()}`,
-                    date: today
+                    year: `${today.getFullYear()}`
                   },
                   Diploma: {
                     value: 'High School Diploma'
@@ -491,14 +479,12 @@ describe('Education component validation', function() {
                     from: {
                       month: '1',
                       day: '1',
-                      year: '2010',
-                      date: new Date('1/1/2010')
+                      year: '2010'
                     },
                     to: {
                       month: '1',
                       day: '1',
-                      year: '2016',
-                      date: new Date('1/1/2016')
+                      year: '2016'
                     },
                     present: false
                   },
@@ -546,14 +532,12 @@ describe('Education component validation', function() {
                     from: {
                       month: '1',
                       day: '1',
-                      year: '2010',
-                      date: new Date('1/1/2010')
+                      year: '2010'
                     },
                     to: {
                       month: '1',
                       day: '1',
-                      year: '2016',
-                      date: new Date('1/1/2016')
+                      year: '2016'
                     },
                     present: false
                   },

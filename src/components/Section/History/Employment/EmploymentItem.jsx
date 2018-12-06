@@ -18,14 +18,13 @@ import AdditionalActivity from './AdditionalActivity'
 import Supervisor from './Supervisor'
 import ReasonLeft from './ReasonLeft'
 import Reprimand from './Reprimand'
-import { today, daysAgo } from '../dateranges'
-import { buildDate } from '../../../../validators/helpers'
+import { today, daysAgo, extractDate } from '../dateranges'
 
 export default class EmploymentItem extends ValidationElement {
   constructor(props) {
     super(props)
 
-    this.update = this.update.bind(this);
+    this.update = this.update.bind(this)
     this.updateEmploymentActivity = this.updateEmploymentActivity.bind(this)
     this.updateEmployment = this.updateEmployment.bind(this)
     this.updateDates = this.updateDates.bind(this)
@@ -252,8 +251,8 @@ export default class EmploymentItem extends ValidationElement {
     const sevenYearsAgo = daysAgo(today, 365 * 7)
     const now = new Date()
     const dates = this.props.Dates || {}
-    const from = buildDate(dates.from)
-    const to = dates.present === true ? now : buildDate(dates.to)
+    const from = extractDate(dates.from)
+    const to = dates.present === true ? now : extractDate(dates.to)
 
     // Check user is within seven years and part of approved employers.
     return (

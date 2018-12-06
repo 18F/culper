@@ -73,8 +73,7 @@ describe('Foreign contacts component validation', function() {
           FirstContact: {
             day: '1',
             month: '1',
-            year: '2016',
-            date: new Date('1/1/2016')
+            year: '2016'
           }
         },
         expected: true
@@ -95,8 +94,7 @@ describe('Foreign contacts component validation', function() {
           LastContact: {
             day: '1',
             month: '1',
-            year: '2016',
-            date: new Date('1/1/2016')
+            year: '2016'
           }
         },
         expected: true
@@ -369,8 +367,7 @@ describe('Foreign contacts component validation', function() {
           Birthdate: {
             day: '1',
             month: '1',
-            year: '2016',
-            date: new Date('1/1/2016')
+            year: '2016'
           }
         },
         expected: true
@@ -624,14 +621,12 @@ describe('Foreign contacts component validation', function() {
                   FirstContact: {
                     day: '1',
                     month: '1',
-                    year: '2016',
-                    date: new Date('1/1/2016')
+                    year: '2016'
                   },
                   LastContact: {
                     day: '1',
                     month: '1',
-                    year: '2016',
-                    date: new Date('1/1/2016')
+                    year: '2016'
                   },
                   Methods: { values: ['In person'] },
                   Frequency: { value: 'Weekly' },

@@ -18,14 +18,12 @@ describe('Employment component validation', function() {
                     from: {
                       month: '1',
                       day: '1',
-                      year: '2010',
-                      date: new Date('1/1/2010')
+                      year: '2010'
                     },
                     to: {
                       month: '1',
                       day: '1',
-                      year: '2012',
-                      date: new Date('1/1/2012')
+                      year: '2012'
                     },
                     present: false
                   },
@@ -102,7 +100,6 @@ describe('Employment component validation', function() {
                             Has: { value: 'No' },
                             Reason: 'Fired',
                             Date: {
-                              date: new Date('1/1/2016'),
                               day: '1',
                               month: '1',
                               year: '2016'
@@ -121,7 +118,6 @@ describe('Employment component validation', function() {
                         Item: {
                           Has: { value: 'Yes' },
                           Date: {
-                            date: new Date('1/1/2015'),
                             month: '1',
                             year: '2015'
                           },

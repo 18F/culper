@@ -15,7 +15,14 @@ import { Field, Svg, Show, Branch } from '../../Form'
 import SummaryProgress from './SummaryProgress'
 import SummaryCounter from './SummaryCounter'
 import Federal from './Federal'
-import { utc, today, daysAgo, daysBetween, gaps } from './dateranges'
+import {
+  utc,
+  today,
+  daysAgo,
+  daysBetween,
+  gaps,
+  extractDate
+} from './dateranges'
 import { InjectGaps } from './summaries'
 import Residence from './Residence'
 import Employment from './Employment'
@@ -28,11 +35,11 @@ import Education from './Education'
 export const sort = (a, b) => {
   // Helper to find the date value or default it to 0
   const getOptionalDate = obj => {
-    return ((((obj || {}).Item || {}).Dates || {}).to || {}).date || 0
+    return (((obj || {}).Item || {}).Dates || {}).to
   }
 
-  const first = getOptionalDate(a)
-  const second = getOptionalDate(b)
+  const first = extractDate(getOptionalDate(a)) || 0
+  const second = extractDate(getOptionalDate(b)) || 0
 
   if (first < second) {
     return 1

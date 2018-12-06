@@ -248,8 +248,7 @@ describe('The relative component', () => {
       Birthdate: {
         day: '1',
         month: '1',
-        year: '2016',
-        date: new Date('1/1/2016')
+        year: '2016'
       },
       Birthplace: {
         domestic: 'Yes',
@@ -290,8 +289,7 @@ describe('The relative component', () => {
       Birthdate: {
         day: '1',
         month: '1',
-        year: '2016',
-        date: new Date('1/1/2016')
+        year: '2016'
       },
       Birthplace: {
         country: { value: 'United States' },
@@ -350,8 +348,7 @@ describe('The relative component', () => {
       Birthdate: {
         day: '1',
         month: '1',
-        year: '2016',
-        date: new Date('1/1/2016')
+        year: '2016'
       },
       Birthplace: {
         city: 'Munich',
@@ -403,8 +400,7 @@ describe('The relative component', () => {
       Birthdate: {
         day: '1',
         month: '1',
-        year: '2016',
-        date: new Date('1/1/2016')
+        year: '2016'
       },
       Birthplace: {
         layout: Location.BIRTHPLACE_WITHOUT_COUNTY,
@@ -468,8 +464,7 @@ describe('The relative component', () => {
       Birthdate: {
         day: '1',
         month: '1',
-        year: '2016',
-        date: new Date('1/1/2016')
+        year: '2016'
       },
       Birthplace: {
         domestic: 'Yes',

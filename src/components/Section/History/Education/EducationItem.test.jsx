@@ -46,7 +46,7 @@ describe('The education component', () => {
           year: '2015'
         },
         to: {
-          month: `${new Date().getMonth()}`,
+          month: `${new Date().getMonth() + 1}`,
           day: `${new Date().getDate()}`,
           year: `${new Date().getFullYear()}`
         }
@@ -67,7 +67,9 @@ describe('The education component', () => {
               Diploma: 'Other',
               DiplomaOther: 'PhD in awesomeness',
               Date: {
-                date: new Date()
+                month: `${new Date().getMonth() + 1}`,
+                day: `${new Date().getDate()}`,
+                year: `${new Date().getFullYear()}`
               }
             }
           },
@@ -118,15 +120,13 @@ describe('The education component', () => {
           month: '1',
           day: '1',
           year: '2010',
-          present: false,
-          date: new Date('1/1/2010')
+          present: false
         },
         to: {
           month: `${today.getMonth() + 1}`,
           day: `${today.getDate()}`,
           year: `${today.getFullYear()}`,
-          present: true,
-          date: today
+          present: true
         }
       },
       onUpdate: () => {

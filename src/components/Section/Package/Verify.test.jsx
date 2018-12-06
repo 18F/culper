@@ -50,8 +50,16 @@ describe('The verify component', () => {
                     value: 'Foo'
                   },
                   DatesUsed: {
-                    from: new Date('1/1/2015'),
-                    to: new Date('1/1/2016'),
+                    from: {
+                      month: '1',
+                      day: '1',
+                      year: '2015'
+                    },
+                    to: {
+                      month: '1',
+                      day: '1',
+                      year: '2016'
+                    },
                     present: false
                   }
                 }
@@ -79,8 +87,7 @@ describe('The verify component', () => {
           Date: {
             month: '1',
             day: '1',
-            year: '1982',
-            date: new Date('1/1/1982')
+            year: '1982'
           }
         }
       },
@@ -179,10 +186,14 @@ describe('The verify component', () => {
                 Item: {
                   Dates: {
                     from: {
-                      date: new Date('1/1/2010')
+                      month: '1',
+                      day: '1',
+                      year: '2010'
                     },
                     to: {
-                      date: new Date('1/1/2012')
+                      month: '1',
+                      day: '1',
+                      year: '2012'
                     },
                     present: false
                   },
@@ -201,10 +212,14 @@ describe('The verify component', () => {
                   type: 'Gap',
                   Dates: {
                     from: {
-                      date: new Date('1/1/2012')
+                      month: '1',
+                      day: '1',
+                      year: '2012'
                     },
                     to: {
-                      date: new Date('1/1/2015')
+                      month: '1',
+                      day: '1',
+                      year: '2015'
                     },
                     present: false
                   }
@@ -214,10 +229,14 @@ describe('The verify component', () => {
                 Item: {
                   Dates: {
                     from: {
-                      date: new Date('1/1/2015')
+                      month: '1',
+                      day: '1',
+                      year: '2015'
                     },
                     to: {
-                      date: new Date()
+                      month: `${new Date().getMonth() + 1}`,
+                      day: `${new Date().getDate()}`,
+                      year: `${new Date().getFullYear()}`
                     },
                     present: false
                   },

@@ -34,10 +34,14 @@ describe('The citizenship item component', () => {
     const props = {
       Dates: {
         from: {
-          date: new Date('1/1/2009')
+          month: '1',
+          day: '1',
+          year: '2009'
         },
         to: {
-          date: new Date('1/1/2010')
+          month: '1',
+          day: '1',
+          year: '2010'
         },
         present: false
       }
@@ -53,10 +57,14 @@ describe('The citizenship item component', () => {
       Renounced: { value: 'Yes' },
       Dates: {
         from: {
-          date: new Date('1/1/2010')
+          month: '1',
+          day: '1',
+          year: '2010'
         },
         to: {
-          date: new Date('1/1/2012')
+          month: '1',
+          day: '1',
+          year: '2012'
         },
         present: false
       },

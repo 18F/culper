@@ -124,14 +124,12 @@ describe('Divorce validation', function() {
           DateDivorced: {
             day: '1',
             month: '1',
-            year: '2016',
-            date: new Date('1/1/2016')
+            year: '2016'
           },
           Birthdate: {
             day: '1',
             month: '1',
-            year: '2016',
-            date: new Date('1/1/2016')
+            year: '2016'
           },
           BirthPlace: {
             country: { value: 'United States' },
@@ -153,8 +151,7 @@ describe('Divorce validation', function() {
           Recognized: {
             day: '1',
             month: '1',
-            year: '2016',
-            date: new Date('1/1/2016')
+            year: '2016'
           },
           Address: {
             country: { value: 'United States' },

@@ -112,8 +112,7 @@ describe('Relatives validation', function() {
           Birthdate: {
             day: '1',
             month: '1',
-            year: '2016',
-            date: new Date('1/1/2016')
+            year: '2016'
           }
         },
         expected: true
@@ -336,14 +335,12 @@ describe('Relatives validation', function() {
                     from: {
                       month: '1',
                       day: '1',
-                      year: '2010',
-                      date: new Date('1/1/2010')
+                      year: '2010'
                     },
                     to: {
                       month: '1',
                       day: '1',
-                      year: '2012',
-                      date: new Date('1/1/2012')
+                      year: '2012'
                     },
                     present: false
                   },
@@ -1259,8 +1256,7 @@ describe('Relatives validation', function() {
           Expiration: {
             day: '1',
             month: '1',
-            year: '2016',
-            date: new Date('1/1/2016')
+            year: '2016'
           }
         },
         expected: true
@@ -1310,8 +1306,7 @@ describe('Relatives validation', function() {
           FirstContact: {
             day: '1',
             month: '1',
-            year: '2016',
-            date: new Date('1/1/2016')
+            year: '2016'
           }
         },
         expected: true
@@ -1355,8 +1350,7 @@ describe('Relatives validation', function() {
           FirstContact: {
             day: '1',
             month: '1',
-            year: '2016',
-            date: new Date('1/1/2016')
+            year: '2016'
           }
         },
         expected: true
@@ -1386,8 +1380,7 @@ describe('Relatives validation', function() {
           LastContact: {
             day: '1',
             month: '1',
-            year: '2016',
-            date: new Date('1/1/2016')
+            year: '2016'
           }
         },
         expected: true
@@ -1431,8 +1424,7 @@ describe('Relatives validation', function() {
           LastContact: {
             day: '1',
             month: '1',
-            year: '2016',
-            date: new Date('1/1/2016')
+            year: '2016'
           }
         },
         expected: true
@@ -1873,8 +1865,7 @@ describe('Relatives validation', function() {
                   Birthdate: {
                     day: '1',
                     month: '1',
-                    year: '2016',
-                    date: new Date('1/1/2016')
+                    year: '2016'
                   },
                   Birthplace: {
                     city: 'Arlington',
@@ -1917,14 +1908,12 @@ describe('Relatives validation', function() {
                             from: {
                               month: '1',
                               day: '1',
-                              year: '2010',
-                              date: new Date('1/1/2010')
+                              year: '2010'
                             },
                             to: {
                               month: '1',
                               day: '1',
-                              year: '2012',
-                              date: new Date('1/1/2012')
+                              year: '2012'
                             },
                             present: false
                           },
@@ -1964,8 +1953,7 @@ describe('Relatives validation', function() {
                   Birthdate: {
                     day: '1',
                     month: '1',
-                    year: '2016',
-                    date: new Date('1/1/2016')
+                    year: '2016'
                   },
                   Birthplace: {
                     city: 'Arlington',
@@ -2008,14 +1996,12 @@ describe('Relatives validation', function() {
                             from: {
                               month: '1',
                               day: '1',
-                              year: '2010',
-                              date: new Date('1/1/2010')
+                              year: '2010'
                             },
                             to: {
                               month: '1',
                               day: '1',
-                              year: '2012',
-                              date: new Date('1/1/2012')
+                              year: '2012'
                             },
                             present: false
                           },

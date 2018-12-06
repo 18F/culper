@@ -146,7 +146,10 @@ export default class SponsorshipItem extends ValidationElement {
   }
 
   render() {
-    const sponsorDOBMinDate = pickDate([this.props.applicantBirthdate, this.props.Birthdate])
+    const sponsorDOBMinDate = pickDate([
+      this.props.applicantBirthdate,
+      this.props.Birthdate
+    ])
     return (
       <div className="sponsorship-item">
         <Field

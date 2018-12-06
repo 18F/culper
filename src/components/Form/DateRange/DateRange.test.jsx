@@ -52,10 +52,14 @@ describe('The date range component', () => {
       valid: false,
       present: true,
       from: {
-        date: new Date('4/1/2010')
+        day: '1',
+        month: '4',
+        year: '2010'
       },
       to: {
-        date: new Date('1/1/2000')
+        day: '1',
+        month: '1',
+        year: '2000'
       }
     }
     const component = createComponent(expected)
@@ -75,10 +79,14 @@ describe('The date range component', () => {
         updates++
       },
       from: {
-        date: new Date('1/1/2000')
+        day: '1',
+        month: '1',
+        year: '2000'
       },
       to: {
-        date: new Date('4/1/2010')
+        day: '1',
+        month: '4',
+        year: '2010'
       },
       receiveProps: true
     }
@@ -92,7 +100,7 @@ describe('The date range component', () => {
       receiveProps: true
     }
     const component = createComponent(expected)
-    component.setProps({ to: { date: new Date() } })
+    component.setProps({ to: { day: '1', month: '1', year: '2000' } })
   })
 
   it('can update date field', () => {
@@ -113,7 +121,7 @@ describe('The date range component', () => {
     let updates = 0
     const expected = {
       onUpdate: values => {
-        if (values.to && values.to.date) {
+        if (values.to) {
           updates++
         }
       }

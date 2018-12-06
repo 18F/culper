@@ -66,8 +66,7 @@ describe('The ReceivedCounselings component', () => {
               TreatmentBeganDate: {
                 day: '1',
                 month: '1',
-                year: '2016',
-                date: new Date('1/1/2016')
+                year: '2016'
               },
               AgencyName: {
                 value: 'The agency name'
@@ -75,8 +74,7 @@ describe('The ReceivedCounselings component', () => {
               TreatmentEndDate: {
                 day: '1',
                 month: '1',
-                year: '2016',
-                date: new Date('1/1/2016')
+                year: '2016'
               },
               CompletedTreatment: 'Yes',
               NoCompletedTreatmentExplanation: {

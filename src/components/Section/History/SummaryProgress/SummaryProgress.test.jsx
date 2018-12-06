@@ -20,18 +20,26 @@ describe('The SummaryProgress component', () => {
         return [
           {
             to: {
-              date: new Date()
+              month: `${new Date().getMonth() + 1}`,
+              day: `${new Date().getDate()}`,
+              year: `${new Date().getFullYear()}`
             },
             from: {
-              date: new Date(new Date() - 2)
+              month: `${new Date().getMonth() + 1}`,
+              day: `${new Date().getDate()}` - 2,
+              year: `${new Date().getFullYear()}`
             }
           },
           {
             to: {
-              date: new Date(new Date() - 6)
+              month: `${new Date().getMonth() + 1}`,
+              day: `${new Date().getDate()}` - 6,
+              year: `${new Date().getFullYear()}`
             },
             from: {
-              date: new Date(new Date() - 12)
+              month: `${new Date().getMonth() + 1}`,
+              day: `${new Date().getDate()}` - 12,
+              year: `${new Date().getFullYear()}`
             }
           }
         ]
