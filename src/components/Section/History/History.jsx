@@ -403,7 +403,6 @@ class History extends SectionElement {
               scrollIntoView={false}
               realtime
               required
-              defaultState
             />
 
             <hr className="section-divider" />
@@ -428,7 +427,6 @@ class History extends SectionElement {
               scrollIntoView={false}
               realtime
               required
-              defaultState
             />
 
             <hr className="section-divider" />
