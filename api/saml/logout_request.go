@@ -14,17 +14,19 @@ import (
 // logoutRequest is a SAML Logout Request message XML
 type logoutRequest struct {
 	XMLName        xml.Name  `xml:"samlp:LogoutRequest"`
+	SAMLNamespace  string    `xml:"xmlns:saml,attr"`
+	SAMLPNamespace string    `xml:"xmlns:samlp,attr"`
 	ID             string    `xml:"ID,attr"`
 	Version        string    `xml:"Version,attr"`
 	IssueInstant   time.Time `xml:"IssueInstant,attr"`
-	SAMLPNamespace string    `xml:"xmlns:samlp,attr"`
-	SAMLNamespace  string    `xml:"xmlns:saml,attr"`
-	SessionIndex   string    `xml:"samlp:SessionIndex"`
 
-	Name   logoutRequestName
 	Issuer string `xml:"saml:Issuer"`
 
 	Signature *xmlsig.Signature
+
+	Name logoutRequestName
+
+	SessionIndex string `xml:"samlp:SessionIndex"`
 }
 
 // logoutRequestName is the name field of the XML
@@ -36,7 +38,7 @@ type logoutRequestName struct {
 
 // newLogoutRequest creates a new logout request
 func newLogoutRequest(issuer string, username string, sessionIndex string) logoutRequest {
-	requestID := uuid.NewV4().String()
+	requestID := "_" + uuid.NewV4().String()
 	issueInstant := time.Now().UTC()
 
 	emailFormat := "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"

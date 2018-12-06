@@ -33,8 +33,10 @@ func TestRequestSignature(t *testing.T) {
 
 	fmt.Println(os.Getwd())
 
-	req := newLogoutRequest("localhost", "admin", "session-id")
+	req := newLogoutRequest("localhost", "admin", "b96e355b-256a-46b2-ba42-9d140effefcb")
 
+	req.ID = "_784652ff-d59b-4778-a4a6-fc8d9cc502dc"
+	req.IssueInstant = time.Date(2018, time.November, 27, 23, 37, 46, 952062600, time.UTC)
 	testCrtFile := "testdata/test_cert.pem"
 	testKeyFile := "testdata/test_key.pem"
 
