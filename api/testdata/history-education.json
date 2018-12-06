@@ -83,7 +83,6 @@
                   "first": "John",
                   "firstInitialOnly": false,
                   "last": "Smith",
-                  "lastInitialOnly": false,
                   "middle": "H",
                   "middleInitialOnly": true,
                   "noMiddleName": false,

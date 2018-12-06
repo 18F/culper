@@ -89,7 +89,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": false,
                       "last": "",
-                      "lastInitialOnly": false,
                       "suffix": "",
                       "suffixOther": ""
                     }
@@ -159,7 +158,6 @@
             "middleInitialOnly": false,
             "noMiddleName": false,
             "last": "",
-            "lastInitialOnly": false,
             "suffix": "",
             "suffixOther": ""
           }
@@ -209,7 +207,6 @@
             "middleInitialOnly": false,
             "noMiddleName": false,
             "last": "paul",
-            "lastInitialOnly": false,
             "suffix": "Sr",
             "suffixOther": ""
           }
@@ -550,7 +547,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": false,
                       "last": "c",
-                      "lastInitialOnly": true,
                       "suffix": "X",
                       "suffixOther": ""
                     }
@@ -618,7 +614,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": true,
                       "last": "Smith",
-                      "lastInitialOnly": false,
                       "suffix": "VI",
                       "suffixOther": ""
                     }
@@ -1540,7 +1535,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": false,
                       "last": "Smith",
-                      "lastInitialOnly": false,
                       "suffix": "VII",
                       "suffixOther": ""
                     }
@@ -1642,7 +1636,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": true,
                       "last": "richard",
-                      "lastInitialOnly": false,
                       "suffix": "",
                       "suffixOther": ""
                     }
@@ -1801,7 +1794,6 @@
                                 "middleInitialOnly": false,
                                 "noMiddleName": false,
                                 "last": "",
-                                "lastInitialOnly": false,
                                 "suffix": "",
                                 "suffixOther": ""
                               }
@@ -1941,7 +1933,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": false,
                       "last": "Smith",
-                      "lastInitialOnly": false,
                       "suffix": "",
                       "suffixOther": ""
                     }
@@ -2017,7 +2008,6 @@
                                 "middleInitialOnly": false,
                                 "noMiddleName": false,
                                 "last": "Smith",
-                                "lastInitialOnly": false,
                                 "suffix": "VII",
                                 "suffixOther": ""
                               }
@@ -2041,7 +2031,6 @@
                                 "middleInitialOnly": false,
                                 "noMiddleName": false,
                                 "last": "",
-                                "lastInitialOnly": false,
                                 "suffix": "",
                                 "suffixOther": ""
                               }
@@ -2184,7 +2173,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": false,
                       "last": "Peterson",
-                      "lastInitialOnly": false,
                       "suffix": "",
                       "suffixOther": ""
                     }
@@ -2298,7 +2286,6 @@
                                     "middleInitialOnly": false,
                                     "noMiddleName": true,
                                     "last": "pyrad",
-                                    "lastInitialOnly": false,
                                     "suffix": "Jr",
                                     "suffixOther": ""
                                   }
@@ -2346,7 +2333,6 @@
                                     "middleInitialOnly": false,
                                     "noMiddleName": false,
                                     "last": "Frank",
-                                    "lastInitialOnly": false,
                                     "suffix": "II",
                                     "suffixOther": ""
                                   }
@@ -2388,7 +2374,6 @@
                                     "middleInitialOnly": false,
                                     "noMiddleName": false,
                                     "last": "",
-                                    "lastInitialOnly": false,
                                     "suffix": "",
                                     "suffixOther": ""
                                   }
@@ -2526,7 +2511,6 @@
                                     "middleInitialOnly": false,
                                     "noMiddleName": false,
                                     "last": "",
-                                    "lastInitialOnly": false,
                                     "suffix": "",
                                     "suffixOther": ""
                                   }
@@ -2670,7 +2654,6 @@
                                     "middleInitialOnly": false,
                                     "noMiddleName": false,
                                     "last": "yest",
-                                    "lastInitialOnly": false,
                                     "suffix": "",
                                     "suffixOther": ""
                                   }
@@ -2712,7 +2695,6 @@
                                     "middleInitialOnly": false,
                                     "noMiddleName": false,
                                     "last": "",
-                                    "lastInitialOnly": false,
                                     "suffix": "",
                                     "suffixOther": ""
                                   }
@@ -2869,7 +2851,8 @@
                       "middleInitialOnly": false,
                       "noMiddleName": false,
                       "last": "ok",
-                      "lastInitialOnly": false,
+
+
                       "suffix": "VI",
                       "suffixOther": ""
                     }
@@ -2922,7 +2905,6 @@
                       "middleInitialOnly": true,
                       "noMiddleName": false,
                       "last": "u",
-                      "lastInitialOnly": true,
                       "suffix": "IX",
                       "suffixOther": ""
                     }
@@ -2977,7 +2959,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": false,
                       "last": "Rush",
-                      "lastInitialOnly": false,
                       "suffix": "",
                       "suffixOther": ""
                     }
@@ -3048,7 +3029,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": true,
                       "last": "Smith",
-                      "lastInitialOnly": false,
                       "suffix": "Sr",
                       "suffixOther": ""
                     }
@@ -3095,7 +3075,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": false,
                       "last": "we",
-                      "lastInitialOnly": false,
                       "suffix": "VII",
                       "suffixOther": ""
                     }
@@ -3142,7 +3121,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": true,
                       "last": "roberstas",
-                      "lastInitialOnly": false,
                       "suffix": "I",
                       "suffixOther": ""
                     }
@@ -3230,7 +3208,6 @@
                                     "middleInitialOnly": false,
                                     "noMiddleName": false,
                                     "last": "yellow",
-                                    "lastInitialOnly": false,
                                     "suffix": "VII",
                                     "suffixOther": ""
                                   }
@@ -3272,7 +3249,6 @@
                                     "middleInitialOnly": false,
                                     "noMiddleName": false,
                                     "last": "",
-                                    "lastInitialOnly": false,
                                     "suffix": "",
                                     "suffixOther": ""
                                   }
@@ -3427,7 +3403,6 @@
                                     "middleInitialOnly": false,
                                     "noMiddleName": false,
                                     "last": "",
-                                    "lastInitialOnly": false,
                                     "suffix": "",
                                     "suffixOther": ""
                                   }
@@ -3553,7 +3528,8 @@
             "middleInitialOnly": false,
             "noMiddleName": false,
             "last": "Thompson",
-            "lastInitialOnly": false,
+
+
             "suffix": "",
             "suffixOther": ""
           }
@@ -3814,7 +3790,6 @@
                                     "middleInitialOnly": false,
                                     "noMiddleName": true,
                                     "last": "jones",
-                                    "lastInitialOnly": false,
                                     "suffix": "",
                                     "suffixOther": ""
                                   }
@@ -3864,7 +3839,6 @@
                                     "middleInitialOnly": false,
                                     "noMiddleName": false,
                                     "last": "Smith",
-                                    "lastInitialOnly": false,
                                     "suffix": "",
                                     "suffixOther": ""
                                   }
@@ -3906,7 +3880,6 @@
                                     "middleInitialOnly": false,
                                     "noMiddleName": false,
                                     "last": "",
-                                    "lastInitialOnly": false,
                                     "suffix": "",
                                     "suffixOther": ""
                                   }
@@ -4044,7 +4017,6 @@
                                     "middleInitialOnly": false,
                                     "noMiddleName": false,
                                     "last": "",
-                                    "lastInitialOnly": false,
                                     "suffix": "",
                                     "suffixOther": ""
                                   }
@@ -4225,7 +4197,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": true,
                       "last": "o",
-                      "lastInitialOnly": true,
                       "suffix": "",
                       "suffixOther": ""
                     }
@@ -4366,7 +4337,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": false,
                       "last": "rob",
-                      "lastInitialOnly": false,
                       "suffix": "",
                       "suffixOther": ""
                     }
@@ -4496,7 +4466,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": false,
                       "last": "Smith",
-                      "lastInitialOnly": false,
                       "suffix": "Sr",
                       "suffixOther": ""
                     }
@@ -4557,7 +4526,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": true,
                       "last": "paris",
-                      "lastInitialOnly": false,
                       "suffix": "Sr",
                       "suffixOther": ""
                     }
@@ -4965,7 +4933,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": true,
                       "last": "roberts",
-                      "lastInitialOnly": false,
                       "suffix": "VIII",
                       "suffixOther": ""
                     }
@@ -5066,7 +5033,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": false,
                       "last": "Bluth",
-                      "lastInitialOnly": false,
                       "suffix": "",
                       "suffixOther": ""
                     }
@@ -5402,7 +5368,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": false,
                       "last": "",
-                      "lastInitialOnly": false,
                       "suffix": "",
                       "suffixOther": ""
                     }
@@ -5663,7 +5628,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": false,
                       "last": "Smith",
-                      "lastInitialOnly": false,
                       "suffix": "II",
                       "suffixOther": ""
                     }
@@ -5793,7 +5757,6 @@
             "middleInitialOnly": false,
             "noMiddleName": false,
             "last": "Thompson",
-            "lastInitialOnly": false,
             "suffix": "VII",
             "suffixOther": ""
           }
@@ -6890,7 +6853,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": false,
                       "last": "Jones",
-                      "lastInitialOnly": false,
                       "suffix": "Sr",
                       "suffixOther": ""
                     }
@@ -6949,7 +6911,6 @@
                                 "middleInitialOnly": false,
                                 "noMiddleName": false,
                                 "last": "",
-                                "lastInitialOnly": false,
                                 "suffix": "",
                                 "suffixOther": ""
                               }
@@ -7055,7 +7016,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": false,
                       "last": "King",
-                      "lastInitialOnly": false,
                       "suffix": "VII",
                       "suffixOther": ""
                     }
@@ -7114,7 +7074,6 @@
                                 "middleInitialOnly": false,
                                 "noMiddleName": false,
                                 "last": "",
-                                "lastInitialOnly": false,
                                 "suffix": "",
                                 "suffixOther": ""
                               }
@@ -7323,7 +7282,6 @@
                 "middleInitialOnly": false,
                 "noMiddleName": false,
                 "last": "york",
-                "lastInitialOnly": false,
                 "suffix": "VII",
                 "suffixOther": ""
               }
@@ -7382,7 +7340,6 @@
                           "middleInitialOnly": false,
                           "noMiddleName": false,
                           "last": "",
-                          "lastInitialOnly": false,
                           "suffix": "",
                           "suffixOther": ""
                         }
@@ -7507,7 +7464,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": false,
                       "last": "",
-                      "lastInitialOnly": false,
                       "suffix": "",
                       "suffixOther": ""
                     }
@@ -7628,7 +7584,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": false,
                       "last": "bob",
-                      "lastInitialOnly": false,
                       "suffix": "",
                       "suffixOther": ""
                     }
@@ -7742,7 +7697,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": false,
                       "last": "Smith",
-                      "lastInitialOnly": false,
                       "suffix": "II",
                       "suffixOther": ""
                     }
@@ -7855,7 +7809,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": true,
                       "last": "roberts",
-                      "lastInitialOnly": false,
                       "suffix": "VII",
                       "suffixOther": ""
                     }
@@ -7985,7 +7938,6 @@
                                 "middleInitialOnly": false,
                                 "noMiddleName": false,
                                 "last": "",
-                                "lastInitialOnly": false,
                                 "suffix": "",
                                 "suffixOther": ""
                               }
@@ -8160,7 +8112,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": false,
                       "last": "Name",
-                      "lastInitialOnly": false,
                       "suffix": "Sr",
                       "suffixOther": ""
                     }
@@ -8192,7 +8143,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": false,
                       "last": "Smith",
-                      "lastInitialOnly": false,
                       "suffix": "VII",
                       "suffixOther": ""
                     }
@@ -8280,7 +8230,6 @@
                                 "middleInitialOnly": false,
                                 "noMiddleName": false,
                                 "last": "",
-                                "lastInitialOnly": false,
                                 "suffix": "",
                                 "suffixOther": ""
                               }
@@ -8448,7 +8397,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": false,
                       "last": "",
-                      "lastInitialOnly": false,
                       "suffix": "",
                       "suffixOther": ""
                     }
@@ -8480,7 +8428,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": false,
                       "last": "Sara",
-                      "lastInitialOnly": false,
                       "suffix": "IX",
                       "suffixOther": ""
                     }
@@ -8567,7 +8514,6 @@
                                 "middleInitialOnly": false,
                                 "noMiddleName": false,
                                 "last": "",
-                                "lastInitialOnly": false,
                                 "suffix": "",
                                 "suffixOther": ""
                               }
@@ -8735,7 +8681,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": false,
                       "last": "",
-                      "lastInitialOnly": false,
                       "suffix": "",
                       "suffixOther": ""
                     }
@@ -8767,7 +8712,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": false,
                       "last": "King",
-                      "lastInitialOnly": false,
                       "suffix": "II",
                       "suffixOther": ""
                     }
@@ -8956,7 +8900,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": false,
                       "last": "",
-                      "lastInitialOnly": false,
                       "suffix": "",
                       "suffixOther": ""
                     }
@@ -8988,7 +8931,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": true,
                       "last": "Ross",
-                      "lastInitialOnly": false,
                       "suffix": "",
                       "suffixOther": ""
                     }
@@ -9177,7 +9119,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": false,
                       "last": "",
-                      "lastInitialOnly": false,
                       "suffix": "",
                       "suffixOther": ""
                     }
@@ -9209,7 +9150,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": false,
                       "last": "Newheart",
-                      "lastInitialOnly": false,
                       "suffix": "",
                       "suffixOther": ""
                     }
