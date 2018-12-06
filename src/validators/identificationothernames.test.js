@@ -58,7 +58,6 @@ describe('OtherNames validation', function() {
                     middleInitialOnly: true,
                     noMiddleName: false,
                     last: 'Bar',
-                    lastInitialOnly: false,
                     suffix: 'Jr'
                   },
                   MaidenName: {
@@ -103,7 +102,6 @@ describe('OtherNames validation', function() {
                     middleInitialOnly: true,
                     noMiddleName: false,
                     last: 'Bar',
-                    lastInitialOnly: false,
                     suffix: 'Jr'
                   },
                   MaidenName: {
@@ -164,7 +162,6 @@ describe('OtherNames validation', function() {
             middleInitialOnly: true,
             noMiddleName: false,
             last: 'Bar',
-            lastInitialOnly: false,
             suffix: 'Jr'
           }
         },
@@ -288,7 +285,6 @@ describe('OtherNames validation', function() {
             middleInitialOnly: true,
             noMiddleName: false,
             last: 'Bar',
-            lastInitialOnly: false,
             suffix: 'Jr'
           },
           MaidenName: {

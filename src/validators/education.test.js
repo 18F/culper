@@ -183,7 +183,6 @@ describe('Education component validation', function() {
             firstInitialOnly: false,
             noMiddleName: true,
             last: 'Bar',
-            lastInitialOnly: false,
             suffix: 'Jr'
           },
           ReferenceNameNotApplicable: {

@@ -311,7 +311,6 @@ describe('citizenship component validation', function() {
             middleInitialOnly: true,
             noMiddleName: false,
             last: 'Bar',
-            lastInitialOnly: false,
             suffix: 'Jr'
           },
           CertificateNumber: {
@@ -330,7 +329,6 @@ describe('citizenship component validation', function() {
             middleInitialOnly: true,
             noMiddleName: false,
             last: 'Bar',
-            lastInitialOnly: false,
             suffix: 'Jr'
           },
           BornOnMilitaryInstallation: { value: 'Yes' },
@@ -389,7 +387,6 @@ describe('citizenship component validation', function() {
             middleInitialOnly: true,
             noMiddleName: false,
             last: 'Bar',
-            lastInitialOnly: false,
             suffix: 'Jr'
           },
           Basis: { value: 'Other' },
@@ -418,7 +415,6 @@ describe('citizenship component validation', function() {
             middleInitialOnly: true,
             noMiddleName: false,
             last: 'Bar',
-            lastInitialOnly: false,
             suffix: 'Jr'
           },
           CertificateIssued: {
@@ -478,7 +474,6 @@ describe('citizenship component validation', function() {
             middleInitialOnly: true,
             noMiddleName: false,
             last: 'Bar',
-            lastInitialOnly: false,
             suffix: 'Jr'
           },
           DocumentIssued: {
