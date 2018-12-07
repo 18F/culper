@@ -6525,6 +6525,7 @@
                       "first": "",
                       "firstInitialOnly": false,
                       "middle": "",
+                      "hideMiddleName": true,
                       "middleInitialOnly": false,
                       "noMiddleName": false,
                       "last": "",
@@ -6705,6 +6706,7 @@
                       "first": "",
                       "firstInitialOnly": false,
                       "middle": "",
+                      "hideMiddleName": true,
                       "middleInitialOnly": false,
                       "noMiddleName": false,
                       "last": "",
@@ -6853,6 +6855,7 @@
                       "first": "",
                       "firstInitialOnly": false,
                       "middle": "",
+                      "hideMiddleName": true,
                       "middleInitialOnly": false,
                       "noMiddleName": false,
                       "last": "",
@@ -7038,8 +7041,9 @@
                       "first": "Timothy",
                       "firstInitialOnly": false,
                       "middle": "",
+                      "hideMiddleName": true,
                       "middleInitialOnly": false,
-                      "noMiddleName": true,
+                      "noMiddleName": false,
                       "last": "Bronston",
                       "lastInitialOnly": false,
                       "suffix": "",
@@ -16172,6 +16176,35 @@
                 "applicable": true
               }
             },
+            "AlternateAddress": {
+              "type": "physicaladdress",
+              "props": {
+                "HasDifferentAddress": {
+                  "type": "branch",
+                  "props": {
+                    "value": ""
+                  }
+                },
+                "Address": {
+                  "type": "location",
+                  "props": {
+                    "layout": "",
+                    "country": ""
+                  }
+                },
+                "Telephone": {
+                  "type": "telephone",
+                  "props": {
+                    "timeOfDay": "",
+                    "type": "",
+                    "numberType": "",
+                    "number": "",
+                    "extension": "",
+                    "noNumber": false
+                  }
+                }
+              }
+            },
             "BirthPlace": {
               "type": "location",
               "props": {
@@ -16521,10 +16554,9 @@
                   "BirthPlace": {
                     "type": "location",
                     "props": {
-                      "layout": "Birthplace",
+                      "layout": "Birthplace without County",
                       "city": "Monterey",
                       "state": "CA",
-                      "county": "Monterey",
                       "country": "United States"
                     }
                   },

@@ -1,7 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { i18n } from '../../../../config'
-import { physicaladdress } from '../../../../schema/form/physicaladdress'
 import {
   ValidationElement,
   DateRange,
@@ -258,15 +256,13 @@ export default class ResidenceItem extends ValidationElement {
             required={this.props.required}
           />
         </Field>
-
-        {this.props.render({
-          belongingTo: 'AlternateAddress',
-          address: this.props.AlternateAddress,
-          country: this.props.Address.country,
-          militaryAddressLabel: i18n.t('address.militaryAddress.meResidence'),
-          onUpdate: this.update
-        })}
-
+        <AlternateAddress
+          address={this.props.AlternateAddress}
+          belongingTo="AlternateAddress"
+          country={this.props.Address.country}
+          militaryAddressLabel={i18n.t('address.militaryAddress.meResidence')}
+          onUpdate={this.update}
+        />
         <Field
           title={i18n.t('history.residence.heading.dates')}
           help="history.residence.help.dates"
@@ -584,15 +580,13 @@ export default class ResidenceItem extends ValidationElement {
                   onError={this.props.onError}
                 />
               </Field>
-
-              {this.props.render({
-                belongingTo: 'ReferenceAlternateAddress',
-                address: this.props.ReferenceAlternateAddress,
-                country: this.props.ReferenceAddress.country,
-                militaryAddressLabel: i18n.t('address.militaryAddress.residenceVerifier'),
-                onUpdate: this.update
-              })}
-
+              <AlternateAddress
+                belongingTo="ReferenceAlternateAddress"
+                address={this.props.ReferenceAlternateAddress}
+                country={this.props.ReferenceAddress.country}
+                militaryAddressLabel={i18n.t('address.militaryAddress.residenceVerifier')}
+                onUpdate={this.update}
+              />
             </div>
           </div>
         </Show>
