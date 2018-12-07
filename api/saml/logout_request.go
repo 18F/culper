@@ -72,7 +72,7 @@ func extractCertBody(certFile string) (string, error) {
 
 	certBytes, err := ioutil.ReadFile(certFile)
 	if err != nil {
-		return "", err
+		return "", errors.Wrap(err, "Failed to read cert file")
 	}
 
 	captures := extractorRegex.FindSubmatch(certBytes)
@@ -232,13 +232,13 @@ func (req *logoutRequest) signedRequest(certFile, keyFile string) (string, error
 
 	xmlBytes, err := req.xml()
 	if err != nil {
-		return "", err
+		return "", errors.Wrap(err, "Couldn't generate XML for logout request")
 	}
 	sloRequestID := "urn:oasis:names:tc:SAML:2.0:protocol:LogoutRequest"
 
 	signedXML, err := sign(string(xmlBytes), keyFile, sloRequestID)
 	if err != nil {
-		return "", err
+		return "", errors.Wrap(err, "failed to sign the LogoutRequest")
 	}
 
 	return signedXML, nil

@@ -3,7 +3,6 @@ package saml
 import (
 	"encoding/base64"
 	"errors"
-	"net/url"
 	"strings"
 	"time"
 
@@ -23,7 +22,6 @@ type Service struct {
 func (service *Service) CreateAuthenticationRequest() (string, string, error) {
 	service.configure()
 	var encoded string
-	var url string
 	var err error
 
 	// Generate the AuthnRequest and then get a base64 encoded string of the XML
@@ -40,11 +38,7 @@ func (service *Service) CreateAuthenticationRequest() (string, string, error) {
 	requestAsXML, _ := request.String()
 	service.Log.Debug("SAML authentication request", api.LogFields{"xml": requestAsXML})
 
-	url, err = getAuthnRequestURL(service.provider.IDPSSOURL, "state")
-	if err != nil {
-		return "", "", err
-	}
-	return encoded, url, err
+	return encoded, service.provider.IDPSSOURL, err
 }
 
 const (
@@ -223,31 +217,10 @@ func (service *Service) CreateSLORequest(username string, sessionIndex string) (
 
 	signedRequest, err := req.signedRequest(service.provider.PublicCertPath, service.provider.PrivateKeyPath)
 	if err != nil {
+		service.Log.WarnError("Failed to sign the SLO Request.", err, api.LogFields{})
 		return "", "", err
 	}
 	encoded := base64.StdEncoding.EncodeToString([]byte(signedRequest))
 
-	url, err := getAuthnRequestURL(service.provider.IDPSSOURL, "state")
-	if err != nil {
-		return "", "", err
-	}
-
-	return encoded, url, err
-}
-
-// getAuthnRequestURL generates a URL for the AuthnRequest to the IdP with the RelayState parameter encoded
-// Altered from the original version from RobotsAndPencils/go-saml so that it
-// does not redundantly encode the AuthnRequest as a GET query parameter. The
-// login form does a POST to avoid bumping into referrer/URL/cookie maximums
-// in browsers and NGINX.
-func getAuthnRequestURL(baseURL string, state string) (string, error) {
-	u, err := url.Parse(baseURL)
-	if err != nil {
-		return "", err
-	}
-
-	// q := u.Query()
-	// q.Add("RelayState", state)
-	// u.RawQuery = q.Encode()
-	return u.String(), nil
+	return encoded, service.provider.IDPSSOURL, err
 }
