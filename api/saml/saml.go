@@ -221,14 +221,11 @@ func cleanName(nameID string) string {
 func (service *Service) CreateSLORequest(username string, sessionIndex string) (string, string, error) {
 	req := newLogoutRequest(service.provider.IDPSSODescriptorURL, username, sessionIndex)
 
-	err := req.signRequest(service.provider.PublicCertPath, service.provider.PrivateKeyPath)
+	signedRequest, err := req.signedRequest(service.provider.PublicCertPath, service.provider.PrivateKeyPath)
 	if err != nil {
 		return "", "", err
 	}
-	encoded, err := req.base64()
-	if err != nil {
-		return "", "", err
-	}
+	encoded := base64.StdEncoding.EncodeToString([]byte(signedRequest))
 
 	url, err := getAuthnRequestURL(service.provider.IDPSSOURL, "state")
 	if err != nil {

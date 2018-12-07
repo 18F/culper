@@ -87,7 +87,7 @@ func TestAuthnRequestSignature(t *testing.T) {
 	service := &Service{Log: &mock.LogService{}, Env: settings}
 
 	// Create a request
-	digest, _, err := service.CreateAuthenticationRequest()
+	_, _, err := service.CreateAuthenticationRequest()
 	if err != nil {
 		t.Fatal(err)
 	}
