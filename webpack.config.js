@@ -33,7 +33,7 @@ module.exports = {
   plugins: [
     new webpack.EnvironmentPlugin([
       'API_BASE_URL', 'COOKIE_DOMAIN', 'HASH_ROUTING',
-      'BASIC_ENABLED', 'SAML_ENABLED', 'SESSION_TIMEOUT',
+      'BASIC_ENABLED', 'SAML_ENABLED', 'SAML_SLO_ENABLED', 'SESSION_TIMEOUT',
       'ATTACHMENTS_ENABLED', 'FILE_MAXIMUM_SIZE', 'FILE_TYPES'
     ])
   ]
