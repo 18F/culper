@@ -33,7 +33,7 @@ var (
 
 // EAppClaims are all the claims eApp uses in JWT
 type EAppClaims struct {
-	SessionID string `json:"sid,omitempty"`
+	SessionIndex string `json:"sid,omitempty"`
 	jwt.StandardClaims
 }
 
@@ -92,8 +92,8 @@ func (service Service) CurrentAudience(request *http.Request) string {
 	return ""
 }
 
-// SessionID is the session embedded in the token.
-func (service Service) SessionID(request *http.Request) string {
+// SessionIndex is the session embedded in the token.
+func (service Service) SessionIndex(request *http.Request) string {
 	rawToken := service.ExtractToken(request)
 	token, err := service.ParseWithClaims(rawToken)
 	if err != nil {
@@ -102,18 +102,21 @@ func (service Service) SessionID(request *http.Request) string {
 
 	if token.Valid {
 		claims := token.Claims.(*EAppClaims)
-		return claims.SessionID
+		return claims.SessionIndex
 	}
 
 	return ""
 }
 
 // NewToken generates a new Jwt signed token using a users account information
-func (service Service) NewToken(id int, sessionID string, audience string) (string, time.Time, error) {
+// ID is the user id for the token.
+// sessionIndex is the session identifier provided by WSO2 (used in logout)
+// audience is a JWT field that defines which clients are interested in this token.
+func (service Service) NewToken(id int, sessionIndex string, audience string) (string, time.Time, error) {
 	expiresAt := time.Now().Add(service.Timeout())
 
 	token := jwt.NewWithClaims(JwtSigningMethod, EAppClaims{
-		sessionID,
+		sessionIndex,
 		jwt.StandardClaims{
 			Id:        strconv.FormatInt(int64(id), 10),
 			Issuer:    Issuer,

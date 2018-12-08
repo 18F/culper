@@ -74,10 +74,12 @@ func (service SamlSLORequestHandler) ServeHTTP(w http.ResponseWriter, r *http.Re
 		return
 	}
 
-	// Get the SessionID from the token
-	sessionIndex := service.Token.SessionID(r)
+	// Get the SessionIndex from the token
+	sessionIndex := service.Token.SessionIndex(r)
 	if sessionIndex == "" {
-		service.Log.Warn("SAML auth should always contain a SessionID for SLO to work properly", api.LogFields{})
+		service.Log.Error("This user session was started with an instance of WSO2 not configured for SLO.", api.LogFields{})
+		http.Error(w, "This user session was started with an instance of WSO2 not configured for SLO.", http.StatusInternalServerError)
+		return
 	}
 
 	// Get the account information from the data store

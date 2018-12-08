@@ -29,7 +29,7 @@ func (service RefreshHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) 
 
 	// Generate a new token
 	account.ID = id
-	signedToken, _, err := service.Token.NewToken(id, service.Token.SessionID(r), service.Token.CurrentAudience(r))
+	signedToken, _, err := service.Token.NewToken(id, service.Token.SessionIndex(r), service.Token.CurrentAudience(r))
 	if err != nil {
 		service.Log.WarnError(api.JWTError, err, api.LogFields{})
 		http.Error(w, err.Error(), http.StatusInternalServerError)
