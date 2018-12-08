@@ -151,7 +151,7 @@ export default class DateRange extends ValidationElement {
   handleError(code, value, arr) {
     arr = arr.map(err => {
       return {
-        code: `daterange.${code}.${err.code.replace('date.', '')}`,
+        code: `${this.props.dateRangePrefix ? this.props.dateRangePrefix : 'daterange'}.${err.code.replace('date.', '')}`,
         valid: err.valid,
         uid: err.uid
       }
@@ -291,6 +291,7 @@ DateRange.defaultProps = {
   to: {},
   present: false,
   prefix: '',
+  dateRangePrefix: '',
   minDate: null,
   minDateEqualTo: false,
   maxDate: new Date(),
