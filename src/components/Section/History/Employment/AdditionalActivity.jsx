@@ -90,6 +90,8 @@ export default class AdditionalActivity extends ValidationElement {
                 name="DatesEmployed"
                 bind={true}
                 minDateEqualTo={true}
+                dateRangePrefix="additionalActivity"
+                maxDate={this.props.employmentFromDate.date}
                 allowPresent={false}
                 required={this.props.required}
               />
@@ -103,6 +105,7 @@ export default class AdditionalActivity extends ValidationElement {
 
 AdditionalActivity.defaultProps = {
   List: {},
+  employmentFromDate: { date: new Date() },
   onUpdate: queue => {},
   onError: (value, arr) => {
     return arr

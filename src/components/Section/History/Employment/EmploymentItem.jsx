@@ -538,6 +538,7 @@ export default class EmploymentItem extends ValidationElement {
           <AdditionalActivity
             name="Additional"
             {...this.props.Additional}
+            employmentFromDate={this.props.Dates.from}
             onUpdate={this.updateAdditional}
             onError={this.props.onError}
             required={this.props.required}
