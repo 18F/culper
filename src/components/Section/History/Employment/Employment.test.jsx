@@ -143,8 +143,8 @@ describe('The employment section', () => {
       .instance()
       .sortEmploymentItems(props.List.items)
 
-    expect(sortedEmploymentItems[0].Item.Dates.from.year).toEqual('2014')
-    expect(sortedEmploymentItems[1].Item.Dates.from.year).toEqual('2005')
-    expect(sortedEmploymentItems[2].Item.Dates.from.year).toEqual('2000')
+    expect(sortedEmploymentItems[0].Item.Dates.to.year).toEqual('2018')
+    expect(sortedEmploymentItems[1].Item.Dates.to.year).toEqual('2007')
+    expect(sortedEmploymentItems[2].Item.Dates.to.year).toEqual('2004')
   })
 })
