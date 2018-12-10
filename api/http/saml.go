@@ -77,7 +77,7 @@ func (service SamlSLORequestHandler) ServeHTTP(w http.ResponseWriter, r *http.Re
 	// Get the SessionIndex from the token
 	sessionIndex := service.Token.SessionIndex(r)
 	if sessionIndex == "" {
-		service.Log.Error("This user session was started with an instance of WSO2 not configured for SLO.", api.LogFields{})
+		service.Log.Fatal("This user session was started with an instance of WSO2 not configured for SLO.", api.LogFields{})
 		http.Error(w, "This user session was started with an instance of WSO2 not configured for SLO.", http.StatusInternalServerError)
 		return
 	}
