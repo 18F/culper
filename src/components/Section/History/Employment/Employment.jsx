@@ -62,10 +62,10 @@ export default class Employment extends SubsectionElement {
       if (
         a.Item &&
         a.Item.Dates &&
-        a.Item.Dates.from
+        a.Item.Dates.to
       ) {
-        const aDateObj = a.Item.Dates.from
-        const bDateObj = b.Item.Dates.from
+        const aDateObj = a.Item.Dates.to
+        const bDateObj = b.Item.Dates.to
         const aDate = new Date(aDateObj.year, aDateObj.month - 1, aDateObj.day)
         const bDate = new Date(bDateObj.year, bDateObj.month - 1, bDateObj.day)
 

@@ -176,7 +176,6 @@ class Foreign extends SectionElement {
               section="foreign"
               subsection="contacts"
               applicantBirthdate={this.props.applicantBirthdate}
-              defaultState={false}
               addressBooks={this.props.AddressBooks}
               dispatch={this.props.dispatch}
               onUpdate={this.updateContacts}
@@ -190,7 +189,6 @@ class Foreign extends SectionElement {
               {...this.props.DirectActivity}
               section="foreign"
               subsection="activities/direct"
-              defaultState={false}
               addressBooks={this.props.AddressBooks}
               dispatch={this.props.dispatch}
               onUpdate={this.updateDirectActivity}
@@ -204,7 +202,6 @@ class Foreign extends SectionElement {
               {...this.props.IndirectActivity}
               section="foreign"
               subsection="activities/indirect"
-              defaultState={false}
               addressBooks={this.props.AddressBooks}
               dispatch={this.props.dispatch}
               onUpdate={this.updateIndirectActivity}
@@ -218,7 +215,6 @@ class Foreign extends SectionElement {
               {...this.props.RealEstateActivity}
               section="foreign"
               subsection="activities/realestate"
-              defaultState={false}
               dispatch={this.props.dispatch}
               onUpdate={this.updateRealEstateActivity}
               onError={this.handleError}
@@ -231,7 +227,6 @@ class Foreign extends SectionElement {
               {...this.props.BenefitActivity}
               section="foreign"
               subsection="activities/benefits"
-              defaultState={false}
               dispatch={this.props.dispatch}
               onUpdate={this.updateBenefitActivity}
               onError={this.handleError}
@@ -244,7 +239,6 @@ class Foreign extends SectionElement {
               {...this.props.Support}
               section="foreign"
               subsection="activities/support"
-              defaultState={false}
               addressBooks={this.props.AddressBooks}
               dispatch={this.props.dispatch}
               onUpdate={this.updateSupport}
@@ -258,7 +252,6 @@ class Foreign extends SectionElement {
               {...this.props.Advice}
               section="foreign"
               subsection="business/advice"
-              defaultState={false}
               dispatch={this.props.dispatch}
               onUpdate={this.updateAdvice}
               onError={this.handleError}
@@ -271,7 +264,6 @@ class Foreign extends SectionElement {
               {...this.props.Family}
               section="foreign"
               subsection="business/family"
-              defaultState={false}
               dispatch={this.props.dispatch}
               onUpdate={this.updateFamily}
               onError={this.handleError}
@@ -284,7 +276,6 @@ class Foreign extends SectionElement {
               {...this.props.Employment}
               section="foreign"
               subsection="business/employment"
-              defaultState={false}
               dispatch={this.props.dispatch}
               onUpdate={this.updateEmployment}
               onError={this.handleError}
@@ -297,7 +288,6 @@ class Foreign extends SectionElement {
               {...this.props.Ventures}
               section="foreign"
               subsection="business/ventures"
-              defaultState={false}
               addressBooks={this.props.AddressBooks}
               dispatch={this.props.dispatch}
               onUpdate={this.updateVentures}
@@ -311,7 +301,6 @@ class Foreign extends SectionElement {
               {...this.props.Conferences}
               section="foreign"
               subsection="business/conferences"
-              defaultState={false}
               dispatch={this.props.dispatch}
               onUpdate={this.updateConferences}
               onError={this.handleError}
@@ -324,7 +313,6 @@ class Foreign extends SectionElement {
               {...this.props.Contact}
               section="foreign"
               subsection="business/contact"
-              defaultState={false}
               addressBooks={this.props.AddressBooks}
               dispatch={this.props.dispatch}
               onUpdate={this.updateContact}
@@ -338,7 +326,6 @@ class Foreign extends SectionElement {
               {...this.props.Sponsorship}
               section="foreign"
               subsection="business/sponsorship"
-              defaultState={false}
               applicantBirthdate={this.props.applicantBirthdate}
               addressBooks={this.props.AddressBooks}
               dispatch={this.props.dispatch}
@@ -353,7 +340,6 @@ class Foreign extends SectionElement {
               {...this.props.Political}
               section="foreign"
               subsection="business/political"
-              defaultState={false}
               dispatch={this.props.dispatch}
               onUpdate={this.updatePolitical}
               onError={this.handleError}
@@ -366,7 +352,6 @@ class Foreign extends SectionElement {
               {...this.props.Voting}
               section="foreign"
               subsection="business/voting"
-              defaultState={false}
               dispatch={this.props.dispatch}
               onUpdate={this.updateVoting}
               onError={this.handleError}
@@ -379,7 +364,6 @@ class Foreign extends SectionElement {
               {...this.props.Travel}
               section="foreign"
               subsection="business/travel"
-              defaultState={false}
               dispatch={this.props.dispatch}
               onUpdate={this.updateTravel}
               onError={this.handleError}
