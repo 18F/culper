@@ -92,6 +92,7 @@ export default class AdditionalActivity extends ValidationElement {
                 minDateEqualTo={true}
                 dateRangePrefix="additionalActivity"
                 maxDate={this.props.employmentFromDate.date}
+                maxDateEqualTo={true}
                 allowPresent={false}
                 required={this.props.required}
               />
