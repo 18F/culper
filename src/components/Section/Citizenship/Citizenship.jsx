@@ -48,7 +48,6 @@ class Citizenship extends SectionElement {
               {...this.props.Status}
               section="citizenship"
               subsection="status"
-              defaultState={false}
               dispatch={this.props.dispatch}
               onUpdate={this.handleUpdate.bind(this, 'Status')}
               onError={this.handleError}
@@ -61,7 +60,6 @@ class Citizenship extends SectionElement {
               {...this.props.Multiple}
               section="citizenship"
               subsection="multiple"
-              defaultState={false}
               dispatch={this.props.dispatch}
               onUpdate={this.handleUpdate.bind(this, 'Multiple')}
               onError={this.handleError}
@@ -74,7 +72,6 @@ class Citizenship extends SectionElement {
               {...this.props.Passports}
               section="citizenship"
               subsection="passports"
-              defaultState={false}
               dispatch={this.props.dispatch}
               onUpdate={this.handleUpdate.bind(this, 'Passports')}
               onError={this.handleError}

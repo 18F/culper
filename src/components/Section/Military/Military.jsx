@@ -97,7 +97,6 @@ class Military extends SectionElement {
               {...this.props.History}
               section="military"
               subsection="history"
-              defaultState={false}
               dispatch={this.props.dispatch}
               onUpdate={this.updateHistory}
               onError={this.handleError}
@@ -112,7 +111,6 @@ class Military extends SectionElement {
                 {...this.props.Disciplinary}
                 section="military"
                 subsection="disciplinary"
-                defaultState={false}
                 dispatch={this.props.dispatch}
                 onUpdate={this.updateDisciplinary}
                 onError={this.handleError}
@@ -128,7 +126,6 @@ class Military extends SectionElement {
               section="military"
               subsection="foreign"
               addressBooks={this.props.AddressBooks}
-              defaultState={false}
               dispatch={this.props.dispatch}
               onUpdate={this.updateForeign}
               onError={this.handleError}
