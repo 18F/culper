@@ -82,7 +82,8 @@ const completeOtherNamesUsed = (promise) => {
 
 const completeContacts = (promise) => {
   return promise
-      .then(() => { return setText('input[name="Email"]', 'professor@xmen.org')})
+      .then(() => { return setText('input[name="HomeEmail"]', 'chuck@xavier.org')})
+      .then(() => { return setText('input[name="WorkEmail"]', 'professor@xmen.org')})
       .then(() => { return scrollToItem('input[name="domestic_first"]') })
       .then(() => { return setText('input[name="domestic_first"]', '202') })
       .then(() => { return setText('input[name="domestic_second"]', '867') })
