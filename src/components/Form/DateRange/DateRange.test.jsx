@@ -18,6 +18,30 @@ describe('The date range component', () => {
       )
   })
 
+  it('handles custom dateRangePrefix', () => {
+    const result = []
+    const expected = {
+      name: 'input-error',
+      label: 'Text input error',
+      help: 'Helpful error message',
+      dateRangePrefix: 'customPrefix',
+      error: true,
+      focus: false,
+      valid: false,
+      present: true,
+      onError: jest.fn(() => { return this }),
+      from: {
+        date: new Date('4/1/2010')
+      },
+      to: {
+        date: new Date('1/1/2000')
+      }
+    }
+    const component = createComponent(expected)
+    expect(expected.onError.mock.calls[1][1][0].code).toContain('customPrefix')
+    expect(component.find('.to.usa-input-error').length).toBe(1)
+  })
+
   it('handles dates in reversed order', () => {
     const expected = {
       name: 'input-error',
