@@ -16157,12 +16157,7 @@
             "Address": {
               "type": "location",
               "props": {
-                "layout": "Address",
-                "street": "3333 ocean Ave.",
-                "city": "Carmel",
-                "state": "CA",
-                "zipcode": "93923",
-                "country": "United States"
+                "layout": ""
               }
             },
             "AddressSeparated": {
@@ -16530,7 +16525,7 @@
             "UseCurrentAddress": {
               "type": "notapplicable",
               "props": {
-                "applicable": false
+                "applicable": true
               }
             }
           }
