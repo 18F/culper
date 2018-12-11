@@ -1,5 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import { pickDate } from '../../../../validators/helpers'
 import { connect } from 'react-redux'
 import {
   Branch,
@@ -174,6 +175,7 @@ class CivilUnion extends ValidationElement {
   }
 
   render() {
+    
     /**
      * `this.props.BirthPlace` can end up in a number of different states,
      * depending on the choices a user makes in this section _and_ on
@@ -205,9 +207,9 @@ class CivilUnion extends ValidationElement {
      *
      */
 
-    const { country } = this.props.BirthPlace
+    const { country } = this.props.BirthPlace;
     const showForeignBornDocumentation = country && countryString(country) !== 'United States'
-
+    const enteredCivilUnionMinDate = pickDate([this.props.applicantBirthdate, this.props.Birthdate])
     return (
       <div className="civil-union">
         <div>
@@ -375,6 +377,9 @@ class CivilUnion extends ValidationElement {
             <DateControl
               name="enteredCivilUnion"
               className="entered"
+              minDateEqualTo={true}
+              prefix="civilUnion"
+              minDate={enteredCivilUnionMinDate}
               {...this.props.EnteredCivilUnion}
               onUpdate={this.updateEnteredCivilUnion}
               onError={this.props.onError}

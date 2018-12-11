@@ -1,5 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import { pickDate } from '../../../../validators/helpers'
 import {
   Field,
   DateControl,
@@ -148,6 +149,7 @@ export default class Cohabitant extends ValidationElement {
   render() {
     const showForeignBornDocumentation =
       ((this.props.BirthPlace || {}).country || {}) !== 'United States'
+    const cohabitationBeganMinDate = pickDate([this.props.applicantBirthdate, this.props.Birthdate])
     return (
       <div className="cohabitant">
         <Suggestions
@@ -286,6 +288,8 @@ export default class Cohabitant extends ValidationElement {
           <DateControl
             name="cohabitationBegan"
             className="cohabitation-began"
+            prefix={"cohabitant"}
+            minDate={cohabitationBeganMinDate}
             {...this.props.CohabitationBegan}
             minDateEqualTo={true}
             onUpdate={this.updateCohabitationBegan}

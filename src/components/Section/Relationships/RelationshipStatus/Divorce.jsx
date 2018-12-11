@@ -1,5 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import { pickDate } from '../../../../validators/helpers'
 import {
   Location,
   Field,
@@ -131,6 +132,7 @@ export default class Divorce extends React.Component {
   }
 
   render() {
+    const enteredCivilUnionMinDate = pickDate([this.props.applicantBirthdate, this.props.Birthdate])
     return (
       <div className="divorce">
         <Field
@@ -214,6 +216,9 @@ export default class Divorce extends React.Component {
           adjustFor="datecontrol">
           <DateControl
             name="Recognized"
+            minDateEqualTo={true}
+            prefix={"civilUnion"}
+            minDate={enteredCivilUnionMinDate}
             className="recognized"
             {...this.props.Recognized}
             onUpdate={this.updateRecognized}
@@ -248,7 +253,7 @@ export default class Divorce extends React.Component {
           adjustFor="datecontrol">
           <DateControl
             name="DateDivorced"
-            prefix="divorce.date"
+            prefix="divorceDate"
             className="date-divorced"
             {...this.props.DateDivorced}
             minDate={(this.props.Recognized || {}).date}

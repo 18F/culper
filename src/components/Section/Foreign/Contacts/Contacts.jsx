@@ -87,6 +87,7 @@ export default class Contacts extends SubsectionElement {
             scrollIntoView={this.props.scrollIntoView}>
             <ForeignNational
               name="Item"
+              applicantBirthdate={this.props.applicantBirthdate}
               bind={true}
               addressBooks={this.props.addressBooks}
               dispatch={this.props.dispatch}

@@ -175,6 +175,7 @@ class Foreign extends SectionElement {
               {...this.props.Contacts}
               section="foreign"
               subsection="contacts"
+              applicantBirthdate={this.props.applicantBirthdate}
               addressBooks={this.props.AddressBooks}
               dispatch={this.props.dispatch}
               onUpdate={this.updateContacts}
@@ -201,7 +202,6 @@ class Foreign extends SectionElement {
               {...this.props.IndirectActivity}
               section="foreign"
               subsection="activities/indirect"
-              defaultState={false}
               addressBooks={this.props.AddressBooks}
               dispatch={this.props.dispatch}
               onUpdate={this.updateIndirectActivity}
@@ -326,6 +326,7 @@ class Foreign extends SectionElement {
               {...this.props.Sponsorship}
               section="foreign"
               subsection="business/sponsorship"
+              applicantBirthdate={this.props.applicantBirthdate}
               addressBooks={this.props.AddressBooks}
               dispatch={this.props.dispatch}
               onUpdate={this.updateSponsorship}
@@ -396,6 +397,7 @@ class Foreign extends SectionElement {
             <Contacts
               name="contacts"
               {...this.props.Contacts}
+              applicantBirthdate={this.props.applicantBirthdate}
               addressBooks={this.props.AddressBooks}
               dispatch={this.props.dispatch}
               onUpdate={this.updateContacts}
@@ -625,6 +627,7 @@ class Foreign extends SectionElement {
             <Sponsorship
               name="Sponsorship"
               {...this.props.Sponsorship}
+              applicantBirthdate={this.props.applicantBirthdate}
               addressBooks={this.props.AddressBooks}
               dispatch={this.props.dispatch}
               onUpdate={this.updateSponsorship}
@@ -688,6 +691,7 @@ class Foreign extends SectionElement {
 
 function mapStateToProps(state) {
   const app = state.application || {}
+  const identification = app.Identification || {}
   const foreign = app.Foreign || {}
   const errors = app.Errors || {}
   const completed = app.Completed || {}
@@ -695,6 +699,7 @@ function mapStateToProps(state) {
 
   let names = extractOtherNames(app)
   return {
+    applicantBirthdate: (identification.ApplicantBirthDate || {}).Date,
     Foreign: foreign,
     Passport: foreign.Passport || {},
     Contacts: foreign.Contacts || {},
@@ -743,6 +748,7 @@ export class ForeignSections extends React.Component {
           name="contacts"
           {...this.props.Contacts}
           defaultState={false}
+          applicantBirthdate={this.props.applicantBirthdate}
           addressBooks={this.props.AddressBooks}
           dispatch={this.props.dispatch}
           onError={this.handleError}
@@ -869,6 +875,7 @@ export class ForeignSections extends React.Component {
           name="Sponsorship"
           {...this.props.Sponsorship}
           defaultState={false}
+          applicantBirthdate={this.props.applicantBirthdate}
           addressBooks={this.props.AddressBooks}
           dispatch={this.props.dispatch}
           onError={this.handleError}

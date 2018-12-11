@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
 import en from './en'
+import removeMd from 'remove-markdown'
 
 const locales = { en }
 
@@ -36,10 +37,10 @@ class I18n {
     }
 
     if (this.isArray(text)) {
-      return text.join('\n')
+      return removeMd(text.join('\n'))
     }
 
-    return text
+    return removeMd(text)
   }
 
   m(id, locale = 'en') {

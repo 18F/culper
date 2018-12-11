@@ -319,4 +319,30 @@ export const buildDate = date => {
   }
 }
 
+
+export const pickDate = (dates, max=true) => {
+ const buildsDates = dates.map(buildDate)
+
+ const findMinDate = (finalDate, dateItem) => {
+   if (finalDate <= dateItem) {
+     return finalDate
+   }
+     return dateItem
+ }
+
+ const findMaxDate = (finalDate, dateItem) => {
+   if (finalDate >= dateItem) {
+     return finalDate
+   }
+     return dateItem
+ }
+
+ if (max) {
+    return buildsDates.reduce(findMaxDate)
+  }
+
+    return buildsDates.reduce(findMinDate)
+}
+
 export const alphaNumericRegEx = "^[a-zA-Z0-9]*$"
+

@@ -80,6 +80,7 @@ class Relationships extends SectionElement {
               name="marital"
               {...this.props.Marital}
               addressBooks={this.props.AddressBooks}
+              applicantBirthdate={this.props.applicantBirthdate}
               dispatch={this.props.dispatch}
               onUpdate={this.updateMarital}
               onError={this.handleError}
@@ -99,6 +100,7 @@ class Relationships extends SectionElement {
               name="cohabitants"
               {...this.props.Cohabitants}
               spouse={this.props.Spouse}
+              applicantBirthdate={this.props.applicantBirthdate}
               dispatch={this.props.dispatch}
               onUpdate={this.updateCohabitants}
               onError={this.handleError}
@@ -132,6 +134,7 @@ class Relationships extends SectionElement {
             <Relatives
               name="relatives"
               {...this.props.Relatives}
+              applicantBirthdate={this.props.applicantBirthdate}
               addressBooks={this.props.AddressBooks}
               dispatch={this.props.dispatch}
               onUpdate={this.updateRelatives}
@@ -154,6 +157,7 @@ class Relationships extends SectionElement {
               {...this.props.Marital}
               section="relationships"
               subsection="status/marital"
+              applicantBirthdate={this.props.applicantBirthdate}
               addressBooks={this.props.AddressBooks}
               dispatch={this.props.dispatch}
               onUpdate={this.updateMarital}
@@ -168,6 +172,7 @@ class Relationships extends SectionElement {
             <Cohabitants
               name="cohabitants"
               {...this.props.Cohabitants}
+              applicantBirthdate={this.props.applicantBirthdate}
               section="relationships"
               subsection="status/cohabitant"
               spouse={this.props.Spouse}
@@ -197,6 +202,7 @@ class Relationships extends SectionElement {
               name="relatives"
               {...this.props.Relatives}
               section="relationships"
+              applicantBirthdate={this.props.applicantBirthdate}
               subsection="relatives"
               addressBooks={this.props.AddressBooks}
               dispatch={this.props.dispatch}
@@ -214,6 +220,7 @@ class Relationships extends SectionElement {
 
 function mapStateToProps(state) {
   const app = state.application || {}
+  const identification = app.Identification || {}
   const relationships = app.Relationships || {}
   const errors = app.Errors || {}
   const completed = app.Completed || {}
@@ -221,6 +228,7 @@ function mapStateToProps(state) {
   const addressBooks = app.AddressBooks || {}
 
   return {
+    applicantBirthdate: (identification.ApplicantBirthDate || {}).Date,
     Relationships: relationships,
     Relatives: relationships.Relatives || {},
     Marital: relationships.Marital || {},
@@ -256,6 +264,7 @@ export class RelationshipSections extends React.Component {
           {...this.props.Marital}
           defaultState={false}
           addressBooks={this.props.AddressBooks}
+          applicantBirthdate={this.props.applicantBirthdate}
           dispatch={this.props.dispatch}
           onError={this.props.onError}
           currentAddress={this.props.CurrentAddress}
@@ -268,6 +277,7 @@ export class RelationshipSections extends React.Component {
           name="cohabitants"
           {...this.props.Cohabitants}
           defaultState={false}
+          applicantBirthdate={this.props.applicantBirthdate}
           spouse={this.props.Spouse}
           dispatch={this.props.dispatch}
           onError={this.props.onError}
@@ -291,6 +301,7 @@ export class RelationshipSections extends React.Component {
           name="relatives"
           {...this.props.Relatives}
           defaultState={false}
+          applicantBirthdate={this.props.applicantBirthdate}
           addressBooks={this.props.AddressBooks}
           dispatch={this.props.dispatch}
           onError={this.handleError}

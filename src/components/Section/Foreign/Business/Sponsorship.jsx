@@ -97,6 +97,7 @@ export default class Sponsorship extends SubsectionElement {
             required={this.props.required}
             scrollIntoView={this.props.scrollIntoView}>
             <SponsorshipItem
+              applicantBirthdate={this.props.applicantBirthdate}
               name="Item"
               bind={true}
               required={this.props.required}
