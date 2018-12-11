@@ -43,5 +43,8 @@ Feature: Identification
     And I click Next to go to identification review
     Then I should be in the identification review section
 
+  Scenario: Review Does Not Contain Errors
+    Then I should not have any errors in the section review
+
   Scenario: Log out of the form
     Then I log out

@@ -58,6 +58,10 @@ defineSupportCode(({Given, Then, When}) => {
     subcontext = subsection
     return shouldBeInSubsection('identification', subsection)
   })
+
+  Then(/^I should not have any errors in the section review$/, () => {
+    return checkForErrorMessages()
+  })
 })
 
 const completeFullName = (promise) => {
@@ -125,6 +129,11 @@ const completePhysicalAttributes = (promise) => {
       .then(() => { return setOption('.hair-colors .bald.block.extended label') })
       .then(() => { return setOption('.eye-colors .black.block.extended label') })
       .then(() => { return setOption('.sex .male label') })
+}
+
+const checkForErrorMessages = () => {
+  return client
+    .assert.elementNotPresent('.usa-alert-error')
 }
 
 const navigateToSection = (section) => {
