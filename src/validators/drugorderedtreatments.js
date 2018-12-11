@@ -75,13 +75,19 @@ export class DrugOrderedTreatmentValidator {
     }
   }
 
-  isValid() {
-    return validGenericTextfield(this.explanation) && this.validActionTaken() && this.validOrderedBy()
+  validOrderedBy() {
+    if (this.orderedBy.values && this.orderedBy.values.includes('None')) {
+      return this.orderedBy.values.length === 1
+    }
+
+    return this.orderedBy.values && this.orderedBy.values.length >= 1
   }
 
-  validOrderedBy() {
-    if (this.orderedBy.length <= 1) {
-      return true
-    }
+  isValid() {
+    return (
+      validGenericTextfield(this.explanation) &&
+      this.validActionTaken() &&
+      this.validOrderedBy()
+    )
   }
 }

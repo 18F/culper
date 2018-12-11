@@ -10671,7 +10671,8 @@
                       "city": "No American can study the character andX",
                       "state": "FL",
                       "zipcode": "33901",
-                      "country": "United States"
+                      "country": "United States",
+                      "county": "Santa Clara"
                     }
                   },
                   "CourtName": {
@@ -10706,7 +10707,8 @@
                       "city": "No American can study the character andX",
                       "state": "FL",
                       "zipcode": "33901",
-                      "country": "United States"
+                      "country": "United States",
+                      "county": "Santa Clara"
                     }
                   },
                   "CourtName": {
@@ -11264,7 +11266,8 @@
                       "city": "No American can study the character andX",
                       "state": "FL",
                       "zipcode": "32311",
-                      "country": "United States"
+                      "country": "United States",
+                      "county": "Santa Clara"
                     }
                   },
                   "CourtCharge": {
@@ -16799,7 +16802,7 @@
                   "TreatmentProviderTelephone": {
                     "type": "telephone",
                     "props": {
-                      "timeOfDay": "",
+                      "timeOfDay": "Day",
                       "type": "Domestic",
                       "numberType": "",
                       "number": "8318732243",
