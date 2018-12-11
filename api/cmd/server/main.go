@@ -57,7 +57,6 @@ func main() {
 	// Declare a new router with any middleware injected
 	r := mux.NewRouter()
 	r.HandleFunc("/", http.RootHandler{Env: settings}.ServeHTTP).Methods("GET")
-	r.HandleFunc("/refresh", http.RefreshHandler{Env: settings, Log: logger, Token: token, Database: database}.ServeHTTP).Methods("POST")
 
 	// Authentication schemes
 	o := r.PathPrefix("/auth").Subrouter()
@@ -72,6 +71,8 @@ func main() {
 
 	// Account specific actions
 	sec := http.JWTHandler{Log: logger, Token: token}
+	r.Handle("/refresh", sec.Middleware(http.RefreshHandler{Env: settings, Log: logger, Token: token, Database: database})).Methods("POST")
+
 	a := r.PathPrefix("/me").Subrouter()
 	a.Handle("/logout", sec.Middleware(http.LogoutHandler{Env: settings, Log: logger, Token: token, Database: database})).Methods("GET")
 	a.Handle("/validate", sec.Middleware(http.ValidateHandler{Env: settings, Log: logger, Token: token, Database: database})).Methods("POST")
