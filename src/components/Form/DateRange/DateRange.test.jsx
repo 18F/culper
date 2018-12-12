@@ -29,12 +29,18 @@ describe('The date range component', () => {
       focus: false,
       valid: false,
       present: true,
-      onError: jest.fn(() => { return this }),
+      onError: jest.fn(() => {
+        return this
+      }),
       from: {
-        date: new Date('4/1/2010')
+        day: '1',
+        month: '4',
+        year: '2010'
       },
       to: {
-        date: new Date('1/1/2000')
+        day: '1',
+        month: '1',
+        year: '2000'
       }
     }
     const component = createComponent(expected)
