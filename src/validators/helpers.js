@@ -1,10 +1,10 @@
 import { daysAgo, today } from '../components/Section/History/dateranges'
 
 /**
-  * Determines if a value is defined vs false, 0, or empty string
-  * Useful when boolean short circuiting a value that might be
-  * 'truthy' even when javascript defines it as false
-**/
+ * Determines if a value is defined vs false, 0, or empty string
+ * Useful when boolean short circuiting a value that might be
+ * 'truthy' even when javascript defines it as false
+ **/
 export const isDefined = x => x !== undefined && x !== null
 
 export const validGenericMonthYear = obj => {
@@ -66,7 +66,6 @@ export const anyHasStatus = completed => (properties, status, val) => {
  * Validates a phone number
  */
 export const validPhoneNumber = (phone, opts = { numberType: false }) => {
-  // console.log(phone)
   if (!phone) {
     return false
   }
@@ -83,7 +82,10 @@ export const validPhoneNumber = (phone, opts = { numberType: false }) => {
     return false
   }
 
-  const trimmed = `${parseInt(phone.number, 10)}`
+  const trimmed =
+    parseInt(phone.number, 10) !== 0
+      ? `${parseInt(phone.number, 10)}`
+      : phone.number.trim()
   switch (phone.type) {
     case 'Domestic':
       return trimmed.length === 10
@@ -319,30 +321,28 @@ export const buildDate = date => {
   }
 }
 
+export const pickDate = (dates, max = true) => {
+  const buildsDates = dates.map(buildDate)
 
-export const pickDate = (dates, max=true) => {
- const buildsDates = dates.map(buildDate)
+  const findMinDate = (finalDate, dateItem) => {
+    if (finalDate <= dateItem) {
+      return finalDate
+    }
+    return dateItem
+  }
 
- const findMinDate = (finalDate, dateItem) => {
-   if (finalDate <= dateItem) {
-     return finalDate
-   }
-     return dateItem
- }
+  const findMaxDate = (finalDate, dateItem) => {
+    if (finalDate >= dateItem) {
+      return finalDate
+    }
+    return dateItem
+  }
 
- const findMaxDate = (finalDate, dateItem) => {
-   if (finalDate >= dateItem) {
-     return finalDate
-   }
-     return dateItem
- }
-
- if (max) {
+  if (max) {
     return buildsDates.reduce(findMaxDate)
   }
 
-    return buildsDates.reduce(findMinDate)
+  return buildsDates.reduce(findMinDate)
 }
 
-export const alphaNumericRegEx = "^[a-zA-Z0-9]*$"
-
+export const alphaNumericRegEx = '^[a-zA-Z0-9]*$'

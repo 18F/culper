@@ -24,7 +24,6 @@ export default class Name extends ValidationElement {
     this.updateMiddleInitial = this.updateMiddleInitial.bind(this)
     this.updateMiddleNone = this.updateMiddleNone.bind(this)
     this.updateLast = this.updateLast.bind(this)
-    this.updateLastInitial = this.updateLastInitial.bind(this)
     this.updateSuffix = this.updateSuffix.bind(this)
     this.updateSuffixOther = this.updateSuffixOther.bind(this)
 
@@ -40,7 +39,6 @@ export default class Name extends ValidationElement {
       first: this.props.first,
       firstInitialOnly: this.props.firstInitialOnly,
       last: this.props.last,
-      lastInitialOnly: this.props.lastInitialOnly,
       middle: this.props.middle,
       middleInitialOnly: this.props.middleInitialOnly,
       hideMiddleName: this.props.hideMiddleName,
@@ -116,19 +114,6 @@ export default class Name extends ValidationElement {
     })
   }
 
-  updateLastInitial(values) {
-    this.update(
-      {
-        lastInitialOnly: values.checked
-      },
-      () => {
-        this.refs.last.refs.text.refs.input.focus()
-        this.refs.last.refs.text.refs.input.blur()
-        this.refs.lastInitialOnly.refs.checkbox.focus()
-      }
-    )
-  }
-
   updateSuffix(values) {
     this.update({
       suffix: values.value
@@ -192,7 +177,7 @@ export default class Name extends ValidationElement {
     ]
     const maxFirst = this.props.firstInitialOnly ? '1' : '100'
     const maxMiddle = this.props.middleInitialOnly ? '1' : '100'
-    const maxLast = this.props.lastInitialOnly ? '1' : '100'
+    const maxLast = '100'
 
     return (
       <div className={klass.join(' ')}>
@@ -298,7 +283,7 @@ export default class Name extends ValidationElement {
           <Text
             name="last"
             ref="last"
-            minlength={this.props.lastInitialOnly ? 1 : 2}
+            minlength={1}
             maxlength={maxLast}
             className="last"
             pattern="^[a-zA-Z\-\.' ]*$"
@@ -310,21 +295,13 @@ export default class Name extends ValidationElement {
             required={this.props.required}
             disabled={this.props.disabled}
           />
-          <div className="flags">
-            <Checkbox
-              name="lastInitialOnly"
-              ref="lastInitialOnly"
-              label={i18n.t(`${prefix}.label.initialOnly`)}
-              className="last-initial-only"
-              toggle="false"
-              value={this.props.lastInitialOnly}
-              checked={this.props.lastInitialOnly}
-              onUpdate={this.updateLastInitial}
-              onError={this.handleErrorLast}
-              disabled={this.props.disabled}
-            />
-          </div>
         </Field>
+        {/*
+          * Hacky spacer because <Field /> padding doens't stack properly.
+          * This avoids having to alter the <Field /> and regressing every usage.
+          * Permanent fix should be done in <Field /> and remove this hack.
+        */}
+        <div style={{height: '50px'}} />
         <Field
           title={i18n.t(`${prefix}.label.suffix`)}
           titleSize="label"
@@ -493,7 +470,6 @@ Name.defaultProps = {
   first: '',
   firstInitialOnly: false,
   last: '',
-  lastInitialOnly: false,
   middle: '',
   middleInitialOnly: false,
   noMiddleName: false,

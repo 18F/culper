@@ -38,7 +38,6 @@ describe('People validator', function() {
                     middleInitialOnly: true,
                     noMiddleName: false,
                     last: 'Bar',
-                    lastInitialOnly: false,
                     suffix: 'Jr'
                   },
                   Relationship: {
@@ -94,7 +93,6 @@ describe('People validator', function() {
                     middleInitialOnly: true,
                     noMiddleName: false,
                     last: 'Bar',
-                    lastInitialOnly: false,
                     suffix: 'Jr'
                   },
                   Relationship: {
@@ -156,7 +154,6 @@ describe('People validator', function() {
                     middleInitialOnly: true,
                     noMiddleName: false,
                     last: 'Bar',
-                    lastInitialOnly: false,
                     suffix: 'Jr'
                   },
                   Relationship: {
@@ -246,7 +243,6 @@ describe('People validator', function() {
                     middleInitialOnly: true,
                     noMiddleName: false,
                     last: 'Bar',
-                    lastInitialOnly: false,
                     suffix: 'Jr'
                   },
                   Relationship: {

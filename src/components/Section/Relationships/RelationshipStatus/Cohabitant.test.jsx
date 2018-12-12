@@ -110,7 +110,6 @@ describe('The cohabitant component', () => {
         middleInitialOnly: false,
         noMiddleName: false,
         last: 'Bar',
-        lastInitialOnly: false,
         suffix: ''
       },
       SSN: {}

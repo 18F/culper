@@ -62,7 +62,6 @@ describe('citizenship multiple component validation', function() {
                     middleInitialOnly: true,
                     noMiddleName: false,
                     last: 'Bar',
-                    lastInitialOnly: false,
                     suffix: 'Jr'
                   },
                   Number: {
@@ -135,7 +134,6 @@ describe('citizenship multiple component validation', function() {
                     middleInitialOnly: true,
                     noMiddleName: false,
                     last: 'Bar',
-                    lastInitialOnly: false,
                     suffix: 'Jr'
                   },
                   Number: {
@@ -327,7 +325,6 @@ describe('citizenship multiple component validation', function() {
             middleInitialOnly: true,
             noMiddleName: false,
             last: 'Bar',
-            lastInitialOnly: false,
             suffix: 'Jr'
           }
         },

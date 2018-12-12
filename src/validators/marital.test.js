@@ -37,7 +37,6 @@ describe('Marital validation', function() {
                     middleInitialOnly: true,
                     noMiddleName: false,
                     last: 'Bar',
-                    lastInitialOnly: false,
                     suffix: 'Jr'
                   },
                   DateDivorced: {
@@ -177,7 +176,6 @@ describe('Marital validation', function() {
               middleInitialOnly: true,
               noMiddleName: false,
               last: 'Bar',
-              lastInitialOnly: false,
               suffix: 'Jr'
             },
             Birthdate: {
@@ -225,7 +223,6 @@ describe('Marital validation', function() {
               middleInitialOnly: true,
               noMiddleName: false,
               last: 'Bar',
-              lastInitialOnly: false,
               suffix: 'Jr'
             },
             DatesUsed: {

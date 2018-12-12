@@ -43,28 +43,18 @@ describe('Name component validation', function() {
       {
         data: {
           last: 'Foo',
-          lastInitialOnly: false
         },
         expected: true
       },
       {
         data: {
-          last: 'Foo',
-          lastInitialOnly: true
-        },
-        expected: false
-      },
-      {
-        data: {
           last: '',
-          lastInitialOnly: false
         },
         expected: false
       },
       {
         data: {
           last: 'J',
-          lastInitialOnly: true
         },
         expected: true
       }
@@ -197,7 +187,6 @@ describe('Name component validation', function() {
           middleInitialOnly: true,
           noMiddleName: false,
           last: 'Bar',
-          lastInitialOnly: false,
           suffix: 'Jr'
         },
         expected: true
@@ -210,7 +199,6 @@ describe('Name component validation', function() {
           middleInitialOnly: true,
           noMiddleName: false,
           last: 'Bar',
-          lastInitialOnly: false,
           suffix: 'Jr'
         },
         expected: false
