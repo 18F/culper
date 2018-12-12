@@ -92,66 +92,57 @@ describe('The taxes component', () => {
     expect(updates).toBeGreaterThan(7)
   })
 
-  const taxDatesSetup = {
-    HasTaxes: {
-      name: "has_taxes",
-      value: "Yes"
-    },
-    List: {
-      items: [{
-        Item: {
-          Year: {
-            estimated: false,
-            name: "Year",
-            year: "2000",
-            date: new Date("2000", "1")
-          },
-          Date: {
-            estimated: false,
-            month: "1",
-            name: "Date",
-            year: "2010",
-            date: new Date("2010", "1")
-          },
-      },
-      open: true
-      }]
-    }
-  }
-
   describe('handles tax dates', () => {
     it('with good data - the year failed to file or pay is before the date satisfied', () => {
       const props = {
         valid: true
       }
       const component = createComponent(props)
-      expect(component.find('.error-messages [data-i18n="error.taxesSatisfied.min"]').children().length).toEqual(0)
+      expect(
+        component
+          .find('.error-messages [data-i18n="error.taxesSatisfied.min"]')
+          .children().length
+      ).toEqual(0)
     })
     it('with bad data - the year failed to file or pay is after the date satisfied', () => {
       const props = {
-        ...taxDatesSetup,
+        HasTaxes: {
+          name: 'has_taxes',
+          value: 'Yes'
+        },
         List: {
-          items: [{
-            Item: {
-              ...taxDatesSetup.List.items[0].Item,
-              Date: {
-                estimated: false,
-                month: "1",
-                name: "Date",
-                year: "1970",
-                date: new Date("1970", "1")
-              },
-            },
-          }],
+          items: [
+            {
+              Item: {
+                Year: {
+                  estimated: false,
+                  month: '1',
+                  day: '1',
+                  year: '2000'
+                },
+                Date: {
+                  estimated: false,
+                  month: '1',
+                  day: '1',
+                  year: '1970'
+                }
+              }
+            }
+          ]
         },
         valid: false
       }
 
       const component = createComponent(props)
-      expect(component.find('.error-messages [data-i18n="error.taxesSatisfied.min"]').text()).toEqual(
-        `${i18n.t('error.taxesSatisfied.min.title')}${i18n.t('error.taxesSatisfied.min.message')}`
+      expect(
+        component
+          .find('.error-messages [data-i18n="error.taxesSatisfied.min"]')
+          .text()
+      ).toEqual(
+        `${i18n.t('error.taxesSatisfied.min.title')}${i18n.t(
+          'error.taxesSatisfied.min.message'
+        )}`
       )
     })
   })
-
 })

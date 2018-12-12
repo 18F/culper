@@ -79,84 +79,79 @@ describe('The relationship status component', () => {
     expect(component.find('.accordion').length).toBe(1)
   })
 
-const civilUnionDatesSetup = {
-  name: "marital",
-  Status: {
+  const civilUnionDatesSetup = {
+    name: 'marital',
+    Status: {
       checked: true,
       value: 'Married'
     },
-  applicantBirthdate: {
-    estimated: false,
-    day: "1",
-    month: "1",
-    name: "birthdate",
-    year: "1970",
-    date: new Date("1970", "1", "1")
-  },
-  CivilUnion: {
-        Birthdate: {
-          estimated: false,
-          day: "1",
-          month: "1",
-          name: "birthdate",
-          year: "1980",
-          date: new Date("1980", "1", "1")
-        },
-        EnteredCivilUnion: {
-          estimated: false,
-          day: "1",
-          month: "1",
-          name: "enteredCivilUnion",
-          year: "1990",
-          date: new Date("1990", "1", "1")
-        },
+    applicantBirthdate: {
+      estimated: false,
+      day: '1',
+      month: '1',
+      name: 'birthdate',
+      year: '1970'
+    },
+    CivilUnion: {
+      Birthdate: {
+        estimated: false,
+        day: '1',
+        month: '1',
+        name: 'birthdate',
+        year: '1980'
+      },
+      EnteredCivilUnion: {
+        estimated: false,
+        day: '1',
+        month: '1',
+        name: 'enteredCivilUnion',
+        year: '1990'
       }
     }
+  }
 
-    const divorcedDatesSetup = {
-      name: "marital",
-      Status: {
-          checked: true,
-          value: 'Divorced'
-        },
-      applicantBirthdate: {
-        estimated: false,
-        day: "1",
-        month: "1",
-        name: "birthdate",
-        year: "1970",
-        date: new Date("1970", "1", "1")
-      },
-      DivorcedList: {
-        items: [{
+  const divorcedDatesSetup = {
+    name: 'marital',
+    Status: {
+      checked: true,
+      value: 'Divorced'
+    },
+    applicantBirthdate: {
+      estimated: false,
+      day: '1',
+      month: '1',
+      name: 'birthdate',
+      year: '1970'
+    },
+    DivorcedList: {
+      items: [
+        {
           Item: {
             Birthdate: {
               estimated: false,
-              day: "1",
-              month: "1",
-              name: "birthdate",
-              year: "1980",
-              date: new Date("1980", "1", "1")
+              day: '1',
+              month: '1',
+              name: 'birthdate',
+              year: '1980'
             },
             Recognized: {
               estimated: false,
-              day: "1",
-              month: "1",
-              name: "Recognized",
-              year: "1990",
-              date: new Date("1990", "1", "1")
+              day: '1',
+              month: '1',
+              name: 'Recognized',
+              year: '1990'
             },
             DateDivorced: {
               estimated: false,
-              day: "1",
-              month: "1",
-              name: "DateDivorced",
-              year: "2000",
-              date: new Date("2000", "1", "1")
-            },
+              day: '1',
+              month: '1',
+              name: 'DateDivorced',
+              year: '2000'
+            }
           },
-        open: true
-      }],
+          open: true
+        }
+      ]
     }
   }
 
@@ -167,27 +162,36 @@ const civilUnionDatesSetup = {
       }
 
       const component = createComponent(props)
-      expect(component.find('.error-messages [data-i18n="error.civilUnion.min"]').children().length).toEqual(0)
+      expect(
+        component
+          .find('.error-messages [data-i18n="error.civilUnion.min"]')
+          .children().length
+      ).toEqual(0)
     })
     it('with bad data - where the date entered into civil union is before applicant and partner DOB', () => {
       const props = {
         ...civilUnionDatesSetup,
         CivilUnion: {
-              ...civilUnionDatesSetup.CivilUnion,
-              EnteredCivilUnion: {
-                estimated: false,
-                day: "1",
-                month: "1",
-                name: "enteredCivilUnion",
-                year: "1960",
-                date: new Date("1960", "1", "1")
-              },
-            },
+          ...civilUnionDatesSetup.CivilUnion,
+          EnteredCivilUnion: {
+            estimated: false,
+            day: '1',
+            month: '1',
+            name: 'enteredCivilUnion',
+            year: '1960'
+          }
+        },
         valid: false
       }
       const component = createComponent(props)
-      expect(component.find('.error-messages [data-i18n="error.civilUnion.min"]').text()).toEqual(
-        `${i18n.t('error.civilUnion.min.title')}${i18n.t('error.civilUnion.min.message')}`
+      expect(
+        component
+          .find('.error-messages [data-i18n="error.civilUnion.min"]')
+          .text()
+      ).toEqual(
+        `${i18n.t('error.civilUnion.min.title')}${i18n.t(
+          'error.civilUnion.min.message'
+        )}`
       )
     })
   })
@@ -199,34 +203,44 @@ const civilUnionDatesSetup = {
       }
 
       const component = createComponent(props)
-      expect(component.find('.error-messages [data-i18n="error.divorceDate.min"]').children().length).toEqual(0)
+      expect(
+        component
+          .find('.error-messages [data-i18n="error.divorceDate.min"]')
+          .children().length
+      ).toEqual(0)
     })
     it('with bad data - where the date divorced is before date entered into civil union', () => {
       const props = {
         ...divorcedDatesSetup,
         DivorcedList: {
-          items: [{
-            Item: {
-              ...divorcedDatesSetup.DivorcedList.items[0].Item,
-              DateDivorced: {
-                estimated: false,
-                day: "1",
-                month: "1",
-                name: "DateDivorced",
-                year: "1950",
-                date: new Date("1950", "1", "1")
-              },
-            },
-          }],
+          items: [
+            {
+              Item: {
+                ...divorcedDatesSetup.DivorcedList.items[0].Item,
+                DateDivorced: {
+                  estimated: false,
+                  day: '1',
+                  month: '1',
+                  name: 'DateDivorced',
+                  year: '1950'
+                }
+              }
+            }
+          ]
         },
         valid: false
       }
 
       const component = createComponent(props)
-      expect(component.find('.error-messages [data-i18n="error.divorceDate.min"]').text()).toEqual(
-        `${i18n.t('error.divorceDate.min.title')}${i18n.t('error.divorceDate.min.message')}`
+      expect(
+        component
+          .find('.error-messages [data-i18n="error.divorceDate.min"]')
+          .text()
+      ).toEqual(
+        `${i18n.t('error.divorceDate.min.title')}${i18n.t(
+          'error.divorceDate.min.message'
+        )}`
       )
     })
   })
-
 })

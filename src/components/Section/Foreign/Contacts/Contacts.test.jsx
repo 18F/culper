@@ -44,48 +44,46 @@ describe('The contacts component', () => {
   })
 
   const contactDatesSetup = {
-    name: "contacts",
+    name: 'contacts',
     HasForeignContacts: {
       value: 'Yes'
     },
     applicantBirthdate: {
       estimated: false,
-      day: "1",
-      month: "1",
-      name: "birthdate",
-      year: "1970",
-      date: new Date("1970", "1", "1")
+      day: '1',
+      month: '1',
+      name: 'birthdate',
+      year: '1970'
     },
     List: {
-      items: [{
-        Item: {
-          Birthdate: {
-            estimated: false,
-            day: "1",
-            month: "1",
-            name: "Birthdate",
-            year: "1980",
-            date: new Date("1980", "1", "1")
+      items: [
+        {
+          Item: {
+            Birthdate: {
+              estimated: false,
+              day: '1',
+              month: '1',
+              name: 'Birthdate',
+              year: '1980'
+            },
+            FirstContact: {
+              estimated: false,
+              day: '1',
+              month: '1',
+              name: 'FirstContact',
+              year: '1990'
+            },
+            LastContact: {
+              estimated: false,
+              day: '1',
+              month: '1',
+              name: 'LastContact',
+              year: '2000'
+            }
           },
-          FirstContact: {
-            estimated: false,
-            day: "1",
-            month: "1",
-            name: "FirstContact",
-            year: "1990",
-            date: new Date("1990", "1", "1")
-          },
-          LastContact: {
-            estimated: false,
-            day: "1",
-            month: "1",
-            name: "LastContact",
-            year: "2000",
-            date: new Date("2000", "1", "1")
-          },
-      },
-      open: true
-      }]
+          open: true
+        }
+      ]
     }
   }
 
@@ -96,34 +94,44 @@ describe('The contacts component', () => {
       }
 
       const component = createComponent(props)
-      expect(component.find('.error-messages [data-i18n="error.foreignContact.min"]').children().length).toEqual(0)
+      expect(
+        component
+          .find('.error-messages [data-i18n="error.foreignContact.min"]')
+          .children().length
+      ).toEqual(0)
     })
     it('with bad data - the date of first contact is before the applicant and contact DOB', () => {
       const props = {
         ...contactDatesSetup,
         List: {
-          items: [{
-            Item: {
-              ...contactDatesSetup.List.items[0].Item,
-              FirstContact: {
-                estimated: false,
-                day: "1",
-                month: "1",
-                name: "FirstContact",
-                year: "1950",
-                date: new Date("1950", "1", "1")
-              },
-            },
-          }],
+          items: [
+            {
+              Item: {
+                ...contactDatesSetup.List.items[0].Item,
+                FirstContact: {
+                  estimated: false,
+                  day: '1',
+                  month: '1',
+                  name: 'FirstContact',
+                  year: '1950'
+                }
+              }
+            }
+          ]
         },
         valid: false
       }
 
       const component = createComponent(props)
-      expect(component.find('.error-messages [data-i18n="error.foreignContact.min"]').text()).toEqual(
-        `${i18n.t('error.foreignContact.min.title')}${i18n.t('error.foreignContact.min.message')}`
+      expect(
+        component
+          .find('.error-messages [data-i18n="error.foreignContact.min"]')
+          .text()
+      ).toEqual(
+        `${i18n.t('error.foreignContact.min.title')}${i18n.t(
+          'error.foreignContact.min.message'
+        )}`
       )
     })
   })
-
 })

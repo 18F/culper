@@ -5,13 +5,12 @@ import { Provider } from 'react-redux'
 import Cohabitants from './Cohabitants'
 import { i18n } from '../../../../config'
 
-const alternateAddressRenderMock = jest.fn();
+const alternateAddressRenderMock = jest.fn()
 const mountComponent = (mockStore, Component, props) => {
-  const store = mockStore({ application: { AddressBooks: {} }})
+  const store = mockStore({ application: { AddressBooks: {} } })
   const finalProps = {
     render: alternateAddressRenderMock,
     ...props
-
   }
 
   return mount(
@@ -71,43 +70,42 @@ describe('The cohabitants component', () => {
     expect(updates).toBe(1)
   })
 
-const cohabitantDateSetup = {
-  name: "marital",
-  HasCohabitant: {
+  const cohabitantDateSetup = {
+    name: 'marital',
+    HasCohabitant: {
       value: 'Yes'
     },
-  applicantBirthdate: {
-    estimated: false,
-    day: "1",
-    month: "1",
-    name: "birthdate",
-    year: "1970",
-    date: new Date("1970", "1", "1")
-  },
-  CohabitantList: {
-    items: [{
-      Item: {
-        Birthdate: {
-          estimated: false,
-          day: "1",
-          month: "1",
-          name: "birthdate",
-          year: "1980",
-          date: new Date("1980", "1", "1")
-        },
-        CohabitationBegan: {
-          estimated: false,
-          day: "1",
-          month: "1",
-          name: "cohabitationBegan",
-          year: "1990",
-          date: new Date("1990", "1", "1")
-        },
+    applicantBirthdate: {
+      estimated: false,
+      day: '1',
+      month: '1',
+      name: 'birthdate',
+      year: '1970'
     },
-    open: true
-    }]
+    CohabitantList: {
+      items: [
+        {
+          Item: {
+            Birthdate: {
+              estimated: false,
+              day: '1',
+              month: '1',
+              name: 'birthdate',
+              year: '1980'
+            },
+            CohabitationBegan: {
+              estimated: false,
+              day: '1',
+              month: '1',
+              name: 'cohabitationBegan',
+              year: '1990'
+            }
+          },
+          open: true
+        }
+      ]
+    }
   }
-}
 
   describe('handles cohanbitant dates', () => {
     it('with good data - the date cohabitation began is after the applicant and cohabitant DOB', () => {
@@ -116,36 +114,45 @@ const cohabitantDateSetup = {
         valid: true
       }
       const component = mountComponent(mockStore, Cohabitants, props)
-      expect(component.find('.error-messages [data-i18n="error.cohabitant.min"]').children().length).toEqual(0)
+      expect(
+        component
+          .find('.error-messages [data-i18n="error.cohabitant.min"]')
+          .children().length
+      ).toEqual(0)
     })
     it('with bad data - the date cohabitation began is before the applicant and cohabitant', () => {
       const mockStore = configureMockStore()
       const props = {
         ...cohabitantDateSetup,
         CohabitantList: {
-          items: [{
-            Item: {
-              ...cohabitantDateSetup.CohabitantList.items[0].Item,
-              CohabitationBegan: {
-                estimated: false,
-                day: "1",
-                month: "1",
-                name: "cohabitationBegan",
-                year: "1960",
-                date: new Date("1960", "1", "1")
-              },
-            },
-          }],
+          items: [
+            {
+              Item: {
+                ...cohabitantDateSetup.CohabitantList.items[0].Item,
+                CohabitationBegan: {
+                  estimated: false,
+                  day: '1',
+                  month: '1',
+                  name: 'cohabitationBegan',
+                  year: '1960'
+                }
+              }
+            }
+          ]
         },
         valid: false
       }
 
       const component = mountComponent(mockStore, Cohabitants, props)
-      expect(component.find('.error-messages [data-i18n="error.cohabitant.min"]').text()).toEqual(
-        `${i18n.t('error.cohabitant.min.title')}${i18n.t('error.cohabitant.min.message')}`
+      expect(
+        component
+          .find('.error-messages [data-i18n="error.cohabitant.min"]')
+          .text()
+      ).toEqual(
+        `${i18n.t('error.cohabitant.min.title')}${i18n.t(
+          'error.cohabitant.min.message'
+        )}`
       )
     })
   })
-
-
 })
