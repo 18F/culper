@@ -43,8 +43,15 @@ Feature: Identification
     And I click Next to go to identification review
     Then I should be in the identification review section
 
-  Scenario: Review Does Not Contain Errors
-    Then I should not have any errors in the section review
+  Scenario: Review Section
+    Then I should see my data in the name section data
+    Then I should see my data in the othernames section data
+    Then I should see my data in the contacts section data
+    Then I should see my data in the birthdate section data
+    Then I should see my data in the birthplace section data
+    Then I should see my data in the ssn section data
+    Then I should see my data in the physical section data
+    Then I should have no errors
 
   Scenario: Log out of the form
     Then I log out
