@@ -631,6 +631,7 @@
                       </Address>
                       <Telephone>
                         <Number>1111111111</Number>
+                        <Time>Both</Time>
                       </Telephone>
                     </EmployersLocation>
                     <PreviousEmployments NotApplicable="True"/>
@@ -662,6 +663,7 @@
                     <Email>sup1@example.com</Email>
                     <Telephone>
                       <Number>3333331111</Number>
+                      <Time>Both</Time>
                     </Telephone>
                   </Supervisor>
                 </Employment>

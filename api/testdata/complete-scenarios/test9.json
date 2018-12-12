@@ -1425,7 +1425,7 @@
                       "Telephone": {
                         "type": "telephone",
                         "props": {
-                          "timeOfDay": "",
+                          "timeOfDay": "Both",
                           "type": "Domestic",
                           "numberType": "",
                           "number": "3333331111",
@@ -1469,7 +1469,7 @@
                   "Telephone": {
                     "type": "telephone",
                     "props": {
-                      "timeOfDay": "",
+                      "timeOfDay": "Both",
                       "type": "Domestic",
                       "numberType": "",
                       "number": "1111111111",
@@ -4349,7 +4349,7 @@
             "UseCurrentAddress": {
               "type": "notapplicable",
               "props": {
-                "applicable": true
+                "applicable": false
               }
             }
           }

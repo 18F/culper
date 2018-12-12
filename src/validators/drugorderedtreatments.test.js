@@ -56,7 +56,9 @@ describe('Drug Ordered Treatment Validation', function() {
             items: [
               {
                 Item: {
-                  OrderedBy: ['Employer'],
+                  OrderedBy: {
+                    values: ['Employer']
+                  },
                   Explanation: {
                     value: 'The explanation'
                   },
@@ -111,7 +113,9 @@ describe('Drug Ordered Treatment Validation', function() {
             items: [
               {
                 Item: {
-                  OrderedBy: ['Employer'],
+                  OrderedBy: {
+                    values: ['Employer']
+                  },
                   Explanation: {
                     value: 'The explanation'
                   },
@@ -169,7 +173,9 @@ describe('Drug Ordered Treatment Validation', function() {
             items: [
               {
                 Item: {
-                  OrderedBy: ['Employer'],
+                  OrderedBy: {
+                    values: ['Employer']
+                  },
                   Explanation: {
                     value: 'The explanation'
                   },
@@ -192,7 +198,9 @@ describe('Drug Ordered Treatment Validation', function() {
             items: [
               {
                 Item: {
-                  OrderedBy: ['Employer','None'],
+                  OrderedBy: {
+                    values: ['Employer', 'None']
+                  },
                   Explanation: {
                     value: 'The explanation'
                   },
@@ -215,7 +223,9 @@ describe('Drug Ordered Treatment Validation', function() {
             items: [
               {
                 Item: {
-                  OrderedBy: ['Employer'],
+                  OrderedBy: {
+                    values: ['Employer']
+                  },
                   Explanation: {
                     value: 'The explanation'
                   },
