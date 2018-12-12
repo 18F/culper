@@ -1,2 +1,2 @@
-<Last {{if .props.lastInitialOnly}}Type="IO"{{end}}>{{.props.last}}</Last>
+<Last>{{.props.last}}</Last>
 <First {{if .props.firstInitialOnly}}Type="IO"{{end}}>{{.props.first}}</First>

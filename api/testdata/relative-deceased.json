@@ -73,7 +73,6 @@
                             "middleInitialOnly": false,
                             "noMiddleName": false,
                             "last": "",
-                            "lastInitialOnly": false,
                             "suffix": "",
                             "suffixOther": ""
                           }
@@ -241,7 +240,6 @@
                   "middleInitialOnly": false,
                   "noMiddleName": false,
                   "last": "",
-                  "lastInitialOnly": false,
                   "suffix": "",
                   "suffixOther": ""
                 }
@@ -273,7 +271,6 @@
                   "middleInitialOnly": false,
                   "noMiddleName": true,
                   "last": "Smith",
-                  "lastInitialOnly": false,
                   "suffix": "",
                   "suffixOther": ""
                 }

@@ -81,7 +81,6 @@ describe('CivilUnion validation', function() {
                     middleInitialOnly: true,
                     noMiddleName: false,
                     last: 'Bar',
-                    lastInitialOnly: false,
                     suffix: 'Jr'
                   },
                   MaidenName: {
@@ -235,7 +234,6 @@ describe('CivilUnion validation', function() {
             middleInitialOnly: true,
             noMiddleName: false,
             last: 'Bar',
-            lastInitialOnly: false,
             suffix: 'Jr'
           },
           Birthdate: {
@@ -291,7 +289,6 @@ describe('CivilUnion validation', function() {
             middleInitialOnly: true,
             noMiddleName: false,
             last: 'Bar',
-            lastInitialOnly: false,
             suffix: 'Jr'
           },
           DatesUsed: {

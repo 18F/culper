@@ -50,7 +50,6 @@ describe('Relatives validation', function() {
             middleInitialOnly: true,
             noMiddleName: false,
             last: 'Bar',
-            lastInitialOnly: false,
             suffix: 'Jr'
           }
         },
@@ -234,7 +233,6 @@ describe('Relatives validation', function() {
             middleInitialOnly: true,
             noMiddleName: false,
             last: 'Bar',
-            lastInitialOnly: false,
             suffix: 'Jr'
           }
         },
@@ -328,7 +326,6 @@ describe('Relatives validation', function() {
                     middleInitialOnly: true,
                     noMiddleName: false,
                     last: 'Bar',
-                    lastInitialOnly: false,
                     suffix: 'Jr'
                   },
                   MaidenName: { value: 'No' },
@@ -1867,7 +1864,6 @@ describe('Relatives validation', function() {
                     middleInitialOnly: true,
                     noMiddleName: false,
                     last: 'Bar',
-                    lastInitialOnly: false,
                     suffix: 'Jr'
                   },
                   Birthdate: {
@@ -1892,7 +1888,6 @@ describe('Relatives validation', function() {
                     middleInitialOnly: true,
                     noMiddleName: false,
                     last: 'Bar',
-                    lastInitialOnly: false,
                     suffix: 'Jr'
                   },
                   Aliases: {
@@ -1909,7 +1904,6 @@ describe('Relatives validation', function() {
                             middleInitialOnly: true,
                             noMiddleName: false,
                             last: 'Bar',
-                            lastInitialOnly: false,
                             suffix: 'Jr'
                           },
                           MaidenName: { value: 'No' },
@@ -1958,7 +1952,6 @@ describe('Relatives validation', function() {
                     middleInitialOnly: true,
                     noMiddleName: false,
                     last: 'Bar',
-                    lastInitialOnly: false,
                     suffix: 'Jr'
                   },
                   Birthdate: {
@@ -1983,7 +1976,6 @@ describe('Relatives validation', function() {
                     middleInitialOnly: true,
                     noMiddleName: false,
                     last: 'Bar',
-                    lastInitialOnly: false,
                     suffix: 'Jr'
                   },
                   Aliases: {
@@ -2000,7 +1992,6 @@ describe('Relatives validation', function() {
                             middleInitialOnly: true,
                             noMiddleName: false,
                             last: 'Bar',
-                            lastInitialOnly: false,
                             suffix: 'Jr'
                           },
                           MaidenName: { value: 'No' },
