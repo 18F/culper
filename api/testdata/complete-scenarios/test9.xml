@@ -114,7 +114,7 @@
                   </LegalName>
                   <RelationshipType Neighbor="True"/>
                   <Telephone>
-                    <Home>
+                    <Home DoNotKnow="True">
             
 
 
@@ -153,7 +153,7 @@
                   </LegalName>
                   <RelationshipType Friend="True"/>
                   <Telephone>
-                    <Home>
+                    <Home DoNotKnow="True">
             
 
 
@@ -192,7 +192,7 @@
                   </LegalName>
                   <RelationshipType Friend="True"/>
                   <Telephone>
-                    <Home>
+                    <Home DoNotKnow="True">
             
 
 
@@ -631,6 +631,7 @@
                       </Address>
                       <Telephone>
                         <Number>1111111111</Number>
+                        <Time>Both</Time>
                       </Telephone>
                     </EmployersLocation>
                     <PreviousEmployments NotApplicable="True"/>
@@ -662,6 +663,7 @@
                     <Email>sup1@example.com</Email>
                     <Telephone>
                       <Number>3333331111</Number>
+                      <Time>Both</Time>
                     </Telephone>
                   </Supervisor>
                 </Employment>

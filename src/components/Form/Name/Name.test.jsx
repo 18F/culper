@@ -218,10 +218,9 @@ describe('The Name component', () => {
     component.find('.middle-initial-only input').simulate('change')
     component.find('.middle-none input').simulate('change')
     component.find('.last input').simulate('change')
-    component.find('.last-initial-only input').simulate('change')
     component.find('.suffix-more input').simulate('change')
     component.find('.suffix-other input').simulate('change')
-    expect(updates).toBe(9)
+    expect(updates).toBe(8)
   })
 
   it('error if single letter without initial only', () => {
@@ -233,7 +232,6 @@ describe('The Name component', () => {
           middle: 'def',
           middleInitialOnly: false,
           last: 'abc',
-          lastInitialOnly: false
         },
         expected: 1
       },
@@ -244,18 +242,6 @@ describe('The Name component', () => {
           middle: 'a',
           middleInitialOnly: false,
           last: 'abc',
-          lastInitialOnly: false
-        },
-        expected: 1
-      },
-      {
-        props: {
-          first: 'abc',
-          firstInitialOnly: false,
-          middle: 'abc',
-          middleInitialOnly: false,
-          last: 'a',
-          lastInitialOnly: false
         },
         expected: 1
       },
@@ -266,7 +252,6 @@ describe('The Name component', () => {
           middle: 'def',
           middleInitialOnly: false,
           last: 'abc',
-          lastInitialOnly: false
         },
         expected: 0
       },
@@ -277,18 +262,6 @@ describe('The Name component', () => {
           middle: 'a',
           middleInitialOnly: true,
           last: 'abc',
-          lastInitialOnly: false
-        },
-        expected: 0
-      },
-      {
-        props: {
-          first: 'abc',
-          firstInitialOnly: false,
-          middle: 'abc',
-          middleInitialOnly: false,
-          last: 'a',
-          lastInitialOnly: true
         },
         expected: 0
       }

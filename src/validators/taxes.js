@@ -62,8 +62,8 @@ export class TaxValidator {
   validYear() {
     if (
       !this.year ||
-      isNaN(parseInt(this.year.value)) ||
-      ('' + this.year.value).length < 4
+      isNaN(parseInt(this.year.year)) ||
+      ('' + this.year.year).length < 4
     ) {
       return false
     }

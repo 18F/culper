@@ -604,39 +604,17 @@ exports[`The print section renders properly 1`] = `
                                 
                               </div>
                             </div>
-                            <div
-                              className="flags"
-                            >
-                              <div
-                                className="last-initial-only block"
-                              >
-                                <input
-                                  aria-label="Initial only for null"
-                                  checked={false}
-                                  className="usa-input-success"
-                                  id="lastInitialOnly-MOCK-GUID"
-                                  name="lastInitialOnly"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onFocus={[Function]}
-                                  onKeyDown={[Function]}
-                                  type="checkbox"
-                                  value={false}
-                                />
-                                <label
-                                  className="checkbox no-toggle"
-                                  htmlFor="lastInitialOnly-MOCK-GUID"
-                                >
-                                  <span>
-                                    Initial only
-                                  </span>
-                                </label>
-                              </div>
-                            </div>
                           </span>
                         </span>
                       </div>
                     </div>
+                    <div
+                      style={
+                        Object {
+                          "height": "50px",
+                        }
+                      }
+                    />
                     <div
                       aria-label="Suffix"
                       className="field"

@@ -105,7 +105,6 @@ describe('Cohabitant validation', function() {
             middleInitialOnly: true,
             noMiddleName: false,
             last: 'Bar',
-            lastInitialOnly: false,
             suffix: 'Jr'
           },
           Birthdate: {
@@ -203,7 +202,6 @@ describe('Cohabitant validation', function() {
                     middleInitialOnly: true,
                     noMiddleName: false,
                     last: 'Bar',
-                    lastInitialOnly: false,
                     suffix: 'Jr'
                   },
                   Birthdate: {

@@ -47,7 +47,7 @@ describe('taxes component validation', function() {
       {
         state: {
           Year: {
-            value: ''
+            year: ''
           }
         },
         expected: false
@@ -55,7 +55,7 @@ describe('taxes component validation', function() {
       {
         state: {
           Year: {
-            value: '0'
+            year: '0'
           }
         },
         expected: false
@@ -63,7 +63,7 @@ describe('taxes component validation', function() {
       {
         state: {
           Year: {
-            value: 'abc'
+            year: 'abc'
           }
         },
         expected: false
@@ -71,7 +71,7 @@ describe('taxes component validation', function() {
       {
         state: {
           Year: {
-            value: '2000'
+            year: '2000'
           }
         },
         expected: true
@@ -371,7 +371,7 @@ describe('taxes component validation', function() {
                     value: 'File'
                   },
                   Year: {
-                    value: '2000'
+                    year: '2000'
                   },
                   Reason: {
                     value: 'Completely forgot'

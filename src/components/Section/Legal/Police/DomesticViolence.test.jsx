@@ -40,7 +40,7 @@ describe('The DomesticViolence  component', () => {
 
     const selectors = [
       '.explanation textarea',
-      { type: 'text', name: 'street' },
+      { type: 'text', name: 'city' },
       { type: 'text', name: 'CourtName' },
       { type: 'text', name: 'month' }
     ]

@@ -124,7 +124,6 @@ describe('Military foreign validation', function() {
                             middleInitialOnly: true,
                             noMiddleName: false,
                             last: 'Bar',
-                            lastInitialOnly: false,
                             suffix: 'Jr'
                           },
                           Address: {
@@ -163,7 +162,6 @@ describe('Military foreign validation', function() {
                             middleInitialOnly: true,
                             noMiddleName: false,
                             last: 'Bar',
-                            lastInitialOnly: false,
                             suffix: 'Jr'
                           },
                           Address: {
@@ -250,7 +248,6 @@ describe('Military foreign validation', function() {
                     middleInitialOnly: true,
                     noMiddleName: false,
                     last: 'Bar',
-                    lastInitialOnly: false,
                     suffix: 'Jr'
                   },
                   Address: {

@@ -43,7 +43,6 @@ describe('The verify component', () => {
                     middleInitialOnly: true,
                     noMiddleName: false,
                     last: 'Bar',
-                    lastInitialOnly: false,
                     suffix: 'Jr'
                   },
                   MaidenName: {

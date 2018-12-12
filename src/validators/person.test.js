@@ -65,7 +65,6 @@ describe('Person validator', function() {
             middleInitialOnly: true,
             noMiddleName: false,
             last: 'Bar',
-            lastInitialOnly: false,
             suffix: 'Jr'
           },
           Relationship: {

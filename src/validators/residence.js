@@ -90,7 +90,7 @@ export class ResidenceValidator {
         validPhoneNumber(this.referencePhoneMobile) &&
         validRelationship &&
         validNotApplicable(this.referenceEmailNotApplicable, () => {
-          return validGenericTextfield(this.email)
+          return validGenericTextfield(this.referenceEmail)
         }) &&
         new LocationValidator(this.referenceAddress).isValid()
       )

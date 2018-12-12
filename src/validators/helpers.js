@@ -71,7 +71,6 @@ export const anyHasStatus = completed => (properties, status, val) => {
  * Validates a phone number
  */
 export const validPhoneNumber = (phone, opts = { numberType: false }) => {
-  // console.log(phone)
   if (!phone) {
     return false
   }
@@ -88,7 +87,10 @@ export const validPhoneNumber = (phone, opts = { numberType: false }) => {
     return false
   }
 
-  const trimmed = `${parseInt(phone.number, 10)}`
+  const trimmed =
+    parseInt(phone.number, 10) !== 0
+      ? `${parseInt(phone.number, 10)}`
+      : phone.number.trim()
   switch (phone.type) {
     case 'Domestic':
       return trimmed.length === 10

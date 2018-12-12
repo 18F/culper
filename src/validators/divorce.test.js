@@ -118,7 +118,6 @@ describe('Divorce validation', function() {
             middleInitialOnly: true,
             noMiddleName: false,
             last: 'Bar',
-            lastInitialOnly: false,
             suffix: 'Jr'
           },
           DateDivorced: {

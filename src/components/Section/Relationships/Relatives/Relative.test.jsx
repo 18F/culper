@@ -242,7 +242,6 @@ describe('The relative component', () => {
         middleInitialOnly: true,
         noMiddleName: false,
         last: 'Bar',
-        lastInitialOnly: false,
         suffix: 'Jr'
       },
       Birthdate: {
@@ -283,7 +282,6 @@ describe('The relative component', () => {
         middleInitialOnly: true,
         noMiddleName: false,
         last: 'Bar',
-        lastInitialOnly: false,
         suffix: 'Jr'
       },
       Birthdate: {
@@ -342,7 +340,6 @@ describe('The relative component', () => {
         middleInitialOnly: true,
         noMiddleName: false,
         last: 'Bar',
-        lastInitialOnly: false,
         suffix: 'Jr'
       },
       Birthdate: {
@@ -394,7 +391,6 @@ describe('The relative component', () => {
         middleInitialOnly: true,
         noMiddleName: false,
         last: 'Bar',
-        lastInitialOnly: false,
         suffix: 'Jr'
       },
       Birthdate: {
@@ -458,7 +454,6 @@ describe('The relative component', () => {
         middleInitialOnly: true,
         noMiddleName: false,
         last: 'Bar',
-        lastInitialOnly: false,
         suffix: 'Jr'
       },
       Birthdate: {
