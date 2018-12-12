@@ -108,7 +108,7 @@
                   </LegalName>
                   <RelationshipType Schoolmate="True"/>
                   <Telephone>
-                    <Home>
+                    <Home DoNotKnow="True">
             
 
 
@@ -147,7 +147,7 @@
                   </LegalName>
                   <RelationshipType Neighbor="True"/>
                   <Telephone>
-                    <Home>
+                    <Home DoNotKnow="True">
             
 
 
@@ -186,7 +186,7 @@
                   </LegalName>
                   <RelationshipType Neighbor="True"/>
                   <Telephone>
-                    <Home>
+                    <Home DoNotKnow="True">
             
 
 

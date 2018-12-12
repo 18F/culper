@@ -114,7 +114,7 @@
                   </LegalName>
                   <RelationshipType Neighbor="True"/>
                   <Telephone>
-                    <Home>
+                    <Home DoNotKnow="True">
             
 
 
@@ -153,7 +153,7 @@
                   </LegalName>
                   <RelationshipType Friend="True"/>
                   <Telephone>
-                    <Home>
+                    <Home DoNotKnow="True">
             
 
 
@@ -192,7 +192,7 @@
                   </LegalName>
                   <RelationshipType Friend="True"/>
                   <Telephone>
-                    <Home>
+                    <Home DoNotKnow="True">
             
 
 
