@@ -81,9 +81,7 @@ export default class Residence extends SubsectionElement {
         Dates: {
           name: 'Dates',
           present: false,
-          receiveProps: true,
-          from: dates.from,
-          to: dates.to
+          receiveProps: true
         }
       }
     })

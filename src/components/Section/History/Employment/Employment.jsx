@@ -116,9 +116,7 @@ export default class Employment extends SubsectionElement {
         Dates: {
           name: 'Dates',
           receiveProps: true,
-          present: false,
-          from: dates.from,
-          to: dates.to
+          present: false
         }
       }
     })

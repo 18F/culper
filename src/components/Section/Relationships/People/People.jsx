@@ -72,9 +72,7 @@ export default class People extends SubsectionElement {
       open: true,
       Item: {
         Dates: {
-          receiveProps: true,
-          from: dates.from,
-          to: dates.to
+          receiveProps: true
         }
       }
     })
