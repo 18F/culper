@@ -48,7 +48,6 @@ describe('Passport component validation', function() {
       {
         data: {
           Issued: {
-            date: new Date('1/1/2015'),
             day: '1',
             month: '1',
             year: '2015',
@@ -62,7 +61,6 @@ describe('Passport component validation', function() {
       {
         data: {
           Issued: {
-            date: new Date('1/1/1989'),
             day: '1',
             month: '1',
             year: '1989',
@@ -76,7 +74,6 @@ describe('Passport component validation', function() {
       {
         data: {
           Issued: {
-            date: new Date('1/1/2015'),
             day: '1',
             month: '1',
             year: '2015',
@@ -92,7 +89,6 @@ describe('Passport component validation', function() {
       {
         data: {
           Issued: {
-            date: new Date('1/1/2015'),
             day: '1',
             month: '1',
             year: '2015',
@@ -108,7 +104,6 @@ describe('Passport component validation', function() {
       {
         data: {
           Issued: {
-            date: new Date('1/1/1989'),
             day: '1',
             month: '1',
             year: '1989',
@@ -135,14 +130,12 @@ describe('Passport component validation', function() {
       {
         data: {
           Issued: {
-            date: new Date('1/1/2015'),
             day: '1',
             month: '1',
             year: '2015',
             estimated: false
           },
           Expiration: {
-            date: new Date('1/1/2016'),
             day: '1',
             month: '1',
             year: '2016',
@@ -154,14 +147,12 @@ describe('Passport component validation', function() {
       {
         data: {
           Issued: {
-            date: new Date('1/1/2015'),
             day: '1',
             month: '1',
             year: '2015',
             estimated: false
           },
           Expiration: {
-            date: new Date('1/1/2016'),
             day: '32',
             month: '1',
             year: '2016',
@@ -173,7 +164,6 @@ describe('Passport component validation', function() {
       {
         data: {
           Issued: {
-            date: new Date('1/1/2015'),
             day: '1',
             month: '-1',
             year: '2015',
@@ -191,7 +181,6 @@ describe('Passport component validation', function() {
       {
         data: {
           Issued: {
-            date: new Date('1/1/2015'),
             day: '1',
             month: '1',
             year: '2015',
@@ -203,7 +192,6 @@ describe('Passport component validation', function() {
       {
         data: {
           Issued: {
-            date: new Date('1/1/2015'),
             day: '1',
             month: '1',
             year: '0',
@@ -215,14 +203,12 @@ describe('Passport component validation', function() {
       {
         data: {
           Issued: {
-            date: new Date('1/1/2015'),
             day: '1',
             month: '1',
             year: '2015',
             estimated: false
           },
           Expiration: {
-            date: new Date('1/1/2016'),
             day: '1',
             month: '1',
             year: '2016',
@@ -259,14 +245,12 @@ describe('Passport component validation', function() {
           },
           Card: 'Book',
           Issued: {
-            date: new Date('1/1/2015'),
             day: '1',
             month: '1',
             year: '2015',
             estimated: false
           },
           Expiration: {
-            date: new Date('1/1/2016'),
             day: '1',
             month: '1',
             year: '2016',

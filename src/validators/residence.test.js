@@ -64,14 +64,12 @@ describe('Residence component validation', function() {
             from: {
               day: '1',
               month: '1',
-              year: '2010',
-              date: new Date('1/1/2010')
+              year: '2010'
             },
             to: {
               day: '1',
               month: '1',
-              year: '2012',
-              date: new Date('1/1/2012')
+              year: '2012'
             },
             present: false
           },
@@ -98,8 +96,7 @@ describe('Residence component validation', function() {
           ReferenceLastContact: {
             day: '1',
             month: '1',
-            year: '2016',
-            date: new Date('1/1/2016')
+            year: '2016'
           },
           ReferenceRelationshipComments: {
             value: ''

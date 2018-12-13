@@ -13,8 +13,20 @@ describe('Selective service validation', function() {
         store: {
           Identification: {
             ApplicantBirthDate: {
+              Date: {}
+            }
+          }
+        },
+        expected: false
+      },
+      {
+        store: {
+          Identification: {
+            ApplicantBirthDate: {
               Date: {
-                date: null
+                month: `${new Date().getMonth() + 1}`,
+                day: `${new Date().getDate()}`,
+                year: `${new Date().getFullYear()}`
               }
             }
           }
@@ -26,31 +38,9 @@ describe('Selective service validation', function() {
           Identification: {
             ApplicantBirthDate: {
               Date: {
-                date: new Date('Invalid date')
-              }
-            }
-          }
-        },
-        expected: false
-      },
-      {
-        store: {
-          Identification: {
-            ApplicantBirthDate: {
-              Date: {
-                date: new Date()
-              }
-            }
-          }
-        },
-        expected: false
-      },
-      {
-        store: {
-          Identification: {
-            ApplicantBirthDate: {
-              Date: {
-                date: new Date(1940, 1, 1)
+                month: '1',
+                day: '1',
+                year: '1940'
               }
             }
           }
@@ -62,7 +52,9 @@ describe('Selective service validation', function() {
           Identification: {
             ApplicantBirthDate: {
               Date: {
-                date: new Date(1959, 11, 31)
+                month: '11',
+                day: '31',
+                year: '1959'
               }
             }
           }

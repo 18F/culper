@@ -110,8 +110,7 @@ describe('Cohabitant validation', function() {
           Birthdate: {
             day: '1',
             month: '1',
-            year: '2016',
-            date: new Date('1/1/2016')
+            year: '2016'
           },
           BirthPlace: {
             country: { value: 'United States' },
@@ -208,8 +207,7 @@ describe('Cohabitant validation', function() {
                   Birthdate: {
                     day: '1',
                     month: '1',
-                    year: '2016',
-                    date: new Date('1/1/2016')
+                    year: '2016'
                   },
                   BirthPlace: {
                     country: { value: 'United States' },

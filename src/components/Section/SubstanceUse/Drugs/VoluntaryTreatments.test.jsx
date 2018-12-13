@@ -66,10 +66,14 @@ describe('The VoluntaryTreatments component', () => {
               },
               TreatmentDates: {
                 from: {
-                  date: new Date('1/1/2010')
+                  month: '1',
+                  day: '1',
+                  year: '2010'
                 },
                 to: {
-                  date: new Date('1/1/2012')
+                  month: '1',
+                  day: '1',
+                  year: '2012'
                 }
               },
               TreatmentCompleted: 'Yes'

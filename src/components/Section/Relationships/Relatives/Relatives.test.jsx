@@ -53,43 +53,42 @@ describe('The relatives component', () => {
   })
 
   const relativeDatesSetup = {
-    name: "relatives",
+    name: 'relatives',
     applicantBirthdate: {
       estimated: false,
-      day: "1",
-      month: "1",
-      name: "birthdate",
-      year: "1970",
-      date: new Date("1970", "1", "1")
+      day: '1',
+      month: '1',
+      name: 'birthdate',
+      year: '1970'
     },
     List: {
-      items: [{
-        Item: {
-          Birthdate: {
-            estimated: false,
-            day: "1",
-            month: "1",
-            name: "Birthdate",
-            year: "1980",
-            date: new Date("1980", "1", "1")
-          },
-          Citizenship: {
+      items: [
+        {
+          Item: {
+            Birthdate: {
+              estimated: false,
+              day: '1',
+              month: '1',
+              name: 'Birthdate',
+              year: '1980'
+            },
+            Citizenship: {
               value: ['Germany']
+            },
+            IsDeceased: {
+              value: 'No'
+            },
+            FirstContact: {
+              estimated: false,
+              day: '1',
+              month: '1',
+              name: 'FirstContact',
+              year: '1990'
+            }
           },
-          IsDeceased: {
-            value: 'No'
-          },
-          FirstContact: {
-            estimated: false,
-            day: "1",
-            month: "1",
-            name: "FirstContact",
-            year: "1990",
-            date: new Date("1990", "1", "1")
-          },
-        },
-      open: true
-    }],
+          open: true
+        }
+      ]
     }
   }
 
@@ -100,34 +99,40 @@ describe('The relatives component', () => {
       }
 
       const component = createComponent(props)
-      expect(component.find('.error-messages [data-i18n="error.date.min"]').children().length).toEqual(0)
+      expect(
+        component
+          .find('.error-messages [data-i18n="error.date.min"]')
+          .children().length
+      ).toEqual(0)
     })
 
     it('with bad data - date first contacted is before applicant and relative DOB', () => {
       const props = {
         List: {
-          items: [{
-            Item: {
-              ...relativeDatesSetup.List.items[0].Item,
-              FirstContact: {
-                estimated: false,
-                day: "1",
-                month: "1",
-                name: "FirstContact",
-                year: "1960",
-                date: new Date("1960", "1", "1")
-              },
-            },
-        }],
-      },
-      valid: false
+          items: [
+            {
+              Item: {
+                ...relativeDatesSetup.List.items[0].Item,
+                FirstContact: {
+                  estimated: false,
+                  day: '1',
+                  month: '1',
+                  name: 'FirstContact',
+                  year: '1960'
+                }
+              }
+            }
+          ]
+        },
+        valid: false
       }
 
       const component = createComponent(props)
-      expect(component.find('.error-messages [data-i18n="error.date.min"]').text()).toEqual(
+      expect(
+        component.find('.error-messages [data-i18n="error.date.min"]').text()
+      ).toEqual(
         `${i18n.t('error.date.min.title')}${i18n.t('error.date.min.message')}`
       )
     })
   })
-
 })

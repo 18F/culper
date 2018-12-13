@@ -73,8 +73,7 @@ describe('Foreign Born Document Validator', function() {
           DocumentExpiration: {
             day: '1',
             month: '1',
-            year: '2016',
-            date: new Date('1/1/2016')
+            year: '2016'
           }
         },
         expected: true

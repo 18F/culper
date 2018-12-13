@@ -57,14 +57,12 @@ describe('Drug Prescription Validation', function() {
                     from: {
                       month: '1',
                       day: '1',
-                      year: '2010',
-                      date: new Date('1/1/2010')
+                      year: '2010'
                     },
                     to: {
                       month: '1',
                       day: '1',
-                      year: '2012',
-                      date: new Date('1/1/2012')
+                      year: '2012'
                     },
                     present: false
                   },

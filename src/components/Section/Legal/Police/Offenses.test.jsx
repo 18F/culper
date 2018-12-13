@@ -57,8 +57,7 @@ describe('The Offenses record component', () => {
               Date: {
                 day: '1',
                 month: '1',
-                year: '2016',
-                date: new Date('1/1/2016')
+                year: '2016'
               },
               Description: {
                 value: 'Description of the offense'
@@ -96,8 +95,7 @@ describe('The Offenses record component', () => {
               Date: {
                 day: '1',
                 month: '1',
-                year: '2016',
-                date: new Date('1/1/2016')
+                year: '2016'
               },
               Description: {
                 value: 'Description of the offense'

@@ -79,8 +79,7 @@ describe('signature validation', () => {
             Date: {
               day: '',
               month: '',
-              year: '',
-              date: null
+              year: ''
             }
           }
         },
@@ -92,8 +91,7 @@ describe('signature validation', () => {
             Date: {
               day: '1',
               month: '1',
-              year: '2016',
-              date: new Date('1/1/2016')
+              year: '2016'
             }
           }
         },

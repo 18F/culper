@@ -25,7 +25,6 @@ import AlternateAddress from '../../../Form/Location/AlternateAddress'
 import { RelativeValidator } from '../../../../validators'
 import { countryString } from '../../../../validators/location'
 import Alias from './Alias'
-import { extractDate } from '../../History/dateranges'
 
 export default class Relative extends ValidationElement {
   constructor(props) {
@@ -335,7 +334,10 @@ export default class Relative extends ValidationElement {
   }
 
   render() {
-    const relativeContactMinDate = pickDate([this.props.applicantBirthdate, this.props.Birthdate])
+    const relativeContactMinDate = pickDate([
+      this.props.applicantBirthdate,
+      this.props.Birthdate
+    ])
     const validator = new RelativeValidator(this.props, null)
     const mother = (this.props.Relation || {}).value === 'Mother'
     const father = (this.props.Relation || {}).value === 'Father'
@@ -641,7 +643,7 @@ export default class Relative extends ValidationElement {
               </Field>
               <Alias
                 name="Item"
-                minDate={extractDate(this.props.Birthdate)}
+                minDate={this.props.Birthdate}
                 relationship="Other"
                 onError={this.props.onError}
                 hideMaiden={mother}
@@ -1076,7 +1078,7 @@ export default class Relative extends ValidationElement {
                 className="relative-last-contact"
                 {...this.props.LastContact}
                 prefix="relative"
-                minDate={this.props.FirstContact.date}
+                minDate={this.props.FirstContact}
                 minDateEqualTo={true}
                 onError={this.props.onError}
                 onUpdate={this.updateLastContact}

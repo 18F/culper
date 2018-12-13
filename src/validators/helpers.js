@@ -1,4 +1,9 @@
-import { daysAgo, today } from '../components/Section/History/dateranges'
+import {
+  daysAgo,
+  today,
+  extractDate,
+  validDate
+} from '../components/Section/History/dateranges'
 
 /**
  * Determines if a value is defined vs false, 0, or empty string
@@ -102,22 +107,7 @@ export const validPhoneNumber = (phone, opts = { numberType: false }) => {
  * Validates a date
  */
 export const validDateField = (obj = {}) => {
-  if (!obj) {
-    return false
-  }
-  if (obj.value && !isNaN(obj.value)) {
-    return true
-  }
-  if (!obj.day) {
-    return false
-  }
-  if (!obj.month) {
-    return false
-  }
-  if (!obj.year) {
-    return false
-  }
-  return true
+  return validDate(obj)
 }
 
 export const validNotApplicable = (notApplicable, logic, notLogic) => {
@@ -138,8 +128,8 @@ export const validNotApplicable = (notApplicable, logic, notLogic) => {
 
 export const withinSevenYears = (from, to) => {
   const sevenYearsAgo = daysAgo(today, 365 * 7)
-  const fromDate = buildDate(from)
-  const toDate = buildDate(to)
+  const fromDate = extractDate(from)
+  const toDate = extractDate(to)
 
   if (
     (fromDate && fromDate >= sevenYearsAgo) ||
@@ -307,22 +297,9 @@ export const nameIsEmpty = name => {
       return false
   }
 }
-export const buildDate = date => {
-  if (!date) {
-    return null
-  }
-  let year = date.year
-  let month = date.month
-  let day = date.day
-  if (year && year.length > 3 && month && day) {
-    return new Date(parseInt(year), parseInt(month) - 1, parseInt(day))
-  } else {
-    return null
-  }
-}
 
 export const pickDate = (dates, max = true) => {
-  const buildsDates = dates.map(buildDate)
+  const buildsDates = dates.map(extractDate)
 
   const findMinDate = (finalDate, dateItem) => {
     if (finalDate <= dateItem) {

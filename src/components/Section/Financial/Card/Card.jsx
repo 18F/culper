@@ -54,7 +54,7 @@ export default class Card extends SubsectionElement {
   summary(item, index) {
     const obj = item.Item || {}
     const date = obj.Date || {}
-    const from = DateSummary({ date: date })
+    const from = DateSummary(date)
     const agency = (obj.Agency || {}).value || ''
 
     return Summary({

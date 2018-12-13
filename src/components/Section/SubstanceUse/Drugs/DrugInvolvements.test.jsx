@@ -54,14 +54,12 @@ describe('The DrugInvolvements component', () => {
               FirstInvolvement: {
                 day: '1',
                 month: '1',
-                year: '2016',
-                date: new Date('1/1/2016')
+                year: '2016'
               },
               RecentInvolvement: {
                 day: '1',
                 month: '1',
-                year: '2016',
-                date: new Date('1/1/2016')
+                year: '2016'
               },
               NatureOfInvolvement: {
                 value: 'Some involvement'

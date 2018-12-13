@@ -47,8 +47,7 @@ describe('People validator', function() {
                     from: {
                       month: '1',
                       day: '1',
-                      year: '2009',
-                      date: new Date('1/1/2009')
+                      year: '2009'
                     },
                     present: true
                   },
@@ -102,14 +101,12 @@ describe('People validator', function() {
                     from: {
                       month: '1',
                       day: '1',
-                      year: '2010',
-                      date: new Date('1/1/2010')
+                      year: '2010'
                     },
                     to: {
                       month: '1',
                       day: '1',
-                      year: '2012',
-                      date: new Date('1/1/2012')
+                      year: '2012'
                     },
                     present: false
                   },
@@ -163,14 +160,12 @@ describe('People validator', function() {
                     from: {
                       month: '1',
                       day: '1',
-                      year: '2010',
-                      date: new Date('1/1/2010')
+                      year: '2010'
                     },
                     to: {
                       month: '1',
                       day: '1',
-                      year: '2012',
-                      date: new Date('1/1/2012')
+                      year: '2012'
                     },
                     present: false
                   },
@@ -252,14 +247,12 @@ describe('People validator', function() {
                     from: {
                       month: '1',
                       day: '1',
-                      year: '2005',
-                      date: new Date('1/1/2005')
+                      year: '2005'
                     },
                     to: {
                       month: '1',
                       day: '1',
-                      year: '2017',
-                      date: new Date('1/1/2017')
+                      year: '2017'
                     },
                     present: false
                   },

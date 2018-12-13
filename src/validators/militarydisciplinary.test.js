@@ -112,8 +112,7 @@ describe('Military disciplinary validation', function() {
                   Date: {
                     day: '1',
                     month: '1',
-                    year: '2016',
-                    date: new Date('1/1/2012')
+                    year: '2016'
                   },
                   Offenses: {
                     value: 'Littering'

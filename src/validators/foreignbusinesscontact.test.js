@@ -70,8 +70,7 @@ describe('Foreign business contact component validation', function() {
           Date: {
             day: '1',
             month: '1',
-            year: '2016',
-            date: new Date('1/1/2016')
+            year: '2016'
           }
         },
         expected: true
@@ -235,8 +234,7 @@ describe('Foreign business contact component validation', function() {
                   Recent: {
                     day: '1',
                     month: '1',
-                    year: '2016',
-                    date: new Date('1/1/2016')
+                    year: '2016'
                   },
                   Future: {
                     value: 'This is the subsequent future meetings'
@@ -317,8 +315,7 @@ describe('Foreign business contact component validation', function() {
                   Date: {
                     day: '1',
                     month: '1',
-                    year: '2016',
-                    date: new Date('1/1/2016')
+                    year: '2016'
                   },
                   Governments: {
                     value: [{ name: 'Germany', value: 'Germany' }]

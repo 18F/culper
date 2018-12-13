@@ -1,4 +1,5 @@
 import DateControlValidator from './datecontrol'
+import { extractDate } from '../components/Section/History/dateranges'
 
 export default class DateRangeValidator {
   constructor(data = {}) {
@@ -8,8 +9,7 @@ export default class DateRangeValidator {
       ? {
           month: `${now.getMonth() + 1}`,
           day: `${now.getDate()}`,
-          year: `${now.getFullYear()}`,
-          date: now
+          year: `${now.getFullYear()}`
         }
       : data.to
     this.present = data.present
@@ -27,12 +27,6 @@ export default class DateRangeValidator {
       return false
     }
 
-    const tdate = new Date(
-      `${this.to.month || ''}/${this.to.day || '1'}/${this.to.year}`
-    )
-    const fdate = new Date(
-      `${this.from.month || ''}/${this.from.day || '1'}/${this.from.year}`
-    )
-    return tdate >= fdate
+    return extractDate(this.to) >= extractDate(this.from)
   }
 }

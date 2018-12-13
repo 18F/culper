@@ -149,7 +149,9 @@ export default class Passport extends SubsectionElement {
 
   render() {
     const numberLength = this.passportBeforeCutoff() ? '255' : '9'
-    const numberRegEx = this.passportBeforeCutoff() ? '^[a-zA-Z0-9]*$' : this.props.reBook
+    const numberRegEx = this.passportBeforeCutoff()
+      ? '^[a-zA-Z0-9]*$'
+      : this.props.reBook
 
     return (
       <div
@@ -245,7 +247,7 @@ export default class Passport extends SubsectionElement {
                 name="expiration"
                 className="passport-expiration"
                 {...this.props.Expiration}
-                minDate={(this.props.Issued || {}).date}
+                minDate={this.props.Issued}
                 minDateEqualTo={true}
                 noMaxDate={true}
                 onUpdate={this.updateExpiration}
@@ -265,9 +267,7 @@ export default class Passport extends SubsectionElement {
                 <Text
                   name="number"
                   {...this.props.Number}
-                  label={i18n.t(
-                    `foreign.passport.label.bookNumber`
-                  )}
+                  label={i18n.t(`foreign.passport.label.bookNumber`)}
                   pattern={numberRegEx}
                   maxlength={numberLength}
                   className="number passport-number"

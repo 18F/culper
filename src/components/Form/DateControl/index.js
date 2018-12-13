@@ -1,3 +1,2 @@
-import DateControl, { buildDate } from './DateControl'
+import DateControl from './DateControl'
 export default DateControl
-export { buildDate }

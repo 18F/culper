@@ -83,10 +83,14 @@ const List = {
         },
         Dates: {
           from: {
-            date: new Date('1/1/2010')
+            month: '1',
+            day: '1',
+            year: '2010'
           },
           to: {
-            date: new Date('1/1/2012')
+            month: '1',
+            day: '1',
+            year: '2012'
           },
           present: false
         },
@@ -148,7 +152,6 @@ const List = {
               Has: 'Yes',
               Reason: 'Fired',
               Date: {
-                date: new Date('1/1/2016'),
                 day: '1',
                 month: '1',
                 year: '2016'
@@ -163,7 +166,6 @@ const List = {
           Reasons: [
             {
               Date: {
-                date: new Date('1/1/2015'),
                 month: '1',
                 year: '2015'
               },

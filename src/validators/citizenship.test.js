@@ -295,8 +295,7 @@ describe('citizenship component validation', function() {
           DocumentIssued: {
             day: '1',
             month: '1',
-            year: '2016',
-            date: new Date('1/1/2016')
+            year: '2016'
           },
           PlaceIssued: {
             layout: Location.CITY_STATE_COUNTRY,
@@ -319,8 +318,7 @@ describe('citizenship component validation', function() {
           CertificateIssued: {
             day: '1',
             month: '1',
-            year: '2016',
-            date: new Date('1/1/2016')
+            year: '2016'
           },
           CertificateName: {
             first: 'Foo',
@@ -344,8 +342,7 @@ describe('citizenship component validation', function() {
           EntryDate: {
             day: '1',
             month: '1',
-            year: '2016',
-            date: new Date('1/1/2016')
+            year: '2016'
           },
           EntryLocation: {
             country: { value: 'United States' },
@@ -377,8 +374,7 @@ describe('citizenship component validation', function() {
           CertificateIssued: {
             day: '1',
             month: '1',
-            year: '2016',
-            date: new Date('1/1/2016')
+            year: '2016'
           },
           CertificateName: {
             first: 'Foo',
@@ -420,8 +416,7 @@ describe('citizenship component validation', function() {
           CertificateIssued: {
             day: '1',
             month: '1',
-            year: '2016',
-            date: new Date('1/1/2016')
+            year: '2016'
           },
           Basis: { value: 'Other' },
           Explanation: {
@@ -439,8 +434,7 @@ describe('citizenship component validation', function() {
           EntryDate: {
             day: '1',
             month: '1',
-            year: '2016',
-            date: new Date('1/1/2016')
+            year: '2016'
           },
           EntryLocation: {
             city: 'Arlington',
@@ -457,8 +451,7 @@ describe('citizenship component validation', function() {
           AlienRegistrationExpiration: {
             day: '1',
             month: '1',
-            year: '2016',
-            date: new Date('1/1/2016')
+            year: '2016'
           },
           DocumentType: { value: 'Other' },
           Explanation: {
@@ -479,14 +472,12 @@ describe('citizenship component validation', function() {
           DocumentIssued: {
             day: '1',
             month: '1',
-            year: '2016',
-            date: new Date('1/1/2016')
+            year: '2016'
           },
           DocumentExpiration: {
             day: '1',
             month: '1',
-            year: '2016',
-            date: new Date('1/1/2016')
+            year: '2016'
           }
         },
         expected: true

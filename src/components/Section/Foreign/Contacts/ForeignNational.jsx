@@ -347,7 +347,7 @@ export default class ForeignNational extends ValidationElement {
             className="last-contact"
             {...this.props.LastContact}
             prefix="contact.last"
-            minDate={(this.props.FirstContact || {}).date}
+            minDate={this.props.FirstContact}
             minDateEqualTo={true}
             onUpdate={this.updateLastContact}
             onError={this.props.onError}
@@ -691,7 +691,9 @@ export default class ForeignNational extends ValidationElement {
           belongingTo="AlternateAddress"
           country={this.props.Address.country}
           forceAPO
-          militaryAddressLabel={i18n.t('address.militaryAddress.foreignNational')}
+          militaryAddressLabel={i18n.t(
+            'address.militaryAddress.foreignNational'
+          )}
           onUpdate={this.update}
         />
         <Field

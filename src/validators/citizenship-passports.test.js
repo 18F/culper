@@ -47,8 +47,7 @@ describe('citizenship multiple component validation', function() {
                   Issued: {
                     day: '1',
                     month: '1',
-                    year: '2016',
-                    date: new Date('1/1/2016')
+                    year: '2016'
                   },
                   Location: {
                     country: { value: 'United States' },
@@ -70,8 +69,7 @@ describe('citizenship multiple component validation', function() {
                   Expiration: {
                     day: '1',
                     month: '1',
-                    year: '2016',
-                    date: new Date('1/1/2016')
+                    year: '2016'
                   },
                   Used: { value: 'Yes' },
                   Countries: {
@@ -84,14 +82,12 @@ describe('citizenship multiple component validation', function() {
                             from: {
                               month: '1',
                               day: '1',
-                              year: '2010',
-                              date: new Date('1/1/2010')
+                              year: '2010'
                             },
                             to: {
                               month: '1',
                               day: '1',
-                              year: '2012',
-                              date: new Date('1/1/2012')
+                              year: '2012'
                             },
                             present: false
                           }
@@ -119,8 +115,7 @@ describe('citizenship multiple component validation', function() {
                   Issued: {
                     day: '1',
                     month: '1',
-                    year: '2016',
-                    date: new Date('1/1/2016')
+                    year: '2016'
                   },
                   Location: {
                     country: { value: 'United States' },
@@ -142,8 +137,7 @@ describe('citizenship multiple component validation', function() {
                   Expiration: {
                     day: '1',
                     month: '1',
-                    year: '2016',
-                    date: new Date('1/1/2016')
+                    year: '2016'
                   },
                   Used: { value: 'Yes' },
                   Countries: {
@@ -158,14 +152,12 @@ describe('citizenship multiple component validation', function() {
                             from: {
                               month: '1',
                               day: '1',
-                              year: '2010',
-                              date: new Date('1/1/2010')
+                              year: '2010'
                             },
                             to: {
                               month: '1',
                               day: '1',
-                              year: '2012',
-                              date: new Date('1/1/2012')
+                              year: '2012'
                             },
                             present: false
                           }
@@ -221,14 +213,12 @@ describe('citizenship multiple component validation', function() {
             from: {
               month: '1',
               day: '1',
-              year: '2010',
-              date: new Date('1/1/2010')
+              year: '2010'
             },
             to: {
               month: '1',
               day: '1',
-              year: '2012',
-              date: new Date('1/1/2012')
+              year: '2012'
             },
             present: false
           }
@@ -274,8 +264,7 @@ describe('citizenship multiple component validation', function() {
           Issued: {
             day: '1',
             month: '1',
-            year: '2016',
-            date: new Date('1/1/2016')
+            year: '2016'
           }
         },
         expected: true
@@ -369,8 +358,7 @@ describe('citizenship multiple component validation', function() {
           Expiration: {
             day: '1',
             month: '1',
-            year: '2016',
-            date: new Date('1/1/2016')
+            year: '2016'
           }
         },
         expected: true
@@ -444,14 +432,12 @@ describe('citizenship multiple component validation', function() {
                     from: {
                       month: '1',
                       day: '1',
-                      year: '2010',
-                      date: new Date('1/1/2010')
+                      year: '2010'
                     },
                     to: {
                       month: '1',
                       day: '1',
-                      year: '2012',
-                      date: new Date('1/1/2012')
+                      year: '2012'
                     },
                     present: false
                   }

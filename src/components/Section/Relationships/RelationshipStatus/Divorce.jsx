@@ -256,7 +256,7 @@ export default class Divorce extends React.Component {
             prefix="divorceDate"
             className="date-divorced"
             {...this.props.DateDivorced}
-            minDate={(this.props.Recognized || {}).date}
+            minDate={this.props.Recognized}
             minDateEqualTo={true}
             onUpdate={this.updateDateDivorced}
             onError={this.props.onError}

@@ -1,3 +1,5 @@
+import { extractDate } from './History/dateranges'
+
 export const extractApplicantBirthdate = app => {
   const section = (app.Identification || {}).ApplicantBirthDate || {}
   if (!section.Date) {
@@ -5,11 +7,8 @@ export const extractApplicantBirthdate = app => {
   }
 
   const date = section.Date
-  if (!date.day || !date.month || !date.year) {
-    return null
-  }
 
-  return new Date(`${date.month}/${date.day}/${date.year}`)
+  return extractDate(date)
 }
 
 export const extractMaritalStatus = app => {
