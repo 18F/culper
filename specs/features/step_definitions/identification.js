@@ -59,8 +59,10 @@ defineSupportCode(({Given, Then, When}) => {
     return shouldBeInSubsection('identification', subsection)
   })
 
-  Then(/^I should not have any errors in the section review$/, () => {
-    return checkForErrorMessages()
+  Then(/^I should have no errors$/, () => {
+    subcontext = 'review'
+    return 'pending'
+    return client.assert.elementNotPresent('.usa-alert-error')
   })
 })
 
