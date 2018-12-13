@@ -6,11 +6,10 @@ import SubsectionElement from '../../SubsectionElement'
 import { Accordion, Branch } from '../../../Form'
 import { openState } from '../../../Form/Accordion/Accordion'
 import { newGuid } from '../../../Form/ValidationElement'
-import { today, daysAgo } from '../dateranges'
+import { today, daysAgo, extractDate, validDate } from '../dateranges'
 import { InjectGaps, EmploymentCustomSummary } from '../summaries'
 import EmploymentItem from './EmploymentItem'
 import { Gap } from '../Gap'
-import { extractDate } from '../dateranges'
 
 const byline = (item, index, initial, translation, required, validator) => {
   // If item is required and not currently opened and is not valid, show message
@@ -60,7 +59,14 @@ export default class Employment extends SubsectionElement {
 
   sortEmploymentItems(employmentItems) {
     return employmentItems.sort((a, b) => {
-      if (a.Item && a.Item.Dates && a.Item.Dates.to) {
+      if (a.type === 'Gap') {
+        return 1
+      } else if (b.type === 'Gap') {
+        return -1
+      } else if (
+        a.Item && a.Item.Dates && validDate(a.Item.Dates.to) &&
+        b.Item && b.Item.Dates && validDate(b.Item.Dates.to)
+      ) {
         const aDateObj = a.Item.Dates.to
         const bDateObj = b.Item.Dates.to
         const aDate = extractDate(aDateObj)
@@ -125,7 +131,7 @@ export default class Employment extends SubsectionElement {
       List: {
         items: InjectGaps(items, daysAgo(365 * this.props.totalYears)).sort(
           this.sort
-        ),
+        ).filter(item => !item.type || (item.type && item.type !== 'Gap')),
         branch: {}
       }
     })

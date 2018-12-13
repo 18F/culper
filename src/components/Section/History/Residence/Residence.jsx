@@ -89,7 +89,7 @@ export default class Residence extends SubsectionElement {
     this.props.onUpdate({
       items: InjectGaps(items, daysAgo(365 * this.props.totalYears)).sort(
         this.sort
-      ),
+      ).filter(item => !item.type || (item.type && item.type !== 'Gap')),
       branch: {}
     })
   }
