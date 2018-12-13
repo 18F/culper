@@ -45,7 +45,7 @@ func TestMuxContextParsing(t *testing.T) {
 	}
 
 	r := mux.NewRouter()
-	r.Handle("/hello/{name}", middleware(http.HandlerFunc(handler)))
+	r.Handle("/hello/{name}", middleware(http.HandlerFunc(handler))).Methods("GET")
 
 	ts := httptest.NewServer(r)
 	defer ts.Close()
