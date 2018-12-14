@@ -77,6 +77,14 @@ make specs
 
 Screenshots will be recorded in _specs/screenshots_
 
+To run a single feature spec locally:
+
+```shell
+make specs COMMAND='bash -c "yarn run nightwatch --test features/identification.feature"'
+```
+
+*TIP* You will want to run the purge directions from docs/test-scenarios.md for a clean run
+
 ### Running a local server
 
 To run a local server, we are using [docker][21] containers leveraging the [docker-compose][20] tool via the command:
