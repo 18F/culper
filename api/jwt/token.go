@@ -92,7 +92,7 @@ func (service Service) CurrentAudience(request *http.Request) string {
 	return ""
 }
 
-// SessionIndex is the session embedded in the token.
+// SessionIndex returns the SAML user session identifier persisted in the token.
 func (service Service) SessionIndex(request *http.Request) string {
 	rawToken := service.ExtractToken(request)
 	token, err := service.ParseWithClaims(rawToken)
@@ -109,9 +109,9 @@ func (service Service) SessionIndex(request *http.Request) string {
 }
 
 // NewToken generates a new Jwt signed token using a users account information
-// ID is the user id for the token.
-// sessionIndex is the session identifier provided by WSO2 (used in logout)
-// audience is a JWT field that defines which clients are interested in this token.
+// id is the user id for the token.
+// sessionIndex is the user session identifier provided by the SAML identity provider (facilitates Single Logout)
+// audience is a JWT field that defines the intended recipient of the token
 func (service Service) NewToken(id int, sessionIndex string, audience string) (string, time.Time, error) {
 	expiresAt := time.Now().Add(service.Timeout())
 

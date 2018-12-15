@@ -257,7 +257,7 @@ Flag to enable SAML authentication.
 
 ## `SAML_SLO_ENABLED`
 
-Flag to enable SAML Single Logout authentication.
+Flag to enable SAML Single Logout (SLO). If enabled, when the user logs out of eApp, a signed SLO request will be sent to the server endpoint defined by `SAML_IDP_SSO_URL`.
 
 **Target** - Front-end (web), Back-end (api)<br>
 **Default** - False: *empty*<br>
