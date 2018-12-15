@@ -374,7 +374,13 @@
                     <Country>Canada</Country>
                   </Address>
                   <APOFPO>
-                    <Answer>No</Answer>
+                    <Answer>Yes</Answer>
+                    <Address>
+                      <Address>Spouse Secondary APO</Address>
+                      <ApoFpo>APO</ApoFpo>
+                      <State>AE</State>
+                      <ZipCode>09354</ZipCode>
+                    </Address>
                   </APOFPO>
                   <Birth>
                     <Date>

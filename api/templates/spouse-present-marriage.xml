@@ -2,33 +2,14 @@
 <PresentMarriage>
   {{with $Item := .props.CivilUnion.props}}
   <CurrentSpouse ID="1">
-    <!-- XXX Work-around for https://github.com/18F/e-QIP-prototype/issues/1029 -->
-    {{if false}}
-    <APOFPO>
-      <!-- TODO -->
-      <Address></Address>
-      <AddressComment></AddressComment>
-      <!-- TODO -->
-      <Answer></Answer>
-      <AnswerComment></AnswerComment>
-      <!-- TODO -->
-      <PhysicalLocation>
-        <Address></Address>
-        <Comment></Comment>
-      </PhysicalLocation>
-    </APOFPO>
-    {{else}}
     {{if notApplicable $Item.UseCurrentAddress | eq "False"}}
     <Address UseMyCurrentAddress="True"/>
     {{else}}
     <Address>
       {{location $Item.Address}}
     </Address>
-    <!-- This constraint is not consistent with SF-86/validation matrix; but is consistent with e-QIP -->
-    {{if isInternational $Item.Address}}
-    <!-- XXX Work-around for https://github.com/18F/e-QIP-prototype/issues/1029 -->
-    <APOFPO><Answer>No</Answer></APOFPO>
-    {{end}}
+    {{with $remap := altAddressRemap $Item.Address $Item.AlternateAddress.props.HasDifferentAddress $Item.AlternateAddress.props.Address}}
+    {{tmpl "apofpo-physical.xml" $remap}}
     {{end}}
     {{end}}
     <Birth>
