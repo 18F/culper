@@ -1,8 +1,9 @@
 package saml
 
 import (
+	"bytes"
 	"fmt"
-	"os"
+	"os/exec"
 	"strings"
 	"testing"
 	"time"
@@ -24,8 +25,6 @@ func TestBasicRequestFormat(t *testing.T) {
 }
 
 func TestRequestSignature(t *testing.T) {
-
-	fmt.Println(os.Getwd())
 
 	req := newLogoutRequest("localhost", "admin", "b96e355b-256a-46b2-ba42-9d140effefcb")
 
@@ -55,6 +54,28 @@ func TestRequestSignature(t *testing.T) {
 		t.Fatal("Incorrect or missing Signature")
 	}
 
+}
+
+func TestRequestXSD(t *testing.T) {
+
+	req := newLogoutRequest("localhost", "admin", "b96e355b-256a-46b2-ba42-9d140effefcb")
+
+	testCrtFile := "testdata/test_cert.pem"
+	testKeyFile := "testdata/test_key.pem"
+
+	signedRequest, err := req.signedRequest(testCrtFile, testKeyFile)
+	if err != nil {
+		t.Fatal("Error signing request", err)
+	}
+
+	cmd := exec.Command("xmllint", "--schema", "testdata/protocol.xsd", "--noout", "-")
+	cmd.Stdin = strings.NewReader(signedRequest)
+	var out bytes.Buffer
+	cmd.Stdout = &out
+	err = cmd.Run()
+	if err != nil {
+		t.Fatal(err)
+	}
 }
 
 func TestGetPemBody(t *testing.T) {

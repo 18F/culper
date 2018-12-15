@@ -58,6 +58,7 @@ const (
 	SamlRequestURLError                        = "Error creating SAML authentication request URL"
 	SamlVerificationError                      = "Error verifying SAML response"
 	SamlSLORequestGeneration                   = "Error generating SAML SLO Request"
+	SamlSLOMissingSessionID                    = "Missing Session ID from AuthNResponse. WSO2 may be mis-configured"
 	USPSDecodeError                            = "Error decoding USPS geocoding response"
 	USPSKnownErrorCode                         = "USPS known error received"
 	USPSMissingKey                             = "USPS API key has not been set"

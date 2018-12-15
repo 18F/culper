@@ -2,11 +2,12 @@ package saml
 
 import (
 	"bytes"
+	"encoding/base64"
+	"encoding/pem"
 	"encoding/xml"
 	"io/ioutil"
 	"os"
 	"os/exec"
-	"regexp"
 	"strings"
 	"time"
 
@@ -68,26 +69,15 @@ func newLogoutRequest(issuer string, username string, sessionIndex string) logou
 }
 
 func extractCertBody(certFile string) (string, error) {
-	extractorRegex := regexp.MustCompile(`(?s)(?:-+BEGIN CERTIFICATE-+\n)(.*)(?:\n-+END CERTIFICATE-+)`)
 
 	certBytes, err := ioutil.ReadFile(certFile)
 	if err != nil {
 		return "", errors.Wrap(err, "Failed to read cert file")
 	}
 
-	captures := extractorRegex.FindSubmatch(certBytes)
-
-	if len(captures) != 2 {
-		return "", errors.New("Couldn't match the cert pem to encode in logout request")
-	}
-
-	bodyBytes := captures[1]
-
-	newlineBytes := []byte("\n")
-
-	strippedBody := bytes.Replace(bodyBytes, newlineBytes, nil, -1)
-
-	return string(strippedBody), nil
+	data, _ := pem.Decode(certBytes)
+	str := base64.StdEncoding.EncodeToString(data.Bytes)
+	return str, nil
 
 }
 

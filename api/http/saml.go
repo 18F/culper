@@ -60,9 +60,9 @@ type SamlSLORequestHandler struct {
 
 // ServeHTTP is the initial entry point for authentication.
 func (service SamlSLORequestHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	if !service.Env.True(api.SamlEnabled) {
+	if !service.Env.True(api.SamlSloEnabled) {
 		service.Log.Warn(api.SamlAttemptDenied, api.LogFields{})
-		http.Error(w, "SAML is not implemented", http.StatusInternalServerError)
+		http.Error(w, "SAML SLO is not implemented", http.StatusInternalServerError)
 		return
 	}
 
@@ -77,8 +77,8 @@ func (service SamlSLORequestHandler) ServeHTTP(w http.ResponseWriter, r *http.Re
 	// Get the SessionIndex from the token
 	sessionIndex := service.Token.SessionIndex(r)
 	if sessionIndex == "" {
-		service.Log.Fatal("This user session was started with an instance of WSO2 not configured for SLO.", api.LogFields{})
-		http.Error(w, "This user session was started with an instance of WSO2 not configured for SLO.", http.StatusInternalServerError)
+		service.Log.Fatal(api.SamlSLOMissingSessionID, api.LogFields{})
+		http.Error(w, api.SamlSLOMissingSessionID, http.StatusInternalServerError)
 		return
 	}
 

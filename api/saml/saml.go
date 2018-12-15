@@ -99,8 +99,9 @@ func (service *Service) ValidateAuthenticationResponse(encoded string) (string, 
 		}
 	}
 
-	if sessionIndex == "" {
-		service.Log.Warn("SAML Auth Response does not include a SessionIndex. WSO2 is probably misconfigured and SLO will likely not work correctly.", api.LogFields{})
+	if sessionIndex == "" && service.Env.True(api.SamlSloEnabled) {
+		service.Log.Warn("SAML Auth Response does not include a SessionIndex. WSO2 is probably misconfigured and SLO will not work correctly.", api.LogFields{})
+		return "", "", errors.New("SAML Auth Response does not include a SessionIndex. WSO2 is probably misconfigured and SLO will not work correctly.")
 	}
 
 	return username, sessionIndex, nil
