@@ -104,6 +104,7 @@ export default class ApplicantSSN extends SubsectionElement {
 
     return (
       <div className={klass} {...super.dataAttributes(this.props)}>
+      <h1 className="section-header">Social Security Number</h1>
         <Field
           title={i18n.t('identification.ssn.title')}
           titleSize="h4"

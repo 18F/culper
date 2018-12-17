@@ -319,43 +319,49 @@ export default class Address extends ValidationElement {
         <div className="fields">
           <Show when={locationValidator.isDomestic()}>
             <div>
-              <Street
-                name="street"
-                className="mailing street required"
-                label={this.props.streetLabel}
-                placeholder={this.props.streetPlaceholder}
-                value={this.props.street}
-                onUpdate={this.onAddressUpdate}
-                onError={this.handleError}
-                onFocus={this.focusField}
-                onBlur={this.blurField}
-                required={this.props.required}
-                disabled={this.props.disabled}
-              />
-              <Street
-                name="street2"
-                className="street2"
-                label={this.props.street2Label}
-                optional={true}
-                value={this.props.street2}
-                disabled={this.props.disabled}
-                onUpdate={this.onAddressUpdate}
-                onError={this.handleError}
-                onFocus={this.focusField}
-                onBlur={this.blurField}
-              />
-              <City
-                name="city"
-                className="city required"
-                label={this.props.cityLabel}
-                value={this.props.city}
-                onUpdate={this.onAddressUpdate}
-                onError={this.handleError}
-                onFocus={this.focusField}
-                onBlur={this.blurField}
-                required={this.props.required}
-                disabled={this.props.disabled}
-              />
+              <div className="usa-form-control">
+                <Street
+                  name="street"
+                  className="mailing street required"
+                  label={this.props.streetLabel}
+                  placeholder={this.props.streetPlaceholder}
+                  value={this.props.street}
+                  onUpdate={this.onAddressUpdate}
+                  onError={this.handleError}
+                  onFocus={this.focusField}
+                  onBlur={this.blurField}
+                  required={this.props.required}
+                  disabled={this.props.disabled}
+                />
+              </div>
+              <div className="usa-form-control">
+                <Street
+                  name="street2"
+                  className="street2"
+                  label={this.props.street2Label}
+                  optional={true}
+                  value={this.props.street2}
+                  disabled={this.props.disabled}
+                  onUpdate={this.onAddressUpdate}
+                  onError={this.handleError}
+                  onFocus={this.focusField}
+                  onBlur={this.blurField}
+                />
+              </div>
+              <div className="usa-form-control">
+                <City
+                  name="city"
+                  className="city required"
+                  label={this.props.cityLabel}
+                  value={this.props.city}
+                  onUpdate={this.onAddressUpdate}
+                  onError={this.handleError}
+                  onFocus={this.focusField}
+                  onBlur={this.blurField}
+                  required={this.props.required}
+                  disabled={this.props.disabled}
+                />
+              </div>
               <div className="state-zip-wrap">
                 <State
                   name="state"

@@ -31,6 +31,7 @@ export default class ApplicantBirthPlace extends SubsectionElement {
 
     return (
       <div className={klass} {...super.dataAttributes(this.props)}>
+        <h1 className="section-header">Place of Birth</h1>
         <Field
           title={i18n.t('identification.birthplace.title')}
           titleSize="h4"

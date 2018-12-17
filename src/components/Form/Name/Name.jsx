@@ -187,6 +187,7 @@ export default class Name extends ValidationElement {
           titleSize="label"
           help="identification.name.first.help"
           errorPrefix="name"
+          className="usa-form-control"
           filterErrors={this.filterErrors.bind(this)}
           scrollIntoView={this.props.scrollIntoView}
           adjustFor="labels">
@@ -226,6 +227,7 @@ export default class Name extends ValidationElement {
             titleSize="label"
             help="identification.name.middle.help"
             errorPrefix="name"
+            className="usa-form-control"
             filterErrors={this.filterErrors.bind(this)}
             scrollIntoView={this.props.scrollIntoView}
             adjustFor="labels">
@@ -277,6 +279,7 @@ export default class Name extends ValidationElement {
           titleSize="label"
           help="identification.name.last.help"
           errorPrefix="name"
+          className="usa-form-control"
           filterErrors={this.filterErrors.bind(this)}
           scrollIntoView={this.props.scrollIntoView}
           adjustFor="labels">
@@ -307,6 +310,7 @@ export default class Name extends ValidationElement {
           titleSize="label"
           help="identification.name.suffix.help"
           errorPrefix="name"
+          className="usa-form-control"
           scrollIntoView={this.props.scrollIntoView}
           optional={true}
           optionalText={i18n.t(`${prefix}.label.optional`)}>

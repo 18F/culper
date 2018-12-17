@@ -42,7 +42,6 @@ $breakpoints: (
 }
 
 .accordion {
-  padding: 1rem;
 
   > .caption {
     display: block;
@@ -312,10 +311,6 @@ $breakpoints: (
     &.animate {
       animation-name: closebox;
     }
-  }
-
-  .append-button {
-    padding: 0 10%;
   }
 }
 

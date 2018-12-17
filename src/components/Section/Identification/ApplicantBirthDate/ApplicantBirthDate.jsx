@@ -93,10 +93,10 @@ export default class ApplicantBirthDate extends SubsectionElement {
       ''}`.trim()
     return (
       <div className={klass} {...super.dataAttributes(this.props)}>
+        <h1 className="section-header">Date of Birth</h1>
         <Field
           title={i18n.t('identification.birthdate.title')}
-          
-          
+          titleSize="h4"
           help="identification.birthdate.help"
           scrollIntoView={this.props.scrollIntoView}>
           <DateControl

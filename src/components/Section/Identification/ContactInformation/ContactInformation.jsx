@@ -108,12 +108,7 @@ export default class ContactInformation extends SubsectionElement {
       <div
         className="section-content contact"
         {...super.dataAttributes(this.props)}>
-        <Field
-          title={i18n.t('identification.contacts.title')}
-          titleSize="h4"
-          className="no-margin-bottom"
-          optional={true}
-        />
+        <h1 className="section-header">Your Contact Information</h1>
 
         <Field
           title={i18n.t('identification.contacts.heading.email')}
@@ -127,7 +122,7 @@ export default class ContactInformation extends SubsectionElement {
 
         <Field
           title={i18n.t('identification.contacts.heading.emailHome')}
-          titleSize="label"
+          titleSize="h4"
           optional={true}
           scrollIntoView={this.props.scrollIntoView}>
           <Email
@@ -141,7 +136,7 @@ export default class ContactInformation extends SubsectionElement {
 
         <Field
           title={i18n.t('identification.contacts.heading.emailWork')}
-          titleSize="label"
+          titleSize="h4"
           optional={true}
           scrollIntoView={this.props.scrollIntoView}>
           <Email
