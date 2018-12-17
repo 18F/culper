@@ -68,6 +68,8 @@ Setup steps:
 1. Disable *SAML\_ENABLED* auth and enable *BASIC\_ENABLED*
 1. Edit /etc/hosts file __OPTIONAL__
   * Add _web_ and _api_ to the end of the localhost line in /etc/hosts so you don't have to keep changing the values of API\_REDIRECT or API\_BASE\_URL in .env file back to localhost
+1. Run __make run__ to ensure services are restarted
+1. Run the purge directions from docs/test-scenarios.md to clear out old data
 
 To run the feature specs locally:
 
@@ -82,8 +84,6 @@ To run a single feature spec locally:
 ```shell
 make specs COMMAND='bash -c "yarn run nightwatch --test features/identification.feature"'
 ```
-
-*TIP* You will want to run the purge directions from docs/test-scenarios.md for a clean run
 
 ### Running a local server
 
