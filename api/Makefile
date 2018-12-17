@@ -16,7 +16,7 @@ build:
 clean:
 	rm -f api \
 		bin/compare bin/flush bin/form bin/fuzzer bin/load bin/load-scenario \
-		bin/transmit bin/unlock
+		bin/submit bin/transmit bin/unlock
 
 .PHONY: cmd
 cmd:
@@ -27,6 +27,7 @@ cmd:
 	go build -o bin/load ./cmd/load
 	go build -o bin/load-scenario ./cmd/load-scenario
 	go build -o bin/transmit ./cmd/transmit
+	go build -o bin/submit ./cmd/submit
 	go build -o bin/unlock ./cmd/unlock
 	chown -f 1000:1000 \
 		bin/compare bin/flush bin/form bin/fuzzer bin/load bin/load-scenario \
