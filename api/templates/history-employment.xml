@@ -182,11 +182,7 @@
         <Name>{{text $supervisor.SupervisorName}}</Name>
         <Title>{{text $supervisor.Title}}</Title>
         <Address>{{location $supervisor.Address}}</Address>
-
-        {{with $remap := altAddressRemap $supervisor.Address $Item.SupervisorAlternateAddress.props.HasDifferentAddress $Item.SupervisorAlternateAddress.props.Address}}
-        {{tmpl "apofpo-physical.xml" $remap}}
-        {{end}}
-
+        {{apoFpo $supervisor.Address $Item.SupervisorAlternateAddress}}
         <Comment></Comment>
         <Email DoNotKnow="{{notApplicable $supervisor.EmailNotApplicable}}">{{email $supervisor.Email}}</Email>
         <Telephone>{{telephone $supervisor.Telephone}}</Telephone>
@@ -198,11 +194,7 @@
       <Verifier>
         <LegalName>{{nameLastFirst $Item.ReferenceName}}</LegalName>
         <Address>{{location $Item.ReferenceAddress}}</Address>
-
-        {{with $remap := altAddressRemap $Item.ReferenceAddress $Item.ReferenceAlternateAddress.props.HasDifferentAddress $Item.ReferenceAlternateAddress.props.Address}}
-        {{tmpl "apofpo-physical.xml" $remap}}
-        {{end}}
-
+        {{apoFpo $Item.ReferenceAddress $Item.ReferenceAlternateAddress}}
         <Telephone>{{telephone $Item.ReferencePhone}}</Telephone>
         <Comment></Comment>
         {{if radio $Item.EmploymentActivity | eq "Unemployment"}}

@@ -4,11 +4,7 @@
     {{with $Item := $item.Item}}
     <Residency ID="{{inc $index}}">
       <Address>{{location $Item.Address}}</Address>
-
-      {{with $remap := altAddressRemap $Item.Address $Item.AlternateAddress.props.HasDifferentAddress $Item.AlternateAddress.props.Address}}
-      {{tmpl "apofpo-physical.xml" $remap}}
-      {{end}}
-
+      {{apoFpo $Item.Address $Item.AlternateAddress}}
       {{monthYearDaterange $Item.Dates}}
       <DetailComment></DetailComment>
       <ResidenceType>{{radio $Item.Role}}</ResidenceType>
@@ -17,11 +13,7 @@
       {{- if $Item.ReferenceRelationship.props.values}}
       <Verifier>
         <Address>{{location $Item.ReferenceAddress}}</Address>
-
-        {{with $remap := altAddressRemap $Item.ReferenceAddress $Item.ReferenceAlternateAddress.props.HasDifferentAddress $Item.ReferenceAlternateAddress.props.Address}}
-        {{tmpl "apofpo-physical.xml" $remap}}
-        {{end}}
-
+        {{apoFpo $Item.ReferenceAddress $Item.ReferenceAlternateAddress}}
         <Comment>{{textarea $Item.ReferenceComments}}</Comment>
         {{- if notApplicable $Item.ReferenceEmailNotApplicable | eq "True"}}
         <Email DoNotKnow="True"></Email>
