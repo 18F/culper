@@ -168,7 +168,7 @@ export default class Diagnosis extends ValidationElement {
           title={i18n.t(
             `psychological.${prefix}.heading.healthcareProfessional`
           )}
-          titleSize="h2"
+          titleSize="h4"
           optional={true}
           className="no-margin-bottom"
         />
@@ -188,7 +188,7 @@ export default class Diagnosis extends ValidationElement {
 
         <Field
           title={i18n.t(`psychological.${prefix}.heading.facility`)}
-          titleSize="h2"
+          titleSize="h4"
           optional={true}
           className="no-margin-bottom"
         />

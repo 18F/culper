@@ -144,7 +144,7 @@ class Legal extends SectionElement {
             nextLabel={i18n.t('legal.destination.police')}>
             <Field
               title={i18n.t('legal.intro.title')}
-              titleSize="h2"
+              titleSize="h4"
               optional={true}
               className="no-margin-bottom">
               {i18n.m('legal.intro.body')}
@@ -159,7 +159,7 @@ class Legal extends SectionElement {
             nextLabel={i18n.t('legal.destination.offenses')}>
             <Field
               title={i18n.t('legal.police.heading.title')}
-              titleSize="h2"
+              titleSize="h4"
               optional={true}
               className="no-margin-bottom">
               {i18n.m('legal.police.para.intro1')}
@@ -510,7 +510,7 @@ class Legal extends SectionElement {
             nextLabel={i18n.t('psychological.destination.intro')}>
             <Field
               title={i18n.t('legal.police.heading.title')}
-              titleSize="h2"
+              titleSize="h4"
               optional={true}
               className="no-margin-bottom">
               {i18n.m('legal.police.para.intro1')}
@@ -800,7 +800,7 @@ export class LegalSections extends React.Component {
       <div>
         <Field
           title={i18n.t('legal.police.heading.title')}
-          titleSize="h2"
+          titleSize="h4"
           optional={true}
           className="no-margin-bottom">
           {i18n.m('legal.police.para.intro1')}

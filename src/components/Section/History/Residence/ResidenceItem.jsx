@@ -343,7 +343,7 @@ export default class ResidenceItem extends ValidationElement {
           <div>
             <Field
               title={i18n.t('history.residence.heading.reference')}
-              titleSize="h2"
+              titleSize="h4"
               optional
               className="no-margin-bottom"
               scrollIntoView={this.props.scrollIntoView}>
@@ -476,7 +476,7 @@ export default class ResidenceItem extends ValidationElement {
 
               <Field
                 title={i18n.t('reference.heading.correspondence')}
-                titleSize="h2"
+                titleSize="h4"
                 optional
                 className="no-margin-bottom"
                 scrollIntoView={this.props.scrollIntoView}>

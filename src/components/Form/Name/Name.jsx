@@ -310,11 +310,12 @@ export default class Name extends ValidationElement {
           scrollIntoView={this.props.scrollIntoView}
           optional={true}
           optionalText={i18n.t(`${prefix}.label.optional`)}>
-          <RadioGroup
-            className="option-list suffix"
+          <select
+            className="option-list suffix usa-small-input"
             selectedValue={this.props.suffix}
             disabled={this.props.disabled}>
-            <Radio
+            <option value="" selected></option>
+            <option
               name="suffix"
               label={i18n.t(`${prefix}.label.jr`)}
               className="suffix-jr"
@@ -324,7 +325,7 @@ export default class Name extends ValidationElement {
               onFocus={this.props.onFocus}
               onBlur={this.props.onBlur}
             />
-            <Radio
+            <option
               name="suffix"
               label={i18n.t(`${prefix}.label.sr`)}
               className="suffix-sr"
@@ -334,7 +335,7 @@ export default class Name extends ValidationElement {
               onFocus={this.props.onFocus}
               onBlur={this.props.onBlur}
             />
-            <Radio
+            <option
               name="suffix"
               label={i18n.t(`${prefix}.label.i`)}
               className="suffix-i"
@@ -344,7 +345,7 @@ export default class Name extends ValidationElement {
               onFocus={this.props.onFocus}
               onBlur={this.props.onBlur}
             />
-            <Radio
+            <option
               name="suffix"
               label={i18n.t(`${prefix}.label.ii`)}
               className="suffix-ii"
@@ -354,7 +355,7 @@ export default class Name extends ValidationElement {
               onFocus={this.props.onFocus}
               onBlur={this.props.onBlur}
             />
-            <Radio
+            <option
               name="suffix"
               label={i18n.t(`${prefix}.label.iii`)}
               className="suffix-iii"
@@ -364,7 +365,7 @@ export default class Name extends ValidationElement {
               onFocus={this.props.onFocus}
               onBlur={this.props.onBlur}
             />
-            <Radio
+            <option
               name="suffix"
               label={i18n.t(`${prefix}.label.iv`)}
               className="suffix-iv"
@@ -374,7 +375,7 @@ export default class Name extends ValidationElement {
               onFocus={this.props.onFocus}
               onBlur={this.props.onBlur}
             />
-            <Radio
+            <option
               name="suffix"
               label={i18n.t(`${prefix}.label.v`)}
               className="suffix-v"
@@ -384,7 +385,7 @@ export default class Name extends ValidationElement {
               onFocus={this.props.onFocus}
               onBlur={this.props.onBlur}
             />
-            <Radio
+            <option
               name="suffix"
               label={i18n.t(`${prefix}.label.vi`)}
               className="suffix-vi"
@@ -394,7 +395,7 @@ export default class Name extends ValidationElement {
               onFocus={this.props.onFocus}
               onBlur={this.props.onBlur}
             />
-            <Radio
+            <option
               name="suffix"
               label={i18n.t(`${prefix}.label.vii`)}
               className="suffix-vii"
@@ -404,7 +405,7 @@ export default class Name extends ValidationElement {
               onFocus={this.props.onFocus}
               onBlur={this.props.onBlur}
             />
-            <Radio
+            <option
               name="suffix"
               label={i18n.t(`${prefix}.label.viii`)}
               className="suffix-viii"
@@ -414,7 +415,7 @@ export default class Name extends ValidationElement {
               onFocus={this.props.onFocus}
               onBlur={this.props.onBlur}
             />
-            <Radio
+            <option
               name="suffix"
               label={i18n.t(`${prefix}.label.ix`)}
               className="suffix-ix"
@@ -424,7 +425,7 @@ export default class Name extends ValidationElement {
               onFocus={this.props.onFocus}
               onBlur={this.props.onBlur}
             />
-            <Radio
+            <option
               name="suffix"
               label={i18n.t(`${prefix}.label.x`)}
               className="suffix-x"
@@ -434,7 +435,7 @@ export default class Name extends ValidationElement {
               onFocus={this.props.onFocus}
               onBlur={this.props.onBlur}
             />
-            <Radio
+            <option
               name="suffix"
               label={i18n.t(`${prefix}.label.other`)}
               className="suffix-more"
@@ -444,7 +445,7 @@ export default class Name extends ValidationElement {
               onFocus={this.props.onFocus}
               onBlur={this.props.onBlur}
             />
-          </RadioGroup>
+          </select>
           <Show when={this.props.suffix === 'Other'}>
             <Text
               name="suffixOther"

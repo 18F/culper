@@ -358,7 +358,7 @@ export default class MilitaryService extends ValidationElement {
           <div>
             <Field
               title={i18n.t('military.history.heading.details')}
-              titleSize="h2"
+              titleSize="h4"
               optional={true}
               className="no-margin-bottom"
             />

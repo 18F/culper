@@ -308,7 +308,7 @@ export default class EducationItem extends ValidationElement {
             <div className="reference">
               <Field
                 title={i18n.t('history.education.heading.reference')}
-                titleSize="h2"
+                titleSize="h4"
                 className="no-margin-bottom"
                 scrollIntoView={this.props.scrollIntoView}>
                 {i18n.m('history.education.para.reference')}
@@ -344,7 +344,7 @@ export default class EducationItem extends ValidationElement {
               <Show when={!nameIsEmpty(this.props.ReferenceName)}>
                 <Field
                   title={i18n.t('reference.heading.correspondence')}
-                  titleSize="h2"
+                  titleSize="h4"
                   optional={true}
                   className="no-margin-bottom"
                   scrollIntoView={this.props.scrollIntoView}>

@@ -31,9 +31,10 @@ export default class ApplicantName extends SubsectionElement {
 
     return (
       <div className={klass} {...super.dataAttributes(this.props)}>
+        <h1 className="section-header">Full Name</h1>
         <Field
           title={i18n.t('identification.name.title')}
-          titleSize="h2"
+          titleSize="h4"
           optional={true}
           filterErrors={Name.requiredErrorsOnly}
           scrollIntoView={this.props.scrollIntoView}>

@@ -106,7 +106,7 @@ export default class CitizenshipItem extends ValidationElement {
 
         <Field
           title={i18n.t('citizenship.multiple.heading.citizenship.period')}
-          titleSize="h2"
+          titleSize="h4"
           optional={true}
           className="period no-margin-bottom"
         />

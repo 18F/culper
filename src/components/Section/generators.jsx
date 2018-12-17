@@ -87,7 +87,7 @@ export const createIntroSubsection = section => {
       nextLabel={i18n.t(`${section}.destination.name`)}>
       <Field
         title={i18n.t(`${section}.intro.title`)}
-        titleSize="h2"
+        titleSize="h4"
         optional={true}
         className="no-margin-bottom">
         {i18n.m(`${section}.intro.body`)}

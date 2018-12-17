@@ -362,7 +362,7 @@ class History extends SectionElement {
             nextLabel={i18n.t('history.destination.residence')}>
             <Field
               title={i18n.t('history.intro.title')}
-              titleSize="h2"
+              titleSize="h4"
               optional={true}
               className="no-margin-bottom">
               {i18n.m('history.intro.body')}
@@ -447,7 +447,7 @@ class History extends SectionElement {
 
             <Field
               title={i18n.t('history.education.title')}
-              titleSize="h2"
+              titleSize="h4"
               optional={true}
               className="no-margin-bottom">
               {i18n.m('history.education.info')}
@@ -521,7 +521,7 @@ class History extends SectionElement {
             nextLabel={i18n.t('history.destination.employment')}>
             <Field
               title={i18n.t('history.residence.info')}
-              titleSize="h2"
+              titleSize="h4"
               optional={true}
               className="no-margin-bottom">
               {i18n.m('history.residence.info2')}
@@ -550,7 +550,7 @@ class History extends SectionElement {
                 <hr className="section-divider" />
                 <Field
                   title={i18n.t('history.residence.heading.exiting')}
-                  titleSize="h2"
+                  titleSize="h4"
                   optional={true}
                   className="no-margin-bottom">
                   {i18n.m('history.residence.para.exiting')}
@@ -567,7 +567,7 @@ class History extends SectionElement {
             nextLabel={i18n.t('history.destination.education')}>
             <Field
               title={i18n.t('history.employment.heading.employment')}
-              titleSize="h2"
+              titleSize="h4"
               optional={true}
               className="no-margin-bottom">
               {i18n.m('history.employment.para.employment')}
@@ -593,7 +593,7 @@ class History extends SectionElement {
                 <hr className="section-divider" />
                 <Field
                   title={i18n.t('history.employment.heading.exiting')}
-                  titleSize="h2"
+                  titleSize="h4"
                   optional={true}
                   className="no-margin-bottom">
                   {i18n.m('history.employment.para.exiting')}
@@ -610,7 +610,7 @@ class History extends SectionElement {
             nextLabel={i18n.t('history.destination.federal')}>
             <Field
               title={i18n.t('history.education.title')}
-              titleSize="h2"
+              titleSize="h4"
               optional={true}
               className="no-margin-bottom">
               {i18n.m('history.education.info')}

@@ -4,7 +4,8 @@
 .field {
   border-left: 0.75rem solid transparent;
   margin-left: -0.75rem;
-  margin-bottom: 3rem;
+  margin-bottom: 8rem;
+  max-width: 64rem;
 
   &.with-comments {
     border-left: 0.75rem solid $eapp-grey-light;
@@ -33,29 +34,24 @@
     }
 
     &.h2 {
-      font-size: 2.3rem;
-      line-height: 1.6;
+      font-size: 2.5rem;
     }
 
     &.h3 {
-      font-size: 1.85rem;
+      font-size: 2rem;
       margin-top: 1.5rem;
-      line-height: 1.7;
     }
 
     &.h4 {
       font-size: 1.7rem;
-      line-height: 1.7;
     }
 
     &.h5 {
-      font-size: 1.6rem;
-      line-height: 1.6;
+      font-size: 1.3rem;
     }
 
     &.h6 {
-      font-size: 1.5rem;
-      line-height: 1.7;
+      font-size: 1rem;
     }
   }
 

@@ -154,6 +154,27 @@ select {
   }
 }
 
+select {
+  background-position: right 1.3rem center;
+  -webkit-appearance: none;
+}
+
+// Input sizing
+.usa-small-input {
+  width: 10rem;
+}
+
+.usa-medium-input {
+  width: 30rem;
+}
+
+@media all and (max-width: 980px) {
+  .usa-medium-input,
+  .usa-small-input {
+    width: 100%;
+  }
+}
+
 // Block style radio and checkboxes
 .blocks {
   line-height: 4.6rem;

@@ -42,7 +42,6 @@ $breakpoints: (
 }
 
 .accordion {
-  background-color: #e5e5e5;
   padding: 1rem;
 
   > .caption {
@@ -79,9 +78,9 @@ $breakpoints: (
 
     .details {
       line-height: 1.6;
-      padding: 1rem 10% 0;
+      padding: 4rem;
       overflow: hidden;
-      border-left: 0.4rem solid $eapp-blue;
+      border: 3px solid $color-gray-lightest;
 
       h2 {
         margin-top: 10rem;
@@ -137,8 +136,12 @@ $breakpoints: (
     }
   }
 
+  .summary-container {
+    background-color: $color-gray-lightest;
+  }
+
   .summary {
-    transition: box-shadow 0.3s, color 0.3s;
+    transition: color 0.3s;
 
     .left,
     .right {
@@ -148,12 +151,8 @@ $breakpoints: (
       text-decoration: none;
       overflow: hidden;
       vertical-align: top;
-      transition: box-shadow 0.3s, color 0.3s;
+      transition: color 0.3s;
       padding: 2rem .4rem 1rem;
-
-      &:hover {
-        box-shadow: 6px 1px 13px -3px rgba(0, 0, 0, 0.4);
-      }
 
       .button-with-icon {
         display: block;
@@ -186,13 +185,7 @@ $breakpoints: (
     .left {
       width: 90%;
       color: #000;
-      transition: border-left-color 0.3s;
-      border-left: 0.4rem solid #fff;
       padding-left: 2.4rem;
-
-      &.open {
-        border-left-color: $eapp-blue;
-      }
 
       .toggle {
         color: $eapp-blue;
@@ -283,12 +276,13 @@ $breakpoints: (
     }
 
     .right {
-      color: #6a6a6a;
+      background-color: $color-gray-light;
+      color: $color-white;
       float: right;
       width: 10%;
 
       &:hover {
-        color: $eapp-red;
+        background-color: $eapp-red;
       }
     }
   }
@@ -360,9 +354,9 @@ button.usa-button-outline {
       .summary {
         z-index: 1001;
         box-shadow: 0 2px 6px -1px rgba(0, 0, 0, 0.4);
+        background-color: $color-gray-lightest;
         position: fixed;
         top: 6.7rem;
-        background-color: #fff;
 
         .left.close,
         .left.open {

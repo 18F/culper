@@ -322,7 +322,7 @@ export default class ForeignService extends ValidationElement {
           <div>
             <Field
               title={i18n.t('military.foreign.heading.contact.details')}
-              titleSize="h2"
+              titleSize="h4"
               optional={true}
               className="no-margin-bottom">
               {i18n.m('military.foreign.para.contact')}

@@ -119,7 +119,7 @@ export default class Verify extends React.Component {
       <div className="verify">
         <Field
           title={i18n.t('releases.verify.heading.title')}
-          titleSize="h2"
+          titleSize="h4"
           optional={true}
           className="release-title no-margin-bottom"
         />

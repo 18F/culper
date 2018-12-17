@@ -26,7 +26,7 @@ class Citizenship extends SectionElement {
             <div>
               <Field
                 title={i18n.t('citizenship.intro.title')}
-                titleSize="h2"
+                titleSize="h4"
                 optional={true}
                 className="no-margin-bottom">
                 {i18n.m('citizenship.intro.body')}

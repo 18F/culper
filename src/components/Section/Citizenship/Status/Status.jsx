@@ -248,7 +248,7 @@ export default class Status extends SubsectionElement {
         {...super.dataAttributes(this.props)}>
         <Field
           title={i18n.t('citizenship.status.heading.title')}
-          titleSize="h2"
+          titleSize="h4"
           optional={true}
           className="no-margin-bottom"
         />

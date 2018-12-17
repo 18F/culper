@@ -1,3 +1,4 @@
+
 import React from 'react'
 import { i18n } from '../../../../config'
 import schema from '../../../../schema'
@@ -105,7 +106,7 @@ export default class ApplicantSSN extends SubsectionElement {
       <div className={klass} {...super.dataAttributes(this.props)}>
         <Field
           title={i18n.t('identification.ssn.title')}
-          titleSize="h2"
+          titleSize="h4"
           help="identification.ssn.help"
           scrollIntoView={this.props.scrollIntoView}>
           <SSN

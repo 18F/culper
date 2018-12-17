@@ -702,7 +702,7 @@ export default class Relative extends ValidationElement {
           <div>
             <Field
               title={i18n.t('relationships.relatives.heading.us.title')}
-              titleSize="h2"
+              titleSize="h4"
               scrollIntoView={this.props.scrollIntoView}>
               <Field
                 title={i18n.t(

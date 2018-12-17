@@ -314,7 +314,7 @@ export default class Offense extends ValidationElement {
 
             <Field
               title={i18n.t('legal.police.heading.citedagency')}
-              titleSize="h2"
+              titleSize="h4"
               optional={true}
               className="no-margin-bottom"
             />

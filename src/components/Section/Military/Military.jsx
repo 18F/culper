@@ -61,7 +61,7 @@ class Military extends SectionElement {
             }>
             <Field
               title={i18n.t('military.intro.title')}
-              titleSize="h2"
+              titleSize="h4"
               optional={true}
               className="no-margin-bottom">
               {i18n.m('military.intro.body')}

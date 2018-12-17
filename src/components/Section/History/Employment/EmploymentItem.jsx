@@ -450,7 +450,7 @@ export default class EmploymentItem extends ValidationElement {
         <Show when={this.showReference()}>
           <Field
             title={i18n.t(`${prefix}.heading.reference`)}
-            titleSize="h2"
+            titleSize="h4"
             className="no-margin-bottom"
             scrollIntoView={this.props.scrollIntoView}
           />
@@ -527,7 +527,7 @@ export default class EmploymentItem extends ValidationElement {
         <Show when={this.showAdditionalActivity()}>
           <Field
             title={i18n.t(`${prefix}.heading.additionalActivity`)}
-            titleSize="h2"
+            titleSize="h4"
             optional={true}
             className="no-margin-bottom"
             scrollIntoView={this.props.scrollIntoView}>

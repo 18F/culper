@@ -33,7 +33,7 @@ export default class ApplicantBirthPlace extends SubsectionElement {
       <div className={klass} {...super.dataAttributes(this.props)}>
         <Field
           title={i18n.t('identification.birthplace.title')}
-          titleSize="h2"
+          titleSize="h4"
           scrollIntoView={this.props.scrollIntoView}>
           <Location
             name="birthplace"

@@ -42,7 +42,7 @@ export default class Physical extends SubsectionElement {
       <div className={klass} {...super.dataAttributes(this.props)}>
         <Field
           title={i18n.t('identification.traits.title')}
-          titleSize="h2"
+          titleSize="h4"
           optional={true}
           className="no-margin-bottom"
         />

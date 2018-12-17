@@ -1,56 +1,32 @@
 .daterange {
-  display: inline-block;
+  display: flex;
   margin-top: 2rem;
   padding-left: 0;
   padding-right: 0;
 
-  .usa-grid {
-    padding-left: 0;
-    padding-right: 0;
-  }
-
   .from-label {
-    display: inline-block;
-    width: 8rem;
-    vertical-align: top;
-    text-align: center;
-    margin-right: 2rem;
-    margin-top: 3.5rem;
+    font-weight: 900;
+    margin-bottom: 1rem;
   }
-
-  .datecontrol {
-    display: inline-block;
-  }
-
-  .to-grid {
-    margin-top: 5rem;
-  }
-
+  
   .arrow {
-    height: 0;
+    width: 5rem;
+    text-align: center;
+    padding-top: 7rem;
+  }
 
-    img {
-      width: 3rem;
-      height: 10.5rem;
-      margin-top: -6rem;
-      margin-left: 2.5rem;
-    }
+  .or-present {
+    width: 15%;
+    display: flex;
+    align-items: center;
+    padding-top: 1.5rem;
   }
 
   .from-present {
-    display: inline-block;
-    vertical-align: top;
-    padding-top: 2.5rem;
-
-    .or {
-      display: inline-block;
-      margin-top: 1rem;
-      margin-right: 1rem;
-      margin-left: 1rem;
-    }
-
-    .block label {
-      width: 10rem;
-    }
+    text-align: center;
+    width: 3rem;
+  }
+  .present label {
+    width: auto;
   }
 }

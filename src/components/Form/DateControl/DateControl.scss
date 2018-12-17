@@ -2,23 +2,12 @@
   display: inline-block !important;
   width: auto !important;
 
-  .month {
-    width: 7rem;
-    display: inline-block;
-    margin-right: 1rem;
-    vertical-align: top;
-  }
-
-  .day {
-    width: 7rem;
-    display: inline-block;
-    margin-right: 1rem;
-    vertical-align: top;
-  }
-
+  .month,
+  .day,
   .year {
-    width: 8.5rem;
+    width: 7rem;
     display: inline-block;
+    margin-right: .5rem;
     vertical-align: top;
   }
 

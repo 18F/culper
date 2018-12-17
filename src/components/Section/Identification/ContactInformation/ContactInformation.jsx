@@ -110,7 +110,7 @@ export default class ContactInformation extends SubsectionElement {
         {...super.dataAttributes(this.props)}>
         <Field
           title={i18n.t('identification.contacts.title')}
-          titleSize="h2"
+          titleSize="h4"
           className="no-margin-bottom"
           optional={true}
         />

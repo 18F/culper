@@ -69,7 +69,7 @@ export default class Multiple extends SubsectionElement {
         {...super.dataAttributes(this.props)}>
         <Field
           title={i18n.t('citizenship.multiple.heading.title')}
-          titleSize="h2"
+          titleSize="h4"
           optional={true}
           className="no-margin-bottom"
         />

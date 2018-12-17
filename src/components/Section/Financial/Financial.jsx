@@ -29,7 +29,7 @@ class Financial extends SectionElement {
             nextLabel={i18n.t('financial.destination.bankruptcy')}>
             <Field
               title={i18n.t('financial.intro.title')}
-              titleSize="h2"
+              titleSize="h4"
               optional={true}
               className="no-margin-bottom">
               {i18n.m('financial.intro.body')}

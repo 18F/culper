@@ -35,7 +35,7 @@ export default class Passports extends SubsectionElement {
         {...super.dataAttributes(this.props)}>
         <Field
           title={i18n.t('citizenship.multiple.heading.passport.title')}
-          titleSize="h2"
+          titleSize="h4"
           optional={true}
           className="no-margin-bottom"
         />
