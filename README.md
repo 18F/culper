@@ -62,12 +62,9 @@ make
 
 Setup steps:
 
-1. Edit _.env_ file
-  * *API\_REDIRECT*=__http://web:8080__
-  * *API\_BASE\_URL*=__http://api:3000__
+1. Edit _.env_ file and set `API_REDIRECT=http://web:8080` and `API_BASE_URL=http://api:3000`
 1. Disable *SAML\_ENABLED* auth and enable *BASIC\_ENABLED*
-1. Edit /etc/hosts file __OPTIONAL__
-  * Add _web_ and _api_ to the end of the localhost line in /etc/hosts so you don't have to keep changing the values of API\_REDIRECT or API\_BASE\_URL in .env file back to localhost
+1. Edit /etc/hosts file __OPTIONAL__ add _web_ and _api_ to the end of the localhost line in /etc/hosts so you don't have to keep changing the values of API\_REDIRECT or API\_BASE\_URL in .env file back to localhost
 1. Run __make run__ to ensure services are restarted
 1. Run the purge directions from docs/test-scenarios.md to clear out old data
 
