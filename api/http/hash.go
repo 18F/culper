@@ -17,21 +17,15 @@ type HashHandler struct {
 
 // ServeHTTP returns the hash of the application data used to verify data integrity.
 func (service HashHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	account := &api.Account{}
 
-	// Valid token and audience while populating the audience ID
-	_, id, err := service.Token.CheckToken(r)
-	if err != nil {
-		service.Log.WarnError(api.InvalidJWT, err, api.LogFields{})
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-	account.ID = id
+	// Get account ID
+	id := AccountIDFromRequestContext(r)
 
 	// Get the account information from the data store
+	account := &api.Account{ID: id}
 	if _, err := account.Get(service.Database, account.ID); err != nil {
 		service.Log.WarnError(api.NoAccount, err, api.LogFields{})
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		RespondWithStructuredError(w, api.NoAccount, http.StatusUnauthorized)
 		return
 	}
 

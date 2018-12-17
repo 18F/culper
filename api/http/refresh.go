@@ -17,22 +17,16 @@ type RefreshHandler struct {
 
 // ServeHTTP refreshes a given token.
 func (service RefreshHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	account := &api.Account{}
 
-	// Valid token and audience
-	_, id, err := service.Token.CheckToken(r)
-	if err != nil {
-		service.Log.WarnError(api.InvalidJWT, err, api.LogFields{})
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
+	// Get account ID
+	id := AccountIDFromRequestContext(r)
 
 	// Generate a new token
-	account.ID = id
 	signedToken, _, err := service.Token.NewToken(id, service.Token.SessionID(r), service.Token.CurrentAudience(r))
+
 	if err != nil {
 		service.Log.WarnError(api.JWTError, err, api.LogFields{})
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		RespondWithStructuredError(w, api.JWTError, http.StatusInternalServerError)
 		return
 	}
 
