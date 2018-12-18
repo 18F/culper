@@ -22,7 +22,6 @@ describe('Foreign activities support component validation', function() {
             middleInitialOnly: true,
             noMiddleName: false,
             last: 'Bar',
-            lastInitialOnly: false,
             suffix: 'Jr'
           }
         },
@@ -190,7 +189,6 @@ describe('Foreign activities support component validation', function() {
                     middleInitialOnly: true,
                     noMiddleName: false,
                     last: 'Bar',
-                    lastInitialOnly: false,
                     suffix: 'Jr'
                   },
                   Address: {

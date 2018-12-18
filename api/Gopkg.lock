@@ -84,12 +84,12 @@
   version = "v1.1.1"
 
 [[projects]]
-  digest = "1:af7adad5ef24d9241808e46347b7e97c38a387afca772069e2ad1d9fbb660fc6"
+  digest = "1:e73f5b0152105f18bc131fba127d9949305c8693f8a762588a82a48f61756f5f"
   name = "github.com/gorilla/mux"
   packages = ["."]
   pruneopts = "UT"
-  revision = "0eeaf8392f5b04950925b8a69fe70f110fa7cbfc"
-  version = "v1.1"
+  revision = "e3702bed27f0d39777b0b37b664b6280e8ef8fbf"
+  version = "v1.6.2"
 
 [[projects]]
   branch = "master"

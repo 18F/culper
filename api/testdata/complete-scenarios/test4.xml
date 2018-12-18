@@ -116,7 +116,7 @@
                       <Number>9999999991</Number>
                       <Time>Both</Time>
                     </Home>
-                    <Mobile>
+                    <Mobile DoNotKnow="True">
             
 
 
@@ -151,7 +151,7 @@
                   </LegalName>
                   <RelationshipType WorkAssociate="True"/>
                   <Telephone>
-                    <Home>
+                    <Home DoNotKnow="True">
             
 
 
@@ -190,7 +190,7 @@
                   </LegalName>
                   <RelationshipType WorkAssociate="True"/>
                   <Telephone>
-                    <Home>
+                    <Home DoNotKnow="True">
             
 
 

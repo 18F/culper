@@ -118,20 +118,17 @@ describe('Divorce validation', function() {
             middleInitialOnly: true,
             noMiddleName: false,
             last: 'Bar',
-            lastInitialOnly: false,
             suffix: 'Jr'
           },
           DateDivorced: {
             day: '1',
             month: '1',
-            year: '2016',
-            date: new Date('1/1/2016')
+            year: '2016'
           },
           Birthdate: {
             day: '1',
             month: '1',
-            year: '2016',
-            date: new Date('1/1/2016')
+            year: '2016'
           },
           BirthPlace: {
             country: { value: 'United States' },
@@ -153,8 +150,7 @@ describe('Divorce validation', function() {
           Recognized: {
             day: '1',
             month: '1',
-            year: '2016',
-            date: new Date('1/1/2016')
+            year: '2016'
           },
           Address: {
             country: { value: 'United States' },

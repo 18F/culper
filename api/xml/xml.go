@@ -36,7 +36,7 @@ func (service Service) DefaultTemplate(templateName string, data map[string]inte
 	fmap := template.FuncMap{
 		"addressIn":              addressIn,
 		"agencyType":             agencyType,
-		"altAddressRemap":        altAddressRemap,
+		"apoFpo":                 apoFpo,
 		"branch":                 branch,
 		"branchToAnswer":         branchToAnswer,
 		"branchToBool":           branchToBool,
@@ -160,12 +160,37 @@ func getInterfaceAsBytes(anon interface{}) []byte {
 	return js
 }
 
-func altAddressRemap(primary map[string]interface{}, hasDifferent map[string]interface{}, alternate map[string]interface{}) map[string]interface{} {
-	foo := make(map[string]interface{})
-	foo["Address"] = primary
-	foo["HasDifferentAddress"] = hasDifferent
-	foo["Alternate"] = alternate
-	return foo
+func apoFpoView(primary map[string]interface{}, altAddress map[string]interface{}) map[string]interface{} {
+	view := make(map[string]interface{})
+	view["Primary"] = primary
+
+	if props, ok := altAddress["props"]; ok {
+		if hasApo, ok := (props.(map[string]interface{}))["HasDifferentAddress"]; ok {
+			if alt, ok := (props.(map[string]interface{}))["Address"]; ok {
+				view["HasApo"] = hasApo
+				view["Alternate"] = alt
+				return view
+			}
+		}
+	}
+
+	view["HasApo"] = make(map[string]interface{})
+	view["Alternate"] = make(map[string]interface{})
+	return view
+}
+
+// apoFpo generates the APOFPO element, given a primary address and an alternate address.
+// primary is a required location type. altAddress is an optionally populated physicaladdress type.
+func apoFpo(primary map[string]interface{}, altAddress map[string]interface{}) (template.HTML, error) {
+	// Templates operate on a single dot set, so create a single view on the data
+	view := apoFpoView(primary, altAddress)
+	fmap := template.FuncMap{
+		"isPostOffice":           isPostOffice,
+		"isInternational":        isInternational,
+		"locationOverrideLayout": locationOverrideLayout,
+		"branch":                 branch,
+	}
+	return xmlTemplateWithFuncs("apofpo.xml", view, fmap)
 }
 
 // selectBenefit returns the appropriate sub-tree from Foreign.BenefitActivity.props.List.props.items[*],

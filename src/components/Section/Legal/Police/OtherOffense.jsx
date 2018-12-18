@@ -246,7 +246,7 @@ export default class OtherOffense extends ValidationElement {
             {...this.props.CourtAddress}
             label={i18n.t('legal.police.label.address')}
             className="offense-courtaddress"
-            layout={Location.ADDRESS}
+            layout={Location.OFFENSE}
             geocode={true}
             addressBooks={this.props.addressBooks}
             addressBook="Court"

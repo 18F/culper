@@ -44,7 +44,7 @@ describe('date ranges ', function() {
     ]
 
     tests.forEach(test => {
-      expect(validDate(test.month, test.day, test.year)).toBe(test.expected)
+      expect(validDate(test)).toBe(test.expected)
     })
   })
 
@@ -52,32 +52,32 @@ describe('date ranges ', function() {
     const tests = [
       {
         ranges: [
-          { from: new Date('1/1/2009') },
-          { from: new Date('1/1/2010') }
+          { from: { month: '1', day: '1', year: '2009' } },
+          { from: { month: '1', day: '1', year: '2010' } }
         ],
         expected: [
-          { from: new Date('1/1/2009') },
-          { from: new Date('1/1/2010') }
+          { from: { month: '1', day: '1', year: '2009' } },
+          { from: { month: '1', day: '1', year: '2010' } }
         ]
       },
       {
         ranges: [
-          { from: new Date('1/1/2010') },
-          { from: new Date('1/1/2010') }
+          { from: { month: '1', day: '1', year: '2010' } },
+          { from: { month: '1', day: '1', year: '2010' } }
         ],
         expected: [
-          { from: new Date('1/1/2010') },
-          { from: new Date('1/1/2010') }
+          { from: { month: '1', day: '1', year: '2010' } },
+          { from: { month: '1', day: '1', year: '2010' } }
         ]
       },
       {
         ranges: [
-          { from: new Date('1/1/2012') },
-          { from: new Date('1/1/2010') }
+          { from: { month: '1', day: '1', year: '2012' } },
+          { from: { month: '1', day: '1', year: '2010' } }
         ],
         expected: [
-          { from: new Date('1/1/2010') },
-          { from: new Date('1/1/2012') }
+          { from: { month: '1', day: '1', year: '2010' } },
+          { from: { month: '1', day: '1', year: '2012' } }
         ]
       }
     ]
@@ -117,13 +117,6 @@ describe('date ranges ', function() {
     ]
 
     const equality = (expected, actual) => {
-      if (actual.date) {
-        return (
-          expected.getMonth() === actual.date.getMonth() &&
-          expected.getFullYear() === actual.date.getFullYear()
-        )
-      }
-
       return (
         expected.getMonth() === actual.getMonth() &&
         expected.getFullYear() === actual.getFullYear()

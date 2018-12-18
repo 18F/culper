@@ -37,8 +37,7 @@ describe('The applicant birth date component', () => {
       Date: {
         month: '01',
         day: '01',
-        year: '1700',
-        date: new Date('01/01/1700')
+        year: '1700'
       },
       onUpdate: () => {
         updates++
@@ -59,8 +58,7 @@ describe('The applicant birth date component', () => {
       Date: {
         month: '01',
         day: '01',
-        year: '1700',
-        date: new Date('01/01/1700')
+        year: '1700'
       },
       onUpdate: () => {}
     }

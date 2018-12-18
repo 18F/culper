@@ -3,7 +3,8 @@ import { extractApplicantBirthdate } from '../components/Section/extractors'
 import {
   extractDate,
   today,
-  daysAgo
+  daysAgo,
+  validDate
 } from '../components/Section/History/dateranges'
 
 export const getContext = () => {
@@ -21,9 +22,9 @@ export default class DateControlValidator {
     this.year = data.year
     this.hideMonth = data.hideMonth
     this.hideDay = data.hideDay
-    this.maxDate = data.maxDate
+    this.maxDate = extractDate(data.maxDate)
     this.maxDateEqualTo = data.maxDateEqualTo || false
-    this.minDate = data.minDate
+    this.minDate = extractDate(data.minDate)
     this.minDateEqualTo = data.minDateEqualTo || false
     this.noMaxDate = data.noMaxDate
     this.relationship = data.relationship || ''
@@ -60,11 +61,11 @@ export default class DateControlValidator {
       return true
     }
 
-    if (!this.month || !this.day || !this.year) {
+    if (!validDate(this)) {
       return false
     }
 
-    const date = new Date(`${this.month}/${this.day}/${this.year}`)
+    const date = extractDate(this)
 
     if (this.maxDateEqualTo) {
       return date <= this.maxDate
@@ -80,11 +81,11 @@ export default class DateControlValidator {
       return true
     }
 
-    if (!this.month || !this.day || !this.year) {
+    if (!validDate(this)) {
       return false
     }
 
-    const date = new Date(`${this.month}/${this.day}/${this.year}`)
+    const date = extractDate(this)
 
     if (this.minDateEqualTo) {
       return date >= this.minDate

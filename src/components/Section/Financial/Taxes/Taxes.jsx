@@ -2,7 +2,7 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import schema from '../../../../schema'
 import validate from '../../../../validators'
-import { Summary } from '../../../Summary'
+import { Summary, DateSummary } from '../../../Summary'
 import { TaxesValidator, TaxValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion } from '../../../Form'
@@ -50,7 +50,9 @@ export default class Taxes extends SubsectionElement {
    */
   summary(item, index) {
     const obj = item.Item || {}
-    const year = (obj.Year || {}).value || ''
+    const date = obj.Year || {}
+    const year = DateSummary(date)
+
     const agency = (obj.Agency || {}).value || ''
 
     return Summary({

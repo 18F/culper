@@ -24,13 +24,11 @@ describe('The summary components', () => {
           },
           Dates: {
             from: {
-              date: new Date(1989, 12, 17),
               month: '12',
               day: '17',
               year: '1989'
             },
             to: {
-              date: new Date(2000, 1, 1),
               month: '1',
               day: '1',
               year: '2000',
@@ -74,13 +72,11 @@ describe('The summary components', () => {
           },
           Dates: {
             from: {
-              date: new Date(1989, 12, 17),
               month: '12',
               day: '17',
               year: '1989'
             },
             to: {
-              date: new Date(2000, 1, 1),
               month: '1',
               day: '1',
               year: '2000',
@@ -124,13 +120,11 @@ describe('The summary components', () => {
           },
           Dates: {
             from: {
-              date: new Date(1989, 12, 17),
               month: '12',
               day: '17',
               year: '1989'
             },
             to: {
-              date: new Date(2000, 1, 1),
               month: '1',
               day: '1',
               year: '2000',
@@ -170,8 +164,7 @@ describe('The summary components', () => {
       return {
         day: `${date.getDate()}`,
         month: `${date.getMonth() + 1}`,
-        year: `${date.getFullYear()}`,
-        date: date
+        year: `${date.getFullYear()}`
       }
     }
 

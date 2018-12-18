@@ -21,7 +21,6 @@ describe('Foreign business family component validation', function() {
             middleInitialOnly: true,
             noMiddleName: false,
             last: 'Bar',
-            lastInitialOnly: false,
             suffix: 'Jr'
           }
         },
@@ -87,8 +86,7 @@ describe('Foreign business family component validation', function() {
           Date: {
             day: '1',
             month: '1',
-            year: '2016',
-            date: new Date('1/1/2016')
+            year: '2016'
           }
         },
         expected: true
@@ -156,7 +154,6 @@ describe('Foreign business family component validation', function() {
                     middleInitialOnly: true,
                     noMiddleName: false,
                     last: 'Bar',
-                    lastInitialOnly: false,
                     suffix: 'Jr'
                   },
                   Agency: {
@@ -168,8 +165,7 @@ describe('Foreign business family component validation', function() {
                   Date: {
                     day: '1',
                     month: '1',
-                    year: '2016',
-                    date: new Date('1/1/2016')
+                    year: '2016'
                   },
                   Circumstances: {
                     value: 'this is the circumstances'

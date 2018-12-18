@@ -1,5 +1,9 @@
 import DateRangeValidator from './daterange'
-import { daysAgo, today } from '../components/Section/History/dateranges'
+import {
+  daysAgo,
+  today,
+  extractDate
+} from '../components/Section/History/dateranges'
 import {
   BranchCollection,
   validDateField,
@@ -84,10 +88,9 @@ export class EducationItemValidator {
 
   validReference() {
     const threeYearsAgo = daysAgo(today, 365 * 3)
-    if (
-      (this.dates.from.date && this.dates.from.date >= threeYearsAgo) ||
-      (this.dates.to.date && this.dates.to.date >= threeYearsAgo)
-    ) {
+    const from = extractDate(this.dates.from)
+    const to = extractDate(this.dates.to)
+    if ((from && from >= threeYearsAgo) || (to && to >= threeYearsAgo)) {
       if ((this.referenceNameNotApplicable || {}).applicable === false) {
         return true
       }

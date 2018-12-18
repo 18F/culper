@@ -757,7 +757,7 @@ exports[`Renders homepage 1`] = `
                     className="usa-media_block-body"
                   >
                     <p>
-                      This site is also protected by an SSL (Secure Sockets Layer) certificate that's been signed by the U.S. government. The &lt;strong&gt;https://&lt;/strong&gt; means all transmitted data is encrypted  — in other words, any information or browsing history that you provide is transmitted securely.
+                      This site is also protected by an SSL (Secure Sockets Layer) certificate that's been signed by the U.S. government. The https:// means all transmitted data is encrypted  — in other words, any information or browsing history that you provide is transmitted securely.
                     </p>
                   </div>
                 </div>

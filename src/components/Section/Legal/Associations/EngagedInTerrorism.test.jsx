@@ -54,13 +54,11 @@ describe('The legal associations engaged in terrorism component', () => {
             Item: {
               Dates: {
                 from: {
-                  date: new Date('1/1/2010'),
                   month: '1',
                   day: '1',
                   year: '2010'
                 },
                 to: {
-                  date: new Date('1/1/2011'),
                   month: '1',
                   day: '1',
                   year: '2011'

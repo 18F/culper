@@ -15,14 +15,12 @@ describe('The residence section', () => {
                 from: {
                   day: '1',
                   month: '1',
-                  year: '2014',
-                  date: new Date('1/1/2014')
+                  year: '2014'
                 },
                 to: {
                   day: '1',
                   month: '1',
-                  year: '2018',
-                  date: new Date('1/1/2018')
+                  year: '2018'
                 }
               }
             }
