@@ -50,6 +50,8 @@ const (
 	PdfError                                   = "Error generating archival signature PDFs"
 	RetrievingAccount                          = "Retrieving account"
 	SamlAttemptDenied                          = "An attempt for SAML authentication was denied"
+	SamlNotEnabled                             = "SAML is not enabled"
+	SamlSLONotEnabled                          = "SAML SLO is not enabled"
 	SamlFormError                              = "SAML response form value missing"
 	SamlIdentifierMissing                      = "SAML attribute identifier missing"
 	SamlInvalid                                = "SAML response invalid"
