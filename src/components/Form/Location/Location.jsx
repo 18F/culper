@@ -171,11 +171,11 @@ export default class Location extends ValidationElement {
 
     // Look to see if we can just update it first.
     let updated = false
-    for (let i = 0; i < book.length; i++) {
+    for (let i = 0; i < books.length; i++) {
       // If this address matches the same location let us just update it.
-      if (book[i].uid === address.uid) {
+      if (books[i].uid === address.uid) {
         updated = true
-        book[i] = address
+        books[i] = address
       }
     }
 
