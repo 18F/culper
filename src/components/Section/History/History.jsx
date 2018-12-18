@@ -612,7 +612,7 @@ class History extends SectionElement {
             <h1 className="section-header">Where Your Went to School</h1>
             <Field
               title={i18n.t('history.education.title')}
-              titleSize="h4"
+              titleSize="h3"
               optional={true}
               className="no-margin-bottom">
               {i18n.m('history.education.info')}
@@ -623,7 +623,7 @@ class History extends SectionElement {
               {...this.props.Education.HasAttended}
               help="history.education.help.attendance"
               label={i18n.t('history.education.label.attendance')}
-              labelSize="h3"
+              labelSize="h4"
               warning={true}
               onUpdate={this.updateBranchAttendance}
             />
@@ -633,7 +633,7 @@ class History extends SectionElement {
                 {...this.props.Education.HasDegree10}
                 help="history.education.help.degree10"
                 label={i18n.t('history.education.label.degree10')}
-                labelSize="h3"
+                labelSize="h4"
                 warning={true}
                 onUpdate={this.updateBranchDegree10}
               />
