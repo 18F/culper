@@ -103,8 +103,8 @@ class History extends SectionElement {
     })
   }
 
-  updateEmployment(values) {
-    this.handleUpdate('Employment', values)
+  updateEmployment(employment) {
+    this.handleUpdate('Employment', employment)
   }
 
   updateEducation(values) {
