@@ -1,4 +1,6 @@
 .branch {
+  margin-bottom: 2rem;
+
   .content {
     margin-bottom: 0.4rem;
 
@@ -17,5 +19,13 @@
     .toggle {
       margin-bottom: 2.5rem;
     }
+  }
+}
+
+.blocks.branch {
+  display: flex;
+
+  .block {
+    width: 100%;
   }
 }

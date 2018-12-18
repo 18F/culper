@@ -26,7 +26,7 @@ export default class EyeColor extends ValidationElement {
       <div className={this.divClass()}>
         <label>{this.props.label}</label>
         <RadioGroup
-          className="option-list eapp-extend-labels"
+          className="option-list eapp-extend-labels physical-radio"
           selectedValue={this.props.value}
           required={this.props.required}
           onError={this.props.onError}>

@@ -1,0 +1,11 @@
+[type='checkbox'] + label::before {
+  position: absolute;
+  top: 14px;
+  left: 10px
+}
+
+[type='checkbox'] + label.no-toggle::before {
+  position: relative;
+  top: auto;
+  left: auto;
+}

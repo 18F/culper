@@ -473,10 +473,9 @@ export default class Location extends ValidationElement {
           )
         case 'city':
           return (
-            <div className="usa-form-control">
               <City
                 name="city"
-                className="city usa-form-control"
+                className="city"
                 key={field}
                 label={this.props.cityLabel}
                 placeholder={this.props.cityPlaceholder}
@@ -488,7 +487,6 @@ export default class Location extends ValidationElement {
                 onBlur={this.handleBlur}
                 required={this.props.required}
               />
-            </div>
           )
         case 'state':
           return (

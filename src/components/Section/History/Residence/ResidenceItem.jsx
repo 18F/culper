@@ -287,7 +287,7 @@ export default class ResidenceItem extends ValidationElement {
           }
           scrollIntoView={this.props.scrollIntoView}>
           <RadioGroup
-            className="role option-list"
+            className="role option-list option-list-vertical"
             required={this.props.required}
             onError={this.props.onError}
             selectedValue={(this.props.Role || {}).value}>

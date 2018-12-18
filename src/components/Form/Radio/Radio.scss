@@ -1,25 +1,14 @@
-// The default radio buttons are modified from the USWDS to appear
-// more like checkboxes as per the design. These styles were taken
-// from the USWDS source.
 [type='radio'] + label::before {
-  box-shadow: 0 0 0 2px #fff, 0 0 0 3px $color-gray-medium;
-  height: 1.6rem;
-  line-height: 1.6rem;
-  width: 1.6rem;
-  border-radius: 0.3rem;
+  position: absolute;
+  margin-top: 6px;
 }
 
-[type='radio']:checked + label::before {
-  background-image: url('../img/correct8.png');
-  background-image: url('../img/correct8.svg');
-  background-position: 50%;
-  background-repeat: no-repeat;
+[type='radio'].selected + label::before {
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px $color-primary;
+  background-color: $color-primary;
 }
 
-[type='radio']:focus + label::before {
-  box-shadow: 0 0 0 1px #fff, 0 0 0 3px $eapp-blue;
-}
-
-[type='radio']:disabled + label {
-  color: $color-gray;
+[type='radio'].selected + label {
+  background: $color-primary-alt-lightest;
+  border-color: $color-primary-alt-dark;
 }
