@@ -565,9 +565,10 @@ class History extends SectionElement {
             backLabel={i18n.t('history.destination.residence')}
             next="history/education"
             nextLabel={i18n.t('history.destination.education')}>
+            <h1 className="section-header">Employment Activities</h1>
             <Field
               title={i18n.t('history.employment.heading.employment')}
-              titleSize="h4"
+              titleSize="h3"
               optional={true}
               className="no-margin-bottom">
               {i18n.m('history.employment.para.employment')}
@@ -608,6 +609,7 @@ class History extends SectionElement {
             backLabel={i18n.t('history.destination.employment')}
             next="history/federal"
             nextLabel={i18n.t('history.destination.federal')}>
+            <h1 className="section-header">Where Your Went to School</h1>
             <Field
               title={i18n.t('history.education.title')}
               titleSize="h4"
@@ -665,6 +667,7 @@ class History extends SectionElement {
             backLabel={i18n.t('history.destination.education')}
             next="history/review"
             nextLabel={i18n.t('history.destination.review')}>
+            <h1 className="section-header">Former Federal Service</h1>
             <Federal
               name="federal"
               {...this.props.Federal}

@@ -197,7 +197,7 @@ export default class Employment extends SubsectionElement {
         <Branch
           label={i18n.t('history.employment.default.employmentRecord.title')}
           className="employment-record"
-          labelSize="h3"
+          labelSize="h4"
           {...this.props.EmploymentRecord}
           onUpdate={this.updateEmploymentRecord}
           onError={this.handleError}

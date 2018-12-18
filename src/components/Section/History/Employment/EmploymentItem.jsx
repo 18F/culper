@@ -425,7 +425,6 @@ export default class EmploymentItem extends ValidationElement {
             name="PhysicalAddress"
             {...this.props.PhysicalAddress}
             title={i18n.t(`${prefix}.heading.physicalAddress`)}
-            titleSize="h4"
             addressBooks={this.props.addressBooks}
             dispatch={this.props.dispatch}
             onUpdate={this.updatePhysicalAddress}
@@ -538,7 +537,7 @@ export default class EmploymentItem extends ValidationElement {
         <Show when={this.showAdditionalActivity()}>
           <Field
             title={i18n.t(`${prefix}.heading.additionalActivity`)}
-            titleSize="h4"
+            titleSize="h3"
             optional={true}
             className="no-margin-bottom"
             scrollIntoView={this.props.scrollIntoView}>
