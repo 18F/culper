@@ -96,8 +96,8 @@ class History extends SectionElement {
     })
   }
 
-  updateEmployment(values) {
-    this.handleUpdate('Employment', values)
+  updateEmployment(employment) {
+    this.handleUpdate('Employment', employment)
   }
 
   updateEducation(values) {
@@ -742,7 +742,6 @@ export class HistorySections extends React.Component {
         />
 
         <Employment
-          {...this.props.Employment}
           {...this.props.Employment}
           defaultState={false}
           realtime={true}

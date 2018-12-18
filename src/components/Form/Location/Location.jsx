@@ -135,7 +135,8 @@ export default class Location extends ValidationElement {
   }
 
   appendToAddressBook(books, name, address) {
-    const addressCountry = (address.country || {}).value
+    const addressCountry = countryString(address.country)
+
     let book = books[name] || []
 
     // If this is a full address and domestic then it must be validate
@@ -170,11 +171,11 @@ export default class Location extends ValidationElement {
 
     // Look to see if we can just update it first.
     let updated = false
-    for (let i = 0; i < books.length; i++) {
+    for (let i = 0; i < book.length; i++) {
       // If this address matches the same location let us just update it.
-      if (books[i].uid === address.uid) {
+      if (book[i].uid === address.uid) {
         updated = true
-        books[i] = address
+        book[i] = address
       }
     }
 

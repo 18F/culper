@@ -72,12 +72,12 @@ export default class Education extends SubsectionElement {
           required={this.props.required}
           scrollIntoView={this.props.scrollIntoView}>
           <EducationItem
+            bind
             name="Item"
-            bind={true}
-            required={this.props.required}
-            scrollIntoView={this.props.scrollIntoView}
             addressBooks={this.props.addressBooks}
             dispatch={this.props.dispatch}
+            required={this.props.required}
+            scrollIntoView={this.props.scrollIntoView}
           />
         </Accordion>
       </div>

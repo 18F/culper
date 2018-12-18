@@ -1,5 +1,5 @@
 import React from 'react'
-import { mount } from 'enzyme'
+import { shallow, mount } from 'enzyme'
 import Address from './Address'
 
 describe('The Address component', () => {
@@ -160,5 +160,32 @@ describe('The Address component', () => {
     component.find('.state input').simulate('focus')
     component.find('.zipcode input').simulate('focus')
     expect(focused).toBe(5)
+  })
+
+  it('renders reuse address book button', () => {
+    const props = {
+      addressBook: 'Test',
+      addressBooks: {
+        Test: [{}, {}, {}]
+      },
+      validated: false
+    }
+
+    const component = shallow(<Address {...props} />)
+    expect(component.find('.reuse-address').length).toEqual(1)
+  })
+
+  it('does not render reuse address book button if address is validated', () => {
+    const props = {
+      addressBook: 'Test',
+      addressBooks: {
+        Test: [{}, {}, {}]
+      },
+      validated: true
+    }
+
+    const component = mount(<Address {...props} />)
+    console.log(component.debug())
+    expect(component.find('.reuse-address').length).toEqual(0)
   })
 })
