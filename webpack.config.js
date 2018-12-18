@@ -35,6 +35,7 @@ module.exports = {
       'HASH_ROUTING',
       'BASIC_ENABLED',
       'SAML_ENABLED',
+      'SAML_SLO_ENABLED',
       'SESSION_TIMEOUT',
       'ATTACHMENTS_ENABLED',
       'FILE_MAXIMUM_SIZE',

@@ -37,6 +37,7 @@ When running the application using the provided [docker-compose.yml](docker-comp
 | [`JWT_SECRET`](#jwt_secret)                          | X               |                        | X                     |
 | [`BASIC_ENABLED`](#basic_enabled)                       |                 | X                      | X                     |
 | [`SAML_ENABLED`](#saml_enabled)                        |                 | X                      | X                     |
+| [`SAML_SLO_ENABLED`](#saml_slo_enabled)                        |                 | X                      | X                     |
 | [`SAML_PUBLIC_CERT`](#saml_public_cert)                    |                 |                        | X                     |
 | [`SAML_PRIVATE_CERT`](#saml_private_cert)                   |                 |                        | X                     |
 | [`SAML_IDP_SSO_URL`](#saml_idp_sso_url)                    |                 |                        | X                     |
@@ -249,6 +250,14 @@ Flag to enable basic username and password authentication.
 ## `SAML_ENABLED`
 
 Flag to enable SAML authentication.
+
+**Target** - Front-end (web), Back-end (api)<br>
+**Default** - False: *empty*<br>
+**Values** - True: `1`, False: *empty*<br>
+
+## `SAML_SLO_ENABLED`
+
+Flag to enable SAML Single Logout (SLO). If enabled, when the user logs out of eApp, a signed SLO request will be sent to the server endpoint defined by `SAML_IDP_SSO_URL`.
 
 **Target** - Front-end (web), Back-end (api)<br>
 **Default** - False: *empty*<br>
