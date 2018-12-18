@@ -275,7 +275,6 @@ func fuzzName(payload *api.Payload, errorRate float64, r *rand.Rand) error {
 	props.MiddleInitialOnly = false
 	props.NoMiddleName = false
 	props.Last = "Doe"
-	props.LastInitialOnly = false
 	props.Suffix = ""
 	js, _ := json.Marshal(props)
 	payload.Props = js

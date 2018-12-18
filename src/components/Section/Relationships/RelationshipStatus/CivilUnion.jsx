@@ -1,5 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import { pickDate } from '../../../../validators/helpers'
 import { connect } from 'react-redux'
 import {
   Branch,
@@ -206,8 +207,12 @@ class CivilUnion extends ValidationElement {
      */
 
     const { country } = this.props.BirthPlace
-    const showForeignBornDocumentation = country && countryString(country) !== 'United States'
-
+    const showForeignBornDocumentation =
+      country && countryString(country) !== 'United States'
+    const enteredCivilUnionMinDate = pickDate([
+      this.props.applicantBirthdate,
+      this.props.Birthdate
+    ])
     return (
       <div className="civil-union">
         <div>
@@ -342,7 +347,7 @@ class CivilUnion extends ValidationElement {
                   name="DatesUsed"
                   bind
                   prefix="relative"
-                  minDate={this.props.Birthdate.date}
+                  minDate={this.props.Birthdate}
                   minDateEqualTo
                   className="datesused"
                   onError={this.props.onError}
@@ -375,6 +380,9 @@ class CivilUnion extends ValidationElement {
             <DateControl
               name="enteredCivilUnion"
               className="entered"
+              minDateEqualTo={true}
+              prefix="civilUnion"
+              minDate={enteredCivilUnionMinDate}
               {...this.props.EnteredCivilUnion}
               onUpdate={this.updateEnteredCivilUnion}
               onError={this.props.onError}
@@ -406,19 +414,15 @@ class CivilUnion extends ValidationElement {
             optional
             help="relationships.civilUnion.help.address"
             scrollIntoView={this.props.scrollIntoView}
-            adjustFor="address"
-          >
+            adjustFor="address">
             <NotApplicable
               name="UseCurrentAddress"
               applicable={!this.props.UseCurrentAddress.applicable}
               className="current-address"
-              label={i18n.t(
-                'relationships.civilUnion.useCurrentAddress.label'
-              )}
+              label={i18n.t('relationships.civilUnion.useCurrentAddress.label')}
               or={i18n.m('relationships.civilUnion.useCurrentAddress.or')}
               onUpdate={this.updateUseCurrentAddress}
-              onError={this.props.onError}
-            >
+              onError={this.props.onError}>
               <Location
                 name="Address"
                 {...this.props.Address}
@@ -478,7 +482,7 @@ class CivilUnion extends ValidationElement {
             labelSize="h3"
             {...this.props.Separated}
             onUpdate={this.updateSeparated}
-            minDate={(this.props.EnteredCivilUnion || {}).date}
+            minDate={this.props.EnteredCivilUnion}
             required={this.props.required}
             scrollIntoView={this.props.scrollIntoView}
             onError={this.props.onError}
@@ -494,7 +498,7 @@ class CivilUnion extends ValidationElement {
                 <DateControl
                   name="DateSeparated"
                   className="dateseparated"
-                  minDate={(this.props.EnteredCivilUnion || {}).date}
+                  minDate={this.props.EnteredCivilUnion}
                   minDateEqualTo={true}
                   {...this.props.DateSeparated}
                   onUpdate={this.updateDateSeparated}

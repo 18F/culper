@@ -191,6 +191,13 @@ const (
 	// Values: True: `1`, False: *empty*
 	SamlEnabled = "SAML_ENABLED"
 
+	// SamlSloEnabled Flag to enable SAML single logout.
+	//
+	// Target: Front-end (web), Back-end (api)
+	// Default: False: *empty*
+	// Values: True: `1`, False: *empty*
+	SamlSloEnabled = "SAML_SLO_ENABLED"
+
 	// SamlPublicCert File path (absolute or relative) to SAML public certificate.
 	//
 	// Target: Back-end (api)

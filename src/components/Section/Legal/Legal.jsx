@@ -524,7 +524,6 @@ class Legal extends SectionElement {
               section="legal"
               subsection="police/offenses"
               addressBooks={this.props.AddressBooks}
-              defaultState={false}
               dispatch={this.props.dispatch}
               onUpdate={this.updatePoliceOffenses}
               onError={this.handleError}
@@ -539,7 +538,6 @@ class Legal extends SectionElement {
               section="legal"
               subsection="police/additionaloffenses"
               addressBooks={this.props.AddressBooks}
-              defaultState={false}
               dispatch={this.props.dispatch}
               onUpdate={this.updatePoliceOtherOffenses}
               onError={this.handleError}
@@ -554,7 +552,6 @@ class Legal extends SectionElement {
               section="legal"
               subsection="police/domesticviolence"
               addressBooks={this.props.AddressBooks}
-              defaultState={false}
               dispatch={this.props.dispatch}
               onUpdate={this.updatePoliceDomesticViolence}
               onError={this.handleError}
@@ -568,7 +565,6 @@ class Legal extends SectionElement {
               {...this.props.History}
               section="legal"
               subsection="investigations/history"
-              defaultState={false}
               dispatch={this.props.dispatch}
               onUpdate={this.updateHistory}
               onError={this.handleError}
@@ -582,7 +578,6 @@ class Legal extends SectionElement {
               {...this.props.Revoked}
               section="legal"
               subsection="investigations/revoked"
-              defaultState={false}
               dispatch={this.props.dispatch}
               onUpdate={this.updateRevoked}
               onError={this.handleError}
@@ -596,7 +591,6 @@ class Legal extends SectionElement {
               {...this.props.Debarred}
               section="legal"
               subsection="investigations/debarred"
-              defaultState={false}
               dispatch={this.props.dispatch}
               onUpdate={this.updateDebarred}
               onError={this.handleError}
@@ -611,7 +605,6 @@ class Legal extends SectionElement {
               section="legal"
               subsection="court"
               addressBooks={this.props.AddressBooks}
-              defaultState={false}
               dispatch={this.props.dispatch}
               onUpdate={this.updateNonCriminalCourtActions}
               onError={this.handleError}
@@ -640,7 +633,6 @@ class Legal extends SectionElement {
               section="legal"
               subsection="technology/manipulating"
               addressBooks={this.props.AddressBooks}
-              defaultState={false}
               dispatch={this.props.dispatch}
               onUpdate={this.updateManipulating}
               onError={this.handleError}
@@ -655,7 +647,6 @@ class Legal extends SectionElement {
               section="legal"
               subsection="technology/unlawful"
               addressBooks={this.props.AddressBooks}
-              defaultState={false}
               dispatch={this.props.dispatch}
               onUpdate={this.updateUnlawful}
               onError={this.handleError}
@@ -670,7 +661,6 @@ class Legal extends SectionElement {
               section="legal"
               subsection="associations/terrorist-organization"
               addressBooks={this.props.AddressBooks}
-              defaultState={false}
               dispatch={this.props.dispatch}
               onUpdate={this.updateTerroristOrganization}
               onError={this.handleError}
@@ -684,7 +674,6 @@ class Legal extends SectionElement {
               {...this.props.EngagedInTerrorism}
               section="legal"
               subsection="associations/engaged-in-terrorism"
-              defaultState={false}
               dispatch={this.props.dispatch}
               onUpdate={this.updateEngagedInTerrorism}
               onError={this.handleError}
@@ -698,7 +687,6 @@ class Legal extends SectionElement {
               {...this.props.Advocating}
               section="legal"
               subsection="associations/advocating"
-              defaultState={false}
               dispatch={this.props.dispatch}
               onUpdate={this.updateAdvocating}
               onError={this.handleError}
@@ -712,7 +700,6 @@ class Legal extends SectionElement {
               {...this.props.MembershipOverthrow}
               section="legal"
               subsection="associations/membership-overthrow"
-              defaultState={false}
               addressBooks={this.props.AddressBooks}
               dispatch={this.props.dispatch}
               onUpdate={this.updateMembershipOverthrow}
@@ -742,7 +729,6 @@ class Legal extends SectionElement {
               {...this.props.ActivitiesToOverthrow}
               section="legal"
               subsection="associations/activities-to-overthrow"
-              defaultState={false}
               dispatch={this.props.dispatch}
               onUpdate={this.updateActivitiesToOverthrow}
               onError={this.handleError}

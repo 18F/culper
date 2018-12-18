@@ -58,7 +58,6 @@
                   "middleInitialOnly": true,
                   "noMiddleName": false,
                   "last": "Smith",
-                  "lastInitialOnly": false,
                   "suffix": "Other",
                   "suffixOther": "XX"
                 }

@@ -1,10 +1,15 @@
-import { daysAgo, today } from '../components/Section/History/dateranges'
+import {
+  daysAgo,
+  today,
+  extractDate,
+  validDate
+} from '../components/Section/History/dateranges'
 
 /**
-  * Determines if a value is defined vs false, 0, or empty string
-  * Useful when boolean short circuiting a value that might be
-  * 'truthy' even when javascript defines it as false
-**/
+ * Determines if a value is defined vs false, 0, or empty string
+ * Useful when boolean short circuiting a value that might be
+ * 'truthy' even when javascript defines it as false
+ **/
 export const isDefined = x => x !== undefined && x !== null
 
 export const validGenericMonthYear = obj => {
@@ -66,7 +71,6 @@ export const anyHasStatus = completed => (properties, status, val) => {
  * Validates a phone number
  */
 export const validPhoneNumber = (phone, opts = { numberType: false }) => {
-  // console.log(phone)
   if (!phone) {
     return false
   }
@@ -83,7 +87,10 @@ export const validPhoneNumber = (phone, opts = { numberType: false }) => {
     return false
   }
 
-  const trimmed = `${parseInt(phone.number, 10)}`
+  const trimmed =
+    parseInt(phone.number, 10) !== 0
+      ? `${parseInt(phone.number, 10)}`
+      : phone.number.trim()
   switch (phone.type) {
     case 'Domestic':
       return trimmed.length === 10
@@ -100,22 +107,7 @@ export const validPhoneNumber = (phone, opts = { numberType: false }) => {
  * Validates a date
  */
 export const validDateField = (obj = {}) => {
-  if (!obj) {
-    return false
-  }
-  if (obj.value && !isNaN(obj.value)) {
-    return true
-  }
-  if (!obj.day) {
-    return false
-  }
-  if (!obj.month) {
-    return false
-  }
-  if (!obj.year) {
-    return false
-  }
-  return true
+  return validDate(obj)
 }
 
 export const validNotApplicable = (notApplicable, logic, notLogic) => {
@@ -136,8 +128,8 @@ export const validNotApplicable = (notApplicable, logic, notLogic) => {
 
 export const withinSevenYears = (from, to) => {
   const sevenYearsAgo = daysAgo(today, 365 * 7)
-  const fromDate = buildDate(from)
-  const toDate = buildDate(to)
+  const fromDate = extractDate(from)
+  const toDate = extractDate(to)
 
   if (
     (fromDate && fromDate >= sevenYearsAgo) ||
@@ -305,18 +297,29 @@ export const nameIsEmpty = name => {
       return false
   }
 }
-export const buildDate = date => {
-  if (!date) {
-    return null
+
+export const pickDate = (dates, max = true) => {
+  const buildsDates = dates.map(extractDate)
+
+  const findMinDate = (finalDate, dateItem) => {
+    if (finalDate <= dateItem) {
+      return finalDate
+    }
+    return dateItem
   }
-  let year = date.year
-  let month = date.month
-  let day = date.day
-  if (year && year.length > 3 && month && day) {
-    return new Date(parseInt(year), parseInt(month) - 1, parseInt(day))
-  } else {
-    return null
+
+  const findMaxDate = (finalDate, dateItem) => {
+    if (finalDate >= dateItem) {
+      return finalDate
+    }
+    return dateItem
   }
+
+  if (max) {
+    return buildsDates.reduce(findMaxDate)
+  }
+
+  return buildsDates.reduce(findMinDate)
 }
 
-export const alphaNumericRegEx = "^[a-zA-Z0-9]*$"
+export const alphaNumericRegEx = '^[a-zA-Z0-9]*$'

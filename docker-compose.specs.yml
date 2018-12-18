@@ -43,3 +43,4 @@ services:
     depends_on:
       - chrome
       - web
+      - api

@@ -210,7 +210,8 @@
                   "Location": {
                     "type": "location",
                     "props": {
-                      "layout": ""
+                      "layout": "",
+                      "country": ""
                     }
                   },
                   "Name": {
@@ -222,7 +223,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": false,
                       "last": "",
-                      "lastInitialOnly": false,
                       "suffix": "",
                       "suffixOther": ""
                     }
@@ -292,7 +292,6 @@
             "middleInitialOnly": false,
             "noMiddleName": false,
             "last": "",
-            "lastInitialOnly": false,
             "suffix": "",
             "suffixOther": ""
           }
@@ -315,7 +314,8 @@
         "PlaceIssued": {
           "type": "location",
           "props": {
-            "layout": ""
+            "layout": "",
+            "country": ""
           }
         },
         "CertificateNumber": {
@@ -342,7 +342,6 @@
             "middleInitialOnly": false,
             "noMiddleName": false,
             "last": "",
-            "lastInitialOnly": false,
             "suffix": "",
             "suffixOther": ""
           }
@@ -356,7 +355,8 @@
         "CertificateCourtAddress": {
           "type": "location",
           "props": {
-            "layout": ""
+            "layout": "",
+            "country": ""
           }
         },
         "BornOnMilitaryInstallation": {
@@ -383,7 +383,8 @@
         "EntryLocation": {
           "type": "location",
           "props": {
-            "layout": ""
+            "layout": "",
+            "country": ""
           }
         },
         "PriorCitizenship": {
@@ -609,16 +610,396 @@
         "HasBenefits": {
           "type": "branch",
           "props": {
-            "value": "No"
+            "value": "Yes"
           }
         },
         "List": {
           "type": "collection",
           "props": {
             "branch": {
-              "type": ""
+              "type": "branch",
+              "props": {
+                "value": "No"
+              }
             },
-            "items": []
+            "items": [
+              {
+                "Item": {
+                  "BenefitFrequency": {
+                    "type": "radio",
+                    "props": {
+                      "value": "Other"
+                    }
+                  },
+                  "BenefitType": {
+                    "type": "radio",
+                    "props": {
+                      "value": "Other"
+                    }
+                  },
+                  "ContinuingBenefit": {
+                    "type": "benefit",
+                    "props": {
+                      "Began": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "",
+                          "day": "",
+                          "year": "",
+                          "estimated": false
+                        }
+                      },
+                      "End": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "",
+                          "day": "",
+                          "year": "",
+                          "estimated": false
+                        }
+                      },
+                      "Frequency": {
+                        "type": "radio",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "OtherFrequency": {
+                        "type": "textarea",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "OtherFrequencyTypeExplanation": {
+                        "type": "textarea",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Received": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "",
+                          "day": "",
+                          "year": "",
+                          "estimated": false
+                        }
+                      },
+                      "Country": {
+                        "type": "country",
+                        "props": {
+                          "value": null
+                        }
+                      },
+                      "Value": {
+                        "type": "number",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "ValueEstimated": {
+                        "type": "checkbox",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Reason": {
+                        "type": "textarea",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Obligated": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "ObligatedExplanation": {
+                        "type": "textarea",
+                        "props": {
+                          "value": ""
+                        }
+                      }
+                    }
+                  },
+                  "FutureBenefit": {
+                    "type": "benefit",
+                    "props": {
+                      "Began": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "",
+                          "day": "",
+                          "year": "",
+                          "estimated": false
+                        }
+                      },
+                      "End": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "",
+                          "day": "",
+                          "year": "",
+                          "estimated": false
+                        }
+                      },
+                      "Frequency": {
+                        "type": "radio",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "OtherFrequency": {
+                        "type": "textarea",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "OtherFrequencyTypeExplanation": {
+                        "type": "textarea",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Received": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "",
+                          "day": "",
+                          "year": "",
+                          "estimated": false
+                        }
+                      },
+                      "Country": {
+                        "type": "country",
+                        "props": {
+                          "value": null
+                        }
+                      },
+                      "Value": {
+                        "type": "number",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "ValueEstimated": {
+                        "type": "checkbox",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Reason": {
+                        "type": "textarea",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Obligated": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "ObligatedExplanation": {
+                        "type": "textarea",
+                        "props": {
+                          "value": ""
+                        }
+                      }
+                    }
+                  },
+                  "InterestTypes": {
+                    "type": "checkboxgroup",
+                    "props": {
+                      "values": [
+                        "Yourself"
+                      ]
+                    }
+                  },
+                  "OneTimeBenefit": {
+                    "type": "benefit",
+                    "props": {
+                      "Began": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "",
+                          "day": "",
+                          "year": "",
+                          "estimated": false
+                        }
+                      },
+                      "End": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "",
+                          "day": "",
+                          "year": "",
+                          "estimated": false
+                        }
+                      },
+                      "Frequency": {
+                        "type": "radio",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "OtherFrequency": {
+                        "type": "textarea",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "OtherFrequencyTypeExplanation": {
+                        "type": "textarea",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Received": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "",
+                          "day": "",
+                          "year": "",
+                          "estimated": false
+                        }
+                      },
+                      "Country": {
+                        "type": "country",
+                        "props": {
+                          "value": null
+                        }
+                      },
+                      "Value": {
+                        "type": "number",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "ValueEstimated": {
+                        "type": "checkbox",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Reason": {
+                        "type": "textarea",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Obligated": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "ObligatedExplanation": {
+                        "type": "textarea",
+                        "props": {
+                          "value": ""
+                        }
+                      }
+                    }
+                  },
+                  "OtherBenefit": {
+                    "type": "benefit",
+                    "props": {
+                      "Began": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "01",
+                          "day": "02",
+                          "year": "2016",
+                          "estimated": false
+                        }
+                      },
+                      "End": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "02",
+                          "day": "03",
+                          "year": "2050",
+                          "estimated": false
+                        }
+                      },
+                      "Frequency": {
+                        "type": "radio",
+                        "props": {
+                          "value": "Other"
+                        }
+                      },
+                      "OtherFrequency": {
+                        "type": "textarea",
+                        "props": {
+                          "value": "Frequency that this benefit is received, other, provide explanation"
+                        }
+                      },
+                      "OtherFrequencyTypeExplanation": {
+                        "type": "textarea",
+                        "props": {
+                          "value": "Frequency of benefit, other, provide explanation"
+                        }
+                      },
+                      "Received": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "",
+                          "day": "",
+                          "year": "",
+                          "estimated": false
+                        }
+                      },
+                      "Country": {
+                        "type": "country",
+                        "props": {
+                          "value": [
+                            "Canada"
+                          ]
+                        }
+                      },
+                      "Value": {
+                        "type": "number",
+                        "props": {
+                          "value": "90210"
+                        }
+                      },
+                      "ValueEstimated": {
+                        "type": "checkbox",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Reason": {
+                        "type": "textarea",
+                        "props": {
+                          "value": "Reason the benefit will be received"
+                        }
+                      },
+                      "Obligated": {
+                        "type": "branch",
+                        "props": {
+                          "value": "Yes"
+                        }
+                      },
+                      "ObligatedExplanation": {
+                        "type": "textarea",
+                        "props": {
+                          "value": "As a result, I am obligated to this foreign country explanation"
+                        }
+                      }
+                    }
+                  },
+                  "OtherBenefitType": {
+                    "type": "textarea",
+                    "props": {
+                      "value": "Other such benefit, explanation"
+                    }
+                  }
+                }
+              }
+            ]
           }
         }
       }
@@ -793,7 +1174,6 @@
             "middleInitialOnly": false,
             "noMiddleName": false,
             "last": "",
-            "lastInitialOnly": false,
             "suffix": "",
             "suffixOther": ""
           }
@@ -1147,7 +1527,8 @@
                   "ReferenceAddress": {
                     "type": "location",
                     "props": {
-                      "layout": ""
+                      "layout": "",
+                      "country": ""
                     }
                   },
                   "ReferenceEmail": {
@@ -1168,10 +1549,10 @@
                       "first": "",
                       "firstInitialOnly": false,
                       "middle": "",
+                      "hideMiddleName": true,
                       "middleInitialOnly": false,
                       "noMiddleName": false,
                       "last": "",
-                      "lastInitialOnly": false,
                       "suffix": "",
                       "suffixOther": ""
                     }
@@ -1328,7 +1709,8 @@
                   "ReferenceAddress": {
                     "type": "location",
                     "props": {
-                      "layout": ""
+                      "layout": "",
+                      "country": ""
                     }
                   },
                   "ReferenceEmail": {
@@ -1349,10 +1731,10 @@
                       "first": "",
                       "firstInitialOnly": false,
                       "middle": "",
+                      "hideMiddleName": true,
                       "middleInitialOnly": false,
                       "noMiddleName": false,
                       "last": "",
-                      "lastInitialOnly": false,
                       "suffix": "",
                       "suffixOther": ""
                     }
@@ -1525,7 +1907,8 @@
                       "Address": {
                         "type": "location",
                         "props": {
-                          "layout": ""
+                          "layout": "",
+                          "country": ""
                         }
                       },
                       "Telephone": {
@@ -1602,7 +1985,8 @@
                   "ReferenceAddress": {
                     "type": "location",
                     "props": {
-                      "layout": ""
+                      "layout": "",
+                      "country": ""
                     }
                   },
                   "ReferenceName": {
@@ -1614,7 +1998,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": false,
                       "last": "",
-                      "lastInitialOnly": false,
                       "suffix": "",
                       "suffixOther": ""
                     }
@@ -1871,7 +2254,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": true,
                       "last": "Emily",
-                      "lastInitialOnly": false,
                       "suffix": "",
                       "suffixOther": ""
                     }
@@ -1999,7 +2381,6 @@
             "middleInitialOnly": false,
             "noMiddleName": true,
             "last": "Chris",
-            "lastInitialOnly": false,
             "suffix": "",
             "suffixOther": ""
           }
@@ -2835,13 +3216,15 @@
             "Address": {
               "type": "location",
               "props": {
-                "layout": ""
+                "layout": "",
+                "country": ""
               }
             },
             "AddressSeparated": {
               "type": "location",
               "props": {
-                "layout": ""
+                "layout": "",
+                "country": ""
               }
             },
             "AddressSeparatedNotApplicable": {
@@ -2882,7 +3265,8 @@
             "BirthPlace": {
               "type": "location",
               "props": {
-                "layout": ""
+                "layout": "",
+                "country": ""
               }
             },
             "Birthdate": {
@@ -2971,7 +3355,8 @@
             "Location": {
               "type": "location",
               "props": {
-                "layout": ""
+                "layout": "",
+                "country": ""
               }
             },
             "Name": {
@@ -2983,7 +3368,6 @@
                 "middleInitialOnly": false,
                 "noMiddleName": false,
                 "last": "",
-                "lastInitialOnly": false,
                 "suffix": "",
                 "suffixOther": ""
               }
@@ -3128,7 +3512,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": true,
                       "last": "Miller",
-                      "lastInitialOnly": false,
                       "suffix": "",
                       "suffixOther": ""
                     }
@@ -3243,7 +3626,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": true,
                       "last": "Miller",
-                      "lastInitialOnly": false,
                       "suffix": "",
                       "suffixOther": ""
                     }
@@ -3358,7 +3740,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": true,
                       "last": "Camera",
-                      "lastInitialOnly": false,
                       "suffix": "Jr",
                       "suffixOther": ""
                     }
@@ -3425,7 +3806,8 @@
                   "Address": {
                     "type": "location",
                     "props": {
-                      "layout": ""
+                      "layout": "",
+                      "country": ""
                     }
                   },
                   "Aliases": {
@@ -3482,7 +3864,6 @@
                                 "middleInitialOnly": false,
                                 "noMiddleName": false,
                                 "last": "",
-                                "lastInitialOnly": false,
                                 "suffix": "",
                                 "suffixOther": ""
                               }
@@ -3533,7 +3914,8 @@
                   "CourtAddress": {
                     "type": "location",
                     "props": {
-                      "layout": ""
+                      "layout": "",
+                      "country": ""
                     }
                   },
                   "CourtName": {
@@ -3569,7 +3951,8 @@
                   "EmployerAddress": {
                     "type": "location",
                     "props": {
-                      "layout": ""
+                      "layout": "",
+                      "country": ""
                     }
                   },
                   "EmployerAddressNotApplicable": {
@@ -3650,7 +4033,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": true,
                       "last": "Booth",
-                      "lastInitialOnly": false,
                       "suffix": "",
                       "suffixOther": ""
                     }
@@ -3682,7 +4064,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": true,
                       "last": "Chris",
-                      "lastInitialOnly": false,
                       "suffix": "",
                       "suffixOther": ""
                     }
@@ -3707,7 +4088,8 @@
                   "Address": {
                     "type": "location",
                     "props": {
-                      "layout": ""
+                      "layout": "",
+                      "country": ""
                     }
                   },
                   "Aliases": {
@@ -3764,7 +4146,6 @@
                                 "middleInitialOnly": false,
                                 "noMiddleName": false,
                                 "last": "",
-                                "lastInitialOnly": false,
                                 "suffix": "",
                                 "suffixOther": ""
                               }
@@ -3815,7 +4196,8 @@
                   "CourtAddress": {
                     "type": "location",
                     "props": {
-                      "layout": ""
+                      "layout": "",
+                      "country": ""
                     }
                   },
                   "CourtName": {
@@ -3851,7 +4233,8 @@
                   "EmployerAddress": {
                     "type": "location",
                     "props": {
-                      "layout": ""
+                      "layout": "",
+                      "country": ""
                     }
                   },
                   "EmployerAddressNotApplicable": {
@@ -3932,7 +4315,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": false,
                       "last": "",
-                      "lastInitialOnly": false,
                       "suffix": "",
                       "suffixOther": ""
                     }
@@ -3964,7 +4346,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": true,
                       "last": "Chris",
-                      "lastInitialOnly": false,
                       "suffix": "",
                       "suffixOther": ""
                     }

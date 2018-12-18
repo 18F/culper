@@ -186,7 +186,7 @@
                   </LegalName>
                   <RelationshipType Neighbor="True"/>
                   <Telephone>
-                    <Home>
+                    <Home DoNotKnow="True">
             
 
 
@@ -1204,35 +1204,35 @@
                 <Answer>Yes</Answer>
                 <ForeignFinancialBenefit ID="1">
                   <Members Yourself="True"/>
+                  <Type>Retirement</Type>
                   <Country>France</Country>
+                  <FrequencyType>Onetime</FrequencyType>
                   <DateReceived>
                     <Month>01</Month>
                     <Day>12</Day>
                     <Year>1999</Year>
                   </DateReceived>
-                  <FrequencyType>Onetime</FrequencyType>
                   <ObligatedToCountry>
                     <Answer>Yes</Answer>
                     <Explanation>obligated by blood</Explanation>
                   </ObligatedToCountry>
                   <Reason>gift</Reason>
-                  <Type>Retirement</Type>
                   <Value>5</Value>
                 </ForeignFinancialBenefit>
                 <ForeignFinancialBenefit ID="2">
                   <Members DependentChildren="True"/>
+                  <Type>Medical</Type>
                   <Country>France</Country>
+                  <FrequencyType>Onetime</FrequencyType>
                   <DateReceived>
                     <Month>01</Month>
                     <Day>01</Day>
                     <Year>2018</Year>
                   </DateReceived>
-                  <FrequencyType>Onetime</FrequencyType>
                   <ObligatedToCountry>
                     <Answer>No</Answer>
                   </ObligatedToCountry>
                   <Reason>award</Reason>
-                  <Type>Medical</Type>
                   <Value>4444555</Value>
                 </ForeignFinancialBenefit>
                 <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>

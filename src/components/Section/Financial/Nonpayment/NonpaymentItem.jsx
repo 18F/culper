@@ -265,7 +265,7 @@ export default class NonpaymentItem extends ValidationElement {
             <DateControl
               name="Resolved"
               {...this.props.Resolved}
-              minDate={(this.props.Date || {}).date}
+              minDate={this.props.Date}
               minDateEqualTo={true}
               prefix="nonPayment"
               onUpdate={this.updateResolved}

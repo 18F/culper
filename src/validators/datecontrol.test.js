@@ -64,7 +64,11 @@ describe('date control validator', function() {
           month: '1',
           day: '1',
           year: '2005',
-          maxDate: new Date('1/1/2004')
+          maxDate: {
+            month: '1',
+            day: '1',
+            year: '2004'
+          }
         },
         expected: false
       },
@@ -73,7 +77,11 @@ describe('date control validator', function() {
           month: '1',
           day: '1',
           year: '2004',
-          maxDate: new Date('1/1/2005')
+          maxDate: {
+            month: '1',
+            day: '1',
+            year: '2005'
+          }
         },
         expected: true
       },
@@ -82,7 +90,11 @@ describe('date control validator', function() {
           month: '1',
           day: '1',
           year: '2005',
-          maxDate: new Date('1/1/2005')
+          maxDate: {
+            month: '1',
+            day: '1',
+            year: '2005'
+          }
         },
         expected: false
       },
@@ -91,7 +103,11 @@ describe('date control validator', function() {
           month: '1',
           day: '1',
           year: '2005',
-          maxDate: new Date('1/1/2005'),
+          maxDate: {
+            month: '1',
+            day: '1',
+            year: '2005'
+          },
           maxDateEqualTo: true
         },
         expected: true
@@ -110,7 +126,11 @@ describe('date control validator', function() {
           month: null,
           day: '1',
           year: '2005',
-          maxDate: new Date('1/1/2004')
+          maxDate: {
+            month: '1',
+            day: '1',
+            year: '2004'
+          }
         },
         expected: false
       },
@@ -119,7 +139,11 @@ describe('date control validator', function() {
           month: '1',
           day: null,
           year: '2005',
-          maxDate: new Date('1/1/2004')
+          maxDate: {
+            month: '1',
+            day: '1',
+            year: '2004'
+          }
         },
         expected: false
       },
@@ -128,7 +152,11 @@ describe('date control validator', function() {
           month: '1',
           day: '1',
           year: null,
-          maxDate: new Date('1/1/2004')
+          maxDate: {
+            month: '1',
+            day: '1',
+            year: '2004'
+          }
         },
         expected: false
       }
@@ -148,7 +176,11 @@ describe('date control validator', function() {
           month: '1',
           day: '1',
           year: '2003',
-          minDate: new Date('1/1/2005')
+          minDate: {
+            month: '1',
+            day: '1',
+            year: '2005'
+          }
         },
         expected: false
       },
@@ -157,7 +189,11 @@ describe('date control validator', function() {
           month: '1',
           day: '1',
           year: '2005',
-          minDate: new Date('1/1/2004')
+          minDate: {
+            month: '1',
+            day: '1',
+            year: '2004'
+          }
         },
         expected: true
       },
@@ -166,7 +202,11 @@ describe('date control validator', function() {
           month: null,
           day: '1',
           year: '2005',
-          minDate: new Date('1/1/2004')
+          minDate: {
+            month: '1',
+            day: '1',
+            year: '2004'
+          }
         },
         expected: false
       },
@@ -175,7 +215,11 @@ describe('date control validator', function() {
           month: '1',
           day: '1',
           year: '2004',
-          minDate: new Date('1/1/2004'),
+          minDate: {
+            month: '1',
+            day: '1',
+            year: '2004'
+          },
           hideDay: true
         },
         expected: false
@@ -185,7 +229,11 @@ describe('date control validator', function() {
           month: '1',
           day: '1',
           year: '2004',
-          minDate: new Date('1/1/2004'),
+          minDate: {
+            month: '1',
+            day: '1',
+            year: '2004'
+          },
           minDateEqualTo: true,
           hideDay: true
         },
@@ -196,7 +244,11 @@ describe('date control validator', function() {
           month: '1',
           day: '1',
           year: '2004',
-          minDate: new Date('1/1/2004'),
+          minDate: {
+            month: '1',
+            day: '1',
+            year: '2004'
+          },
           hideMonth: true
         },
         expected: false
@@ -206,7 +258,11 @@ describe('date control validator', function() {
           month: '1',
           day: '1',
           year: '2004',
-          minDate: new Date('1/1/2004'),
+          minDate: {
+            month: '1',
+            day: '1',
+            year: '2004'
+          },
           minDateEqualTo: true,
           hideMonth: true
         },
@@ -217,7 +273,11 @@ describe('date control validator', function() {
           month: '1',
           day: '1',
           year: '2004',
-          minDate: new Date('1/1/2004'),
+          minDate: {
+            month: '1',
+            day: '1',
+            year: '2004'
+          },
           hideMonth: true,
           hideDay: true
         },
@@ -228,7 +288,11 @@ describe('date control validator', function() {
           month: '1',
           day: '1',
           year: '2004',
-          minDate: new Date('1/1/2004'),
+          minDate: {
+            month: '1',
+            day: '1',
+            year: '2004'
+          },
           minDateEqualTo: true,
           hideMonth: true,
           hideDay: true

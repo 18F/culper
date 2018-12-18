@@ -3049,12 +3049,22 @@ form a just estimate of his public conduct, should!</HowAcquired>
                 <Answer>Yes</Answer>
                 <ForeignFinancialBenefit ID="1">
                   <Members Yourself="True"/>
+                  <Type>Other</Type>
+                  <TypeOtherExplanation>Type of Benefit Other the character and career of Abraham Lincoln
+without being carried away by sentimental emotions. We are
+always inclined to idealize that which we love,--a state of mind
+very unfavorable to the exercise of sober critical judgment. It
+is therefore not surprising that most of those who have written
+or spoken on that extraordinary man, even while conscientiously
+endeavoring to draw a lifelike portraiture of his being, and to
+form a just estimate of his public conduct, should!</TypeOtherExplanation>
+                  <Country>Canada</Country>
+                  <FrequencyType>Continuing</FrequencyType>
                   <BeginDate>
                     <Month>02</Month>
                     <Day>01</Day>
                     <Year>2018</Year>
                   </BeginDate>
-                  <Country>Canada</Country>
                   <EndDate Type="Estimated">
                     <Month>05</Month>
                     <Day>20</Day>
@@ -3068,36 +3078,15 @@ is therefore not surprising that most of those who have written
 or spoken on that extraordinary man, even while conscientiously
 endeavoring to draw a lifelike portraiture of his being, and to
 form a just estimate of his public conduct, should!</FrequencyReceivedTypeOtherExplanation>
-                  <FrequencyType>Continuing</FrequencyType>
                   <ObligatedToCountry>
                     <Answer>Yes</Answer>
                     <Explanation>Benefit 1 Obligation Explanation</Explanation>
                   </ObligatedToCountry>
                   <Reason>Benefit 1 Reason</Reason>
-                  <Type>Other</Type>
-                  <TypeOtherExplanation>Type of Benefit Other the character and career of Abraham Lincoln
-without being carried away by sentimental emotions. We are
-always inclined to idealize that which we love,--a state of mind
-very unfavorable to the exercise of sober critical judgment. It
-is therefore not surprising that most of those who have written
-or spoken on that extraordinary man, even while conscientiously
-endeavoring to draw a lifelike portraiture of his being, and to
-form a just estimate of his public conduct, should!</TypeOtherExplanation>
                   <Value>99</Value>
                 </ForeignFinancialBenefit>
                 <ForeignFinancialBenefit ID="2">
                   <Members DependentChildren="True"/>
-                  <Country>Saint Helena</Country>
-                  <DateReceived>
-                    <Month>05</Month>
-                    <Day>02</Day>
-                    <Year>2018</Year>
-                  </DateReceived>
-                  <FrequencyType>Onetime</FrequencyType>
-                  <ObligatedToCountry>
-                    <Answer>No</Answer>
-                  </ObligatedToCountry>
-                  <Reason>Benefit 2 Reason</Reason>
                   <Type>Other</Type>
                   <TypeOtherExplanation>No American can study the character and career of Abraham Lincoln
 without being carried away by sentimental emotions. We are
@@ -3107,6 +3096,17 @@ is therefore not surprising that most of those who have written
 or spoken on that extraordinary man, even while conscientiously
 endeavoring to draw a lifelike portraiture of his being, and to
 form a just estimate of his public conduct, should!</TypeOtherExplanation>
+                  <Country>Saint Helena</Country>
+                  <FrequencyType>Onetime</FrequencyType>
+                  <DateReceived>
+                    <Month>05</Month>
+                    <Day>02</Day>
+                    <Year>2018</Year>
+                  </DateReceived>
+                  <ObligatedToCountry>
+                    <Answer>No</Answer>
+                  </ObligatedToCountry>
+                  <Reason>Benefit 2 Reason</Reason>
                   <Value>1000</Value>
                 </ForeignFinancialBenefit>
                 <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
@@ -4870,6 +4870,7 @@ form a just estimate of his public conduct, should!</Explanation>
                       </Address>
                       <Telephone>
                         <Number>8318732243</Number>
+                        <Time>Day</Time>
                       </Telephone>
                     </Doctor>
                   </Consultation>
@@ -5822,6 +5823,7 @@ form a just estimate of his public conduct, should!</OffenseDescription>
                           <City>No American can study the character andX</City>
                           <State>FL</State>
                           <ZipCode>32311</ZipCode>
+                          <County>Santa Clara</County>
                         </Place>
                       </Location>
                       <Name>No American can study the character and career of Abraham Lincoln without being carried away by sentimental emotions. We are always inclined to idealize that which we love,--a state of mind very unfavorable to the exercise of sober critical judgment. It i</Name>
@@ -5906,6 +5908,7 @@ form a just estimate of his public conduct, should!</Description>
                         <City>No American can study the character andX</City>
                         <State>FL</State>
                         <ZipCode>33901</ZipCode>
+                        <County>Santa Clara</County>
                       </Place>
                     </Location>
                     <Name>No American can study the character and career of Abraham Lincoln without being carried away by sentimental emotions. We are always inclined to idealize that which we love,--a state of mind very unfavorable to the exercise of sober critical judgment. It i</Name>
@@ -5930,6 +5933,7 @@ form a just estimate of his public conduct, should!</Explanation>
                         <City>No American can study the character andX</City>
                         <State>FL</State>
                         <ZipCode>33901</ZipCode>
+                        <County>Santa Clara</County>
                       </Place>
                     </Location>
                     <Name>No American can study the character and career of Abraham Lincoln without being carried away by sentimental emotions. We are always inclined to idealize that which we love,--a state of mind very unfavorable to the exercise of sober critical judgment. It i</Name>

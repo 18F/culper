@@ -39,7 +39,7 @@ describe('The residence component', () => {
     const expected = {
       name: 'residence'
     }
-    const component = createComponent(ResidenceItem, expected);
+    const component = createComponent(ResidenceItem, expected)
 
     expect(component.find('.residence').length).toEqual(1)
     expect(component.find('.reference').length).toEqual(0)
@@ -64,7 +64,7 @@ describe('The residence component', () => {
         value: 'test@abc.com'
       }
     }
-    const component = createComponent(ResidenceItem, expected);
+    const component = createComponent(ResidenceItem, expected)
     expect(component.find('.reference').length).toEqual(1)
   })
 
@@ -76,7 +76,7 @@ describe('The residence component', () => {
       },
       OtherRole: {}
     }
-    const component = createComponent(ResidenceItem, expected);
+    const component = createComponent(ResidenceItem, expected)
     expect(component.find('.role.hidden').length).toEqual(0)
   })
 
@@ -87,7 +87,7 @@ describe('The residence component', () => {
         value: 'Dance'
       }
     }
-    const component = createComponent(ResidenceItem, expected);
+    const component = createComponent(ResidenceItem, expected)
     expect(component.find('.role.hidden').length).toEqual(0)
   })
 
@@ -99,20 +99,18 @@ describe('The residence component', () => {
         from: {
           day: '1',
           month: '1',
-          year: '2014',
-          date: new Date('1/1/2014')
+          year: '2014'
         },
         to: {
           day: '1',
           month: '1',
-          year: '2018',
-          date: new Date('1/1/2018')
+          year: '2018'
         }
       },
       onUpdate
     }
 
-    const component = createComponent(ResidenceItem, expected);
+    const component = createComponent(ResidenceItem, expected)
     component
       .find('.address .street input')
       .first()

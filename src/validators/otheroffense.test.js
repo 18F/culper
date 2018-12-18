@@ -9,8 +9,7 @@ describe('OtherOffense validation', function() {
           Date: {
             day: '1',
             month: '1',
-            year: '2016',
-            date: new Date('1/1/2016')
+            year: '2016'
           }
         },
         expected: true
@@ -249,8 +248,7 @@ describe('OtherOffense validation', function() {
           CourtDate: {
             day: '1',
             month: '1',
-            year: '2016',
-            date: new Date('1/1/2016')
+            year: '2016'
           }
         },
         expected: true
@@ -290,14 +288,12 @@ describe('OtherOffense validation', function() {
               from: {
                 month: '1',
                 day: '1',
-                year: '2000',
-                date: new Date('1/1/2000')
+                year: '2000'
               },
               to: {
                 month: '1',
                 day: '1',
-                year: '2004',
-                date: new Date('1/1/2004')
+                year: '2004'
               },
               present: false
             },
@@ -305,14 +301,12 @@ describe('OtherOffense validation', function() {
               from: {
                 month: '1',
                 day: '1',
-                year: '2000',
-                date: new Date('1/1/2000')
+                year: '2000'
               },
               to: {
                 month: '1',
                 day: '1',
-                year: '2004',
-                date: new Date('1/1/2004')
+                year: '2004'
               },
               present: false
             },
@@ -339,8 +333,7 @@ describe('OtherOffense validation', function() {
           Date: {
             day: '1',
             month: '1',
-            year: '2016',
-            date: new Date('1/1/2016')
+            year: '2016'
           },
           Description: {
             value: 'Some description'
@@ -360,8 +353,7 @@ describe('OtherOffense validation', function() {
           CourtDate: {
             day: '1',
             month: '1',
-            year: '2016',
-            date: new Date('1/1/2016')
+            year: '2016'
           },
           CourtName: {
             value: 'court name'
@@ -382,14 +374,12 @@ describe('OtherOffense validation', function() {
               from: {
                 month: '1',
                 day: '1',
-                year: '2000',
-                date: new Date('1/1/2000')
+                year: '2000'
               },
               to: {
                 month: '1',
                 day: '1',
-                year: '2004',
-                date: new Date('1/1/2004')
+                year: '2004'
               },
               present: false
             },
@@ -397,14 +387,12 @@ describe('OtherOffense validation', function() {
               from: {
                 month: '1',
                 day: '1',
-                year: '2000',
-                date: new Date('1/1/2000')
+                year: '2000'
               },
               to: {
                 month: '1',
                 day: '1',
-                year: '2004',
-                date: new Date('1/1/2004')
+                year: '2004'
               },
               present: false
             },
@@ -420,8 +408,7 @@ describe('OtherOffense validation', function() {
           Date: {
             day: '1',
             month: '1',
-            year: '2016',
-            date: new Date('1/1/2016')
+            year: '2016'
           },
           Description: {
             value: 'Some description'
@@ -441,8 +428,7 @@ describe('OtherOffense validation', function() {
           CourtDate: {
             day: '1',
             month: '1',
-            year: '2016',
-            date: new Date('1/1/2016')
+            year: '2016'
           },
           CourtName: {
             value: 'court name'

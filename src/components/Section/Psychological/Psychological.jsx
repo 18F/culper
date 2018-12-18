@@ -161,7 +161,6 @@ class Psychological extends SectionElement {
               {...this.props.Competence}
               section="psychological"
               subsection="competence"
-              defaultState={false}
               dispatch={this.props.dispatch}
               onError={this.handleError}
               required={true}
@@ -175,7 +174,6 @@ class Psychological extends SectionElement {
               {...this.props.Consultations}
               section="psychological"
               subsection="consultations"
-              defaultState={false}
               dispatch={this.props.dispatch}
               onError={this.handleError}
               required={true}
@@ -189,7 +187,6 @@ class Psychological extends SectionElement {
               {...this.props.Hospitalizations}
               section="psychological"
               subsection="hospitalizations"
-              defaultState={false}
               dispatch={this.props.dispatch}
               onError={this.handleError}
               required={true}
@@ -203,7 +200,6 @@ class Psychological extends SectionElement {
               {...this.props.Diagnoses}
               section="psychological"
               subsection="diagnoses"
-              defaultState={false}
               dispatch={this.props.dispatch}
               onError={this.handleError}
               required={true}
@@ -219,7 +215,6 @@ class Psychological extends SectionElement {
                   {...this.props.ExistingConditions}
                   section="psychological"
                   subsection="conditions"
-                  defaultState={false}
                   dispatch={this.props.dispatch}
                   onError={this.handleError}
                   onUpdate={this.handleUpdate.bind(this, 'ExistingConditions')}

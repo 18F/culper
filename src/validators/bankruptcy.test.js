@@ -99,7 +99,6 @@ describe('Bankruptcy component validation', function() {
                     middleInitialOnly: true,
                     noMiddleName: false,
                     last: 'Bar',
-                    lastInitialOnly: false,
                     suffix: 'Jr'
                   },
                   TotalAmount: {
@@ -155,7 +154,6 @@ describe('Bankruptcy component validation', function() {
                     middleInitialOnly: true,
                     noMiddleName: false,
                     last: 'Bar',
-                    lastInitialOnly: false,
                     suffix: 'Jr'
                   },
                   TotalAmount: {
@@ -435,7 +433,6 @@ describe('Bankruptcy component validation', function() {
             middleInitialOnly: true,
             noMiddleName: false,
             last: 'Bar',
-            lastInitialOnly: false,
             suffix: 'Jr'
           },
           CourtInvolved: {

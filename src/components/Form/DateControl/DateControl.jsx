@@ -9,21 +9,10 @@ import {
   today,
   daysAgo,
   daysInMonth,
+  extractDate,
   validDate
 } from '../../Section/History/dateranges'
 import DateControlValidator from '../../../validators/datecontrol'
-
-export const buildDate = (year = '', month = '', day = '') => {
-  let d
-
-  if (year && year.length > 3 && month && day) {
-    d = new Date(parseInt(year), parseInt(month) - 1, parseInt(day))
-  } else {
-    d = ''
-  }
-
-  return d
-}
 
 class DateControl extends ValidationElement {
   constructor(props) {
@@ -86,7 +75,6 @@ class DateControl extends ValidationElement {
   }
 
   update(el, year, month, day, estimated) {
-    const date = buildDate(year, month, day)
     const changed = {
       year: year !== this.state.year,
       month: month !== this.state.month,
@@ -101,7 +89,7 @@ class DateControl extends ValidationElement {
         const toggleForEstimation = changed.estimated
 
         // Potential for typical day out-of-bounds (including leap year)
-        const toggleForDay = date && (changed.year || changed.month)
+        const toggleForDay = changed.year || changed.month
 
         // Any external influence (i.e. clicking `Present` in a date range)
         const toggleForExternal =
@@ -123,8 +111,7 @@ class DateControl extends ValidationElement {
           month: `${month}`,
           day: `${day}`,
           year: `${year}`,
-          estimated: estimated,
-          date: date
+          estimated: estimated
         })
       }
     )
@@ -209,9 +196,7 @@ class DateControl extends ValidationElement {
     // if there were **any** errors found in other child components.
     this.storeErrors(arr, () => {
       // Get the full date if we can
-      const date = validDate(this.state.month, this.state.day, this.state.year)
-        ? new Date(this.state.year, this.state.month, this.state.day)
-        : null
+      const date = validDate(this.state) ? extractDate(this.state) : null
 
       const existingErr = this.errors.some(e => e.valid === false)
 
@@ -348,7 +333,7 @@ class DateControl extends ValidationElement {
               label="Year"
               disabled={this.state.disabled}
               min="1000"
-              max={this.props.maxDate && this.props.maxDate.getFullYear()}
+              max={this.props.maxDate && this.props.maxDate.year}
               maxlength="4"
               pattern={this.props.pattern}
               readonly={this.props.readonly}
@@ -432,7 +417,7 @@ DateControl.errors = [
     code: 'required',
     func: (value, props) => {
       if (props.required) {
-        return !!props.month && !!props.day && !!props.year
+        return validDate(props)
       }
       return true
     }
@@ -458,11 +443,7 @@ DateControl.errors = [
 ]
 
 const mapStateToProps = (state, ownProps) => {
-  const date = buildDate(ownProps.year, ownProps.month, ownProps.day)
-
-  return {
-    date
-  }
+  return state
 }
 
 export { DateControl }

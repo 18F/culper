@@ -14,11 +14,19 @@ let gamblingData = {
         value: 'No actions'
       },
       Dates: {
-        from: new Date(),
+        from: {
+          month: `${new Date().getMonth() + 1}`,
+          day: `${new Date().getDate()}`,
+          year: `${new Date().getFullYear()}`
+        },
         name: 'Dates',
         present: null,
         title: 'Date Range',
-        to: new Date()
+        to: {
+          month: `${new Date().getMonth() + 1}`,
+          day: `${new Date().getDate()}`,
+          year: `${new Date().getFullYear()}`
+        }
       },
       Description: {
         name: 'Description',

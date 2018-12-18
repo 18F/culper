@@ -86,7 +86,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": false,
                       "last": "",
-                      "lastInitialOnly": false,
                       "suffix": "",
                       "suffixOther": ""
                     }
@@ -156,7 +155,6 @@
             "middleInitialOnly": false,
             "noMiddleName": false,
             "last": "",
-            "lastInitialOnly": false,
             "suffix": "",
             "suffixOther": ""
           }
@@ -206,7 +204,6 @@
             "middleInitialOnly": false,
             "noMiddleName": false,
             "last": "",
-            "lastInitialOnly": false,
             "suffix": "",
             "suffixOther": ""
           }
@@ -593,7 +590,6 @@
                                 "middleInitialOnly": false,
                                 "noMiddleName": false,
                                 "last": "",
-                                "lastInitialOnly": false,
                                 "suffix": "",
                                 "suffixOther": ""
                               }
@@ -763,7 +759,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": true,
                       "last": "Neeson",
-                      "lastInitialOnly": false,
                       "suffix": "",
                       "suffixOther": ""
                     }
@@ -905,7 +900,6 @@
             "middleInitialOnly": false,
             "noMiddleName": false,
             "last": "",
-            "lastInitialOnly": false,
             "suffix": "",
             "suffixOther": ""
           }
@@ -1359,7 +1353,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": false,
                       "last": "",
-                      "lastInitialOnly": false,
                       "suffix": "",
                       "suffixOther": ""
                     }
@@ -1432,7 +1425,7 @@
                       "Telephone": {
                         "type": "telephone",
                         "props": {
-                          "timeOfDay": "",
+                          "timeOfDay": "Both",
                           "type": "Domestic",
                           "numberType": "",
                           "number": "3333331111",
@@ -1476,7 +1469,7 @@
                   "Telephone": {
                     "type": "telephone",
                     "props": {
-                      "timeOfDay": "",
+                      "timeOfDay": "Both",
                       "type": "Domestic",
                       "numberType": "",
                       "number": "1111111111",
@@ -1733,7 +1726,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": false,
                       "last": "",
-                      "lastInitialOnly": false,
                       "suffix": "",
                       "suffixOther": ""
                     }
@@ -2059,7 +2051,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": true,
                       "last": "Storm",
-                      "lastInitialOnly": false,
                       "suffix": "",
                       "suffixOther": ""
                     }
@@ -2353,7 +2344,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": true,
                       "last": "Richards",
-                      "lastInitialOnly": false,
                       "suffix": "",
                       "suffixOther": ""
                     }
@@ -2694,7 +2684,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": true,
                       "last": "Blue",
-                      "lastInitialOnly": false,
                       "suffix": "",
                       "suffixOther": ""
                     }
@@ -2906,7 +2895,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": false,
                       "last": "",
-                      "lastInitialOnly": false,
                       "suffix": "",
                       "suffixOther": ""
                     }
@@ -3124,7 +3112,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": true,
                       "last": "Sprat",
-                      "lastInitialOnly": false,
                       "suffix": "",
                       "suffixOther": ""
                     }
@@ -3251,7 +3238,6 @@
             "middleInitialOnly": false,
             "noMiddleName": true,
             "last": "McFly",
-            "lastInitialOnly": false,
             "suffix": "",
             "suffixOther": ""
           }
@@ -4129,14 +4115,18 @@
                 "HasDifferentAddress": {
                   "type": "branch",
                   "props": {
-                    "value": ""
+                    "value": "Yes"
                   }
                 },
                 "Address": {
                   "type": "location",
                   "props": {
-                    "layout": "",
-                    "country": ""
+                    "layout": "US Address",
+                    "street": "Spouse Secondary APO",
+                    "city": "APO",
+                    "state": "AE",
+                    "zipcode": "09354",
+                    "country": "POSTOFFICE"
                   }
                 },
                 "Telephone": {
@@ -4267,7 +4257,6 @@
                 "middleInitialOnly": false,
                 "noMiddleName": true,
                 "last": "Mills",
-                "lastInitialOnly": false,
                 "suffix": "",
                 "suffixOther": ""
               }
@@ -4326,7 +4315,6 @@
                           "middleInitialOnly": false,
                           "noMiddleName": false,
                           "last": "",
-                          "lastInitialOnly": false,
                           "suffix": "",
                           "suffixOther": ""
                         }
@@ -4365,7 +4353,7 @@
             "UseCurrentAddress": {
               "type": "notapplicable",
               "props": {
-                "applicable": true
+                "applicable": false
               }
             }
           }
@@ -4467,7 +4455,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": true,
                       "last": "Smith",
-                      "lastInitialOnly": false,
                       "suffix": "",
                       "suffixOther": ""
                     }
@@ -4581,7 +4568,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": true,
                       "last": "Flintstone",
-                      "lastInitialOnly": false,
                       "suffix": "",
                       "suffixOther": ""
                     }
@@ -4695,7 +4681,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": true,
                       "last": "White",
-                      "lastInitialOnly": false,
                       "suffix": "",
                       "suffixOther": ""
                     }
@@ -4822,7 +4807,6 @@
                                 "middleInitialOnly": false,
                                 "noMiddleName": false,
                                 "last": "",
-                                "lastInitialOnly": false,
                                 "suffix": "",
                                 "suffixOther": ""
                               }
@@ -5029,7 +5013,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": false,
                       "last": "",
-                      "lastInitialOnly": false,
                       "suffix": "",
                       "suffixOther": ""
                     }
@@ -5061,7 +5044,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": true,
                       "last": "Goodall",
-                      "lastInitialOnly": false,
                       "suffix": "",
                       "suffixOther": ""
                     }
@@ -5152,7 +5134,6 @@
                                 "middleInitialOnly": false,
                                 "noMiddleName": false,
                                 "last": "",
-                                "lastInitialOnly": false,
                                 "suffix": "",
                                 "suffixOther": ""
                               }
@@ -5354,7 +5335,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": false,
                       "last": "",
-                      "lastInitialOnly": false,
                       "suffix": "",
                       "suffixOther": ""
                     }
@@ -5386,7 +5366,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": true,
                       "last": "Rogers",
-                      "lastInitialOnly": false,
                       "suffix": "",
                       "suffixOther": ""
                     }
@@ -5615,7 +5594,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": false,
                       "last": "",
-                      "lastInitialOnly": false,
                       "suffix": "",
                       "suffixOther": ""
                     }
@@ -5647,7 +5625,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": true,
                       "last": "Murphy",
-                      "lastInitialOnly": false,
                       "suffix": "",
                       "suffixOther": ""
                     }
@@ -5876,7 +5853,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": false,
                       "last": "",
-                      "lastInitialOnly": false,
                       "suffix": "",
                       "suffixOther": ""
                     }
@@ -5908,7 +5884,6 @@
                       "middleInitialOnly": false,
                       "noMiddleName": true,
                       "last": "Lauper",
-                      "lastInitialOnly": false,
                       "suffix": "",
                       "suffixOther": ""
                     }

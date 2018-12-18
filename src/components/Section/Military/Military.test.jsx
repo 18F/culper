@@ -110,7 +110,7 @@ describe('The military section', () => {
   it('hides selective service if age is before December 31st, 1959', () => {
     const modifiedState = {
       Identification: {
-        ApplicantBirthDate: { Date: { date: new Date(1900, 1, 1) } }
+        ApplicantBirthDate: { Date: { month: '1', day: '1', year: '1900' } }
       },
       Military: {}
     }
@@ -131,7 +131,7 @@ describe('The military section', () => {
   it('displays selective service if age is after December 31st, 1959', () => {
     const modifiedState = {
       Identification: {
-        ApplicantBirthDate: { Date: { date: new Date(1980, 1, 1) } }
+        ApplicantBirthDate: { Date: { month: '1', day: '1', year: '1980' } }
       },
       Military: {}
     }

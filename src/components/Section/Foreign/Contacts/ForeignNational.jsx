@@ -1,5 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import { pickDate } from '../../../../validators/helpers'
 import {
   ValidationElement,
   Field,
@@ -248,6 +249,7 @@ export default class ForeignNational extends ValidationElement {
   }
 
   render() {
+    const foreignContactMinDate = pickDate([this.props.applicantBirthdate, this.props.Birthdate])
     return (
       <div className="foreign-national">
         <Field
@@ -294,6 +296,30 @@ export default class ForeignNational extends ValidationElement {
         </Show>
 
         <Field
+          title={i18n.t('foreign.contacts.heading.birthdate')}
+          adjustFor="label"
+          scrollIntoView={this.props.scrollIntoView}>
+          <NotApplicable
+            name="BirthdateNotApplicable"
+            className="na-birthdate"
+            label={i18n.t('foreign.contacts.label.idk')}
+            or={i18n.m('foreign.contacts.para.or')}
+            {...this.props.BirthdateNotApplicable}
+            onUpdate={this.updateBirthdateNotApplicable}
+            required={this.props.required}
+            onError={this.props.onError}>
+            <DateControl
+              name="Birthdate"
+              {...this.props.Birthdate}
+              relationship="Other"
+              onUpdate={this.updateBirthdate}
+              onError={this.props.onError}
+              required={this.props.required}
+            />
+          </NotApplicable>
+        </Field>
+
+        <Field
           title={i18n.t('foreign.contacts.heading.firstcontact')}
           help="foreign.contacts.help.firstcontact"
           adjustFor="label"
@@ -302,6 +328,8 @@ export default class ForeignNational extends ValidationElement {
             name="FirstContact"
             className="first-contact"
             minDateEqualTo={true}
+            prefix="foreignContact"
+            minDate={foreignContactMinDate}
             {...this.props.FirstContact}
             onUpdate={this.updateFirstContact}
             onError={this.props.onError}
@@ -319,7 +347,7 @@ export default class ForeignNational extends ValidationElement {
             className="last-contact"
             {...this.props.LastContact}
             prefix="contact.last"
-            minDate={(this.props.FirstContact || {}).date}
+            minDate={this.props.FirstContact}
             minDateEqualTo={true}
             onUpdate={this.updateLastContact}
             onError={this.props.onError}
@@ -601,30 +629,6 @@ export default class ForeignNational extends ValidationElement {
         </Field>
 
         <Field
-          title={i18n.t('foreign.contacts.heading.birthdate')}
-          adjustFor="label"
-          scrollIntoView={this.props.scrollIntoView}>
-          <NotApplicable
-            name="BirthdateNotApplicable"
-            className="na-birthdate"
-            label={i18n.t('foreign.contacts.label.idk')}
-            or={i18n.m('foreign.contacts.para.or')}
-            {...this.props.BirthdateNotApplicable}
-            onUpdate={this.updateBirthdateNotApplicable}
-            required={this.props.required}
-            onError={this.props.onError}>
-            <DateControl
-              name="Birthdate"
-              {...this.props.Birthdate}
-              relationship="Other"
-              onUpdate={this.updateBirthdate}
-              onError={this.props.onError}
-              required={this.props.required}
-            />
-          </NotApplicable>
-        </Field>
-
-        <Field
           title={i18n.t('foreign.contacts.heading.birthplace')}
           adjustFor="label"
           scrollIntoView={this.props.scrollIntoView}>
@@ -687,7 +691,9 @@ export default class ForeignNational extends ValidationElement {
           belongingTo="AlternateAddress"
           country={this.props.Address.country}
           forceAPO
-          militaryAddressLabel={i18n.t('address.militaryAddress.foreignNational')}
+          militaryAddressLabel={i18n.t(
+            'address.militaryAddress.foreignNational'
+          )}
           onUpdate={this.update}
         />
         <Field

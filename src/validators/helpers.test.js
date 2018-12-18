@@ -323,8 +323,7 @@ describe('Helpers for validators', function() {
         date: {
           day: '1',
           month: '1',
-          year: '2016',
-          date: new Date('1/1/2016')
+          year: '2016'
         },
         expected: true
       },
@@ -332,8 +331,7 @@ describe('Helpers for validators', function() {
         date: {
           day: '',
           month: '1',
-          year: '2016',
-          date: new Date('1/1/2016')
+          year: '2016'
         },
         expected: false
       },
@@ -341,8 +339,7 @@ describe('Helpers for validators', function() {
         date: {
           day: '1',
           month: '',
-          year: '2016',
-          date: new Date('1/1/2016')
+          year: '2016'
         },
         expected: false
       },
@@ -350,8 +347,7 @@ describe('Helpers for validators', function() {
         date: {
           day: '1',
           month: '1',
-          year: '',
-          date: new Date('1/1/2016')
+          year: ''
         },
         expected: false
       },
@@ -373,14 +369,12 @@ describe('Helpers for validators', function() {
           from: {
             month: '1',
             day: '1',
-            year: '2010',
-            date: new Date('1/1/2010')
+            year: '2010'
           },
           to: {
             month: '1',
             day: '1',
-            year: '2016',
-            date: new Date('1/1/2016')
+            year: '2016'
           },
           present: false
         },
@@ -391,14 +385,12 @@ describe('Helpers for validators', function() {
           from: {
             month: '1',
             day: '1',
-            year: '2000',
-            date: new Date('1/1/2000')
+            year: '2000'
           },
           to: {
             month: '1',
             day: '1',
-            year: '2001',
-            date: new Date('1/1/2001')
+            year: '2001'
           },
           present: false
         },

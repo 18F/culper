@@ -28,15 +28,15 @@ type SamlRequestHandler struct {
 // ServeHTTP is the initial entry point for authentication.
 func (service SamlRequestHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	if !service.Env.True(api.SamlEnabled) {
-		service.Log.Warn(api.SamlAttemptDenied, api.LogFields{})
-		http.Error(w, "SAML is not implemented", http.StatusInternalServerError)
+		service.Log.Warn(api.SamlNotEnabled, api.LogFields{})
+		RespondWithStructuredError(w, api.SamlNotEnabled, http.StatusInternalServerError)
 		return
 	}
 
 	encoded, url, err := service.SAML.CreateAuthenticationRequest()
 	if err != nil {
 		service.Log.WarnError(api.SamlRequestError, err, api.LogFields{})
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		RespondWithStructuredError(w, api.SamlRequestError, http.StatusInternalServerError)
 		return
 	}
 
@@ -60,9 +60,9 @@ type SamlSLORequestHandler struct {
 
 // ServeHTTP is the initial entry point for authentication.
 func (service SamlSLORequestHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	if !service.Env.True(api.SamlEnabled) {
-		service.Log.Warn(api.SamlAttemptDenied, api.LogFields{})
-		http.Error(w, "SAML is not implemented", http.StatusInternalServerError)
+	if !service.Env.True(api.SamlEnabled) || !service.Env.True(api.SamlSloEnabled) {
+		service.Log.Warn(api.SamlSLONotEnabled, api.LogFields{})
+		http.Error(w, api.SamlSLONotEnabled, http.StatusInternalServerError)
 		return
 	}
 
@@ -74,10 +74,12 @@ func (service SamlSLORequestHandler) ServeHTTP(w http.ResponseWriter, r *http.Re
 		return
 	}
 
-	// Get the SessionID from the token
-	sessionIndex := service.Token.SessionID(r)
+	// Get the SessionIndex from the token
+	sessionIndex := service.Token.SessionIndex(r)
 	if sessionIndex == "" {
-		service.Log.Warn("SAML auth should always contain a SessionID for SLO to work properly", api.LogFields{})
+		service.Log.Fatal(api.SamlSLOMissingSessionID, api.LogFields{})
+		http.Error(w, api.SamlSLOMissingSessionID, http.StatusInternalServerError)
+		return
 	}
 
 	// Get the account information from the data store
@@ -91,7 +93,9 @@ func (service SamlSLORequestHandler) ServeHTTP(w http.ResponseWriter, r *http.Re
 
 	encoded, url, err := service.SAML.CreateSLORequest(account.Username, sessionIndex)
 	if err != nil {
+		service.Log.WarnError(api.SamlSLORequestGeneration, err, api.LogFields{})
 		http.Error(w, api.SamlSLORequestGeneration, http.StatusInternalServerError)
+		return
 	}
 
 	EncodeJSON(w, struct {
@@ -115,8 +119,8 @@ type SamlResponseHandler struct {
 // ServeHTTP is the callback handler for both login and logout SAML Responses.
 func (service SamlResponseHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	if !service.Env.True(api.SamlEnabled) {
-		service.Log.Warn(api.SamlAttemptDenied, api.LogFields{})
-		http.Error(w, "SAML is not implemented", http.StatusInternalServerError)
+		service.Log.Warn(api.SamlNotImplemented, api.LogFields{})
+		RespondWithStructuredError(w, api.SamlNotImplemented, http.StatusInternalServerError)
 		return
 	}
 

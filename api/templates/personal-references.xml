@@ -33,10 +33,10 @@
         />
         <RelationshipTypeOtherExplanation>{{text $Item.RelationshipOther}}</RelationshipTypeOtherExplanation>
         <Telephone>
-          <Home DoNotKnow="{{$Item.OtherTelephone.noNumber}}">
+          <Home DoNotKnow="{{telephoneNoNumber $Item.OtherTelephone}}">
             {{telephone $Item.OtherTelephone}}
           </Home>
-          <Mobile DoNotKnow="{{$Item.MobileTelephone.noNumber}}">
+          <Mobile DoNotKnow="{{telephoneNoNumber $Item.MobileTelephone}}">
             {{telephone $Item.MobileTelephone}}
           </Mobile>
         </Telephone>

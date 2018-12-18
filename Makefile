@@ -81,7 +81,7 @@ test-go:
 .PHONY: specs
 specs:
 	$(info Running integration test suite)
-	docker-compose -f docker-compose.yml -f docker-compose.specs.yml run --rm nightwatch
+	docker-compose -f docker-compose.yml -f docker-compose.specs.yml run --rm nightwatch $(COMMAND)
 
 #
 # Coverage

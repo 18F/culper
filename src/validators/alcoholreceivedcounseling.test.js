@@ -50,14 +50,12 @@ describe('received counseling component validation', function() {
             from: {
               month: '1',
               day: '1',
-              year: '2010',
-              date: new Date('1/1/2010')
+              year: '2010'
             },
             to: {
               month: '1',
               day: '1',
-              year: '2010',
-              date: new Date('1/1/2012')
+              year: '2010'
             },
             present: false
           },
@@ -79,14 +77,12 @@ describe('received counseling component validation', function() {
           TreatmentBeganDate: {
             day: '1',
             month: '1',
-            year: '2016',
-            date: new Date('1/1/2016')
+            year: '2016'
           },
           TreatmentEndDate: {
             day: '1',
             month: '2',
-            year: '2016',
-            date: new Date('1/2/2016')
+            year: '2016'
           },
           CompletedTreatment: { value: 'Yes' },
           NoCompletedTreatmentExplanation: {
@@ -165,14 +161,12 @@ describe('received counseling component validation', function() {
                   TreatmentBeganDate: {
                     day: '1',
                     month: '1',
-                    year: '2016',
-                    date: new Date('1/1/2016')
+                    year: '2016'
                   },
                   TreatmentEndDate: {
                     day: '1',
                     month: '2',
-                    year: '2016',
-                    date: new Date('1/2/2016')
+                    year: '2016'
                   },
                   CompletedTreatment: { value: 'Yes' },
                   NoCompletedTreatmentExplanation: {
@@ -211,14 +205,12 @@ describe('received counseling component validation', function() {
                   TreatmentBeganDate: {
                     day: '1',
                     month: '1',
-                    year: '2016',
-                    date: new Date('1/1/2016')
+                    year: '2016'
                   },
                   TreatmentEndDate: {
                     day: '1',
                     month: '1',
-                    year: '2016',
-                    date: new Date('1/1/2016')
+                    year: '2016'
                   },
                   CompletedTreatment: { value: 'Yes' },
                   NoCompletedTreatmentExplanation: {
@@ -257,14 +249,12 @@ describe('received counseling component validation', function() {
                   TreatmentBeganDate: {
                     day: '1',
                     month: '1',
-                    year: '2016',
-                    date: new Date('1/1/2016')
+                    year: '2016'
                   },
                   TreatmentEndDate: {
                     day: '1',
                     month: '1',
-                    year: '1982',
-                    date: new Date('1/1/1982')
+                    year: '1982'
                   },
                   CompletedTreatment: { value: 'Yes' },
                   NoCompletedTreatmentExplanation: {
@@ -313,14 +303,12 @@ describe('received counseling component validation', function() {
                   TreatmentBeganDate: {
                     day: '1',
                     month: '1',
-                    year: '2016',
-                    date: new Date('1/1/2016')
+                    year: '2016'
                   },
                   TreatmentEndDate: {
                     day: '1',
                     month: '2',
-                    year: '2016',
-                    date: new Date('1/2/2016')
+                    year: '2016'
                   },
                   CompletedTreatment: { value: 'Yes' },
                   NoCompletedTreatmentExplanation: {

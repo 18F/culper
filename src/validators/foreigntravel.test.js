@@ -37,14 +37,12 @@ describe('Foreign travel component validation', function() {
             from: {
               month: '1',
               day: '1',
-              year: '2010',
-              date: new Date('1/1/2010')
+              year: '2010'
             },
             to: {
               month: '1',
               day: '1',
-              year: '2012',
-              date: new Date('1/1/2012')
+              year: '2012'
             },
             present: false
           }
@@ -60,19 +58,19 @@ describe('Foreign travel component validation', function() {
     const tests = [
       {
         state: {
-          Days: { values: [] }
+          Days: { value: '' }
         },
         expected: false
       },
       {
         state: {
-          Days: { values: ['00000'] }
+          Days: { value: '00000' }
         },
         expected: false
       },
       {
         state: {
-          Days: { values: ['1-5', '21-30'] }
+          Days: { value: '1-5' }
         },
         expected: true
       }
@@ -416,18 +414,16 @@ describe('Foreign travel component validation', function() {
                     from: {
                       month: '1',
                       day: '1',
-                      year: '2010',
-                      date: new Date('1/1/2010')
+                      year: '2010'
                     },
                     to: {
                       month: '1',
                       day: '1',
-                      year: '2012',
-                      date: new Date('1/1/2012')
+                      year: '2012'
                     },
                     present: false
                   },
-                  Days: { values: ['1-5', '21-30'] },
+                  Days: { value: '1-5' },
                   Purpose: { values: ['Business', 'Family'] },
                   Questioned: { value: 'No' },
                   Encounter: { value: 'No' },

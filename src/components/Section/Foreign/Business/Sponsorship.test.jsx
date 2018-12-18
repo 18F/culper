@@ -3,6 +3,7 @@ import { mount } from 'enzyme'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
 import Sponsorship from './Sponsorship'
+import { i18n } from '../../../../config'
 
 describe('The foreign business sponsorship component', () => {
   const mockStore = configureMockStore()
@@ -113,5 +114,96 @@ describe('The foreign business sponsorship component', () => {
       .find('.foreign-business-sponsorship-sponsorship textarea')
       .simulate('change')
     expect(updates).toBe(9)
+  })
+
+  const sponsorshipDateSetup = {
+    name: 'Sponsorship',
+    HasForeignSponsorship: {
+      value: 'Yes'
+    },
+    applicantBirthdate: {
+      estimated: false,
+      day: '1',
+      month: '1',
+      name: 'birthdate',
+      year: '1970'
+    },
+    List: {
+      items: [
+        {
+          Item: {
+            Birthdate: {
+              estimated: false,
+              day: '1',
+              month: '1',
+              name: 'Birthdate',
+              year: '1980'
+            },
+            Dates: {
+              from: {
+                estimated: false,
+                day: '1',
+                month: '1',
+                name: 'from',
+                year: '1990'
+              }
+            }
+          },
+          open: true
+        }
+      ]
+    }
+  }
+
+  describe('handles dates', () => {
+    it('with good data - the dates of stay in the U.S. for the sponsored foreign national are after applicant DOB and foreign national DOB', () => {
+      const props = {
+        valid: true
+      }
+      const component = createComponent(props)
+      expect(
+        component
+          .find('.error-messages [data-i18n="error.daterange.from.min"]')
+          .children().length
+      ).toEqual(0)
+    })
+    it('with bad data - the dates of stay in the U.S. for the sponsored foreign national are before applicant DOB and foreign national DOB', () => {
+      const props = {
+        ...sponsorshipDateSetup,
+        List: {
+          items: [
+            {
+              Item: {
+                ...sponsorshipDateSetup.List.items[0].Item,
+                Dates: {
+                  from: {
+                    estimated: false,
+                    day: '1',
+                    month: '1',
+                    name: 'from',
+                    year: '1950'
+                  }
+                }
+              }
+            }
+          ]
+        },
+        valid: false
+      }
+      const component = createComponent(props)
+      expect(
+        component
+          .find(
+            '.error-messages [data-i18n="error.daterange.foreignNationalSponsorship.min"]'
+          )
+          .text()
+      ).toEqual(
+        `${i18n.t(
+          'error.daterange.from.foreignNationalSponsorship.min.title'
+        )}${i18n.t(
+          'error.daterange.from.foreignNationalSponsorship.min.message'
+        )}`
+      )
+    })
   })
 })

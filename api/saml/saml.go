@@ -3,7 +3,6 @@ package saml
 import (
 	"encoding/base64"
 	"errors"
-	"net/url"
 	"strings"
 	"time"
 
@@ -23,7 +22,6 @@ type Service struct {
 func (service *Service) CreateAuthenticationRequest() (string, string, error) {
 	service.configure()
 	var encoded string
-	var url string
 	var err error
 
 	// Generate the AuthnRequest and then get a base64 encoded string of the XML
@@ -40,11 +38,7 @@ func (service *Service) CreateAuthenticationRequest() (string, string, error) {
 	requestAsXML, _ := request.String()
 	service.Log.Debug("SAML authentication request", api.LogFields{"xml": requestAsXML})
 
-	url, err = getAuthnRequestURL(service.provider.IDPSSOURL, "state")
-	if err != nil {
-		return "", "", err
-	}
-	return encoded, url, err
+	return encoded, service.provider.IDPSSOURL, err
 }
 
 const (
@@ -105,8 +99,9 @@ func (service *Service) ValidateAuthenticationResponse(encoded string) (string, 
 		}
 	}
 
-	if sessionIndex == "" {
-		service.Log.Warn("SAML Auth Response does not include a SessionIndex. WSO2 is probably misconfigured and SLO will likely not work correctly.", api.LogFields{})
+	if sessionIndex == "" && service.Env.True(api.SamlSloEnabled) {
+		service.Log.Warn("SAML Auth Response does not include a SessionIndex. WSO2 is probably misconfigured and SLO will not work correctly.", api.LogFields{})
+		return "", "", errors.New("the SAML Auth Response does not include a SessionIndex. WSO2 is probably misconfigured and SLO will not work correctly")
 	}
 
 	return username, sessionIndex, nil
@@ -220,29 +215,13 @@ func cleanName(nameID string) string {
 // CreateSLORequest creates an encoded SAML Logout Request suitable for sending to the identity server
 func (service *Service) CreateSLORequest(username string, sessionIndex string) (string, string, error) {
 	req := newLogoutRequest(service.provider.IDPSSODescriptorURL, username, sessionIndex)
-	encoded, err := req.base64()
 
-	url, err := getAuthnRequestURL(service.provider.IDPSSOURL, "state")
+	signedRequest, err := req.signedRequest(service.provider.PublicCertPath, service.provider.PrivateKeyPath)
 	if err != nil {
+		service.Log.WarnError("Failed to sign the SLO Request.", err, api.LogFields{})
 		return "", "", err
 	}
+	encoded := base64.StdEncoding.EncodeToString([]byte(signedRequest))
 
-	return encoded, url, err
-}
-
-// getAuthnRequestURL generates a URL for the AuthnRequest to the IdP with the RelayState parameter encoded
-// Altered from the original version from RobotsAndPencils/go-saml so that it
-// does not redundantly encode the AuthnRequest as a GET query parameter. The
-// login form does a POST to avoid bumping into referrer/URL/cookie maximums
-// in browsers and NGINX.
-func getAuthnRequestURL(baseURL string, state string) (string, error) {
-	u, err := url.Parse(baseURL)
-	if err != nil {
-		return "", err
-	}
-
-	q := u.Query()
-	q.Add("RelayState", state)
-	u.RawQuery = q.Encode()
-	return u.String(), nil
+	return encoded, service.provider.IDPSSOURL, err
 }

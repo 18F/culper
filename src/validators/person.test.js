@@ -65,7 +65,6 @@ describe('Person validator', function() {
             middleInitialOnly: true,
             noMiddleName: false,
             last: 'Bar',
-            lastInitialOnly: false,
             suffix: 'Jr'
           },
           Relationship: {
@@ -75,14 +74,12 @@ describe('Person validator', function() {
             from: {
               month: '1',
               day: '1',
-              year: '2005',
-              date: new Date('1/1/2005')
+              year: '2005'
             },
             to: {
               month: '1',
               day: '1',
-              year: '2017',
-              date: new Date('1/1/2017')
+              year: '2017'
             },
             present: false
           },

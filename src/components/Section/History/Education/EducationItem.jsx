@@ -17,8 +17,7 @@ import {
   Email
 } from '../../../Form'
 import { DiplomaItem } from './Diploma'
-import { today, daysAgo } from '../dateranges'
-import { buildDate } from '../../../../validators/helpers'
+import { today, daysAgo, extractDate } from '../dateranges'
 
 // We need to determine how far back 3 years ago was
 const threeYearsAgo = daysAgo(today, 365 * 3)
@@ -168,7 +167,7 @@ export default class EducationItem extends ValidationElement {
     const text =
       (diploma.Diploma === 'Other' ? diploma.DiplomaOther : diploma.Diploma) ||
       unk
-    const dd = d.date ? `${d.month}/${d.year}` : unk
+    const dd = d ? `${d.month}/${d.year}` : unk
 
     return (
       <span>
@@ -190,8 +189,8 @@ export default class EducationItem extends ValidationElement {
     // Certain elements are present if the date range of the attendance was
     // within the last 3 years.
     const dates = this.props.Dates || {}
-    const from = buildDate(dates.from)
-    const to = buildDate(dates.to)
+    const from = extractDate(dates.from)
+    const to = extractDate(dates.to)
 
     return (
       <div className="education">
@@ -334,6 +333,7 @@ export default class EducationItem extends ValidationElement {
                     className="reference-name"
                     {...this.props.ReferenceName}
                     scrollIntoView={this.props.scrollIntoView}
+                    hideMiddleName={true}
                     onUpdate={this.updateReferenceName}
                     onError={this.props.onError}
                     required={this.props.required}

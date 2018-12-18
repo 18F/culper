@@ -76,8 +76,7 @@ describe('The offense component', () => {
               Date: {
                 day: '1',
                 month: '1',
-                year: '2016',
-                date: new Date('1/1/2016')
+                year: '2016'
               },
               Description: {
                 value: 'Some description'
@@ -97,8 +96,7 @@ describe('The offense component', () => {
               CourtDate: {
                 day: '1',
                 month: '1',
-                year: '2016',
-                date: new Date('1/1/2016')
+                year: '2016'
               },
               CourtName: {
                 value: 'court name'
@@ -117,19 +115,27 @@ describe('The offense component', () => {
                 Incarcerated: { value: 'Yes' },
                 IncarcerationDates: {
                   from: {
-                    date: new Date('1/1/2000')
+                    month: 1,
+                    day: 1,
+                    year: 2000
                   },
                   to: {
-                    date: new Date('1/1/2004')
+                    month: 1,
+                    day: 1,
+                    year: 2004
                   },
                   present: false
                 },
                 ProbationDates: {
                   from: {
-                    date: new Date('1/1/2000')
+                    month: 1,
+                    day: 1,
+                    year: 2000
                   },
                   to: {
-                    date: new Date('1/1/2004')
+                    month: 1,
+                    day: 1,
+                    year: 2004
                   },
                   present: false
                 },

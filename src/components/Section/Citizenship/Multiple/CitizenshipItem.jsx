@@ -9,6 +9,7 @@ import {
   DateRange,
   Textarea
 } from '../../../Form'
+import { extractDate } from '../../History/dateranges'
 
 export default class CitizenshipItem extends ValidationElement {
   constructor(props) {
@@ -81,9 +82,9 @@ export default class CitizenshipItem extends ValidationElement {
 
   render() {
     const d = this.props.Dates || {}
-    const to = d.to || {}
-    const from = d.from || {}
-    const showCurrentQuestion = to.date && from.date && !d.present
+    const to = extractDate(d.to)
+    const from = extractDate(d.from)
+    const showCurrentQuestion = to && from && !d.present
 
     const country = this.props.Country.value || []
     const showNonUSQuestions = !country.includes('United States')

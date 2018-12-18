@@ -14,7 +14,6 @@ type Name struct {
 	MiddleInitialOnly bool   `json:"middleInitialOnly"`
 	NoMiddleName      bool   `json:"noMiddleName"`
 	Last              string `json:"last"`
-	LastInitialOnly   bool   `json:"lastInitialOnly"`
 	Suffix            string `json:"suffix"`
 	SuffixOther       string `json:"suffixOther"`
 }
@@ -52,8 +51,6 @@ func (entity *Name) Valid() (bool, error) {
 	last := strings.TrimSpace(entity.Last)
 	if last == "" {
 		stack.Append("Last", ErrFieldRequired{"Last name is required"})
-	} else if entity.LastInitialOnly && len(last) > 1 {
-		stack.Append("Last", ErrFieldInvalid{"Last name should be an initial only"})
 	}
 
 	suffix := strings.TrimSpace(entity.Suffix)

@@ -35,7 +35,7 @@ export class TravelValidator {
   constructor(data = {}) {
     this.dates = data.Dates
     this.country = data.Country
-    this.days = (data.Days || {}).values || []
+    this.days = (data.Days || {}).value
     this.purpose = (data.Purpose || {}).values || []
     this.questioned = (data.Questioned || {}).value
     this.questionedExplanation = data.QuestionedExplanation
@@ -70,11 +70,7 @@ export class TravelValidator {
       'More than 30',
       'Many short trips'
     ]
-    return (
-      !!this.days &&
-      this.days.length > 0 &&
-      this.days.every(x => options.includes(x))
-    )
+    return !!this.days && this.days.length > 0 && options.includes(this.days)
   }
 
   validPurpose() {

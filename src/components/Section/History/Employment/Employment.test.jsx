@@ -24,20 +24,18 @@ describe('The employment section', () => {
         branch: {},
         items: [
           {
-            type: "Gap",
+            type: 'Gap',
             Item: {
               Dates: {
                 from: {
                   day: '1',
                   month: '1',
-                  year: '2013',
-                  date: new Date('1/1/2013')
+                  year: '2013'
                 },
                 to: {
                   day: '12',
                   month: '31',
-                  year: '2013',
-                  date: new Date('12/31/2013')
+                  year: '2013'
                 }
               }
             }
@@ -48,14 +46,12 @@ describe('The employment section', () => {
                 from: {
                   day: '1',
                   month: '1',
-                  year: '2014',
-                  date: new Date('1/1/2014')
+                  year: '2014'
                 },
                 to: {
                   day: '1',
                   month: '1',
-                  year: '2018',
-                  date: new Date('1/1/2018')
+                  year: '2018'
                 }
               }
             }
@@ -81,14 +77,12 @@ describe('The employment section', () => {
                 from: {
                   day: '10',
                   month: '10',
-                  year: '2005',
-                  date: new Date('10/10/2005')
+                  year: '2005'
                 },
                 to: {
                   day: '1',
                   month: '1',
-                  year: '2007',
-                  date: new Date('10/10/2007')
+                  year: '2007'
                 }
               }
             }
@@ -99,14 +93,12 @@ describe('The employment section', () => {
                 from: {
                   day: '10',
                   month: '10',
-                  year: '2000',
-                  date: new Date('10/10/2000')
+                  year: '2000'
                 },
                 to: {
                   day: '1',
                   month: '1',
-                  year: '2004',
-                  date: new Date('10/10/2004')
+                  year: '2004'
                 }
               }
             }
@@ -117,14 +109,12 @@ describe('The employment section', () => {
                 from: {
                   day: '10',
                   month: '10',
-                  year: '2014',
-                  date: new Date('10/10/2014')
+                  year: '2014'
                 },
                 to: {
                   day: '1',
                   month: '1',
-                  year: '2018',
-                  date: new Date('10/10/2018')
+                  year: '2018'
                 }
               }
             }
@@ -143,8 +133,8 @@ describe('The employment section', () => {
       .instance()
       .sortEmploymentItems(props.List.items)
 
-    expect(sortedEmploymentItems[0].Item.Dates.from.year).toEqual('2014')
-    expect(sortedEmploymentItems[1].Item.Dates.from.year).toEqual('2005')
-    expect(sortedEmploymentItems[2].Item.Dates.from.year).toEqual('2000')
+    expect(sortedEmploymentItems[0].Item.Dates.to.year).toEqual('2018')
+    expect(sortedEmploymentItems[1].Item.Dates.to.year).toEqual('2007')
+    expect(sortedEmploymentItems[2].Item.Dates.to.year).toEqual('2004')
   })
 })

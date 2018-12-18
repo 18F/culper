@@ -10,23 +10,24 @@ import { today, daysAgo } from '../dateranges'
 import { InjectGaps, EmploymentCustomSummary } from '../summaries'
 import EmploymentItem from './EmploymentItem'
 import { Gap } from '../Gap'
+import { extractDate } from '../dateranges'
 
 const byline = (item, index, initial, translation, required, validator) => {
   // If item is required and not currently opened and is not valid, show message
   switch (true) {
-  case required && !item.open && !validator(item.Item):
-  case !item.open && !initial && item.Item && !validator(item.Item):
-    return (
-      <div className={`byline ${openState(item, initial)} fade in`.trim()}>
-        <div className="usa-alert usa-alert-error" role="alert">
-          <div className="usa-alert-body">
-            <h5 className="usa-alert-heading">{i18n.m(translation)}</h5>
+    case required && !item.open && !validator(item.Item):
+    case !item.open && !initial && item.Item && !validator(item.Item):
+      return (
+        <div className={`byline ${openState(item, initial)} fade in`.trim()}>
+          <div className="usa-alert usa-alert-error" role="alert">
+            <div className="usa-alert-body">
+              <h5 className="usa-alert-heading">{i18n.m(translation)}</h5>
+            </div>
           </div>
         </div>
-      </div>
-    )
-  default:
-    return null
+      )
+    default:
+      return null
   }
 }
 
@@ -58,16 +59,12 @@ export default class Employment extends SubsectionElement {
   }
 
   sortEmploymentItems(employmentItems) {
-    return employmentItems.sort((a, b)  => {
-      if (
-        a.Item &&
-        a.Item.Dates &&
-        a.Item.Dates.from
-      ) {
-        const aDateObj = a.Item.Dates.from
-        const bDateObj = b.Item.Dates.from
-        const aDate = new Date(aDateObj.year, aDateObj.month - 1, aDateObj.day)
-        const bDate = new Date(bDateObj.year, bDateObj.month - 1, bDateObj.day)
+    return employmentItems.sort((a, b) => {
+      if (a.Item && a.Item.Dates && a.Item.Dates.to) {
+        const aDateObj = a.Item.Dates.to
+        const bDateObj = b.Item.Dates.to
+        const aDate = extractDate(aDateObj)
+        const bDate = extractDate(bDateObj)
 
         return bDate.getTime() - aDate.getTime()
       }
@@ -76,7 +73,6 @@ export default class Employment extends SubsectionElement {
   }
 
   update(queue) {
-
     const updatedValues = {
       List: this.props.List,
       EmploymentRecord: this.props.EmploymentRecord,

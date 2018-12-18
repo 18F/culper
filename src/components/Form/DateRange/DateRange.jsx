@@ -5,6 +5,7 @@ import Checkbox from '../Checkbox'
 import Svg from '../Svg'
 import { now } from '../../Section/History/dateranges'
 import Show from '../Show'
+import { extractDate, validDate } from '../../Section/History/dateranges'
 
 export default class DateRange extends ValidationElement {
   constructor(props) {
@@ -89,7 +90,6 @@ export default class DateRange extends ValidationElement {
     // If present is true then make the "to" date equal to today
     if (!this.state.present && futureState.present) {
       futureState.to = {
-        date: now,
         year: `${now.getFullYear()}`,
         month: `${now.getMonth() + 1}`,
         day: `${now.getDate()}`,
@@ -97,7 +97,6 @@ export default class DateRange extends ValidationElement {
       }
     } else if (this.state.present && !futureState.present) {
       futureState.to = {
-        date: '',
         year: '',
         month: '',
         day: '',
@@ -151,7 +150,7 @@ export default class DateRange extends ValidationElement {
   handleError(code, value, arr) {
     arr = arr.map(err => {
       return {
-        code: `daterange.${code}.${err.code.replace('date.', '')}`,
+        code: `${this.props.dateRangePrefix ? this.props.dateRangePrefix : 'daterange'}.${err.code.replace('date.', '')}`,
         valid: err.valid,
         uid: err.uid
       }
@@ -180,7 +179,7 @@ export default class DateRange extends ValidationElement {
         err => err.code !== 'required'
       )
 
-      if (!existingErr && this.state.from.date && this.state.to.date) {
+      if (!existingErr && this.state.from && this.state.to) {
         // Prepare some properties for the error testing
         const props = {
           from: this.state.from,
@@ -291,6 +290,7 @@ DateRange.defaultProps = {
   to: {},
   present: false,
   prefix: '',
+  dateRangePrefix: '',
   minDate: null,
   minDateEqualTo: false,
   maxDate: new Date(),
@@ -309,7 +309,7 @@ DateRange.errors = [
     func: (value, props) => {
       if (props.required && !props.disabled) {
         const hasParts = dateObj => {
-          return Boolean(dateObj.day && dateObj.month && dateObj.year)
+          return validDate(dateObj)
         }
         return hasParts(value.from) && hasParts(value.to)
       }
@@ -319,17 +319,10 @@ DateRange.errors = [
   {
     code: 'daterange.order',
     func: (value, props) => {
-      if (
-        !props.from ||
-        isNaN(props.from.date) ||
-        !props.to ||
-        isNaN(props.to.date)
-      ) {
+      if (!props.from || !props.to) {
         return null
       }
-      return (
-        props.from.date && props.to.date && props.from.date <= props.to.date
-      )
+      return extractDate(props.from) <= extractDate(props.to)
     }
   }
 ]

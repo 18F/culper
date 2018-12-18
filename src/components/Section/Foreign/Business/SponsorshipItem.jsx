@@ -1,5 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import { pickDate } from '../../../../validators/helpers'
 import {
   ValidationElement,
   Field,
@@ -145,6 +146,10 @@ export default class SponsorshipItem extends ValidationElement {
   }
 
   render() {
+    const sponsorDOBMinDate = pickDate([
+      this.props.applicantBirthdate,
+      this.props.Birthdate
+    ])
     return (
       <div className="sponsorship-item">
         <Field
@@ -309,7 +314,7 @@ export default class SponsorshipItem extends ValidationElement {
             name="Dates"
             {...this.props.Dates}
             onUpdate={this.updateDates}
-            minDate={(this.props.Birthdate || {}).date}
+            minDate={sponsorDOBMinDate}
             minDateEqualTo={true}
             onError={this.props.onError}
             className="foreign-business-sponsorship-dates"
