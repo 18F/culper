@@ -174,18 +174,4 @@ describe('The Address component', () => {
     const component = shallow(<Address {...props} />)
     expect(component.find('.reuse-address').length).toEqual(1)
   })
-
-  it('does not render reuse address book button if address is validated', () => {
-    const props = {
-      addressBook: 'Test',
-      addressBooks: {
-        Test: [{}, {}, {}]
-      },
-      validated: true
-    }
-
-    const component = mount(<Address {...props} />)
-    console.log(component.debug())
-    expect(component.find('.reuse-address').length).toEqual(0)
-  })
 })

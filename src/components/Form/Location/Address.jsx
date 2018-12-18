@@ -292,7 +292,7 @@ export default class Address extends ValidationElement {
           </RadioGroup>
         </Show>
 
-        <Show when={this.props.addressBook && book.length && !this.props.validated}>
+        <Show when={this.props.addressBook && book.length}>
           <div className="reuse-address">
             <button
               className="reuse-address-open-modal"
