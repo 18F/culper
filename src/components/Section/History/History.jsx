@@ -360,9 +360,8 @@ class History extends SectionElement {
             backLabel={i18n.t('identification.destination.review')}
             next="history/residence"
             nextLabel={i18n.t('history.destination.residence')}>
+            <h1 className="section-header">{i18n.t('history.intro.title')}</h1>
             <Field
-              title={i18n.t('history.intro.title')}
-              titleSize="h4"
               optional={true}
               className="no-margin-bottom">
               {i18n.m('history.intro.body')}
@@ -519,9 +518,10 @@ class History extends SectionElement {
             backLabel={i18n.t('history.destination.intro')}
             next="history/employment"
             nextLabel={i18n.t('history.destination.employment')}>
+            <h1 className="section-header">Where You Have Lived</h1>
             <Field
               title={i18n.t('history.residence.info')}
-              titleSize="h4"
+              titleSize="h3"
               optional={true}
               className="no-margin-bottom">
               {i18n.m('history.residence.info2')}

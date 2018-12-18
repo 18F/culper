@@ -111,16 +111,8 @@ $breakpoints: (
   .byline {
     width: 100%;
     padding: 1rem;
-    transition: border-left-color 0.3s;
-    border-right: 0.4rem solid #fff;
-
-    &.close {
-      border-left: 0.4rem solid #fff;
-    }
-
-    &.open {
-      border-left: 0.4rem solid $eapp-blue;
-    }
+    border: 3px solid $color-gray-lightest;
+    
 
     .incomplete {
       padding: 1rem 2rem;

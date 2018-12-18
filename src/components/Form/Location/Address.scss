@@ -22,6 +22,7 @@
 
   .state-zip-wrap {
     display: table;
+    width: 100%;
 
     .state,
     .apofpo,
@@ -45,30 +46,6 @@
     > .domestic.block label > span > div,
     > .international.block label > span > div {
       top: 25%;
-    }
-
-    &.no-postoffice {
-      > .block.domestic > label:last-child,
-      > .block.international > label:last-child {
-        height: 10rem;
-        width: 26rem;
-      }
-    }
-  }
-
-  .fields {
-    .blocks.apofpo {
-      label {
-        height: 6rem !important;
-        span > div {
-          top: 25% !important;
-        }
-      }
-    }
-
-    label {
-      position: relative !important;
-      top: 0 !important;
     }
   }
 

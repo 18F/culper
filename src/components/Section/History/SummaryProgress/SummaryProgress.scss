@@ -2,7 +2,10 @@
 
 .summary-progress {
   color: $eapp-grey-darker;
-  margin-bottom: 4.9rem;
+  margin: 4rem 0 2rem 0;
+  padding: 1.5rem;
+  border: 1px solid $color-gray-lighter;
+  border-radius: 4px;
 
   .content {
     display: inline-block;

@@ -229,6 +229,7 @@ export default class ResidenceItem extends ValidationElement {
       <div className="residence">
         <Field
           title={i18n.t('history.residence.heading.address')}
+          titleSize="h4"
           optional
           help="history.residence.help.address"
           comments={false}
@@ -264,6 +265,7 @@ export default class ResidenceItem extends ValidationElement {
         />
         <Field
           title={i18n.t('history.residence.heading.dates')}
+          titleSize="h4"
           help="history.residence.help.dates"
           scrollIntoView={this.props.scrollIntoView}>
           <label className="info-label">
@@ -282,6 +284,7 @@ export default class ResidenceItem extends ValidationElement {
 
         <Field
           title={i18n.t('history.residence.heading.role')}
+          titleSize="h4"
           className={
             (this.props.Role || {}).value === 'Other' ? 'no-margin-bottom' : ''
           }
@@ -324,7 +327,7 @@ export default class ResidenceItem extends ValidationElement {
         <Show when={this.props.Role && this.props.Role.value === 'Other'}>
           <Field
             title={i18n.t('history.residence.label.role.explanation')}
-            titleSize="label"
+            titleSize="h4"
             adjustFor="text"
             scrollIntoView={this.props.scrollIntoView}>
             <Text
@@ -343,7 +346,7 @@ export default class ResidenceItem extends ValidationElement {
           <div>
             <Field
               title={i18n.t('history.residence.heading.reference')}
-              titleSize="h4"
+              titleSize="h3"
               optional
               className="no-margin-bottom"
               scrollIntoView={this.props.scrollIntoView}>
@@ -353,7 +356,7 @@ export default class ResidenceItem extends ValidationElement {
             <div className="reference">
               <Field
                 title={i18n.t('reference.heading.name')}
-                titleSize="h3"
+                titleSize="h4"
                 optional
                 filterErrors={Name.requiredErrorsOnly}
                 scrollIntoView={this.props.scrollIntoView}>
@@ -371,6 +374,7 @@ export default class ResidenceItem extends ValidationElement {
 
               <Field
                 title={i18n.t('reference.heading.contact')}
+                titleSize="h4"
                 help={'reference.help.contact'}
                 adjustFor="labels"
                 shrink
@@ -388,6 +392,7 @@ export default class ResidenceItem extends ValidationElement {
 
               <Field
                 title={i18n.t('reference.heading.relationship')}
+                titleSize="h4"
                 comments
                 commentsName="ReferenceRelationshipComments"
                 commentsValue={this.props.ReferenceRelationshipComments}
@@ -398,7 +403,7 @@ export default class ResidenceItem extends ValidationElement {
                 scrollIntoView={this.props.scrollIntoView}>
                 <label>{i18n.t('reference.label.relationship.title')}</label>
                 <CheckboxGroup
-                  className="relationship option-list eapp-extend-labels"
+                  className="relationship option-list eapp-extend-labels option-list-vertical"
                   required={this.props.required}
                   onError={this.props.onError}
                   selectedValues={
@@ -410,9 +415,6 @@ export default class ResidenceItem extends ValidationElement {
                     label={i18n.t('reference.label.relationship.neighbor')}
                     value="Neighbor"
                     onUpdate={this.updateReferenceRelationship}>
-                    <div className="relationship-icon neighbor">
-                      <Svg src="/img/neighbor-icon.svg" />
-                    </div>
                   </Checkbox>
                   <Checkbox
                     name="relationship-friend"
@@ -420,9 +422,6 @@ export default class ResidenceItem extends ValidationElement {
                     label={i18n.t('reference.label.relationship.friend')}
                     value="Friend"
                     onUpdate={this.updateReferenceRelationship}>
-                    <div className="relationship-icon friend">
-                      <Svg src="/img/friend-icon.svg" />
-                    </div>
                   </Checkbox>
                   <Checkbox
                     name="relationship-landlord"
@@ -430,9 +429,6 @@ export default class ResidenceItem extends ValidationElement {
                     label={i18n.t('reference.label.relationship.landlord')}
                     value="Landlord"
                     onUpdate={this.updateReferenceRelationship}>
-                    <div className="relationship-icon landlord">
-                      <Svg src="/img/landlord-icon.svg" />
-                    </div>
                   </Checkbox>
                   <Checkbox
                     name="relationship-business"
@@ -440,9 +436,6 @@ export default class ResidenceItem extends ValidationElement {
                     label={i18n.t('reference.label.relationship.business')}
                     value="Business"
                     onUpdate={this.updateReferenceRelationship}>
-                    <div className="relationship-icon business">
-                      <Svg src="/img/business-associate-icon.svg" />
-                    </div>
                   </Checkbox>
                   <Checkbox
                     name="relationship-other"
@@ -450,9 +443,6 @@ export default class ResidenceItem extends ValidationElement {
                     label={i18n.t('reference.label.relationship.other')}
                     value="Other"
                     onUpdate={this.updateReferenceRelationship}>
-                    <div className="relationship-icon other">
-                      <Svg src="/img/other-icon.svg" />
-                    </div>
                   </Checkbox>
                 </CheckboxGroup>
                 <Show
@@ -476,7 +466,7 @@ export default class ResidenceItem extends ValidationElement {
 
               <Field
                 title={i18n.t('reference.heading.correspondence')}
-                titleSize="h4"
+                titleSize="h3"
                 optional
                 className="no-margin-bottom"
                 scrollIntoView={this.props.scrollIntoView}>
@@ -485,6 +475,7 @@ export default class ResidenceItem extends ValidationElement {
 
               <Field
                 title={i18n.t('reference.heading.phone.evening')}
+                titleSize="h4"
                 className="override-required"
                 help={'reference.help.phone'}
                 adjustFor="telephone"
@@ -501,6 +492,7 @@ export default class ResidenceItem extends ValidationElement {
 
               <Field
                 title={i18n.t('reference.heading.phone.day')}
+                titleSize="h4"
                 className="override-required"
                 help={'reference.help.phone'}
                 adjustFor="telephone"
@@ -517,6 +509,7 @@ export default class ResidenceItem extends ValidationElement {
 
               <Field
                 title={i18n.t('reference.heading.phone.mobile')}
+                titleSize="h4"
                 className="override-required"
                 help={'reference.help.phone'}
                 adjustFor="telephone"
@@ -533,6 +526,7 @@ export default class ResidenceItem extends ValidationElement {
 
               <Field
                 title={i18n.t('reference.heading.email')}
+                titleSize="h4"
                 help={'reference.help.email'}
                 adjustFor="label"
                 scrollIntoView={this.props.scrollIntoView}>
@@ -556,6 +550,7 @@ export default class ResidenceItem extends ValidationElement {
 
               <Field
                 title={i18n.t('reference.heading.address')}
+                titleSize="h4"
                 optional
                 help={'reference.help.address'}
                 adjustFor="address"

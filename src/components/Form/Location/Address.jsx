@@ -395,110 +395,122 @@ export default class Address extends ValidationElement {
             </div>
           </Show>
           <Show when={isInternational(this.props)}>
-            <Street
-              name="street"
-              label={this.props.streetLabel}
-              placeholder={this.props.streetPlaceholder}
-              className="mailing street required"
-              value={this.props.street}
-              onUpdate={this.onAddressUpdate}
-              onError={this.handleError}
-              onFocus={this.props.onFocus}
-              onBlur={this.props.onBlur}
-              required={this.props.required}
-              disabled={this.props.disabled}
-            />
-            <Street
-              name="street2"
-              className="street2"
-              label={this.props.street2Label}
-              optional={true}
-              value={this.props.street2}
-              onUpdate={this.onAddressUpdate}
-              onError={this.handleError}
-              onFocus={this.props.onFocus}
-              onBlur={this.props.onBlur}
-              disabled={this.props.disabled}
-            />
-            <City
-              name="city"
-              className="city required"
-              label={this.props.cityLabel}
-              value={this.props.city}
-              onUpdate={this.onAddressUpdate}
-              onError={this.handleError}
-              onFocus={this.props.onFocus}
-              onBlur={this.props.onBlur}
-              required={this.props.required}
-              disabled={this.props.disabled}
-            />
-            <Country
-              name="country"
-              className="required"
-              label={this.props.countryLabel}
-              {...countryValueResolver(this.props)}
-              excludeUnitedStates="true"
-              onUpdate={this.updateCountry}
-              onError={this.handleError}
-              onFocus={this.props.onFocus}
-              onBlur={this.props.onBlur}
-              required={this.props.required}
-              disabled={this.props.disabled}
-            />
-          </Show>
-          <Show when={locationValidator.isPostOffice()}>
-            <div>
+            <div className="usa-form-control">
               <Street
                 name="street"
-                label={i18n.t('address.apoFpo.street.label')}
-                placeholder={this.props.postOfficeStreetPlaceholder}
+                label={this.props.streetLabel}
+                placeholder={this.props.streetPlaceholder}
                 className="mailing street required"
                 value={this.props.street}
                 onUpdate={this.onAddressUpdate}
                 onError={this.handleError}
-                onFocus={this.focusField}
-                onBlur={this.blurField}
+                onFocus={this.props.onFocus}
+                onBlur={this.props.onBlur}
                 required={this.props.required}
                 disabled={this.props.disabled}
               />
-              <label>{i18n.t('address.apoFpo.select.label')}</label>
-              <RadioGroup
-                className="apofpo"
-                selectedValue={this.props.city}
+            </div>
+            <div className="usa-form-control">
+              <Street
+                name="street2"
+                className="street2"
+                label={this.props.street2Label}
+                optional={true}
+                value={this.props.street2}
+                onUpdate={this.onAddressUpdate}
+                onError={this.handleError}
+                onFocus={this.props.onFocus}
+                onBlur={this.props.onBlur}
                 disabled={this.props.disabled}
+              />
+            </div>
+            <div className="usa-form-control">
+              <City
+                name="city"
+                className="city required"
+                label={this.props.cityLabel}
+                value={this.props.city}
+                onUpdate={this.onAddressUpdate}
+                onError={this.handleError}
+                onFocus={this.props.onFocus}
+                onBlur={this.props.onBlur}
                 required={this.props.required}
-                onError={this.handleError}>
-                <Radio
-                  name="city"
-                  className="apo"
-                  label={i18n.m('address.apoFpo.apoFpoType.apo.label')}
-                  value="APO"
-                  disabled={this.props.disabled}
+                disabled={this.props.disabled}
+              />
+            </div>
+            <div className="usa-form-control">
+              <Country
+                name="country"
+                className="required"
+                label={this.props.countryLabel}
+                {...countryValueResolver(this.props)}
+                excludeUnitedStates="true"
+                onUpdate={this.updateCountry}
+                onError={this.handleError}
+                onFocus={this.props.onFocus}
+                onBlur={this.props.onBlur}
+                required={this.props.required}
+                disabled={this.props.disabled}
+              />
+            </div>
+          </Show>
+          <Show when={locationValidator.isPostOffice()}>
+            <div>
+              <div className="usa-form-control">
+                <Street
+                  name="street"
+                  label={i18n.t('address.apoFpo.street.label')}
+                  placeholder={this.props.postOfficeStreetPlaceholder}
+                  className="mailing street required"
+                  value={this.props.street}
                   onUpdate={this.onAddressUpdate}
-                  onBlur={this.blurField}
+                  onError={this.handleError}
                   onFocus={this.focusField}
-                />
-                <Radio
-                  name="city"
-                  className="fpo"
-                  label={i18n.m('address.apoFpo.apoFpoType.fpo.label')}
-                  value="FPO"
+                  onBlur={this.blurField}
+                  required={this.props.required}
                   disabled={this.props.disabled}
-                  onUpdate={this.onAddressUpdate}
-                  onBlur={this.blurField}
-                  onFocus={this.focusField}
                 />
-                <Radio
-                  name="city"
-                  className="dpo"
-                  label={i18n.m('address.apoFpo.apoFpoType.dpo.label')}
-                  value="DPO"
+              </div>
+              <div className="usa-form-control">
+                <label>{i18n.t('address.apoFpo.select.label')}</label>
+                <RadioGroup
+                  className="apofpo option-list"
+                  selectedValue={this.props.city}
                   disabled={this.props.disabled}
-                  onUpdate={this.onAddressUpdate}
-                  onBlur={this.blurField}
-                  onFocus={this.focusField}
-                />
-              </RadioGroup>
+                  required={this.props.required}
+                  onError={this.handleError}>
+                  <Radio
+                    name="city"
+                    className="apo"
+                    label={i18n.m('address.apoFpo.apoFpoType.apo.label')}
+                    value="APO"
+                    disabled={this.props.disabled}
+                    onUpdate={this.onAddressUpdate}
+                    onBlur={this.blurField}
+                    onFocus={this.focusField}
+                  />
+                  <Radio
+                    name="city"
+                    className="fpo"
+                    label={i18n.m('address.apoFpo.apoFpoType.fpo.label')}
+                    value="FPO"
+                    disabled={this.props.disabled}
+                    onUpdate={this.onAddressUpdate}
+                    onBlur={this.blurField}
+                    onFocus={this.focusField}
+                  />
+                  <Radio
+                    name="city"
+                    className="dpo"
+                    label={i18n.m('address.apoFpo.apoFpoType.dpo.label')}
+                    value="DPO"
+                    disabled={this.props.disabled}
+                    onUpdate={this.onAddressUpdate}
+                    onBlur={this.blurField}
+                    onFocus={this.focusField}
+                  />
+                </RadioGroup>
+              </div>
               <div className="state-zip-wrap">
                 <ApoFpo
                   name="state"

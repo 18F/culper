@@ -254,8 +254,8 @@ export default class Radio extends ValidationElement {
             aria-label={speech}
           />
           <label htmlFor={this.state.uid}>
-            {this.props.label}
             {this.props.children}
+            <span>{this.props.label}</span>
           </label>
         </div>
       )

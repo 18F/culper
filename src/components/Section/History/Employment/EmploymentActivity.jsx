@@ -43,18 +43,18 @@ export default class EmploymentActivity extends ValidationElement {
         <div className={this.props.className}>
           <Field
             title={i18n.t(`history.employment.default.heading.activity`)}
-            titleSize="h3"
+            titleSize="h4"
             help="history.employment.default.activity.help"
             className={this.props.value === 'Other' ? 'no-margin-bottom' : ''}
             adjustFor="p"
             scrollIntoView={this.props.scrollIntoView}>
             <RadioGroup
               name="employment_activity"
-              className="option-list"
+              className="option-list option-list-vertical"
               required={this.props.required}
               onError={this.props.onError}
               selectedValue={this.props.value}>
-              <div>{i18n.t('history.employment.default.activity.title')}</div>
+              <label>{i18n.t('history.employment.default.activity.title')}</label>
               <Radio
                 label={i18n.t(
                   'history.employment.default.activity.type.activeMilitary'
@@ -125,7 +125,7 @@ export default class EmploymentActivity extends ValidationElement {
                 onBlur={this.props.onBlur}
                 onFocus={this.props.onFocus}
               />
-              <div>Other employment</div>
+              <label>Other employment</label>
               <Radio
                 label={i18n.m(
                   'history.employment.default.activity.type.nonGovernment'
@@ -177,6 +177,7 @@ export default class EmploymentActivity extends ValidationElement {
           <Show when={this.props.value === 'Other'}>
             <Field
               title={i18n.m('history.employment.default.activity.other.label')}
+              titleSize="h4"
               titleSize="label"
               adjustFor="labels"
               scrollIntoView={this.props.scrollIntoView}>

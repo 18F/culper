@@ -16,7 +16,7 @@
   }
 
   .or-present {
-    width: 15%;
+    width: 10%;
     display: flex;
     align-items: center;
     padding-top: 1.5rem;
@@ -28,5 +28,9 @@
   }
   .present label {
     width: auto;
+  }
+
+  .present .checkbox {
+    margin: 0;
   }
 }

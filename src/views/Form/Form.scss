@@ -32,6 +32,10 @@ button {
   }
 }
 
+label {
+  margin-bottom: .5rem;
+}
+
 /* bring in USWD validation classes and alter for our design */
 input[type='text'],
 textarea,
@@ -157,11 +161,6 @@ select {
 select {
   background-position: right 1.3rem center;
   -webkit-appearance: none;
-}
-
-input[type="radio"] + label,
-input[type="checkbox"] + label, {
-  margin-bottom: 0;
 }
 
 // Input sizing

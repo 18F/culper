@@ -214,9 +214,9 @@ export const history = {
           nationalGuard: 'National Guard/Reserve',
           usphs: 'USPHS Commissioned Corps',
           otherFederal: 'Other federal employment',
-          stateGovernment: ['State Government', '(Non-Federal employment)'],
+          stateGovernment: 'State Government (Non-Federal employment)',
           federalContractor: 'Federal contractor',
-          nonGovernment: ['Non-government employment', '(excluding self-employment)'],
+          nonGovernment: 'Non-government employment (excluding self-employment)',
           selfEmployment: 'Self-employment',
           unemployment: 'Unemployment',
           other: 'Other'
