@@ -226,8 +226,9 @@ select {
     }
 
     &.checked {
-      background: $color-primary-alt-lightest;
-      border-color: $color-primary-alt-dark;
+      background: $color-green-light;
+      border-color: $color-green;
+      color: $color-white;
     }
 
     &.checked.usa-input-focus,

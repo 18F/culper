@@ -238,14 +238,6 @@ $breakpoints: (
         > .dates {
           float: right;
           text-align: right;
-
-          // Hide on smaller screens to allow more context
-          @media only screen and (max-width: 650px) {
-            display: block;
-            float: none;
-            text-align: left;
-            margin-top: -5rem;
-          }
         }
       }
 

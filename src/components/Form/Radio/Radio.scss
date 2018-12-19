@@ -9,8 +9,9 @@ input[type='radio'].selected + label::before {
 }
 
 .block input[type='radio'].selected + label {
-  background: $color-primary-alt-lightest;
-  border-color: $color-primary-alt-dark;
+  background: $color-green-light;
+  border-color: $color-green;
+  color: $color-white;
 }
 
 input[type='radio'] + label span {
