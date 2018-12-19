@@ -65,6 +65,10 @@ class Env {
     return parseBool(process.env.SAML_ENABLED)
   }
 
+  SamlSLOEnabled() {
+    return parseBool(process.env.SAML_SLO_ENABLED)
+  }
+
   SessionTimeout() {
     return parseInt(process.env.SESSION_TIMEOUT || '15', 10)
   }

@@ -4115,14 +4115,18 @@
                 "HasDifferentAddress": {
                   "type": "branch",
                   "props": {
-                    "value": ""
+                    "value": "Yes"
                   }
                 },
                 "Address": {
                   "type": "location",
                   "props": {
-                    "layout": "",
-                    "country": ""
+                    "layout": "US Address",
+                    "street": "Spouse Secondary APO",
+                    "city": "APO",
+                    "state": "AE",
+                    "zipcode": "09354",
+                    "country": "POSTOFFICE"
                   }
                 },
                 "Telephone": {

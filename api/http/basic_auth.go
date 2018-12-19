@@ -1,7 +1,6 @@
 package http
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/18F/e-QIP-prototype/api"
@@ -18,8 +17,8 @@ type BasicAuthHandler struct {
 // ServeHTTP processes a users request to login with a Username and Password
 func (service BasicAuthHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	if !service.Env.True(api.BasicEnabled) {
-		service.Log.Warn(api.BasicAuthAttemptDenied, api.LogFields{})
-		http.Error(w, "Basic authentication is not implemented", http.StatusInternalServerError)
+		service.Log.Warn(api.BasicAuthNotImplemented, api.LogFields{})
+		RespondWithStructuredError(w, api.BasicAuthNotImplemented, http.StatusInternalServerError)
 		return
 	}
 
@@ -30,19 +29,19 @@ func (service BasicAuthHandler) ServeHTTP(w http.ResponseWriter, r *http.Request
 
 	if err := DecodeJSON(r.Body, &respBody); err != nil {
 		service.Log.WarnError(api.BasicAuthError, err, api.LogFields{})
-		Error(w, r, err)
+		RespondWithStructuredError(w, api.BasicAuthError, http.StatusInternalServerError)
 		return
 	}
 
 	if respBody.Username == "" {
 		service.Log.Warn(api.BasicAuthMissingUsername, api.LogFields{})
-		Error(w, r, fmt.Errorf("Username is required"))
+		RespondWithStructuredError(w, api.BasicAuthMissingUsername, http.StatusBadRequest)
 		return
 	}
 
 	if respBody.Password == "" {
 		service.Log.Warn(api.BasicAuthMissingPassword, api.LogFields{})
-		Error(w, r, fmt.Errorf("Password is required"))
+		RespondWithStructuredError(w, api.BasicAuthMissingPassword, http.StatusBadRequest)
 		return
 	}
 
@@ -53,14 +52,14 @@ func (service BasicAuthHandler) ServeHTTP(w http.ResponseWriter, r *http.Request
 	// Associate with a database context.
 	if _, err := account.Get(service.Database, 0); err != nil {
 		service.Log.WarnError(api.AccountUpdateError, err, api.LogFields{"username": account.Username})
-		Error(w, r, err)
+		RespondWithStructuredError(w, api.AccountUpdateError, http.StatusInternalServerError)
 		return
 	}
 
 	// Validate the user name and password combination
 	if err := account.BasicAuthentication(service.Database, respBody.Password); err != nil {
 		service.Log.WarnError(api.BasicAuthInvalid, err, api.LogFields{"account": account.ID})
-		Error(w, r, err)
+		RespondWithStructuredError(w, api.BasicAuthInvalid, http.StatusUnauthorized)
 		return
 	}
 
@@ -68,7 +67,7 @@ func (service BasicAuthHandler) ServeHTTP(w http.ResponseWriter, r *http.Request
 	signedToken, _, err := service.Token.NewToken(account.ID, "basic-session", api.BasicAuthAudience)
 	if err != nil {
 		service.Log.WarnError(api.JWTError, err, api.LogFields{"account": account.ID})
-		Error(w, r, err)
+		RespondWithStructuredError(w, api.JWTError, http.StatusInternalServerError)
 		return
 	}
 

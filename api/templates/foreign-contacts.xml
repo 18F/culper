@@ -11,11 +11,9 @@
       <Address DoNotKnow="{{$doNotKnowAddr}}">
         {{location $Item.Address}}
       </Address>
-      <!-- This constraint is not consistent with SF-86 form or validation matrix; but is consistent with e-QIP -->
+      <!-- These conditionals are not consistent with SF-86 form or validation matrix, but are consistent with e-QIP -->
       {{if and (isInternational $Item.Address) ($doNotKnowAddr | eq "False")}}
-      {{with $remap := altAddressRemap $Item.Address $Item.AlternateAddress.props.HasDifferentAddress $Item.AlternateAddress.props.Address}}
-      {{tmpl "apofpo-physical.xml" $remap}}
-      {{end}}
+      {{apoFpo $Item.Address $Item.AlternateAddress}}
       {{end}}
       <Birth>
         <Date Type="{{dateEstimated $Item.Birthdate}}" DoNotKnow="{{notApplicable $Item.BirthdateNotApplicable}}">

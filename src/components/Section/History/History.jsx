@@ -41,7 +41,11 @@ export const sort = (a, b) => {
   const first = extractDate(getOptionalDate(a)) || 0
   const second = extractDate(getOptionalDate(b)) || 0
 
-  if (first < second) {
+  if (a.type === 'Gap') {
+    return 1
+  } else if (b.type === 'Gap') {
+    return -1
+  } else if (first < second) {
     return 1
   } else if (first > second) {
     return -1
@@ -103,8 +107,8 @@ class History extends SectionElement {
     })
   }
 
-  updateEmployment(values) {
-    this.handleUpdate('Employment', values)
+  updateEmployment(employment) {
+    this.handleUpdate('Employment', employment)
   }
 
   updateEducation(values) {

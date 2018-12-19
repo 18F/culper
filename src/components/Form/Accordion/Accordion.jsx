@@ -312,6 +312,13 @@ export default class Accordion extends ValidationElement {
             this.updateChild(item, propName, value)
           }
           childProps.onError = this.props.onError
+
+          // HACK: Manually attaching updated addressBooks because each accordion item
+          // object is not getting updated with the new addressBooks. The children components
+          // are getting the updated address book.
+          if (child.props.addressBooks) {
+            childProps.addressBooks = child.props.addressBooks
+          }
         }
       }
 
