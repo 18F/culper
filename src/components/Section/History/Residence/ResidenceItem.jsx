@@ -19,8 +19,7 @@ import {
   Email
 } from '../../../Form'
 import AlternateAddress from '../../../Form/Location/AlternateAddress'
-import { today, daysAgo } from '../dateranges'
-import { buildDate } from '../../../../validators/helpers'
+import { today, daysAgo, extractDate } from '../dateranges'
 
 // We need to determine how far back 3 years ago was
 const threeYearsAgo = daysAgo(today, 365 * 3)
@@ -223,8 +222,8 @@ export default class ResidenceItem extends ValidationElement {
     // Certain elements are present if the date range of the residency was
     // within the last 3 years.
     const dates = this.props.Dates || {}
-    const from = buildDate(dates.from)
-    const to = buildDate(dates.to)
+    const from = extractDate(dates.from)
+    const to = extractDate(dates.to)
 
     return (
       <div className="residence">
@@ -322,10 +321,7 @@ export default class ResidenceItem extends ValidationElement {
             />
           </RadioGroup>
         </Field>
-        <Show
-          when={
-            this.props.Role && this.props.Role.value === 'Other'
-          }>
+        <Show when={this.props.Role && this.props.Role.value === 'Other'}>
           <Field
             title={i18n.t('history.residence.label.role.explanation')}
             titleSize="label"
@@ -584,7 +580,9 @@ export default class ResidenceItem extends ValidationElement {
                 belongingTo="ReferenceAlternateAddress"
                 address={this.props.ReferenceAlternateAddress}
                 country={this.props.ReferenceAddress.country}
-                militaryAddressLabel={i18n.t('address.militaryAddress.residenceVerifier')}
+                militaryAddressLabel={i18n.t(
+                  'address.militaryAddress.residenceVerifier'
+                )}
                 onUpdate={this.update}
               />
             </div>

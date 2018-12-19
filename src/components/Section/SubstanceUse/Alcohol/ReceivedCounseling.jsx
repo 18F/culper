@@ -139,8 +139,8 @@ export default class ReceivedCounseling extends ValidationElement {
   }
 
   render() {
-    const maxDate = (this.props.TreatmentEndDate || {}).date || null
-    const minDate = (this.props.TreatmentBeganDate || {}).date || null
+    const maxDate = this.props.TreatmentEndDate
+    const minDate = this.props.TreatmentBeganDate
     return (
       <div className="received-counseling">
         <Field
@@ -263,7 +263,7 @@ export default class ReceivedCounseling extends ValidationElement {
             {...this.state.TreatmentEndDate}
             receiveProps={this.state.presentClicked}
             prefix="treatment.end"
-            minDate={(this.props.TreatmentBeganDate || {}).date}
+            minDate={minDate}
             minDateEqualTo={true}
             disabled={this.props.PresentTreatmentEndDate}
             onUpdate={this.updateTreatmentEndDate}

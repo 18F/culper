@@ -13,14 +13,12 @@ describe('Employment component validation', function() {
             from: {
               month: '1',
               day: '1',
-              year: '2010',
-              date: new Date('1/1/2010')
+              year: '2010'
             },
             to: {
               month: '1',
               day: '1',
-              year: '2016',
-              date: new Date('1/1/2016')
+              year: '2016'
             },
             present: false
           },
@@ -83,7 +81,6 @@ describe('Employment component validation', function() {
                     Has: { value: 'No' },
                     Reason: { value: 'Fired' },
                     Date: {
-                      date: new Date('1/1/2016'),
                       day: '1',
                       month: '1',
                       year: '2016'
@@ -102,7 +99,6 @@ describe('Employment component validation', function() {
                 Item: {
                   Has: { value: 'No' },
                   Date: {
-                    date: new Date('1/1/2015'),
                     month: '1',
                     day: '1',
                     year: '2015'
@@ -126,14 +122,12 @@ describe('Employment component validation', function() {
             from: {
               month: '1',
               day: '1',
-              year: '2010',
-              date: new Date('1/1/2010')
+              year: '2010'
             },
             to: {
               month: '1',
               day: '1',
-              year: '2016',
-              date: new Date('1/1/2016')
+              year: '2016'
             },
             present: false
           },
@@ -196,7 +190,6 @@ describe('Employment component validation', function() {
                     Has: { value: 'No' },
                     Reason: { value: 'Fired' },
                     Date: {
-                      date: new Date('1/1/2016'),
                       day: '1',
                       month: '1',
                       year: '2016'
@@ -215,7 +208,6 @@ describe('Employment component validation', function() {
                 Item: {
                   Has: { value: 'No' },
                   Date: {
-                    date: new Date('1/1/2015'),
                     month: '1',
                     day: '1',
                     year: '2015'
@@ -248,14 +240,12 @@ describe('Employment component validation', function() {
             from: {
               month: '1',
               day: '1',
-              year: '2010',
-              date: new Date('1/1/2010')
+              year: '2010'
             },
             to: {
               month: '1',
               day: '1',
-              year: '2016',
-              date: new Date('1/1/2016')
+              year: '2016'
             },
             present: false
           },
@@ -330,7 +320,6 @@ describe('Employment component validation', function() {
                     Has: { value: 'No' },
                     Reason: { value: 'Fired' },
                     Date: {
-                      date: new Date('1/1/2016'),
                       day: '1',
                       month: '1',
                       year: '2016'
@@ -349,7 +338,6 @@ describe('Employment component validation', function() {
                 Item: {
                   Has: { value: 'No' },
                   Date: {
-                    date: new Date('1/1/2015'),
                     month: '1',
                     day: '1',
                     year: '2015'
@@ -373,14 +361,12 @@ describe('Employment component validation', function() {
             from: {
               month: '1',
               day: '1',
-              year: '2010',
-              date: new Date('1/1/2010')
+              year: '2010'
             },
             to: {
               month: '1',
               day: '1',
-              year: '2016',
-              date: new Date('1/1/2016')
+              year: '2016'
             },
             present: false
           },
@@ -454,7 +440,6 @@ describe('Employment component validation', function() {
                     Has: { value: 'No' },
                     Reason: { value: 'Fired' },
                     Date: {
-                      date: new Date('1/1/2016'),
                       day: '1',
                       month: '1',
                       year: '2016'
@@ -473,7 +458,6 @@ describe('Employment component validation', function() {
                 Item: {
                   Has: { value: 'No' },
                   Date: {
-                    date: new Date('1/1/2015'),
                     month: '1',
                     day: '1',
                     year: '2015'
@@ -500,14 +484,12 @@ describe('Employment component validation', function() {
                     from: {
                       month: '1',
                       day: '1',
-                      year: '2011',
-                      date: new Date('1/1/2011')
+                      year: '2011'
                     },
                     to: {
                       month: '3',
                       day: '1',
-                      year: '2011',
-                      date: new Date('3/1/2011')
+                      year: '2011'
                     },
                     present: false
                   }
@@ -536,14 +518,12 @@ describe('Employment component validation', function() {
             from: {
               month: '1',
               day: '1',
-              year: '2010',
-              date: new Date('1/1/2010')
+              year: '2010'
             },
             to: {
               month: '1',
               day: '1',
-              year: '2016',
-              date: new Date('1/1/2016')
+              year: '2016'
             },
             present: false
           },
@@ -591,7 +571,6 @@ describe('Employment component validation', function() {
                     Has: { value: 'No' },
                     Reason: { value: 'Fired' },
                     Date: {
-                      date: new Date('1/1/2016'),
                       day: '1',
                       month: '1',
                       year: '2016'
@@ -611,7 +590,6 @@ describe('Employment component validation', function() {
             middleInitialOnly: true,
             noMiddleName: false,
             last: 'Bar',
-            lastInitialOnly: false,
             suffix: 'Jr'
           },
           ReferencePhone: {
@@ -635,7 +613,6 @@ describe('Employment component validation', function() {
                 Item: {
                   Has: { value: 'No' },
                   Date: {
-                    date: new Date('1/1/2015'),
                     month: '1',
                     day: '1',
                     year: '2015'
@@ -668,14 +645,12 @@ describe('Employment component validation', function() {
             from: {
               month: '1',
               day: '1',
-              year: '2010',
-              date: new Date('1/1/2010')
+              year: '2010'
             },
             to: {
               month: '1',
               day: '1',
-              year: '2016',
-              date: new Date('1/1/2016')
+              year: '2016'
             },
             present: false
           },
@@ -698,7 +673,6 @@ describe('Employment component validation', function() {
             middleInitialOnly: true,
             noMiddleName: false,
             last: 'Bar',
-            lastInitialOnly: false,
             suffix: 'Jr'
           },
           ReferencePhone: {
@@ -766,14 +740,12 @@ describe('Employment component validation', function() {
                     from: {
                       month: '1',
                       day: '1',
-                      year: '2011',
-                      date: new Date('1/1/2011')
+                      year: '2011'
                     },
                     to: {
                       month: '3',
                       day: '1',
-                      year: '2011',
-                      date: new Date('3/1/2011')
+                      year: '2011'
                     },
                     present: false
                   }
@@ -804,14 +776,12 @@ describe('Employment component validation', function() {
                     from: {
                       month: '1',
                       day: '1',
-                      year: '2011',
-                      date: new Date('1/1/2011')
+                      year: '2011'
                     },
                     to: {
                       month: '3',
                       day: '1',
-                      year: '2011',
-                      date: new Date('3/1/2011')
+                      year: '2011'
                     },
                     present: false
                   }
@@ -841,14 +811,12 @@ describe('Employment component validation', function() {
                   from: {
                     month: '1',
                     day: '1',
-                    year: '2011',
-                    date: new Date('1/1/2011')
+                    year: '2011'
                   },
                   to: {
                     month: '3',
                     day: '1',
-                    year: '2011',
-                    date: new Date('3/1/2011')
+                    year: '2011'
                   },
                   present: false
                 }
@@ -1073,14 +1041,12 @@ describe('Employment component validation', function() {
             from: {
               month: '1',
               day: '1',
-              year: '2010',
-              date: new Date('1/1/2010')
+              year: '2010'
             },
             to: {
               month: '1',
               day: '1',
-              year: '2016',
-              date: new Date('1/1/2016')
+              year: '2016'
             },
             present: false
           },
@@ -1096,7 +1062,6 @@ describe('Employment component validation', function() {
                     Has: { value: 'No' },
                     Reason: { value: 'Fired' },
                     Date: {
-                      date: new Date('1/1/2016'),
                       day: '1',
                       month: '1',
                       year: '2016'
@@ -1118,14 +1083,12 @@ describe('Employment component validation', function() {
             from: {
               month: '1',
               day: '1',
-              year: '2010',
-              date: new Date('1/1/2010')
+              year: '2010'
             },
             to: {
               month: '1',
               day: '1',
-              year: '2016',
-              date: new Date('1/1/2016')
+              year: '2016'
             },
             present: false
           },
@@ -1141,7 +1104,6 @@ describe('Employment component validation', function() {
                     Has: { value: 'Yes' },
                     Reason: {},
                     Date: {
-                      date: new Date('1/1/2016'),
                       day: '1',
                       month: '1',
                       year: '2016'
@@ -1163,14 +1125,12 @@ describe('Employment component validation', function() {
             from: {
               month: '1',
               day: '1',
-              year: '2010',
-              date: new Date('1/1/2010')
+              year: '2010'
             },
             to: {
               month: '1',
               day: '1',
-              year: '2016',
-              date: new Date('1/1/2016')
+              year: '2016'
             },
             present: false
           },
@@ -1187,14 +1147,12 @@ describe('Employment component validation', function() {
             from: {
               month: '1',
               day: '1',
-              year: '2010',
-              date: new Date('1/1/2010')
+              year: '2010'
             },
             to: {
               month: '1',
               day: '1',
-              year: '2016',
-              date: new Date('1/1/2016')
+              year: '2016'
             },
             present: false
           },
@@ -1211,14 +1169,12 @@ describe('Employment component validation', function() {
             from: {
               month: '1',
               day: '1',
-              year: '2010',
-              date: new Date('1/1/2010')
+              year: '2010'
             },
             to: {
               month: '1',
               day: '1',
-              year: '2016',
-              date: new Date('1/1/2016')
+              year: '2016'
             },
             present: false
           },
@@ -1234,7 +1190,6 @@ describe('Employment component validation', function() {
                     Has: { value: 'Yes' },
                     Reason: { value: 'Fired' },
                     Date: {
-                      date: new Date('1/1/2016'),
                       day: '1',
                       month: null,
                       year: '2016'
@@ -1256,14 +1211,12 @@ describe('Employment component validation', function() {
             from: {
               month: '1',
               day: '1',
-              year: '2010',
-              date: new Date('1/1/2010')
+              year: '2010'
             },
             to: {
               month: '1',
               day: '1',
-              year: '2016',
-              date: new Date('1/1/2016')
+              year: '2016'
             },
             present: false
           },
@@ -1285,14 +1238,12 @@ describe('Employment component validation', function() {
             from: {
               month: '1',
               day: '1',
-              year: '2010',
-              date: new Date('1/1/2010')
+              year: '2010'
             },
             to: {
               month: '1',
               day: '1',
-              year: '2016',
-              date: new Date('1/1/2016')
+              year: '2016'
             },
             present: false
           },
@@ -1308,7 +1259,6 @@ describe('Employment component validation', function() {
                     Has: { value: 'Yes' },
                     Reason: { value: 'Fired' },
                     Date: {
-                      date: new Date('1/1/2016'),
                       day: '1',
                       month: '1',
                       year: '2016'
@@ -1341,14 +1291,12 @@ describe('Employment component validation', function() {
             from: {
               month: '1',
               day: '1',
-              year: '2010',
-              date: new Date('1/1/2010')
+              year: '2010'
             },
             to: {
               month: '1',
               day: '1',
-              year: '2016',
-              date: new Date('1/1/2016')
+              year: '2016'
             },
             present: false
           },
@@ -1361,7 +1309,6 @@ describe('Employment component validation', function() {
                 Item: {
                   Has: { value: 'Yes' },
                   Date: {
-                    date: new Date('1/1/2015'),
                     month: '1',
                     year: '2015'
                   },
@@ -1386,14 +1333,12 @@ describe('Employment component validation', function() {
             from: {
               month: '1',
               day: '1',
-              year: '2010',
-              date: new Date('1/1/2010')
+              year: '2010'
             },
             to: {
               month: '1',
               day: '1',
-              year: '2016',
-              date: new Date('1/1/2016')
+              year: '2016'
             },
             present: false
           },
@@ -1410,14 +1355,12 @@ describe('Employment component validation', function() {
             from: {
               month: '1',
               day: '1',
-              year: '2010',
-              date: new Date('1/1/2010')
+              year: '2010'
             },
             to: {
               month: '1',
               day: '1',
-              year: '2016',
-              date: new Date('1/1/2016')
+              year: '2016'
             },
             present: false
           },
@@ -1430,7 +1373,6 @@ describe('Employment component validation', function() {
                 Item: {
                   Has: { value: 'Yes' },
                   Date: {
-                    date: new Date('1/1/2015'),
                     month: '1',
                     year: '2015'
                   },
@@ -1450,14 +1392,12 @@ describe('Employment component validation', function() {
             from: {
               month: '1',
               day: '1',
-              year: '2010',
-              date: new Date('1/1/2010')
+              year: '2010'
             },
             to: {
               month: '1',
               day: '1',
-              year: '2016',
-              date: new Date('1/1/2016')
+              year: '2016'
             },
             present: false
           },
@@ -1470,7 +1410,6 @@ describe('Employment component validation', function() {
                 Item: {
                   Has: { value: 'Yes' },
                   Date: {
-                    date: new Date('1/1/2015'),
                     month: '1',
                     year: null
                   },
@@ -1490,14 +1429,12 @@ describe('Employment component validation', function() {
             from: {
               month: '1',
               day: '1',
-              year: '2010',
-              date: new Date('1/1/2010')
+              year: '2010'
             },
             to: {
               month: '1',
               day: '1',
-              year: '2016',
-              date: new Date('1/1/2016')
+              year: '2016'
             },
             present: false
           },
@@ -1537,14 +1474,12 @@ describe('Employment component validation', function() {
               from: {
                 month: '1',
                 day: '1',
-                year: '2010',
-                date: new Date('1/1/2010')
+                year: '2010'
               },
               to: {
                 month: '1',
                 day: '1',
-                year: '2016',
-                date: new Date('1/1/2016')
+                year: '2016'
               },
               present: false
             },
@@ -1607,7 +1542,6 @@ describe('Employment component validation', function() {
                       Has: { value: 'No' },
                       Reason: { value: 'Fired' },
                       Date: {
-                        date: new Date('1/1/2016'),
                         day: '1',
                         month: '1',
                         year: '2016'
@@ -1626,7 +1560,6 @@ describe('Employment component validation', function() {
                   Item: {
                     Has: { value: 'No' },
                     Date: {
-                      date: new Date('1/1/2015'),
                       month: '1',
                       year: '2015'
                     },

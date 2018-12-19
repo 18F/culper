@@ -103,9 +103,10 @@ export default class Accordion extends ValidationElement {
       if (item.open !== true && item.open !== false) {
         item.open = this.props.defaultState
         dirty = true
+      } else {
+        item.open = this.props.items.length > 1 ? false : this.props.defaultState
       }
 
-      item.open = this.props.items.length > 1 ? false : this.props.defaultState
       return item
     })
 
@@ -311,6 +312,13 @@ export default class Accordion extends ValidationElement {
             this.updateChild(item, propName, value)
           }
           childProps.onError = this.props.onError
+
+          // HACK: Manually attaching updated addressBooks because each accordion item
+          // object is not getting updated with the new addressBooks. The children components
+          // are getting the updated address book.
+          if (child.props.addressBooks) {
+            childProps.addressBooks = child.props.addressBooks
+          }
         }
       }
 

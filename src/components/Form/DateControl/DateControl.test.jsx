@@ -117,7 +117,11 @@ describe('The date component', () => {
       month: '1',
       day: '1',
       year: '2016',
-      maxDate: new Date('1/1/2000'),
+      maxDate: {
+        month: '1',
+        day: '1',
+        year: '2000'
+      },
       error: false,
       focus: false,
       valid: false,
@@ -163,7 +167,11 @@ describe('The date component', () => {
       month: '1',
       day: '1',
       year: '2016',
-      maxDate: new Date('1/1/2000'),
+      maxDate: {
+        month: '1',
+        day: '1',
+        year: '2000'
+      },
       error: false,
       focus: false,
       valid: false,

@@ -110,13 +110,11 @@ describe('The foreign service component', () => {
                   Name: null,
                   Dates: {
                     from: {
-                      date: new Date('1/1/2015'),
                       day: '1',
                       month: '1',
                       year: '2015'
                     },
                     to: {
-                      date: new Date('1/1/2016'),
                       day: '1',
                       month: '1',
                       year: '2016'

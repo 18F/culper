@@ -14,6 +14,7 @@ import { Summary, DateSummary, NameSummary } from '../../../Summary'
 import { extractDate, today, daysAgo } from '../../History/dateranges'
 import { InjectGaps } from '../../History/summaries'
 import { Gap } from '../../History/Gap'
+import { sort } from '../../History/History'
 
 export default class People extends SubsectionElement {
   constructor(props) {
@@ -47,34 +48,17 @@ export default class People extends SubsectionElement {
     )
   }
 
-  sort(a, b) {
-    // Helper to find the date value or default it to 0
-    const getOptionalDate = obj => {
-      return ((((obj || {}).Item || {}).Dates || {}).to || {}).date || 0
-    }
-
-    const first = getOptionalDate(a)
-    const second = getOptionalDate(b)
-
-    if (first < second) {
-      return 1
-    } else if (first > second) {
-      return -1
-    }
-
-    return 0
-  }
-
   fillGap(dates) {
     let items = [...(this.props.List || {}).items]
     items.push({
       uuid: newGuid(),
       open: true,
       Item: {
+        name: 'Item',
         Dates: {
-          receiveProps: true,
-          from: dates.from,
-          to: dates.to
+          Name: 'Dates',
+          present: false,
+          receiveProps: true
         }
       }
     })
@@ -82,7 +66,7 @@ export default class People extends SubsectionElement {
     this.update({
       List: {
         ...this.props.List,
-        items: this.inject(items).sort(this.sort)
+        items: this.excludeGaps(this.inject(items).sort(sort))
       }
     })
   }
@@ -176,7 +160,7 @@ export default class People extends SubsectionElement {
           defaultState={this.props.defaultState}
           scrollToBottom={this.props.scrollToBottom}
           realtime={true}
-          sort={this.sort}
+          sort={sort}
           inject={this.inject}
           summary={this.summary}
           customDetails={this.customDetails}

@@ -135,7 +135,8 @@ export default class Location extends ValidationElement {
   }
 
   appendToAddressBook(books, name, address) {
-    const addressCountry = (address.country || {}).value
+    const addressCountry = countryString(address.country)
+
     let book = books[name] || []
 
     // If this is a full address and domestic then it must be validate

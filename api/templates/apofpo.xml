@@ -1,4 +1,5 @@
-{{if isPostOffice .Address}}
+<!-- Expects the provided dot set to be the result of api/xml:apoFpoView -->
+{{if isPostOffice .Primary}}
 <APOFPO>
   <PhysicalLocation>
     {{if isInternational .Alternate}}
@@ -10,8 +11,8 @@
 </APOFPO>
 {{end}}
 
-{{if isInternational .Address}}
-{{if branch .HasDifferentAddress | eq "Yes"}}
+{{if isInternational .Primary}}
+{{if branch .HasApo | eq "Yes"}}
 <APOFPO>
   <Answer>Yes</Answer>
   <Address>{{locationOverrideLayout .Alternate "Military Address"}}</Address>

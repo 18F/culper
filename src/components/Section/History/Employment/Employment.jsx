@@ -6,7 +6,7 @@ import SubsectionElement from '../../SubsectionElement'
 import { Accordion, Branch } from '../../../Form'
 import { openState } from '../../../Form/Accordion/Accordion'
 import { newGuid } from '../../../Form/ValidationElement'
-import { today, daysAgo } from '../dateranges'
+import { today, daysAgo, extractDate, validDate } from '../dateranges'
 import { InjectGaps, EmploymentCustomSummary } from '../summaries'
 import EmploymentItem from './EmploymentItem'
 import { Gap } from '../Gap'
@@ -14,19 +14,19 @@ import { Gap } from '../Gap'
 const byline = (item, index, initial, translation, required, validator) => {
   // If item is required and not currently opened and is not valid, show message
   switch (true) {
-  case required && !item.open && !validator(item.Item):
-  case !item.open && !initial && item.Item && !validator(item.Item):
-    return (
-      <div className={`byline ${openState(item, initial)} fade in`.trim()}>
-        <div className="usa-alert usa-alert-error" role="alert">
-          <div className="usa-alert-body">
-            <h5 className="usa-alert-heading">{i18n.m(translation)}</h5>
+    case required && !item.open && !validator(item.Item):
+    case !item.open && !initial && item.Item && !validator(item.Item):
+      return (
+        <div className={`byline ${openState(item, initial)} fade in`.trim()}>
+          <div className="usa-alert usa-alert-error" role="alert">
+            <div className="usa-alert-body">
+              <h5 className="usa-alert-heading">{i18n.m(translation)}</h5>
+            </div>
           </div>
         </div>
-      </div>
-    )
-  default:
-    return null
+      )
+    default:
+      return null
   }
 }
 
@@ -58,16 +58,19 @@ export default class Employment extends SubsectionElement {
   }
 
   sortEmploymentItems(employmentItems) {
-    return employmentItems.sort((a, b)  => {
-      if (
-        a.Item &&
-        a.Item.Dates &&
-        a.Item.Dates.from
+    return employmentItems.sort((a, b) => {
+      if (a.type === 'Gap') {
+        return 1
+      } else if (b.type === 'Gap') {
+        return -1
+      } else if (
+        a.Item && a.Item.Dates && validDate(a.Item.Dates.to) &&
+        b.Item && b.Item.Dates && validDate(b.Item.Dates.to)
       ) {
-        const aDateObj = a.Item.Dates.from
-        const bDateObj = b.Item.Dates.from
-        const aDate = new Date(aDateObj.year, aDateObj.month - 1, aDateObj.day)
-        const bDate = new Date(bDateObj.year, bDateObj.month - 1, bDateObj.day)
+        const aDateObj = a.Item.Dates.to
+        const bDateObj = b.Item.Dates.to
+        const aDate = extractDate(aDateObj)
+        const bDate = extractDate(bDateObj)
 
         return bDate.getTime() - aDate.getTime()
       }
@@ -76,7 +79,6 @@ export default class Employment extends SubsectionElement {
   }
 
   update(queue) {
-
     const updatedValues = {
       List: this.props.List,
       EmploymentRecord: this.props.EmploymentRecord,
@@ -120,9 +122,7 @@ export default class Employment extends SubsectionElement {
         Dates: {
           name: 'Dates',
           receiveProps: true,
-          present: false,
-          from: dates.from,
-          to: dates.to
+          present: false
         }
       }
     })
@@ -131,7 +131,7 @@ export default class Employment extends SubsectionElement {
       List: {
         items: InjectGaps(items, daysAgo(365 * this.props.totalYears)).sort(
           this.sort
-        ),
+        ).filter(item => !item.type || (item.type && item.type !== 'Gap')),
         branch: {}
       }
     })

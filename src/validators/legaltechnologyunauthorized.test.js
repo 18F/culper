@@ -16,7 +16,6 @@ describe('Legal technology unauthorized component validation', function() {
       {
         state: {
           Date: {
-            date: new Date('1/1/2010'),
             day: '1',
             month: '1',
             year: '2010'
@@ -138,7 +137,6 @@ describe('Legal technology unauthorized component validation', function() {
               {
                 Item: {
                   Date: {
-                    date: new Date('1/1/2010'),
                     day: '1',
                     month: '1',
                     year: '2010'

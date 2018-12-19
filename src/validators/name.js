@@ -19,7 +19,6 @@ export default class NameValidator {
     this.first = data.first
     this.firstInitialOnly = data.firstInitialOnly
     this.last = data.last
-    this.lastInitialOnly = data.lastInitialOnly
     this.middleInitialOnly = data.middleInitialOnly
     this.noMiddleName = data.noMiddleName
     this.hideMiddleName = data.hideMiddleName
@@ -48,10 +47,6 @@ export default class NameValidator {
    */
   validLast() {
     if (!this.last) {
-      return false
-    }
-
-    if (this.lastInitialOnly && this.last.length > 1) {
       return false
     }
 

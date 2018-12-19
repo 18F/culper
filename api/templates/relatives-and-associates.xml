@@ -58,11 +58,7 @@
       {{- $deceased := eq (branch $Item.IsDeceased) "Yes" }}
       {{if not $deceased }}
       <Address>{{location $Item.Address}}</Address>
-
-      {{with $remap := altAddressRemap $Item.Address $Item.AlternateAddress.props.HasDifferentAddress $Item.AlternateAddress.props.Address}}
-      {{tmpl "apofpo-physical.xml" $remap}}
-      {{end}}
-
+      {{apoFpo $Item.Address $Item.AlternateAddress}}
       {{end}}
 
       <Birth>

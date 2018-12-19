@@ -136,6 +136,7 @@ export default class Marital extends SubsectionElement {
             name="civilUnion"
             {...this.props.CivilUnion}
             onUpdate={this.updateCivilUnion}
+            applicantBirthdate={this.props.applicantBirthdate}
             onError={this.handleError}
             onSpouseUpdate={this.props.onSpouseUpdate}
             addressBooks={this.props.addressBooks}
@@ -171,6 +172,7 @@ export default class Marital extends SubsectionElement {
             <Divorce
               name="Item"
               bind={true}
+              applicantBirthdate={this.props.applicantBirthdate}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
             />

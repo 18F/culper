@@ -1,7 +1,11 @@
 import DateRangeValidator from './daterange'
 import LocationValidator from './location'
 import NameValidator from './name'
-import { daysAgo, today } from '../components/Section/History/dateranges'
+import {
+  daysAgo,
+  today,
+  extractDate
+} from '../components/Section/History/dateranges'
 import {
   validPhoneNumber,
   validNotApplicable,
@@ -66,7 +70,9 @@ export class ResidenceValidator {
   }
 
   validReference() {
-    if (withinThreeYears(this.dates.from.date, this.dates.to.date)) {
+    const from = extractDate(this.dates.from)
+    const to = extractDate(this.dates.to)
+    if (withinThreeYears(from, to)) {
       const other =
         this.referenceRelationship.every(x => {
           return relationshipOptions.includes(x)
@@ -84,7 +90,7 @@ export class ResidenceValidator {
         validPhoneNumber(this.referencePhoneMobile) &&
         validRelationship &&
         validNotApplicable(this.referenceEmailNotApplicable, () => {
-          return validGenericTextfield(this.email)
+          return validGenericTextfield(this.referenceEmail)
         }) &&
         new LocationValidator(this.referenceAddress).isValid()
       )

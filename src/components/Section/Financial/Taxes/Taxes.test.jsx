@@ -3,6 +3,7 @@ import { mount } from 'enzyme'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
 import Taxes from './Taxes'
+import { i18n } from '../../../../config'
 
 describe('The taxes component', () => {
   const mockStore = configureMockStore()
@@ -89,5 +90,59 @@ describe('The taxes component', () => {
       .find('.taxes-description textarea')
       .simulate('change', { target: { value: 'Description for not filing' } })
     expect(updates).toBeGreaterThan(7)
+  })
+
+  describe('handles tax dates', () => {
+    it('with good data - the year failed to file or pay is before the date satisfied', () => {
+      const props = {
+        valid: true
+      }
+      const component = createComponent(props)
+      expect(
+        component
+          .find('.error-messages [data-i18n="error.taxesSatisfied.min"]')
+          .children().length
+      ).toEqual(0)
+    })
+    it('with bad data - the year failed to file or pay is after the date satisfied', () => {
+      const props = {
+        HasTaxes: {
+          name: 'has_taxes',
+          value: 'Yes'
+        },
+        List: {
+          items: [
+            {
+              Item: {
+                Year: {
+                  estimated: false,
+                  month: '1',
+                  day: '1',
+                  year: '2000'
+                },
+                Date: {
+                  estimated: false,
+                  month: '1',
+                  day: '1',
+                  year: '1970'
+                }
+              }
+            }
+          ]
+        },
+        valid: false
+      }
+
+      const component = createComponent(props)
+      expect(
+        component
+          .find('.error-messages [data-i18n="error.taxesSatisfied.min"]')
+          .text()
+      ).toEqual(
+        `${i18n.t('error.taxesSatisfied.min.title')}${i18n.t(
+          'error.taxesSatisfied.min.message'
+        )}`
+      )
+    })
   })
 })

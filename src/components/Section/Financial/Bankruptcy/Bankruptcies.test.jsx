@@ -76,7 +76,6 @@ describe('The bankruptcies component', () => {
               middleInitialOnly: true,
               noMiddleName: false,
               last: 'Bar',
-              lastInitialOnly: false,
               suffix: 'Jr'
             },
             TotalAmount: {

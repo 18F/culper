@@ -90,7 +90,6 @@ describe('Legal investigations history component validation', function() {
       {
         state: {
           Completed: {
-            date: new Date('1/1/2010'),
             day: '1',
             month: '1',
             year: '2010'
@@ -123,7 +122,6 @@ describe('Legal investigations history component validation', function() {
       {
         state: {
           Granted: {
-            date: new Date('1/1/2010'),
             day: '1',
             month: '1',
             year: '2010'

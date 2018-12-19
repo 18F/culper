@@ -283,7 +283,7 @@ export default class DelinquentItem extends ValidationElement {
               {...this.props.Resolved}
               onUpdate={this.updateResolved}
               onError={this.props.onError}
-              minDate={(this.props.Date || {}).date}
+              minDate={this.props.Date}
               minDateEqualTo={true}
               className="delinquent-resolved"
               hideDay={true}

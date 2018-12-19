@@ -2,6 +2,7 @@ import React from 'react'
 import { i18n } from '../../../config'
 import { ValidationElement, Show } from '../../Form'
 import { NameSummary, NameText, DateSummary } from '../../Summary'
+import { validDate } from '../History/dateranges'
 
 export default class Signature extends ValidationElement {
   constructor(props) {
@@ -70,7 +71,7 @@ export default class Signature extends ValidationElement {
 
   render() {
     const name = this.name()
-    const signed = this.props.Date && this.props.Date.date
+    const signed = validDate(this.props.Date)
     const button = (
       <button className="add" onClick={this.addSignature}>
         {i18n.t('signature.add')}

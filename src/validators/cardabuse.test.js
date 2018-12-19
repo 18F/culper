@@ -73,7 +73,6 @@ describe('taxes component validation', function() {
             day: '1',
             month: '1',
             year: '2016',
-            date: new Date('1/1/2016'),
             present: false
           }
         },
@@ -275,7 +274,6 @@ describe('taxes component validation', function() {
                     day: '1',
                     month: '1',
                     year: '2016',
-                    date: new Date('1/1/2016'),
                     present: false
                   },
                   Reason: {
