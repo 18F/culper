@@ -1,7 +1,6 @@
 @import 'eqip-colors';
 
 .address {
-  display: inline-block;
 
   input[type='text'] {
     text-transform: capitalize;
@@ -28,8 +27,18 @@
     .apofpo,
     .zipcode {
       display: table-cell;
-      padding-right: 2rem;
       vertical-align: top;
+      width: 50%
+    }
+    
+    .state,
+    .apofpo {
+      padding-right: 2rem;
+    }
+
+
+    .zipcode {
+      padding-right: 0;
     }
   }
 

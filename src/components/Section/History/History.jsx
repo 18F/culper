@@ -392,13 +392,7 @@ class History extends SectionElement {
             </Show>
 
             <hr className="section-divider" />
-            <span className="section-heading">
-              <Svg
-                src="/img/residence-house.svg"
-                alt={i18n.t('history.residence.summary.svgAlt')}
-              />
-              {i18n.t('history.residence.collection.caption')}
-            </span>
+            <h1 className="section-header">{i18n.t('history.residence.collection.caption')}</h1>
             <Residence
               {...this.props.Residence}
               section="history"
@@ -416,13 +410,7 @@ class History extends SectionElement {
             />
 
             <hr className="section-divider" />
-            <span className="section-heading">
-              <Svg
-                src="/img/employer-briefcase.svg"
-                alt={i18n.t('history.employment.summary.svgAlt')}
-              />
-              {i18n.t('history.employment.default.collection.caption')}
-            </span>
+            <h1 className="section-header">{i18n.t('history.employment.default.collection.caption')}</h1>
             <Employment
               {...this.props.Employment}
               section="history"
@@ -440,14 +428,7 @@ class History extends SectionElement {
             />
 
             <hr className="section-divider" />
-            <span className="section-heading">
-              <Svg
-                src="/img/school-cap.svg"
-                alt={i18n.t('history.education.summary.svgAlt')}
-              />
-              {i18n.t('history.education.collection.caption')}
-            </span>
-
+            <h1 className="section-header">{i18n.t('history.education.collection.caption')}</h1>
             <Field
               title={i18n.t('history.education.title')}
               titleSize="h4"
@@ -502,6 +483,7 @@ class History extends SectionElement {
             </Show>
 
             <hr className="section-divider" />
+            <h1 className="section-header">Former federal service</h1>
             <Federal
               name="federal"
               {...this.props.Federal}
