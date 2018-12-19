@@ -19,6 +19,7 @@ Here are some of the major directories:
 
 - Use of the [React Developer Tools](https://github.com/facebook/react-devtools) and [Redux DevTools Extension](http://extension.remotedev.io/) are recommended for frontend work.
 - With the React extension, the Redux store can be inspected by running `$r.store.getState();` in your browser's JavaScript console.
+- In the development environment, you may opt in to [Logger for Redux](https://github.com/evgenyrodionov/redux-logger) by appending `?reduxLogger=true` to the url on initial load.
 
 ## Tests
 
