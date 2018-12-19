@@ -184,6 +184,10 @@ select {
 .blocks.option-list {
   display: flex;
 
+  @media all and (max-width: 980px) {
+    flex-flow: wrap;
+  }
+
   &.option-list-vertical {
     flex-flow: wrap;
   }
@@ -196,6 +200,10 @@ select {
 .block {
   display: inline-block;
   margin-right: 1rem;
+
+  @media all and (max-width: 980px) {
+    margin-right: 0;
+  }
 
   label {
     padding: 1rem;

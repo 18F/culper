@@ -34,3 +34,13 @@
     margin: 0;
   }
 }
+
+@media all and (max-width: 980px) {
+  .daterange {
+    flex-flow: wrap;
+
+    .arrow {
+      display: none;
+    }
+  }
+}

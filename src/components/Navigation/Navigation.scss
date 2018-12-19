@@ -48,7 +48,7 @@
       display: block;
       height: 100%;
       position: absolute;
-      right: 0;
+      right: 4px;
       top: 0;
       transition: opacity 0.5s;
       width: $status-icon-width;
@@ -91,7 +91,7 @@
       height: $size;
       // center-align with status icon image
       right: ($status-icon-width - $size) / 2;
-      top: 1.6rem;
+      top: 1rem;
       width: $size;
     }
     .is-valid .eapp-status-icon {

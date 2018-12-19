@@ -81,6 +81,10 @@ $breakpoints: (
       overflow: hidden;
       border: 3px solid $color-gray-lightest;
 
+      @media all and (max-width: 980px) {
+        padding: 2rem;
+      }
+
       h2 {
         margin-top: 10rem;
       }
@@ -178,6 +182,10 @@ $breakpoints: (
       color: #000;
       padding-left: 2.4rem;
 
+      @media all and (max-width: 980px) {
+        width: 80%;
+      }
+
       .toggle {
         color: $eapp-blue;
       }
@@ -271,6 +279,10 @@ $breakpoints: (
       color: $color-white;
       float: right;
       width: 10%;
+
+      @media all and (max-width: 980px) {
+        width: 20%;
+      }
 
       &:hover {
         background-color: $eapp-red;

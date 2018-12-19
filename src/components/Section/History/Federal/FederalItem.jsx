@@ -57,6 +57,7 @@ export default class FederalItem extends ValidationElement {
       <div className="federal-item">
         <Field
           title={i18n.t('history.federal.heading.dates')}
+          titleSize="h4"
           help="history.federal.help.dates"
           adjustFor="daterange"
           scrollIntoView={this.props.scrollIntoView}>
@@ -72,6 +73,7 @@ export default class FederalItem extends ValidationElement {
 
         <Field
           title={i18n.t('history.federal.heading.name')}
+          titleSize="h4"
           className="federal-agency"
           scrollIntoView={this.props.scrollIntoView}>
           <Text
@@ -85,6 +87,7 @@ export default class FederalItem extends ValidationElement {
 
         <Field
           title={i18n.t('history.federal.heading.position')}
+          titleSize="h4"
           className="federal-position"
           scrollIntoView={this.props.scrollIntoView}>
           <Text

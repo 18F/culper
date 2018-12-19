@@ -1,6 +1,6 @@
 input[type='radio'] + label::before {
   position: absolute;
-  margin-top: 6px;
+  margin-top: 4px;
 }
 
 input[type='radio'].selected + label::before {

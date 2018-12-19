@@ -31,7 +31,7 @@ export default class ApplicantName extends SubsectionElement {
 
     return (
       <div className={klass} {...super.dataAttributes(this.props)}>
-        <h1 className="section-header">Full Name</h1>
+        <h1 className="section-header">Full name</h1>
         <Field
           title={i18n.t('identification.name.title')}
           titleSize="h4"

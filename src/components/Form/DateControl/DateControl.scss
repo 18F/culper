@@ -27,3 +27,14 @@
     display: none;
   }
 }
+
+@media all and (max-width: 980px) {
+
+  .datecontrol {
+    .month,
+    .day,
+    .year {
+      width: 100%;
+    }
+  }
+}
