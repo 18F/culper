@@ -105,6 +105,10 @@ $breakpoints: (
           text-decoration: underline;
         }
       }
+
+      .field:last-child {
+        margin-bottom: 0;
+      }
     }
   }
 

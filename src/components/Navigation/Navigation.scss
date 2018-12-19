@@ -73,9 +73,8 @@
   .usa-sidenav-sub_list {
     .section-link {
       // compute offset using built-in USWDS values
-      margin-left: $num-width + $num-right-margin -
-        $sidenav-current-border-width;
-      padding-left: $site-margins-mobile;
+      margin-left: 2.5rem;
+      padding-left: 2rem;
       border: none !important;
 
       &.usa-current {
@@ -90,8 +89,8 @@
       border-radius: 50%;
       height: $size;
       // center-align with status icon image
-      right: ($status-icon-width - $size) / 2;
-      top: 1rem;
+      right: 1rem;
+      top: 1.5rem;
       width: $size;
     }
     .is-valid .eapp-status-icon {
