@@ -9,8 +9,8 @@ import navigation from './navigation'
 import foreignNav from '../Foreign/navigation'
 
 class Financial extends SectionElement {
-  getReviewGroupProps(subsection) {
-    const props = super.getReviewGroupProps(subsection)
+  getSubsectionProps(subsection) {
+    const props = super.getSubsectionProps(subsection)
     switch (subsection.url) {
       case 'bankruptcy':
         props.addressBooks = this.props.AddressBooks

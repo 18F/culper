@@ -32,6 +32,7 @@ export default class SectionElement extends React.Component {
     this.props.dispatch(updateApplication(this.props.store, field, values))
   }
 
+  // meant to be overridden
   getSubsectionProps(subsection) {
     return {
       ...this.props[subsection.store],
@@ -41,14 +42,9 @@ export default class SectionElement extends React.Component {
     }
   }
 
-  // meant to be overridden
-  getReviewGroupProps(subsection) {
-    return this.getSubsectionProps(subsection)
-  }
-
   createReviewGroups(navigation) {
     return createReviewGroups(navigation, subsection => {
-      return this.getReviewGroupProps(subsection)
+      return this.getSubsectionProps(subsection)
     })
   }
 
