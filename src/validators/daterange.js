@@ -19,6 +19,10 @@ export default class DateRangeValidator {
    * Validates the date ranges
    */
   isValid() {
+    if (!this.from.touched || !this.to.touched) {
+      return true
+    }
+
     if (!new DateControlValidator(this.from).validDate()) {
       return false
     }
