@@ -106,6 +106,7 @@ export default class CitizenshipItem extends ValidationElement {
 
         <Field
           title={i18n.t('citizenship.multiple.heading.citizenship.period')}
+          help="citizenship.multiple.help.citizenship.dates"
           titleSize="h4"
           optional={true}
           className="period no-margin-bottom"
@@ -113,7 +114,7 @@ export default class CitizenshipItem extends ValidationElement {
 
         <Field
           title={i18n.t('citizenship.multiple.heading.citizenship.dates')}
-          help="citizenship.multiple.help.citizenship.dates"
+          titleSize="label"
           adjustFor="daterange"
           scrollIntoView={this.props.scrollIntoView}>
           <DateRange
@@ -144,7 +145,7 @@ export default class CitizenshipItem extends ValidationElement {
           <Branch
             name="Renounced"
             label={i18n.t('citizenship.multiple.heading.citizenship.renounced')}
-            labelSize="h3"
+            labelSize="h4"
             className="citizenship-renounced no-margin-bottom"
             {...this.props.Renounced}
             onUpdate={this.updateRenounced}
@@ -175,7 +176,7 @@ export default class CitizenshipItem extends ValidationElement {
             <Branch
               name="Current"
               label={i18n.t('citizenship.multiple.heading.citizenship.current')}
-              labelSize="h3"
+              labelSize="h4"
               className="citizenship-current no-margin-bottom"
               {...this.props.Current}
               onUpdate={this.updateCurrent}

@@ -210,7 +210,7 @@ export default class PassportItem extends ValidationElement {
         <Branch
           name="Used"
           label={i18n.t('citizenship.multiple.heading.passport.used')}
-          labelSize="h3"
+          labelSize="h4"
           className="passport-used"
           {...this.props.Used}
           onUpdate={this.updateUsed}
