@@ -59,9 +59,8 @@ class Military extends SectionElement {
                 ? i18n.t('military.destination.selective')
                 : i18n.t('military.destination.history')
             }>
+            <h1 className="section-header">{i18n.t('military.intro.title')}</h1>
             <Field
-              title={i18n.t('military.intro.title')}
-              titleSize="h4"
               optional={true}
               className="no-margin-bottom">
               {i18n.m('military.intro.body')}
@@ -77,6 +76,7 @@ class Military extends SectionElement {
             backLabel={i18n.t('military.destination.foreign')}
             next="foreign/intro"
             nextLabel={i18n.t('foreign.destination.intro')}>
+            <h1 className="section-header">{i18n.t('military.destination.selective')}</h1>
             <Show when={showSelectiveService}>
               <Selective
                 name="selective"
@@ -91,7 +91,7 @@ class Military extends SectionElement {
               />
               <hr className="section-divider" />
             </Show>
-
+            <h1 className="section-header">{i18n.t('military.destination.history')}</h1>
             <History
               name="history"
               {...this.props.History}
@@ -106,6 +106,7 @@ class Military extends SectionElement {
 
             <Show when={showDisciplinary}>
               <hr className="section-divider" />
+              <h1 className="section-header">{i18n.t('military.destination.disciplinary')}</h1>
               <Disciplinary
                 name="disciplinary"
                 {...this.props.Disciplinary}
@@ -120,6 +121,7 @@ class Military extends SectionElement {
             </Show>
 
             <hr className="section-divider" />
+            <h1 className="section-header">{i18n.t('military.destination.foreign')}</h1>
             <Foreign
               name="foreign"
               {...this.props.Foreign}
@@ -140,6 +142,7 @@ class Military extends SectionElement {
             backLabel={i18n.t('military.destination.intro')}
             next="military/history"
             nextLabel={i18n.t('military.destination.history')}>
+            <h1 className="section-header">{i18n.t('military.destination.selective')}</h1>
             <Selective
               name="selective"
               {...this.props.Selective}
@@ -167,6 +170,7 @@ class Military extends SectionElement {
                 ? i18n.t('military.destination.disciplinary')
                 : i18n.t('military.destination.foreign')
             }>
+            <h1 className="section-header">{i18n.t('military.destination.history')}</h1>
             <History
               name="history"
               {...this.props.History}
@@ -183,6 +187,7 @@ class Military extends SectionElement {
             backLabel={i18n.t('military.destination.history')}
             next="military/foreign"
             nextLabel={i18n.t('military.destination.foreign')}>
+            <h1 className="section-header">{i18n.t('military.destination.disciplinary')}</h1>
             <Disciplinary
               name="disciplinary"
               {...this.props.Disciplinary}
@@ -205,6 +210,7 @@ class Military extends SectionElement {
             }
             next="military/review"
             nextLabel={i18n.t('military.destination.review')}>
+            <h1 className="section-header">{i18n.t('military.destination.foreign')}</h1>
             <Foreign
               name="foreign"
               {...this.props.Foreign}
