@@ -5,15 +5,18 @@ import (
 	"fmt"
 	"github.com/18F/e-QIP-prototype/api"
 	"github.com/18F/e-QIP-prototype/api/env"
-	"github.com/18F/e-QIP-prototype/api/eqip"
 	"github.com/18F/e-QIP-prototype/api/log"
 	"github.com/18F/e-QIP-prototype/api/xml"
 	"github.com/benbjohnson/clock"
 	"io/ioutil"
 	"os"
-	"strconv"
 )
 
+// Generates and submits an SF-86 XML to e-QIP from eApp application form data.
+// The input JSON should represent a fully validated form, as serialized by eApp.
+// Requires that all the `WS_*` environment variables be configured, except `WS_ENABLED`.
+//
+// See api/testdata/complete-scenarios/*.json for example form files.
 func main() {
 	settings := &env.Native{}
 	settings.Configure()
@@ -21,95 +24,42 @@ func main() {
 	localClock := clock.New()
 	xmlsvc := xml.Service{Log: logger, Clock: localClock}
 
-	url := settings.String(api.WsURL)
-	if url == "" {
-		logger.Fatal(api.WebserviceMissingURL, api.LogFields{})
-	}
-	key := settings.String(api.WsKey)
-	if key == "" {
-		logger.Fatal(api.WebserviceMissingKey, api.LogFields{})
+	fatal := func(err error) {
+		if err != nil {
+			logger.Fatal(err.Error(), api.LogFields{})
+		}
 	}
 
 	if len(os.Args) != 2 {
-		logger.Fatal("usage: submit form.json", api.LogFields{})
+		fatal(fmt.Errorf("usage: submit form.json"))
 	}
 
 	jsonBytes, err := ioutil.ReadFile(os.Args[1])
-	if err != nil {
-		logger.Fatal(err.Error(), api.LogFields{})
-	}
+	fatal(err)
 
-	// Do what api.Package() does
+	// Do what api.Package() does to generate the SF-86 XML
 	var js map[string]interface{}
-	if err := json.Unmarshal(jsonBytes, &js); err != nil {
-		logger.Fatal(err.Error(), api.LogFields{})
-	}
-	xmlTemplate, err := xmlsvc.DefaultTemplate("application.xml", js)
-	if err != nil {
-		logger.Fatal(err.Error(), api.LogFields{})
-	}
-	logger.Warn(string(xmlTemplate), api.LogFields{})
+	err = json.Unmarshal(jsonBytes, &js)
+	fatal(err)
 
-	client := eqip.NewClient(url, key)
+	result, err := xmlsvc.DefaultTemplate("application.xml", js)
+	fatal(err)
+	xml := string(result)
 
-	ir, err := newImportRequest(settings, js, string(xmlTemplate))
-	if err != nil {
-		logger.Fatal(err.Error(), api.LogFields{})
-	}
-	response, err := client.ImportRequest(ir)
-	if err != nil {
-		logger.Fatal(err.Error(), api.LogFields{})
-	}
-	//_ = response
-	logger.Warn(string(response.ResponseBody), api.LogFields{})
+	logger.Debug(xml, api.LogFields{})
 
-	logger.Warn("End of submit", api.LogFields{})
-}
+	client, err := api.EqipClient(settings)
+	fatal(err)
 
-func newImportRequest(settings api.Settings, application map[string]interface{}, xmlContent string) (*eqip.ImportRequest, error) {
-	var ciAgencyUserPseudoSSN bool
-	var agencyID int
-	var agencyGroupID int
+	request, err := api.EqipRequest(settings, js, xml)
+	fatal(err)
 
-	ciAgencyIDEnv := settings.String(api.WsCallerinfoAgencyID)
-	if ciAgencyIDEnv == "" {
-		return nil, fmt.Errorf(api.WebserviceMissingCallerInfoAgencyID)
-	}
-	ciAgencyUserSSNEnv := settings.String(api.WsCallerinfoAgencyUserSSN)
-	if ciAgencyUserSSNEnv == "" {
-		return nil, fmt.Errorf(api.WebserviceMissingCallerInfoAgencySSN)
-	}
-	// Parse agency id
-	agencyIDEnv := settings.String(api.WsAgencyID)
-	if agencyIDEnv == "" {
-		return nil, fmt.Errorf(api.WebserviceMissingAgencyID)
-	}
-	i, err := strconv.Atoi(agencyIDEnv)
-	if err != nil {
-		return nil, err
-	}
-	agencyID = i
+	response, err := client.ImportRequest(request)
+	fatal(err)
 
-	// Parse agency group id if necessary
-	agencyGroupIDEnv := settings.String(api.WsAgencyGroupID)
-	if agencyGroupIDEnv != "" {
-		i, err := strconv.Atoi(agencyGroupIDEnv)
-		if err != nil {
-			return nil, err
-		}
-		agencyGroupID = i
-	}
+	logger.Debug(string(response.ResponseBody), api.LogFields{})
 
-	ciAgencyUserPseudoSSNEnv := settings.String(api.WsCallerinfoAgencyUserPseudossn)
-	if ciAgencyUserPseudoSSNEnv == "" {
-		return nil, fmt.Errorf(api.WebserviceMissingCallerInfoAgencyPseudoSSN)
-	}
-	b, err := strconv.ParseBool(ciAgencyUserPseudoSSNEnv)
-	if err != nil {
-		return nil, fmt.Errorf(api.WebserviceMissingCallerInfoAgencyPseudoSSN)
-	}
-	ciAgencyUserPseudoSSN = b
-
-	ci := eqip.NewCallerInfo(ciAgencyIDEnv, ciAgencyUserPseudoSSN, ciAgencyUserSSNEnv)
-	return eqip.NewImportRequest(ci, agencyID, agencyGroupID, application, xmlContent)
+	agencyKey, requestKey := response.ImportRequestResponse.Keys()
+	fmt.Printf("submit: import into e-QIP successful: agencyKey=%v, requestKey=%v\n",
+		agencyKey, requestKey)
 }

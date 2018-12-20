@@ -4,7 +4,10 @@ import (
 	"crypto/sha256"
 	"encoding/hex"
 	"encoding/json"
+	"fmt"
+	"github.com/18F/e-QIP-prototype/api/eqip"
 	"html/template"
+	"strconv"
 )
 
 // SectionInformation represents a structure to quickly organize the different
@@ -610,4 +613,67 @@ func subsection(name string, payload Payload) map[string]Payload {
 	simple := make(map[string]Payload)
 	simple[name] = payload
 	return simple
+}
+
+// EqipClient returns a new eqip.Client, configured with the WS_* environment variables.
+func EqipClient(env Settings) (*eqip.Client, error) {
+	url := env.String(WsURL)
+	if url == "" {
+		return nil, fmt.Errorf(WebserviceMissingURL)
+	}
+	key := env.String(WsKey)
+	if key == "" {
+		return nil, fmt.Errorf(WebserviceMissingKey)
+	}
+
+	return eqip.NewClient(url, key), nil
+}
+
+// EqipRequest returns a new eqip.ImportRequest, configured with the WS_* environment variables.
+func EqipRequest(env Settings, application map[string]interface{}, xmlContent string) (*eqip.ImportRequest, error) {
+	var ciAgencyUserPseudoSSN bool
+	var agencyID int
+	var agencyGroupID int
+
+	ciAgencyIDEnv := env.String(WsCallerinfoAgencyID)
+	if ciAgencyIDEnv == "" {
+		return nil, fmt.Errorf(WebserviceMissingCallerInfoAgencyID)
+	}
+	ciAgencyUserSSNEnv := env.String(WsCallerinfoAgencyUserSSN)
+	if ciAgencyUserSSNEnv == "" {
+		return nil, fmt.Errorf(WebserviceMissingCallerInfoAgencySSN)
+	}
+	// Parse agency id
+	agencyIDEnv := env.String(WsAgencyID)
+	if agencyIDEnv == "" {
+		return nil, fmt.Errorf(WebserviceMissingAgencyID)
+	}
+	i, err := strconv.Atoi(agencyIDEnv)
+	if err != nil {
+		return nil, err
+	}
+	agencyID = i
+
+	// Parse agency group id if necessary
+	agencyGroupIDEnv := env.String(WsAgencyGroupID)
+	if agencyGroupIDEnv != "" {
+		i, err := strconv.Atoi(agencyGroupIDEnv)
+		if err != nil {
+			return nil, err
+		}
+		agencyGroupID = i
+	}
+
+	ciAgencyUserPseudoSSNEnv := env.String(WsCallerinfoAgencyUserPseudossn)
+	if ciAgencyUserPseudoSSNEnv == "" {
+		return nil, fmt.Errorf(WebserviceMissingCallerInfoAgencyPseudoSSN)
+	}
+	b, err := strconv.ParseBool(ciAgencyUserPseudoSSNEnv)
+	if err != nil {
+		return nil, fmt.Errorf(WebserviceMissingCallerInfoAgencyPseudoSSN)
+	}
+	ciAgencyUserPseudoSSN = b
+
+	ci := eqip.NewCallerInfo(ciAgencyIDEnv, ciAgencyUserPseudoSSN, ciAgencyUserSSNEnv)
+	return eqip.NewImportRequest(ci, agencyID, agencyGroupID, application, xmlContent)
 }
