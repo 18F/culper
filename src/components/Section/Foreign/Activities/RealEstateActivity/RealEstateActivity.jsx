@@ -71,10 +71,11 @@ export default class RealEstateActivity extends SubsectionElement {
       <div
         className="section-content realestate"
         {...super.dataAttributes(this.props)}>
+        <h1 className="section-header">Real estate purchase</h1>
         <Branch
           name="has_interests"
           label={i18n.t('foreign.activities.realestate.heading.title')}
-          labelSize="h2"
+          labelSize="h4"
           {...this.props.HasInterests}
           warning={true}
           onError={this.handleError}

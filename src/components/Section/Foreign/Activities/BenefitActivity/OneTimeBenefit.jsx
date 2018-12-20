@@ -156,7 +156,7 @@ export default class OneTimeBenefit extends ValidationElement {
           name="Obligated"
           className="obligated no-margin-bottom"
           label={i18n.t('foreign.activities.benefit.oneTime.heading.obligated')}
-          labelSize="h3"
+          labelSize="h4"
           {...this.props.Obligated}
           onError={this.props.onError}
           required={this.props.required}

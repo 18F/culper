@@ -71,10 +71,11 @@ export default class IndirectActivity extends SubsectionElement {
       <div
         className="section-content indirect"
         {...super.dataAttributes(this.props)}>
+        <h1 className="section-header">Indirect control</h1>
         <Branch
           name="has_interests"
           label={i18n.t('foreign.activities.indirect.heading.title')}
-          labelSize="h2"
+          labelSize="h4"
           {...this.props.HasInterests}
           help="foreign.activities.indirect.help.indirectControl"
           warning={true}

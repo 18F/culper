@@ -109,7 +109,7 @@ export default class Benefit extends ValidationElement {
           scrollIntoView={this.props.scrollIntoView}>
           <p>{i18n.t('foreign.activities.benefit.para.checkAll')}</p>
           <CheckboxGroup
-            className="interest-types"
+            className="interest-types option-list option-list-vertical"
             onError={this.props.onError}
             required={this.props.required}
             selectedValues={(this.props.InterestTypes || {}).values}>
@@ -161,7 +161,7 @@ export default class Benefit extends ValidationElement {
           adjustFor="big-buttons"
           scrollIntoView={this.props.scrollIntoView}>
           <RadioGroup
-            className="benefit-types"
+            className="benefit-types option-list option-list-vertical"
             onError={this.props.onError}
             required={this.props.required}
             selectedValue={(this.props.BenefitType || {}).value}>
@@ -231,7 +231,7 @@ export default class Benefit extends ValidationElement {
           adjustFor="big-buttons"
           scrollIntoView={this.props.scrollIntoView}>
           <RadioGroup
-            className="benefit-frequency"
+            className="benefit-frequency option-list option-list-vertical"
             onError={this.props.onError}
             required={this.props.required}
             selectedValue={(this.props.BenefitFrequency || {}).value}>

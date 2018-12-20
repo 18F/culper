@@ -98,7 +98,7 @@ export const foreign = {
       para: {
         intro: [
           'Foreign financial interest examples:  stocks, property, investments, bank accounts, ownership of corporate entities, corporate interests or exchange traded funds (ETFs) held in specific geographical or economic sectors.',
-          '**Exclude financial interests in companies or diversified mutual funds or diversified ETFs that are publicly traded on a U.S. exchange.**'
+          'Exclude financial interests in companies or diversified mutual funds or diversified ETFs that are publicly traded on a U.S. exchange.'
         ],
         howAcquired: 'Such as purchase, gift, etc.'
       },
@@ -860,7 +860,7 @@ export const foreign = {
       no: 'No',
       inperson: 'In person',
       telephone: 'Telephone',
-      electronic: ['Electronic', '(such as email, texting, chat rooms, etc)'],
+      electronic: 'Electronic (such as email, texting, chat rooms, etc)',
       written: 'Written correspondence',
       daily: 'Daily',
       weekly: 'Weekly',
@@ -868,12 +868,9 @@ export const foreign = {
       quarterly: 'Quarterly',
       annually: 'Annually',
       professional: 'Professional or business',
-      personal: [
-        'Personal',
-        '(such as family ties, friendship, affection, common interests, etc)'
-      ],
-      obligation: ['Obligation', '(provide explanation)'],
-      other: ['Other', '(provide explanation)']
+      personal: 'Personal (such as family ties, friendship, affection, common interests, etc)',
+      obligation: 'Obligation (provide explanation)',
+      other: 'Other (provide explanation)'
     },
     help: {
       branch: {

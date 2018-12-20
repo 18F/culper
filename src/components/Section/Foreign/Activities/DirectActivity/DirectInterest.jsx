@@ -146,7 +146,7 @@ export default class DirectInterest extends ValidationElement {
           scrollIntoView={this.props.scrollIntoView}>
           <p>{i18n.t('foreign.activities.direct.interest.para.checkAll')}</p>
           <CheckboxGroup
-            className="interest-types option-list"
+            className="interest-types option-list option-list-vertical"
             onError={this.props.onError}
             required={this.props.required}
             selectedValues={(this.props.InterestTypes || {}).values}>
@@ -230,7 +230,7 @@ export default class DirectInterest extends ValidationElement {
           )}
           adjustFor="p"
           scrollIntoView={this.props.scrollIntoView}>
-          {i18n.m('foreign.activities.direct.interest.para.howAcquired')}
+          {i18n.t('foreign.activities.direct.interest.para.howAcquired')}
           <Textarea
             name="HowAcquired"
             className="how-acquired"

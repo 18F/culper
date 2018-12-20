@@ -157,14 +157,9 @@ export default class Passport extends SubsectionElement {
       <div
         className="section-content passport"
         {...super.dataAttributes(this.props)}>
-        <Field
-          title={i18n.t('foreign.passport.title')}
-          titleSize="h4"
-          optional={true}
-          className="no-margin-bottom"
-        />
+        <h1 className="section-header">{i18n.t('foreign.passport.title')}</h1>
 
-        <p>{i18n.t('foreign.passport.info.text')}</p>
+        <h3>{i18n.t('foreign.passport.info.text')}</h3>
         <p>
           <a
             href="https://travel.state.gov/content/travel/en.html"
@@ -177,7 +172,7 @@ export default class Passport extends SubsectionElement {
         <Branch
           name="has_passport"
           label={i18n.t('foreign.passport.question.title')}
-          labelSize="h3"
+          labelSize="h4"
           {...this.props.HasPassports}
           warning={true}
           onUpdate={this.updateBranch}
@@ -189,7 +184,7 @@ export default class Passport extends SubsectionElement {
           <div>
             <Field
               title={i18n.t('foreign.passport.name')}
-              titleSize="h3"
+              titleSize="h4"
               optional={true}
               className="no-margin-bottom"
             />
@@ -257,7 +252,7 @@ export default class Passport extends SubsectionElement {
             </Field>
 
             <Field
-              title={i18n.t('foreign.passport.number')}
+              title={i18n.t(`foreign.passport.label.bookNumber`)}
               help="foreign.passport.help.number"
               errorPrefix="passport"
               adjustFor="buttons"
@@ -267,7 +262,6 @@ export default class Passport extends SubsectionElement {
                 <Text
                   name="number"
                   {...this.props.Number}
-                  label={i18n.t(`foreign.passport.label.bookNumber`)}
                   pattern={numberRegEx}
                   maxlength={numberLength}
                   className="number passport-number"
