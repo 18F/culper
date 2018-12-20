@@ -59,19 +59,16 @@ func (c *Client) Send(action RequestBody, response Body) error {
 		return err
 	}
 	defer resp.Body.Close()
-
-	if resp.StatusCode != http.StatusOK {
-		return fmt.Errorf("Post %s: %s", c.endpointURL, resp.Status)
-	}
+	status := fmt.Sprintf("Post %s: %s: ", c.endpointURL, resp.Status)
 
 	bodyBytes, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		return fmt.Errorf("Cannot read SOAP response: %s", err.Error())
+		return fmt.Errorf(status+"Cannot read HTTP response: %s", err.Error())
 	}
 
 	err = xml.Unmarshal(bodyBytes, response)
 	if err != nil {
-		return fmt.Errorf("SOAP response is malformed: %s: %s", err.Error(), string(bodyBytes))
+		return fmt.Errorf(status+"HTTP response is not an expected SOAP message: %s", string(bodyBytes))
 	}
 
 	response.SetResponseBody(bodyBytes)
