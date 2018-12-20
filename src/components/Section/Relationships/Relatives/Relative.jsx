@@ -367,7 +367,7 @@ export default class Relative extends ValidationElement {
           scrollIntoView={this.props.scrollIntoView}
           adjustFor="big-buttons">
           <RadioGroup
-            className="relative-relation option-list"
+            className="relative-relation option-list option-list-vertical"
             required={this.props.required}
             onError={this.props.onError}
             selectedValue={this.props.Relation.value}>
@@ -593,7 +593,7 @@ export default class Relative extends ValidationElement {
             <Branch
               name="maiden_diff"
               label={i18n.t('relationships.relatives.heading.maiden')}
-              labelSize="h3"
+              labelSize="h4"
               className="eapp-field-wrap relative-maiden-diff"
               {...this.props.MaidenSameAsListed}
               yesLabel={i18n.t('relationships.relatives.label.maiden.same')}
@@ -634,13 +634,6 @@ export default class Relative extends ValidationElement {
             required={this.props.required}
             scrollIntoView={this.props.scrollIntoView}>
             <div>
-              <Field
-                title={i18n.t('relationships.relatives.heading.needmore')}
-                optional={true}
-                className="more title"
-                scrollIntoView={this.props.scrollIntoView}>
-                <Svg src="/img/date-down-arrow.svg" className="more arrow" />
-              </Field>
               <Alias
                 name="Item"
                 minDate={this.props.Birthdate}
@@ -658,7 +651,7 @@ export default class Relative extends ValidationElement {
         <Branch
           name="is_deceased"
           label={i18n.t('relationships.relatives.heading.deceased.branch')}
-          labelSize="h3"
+          labelSize="h4"
           className="relative-deceased"
           {...this.props.IsDeceased}
           onUpdate={this.updateIsDeceased}

@@ -1,15 +1,6 @@
 @import 'eqip-colors';
 
 .relative-item {
-  .relative-relation label {
-    height: 6rem;
-    width: 18rem;
-    overflow: hidden;
-
-    > span > div {
-      top: 28%;
-    }
-  }
 
   .relation-child > label > span {
     > div:not(:last-of-type) {

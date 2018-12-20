@@ -1,10 +1,10 @@
 input[type='radio'] + label::before {
   position: absolute;
-  margin-top: 4px;
+  margin-top: 6px;
 }
 
 input[type='radio'].selected + label::before {
-  box-shadow: 0 0 0 2px #fff, 0 0 0 4px $color-primary;
+  box-shadow: 0 0 0 2px $color-white, 0 0 0 4px $color-primary;
   background-color: $color-primary;
 }
 

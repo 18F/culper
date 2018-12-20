@@ -19,6 +19,9 @@ export const relationships = {
     cohabitant: 'Cohabitant'
   },
   relatives: {
+    sectionTitle: {
+      title: 'Relatives'
+    },
     collection: {
       summary: {
         title: 'Summary of relatives',
@@ -101,7 +104,7 @@ export const relationships = {
         stepmother: 'Stepmother',
         stepfather: 'Stepfather',
         fosterparent: 'Foster parent',
-        child: ['Child', '(including adopted/foster)'],
+        child: ['Child (including adopted/foster)'],
         stepchild: 'Stepchild',
         brother: 'Brother',
         sister: 'Sister',
@@ -318,6 +321,9 @@ export const relationships = {
     }
   },
   marital: {
+    sectionTitle:  {
+      title: 'Marital'
+    },
     heading: {
       title:
         'Provide your current marital/relationship status with regard to civil marriage, legally recognized civil union, or legally recognized domestic partnership.'
@@ -562,6 +568,9 @@ export const relationships = {
     }
   },
   cohabitant: {
+    sectionTitle: {
+      title: 'Cohabitants'
+    },
     heading: {
       hasCohabitant:
         'Do you presently reside with a person, other than a spouse or legally recognized civil union/domestic partner, with whom you share bonds of affection, obligation, or other commitment, as opposed to a person with whom you live for reasons of convenience?',
@@ -687,6 +696,9 @@ export const relationships = {
     }
   },
   people: {
+    sectionTitle: {
+      title: 'People who know you well'
+    },
     label: {
       unit: 'People added'
     },
