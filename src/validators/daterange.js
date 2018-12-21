@@ -15,11 +15,15 @@ export default class DateRangeValidator {
     this.present = data.present
   }
 
+  hasNotBeenTouched(date) {
+    return date && date.touched !== undefined && date.touched !== null && !date.touched
+  }
+
   /**
    * Validates the date ranges
    */
   isValid() {
-    if (!this.from.touched || !this.to.touched) {
+    if (this.hasNotBeenTouched(this.from) || this.hasNotBeenTouched(this.to)) {
       return true
     }
 

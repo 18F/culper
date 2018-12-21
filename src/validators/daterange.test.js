@@ -29,10 +29,28 @@ describe('Date range validator', function() {
             year: '2010',
             touched: true
           },
-          to: {},
+          to: {
+            month: '',
+            day: '',
+            year: '',
+            touched: false
+          },
           present: false
         },
         expected: true
+      },
+      {
+        data: {
+          from: {
+            month: '1',
+            day: '1',
+            year: '2010',
+            touched: true
+          },
+          to: {},
+          present: false
+        },
+        expected: false
       },
       {
         data: {
