@@ -104,12 +104,12 @@ export default class Diagnoses extends SubsectionElement {
       <div
         className="section-content diagnoses"
         {...super.dataAttributes(this.props)}>
+        <h1 className="section-header">Diagnoses</h1>
         {i18n.m('psychological.heading.diagnoses')}
-
         <Branch
           name="diagnosed"
           label={i18n.t('psychological.diagnoses.heading.diagnoses')}
-          labelSize="h2"
+          labelSize="h4"
           className="diagnosed"
           {...this.props.Diagnosed}
           warning={true}
@@ -156,7 +156,7 @@ export default class Diagnoses extends SubsectionElement {
             <Branch
               name="didNotConsult"
               label={i18n.t('psychological.diagnoses.heading.didNotConsult')}
-              labelSize="h3"
+              labelSize="h4"
               className="didnotconsult"
               {...this.props.DidNotConsult}
               onError={this.handleError}
@@ -168,7 +168,7 @@ export default class Diagnoses extends SubsectionElement {
             <Branch
               name="inTreatment"
               label={i18n.t('psychological.diagnoses.heading.inTreatment')}
-              labelSize="h3"
+              labelSize="h4"
               className="intreatment"
               {...this.props.InTreatment}
               warning={true}

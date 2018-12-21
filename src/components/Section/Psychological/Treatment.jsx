@@ -44,7 +44,9 @@ export default class Treatment extends ValidationElement {
       <div className="treatment">
         <Field
           title={i18n.t(`psychological.${prefix}.heading.name`)}
+          titleSize="label"
           adjustFor="labels"
+          className="no-margin-bottom"
           scrollIntoView={this.props.scrollIntoView}>
           <Text
             name="Name"

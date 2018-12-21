@@ -6,7 +6,7 @@ export const psychological = {
     consultation:
       'Has a court or administrative agency EVER ordered you to consult with a mental health professional?',
     consultation2:
-      '**For example, a psychiatrist, psychologist, licensed clinical social worker, etc.**\n\nAn order to a military member by a superior officer is not within the scope of this question, and therefore would not require an affirmative response.',
+      'For example, a psychiatrist, psychologist, licensed clinical social worker, etc.\n\nAn order to a military member by a superior officer is not within the scope of this question, and therefore would not require an affirmative response.',
     hospitalization:
       'Have you EVER been hospitalized for a mental health condition?',
     diagnoses:
@@ -440,7 +440,7 @@ export const psychological = {
     },
     para: {
       hasCondition:
-        'Note: If your judgment, reliability, or trustworthiness is not substantially adversely affected by a mental health or other condition, then you should answer "no" even if you have a mental health or other condition requiring treatment. For example, if you are in need of emotional or mental health counseling as a result of service as a first responder, service in a military combat environment, having been sexually assaulted or a victim of domestic violence, or marital issues, but your judgment, reliability or trustworthiness is not substantially adversely affected, then answer "no."',
+        'Note: If your judgment, reliability, or trustworthiness is not substantially adversely affected by a mental health or other condition, then you should answer **"no"** even if you have a mental health or other condition requiring treatment.\n\nFor example, if you are in need of emotional or mental health counseling as a result of service as a first responder, service in a military combat environment, having been sexually assaulted or a victim of domestic violence, or marital issues, but your judgment, reliability or trustworthiness is not substantially adversely affected, then answer **"no."**',
       receivedTreatment:
         'You may choose not to answer this question. However, such consultation or treatment will not disqualify you and is considered to be a positive action.'
     },
