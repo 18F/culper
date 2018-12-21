@@ -4,20 +4,20 @@
 .eapp-title > .title {
   max-height: 14.5rem;
   overflow: hidden;
-  color: #fff;
+  color: $color-white;
   font-size: 2.5rem;
   font-weight: $eapp-bold;
   margin-bottom: 2rem;
 
   .title-text {
     transition: all 400ms ease;
-    display: block;
+    display: none;
     line-height: 1.2;
   }
 
   .crumb {
     transition: all 400ms ease;
-    font-size: 1.2rem;
-    color: $eapp-blue-lighter;
+    font-size: 1.6rem;
+    color: $color-white;
   }
 }

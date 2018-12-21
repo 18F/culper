@@ -66,9 +66,10 @@ export default class Travel extends SubsectionElement {
       <div
         className="section-content foreign-travel"
         {...super.dataAttributes(this.props)}>
+        <h1 className="section-header">Foreign countries you have visited</h1>
         <Branch
           label={i18n.t('foreign.travel.heading.outside')}
-          labelSize="h2"
+          labelSize="h4"
           name="has_foreign_travel_outside"
           className="foreign-travel-outside"
           {...this.props.HasForeignTravelOutside}
@@ -82,7 +83,7 @@ export default class Travel extends SubsectionElement {
         <Show when={(this.props.HasForeignTravelOutside || {}).value === 'Yes'}>
           <Branch
             label={i18n.t('foreign.travel.heading.official')}
-            labelSize="h3"
+            labelSize="h4"
             name="has_foreign_travel_official"
             className="foreign-travel-official"
             help="foreign.travel.help.official"

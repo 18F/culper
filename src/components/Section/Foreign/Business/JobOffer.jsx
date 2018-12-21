@@ -139,7 +139,7 @@ export default class JobOffer extends ValidationElement {
         <Branch
           name="Accepted"
           label={i18n.t('foreign.business.employment.heading.accepted')}
-          labelSize="h3"
+          labelSize="h4"
           className={`employment-accepted ${
             (this.props.Accepted || {}).value ? 'no-margin-bottom' : ''
           }`.trim()}

@@ -265,14 +265,16 @@ p {
               margin-top: -1rem;
 
               .title-text {
-                transition: font-size 400ms ease-out;
+                transition: all 400ms ease-out;
+                display: block;
                 font-size: 1.8rem;
                 line-height: 1;
               }
 
               .crumb {
-                transition: font-size 400ms ease-out;
+                transition: all 400ms ease-out;
                 font-size: 1rem;
+                color: $eapp-blue-lighter;
               }
             }
           }

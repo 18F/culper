@@ -1448,7 +1448,7 @@ export const foreign = {
           'Have you or any member of your immediate family in the last seven (7) years had any additional contact with a foreign government, its establishment or its representatives, whether inside or outside the U.S.?',
         appendMessage: [
           'Such as embassy, consulate, agency, military service, intelligence or security service, etc.',
-          'Answer "No" if the contact was for routine visa applications and border crossings related to either official U.S. Government travel, foreign travel on a U.S. passport, or as a U.S. military service member in conjunction with a U.S. Government military duty.'
+          'Answer **"No"** if the contact was for routine visa applications and border crossings related to either official U.S. Government travel, foreign travel on a U.S. passport, or as a U.S. military service member in conjunction with a U.S. Government military duty.'
         ],
         append: 'Add another contact'
       }
