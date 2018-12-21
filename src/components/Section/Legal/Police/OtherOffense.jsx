@@ -187,8 +187,8 @@ export default class OtherOffense extends ValidationElement {
         <Branch
           name="involved_violence"
           label={i18n.t('legal.police.heading.involvement')}
-          labelSize="h3"
-          className="offense-violence"
+          labelSize="h4"
+          className="offense-violence no-margin-bottom"
           {...this.props.InvolvedViolence}
           onUpdate={this.updateInvolvedViolence}
           required={this.props.required}
@@ -199,7 +199,7 @@ export default class OtherOffense extends ValidationElement {
 
         <Branch
           name="involved_firearms"
-          className="offense-firearms"
+          className="offense-firearms no-margin-bottom"
           {...this.props.InvolvedFirearms}
           onUpdate={this.updateInvolvedFirearms}
           required={this.props.required}
@@ -259,14 +259,14 @@ export default class OtherOffense extends ValidationElement {
 
         <Field
           title={i18n.t('legal.police.heading.chargedetails')}
-          titleSize="h3"
+          titleSize="h4"
           className="no-margin-bottom">
           {i18n.m('legal.police.para.chargedetails')}
         </Field>
 
         <Field
           title={i18n.t('legal.police.heading.chargeType')}
-          titleSize="h4"
+          titleSize="label"
           adjustFor="buttons"
           scrollIntoView={this.props.scrollIntoView}>
           <RadioGroup
@@ -342,7 +342,7 @@ export default class OtherOffense extends ValidationElement {
         <Branch
           name="was_sentenced"
           label={i18n.t('legal.police.heading.otherOffenseSentenced')}
-          labelSize="h3"
+          labelSize="h4"
           className="offense-sentenced"
           {...this.props.WasSentenced}
           onUpdate={this.updateWasSentenced}
@@ -353,13 +353,6 @@ export default class OtherOffense extends ValidationElement {
 
         <Show when={(this.props.WasSentenced || {}).value === 'Yes'}>
           <div>
-            <Field
-              title={i18n.t('legal.police.heading.needmore')}
-              optional={true}
-              className="more title"
-              scrollIntoView={this.props.scrollIntoView}>
-              <Svg src="/img/date-down-arrow.svg" className="more arrow" />
-            </Field>
             <Sentence
               name="Sentence"
               {...this.props.Sentence}

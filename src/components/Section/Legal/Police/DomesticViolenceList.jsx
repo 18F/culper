@@ -57,10 +57,11 @@ export default class DomesticViolenceList extends SubsectionElement {
       <div
         className="section-content domestic-violence-list"
         {...super.dataAttributes(this.props)}>
+        <h1 className="section-header">Domestic violence</h1>
         <Branch
           name="has_domestic_violence"
           label={i18n.t('legal.police.label.domesticViolence')}
-          labelSize="h2"
+          labelSize="h4"
           className="has-domestic-violence"
           {...this.props.HasDomesticViolence}
           warning={true}

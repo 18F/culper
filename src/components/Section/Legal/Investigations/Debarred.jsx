@@ -56,10 +56,11 @@ export default class Debarred extends SubsectionElement {
       <div
         className="section-content investigations-debarred"
         {...super.dataAttributes(this.props)}>
+        <h1 className="section-header">Debarment</h1>
         <Branch
           name="has_debarred"
           label={i18n.t('legal.investigations.debarred.heading.title')}
-          labelSize="h2"
+          labelSize="h4"
           className="legal-investigations-debarred-has-debarment"
           {...this.props.HasDebarment}
           warning={true}

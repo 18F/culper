@@ -60,12 +60,12 @@ export default class Unauthorized extends SubsectionElement {
       <div
         className="section-content legal-technology-unauthorized"
         {...super.dataAttributes(this.props)}>
+        <h1 className="section-header">Unauthorized access</h1>
         {i18n.m('legal.technology.unauthorized.para.intro')}
-
         <Branch
           name="has_unauthorized"
           label={i18n.t('legal.technology.unauthorized.heading.title')}
-          labelSize="h2"
+          labelSize="h4"
           className="legal-technology-unauthorized-has-unauthorized"
           {...this.props.HasUnauthorized}
           warning={true}

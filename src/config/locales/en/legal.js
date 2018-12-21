@@ -378,7 +378,7 @@ export const legal = {
           confidential: 'Confidential',
           secret: 'Secret',
           topsecret: 'Top Secret',
-          sci: ['Sensitive Compartmented Information', '(SCI)'],
+          sci: 'Sensitive Compartmented Information (SCI)',
           q: 'Q',
           l: 'L',
           foreign: 'Issued by foreign country',

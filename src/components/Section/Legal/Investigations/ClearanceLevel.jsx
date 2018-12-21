@@ -42,7 +42,7 @@ export default class ClearanceLevel extends ValidationElement {
     return (
       <div className={this.props.className}>
         <RadioGroup
-          className="clearance-levels"
+          className="clearance-levels option-list option-list-vertical"
           selectedValue={(this.props.Level || {}).value}
           onError={this.props.onError}
           required={this.props.required}
