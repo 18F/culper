@@ -4,7 +4,7 @@ export const application = {
     submit: 'Submit'
   },
   header: [
-    '## All required fields are complete',
+    '# All required fields are complete',
     'Not a guarantee of acceptance. We are checking that all required fields are complete'
   ],
   additional: [
@@ -25,16 +25,16 @@ export const application = {
   ],
   submissionStatus: {
     validating: [
-      '## Verifying your information is complete',
+      '# Verifying your information is complete',
       'Checking your form...'
     ],
     valid: [
-      '## All required fields are complete',
+      '# All required fields are complete',
       'Not a guarantee of acceptance, but all required fields are complete.'
     ],
     valid2: ['### Please sign the releases below and submit your form'],
     invalid: [
-      '## Some required fields are incomplete',
+      '# Some required fields are incomplete',
       'Please fix the errors listed below.'
     ]
   },
