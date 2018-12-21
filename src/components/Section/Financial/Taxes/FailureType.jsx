@@ -20,7 +20,7 @@ export default class FailureType extends ValidationElement {
   render() {
     return (
       <RadioGroup
-        className={`option-list ${this.props.className || ''}`.trim()}
+        className={`option-list option-list-vertical ${this.props.className || ''}`.trim()}
         required={this.props.required}
         onError={this.props.onError}
         selectedValue={this.props.value}>

@@ -71,10 +71,11 @@ export default class Card extends SubsectionElement {
       <div
         className="section-content card-abuse"
         {...super.dataAttributes(this.props)}>
+        <h1 className="section-header">Employer card abuse</h1>
         <Branch
           name="has_cardabuse"
           label={i18n.t('financial.card.title')}
-          labelSize="h2"
+          labelSize="h4"
           className="card-branch"
           {...this.props.HasCardAbuse}
           warning={true}

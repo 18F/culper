@@ -65,10 +65,11 @@ export default class Credit extends SubsectionElement {
       <div
         className="section-content credit-counseling"
         {...super.dataAttributes(this.props)}>
+        <h1 className="section-header">Credit counseling</h1>
         <Branch
           name="has_credit"
           label={i18n.t('financial.credit.title')}
-          labelSize="h2"
+          labelSize="h4"
           className="credit-branch"
           {...this.props.HasCreditCounseling}
           warning={true}
