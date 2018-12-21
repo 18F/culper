@@ -73,7 +73,7 @@ export default class Taxes extends SubsectionElement {
         <Branch
           name="has_taxes"
           label={i18n.t('financial.taxes.title')}
-          labelSize="h3"
+          labelSize="h4"
           className="taxes-branch"
           {...this.props.HasTaxes}
           warning={true}
