@@ -200,7 +200,7 @@ export default class ReceivedCounseling extends ValidationElement {
           label={i18n.t(
             'substance.alcohol.receivedCounseling.heading.agencyAddress'
           )}
-          labelSize="h3"
+          labelSize="h4"
           help={'substance.alcohol.receivedCounseling.help.agencyAddress'}
           className={`use-same-address ${
             this.props.UseSameAddress === 'No' ? 'no-margin-bottom' : ''
@@ -291,7 +291,7 @@ export default class ReceivedCounseling extends ValidationElement {
           label={i18n.t(
             'substance.alcohol.receivedCounseling.heading.completedTreatment'
           )}
-          labelSize="h3"
+          labelSize="h4"
           className="completed-treatment no-margin-bottom"
           {...this.props.CompletedTreatment}
           onUpdate={this.updateCompletedTreatment}

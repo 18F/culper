@@ -69,10 +69,11 @@ export default class ReceivedCounselings extends SubsectionElement {
       <div
         className="section-content received-counselings"
         {...super.dataAttributes(this.props)}>
+        <h1 className="section-header">Additional instances</h1>
         <Branch
           name="ReceivedTreatment"
           label={i18n.t('substance.alcohol.heading.receivedCounseling')}
-          labelSize="h2"
+          labelSize="h4"
           className="received-treatment"
           {...this.props.ReceivedTreatment}
           warning={true}

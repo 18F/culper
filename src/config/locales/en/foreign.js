@@ -992,7 +992,7 @@ export const foreign = {
       },
       para: {
         branch:
-          'Answer "No" if **all** your advice or support was authorized pursuant to official U.S. Government business.'
+          'Answer **"No"** if **all** your advice or support was authorized pursuant to official U.S. Government business.'
       },
       help: {
         description: {
@@ -1061,7 +1061,7 @@ export const foreign = {
           message:
             'If you have provided any advice to a foreign individual or business then select "yes"',
           note:
-            'Note: Answer "no" if **all** your advice or support was authorized pursuant to official U.S. Government business.'
+            'Note: Answer **"no"** if **all** your advice or support was authorized pursuant to official U.S. Government business.'
         },
         agency: {
           title: 'Need help with the agency name?',
@@ -1370,7 +1370,7 @@ export const foreign = {
           'For this question, "Immediate Family" means your spouse, parents, step-parents, siblings, half and step-siblings, children, stepchildren, and cohabitant.',
         branch: [
           'Such as  embassy, consulate, agency, military service, intelligence or security service, etc.',
-          'Answer "No" if the contact was for routine visa applications and border crossings related to either official U.S.  Government travel, foreign travel on a U.S. passport, or as a U.S. military service member in conjunction with a U.S. Government military duty.'
+          'Answer **"No"** if the contact was for routine visa applications and border crossings related to either official U.S.  Government travel, foreign travel on a U.S. passport, or as a U.S. military service member in conjunction with a U.S. Government military duty.'
         ]
       },
       label: {

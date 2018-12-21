@@ -62,6 +62,7 @@ export default class DrugType extends ValidationElement {
       <div className="drug-type">
         <RadioGroup
           name="born"
+          className="option-list option-list-vertical"
           onError={this.props.onError}
           required={this.props.required}
           selectedValue={selected}>

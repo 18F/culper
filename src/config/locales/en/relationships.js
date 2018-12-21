@@ -135,7 +135,7 @@ export const relationships = {
         ],
         permanent: ['Permanent resident card', '(I-551)'],
         certificate: ['Certificate of naturalization', '(N550 or N570)'],
-        other: ['Other', '(provide explanation)']
+        other: 'Other (provide explanation)'
       },
       methods: {
         inperson: 'In person',
@@ -145,7 +145,7 @@ export const relationships = {
           '(such as email, texting, chat rooms, etc.)'
         ],
         written: 'Written correspondence',
-        other: ['Other', '(provide explanation)']
+        other: 'Other (provide explanation)'
       },
       frequency: {
         daily: 'Daily',
@@ -153,7 +153,7 @@ export const relationships = {
         monthly: 'Monthly',
         quarterly: 'Quarterly',
         annually: 'Annually',
-        other: ['Other', '(provide explanation)']
+        other: 'Other (provide explanation)'
       },
       document: {
         permanent: 'I-551 Permanent Resident',
@@ -165,7 +165,7 @@ export const relationships = {
           'DS-2019 Certificate of Eligibility',
           '(exchange visitor J1 status)'
         ],
-        other: ['Other', '(provide explanation)']
+        other: 'Other (provide explanation)'
       },
       maiden: {
         same: 'Same as listed',

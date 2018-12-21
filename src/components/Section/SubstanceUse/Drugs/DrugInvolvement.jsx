@@ -171,7 +171,7 @@ export default class DrugInvolvement extends ValidationElement {
           label={i18n.t(
             'substance.drugs.involvement.heading.involvementWhileEmployed'
           )}
-          labelSize="h3"
+          labelSize="h4"
           className="involvement-while-employed"
           {...this.props.InvolvementWhileEmployed}
           onError={this.props.onError}
@@ -185,7 +185,7 @@ export default class DrugInvolvement extends ValidationElement {
           label={i18n.t(
             'substance.drugs.involvement.heading.involvementWithClearance'
           )}
-          labelSize="h3"
+          labelSize="h4"
           className="involvement-with-clearance"
           {...this.props.InvolvementWithClearance}
           onError={this.props.onError}
@@ -199,7 +199,7 @@ export default class DrugInvolvement extends ValidationElement {
           label={i18n.t(
             'substance.drugs.involvement.heading.involvementInFuture'
           )}
-          labelSize="h3"
+          labelSize="h4"
           className="involvement-in-future no-margin-bottom"
           {...this.props.InvolvementInFuture}
           onError={this.props.onError}

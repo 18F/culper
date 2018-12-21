@@ -75,6 +75,7 @@ export default class Contact extends SubsectionElement {
         className="section-content foreign-business-contact"
         {...super.dataAttributes(this.props)}>
         <h1 className="section-header">Immediate family contact</h1>
+        {i18n.m('foreign.business.contact.para.intro')}
         <Branch
           name="has_foreign_contact"
           label={i18n.t('foreign.business.contact.heading.title')}
@@ -85,7 +86,6 @@ export default class Contact extends SubsectionElement {
           required={this.props.required}
           onError={this.handleError}
           scrollIntoView={this.props.scrollIntoView}>
-          {i18n.m('foreign.business.contact.para.intro')}
           {i18n.m('foreign.business.contact.para.branch')}
         </Branch>
 
