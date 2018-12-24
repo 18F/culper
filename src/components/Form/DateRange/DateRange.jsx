@@ -3,9 +3,9 @@ import ValidationElement from '../ValidationElement'
 import DateControl from '../DateControl'
 import Checkbox from '../Checkbox'
 import Svg from '../Svg'
-import { now } from '../../Section/History/dateranges'
 import Show from '../Show'
-import { extractDate, validDate } from '../../Section/History/dateranges'
+import { now, extractDate, validDate } from '../../Section/History/dateranges'
+import DateRangeValidator from '../../../validators/daterange'
 
 export default class DateRange extends ValidationElement {
   constructor(props) {
@@ -67,12 +67,14 @@ export default class DateRange extends ValidationElement {
   }
 
   updateFrom(values) {
+    values.touched = true
     this.setState({ from: values, presentClicked: false }, () => {
       this.update({ from: values })
     })
   }
 
   updateTo(values) {
+    values.touched = true
     this.setState({ to: values, presentClicked: false }, () => {
       this.update({ to: values })
     })
@@ -285,8 +287,12 @@ export default class DateRange extends ValidationElement {
 }
 
 DateRange.defaultProps = {
-  from: {},
-  to: {},
+  from: {
+    touched: false
+  },
+  to: {
+    touched: false
+  },
   present: false,
   prefix: '',
   dateRangePrefix: '',
@@ -318,7 +324,7 @@ DateRange.errors = [
       if (!props.from || !props.to) {
         return null
       }
-      return extractDate(props.from) <= extractDate(props.to)
+      return new DateRangeValidator(props).isValid()
     }
   }
 ]
