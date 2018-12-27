@@ -122,7 +122,6 @@ export class DiplomaItem extends ValidationElement {
           <Show when={(this.props.Diploma || {}).value === 'Other'}>
             <Field
               title={i18n.t('history.education.label.diploma.other')}
-              titleSize="h4"
               titleSize="label"
               adjustFor="text"
               scrollIntoView={this.props.scrollIntoView}>

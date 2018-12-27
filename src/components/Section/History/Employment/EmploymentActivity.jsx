@@ -177,7 +177,6 @@ export default class EmploymentActivity extends ValidationElement {
           <Show when={this.props.value === 'Other'}>
             <Field
               title={i18n.m('history.employment.default.activity.other.label')}
-              titleSize="h4"
               titleSize="label"
               adjustFor="labels"
               scrollIntoView={this.props.scrollIntoView}>
