@@ -7,6 +7,11 @@ exports[`The financial section renders the FinancialSections component 1`] = `
     data-section="financial"
     data-subsection="bankruptcy"
   >
+    <h1
+      className="section-header"
+    >
+      Bankruptcy
+    </h1>
     <div
       aria-label="In the last seven (7) years have you filed a petition under any chapter of the bankruptcy code?"
       className="field required  branch bankruptcy-branch"
@@ -18,17 +23,17 @@ exports[`The financial section renders the FinancialSections component 1`] = `
         id="field-MOCK-GUID"
         name="field-MOCK-GUID"
       />
-      <h2
-        className="title h2"
+      <h4
+        className="title h4"
       >
         In the last seven (7) years have you filed a petition under any chapter of the bankruptcy code?
-      </h2>
+      </h4>
       <span
         className="icon"
       >
         <a
           aria-label="Show help for In the last seven (7) years have you filed a petition under any chapter of the bankruptcy code?"
-          className="toggle h2  adjust-for-buttons"
+          className="toggle h4  adjust-for-buttons"
           href="javascript:;"
           onClick={[Function]}
           title="Show help for In the last seven (7) years have you filed a petition under any chapter of the bankruptcy code?"
@@ -107,25 +112,25 @@ exports[`The financial section renders the FinancialSections component 1`] = `
               <div
                 className="yes block"
               >
+                <input
+                  aria-label="Yes for null"
+                  checked={false}
+                  className="usa-input-success"
+                  disabled={false}
+                  id="has_bankruptcydebt-MOCK-GUID"
+                  name="has_bankruptcydebt-MOCK-GUID"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  type="radio"
+                  value="Yes"
+                />
                 <label
                   className=""
                   htmlFor="has_bankruptcydebt-MOCK-GUID"
                 >
-                  <input
-                    aria-label="Yes for null"
-                    checked={false}
-                    className="usa-input-success"
-                    disabled={false}
-                    id="has_bankruptcydebt-MOCK-GUID"
-                    name="has_bankruptcydebt-MOCK-GUID"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onClick={[Function]}
-                    onFocus={[Function]}
-                    onKeyDown={[Function]}
-                    type="radio"
-                    value="Yes"
-                  />
                   <span>
                     Yes
                   </span>
@@ -134,25 +139,25 @@ exports[`The financial section renders the FinancialSections component 1`] = `
               <div
                 className="no block"
               >
+                <input
+                  aria-label="No for null"
+                  checked={false}
+                  className="usa-input-success"
+                  disabled={false}
+                  id="has_bankruptcydebt-MOCK-GUID"
+                  name="has_bankruptcydebt-MOCK-GUID"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  type="radio"
+                  value="No"
+                />
                 <label
                   className=""
                   htmlFor="has_bankruptcydebt-MOCK-GUID"
                 >
-                  <input
-                    aria-label="No for null"
-                    checked={false}
-                    className="usa-input-success"
-                    disabled={false}
-                    id="has_bankruptcydebt-MOCK-GUID"
-                    name="has_bankruptcydebt-MOCK-GUID"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onClick={[Function]}
-                    onFocus={[Function]}
-                    onKeyDown={[Function]}
-                    type="radio"
-                    value="No"
-                  />
                   <span>
                     No
                   </span>
@@ -172,6 +177,11 @@ exports[`The financial section renders the FinancialSections component 1`] = `
     data-section="financial"
     data-subsection="gambling"
   >
+    <h1
+      className="section-header"
+    >
+      Gambling
+    </h1>
     <div
       aria-label="Have you ever experienced financial problems due to gambling?"
       className="field required  branch has-gambling-debt"
@@ -183,11 +193,11 @@ exports[`The financial section renders the FinancialSections component 1`] = `
         id="field-MOCK-GUID"
         name="field-MOCK-GUID"
       />
-      <h2
-        className="title h2"
+      <h4
+        className="title h4"
       >
         Have you ever experienced financial problems due to gambling?
-      </h2>
+      </h4>
       <span
         className="icon"
       />
@@ -248,25 +258,25 @@ exports[`The financial section renders the FinancialSections component 1`] = `
               <div
                 className="yes block"
               >
+                <input
+                  aria-label="Yes for null"
+                  checked={false}
+                  className="usa-input-success"
+                  disabled={false}
+                  id="has_gamblingdebt-MOCK-GUID"
+                  name="has_gamblingdebt-MOCK-GUID"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  type="radio"
+                  value="Yes"
+                />
                 <label
                   className=""
                   htmlFor="has_gamblingdebt-MOCK-GUID"
                 >
-                  <input
-                    aria-label="Yes for null"
-                    checked={false}
-                    className="usa-input-success"
-                    disabled={false}
-                    id="has_gamblingdebt-MOCK-GUID"
-                    name="has_gamblingdebt-MOCK-GUID"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onClick={[Function]}
-                    onFocus={[Function]}
-                    onKeyDown={[Function]}
-                    type="radio"
-                    value="Yes"
-                  />
                   <span>
                     Yes
                   </span>
@@ -275,25 +285,25 @@ exports[`The financial section renders the FinancialSections component 1`] = `
               <div
                 className="no block"
               >
+                <input
+                  aria-label="No for null"
+                  checked={false}
+                  className="usa-input-success"
+                  disabled={false}
+                  id="has_gamblingdebt-MOCK-GUID"
+                  name="has_gamblingdebt-MOCK-GUID"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  type="radio"
+                  value="No"
+                />
                 <label
                   className=""
                   htmlFor="has_gamblingdebt-MOCK-GUID"
                 >
-                  <input
-                    aria-label="No for null"
-                    checked={false}
-                    className="usa-input-success"
-                    disabled={false}
-                    id="has_gamblingdebt-MOCK-GUID"
-                    name="has_gamblingdebt-MOCK-GUID"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onClick={[Function]}
-                    onFocus={[Function]}
-                    onKeyDown={[Function]}
-                    type="radio"
-                    value="No"
-                  />
                   <span>
                     No
                   </span>
@@ -313,6 +323,11 @@ exports[`The financial section renders the FinancialSections component 1`] = `
     data-section="financial"
     data-subsection="taxes"
   >
+    <h1
+      className="section-header"
+    >
+      Taxes
+    </h1>
     <div
       aria-label="In the last seven (7) years have you failed to file or pay Federal, state, or other taxes when required by law or ordinance?"
       className="field required  branch taxes-branch"
@@ -324,11 +339,11 @@ exports[`The financial section renders the FinancialSections component 1`] = `
         id="field-MOCK-GUID"
         name="field-MOCK-GUID"
       />
-      <h2
-        className="title h2"
+      <h4
+        className="title h4"
       >
         In the last seven (7) years have you failed to file or pay Federal, state, or other taxes when required by law or ordinance?
-      </h2>
+      </h4>
       <span
         className="icon"
       />
@@ -389,25 +404,25 @@ exports[`The financial section renders the FinancialSections component 1`] = `
               <div
                 className="yes block"
               >
+                <input
+                  aria-label="Yes for null"
+                  checked={false}
+                  className="usa-input-success"
+                  disabled={false}
+                  id="has_taxes-MOCK-GUID"
+                  name="has_taxes-MOCK-GUID"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  type="radio"
+                  value="Yes"
+                />
                 <label
                   className=""
                   htmlFor="has_taxes-MOCK-GUID"
                 >
-                  <input
-                    aria-label="Yes for null"
-                    checked={false}
-                    className="usa-input-success"
-                    disabled={false}
-                    id="has_taxes-MOCK-GUID"
-                    name="has_taxes-MOCK-GUID"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onClick={[Function]}
-                    onFocus={[Function]}
-                    onKeyDown={[Function]}
-                    type="radio"
-                    value="Yes"
-                  />
                   <span>
                     Yes
                   </span>
@@ -416,25 +431,25 @@ exports[`The financial section renders the FinancialSections component 1`] = `
               <div
                 className="no block"
               >
+                <input
+                  aria-label="No for null"
+                  checked={false}
+                  className="usa-input-success"
+                  disabled={false}
+                  id="has_taxes-MOCK-GUID"
+                  name="has_taxes-MOCK-GUID"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  type="radio"
+                  value="No"
+                />
                 <label
                   className=""
                   htmlFor="has_taxes-MOCK-GUID"
                 >
-                  <input
-                    aria-label="No for null"
-                    checked={false}
-                    className="usa-input-success"
-                    disabled={false}
-                    id="has_taxes-MOCK-GUID"
-                    name="has_taxes-MOCK-GUID"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onClick={[Function]}
-                    onFocus={[Function]}
-                    onKeyDown={[Function]}
-                    type="radio"
-                    value="No"
-                  />
                   <span>
                     No
                   </span>
@@ -454,6 +469,11 @@ exports[`The financial section renders the FinancialSections component 1`] = `
     data-section="financial"
     data-subsection="card"
   >
+    <h1
+      className="section-header"
+    >
+      Employer card abuse
+    </h1>
     <div
       aria-label="In the last seven (7) years have you been counseled, warned, or disciplined for violating the terms of agreement for your travel or credit card provided by your employer?"
       className="field required  branch card-branch"
@@ -465,11 +485,11 @@ exports[`The financial section renders the FinancialSections component 1`] = `
         id="field-MOCK-GUID"
         name="field-MOCK-GUID"
       />
-      <h2
-        className="title h2"
+      <h4
+        className="title h4"
       >
         In the last seven (7) years have you been counseled, warned, or disciplined for violating the terms of agreement for your travel or credit card provided by your employer?
-      </h2>
+      </h4>
       <span
         className="icon"
       />
@@ -530,25 +550,25 @@ exports[`The financial section renders the FinancialSections component 1`] = `
               <div
                 className="yes block"
               >
+                <input
+                  aria-label="Yes for null"
+                  checked={false}
+                  className="usa-input-success"
+                  disabled={false}
+                  id="has_cardabuse-MOCK-GUID"
+                  name="has_cardabuse-MOCK-GUID"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  type="radio"
+                  value="Yes"
+                />
                 <label
                   className=""
                   htmlFor="has_cardabuse-MOCK-GUID"
                 >
-                  <input
-                    aria-label="Yes for null"
-                    checked={false}
-                    className="usa-input-success"
-                    disabled={false}
-                    id="has_cardabuse-MOCK-GUID"
-                    name="has_cardabuse-MOCK-GUID"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onClick={[Function]}
-                    onFocus={[Function]}
-                    onKeyDown={[Function]}
-                    type="radio"
-                    value="Yes"
-                  />
                   <span>
                     Yes
                   </span>
@@ -557,25 +577,25 @@ exports[`The financial section renders the FinancialSections component 1`] = `
               <div
                 className="no block"
               >
+                <input
+                  aria-label="No for null"
+                  checked={false}
+                  className="usa-input-success"
+                  disabled={false}
+                  id="has_cardabuse-MOCK-GUID"
+                  name="has_cardabuse-MOCK-GUID"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  type="radio"
+                  value="No"
+                />
                 <label
                   className=""
                   htmlFor="has_cardabuse-MOCK-GUID"
                 >
-                  <input
-                    aria-label="No for null"
-                    checked={false}
-                    className="usa-input-success"
-                    disabled={false}
-                    id="has_cardabuse-MOCK-GUID"
-                    name="has_cardabuse-MOCK-GUID"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onClick={[Function]}
-                    onFocus={[Function]}
-                    onKeyDown={[Function]}
-                    type="radio"
-                    value="No"
-                  />
                   <span>
                     No
                   </span>
@@ -595,6 +615,11 @@ exports[`The financial section renders the FinancialSections component 1`] = `
     data-section="financial"
     data-subsection="credit"
   >
+    <h1
+      className="section-header"
+    >
+      Credit counseling
+    </h1>
     <div
       aria-label="Are you currently utilizing, or seeking assistance from, a credit counseling service or other similar resource to resolve your financial difficulties?"
       className="field required  branch credit-branch"
@@ -606,11 +631,11 @@ exports[`The financial section renders the FinancialSections component 1`] = `
         id="field-MOCK-GUID"
         name="field-MOCK-GUID"
       />
-      <h2
-        className="title h2"
+      <h4
+        className="title h4"
       >
         Are you currently utilizing, or seeking assistance from, a credit counseling service or other similar resource to resolve your financial difficulties?
-      </h2>
+      </h4>
       <span
         className="icon"
       />
@@ -671,25 +696,25 @@ exports[`The financial section renders the FinancialSections component 1`] = `
               <div
                 className="yes block"
               >
+                <input
+                  aria-label="Yes for null"
+                  checked={false}
+                  className="usa-input-success"
+                  disabled={false}
+                  id="has_credit-MOCK-GUID"
+                  name="has_credit-MOCK-GUID"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  type="radio"
+                  value="Yes"
+                />
                 <label
                   className=""
                   htmlFor="has_credit-MOCK-GUID"
                 >
-                  <input
-                    aria-label="Yes for null"
-                    checked={false}
-                    className="usa-input-success"
-                    disabled={false}
-                    id="has_credit-MOCK-GUID"
-                    name="has_credit-MOCK-GUID"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onClick={[Function]}
-                    onFocus={[Function]}
-                    onKeyDown={[Function]}
-                    type="radio"
-                    value="Yes"
-                  />
                   <span>
                     Yes
                   </span>
@@ -698,25 +723,25 @@ exports[`The financial section renders the FinancialSections component 1`] = `
               <div
                 className="no block"
               >
+                <input
+                  aria-label="No for null"
+                  checked={false}
+                  className="usa-input-success"
+                  disabled={false}
+                  id="has_credit-MOCK-GUID"
+                  name="has_credit-MOCK-GUID"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  type="radio"
+                  value="No"
+                />
                 <label
                   className=""
                   htmlFor="has_credit-MOCK-GUID"
                 >
-                  <input
-                    aria-label="No for null"
-                    checked={false}
-                    className="usa-input-success"
-                    disabled={false}
-                    id="has_credit-MOCK-GUID"
-                    name="has_credit-MOCK-GUID"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onClick={[Function]}
-                    onFocus={[Function]}
-                    onKeyDown={[Function]}
-                    type="radio"
-                    value="No"
-                  />
                   <span>
                     No
                   </span>
@@ -736,6 +761,11 @@ exports[`The financial section renders the FinancialSections component 1`] = `
     data-section="financial"
     data-subsection="delinquent"
   >
+    <h1
+      className="section-header"
+    >
+      Delinquent payments
+    </h1>
     <div
       aria-label="Other than previously listed, have any of the following happened to you?"
       className="field required  branch delinquent-branch eapp-field-wrap"
@@ -747,11 +777,11 @@ exports[`The financial section renders the FinancialSections component 1`] = `
         id="field-MOCK-GUID"
         name="field-MOCK-GUID"
       />
-      <h2
-        className="title h2"
+      <h4
+        className="title h4"
       >
         Other than previously listed, have any of the following happened to you?
-      </h2>
+      </h4>
       <span
         className="icon"
       />
@@ -857,25 +887,25 @@ exports[`The financial section renders the FinancialSections component 1`] = `
               <div
                 className="yes block"
               >
+                <input
+                  aria-label="Yes for null"
+                  checked={false}
+                  className="usa-input-success"
+                  disabled={false}
+                  id="has_delinquent-MOCK-GUID"
+                  name="has_delinquent-MOCK-GUID"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  type="radio"
+                  value="Yes"
+                />
                 <label
                   className=""
                   htmlFor="has_delinquent-MOCK-GUID"
                 >
-                  <input
-                    aria-label="Yes for null"
-                    checked={false}
-                    className="usa-input-success"
-                    disabled={false}
-                    id="has_delinquent-MOCK-GUID"
-                    name="has_delinquent-MOCK-GUID"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onClick={[Function]}
-                    onFocus={[Function]}
-                    onKeyDown={[Function]}
-                    type="radio"
-                    value="Yes"
-                  />
                   <span>
                     Yes
                   </span>
@@ -884,25 +914,25 @@ exports[`The financial section renders the FinancialSections component 1`] = `
               <div
                 className="no block"
               >
+                <input
+                  aria-label="No for null"
+                  checked={false}
+                  className="usa-input-success"
+                  disabled={false}
+                  id="has_delinquent-MOCK-GUID"
+                  name="has_delinquent-MOCK-GUID"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  type="radio"
+                  value="No"
+                />
                 <label
                   className=""
                   htmlFor="has_delinquent-MOCK-GUID"
                 >
-                  <input
-                    aria-label="No for null"
-                    checked={false}
-                    className="usa-input-success"
-                    disabled={false}
-                    id="has_delinquent-MOCK-GUID"
-                    name="has_delinquent-MOCK-GUID"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onClick={[Function]}
-                    onFocus={[Function]}
-                    onKeyDown={[Function]}
-                    type="radio"
-                    value="No"
-                  />
                   <span>
                     No
                   </span>
@@ -922,6 +952,11 @@ exports[`The financial section renders the FinancialSections component 1`] = `
     data-section="financial"
     data-subsection="nonpayment"
   >
+    <h1
+      className="section-header"
+    >
+      Non-payment consequence
+    </h1>
     <div
       aria-label="Other than previously listed, have any of the following happened?"
       className="field required  branch nonpayment-branch"
@@ -933,11 +968,11 @@ exports[`The financial section renders the FinancialSections component 1`] = `
         id="field-MOCK-GUID"
         name="field-MOCK-GUID"
       />
-      <h2
-        className="title h2"
+      <h4
+        className="title h4"
       >
         Other than previously listed, have any of the following happened?
-      </h2>
+      </h4>
       <span
         className="icon"
       />
@@ -1078,25 +1113,25 @@ exports[`The financial section renders the FinancialSections component 1`] = `
               <div
                 className="yes block"
               >
+                <input
+                  aria-label="Yes for null"
+                  checked={false}
+                  className="usa-input-success"
+                  disabled={false}
+                  id="has_nonpayment-MOCK-GUID"
+                  name="has_nonpayment-MOCK-GUID"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  type="radio"
+                  value="Yes"
+                />
                 <label
                   className=""
                   htmlFor="has_nonpayment-MOCK-GUID"
                 >
-                  <input
-                    aria-label="Yes for null"
-                    checked={false}
-                    className="usa-input-success"
-                    disabled={false}
-                    id="has_nonpayment-MOCK-GUID"
-                    name="has_nonpayment-MOCK-GUID"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onClick={[Function]}
-                    onFocus={[Function]}
-                    onKeyDown={[Function]}
-                    type="radio"
-                    value="Yes"
-                  />
                   <span>
                     Yes
                   </span>
@@ -1105,25 +1140,25 @@ exports[`The financial section renders the FinancialSections component 1`] = `
               <div
                 className="no block"
               >
+                <input
+                  aria-label="No for null"
+                  checked={false}
+                  className="usa-input-success"
+                  disabled={false}
+                  id="has_nonpayment-MOCK-GUID"
+                  name="has_nonpayment-MOCK-GUID"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  type="radio"
+                  value="No"
+                />
                 <label
                   className=""
                   htmlFor="has_nonpayment-MOCK-GUID"
                 >
-                  <input
-                    aria-label="No for null"
-                    checked={false}
-                    className="usa-input-success"
-                    disabled={false}
-                    id="has_nonpayment-MOCK-GUID"
-                    name="has_nonpayment-MOCK-GUID"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onClick={[Function]}
-                    onFocus={[Function]}
-                    onKeyDown={[Function]}
-                    type="radio"
-                    value="No"
-                  />
                   <span>
                     No
                   </span>

@@ -122,9 +122,9 @@ exports[`The Introduction component renders properly 1`] = `
               <hr />
             </div>
             <div>
-              <h1>
+              <h2>
                 How to save your progress
-              </h1>
+              </h2>
             </div>
             <div>
               <p>
@@ -143,9 +143,9 @@ exports[`The Introduction component renders properly 1`] = `
               <hr />
             </div>
             <div>
-              <h1>
+              <h2>
                 Purpose of this form
-              </h1>
+              </h2>
             </div>
             <div>
               <p>
@@ -171,9 +171,9 @@ exports[`The Introduction component renders properly 1`] = `
               <hr />
             </div>
             <div>
-              <h1>
+              <h2>
                 Authority to request this information
-              </h1>
+              </h2>
             </div>
             <div>
               <p>
@@ -189,9 +189,9 @@ exports[`The Introduction component renders properly 1`] = `
               <hr />
             </div>
             <div>
-              <h1>
+              <h2>
                 The investigative process
-              </h1>
+              </h2>
             </div>
             <div>
               <p>
@@ -212,9 +212,9 @@ exports[`The Introduction component renders properly 1`] = `
               <hr />
             </div>
             <div>
-              <h1>
+              <h2>
                 Your personal interview
-              </h1>
+              </h2>
             </div>
             <div>
               <p>
@@ -230,9 +230,9 @@ exports[`The Introduction component renders properly 1`] = `
               <hr />
             </div>
             <div>
-              <h1>
+              <h2>
                 Final determination on your eligibility
-              </h1>
+              </h2>
             </div>
             <div>
               <p>
@@ -243,9 +243,9 @@ exports[`The Introduction component renders properly 1`] = `
               <hr />
             </div>
             <div>
-              <h1>
+              <h2>
                 Penalties for inaccurate or false statements
-              </h1>
+              </h2>
             </div>
             <div>
               <p>
@@ -256,9 +256,9 @@ exports[`The Introduction component renders properly 1`] = `
               <hr />
             </div>
             <div>
-              <h1>
+              <h2>
                 Disclosure information
-              </h1>
+              </h2>
             </div>
             <div>
               <p>
@@ -279,9 +279,9 @@ exports[`The Introduction component renders properly 1`] = `
               <hr />
             </div>
             <div>
-              <h1>
+              <h2>
                 Office of Personnel Management (OPM) routine uses
-              </h1>
+              </h2>
             </div>
             <div>
               <p>
@@ -542,9 +542,9 @@ exports[`The Introduction component renders properly 1`] = `
               <hr />
             </div>
             <div>
-              <h1>
+              <h2>
                 Public burden information
-              </h1>
+              </h2>
             </div>
             <div>
               <p>
