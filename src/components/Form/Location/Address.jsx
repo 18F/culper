@@ -242,6 +242,7 @@ export default class Address extends ValidationElement {
     const country = countryString(this.props.country)
     const locationValidator = new LocationValidator(this.props)
     const instateZipcode = locationValidator.validZipcodeState()
+
     return (
       <div className="address">
         <Show when={!this.props.disableToggle}>
