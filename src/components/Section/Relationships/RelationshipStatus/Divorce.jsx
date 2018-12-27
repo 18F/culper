@@ -329,6 +329,7 @@ export default class Divorce extends React.Component {
               scrollIntoView={this.props.scrollIntoView}>
               <RadioGroup
                 name="deceased"
+                className="option-list"
                 selectedValue={(this.props.Deceased || {}).value}
                 required={this.props.required}
                 onError={this.props.onError}>

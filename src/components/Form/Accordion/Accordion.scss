@@ -46,7 +46,7 @@ $breakpoints: (
   > .caption {
     display: block;
     padding: 1rem 10%;
-    background-color: #fff;
+    background-color: $color-white;
     border-bottom: solid 1px #e5e5e5;
     font-weight: 600;
     color: $eapp-grey-darker;
@@ -69,10 +69,10 @@ $breakpoints: (
       min-height: 0;
       max-height: 0;
     }
-  }
+  } 
 
   .item {
-    background-color: #fff;
+    background-color: $color-white;
     margin-top: 0.8rem;
 
     .details {
@@ -80,6 +80,7 @@ $breakpoints: (
       padding: 4rem;
       overflow: hidden;
       border: 3px solid $color-gray-lightest;
+      border-top: none;
 
       @media all and (max-width: 980px) {
         padding: 2rem;
