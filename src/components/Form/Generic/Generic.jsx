@@ -129,6 +129,7 @@ export default class Generic extends ValidationElement {
     }
 
     this.handleKeyDown = this.handleKeyDown.bind(this)
+    this.errors = this.errors.bind(this)
   }
 
   componentWillReceiveProps(nextProps) {
@@ -144,7 +145,7 @@ export default class Generic extends ValidationElement {
     }
 
     if (updates.value !== undefined && updates.value !== this.state.value) {
-      const errors = this.errors(updates.value)
+      const errors = this.errors(updates.value, nextProps)
       updates.error = errors.some(x => x.valid === false)
       updates.valid = errors.every(x => x.valid === true)
     }
@@ -152,14 +153,14 @@ export default class Generic extends ValidationElement {
     this.setState(updates)
   }
 
-  errors(value) {
+  errors(value, props = this.props) {
     return (
       this.props.onError(
         value,
         this.constructor.errors.map(err => {
           return {
             code: err.code,
-            valid: err.func(value, this.props),
+            valid: err.func(value, props),
             uid: this.state.uid
           }
         })
