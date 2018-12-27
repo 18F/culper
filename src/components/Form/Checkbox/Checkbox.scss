@@ -1,7 +1,7 @@
 [type='checkbox'] + label::before {
   position: absolute;
   top: 11px;
-  left: 10px
+  left: 10px;
 }
 
 [type='checkbox'] + label.no-toggle::before {
