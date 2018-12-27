@@ -49,7 +49,7 @@ describe('The taxes item component', () => {
       .find('.taxes-description textarea')
       .simulate('change', { target: { value: 'Description for not filing' } })
     component
-      .find('.taxes-date-notapplicable .not-applicable .block label input')
+      .find('.taxes-date-notapplicable.button .block input')
       .simulate('change')
     expect(updates).toBe(8)
   })
