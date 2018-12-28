@@ -5351,7 +5351,7 @@ exports[`The section component renders foreign.intro 1`] = `
                 className="view view-intro"
               >
                 <div>
-                  <h1 
+                  <h1
                     className="section-header"
                   >
                     Section 6: Foreign associations
@@ -5361,6 +5361,7 @@ exports[`The section component renders foreign.intro 1`] = `
                     data-uuid="field-MOCK-GUID"
                   >
                     <a
+                      aria-label-""
                       aria-hidden="true"
                       className="anchor"
                       id="field-MOCK-GUID"
@@ -20474,6 +20475,7 @@ exports[`The section component renders legal.intro 1`] = `
                     Section 9: Investigative and criminal history
                   </h1>
                   <div
+                    aria-label=""
                     className="field   no-margin-bottom"
                     data-uuid="field-MOCK-GUID"
                   >
@@ -29116,6 +29118,7 @@ exports[`The section component renders substance.intro 1`] = `
                     Section 8: Substance use
                   </h1>
                   <div
+                    aria-label=""
                     className="field   no-margin-bottom"
                     data-uuid="field-MOCK-GUID"
                   >
