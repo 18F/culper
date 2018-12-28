@@ -139,7 +139,7 @@ export default class ReasonOptions extends React.Component {
                 />
               </div>
               <div className="date-left">
-                <label class="h4">{date}</label>
+                <label className="h4">{date}</label>
                 <DateControl
                   name="Date"
                   {...this.state.Date}
