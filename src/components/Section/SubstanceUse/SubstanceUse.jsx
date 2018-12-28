@@ -104,9 +104,8 @@ class SubstanceUse extends SectionElement {
             backLabel={i18n.t('financial.destination.review')}
             next="substance/drugs/usage"
             nextLabel={i18n.t('substance.destination.drugs.usage')}>
+            <h1 className="section-header">{i18n.t('substance.intro.title')}</h1>
             <Field
-              title={i18n.t('substance.intro.title')}
-              titleSize="h4"
               optional={true}
               className="no-margin-bottom">
               {i18n.m('substance.intro.body')}

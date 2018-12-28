@@ -594,7 +594,7 @@ export default class Relative extends ValidationElement {
               name="maiden_diff"
               label={i18n.t('relationships.relatives.heading.maiden')}
               labelSize="h4"
-              className="eapp-field-wrap relative-maiden-diff"
+              className="eapp-field-wrap relative-maiden-diff no-margin-bottom"
               {...this.props.MaidenSameAsListed}
               yesLabel={i18n.t('relationships.relatives.label.maiden.same')}
               noLabel={i18n.t('relationships.relatives.label.maiden.diff')}

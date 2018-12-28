@@ -33,7 +33,7 @@ export default class AdditionalActivity extends ValidationElement {
           appendLabel={i18n.t(
             'history.employment.default.additionalActivity.collection.append'
           )}
-          appendSize="h3"
+          appendSize="h4"
           {...this.props || {}}
           onUpdate={this.updateBranch}
           onError={this.props.onError}
