@@ -5357,11 +5357,11 @@ exports[`The section component renders foreign.intro 1`] = `
                     Section 6: Foreign associations
                   </h1>
                   <div
+                    aria-label-""
                     className="field   no-margin-bottom"
                     data-uuid="field-MOCK-GUID"
                   >
                     <a
-                      aria-label-""
                       aria-hidden="true"
                       className="anchor"
                       id="field-MOCK-GUID"
