@@ -5351,8 +5351,8 @@ exports[`The section component renders foreign.intro 1`] = `
                 className="view view-intro"
               >
                 <div>
+                  <h1 className="section-header">Section 6: Foreign associations</h1>
                   <div
-                    aria-label="Section 6: Foreign associations"
                     className="field   no-margin-bottom"
                     data-uuid="field-MOCK-GUID"
                   >
@@ -5362,11 +5362,6 @@ exports[`The section component renders foreign.intro 1`] = `
                       id="field-MOCK-GUID"
                       name="field-MOCK-GUID"
                     />
-                    <h4
-                      className="title h4"
-                    >
-                      Section 6: Foreign associations
-                    </h4>
                     <span
                       className="icon"
                     />
@@ -20469,8 +20464,8 @@ exports[`The section component renders legal.intro 1`] = `
                 className="view view-intro"
               >
                 <div>
+                  <h1 className="section-header">Section 9: Investigative and criminal history</h1>
                   <div
-                    aria-label="Section 9: Investigative and criminal history"
                     className="field   no-margin-bottom"
                     data-uuid="field-MOCK-GUID"
                   >
@@ -20480,11 +20475,6 @@ exports[`The section component renders legal.intro 1`] = `
                       id="field-MOCK-GUID"
                       name="field-MOCK-GUID"
                     />
-                    <h4
-                      className="title h4"
-                    >
-                      Section 9: Investigative and criminal history
-                    </h4>
                     <span
                       className="icon"
                     />
@@ -26870,6 +26860,7 @@ exports[`The section component renders psychological.intro 1`] = `
                 className="view view-intro"
               >
                 <div>
+                  <h1 className="section-header">Section 10: Psychological and emotional health</h1>
                   <div
                     aria-label="Why we are asking"
                     className="field   no-margin-bottom"
@@ -29107,8 +29098,8 @@ exports[`The section component renders substance.intro 1`] = `
                 className="view view-intro"
               >
                 <div>
+                  <h1 className="section-header">Section 8: Substance use</h1>
                   <div
-                    aria-label="Section 8: Substance use"
                     className="field   no-margin-bottom"
                     data-uuid="field-MOCK-GUID"
                   >
@@ -29118,11 +29109,6 @@ exports[`The section component renders substance.intro 1`] = `
                       id="field-MOCK-GUID"
                       name="field-MOCK-GUID"
                     />
-                    <h4
-                      className="title h4"
-                    >
-                      Section 8: Substance use
-                    </h4>
                     <span
                       className="icon"
                     />
