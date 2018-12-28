@@ -79,7 +79,7 @@ exports[`The attachments component renders properly 1`] = `
             </p>
           </div>
           <div
-            className="blocks attachment-type option-list eapp-extend-labels"
+            className="blocks attachment-type option-list eapp-extend-labels physical-radio"
           >
             <div
               className="block extended"
