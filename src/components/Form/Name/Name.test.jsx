@@ -218,10 +218,28 @@ describe('The Name component', () => {
     component.find('.middle-initial-only input').simulate('change')
     component.find('.middle-none input').simulate('change')
     component.find('.last input').simulate('change')
-    component.find('.suffix-more input').simulate('change')
     component.find('.suffix-other input').simulate('change')
-    expect(updates).toBe(8)
+    expect(updates).toBe(7)
   })
+
+  it*'updates suffix dropdown', () => {
+    let updates = 0
+    const expected = {
+      name: 'name',
+      suffix: 'X',
+      onUpdate: () => {
+        updates++
+      }
+    }
+
+    const component = mount(<Name {...expected} />)
+    component.find('select.suffix').simulate('change', {
+      target: {
+        value : 'Other'
+      }
+    })
+    expect(component.find('select.suffix').props().value).toBe('Other')
+  }
 
   it('error if single letter without initial only', () => {
     const tests = [
