@@ -221,7 +221,7 @@ export default class Attachments extends React.Component {
           optional={true}>
           {i18n.m('application.attachments.method.para')}
           <RadioGroup
-            className="attachment-type option-list eapp-extend-labels"
+            className="attachment-type option-list eapp-extend-labels physical-radio"
             onError={this.props.onError}
             selectedValue={(this.props.AttachmentType || {}).value}>
             <Radio
