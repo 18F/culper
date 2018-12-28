@@ -45,10 +45,10 @@ describe('The legal associations terrorist organization item component', () => {
       .find('.legal-associations-terrorist-reasons textarea')
       .simulate('change')
     component
-      .find('.legal-associations-terrorist-positions-na .block label input')
+      .find('.legal-associations-terrorist-positions-na .button input')
       .simulate('change')
     component
-      .find('.legal-associations-terrorist-contributions-na .block label input')
+      .find('.legal-associations-terrorist-contributions-na .button input')
       .simulate('change')
     expect(updates).toBe(8)
   })

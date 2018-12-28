@@ -86,6 +86,7 @@ export default class Selective extends SubsectionElement {
           <div>
             <Branch
               name="has_registered"
+              className="registered"
               label={i18n.t('military.selective.heading.registered')}
               labelSize="h4"
               {...this.props.HasRegistered}
