@@ -108,7 +108,7 @@ export default class ContactInformation extends SubsectionElement {
       <div
         className="section-content contact"
         {...super.dataAttributes(this.props)}>
-        <h1 className="section-header">Your contact information</h1>
+        <h1 className="section-header">{i18n.t('identification.destination.contacts')}</h1>
 
         <Field
           title={i18n.t('identification.contacts.heading.email')}

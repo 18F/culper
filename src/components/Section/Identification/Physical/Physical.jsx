@@ -40,7 +40,7 @@ export default class Physical extends SubsectionElement {
 
     return (
       <div className={klass} {...super.dataAttributes(this.props)}>
-        <h1 className="section-header">Your identifying information</h1>
+        <h1 className="section-header">{i18n.t('identification.destination.physical')}</h1>
 
         <Field
           title={i18n.t('identification.traits.heading.height')}

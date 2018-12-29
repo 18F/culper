@@ -93,7 +93,7 @@ export default class ApplicantBirthDate extends SubsectionElement {
       ''}`.trim()
     return (
       <div className={klass} {...super.dataAttributes(this.props)}>
-        <h1 className="section-header">Date of birth</h1>
+        <h1 className="section-header">{i18n.t('identification.destination.birthdate')}</h1>
         <Field
           title={i18n.t('identification.birthdate.title')}
           titleSize="h4"
