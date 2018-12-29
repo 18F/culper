@@ -104,7 +104,7 @@ export default class Diagnoses extends SubsectionElement {
       <div
         className="section-content diagnoses"
         {...super.dataAttributes(this.props)}>
-        <h1 className="section-header">Diagnoses</h1>
+        <h1 className="section-header">{i18n.t('psychological.destination.diagnoses')}</h1>
         {i18n.m('psychological.heading.diagnoses')}
         <Branch
           name="diagnosed"

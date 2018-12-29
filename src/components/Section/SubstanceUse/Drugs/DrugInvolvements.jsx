@@ -60,7 +60,7 @@ export default class DrugInvolvements extends SubsectionElement {
       <div
         className="section-content drug-involvements"
         {...super.dataAttributes(this.props)}>
-        <h1 className="section-header">Purchase</h1>
+        <h1 className="section-header">{i18n.t('substance.destination.drugs.purchase')}</h1>
         <Branch
           name="Involved"
           label={i18n.t('substance.drugs.heading.drugInvolvement')}

@@ -119,7 +119,7 @@ export default class ExistingConditions extends SubsectionElement {
       <div
         className="section-content existingconditions"
         {...super.dataAttributes(this.props)}>
-        <h1 className="section-header">Existing conditions</h1>
+        <h1 className="section-header">{i18n.t('psychological.destination.existingConditions')}</h1>
         <Branch
           name="hascondition"
           label={i18n.t(

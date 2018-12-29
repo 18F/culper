@@ -15,7 +15,7 @@ export const foreign = {
     review: 'Review Foreign Associations',
     history: 'Your History',
     tbd: 'TBD',
-    contacts: 'Foreign Contacts',
+    contacts: 'Foreign contacts',
     passport: 'U.S. passport information',
     activities: {
       activity: 'Foreign activities',

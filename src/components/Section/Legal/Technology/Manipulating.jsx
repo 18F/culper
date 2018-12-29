@@ -56,7 +56,7 @@ export default class Manipulating extends SubsectionElement {
       <div
         className="section-content legal-technology-manipulating"
         {...super.dataAttributes(this.props)}>
-        <h1 className="section-header">Manipulating access</h1>
+        <h1 className="section-header">{i18n.t('legal.destination.technology.manipulating')}</h1>
         <Branch
           name="has_manipulating"
           label={i18n.t('legal.technology.manipulating.heading.title')}

@@ -29,6 +29,7 @@ export const psychological = {
     }
   },
   intro: {
+    title: 'Section 10: Psychological and emotional health',
     para1:
       'The U.S. government recognizes the critical importance of mental health and advocates proactive management of mental health conditions to support the wellness and recovery of Federal employees and others. Every day individuals with mental health conditions carry out their duties without presenting a security risk. While most individuals with mental health conditions do not present security risks, there may be times when such a condition can affect a person’s eligibility for a security clearance.',
     para2:

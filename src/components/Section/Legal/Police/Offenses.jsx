@@ -60,7 +60,7 @@ export default class Offenses extends SubsectionElement {
       <div
         className="section-content police-offenses"
         {...super.dataAttributes(this.props)}>
-        <h1 className="section-header">Offenses</h1>
+        <h1 className="section-header">{i18n.t('legal.destination.offenses')}</h1>
         <Branch
           name="has_offenses"
           label={i18n.t('legal.police.heading.questions')}

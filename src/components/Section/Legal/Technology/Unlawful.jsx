@@ -56,7 +56,7 @@ export default class Unlawful extends SubsectionElement {
       <div
         className="section-content legal-technology-unlawful"
         {...super.dataAttributes(this.props)}>
-        <h1 className="section-header">Unlawful use</h1>
+        <h1 className="section-header">{i18n.t('legal.destination.technology.unlawful')}</h1>
         <Branch
           name="has_unlawful"
           label={i18n.t('legal.technology.unlawful.heading.title')}

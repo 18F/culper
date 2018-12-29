@@ -62,7 +62,7 @@ export default class VoluntaryCounselings extends SubsectionElement {
       <div
         className="section-content voluntary-counselings"
         {...super.dataAttributes(this.props)}>
-        <h1 className="section-header">Voluntary counseling or treatment</h1>
+        <h1 className="section-header">{i18n.t('substance.destination.police.voluntary')}</h1>
         <Branch
           name="SoughtTreatment"
           label={i18n.t('substance.alcohol.heading.voluntaryCounseling')}

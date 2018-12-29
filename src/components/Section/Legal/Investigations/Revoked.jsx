@@ -56,7 +56,7 @@ export default class Revoked extends SubsectionElement {
       <div
         className="section-content investigations-revoked"
         {...super.dataAttributes(this.props)}>
-        <h1 className="section-header">Denied</h1>
+        <h1 className="section-header">{i18n.t('legal.destination.investigations.revoked')}</h1>
         <Branch
           name="has_revoked"
           label={i18n.t('legal.investigations.revoked.heading.title')}

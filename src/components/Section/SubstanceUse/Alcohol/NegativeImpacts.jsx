@@ -60,7 +60,7 @@ export default class NegativeImpacts extends SubsectionElement {
       <div
         className="section-content negative-impacts"
         {...super.dataAttributes(this.props)}>
-        <h1 className="section-header">Negative impact</h1>
+        <h1 className="section-header">{i18n.t('substance.destination.police.negative')}</h1>
         <Branch
           name="has_impacts"
           label={i18n.t('substance.alcohol.heading.negativeImpact')}
