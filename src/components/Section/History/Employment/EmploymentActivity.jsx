@@ -125,7 +125,7 @@ export default class EmploymentActivity extends ValidationElement {
                 onBlur={this.props.onBlur}
                 onFocus={this.props.onFocus}
               />
-              <label>Other employment</label>
+              <label>{i18n.t('history.employment.default.activity.type.otherEmployment')}</label>
               <Radio
                 label={i18n.m(
                   'history.employment.default.activity.type.nonGovernment'

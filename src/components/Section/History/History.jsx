@@ -483,7 +483,7 @@ class History extends SectionElement {
             </Show>
 
             <hr className="section-divider" />
-            <h1 className="section-header">Former federal service</h1>
+            <h1 className="section-header">{i18n.t('history.destination.federal')}</h1>
             <Federal
               name="federal"
               {...this.props.Federal}
@@ -504,7 +504,7 @@ class History extends SectionElement {
             backLabel={i18n.t('history.destination.intro')}
             next="history/employment"
             nextLabel={i18n.t('history.destination.employment')}>
-            <h1 className="section-header">Where you have lived</h1>
+            <h1 className="section-header">{i18n.t('history.residence.title')}</h1>
             <Field
               title={i18n.t('history.residence.info')}
               titleSize="h3"
@@ -551,7 +551,7 @@ class History extends SectionElement {
             backLabel={i18n.t('history.destination.residence')}
             next="history/education"
             nextLabel={i18n.t('history.destination.education')}>
-            <h1 className="section-header">Employment activities</h1>
+            <h1 className="section-header">{i18n.t('history.employment.summary.title')}</h1>
             <Field
               title={i18n.t('history.employment.heading.employment')}
               titleSize="h3"
@@ -595,7 +595,7 @@ class History extends SectionElement {
             backLabel={i18n.t('history.destination.employment')}
             next="history/federal"
             nextLabel={i18n.t('history.destination.federal')}>
-            <h1 className="section-header">Where you went to school</h1>
+            <h1 className="section-header">{i18n.t('history.education.summary.title')}</h1>
             <Field
               title={i18n.t('history.education.title')}
               titleSize="h3"
@@ -653,7 +653,7 @@ class History extends SectionElement {
             backLabel={i18n.t('history.destination.education')}
             next="history/review"
             nextLabel={i18n.t('history.destination.review')}>
-            <h1 className="section-header">Former federal service</h1>
+            <h1 className="section-header">{i18n.t('history.destination.federal')}</h1>
             <Federal
               name="federal"
               {...this.props.Federal}

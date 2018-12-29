@@ -219,7 +219,8 @@ export const history = {
           nonGovernment: 'Non-government employment (excluding self-employment)',
           selfEmployment: 'Self-employment',
           unemployment: 'Unemployment',
-          other: 'Other'
+          other: 'Other',
+          otherEmployment: 'Other employment'
         }
       },
       reasonDescription: {
