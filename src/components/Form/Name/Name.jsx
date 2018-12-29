@@ -6,8 +6,7 @@ import Field from '../Field'
 import Show from '../Show'
 import Text from '../Text'
 import Checkbox from '../Checkbox'
-import Radio from '../Radio'
-import RadioGroup from '../RadioGroup'
+import SelectDropdown from '../SelectDropdown'
 
 export default class Name extends ValidationElement {
   constructor(props) {
@@ -32,6 +31,7 @@ export default class Name extends ValidationElement {
     this.handleErrorMiddle = this.handleErrorMiddle.bind(this)
     this.handleErrorLast = this.handleErrorLast.bind(this)
     this.handleErrorSuffix = this.handleErrorSuffix.bind(this)
+    this.getSuffixOptions = this.getSuffixOptions.bind(this)
   }
 
   update(queue, callback) {
@@ -114,9 +114,9 @@ export default class Name extends ValidationElement {
     })
   }
 
-  updateSuffix(values) {
+  updateSuffix(e) {
     this.update({
-      suffix: values.value
+      suffix: e.target.value
     })
   }
 
@@ -169,8 +169,28 @@ export default class Name extends ValidationElement {
     return errors.filter(err => err.code.indexOf('required') === -1)
   }
 
+  getSuffixOptions() {
+    const { prefix } = this.props
+    return [
+      {label: "", value: ""},
+      {label: i18n.t(`${prefix}.label.jr`), value: 'Jr'},
+      {label: i18n.t(`${prefix}.label.sr`), value: 'Sr'},
+      {label: i18n.t(`${prefix}.label.i`), value: 'I'},
+      {label: i18n.t(`${prefix}.label.ii`), value: 'II'},
+      {label: i18n.t(`${prefix}.label.iii`), value: 'III'},
+      {label: i18n.t(`${prefix}.label.iv`), value: 'IV'},
+      {label: i18n.t(`${prefix}.label.v`), value: 'V'},
+      {label: i18n.t(`${prefix}.label.vi`), value: 'VI'},
+      {label: i18n.t(`${prefix}.label.vii`), value: 'VII'},
+      {label: i18n.t(`${prefix}.label.viii`), value: 'VIII'},
+      {label: i18n.t(`${prefix}.label.ix`), value: 'IX'},
+      {label: i18n.t(`${prefix}.label.x`), value: 'X'},
+      {label: i18n.t(`${prefix}.label.other`), value: 'Other'},
+    ]
+  }
+
   render() {
-    const prefix = this.props.prefix
+    const { prefix } = this.props
     const klass = [
       `name ${this.props.className || ''}`.trim(),
       this.props.disabled ? 'disabled' : ''
@@ -314,142 +334,22 @@ export default class Name extends ValidationElement {
           scrollIntoView={this.props.scrollIntoView}
           optional={true}
           optionalText={i18n.t(`${prefix}.label.optional`)}>
-          <select
+          <SelectDropdown
             className="option-list suffix usa-small-input"
-            selectedValue={this.props.suffix}
-            disabled={this.props.disabled}>
-            <option value="" selected></option>
-            <option
-              name="suffix"
-              label={i18n.t(`${prefix}.label.jr`)}
-              className="suffix-jr"
-              value="Jr"
-              onUpdate={this.updateSuffix}
-              onError={this.handleErrorSuffix}
-              onFocus={this.props.onFocus}
-              onBlur={this.props.onBlur}
-            />
-            <option
-              name="suffix"
-              label={i18n.t(`${prefix}.label.sr`)}
-              className="suffix-sr"
-              value="Sr"
-              onUpdate={this.updateSuffix}
-              onError={this.handleErrorSuffix}
-              onFocus={this.props.onFocus}
-              onBlur={this.props.onBlur}
-            />
-            <option
-              name="suffix"
-              label={i18n.t(`${prefix}.label.i`)}
-              className="suffix-i"
-              value="I"
-              onUpdate={this.updateSuffix}
-              onError={this.handleErrorSuffix}
-              onFocus={this.props.onFocus}
-              onBlur={this.props.onBlur}
-            />
-            <option
-              name="suffix"
-              label={i18n.t(`${prefix}.label.ii`)}
-              className="suffix-ii"
-              value="II"
-              onUpdate={this.updateSuffix}
-              onError={this.handleErrorSuffix}
-              onFocus={this.props.onFocus}
-              onBlur={this.props.onBlur}
-            />
-            <option
-              name="suffix"
-              label={i18n.t(`${prefix}.label.iii`)}
-              className="suffix-iii"
-              value="III"
-              onUpdate={this.updateSuffix}
-              onError={this.handleErrorSuffix}
-              onFocus={this.props.onFocus}
-              onBlur={this.props.onBlur}
-            />
-            <option
-              name="suffix"
-              label={i18n.t(`${prefix}.label.iv`)}
-              className="suffix-iv"
-              value="IV"
-              onUpdate={this.updateSuffix}
-              onError={this.handleErrorSuffix}
-              onFocus={this.props.onFocus}
-              onBlur={this.props.onBlur}
-            />
-            <option
-              name="suffix"
-              label={i18n.t(`${prefix}.label.v`)}
-              className="suffix-v"
-              value="V"
-              onUpdate={this.updateSuffix}
-              onError={this.handleErrorSuffix}
-              onFocus={this.props.onFocus}
-              onBlur={this.props.onBlur}
-            />
-            <option
-              name="suffix"
-              label={i18n.t(`${prefix}.label.vi`)}
-              className="suffix-vi"
-              value="VI"
-              onUpdate={this.updateSuffix}
-              onError={this.handleErrorSuffix}
-              onFocus={this.props.onFocus}
-              onBlur={this.props.onBlur}
-            />
-            <option
-              name="suffix"
-              label={i18n.t(`${prefix}.label.vii`)}
-              className="suffix-vii"
-              value="VII"
-              onUpdate={this.updateSuffix}
-              onError={this.handleErrorSuffix}
-              onFocus={this.props.onFocus}
-              onBlur={this.props.onBlur}
-            />
-            <option
-              name="suffix"
-              label={i18n.t(`${prefix}.label.viii`)}
-              className="suffix-viii"
-              value="VIII"
-              onUpdate={this.updateSuffix}
-              onError={this.handleErrorSuffix}
-              onFocus={this.props.onFocus}
-              onBlur={this.props.onBlur}
-            />
-            <option
-              name="suffix"
-              label={i18n.t(`${prefix}.label.ix`)}
-              className="suffix-ix"
-              value="IX"
-              onUpdate={this.updateSuffix}
-              onError={this.handleErrorSuffix}
-              onFocus={this.props.onFocus}
-              onBlur={this.props.onBlur}
-            />
-            <option
-              name="suffix"
-              label={i18n.t(`${prefix}.label.x`)}
-              className="suffix-x"
-              value="X"
-              onUpdate={this.updateSuffix}
-              onError={this.handleErrorSuffix}
-              onFocus={this.props.onFocus}
-              onBlur={this.props.onBlur}
-            />
-            <option
-              name="suffix"
-              label={i18n.t(`${prefix}.label.other`)}
-              className="suffix-more"
-              value="Other"
-              onUpdate={this.updateSuffix}
-              onError={this.handleErrorSuffix}
-              onFocus={this.props.onFocus}
-              onBlur={this.props.onBlur}
-            />
-          </select>
+            isDisabled={this.props.disabled}
+            name="suffix"
+            onChange={this.updateSuffix}
+            onError={this.handleErrorSuffix}
+            value={this.props.suffix || ""}
+            >
+            {this.getSuffixOptions().map(option => (
+              <option
+                key={`name-${option.label}`}
+                label={option.label}
+                value={option.value}
+              />
+            ))}
+          </SelectDropdown>
           <Show when={this.props.suffix === 'Other'}>
             <Text
               name="suffixOther"
