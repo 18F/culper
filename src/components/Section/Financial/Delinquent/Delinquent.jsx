@@ -86,7 +86,7 @@ export default class Delinquent extends SubsectionElement {
       <div
         className="section-content delinquent"
         {...super.dataAttributes(this.props)}>
-        <h1 className="section-header">Delinquent payments</h1>
+        <h1 className="section-header">{i18n.t('financial.destination.delinquent')}</h1>
         <Branch
           name="has_delinquent"
           label={i18n.t('financial.delinquent.title')}

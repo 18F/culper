@@ -80,7 +80,7 @@ export default class Gambling extends SubsectionElement {
       <div
         className="section-content gambling"
         {...super.dataAttributes(this.props)}>
-        <h1 className="section-header">Gambling</h1>
+        <h1 className="section-header">{i18n.t('financial.destination.gambling')}</h1>
         <Branch
           name="has_gamblingdebt"
           label={i18n.t('financial.gambling.title')}

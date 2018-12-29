@@ -59,7 +59,7 @@ export default class Bankruptcies extends SubsectionElement {
       <div
         className="section-content bankruptcies"
         {...super.dataAttributes(this.props)}>
-        <h1 className="section-header">Bankruptcy</h1>
+        <h1 className="section-header">{i18n.t('financial.destination.bankruptcy')}</h1>
         <Branch
           name="has_bankruptcydebt"
           label={i18n.t('financial.bankruptcy.title')}
