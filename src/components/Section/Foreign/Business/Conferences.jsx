@@ -63,7 +63,7 @@ export default class Conferences extends SubsectionElement {
       <div
         className="section-content foreign-business-conferences"
         {...super.dataAttributes(this.props)}>
-        <h1 className="section-header">Event participation</h1>
+        <h1 className="section-header">{i18n.t('foreign.destination.business.events')}</h1>
         <Branch
           name="has_foreign_conferences"
           label={i18n.t('foreign.business.conferences.heading.title')}

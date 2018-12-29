@@ -66,7 +66,7 @@ export default class Travel extends SubsectionElement {
       <div
         className="section-content foreign-travel"
         {...super.dataAttributes(this.props)}>
-        <h1 className="section-header">Foreign countries you have visited</h1>
+        <h1 className="section-header">{i18n.t('foreign.destination.travel')}</h1>
         <Branch
           label={i18n.t('foreign.travel.heading.outside')}
           labelSize="h4"

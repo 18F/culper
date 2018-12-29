@@ -56,7 +56,7 @@ export default class Contacts extends SubsectionElement {
       <div
         className="section-content foreign-contacts"
         {...super.dataAttributes(this.props)}>
-        <h1 className="section-header">Foreign contacts</h1>
+        <h1 className="section-header">{i18n.t('foreign.destination.contacts')}</h1>
         <Branch
           name="has_foreign_contacts"
           label={i18n.t('foreign.contacts.heading.title')}

@@ -58,7 +58,7 @@ export default class Advice extends SubsectionElement {
       <div
         className="section-content foreign-business-advice"
         {...super.dataAttributes(this.props)}>
-        <h1 className="section-header">Support provided</h1>
+        <h1 className="section-header">{i18n.t('foreign.destination.business.advice')}</h1>
         <Branch
           name="has_foreign_advice"
           label={i18n.t('foreign.business.advice.heading.title')}

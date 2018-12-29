@@ -59,7 +59,7 @@ export default class Voting extends SubsectionElement {
       <div
         className="section-content foreign-business-voting"
         {...super.dataAttributes(this.props)}>
-        <h1 className="section-header">Voting</h1>
+        <h1 className="section-header">{i18n.t('foreign.destination.business.voting')}</h1>
         <Branch
           name="has_foreign_voting"
           label={i18n.t('foreign.business.voting.heading.title')}

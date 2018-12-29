@@ -83,7 +83,7 @@ export default class BenefitActivity extends SubsectionElement {
       <div
         className="section-content benefit-activity"
         {...super.dataAttributes(this.props)}>
-        <h1 className="section-header">Foreign benefits</h1>
+        <h1 className="section-header">{i18n.t('foreign.destination.activities.benefits')}</h1>
         <Branch
           name="has_benefit"
           className="has-benefits"

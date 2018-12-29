@@ -59,7 +59,7 @@ export default class Support extends SubsectionElement {
       <div
         className="section-content foreign-activities-support"
         {...super.dataAttributes(this.props)}>
-        <h1 className="section-header">Foreign national support</h1>
+        <h1 className="section-header">{i18n.t('foreign.destination.activities.support')}</h1>
         <Branch
           name="has_foreign_support"
           label={i18n.t('foreign.activities.support.heading.title')}
