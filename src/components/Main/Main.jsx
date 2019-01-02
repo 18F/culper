@@ -24,6 +24,7 @@ class Main extends React.Component {
   // Check if we have a token in our base Route so that it gets called once when a page renders.
   onEnter() {
     const token = api.getToken()
+    // TODO: Need to check for formType to ensure we set that in Redux
     if (token && token.length) {
       this.props.dispatch(handleLoginSuccess())
     }
