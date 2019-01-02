@@ -4,10 +4,12 @@ import { Field } from '../Form'
 import { SectionView } from './SectionView'
 
 import identification from './Identification/subsections'
+import financial from './Financial/subsections'
 
 // section name (lower case) -> subsection store name -> subsection component
 const componentsBySectionAndStore = {
-  identification
+  identification,
+  financial
 }
 
 export const getComponentByName = (storeToComponentMap, name) => {
@@ -79,18 +81,31 @@ export const addDividers = components => {
   return componentsWithDividers
 }
 
-export const createIntroSubsection = section => {
+export const createIntroSubsection = (section, prevSection = undefined) => {
+  const nextSubsection = section.subsections[1]
+
+  const backProps = {}
+  if (prevSection) {
+    const numPrevSubsections = prevSection.subsections.length
+    const prevSubsection = prevSection.subsections[numPrevSubsections - 1]
+    backProps.back = `${prevSection.url}/${prevSubsection.url}`
+    backProps.backLabel = i18n.t(
+      `${prevSection.url}.destination.${prevSubsection.url}`
+    )
+  }
+
   return (
     <SectionView
       name="intro"
-      next={`${section}/name`}
-      nextLabel={i18n.t(`${section}.destination.name`)}>
+      {...backProps}
+      next={`${section.url}/${nextSubsection.url}`}
+      nextLabel={i18n.t(`${section.url}.destination.${nextSubsection.url}`)}>
       <Field
-        title={i18n.t(`${section}.intro.title`)}
+        title={i18n.t(`${section.url}.intro.title`)}
         titleSize="h2"
         optional={true}
         className="no-margin-bottom">
-        {i18n.m(`${section}.intro.body`)}
+        {i18n.m(`${section.url}.intro.body`)}
       </Field>
     </SectionView>
   )

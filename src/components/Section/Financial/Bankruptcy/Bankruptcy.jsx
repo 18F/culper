@@ -357,6 +357,9 @@ export default class Bankruptcy extends ValidationElement {
                 label={i18n.t('financial.bankruptcy.trustee.address.label')}
                 layout={Location.ADDRESS}
                 geocode={true}
+                dispatch={this.props.dispatch}
+                addressBooks={this.props.addressBooks}
+                addressBook="Court"
                 onError={this.props.onError}
                 onUpdate={this.updateTrusteeAddress}
                 required={this.props.required}

@@ -7,8 +7,8 @@ import { addDividers, createPrintSubsectionViews } from '../generators'
 import navigation from './navigation'
 
 class Identification extends SectionElement {
-  getReviewGroupProps(subsection) {
-    const props = super.getReviewGroupProps(subsection)
+  getSubsectionProps(subsection) {
+    const props = super.getSubsectionProps(subsection)
     if (subsection.url === 'contacts') {
       props.shouldFilterEmptyItems = true
     }
