@@ -55,7 +55,7 @@ describe('The residence component', () => {
           year: '2000'
         },
         to: {
-          month: `${new Date().getMonth()}`,
+          month: `${new Date().getMonth() + 1}`,
           day: `${new Date().getDate()}`,
           year: `${new Date().getFullYear()}`
         }
