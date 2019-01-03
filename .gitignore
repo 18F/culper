@@ -93,3 +93,6 @@ xmlsec1
 
 # ack
 .ackrc
+
+/cypress/videos
+/cypress/screenshots
