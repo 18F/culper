@@ -25,5 +25,8 @@
     "test": "rm -rf ./screenshots && rm -rf ./tmp-* && nightwatch",
     "docker": "sleep 1m; npm test",
     "gif": "convert -delay 100 -loop 0"
+  },
+  "devDependencies": {
+    "cypress": "^3.1.4"
   }
 }

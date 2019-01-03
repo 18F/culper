@@ -8,6 +8,7 @@ env:
   es6: true
   node: true
   jest: true
+  cypress/globals: true
 parserOptions:
   ecmaVersion: 9
   sourceType: module
@@ -15,6 +16,7 @@ parserOptions:
     jsx: true
 plugins:
   - react
+  - cypress
 rules:
   # the following rules are disabled for legacy reasons, and most should be removed over time
   import/no-duplicates: 'off'
@@ -26,5 +28,6 @@ rules:
   react/prop-types:
     - error
     - skipUndeclared: true
+  cypress/recommended: true
 settings:
   import/resolver: webpack
