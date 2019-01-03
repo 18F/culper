@@ -775,7 +775,7 @@ exports[`Renders homepage 1`] = `
                 id="logo"
               >
                 <div
-                  className="text-center"
+                  className="eapp-logo-container"
                 >
                   <img
                     alt="National Background Investigation Services"

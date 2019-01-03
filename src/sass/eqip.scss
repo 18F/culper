@@ -129,7 +129,10 @@ p {
           font-size: 4rem;
           font-weight: $eapp-bold;
           color: $color-white;
-          font-family: $eapp-sans;
+          font-variant-numeric: lining-nums;
+          -moz-font-feature-settings: "lnum";
+          -webkit-font-feature-settings: "lnum";
+          font-feature-settings: "lnum";
         }
       }
     }
