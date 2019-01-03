@@ -1,5 +1,6 @@
 import React from 'react'
 import { withRouter } from 'react-router'
+import { connect } from 'react-redux'
 import { i18n } from '../../config'
 import {
   SectionTitle,
@@ -8,10 +9,11 @@ import {
   Navigation,
   NavigationToggle
 } from '..'
+import { Form } from '../../views'
 import { Introduction, Show } from '../Form'
 import Logout from '../Navigation/Logout'
 import StickyHeader from '../Sticky/StickyHeader'
-import { connect } from 'react-redux'
+import formTypes from './../../config/formTypes'
 
 /*
            1/6-ish                                 2/3-ish                               1/6-ish
@@ -185,7 +187,9 @@ class App extends React.Component {
                           src="/img/nbis-seal-small.png"
                           alt="National Background Investigation Services"
                         />
-                        <span className="eapp-logo-text">SF86</span>
+                        <span className="eapp-logo-text">
+                          {formTypes[this.props.formType]}
+                        </span>
                       </div>
                     </div>
                     <div className={klassTitle}>
@@ -229,7 +233,7 @@ class App extends React.Component {
               ref={this.setSectionFocusEl}
             />
             <div id="main-content" className={klassCore}>
-              {this.props.children}
+              <Form {...this.props} />
               &nbsp;
             </div>
           </div>
@@ -253,7 +257,8 @@ function mapStateToProps(state) {
 
   return {
     settings: settings,
-    authenticated: auth.authenticated
+    authenticated: auth.authenticated,
+    formType: auth.formType
   }
 }
 
