@@ -17,7 +17,7 @@ export default class TravelDays extends ValidationElement {
     const selected = this.props.value
     return (
       <RadioGroup
-        className={`travel-days ${this.props.className || ''}`.trim()}
+        className={`travel-days option-list option-list-vertical ${this.props.className || ''}`.trim()}
         onError={this.props.onError}
         required={this.props.required}
         selectedValue={selected}>

@@ -2,6 +2,12 @@
   .summaryprogress.progress {
     display: inline-block;
     vertical-align: middle;
+
+    .summary-progress {
+      border: none;
+      padding: 0;
+      margin: 0;
+    }
   }
 
   .people-summary {
@@ -16,11 +22,9 @@
   }
 
   .counter {
-    height: 66px;
     vertical-align: middle;
     display: inline-block;
     width: 16rem;
     text-align: center;
-    margin-bottom: 4.9rem;
   }
 }

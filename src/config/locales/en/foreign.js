@@ -15,7 +15,7 @@ export const foreign = {
     review: 'Review Foreign Associations',
     history: 'Your History',
     tbd: 'TBD',
-    contacts: 'Foreign Contacts',
+    contacts: 'Foreign contacts',
     passport: 'U.S. passport information',
     activities: {
       activity: 'Foreign activities',
@@ -98,7 +98,7 @@ export const foreign = {
       para: {
         intro: [
           'Foreign financial interest examples:  stocks, property, investments, bank accounts, ownership of corporate entities, corporate interests or exchange traded funds (ETFs) held in specific geographical or economic sectors.',
-          '**Exclude financial interests in companies or diversified mutual funds or diversified ETFs that are publicly traded on a U.S. exchange.**'
+          'Exclude financial interests in companies or diversified mutual funds or diversified ETFs that are publicly traded on a U.S. exchange.'
         ],
         howAcquired: 'Such as purchase, gift, etc.'
       },
@@ -860,7 +860,7 @@ export const foreign = {
       no: 'No',
       inperson: 'In person',
       telephone: 'Telephone',
-      electronic: ['Electronic', '(such as email, texting, chat rooms, etc)'],
+      electronic: 'Electronic (such as email, texting, chat rooms, etc)',
       written: 'Written correspondence',
       daily: 'Daily',
       weekly: 'Weekly',
@@ -868,12 +868,9 @@ export const foreign = {
       quarterly: 'Quarterly',
       annually: 'Annually',
       professional: 'Professional or business',
-      personal: [
-        'Personal',
-        '(such as family ties, friendship, affection, common interests, etc)'
-      ],
-      obligation: ['Obligation', '(provide explanation)'],
-      other: ['Other', '(provide explanation)']
+      personal: 'Personal (such as family ties, friendship, affection, common interests, etc)',
+      obligation: 'Obligation (provide explanation)',
+      other: 'Other (provide explanation)'
     },
     help: {
       branch: {
@@ -995,7 +992,7 @@ export const foreign = {
       },
       para: {
         branch:
-          'Answer "No" if **all** your advice or support was authorized pursuant to official U.S. Government business.'
+          'Answer **"No"** if **all** your advice or support was authorized pursuant to official U.S. Government business.'
       },
       help: {
         description: {
@@ -1064,7 +1061,7 @@ export const foreign = {
           message:
             'If you have provided any advice to a foreign individual or business then select "yes"',
           note:
-            'Note: Answer "no" if **all** your advice or support was authorized pursuant to official U.S. Government business.'
+            'Note: Answer **"no"** if **all** your advice or support was authorized pursuant to official U.S. Government business.'
         },
         agency: {
           title: 'Need help with the agency name?',
@@ -1373,7 +1370,7 @@ export const foreign = {
           'For this question, "Immediate Family" means your spouse, parents, step-parents, siblings, half and step-siblings, children, stepchildren, and cohabitant.',
         branch: [
           'Such as  embassy, consulate, agency, military service, intelligence or security service, etc.',
-          'Answer "No" if the contact was for routine visa applications and border crossings related to either official U.S.  Government travel, foreign travel on a U.S. passport, or as a U.S. military service member in conjunction with a U.S. Government military duty.'
+          'Answer **"No"** if the contact was for routine visa applications and border crossings related to either official U.S.  Government travel, foreign travel on a U.S. passport, or as a U.S. military service member in conjunction with a U.S. Government military duty.'
         ]
       },
       label: {
@@ -1451,7 +1448,7 @@ export const foreign = {
           'Have you or any member of your immediate family in the last seven (7) years had any additional contact with a foreign government, its establishment or its representatives, whether inside or outside the U.S.?',
         appendMessage: [
           'Such as embassy, consulate, agency, military service, intelligence or security service, etc.',
-          'Answer "No" if the contact was for routine visa applications and border crossings related to either official U.S. Government travel, foreign travel on a U.S. passport, or as a U.S. military service member in conjunction with a U.S. Government military duty.'
+          'Answer **"No"** if the contact was for routine visa applications and border crossings related to either official U.S. Government travel, foreign travel on a U.S. passport, or as a U.S. military service member in conjunction with a U.S. Government military duty.'
         ],
         append: 'Add another contact'
       }

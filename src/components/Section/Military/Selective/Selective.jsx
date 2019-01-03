@@ -71,7 +71,7 @@ export default class Selective extends SubsectionElement {
         <Branch
           name="was_bornafter"
           label={i18n.t('military.selective.heading.born')}
-          labelSize="h2"
+          labelSize="h4"
           className="born"
           {...this.props.WasBornAfter}
           help="military.selective.help.born"
@@ -86,11 +86,9 @@ export default class Selective extends SubsectionElement {
           <div>
             <Branch
               name="has_registered"
+              className="registered"
               label={i18n.t('military.selective.heading.registered')}
-              labelSize="h3"
-              className={`registered no-margin-bottom ${
-                this.props.HasRegistered === 'No' ? 'no-margin-bottom' : ''
-              }`}
+              labelSize="h4"
               {...this.props.HasRegistered}
               warning={true}
               onUpdate={this.updateRegistered}
@@ -123,10 +121,9 @@ export default class Selective extends SubsectionElement {
                   <div className="table">
                     <div className="messages">
                       <div className="message help">
-                        <i className="fa fa-question" />
-                        <h5>
-                          {i18n.m('military.selective.help.remember.title')}
-                        </h5>
+                        <strong>
+                          {i18n.t('military.selective.help.remember.title')}
+                        </strong>
                         {i18n.m('military.selective.help.remember.message')}
                         <div>
                           <p>
@@ -148,7 +145,7 @@ export default class Selective extends SubsectionElement {
             <Show when={this.props.HasRegistered.value === 'No'}>
               <Field
                 title={i18n.t('military.selective.label.explanation')}
-                titleSize="label"
+                titleSize="h4"
                 help="military.selective.help.explanation"
                 adjustFor="textarea"
                 scrollIntoView={this.props.scrollIntoView}>

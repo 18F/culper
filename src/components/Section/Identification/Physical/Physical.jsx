@@ -40,15 +40,11 @@ export default class Physical extends SubsectionElement {
 
     return (
       <div className={klass} {...super.dataAttributes(this.props)}>
-        <Field
-          title={i18n.t('identification.traits.title')}
-          titleSize="h2"
-          optional={true}
-          className="no-margin-bottom"
-        />
+        <h1 className="section-header">{i18n.t('identification.destination.physical')}</h1>
 
         <Field
           title={i18n.t('identification.traits.heading.height')}
+          titleSize="h4"
           help="identification.traits.help.height"
           adjustFor="labels"
           scrollIntoView={this.props.scrollIntoView}
@@ -64,6 +60,7 @@ export default class Physical extends SubsectionElement {
 
         <Field
           title={i18n.t('identification.traits.heading.weight')}
+          titleSize="h4"
           help="identification.traits.help.weight"
           adjustFor="labels"
           scrollIntoView={this.props.scrollIntoView}
@@ -79,6 +76,7 @@ export default class Physical extends SubsectionElement {
 
         <Field
           title={i18n.t('identification.traits.heading.hair')}
+          titleSize="h4"
           adjustFor="big-buttons"
           scrollIntoView={this.props.scrollIntoView}
           help="identification.traits.help.hair">
@@ -95,6 +93,7 @@ export default class Physical extends SubsectionElement {
 
         <Field
           title={i18n.t('identification.traits.heading.eye')}
+          titleSize="h4"
           adjustFor="big-buttons"
           scrollIntoView={this.props.scrollIntoView}
           help="identification.traits.help.eye">
@@ -110,6 +109,7 @@ export default class Physical extends SubsectionElement {
 
         <Field
           title={i18n.t('identification.traits.heading.sex')}
+          titleSize="h4"
           help="identification.traits.help.sex"
           adjustFor="big-buttons"
           shrink={true}

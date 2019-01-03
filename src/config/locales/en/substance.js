@@ -112,7 +112,7 @@ export const substance = {
           courtOfficial: 'A court official / judge',
           notOrdered:
             'I have not been ordered, advised, or asked to seek counseling or treatment by any of the above',
-          other: ['Other', '(provide explanation)']
+          other: 'Other (provide explanation)'
         }
       },
       collection: {
@@ -798,28 +798,16 @@ export const substance = {
     },
     drugType: {
       label: {
-        cocaine: ['Cocaine or crack cocaine', '(Such as rock, freebase, etc.)'],
-        stimulants: [
-          'Stimulants',
-          '(Such as amphetamines, speed, crystal meth, ecstasy, etc.)'
-        ],
-        thc: ['THC', '(Such as marijuana, weed, pot, hashish, etc.)'],
-        depressants: [
-          'Depressants',
-          '(Such as barbiturates, methaqualone, tranquilizers, etc.)'
-        ],
-        ketamine: ['Ketamine', '(Such as special K, jet, etc.)'],
-        narcotics: [
-          'Narcotics',
-          '(Such as opium, morphine, codeine, heroin, etc.)'
-        ],
-        hallucinogenic: [
-          'Hallucinogenic',
-          '(Such as LSD, PCP, mushrooms, etc.)'
-        ],
-        steroids: ['Steroids', '(Such as the clear, juice, etc.)'],
-        inhalants: ['Inhalants', '(Such as toluene, amyl nitrate, etc.)'],
-        other: ['Other', '(Provide explanation)'],
+        cocaine: 'Cocaine or crack cocaine (Such as rock, freebase, etc.)',
+        stimulants: 'Stimulants (Such as amphetamines, speed, crystal meth, ecstasy, etc.)',
+        thc: 'THC (Such as marijuana, weed, pot, hashish, etc.)',
+        depressants: 'Depressants (Such as barbiturates, methaqualone, tranquilizers, etc.)',
+        ketamine: 'Ketamine (Such as special K, jet, etc.)',
+        narcotics: 'Narcotics (Such as opium, morphine, codeine, heroin, etc.)',
+        hallucinogenic: 'Hallucinogenic (Such as LSD, PCP, mushrooms, etc.)',
+        steroids: 'Steroids(Such as the clear, juice, etc.)',
+        inhalants: 'Inhalants (Such as toluene, amyl nitrate, etc.)',
+        other: 'Other (Provide explanation)',
         drugTypeOther: 'Provide explanation'
       }
     }

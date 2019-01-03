@@ -65,7 +65,7 @@ export class Introduction extends React.Component {
                 yesAriaLabel={i18n.t('introduction.acceptance.aria.yes')}
                 noAriaLabel={i18n.t('introduction.acceptance.aria.no')}
                 optional={true}
-                className="introduction-acceptance"
+                className="introduction-acceptance no-margin-bottom"
                 onUpdate={this.updateBranch}>
                 {i18n.m('introduction.acceptance.para')}
               </Branch>

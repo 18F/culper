@@ -149,12 +149,12 @@ export default class Bankruptcy extends ValidationElement {
       <div className="bankruptcy">
         <Field
           title={i18n.t('financial.bankruptcy.heading.petitionType')}
-          titleSize="h3"
+          titleSize="h4"
           help="financial.bankruptcy.petitionType.help"
           scrollIntoView={this.props.scrollIntoView}
           adjustFor="buttons">
           <RadioGroup
-            className="petition-chapters"
+            className="petition-chapters option-list option-list-vertical"
             selectedValue={(this.props.PetitionType || {}).value}
             required={this.props.required}
             onError={this.props.onError}>
@@ -280,7 +280,6 @@ export default class Bankruptcy extends ValidationElement {
 
         <Field
           title={i18n.t('financial.bankruptcy.heading.nameDebt')}
-          titleSize="h3"
           filterErrors={Name.requiredErrorsOnly}
           scrollIntoView={this.props.scrollIntoView}
           optional={true}>
@@ -371,7 +370,7 @@ export default class Bankruptcy extends ValidationElement {
         <Branch
           name="discharge_explanation"
           label={i18n.t('financial.bankruptcy.heading.dischargeExplanation')}
-          labelSize="h3"
+          labelSize="h4"
           className="has-discharge-explanation no-margin-bottom"
           {...this.props.HasDischargeExplanation}
           onUpdate={this.updateHasDischargeExplanation}

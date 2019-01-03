@@ -58,10 +58,11 @@ export default class DrugPublicSafetyUses extends SubsectionElement {
       <div
         className="section-content drug-public-safety-uses"
         {...super.dataAttributes(this.props)}>
+        <h1 className="section-header">{i18n.t('substance.destination.drugs.publicsafety')}</h1>
         <Branch
           name="UsedDrugs"
           label={i18n.t('substance.drugs.heading.drugPublicSafetyUses')}
-          labelSize="h2"
+          labelSize="h4"
           className="used-drugs"
           {...this.props.UsedDrugs}
           warning={true}

@@ -56,10 +56,11 @@ export default class ActivitiesToOverthrow extends SubsectionElement {
       <div
         className="section-content legal-associations-activities"
         {...super.dataAttributes(this.props)}>
+        <h1 className="section-header">{i18n.t('legal.destination.associations.activities')}</h1>
         <Branch
           name="has_activities"
           label={i18n.t('legal.associations.activities.heading.title')}
-          labelSize="h2"
+          labelSize="h4"
           className="legal-associations-activities-has-activities"
           {...this.props.HasActivities}
           warning={true}

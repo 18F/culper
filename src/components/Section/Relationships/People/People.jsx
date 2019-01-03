@@ -135,23 +135,25 @@ export default class People extends SubsectionElement {
         {i18n.m('relationships.people.para.intro')}
 
         <span id="scrollToPeople" />
-        <div className="summaryprogress progress">
-          <SummaryProgress
-            className="people-summary"
-            List={this.peopleSummaryList}
-            title={i18n.t('relationships.people.summaryProgress.title')}
-            unit={i18n.t('relationships.people.summaryProgress.unit')}
-            total={7}>
-            <div className="summary-icon">
-              <Svg
-                src="/img/people-who-know-you.svg"
-                alt={i18n.t('relationships.people.summaryProgress.svgAlt')}
-              />
-            </div>
-          </SummaryProgress>
-        </div>
-        <div className="summaryprogress counter">
-          <PeopleCounter List={this.props.List} />
+        <div className="summary-progress">
+          <div className="summaryprogress progress">
+            <SummaryProgress
+              className="people-summary"
+              List={this.peopleSummaryList}
+              title={i18n.t('relationships.people.summaryProgress.title')}
+              unit={i18n.t('relationships.people.summaryProgress.unit')}
+              total={7}>
+              <div className="summary-icon">
+                <Svg
+                  src="/img/people-who-know-you.svg"
+                  alt={i18n.t('relationships.people.summaryProgress.svgAlt')}
+                />
+              </div>
+            </SummaryProgress>
+          </div>
+          <div className="summaryprogress counter">
+            <PeopleCounter List={this.props.List} />
+          </div>
         </div>
 
         <Accordion

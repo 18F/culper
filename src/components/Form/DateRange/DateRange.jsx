@@ -212,12 +212,12 @@ export default class DateRange extends ValidationElement {
   }
 
   render() {
-    const klass = `daterange usa-grid ${this.props.className || ''}`.trim()
+    const klass = `daterange ${this.props.className || ''}`.trim()
     const klassTo = `to ${this.state.error ? 'usa-input-error' : ''}`.trim()
 
     return (
       <div className={klass}>
-        <div className="usa-grid from-grid">
+        <div className="from-grid">
           <div className="from-label">From date</div>
           <DateControl
             name="from"
@@ -236,12 +236,9 @@ export default class DateRange extends ValidationElement {
           />
         </div>
         <div className="arrow">
-          <Svg
-            src="/img/date-down-arrow.svg"
-            alt="Range spanning from one date to another"
-          />
+          <i className="fa fa-long-arrow-right fa-2x"></i>
         </div>
-        <div className="usa-grid to-grid">
+        <div className="to-grid">
           <div className="from-label">To date</div>
           <DateControl
             name="to"
@@ -262,7 +259,9 @@ export default class DateRange extends ValidationElement {
               this.props.required && !this.state.present && !this.props.disabled
             }
           />
-          <Show when={this.props.allowPresent}>
+        </div>
+        <Show when={this.props.allowPresent}>
+          <div className="or-present">
             <div className="from-present">
               <span className="or"> or </span>
             </div>
@@ -278,8 +277,8 @@ export default class DateRange extends ValidationElement {
                 onError={this.handleErrorPresent}
               />
             </div>
-          </Show>
-        </div>
+          </div>
+        </Show>
       </div>
     )
   }

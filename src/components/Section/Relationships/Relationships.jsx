@@ -61,9 +61,8 @@ class Relationships extends SectionElement {
             backLabel={i18n.t('history.destination.review')}
             next="relationships/status/marital"
             nextLabel={i18n.t('relationships.destination.marital')}>
+            <h1 className="section-header">{i18n.t('relationships.intro.title')}</h1>
             <Field
-              title={i18n.t('relationships.intro.title')}
-              titleSize="h2"
               optional={true}
               className="no-margin-bottom">
               {i18n.m('relationships.intro.body')}
@@ -76,6 +75,7 @@ class Relationships extends SectionElement {
             backLabel={i18n.t('relationships.destination.intro')}
             next="relationships/status/cohabitant"
             nextLabel={i18n.t('relationships.destination.cohabitant')}>
+            <h1 className="section-header">{i18n.t('relationships.marital.sectionTitle.title')}</h1>
             <Marital
               name="marital"
               {...this.props.Marital}
@@ -96,6 +96,7 @@ class Relationships extends SectionElement {
             backLabel={i18n.t('relationships.destination.marital')}
             next="relationships/people"
             nextLabel={i18n.t('relationships.destination.people')}>
+            <h1 className="section-header">{i18n.t('relationships.cohabitant.sectionTitle.title')}</h1>
             <Cohabitants
               name="cohabitants"
               {...this.props.Cohabitants}
@@ -114,6 +115,7 @@ class Relationships extends SectionElement {
             backLabel={i18n.t('relationships.destination.cohabitant')}
             next="relationships/relatives"
             nextLabel={i18n.t('relationships.destination.relatives')}>
+            <h1 className="section-header">{i18n.t('relationships.people.sectionTitle.title')}</h1>
             <People
               name="people"
               {...this.props.People}
@@ -131,6 +133,7 @@ class Relationships extends SectionElement {
             backLabel={i18n.t('relationships.destination.people')}
             next="relationships/review"
             nextLabel={i18n.t('relationships.destination.review')}>
+            <h1 className="section-header">{i18n.t('relationships.relatives.sectionTitle.title')}</h1>
             <Relatives
               name="relatives"
               {...this.props.Relatives}
@@ -152,6 +155,7 @@ class Relationships extends SectionElement {
             backLabel={i18n.t('relationships.destination.relatives')}
             next="citizenship/intro"
             nextLabel={i18n.t('citizenship.destination.intro')}>
+            <h1 className="section-header">{i18n.t('relationships.marital.sectionTitle.title')}</h1>
             <Marital
               name="marital"
               {...this.props.Marital}
@@ -169,6 +173,7 @@ class Relationships extends SectionElement {
             />
 
             <hr className="section-divider" />
+            <h1 className="section-header">{i18n.t('relationships.cohabitant.sectionTitle.title')}</h1>
             <Cohabitants
               name="cohabitants"
               {...this.props.Cohabitants}
@@ -184,6 +189,7 @@ class Relationships extends SectionElement {
             />
 
             <hr className="section-divider" />
+            <h1 className="section-header">{i18n.t('relationships.people.sectionTitle.title')}</h1>
             <People
               name="people"
               {...this.props.People}
@@ -198,6 +204,7 @@ class Relationships extends SectionElement {
             />
 
             <hr className="section-divider" />
+            <h1 className="section-header">{i18n.t('relationships.relatives.sectionTitle.title')}</h1>
             <Relatives
               name="relatives"
               {...this.props.Relatives}

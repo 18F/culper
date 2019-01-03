@@ -140,9 +140,8 @@ class Foreign extends SectionElement {
             backLabel={i18n.t('military.destination.review')}
             next="foreign/passport"
             nextLabel={i18n.t('foreign.destination.passport')}>
+            <h1 className="section-header">{i18n.t('foreign.intro.title')}</h1>
             <Field
-              title={i18n.t('foreign.intro.title')}
-              titleSize="h2"
               optional={true}
               className="no-margin-bottom">
               {i18n.m('foreign.intro.body')}

@@ -15,17 +15,17 @@ exports[`The attachments component renders properly 1`] = `
       id="field-MOCK-GUID"
       name="field-MOCK-GUID"
     />
-    <h3
-      className="title h3"
+    <h4
+      className="title h4"
     >
       Specify your attachment method
-    </h3>
+    </h4>
     <span
       className="icon"
     >
       <a
         aria-label="Show help for Specify your attachment method"
-        className="toggle h3"
+        className="toggle h4"
         href="javascript:;"
         onClick={[Function]}
         title="Show help for Specify your attachment method"
@@ -79,30 +79,30 @@ exports[`The attachments component renders properly 1`] = `
             </p>
           </div>
           <div
-            className="blocks attachment-type option-list eapp-extend-labels"
+            className="blocks attachment-type option-list eapp-extend-labels physical-radio"
           >
             <div
               className="block extended"
             >
+              <input
+                aria-label="[object Object] for null"
+                checked={true}
+                className="usa-input-success selected"
+                disabled={false}
+                id="attachment-type-upload-MOCK-GUID"
+                name="attachment-type-upload-MOCK-GUID"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+                onKeyDown={[Function]}
+                type="radio"
+                value="Upload"
+              />
               <label
                 className="checked"
                 htmlFor="attachment-type-upload-MOCK-GUID"
               >
-                <input
-                  aria-label="[object Object] for null"
-                  checked={true}
-                  className="usa-input-success selected"
-                  disabled={false}
-                  id="attachment-type-upload-MOCK-GUID"
-                  name="attachment-type-upload-MOCK-GUID"
-                  onBlur={[Function]}
-                  onChange={[Function]}
-                  onClick={[Function]}
-                  onFocus={[Function]}
-                  onKeyDown={[Function]}
-                  type="radio"
-                  value="Upload"
-                />
                 <div
                   className="attachment-icon upload"
                 >
@@ -124,25 +124,25 @@ exports[`The attachments component renders properly 1`] = `
             <div
               className="block extended"
             >
+              <input
+                aria-label="[object Object] for null"
+                checked={false}
+                className="usa-input-success"
+                disabled={false}
+                id="attachment-type-fax-MOCK-GUID"
+                name="attachment-type-fax-MOCK-GUID"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+                onKeyDown={[Function]}
+                type="radio"
+                value="Fax"
+              />
               <label
                 className=""
                 htmlFor="attachment-type-fax-MOCK-GUID"
               >
-                <input
-                  aria-label="[object Object] for null"
-                  checked={false}
-                  className="usa-input-success"
-                  disabled={false}
-                  id="attachment-type-fax-MOCK-GUID"
-                  name="attachment-type-fax-MOCK-GUID"
-                  onBlur={[Function]}
-                  onChange={[Function]}
-                  onClick={[Function]}
-                  onFocus={[Function]}
-                  onKeyDown={[Function]}
-                  type="radio"
-                  value="Fax"
-                />
                 <div
                   className="attachment-icon fax"
                 >
@@ -164,25 +164,25 @@ exports[`The attachments component renders properly 1`] = `
             <div
               className="block extended"
             >
+              <input
+                aria-label="[object Object] for null"
+                checked={false}
+                className="usa-input-success"
+                disabled={false}
+                id="attachment-type-other-MOCK-GUID"
+                name="attachment-type-other-MOCK-GUID"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+                onKeyDown={[Function]}
+                type="radio"
+                value="Other"
+              />
               <label
                 className=""
                 htmlFor="attachment-type-other-MOCK-GUID"
               >
-                <input
-                  aria-label="[object Object] for null"
-                  checked={false}
-                  className="usa-input-success"
-                  disabled={false}
-                  id="attachment-type-other-MOCK-GUID"
-                  name="attachment-type-other-MOCK-GUID"
-                  onBlur={[Function]}
-                  onChange={[Function]}
-                  onClick={[Function]}
-                  onFocus={[Function]}
-                  onKeyDown={[Function]}
-                  type="radio"
-                  value="Other"
-                />
                 <div
                   className="attachment-icon mail"
                 >
@@ -218,11 +218,11 @@ exports[`The attachments component renders properly 1`] = `
         id="field-MOCK-GUID"
         name="field-MOCK-GUID"
       />
-      <h3
-        className="title h3"
+      <h4
+        className="title h4"
       >
         Upload file to e-QIP directly
-      </h3>
+      </h4>
       <span
         className="icon"
       />

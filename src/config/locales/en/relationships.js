@@ -19,6 +19,9 @@ export const relationships = {
     cohabitant: 'Cohabitant'
   },
   relatives: {
+    sectionTitle: {
+      title: 'Relatives'
+    },
     collection: {
       summary: {
         title: 'Summary of relatives',
@@ -101,7 +104,7 @@ export const relationships = {
         stepmother: 'Stepmother',
         stepfather: 'Stepfather',
         fosterparent: 'Foster parent',
-        child: ['Child', '(including adopted/foster)'],
+        child: ['Child (including adopted/foster)'],
         stepchild: 'Stepchild',
         brother: 'Brother',
         sister: 'Sister',
@@ -132,7 +135,7 @@ export const relationships = {
         ],
         permanent: ['Permanent resident card', '(I-551)'],
         certificate: ['Certificate of naturalization', '(N550 or N570)'],
-        other: ['Other', '(provide explanation)']
+        other: 'Other (provide explanation)'
       },
       methods: {
         inperson: 'In person',
@@ -142,7 +145,7 @@ export const relationships = {
           '(such as email, texting, chat rooms, etc.)'
         ],
         written: 'Written correspondence',
-        other: ['Other', '(provide explanation)']
+        other: 'Other (provide explanation)'
       },
       frequency: {
         daily: 'Daily',
@@ -150,7 +153,7 @@ export const relationships = {
         monthly: 'Monthly',
         quarterly: 'Quarterly',
         annually: 'Annually',
-        other: ['Other', '(provide explanation)']
+        other: 'Other (provide explanation)'
       },
       document: {
         permanent: 'I-551 Permanent Resident',
@@ -162,7 +165,7 @@ export const relationships = {
           'DS-2019 Certificate of Eligibility',
           '(exchange visitor J1 status)'
         ],
-        other: ['Other', '(provide explanation)']
+        other: 'Other (provide explanation)'
       },
       maiden: {
         same: 'Same as listed',
@@ -318,6 +321,9 @@ export const relationships = {
     }
   },
   marital: {
+    sectionTitle:  {
+      title: 'Marital'
+    },
     heading: {
       title:
         'Provide your current marital/relationship status with regard to civil marriage, legally recognized civil union, or legally recognized domestic partnership.'
@@ -562,6 +568,9 @@ export const relationships = {
     }
   },
   cohabitant: {
+    sectionTitle: {
+      title: 'Cohabitants'
+    },
     heading: {
       hasCohabitant:
         'Do you presently reside with a person, other than a spouse or legally recognized civil union/domestic partner, with whom you share bonds of affection, obligation, or other commitment, as opposed to a person with whom you live for reasons of convenience?',
@@ -687,6 +696,9 @@ export const relationships = {
     }
   },
   people: {
+    sectionTitle: {
+      title: 'People who know you well'
+    },
     label: {
       unit: 'People added'
     },

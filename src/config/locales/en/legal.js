@@ -368,21 +368,21 @@ export const legal = {
           dos: 'U.S. Department of State',
           opm: 'U.S. Office of Personnel Management',
           fbi: 'Federal Bureau of Investigation',
-          dot: ['U.S. Department of Treasury', '(provide name of bureau)'],
+          dot: 'U.S. Department of Treasury (provide name of bureau)',
           dhs: 'U.S. Department of Homeland Security',
-          foreign: ['Foreign government', '(provide name of government)'],
-          other: ['Other', '(provide explanation)']
+          foreign: 'Foreign government (provide name of government)',
+          other: 'Other (provide explanation)'
         },
         level: {
           none: 'None',
           confidential: 'Confidential',
           secret: 'Secret',
           topsecret: 'Top Secret',
-          sci: ['Sensitive Compartmented Information', '(SCI)'],
+          sci: 'Sensitive Compartmented Information (SCI)',
           q: 'Q',
           l: 'L',
           foreign: 'Issued by foreign country',
-          other: ['Other', '(provide explanation)']
+          other: 'Other (provide explanation)'
         }
       },
       para: {

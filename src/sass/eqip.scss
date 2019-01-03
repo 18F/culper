@@ -11,38 +11,39 @@ h3,
 h4,
 h5,
 h6 {
-  line-height: 1.3;
-  margin-top: 5rem;
+  line-height: 1.5;
+}
+
+h1 {
+  font-size: 3rem;
 }
 
 h2 {
-  line-height: 1.6;
-  margin-top: 0;
+  font-size: 2.5rem;
 }
 
 h3 {
-  font-size: 1.85rem;
-  margin-top: 1.5rem;
-  line-height: 1.7;
+  font-size: 2rem;
 }
 
 h4 {
   font-size: 1.7rem;
-  line-height: 1.7;
 }
 
 h5 {
-  font-size: 1.6rem;
-  line-height: 1.6;
+  font-size: 1.3rem;
 }
 
 h6 {
-  font-size: 1.5rem;
-  line-height: 1.7;
+  font-size: 1rem;
 }
 
 ul {
   margin-top: 0;
+}
+
+p {
+  margin-bottom: 2rem;
 }
 
 /* set up structure to go from a table-style to floated block style */
@@ -63,6 +64,11 @@ ul {
       width: 21%;
       height: 100vh;
       min-width: 32rem;
+
+      &.eapp-navigation {
+        background: $color-gray-extra-lightest;
+        border-right: 1px solid $color-gray-lightest;
+      }
     }
 
     .eapp-structure-right {
@@ -109,20 +115,25 @@ ul {
       background: $eapp-blue-darkest;
       color: $eapp-blue-lighter;
 
-      .eapp-logo-icon {
-        display: inline-block;
-        height: 8rem;
-        width: 8rem;
-        margin-left: 10%;
-        vertical-align: middle;
-      }
+      .eapp-logo-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
 
-      .eapp-logo-text {
-        display: inline-block;
-        margin-left: 2rem;
-        font-size: 3rem;
-        font-weight: $eapp-bold;
-        margin-top: 4.7rem;
+        .eapp-logo-icon {
+          margin-right: 5%;
+        }
+
+        .eapp-logo-text {
+          font-size: 4rem;
+          font-weight: $eapp-bold;
+          color: $color-white;
+          font-variant-numeric: lining-nums;
+          -moz-font-feature-settings: 'lnum';
+          -webkit-font-feature-settings: 'lnum';
+          font-feature-settings: 'lnum';
+        }
       }
     }
 
@@ -255,17 +266,20 @@ ul {
 
             .title {
               max-height: 5rem;
-              margin-top: -0.5rem;
+              line-height: 1.3;
+              margin-top: -1rem;
 
               .title-text {
-                transition: font-size 400ms ease-out;
+                transition: all 400ms ease-out;
+                display: block;
                 font-size: 1.8rem;
                 line-height: 1;
               }
 
               .crumb {
-                transition: font-size 400ms ease-out;
+                transition: all 400ms ease-out;
                 font-size: 1rem;
+                color: $eapp-blue-lighter;
               }
             }
           }
@@ -417,4 +431,44 @@ ul {
     -moz-animation-delay: 0.25s;
     -webkit-animation-delay: 0.25s;
   }
+}
+
+// List styles
+
+.usa-list-inline {
+  padding-left: 0;
+  list-style: none;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.usa-list-inline li {
+  display: inline-block;
+  margin-bottom: 0;
+
+  @media all and (max-width: 980px) {
+    display: block;
+  }
+}
+
+.usa-list-inline li:not(:last-child),
+.usa-list-inline-justified li:not(:last-child) {
+  margin-right: 1rem;
+
+  @media all and (max-width: 980px) {
+    margin-right: 0;
+  }
+}
+
+.usa-list-inline-justified {
+  display: flex;
+  justify-content: space-between;
+
+  @media all and (max-width: 980px) {
+    display: block;
+  }
+}
+
+.usa-list-inline-justified li {
+  width: 100%;
 }

@@ -126,7 +126,7 @@ export default class OrderedCounseling extends ValidationElement {
           scrollIntoView={this.props.scrollIntoView}>
           {i18n.m('substance.alcohol.orderedCounseling.label.seekers')}
           <CheckboxGroup
-            className="seekers"
+            className="seekers option-list option-list-vertical"
             onError={this.props.onError}
             required={this.props.required}
             selectedValues={(this.props.Seekers || {}).values || []}>
@@ -221,7 +221,7 @@ export default class OrderedCounseling extends ValidationElement {
           label={i18n.t(
             'substance.alcohol.orderedCounseling.heading.actionTaken'
           )}
-          labelSize="h3"
+          labelSize="h4"
           className={`action-taken ${
             this.props.ActionTaken === 'No' ? 'no-margin-bottom' : ''
           }`}
@@ -314,7 +314,7 @@ export default class OrderedCounseling extends ValidationElement {
               label={i18n.t(
                 'substance.alcohol.orderedCounseling.heading.completedTreatment'
               )}
-              labelSize="h3"
+              labelSize="h4"
               className="completed-treatment no-margin-bottom"
               {...this.props.CompletedTreatment}
               onError={this.props.onError}
@@ -348,7 +348,7 @@ export default class OrderedCounseling extends ValidationElement {
             title={i18n.t(
               'substance.alcohol.orderedCounseling.heading.noActionTakenExplanation'
             )}
-            titleSize="label"
+            titleSize="h4"
             scrollIntoView={this.props.scrollIntoView}>
             <Textarea
               name="NoActionTakenExplanation"

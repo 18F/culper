@@ -14,3 +14,24 @@
     }
   }
 }
+
+.blocks.option-list.physical-radio {
+  flex-flow: wrap;
+
+  .block {
+    width: auto;
+  }
+
+  .block label {
+    margin-bottom: 5.5rem;
+  }
+
+  .block label::before {
+    display: none;
+  }
+
+  .block label > span {
+    margin-left: 0;
+    text-align: center;
+  }
+}

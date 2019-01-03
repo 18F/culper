@@ -241,7 +241,7 @@ export default class TravelQuestions extends ValidationElement {
 
         <Branch
           label={i18n.t('foreign.travel.heading.questioned')}
-          labelSize="h3"
+          labelSize="h4"
           name="has_foreign_travel_questioned"
           className={`foreign-travel-questioned ${
             (this.props.Questioned || {}).value === 'Yes'
@@ -273,7 +273,7 @@ export default class TravelQuestions extends ValidationElement {
 
         <Branch
           label={i18n.t('foreign.travel.heading.encounter')}
-          labelSize="h3"
+          labelSize="h4"
           name="has_foreign_travel_encounter"
           className={`foreign-travel-encounter ${
             this.props.Encounter.value === 'Yes' ? 'no-margin-bottom' : ''
@@ -303,7 +303,7 @@ export default class TravelQuestions extends ValidationElement {
 
         <Branch
           label={i18n.t('foreign.travel.heading.contacted')}
-          labelSize="h3"
+          labelSize="h4"
           name="has_foreign_travel_contacted"
           className={`foreign-travel-contacted ${
             this.props.Contacted.value === 'Yes' ? 'no-margin-bottom' : ''
@@ -333,7 +333,7 @@ export default class TravelQuestions extends ValidationElement {
 
         <Branch
           label={i18n.t('foreign.travel.heading.counter')}
-          labelSize="h3"
+          labelSize="h4"
           name="has_foreign_travel_counter"
           className={`foreign-travel-counter ${
             this.props.Counter.value === 'Yes' ? 'no-margin-bottom' : ''
@@ -361,7 +361,7 @@ export default class TravelQuestions extends ValidationElement {
 
         <Branch
           label={i18n.t('foreign.travel.heading.interest')}
-          labelSize="h3"
+          labelSize="h4"
           name="has_foreign_travel_interest"
           className={`foreign-travel-interest ${
             this.props.Interest.value === 'Yes' ? 'no-margin-bottom' : ''
@@ -389,7 +389,7 @@ export default class TravelQuestions extends ValidationElement {
 
         <Branch
           label={i18n.t('foreign.travel.heading.sensitive')}
-          labelSize="h3"
+          labelSize="h4"
           name="has_foreign_travel_sensitive"
           className={`foreign-travel-sensitive ${
             this.props.Sensitive.value === 'Yes' ? 'no-margin-bottom' : ''
@@ -417,7 +417,7 @@ export default class TravelQuestions extends ValidationElement {
 
         <Branch
           label={i18n.t('foreign.travel.heading.threatened')}
-          labelSize="h3"
+          labelSize="h4"
           name="has_foreign_travel_threatened"
           className={`foreign-travel-threatened ${
             this.props.Threatened.value === 'Yes' ? 'no-margin-bottom' : ''

@@ -1,29 +1,4 @@
 .status {
-  .citizenship-status-citizen label,
-  .citizenship-status-foreignborn label,
-  .citizenship-status-naturalized label,
-  .citizenship-status-derived label,
-  .citizenship-status-notcitizen label {
-    height: 12rem;
-    width: 30rem !important;
-  }
-
-  .citizenship-status-citizen label,
-  .citizenship-status-foreignborn label {
-    > span > div {
-      top: 10%;
-    }
-  }
-
-  .citizenship-abroad label {
-    width: 14rem !important;
-    height: auto !important;
-  }
-
-  .citizenship-basis label {
-    width: 30rem !important;
-    height: 10rem;
-  }
 
   .citizenship-basis-individual {
     > label > span > div {

@@ -63,7 +63,7 @@ export default class Cohabitants extends SubsectionElement {
         <Branch
           name="hasCohabitant"
           label={i18n.t('relationships.cohabitant.heading.hasCohabitant')}
-          labelSize="h3"
+          labelSize="h4"
           className="has-cohabitant"
           {...this.props.HasCohabitant}
           warning={true}

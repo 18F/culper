@@ -294,6 +294,7 @@ export default class EmploymentItem extends ValidationElement {
         <Show when={this.showEmployer()}>
           <Field
             title={i18n.t(`${prefix}.heading.employer`)}
+            titleSize="h4"
             adjustFor="labels"
             scrollIntoView={this.props.scrollIntoView}>
             <Text
@@ -310,6 +311,7 @@ export default class EmploymentItem extends ValidationElement {
         <Show when={this.showEmployed()}>
           <Field
             title={i18n.t(`${prefix}.heading.title`)}
+            titleSize="h4"
             adjustFor="labels"
             scrollIntoView={this.props.scrollIntoView}>
             <Text
@@ -326,6 +328,7 @@ export default class EmploymentItem extends ValidationElement {
         <Show when={this.showAssignedDuty()}>
           <Field
             title={i18n.t(`${prefix}.heading.dutyStation`)}
+            titleSize="h4"
             adjustFor="labels"
             scrollIntoView={this.props.scrollIntoView}>
             <Text
@@ -342,6 +345,7 @@ export default class EmploymentItem extends ValidationElement {
         <Show when={this.showStatus()}>
           <Field
             title={i18n.t(`${prefix}.heading.status`)}
+            titleSize="h4"
             shrink={true}
             scrollIntoView={this.props.scrollIntoView}>
             <EmploymentStatus
@@ -357,6 +361,7 @@ export default class EmploymentItem extends ValidationElement {
 
         <Field
           title={i18n.t(`history.employment.default.heading.datesEmployed`)}
+          titleSize="h4"
           help={`history.employment.default.datesEmployed.help`}
           adjustFor="daterange"
           shrink={true}
@@ -375,6 +380,7 @@ export default class EmploymentItem extends ValidationElement {
         <Show when={this.showEmployed()}>
           <Field
             title={i18n.t(`${prefix}.heading.address`)}
+            titleSize="h4"
             optional={true}
             help={`${prefix}.address.help`}
             adjustFor="address"
@@ -400,6 +406,7 @@ export default class EmploymentItem extends ValidationElement {
         <Show when={this.showEmployed()}>
           <Field
             title={i18n.t(`${prefix}.heading.telephone`)}
+            titleSize="h4"
             className="override-required"
             adjustFor="telephone"
             scrollIntoView={this.props.scrollIntoView}>
@@ -450,7 +457,7 @@ export default class EmploymentItem extends ValidationElement {
         <Show when={this.showReference()}>
           <Field
             title={i18n.t(`${prefix}.heading.reference`)}
-            titleSize="h2"
+            titleSize="h3"
             className="no-margin-bottom"
             scrollIntoView={this.props.scrollIntoView}
           />
@@ -458,6 +465,7 @@ export default class EmploymentItem extends ValidationElement {
           <div className="reference">
             <Field
               title={i18n.t('reference.heading.name')}
+              titleSize="h4"
               optional={true}
               filterErrors={Name.requiredErrorsOnly}
               scrollIntoView={this.props.scrollIntoView}>
@@ -476,6 +484,7 @@ export default class EmploymentItem extends ValidationElement {
 
             <Field
               title={i18n.t('reference.heading.phone.default')}
+              titleSize="h4"
               className="override-required"
               help={'reference.help.phone'}
               adjustFor="telephone"
@@ -493,6 +502,7 @@ export default class EmploymentItem extends ValidationElement {
 
             <Field
               title={i18n.t('reference.heading.address')}
+              titleSize="h4"
               optional={true}
               help={'reference.help.address'}
               adjustFor="address"
@@ -527,7 +537,7 @@ export default class EmploymentItem extends ValidationElement {
         <Show when={this.showAdditionalActivity()}>
           <Field
             title={i18n.t(`${prefix}.heading.additionalActivity`)}
-            titleSize="h2"
+            titleSize="h3"
             optional={true}
             className="no-margin-bottom"
             scrollIntoView={this.props.scrollIntoView}>

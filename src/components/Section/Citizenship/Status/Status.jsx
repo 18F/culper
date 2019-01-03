@@ -247,18 +247,11 @@ export default class Status extends SubsectionElement {
         className="section-content status"
         {...super.dataAttributes(this.props)}>
         <Field
-          title={i18n.t('citizenship.status.heading.title')}
-          titleSize="h2"
-          optional={true}
-          className="no-margin-bottom"
-        />
-
-        <Field
           title={i18n.t('citizenship.status.heading.citizenshipstatus')}
           adjustFor="buttons"
           scrollIntoView={this.props.scrollIntoView}>
           <RadioGroup
-            className="citizenship-status"
+            className="citizenship-status option-list option-list-vertical"
             required={this.props.required}
             onError={this.handleError}
             selectedValue={(this.props.CitizenshipStatus || {}).value}>
@@ -500,7 +493,7 @@ export default class Status extends SubsectionElement {
               label={i18n.t(
                 'citizenship.status.heading.bornonmilitaryinstallation'
               )}
-              labelSize="h3"
+              labelSize="h4"
               className="born-on-military-installation"
               {...this.props.BornOnMilitaryInstallation}
               onUpdate={this.updateBornOnMilitaryInstallation}
@@ -583,7 +576,7 @@ export default class Status extends SubsectionElement {
             <Branch
               name="has_alien_registration"
               label={i18n.t('citizenship.status.heading.hasalienregistration')}
-              labelSize="h3"
+              labelSize="h4"
               className="has-alien-registration"
               {...this.props.HasAlienRegistration}
               onUpdate={this.updateHasAlienRegistration}
@@ -705,7 +698,7 @@ export default class Status extends SubsectionElement {
               adjustFor="big-buttons"
               scrollIntoView={this.props.scrollIntoView}>
               <RadioGroup
-                className="citizenship-basis"
+                className="citizenship-basis option-list option-list-vertical"
                 required={this.props.required}
                 onError={this.handleError}
                 selectedValue={(this.props.Basis || {}).value}>
@@ -843,7 +836,7 @@ export default class Status extends SubsectionElement {
               scrollIntoView={this.props.scrollIntoView}
               adjustFor="big-buttons">
               <RadioGroup
-                className="citizenship-basis"
+                className="citizenship-basis option-list option-list-vertical"
                 required={this.props.required}
                 onError={this.props.onError}
                 selectedValue={(this.props.Basis || {}).value}>

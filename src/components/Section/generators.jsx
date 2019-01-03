@@ -100,9 +100,8 @@ export const createIntroSubsection = (section, prevSection = undefined) => {
       {...backProps}
       next={`${section.url}/${nextSubsection.url}`}
       nextLabel={i18n.t(`${section.url}.destination.${nextSubsection.url}`)}>
+      <h1 className="section-header">{i18n.t(`${section.url}.intro.title`)}</h1>
       <Field
-        title={i18n.t(`${section.url}.intro.title`)}
-        titleSize="h2"
         optional={true}
         className="no-margin-bottom">
         {i18n.m(`${section.url}.intro.body`)}

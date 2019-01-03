@@ -51,6 +51,7 @@ export default class OtherNameItem extends React.Component {
       <div className="other-name">
         <Field
           title={i18n.t('identification.othernames.heading.name')}
+          titleSize="h4"
           optional={true}
           filterErrors={Name.requiredErrorsOnly}
           scrollIntoView={this.props.scrollIntoView}>
@@ -66,6 +67,7 @@ export default class OtherNameItem extends React.Component {
 
         <Field
           title={i18n.t('identification.othernames.heading.maiden')}
+          titleSize="h4"
           help="alias.maiden.help"
           adjustFor="buttons"
           scrollIntoView={this.props.scrollIntoView}
@@ -81,6 +83,7 @@ export default class OtherNameItem extends React.Component {
 
         <Field
           title={i18n.t('identification.othernames.heading.used')}
+          titleSize="h4"
           help="alias.used.help"
           adjustFor="daterange"
           scrollIntoView={this.props.scrollIntoView}
@@ -97,6 +100,7 @@ export default class OtherNameItem extends React.Component {
 
         <Field
           title={i18n.t('identification.othernames.heading.reason')}
+          titleSize="h4"
           scrollIntoView={this.props.scrollIntoView}
           help="alias.reason.help">
           <Textarea

@@ -2,28 +2,17 @@
   display: inline-block !important;
   width: auto !important;
 
-  .month {
+  .month,
+  .day,
+  .year {
     width: 7rem;
     display: inline-block;
-    margin-right: 1rem;
-    vertical-align: top;
-  }
-
-  .day {
-    width: 7rem;
-    display: inline-block;
-    margin-right: 1rem;
+    margin-right: .5rem;
     vertical-align: top;
   }
 
   .year {
-    width: 8.5rem;
-    display: inline-block;
-    vertical-align: top;
-  }
-
-  .flags > .block {
-    margin-right: -20px;
+    width: 8rem;
   }
 }
 
@@ -36,5 +25,16 @@
 .datecontrol.month-hidden {
   .month {
     display: none;
+  }
+}
+
+@media all and (max-width: 980px) {
+
+  .datecontrol {
+    .month,
+    .day,
+    .year {
+      width: 100%;
+    }
   }
 }

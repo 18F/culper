@@ -190,7 +190,7 @@ export default class Country extends ValidationElement {
   }
 
   render() {
-    const klass = `country ${this.props.className || ''}`.trim()
+    const klass = `country usa-form-control ${this.props.className || ''}`.trim()
     const options = this.renderOptions()
     const value = this.appropriateValue(this.props.value, this.props.multiple)
 

@@ -474,20 +474,20 @@ export default class Location extends ValidationElement {
           )
         case 'city':
           return (
-            <City
-              name="city"
-              className="city"
-              key={field}
-              label={this.props.cityLabel}
-              placeholder={this.props.cityPlaceholder}
-              value={this.props.city}
-              disabled={this.props.disabled}
-              onUpdate={this.updateCity}
-              onError={this.handleError}
-              onFocus={this.props.onFocus}
-              onBlur={this.handleBlur}
-              required={this.props.required}
-            />
+              <City
+                name="city"
+                className="city"
+                key={field}
+                label={this.props.cityLabel}
+                placeholder={this.props.cityPlaceholder}
+                value={this.props.city}
+                disabled={this.props.disabled}
+                onUpdate={this.updateCity}
+                onError={this.handleError}
+                onFocus={this.props.onFocus}
+                onBlur={this.handleBlur}
+                required={this.props.required}
+              />
           )
         case 'state':
           return (

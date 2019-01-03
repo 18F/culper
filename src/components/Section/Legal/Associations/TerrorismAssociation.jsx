@@ -40,10 +40,11 @@ export default class TerrorismAssociation extends SubsectionElement {
       <div
         className="section-content legal-associations-terrorism"
         {...super.dataAttributes(this.props)}>
+        <h1 className="section-header">{i18n.t('legal.destination.associations.terrorism')}</h1>
         <Branch
           name="has_terrorsim"
           label={i18n.t('legal.associations.terrorism.heading.title')}
-          labelSize="h2"
+          labelSize="h4"
           className="legal-associations-terrorism-has-terrorism"
           {...this.props.HasTerrorism}
           warning={true}

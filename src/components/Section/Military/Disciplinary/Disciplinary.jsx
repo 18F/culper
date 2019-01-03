@@ -70,7 +70,7 @@ export default class Disciplinary extends SubsectionElement {
         <Branch
           name="has_disciplinary"
           label={i18n.t('military.disciplinary.para.info')}
-          labelSize="h2"
+          labelSize="h4"
           {...this.props.HasDisciplinary}
           weight={true}
           onUpdate={this.updateDisciplinary}

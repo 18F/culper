@@ -24,21 +24,23 @@ export default class County extends ValidationElement {
 
   render() {
     return (
-      <Text
-        name={this.props.name}
-        label={this.props.label}
-        ariaLabel={this.props.ariaLabel}
-        placeholder={this.props.placeholder}
-        minlength="2"
-        maxlength="100"
-        required={this.props.required}
-        className={this.props.className}
-        value={this.props.value}
-        onUpdate={this.props.onUpdate}
-        onError={this.handleError}
-        onFocus={this.props.onFocus}
-        onBlur={this.props.onBlur}
-      />
+      <div className="usa-form-control">
+        <Text
+          name={this.props.name}
+          label={this.props.label}
+          ariaLabel={this.props.ariaLabel}
+          placeholder={this.props.placeholder}
+          minlength="2"
+          maxlength="100"
+          required={this.props.required}
+          className={this.props.className}
+          value={this.props.value}
+          onUpdate={this.props.onUpdate}
+          onError={this.handleError}
+          onFocus={this.props.onFocus}
+          onBlur={this.props.onBlur}
+        />
+      </div>
     )
   }
 }

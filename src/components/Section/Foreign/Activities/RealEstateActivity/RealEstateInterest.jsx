@@ -128,7 +128,7 @@ export default class RealEstateInterest extends ValidationElement {
           {i18n.m('foreign.activities.realestate.interest.para.checkAll')}
 
           <CheckboxGroup
-            className="interest-types option-list"
+            className="interest-types option-list option-list-vertical"
             onError={this.props.onError}
             required={this.props.required}
             selectedValues={(this.props.InterestTypes || {}).values}>
@@ -181,7 +181,7 @@ export default class RealEstateInterest extends ValidationElement {
           )}
           adjustFor="p"
           scrollIntoView={this.props.scrollIntoView}>
-          {i18n.m('foreign.activities.realestate.interest.para.realEstateType')}
+          {i18n.t('foreign.activities.realestate.interest.para.realEstateType')}
           <Text
             name="RealEstateType"
             className="realestate-type"
@@ -239,9 +239,7 @@ export default class RealEstateInterest extends ValidationElement {
           )}
           adjustFor="p"
           scrollIntoView={this.props.scrollIntoView}>
-          <p>
-            {i18n.t('foreign.activities.realestate.interest.para.howAcquired')}
-          </p>
+          {i18n.t('foreign.activities.realestate.interest.para.howAcquired')}
           <Textarea
             name="HowAcquired"
             className="how-acquired"

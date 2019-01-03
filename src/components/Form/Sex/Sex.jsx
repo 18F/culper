@@ -43,6 +43,7 @@ export default class Sex extends ValidationElement {
       <div className={this.divClass()}>
         <label>{this.props.label}</label>
         <RadioGroup
+          className="option-list physical-radio"
           selectedValue={this.props.value}
           onError={this.props.onError}
           required={this.props.required}>

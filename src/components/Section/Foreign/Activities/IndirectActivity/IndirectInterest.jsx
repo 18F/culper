@@ -168,7 +168,7 @@ export default class IndirectInterest extends ValidationElement {
           scrollIntoView={this.props.scrollIntoView}>
           <p>{i18n.t(`foreign.activities.indirect.interest.para.checkAll`)}</p>
           <CheckboxGroup
-            className="interest-types option-list"
+            className="interest-types option-list option-list-vertical"
             onError={this.props.onError}
             required={this.props.required}
             selectedValues={(this.props.InterestTypes || {}).values}>

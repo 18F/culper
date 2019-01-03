@@ -130,7 +130,7 @@ export default class MilitaryService extends ValidationElement {
           shrink={true}
           scrollIntoView={this.props.scrollIntoView}>
           <RadioGroup
-            className="service option-list eapp-extend-labels"
+            className="service option-list eapp-extend-labels option-list-vertical"
             required={this.props.required}
             onError={this.props.onError}
             selectedValue={(this.props.Service || {}).value}>
@@ -141,9 +141,6 @@ export default class MilitaryService extends ValidationElement {
               value="AirForce"
               onUpdate={this.updateService}
               onError={this.props.onError}>
-              <div className="military-service-icon airforce-icon">
-                <Svg src="/img/airforce.png" />
-              </div>
             </Radio>
             <Radio
               name="service-airnationalguard"
@@ -152,9 +149,6 @@ export default class MilitaryService extends ValidationElement {
               value="AirNationalGuard"
               onUpdate={this.updateService}
               onError={this.props.onError}>
-              <div className="military-service-icon airnationalguard-icon">
-                <Svg src="/img/airnationalguard.gif" />
-              </div>
             </Radio>
             <Radio
               name="service-army"
@@ -163,9 +157,6 @@ export default class MilitaryService extends ValidationElement {
               value="Army"
               onUpdate={this.updateService}
               onError={this.props.onError}>
-              <div className="military-service-icon army-icon">
-                <Svg src="/img/army.png" />
-              </div>
             </Radio>
             <Radio
               name="service-armynationalguard"
@@ -174,9 +165,6 @@ export default class MilitaryService extends ValidationElement {
               value="ArmyNationalGuard"
               onUpdate={this.updateService}
               onError={this.props.onError}>
-              <div className="military-service-icon armynationalguard-icon">
-                <Svg src="/img/armynationalguard.png" />
-              </div>
             </Radio>
             <Radio
               name="service-coastguard"
@@ -185,9 +173,6 @@ export default class MilitaryService extends ValidationElement {
               value="CoastGuard"
               onUpdate={this.updateService}
               onError={this.props.onError}>
-              <div className="military-service-icon coastguard-icon">
-                <Svg src="/img/coastguard.png" />
-              </div>
             </Radio>
             <Radio
               name="service-marinecorps"
@@ -196,9 +181,6 @@ export default class MilitaryService extends ValidationElement {
               value="MarineCorps"
               onUpdate={this.updateService}
               onError={this.props.onError}>
-              <div className="military-service-icon marinecorps-icon">
-                <Svg src="/img/marinecorps.png" />
-              </div>
             </Radio>
             <Radio
               name="service-navy"
@@ -207,9 +189,6 @@ export default class MilitaryService extends ValidationElement {
               value="Navy"
               onUpdate={this.updateService}
               onError={this.props.onError}>
-              <div className="military-service-icon navy-icon">
-                <Svg src="/img/navy.png" />
-              </div>
             </Radio>
           </RadioGroup>
         </Field>
@@ -220,7 +199,7 @@ export default class MilitaryService extends ValidationElement {
           shrink={true}
           scrollIntoView={this.props.scrollIntoView}>
           <RadioGroup
-            className="status option-list"
+            className="status option-list option-list-vertical"
             required={this.props.required}
             onError={this.props.onError}
             selectedValue={(this.props.Status || {}).value}>
@@ -257,7 +236,7 @@ export default class MilitaryService extends ValidationElement {
           shrink={true}
           scrollIntoView={this.props.scrollIntoView}>
           <RadioGroup
-            className="officer option-list"
+            className="officer option-list option-list-vertical"
             required={this.props.required}
             onError={this.props.onError}
             selectedValue={(this.props.Officer || {}).value}>
@@ -345,7 +324,7 @@ export default class MilitaryService extends ValidationElement {
         <Branch
           name="has_beendischarged"
           label={i18n.t('military.history.heading.discharged')}
-          labelSize="h3"
+          labelSize="h4"
           className="discharged"
           {...this.props.HasBeenDischarged}
           onUpdate={this.updateDischarged}
@@ -358,18 +337,19 @@ export default class MilitaryService extends ValidationElement {
           <div>
             <Field
               title={i18n.t('military.history.heading.details')}
-              titleSize="h2"
+              titleSize="h4"
               optional={true}
               className="no-margin-bottom"
             />
 
             <Field
               title={i18n.t('military.history.heading.discharge.type')}
+              titleSize="label"
               adjustFor="big-buttons"
               shrink={true}
               scrollIntoView={this.props.scrollIntoView}>
               <RadioGroup
-                className="discharge-type option-list"
+                className="discharge-type option-list option-list-vertical"
                 required={this.props.required}
                 onError={this.props.onError}
                 selectedValue={(this.props.DischargeType || {}).value}>

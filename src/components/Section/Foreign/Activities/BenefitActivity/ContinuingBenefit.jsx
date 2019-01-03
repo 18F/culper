@@ -151,7 +151,7 @@ export default class ContinuingBenefit extends ValidationElement {
           adjustFor="big-buttons"
           scrollIntoView={this.props.scrollIntoView}>
           <RadioGroup
-            className="frequency"
+            className="frequency option-list option-list-vertical"
             onError={this.props.onError}
             required={this.props.required}
             selectedValue={(this.props.Frequency || {}).value}>
@@ -277,7 +277,7 @@ export default class ContinuingBenefit extends ValidationElement {
           label={i18n.t(
             'foreign.activities.benefit.continuing.heading.obligated'
           )}
-          labelSize="h3"
+          labelSize="h4"
           {...this.props.Obligated}
           onError={this.props.onError}
           required={this.props.required}
@@ -287,7 +287,7 @@ export default class ContinuingBenefit extends ValidationElement {
 
         <Show when={(this.props.Obligated || {}).value === 'Yes'}>
           <Field
-            title={i18n.m(
+            title={i18n.t(
               'foreign.activities.benefit.continuing.label.obligatedExplanation'
             )}
             titleSize="label"

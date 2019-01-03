@@ -70,3 +70,25 @@
     }
   }
 }
+
+.introduction-acceptance {
+  .blocks.option-list .block {
+    width: 15rem;
+    text-align: center;
+
+    label {
+      background-color: $color-white;
+      border: 2px solid $color-primary;
+      color: $color-primary;
+      font-weight: 900;
+
+      span {
+        margin-left: 0;
+      }
+    }
+
+    label:before {
+      display: none;
+    }
+  }
+}
