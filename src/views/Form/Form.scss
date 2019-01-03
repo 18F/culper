@@ -119,7 +119,7 @@ input[type='radio'] {
   textarea,
   select {
     background: url('../img/exclamation-point.svg') no-repeat right 0.7rem
-    center / 1.7rem 100%;
+      center / 1.7rem 100%;
     box-shadow: none;
     border-width: 2px;
     width: 100%;
@@ -127,7 +127,7 @@ input[type='radio'] {
     &.usa-input-success {
       box-shadow: none;
       background: url('../img/exclamation-point.svg') no-repeat right 0.7rem
-      center / 1.7rem 100%;
+        center / 1.7rem 100%;
       border-width: 2px;
     }
   }
