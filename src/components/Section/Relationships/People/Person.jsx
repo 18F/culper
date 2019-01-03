@@ -202,7 +202,7 @@ export default class Person extends React.Component {
             {i18n.t(`relationships.people.person.label.relationship.title`)}
           </label>
           <CheckboxGroup
-            className="relationship option-list eapp-extend-labels"
+            className="relationship option-list eapp-extend-labels option-list-vertical"
             required={this.props.required}
             onError={this.props.onError}
             selectedValues={this.props.Relationship.values}>
@@ -214,9 +214,6 @@ export default class Person extends React.Component {
               value="Neighbor"
               onError={this.props.onError}
               onUpdate={this.updateRelationship}>
-              <div className="relationship-icon neighbor">
-                <Svg src="/img/neighbor-icon.svg" />
-              </div>
             </Checkbox>
             <Checkbox
               name="relationship-friend"
@@ -226,9 +223,6 @@ export default class Person extends React.Component {
               value="Friend"
               onError={this.props.onError}
               onUpdate={this.updateRelationship}>
-              <div className="relationship-icon friend">
-                <Svg src="/img/friend-icon.svg" />
-              </div>
             </Checkbox>
             <Checkbox
               name="relationship-landlord"
@@ -238,9 +232,6 @@ export default class Person extends React.Component {
               value="WorkAssociate"
               onError={this.props.onError}
               onUpdate={this.updateRelationship}>
-              <div className="relationship-icon landlord">
-                <Svg src="/img/business-associate-icon.svg" />
-              </div>
             </Checkbox>
             <Checkbox
               name="relationship-business"
@@ -250,9 +241,6 @@ export default class Person extends React.Component {
               value="Schoolmate"
               onError={this.props.onError}
               onUpdate={this.updateRelationship}>
-              <div className="relationship-icon business">
-                <Svg src="/img/schoolmate.svg" />
-              </div>
             </Checkbox>
             <Checkbox
               name="relationship-other"
@@ -262,9 +250,6 @@ export default class Person extends React.Component {
               value="Other"
               onError={this.props.onError}
               onUpdate={this.updateRelationship}>
-              <div className="relationship-icon other">
-                <Svg src="/img/other-icon.svg" />
-              </div>
             </Checkbox>
           </CheckboxGroup>
 

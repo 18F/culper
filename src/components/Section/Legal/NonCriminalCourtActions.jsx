@@ -55,10 +55,11 @@ export default class NonCriminalCourtActions extends SubsectionElement {
       <div
         className="section-content non-criminal-court-actions"
         {...super.dataAttributes(this.props)}>
+        <h1 className="section-header">Involvement in non-criminal court actions</h1>
         <Branch
           name="HasCourtActions"
           label={i18n.t('legal.nonCriminalAction.heading.hasCourtActions')}
-          labelSize="h2"
+          labelSize="h4"
           className="has-court-actions"
           {...this.props.HasCourtActions}
           warning={true}

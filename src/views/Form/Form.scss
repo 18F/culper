@@ -32,6 +32,10 @@ button {
   }
 }
 
+label {
+  margin-bottom: .5rem;
+}
+
 /* bring in USWD validation classes and alter for our design */
 input[type='text'],
 textarea,
@@ -125,7 +129,6 @@ input[type='radio'] {
       background: url('../img/exclamation-point.svg') no-repeat right 0.7rem
         center / 1.7rem 100%;
       border-width: 2px;
-      width: 100%;
     }
   }
 
@@ -150,45 +153,62 @@ select {
     background: url('../img/checkmark.svg') no-repeat right 0.7rem center /
       1.7rem 100%;
     border-width: 2px;
+  }
+}
+
+select {
+  background-position: right 1.3rem center;
+  -webkit-appearance: none;
+}
+
+// Input sizing
+.usa-small-input {
+  width: 10rem;
+}
+
+.usa-medium-input {
+  width: 30rem;
+}
+
+@media all and (max-width: 980px) {
+  .usa-medium-input,
+  .usa-small-input {
     width: 100%;
   }
 }
 
 // Block style radio and checkboxes
-.blocks {
-  line-height: 4.6rem;
 
-  .block:not(.extended):first-child:nth-last-child(n + 3),
-  .block:not(.extended):first-child:nth-last-child(n + 3) ~ .block {
-    label {
-      height: 10rem;
-      width: 18rem;
-    }
+.blocks.option-list {
+  display: flex;
+
+  @media all and (max-width: 980px) {
+    flex-flow: wrap;
+  }
+
+  &.option-list-vertical {
+    flex-flow: wrap;
+  }
+
+  .block {
+    width: 100%;
   }
 }
 
 .block {
   display: inline-block;
+  margin-right: 1rem;
+
+  @media all and (max-width: 980px) {
+    margin-right: 0;
+  }
 
   label {
-    display: block;
-    position: relative;
-    top: 0;
-    width: 15rem;
-    max-width: 64rem;
-    min-width: 7.7rem;
-    margin-right: 1.6rem;
-    margin-top: 0;
-    text-align: center;
-    background: $eapp-grey-light;
-    border: 1px solid $eapp-grey-dark;
-    border-radius: 3px;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-    line-height: 4.6rem !important;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    overflow: hidden;
+    padding: 1rem;
+    border: 1px solid $color-primary-alt-light;
+    border-radius: 4px;
+    max-width: 46rem;
+    background-color: $color-white;
 
     input {
       position: absolute;
@@ -200,13 +220,13 @@ select {
     }
 
     &:hover {
-      background-color: #cececf;
+      background-color: $color-gray-extra-lightest;
     }
 
     &.checked {
-      color: #fff;
-      border: 1px solid $eapp-selected;
-      background: $eapp-selected;
+      background: $color-green-light;
+      border-color: $color-green;
+      color: $color-white;
     }
 
     &.checked.usa-input-focus,
@@ -220,14 +240,13 @@ select {
     // Configure buttons for handling text in decorative blocks
     > span {
       display: block;
-      height: 100%;
+      margin-left: 3rem;
 
       > div {
-        position: relative;
-        top: 35%;
 
         > p {
           padding: 0;
+          margin: 0;
         }
       }
 
@@ -258,6 +277,7 @@ select {
 
       > span {
         display: inline;
+        margin-left: 0;
       }
     }
 
@@ -289,12 +309,6 @@ select {
       min-width: 12rem;
       cursor: pointer;
       overflow: visible;
-
-      input[type='checkbox'],
-      input[type='radio'] {
-        height: 1px;
-        width: 1px;
-      }
 
       span {
         display: block;
@@ -378,6 +392,10 @@ select {
       }
     }
   }
+}
+
+.usa-list-inline-justified .block {
+  width: 100%;
 }
 
 .optional {

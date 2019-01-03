@@ -126,7 +126,7 @@ export default class FutureBenefit extends ValidationElement {
           adjustFor="big-buttons"
           scrollIntoView={this.props.scrollIntoView}>
           <RadioGroup
-            className="frequency"
+            className="frequency option-list option-list-vertical"
             selectedValue={(this.props.Frequency || {}).value}
             onError={this.props.onError}
             required={this.props.required}>
@@ -246,7 +246,7 @@ export default class FutureBenefit extends ValidationElement {
           name="Obligated"
           className="obligated no-margin-bottom"
           label={i18n.t('foreign.activities.benefit.future.heading.obligated')}
-          labelSize="h3"
+          labelSize="h4"
           {...this.props.Obligated}
           onError={this.props.onError}
           required={this.props.required}

@@ -479,7 +479,7 @@ class CivilUnion extends ValidationElement {
             name="separated"
             className="separated"
             label={i18n.t('relationships.civilUnion.heading.separated')}
-            labelSize="h3"
+            labelSize="h4"
             {...this.props.Separated}
             onUpdate={this.updateSeparated}
             minDate={this.props.EnteredCivilUnion}
@@ -540,7 +540,7 @@ class CivilUnion extends ValidationElement {
           <Branch
             name="divorced"
             label={i18n.t('relationships.civilUnion.heading.divorced')}
-            labelSize="h3"
+            labelSize="h4"
             className="divorced"
             {...this.props.Divorced}
             onUpdate={this.updateDivorced}

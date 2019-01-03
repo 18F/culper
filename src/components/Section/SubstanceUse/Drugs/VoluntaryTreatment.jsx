@@ -167,7 +167,7 @@ export default class VoluntaryTreatment extends ValidationElement {
         <Branch
           name="TreatmentCompleted"
           label={i18n.t('substance.drugs.voluntary.heading.treatmentCompleted')}
-          labelSize="h3"
+          labelSize="h4"
           className="treatment-completed no-margin-bottom"
           {...this.props.TreatmentCompleted}
           onError={this.props.onError}

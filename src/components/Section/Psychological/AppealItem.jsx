@@ -43,14 +43,6 @@ export class AppealItem extends ValidationElement {
     return (
       <div className="appeal">
         <Field
-          title={i18n.t(`psychological.${prefix}.heading.needMore`)}
-          optional={true}
-          className="more title"
-          scrollIntoView={this.props.scrollIntoView}>
-          <Svg src="/img/date-down-arrow.svg" className="more arrow" />
-        </Field>
-
-        <Field
           title={i18n.t(`psychological.${prefix}.heading.appealCourtName`)}
           scrollIntoView={this.props.scrollIntoView}>
           <Text

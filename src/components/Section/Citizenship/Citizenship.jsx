@@ -23,10 +23,9 @@ class Citizenship extends SectionElement {
             backLabel={i18n.t('relationships.destination.review')}
             next="citizenship/status"
             nextLabel={i18n.t('citizenship.destination.status')}>
+            <h1 className="section-header">{i18n.t('citizenship.intro.title')}</h1>
             <div>
               <Field
-                title={i18n.t('citizenship.intro.title')}
-                titleSize="h2"
                 optional={true}
                 className="no-margin-bottom">
                 {i18n.m('citizenship.intro.body')}
@@ -43,6 +42,7 @@ class Citizenship extends SectionElement {
             backLabel={i18n.t('citizenship.destination.passports')}
             next="military/intro"
             nextLabel={i18n.t('military.destination.intro')}>
+            <h1 className="section-header">{i18n.t('citizenship.destination.status')}</h1>
             <Status
               name="status"
               {...this.props.Status}
@@ -55,6 +55,7 @@ class Citizenship extends SectionElement {
               scrollIntoView={false}
             />
             <hr className="section-divider" />
+            <h1 className="section-header">{i18n.t('citizenship.destination.multiple')}</h1>
             <Multiple
               name="multiple"
               {...this.props.Multiple}
@@ -67,6 +68,7 @@ class Citizenship extends SectionElement {
               scrollIntoView={false}
             />
             <hr className="section-divider" />
+            <h1 className="section-header">{i18n.t('citizenship.destination.passports')}</h1>
             <Passports
               name="passports"
               {...this.props.Passports}
@@ -86,6 +88,7 @@ class Citizenship extends SectionElement {
             backLabel={i18n.t('citizenship.destination.intro')}
             next="citizenship/multiple"
             nextLabel={i18n.t('citizenship.destination.multiple')}>
+            <h1 className="section-header">{i18n.t('citizenship.destination.status')}</h1>
             <Status
               name="status"
               {...this.props.Status}
@@ -101,6 +104,7 @@ class Citizenship extends SectionElement {
             backLabel={i18n.t('citizenship.destination.status')}
             next="citizenship/passports"
             nextLabel={i18n.t('citizenship.destination.passports')}>
+            <h1 className="section-header">{i18n.t('citizenship.destination.multiple')}</h1>
             <Multiple
               name="multiple"
               {...this.props.Multiple}
@@ -116,6 +120,7 @@ class Citizenship extends SectionElement {
             backLabel={i18n.t('citizenship.destination.multiple')}
             next="citizenship/review"
             nextLabel={i18n.t('citizenship.destination.review')}>
+            <h1 className="section-header">{i18n.t('citizenship.destination.passports')}</h1>
             <Passports
               name="passports"
               {...this.props.Passports}

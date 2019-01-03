@@ -31,7 +31,7 @@ describe('The employment component', () => {
       name: 'employment'
     }
     const component = createComponent(expected)
-    expect(component.find('.h3').length).toBeGreaterThan(0)
+    expect(component.find('.h4').length).toBeGreaterThan(0)
   })
 
   it('can populate values for Military, NationalGuard and USPHS', () => {

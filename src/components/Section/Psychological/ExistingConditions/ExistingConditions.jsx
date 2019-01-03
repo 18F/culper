@@ -119,12 +119,13 @@ export default class ExistingConditions extends SubsectionElement {
       <div
         className="section-content existingconditions"
         {...super.dataAttributes(this.props)}>
+        <h1 className="section-header">{i18n.t('psychological.destination.existingConditions')}</h1>
         <Branch
           name="hascondition"
           label={i18n.t(
             'psychological.existingConditions.heading.hasCondition'
           )}
-          labelSize="h2"
+          labelSize="h4"
           className="eapp-field-wrap hascondition"
           {...this.props.HasCondition}
           warning={true}
@@ -141,7 +142,7 @@ export default class ExistingConditions extends SubsectionElement {
               title={i18n.t(
                 'psychological.existingConditions.heading.receivedTreatment'
               )}
-              titleSize="h3"
+              titleSize="h4"
               className={
                 this.props.ReceivedTreatment === 'No' ? 'no-margin-bottom' : ''
               }
@@ -240,7 +241,7 @@ export default class ExistingConditions extends SubsectionElement {
               label={i18n.t(
                 'psychological.existingConditions.heading.didNotFollow'
               )}
-              labelSize="h3"
+              labelSize="h4"
               className="eapp-field-wrap didnotfollow no-margin-bottom"
               {...this.props.DidNotFollow}
               onError={this.handleError}

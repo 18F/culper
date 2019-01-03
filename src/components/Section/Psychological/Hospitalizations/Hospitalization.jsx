@@ -74,7 +74,7 @@ export default class Hospitalization extends ValidationElement {
           adjustFor="big-buttons"
           scrollIntoView={this.props.scrollIntoView}>
           <RadioGroup
-            className="admission"
+            className="admission option-list optoin-list-vertical"
             name="admission"
             selectedValue={(this.props.Admission || {}).value}
             required={this.props.required}
@@ -83,23 +83,15 @@ export default class Hospitalization extends ValidationElement {
               className="voluntary-option"
               value="Voluntary"
               onError={this.props.onError}
-              onUpdate={this.updateAdmission}>
-              <div className="voluntary">
-                {i18n.t(
-                  'psychological.hospitalization.label.voluntaryAdmission'
-                )}
-              </div>
+              onUpdate={this.updateAdmission}
+              label={i18n.t('psychological.hospitalization.label.voluntaryAdmission')}>
             </Radio>
             <Radio
               className="involuntary-option"
               value="Involuntary"
               onError={this.props.onError}
-              onUpdate={this.updateAdmission}>
-              <div className="involuntary">
-                {i18n.t(
-                  'psychological.hospitalization.label.involuntaryAdmission'
-                )}
-              </div>
+              onUpdate={this.updateAdmission}
+              label={i18n.t('psychological.hospitalization.label.involuntaryAdmission')}>
             </Radio>
           </RadioGroup>
         </Field>

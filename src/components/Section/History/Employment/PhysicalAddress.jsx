@@ -53,7 +53,7 @@ export default class PhysicalAddress extends ValidationElement {
     return (
       <Branch
         label={this.props.title}
-        labelSize="h3"
+        labelSize="h4"
         name="physicalAddress"
         {...this.props.HasDifferentAddress}
         className="has-different-address"

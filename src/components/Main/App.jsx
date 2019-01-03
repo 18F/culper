@@ -179,7 +179,7 @@ class App extends React.Component {
                   <div className="eapp-structure-row">
                     <div className="eapp-structure-left eapp-logo" id="logo">
                       <NavigationToggle />
-                      <div className="text-center">
+                      <div className="eapp-logo-container">
                         <img
                           className="eapp-logo-icon"
                           src="/img/nbis-seal-small.png"

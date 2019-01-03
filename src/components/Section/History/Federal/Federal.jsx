@@ -65,7 +65,7 @@ export default class Federal extends SubsectionElement {
         <Branch
           name="has_federalservice"
           label={i18n.t('history.federal.heading.branch')}
-          labelSize="h2"
+          labelSize="h4"
           help="history.federal.help.branch"
           {...this.props.HasFederalService}
           warning={true}

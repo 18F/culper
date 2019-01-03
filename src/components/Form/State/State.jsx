@@ -66,23 +66,25 @@ export default class State extends ValidationElement {
 
   render() {
     return (
-      <Dropdown
-        name={this.props.name}
-        label={this.props.label}
-        placeholder={this.props.placeholder}
-        className={this.props.className}
-        disabled={this.props.disabled}
-        onUpdate={this.handleUpdate}
-        onError={this.handleError}
-        onBlur={this.props.onBlur}
-        onFocus={this.props.onFocus}
-        value={this.props.value}
-        required={this.props.required}
-        tabBack={this.props.tabBack}
-        tabNext={this.props.tabNext}
-        receiveProps={true}>
-        {this.getStates()}
-      </Dropdown>
+      <div className="usa-form-control">
+        <Dropdown
+          name={this.props.name}
+          label={this.props.label}
+          placeholder={this.props.placeholder}
+          className={this.props.className}
+          disabled={this.props.disabled}
+          onUpdate={this.handleUpdate}
+          onError={this.handleError}
+          onBlur={this.props.onBlur}
+          onFocus={this.props.onFocus}
+          value={this.props.value}
+          required={this.props.required}
+          tabBack={this.props.tabBack}
+          tabNext={this.props.tabNext}
+          receiveProps={true}>
+          {this.getStates()}
+        </Dropdown>
+      </div>
     )
   }
 }

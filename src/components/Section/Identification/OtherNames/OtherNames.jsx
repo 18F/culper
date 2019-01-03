@@ -1,3 +1,4 @@
+
 import React from 'react'
 import { i18n } from '../../../../config'
 import schema from '../../../../schema'
@@ -68,9 +69,10 @@ export default class OtherNames extends SubsectionElement {
       <div
         className="section-content other-names"
         {...super.dataAttributes(this.props)}>
+        <h1 className="section-header">{i18n.t('identification.destination.othernames')}</h1>
         <Field
           title={i18n.t('identification.othernames.title')}
-          titleSize="h2"
+          titleSize="h3"
           optional={true}
           help="identification.othernames.branch.help"
           className="no-margin-bottom">
@@ -80,7 +82,7 @@ export default class OtherNames extends SubsectionElement {
         <Branch
           name="has_othernames"
           label={i18n.t('identification.othernames.branch.question')}
-          labelSize="h3"
+          labelSize="h4"
           {...this.props.HasOtherNames}
           warning={true}
           onUpdate={this.updateBranch}
@@ -104,7 +106,8 @@ export default class OtherNames extends SubsectionElement {
             appendTitle={i18n.t(
               'identification.othernames.collection.appendTitle'
             )}
-            appendLabel={i18n.t('identification.othernames.collection.append')}>
+            appendLabel={i18n.t('identification.othernames.collection.append')}
+            titleSize="h4">
             <OtherNameItem
               name="Item"
               required={this.props.required}

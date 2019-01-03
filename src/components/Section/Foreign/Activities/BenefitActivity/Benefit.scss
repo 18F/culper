@@ -9,23 +9,4 @@
       }
     }
   }
-
-  .benefit {
-    .frequency,
-    .benefit-frequency,
-    .benefit-types,
-    .interest-types {
-      .block > label {
-        width: 26rem !important;
-      }
-
-      .spouse > label > span > div {
-        top: 18%;
-      }
-
-      .benefit-other > label > span > div {
-        top: 25%;
-      }
-    }
-  }
 }

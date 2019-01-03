@@ -26,7 +26,7 @@ export default class HairColor extends ValidationElement {
       <div className={this.divClass()}>
         <label>{this.props.label}</label>
         <RadioGroup
-          className="option-list eapp-extend-labels"
+          className="option-list eapp-extend-labels physical-radio"
           selectedValue={this.props.value}
           onError={this.props.onError}
           required={this.props.required}>

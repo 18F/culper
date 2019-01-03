@@ -79,7 +79,7 @@ export default class ReasonLeft extends ValidationElement {
         <Show when={this.showDescription()}>
           <Field
             title={i18n.t('history.employment.default.left.title')}
-            titleSize="h3"
+            titleSize="h4"
             comments={true}
             commentsName="comments"
             commentsValue={this.props.Comments}

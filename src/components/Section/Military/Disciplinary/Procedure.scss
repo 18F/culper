@@ -1,19 +1,1 @@
-.disciplinary-procedure {
-  .procedure-offenses,
-  .procedure-name,
-  .procedure-court,
-  .procedure-outcome {
-    display: inline-block;
-    width: 92%;
-  }
 
-  .procedure-name {
-    label {
-      top: -3rem !important;
-    }
-
-    input {
-      margin-top: 2.6rem !important;
-    }
-  }
-}

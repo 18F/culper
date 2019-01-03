@@ -74,9 +74,10 @@ export default class ForeignBornDocuments extends ValidationElement {
           title={i18n.t('relationships.civilUnion.heading.foreignBornDocument')}
           scrollIntoView={this.props.scrollIntoView}
           adjustFor="p">
-          {i18n.t('foreignBornDocuments.para.bornToUSParents')}
+          <label>{i18n.t('foreignBornDocuments.para.bornToUSParents')}</label>
           <RadioGroup
             name="born"
+            className="option-list option-list-vertical"
             selectedValue={(this.props.DocumentType || {}).value}
             required={this.props.required}
             onError={this.props.onError}>
@@ -102,9 +103,10 @@ export default class ForeignBornDocuments extends ValidationElement {
             />
           </RadioGroup>
 
-          {i18n.t('foreignBornDocuments.para.naturalized')}
+          <label>{i18n.t('foreignBornDocuments.para.naturalized')}</label>
           <RadioGroup
             name="naturalized"
+            className="option-list option-list-vertical"
             selectedValue={(this.props.DocumentType || {}).value}
             required={this.props.required}
             onError={this.props.onError}>
@@ -141,9 +143,10 @@ export default class ForeignBornDocuments extends ValidationElement {
             />
           </RadioGroup>
 
-          {i18n.t('foreignBornDocuments.para.derived')}
+          <label>{i18n.t('foreignBornDocuments.para.derived')}</label>
           <RadioGroup
             name="derived"
+            className="option-list option-list-vertical"
             selectedValue={(this.props.DocumentType || {}).value}
             required={this.props.required}
             onError={this.props.onError}>
@@ -180,9 +183,10 @@ export default class ForeignBornDocuments extends ValidationElement {
             />
           </RadioGroup>
 
-          {i18n.t('foreignBornDocuments.para.notCitizen')}
+          <label>{i18n.t('foreignBornDocuments.para.notCitizen')}</label>
           <RadioGroup
             name="notCitizen"
+            className="option-list option-list-vertical"
             selectedValue={(this.props.DocumentType || {}).value}
             required={this.props.required}
             onError={this.props.onError}>
@@ -252,9 +256,10 @@ export default class ForeignBornDocuments extends ValidationElement {
             />
           </RadioGroup>
 
-          {i18n.t('foreignBornDocuments.para.other')}
+          <label>{i18n.t('foreignBornDocuments.para.other')}</label>
           <RadioGroup
             name="other"
+            className="option-list option-list-vertical"
             selectedValue={(this.props.DocumentType || {}).value}
             required={this.props.required}
             onError={this.props.onError}>

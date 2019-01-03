@@ -22,7 +22,7 @@ export default class City extends ValidationElement {
   }
 
   render() {
-    const klass = `city ${this.props.className || ''}`.trim()
+    const klass = `city usa-form-control ${this.props.className || ''}`.trim()
     return (
       <Text
         name={this.props.name}

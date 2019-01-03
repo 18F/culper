@@ -1,10 +1,18 @@
 .currency {
+  position: relative;
+
   .fa.fa-dollar {
-    margin-left: -2rem;
+    position: absolute;
+    top: 12px;
+    left: 12px;
   }
+
   .number {
-    margin-left: 1rem;
     width: 100%;
     display: inline-block;
+  }
+
+  input[type='text'] {
+    padding-left: 3rem;
   }
 }

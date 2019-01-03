@@ -235,9 +235,9 @@ export default class Offense extends ValidationElement {
         <Branch
           name="involved_violence"
           label={i18n.t('legal.police.heading.involvement')}
-          labelSize="h3"
+          labelSize="h4"
           adjustFor="p"
-          className="offense-violence"
+          className="offense-violence no-margin-bottom"
           {...this.props.InvolvedViolence}
           onUpdate={this.updateInvolvedViolence}
           required={this.props.required}
@@ -249,7 +249,7 @@ export default class Offense extends ValidationElement {
         <Branch
           name="involved_firearms"
           adjustFor="p"
-          className="offense-firearms"
+          className="offense-firearms no-margin-bottom"
           {...this.props.InvolvedFirearms}
           onUpdate={this.updateInvolvedFirearms}
           required={this.props.required}
@@ -292,7 +292,7 @@ export default class Offense extends ValidationElement {
         <Branch
           name="was_cited"
           label={i18n.t('legal.police.heading.cited')}
-          labelSize="h3"
+          labelSize="h4"
           adjustFor="p"
           className="offense-cited"
           {...this.props.WasCited}
@@ -305,21 +305,14 @@ export default class Offense extends ValidationElement {
         <Show when={(this.props.WasCited || {}).value === 'Yes'}>
           <div>
             <Field
-              title={i18n.t('legal.police.heading.needmore')}
-              optional={true}
-              className="more title"
-              scrollIntoView={this.props.scrollIntoView}>
-              <Svg src="/img/date-down-arrow.svg" className="more arrow" />
-            </Field>
-
-            <Field
               title={i18n.t('legal.police.heading.citedagency')}
-              titleSize="h2"
+              titleSize="h4"
               optional={true}
               className="no-margin-bottom"
             />
             <Field
               title={i18n.t('legal.police.heading.citedby')}
+              titleSize="label"
               scrollIntoView={this.props.scrollIntoView}>
               <Text
                 name="CitedBy"
@@ -355,8 +348,8 @@ export default class Offense extends ValidationElement {
             <Branch
               name="was_charged"
               label={i18n.t('legal.police.heading.charged')}
-              labelSize="h3"
-              className="offense-charged no-margin-bottom"
+              labelSize="h4"
+              className="offense-charged"
               {...this.props.WasCharged}
               onUpdate={this.updateWasCharged}
               required={this.props.required}
@@ -385,21 +378,12 @@ export default class Offense extends ValidationElement {
         <Show when={(this.props.WasCharged || {}).value === 'Yes'}>
           <div>
             <Field
-              title={i18n.t('legal.police.heading.needmore')}
-              optional={true}
-              className="more title"
-              scrollIntoView={this.props.scrollIntoView}>
-              <Svg src="/img/date-down-arrow.svg" className="more arrow" />
-            </Field>
-
-            <Field
               title={i18n.t('legal.police.heading.courtname')}
               adjustFor="labels"
               scrollIntoView={this.props.scrollIntoView}>
               <Text
                 name="CourtName"
                 {...this.props.CourtName}
-                label={i18n.t('legal.police.label.courtname')}
                 className="offense-courtname"
                 onUpdate={this.updateCourtName}
                 onError={this.props.onError}
@@ -432,7 +416,7 @@ export default class Offense extends ValidationElement {
 
             <Field
               title={i18n.t('legal.police.heading.chargedetails')}
-              titleSize="h3"
+              titleSize="h4"
               optional={true}
               className="no-margin-bottom">
               {i18n.m('legal.police.para.chargedetails')}
@@ -440,7 +424,7 @@ export default class Offense extends ValidationElement {
 
             <Field
               title={i18n.t('legal.police.heading.chargeType')}
-              titleSize="h4"
+              titleSize="label"
               adjustFor="buttons"
               shrink={true}
               scrollIntoView={this.props.scrollIntoView}>
@@ -497,7 +481,6 @@ export default class Offense extends ValidationElement {
 
             <Field
               title={i18n.t('legal.police.heading.courtdate')}
-              titleSize="h4"
               help="legal.police.help.courtdate"
               adjustFor="labels"
               shrink={true}
@@ -517,7 +500,7 @@ export default class Offense extends ValidationElement {
             <Branch
               name="was_sentenced"
               label={i18n.t('legal.police.heading.sentenced')}
-              labelSize="h3"
+              labelSize="h4"
               className="offense-sentenced"
               {...this.props.WasSentenced}
               onUpdate={this.updateWasSentenced}
@@ -528,13 +511,6 @@ export default class Offense extends ValidationElement {
 
             <Show when={(this.props.WasSentenced || {}).value === 'Yes'}>
               <div>
-                <Field
-                  title={i18n.t('legal.police.heading.needmore')}
-                  optional={true}
-                  className="more title"
-                  scrollIntoView={this.props.scrollIntoView}>
-                  <Svg src="/img/date-down-arrow.svg" className="more arrow" />
-                </Field>
                 <Sentence
                   name="Sentence"
                   {...this.props.Sentence}
