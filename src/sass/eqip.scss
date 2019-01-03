@@ -115,20 +115,22 @@ p {
       background: $eapp-blue-darkest;
       color: $eapp-blue-lighter;
 
-      .eapp-logo-icon {
-        display: inline-block;
-        height: 8rem;
-        width: 8rem;
-        margin-left: 10%;
-        vertical-align: middle;
-      }
+      .eapp-logo-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
 
-      .eapp-logo-text {
-        display: inline-block;
-        margin-left: 2rem;
-        font-size: 3rem;
-        font-weight: $eapp-bold;
-        margin-top: 4.7rem;
+        .eapp-logo-icon {
+          margin-right: 5%;
+        }
+
+        .eapp-logo-text {
+          font-size: 4rem;
+          font-weight: $eapp-bold;
+          color: $color-white;
+          font-family: $eapp-sans;
+        }
       }
     }
 
