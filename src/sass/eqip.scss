@@ -130,9 +130,9 @@ p {
           font-weight: $eapp-bold;
           color: $color-white;
           font-variant-numeric: lining-nums;
-          -moz-font-feature-settings: "lnum";
-          -webkit-font-feature-settings: "lnum";
-          font-feature-settings: "lnum";
+          -moz-font-feature-settings: 'lnum';
+          -webkit-font-feature-settings: 'lnum';
+          font-feature-settings: 'lnum';
         }
       }
     }
