@@ -731,6 +731,7 @@ export class HistorySections extends React.Component {
           dispatch={this.props.dispatch}
           scrollIntoView={false}
           required={true}
+          formType={this.props.formType}
         />
 
         <Employment
@@ -745,6 +746,7 @@ export class HistorySections extends React.Component {
           dispatch={this.props.dispatch}
           scrollIntoView={false}
           required={true}
+          formType={this.props.formType}
         />
 
         <Branch
@@ -778,6 +780,7 @@ export class HistorySections extends React.Component {
             addressBooks={this.props.AddressBooks}
             scrollIntoView={false}
             required={true}
+            formType={this.props.formType}
           />
         </Show>
 
@@ -791,6 +794,7 @@ export class HistorySections extends React.Component {
           onError={this.props.onError}
           scrollIntoView={false}
           required={true}
+          formType={this.props.formType}
         />
       </div>
     )

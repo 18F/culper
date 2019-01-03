@@ -60,6 +60,7 @@ class Section extends React.Component {
           <SectionComponent
             subsection={this.props.subsection}
             update={this.update}
+            formType={this.props.formType}
           />
         </SectionView>
       )
