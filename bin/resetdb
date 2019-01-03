@@ -1,0 +1,9 @@
+#!/bin/bash -e
+
+
+if docker-compose config; then
+  docker cp api/bin/purge-all-user-data.sql $(docker ps | grep postgres | awk '{print $1}'):/tmp/purge-all-user-data.sql
+  docker-compose exec -T --user postgres db psql -f /tmp/purge-all-user-data.sql
+else
+  psql -U postgres -h db -d postgres -f api/bin/purge-all-user-data.sql
+fi

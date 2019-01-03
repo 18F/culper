@@ -1,0 +1,45 @@
+{
+  "first": "Charles",
+  "middle": "Francis",
+  "last": "Xavier",
+  "otherNames": {
+    "first": "Chuck",
+    "middle": "Frank",
+    "last": "Xavier",
+    "reason": "Just a nickname I go by"
+  },
+  "homeEmail": "charles@x.com",
+  "workEmail": "professor@xmen.org",
+  "phoneNumbers": [
+    {
+      "first": "202",
+      "second": "867",
+      "third": "5309",
+      "timeofday": "day",
+      "phonetype": "work"
+    }
+  ],
+  "birthDate": {
+    "month": "11",
+    "day": "10",
+    "year": "1990"
+  },
+  "birthPlace": {
+    "state": { "input": "New York", "expected": "NY" },
+    "city": "New York City",
+    "county": "Manhattan"
+  },
+  "ssn": {
+    "first": "123",
+    "middle": "12",
+    "last": "1234"
+  },
+  "physical": {
+    "feet": "6",
+    "inches": "0",
+    "pounds": "190",
+    "hair": "bald",
+    "eye": "black",
+    "sex": "male"
+  }
+}
