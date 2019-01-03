@@ -44,3 +44,16 @@ services:
       - chrome
       - web
       - api
+  cypress:
+    build:
+      context: .
+      dockerfile: cypress/Dockerfile
+    volumes:
+      - ./:/app
+    command: [yarn, run, cypress, run]
+    networks:
+      - eapp
+    depends_on:
+      - web
+      - api
+      - db

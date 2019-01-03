@@ -83,6 +83,11 @@ specs:
 	$(info Running integration test suite)
 	docker-compose -f docker-compose.yml -f docker-compose.specs.yml run --rm nightwatch $(COMMAND)
 
+.PHONY: cypress
+cypress:
+	$(info Running integration test cypress suite)
+	docker-compose -f docker-compose.yml -f docker-compose.specs.yml run --rm cypress
+
 #
 # Coverage
 #
