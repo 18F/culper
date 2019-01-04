@@ -1779,5 +1779,12 @@ export const history = {
         'Do you have additional former federal civilian employment, excluding military service, NOT indicated previously, to report?',
       append: 'Add another former federal service'
     }
+  },
+  85: {
+    residence: {
+      gap: {
+        para: 'There is a gap in your residence history. The entire 5 year period must be covered with no gaps'
+      }
+    }
   }
 }

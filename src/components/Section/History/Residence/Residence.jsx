@@ -59,7 +59,11 @@ export default class Residence extends SubsectionElement {
       return (
         <Gap
           title={i18n.t('history.residence.gap.title')}
-          para={i18n.t('history.residence.gap.para')}
+          para={
+            this.props.formType === '85'
+              ? i18n.t('history.85.residence.gap.para')
+              : i18n.t('history.residence.gap.para')
+          }
           btnText={i18n.t('history.residence.gap.btnText')}
           first={index === 0}
           dates={dates}

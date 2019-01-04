@@ -93,6 +93,7 @@ class History extends SectionElement {
     this.updateBranchAttendance = this.updateBranchAttendance.bind(this)
     this.updateBranchDegree10 = this.updateBranchDegree10.bind(this)
     this.overrideInitial = this.overrideInitial.bind(this)
+    this.getTotalResidenceYearsRequired = this.getTotalResidenceYearsRequired.bind(this)
   }
 
   excludeGaps(items) {
@@ -248,6 +249,17 @@ class History extends SectionElement {
     return dates
   }
 
+  getTotalResidenceYearsRequired() {
+    switch(this.props.formType) {
+      case '85':
+        return 5
+      case '86':
+        return 10
+      default:
+        return 10
+    }
+  }
+
   residenceSummaryProgress() {
     return (
       <SummaryProgress
@@ -255,7 +267,7 @@ class History extends SectionElement {
         List={this.residenceRangeList}
         title={i18n.t('history.residence.summary.title')}
         unit={i18n.t('history.residence.summary.unit')}
-        total={totalYears(this.props.Birthdate)}>
+        total={this.getTotalResidenceYearsRequired()}>
         <div className="summary-icon">
           <Svg
             src="/img/residence-house.svg"
@@ -398,13 +410,14 @@ class History extends SectionElement {
               section="history"
               subsection="residence"
               sort={sort}
-              totalYears={totalYears(this.props.Birthdate)}
+              totalYears={this.getTotalResidenceYearsRequired()}
               overrideInitial={this.overrideInitial}
               onUpdate={this.updateResidence}
               onError={this.handleError}
               addressBooks={this.props.AddressBooks}
               dispatch={this.props.dispatch}
               scrollIntoView={false}
+              formType={this.props.formType}
               realtime
               required
             />
@@ -523,12 +536,13 @@ class History extends SectionElement {
               scrollToTop="scrollToHistory"
               realtime={true}
               sort={sort}
-              totalYears={totalYears(this.props.Birthdate)}
+              totalYears={this.getTotalResidenceYearsRequired()}
               overrideInitial={this.overrideInitial}
               onUpdate={this.updateResidence}
               onError={this.handleError}
               addressBooks={this.props.AddressBooks}
               dispatch={this.props.dispatch}
+              formType={this.props.formType}
             />
 
             <Show when={this.hasGaps(['Residence'])}>
@@ -724,7 +738,7 @@ export class HistorySections extends React.Component {
           defaultState={false}
           realtime={true}
           sort={sort}
-          totalYears={totalYears(this.props.Birthdate)}
+          totalYears={this.getTotalResidenceYearsRequired()}
           overrideInitial={noOverride}
           onError={this.props.onError}
           addressBooks={this.props.AddressBooks}
