@@ -133,6 +133,37 @@ describe('The cohabitant component', () => {
     expect(component.find('.foreign-born-documents').length).toEqual(0)
   })
 
+  it('should not ask for foreign born documentation birthplace is undefined', () => {
+    const expected = {
+      BirthPlace: {}
+    }
+    const component = createComponent(expected)
+    expect(component.find('.foreign-born-documents').length).toEqual(0)
+  })
+
+  it('should ask for foreign born documentation BirthPlace.country.value', () => {
+    const expected = {
+      BirthPlace: {
+        country: {
+          value: 'Canada'
+        }
+      }
+    }
+    const component = createComponent(expected)
+    expect(component.find('.foreign-born-documents').length).toEqual(1)
+  })
+
+  it('should ask for foreign born documentation if birthplace is an empty string', () => {
+    const expected = {
+      BirthPlace: {
+        country: ''
+      }
+    }
+    const component = createComponent(expected)
+    expect(component.find('.foreign-born-documents').length).toEqual(1)
+  })
+
+
   it('should ask for foreign born documentation if not from the United States', () => {
     const expected = {
       BirthPlace: { country: 'Canada' }
