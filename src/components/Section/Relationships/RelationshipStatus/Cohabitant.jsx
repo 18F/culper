@@ -15,6 +15,7 @@ import {
   Location
 } from '../../../Form'
 import { CohabitantValidator } from '../../../../validators/cohabitant'
+import { countryString } from '../../../../validators/location'
 import OtherName from './OtherName'
 
 export default class Cohabitant extends ValidationElement {
@@ -34,6 +35,7 @@ export default class Cohabitant extends ValidationElement {
     this.dismissSpouseSuggestion = this.dismissSpouseSuggestion.bind(this)
     this.onSpouseSuggestion = this.onSpouseSuggestion.bind(this)
     this.clear = this.clear.bind(this)
+    this.isForeignBornDocumentationDisplayed = this.isForeignBornDocumentationDisplayed.bind(this)
   }
 
   update(queue) {
@@ -146,9 +148,25 @@ export default class Cohabitant extends ValidationElement {
     })
   }
 
+  isForeignBornDocumentationDisplayed() {
+    const country = countryString(this.props.BirthPlace.country)
+
+    switch (country) {
+      case 'United States':
+        return false
+      case '':
+      // '' means that 'Outside the U.S.' is selected, but no country entered yet
+        return true
+      case undefined:
+      // undefined means the form is clean and untouched
+        return false
+      default:
+      // only other options should be a typed country other than 'United States'
+        return true
+    }
+  }
+
   render() {
-    const showForeignBornDocumentation =
-      ((this.props.BirthPlace || {}).country || {}) !== 'United States'
     const cohabitationBeganMinDate = pickDate([this.props.applicantBirthdate, this.props.Birthdate])
     return (
       <div className="cohabitant">
@@ -219,7 +237,7 @@ export default class Cohabitant extends ValidationElement {
           />
         </Field>
 
-        <Show when={showForeignBornDocumentation}>
+        <Show when={this.isForeignBornDocumentationDisplayed()}>
           <ForeignBornDocuments
             name="foreignBornDocument"
             title={i18n.t(
