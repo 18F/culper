@@ -28,6 +28,7 @@ class DateControl extends ValidationElement {
       month: props.hideMonth ? '1' : props.month,
       day: props.hideDay ? '1' : props.day,
       year: props.year,
+      touched: props.month >= 1 && props.day >= 1 && props.year >= 1,
       errors: []
     }
 
@@ -74,16 +75,17 @@ class DateControl extends ValidationElement {
     this.setState(updates)
   }
 
-  update(el, year, month, day, estimated) {
+  update(el, year, month, day, estimated, touched) {
     const changed = {
       year: year !== this.state.year,
       month: month !== this.state.month,
       day: day !== this.state.day,
-      estimated: estimated !== this.state.estimated
+      estimated: estimated !== this.state.estimated,
+      touched: touched !== this.state.touched
     }
 
     this.setState(
-      { month: month, day: day, year: year, estimated: estimated },
+      { month: month, day: day, year: year, estimated: estimated, touched: touched },
       () => {
         // Estimate touches the day so we need to toggle focus
         const toggleForEstimation = changed.estimated
@@ -106,12 +108,16 @@ class DateControl extends ValidationElement {
           )
         }
 
+        // Only mark this date control touched when all 3 parts of the date are set
+        const touched = month >= 1 && day >= 1 && year >= 1
+
         this.props.onUpdate({
           name: this.props.name,
           month: `${month}`,
           day: `${day}`,
           year: `${year}`,
-          estimated: estimated
+          estimated: estimated,
+          touched: touched
         })
       }
     )
@@ -123,7 +129,8 @@ class DateControl extends ValidationElement {
       this.state.year,
       values.value,
       this.state.day,
-      this.state.estimated
+      this.state.estimated,
+      this.state.touched
     )
   }
 
@@ -133,7 +140,8 @@ class DateControl extends ValidationElement {
       this.state.year,
       this.state.month,
       values.value,
-      this.state.estimated
+      this.state.estimated,
+      this.state.touched
     )
   }
 
@@ -143,7 +151,8 @@ class DateControl extends ValidationElement {
       values.value,
       this.state.month,
       this.state.day,
-      this.state.estimated
+      this.state.estimated,
+      this.state.touched
     )
   }
 
@@ -153,7 +162,8 @@ class DateControl extends ValidationElement {
       this.state.year,
       this.state.month,
       this.state.day,
-      values.checked
+      values.checked,
+      this.state.touched
     )
   }
 

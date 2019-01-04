@@ -67,14 +67,12 @@ export default class DateRange extends ValidationElement {
   }
 
   updateFrom(values) {
-    values.touched = true
     this.setState({ from: values, presentClicked: false }, () => {
       this.update({ from: values })
     })
   }
 
   updateTo(values) {
-    values.touched = true
     this.setState({ to: values, presentClicked: false }, () => {
       this.update({ to: values })
     })
