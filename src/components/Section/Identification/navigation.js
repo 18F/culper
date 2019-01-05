@@ -20,18 +20,6 @@ const navigation = {
       validator: validators.IdentificationNameValidator
     },
     {
-      name: 'Other names used',
-      url: 'othernames',
-      store: 'OtherNames',
-      validator: validators.IdentificationOtherNamesValidator
-    },
-    {
-      name: 'Your contact information',
-      url: 'contacts',
-      store: 'Contacts',
-      validator: validators.IdentificationContactInformationValidator
-    },
-    {
       name: 'Date of birth',
       url: 'birthdate',
       store: 'ApplicantBirthDate',
@@ -48,6 +36,18 @@ const navigation = {
       url: 'ssn',
       store: 'ApplicantSSN',
       validator: validators.IdentificationSSNValidator
+    },
+    {
+      name: 'Other names used',
+      url: 'othernames',
+      store: 'OtherNames',
+      validator: validators.IdentificationOtherNamesValidator
+    },
+    {
+      name: 'Your contact information',
+      url: 'contacts',
+      store: 'Contacts',
+      validator: validators.IdentificationContactInformationValidator
     },
     {
       name: 'Your identifying information',
