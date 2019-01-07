@@ -13,7 +13,7 @@ gid     := $(shell id -g)
 setup_container := "js"
 
 
-all: clean setup lint test build
+all: clean setup lint test build test-cypress
 .SILENT: all
 .PHONY: all
 
@@ -74,19 +74,19 @@ test-react:
 test-go:
 	$(info Running Go test suite)
 	@docker-compose run --rm api make test
+test-cypress:
+	$(info Running integration test cypress suite)
+	docker-compose -f docker-compose.yml -f docker-compose.specs.yml run --rm cypress
 
 #
 # Integration testing
 #
+specs: build test-cypress
+
 .PHONY: specs
-specs:
+specs-nightwatch:
 	$(info Running integration test suite)
 	docker-compose -f docker-compose.yml -f docker-compose.specs.yml run --rm nightwatch $(COMMAND)
-
-.PHONY: cypress
-cypress:
-	$(info Running integration test cypress suite)
-	docker-compose -f docker-compose.yml -f docker-compose.specs.yml run --rm cypress
 
 #
 # Coverage
