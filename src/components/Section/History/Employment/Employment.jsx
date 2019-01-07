@@ -143,7 +143,11 @@ export default class Employment extends SubsectionElement {
       return (
         <Gap
           title={i18n.t('history.employment.gap.title')}
-          para={i18n.t('history.employment.gap.para')}
+          para={
+            this.props.formType === '85'
+              ? i18n.t('history.85.employment.gap.para')
+              : i18n.t('history.employment.gap.para')
+          }
           btnText={i18n.t('history.employment.gap.btnText')}
           first={index === 0}
           dates={dates}
@@ -199,7 +203,11 @@ export default class Employment extends SubsectionElement {
         </Accordion>
         <hr className="section-divider" />
         <Branch
-          label={i18n.t('history.employment.default.employmentRecord.title')}
+          label={
+            this.props.formType === '85'
+              ? i18n.t('history.85.employment.default.employmentRecord.title')
+              : i18n.t('history.employment.default.employmentRecord.title')
+          }
           className="employment-record"
           labelSize="h4"
           {...this.props.EmploymentRecord}

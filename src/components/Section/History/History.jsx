@@ -93,7 +93,7 @@ class History extends SectionElement {
     this.updateBranchAttendance = this.updateBranchAttendance.bind(this)
     this.updateBranchDegree10 = this.updateBranchDegree10.bind(this)
     this.overrideInitial = this.overrideInitial.bind(this)
-    this.getTotalResidenceYearsRequired = this.getTotalResidenceYearsRequired.bind(this)
+    this.getTotalYearsRequired = this.getTotalYearsRequired.bind(this)
   }
 
   excludeGaps(items) {
@@ -248,15 +248,22 @@ class History extends SectionElement {
 
     return dates
   }
-
-  getTotalResidenceYearsRequired() {
-    switch(this.props.formType) {
-      case '85':
-        return 5
-      case '86':
-        return 10
-      default:
-        return 10
+  /**
+   * getTotalYearsRequired is a general way to get the number of
+   * required years for each section of history.
+   * @param {string} type e.g. residence, employment, education
+   * @returns {boolean}
+   */
+  getTotalYearsRequired(type) {
+    if (['residence', 'education', 'employment'].indexOf(type) > -1) {
+      switch(this.props.formType) {
+        case '85':
+          return 5
+        case '86':
+          return 10
+        default:
+          return 10
+      }
     }
   }
 
@@ -267,7 +274,7 @@ class History extends SectionElement {
         List={this.residenceRangeList}
         title={i18n.t('history.residence.summary.title')}
         unit={i18n.t('history.residence.summary.unit')}
-        total={this.getTotalResidenceYearsRequired()}>
+        total={this.getTotalYearsRequired('residence')}>
         <div className="summary-icon">
           <Svg
             src="/img/residence-house.svg"
@@ -285,7 +292,7 @@ class History extends SectionElement {
         List={this.employmentRangesList}
         title={i18n.t('history.employment.summary.title')}
         unit={i18n.t('history.employment.summary.unit')}
-        total={totalYears(this.props.Birthdate)}>
+        total={this.getTotalYearsRequired('employment')}>
         <div className="summary-icon">
           <Svg
             src="/img/employer-briefcase.svg"
@@ -410,7 +417,7 @@ class History extends SectionElement {
               section="history"
               subsection="residence"
               sort={sort}
-              totalYears={this.getTotalResidenceYearsRequired()}
+              totalYears={this.getTotalYearsRequired('residence')}
               overrideInitial={this.overrideInitial}
               onUpdate={this.updateResidence}
               onError={this.handleError}
@@ -429,13 +436,14 @@ class History extends SectionElement {
               section="history"
               subsection="employment"
               sort={sort}
-              totalYears={totalYears(this.props.Birthdate)}
+              totalYears={this.getTotalYearsRequired('employment')}
               overrideInitial={this.overrideInitial}
               onUpdate={this.updateEmployment}
               onError={this.handleError}
               addressBooks={this.props.AddressBooks}
               dispatch={this.props.dispatch}
               scrollIntoView={false}
+              formType={this.props.formType}
               realtime
               required
             />
@@ -483,12 +491,13 @@ class History extends SectionElement {
                   subsection="education"
                   realtime={true}
                   sort={sort}
-                  totalYears={totalYears(this.props.Birthdate)}
+                  totalYears={this.getTotalYearsRequired('education')}
                   overrideInitial={this.overrideInitial}
                   onUpdate={this.updateEducation}
                   onError={this.handleError}
                   dispatch={this.props.dispatch}
                   addressBooks={this.props.AddressBooks}
+                  formType={this.props.formType}
                   scrollIntoView={false}
                   required={true}
                 />
@@ -519,7 +528,11 @@ class History extends SectionElement {
             nextLabel={i18n.t('history.destination.employment')}>
             <h1 className="section-header">{i18n.t('history.residence.title')}</h1>
             <Field
-              title={i18n.t('history.residence.info')}
+              title={
+                this.props.formType === '85'
+                  ? i18n.t('history.85.residence.info')
+                  : i18n.t('history.residence.info')
+              }
               titleSize="h3"
               optional={true}
               className="no-margin-bottom">
@@ -536,7 +549,7 @@ class History extends SectionElement {
               scrollToTop="scrollToHistory"
               realtime={true}
               sort={sort}
-              totalYears={this.getTotalResidenceYearsRequired()}
+              totalYears={this.getTotalYearsRequired('residence')}
               overrideInitial={this.overrideInitial}
               onUpdate={this.updateResidence}
               onError={this.handleError}
@@ -571,7 +584,10 @@ class History extends SectionElement {
               titleSize="h3"
               optional={true}
               className="no-margin-bottom">
-              {i18n.m('history.employment.para.employment')}
+              {this.props.formType === '85'
+                ? i18n.m('history.85.employment.para')
+                : i18n.m('history.employment.para.employment')
+              }
               {i18n.m('history.employment.para.employment2')}
             </Field>
 
@@ -581,12 +597,13 @@ class History extends SectionElement {
               {...this.props.Employment}
               scrollToTop="scrollToHistory"
               sort={sort}
-              totalYears={totalYears(this.props.Birthdate)}
+              totalYears={this.getTotalYearsRequired('employment')}
               overrideInitial={this.overrideInitial}
               onUpdate={this.updateEmployment}
               onError={this.handleError}
               addressBooks={this.props.AddressBooks}
               dispatch={this.props.dispatch}
+              formType={this.props.formType}
             />
 
             <Show when={this.hasGaps(['Employment'])}>
@@ -622,7 +639,11 @@ class History extends SectionElement {
               name="branch_school"
               {...this.props.Education.HasAttended}
               help="history.education.help.attendance"
-              label={i18n.t('history.education.label.attendance')}
+              label={
+                this.props.formType === '85'
+                  ? i18n.t('history.85.education.label.attendance')
+                  : i18n.t('history.education.label.attendance')
+              }
               labelSize="h4"
               warning={true}
               onUpdate={this.updateBranchAttendance}
@@ -650,12 +671,13 @@ class History extends SectionElement {
                   {...this.props.Education}
                   scrollToTop="scrollToHistory"
                   sort={sort}
-                  totalYears={totalYears(this.props.Birthdate)}
+                  totalYears={this.getTotalYearsRequired('education')}
                   overrideInitial={this.overrideInitial}
                   onUpdate={this.updateEducation}
                   onError={this.handleError}
                   dispatch={this.props.dispatch}
                   addressBooks={this.props.AddressBooks}
+                  formType={this.props.formType}
                 />
               </div>
             </Show>
@@ -738,7 +760,7 @@ export class HistorySections extends React.Component {
           defaultState={false}
           realtime={true}
           sort={sort}
-          totalYears={this.getTotalResidenceYearsRequired()}
+          totalYears={this.getTotalYearsRequired('residence')}
           overrideInitial={noOverride}
           onError={this.props.onError}
           addressBooks={this.props.AddressBooks}
@@ -753,7 +775,7 @@ export class HistorySections extends React.Component {
           defaultState={false}
           realtime={true}
           sort={sort}
-          totalYears={totalYears(this.props.Birthdate)}
+          totalYears={this.getTotalYearsRequired('employment')}
           overrideInitial={noOverride}
           onError={this.props.onError}
           addressBooks={this.props.AddressBooks}
@@ -787,7 +809,7 @@ export class HistorySections extends React.Component {
             defaultState={false}
             realtime={true}
             sort={sort}
-            totalYears={totalYears(this.props.Birthdate)}
+            totalYears={this.getTotalYearsRequired('education')}
             overrideInitial={noOverride}
             onError={this.props.onError}
             dispatch={this.props.dispatch}
