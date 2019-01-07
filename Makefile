@@ -76,7 +76,7 @@ test-go:
 	@docker-compose run --rm api make test
 test-cypress:
 	$(info Running integration test cypress suite)
-	docker-compose -f docker-compose.yml -f docker-compose.specs.yml run --rm cypress
+	docker-compose -f docker-compose.yml -f docker-compose.specs.yml build cypress && docker-compose -f docker-compose.yml -f docker-compose.specs.yml run --rm cypress
 
 #
 # Integration testing

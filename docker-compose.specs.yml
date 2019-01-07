@@ -48,8 +48,6 @@ services:
     build:
       context: .
       dockerfile: cypress/Dockerfile
-    volumes:
-      - ./:/app
     command: [yarn, run, cypress, run]
     networks:
       - eapp
