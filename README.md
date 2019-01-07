@@ -60,6 +60,16 @@ make
 
 #### Feature Tests
 
+##### Cypress.io Based
+Setup steps:
+
+1. Edit _.env_ file and set `API_REDIRECT=http://web:8080` and `API_BASE_URL=http://api:3000`
+1. Disable *SAML\_ENABLED* auth and enable *BASIC\_ENABLED*
+1. Edit /etc/hosts file __OPTIONAL__ add _web_ and _api_ to the end of the localhost line in /etc/hosts so you don't have to keep changing the values of API\_REDIRECT or API\_BASE\_URL in .env file back to localhost
+1. Run __make run__ to ensure services are restarted
+1. Run __yarn run cypress open__ to start the developer interactive test run mode or run __make specs__ to run the tests headless in docker
+
+##### NightwatchJS Based
 Setup steps:
 
 1. Edit _.env_ file and set `API_REDIRECT=http://web:8080` and `API_BASE_URL=http://api:3000`
@@ -71,7 +81,7 @@ Setup steps:
 To run the feature specs locally:
 
 ```shell
-make specs
+make specs-nightwatch
 ```
 
 Screenshots will be recorded in _specs/screenshots_
@@ -79,7 +89,7 @@ Screenshots will be recorded in _specs/screenshots_
 To run a single feature spec locally:
 
 ```shell
-make specs COMMAND='bash -c "yarn run nightwatch --test features/identification.feature"'
+make specs-nightwatch COMMAND='bash -c "yarn run nightwatch --test features/identification.feature"'
 ```
 
 ### Running a local server
