@@ -339,6 +339,10 @@ button.usa-button-outline {
   }
 }
 
+.gap button.usa-button-outline {
+  margin: 1rem 0;
+}
+
 @media screen and (min-width: 1000px) {
   .accordion > .items > .item.sticky-accordion {
     .summary-container {
