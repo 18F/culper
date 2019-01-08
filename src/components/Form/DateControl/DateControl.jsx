@@ -28,7 +28,7 @@ class DateControl extends ValidationElement {
       month: props.hideMonth ? '1' : props.month,
       day: props.hideDay ? '1' : props.day,
       year: props.year,
-      touched: props.month >= 1 && props.day >= 1 && props.year >= 1,
+      touched: this.isTouched(props.year, props.month, props.day),
       errors: []
     }
 
@@ -45,6 +45,10 @@ class DateControl extends ValidationElement {
     this.updateEstimated = this.updateEstimated.bind(this)
     this.handleDisable = this.handleDisable.bind(this)
     this.errors = []
+  }
+
+  isTouched(year, month, day) {
+    return month >= 1 && day >= 1 && year >= 1
   }
 
   componentWillReceiveProps(next) {
@@ -108,16 +112,13 @@ class DateControl extends ValidationElement {
           )
         }
 
-        // Only mark this date control touched when all 3 parts of the date are set
-        const touched = month >= 1 && day >= 1 && year >= 1
-
         this.props.onUpdate({
           name: this.props.name,
           month: `${month}`,
           day: `${day}`,
           year: `${year}`,
           estimated: estimated,
-          touched: touched
+          touched: touched || this.isTouched(year, month, day)
         })
       }
     )
