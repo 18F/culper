@@ -10,11 +10,11 @@ import DateRangeValidator from '../../../validators/daterange'
 export default class DateRange extends ValidationElement {
   constructor(props) {
     super(props)
-
+    const touched = this.isTouched(props.to.year, props.to.month, props.to.day) || this.isTouched(props.from.year, props.from.month, props.from.day)
     this.state = {
       uid: `${this.props.name}-${super.guid()}`,
-      from: props.from,
-      to: props.to,
+      from: {...props.from, touched: touched},
+      to: {...props.to, touched: touched},
       present: props.present,
       presentClicked: false,
       title: props.title || 'Date Range',
@@ -32,6 +32,10 @@ export default class DateRange extends ValidationElement {
     this.handleErrorPresent = this.handleErrorPresent.bind(this)
     this.handleDisable = this.handleDisable.bind(this)
     this.errors = []
+  }
+
+  isTouched(year, month, day) {
+    return year != '' && month != '' && day != '' && month >= 1 && day >= 1 && year >= 1
   }
 
   componentWillReceiveProps(nextProps) {
@@ -59,8 +63,8 @@ export default class DateRange extends ValidationElement {
   update(queue) {
     this.props.onUpdate({
       name: this.props.name,
-      from: this.state.from,
-      to: this.state.to,
+      from: {...this.state.from, touched: true},
+      to: {...this.state.to, touched: true},
       present: this.state.present,
       ...queue
     })

@@ -76,7 +76,7 @@ describe('The date range component', () => {
     expect(component.find('.to.usa-input-error').length).toBe(1)
   })
 
-  it('does not validate date order before dates are touched', () => {
+  it('does validate date order before dates are touched', () => {
     const expected = {
       name: 'input-error',
       label: 'Text input error',
@@ -87,9 +87,35 @@ describe('The date range component', () => {
       present: true,
       from: {
         day: '1',
-        month: '4',
+        month: '1',
         year: '2010',
         touched: true
+      },
+      to: {
+        day: '',
+        month: '',
+        year: '',
+        touched: true
+      }
+    }
+    const component = createComponent(expected)
+    expect(component.find('.to.usa-input-error').length).toBe(1)
+  })
+
+  it('does not validate date order before dates are touched', () => {
+    const expected = {
+      name: 'input-error',
+      label: 'Text input error',
+      help: 'Helpful error message',
+      error: true,
+      focus: false,
+      valid: false,
+      present: true,
+      from: {
+        day: '',
+        month: '',
+        year: '',
+        touched: false
       },
       to: {
         day: '',
