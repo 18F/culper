@@ -21,6 +21,11 @@ jobs:
       - run:
           name: Run Go tests
           command: make test-go
+      - run:
+          name: Run Cypress tests
+          command: |
+            sed -i '/API_BASE_URL=/c\API_BASE_URL=http://api:3000' .env
+            make specs
 
   cloudgov:
     machine: true
