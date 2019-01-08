@@ -5,6 +5,67 @@ import { DateControl } from './DateControl'
 describe('The date component', () => {
   const children = 4
 
+  it('incomplete dates do not count as touched', () => {
+    const tests = [
+      {
+        name: 'input-error',
+        label: 'DateControl input error',
+        disabled: false,
+        error: true,
+        focus: false,
+        valid: false,
+        month: '1',
+        day: '24',
+        year: ''
+      },
+      {
+        name: 'input-error',
+        label: 'DateControl input error',
+        disabled: false,
+        error: true,
+        focus: false,
+        valid: false,
+        month: '1',
+        day: '',
+        year: '2001'
+      },
+      {
+        name: 'input-error',
+        label: 'DateControl input error',
+        disabled: false,
+        error: true,
+        focus: false,
+        valid: false,
+        month: '',
+        day: '2',
+        year: '2002'
+      }
+    ]
+
+    tests.forEach(expected => {
+      const component = mount(<DateControl {...expected} />)
+      component.first('input').simulate('change')
+      expect(component.state('touched')).toBe(false)
+    })
+  })
+
+  it('updates touched when dates are set', () => {
+    const expected = {
+      name: 'input-error',
+      label: 'DateControl input error',
+      disabled: false,
+      error: true,
+      focus: false,
+      valid: false,
+      month: '1',
+      day: '24',
+      year: '2000'
+    }
+    const component = mount(<DateControl {...expected} />)
+    component.find('.year input').simulate('change')
+    expect(component.state('touched')).toBe(true)
+  })
+
   it('renders appropriately with an error', () => {
     const expected = {
       name: 'input-error',
