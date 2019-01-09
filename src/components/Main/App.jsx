@@ -256,7 +256,8 @@ function mapStateToProps(state) {
   return {
     settings: settings,
     authenticated: auth.authenticated,
-    formType: auth.formType
+    formType: auth.formType,
+    navigation: app.Navigation
   }
 }
 

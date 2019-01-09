@@ -2,15 +2,16 @@ import env from './environment'
 import * as validators from '../validators/index'
 import Identification from '../components/Section/Identification/navigation'
 // disambiguate from History class in browser
-import HistoryNav from '../components/Section/History/navigation'
-import Relationships from '../components/Section/Relationships/navigation'
+import historyNavigation from '../components/Section/History/navigation'
+import relationshipsNavigation from '../components/Section/Relationships/navigation'
 import Citizenship from '../components/Section/Citizenship/navigation'
 import Military from '../components/Section/Military/navigation'
 import Foreign from '../components/Section/Foreign/navigation'
 import Financial from '../components/Section/Financial/navigation'
 import SubstanceUse from '../components/Section/SubstanceUse/navigation'
 import Legal from '../components/Section/Legal/navigation'
-import Psychological from '../components/Section/Psychological/navigation'
+import psychologicalNavigation from '../components/Section/Psychological/navigation'
+
 export const Review = {
   title: 'Review and submit',
   name: 'Review and submit',
@@ -94,17 +95,18 @@ export const Review = {
   ]
 }
 
+// This needs to be deleted/changed to implement new forms
 const navigation = [
   Identification,
-  HistoryNav,
-  Relationships,
+  historyNavigation(),
+  relationshipsNavigation(),
   Citizenship,
   Military,
   Foreign,
   Financial,
   SubstanceUse,
   Legal,
-  Psychological,
+  psychologicalNavigation(),
   Review
 ]
 

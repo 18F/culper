@@ -1,22 +1,22 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import compact from 'lodash/compact'
 import AuthenticatedView from '../../views/AuthenticatedView'
-import { navigation } from '../../config'
 import { ScoreCard } from './../ScoreCard'
 import SectionList from './SectionList'
 
 import Identification from './../../components/Section/Identification/navigation'
 // disambiguate from History class in browser
-import HistoryNav from './../../components/Section/History/navigation'
-import Relationships from './../../components/Section/Relationships/navigation'
+import historyNavigation from './../../components/Section/History/navigation'
+import relationshipsNavigation from './../../components/Section/Relationships/navigation'
 import Citizenship from './../../components/Section/Citizenship/navigation'
 import Military from './../../components/Section/Military/navigation'
 import Foreign from './../../components/Section/Foreign/navigation'
 import Financial from './../../components/Section/Financial/navigation'
 import SubstanceUse from './../../components/Section/SubstanceUse/navigation'
 import Legal from './../../components/Section/Legal/navigation'
-import Psychological from './../../components/Section/Psychological/navigation'
+import psychologicalNavigation from './../../components/Section/Psychological/navigation'
 import { Review } from './../../config/navigation'
 import {
   handleUpdateNavigation,
@@ -27,44 +27,25 @@ class Navigation extends React.Component {
   constructor(props) {
     super(props)
 
-    this.generateNavigation = this.generateNavigation.bind(this)
-    this.get85Navigation = this.get85Navigation.bind(this)
-    this.get86Navigation = this.get86Navigation.bind(this)
+    this.getNavigation = this.getNavigation.bind(this)
     this.getSectionTotal = this.getSectionTotal.bind(this)
   }
 
-  get85Navigation() {
-    return [
+  getNavigation() {
+    const { formType } = this.props
+    return compact([
       Identification,
-      HistoryNav,
+      historyNavigation(formType),
+      relationshipsNavigation(formType),
       Citizenship,
       Military,
       Foreign,
       Financial,
       SubstanceUse,
       Legal,
+      psychologicalNavigation(formType),
       Review
-    ]
-  }
-
-  /**
-   * Gets the Navigation for SF-86
-   * This is considered the 'default' for eApp
-   */
-  get86Navigation() {
-    return [
-      Identification,
-      HistoryNav,
-      Relationships,
-      Citizenship,
-      Military,
-      Foreign,
-      Financial,
-      SubstanceUse,
-      Legal,
-      Psychological,
-      Review
-    ]
+    ])
   }
 
   getSectionTotal(navigationSections) {
@@ -74,25 +55,13 @@ class Navigation extends React.Component {
       .length
   }
 
-  generateNavigation() {
-    const { formType } = this.props
-    switch (formType) {
-      case '85':
-        return this.get85Navigation()
-      case '86':
-        return this.get86Navigation()
-      default:
-        return this.get86Navigation()
-    }
-  }
-
   componentDidMount() {
     const {
       handleUpdateNavigation,
       handleUpdateNavigationCount
     } = this.props
 
-    const navigationSections = this.generateNavigation()
+    const navigationSections = this.getNavigation()
     handleUpdateNavigation(navigationSections)
     handleUpdateNavigationCount(
       // TODO NEED TO ADD THE COMPLETED COUNT
@@ -104,9 +73,9 @@ class Navigation extends React.Component {
 
   render() {
     const {
-      formType,
       totalSectionsCount,
-      completedSectionsCount
+      completedSectionsCount,
+      navigation
     } = this.props
     return (
       <nav className="form-navigation" role="navigation">

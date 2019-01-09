@@ -149,6 +149,7 @@ class Form extends React.Component {
             section={params.section}
             subsection={subsection}
             formType={formType}
+            navigation={this.props.navigation}
           />
           <SavedIndicator interval="30000" />
           <TimeoutWarning timeout={env.SessionTimeout()} />
