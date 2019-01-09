@@ -194,7 +194,7 @@ describe('The foreign business sponsorship component', () => {
       expect(
         component
           .find(
-            '.error-messages [data-i18n="error.daterange.foreignNationalSponsorship.min"]'
+            '.error-messages [data-i18n="error.daterange.from.foreignNationalSponsorship.min"]'
           )
           .text()
       ).toEqual(
