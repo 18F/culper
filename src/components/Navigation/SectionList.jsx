@@ -7,7 +7,6 @@ import ToggleItem from './ToggleItem'
 class SectionList extends React.Component {
   render() {
     const className = `usa-accordion ${this.props.className}`
-    console.log(this.props.sections)
     const navItems = this.props.sections
       .filter(section => {
         if (

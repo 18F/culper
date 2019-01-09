@@ -676,23 +676,6 @@ exports[`Navigation component renders correctly 1`] = `
             <a
               aria-current={false}
               className="section-link"
-              href="/form/military/disciplinary"
-              onClick={[Function]}
-            >
-              <span
-                className="section-name"
-              >
-                Disciplinary procedures
-              </span>
-              <span
-                className="eapp-status-icon"
-              />
-            </a>
-          </li>
-          <li>
-            <a
-              aria-current={false}
-              className="section-link"
               href="/form/military/foreign"
               onClick={[Function]}
             >
@@ -2216,23 +2199,6 @@ exports[`Navigation component renders correctly 1`] = `
                 className="section-name"
               >
                 Diagnoses
-              </span>
-              <span
-                className="eapp-status-icon"
-              />
-            </a>
-          </li>
-          <li>
-            <a
-              aria-current={false}
-              className="section-link"
-              href="/form/psychological/conditions"
-              onClick={[Function]}
-            >
-              <span
-                className="section-name"
-              >
-                Existing Conditions
               </span>
               <span
                 className="eapp-status-icon"
