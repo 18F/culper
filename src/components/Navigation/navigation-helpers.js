@@ -128,7 +128,10 @@ export const isActive = (route, pathname) => {
 }
 
 export const sectionsTotal = () => {
-  return navigation.filter(x => !x.hidden).filter(x => !x.exclude).length
+  return navigation
+    .filter(x => !x.hidden)
+    .filter(x => !x.exclude)
+    .length
 }
 
 export const sectionsCompleted = (store, props) => {

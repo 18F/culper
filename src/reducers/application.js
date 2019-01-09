@@ -2,6 +2,7 @@ import { combineReducers } from 'redux'
 import relationshipsReducer from './relationships'
 import historyReducer from './history'
 import errorReducer from './error'
+import navigationReducer from './navigation'
 
 const defaultState = {}
 
@@ -41,7 +42,8 @@ export default combineReducers({
   Submission: reducer('Submission'),
   Completed: errorReducer('Completed'),
   Errors: errorReducer('Errors'),
-  AddressBooks: reducer('AddressBooks')
+  AddressBooks: reducer('AddressBooks'),
+  Navigation: navigationReducer
 })
 
 // Or alternative...

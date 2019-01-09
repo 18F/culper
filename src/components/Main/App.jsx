@@ -5,7 +5,6 @@ import { i18n } from '../../config'
 import {
   SectionTitle,
   ProgressBar,
-  ScoreCard,
   Navigation,
   NavigationToggle
 } from '..'
@@ -217,8 +216,7 @@ class App extends React.Component {
         <main className={klassMain}>
           <div className="eapp-structure-row">
             <div className={klassNavigation}>
-              <ScoreCard />
-              <Navigation />
+              <Navigation formType={this.props.formType} />
               <button
                 onClick={this.showInstructions}
                 className="instructions mobile-visible">
