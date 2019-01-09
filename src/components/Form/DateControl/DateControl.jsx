@@ -91,27 +91,6 @@ class DateControl extends ValidationElement {
     this.setState(
       { month: month, day: day, year: year, estimated: estimated, touched: touched },
       () => {
-        // Estimate touches the day so we need to toggle focus
-        const toggleForEstimation = changed.estimated
-
-        // Potential for typical day out-of-bounds (including leap year)
-        const toggleForDay = changed.year || changed.month
-
-        // Any external influence (i.e. clicking `Present` in a date range)
-        const toggleForExternal =
-          el === null && changed.year && changed.month && changed.day
-
-        // This will force a blur/validation
-        if (toggleForEstimation || toggleForDay || toggleForExternal) {
-          this.props.toggleFocus(
-            window,
-            changed,
-            el,
-            this.refs.day.refs.number.refs.input,
-            this.refs.month.refs.number.refs.input
-          )
-        }
-
         this.props.onUpdate({
           name: this.props.name,
           month: `${month}`,
@@ -401,18 +380,6 @@ DateControl.defaultProps = {
   minDate: null,
   minDateEqualTo: false,
   relationship: '',
-  toggleFocus: (w, changed, el, day, month) => {
-    day.focus()
-    day.blur()
-
-    if (el) {
-      if (changed.month) {
-        month.focus()
-      } else if (el.focus) {
-        el.focus()
-      }
-    }
-  },
   onUpdate: values => {},
   onError: (value, arr) => {
     return arr
