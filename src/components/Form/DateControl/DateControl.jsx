@@ -80,14 +80,6 @@ class DateControl extends ValidationElement {
   }
 
   update(el, year, month, day, estimated, touched) {
-    const changed = {
-      year: year !== this.state.year,
-      month: month !== this.state.month,
-      day: day !== this.state.day,
-      estimated: estimated !== this.state.estimated,
-      touched: touched !== this.state.touched
-    }
-
     this.setState(
       { month: month, day: day, year: year, estimated: estimated, touched: touched },
       () => {
