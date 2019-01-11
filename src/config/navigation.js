@@ -11,6 +11,7 @@ import Financial from '../components/Section/Financial/navigation'
 import SubstanceUse from '../components/Section/SubstanceUse/navigation'
 import Legal from '../components/Section/Legal/navigation'
 import psychologicalNavigation from '../components/Section/Psychological/navigation'
+import store from './../services/store'
 
 export const Review = {
   title: 'Review and submit',
@@ -113,7 +114,8 @@ const navigation = [
 export default navigation
 
 export const navigationWalker = action => {
-  navigation.forEach(section => {
+  const eAppStore = store.getState()
+  eAppStore.application.Navigation.sections.forEach(section => {
     walk(section, action)
   })
 }

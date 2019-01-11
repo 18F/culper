@@ -1,4 +1,4 @@
-import { navigation } from '../../config'
+import store from './../../services/store'
 
 export const validations = (section, props = {}) => {
   if (!section || !section.subsections) {
@@ -71,10 +71,14 @@ export const hasErrors = (route, errors = {}) => {
 
 // Find the navigation object that corresponds to this route
 const findNode = crumbs => {
+  const eAppStore = store.getState()
   let node = null
+
   for (const crumb of crumbs) {
     if (!node) {
-      node = navigation.find(x => x.url.toLowerCase() === crumb)
+      node = eAppStore.application.Navigation.sections.find(x => (
+        x.url.toLowerCase() === crumb
+      ))
     } else if (node.subsections) {
       node = node.subsections.find(x => x.url.toLowerCase() === crumb)
     }
@@ -135,13 +139,16 @@ export const sectionsTotal = () => {
 }
 
 export const sectionsCompleted = (store, props) => {
+  const eAppStore = store.getState()
   let sections = 0
 
   for (const section in store) {
-    const valid = store[section].filter(
-      e => e.section.toLowerCase() === section.toLowerCase() && e.valid === true
-    ).length
-    if (valid >= validations(navigation.find(n => n.url === section), props)) {
+    const valid = store[section].filter(e => (
+      e.section.toLowerCase() === section.toLowerCase() && e.valid === true
+    )).length
+    if (valid >= validations(
+      eAppStore.application.Navigation.sections.find(n => n.url === section), props
+    )) {
       sections++
     }
   }

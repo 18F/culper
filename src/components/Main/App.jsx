@@ -1,6 +1,7 @@
 import React from 'react'
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
+import _ from 'lodash'
 import { i18n } from '../../config'
 import {
   SectionTitle,
@@ -13,6 +14,23 @@ import { Introduction, Show } from '../Form'
 import Logout from '../Navigation/Logout'
 import StickyHeader from '../Sticky/StickyHeader'
 import formTypes from './../../config/formTypes'
+import Identification from './../../components/Section/Identification/navigation'
+// disambiguate from History class in browser
+import historyNavigation from './../../components/Section/History/navigation'
+import relationshipsNavigation from './../../components/Section/Relationships/navigation'
+import Citizenship from './../../components/Section/Citizenship/navigation'
+import Military from './../../components/Section/Military/navigation'
+import Foreign from './../../components/Section/Foreign/navigation'
+import Financial from './../../components/Section/Financial/navigation'
+import SubstanceUse from './../../components/Section/SubstanceUse/navigation'
+import Legal from './../../components/Section/Legal/navigation'
+import psychologicalNavigation from './../../components/Section/Psychological/navigation'
+import { Review } from './../../config/navigation'
+import {
+  handleUpdateNavigation,
+  handleUpdateTotalSectionTotal,
+  handleUpdateCompletedSectionTotal
+} from './../../actions/NavigationActions'
 
 /*
            1/6-ish                                 2/3-ish                               1/6-ish
@@ -46,6 +64,9 @@ class App extends React.Component {
     }
     this.showInstructions = this.showInstructions.bind(this)
     this.dismissInstructions = this.dismissInstructions.bind(this)
+    this.getNavigation = this.getNavigation.bind(this)
+    this.getTotalSections = this.getTotalSections.bind(this)
+    this.getCompletedSectionsTotal = this.getCompletedSectionsTotal.bind(this)
 
     // workaround for not having React.createRef(), introduced in React 16.3
     // https://reactjs.org/docs/refs-and-the-dom.html#dont-overuse-refs
@@ -55,10 +76,32 @@ class App extends React.Component {
     }
   }
 
+  componentDidMount() {
+    const {
+      handleUpdateNavigation,
+      handleUpdateTotalSectionTotal,
+      handleUpdateCompletedSectionTotal
+    } = this.props
+
+    const navigationSections = this.getNavigation()
+    handleUpdateNavigation(navigationSections)
+    handleUpdateTotalSectionTotal(this.getTotalSections(navigationSections))
+    handleUpdateCompletedSectionTotal(this.getCompletedSectionsTotal())
+  }
+
   componentDidUpdate(prevProps) {
     // for keyboard navigation accessbility, focus on the main content area after a new section is navigated to
-    if (this.props.location.pathname !== prevProps.location.pathname) {
+    const {
+      location,
+      navigation,
+      handleUpdateCompletedSectionTotal
+    } = this.props
+    if (location.pathname !== prevProps.location.pathname) {
       this.sectionFocusEl.focus()
+    }
+
+    if (this.getCompletedSectionsTotal() !== prevProps.navigation.completedSectionsTotal) {
+      handleUpdateCompletedSectionTotal(this.getCompletedSectionsTotal())
     }
   }
 
@@ -91,7 +134,44 @@ class App extends React.Component {
     return ''
   }
 
+  getNavigation() {
+    const { formType } = this.props
+    return _.compact([
+      Identification,
+      historyNavigation(formType),
+      relationshipsNavigation(formType),
+      Citizenship,
+      Military,
+      Foreign,
+      Financial,
+      SubstanceUse,
+      Legal,
+      psychologicalNavigation(formType),
+      Review
+    ])
+  }
+
+  getTotalSections(navigationSections) {
+    return navigationSections
+      .filter(section => !section.hidden)
+      .filter(section => !section.exclude)
+      .length
+  }
+
+  getCompletedSectionsTotal() {
+    const { app } = this.props
+    let completedSectionsTotal = 0
+    for (const key of Object.keys(app.Completed)) {
+      const isSectionComplete = app.Completed[key].every(section => (
+        section.valid === true
+      ))
+      isSectionComplete && completedSectionsTotal++
+    }
+    return completedSectionsTotal
+  }
+
   render() {
+    const { navigation, formType } = this.props
     const klassApp = `${this.designClass()} ${
       this.props.settings.modalOpen ? 'modal-open' : ''
     }`.trim()
@@ -209,14 +289,21 @@ class App extends React.Component {
               </header>
               <div id="scrollToProgress" />
               <div className="usa-overlay" />
-              <ProgressBar />
+              <ProgressBar
+                completedSectionsTotal={navigation.completedSectionsTotal}
+                totalSections={navigation.totalSections}
+              />
             </div>
           </div>
         </StickyHeader>
         <main className={klassMain}>
           <div className="eapp-structure-row">
             <div className={klassNavigation}>
-              <Navigation formType={this.props.formType} />
+              <Navigation
+                sections={navigation.sections}
+                total={navigation.totalSections}
+                completed={navigation.completedSectionsTotal}
+              />
               <button
                 onClick={this.showInstructions}
                 className="instructions mobile-visible">
@@ -231,7 +318,10 @@ class App extends React.Component {
               ref={this.setSectionFocusEl}
             />
             <div id="main-content" className={klassCore}>
-              <Form {...this.props} />
+              <Form
+                formType={formType}
+                navigation={navigation}
+               />
               &nbsp;
             </div>
           </div>
@@ -254,6 +344,7 @@ function mapStateToProps(state) {
   const settings = app.Settings || { mobileNavigation: false, modalOpen: false }
 
   return {
+    app: app,
     settings: settings,
     authenticated: auth.authenticated,
     formType: auth.formType,
@@ -261,6 +352,20 @@ function mapStateToProps(state) {
   }
 }
 
+function mapDispatchToProps(dispatch) {
+  return {
+    handleUpdateNavigation: sections => {
+      dispatch(handleUpdateNavigation(sections))
+    },
+    handleUpdateTotalSectionTotal: total => {
+      dispatch(handleUpdateTotalSectionTotal(total))
+    },
+    handleUpdateCompletedSectionTotal: completed => {
+      dispatch(handleUpdateCompletedSectionTotal(completed))
+    }
+  }
+}
+
 // Wraps the the App component with connect() which adds the dispatch()
 // function to the props property for this component
-export default withRouter(connect(mapStateToProps)(App))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App))

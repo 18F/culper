@@ -63,6 +63,10 @@ export function updateApplication(section, property, values) {
   }
 }
 
+/**
+ * This function is never invoked so I'm commenting it out.
+ * Function to be deleted
+ */
 export function validateApplication(dispatch, application = {}) {
   navigationWalker((path, child) => {
     if (path.length && path[0].store && child.store && child.validator) {

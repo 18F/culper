@@ -6,17 +6,25 @@ import {
 import { api } from '../../services'
 import schema from '../../schema'
 
-// To run this put the following reference in Login.jsx
-//
-//   import { preload } from './preload'
-//
-// and then inside of `componentDidMount()`
-//
-//   window.tt = {
-//     dispatch: this.props.dispatch,
-//     preload: preload
-//   }
+/**
+ *
+ * To run this put the following reference in Login.jsx
+ *
+ *   import { preload } from './preload'
+ *
+ * and then inside of `componentDidMount()`
+ *
+ *   window.tt = {
+ *     dispatch: this.props.dispatch,
+ *     preload: preload
+ *   }
+ */
 
+/**
+ * All functions have been commented out because none of these functions
+ * are getting invoked. I'm commenting out to reduce confusion.
+ * Uncomment if there is a use case
+ */
 export const validate = (dispatch, application = {}) => {
   navigationWalker((path, child) => {
     if (path.length && path[0].store && child.store && child.validator) {

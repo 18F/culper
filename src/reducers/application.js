@@ -45,12 +45,3 @@ export default combineReducers({
   AddressBooks: reducer('AddressBooks'),
   Navigation: navigationReducer
 })
-
-// Or alternative...
-// export const appReducer = function (state = defaultState, action) {
-// return merge(state, {
-// [action.section]: {
-// [action.property]: action.values
-// }
-// })
-// }

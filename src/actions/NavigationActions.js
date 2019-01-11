@@ -7,10 +7,16 @@ export function handleUpdateNavigation(sections) {
   }
 }
 
-export function handleUpdateNavigationCount(completed, total) {
+export function handleUpdateTotalSectionTotal(total) {
   return {
-    type: NavigationConstants.UPDATE_SECTION_COUNT,
-    completed,
+    type: NavigationConstants.UPDATE_SECTION_TOTAL,
     total
+  }
+}
+
+export function handleUpdateCompletedSectionTotal(completed) {
+  return {
+    type: NavigationConstants.UPDATE_COMPLETED_SECTION_TOTAL,
+    completed
   }
 }

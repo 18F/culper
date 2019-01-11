@@ -2,8 +2,8 @@ import NavigationConstants from './../actions/NavigationsConstants'
 
 const defaultState = {
   sections: [],
-  totalSectionsCount: 0,
-  completedSectionsCount: 0,
+  totalSections: 0,
+  completedSectionsTotal: 0,
 }
 
 function navigationReducer(state = defaultState, action) {
@@ -13,11 +13,15 @@ function navigationReducer(state = defaultState, action) {
         ...state,
         sections: action.sections
       }
-    case NavigationConstants.UPDATE_SECTION_COUNT:
+    case NavigationConstants.UPDATE_SECTION_TOTAL:
       return {
         ...state,
-        totalSectionsCount: action.total,
-        completedSectionsCount: action.completed
+        totalSections: action.total,
+      }
+    case NavigationConstants.UPDATE_COMPLETED_SECTION_TOTAL:
+      return {
+        ...state,
+        completedSectionsTotal: action.completed
       }
     default:
       return state;

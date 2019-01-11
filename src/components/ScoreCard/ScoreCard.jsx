@@ -4,16 +4,16 @@ import { i18n } from '../../config'
 
 class ScoreCard extends React.Component {
   render() {
-    const { completedSectionsCount, totalSectionsCount } = this.props
+    const { completedSectionsTotal, totalSections } = this.props
     const classNames = [
       'score-card',
-      completedSectionsCount >= totalSectionsCount ? 'completed' : ''
+      completedSectionsTotal >= totalSections ? 'completed' : ''
     ].join(' ').trim()
     return (
       <div
         className={classNames}>
-        <span className="score-card-done">{completedSectionsCount}</span>/
-        <span className="score-card-total">{totalSectionsCount}</span>
+        <span className="score-card-done">{completedSectionsTotal}</span>/
+        <span className="score-card-total">{totalSections}</span>
         <span className="score-card-text">{i18n.t('scorecard.complete')}</span>
       </div>
     )
@@ -21,8 +21,8 @@ class ScoreCard extends React.Component {
 }
 
 ScoreCard.propTypes = {
-  completedSectionsCount: PropTypes.number.isRequired,
-  totalSectionsCount: PropTypes.number.isRequired
+  completedSectionsTotal: PropTypes.number.isRequired,
+  totalSections: PropTypes.number.isRequired
 }
 
 export default ScoreCard
