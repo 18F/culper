@@ -9,7 +9,7 @@ class ProgressBar extends React.Component {
       totalSections
     } = this.props
     const styles = {
-      width: `${(totalSections / completedSectionsTotal) * 100}%`
+      width: `${(completedSectionsTotal / totalSections) * 100}%`
     }
 
     return (
