@@ -1,15 +1,4 @@
-// import {
-//   sectionsTotal,
-//   sectionsCompleted
-// } from '../components/Navigation/navigation-helpers'
 import SignatureValidator from './signature'
-import { hideExistingConditions } from './psychological'
-
-// export const hideReleases = (store = {}) => {
-//   return (
-//     sectionsTotal() > sectionsCompleted(store.Completed, { application: store })
-//   )
-// }
 
 export const hideHippa = (store = {}) => {
   const psych = store.Psychological || {}

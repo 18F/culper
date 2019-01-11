@@ -282,7 +282,10 @@ class App extends React.Component {
                           <Logout />
                         </Show>
                       </div>
-                      <SectionTitle hidden={mobileNavigation} />
+                      <SectionTitle
+                        hidden={mobileNavigation}
+                        sections={navigation.sections}
+                      />
                     </div>
                   </div>
                 </div>

@@ -131,31 +131,6 @@ export const isActive = (route, pathname) => {
   return pathname.startsWith(route)
 }
 
-export const sectionsTotal = () => {
-  return navigation
-    .filter(x => !x.hidden)
-    .filter(x => !x.exclude)
-    .length
-}
-
-export const sectionsCompleted = (store, props) => {
-  const eAppStore = store.getState()
-  let sections = 0
-
-  for (const section in store) {
-    const valid = store[section].filter(e => (
-      e.section.toLowerCase() === section.toLowerCase() && e.valid === true
-    )).length
-    if (valid >= validations(
-      eAppStore.application.Navigation.sections.find(n => n.url === section), props
-    )) {
-      sections++
-    }
-  }
-
-  return sections
-}
-
 export const findPosition = el => {
   let currentTop = 0
 
