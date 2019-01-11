@@ -13,6 +13,7 @@ import { Form } from '../../views'
 import { Introduction, Show } from '../Form'
 import Logout from '../Navigation/Logout'
 import StickyHeader from '../Sticky/StickyHeader'
+import { ScoreCard } from './../ScoreCard'
 import formTypes from './../../config/formTypes'
 import Identification from './../../components/Section/Identification/navigation'
 // disambiguate from History class in browser
@@ -302,11 +303,11 @@ class App extends React.Component {
         <main className={klassMain}>
           <div className="eapp-structure-row">
             <div className={klassNavigation}>
-              <Navigation
-                sections={navigation.sections}
-                total={navigation.totalSections}
-                completed={navigation.completedSectionsTotal}
+              <ScoreCard
+                totalSections={navigation.totalSections}
+                completedSectionsTotal={navigation.completedSectionsTotal}
               />
+              <Navigation sections={navigation.sections} />
               <button
                 onClick={this.showInstructions}
                 className="instructions mobile-visible">
