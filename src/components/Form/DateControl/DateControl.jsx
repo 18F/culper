@@ -28,6 +28,7 @@ class DateControl extends ValidationElement {
       month: props.hideMonth ? '1' : props.month,
       day: props.hideDay ? '1' : props.day,
       year: props.year,
+      touched: this.isTouched(props.year, props.month, props.day),
       errors: []
     }
 
@@ -44,6 +45,10 @@ class DateControl extends ValidationElement {
     this.updateEstimated = this.updateEstimated.bind(this)
     this.handleDisable = this.handleDisable.bind(this)
     this.errors = []
+  }
+
+  isTouched(year, month, day) {
+    return month >= 1 && day >= 1 && year >= 1
   }
 
   componentWillReceiveProps(next) {
@@ -74,44 +79,17 @@ class DateControl extends ValidationElement {
     this.setState(updates)
   }
 
-  update(el, year, month, day, estimated) {
-    const changed = {
-      year: year !== this.state.year,
-      month: month !== this.state.month,
-      day: day !== this.state.day,
-      estimated: estimated !== this.state.estimated
-    }
-
+  update(el, year, month, day, estimated, touched) {
     this.setState(
-      { month: month, day: day, year: year, estimated: estimated },
+      { month: month, day: day, year: year, estimated: estimated, touched: touched },
       () => {
-        // Estimate touches the day so we need to toggle focus
-        const toggleForEstimation = changed.estimated
-
-        // Potential for typical day out-of-bounds (including leap year)
-        const toggleForDay = changed.year || changed.month
-
-        // Any external influence (i.e. clicking `Present` in a date range)
-        const toggleForExternal =
-          el === null && changed.year && changed.month && changed.day
-
-        // This will force a blur/validation
-        if (toggleForEstimation || toggleForDay || toggleForExternal) {
-          this.props.toggleFocus(
-            window,
-            changed,
-            el,
-            this.refs.day.refs.number.refs.input,
-            this.refs.month.refs.number.refs.input
-          )
-        }
-
         this.props.onUpdate({
           name: this.props.name,
           month: `${month}`,
           day: `${day}`,
           year: `${year}`,
-          estimated: estimated
+          estimated: estimated,
+          touched: touched || this.isTouched(year, month, day)
         })
       }
     )
@@ -123,7 +101,8 @@ class DateControl extends ValidationElement {
       this.state.year,
       values.value,
       this.state.day,
-      this.state.estimated
+      this.state.estimated,
+      this.state.touched
     )
   }
 
@@ -133,7 +112,8 @@ class DateControl extends ValidationElement {
       this.state.year,
       this.state.month,
       values.value,
-      this.state.estimated
+      this.state.estimated,
+      this.state.touched
     )
   }
 
@@ -143,7 +123,8 @@ class DateControl extends ValidationElement {
       values.value,
       this.state.month,
       this.state.day,
-      this.state.estimated
+      this.state.estimated,
+      this.state.touched
     )
   }
 
@@ -153,7 +134,8 @@ class DateControl extends ValidationElement {
       this.state.year,
       this.state.month,
       this.state.day,
-      values.checked
+      values.checked,
+      this.state.touched
     )
   }
 
@@ -390,18 +372,6 @@ DateControl.defaultProps = {
   minDate: null,
   minDateEqualTo: false,
   relationship: '',
-  toggleFocus: (w, changed, el, day, month) => {
-    day.focus()
-    day.blur()
-
-    if (el) {
-      if (changed.month) {
-        month.focus()
-      } else if (el.focus) {
-        el.focus()
-      }
-    }
-  },
   onUpdate: values => {},
   onError: (value, arr) => {
     return arr
