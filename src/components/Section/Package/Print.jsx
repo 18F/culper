@@ -1,7 +1,7 @@
 import React from 'react'
 import FileSaver from 'file-saver'
 import { connect } from 'react-redux'
-import { i18n, navigation } from '../../../config'
+import { i18n } from '../../../config'
 import { api } from '../../../services'
 import { RadioGroup, Radio, Show, Svg } from '../../Form'
 
