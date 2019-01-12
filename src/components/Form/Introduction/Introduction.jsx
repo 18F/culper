@@ -54,7 +54,10 @@ export class Introduction extends React.Component {
           onDismiss={this.props.onDismiss}>
           <div>
             <div className="introduction-legal">
-              {i18n.m('introduction.contents')}
+              {this.props.auth.formType === '85'
+                ? i18n.m('introduction.85.contents')
+                : i18n.m('introduction.contents')
+              }
             </div>
             <Show when={!this.props.forceOpen}>
               <Branch
@@ -89,7 +92,8 @@ function mapStateToProps(state) {
   const settings = app.Settings || { acceptedTerms: { value: '' } }
 
   return {
-    settings: settings
+    settings: settings,
+    auth: state.authentication
   }
 }
 

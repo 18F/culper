@@ -23,7 +23,13 @@ test('Renders homepage', () => {
     application: {
       Settings: {
         mobileNavigation: false
-      }
+      },
+      Navigation: {
+        sections: [],
+        totalSections: 10,
+        completedSectionsTotal: 0
+      },
+      Completed: {}
     }
   })
 

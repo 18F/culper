@@ -98,7 +98,7 @@ describe('The History section', () => {
       </Provider>
     )
 
-    expect(component.find(Employment).props().totalYears).toEqual(2)
+    expect(component.find(Employment).props().totalYears).toEqual(10)
   })
 
   it('sets totalYears to proper value if applicant has more than 10 years of history', () => {

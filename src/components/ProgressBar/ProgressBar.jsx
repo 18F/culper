@@ -29,4 +29,4 @@ ProgressBar.propTypes = {
   totalSections: PropTypes.number.isRequired,
 }
 
-export default AuthenticatedView(ProgressBar)
+export default ProgressBar

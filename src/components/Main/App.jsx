@@ -15,23 +15,14 @@ import Logout from '../Navigation/Logout'
 import StickyHeader from '../Sticky/StickyHeader'
 import { ScoreCard } from './../ScoreCard'
 import formTypes from './../../config/formTypes'
-import Identification from './../../components/Section/Identification/navigation'
-// disambiguate from History class in browser
-import historyNavigation from './../../components/Section/History/navigation'
-import relationshipsNavigation from './../../components/Section/Relationships/navigation'
-import Citizenship from './../../components/Section/Citizenship/navigation'
-import Military from './../../components/Section/Military/navigation'
-import Foreign from './../../components/Section/Foreign/navigation'
-import Financial from './../../components/Section/Financial/navigation'
-import SubstanceUse from './../../components/Section/SubstanceUse/navigation'
-import Legal from './../../components/Section/Legal/navigation'
-import psychologicalNavigation from './../../components/Section/Psychological/navigation'
-import { Review } from './../../config/navigation'
+
+import { validations } from './../Navigation/navigation-helpers'
 import {
   handleUpdateNavigation,
   handleUpdateTotalSectionTotal,
   handleUpdateCompletedSectionTotal
 } from './../../actions/NavigationActions'
+import navigationSections from './navigationSections'
 
 /*
            1/6-ish                                 2/3-ish                               1/6-ish
@@ -65,7 +56,6 @@ class App extends React.Component {
     }
     this.showInstructions = this.showInstructions.bind(this)
     this.dismissInstructions = this.dismissInstructions.bind(this)
-    this.getNavigation = this.getNavigation.bind(this)
     this.getTotalSections = this.getTotalSections.bind(this)
     this.getCompletedSectionsTotal = this.getCompletedSectionsTotal.bind(this)
 
@@ -79,14 +69,15 @@ class App extends React.Component {
 
   componentDidMount() {
     const {
+      formType,
       handleUpdateNavigation,
       handleUpdateTotalSectionTotal,
       handleUpdateCompletedSectionTotal
     } = this.props
 
-    const navigationSections = this.getNavigation()
-    handleUpdateNavigation(navigationSections)
-    handleUpdateTotalSectionTotal(this.getTotalSections(navigationSections))
+    const sections = navigationSections(formType)
+    handleUpdateNavigation(sections)
+    handleUpdateTotalSectionTotal(this.getTotalSections(sections))
     handleUpdateCompletedSectionTotal(this.getCompletedSectionsTotal())
   }
 
@@ -135,23 +126,6 @@ class App extends React.Component {
     return ''
   }
 
-  getNavigation() {
-    const { formType } = this.props
-    return _.compact([
-      Identification,
-      historyNavigation(formType),
-      relationshipsNavigation(formType),
-      Citizenship,
-      Military,
-      Foreign,
-      Financial,
-      SubstanceUse,
-      Legal,
-      psychologicalNavigation(formType),
-      Review
-    ])
-  }
-
   getTotalSections(navigationSections) {
     return navigationSections
       .filter(section => !section.hidden)
@@ -160,13 +134,15 @@ class App extends React.Component {
   }
 
   getCompletedSectionsTotal() {
-    const { app } = this.props
+    const { app, navigation } = this.props
     let completedSectionsTotal = 0
     for (const key of Object.keys(app.Completed)) {
-      const isSectionComplete = app.Completed[key].every(section => (
-        section.valid === true
-      ))
-      isSectionComplete && completedSectionsTotal++
+      const validSectionTotal = app.Completed[key].filter(e => (
+        e.section.toLowerCase() === key.toLowerCase() && e.valid === true
+      )).length
+      if (validSectionTotal >= validations(navigation.sections.find(n => n.url === key), { application: app })) {
+        completedSectionsTotal++
+      }
     }
     return completedSectionsTotal
   }

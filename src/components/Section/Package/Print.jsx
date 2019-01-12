@@ -140,7 +140,7 @@ class Print extends React.Component {
           )
           break
         case 'history':
-          sectionComponent = <HistorySections {...this.props.History} />
+          sectionComponent = <HistorySections {...this.props.History} formType={this.props.formType} />
           break
         case 'citizenship':
           sectionComponent = <CitizenshipSections {...this.props.Citizenship} />
@@ -311,7 +311,8 @@ function mapStateToProps(state) {
     Settings: settings,
     Errors: errors.releases || [],
     Completed: completed.releases || [],
-    Navigation: navigation
+    Navigation: navigation,
+    formType: state.authentication.formType
   }
 }
 
