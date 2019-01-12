@@ -1,3 +1,4 @@
+import compact from 'lodash/compact'
 import * as validators from '../../../validators/index'
 
 /**
@@ -12,7 +13,7 @@ function historyNavigation(formType = '86') {
     store: 'History',
     showNumber: true,
     locked: validators.formIsLocked,
-    subsections: [
+    subsections: compact([
       {
         exclude: true,
         name: 'Introduction',
@@ -40,18 +41,18 @@ function historyNavigation(formType = '86') {
        * This logic is a little cryptic, but it is conditionally adding
        * this subsection based on form type
        */
-      ...(formType === '86' ? {
+      (formType === '86' ? {
         name: 'Former federal service',
         url: 'federal',
         store: 'Federal',
         validator: validators.FederalServiceValidator
-      } : {}),
+      } : null),
       {
         exclude: true,
         name: 'Review',
         url: 'review'
       }
-    ]
+    ])
   }
 }
 
