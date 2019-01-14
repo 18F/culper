@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import AuthenticatedView from '../../views/AuthenticatedView'
 
 class ProgressBar extends React.Component {
   render() {
