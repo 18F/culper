@@ -538,11 +538,10 @@ class History extends SectionElement {
             nextLabel={i18n.t('history.destination.employment')}>
             <h1 className="section-header">{i18n.t('history.residence.title')}</h1>
             <Field
-              title={
-                this.props.formType === '85'
-                  ? i18n.t('history.85.residence.info')
-                  : i18n.t('history.residence.info')
-              }
+              title={{
+                85: i18n.t('history.85.residence.info'),
+                86: i18n.t('history.residence.info')
+              }[this.props.formType]}
               titleSize="h3"
               optional={true}
               className="no-margin-bottom">
@@ -594,10 +593,10 @@ class History extends SectionElement {
               titleSize="h3"
               optional={true}
               className="no-margin-bottom">
-              {this.props.formType === '85'
-                ? i18n.m('history.85.employment.para')
-                : i18n.m('history.employment.para.employment')
-              }
+              {{
+                85: i18n.m('history.85.employment.para'),
+                86: i18n.m('history.employment.para.employment')
+              }[this.props.formType]}
               {i18n.m('history.employment.para.employment2')}
             </Field>
 
@@ -649,11 +648,10 @@ class History extends SectionElement {
               name="branch_school"
               {...this.props.Education.HasAttended}
               help="history.education.help.attendance"
-              label={
-                this.props.formType === '85'
-                  ? i18n.t('history.85.education.label.attendance')
-                  : i18n.t('history.education.label.attendance')
-              }
+              label={{
+                85: i18n.t('history.85.education.label.attendance'),
+                86: i18n.t('history.education.label.attendance')
+              }[this.props.formType]}
               labelSize="h4"
               warning={true}
               onUpdate={this.updateBranchAttendance}

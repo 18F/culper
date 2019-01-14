@@ -54,10 +54,10 @@ export class Introduction extends React.Component {
           onDismiss={this.props.onDismiss}>
           <div>
             <div className="introduction-legal">
-              {this.props.auth.formType === '85'
-                ? i18n.m('introduction.85.contents')
-                : i18n.m('introduction.contents')
-              }
+              {{
+                85: i18n.m('introduction.85.contents'),
+                86: i18n.m('introduction.contents')
+              }[this.props.auth.formType]}
             </div>
             <Show when={!this.props.forceOpen}>
               <Branch

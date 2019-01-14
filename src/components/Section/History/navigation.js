@@ -37,10 +37,6 @@ function historyNavigation(formType = '86') {
         store: 'Education',
         validator: validators.HistoryEducationValidator
       },
-      /**
-       * This logic is a little cryptic, but it is conditionally adding
-       * this subsection based on form type
-       */
       (formType === '86' ? {
         name: 'Former federal service',
         url: 'federal',
