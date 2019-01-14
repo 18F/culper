@@ -1,5 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import { validDate, today } from '../../History/dateranges'
 import {
   Location,
   DateControl,
@@ -139,7 +140,7 @@ export default class ReceivedCounseling extends ValidationElement {
   }
 
   render() {
-    const maxDate = this.props.TreatmentEndDate
+    const maxDate = validDate(this.props.TreatmentEndDate) ? this.props.TreatmentEndDate : today
     const minDate = this.props.TreatmentBeganDate
     return (
       <div className="received-counseling">
