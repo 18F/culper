@@ -77,16 +77,23 @@ describe('The ReceivedCounseling component', () => {
 
   it('present returns todays date', () => {
     let checked = false
+    let treatmentEndDate = null
     const props = {
       PresentTreatmentEndDate: false,
       onUpdate: values => {
         checked = true
+        treatmentEndDate = values.TreatmentEndDate
       }
     }
 
+    const expectedDate = new Date()
     const component = createComponent(props)
     component.find('.present-treatment-end-date input').simulate('change')
     expect(checked).toBe(true)
+    expect(treatmentEndDate.day).toBe(String(expectedDate.getDate()))
+    expect(treatmentEndDate.month).toBe(String(expectedDate.getMonth()+1))
+    expect(treatmentEndDate.year).toBe(String(expectedDate.getFullYear()))
+    expect(treatmentEndDate.estimated).toBe(false)
   })
 
   it('present can be unchecked', () => {

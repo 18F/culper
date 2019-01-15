@@ -111,7 +111,7 @@ export default class ReceivedCounseling extends ValidationElement {
       endDate = {
         date: date,
         estimated: false,
-        month: String(date.getMonth()),
+        month: String(date.getMonth()+1),
         year: String(date.getFullYear()),
         day: String(date.getDate())
       }
